@@ -1,0 +1,180 @@
+#library "MUZAK"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+#define NUMBER_OF_SONGS 30
+
+str song_names[NUMBER_OF_SONGS * 2] = {
+//
+"Slipgate",                "(Quake cover)",
+"Augmented",               "",
+"Inferno",                 "",
+"Dune",                    "",
+"Phobos",                  "(Doom cover)",
+"Conflagration",           "",
+"The Abyss",               "",
+"Geist",                   "",
+"Quad Machine",            "(Quake 2 cover)",
+"Infuscomus",              "(Blood cover)",
+"Xenomorph",               "",
+"Shodan",                  "",
+"Devil",                   "",
+"Descent into Cerberon",   "(Quake 2 cover)",
+"Deimos",                  "",
+"Grabbag",                 "(Duke Nukem cover)",
+"Durandal",                "(Marathon 2 cover)",
+"G.M.G.",                  "(The Spud Hunter theme)",
+"Wraith",                  "",
+"Vyper",                   "",
+"Get Psyched!",            "(Wolfenstein 3D cover)",
+"Doomed",                  "",
+"Crusade",                 "(Galena theme)",
+"For The Makron",          "(Strogg & Peeker theme)",
+"Nightmare",               "(Ranger theme)",
+"Ballet",                  "(Slash theme)",
+"Eternal",                 "(Visor theme)",
+"Bull Rush",               "(Scalebearer theme)",
+"Incendimus",              "(Death Knight theme)",
+"Punk's Not Dead",         "(Anarki theme)",
+};
+
+int servers_suggestion = -1;
+Script "QCDE_Music" OPEN CLIENTSIDE
+{
+	if(CheckQcdeModule("QCDE-OST") == false) terminate;
+	if(!GetUserCvar(CPN(), "snd_qcdemus")) terminate;
+	if(GameType() == GAME_TITLE_MAP) terminate;
+	delay(1);
+
+	if((GetGameModeState() == 0 && (GetCvar("survival") || GetCvar("invasion") || GetCvar("duel") || GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("possession") || GetCvar("teampossession"))) ||
+		GetGameModeState() == 1) // GAMESTATE_WAITFORPLAYERS in countdown modes or just GAMESTATE_COUNTDOWN
+	{
+		//log(s:"\c[red]Calm before the storm. \c[RL]", d:GetGameModeState(), s:".", d:GetCvar("survival"),  d:GetCvar("invasion"), d:GetCvar("duel"), d:GetCvar("lastmanstanding"), d:GetCvar("teamlms"), d:GetCvar("possession"), d:GetCvar("teampossession"));
+		SetMusic("SILENCIO");
+		terminate;
+	}
+	else
+	{
+		//log(s:"\c[cyan]Music plays! \c[RG]", d:GetGameModeState(), s:".", d:GetCvar("survival"),  d:GetCvar("invasion"), d:GetCvar("duel"), d:GetCvar("lastmanstanding"), d:GetCvar("teamlms"), d:GetCvar("possession"), d:GetCvar("teampossession"));
+	}
+
+	int sel = -1;
+	int randomness = GetUserCvar(CPN(), "snd_randommus");
+	// Play song through QCDE jukebox if it's present, but not if RANDOM mode is enabled
+	if(IsTidUsed(46290) && (randomness < 2))
+	{
+		SetActorState(46290, "Play");
+		terminate;
+	}
+
+	int i;
+	if(randomness == 1)
+	{
+		SetMusic("SILENCIO");
+		//log(s:TimeNow(), s:": requesting suggestions");
+		if(IsZandronum(true))
+			NamedRequestScriptPuke("QCDE_PickRandomSong", CPN());
+		else
+			ACS("QCDE_PickRandomSong", CPN());
+		while(servers_suggestion == -1)
+		{
+			delay(1);
+			if(Timer() % 7 == 0)
+			{
+				//log(s:TimeNow(), s:": requesting suggestions again");
+				NamedRequestScriptPuke("QCDE_PickRandomSong", CPN(), true);
+			}
+		}
+		sel = servers_suggestion;
+	}
+	else if(randomness == 2)
+		while(sel == -1 || sel == GetUserCvar(CPN(), "_previousSong"))
+			sel = random(i++, NUMBER_OF_SONGS - 1);
+	else
+		sel = GetLevelInfo(LEVELINFO_LEVELNUM) % NUMBER_OF_SONGS;
+
+	PlaySong(sel);
+}
+
+
+Script "QCDE_Jukebox" (int x) NET CLIENTSIDE
+{
+	if(CheckQcdeModule("QCDE-OST") == false) terminate;
+	if(!GetUserCvar(CPN(), "snd_qcdemus")) terminate;
+
+	//log(s:"Jukes: Playing map-defined ", d:x);
+	PlaySong(x);
+}
+
+Script "QCDE_PickRandomSong" (int asker, int repeated) NET
+{
+	//log(s:TimeNow(), s:": ", n:asker+1, s:" asking for music (repeat? ", s:btos[repeated], s:")");
+	if(servers_suggestion == -1)
+	{
+		servers_suggestion = makeSuggestion();
+		//log(s:TimeNow(), s:": deciding ", d:servers_suggestion, s:" -- \c[green]", s:GetName(servers_suggestion), s:" \c[graey]", s:GetDesc(servers_suggestion));
+	}
+	ACS("QCDE_RandomSongPicked", servers_suggestion);
+}
+
+// Suggestion data is put into existing global array enabled_themes, using 400..499 cells
+// Think this is ugly? I agree
+function int makeSuggestion(void)
+{
+	//log(s:"400th == ", d:enabled_themes[400]);
+	if(!enabled_themes[400] || enabled_themes[400] == NUMBER_OF_SONGS)
+	{
+		// pre-fill
+		int i;
+		for(i = 1; i <= NUMBER_OF_SONGS; i++)
+			enabled_themes[400 + i] = i;
+
+		// shuffle
+		for(i = 1; i <= NUMBER_OF_SONGS; i++)
+		{
+			int j = random(1, NUMBER_OF_SONGS);
+			if(i != j)
+				enabled_themes[400 + i] ^= enabled_themes[400 + j] ^= enabled_themes[400 + i] ^= enabled_themes[400 + j];
+		}
+
+
+		enabled_themes[400] = 0;
+	}
+
+	//str s = "playlist data: ";
+	//for(i = 0; i <= NUMBER_OF_SONGS; i++)
+	//	s = strparam(s:s, s:"  ", d:enabled_themes[400 + i] -!! i);
+	//printbold(s:s);
+
+
+	return enabled_themes[+400+ ++enabled_themes[400]]-1;
+}
+
+Script "QCDE_RandomSongPicked" (int which) CLIENTSIDE
+{
+	//log(s:TimeNow(), s:": receiving suggestion of ", d:which, s:" -- \c[green]", s:GetName(which), s:" \c[graey]", s:GetDesc(which));
+	servers_suggestion = which;
+}
+
+function int GetTune(int x)
+{
+	return strparam(s:"a", d:x/1000000%10, d:x/100000%10, d:x/10000%10, d:x/1000%10, d:x/100%10, d:x/10%10, d:x%10);
+}
+
+function int GetName(int x)
+{
+	return song_names[x * 2];
+}
+
+function int GetDesc(int x)
+{
+	return song_names[x * 2 + 1];
+}
+
+function void PlaySong(int x)
+{
+	SetMusic(GetTune(x),0,0);
+	if(GetUserCvar(CPN(), "snd_songnames")) log(s:"Now playing: \c[green]", s:GetName(x), s:" \c[graey]", s:GetDesc(x));
+	SetUserCvar(CPN(), "_previousSong", x);
+}

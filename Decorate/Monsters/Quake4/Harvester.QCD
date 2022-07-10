@@ -1,0 +1,194 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+
+Actor Q4Harvester : QCDE_MonsterBoss	15306	//spidermastermind
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 100
+	Height 100
+	Mass 5000
+	Health 3500
+	PainChance 20
+	+MISSILEEVENMORE
+	+NORADIUSDMG
+	+BOSS
+	+NOBLOOD
+	+NOICEDEATH
+	Speed 11
+	Scale 0.9
+	MeleeDamage 1
+	+FLOORCLIP
+	SeeSound "quake4/Harvester/Sight"
+	PainSound "quake4/Harvester/Pain"
+	DeathSound "quake4/Harvester/Death"
+	ActiveSound ""
+	MeleeRange 150
+	Obituary "$OB_Q4Harvester" // "%o got reduced into a bloody pulp by a Strogg harvester."
+	HitObituary "$OBH_Q4Harvester" // "%o will now be turned into stroyent."
+	Tag "$TAG_Q4Harvester" // "Harvester"
+	DropItem "BigHourglass"
+	States
+	{
+	Idle:
+		Q08I A 4 A_Look
+		Loop
+	See:
+		Q08W AB 5 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/Harvester/Step",5)
+		Q08W C 5 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/Harvester/Step",6)
+		Q08W DE 5 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/Harvester/Step",5)
+		Q08W F 5 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/Harvester/Step",6)
+		Loop
+	Melee:
+		TNT1 a 0 A_Jump(64,"Missile")
+		Q08M ABC 4 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Harvester/Step",5)
+		Q08M D 4 A_CustomMeleeAttack(random(60,150),"quake4/Misc/BladeHit","quake4/Misc/Swing","Normal",1)
+		Q08M EF 4
+		Goto See
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(720,"DecideIfGrenades")
+		TNT1 A 0 A_Jump(170,"Nailgun") //66% of the times will be nailgun
+		TNT1 A 0 A_Jump(256,"Rocket")	//otherwise, rocket
+		Goto Rocket
+	DecideIfGrenades:
+		TNT1 a 0 A_Jump(64,"Grenades")	//25% chance grenade attack if close enough
+		Goto Missile+1				//Otherwise decides if rocket or nail
+
+	Nailgun:
+		Q08A AAA 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Weapons/Nailgun/Fire")
+		Q08A A 0 A_CustomMissile("HarvesterNail",75,-9,0+random(7,-7))
+		Q08A A 4 A_CustomMissile("HarvesterNail",75,9,0+random(7,-7))
+		TNT1 A 0 A_PlaySound("quake4/Weapons/Nailgun/Fire")
+		Q08A A 0 A_CustomMissile("HarvesterNail",75,-9,0+random(7,-7))
+		Q08A A 4 A_CustomMissile("HarvesterNail",75,9,0+random(7,-7))
+		TNT1 A 0 A_CPosRefire
+		Goto Nailgun+3
+
+	Rocket:
+		TNT1 a 0 A_ChangeFlag("NOPAIN",1)
+		Q08R ABCDEEEE 5 A_FaceTarget
+		Q08R E 0 A_CustomMissile("HarvesterRocket2",70,0,0)	//because there will be situations where this attack will be useless unless it fires straight forward like all monsters were supposed to.
+		Q08R E 0 A_CustomMissile("HarvesterRocket",60,5,150)
+		Q08R E 10 A_CustomMissile("HarvesterRocket",60,-5,-150)
+		TNT1 a 0 A_ChangeFlag("NOPAIN",0)
+		Q08R DCBA 5
+		Goto See
+	Grenades:
+		TNT1 a 0 A_ChangeFlag("NOPAIN",1)
+		Q08R ABCDEE 5 A_FaceTarget
+		Q08R E 0 A_CustomMissile("HarvesterGrenade",60,0,random(45,-45))
+		Q08R E 5 A_CustomMissile("HarvesterGrenade",60,0,random(45,-45))
+		Q08R E 0 A_CustomMissile("HarvesterGrenade",60,0,random(45,-45))
+		Q08R E 5 A_CustomMissile("HarvesterGrenade",60,0,random(45,-45))
+		Q08R E 0 A_CustomMissile("HarvesterGrenade",45,0,random(45,-45))
+		Q08R E 5 A_CustomMissile("HarvesterGrenade",60,0,random(45,-45))
+		TNT1 a 0 A_ChangeFlag("NOPAIN",0)
+		Q08R DCBA 5
+		Goto See
+
+	Pain:
+		Q08P A 7 A_Pain
+		Goto See
+
+	XDeathChecksDone:
+	DeathChecksDone:
+		TNT1 A 0 A_Scream
+		Q08D A 0 A_Fall
+		Q08D ABCD 4 A_SpawnItemEx("BossDeathExplosion",random(30,-30),random(30,-30),random(20,80),0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal",5)
+		Q08D EFGHI 4
+	Death.Corpse:
+		Q08D I -1
+		Stop
+	}
+}
+
+//************************************************
+Actor HarvesterGrenade : Q4GunnerGrenade
+{
+	Speed 20
+	Damage 12
+	Scale 0.2
+	States
+	{
+    Death:
+		TNT1 A 0 A_SpawnItemEx("BoltExplosion",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 2 Light("YellowSmallFlicker1") A_Explode(36,96,1)
+		TNT1 A 2 Light("YellowMediumFlicker3")
+		TNT1 A 2 Light("YellowMediumFlicker2")
+		TNT1 A 2 Light("YellowMediumFlicker3")
+		TNT1 A 2 Light("YellowSmallFlicker1")
+		TNT1 A 2 Light("YellowSmallFlicker2")
+		TNT1 A 2 Light("YellowSmallFlicker3")
+		Stop
+	}
+}
+
+//***********************************************
+Actor HarvesterNail : Q4NailGunner
+{
+	Speed 60	//RRRRUUUUNNNN
+	Scale 0.25
+	+STRIFEDAMAGE	//less damage because they're so damn fast
+	Decal "NailgunChip"
+	States
+	{
+	Crash:
+		DB09 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact",CHAN_AUTO,0.6,0,1.7)
+		DB09 A 0 A_SetScale(0.9)	//only changes the size of this
+		DB09 A 0 A_Jump(256,"T1","T2","T3","T4")
+		Goto T1
+	}
+}
+
+
+//***********************************************
+Actor HarvesterRocket
+{
+	Projectile
+	+RANDOMIZE
+	+ROCKETTRAIL
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
+	Radius 12
+	Height 12
+	Speed 16
+	+SEEKERMISSILE
+	Damage 12
+	SeeSound "quake4/Weapons/RocketLauncher/Fire"
+	DeathSound "quake4/Misc/Explo"
+	Scale 0.85
+	Decal "Q4ExploScorch"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_PlaySound("QC/Weapons/RocketLauncher/Fly",7,1,1,2)
+		TNT1 A 0 A_SpawnItemEx("Q4BigRocketTrail",-4,0,3,0,0,0,0,SXF_NOCHECKPOSITION)
+		MICR A 1 Light("WhiteMediumFlicker2") Bright A_SeekerMissile(5,5)
+		MICR A 1 Light("WhiteMediumFlicker2") Bright A_SeekerMissile(5,5)
+		Goto Spawn+1
+	Death:
+		TNT1 A 0 A_Explode(90,128,1)
+		TNT1 A 10 A_SpawnItemEx("QCRocketExplosionBigger",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+Actor HarvesterRocket2 : HarvesterRocket	//this one doesnt seek
+{
+	-SEEKERMISSILE
+	Damage 5
+}
+
+
+

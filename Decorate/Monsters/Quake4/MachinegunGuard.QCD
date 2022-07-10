@@ -1,0 +1,69 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+Actor Q4MachinegunGuard : QCDE_MonsterSmall 	15312	//chainguy
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 16
+	Height 56
+	Mass 100
+	Health 90
+	PainChance 200
+	Speed 11
+	Scale 0.47
+	+FLOORCLIP
+	SeeSound "quake4/StroggMarine/Sight"
+	PainSound "quake4/StroggMarine/Pain"
+	DeathSound "quake4/StroggMarine/Death"
+	ActiveSound "quake4/StroggMarine/Idle"
+	AttackSound "quake4/Sentry/Machinegun"
+	Obituary "$OB_Q4MachinegunGuard" // "%o got overwhelmed by a Strogg guard."
+	DropItem "Chaingun"
+	Tag "$TAG_Q4MachinegunGuard" // "Machinegun Guard"
+	States
+	{
+	Idle:
+		Q22I A 4 A_Look
+		Loop
+	See:
+		Q22W AABBCCDD 3 A_Chase
+		Loop
+	Missile:
+		TNT1 a 0 A_PlaySound("quake4/StroggMarine/ReadyMachinegun",5)
+		Q22A AB 6 A_FaceTarget
+		Q22A CC 2 A_FaceTarget(0,0)
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",18,7,25,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomMissile("MonsterTracerMidVol",32,random(3,-3),frandom(5,-5))
+		Q22A D 3 A_CustomBulletAttack(20, 0, 1, random(1,5)*3, "BulletPuff", 0, CBAF_NORANDOM)
+		TNT1 a 0 A_MonsterRefire(0,"MissileEnd")
+		Goto Missile+4
+	MissileEnd:
+		Q22A BA 4
+		Goto See
+	Pain:
+		Q22P A 8 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		Q22D A 0 A_Scream
+		Q22D ACD 3
+		Q22D A 0 A_Fall
+		Q22D A 0 A_PlaySound("quake4/Misc/Body/Small")
+	Death.Corpse:
+		Q22D F -1
+		Stop
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake4/Misc/GibExplosion",7)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		Q22D FEDCBA 3
+		Goto See
+	}
+}

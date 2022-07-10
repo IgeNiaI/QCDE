@@ -1,0 +1,180 @@
+#library "ALLYMARK"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//=============================================================================
+//
+//		For purposes of quickly identifying Ragequit to ensure maximum time
+//		advantage when attempting to flee.
+//
+//=============================================================================
+//=============================================================================
+
+#define PRE_DELAY 35
+
+// Activator: Player
+Script "QCDE_AllyMarker_Client" (int gametypeCheck) CLIENTSIDE
+{
+	// Don't fire right away, this can not work
+	while(Timer() < PRE_DELAY) delay(PRE_DELAY);
+
+	// Only show in coop
+	if (gametypeCheck  &&  GameType() != GAME_NET_COOPERATIVE) terminate;
+
+	// Don't show for _whatever_
+	if (!ActivatorTid()) terminate;
+
+	int plr = (ActivatorTid() - 1000) % 64;
+	int markertid = MARKER_TIDBASE + plr;
+	int ownertid = ActivatorTid();
+
+	// Check player preferences
+	// Activator: Player
+	//log(s:"Ally marker check = ", d:GetUserCvar(CPN(), "cl_allyMarkers"));
+	if (!GetUserCvar(CPN(), "cl_allyMarkers")) terminate;
+
+	SpawnAllyMarker(markertid, plr); // Switches activator: Ally Marker
+}
+
+// Activator: Player's belonging or minion
+Script "QCDE_ObjectAllyMarker_Client" (int plr) CLIENTSIDE
+{
+	if(!plr) plr = ACS("TargetPlayerNumber");
+
+	int markertid = UniqueTid();
+	int objecttid = ActivatorTid();
+
+	// Check player preferences
+	//log(s:"Ally marker check = ", d:GetUserCvar(CPN(), "cl_allyMarkers"));
+	if (!GetUserCvar(CPN(), "cl_allyMarkers")) terminate;
+
+	SpawnAllyMarker(markertid, plr); // Switches activator: Ally Marker
+}
+
+// Activator: Player who connects
+Script "QCDE_InitialAllyMarker_Client" ENTER CLIENTSIDE
+{
+	// Only show in coop
+	if (GameType() != GAME_NET_COOPERATIVE) terminate;
+
+	// Only matters for the enterer
+	if (ConsolePlayerNumber() != PlayerNumber()) terminate;
+
+	// Spectators: Please don't
+	if(PlayerIsSpectator(PlayerNumber())) terminate;
+
+	if (!GetCvar("cl_allyMarkers")) terminate;
+
+	int ownertid, markertid;
+
+	for(int plr = 0; plr < 64; plr++)
+	{
+		if(!(ClassifyActor(1000 + plr) & ACTOR_PLAYER)) continue;
+
+		markertid = MARKER_TIDBASE + plr;
+
+		// Activator: every player
+		ownertid = 1000 + plr;
+		SetActivator(ownertid);
+
+		SpawnAllyMarker(markertid, plr); // Switches activator: Ally Marker
+	}
+}
+
+// Activator: Object to have Ally Marker above
+function void SpawnAllyMarker(int markertid, int plr)
+{
+	if(AreEnemies(CPN(), plr)) return;
+
+	int objecttid = ActivatorTid();
+	SpawnProjectile(0, "AllyMarker", 0, 0, 0, 0, markertid);
+	// Activator: Ally Marker
+	SetActivator(markertid);
+	SetThingSpecial(markertid,0,plr);
+	//SetPointer(AAPTR_TARGET, objecttid);
+}
+
+// Activator: Ally Marker
+Script "QCDE_AllyMarkerSpawned" (int plr) CLIENTSIDE
+{
+	// Set good height
+	SetUserVariable(0, "user_z", (ACS("GetTargetProperty",APROP_Height) >> 16) + 16);
+
+	// Track player color changes
+	int color, team;
+	if(!IsTeamgame()) // Free for alls, PvE or PvP
+	while(ACS("GetTargetProperty", APROP_Health) > 0)
+	{
+		color = GetPlayerInfo(plr, PLAYERINFO_COLOR);
+		SetActorProperty(0, APROP_StencilColor, color);
+		//Log(s:"ACS: Marker ", d:ActivatorTid(),
+		//	s:" at z ", d:GetUserVariable(0, "user_z"),
+		//	s:" is following ", s:ACS("TargetN:0"),
+		//	s:", tracking color of ", n:plr+1,
+		//	s:", current value ", x:color,
+		//	s:", classed ", d:ACS("ClassifyTarget")) ;
+		delay(100);
+	}
+	else // Red vs Blue
+	while(ACS("GetTargetProperty", APROP_Health) > 0)
+	{
+		team = GetPlayerInfo(plr, PLAYERINFO_TEAM);
+		if(team == TEAM_BLUE) color = 0x4488FF;
+		if(team == TEAM_RED ) color = 0xFF7755;
+		SetActorProperty(0, APROP_StencilColor, color);
+		delay(100);
+	}
+}
+
+Script "TargetN:0" (void)
+{
+	SetActivatorToTarget(0);
+	SetResultValue(strparam(n:0));
+}
+
+Script "GetTargetProperty" (int APROP)
+{
+	SetActivatorToTarget(0);
+	SetResultValue(GetActorProperty(0,APROP));
+}
+
+Script "ClassifyTarget" (void)
+{
+	// Target is considered non-existent if
+	// coordinates, classification and n:0
+	// are the same before and after the hop
+
+	int c0 = ClassifyActor(0);
+	int x0 = GetActorX(0);
+	int y0 = GetActorY(0);
+	int z0 = GetActorZ(0);
+	int n0 = strparam(n:0);
+
+	SetActivatorToTarget(0);
+
+	int c1 = ClassifyActor(0);
+	if(c0 != c1) { SetResultValue(c1); terminate; }
+
+	int x1 = GetActorX(0);
+	if(x0 != x1) { SetResultValue(c1); terminate; }
+
+	int y1 = GetActorY(0);
+	if(y0 != y1) { SetResultValue(c1); terminate; }
+
+	int z1 = GetActorZ(0);
+	if(z0 != z1) { SetResultValue(c1); terminate; }
+
+	int n1 = strparam(n:0);
+	if(strcmp(n0, n1)) { SetResultValue(c1); terminate; }
+
+	SetResultValue(false);
+}
+
+
+Script "TargetPlayerNumber" (void)
+{
+	SetActivatorToTarget(0);
+	SetResultValue(PlayerNumber());
+}

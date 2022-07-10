@@ -1,0 +1,168 @@
+//================================================================================================================
+//================================================================================================================
+//
+//	Doom 4 demon sprites by Phobos867
+//================================================================================================================
+//================================================================================================================
+Actor D4Demon : QCDE_MonsterSmall 13508
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	var int user_accelerator;
+	var int user_chargecooldown;
+	Health 200
+	PainChance 64
+	Speed 10
+	Radius 30
+	Height 56
+	Mass 400
+	Monster
+	+FLOORCLIP
+	+FORCERADIUSDMG
+	SeeSound 	"Doom4/Monsters/Pinky/Sight"
+	PainSound 	"Doom4/Monsters/Pinky/Pain"
+	DeathSound 	"Doom4/Monsters/Pinky/Death"
+	ActiveSound "Doom4/Monsters/Pinky/Idle"
+	AttackSound "Player/Demon/Cacodemon/Bite"
+	Obituary "$OB_DEMONHIT"
+	DamageFactor "PinkieRam", 0
+	MaxTargetRange 256
+	Scale 1.15
+	Tag "$TAG_D4Demon" // "Pinky"
+	States
+	{
+	Idle:
+		D4DW A 10 A_Look
+		Wait
+	See:
+		D4DW A 0 A_JumpIf(user_chargecooldown<1,"RegularChase")
+
+		ChaseNoCharge:
+			D4DW AABBCCDD 2 A_Chase("Melee","")
+			D4DW A 0 A_SetUserVar(user_chargecooldown,user_chargecooldown-1)
+			Goto See
+
+		RegularChase:
+			D4DW AABBCCDD 2 A_Chase
+			D4DW A 0 A_SetUserVar(user_chargecooldown,user_chargecooldown-1)
+			Loop
+
+	Missile:
+		D4DN A 0 A_SetUserVar(user_accelerator,3)
+		D4DN A 0 A_SetUserVar(user_chargecooldown,5)
+		D4DN A 0 A_PlaySound("Doom4/Monsters/Pinky/Charge",1.0,false,1.2)
+		D4DN AB 4 A_FaceTarget
+		D4DN A 0 A_Recoil(-user_accelerator-2)
+		// full acceleration round 1
+		D4DR A 4 A_Recoil(-user_accelerator)
+		TNT1 A 0 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		TNT1 A 0 A_SetUserVar(user_accelerator,user_accelerator+2)
+		D4DR B 4 A_Recoil(-user_accelerator)
+		TNT1 B 0 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		TNT1 B 0 A_SetUserVar(user_accelerator,user_accelerator+2)
+		D4DR C 4 A_Recoil(-user_accelerator)
+		TNT1 C 0 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		TNT1 C 0 A_SetUserVar(user_accelerator,user_accelerator+2)
+		D4DR D 4 A_Recoil(-user_accelerator)
+		TNT1 D 0 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		TNT1 D 0 A_SetUserVar(user_accelerator,user_accelerator+2)
+		// full acceleration round 2
+		D4DR A 4 A_Recoil(-user_accelerator)
+		TNT1 A 0 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		D4DR B 4 A_Recoil(-user_accelerator)
+		TNT1 B 0 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		D4DR C 4 A_Recoil(-user_accelerator)
+		TNT1 C 0 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		D4DR D 4 A_Recoil(-user_accelerator)
+		TNT1 D 0 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		//slowing down
+		D4DR A 4 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		TNT1 A 0 A_ChangeVelocity(velx*0.8,vely*0.8,velz*0.8,CVF_REPLACE)
+		D4DR B 4 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		TNT1 B 0 A_ChangeVelocity(velx*0.8,vely*0.8,velz*0.8,CVF_REPLACE)
+		D4DR C 4 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		TNT1 C 0 A_ChangeVelocity(velx*0.8,vely*0.8,velz*0.8,CVF_REPLACE)
+		D4DR D 4 A_JumpIf(velx==0 && vely==0,"CrashedSomewhere")
+		TNT1 D 0 A_ChangeVelocity(velx*0.8,vely*0.8,velz*0.8,CVF_REPLACE)
+		Goto See
+
+		CrashedSomewhere:
+			D4DM A 0 A_PlaySound("Doom4/Monsters/PinkyCrash",7,0.8,0,2.0)
+			D4DM A 0 A_SpawnItemEx("PinkyDustCloud",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION)
+			D4DM A 0 A_SetDamageType("PinkieRam")
+			D4DM A 0 A_Explode(30,50,XF_NOTMISSILE,0,50)
+			D4DM A 0 A_SetDamageType("Normal")
+			D4DM A 20 A_Quake(sqrt(user_accelerator),user_accelerator/2,0,256)
+			Goto See
+
+	Melee:
+		D4DM A 0 A_PlaySound("Doom4/Monsters/Pinky/Melee",7,1.0,false,1.2)
+		D4DM AB 4 A_FaceTarget
+		D4DM C 20 A_SargAttack
+		Goto See
+
+	Pain:
+		D4DP A 2
+		D4DP A 2  A_Pain
+		Goto See
+
+	DeathChecksDone:
+		D4DG A 0 A_Scream
+		D4DG I 8
+		D4DG J 8
+		D4DG K 4
+		D4DG L 4 A_NoBlocking
+		D4DG M 4
+	Death.Corpse:
+		D4DG N -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Doom4/Gore/Medium")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		D4DG N 5
+		D4DG MLKJI 5
+		Goto See
+
+
+
+	//------------------------------------------------------------------------
+	}
+}
+
+
+Actor PinkyDustCloud
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	Scale 1.4
+	States
+	{
+	Spawn:
+		X201 E 1 A_FadeOut(0.03)
+		Wait
+	}
+}
+
+//===========================================================================
+//
+// Spectre
+//
+//===========================================================================
+Actor D4Spectre : D4Demon 13510
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	+SHADOW
+	RenderStyle OptFuzzy
+	Alpha 0.4
+	HitObituary "$OB_SPECTREHIT"
+}
+

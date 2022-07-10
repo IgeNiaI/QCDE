@@ -1,0 +1,149 @@
+#library "STARTWEP"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//=============================================================================
+//
+//		STARTING WEAPON
+//
+//=============================================================================
+//=============================================================================
+
+script "QCDE_StartingWeapon" (void) net
+{
+	if(CheckInventory("Starter_CantChoose")) terminate;
+
+	ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint_InProgress",0);
+	GiveInventory("Starter_ChooseNow", 1); // Actual choice is made in tracker
+}
+
+script "QCDE_StartingWeapon_Apply" (void)
+{
+	//PrintBold(s:"Applying starting weapon");
+
+	// Give DM version if starting in a DM game
+	str weapon1 = "QCMachinegun"; 	if(GameType() >= 2) weapon1 = strparam(s:weapon1, s:"DM");
+	str weapon2 = "QCMachinegun"; 	if(GameType() >= 2) weapon2 = strparam(s:"QCShotgunDM"  );
+	str weapon3 = "QCNailgun"; 		if(GameType() >= 2) weapon3 = strparam(s:weapon3, s:"DM");
+
+	// Stop if can't choose and already have a weapon
+	// Continue if can, or if have no weapons because from poor contry (poland)
+	if(CheckInventory("Starter_CantChoose") &&
+	   (CheckInventory(weapon1) ||
+	    CheckInventory(weapon2) ||
+	    CheckInventory(weapon3) )) terminate;
+
+	// Don't remove ammo for weak weapon if stronger one is present
+	if(!CheckInventory("QCHeavyMachinegun"))
+	{
+		TakeInventory(weapon1, 1);
+		TakeInventory("QCBulletAmmo", 125);
+	}
+	TakeInventory("QCShotgunDM", 1);
+	if(!CheckInventory("QCSuperNailgun"))
+	{
+		TakeInventory(weapon3, 1);
+		TakeInventory("QCNailAmmo", 125);
+	}
+
+	int rocketarena = GetCvar("rocketarena");
+	if (rocketarena) GiveRocketArena(rocketarena);
+	else if(GetCvar("instagib"))                  { GiveInventory("QCRailgunDM",        1); GiveInventory("EndlessInfiniteAmmo",1);}
+	else if(GetCvar("buckshot"))                  { GiveInventory("QCSuperShotgunDM",   1); }
+	else if(CheckInventory("Starter_Machinegun")) { if(!CheckInventory("QCHeavyMachinegun")) GiveInventory(weapon1, 1); }
+	else if(CheckInventory("Starter_Shotgun"   )) { GiveInventory(weapon2,            1); }
+	else if(CheckInventory("Starter_Nailgun"   )) { if(!CheckInventory("QCSuperNailgun")) GiveInventory(weapon3, 1); }
+	else
+	{
+		int cvar = GetCvar("cl_startingWeapon");
+		switch(cvar)
+		{
+		default: // go to case 1
+		case 1: GiveInventory(weapon1, 1);	GiveInventory("Starter_Machinegun",1);	break;
+		case 2: GiveInventory(weapon2, 1);	GiveInventory("Starter_Shotgun",1);		break;
+		case 3: GiveInventory(weapon3, 1);	GiveInventory("Starter_Nailgun",1);		break;
+		}
+	}
+
+	// Gauntlet is also a starting weapon
+	TakeInventory("QCGauntlet",1);
+	delay(1);
+	if(!PlayerIsBot(PlayerNumber()))
+		GiveInventory("QCGauntlet",1);
+	else
+		GiveInventory("QCGauntlet_Bot"	,1);
+
+	// Don't re-give weak weapons if stronger ones are present in coop
+	if(CheckInventory("QCHeavyMachinegun")) TakeInventory(weapon1,1);
+	if(CheckInventory("QCSuperNailgun"   )) TakeInventory(weapon3,1);
+}
+
+int map_random_weapons;
+function void GiveRocketArena(int ra)
+{
+	if(ra == 1) // ROCKET arena
+		GiveInventory("QCRocketLauncherDM", 1);
+	else if(ra == 2) // Buckshot
+		GiveInventory("QCSuperShotgunDM", 1);
+	else if(ra == 3) // Unholy Trinity
+	{
+		GiveInventory("QCRocketLauncherDM", 1);
+		GiveInventory("QCLightningGunDM", 1);
+		GiveInventory("QCRailgunDM", 1);
+	}
+	else if(ra == 4) // Random Weapons (per map)
+	{
+		if(!map_random_weapons)
+		{
+			int digit = 7;
+			while(digit --> 0)  map_random_weapons = map_random_weapons * 10 + random(0,1);
+
+			// Ensure at least 2 weapons
+			map_random_weapons += power(10, random(0,3));
+			map_random_weapons += power(10, random(4,6));
+		}
+
+		ra = map_random_weapons;
+	}
+	else if(ra == 5) // Random Weapons (per life)
+	{
+		ra = 0;
+		digit = 7;
+		while(digit --> 0) 	ra = ra * 10 + random(0,1);
+
+		// Ensure at least 2 weapons
+		ra += power(10, random(0,3));
+		ra += power(10, random(4,6));
+	}
+	else if(ra == 6) // Lightning Storm
+	{
+		GiveInventory("QCLightningGunDM", 1);
+	}
+
+	if(ra > 8) // Custom bitfield (in decimals (bruh))
+	{
+		if(ra % 10) GiveInventory("QCHeavyMachinegunDM", 1); ra /= 10; // __ _ ___ _ __X
+		if(ra % 10) GiveInventory("QCSuperShotgunDM"   , 1); ra /= 10; // __ _ ___ _ _X_
+		if(ra % 10) GiveInventory("QCSuperNailgunDM"   , 1); ra /= 10; // __ _ ___ _ X__
+		if(ra % 10) GiveInventory("QCTriboltDM"        , 1); ra /= 10; // __ _ ___ X ___
+		if(ra % 10) GiveInventory("QCRocketLauncherDM" , 1); ra /= 10; // __ _ __X _ ___
+		if(ra % 10) GiveInventory("QCLightningGunDM"   , 1); ra /= 10; // __ _ _X_ _ ___
+		if(ra % 10) GiveInventory("QCRailgunDM"        , 1); ra /= 10; // __ _ X__ _ ___
+		if(ra % 10) GiveInventory("QCBFGDM"            , 1); ra /= 10; // __ X ___ _ ___
+
+		if(ra % 10) GiveInventory("QCMegaMega"         , 1); ra /= 10; // _X _ ___ _ ___
+		if(ra % 10) GiveInventory("QCMegaMega"         , 1); ra /= 10; // X_ _ ___ _ ___
+		// Impossible to have more flags with this system, can be redone later to allow.
+	}
+
+	GiveInventory("EndlessInfiniteAmmo",1);
+}
+
+function int power(int a, int b)
+{
+	int res = 1;
+	while(b --> 0) res *= a;
+	return res;
+}

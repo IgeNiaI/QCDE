@@ -1,0 +1,236 @@
+
+// None of these are map placeable
+//$GZDB_SKIP
+
+
+Actor Tester : QCDoomImp
+{
+	Painchance 255
+	Health 70000
+	Mass 90000
+	Speed 0
+	DamageFactor "NailgunWeak", 0.43 //hack for weak nailgun-jump, explained in nailgun.qcd
+	States
+	{
+	See:
+		TROO A 10 A_Chase
+		Loop
+	Missile:
+		TROO A 70
+		Loop
+	Melee:
+		TROO A 30
+		Goto See
+	Pain:
+		TROO A 5 A_PrintBold("$PAIN_Tester",0.2)
+		Goto See
+	Pain.Electric:
+		TROO A 5 A_PrintBold("Electric pain",0.2)
+		Goto See
+	Pain.Railed:
+		TROO A 5 A_PrintBold("Rail pain",0.2)
+		Goto See
+	Pain.RocketDamage:
+		TROO A 5 A_PrintBold("Rocket/explosive pain",0.2)
+		Goto See
+	}
+}
+
+Actor DpsTester : Tester
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NodeLay ACS_NamedExecuteWithResult("QCDE_AttachDPSTest")
+		Goto Super::Spawn
+	Pain:
+		TROO A 5
+		Goto See
+	}
+}
+
+Actor Testball : DoomImpBall
+{
+	Speed 0
+	Damage (0)
+	+NOINTERACTION
+	Obituary "$OB_Testball" // "%o \c[bludi]has been pwned by %k."
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_Explode(1000,16)
+		Stop
+	}
+}
+Actor Tester2 : QCDoomImp
+{
+	Painchance 255
+	Health 70000
+	Mass 90000
+	Speed 0
+	DamageFactor "NailgunWeak", 0.43 //hack for weak nailgun-jump, explained in nailgun.qcd
+	States
+	{
+	See:
+		TROO A 10 A_Chase
+		Loop
+	Missile:
+		TROO A 105 A_CustomMissile("QCRocketPlayerDM")
+		Loop
+	Melee:
+		TROO A 30
+		Goto See
+	Pain:
+		TROO A 5 A_PrintBold("$PAIN_Tester",0.2)
+		Goto See
+	}
+}
+
+Actor UGCSMA : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("GNT_UG_Burn")
+		TNT1 A 0 A_GiveInventory("GNT_UG_Omni")
+		TNT1 A 0 A_GiveInventory("SG_UG_Spread")
+		TNT1 A 0 A_GiveInventory("SG_UG_Explosive")
+		TNT1 A 0 A_GiveInventory("HMG_UG_Ricochet")
+		TNT1 A 0 A_GiveInventory("HMG_UG_Pierce")
+		TNT1 A 0 A_GiveInventory("SSG_UG_Speed")
+		TNT1 A 0 A_GiveInventory("SSG_UG_Flame")
+		TNT1 A 0 A_GiveInventory("SNG_UG_Lava")
+		TNT1 A 0 A_GiveInventory("SNG_UG_Seeker")
+		TNT1 A 0 A_GiveInventory("TB_UG_Long")
+		TNT1 A 0 A_GiveInventory("TB_UG_Grenade")
+		TNT1 A 0 A_GiveInventory("RL_UG_Cluster")
+		TNT1 A 0 A_GiveInventory("RL_UG_Control")
+		TNT1 A 0 A_GiveInventory("LG_UG_Residue")
+		TNT1 A 0 A_GiveInventory("LG_UG_Static")
+		TNT1 A 0 A_GiveInventory("RG_UG_Pierce")
+		TNT1 A 0 A_GiveInventory("RG_UG_Explosive")
+		TNT1 A 0 A_GiveInventory("BFG_UG_Rays")
+		TNT1 A 0 A_GiveInventory("BFG_UG_Charge")
+		Stop
+	}
+}
+
+
+
+
+
+
+
+
+
+
+Actor PlLightDummy
+{
+	var int user_test;
+	Radius 13	//26
+	Height 52
+}
+Actor PlMediumDummy
+{
+	var int user_test;
+	Radius 16	//32
+	Height 56
+}
+Actor PlHeavyDummy
+{
+	var int user_test;
+	Radius 18	//36
+	Height 60
+}
+
+
+Actor RangerDummy : PlMediumDummy 23401
+{	Scale 0.88 					States	{	Spawn: 	QP01 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor DoomSlayerDummy : PlMediumDummy 23402
+{	Scale 1.05 					States	{	Spawn: 	QP02 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor CorvusDummy : PlMediumDummy 23403
+{	Scale 1.1 					States	{	Spawn: 	QP03 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor KaneDummy : PlLightDummy 23404
+{	Scale 0.537 				States	{	Spawn: 	QP04 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor CalebDummy : PlLightDummy 23405
+{	Scale 0.466					States	{	Spawn: 	QP05 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor MenelkirDummy : PlLightDummy 23406
+{	XScale 0.79 YScale 0.87 	States	{	Spawn: 	QP06 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor TerminatorDummy : PlHeavyDummy 23407
+{	XScale 0.87  YScale 0.9		States	{	Spawn: 	QP07 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor ZedekDummy : PlHeavyDummy 23408
+{	XScale 0.93 YScale 0.98 	States	{	Spawn: 	QP08 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor InquisitorDummy : PlHeavyDummy 23409
+{	XScale 0.41 YScale 0.525 	States	{	Spawn: 	QP09 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor BittermanDummy : PlHeavyDummy 23410
+{	Scale 0.74 					States	{	Spawn: 	QP10 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor GalenDummy : PlMediumDummy 23411
+{	Scale 0.885 				States	{	Spawn: 	QP11 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor NyxDummy : PlLightDummy 23412
+{	XScale 0.82 YScale 0.925	States	{	Spawn: 	QP12 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor SorgaulDummy : PlHeavyDummy 23413
+{	XScale 0.54 YScale 0.74		States	{	Spawn: 	QP13 ABCDEFGHIJKL 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor DukeNukemDummy : PlMediumDummy 23414
+{	Scale 0.692 				States	{	Spawn: 	QP14 ABCDEF 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor DurandalDummy : PlLightDummy 23415
+{	XScale 0.7 YScale 0.65 	States	{	Spawn: 	QP15 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor KeelDummy : PlHeavyDummy 23416
+{	XScale 0.52 YScale 0.645 	States	{	Spawn: 	QP16 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor SargeDummy : PlMediumDummy 23417
+{	Scale 0.71 					States	{	Spawn: 	QP17 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor LoWangDummy : PlLightDummy 23418
+{	Scale 0.53 					States	{	Spawn: 	QP18 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor GraysonDummy : PlMediumDummy 23419
+{	XScale 0.745 YScale 0.76	States	{	Spawn: 	QP19 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor EradicatorDummy : PlHeavyDummy 23420
+{	XScale 0.76	YScale 0.75		States	{	Spawn: 	QP20 ABCDEFGHM 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor BlazkowiczDummy : PlMediumDummy 23421
+{	XScale 0.82 YScale 1.02		States	{	Spawn: 	QP21 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor FreemanDummy : PlMediumDummy 23422
+{	Scale 0.55					States	{	Spawn: 	QP22 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor VorMaturDummy : PlHeavyDummy 23423
+{	XScale 0.58 YScale 0.76 	States	{	Spawn: 	QP23 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor EleemaDummy : PlLightDummy 23424
+{	Scale 0.595					States	{	Spawn: 	QP24 ABCDEFGHIJKL 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor LucienneDummy : PlLightDummy 23425
+{	Scale 0.551					States	{	Spawn: 	QP25 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor MajorDummy : PlHeavyDummy 23426
+{	Scale 0.88	Radius 16		States	{	Spawn: 	QP26 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor HunterDummy : PlLightDummy 23427
+{	Scale 0.715					States	{	Spawn: 	QP27 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor SamDummy : PlHeavyDummy 23428
+{	XScale 0.69 YScale 0.57		States	{	Spawn: 	QP28 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor PostalDummy : PlLightDummy 23429
+{	XScale 0.5 YScale 0.58		States	{	Spawn: 	QP29 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor PainkillerDummy : PlMediumDummy 23430
+{	Scale 0.765					States	{	Spawn: 	QP30 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}

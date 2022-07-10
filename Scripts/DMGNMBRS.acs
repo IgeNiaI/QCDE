@@ -1,0 +1,287 @@
+#library "DMGNMBRS"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//=============================================================================
+//=============================================================================
+//
+//
+//		DAMAGE NUMBERS RELATED SCRIPTS
+//
+//
+//=============================================================================
+//=============================================================================
+//=============================================================================
+
+#define CVAR_CHECK_RATE 100
+int UNDAMAGED_TRACKER_RATE = 3;
+int damnums = 0;
+
+#define SDF_MONSTER (1 << 0)
+#define SDF_LETHAL  (1 << 1)
+
+Script "QCDE_DamageTracker" (void) // FOR MONSTERS
+{
+	//Remove token from dead monsters, in case they were resurrected
+	TakeInventory("ImDead",999);
+
+	// If monster doesn't have its own TID, give it a trackable one
+	if(!ActivatorTid())
+	{
+		int base = MONSTER2_TIDBASE; // if something went wrong, treat this monster like medium
+		if(CheckInventory("MonsterSmall" )) base = MONSTER1_TIDBASE;
+		if(CheckInventory("MonsterMedium")) base = MONSTER2_TIDBASE;
+		if(CheckInventory("MonsterBig"   )) base = MONSTER3_TIDBASE;
+		if(CheckInventory("MonsterBoss"  )) base = MONSTER4_TIDBASE;
+
+		SetTidIfHadNone(base, base + 2047);
+		//log(n:0, s:" assumes tid ", d:tid);
+	} //else log(n:0, s:" maintains tid ", d:ActivatorTid());
+
+	GiveInventory("DamageTrackerActive", 1);
+	delay(1);
+	if(CheckInventory("DamageTrackerActive") > 1)
+	{
+		TakeInventory("DamageTrackerActive", 1);
+		terminate;
+	}
+
+	// Initially deactivated?
+	// For resurrected monsters or those spawning during the game like Lost Souls.
+	while(!damnums)
+		delay(random(CVAR_CHECK_RATE / 2, CVAR_CHECK_RATE * 2));
+
+
+	// Until the monster was damaged for the first time, it updates more rarely.
+	delay(random(0, UNDAMAGED_TRACKER_RATE * 2));
+	int hp1 = GetActorProperty(0,APROP_Health);
+	int hp0 = hp1, diff;
+	while(hp1 == GetActorProperty(0,APROP_Health)) delay(UNDAMAGED_TRACKER_RATE);
+
+	do
+	{
+		// (De-)activate on the fly
+		if(!damnums)
+		{
+			while(!damnums)
+				delay(random(CVAR_CHECK_RATE / 2, CVAR_CHECK_RATE * 2));
+			diff = 0; // reset diff to avoid weird reporting of all damage accumulated
+		}
+
+		if(diff > 2) ACS_NamedExecuteAlways("QCDE_ShowDamage", 0, diff, SDF_MONSTER);
+
+		hp0 = hp1; hp1 = GetActorProperty(0,APROP_Health);
+		if(hp1 < 0) hp1 = 0; // monsters don't report overkill damage
+		diff = hp0 - hp1;
+		delay(1);
+
+		if(CheckInventory("DamageTrackerActive") > 1)
+		{
+			printbold(s:"\c[yellow]QCDE warning: ", n:0, s:" has ", d:CheckInventory("DamageTrackerActive"), s:" damage trackers and knows it!");
+			log      (s:"\c[yellow]QCDE warning: ", n:0, s:" has ", d:CheckInventory("DamageTrackerActive"), s:" damage trackers and knows it!");
+		}
+	}
+	while(hp1 > 0);
+	ACS_NamedExecuteAlways("QCDE_ShowDamage", 0, diff, SDF_LETHAL | SDF_MONSTER);
+
+	TakeInventory("DamageTrackerActive", 1);
+}
+
+int hp0[64], ap0[64];
+Script "QCDE_PlayerDamageTracker" OPEN
+{
+	int ap1, hp1;
+	int diff, severity;
+	int plr;
+
+	while(true)
+	{
+		for(plr = 0; plr < 64; plr++)
+		{
+			if(!PlayerInGame(plr)) continue;
+
+			int tid = 1000+plr;
+			ap1 = CheckActorInventory(tid,"BasicArmor");
+			hp1 = GetActorProperty(tid,APROP_Health);
+			int oldhits = hp0[plr] + ap0[plr];
+			diff = oldhits - hp1 - ap1;
+
+			if(diff > 2)
+			{
+				if (GameType() >= GAME_NET_DEATHMATCH) // Player damage numbers are DM-only
+					if(damnums)
+						if(!(oldhits == 1000 && hp1 < 0)) // [Ms] band-aid fix for a weird bug that I don't understand
+						{
+							// Players killed with 264 damage are likely to have been killed by a quad rocket
+							// which should have done 400 damage but didn't due to engine quirks so we'll
+							// just pretend it did.
+							if (diff == 264 && hp1 <= 0) diff = 400;
+
+							ACS_NamedExecuteAlways("QCDE_ShowDamage", 0, diff, (hp1 <= 0) * SDF_LETHAL, tid);
+
+							if(hp1 <= 0)
+							{
+								TakeActorInventory(tid,"BasicArmor",999);
+								ap1 = 0;
+							}
+						}
+
+				severity = sqrt(diff);
+				ACS_NamedExecuteAlways("QCDE_Blood_CLIENTSIDE", 0, severity, tid, ap1 > 0);
+			}
+			else if(diff < 0)
+			{
+				severity = sqrt(-diff) + 1;
+
+				if(ap0[plr] < ap1) // armor increase
+					ACS("QCDE_StrokeFlash", tid, 'G', severity, 1);
+				if(hp0[plr] < hp1) // health increase
+					ACS("QCDE_StrokeFlash", tid, 'B', severity, 2);
+			}
+			hp0[plr] = hp1;
+			ap0[plr] = ap1;
+		}
+		delay(1);
+	}
+}
+
+bool teamgame;
+bool coop;
+
+Script "QCDE_DamageNumbersReadCvars_CLIENT" OPEN clientside
+{
+	bool teamplay       = getCvar("teamplay");
+	bool teamlms        = getCvar("teamlms");
+	bool teampossession = getCvar("teampossession");
+	bool ctf            = getCvar("ctf");
+	teamgame = teamplay || teamlms || teampossession || ctf;
+
+	coop = getCvar("cooperative");
+
+	while(true)
+	{
+		// (De-)activate on the fly
+		damnums = GetCvar("sv_showDamageNumbers");
+		delay(UNDAMAGED_TRACKER_RATE);
+	};
+}
+
+// ↑ ↓ Code is identical
+Script "QCDE_DamageNumbersReadCvars" OPEN
+{
+	bool teamplay       = getCvar("teamplay");
+	bool teamlms        = getCvar("teamlms");
+	bool teampossession = getCvar("teampossession");
+	bool ctf            = getCvar("ctf");
+	teamgame = teamplay || teamlms || teampossession || ctf;
+
+	coop = getCvar("cooperative");
+
+	while(true)
+	{
+		// (De-)activate on the fly
+		damnums = GetCvar("sv_showDamageNumbers");
+		delay(UNDAMAGED_TRACKER_RATE);
+	};
+}
+
+Script "QCDE_ShowDamage" (int diff, int flags, int tid) clientside
+{
+	if(tid) SetActivator(tid);
+	if(ClassifyActor(0) == ACTOR_WORLD) terminate;
+
+	int monster = flags & SDF_MONSTER;
+	int lethal  = flags & SDF_LETHAL;
+
+	if(CheckInventory("SkipDamageNumber"))
+	{
+		TakeInventory("SkipDamageNumber", 1);
+		terminate;
+	}
+
+	// Subjectivity correction
+	int plr;
+	if(IsZandronum(true))
+		plr = CheckPlayerCamera(ConsolePlayerNumber()) - 1000;
+
+	// Don't show damage dealt to you by others
+	if(plr == PlayerNumber()) terminate;
+
+	int x = GetActorX(0) + random(-8.0, 8.0);
+	int y = GetActorY(0) + random(-8.0, 8.0);
+	int z = GetActorZ(0) + random( 0.0, 8.0) + GetActorProperty(0, APROP_Height);
+	int a = random(0.0, 1.0);
+
+	if(diff > 9999)
+	{
+		SpawnForced("DamageNumberInf", x,y,z, 0, a);
+		terminate;
+	}
+
+	int severity, position, digit;
+	str actor;
+
+	// Severity levels define number size and fade speed.
+	int sev1 =  21; // just above super nailgun nail
+	int sev2 =  50; // tribolt direct hit
+	int sev3 = 100; // rocket direct hit
+
+	// Monsters sustain much greater damage overall
+	if(monster)
+	{
+		sev1 =  41; // just above super nailgun luckiest nail
+		sev2 = 110; // between average SG and SSG point blank shots
+		sev3 = 220; // railgun hit
+	}
+
+	if(diff < sev1)	severity = 1; else
+	if(diff < sev2)	severity = 2; else
+	if(diff < sev3)	severity = 3; else
+					severity = 4;
+
+	// Smaller numbers when killed by lava and instagib Railgun.
+	if(diff == 999) severity = 2;
+
+	// Hits that finish enemies are celebrated with special color.
+	// Red if monsters die from you, blue if not in coop.
+	// Or just red and blue in teamgame.
+	str prototype = "DamageNumber";
+	if(lethal)
+		if(teamgame)
+		{
+			if(GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM) == 0)
+				prototype = "CoopNumber";
+			else
+				prototype = "DeathNumber";
+		}
+		else
+		{
+			if (GetActorProperty(0, APROP_TargetTID)                      == plr + 1000 || // player
+			    GetActorProperty(0, APROP_TargetTID) + GUIDEDROCK_TIDBASE == plr + 2000   )// player's controlled rockek
+				prototype = "DeathNumber";
+			else
+				prototype = "CoopNumber";
+		}
+
+	while(diff > 0)
+	{
+		digit = diff % 10;
+		diff /= 10;
+		position++;
+
+		actor = strparam(s:prototype, d:severity, d:position, d:digit);
+
+		SpawnForced(actor, x,y,z, 0, a);
+	}
+}
+
+Script "UNDAMAGED_TRACKER_RATE" OPEN
+{
+	delay(UNDAMAGED_TRACKER_RATE);
+	int mons = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	//log(s:"Monsters: ", d:mons);
+	UNDAMAGED_TRACKER_RATE = 1 + sqrt(mons) / 20;
+	//log(s:"UNDAMAGED_TRACKER_RATE: ", d:UNDAMAGED_TRACKER_RATE);
+}

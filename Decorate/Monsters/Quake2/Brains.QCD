@@ -1,0 +1,140 @@
+//===========================================================================
+//===========================================================================
+//
+//===========================================================================
+//===========================================================================
+Actor Q2Brains : QCDE_MonsterMedium	15202	// hell knight
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	var int user_shieldup;
+	Health 400
+	Radius 18
+	Height 64
+	Speed 8
+	Mass 1000
+	PainChance 90
+	Scale 0.48
+	MONSTER
+	+FLOORCLIP
+	Tag "$TAG_Q2Brains" // "Brains"
+	SeeSound "q2brains/sight"
+	PainSound "q2brains/pain"
+	DeathSound "q2brains/death"
+	ActiveSound "q2brains/seeking"
+	MeleeDamage 10
+	Obituary "$OB_Q2Brains" // "%o was slaughtered by a weird entity."
+	MeleeRange 90
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		RPZM A 0 A_JumpIf(user_shieldup>=1,"IdleLoop")
+		RPZM A 0 A_SpawnItemEx("BrainsShield",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		RPZM A 0 A_SetUserVar(user_shieldup,1)
+	IdleLoop:
+		BRNI A 5 A_Look
+		Loop
+	See:
+		BRNW ABCDE 6 A_Chase
+		Loop
+	Melee:
+		BRNA ABCDE 5 A_FaceTarget
+		BRNA F 5 A_MeleeAttack
+		BRNA G 5 A_MeleeAttack
+		BRNA H 4
+		BRNI A 6
+		Goto See
+	Pain:
+		BRNP A 2
+		BRNP A 3 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		BRND A 0 A_Scream
+		BRND A 0 A_KillChildren("Removed")	//removes the shield, but if for some magical reason it fails...
+		BRND A 0 A_GiveInventory("LOLImDead",1)	 //...the shield will check for this token, then shield dies.
+		BRND A 0 A_SetUserVar(user_shieldup,0) //and sets it back to zero, in case he gets resurrected
+		BRND A 4
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal",6)
+		BRND B 4
+		BRND C 4
+		BRND D 3 A_Fall
+	Death.Corpse:
+		BRND E -1
+		Stop
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+	Raise:
+		BRND A 0 A_TakeInventory("LOLImDead",32767)	//removes the token that will kill the shield.
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		BRND EDCBA 4
+		Goto See
+	}
+}
+
+Actor LOLImDead : Inventory {}
+
+Actor BrainsShield
+{
+	var int user_damage;
+	+NOGRAVITY
+	+NEVERTARGET
+	+SHOOTABLE
+	DamageFactor "NailgunWeak", 0.43 //hack for weak nailgun-jump, explained in nailgun.qcd
+	+NOTONAUTOMAP
+	-SOLID
+	+QUICKTORETALIATE
+	+GHOST
+	-COUNTKILL
+	+NOTARGETSWITCH
+	+NOBLOOD
+	Health 700
+	Radius 20
+	Height 64
+	RenderStyle Add
+	Alpha 0.1
+	XScale 0.9
+	YScale 1.05
+	Mass 0x7FFFFFFF
+	PainChance 255
+	States
+	{
+	Spawn:
+		//setup stage, puts target (monster that spawned it) as master, and as tracer to keep resetting it
+		BRN5 A 0 NODELAY A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
+	Looper:
+		BRN5 A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		BRN5 A 0 A_JumpIfInTargetInventory("LOLImDead",1,"Death.Removed") //failsafe to remove this shield
+		BRN5 A 1 BRIGHT A_Warp(AAPTR_TARGET,10,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BRN5 A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		BRN5 A 1 BRIGHT A_Warp(AAPTR_TARGET,10,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BRN5 A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		BRN5 A 1 BRIGHT A_Warp(AAPTR_TARGET,10,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Loop
+	Pain:
+		BRN5 A 0 A_SetTranslucent(1,1)
+		BRN5 A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		BRN5 A 0 A_PlaySound("QCDE/Other/ShieldImpact",7,0.5,false,1.2)
+		BRN5 A 1 BRIGHT A_Warp(AAPTR_TARGET,10,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BRN5 A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		BRN5 A 1 BRIGHT A_Warp(AAPTR_TARGET,10,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BRN5 A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		BRN5 A 1 BRIGHT A_Warp(AAPTR_TARGET,10,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BRN5 A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		BRN5 A 1 BRIGHT A_Warp(AAPTR_TARGET,10,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BRN5 A 0 A_SetTranslucent(0.2,1)
+		Goto Looper
+
+	Death:
+	Death.Removed:	//when it was deactivated by stun, stagger, or whatever else
+		TNT1 A 10 A_PlaySound("QCDE/Other/ShieldFail",CHAN_AUTO,1.0,false,1.2)
+		Stop
+	}
+}
+
+
+

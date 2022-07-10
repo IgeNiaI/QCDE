@@ -1,0 +1,174 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+
+Actor Q4IronMaiden : QCDE_MonsterMedium 	 15309	//painelem
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	var int user_counter;
+	Monster
+	Radius 19
+	Height 40
+	Health 300
+	Mass 150
+	PainChance 64
+	Speed 7
+	Scale 0.38
+	+FLOAT
+	+NOGRAVITY
+	+FLOORCLIP
+	MeleeRange 65
+	//MinMissileChance 255
+	SeeSound "quake4/IronMaiden/Sight"
+	PainSound ""
+	DeathSound "quake4/IronMaiden/Death"
+	ActiveSound "quake4/IronMaiden/Idle"
+	Obituary "$OB_Q4IronMaiden" // "%o found out that Strogg women don't play around."
+	Hitobituary "$OBH_Q4IronMaiden" // "%o tried to hit on an Iron Maiden."
+	Tag "$TAG_Q4IronMaiden" // "Iron Maiden"
+	DropItem "Hourglass", 48
+	States
+	{
+	Spawn:
+		TNT1 a 0 NODELAY A_Warp(AAPTR_DEFAULT,0,0,30)	//might spawn on floor, but I want the effects to be shown
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		TNT1 a 0 ACS_NamedExecuteAlways("QCDE_AttachTrailer",0,2,8,0)
+		Goto Idle
+
+	Idle:
+		Q10W AAABBBCCC 2 A_Look
+		Goto Idle
+	See:
+		Q10W AAB 4 A_Chase
+		TNT1 a 0 A_Jump(16,"Teleport")
+		Q10W BCC 4 A_Chase
+		TNT1 a 0 A_Jump(16,"Teleport")
+		Loop
+	Melee:
+		TNT1 a 0 A_Jump(64,"Missile")
+		Q10M AABBCC 2 A_FaceTarget
+		Q10M D 2 A_CustomMeleeAttack(random(40,60),"quake4/Misc/BladeHit","quake4/Misc/Swing","Normal",1)
+		Q10M EF 4
+		Goto See
+	Missile:
+		TNT1 A 0 A_Stop
+		TNT1 a 0 A_Jump(200,"Rocket")
+	Rocket:
+		TNT1 A 0 A_Jump(190,2)
+		TNT1 A 0 A_PlaySound("quake4/IronMaiden/AttackGrowl")
+		Q10A AABBBB 2 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("IronMaidenRocket",25,-7,0)
+		Q10A CDEEFF 2
+		Goto See
+	Teleport:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_FaceTarget
+		Q10T AABBCC 4
+		TNT1 A 0 A_PlaySound("quake4/IronMaiden/TeleportButton")
+		Q10T CCC 4
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE",0)
+		TNT1 A 0 A_GiveInventory("NoTrailing",1)
+		TNT1 A 0 A_SpawnItemEx("TeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SetUserVar(user_counter,0) //resets from previous tports
+		Goto TeleportLooper
+
+		TeleportLooper:
+			TNT1 A 1 A_Chase(0,0) 	TNT1 A 0 A_Chase(0,0)
+			TNT1 A 1 A_Chase(0,0) 	TNT1 A 0 A_Chase(0,0)
+			TNT1 A 1 A_Chase(0,0) 	TNT1 A 0 A_Chase(0,0)
+			TNT1 A 1 A_Chase(0,0) 	TNT1 A 0 A_Chase(0,0)
+			TNT1 A 1 A_Chase(0,0) 	TNT1 A 0 A_Chase(0,0)
+			TNT1 A 0 A_SpawnItemEx("IronMaidenGhost", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SetUserVar(user_counter,user_counter+5)
+			TNT1 A 0 A_JumpIf(user_counter>=70,"Reappear")
+			Loop
+		Reappear:
+			TNT1 A 0 A_TakeInventory("NoTrailing",32767)
+			TNT1 A 0 A_SpawnItemEx("TeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_ChangeFlag("SHOOTABLE",1)
+			Q10T CBA 4
+			Goto See
+
+	Pain:
+		Q10P A 2 A_Pain
+		Q10P A 4
+		TNT1 A 0 A_Jump(128,"Teleport")
+		Q10P A 4
+		Goto See
+
+	DeathChecksDone:
+		Q10D A 0 A_Scream
+		Q10D ABCD 3
+		"####" E 3 A_ChangeFlag("THRUACTORS",1)
+		"####" E 3 A_CheckFloor("Crashed")
+		Wait
+	Crashed:
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Small",5)
+		Q10D A 0 A_Fall
+	Death.Corpse:
+		Q10D F -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake4/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		TNT1 a 0 ACS_NamedExecuteAlways("QCDE_AttachTrailer",0,2,8,0) //puts the dress back
+		Q10D EDCBA 3
+		Goto See
+
+	}
+}
+
+Actor IronMaidenDress
+{
+	+CLIENTSIDEONLY +NONETID
+	+NOINTERACTION +NOTONAUTOMAP
+	RenderStyle Add
+	Scale 0.45
+	Translation "0:255=%[0,0,0]:[0.75,0.0,0.75]"
+	States
+	{
+	Spawn:
+		Q10X A 10 NODELAY A_ChangeVelocity(0,0,-0.9,CVF_REPLACE)
+		Q10X A 1 A_FadeOut(0.1)
+		Wait
+	}
+}
+
+Actor IronMaidenGhost
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Scale 0.38
+	Alpha 0.0
+	VisibleToPlayerClass QCDurandal
+	States
+	{
+	Spawn:
+		Q10W A 0
+		Q10W "#" 3
+		Q10W "#####" 1 A_FadeIn(0.199)
+		Q10W "#" 1 A_FadeOut(0.05)
+		Wait
+	}
+}
+
+//*****************************
+
+Actor IronMaidenRocket: BitchRocket
+{
+	Damage (10)	//total damage with explo is 70
+	SeeSound "quake4/Weapons/RocketLauncher/Fire"
+	DeathSound "quake4/Misc/RocketExplo"
+}
+
+

@@ -1,0 +1,380 @@
+//$GZDB_SKIP
+
+Actor Token : Inventory { +INVENTORY.UNDROPPABLE }
+Actor Status : Token { Inventory.MaxAmount 999 }
+
+Actor PunchedAlready 	: Token { Inventory.InterHubAmount 0 }	//for gauntlet
+
+Actor WeaponZoomedToken : Token { Inventory.InterhubAmount 0 }
+
+Actor DMToken : Token {}
+
+Actor IamBotToken : Token {}
+
+Actor AutoTauntToken : Token { Inventory.MaxAmount 100 }
+
+Actor ThirdPersonPunch : Token { Inventory.MaxAmount 1 Inventory.InterhubAmount 0 }	//for Sorgaul, Duke and LoWang
+
+Actor DamageTrackerActive   : Token { Inventory.MaxAmount 999 Inventory.InterhubAmount 0 }
+Actor DegenerationSingleton : Token { Inventory.MaxAmount 999 Inventory.InterhubAmount 0 }
+
+Actor Resurrected 	: Token {}
+Actor ImDead 		: Token {}
+Actor MapsPlayed    : Token { Inventory.MaxAmount 9999 Inventory.InterhubAmount 9999 }
+
+// These are given by script to tell the game which starter weapon was chosen
+
+Actor Starter_Machinegun 	: Token {}
+Actor Starter_Shotgun 		: Token {}
+Actor Starter_Nailgun 		: Token {}
+Actor Starter_ChooseNow		: Token {}
+Actor Starter_CantChoose	: Token {}
+
+
+// These define HUD elements shown to player
+
+Actor MaxHealthToken   : Token { Inventory.MaxAmount 32766 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor MaxHealthBar     : Token { Inventory.MaxAmount   350 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor CurrentHealthToken:Token { Inventory.MaxAmount 32766 Inventory.InterhubAmount 0x7FFFFFFF } // is this even needed?
+Actor CurrentHealthBar : Token { Inventory.MaxAmount   350 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor SuperHealthToken : Token { Inventory.MaxAmount 32766 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor SuperHealthBar   : Token { Inventory.MaxAmount   350 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor FlatHealthToken  : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor MaxArmorToken    : Token { Inventory.MaxAmount 32766 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor MaxArmorBar      : Token { Inventory.MaxAmount   350 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor CurrentArmorToken: Token { Inventory.MaxAmount 32766 Inventory.InterhubAmount 0x7FFFFFFF } // is this even needed?
+Actor CurrentArmorBar  : Token { Inventory.MaxAmount   350 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor SuperArmorToken  : Token { Inventory.MaxAmount 32766 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor SuperArmorBar    : Token { Inventory.MaxAmount   350 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor FlatArmorToken   : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor LifeToken        : Token { Inventory.MaxAmount   100 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor Team1Score       : Token { Inventory.MaxAmount   220 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor Team2Score       : Token { Inventory.MaxAmount   220 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor TeamColor        : Token { Inventory.MaxAmount   255 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor WepNoFlashToken  : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor WepNoRecoilToken : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor LGTransparency   : Token { Inventory.MaxAmount     2 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor MultiuseCharge   : Token { Inventory.MaxAmount   999 }
+Actor Radar            : Token {}
+Actor NoPortrait       : Status {}
+Actor NoVitals         : Status {}
+Actor NoReticle        : Status {}
+Actor NoAmmoCount      : Status {}
+Actor NoAbilityIcon    : Status {}
+
+Actor AbilityWeaponDebug : Token {}
+
+// Duel HUD
+Actor EnemyMaxHealthBar         : Token { Inventory.MaxAmount 350 }
+Actor EnemyCurrentHealthBar     : Token { Inventory.MaxAmount 350 }
+Actor EnemySuperHealthBar       : Token { Inventory.MaxAmount 350 }
+Actor EnemyFlatHealthToken      : Token {}
+Actor EnemyMaxArmorBar          : Token { Inventory.MaxAmount 350 }
+Actor EnemyCurrentArmorBar      : Token { Inventory.MaxAmount 350 }
+Actor EnemySuperArmorBar        : Token { Inventory.MaxAmount 350 }
+Actor EnemyFlatArmorToken       : Token {}
+Actor EnemyQCHeavyMachinegunDM  : Token {}
+Actor EnemyQCSuperShotgunDM     : Token {}
+Actor EnemyQCSuperNailgunDM     : Token {}
+Actor EnemyQCTriboltDM          : Token {}
+Actor EnemyQCRocketLauncherDM   : Token {}
+Actor EnemyQCLightningGunDM     : Token {}
+Actor EnemyQCRailgunDM          : Token {}
+Actor EnemyQCBFGDM              : Token {}
+
+// Game modes
+Actor TeamDeathmatch : Token {}
+Actor Duel           : Token {}
+Actor Instagib       : Token {}
+Actor RocketArena    : Token {}
+
+// Client-side settings
+Actor CurrentLeader  : Token {}
+Actor NoWeaponBar    : Token {}
+Actor PlayHitBeep    : Token {}
+Actor PlayHitMark    : Token {}
+Actor Speedometer    : Token {}
+Actor NotSpectator   : Token {}
+Actor BeingSpectated : Token {}
+Actor FlatHealthPref : Token {}
+Actor FlatArmorPref  : Token {}
+
+
+// Identifiers for the player classes
+// (for armor and mega to know what's the maximum health to give, and for abilities)
+
+Actor ClassID : Token { Inventory.MaxAmount 100 }
+
+Actor Class_Ranger		: Token {}
+Actor Class_Doomslayer	: Token {}
+Actor Class_Corvus		: Token {}
+Actor Class_Kane		: Token {}
+Actor Class_Caleb		: Token {}
+Actor Class_Menelkir	: Token {}
+Actor Class_Terminator	: Token {}
+Actor Class_Zedek		: Token {}
+Actor Class_Inquisitor	: Token {}
+Actor Class_Bitterman	: Token {}
+Actor Class_Galen		: Token {}
+Actor Class_Nyx			: Token {}
+Actor Class_Sorgaul		: Token {}
+Actor Class_DukeNukem	: Token {}
+Actor Class_Durandal	: Token {}
+Actor Class_Keel		: Token {}
+Actor Class_Sarge		: Token {}
+Actor Class_LoWang		: Token {}
+Actor Class_Grayson		: Token {}
+Actor Class_Eradicator	: Token {}
+Actor Class_Blazkowicz	: Token {}
+Actor Class_Freeman		: Token {}
+Actor Class_VorMatur	: Token {}
+Actor Class_Eleena		: Token {}
+Actor Class_Lucienne	: Token {}
+Actor Class_Major		: Token {}
+Actor Class_Hunter		: Token {}
+Actor Class_Sam			: Token {}
+Actor Class_Postal		: Token {}
+Actor Class_Painkiller	: Token {}
+Actor Class_Intruder	: Token {}
+// ^ insert more classes here
+
+// Enemy class tokens for spectated duel HUD
+
+Actor EnemyClassID : ClassID {}
+
+Actor EnemyClass_Ranger		: Token {}
+Actor EnemyClass_Doomslayer	: Token {}
+Actor EnemyClass_Corvus		: Token {}
+Actor EnemyClass_Kane		: Token {}
+Actor EnemyClass_Caleb		: Token {}
+Actor EnemyClass_Menelkir	: Token {}
+Actor EnemyClass_Terminator	: Token {}
+Actor EnemyClass_Zedek		: Token {}
+Actor EnemyClass_Inquisitor	: Token {}
+Actor EnemyClass_Bitterman	: Token {}
+Actor EnemyClass_Galen		: Token {}
+Actor EnemyClass_Nyx		: Token {}
+Actor EnemyClass_Sorgaul	: Token {}
+Actor EnemyClass_DukeNukem	: Token {}
+Actor EnemyClass_Durandal	: Token {}
+Actor EnemyClass_Keel		: Token {}
+Actor EnemyClass_Sarge		: Token {}
+Actor EnemyClass_LoWang		: Token {}
+Actor EnemyClass_Grayson	: Token {}
+Actor EnemyClass_Eradicator	: Token {}
+Actor EnemyClass_Blazkowicz	: Token {}
+Actor EnemyClass_Freeman	: Token {}
+Actor EnemyClass_VorMatur	: Token {}
+Actor EnemyClass_Eleena		: Token {}
+Actor EnemyClass_Lucienne	: Token {}
+Actor EnemyClass_Major		: Token {}
+Actor EnemyClass_Hunter		: Token {}
+Actor EnemyClass_Sam		: Token {}
+Actor EnemyClass_Postal		: Token {}
+Actor EnemyClass_Painkiller	: Token {}
+Actor EnemyClass_Intruder	: Token {}
+// ^ insert more classes here
+
+Actor TankAlreadyWarned : Token {}
+
+
+// Identifiers for the player ability classes
+// (for bot assistance script to know when to use)
+
+Actor ActiveOffensive : Token {}
+Actor ActiveDefensive : Token {}
+
+
+// Players start with these for ACS to later identify their body type
+
+Actor Body_Medium	: Token {}
+Actor Body_Big		: Token {}
+Actor Body_Small	: Token {}
+
+// Ability system related, for HUD
+
+Actor AbilityCooldownToken       : Token {}
+Actor AbilityCooldownSeconds     : Token { Inventory.MaxAmount 998 }
+Actor AbilityCooldownDeciseconds : Token { Inventory.MaxAmount   9 }
+Actor EnemyAbilityCooldownToken  : Token {}
+Actor EnemyAbilityCooldownSeconds: Token { Inventory.MaxAmount 997 }
+
+Actor NoHealthDegenerationToken  : Token {} //Reliquary lootbox reward
+Actor NoArmorDegenerationToken  : Token {} //Reliquary lootbox reward
+Actor NoFootstepsToken         : Token {} //For ghostwalk, or any other thing that should silence steps
+Actor NoWeaponFireToken       : Token {} //For ghostwalk, or any other thing that should prevent firing
+Actor NoAbilitiesToken       : Token {} //For freeze thrower, or any other thing that should prevent ability use
+Actor ActiveInProgress      : Token {} //For abilities that have "progress bar", disallows using the button again
+Actor AbilityChecksItself  : Token {}
+Actor ImprovedHourglasses : Token {} //Reliquary lootbox reward
+Actor ImprovedHealing     : Token {} //Reliquary lootbox reward
+Actor ImprovedArmor       : Token {} //Reliquary lootbox reward
+Actor ActiveProgressToken : Token { Inventory.MaxAmount 256 Inventory.InterhubAmount 0x7FFFFFFF }
+
+
+// Server-side setting of player speed
+
+Actor PowerPlayerSpeed130 : PowerSpeed	{ Speed 1.30	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed125 : PowerSpeed	{ Speed 1.25	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed120 : PowerSpeed	{ Speed 1.20	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed115 : PowerSpeed	{ Speed 1.15	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed110 : PowerSpeed	{ Speed 1.10	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed105 : PowerSpeed	{ Speed 1.05	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed100 : PowerSpeed	{ Speed 1.00	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed95  : PowerSpeed	{ Speed 0.95	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed90  : PowerSpeed	{ Speed 0.90	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed85  : PowerSpeed	{ Speed 0.85	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed80  : PowerSpeed	{ Speed 0.80	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed75  : PowerSpeed	{ Speed 0.75	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+Actor PowerPlayerSpeed70  : PowerSpeed	{ Speed 0.70	Inventory.Icon "" +POWERSPEED.NOTRAIL }
+
+Actor PlayerSpeed100 : PowerupGiver
+{
+	powerup.duration 0x77777777
+	powerup.type "PowerPlayerSpeed100"
+	Inventory.MaxAmount 0
+	Inventory.InterHubAmount 0
+	-COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+}
+
+Actor PlayerSpeed130 : PlayerSpeed100 { Powerup.Type "PlayerSpeed130" }
+Actor PlayerSpeed125 : PlayerSpeed100 { Powerup.Type "PlayerSpeed125" }
+Actor PlayerSpeed120 : PlayerSpeed100 { Powerup.Type "PlayerSpeed120" }
+Actor PlayerSpeed115 : PlayerSpeed100 { Powerup.Type "PlayerSpeed115" }
+Actor PlayerSpeed110 : PlayerSpeed100 { Powerup.Type "PlayerSpeed110" }
+Actor PlayerSpeed105 : PlayerSpeed100 { Powerup.Type "PlayerSpeed105" }
+
+Actor PlayerSpeed95  : PlayerSpeed100 { Powerup.Type "PlayerSpeed95"  }
+Actor PlayerSpeed90  : PlayerSpeed100 { Powerup.Type "PlayerSpeed90"  }
+Actor PlayerSpeed85  : PlayerSpeed100 { Powerup.Type "PlayerSpeed85"  }
+Actor PlayerSpeed80  : PlayerSpeed100 { Powerup.Type "PlayerSpeed80"  }
+Actor PlayerSpeed75  : PlayerSpeed100 { Powerup.Type "PlayerSpeed75"  }
+Actor PlayerSpeed70  : PlayerSpeed100 { Powerup.Type "PlayerSpeed70"  }
+
+
+// CSMA
+Actor QCEverything : Pistol { +WEAPON.CHEATNOTWEAPON +INVENTORY.UNDROPPABLE }
+
+Actor DeliverDeath
+{
+	//Projectile
+	Damage (1000001)
+	Obituary "$OB_ClassDisabled"
+	DamageType "Disable"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_RearrangePointers(AAPTR_TARGET,AAPTR_TARGET,AAPTR_TARGET)
+		TNT1 A 1 A_DamageMaster(1000001,"Disable")
+	Death:
+		TNT1 A 1
+		Stop
+	}
+}
+Actor DisableColor : Powerup
+{
+	Powerup.Colormap 2,2,2
+	Powerup.Duration 0xDEADBEEF
+}
+
+// Used at the end of active abilities and starting a new level,
+// to clean "active ability" tokens
+
+Actor GenericActiveCleanerProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("ActiveInProgress",32767)
+		TNT1 A 0 A_TakeInventory("ActiveProgressToken",32767)
+		TNT1 A 0 A_TakeInventory("NoWeaponFireToken",32767)
+		TNT1 A 0 A_TakeInventory("Radar")
+		//TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN)
+		TNT1 A 35
+		Stop
+	}
+}
+
+
+// Used every tic when players are crouching
+Actor SpeedNerf : CustomInventory
+{
+	States
+	{
+	Pickup:
+		// Scalar --> Crouch speed factor (approximately)
+		//  0.85  -->  40%
+		//  0.75  -->  25%
+		//  0.50  -->  10%
+		TNT1 A 0 A_ScaleVelocity(0.85)
+		Stop
+	}
+}
+
+
+// Used at each respawn in DM to enable body and projectile collisions --
+// disabled by default for solo and coop.
+
+Actor EnablePlayerCollisionProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_ChangeFlag("THRUSPECIES", 0)
+		Stop
+	}
+}
+
+Actor DisablePlayerCollisionProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_ChangeFlag("THRUSPECIES", 1)
+		Stop
+	}
+}
+
+
+// Related to lootbox rewards
+
+Actor DelayedQuad       : Token {}
+Actor DelayedProtec     : Token {}
+Actor DelayedInvul      : Token {}
+Actor DelayedInfin      : Token {}
+Actor ExtraHealthToken  : Token { Inventory.MaxAmount 1000 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor ExtraArmorToken   : Token { Inventory.MaxAmount 1000 Inventory.InterhubAmount 0x7FFFFFFF }
+
+
+
+
+// This temporarily suppresses trailing on auto-trailing actors like NgyrKorath
+
+Actor NoTrailing : Token {}
+
+// HUGE SHOUTOUT!!! To Alphaent / Blorc.
+// Using powerups as tokens that time themselves out is his idea.
+
+Actor Timer : Powerup {}
+Actor Twitchless3sec : Timer { Powerup.Duration 111 } // given by Thumper
+
+Actor Motionless3sec : PowerSpeed { Speed 0 Powerup.Duration 111 } // given by cheat
+
+Actor FX
+{
+	+CLIENTSIDEONLY +NONETID
+	+NOINTERACTION +NOTONAUTOMAP
+	States
+	{
+	Spawn:
+		NULL A 0 NoDelay
+		Stop
+	}
+}
+
+// PvE damage adjustment
+
+Actor PowerPve1BodyProtection : PowerProtection { DamageFactor "Normal", 0.80 Powerup.Duration 0x7FFFFFFF } // Light
+Actor PowerPve2BodyProtection : PowerProtection { DamageFactor "Normal", 1.10 Powerup.Duration 0x7FFFFFFF } // Medium
+Actor PowerPve3BodyProtection : PowerProtection { DamageFactor "Normal", 1.25 Powerup.Duration 0x7FFFFFFF } // Heavy

@@ -1,0 +1,249 @@
+
+
+// Running multiple QCDE copies crashes engine during CVARINFO parsing stage.
+// Example:  zandronum  -file qcdev2.7.pk3 qcdev2.7.pk3
+// This cvar has a very descriptive name for when error would spew it out.
+// It's set to 3 just to make a big-eyed cat face =3
+
+server noarchive int _PLEASE_DOUBLE_CHECK_THAT_YOURE_LOADING_QCDE_ONLY_ONCE_  =3 ;
+
+// Server settings
+
+server noarchive int bot_weaponize          =   3; // give weapons on respawn, [0..5]
+server noarchive int bot_buff               =   1; // give health randomly, [0..5]
+server noarchive int bot_twitch             = 100; // twitchiness percentage, [0..200]
+server           int sv_playerSpeed         =  85; // percentage, [70..130] in steps of 5
+server           int sv_showDamageNumbers   =   1; // visual representation of damage
+server           int sv_QCDEPowerups        =   2; // spawn BFG and powerup factory? 0 = no, 1 = yes, 2 = auto
+server noarchive int sv_cooldownPercentage  = 100; // multiplies active ability cooldown
+server           int sv_minPlayers          =   4; // fills slots with bots if there are fewer players
+server           int sv_shuffleBots         =   2; // replace bots on map transition, 0: none, 1: all, 2: one
+server           int sv_coopBossScalar      =   1; // scale boss health to coop player count
+server           int sv_pistolStart         =   0; // reset inventory on every map
+server           int sv_crowntheleader      =   1; // crown that marks best fragger in deathmatch
+server           int sv_pvescaledamage      =   1; // reduce damage to squishies, increase to tanks in coop
+
+// Game modes
+
+server noarchive int rocketarena            = 0; // 1: RL, 2: SSG, 3: Unholy Trinity, other: bitfield (1110000 is UT)
+server noarchive int qc_elderssoul          = 0; // QCDE's own "terminator" gameplay mode, allowing team play
+server noarchive int qc_freezetag           = 0; // Freeze enemies instead of kill, thaw allies with body heat
+
+// QCS
+
+server noarchive string qcs        = "";
+server noarchive string qcs_status = "";
+
+
+// Client settings
+
+user bool cl_showWeaponBar   =  true; // vertical list of items on the right
+user bool cl_speedometer     = false; // small counter showing current speed in mu/sec under crosshair
+user bool cl_hitbeep         =  true; // audial feedback about hitting targets
+user bool cl_hitmarker       =  true; // visual feedback about hitting targets
+user bool cl_allyMarkers     =  true; // player-colored triangle shown above players in cooperative
+user bool cl_weaponrecoil    =  true; // do weapons have visual recoil when firing?
+user bool cl_weaponfireflash =  true; // do weapons create a HUD flash effect when firing
+user int  cl_lgtransparency    =   2; // 0: beam invisible, 1: beam 50%, 2: beam 100%
+user int  cl_lowAmmoWarning    =   2; // 1: sound only, 2: sound and text, 3: sound and text stays
+user int  cl_lowHealthWarning  =   1; // 1: sound only, 2: sound and text, 3: sound and text stays
+user int  cl_clutchTapMax      =  15; // max delay between taps
+user int  cl_autoTaunt         =   5; // chance to taunt on kill, [0..10]
+user int  cl_tauntSubtitles    =   1; // 0: never, 1: solo, 2: PvE, 3: always
+user int  cl_autoOpenLootboxes =   0; // open lootboxes immediately
+user int  cl_ShowHUDBloodSmears=   1; // Show HUD blood smears
+user int  cl_startingWeapon    =   1; // 1 = MG, 2 = SG, 3 = NG
+user int  cl_specScores        =   3; // how many scores to show when spectating
+user int  cl_autoSpecDelay     =   0; // if non-zero: seconds to spectate each player automatically
+user int  cl_radarMode         =   0; // 0 = center, 1 = lower
+user int  cl_barStyle          =   0; // 0 = blocks of 25, 1 = continuous
+user int snd_qcdemus           =   1; // play QCDE songs by Michael Markie when available
+user int snd_randommus         =   1; // play QCDE OST in random order. Desyncs in MP.
+user int snd_songnames         =   0; // log names of songs being played
+user int _previousSong         =  -1; // used internally for snd_randommus
+
+
+// Theme settings
+
+server int qc_themedebug = 0;    // show debugging messages when loading
+server int qc_shuffleMode = 1;   // 0 = full shuffle, 1 = one theme per map
+server noarchive int qc_skirmishRogue = 0; // 1 = also randomize monster classes and item pickups
+
+server int theme0  = 1; // Quake 1
+server int theme1  = 0; // Quake 2
+server int theme2  = 0; // Quake 4
+server int theme3  = 0; // Doom
+server int theme4  = 0; // Doom 4 (Death Foretold)
+
+// User-supplied
+
+user noarchive string themename5  =  "  - No custom themes loaded! - ";
+                                     server noarchive int theme50 = -1;                                               user noarchive string themename50 = "    ";
+                                     server noarchive int theme51 = -1;                                               user noarchive string themename51 = "    ";
+                                     server noarchive int theme52 = -1;                                               user noarchive string themename52 = "    ";
+                                     server noarchive int theme53 = -1;                                               user noarchive string themename53 = "    ";
+                                     server noarchive int theme54 = -1;                                               user noarchive string themename54 = "    ";
+server noarchive int theme5  = -1;   server noarchive int theme55 = -1;                                               user noarchive string themename55 = "    ";
+server noarchive int theme6  = -1;   server noarchive int theme56 = -1; user noarchive string themename6  = "    ";   user noarchive string themename56 = "    ";
+server noarchive int theme7  = -1;   server noarchive int theme57 = -1; user noarchive string themename7  = "    ";   user noarchive string themename57 = "    ";
+server noarchive int theme8  = -1;   server noarchive int theme58 = -1; user noarchive string themename8  = "    ";   user noarchive string themename58 = "    ";
+server noarchive int theme9  = -1;   server noarchive int theme59 = -1; user noarchive string themename9  = "    ";   user noarchive string themename59 = "    ";
+server noarchive int theme10 = -1;   server noarchive int theme60 = -1; user noarchive string themename10 = "    ";   user noarchive string themename60 = "    ";
+server noarchive int theme11 = -1;   server noarchive int theme61 = -1; user noarchive string themename11 = "    ";   user noarchive string themename61 = "    ";
+server noarchive int theme12 = -1;   server noarchive int theme62 = -1; user noarchive string themename12 = "    ";   user noarchive string themename62 = "    ";
+server noarchive int theme13 = -1;   server noarchive int theme63 = -1; user noarchive string themename13 = "    ";   user noarchive string themename63 = "    ";
+server noarchive int theme14 = -1;   server noarchive int theme64 = -1; user noarchive string themename14 = "    ";   user noarchive string themename64 = "    ";
+server noarchive int theme15 = -1;   server noarchive int theme65 = -1; user noarchive string themename15 = "    ";   user noarchive string themename65 = "    ";
+server noarchive int theme16 = -1;   server noarchive int theme66 = -1; user noarchive string themename16 = "    ";   user noarchive string themename66 = "    ";
+server noarchive int theme17 = -1;   server noarchive int theme67 = -1; user noarchive string themename17 = "    ";   user noarchive string themename67 = "    ";
+server noarchive int theme18 = -1;   server noarchive int theme68 = -1; user noarchive string themename18 = "    ";   user noarchive string themename68 = "    ";
+server noarchive int theme19 = -1;   server noarchive int theme69 = -1; user noarchive string themename19 = "    ";   user noarchive string themename69 = "    ";
+server noarchive int theme20 = -1;   server noarchive int theme70 = -1; user noarchive string themename20 = "    ";   user noarchive string themename70 = "    ";
+server noarchive int theme21 = -1;   server noarchive int theme71 = -1; user noarchive string themename21 = "    ";   user noarchive string themename71 = "    ";
+server noarchive int theme22 = -1;   server noarchive int theme72 = -1; user noarchive string themename22 = "    ";   user noarchive string themename72 = "    ";
+server noarchive int theme23 = -1;   server noarchive int theme73 = -1; user noarchive string themename23 = "    ";   user noarchive string themename73 = "    ";
+server noarchive int theme24 = -1;   server noarchive int theme74 = -1; user noarchive string themename24 = "    ";   user noarchive string themename74 = "    ";
+server noarchive int theme25 = -1;   server noarchive int theme75 = -1; user noarchive string themename25 = "    ";   user noarchive string themename75 = "    ";
+server noarchive int theme26 = -1;   server noarchive int theme76 = -1; user noarchive string themename26 = "    ";   user noarchive string themename76 = "    ";
+server noarchive int theme27 = -1;   server noarchive int theme77 = -1; user noarchive string themename27 = "    ";   user noarchive string themename77 = "    ";
+server noarchive int theme28 = -1;   server noarchive int theme78 = -1; user noarchive string themename28 = "    ";   user noarchive string themename78 = "    ";
+server noarchive int theme29 = -1;   server noarchive int theme79 = -1; user noarchive string themename29 = "    ";   user noarchive string themename79 = "    ";
+server noarchive int theme30 = -1;   server noarchive int theme80 = -1; user noarchive string themename30 = "    ";   user noarchive string themename80 = "    ";
+server noarchive int theme31 = -1;   server noarchive int theme81 = -1; user noarchive string themename31 = "    ";   user noarchive string themename81 = "    ";
+server noarchive int theme32 = -1;   server noarchive int theme82 = -1; user noarchive string themename32 = "    ";   user noarchive string themename82 = "    ";
+server noarchive int theme33 = -1;   server noarchive int theme83 = -1; user noarchive string themename33 = "    ";   user noarchive string themename83 = "    ";
+server noarchive int theme34 = -1;   server noarchive int theme84 = -1; user noarchive string themename34 = "    ";   user noarchive string themename84 = "    ";
+server noarchive int theme35 = -1;   server noarchive int theme85 = -1; user noarchive string themename35 = "    ";   user noarchive string themename85 = "    ";
+server noarchive int theme36 = -1;   server noarchive int theme86 = -1; user noarchive string themename36 = "    ";   user noarchive string themename86 = "    ";
+server noarchive int theme37 = -1;   server noarchive int theme87 = -1; user noarchive string themename37 = "    ";   user noarchive string themename87 = "    ";
+server noarchive int theme38 = -1;   server noarchive int theme88 = -1; user noarchive string themename38 = "    ";   user noarchive string themename88 = "    ";
+server noarchive int theme39 = -1;   server noarchive int theme89 = -1; user noarchive string themename39 = "    ";   user noarchive string themename89 = "    ";
+server noarchive int theme40 = -1;   server noarchive int theme90 = -1; user noarchive string themename40 = "    ";   user noarchive string themename90 = "    ";
+server noarchive int theme41 = -1;   server noarchive int theme91 = -1; user noarchive string themename41 = "    ";   user noarchive string themename91 = "    ";
+server noarchive int theme42 = -1;   server noarchive int theme92 = -1; user noarchive string themename42 = "    ";   user noarchive string themename92 = "    ";
+server noarchive int theme43 = -1;   server noarchive int theme93 = -1; user noarchive string themename43 = "    ";   user noarchive string themename93 = "    ";
+server noarchive int theme44 = -1;   server noarchive int theme94 = -1; user noarchive string themename44 = "    ";   user noarchive string themename94 = "    ";
+server noarchive int theme45 = -1;   server noarchive int theme95 = -1; user noarchive string themename45 = "    ";   user noarchive string themename95 = "    ";
+server noarchive int theme46 = -1;   server noarchive int theme96 = -1; user noarchive string themename46 = "    ";   user noarchive string themename96 = "    ";
+server noarchive int theme47 = -1;   server noarchive int theme97 = -1; user noarchive string themename47 = "    ";   user noarchive string themename97 = "    ";
+server noarchive int theme48 = -1;   server noarchive int theme98 = -1; user noarchive string themename48 = "    ";   user noarchive string themename98 = "    ";
+server noarchive int theme49 = -1;   server noarchive int theme99 = -1; user noarchive string themename49 = "    ";   user noarchive string themename99 = "    ";
+
+// scoreboard
+server noarchive string _pos0  =  "1"; server noarchive string _name0  = ""; server noarchive string _frags0  = "0";
+server noarchive string _pos1  =  "2"; server noarchive string _name1  = ""; server noarchive string _frags1  = "0";
+server noarchive string _pos2  =  "3"; server noarchive string _name2  = ""; server noarchive string _frags2  = "0";
+server noarchive string _pos3  =  "4"; server noarchive string _name3  = ""; server noarchive string _frags3  = "0";
+server noarchive string _pos4  =  "5"; server noarchive string _name4  = ""; server noarchive string _frags4  = "0";
+server noarchive string _pos5  =  "6"; server noarchive string _name5  = ""; server noarchive string _frags5  = "0";
+server noarchive string _pos6  =  "7"; server noarchive string _name6  = ""; server noarchive string _frags6  = "0";
+server noarchive string _pos7  =  "8"; server noarchive string _name7  = ""; server noarchive string _frags7  = "0";
+server noarchive string _pos8  =  "9"; server noarchive string _name8  = ""; server noarchive string _frags8  = "0";
+server noarchive string _pos9  = "10"; server noarchive string _name9  = ""; server noarchive string _frags9  = "0";
+server noarchive string _pos10 = "11"; server noarchive string _name10 = ""; server noarchive string _frags10 = "0";
+server noarchive string _pos11 = "12"; server noarchive string _name11 = ""; server noarchive string _frags11 = "0";
+server noarchive string _pos12 = "13"; server noarchive string _name12 = ""; server noarchive string _frags12 = "0";
+server noarchive string _pos13 = "14"; server noarchive string _name13 = ""; server noarchive string _frags13 = "0";
+server noarchive string _pos14 = "15"; server noarchive string _name14 = ""; server noarchive string _frags14 = "0";
+server noarchive string _pos15 = "16"; server noarchive string _name15 = ""; server noarchive string _frags15 = "0";
+server noarchive string _pos16 = "17"; server noarchive string _name16 = ""; server noarchive string _frags16 = "0";
+server noarchive string _pos17 = "18"; server noarchive string _name17 = ""; server noarchive string _frags17 = "0";
+server noarchive string _pos18 = "19"; server noarchive string _name18 = ""; server noarchive string _frags18 = "0";
+server noarchive string _pos19 = "20"; server noarchive string _name19 = ""; server noarchive string _frags19 = "0";
+server noarchive string _pos20 = "21"; server noarchive string _name20 = ""; server noarchive string _frags20 = "0";
+server noarchive string _pos21 = "22"; server noarchive string _name21 = ""; server noarchive string _frags21 = "0";
+server noarchive string _pos22 = "23"; server noarchive string _name22 = ""; server noarchive string _frags22 = "0";
+server noarchive string _pos23 = "24"; server noarchive string _name23 = ""; server noarchive string _frags23 = "0";
+server noarchive string _pos24 = "25"; server noarchive string _name24 = ""; server noarchive string _frags24 = "0";
+server noarchive string _pos25 = "26"; server noarchive string _name25 = ""; server noarchive string _frags25 = "0";
+server noarchive string _pos26 = "27"; server noarchive string _name26 = ""; server noarchive string _frags26 = "0";
+server noarchive string _pos27 = "28"; server noarchive string _name27 = ""; server noarchive string _frags27 = "0";
+server noarchive string _pos28 = "29"; server noarchive string _name28 = ""; server noarchive string _frags28 = "0";
+server noarchive string _pos29 = "30"; server noarchive string _name29 = ""; server noarchive string _frags29 = "0";
+server noarchive string _pos30 = "31"; server noarchive string _name30 = ""; server noarchive string _frags30 = "0";
+server noarchive string _pos31 = "32"; server noarchive string _name31 = ""; server noarchive string _frags31 = "0";
+server noarchive string _pos32 = "33"; server noarchive string _name32 = ""; server noarchive string _frags32 = "0";
+server noarchive string _pos33 = "34"; server noarchive string _name33 = ""; server noarchive string _frags33 = "0";
+server noarchive string _pos34 = "35"; server noarchive string _name34 = ""; server noarchive string _frags34 = "0";
+server noarchive string _pos35 = "36"; server noarchive string _name35 = ""; server noarchive string _frags35 = "0";
+server noarchive string _pos36 = "37"; server noarchive string _name36 = ""; server noarchive string _frags36 = "0";
+server noarchive string _pos37 = "38"; server noarchive string _name37 = ""; server noarchive string _frags37 = "0";
+server noarchive string _pos38 = "39"; server noarchive string _name38 = ""; server noarchive string _frags38 = "0";
+server noarchive string _pos39 = "40"; server noarchive string _name39 = ""; server noarchive string _frags39 = "0";
+server noarchive string _pos40 = "41"; server noarchive string _name40 = ""; server noarchive string _frags40 = "0";
+server noarchive string _pos41 = "42"; server noarchive string _name41 = ""; server noarchive string _frags41 = "0";
+server noarchive string _pos42 = "43"; server noarchive string _name42 = ""; server noarchive string _frags42 = "0";
+server noarchive string _pos43 = "44"; server noarchive string _name43 = ""; server noarchive string _frags43 = "0";
+server noarchive string _pos44 = "45"; server noarchive string _name44 = ""; server noarchive string _frags44 = "0";
+server noarchive string _pos45 = "46"; server noarchive string _name45 = ""; server noarchive string _frags45 = "0";
+server noarchive string _pos46 = "47"; server noarchive string _name46 = ""; server noarchive string _frags46 = "0";
+server noarchive string _pos47 = "48"; server noarchive string _name47 = ""; server noarchive string _frags47 = "0";
+server noarchive string _pos48 = "49"; server noarchive string _name48 = ""; server noarchive string _frags48 = "0";
+server noarchive string _pos49 = "50"; server noarchive string _name49 = ""; server noarchive string _frags49 = "0";
+server noarchive string _pos50 = "51"; server noarchive string _name50 = ""; server noarchive string _frags50 = "0";
+server noarchive string _pos51 = "52"; server noarchive string _name51 = ""; server noarchive string _frags51 = "0";
+server noarchive string _pos52 = "53"; server noarchive string _name52 = ""; server noarchive string _frags52 = "0";
+server noarchive string _pos53 = "54"; server noarchive string _name53 = ""; server noarchive string _frags53 = "0";
+server noarchive string _pos54 = "55"; server noarchive string _name54 = ""; server noarchive string _frags54 = "0";
+server noarchive string _pos55 = "56"; server noarchive string _name55 = ""; server noarchive string _frags55 = "0";
+server noarchive string _pos56 = "57"; server noarchive string _name56 = ""; server noarchive string _frags56 = "0";
+server noarchive string _pos57 = "58"; server noarchive string _name57 = ""; server noarchive string _frags57 = "0";
+server noarchive string _pos58 = "59"; server noarchive string _name58 = ""; server noarchive string _frags58 = "0";
+server noarchive string _pos59 = "60"; server noarchive string _name59 = ""; server noarchive string _frags59 = "0";
+server noarchive string _pos60 = "61"; server noarchive string _name60 = ""; server noarchive string _frags60 = "0";
+server noarchive string _pos61 = "62"; server noarchive string _name61 = ""; server noarchive string _frags61 = "0";
+server noarchive string _pos62 = "63"; server noarchive string _name62 = ""; server noarchive string _frags62 = "0";
+server noarchive string _pos63 = "64"; server noarchive string _name63 = ""; server noarchive string _frags63 = "0";
+
+server int qc_classdebug = 0;
+
+server noarchive string _temp0 = ""; server noarchive string _temp4 = "";
+server noarchive string _temp1 = ""; server noarchive string _temp5 = "";
+server noarchive string _temp2 = ""; server noarchive string _temp6 = "";
+server noarchive string _temp3 = ""; server noarchive string _temp7 = "";
+
+
+
+server int _cu_0  = 0;   server int _cu_20 = 0;   server int _cu_40 = 0;   server int _cu_60 = 0;   server int _cu_80 = 0;
+server int _cu_1  = 0;   server int _cu_21 = 0;   server int _cu_41 = 0;   server int _cu_61 = 0;   server int _cu_81 = 0;
+server int _cu_2  = 0;   server int _cu_22 = 0;   server int _cu_42 = 0;   server int _cu_62 = 0;   server int _cu_82 = 0;
+server int _cu_3  = 0;   server int _cu_23 = 0;   server int _cu_43 = 0;   server int _cu_63 = 0;   server int _cu_83 = 0;
+server int _cu_4  = 0;   server int _cu_24 = 0;   server int _cu_44 = 0;   server int _cu_64 = 0;   server int _cu_84 = 0;
+server int _cu_5  = 0;   server int _cu_25 = 0;   server int _cu_45 = 0;   server int _cu_65 = 0;   server int _cu_85 = 0;
+server int _cu_6  = 0;   server int _cu_26 = 0;   server int _cu_46 = 0;   server int _cu_66 = 0;   server int _cu_86 = 0;
+server int _cu_7  = 0;   server int _cu_27 = 0;   server int _cu_47 = 0;   server int _cu_67 = 0;   server int _cu_87 = 0;
+server int _cu_8  = 0;   server int _cu_28 = 0;   server int _cu_48 = 0;   server int _cu_68 = 0;   server int _cu_88 = 0;
+server int _cu_9  = 0;   server int _cu_29 = 0;   server int _cu_49 = 0;   server int _cu_69 = 0;   server int _cu_89 = 0;
+server int _cu_10 = 0;   server int _cu_30 = 0;   server int _cu_50 = 0;   server int _cu_70 = 0;   server int _cu_90 = 0;
+server int _cu_11 = 0;   server int _cu_31 = 0;   server int _cu_51 = 0;   server int _cu_71 = 0;   server int _cu_91 = 0;
+server int _cu_12 = 0;   server int _cu_32 = 0;   server int _cu_52 = 0;   server int _cu_72 = 0;   server int _cu_92 = 0;
+server int _cu_13 = 0;   server int _cu_33 = 0;   server int _cu_53 = 0;   server int _cu_73 = 0;   server int _cu_93 = 0;
+server int _cu_14 = 0;   server int _cu_34 = 0;   server int _cu_54 = 0;   server int _cu_74 = 0;   server int _cu_94 = 0;
+server int _cu_15 = 0;   server int _cu_35 = 0;   server int _cu_55 = 0;   server int _cu_75 = 0;   server int _cu_95 = 0;
+server int _cu_16 = 0;   server int _cu_36 = 0;   server int _cu_56 = 0;   server int _cu_76 = 0;   server int _cu_96 = 0;
+server int _cu_17 = 0;   server int _cu_37 = 0;   server int _cu_57 = 0;   server int _cu_77 = 0;   server int _cu_97 = 0;
+server int _cu_18 = 0;   server int _cu_38 = 0;   server int _cu_58 = 0;   server int _cu_78 = 0;   server int _cu_98 = 0;
+server int _cu_19 = 0;   server int _cu_39 = 0;   server int _cu_59 = 0;   server int _cu_79 = 0;   server int _cu_99 = 0;
+
+server int _cu_log = 0;
+
+server noarchive int _bc_0  = 0;   server noarchive int _bc_20 = 0;   server noarchive int _bc_40 = 0;   server noarchive int _bc_60 = 0;   server noarchive int _bc_80 = 0;
+server noarchive int _bc_1  = 0;   server noarchive int _bc_21 = 0;   server noarchive int _bc_41 = 0;   server noarchive int _bc_61 = 0;   server noarchive int _bc_81 = 0;
+server noarchive int _bc_2  = 0;   server noarchive int _bc_22 = 0;   server noarchive int _bc_42 = 0;   server noarchive int _bc_62 = 0;   server noarchive int _bc_82 = 0;
+server noarchive int _bc_3  = 0;   server noarchive int _bc_23 = 0;   server noarchive int _bc_43 = 0;   server noarchive int _bc_63 = 0;   server noarchive int _bc_83 = 0;
+server noarchive int _bc_4  = 0;   server noarchive int _bc_24 = 0;   server noarchive int _bc_44 = 0;   server noarchive int _bc_64 = 0;   server noarchive int _bc_84 = 0;
+server noarchive int _bc_5  = 0;   server noarchive int _bc_25 = 0;   server noarchive int _bc_45 = 0;   server noarchive int _bc_65 = 0;   server noarchive int _bc_85 = 0;
+server noarchive int _bc_6  = 0;   server noarchive int _bc_26 = 0;   server noarchive int _bc_46 = 0;   server noarchive int _bc_66 = 0;   server noarchive int _bc_86 = 0;
+server noarchive int _bc_7  = 0;   server noarchive int _bc_27 = 0;   server noarchive int _bc_47 = 0;   server noarchive int _bc_67 = 0;   server noarchive int _bc_87 = 0;
+server noarchive int _bc_8  = 0;   server noarchive int _bc_28 = 0;   server noarchive int _bc_48 = 0;   server noarchive int _bc_68 = 0;   server noarchive int _bc_88 = 0;
+server noarchive int _bc_9  = 0;   server noarchive int _bc_29 = 0;   server noarchive int _bc_49 = 0;   server noarchive int _bc_69 = 0;   server noarchive int _bc_89 = 0;
+server noarchive int _bc_10 = 0;   server noarchive int _bc_30 = 0;   server noarchive int _bc_50 = 0;   server noarchive int _bc_70 = 0;   server noarchive int _bc_90 = 0;
+server noarchive int _bc_11 = 0;   server noarchive int _bc_31 = 0;   server noarchive int _bc_51 = 0;   server noarchive int _bc_71 = 0;   server noarchive int _bc_91 = 0;
+server noarchive int _bc_12 = 0;   server noarchive int _bc_32 = 0;   server noarchive int _bc_52 = 0;   server noarchive int _bc_72 = 0;   server noarchive int _bc_92 = 0;
+server noarchive int _bc_13 = 0;   server noarchive int _bc_33 = 0;   server noarchive int _bc_53 = 0;   server noarchive int _bc_73 = 0;   server noarchive int _bc_93 = 0;
+server noarchive int _bc_14 = 0;   server noarchive int _bc_34 = 0;   server noarchive int _bc_54 = 0;   server noarchive int _bc_74 = 0;   server noarchive int _bc_94 = 0;
+server noarchive int _bc_15 = 0;   server noarchive int _bc_35 = 0;   server noarchive int _bc_55 = 0;   server noarchive int _bc_75 = 0;   server noarchive int _bc_95 = 0;
+server noarchive int _bc_16 = 0;   server noarchive int _bc_36 = 0;   server noarchive int _bc_56 = 0;   server noarchive int _bc_76 = 0;   server noarchive int _bc_96 = 0;
+server noarchive int _bc_17 = 0;   server noarchive int _bc_37 = 0;   server noarchive int _bc_57 = 0;   server noarchive int _bc_77 = 0;   server noarchive int _bc_97 = 0;
+server noarchive int _bc_18 = 0;   server noarchive int _bc_38 = 0;   server noarchive int _bc_58 = 0;   server noarchive int _bc_78 = 0;   server noarchive int _bc_98 = 0;
+server noarchive int _bc_19 = 0;   server noarchive int _bc_39 = 0;   server noarchive int _bc_59 = 0;   server noarchive int _bc_79 = 0;   server noarchive int _bc_99 = 0;

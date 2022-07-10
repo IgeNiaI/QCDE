@@ -1,0 +1,162 @@
+
+// .   . ..... ..... ..... .....  ..... ..... .... .....  .....
+// :   : :   : :   : :   : :   :  :   : :   : :    :   :  :   :
+// :.  : :...: :...: :.    :...:. :...: :.  : :... :...:. :...:
+// ::  : ::    ::    :: ": ::   : ::  : ::  : ::   ::   : ::  :
+// ::..: ::    ::    ::..: ::   : ::  : ::..: ::.. ::   : ::  :
+
+// Arg0: weapon number
+// Arg1: upgrade number
+
+Actor UpgradeDropper 15528
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Title "Weapon Upgrade"
+	//$Color 3
+	//$IgnoreRenderstyle
+	//$Sprite "UPG_21_3"
+
+	//$Arg0 "Weapon"
+	//$Arg0ToolTip "QCDE weapon to upgrade"
+	//$Arg0Type 11
+	//$Arg0Enum {0="Gauntlet";3="Shotgun";7="Heavy Machinegun";9="Super Shotgun";11="Super Nailgun";13="Tribolt";15="Rocket Launcher";17="Lightning Gun";19="Railgun";21="BFG10k";}
+
+	//$Arg1 "Upgrade"
+	//$Arg1ToolTip "Upgrade index. Most weapons have 2 as alt-fire modifier."
+	//$Arg1Type 11
+	//$Arg1Enum {1="1";2="2";}
+
+	//$Arg2 "Random preset"
+	//$Arg2ToolTip "Overrides args 0 and 1. Forces to drop a random upgrade (like a dead monster)."
+	//$Arg2Type 11
+	//$Arg2Enum {1="Small";2="Medium";3="Big";4="Boss";}
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_UpgradeDropper",args[0],args[1],args[2])
+		TNT1 A 100
+		Stop
+	}
+}
+
+//$GZDB_SKIP
+
+Actor UpgradeDropperSmall  : UpgradeDropper { Args 0,0,1 }
+Actor UpgradeDropperMedium : UpgradeDropper { Args 0,0,2 }
+Actor UpgradeDropperBig    : UpgradeDropper { Args 0,0,3 }
+Actor UpgradeDropperBoss   : UpgradeDropper { Args 0,0,4 }
+
+Actor Upgrade_0_0 : CustomInventory
+{
+	+BRIGHT
+	+INVENTORY.QUIET
+	+DONTGIB
+	+FORCEXYBILLBOARD
+	+DOOMBOUNCE
+	Scale 0.17
+	States
+	{
+	Nope:
+		TNT1 A 0
+		Fail
+	Yep:
+		TNT1 A 0 A_Turn(0)
+		Stop
+	}
+}
+
+Actor Upgrade_0_1 : Upgrade_0_0
+{	States
+	{Spawn: U001 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",0,1), "Nope") Goto Yep }}
+Actor Upgrade_0_2 : Upgrade_0_0
+{	States
+	{Spawn: U002 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",0,2), "Nope") Goto Yep }}
+
+Actor Upgrade_3_1 : Upgrade_0_0
+{	States
+	{Spawn: U031 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",3,1), "Nope") Goto Yep }}
+Actor Upgrade_3_2 : Upgrade_0_0
+{	States
+	{Spawn: U032 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",3,2), "Nope") Goto Yep }}
+
+Actor Upgrade_7_1 : Upgrade_0_0
+{	States
+	{Spawn: U071 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",7,1), "Nope") Goto Yep }}
+Actor Upgrade_7_2 : Upgrade_0_0
+{	States
+	{Spawn: U072 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",7,2), "Nope") Goto Yep }}
+
+Actor Upgrade_9_1 : Upgrade_0_0
+{	States
+	{Spawn: U091 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",9,1), "Nope") Goto Yep }}
+Actor Upgrade_9_2 : Upgrade_0_0
+{	States
+	{Spawn: U092 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",9,2), "Nope") Goto Yep }}
+
+Actor Upgrade_11_1 : Upgrade_0_0
+{	States
+	{Spawn: U111 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",11,1), "Nope") Goto Yep }}
+Actor Upgrade_11_2 : Upgrade_0_0
+{	States
+	{Spawn: U112 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",11,2), "Nope") Goto Yep }}
+
+Actor Upgrade_13_1 : Upgrade_0_0
+{	States
+	{Spawn: U131 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",13,1), "Nope") Goto Yep }}
+Actor Upgrade_13_2 : Upgrade_0_0
+{	States
+	{Spawn: U132 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",13,2), "Nope") Goto Yep }}
+
+Actor Upgrade_15_1 : Upgrade_0_0
+{	States
+	{Spawn: U151 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",15,1), "Nope") Goto Yep }}
+Actor Upgrade_15_2 : Upgrade_0_0
+{	States
+	{Spawn: U152 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",15,2), "Nope") Goto Yep }}
+
+Actor Upgrade_17_1 : Upgrade_0_0
+{	States
+	{Spawn: U171 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",17,1), "Nope") Goto Yep }}
+Actor Upgrade_17_2 : Upgrade_0_0
+{	States
+	{Spawn: U172 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",17,2), "Nope") Goto Yep }}
+
+Actor Upgrade_19_1 : Upgrade_0_0
+{	States
+	{Spawn: U191 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",19,1), "Nope") Goto Yep }}
+Actor Upgrade_19_2 : Upgrade_0_0
+{	States
+	{Spawn: U192 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",19,2), "Nope") Goto Yep }}
+
+Actor Upgrade_21_1 : Upgrade_0_0
+{	States
+	{Spawn: U211 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",21,1), "Nope") Goto Yep }}
+Actor Upgrade_21_2 : Upgrade_0_0
+{	States
+	{Spawn: U212 A 45 NoDelay A_Turn(0) Loop
+	Pickup: TNT1 A  0 A_JumpIf(!CallACS("QCDE_Upgrade",21,2), "Nope") Goto Yep }}
+
+// Regex-generated:
+// x0   x3   x7   x9   x11   x13   x15   x17   x19   x21
+// x([0-9]{1,2})
+// \r\nActor Upgrade_\1_1 : Upgrade_0_0\r\n{\tStates\r\n\t{Spawn: U\11 A 45 NoDelay A_Turn\(0\) Loop\r\n\tPickup: TNT1 A  0 A_JumpIf\(!CallACS\("QCDE_Upgrade",\1,1\), "Nope"\) Goto Yep }}\r\nActor Upgrade_\1_2 : Upgrade_0_0\r\n{\tStates\r\n\t{Spawn: U\12 A 45 NoDelay A_Turn\(0\) Loop\r\n\tPickup: TNT1 A  0 A_JumpIf\(!CallACS\("QCDE_Upgrade",\1,2\), "Nope"\) Goto Yep }}\r\n

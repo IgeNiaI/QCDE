@@ -1,0 +1,106 @@
+// ----------------------------------------------------------------------------
+//
+// Bitterman's abilities
+//
+// Active:	Power Shield
+//
+// Passive: Permanent Railgun
+//
+// ----------------------------------------------------------------------------
+
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+
+Actor PowerShieldCharge : Token { Inventory.MaxAmount 200 } // 1:1 to armor
+
+Actor QCArmorBitterman : InventoryClassChecker
+{
+	Inventory.Pickupmessage "$GOT_QCArmorBitterman" // "Picked up a power armor bonus."
+	Radius 20
+	Height 16
+	Inventory.Icon "BON2A0"
+	+FLOATBOB
+	+NOBLOCKMONST
+	Scale 0.48
+	Inventory.PickupSound "QC/Items/ArmorShardPick"
+	States
+	{
+	Spawn:
+		PINA A 0 NoDelay A_ChangeVelocity(frandom(-4,4),frandom(-4,4),frandom(3,8))
+		PINA AAAAAAAAAAA 35 BRIGHT
+		PINA A 3 A_FadeOut(0.6)
+		Wait
+
+		DoRanger:
+		DoDoomSlayer:
+		DoCorvus:
+		DoKane:
+		DoCaleb:
+		DoMenelkir:
+		DoTerminator:
+		DoZedek:
+		DoInquisitor:
+		DoBitterman:
+		DoGalen:
+		DoNyx:
+		DoDukeNukem:
+		DoKeel:
+		DoLoWang:
+		DoGrayson:
+		DoEradicator:
+		DoBlazkowicz:
+		DoFreeman:
+		DoEleena:
+		DoLucienne:
+		DoMajor:
+		DoHunter:
+		DoPostal:
+		DoPainkiller:
+		DoIntruder:
+		Default:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer") //If already at max armor for this class, fails
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),	SmallArmorAmount,0) 	//arg 2 = max class armor,
+			Goto ArmorDoneSuccess																		// arg 3 = armor given, arg 4= bool "does it overcharge?"
+		DoSorgaul:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),	SmallArmorAmount+5,0) //+5 because of passive
+			Goto ArmorDoneSuccess
+		DoDurandal:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),"ActuallyDoDurandal") //1. if health low, do activate
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")   //2. if armor max, fail
+			ActuallyDoDurandal:                                                     //3. Armor wasnt max, activate
+				TNT1 A 0 ACS_NamedExecuteAlways("DurandalArmor",0,	CallACS("MaxArmor"),CallACS("MaxHealth"),SmallArmorAmount)
+				Goto ArmorDoneSuccess
+		DoSarge:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+100,"Failer")
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor")+100,SmallArmorAmount,0)
+			Goto ArmorDoneSuccess
+		DoVorMatur:
+			TNT1 A 0 A_JumpIfInventory("MaxArmorToken",1,"ContinueVorMatur") Goto Failer
+			ContinueVorMatur:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),	SmallArmorAmount,0)
+			Goto ArmorDoneSuccess
+		DoSam:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer") //If already at max armor for this class, fails
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,CallACS("MaxArmor"),SmallArmorAmount,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Sam",1) // <- Passive
+			Goto ArmorDoneSuccess
+		// ^ insert more classes here
+
+	ArmorDoneSuccess:
+		TNT1 A 0
+		Stop
+	Failer:
+		TNT1 A 0
+		Fail
+	}
+}
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+Actor ExtraAmmoCapacity : Token {}

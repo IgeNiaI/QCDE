@@ -1,0 +1,391 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+Actor Q4LightTank : QCDE_MonsterBig	15311	//baron
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 24
+	Height 64
+	Mass 1000
+	Health 900	//slightly lowered because this guy sure packs some punch!
+	PainChance 15
+	+NOBLOOD
+	Speed 8
+	Scale 0.53
+	MeleeRange 65
+	+FLOORCLIP
+	SeeSound "quake4/LtTank/Sight"
+	PainSound "quake4/LtTank/Pain"
+	DeathSound "quake4/LtTank/Death"
+	ActiveSound "quake4/LtTank/Idle"
+	Obituary "$OB_Q4LightTank" // "%o met a cyber-dude with plenty of guns."
+	Hitobituary "$OBH_Q4LightTank" // "%o got battered by a Light Tank."
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		Q11I A 4 A_Look
+		Loop
+	See:
+		TNT1 a 0 A_PlaySound("quake4/LtTank/RunNoiseLoop",6,1,1)
+		Q11W AABBCCDDEEFF 2 A_Chase
+		Loop
+	Melee:
+		TNT1 a 0 A_Jump(64,"Missile")
+		TNT1 A 0 A_StopSound(6)
+		Q11M A 4 A_FaceTarget		TNT1 A 0 A_Recoil(-1)
+		Q11M B 4 A_FaceTarget		TNT1 A 0 A_Recoil(-1)
+		Q11M C 4 A_FaceTarget		TNT1 A 0 A_Recoil(-1)
+		Q11M D 4 A_CustomMeleeAttack(random(18,36),"quake4/Berserker/MeleeHit","quake4/Berserker/MeleeSwing","Normal",1)
+		Q11M EF 4 A_Recoil(-1)
+		TNT1 A 0 A_Stop
+		Goto See
+	Missile:
+		TNT1 A 0 A_StopSound(6)
+		TNT1 A 0 A_Jump(128,"SkipSnd")
+		TNT1 A 0 A_PlaySound("quake4/LtTank/AttackGrowl",4)
+	SkipSnd:
+		TNT1 a 0 A_JumpIfCloser(500,"FlameThrower")
+		Goto MissileChoose
+	MissileChoose:
+		TNT1 A 0 A_Jump(192,"DrunkBlaster")	//75%
+		Goto FireBall
+
+	DrunkBlaster:
+		Q11I A 3 A_FaceTarget
+		Q11A AB 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Gladiator/BlasterShot")
+		Q11A BBBB 0 A_CustomMissile("Q4TankBlasterDrunkShot",45,3,0+random(5,-5))
+		Q11A B 5 A_CustomMissile("Q4TankBlasterDrunkShot",45,3,0)
+		Q11A B 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Gladiator/BlasterShot")
+		Q11A BBBB 0 A_CustomMissile("Q4TankBlasterDrunkShot",45,3,0+random(5,-5))
+		Q11A B 5 A_CustomMissile("Q4TankBlasterDrunkShot",45,3,0)
+		Q11A B 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Gladiator/BlasterShot")
+		Q11A BBBB 0 A_CustomMissile("Q4TankBlasterDrunkShot",45,3,0+random(5,-5))
+		Q11A B 5 A_CustomMissile("Q4TankBlasterDrunkShot",45,3,0)
+		Goto See
+
+	FlameThrower:
+		TNT1 A 0 A_Jump(128,"MissileChoose")	//even though is close enough, 50% of times will use other attack
+		Q11I A 7 A_FaceTarget
+		TNT1 a 0 A_PlaySound("quake4/LtTank/FlameStart",5)
+		Q11A AB 7 A_FaceTarget
+		TNT1 a 0 A_PlaySound("quake4/LtTank/FlameLoop",6,1,1)
+
+		FlameLoop:
+				TNT1 A 0 A_FaceTarget
+				Q11A B 3 A_CustomMissile("FatsoFlamethrower",45,3,0)
+				TNT1 A 0 A_JumpIfCloser(448,"CheckIfLooper")
+				Goto FlameThrowerEnd
+			CheckIfLooper:
+				TNT1 a 0 A_Jump(4,"FlameThrowerEnd")	//randomly it will stop
+				Q11A A 0 A_MonsterRefire(0,"FlameThrowerEnd") //if out of sight, will stop
+				Goto FlameLoop
+		FlameThrowerEnd:
+			TNT1 A 0 A_StopSound(6)
+			Q11A B 6
+			Q11I A 6
+			Goto See
+
+	FireBall:
+		Q11B ABCCCCC 5 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("LightTankFireball",27,5,0)
+		Q11B DDEF 6
+		Goto See
+
+	Pain:
+		TNT1 A 0 A_StopSound(6)	//either flame-looping snd, or the running snd
+		Q11P A 7 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		Q11D A 0 A_Scream
+		TNT1 A 0 A_StopSound(6)
+		Q11D A 0 A_Fall
+		Q11D ABCDEF 3
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal")
+	Death.Corpse:
+		Q11D G -1
+		Stop
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake4/Misc/GibExplosion",7)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		Q11D FEDCBA 3
+		Goto See
+	}
+}
+
+//*******************************************************
+Actor FTFireMon
+{
+	PROJECTILE
+	+THRUGHOST
+	+DONTSPLASH
+	+FORCEXYBILLBOARD
+	DONTHURTSHOOTER
+	Radius 2
+	Height 4
+	Speed 16
+	Damage (3)
+	DamageType Fire
+	DeathSound "weapons/scorch"
+	RENDERSTYLE ADD
+	ALPHA 0.99
+	Translation "0:255=%[0,0,0]:[2,1,0.4]"
+	Scale 0.01
+	States
+	{
+	Spawn:
+		TNT1 A 1 Bright
+		TNT1 A 0 Bright A_Jump(230,3,6,9,12,15,18)
+		X121 A 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 B 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 C 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 D 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 E 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 F 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 G 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 H 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 I 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 J 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 K 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 L 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 M 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 N 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 O 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 P 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 Q 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 R 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 S 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 T 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 U 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		X121 V 2 Bright A_SetScale(scalex+0.02)	TNT1 A 0 A_FadeOut(0.05)	TNT1 A 0 A_Explode(1,32,0)
+		Stop
+	Death:
+		TNT1 A 3 A_SpawnItemEx("DropFire",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+		stop
+	}
+}
+
+
+
+
+
+
+Actor DropFire
+{
+	var int user_countone;
+	var int user_counttwo;
+	PROJECTILE
+	-NOGRAVITY
+	+NOEXPLODEFLOOR
+	+NODAMAGETHRUST
+	+DONTSPLASH
+	+PAINLESS
+	+BOUNCEONCEILINGS
+	//+EXTREMEDEATH
+	Gravity 0.125
+	Radius 8
+	Height 40
+	DamageType Fire
+	RenderStyle Add
+	Alpha 0.90
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SetUserVar("user_countone",0)
+		TNT1 A 0 A_SetUserVar("user_counttwo",0)
+		Creation:
+			TNT1 A 0 A_Explode(random(0,2),32,0,0,16)
+			TNT1 A 0 A_SpawnItemEx("FlmThrwrSmoke5",random(-20,20),random(20,-20),random(40,65),0,0,frandom(0.5,2.0),0,SXF_NOCHECKPOSITION,252)
+			TNT1 A 0 A_SpawnItemEx("FTFlameTrail2",random(0,25),0,0,0,0,frandom(0,3),random(0,359),SXF_NOCHECKPOSITION,225)
+			TNT1 A 3 A_SetUserVar("user_countone",user_countone+1)
+			TNT1 A 0 A_JumpIf(user_countone>=10,1)
+			Loop
+			TNT1 A 0 A_SetUserVar("user_countone",0)
+			TNT1 A 0 A_SetUserVar("user_counttwo",random(0,10))
+			TNT1 A 0 A_JumpIf(user_counttwo==5,1)
+			Goto "Creation"
+		TNT1 A 0
+		Stop
+	}
+}
+
+
+Actor FlmThrwrSmoke1
+{
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	Scale 0.07
+	+NOINTERACTION +NOTONAUTOMAP
+	Radius 2
+	Height 2
+	RenderStyle Translucent
+	Alpha 0.0
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255,"One","Two","Three","Four")
+	One:
+		X037 A 0
+		Goto Play
+	Two:
+		X037 B 0
+		Goto Play
+	Three:
+		X037 C 0
+		Goto Play
+	Four:
+		X037 D 0
+		Goto Play
+	Play:
+		"####" "#######" 1 A_FadeIn
+		"####" "#" 2 A_FadeOut(0.03)
+		Wait
+	}
+}
+Actor FlmThrwrSmoke2 : FlmThrwrSmoke1	{	Scale 0.1	}
+Actor FlmThrwrSmoke3 : FlmThrwrSmoke1	{	Scale 0.2	}
+Actor FlmThrwrSmoke4 : FlmThrwrSmoke1	{	Scale 0.3	}
+Actor FlmThrwrSmoke5 : FlmThrwrSmoke1	{	Scale 0.5	}
+
+
+Actor FTFlameTrail
+{
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	//+NOINTERACTION
+	+NOTONAUTOMAP
+	Projectile
+	+THRUACTORS
+	+BOUNCEONWALLS
+	+BOUNCEONCEILINGS
+	+BOUNCEONFLOORS
+	BounceFactor 0
+	WallBounceFactor 0.2
+	Scale 0.38
+	RenderStyle Add
+	Alpha 0.5
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255,"F1","F2","F3")
+	F1:
+		X052 AB 2 bright
+		X052 CDEFGH 3 Bright A_ScaleVelocity(0.92)
+		X052 IJKLMNO 2 Bright A_ScaleVelocity(0.9)
+		X052 PQRS 1 Bright A_ScaleVelocity(0.87)
+		Stop
+	F2:
+		X053 AB 2 bright
+		X053 CDEFGHIJ 3 Bright A_ScaleVelocity(0.92)
+		X053 KLMN 2 Bright A_ScaleVelocity(0.9)
+		X053 OPQRS 1 Bright A_ScaleVelocity(0.87)
+		Stop
+	F3:
+		X054 ABCD 2 bright
+		X054 EFGHIJK 3 Bright A_ScaleVelocity(0.92)
+		X054 LMNO 2 Bright A_ScaleVelocity(0.9)
+		X054 PQRS 2 Bright A_ScaleVelocity(0.87)
+		Stop
+	}
+}
+
+Actor FTFlameTrail2 	: FTFlameTrail { +NOINTERACTION }
+Actor FTFlameTrailMini 	: FTFlameTrail { Scale 0.3 }
+Actor FTFlameTrailMini0 : FTFlameTrail { Scale 0.025 }
+Actor FTFlameTrailMini1 : FTFlameTrail { Scale 0.05 }
+Actor FTFlameTrailMini2 : FTFlameTrail { Scale 0.1 }
+Actor FTFlameTrailMini3 : FTFlameTrail { Scale 0.15 }
+Actor FTFlameTrailMini4 : FTFlameTrail { Scale 0.2 }
+Actor FTFlameTrailMini5 : FTFlameTrail { Scale 0.25 }
+
+
+
+//*****************************************************************
+Actor Q4TankBlasterDrunkShot
+{
+	Damage (random(2,9))
+	Scale 0.4
+	Projectile
+	Radius 8
+	Height 12
+	Speed 15
+	RenderStyle Add
+	SeeSound ""
+	WeaveIndexXY 30
+	WeaveIndexZ 30
+	Translation "0:255=%[0,0,0]:[2,1,0.4]"
+	Decal "Q4PlasmaMonster"
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		LBA2 A 1 Light("OrangeMediumFlicker3") Bright A_Weave(random(3,-3),random(3,-3),2,2)
+		Loop
+	Death:
+		TNT1 A 0 A_SpawnItemEx("HoverTankBlasterExplo1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 4 A_SpawnItemEx("HoverTankBlasterExplo2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+//******************************
+Actor LightTankFireball
+{
+	Projectile
+	Speed 18
+	Damage (25)
+	Radius 10
+	Height 20
+	SeeSound "quake4/Weapons/RocketLauncher/Fire"
+	DeathSound "quake4/Misc/RocketExplo"
+	RenderStyle Add
+	Scale 0.3
+	Decal "Q4ExploScorch"
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		X025 YXWVUTSRQPONMLKJIHGFEDCBA 3 Light("OrangeMediumFlicker1") A_SpawnItemEx("LightTankFireballTrail",-3,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(50,128,0)
+		TNT1 a 4 A_SpawnItemEx("QCRocketExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+Actor LightTankFireballTrail
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	Renderstyle Add
+	Scale 0.3
+	states
+	{
+	Spawn:
+		X025 YXWVUTSRQPONMLKJIHGFEDCBA 1 Bright A_FadeOut(0.06)
+		Loop
+	}
+}
+
+
+
+

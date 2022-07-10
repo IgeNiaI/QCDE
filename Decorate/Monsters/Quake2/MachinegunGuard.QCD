@@ -1,0 +1,37 @@
+//===========================================================================
+//===========================================================================
+
+Actor Q2MachinegunGuard : Q2LightGuard	15211	// chaingun guy
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	Health 90
+	Tag "$TAG_Q2MachinegunGuard" // "Machinegun Guard"
+	Translation "16:47=100:111", "160:191=101:111", "208:223=102:111", "232:235=103:111", "248:248=104:104"  //"248:104"
+	AttackSound "q2soldier/chaingunattack"
+	Obituary "$OB_Q2MachinegunGuard" // "%o got lead poisoning from a machinegun guard."
+	DropItem "Chaingun"
+	States
+	{
+	Missile:
+		Q2SA AB 3 A_FaceTarget
+	MachinegunLoop:
+		Q2SA B 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",12,8,35,0,0,0,0,32)
+		TNT1 A 0 A_CustomMissile("MonsterTracerMidVol",36,8,frandom(5,-5))
+		Q2SA C 1 Bright A_CustomBulletAttack(12,2,1,2)
+		Q2SA C 1 A_CPosRefire
+		Goto MachinegunLoop
+	DeathChecksDone:	//duplicated to remove the spawning of zombie-custom ammo
+		Q2SD A 0 A_Scream
+		Q2SD A 4
+		Q2SD BCDEF 3
+		Q2SD G 4 A_Fall
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Small")
+		Q2SD HI 4
+	Death.Corpse:
+		Q2SD J -1
+		Stop
+	}
+}

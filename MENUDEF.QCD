@@ -1,0 +1,501 @@
+//-------------------------------------------------------------------------------------------
+//
+// The main menu. There's a lot of differences here between the games
+//
+//-------------------------------------------------------------------------------------------
+
+LISTMENU "MainMenu"
+{
+	Selector "CURSOR1", -97, 0
+	StaticPatch 0, -1, "MENUBACK"
+
+	IfGame(Doom, Chex)
+	{
+		StaticPatch 94, 2, "M_DOOM"
+		Position 97, 72	//already positioned for "read this" being always there
+	}
+	IfGame(Strife)
+	{
+		StaticPatch 84, 2, "M_STRIFE"
+		Position 97, 45
+	}
+	IfGame(Heretic)
+	{
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 40, 10, "M_SKL01"
+		StaticPatch 232, 10, "M_SKL00"
+		Position 110, 56
+	}
+	IfGame(Hexen)
+	{
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 37, 80, "FBULB0"
+		StaticPatch 278, 80, "FBULA0"
+		Position 110, 56
+	}
+
+	IfGame(Doom, Strife, Chex)
+	{
+		PatchItem "Q_NEWGAM", "n", "PlayerclassMenu"
+		ifOption(SwapMenu)
+		{
+			PatchItem "Q_LOADG", "l", "LoadGameMenu"
+			PatchItem "Q_SAVEG", "s", "SaveGameMenu"
+			PatchItem "Q_CHAMP", "p", "QCDEPlayerMenu"
+			PatchItem "Q_QCDEOP","c", "QCDEOptions"
+			PatchItem "Q_OPTION","o", "OptionsMenu"
+			PatchItem "Q_RDTHIS","r", "ReadThisMenu"
+		}
+		else
+		{
+			PatchItem "Q_CHAMP", "p", "QCDEPlayerMenu"
+			PatchItem "Q_QCDEOP", "c", "QCDEOptions"
+			PatchItem "Q_OPTION","o", "OptionsMenu"
+			PatchItem "Q_LOADG", "l", "LoadGameMenu"
+			PatchItem "Q_SAVEG", "s", "SaveGameMenu"
+			PatchItem "Q_RDTHIS","r", "ReadThisMenu"
+		}
+		PatchItem "Q_QUITG", "q", "QuitMenu"
+	}
+
+	IfGame(Heretic, Hexen)
+	{
+		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
+		TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
+		TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
+		TextItem "$MNU_INFO", "i", "ReadThisMenu"
+		TextItem "$MNU_QUITGAME", "q", "QuitMenu"
+	}
+}
+
+ListMenu "EpisodeMenu"
+{
+	IfGame(Doom, Heretic, Hexen, Strife)
+	{
+		NetgameMessage "$NEWGAME"
+	}
+	IfGame(Chex)
+	{
+		NetgameMessage "$CNEWGAME"
+	}
+
+	IfGame(Doom, Chex)
+	{
+		Position 48, 63
+		StaticText 54, 38, "CHOOSE EPISODE"
+	}
+	IfGame(Strife)
+	{
+		Position 48, 63
+		StaticText 54, 38, "$MNU_EPISODE"
+	}
+	IfGame(Heretic, Hexen)
+	{
+		Position 80, 50
+	}
+	// items will be filled in by MAPINFO
+}
+
+
+
+OptionMenu "QCDEOptions"
+{
+	Title 			"QCDE OPTIONS"
+	StaticText 	"QCDE Keybinds",1
+	Control "Use active ability",     "+QCDE_ActiveAbility"
+	Control "Champion information",   "+QCDE_ClassInfo"
+	Control "Voice line",             "voice"
+	Control "Drop weapon upgrade",    "drop_upgrade"
+	Control "MP: change class menu",  "mpclassmenu"
+	Control "Select starting weapon", "+QCDE_StartingWeapon"
+	Submenu 	"Weapon Binding",     "QCDEWeaponBinds"
+	StaticText 	""
+	Option "Starting weapon",         "cl_startingWeapon", "StartingWeapon"
+	StaticText 	""
+	StaticText 	"Monster Set Selection",1
+	Option    "Quake 1", "theme0", "YesNo"
+	Option    "Quake 2", "theme1", "YesNo"
+	Option    "Quake 4", "theme2", "YesNo"
+	Option       "Doom", "theme3", "YesNo"
+	Option  "Doom 2016", "theme4", "YesNo"
+	StaticText 	""
+	Option  "Shuffle mode"  , "qc_shuffleMode",   "ShuffleMode"
+	Option  "Skirmish Rogue", "qc_skirmishRogue", "YesNo"
+	Submenu "Custom themes (if loaded)", "QCDECustomThemes"
+	StaticText 	""
+	StaticText 	""
+	StaticText 	"                  Advanced settings",1
+	StaticText 	""
+	Submenu 	"Engine (GZD, Zand) Shortcuts",		"GZDShortcuts"
+	StaticText 	""
+	StaticText 	"Gameplay Settings",1
+	Option "Auto-open lootboxes",     "cl_autoOpenLootboxes",  "OnOff"
+	Option "Damage numbers",          "sv_ShowDamageNumbers",  "OnOff"
+	Slider "Player speed percentage", "sv_PlayerSpeed",        70, 130, 5
+	Slider "PvP auto-join bots",      "sv_MinPlayers",         0, 4, 1
+	StaticText 	""
+	StaticText 	"HUD",1
+	Option "Crosshair type",			"crosshair",           "Crosshairs"
+	Option "Speedometer",				"cl_speedometer",      "OnOff"
+	Option "Weapon bar (16:9)",			"cl_showWeaponBar",    "OnOff"
+	Option "Health bar style",			"cl_barStyle",         "BarStyle"
+	Option "Low ammo warning",			"cl_lowAmmoWarning",   "LowWarning"
+	Option "Low health warning",		"cl_lowHealthWarning", "LowWarning"
+	Option "Cooperative markers",		"cl_allyMarkers",      "OnOff"
+	Slider "Spectator scoreboard size",	"cl_specScores",       0, 64, 1
+	StaticText 	""
+	StaticText 	"Visual",1
+	Option "Weapon hit-markers",		"cl_hitmarker",			"OnOff"
+	Option "Blood smears",         		"cl_ShowHUDBloodSmears", "OnOff"
+	Option "LG beam transparency (DM)", "cl_lgtransparency",     "LGTransp"
+	Option "Weapon firing recoil", 		"cl_weaponrecoil",       "OnOff"
+	Option "Weapon firing flash",  		"cl_weaponfireflash",    "OnOff"
+	StaticText 	""
+	StaticText 	"Sound",1
+	Option "Weapon hit-beeps",			"cl_hitbeep",				"OnOff"
+	Slider "Taunt chance",				"cl_autoTaunt", 			0, 50, 1
+	Option "Taunt subtitles",			"cl_tauntSubtitles",		"TauntSubtitles"
+	Option "OST enabled (if loaded)",	"snd_qcdemus",				"OnOff"
+	Option "OST playback order",		"snd_randommus",			"OSTorder"
+	StaticText ""
+	StaticText "Per-champion settings",1
+	Slider "Inquisitor/Lo Wang tap time", "cl_clutchTapMax",  1, 35, 1
+	Option "Eradicator Radar mode",       "cl_radarMode",    "RadarMode"
+	StaticText ""
+}
+
+
+Optionmenu GZDShortcuts
+{
+	Title "Engine Option Shortcuts"
+	StaticText "Visual Options",1
+	StaticText ""
+	StaticText "Sprite clipping: \"Never\" recommended"
+	Option "Adjust sprite clipping",	gl_spriteclip,			"SpriteclipModes"
+	Option  "Zandronum medals", "cl_medals", "OnOff"
+	StaticText ""
+	Slider "Move bobbing intensity",	"Movebob", 			  0,  0.75, 0.02, 2
+	StaticText ""
+	StaticText "Jump, Crouch and Freelook toggles",1
+	Option "Allow jump",			"sv_jump"    , "JumpCrouchFreeLook"
+	Option "Allow crouch",			"sv_crouch"  , "JumpCrouchFreeLook"
+	Option "Allow freelook",		"sv_freelook", "JumpCrouchFreeLook"
+	StaticText ""
+	StaticText "Performance Options",1
+	StaticText "The smaller the values, the better"
+	StaticText "performance will be."
+	StaticText ""
+	Option "FPS counter",				"vid_fps",			"OnOff"
+	StaticText ""
+	Slider "Number of particles",		"r_maxparticles", 	100, 30000,  100, 0
+	Slider "Number of decals",			"cl_maxdecals", 	  0, 10000,  100, 0
+	StaticText ""
+	StaticText "Giblets queue amount",1
+	StaticText "Limits how many gibs will exist on the"
+	StaticText "world at any time. Does NOT change "
+	StaticText "the max gore spawned per x-death."
+	Slider "Max Giblets (modify by 1)",				"sv_corpsequeuesize", 1, 256, 1.0, 0
+	Slider "Max Giblets (modify by 10)",			"sv_corpsequeuesize", 1, 256, 10.0, 0
+}
+
+
+OptionMenu "QCDEWeaponBinds"
+{
+	Title "Customize Weapon Bindings"
+	StaticText ""
+	StaticText 	"By slot", 1
+	Control "Slot 1: Gauntlet",						"Slot 1"
+	Control "Slot 2: Machinegun, Heavy Machinegun",	"Slot 2"
+	Control "Slot 3: Shotgun, Super Shotgun",		"Slot 3"
+	Control "Slot 4: Nailgun, Super Nailgun",		"Slot 4"
+	Control "Slot 5: Tribolt, Rocket Launcher",		"Slot 5"
+	Control "Slot 6: Lightning Gun",				"Slot 6"
+	Control "Slot 7: Railgun",						"Slot 7"
+	Control "Slot 8: BFG",							"Slot 8"
+	StaticText ""
+	StaticText 	"By specific weapon, if you want to separate the", 1
+	StaticText 	"Tribolt and Rocket Launcher or Shotgun and SSG", 1
+	Control "Tribolt",			"use QCTriboltDM; wait; use QCTribolt"
+	Control "Rocket Launcher",	"use QCRocketLauncherDM; wait; use QCRocketLauncher"
+	Control "Shotgun",			"use QCShotgunDM; wait; use QCShotgun"
+	Control "Super Shotgun",	"use QCSuperShotgunDM; wait; use QCSuperShotgun"
+	StaticText ""
+	StaticText 	"NOTE: There's no need to separate the Nailgun and SNG or"
+	StaticText 	"the Machinegun and SMG, since the *super* version of the"
+	StaticText 	"weapon replaces the weaker one. This is also true for"
+	StaticText 	"Shotgun and SSG in deathmatch, but not in single player."
+}
+
+ListMenu "QCDEPlayerMenu"
+{
+	StaticTextCentered 160, 0, "PLAYER CLASS SETUP"
+	Font "SmallFont"
+	StaticTextCentered 160, 30, "Changes apply after respawn and clear inventory."
+
+	Linespacing 14
+	Position 32, 56
+
+	Linespacing 28
+	Font "BigFont"
+	ValueText "Champion : ", "Class"
+
+	Linespacing 14
+	Font "SmallFont"
+	PlayerNameBox "Name", 0, "Playerbox"
+	Selector "-", -16, -1
+	MouseWindow 0, 220
+	PlayerDisplay 220, 100, "20 00 00", "80 00 40", 1, "PlayerDisplay"
+
+	ValueText "Team", "Team"
+	ValueText "Gender", "Gender", "Gender"
+	ValueText "Autoaim", "Autoaim", "Autoaim"
+	ValueText "Switch on pickup", "Switch", "OffOn"
+	ValueText "Always Run", "AlwaysRun", "OnOff"
+	ValueText "Skin (ignore)", "Skin"
+	Class "PlayerMenu"
+}
+
+OptionMenu "QCDECustomThemes"
+{
+	StaticText 	"Custom Monster Set Selection",1
+	StaticText ""
+	TextField " ", "themename5"    Option " ", "theme5","OI"    StaticText ""
+	TextField " ", "themename6"    Option " ", "theme6","OI"    StaticText ""
+	TextField " ", "themename7"    Option " ", "theme7","OI"    StaticText ""
+	TextField " ", "themename8"    Option " ", "theme8","OI"    StaticText ""
+	TextField " ", "themename9"    Option " ", "theme9","OI"    StaticText ""
+	TextField " ","themename10"    Option " ","theme10","OI"    StaticText ""
+	TextField " ","themename11"    Option " ","theme11","OI"    StaticText ""
+	TextField " ","themename12"    Option " ","theme12","OI"    StaticText ""
+	TextField " ","themename13"    Option " ","theme13","OI"    StaticText ""
+	TextField " ","themename14"    Option " ","theme14","OI"    StaticText ""
+	TextField " ","themename15"    Option " ","theme15","OI"    StaticText ""
+	TextField " ","themename16"    Option " ","theme16","OI"    StaticText ""
+	TextField " ","themename17"    Option " ","theme17","OI"    StaticText ""
+	TextField " ","themename18"    Option " ","theme18","OI"    StaticText ""
+	TextField " ","themename19"    Option " ","theme19","OI"    StaticText ""
+	TextField " ","themename20"    Option " ","theme20","OI"    StaticText ""
+	TextField " ","themename21"    Option " ","theme21","OI"    StaticText ""
+	TextField " ","themename22"    Option " ","theme22","OI"    StaticText ""
+	TextField " ","themename23"    Option " ","theme23","OI"    StaticText ""
+	TextField " ","themename24"    Option " ","theme24","OI"    StaticText ""
+	TextField " ","themename25"    Option " ","theme25","OI"    StaticText ""
+	TextField " ","themename26"    Option " ","theme26","OI"    StaticText ""
+	TextField " ","themename27"    Option " ","theme27","OI"    StaticText ""
+	TextField " ","themename28"    Option " ","theme28","OI"    StaticText ""
+	TextField " ","themename29"    Option " ","theme29","OI"    StaticText ""
+	TextField " ","themename30"    Option " ","theme30","OI"    StaticText ""
+	TextField " ","themename31"    Option " ","theme31","OI"    StaticText ""
+	TextField " ","themename32"    Option " ","theme32","OI"    StaticText ""
+	TextField " ","themename33"    Option " ","theme33","OI"    StaticText ""
+	TextField " ","themename34"    Option " ","theme34","OI"    StaticText ""
+	TextField " ","themename35"    Option " ","theme35","OI"    StaticText ""
+	TextField " ","themename36"    Option " ","theme36","OI"    StaticText ""
+	TextField " ","themename37"    Option " ","theme37","OI"    StaticText ""
+	TextField " ","themename38"    Option " ","theme38","OI"    StaticText ""
+	TextField " ","themename39"    Option " ","theme39","OI"    StaticText ""
+	TextField " ","themename40"    Option " ","theme40","OI"    StaticText ""
+	TextField " ","themename41"    Option " ","theme41","OI"    StaticText ""
+	TextField " ","themename42"    Option " ","theme42","OI"    StaticText ""
+	TextField " ","themename43"    Option " ","theme43","OI"    StaticText ""
+	TextField " ","themename44"    Option " ","theme44","OI"    StaticText ""
+	TextField " ","themename45"    Option " ","theme45","OI"    StaticText ""
+	TextField " ","themename46"    Option " ","theme46","OI"    StaticText ""
+	TextField " ","themename47"    Option " ","theme47","OI"    StaticText ""
+	TextField " ","themename48"    Option " ","theme48","OI"    StaticText ""
+	TextField " ","themename49"    Option " ","theme49","OI"    StaticText ""
+	TextField " ","themename50"    Option " ","theme50","OI"    StaticText ""
+	TextField " ","themename51"    Option " ","theme51","OI"    StaticText ""
+	TextField " ","themename52"    Option " ","theme52","OI"    StaticText ""
+	TextField " ","themename53"    Option " ","theme53","OI"    StaticText ""
+	TextField " ","themename54"    Option " ","theme54","OI"    StaticText ""
+	TextField " ","themename55"    Option " ","theme55","OI"    StaticText ""
+	TextField " ","themename56"    Option " ","theme56","OI"    StaticText ""
+	TextField " ","themename57"    Option " ","theme57","OI"    StaticText ""
+	TextField " ","themename58"    Option " ","theme58","OI"    StaticText ""
+	TextField " ","themename59"    Option " ","theme59","OI"    StaticText ""
+	TextField " ","themename60"    Option " ","theme60","OI"    StaticText ""
+	TextField " ","themename61"    Option " ","theme61","OI"    StaticText ""
+	TextField " ","themename62"    Option " ","theme62","OI"    StaticText ""
+	TextField " ","themename63"    Option " ","theme63","OI"    StaticText ""
+	TextField " ","themename64"    Option " ","theme64","OI"    StaticText ""
+	TextField " ","themename65"    Option " ","theme65","OI"    StaticText ""
+	TextField " ","themename66"    Option " ","theme66","OI"    StaticText ""
+	TextField " ","themename67"    Option " ","theme67","OI"    StaticText ""
+	TextField " ","themename68"    Option " ","theme68","OI"    StaticText ""
+	TextField " ","themename69"    Option " ","theme69","OI"    StaticText ""
+	TextField " ","themename70"    Option " ","theme70","OI"    StaticText ""
+	TextField " ","themename71"    Option " ","theme71","OI"    StaticText ""
+	TextField " ","themename72"    Option " ","theme72","OI"    StaticText ""
+	TextField " ","themename73"    Option " ","theme73","OI"    StaticText ""
+	TextField " ","themename74"    Option " ","theme74","OI"    StaticText ""
+	TextField " ","themename75"    Option " ","theme75","OI"    StaticText ""
+	TextField " ","themename76"    Option " ","theme76","OI"    StaticText ""
+	TextField " ","themename77"    Option " ","theme77","OI"    StaticText ""
+	TextField " ","themename78"    Option " ","theme78","OI"    StaticText ""
+	TextField " ","themename79"    Option " ","theme79","OI"    StaticText ""
+	TextField " ","themename80"    Option " ","theme80","OI"    StaticText ""
+	TextField " ","themename81"    Option " ","theme81","OI"    StaticText ""
+	TextField " ","themename82"    Option " ","theme82","OI"    StaticText ""
+	TextField " ","themename83"    Option " ","theme83","OI"    StaticText ""
+	TextField " ","themename84"    Option " ","theme84","OI"    StaticText ""
+	TextField " ","themename85"    Option " ","theme85","OI"    StaticText ""
+	TextField " ","themename86"    Option " ","theme86","OI"    StaticText ""
+	TextField " ","themename87"    Option " ","theme87","OI"    StaticText ""
+	TextField " ","themename88"    Option " ","theme88","OI"    StaticText ""
+	TextField " ","themename89"    Option " ","theme89","OI"    StaticText ""
+	TextField " ","themename90"    Option " ","theme90","OI"    StaticText ""
+	TextField " ","themename91"    Option " ","theme91","OI"    StaticText ""
+	TextField " ","themename92"    Option " ","theme92","OI"    StaticText ""
+	TextField " ","themename93"    Option " ","theme93","OI"    StaticText ""
+	TextField " ","themename94"    Option " ","theme94","OI"    StaticText ""
+	TextField " ","themename95"    Option " ","theme95","OI"    StaticText ""
+	TextField " ","themename96"    Option " ","theme96","OI"    StaticText ""
+	TextField " ","themename97"    Option " ","theme97","OI"    StaticText ""
+	TextField " ","themename98"    Option " ","theme98","OI"    StaticText ""
+	TextField " ","themename99"    Option " ","theme99","OI"    StaticText ""
+}
+
+
+OptionValue "LowWarning"
+{
+	0, "Off"
+	1, "Sound"
+	2, "Sound & Text"
+	3, "Sound & Text stays"
+}
+
+OptionValue "BarStyle"
+{
+	0, "Blocks of 25 points"
+	1, "Continuous"
+}
+
+OptionValue "OI"
+{
+	0, "\c[red]Off"
+	1, "\c[green]On"
+	0, "\c[red]Off"
+	1, "\c[green]On"
+	-1, " " // !!==true, default, for unloaded themes
+	0, "\c[red]Off"
+	1, "\c[green]On"
+}
+
+OptionValue "LGTransp"
+{
+	0, "Invisible"
+	1, "Fully visible"
+}
+
+OptionValue "StartingWeapon"
+{
+	1, "Machinegun"
+	2, "Shotgun (DM-only)"
+	3, "Nailgun"
+}
+
+OptionValue "ShuffleMode"
+{
+	0, "Per monster \c[black](AEoD-like)"
+	1, "One theme per map"
+}
+
+OptionValue "RadarMode"
+{
+	0, "Big centered"
+	1, "Small below crosshair"
+}
+
+OptionValue "OstOrder"
+{
+	0, "Strict"
+	1, "Shuffled"
+	2, "Randomized"
+}
+
+OptionValue "TauntSubtitles"
+{
+	0, "Off"
+	1, "Only in campaign"
+	2, "In all PvE modes"
+	3, "Always on"
+}
+
+
+OptionMenu ZA_JoinMenu
+{
+	Title		"JOIN GAME"
+
+	StaticText	"You are spectating."
+	StaticText	" "
+	StaticText	" "
+	StaticText	" "
+	StaticText	" "
+	StaticText	" "
+	StaticText	" "
+	Command		"Join game",			"pukename QCDE_ClassPicker"
+	Command		"How to play",			"menu_help"
+}
+
+
+OptionMenu ZA_JoinTeamMenu
+{
+	Title		"JOIN GAME"
+
+	StaticText	"You are spectating."
+	StaticText	" "
+	StaticText	" "
+	StaticText	" "
+	StaticText	" "
+	StaticText	" "
+	StaticText	" "
+	Command		"Join game",			"pukename QCDE_ClassPicker 0"
+	Command		"Join blue",			"pukename QCDE_ClassPicker 1"
+	Command		"Join red" ,			"pukename QCDE_ClassPicker 2"
+	Command		"How to play",			"menu_help"
+}
+
+// Now unreachable, but still provided if anyone has old bindings
+OptionMenu ZA_SelectClassMenu
+{
+	Title		"SELECT CHAMPION"
+
+	StaticText	"Medium"
+	Command "Ranger"      ,"pukename QCDE_JoinClassIdx  2  0"
+	Command "DoomSlayer"  ,"pukename QCDE_JoinClassIdx  2  1"
+	Command "Corvus"      ,"pukename QCDE_JoinClassIdx  2  2"
+	Command "Galen"       ,"pukename QCDE_JoinClassIdx  2  3"
+	Command "DukeNukem"   ,"pukename QCDE_JoinClassIdx  2  4"
+	Command "Sarge"       ,"pukename QCDE_JoinClassIdx  2  5"
+	Command "Grayson"     ,"pukename QCDE_JoinClassIdx  2  6"
+	Command "Blazkowicz"  ,"pukename QCDE_JoinClassIdx  2  7"
+	Command "Freeman"     ,"pukename QCDE_JoinClassIdx  2  8"
+	Command "Painkiller"  ,"pukename QCDE_JoinClassIdx  2  9"
+	Command "Intruder"    ,"pukename QCDE_JoinClassIdx  2 10"
+	StaticText	" "
+	StaticText	"Light"
+	Command "Kane"        ,"pukename QCDE_JoinClassIdx  1  0"
+	Command "Caleb"       ,"pukename QCDE_JoinClassIdx  1  1"
+	Command "Menelkir"    ,"pukename QCDE_JoinClassIdx  1  2"
+	Command "Nyx"         ,"pukename QCDE_JoinClassIdx  1  3"
+	Command "Durandal"    ,"pukename QCDE_JoinClassIdx  1  4"
+	Command "LoWang"      ,"pukename QCDE_JoinClassIdx  1  5"
+	Command "Eleena"      ,"pukename QCDE_JoinClassIdx  1  6"
+	Command "Lucienne"    ,"pukename QCDE_JoinClassIdx  1  7"
+	Command "Hunter"      ,"pukename QCDE_JoinClassIdx  1  8"
+	Command "Postal"      ,"pukename QCDE_JoinClassIdx  1  9"
+	StaticText	" "
+	StaticText	"Heavy"
+	Command "Terminator"  ,"pukename QCDE_JoinClassIdx  3  0"
+	Command "Zedek"       ,"pukename QCDE_JoinClassIdx  3  1"
+	Command "Inquisitor"  ,"pukename QCDE_JoinClassIdx  3  2"
+	Command "Sorgaul"     ,"pukename QCDE_JoinClassIdx  3  3"
+	Command "Bitterman"   ,"pukename QCDE_JoinClassIdx  3  4"
+	Command "Keel"        ,"pukename QCDE_JoinClassIdx  3  5"
+	Command "Eradicator"  ,"pukename QCDE_JoinClassIdx  3  6"
+	Command "VorMatur"    ,"pukename QCDE_JoinClassIdx  3  7"
+	Command "Major"       ,"pukename QCDE_JoinClassIdx  3  8"
+	Command "Sam"         ,"pukename QCDE_JoinClassIdx  3  9"
+	// ^ insert more classes here
+}

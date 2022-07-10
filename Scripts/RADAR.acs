@@ -1,0 +1,376 @@
+#library "RADAR"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+// Radar by Michaelis for QCDE
+// Credit to Cybermind for the idea
+
+// Radar object modes
+#define ROM_PLAYER   1
+#define ROM_ITEM     2
+#define ROM_POWERUP  3
+#define ROM_TOTEM    4
+#define ROM_DEFAULT  5
+#define ROM_WEAPON   6
+#define ROM_MONSTER  7
+#define ROM_KEY      8
+#define ROM_LOOTBOX  9
+#define ROM_UPGRADE 10
+
+// Don't you just love how you can have variables that look like constants in QCDE?
+// That's because, as it is widely known, "one man's constants are another man's variables".
+// Deep, isn't it.
+// ~Ms
+int RADAR_SCREENWIDTH  = 600;
+int RADAR_SCREENHEIGHT = 450;
+int RADAR_X_CENTER     = 300;
+int RADAR_Y_CENTER     = 225;
+int RADAR_SHRINK_ICONS =   2;
+int teamy;
+#define RADAR_Z_THRESHOLD   63
+#define RADAR_PRESCALE_DIST  5
+// Square root: postscale is fixed point
+#define RADAR_POSTSCALE_DIST 1.25
+#define RADAR_LINEAR_DIVIDE 12
+#define RADAR_MAX_RANGE    125.0
+#define RADAR_CUTOFF      9999
+
+// Draw the nice hexagonal grid by papa francu
+function void DrawRadarBackground(int x, int y, int rsw, int rsh, int rxc, int ryc, int rsi)
+{
+	RADAR_SCREENWIDTH  = rsw;
+	RADAR_SCREENHEIGHT = rsh;
+	RADAR_X_CENTER     = rxc;
+	RADAR_Y_CENTER     = ryc;
+	RADAR_SHRINK_ICONS = rsi;
+
+	SetHudSize(RADAR_SCREENWIDTH,RADAR_SCREENHEIGHT,0);
+	str frame;
+	switch(Timer() % 34)
+	{
+	default: return;
+	case  0: frame = "RADARBG0"; break ;
+	case 17: frame = "RADARBG1"; break ;
+	}
+
+	SetFont(frame);
+	HudMessageBold(c:'A'; HUDMSG_FADEINOUT | HUDMSG_ALPHA, ID_RADAR_BACKGROUND_1 + Timer() % 2, -1,
+			x*1.0, y*1.0,  // coordinates
+			0.1, 0.4, 0.4, // timing
+			0.3);          // alpha
+}
+
+function void DrawRadar(int me, int scale, int center_x, int center_y, int teamy_inc, int coop)
+{
+	teamy = teamy_inc;
+	int plr, obj, tid;
+	int team = GetPlayerInfo(CPN(), PLAYERINFO_TEAM); // <-- an IMPROPER fix, last minute
+
+	// Draw players
+	plr = 64;
+	while(plr --> 0)
+	{
+		// Skip myself
+		if(plr == ConsolePlayerNumber()) continue;
+
+		// Skip unoccupied tids
+		tid = plr + 1000;
+		if(!IsTidUsed(tid)) continue;
+
+		// Skip allies in teamgames
+		if(teamy && team == GetPlayerInfo(plr, PLAYERINFO_TEAM)) continue;
+
+		DrawRadarObject(me, tid, ID_RADAR_PLAYERS + plr, center_x, center_y, ROM_PLAYER);
+	}
+
+	// Draw big items
+	obj = 152;
+	while(obj --> 0)
+	{
+		// Skip unoccupied tids
+		tid = BIGGIE_TIDBASE + obj;
+		if(!IsTidUsed(tid)) continue;
+
+		DrawRadarObject(me, tid, ID_RADAR_ITEMS + obj, center_x, center_y, ROM_ITEM);
+	}
+
+	// Draw powerups
+	obj = 64;
+	while(obj --> 0)
+	{
+		// Skip unoccupied tids or used by something else
+		tid = POWERUP_TIDBASE + obj;
+		if(ThingCount(T_NONE, tid) != 1) continue;
+
+		DrawRadarObject(me, tid, ID_RADAR_POWERUPS + obj, center_x, center_y, ROM_POWERUP);
+	}
+
+	// Draw totems
+	plr = 64;
+	while(plr --> 0)
+	{
+		// Skip myself
+		if(plr == ConsolePlayerNumber()) continue;
+		// Skip absentees
+		if(!PlayerInGame(plr)) continue;
+
+		int totem = 5;
+		while(totem --> 0)
+		{
+			// Skip unoccupied tids
+			tid = plr + TOTEM_TIDBASE + totem * 128;
+			if(!IsTidUsed(tid)) continue;
+
+			DrawRadarObject(me, tid, ID_RADAR_TOTEMS + plr + totem * 128, center_x, center_y, ROM_TOTEM);
+		}
+	}
+
+	// Draw Daves
+	plr = 64;
+	while(plr --> 0)
+	{
+		// Skip myself
+		if(plr == ConsolePlayerNumber()) continue;
+		// Skip unoccupied tids or used by something else
+		tid = plr + MAULOTAUR_TIDBASE;
+		if(ThingCount(T_NONE, tid) != 1) continue;
+
+		DrawRadarObject(me, tid, ID_RADAR_DAVES + plr, center_x, center_y, ROM_DEFAULT);
+	}
+
+	if(GameType() <= GAME_NET_COOPERATIVE) // Only in PvE
+	{
+		// Draw weapons
+		obj = 232;
+		while(obj --> 0)
+		{
+			// Skip unoccupied tids or used by something else
+			tid = WEAPON_TIDBASE + obj;
+			if(ThingCount(T_NONE, tid) != 1) continue;
+
+			DrawRadarObject(me, tid, ID_RADAR_WEAPONS + obj, center_x, center_y, ROM_WEAPON);
+		}
+
+		// Draw upgrades
+		obj = 128;
+		while(obj --> 0)
+		{
+			// Skip unoccupied tids or used by something else
+			tid = UPGRADE_TIDBASE + obj;
+			if(ThingCount(T_NONE, tid) != 1) continue;
+
+			DrawRadarObject(me, tid, ID_RADAR_UPGRADES + obj, center_x, center_y, ROM_UPGRADE);
+		}
+
+		// Draw monsters
+		// Lower range
+		obj = 4096;
+		while(obj --> 0)
+		{
+			// Skip unoccupied tids or used by something else
+			tid = MONSTER1_TIDBASE + obj;
+			if(ThingCount(T_NONE, tid) != 1) continue;
+
+			DrawRadarObject(me, tid, ID_RADAR_MONSTERS12 + obj, center_x, center_y, ROM_MONSTER);
+		}
+		// Upper range
+		obj = 4096;
+		while(obj --> 0)
+		{
+			// Skip unoccupied tids or used by something else
+			tid = MONSTER3_TIDBASE + obj;
+			if(ThingCount(T_NONE, tid) != 1) continue;
+
+			DrawRadarObject(me, tid, ID_RADAR_MONSTERS34 + obj, center_x, center_y, ROM_MONSTER);
+		}
+
+		// Draw keys
+		obj = 64;
+		while(obj --> 0)
+		{
+			// Skip unoccupied tids or used by something else
+			tid = KEY_TIDBASE + obj;
+			if(ThingCount(T_NONE, tid) != 1) continue;
+
+			DrawRadarObject(me, tid, ID_RADAR_KEYS + obj, center_x, center_y, ROM_KEY);
+		}
+
+		// Draw lootboxes
+		obj = 64;
+		while(obj --> 0)
+		{
+			// Skip unoccupied tids or used by something else
+			tid = LOOTBOX_TIDBASE + obj;
+			if(ThingCount(T_NONE, tid) != 1) continue;
+
+			DrawRadarObject(me, tid, ID_RADAR_LOOTBOXES + obj, center_x, center_y, ROM_LOOTBOX);
+		}
+	}
+
+}
+
+function void DrawRadarObject(int me, int tid, int id, int center_x, int center_y, int mode)
+{
+	int x = GetActorX(me) - GetActorX(tid);
+	int y = GetActorY(me) - GetActorY(tid);
+
+	int dx = FixedMul(x, cos(-GetActorAngle(0))) - FixedMul(y,sin(-GetActorAngle(0)));
+	int dy = FixedMul(x, sin(-GetActorAngle(0))) + FixedMul(y,cos(-GetActorAngle(0)));
+
+	int angle = VectorAngle(dx, dy);
+	int dista = Dist(dx, dy);
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+	{
+		// Distance scaling: square root
+		dista = FixedMul(FixedSqrt(dista * RADAR_PRESCALE_DIST), RADAR_POSTSCALE_DIST);
+	}
+	else
+	{
+		// Distance scaling: linear
+		dista /= RADAR_LINEAR_DIVIDE;
+	}
+
+	if(dista > RADAR_MAX_RANGE) return;
+	if(sqrt((x>>16) * (x>>16) + (y>>16) * (y>>16)) > RADAR_CUTOFF) return;
+	if(!dista) return; // 0 here means fixed point number overflow, which only happens for things already far away
+	dx = FixedMul(cos(angle), dista);
+	dy = FixedMul(sin(angle), dista);
+
+	// Transpose to coalign "forward" with "up", not "right" as trigonometry lessons have it
+	dx += center_y << 16; dx=dx >>16<< 16;
+	dy += center_x << 16; dy=dy >>16<< 16;
+
+	dx *= RADAR_SHRINK_ICONS; dy *= RADAR_SHRINK_ICONS;
+
+	SetHudSize(RADAR_SCREENWIDTH * RADAR_SHRINK_ICONS, RADAR_SCREENHEIGHT * RADAR_SHRINK_ICONS, 1);
+	SetFont(GetRadarGraphic(me, tid, mode));
+	HudMessageBold(s:"A"; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, dy,dx,0.1,0.1);
+}
+
+function int GetRadarGraphic(int me, int tid, int mode)
+{
+	switch(mode)
+	{
+	case ROM_PLAYER: // Draw health-based status with relative height
+
+		str color = "3";
+
+		if      (GetActorPowerupTics(tid,"PowerQuad"  )) color = "Q";
+		else if (CheckActorInventory(tid,"PowerTerminatorArtifact")) color = "Q";
+		else if (GetActorPowerupTics(tid,"PowerProtec")) color = "P";
+		else if (GetActorProperty(tid,APROP_SpawnHealth) > 0)
+		{
+			// todo: use total sum hp if armor is absorption type
+			int hp = CheckActorInventory(tid, "SuperHealthBar");
+			int ap = CheckActorInventory(tid, "BasicArmor");
+
+			if(ap > hp * 2) ap = hp * 2;
+			hp = hp + ap;
+
+			if(hp >= 125) // green is level at which squishies start
+				color = "3";
+			else if(hp > 80) // yellow is where they don't die from 1 unscoped rail
+				color = "2";
+			else if(hp > 0) // red is where they do
+				color = "1";
+			else return "RDREMPTY"; // nothing -- player disconnected
+
+		} else { // this hasn't been happening, so it's probably not going to
+			SetActivator(tid);
+			//log(n:0, s:" is white, tid ", d:tid);
+			SetActivatorToPlayer(ConsolePlayerNumber());
+		}
+
+		// Select icon based on height and color
+		int z = (GetActorZ(tid) - GetActorZ(me)) / 1.0;
+		str symbol = "RDRSAME";
+		if      (z > RADAR_Z_THRESHOLD) symbol = "RDRABOV";
+		else if (z <-RADAR_Z_THRESHOLD) symbol = "RDRBELO";
+		return strparam(s:symbol, s:color);
+
+	case ROM_ITEM: // Draw mega or heavy
+		if(CheckActorClass(tid, "QCMegaHealthFX")) return "RDRMEGAH";
+		if(CheckActorClass(tid, "QCMegaMegaFX"  )) return "RDRMMEGA";
+		if(CheckActorClass(tid, "QCHeavyArmorFX")) return "RDRHEAVY";
+		//log(s:"QCDE warning: Item without radar graphics: ", s:GetActorClass(tid), s:", tid = ", d:tid);
+		return "RDRMONST";//"PWUPFRAM";
+
+	case ROM_POWERUP: // Draw quad, protec, invul, infin
+		if(CheckActorClass(tid, "QCQuad"  )) return "RDRQUADD";
+		if(CheckActorClass(tid, "QCProtec")) return "RDRPROTE";
+		if(CheckActorClass(tid, "QCInvul" )) return "RDRINVUL";
+		if(CheckActorClass(tid, "QCInfin" )) return "RDRINFIN";
+		//log(s:"QCDE warning: Powerup without radar graphics: ", s:GetActorClass(tid), s:", tid = ", d:tid);
+		return "RDRMONST";//"PWUPFRAM";
+
+	case ROM_TOTEM: // Draw blue or red
+		bool blue;
+		int owner = (tid - 1000) % 64;
+
+		if (teamy)
+			blue = GetPlayerInfo(owner, PLAYERINFO_TEAM) == 0;
+		else
+			blue = owner == me;
+
+		if(blue)
+			return "RDRTOT_B";
+		else
+			return "RDRTOT_R";
+
+	default:
+	case ROM_DEFAULT: // Draw skull and hope it makes sense
+		return "RDRMONST";
+
+	case ROM_WEAPON: // Show weapon icon
+		if(CheckActorClass(tid, "MachinegunPickup"       )) return "LedBullt"; // <- not expected
+		if(CheckActorClass(tid, "HeavyMachinegunPickup"  )) return "LedBullt";
+		if(CheckActorClass(tid, "ShotgunPickup"          )) return "LedShell";
+		if(CheckActorClass(tid, "SuperShotgunPickup"     )) return "LedShell";
+		if(CheckActorClass(tid, "SuperShotgunPickupDMvar")) return "LedShell";
+		if(CheckActorClass(tid, "NailgunPickup"          )) return "LedNails"; // <- not expected
+		if(CheckActorClass(tid, "SuperNailgunPickup"     )) return "LedNails";
+		if(CheckActorClass(tid, "TriboltPickup"          )) return "LedBolts";
+		if(CheckActorClass(tid, "RocketLauncherPickup"   )) return "LedRockt";
+		if(CheckActorClass(tid, "LightningGunPickup"     )) return "LedCoils";
+		if(CheckActorClass(tid, "RailgunPickup"          )) return "LedSlugs";
+		if(CheckActorClass(tid, "BfgPickup"              )) return "LedBfugs";
+		//log(s:"QCDE warning: Weapon without radar graphics: ", s:GetActorClass(tid), s:", tid = ", d:tid);
+		return "RDRMONST";//"PWUPFRAM";
+
+	case ROM_MONSTER: // Draw dot of different size
+		if     (tid >= MONSTER4_TIDBASE) return "RDRMONS4";
+		else if(tid >= MONSTER3_TIDBASE) return "RDRMONS3";
+		else if(tid >= MONSTER2_TIDBASE) return "RDRMONS2";
+		else if(tid >= MONSTER1_TIDBASE) return "RDRMONS1";
+		//log(s:"QCDE warning: Monster without radar graphics: ", s:GetActorClass(tid), s:", tid = ", d:tid);
+		return "RDRMONST";//"PWUPFRAM";
+
+	case ROM_KEY: // Draw their color
+		if(CheckActorClass(tid, "QCBlueSkull"  ) || CheckActorClass(tid, "QCBlueCard"  )) return "RDRCARDB";
+		if(CheckActorClass(tid, "QCYellowSkull") || CheckActorClass(tid, "QCYellowCard")) return "RDRCARDY";
+		if(CheckActorClass(tid, "QCRedSkull"   ) || CheckActorClass(tid, "QCRedCard"   )) return "RDRCARDR";
+		//log(s:"QCDE warning: Key without radar graphics: ", s:GetActorClass(tid), s:", tid = ", d:tid);
+		return "RDRMONST";//"PWUPFRAM";
+
+	case ROM_LOOTBOX: // Draw exclamation mark
+		return "RDREXCLA";
+
+	case ROM_UPGRADE: // Draw their icon
+		str name = GetActorClass(tid), upg;
+		if(GetChar(name, 9) != '_')
+			upg = strparam(s:"HPG_" , s:strmid(name,8,4));
+		else
+			upg = strparam(s:"HPG_0", s:strmid(name,8,3));
+
+		// [Ms] Yes, they're offset. Sew me!
+
+		return upg;
+	}
+
+	// Unreachable statement. Draw something outrageous, so it would get reported.
+	return "BFGDEC1";
+}
+
+

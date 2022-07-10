@@ -1,0 +1,120 @@
+//===========================================================================
+//===========================================================================
+
+Actor Q2Tank : QCDE_MonsterBig 15219	// baron
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	var int user_counter;
+	Health 1000
+	Radius 24
+	Height 64
+	Scale 0.48
+	Speed 10
+	PainChance 18
+	Mass 9000
+	MONSTER
+	+FLOORCLIP
+	+MISSILEEVENMORE
+	+NOBLOOD
+	Tag "$TAG_Q2Tank" // "Tank"
+	SeeSound "q2tank/sight"
+	PainSound "q2tank/pain"
+	DeathSound "q2tank/death"
+	ActiveSound "q2tank/idle"
+	AttackSound ""
+	Obituary "$OB_Q2Tank" // "%o encountered a tank."
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		TK1I A 5 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_PlaySound("q2tank/step")
+		TK1W A 7
+		TK1W BCD 6 A_Chase
+		TNT1 A 0 A_PlaySound("q2tank/step")
+		TK1W E 7
+		TK1W FGH 6 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(80,"MiniGun")
+		TK1B ABCD 6 A_FaceTarget
+		TK1B E 4 Bright A_CustomMissile("TankBlaster", 40, -15, 0, 1)
+		TK1B D 4 A_FaceTarget
+		TK1B E 4 Bright A_CustomMissile("TankBlaster", 40, -15, 0, 1)
+		TK1B D 4 A_FaceTarget
+		TK1B E 4 Bright A_CustomMissile("TankBlaster", 40, -15, 0, 1)
+		TK1B DCBA 6
+		Goto See
+
+	MiniGun:
+		TNT1 A 0 A_Jump(96,"Rockets")
+		TNT1 A 0 A_SetUserVar(user_counter,0)
+		TK1C ABCDE 4 A_FaceTarget
+
+		MgunLoop:
+			TNT1 A 0 A_Jumpif(user_counter>=20,"MgunEnd")
+			TNT1 A 0 A_PlaySound("q2weapon/machinegun",6,1,0,0.75)
+			TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",17,20,45,0,0,0,0,32)
+			TNT1 A 0 A_CustomMissile("MonsterTracerMidVol",46,23,frandom(5,-5))
+			TK1C F 3 Bright A_CustomBulletAttack(8,8,1,2,"BulletPuff")
+			TNT1 A 0 A_SetUserVar(user_counter,user_counter+1)
+			Loop
+		MgunEnd:
+			TK1C EDCBA 4
+			Goto See
+
+	Rockets:
+		TK1R ABCDE 6 A_FaceTarget
+		TK1R F 0 A_PlaySound("q2tank/mechsound1")
+		TK1R FGHIJK 6 A_FaceTarget
+		TK1R L 8 A_FaceTarget
+		TK1R M 6 Bright A_CustomMissile("BitchRocket", 70, 25, 0)
+		TK1R N 6 A_FaceTarget
+		TK1R O 6 Bright A_CustomMissile("BitchRocket", 70, 20, 0)
+		TK1R P 6 A_FaceTarget
+		TK1R Q 6 Bright A_CustomMissile("BitchRocket", 70, 15, 0)
+		TK1R RSTUVWX 7
+		Goto See
+
+	Pain:
+		TK1P A 20 A_Pain
+		TK1P B 8
+		Goto See
+
+	DeathChecksDone:
+		TK1D A 0 A_Scream
+		TNT1 AAA 0 A_TossGib
+		TK1D ABCDEF 6
+		TK1D GHIJKLM 6
+		TK1D NOPQR 6
+		TK1D S 6 A_PlaySound("quake4/Misc/Body/Metal")
+		TNT1 AA 0 A_TossGib
+		TNT1 A 0 A_Fall
+	Death.Corpse:
+		TK1D T -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMediumBig",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 AAAA 0 A_TossGib
+		Goto DeathChecksDone	//still plays the death sound in this monster
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		TK1D TSRQPO 6
+		Goto See
+	}
+}
+
+Actor TankBlaster : HoverBeam
+{
+	Speed 20
+	Damage (random(3,8)*4)
+}
+
+

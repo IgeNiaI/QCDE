@@ -1,0 +1,940 @@
+#library "LOOTBOX"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//
+//  Lootbox system
+//  for QCDE
+//  by Michaelis
+//
+//=============================================================================
+
+// Base ammo capacities are already with backpack
+#define BASE_BulletAmmo 300
+#define BASE_ShellAmmo   60
+#define BASE_NailAmmo   200
+#define BASE_BoltAmmo    50
+#define BASE_RocketAmmo  80
+#define BASE_CoilAmmo   300
+#define BASE_SlugAmmo    40
+#define BASE_BFGAmmo     30
+#define BASE_SamBullets 175
+
+#define LEVEL_BulletAmmo 20
+#define LEVEL_ShellAmmo   5
+#define LEVEL_NailAmmo   20
+#define LEVEL_BoltAmmo    5
+#define LEVEL_RocketAmmo  5
+#define LEVEL_CoilAmmo   15
+#define LEVEL_SlugAmmo    5
+#define LEVEL_BFGAmmo     2
+#define LEVEL_SamBullets 15
+
+
+// ----------------------------------------------------------------------------
+//
+// OBTAINING
+//
+// ----------------------------------------------------------------------------
+
+// IMPORTANT NOTE FOR MAPPERS //
+// You can't put a special on a lootbox other than "execute with result 1827".
+// Map-placed lootbox will ensure that it has execution of script 1827 as its
+// special.
+// Dynamically spawned lootbox won't -- so, please, set its special to
+// type = 84 (ACS_ExecuteWithResult)
+// arg0 = 1827
+// arg1 = grade
+// arg2 = ACS("QCDE_GetLootboxCode")
+// Otherwise the lootbox will be empty. :(
+
+int lootboxcode;
+
+Script "QCDE_GetLootboxCode" (void)
+{
+	if(!lootboxcode) lootboxcode = random(1, 12345);
+	SetResultValue(lootboxcode);
+}
+
+Script "QCDE_Lootbox" (int grade)
+{
+	if(!timer())
+		SetThingSpecial(0, 84, 1827, grade, ACS("QCDE_GetLootboxCode"));
+
+	SetTidIfHadNone(LOOTBOX_TIDBASE, LOOTBOX_TIDLAST);
+}
+
+Script 1827 (int grade, int unlockcode)
+{
+	if(unlockcode == ACS("QCDE_GetLootboxCode"))
+		deserved[PlayerNumber() + grade*64]++;
+}
+
+int monsters_announced, secrets_announced;
+
+Script "QCDE_MapProgressChecker" (void)
+{
+	// Don't repeat.
+	if (CheckInventory("AlreadyRewarded")) terminate;
+
+	// Don't reward if map is almost empty.
+	int totalmonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	int totalsecrets = GetLevelInfo(LEVELINFO_TOTAL_SECRETS);
+	if (totalmonsters < 5 && totalsecrets < 1) terminate;
+
+	// This is neither for deathmatch nor for team games.
+	if (GameType() == GAME_NET_DEATHMATCH || GameType() == 4) terminate;
+
+	// Invasion takes care of its lootboxes on its own.
+	if (GetCvar("invasion")) terminate;
+
+	// Track the actual number of monsters, including killed/revived ones.
+	totalmonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+
+	int killsearned = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+	int secretsfound = GetLevelInfo(LEVELINFO_FOUND_SECRETS);
+
+	// Once per level, play "killed everything"
+	if(!(killsearned < totalmonsters) && (secretsfound < totalsecrets) && (!monsters_announced))
+	{
+		if(totalmonsters) ACS("QCDE_MonstersKilled_Hint");
+		GiveInventory("MapRevealer",1);
+		monsters_announced = true;
+	}
+
+	// Once per level, play "secrets completed"
+	if(!(secretsfound < totalsecrets) && (killsearned < totalmonsters) && (!secrets_announced))
+	{
+		if(totalsecrets) ACS("QCDE_SecretsKilled_Hint");
+		secrets_announced = true;
+	}
+
+	// Kill everything and find all secrets to earn a reward -- a lootbox!
+	if ((killsearned >= totalmonsters) && (secretsfound >= totalsecrets))
+	{
+		GiveInventory("AlreadyRewarded", 1); // to prevent retriggering on this map
+		ACS("QCDE_TauntLootbox");
+		if(!isSkirmish())
+		{
+			ACS("QCDE~GiveLoot뮻🅾️x");
+		}
+		else
+		{
+			ACS("QCDE_MonstersKilled_Hint",1);
+		}
+	}
+}
+
+
+// Corvus _will_ sound stupid.
+// > completed map
+// > "it's missing a wheel"
+// :smirk:
+Script "QCDE_TauntLootbox" (void)
+{
+	// Cooperative-only
+	if(GameType() != GAME_NET_COOPERATIVE) terminate;
+
+	int rand = GetLevelInfo(LEVELINFO_LEVELNUM) + GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	int div = PlayerCount();
+	int me = PlayerNumber();
+	if(rand % div == me) ACS_NamedExecuteAlways("QCDE_VoiceLine",0,100,0,Timer());
+}
+
+
+
+// By type: backpack, chest, reliquary
+str LOOTBOX_NAMES[3] = {"Backpack", "Chest", "Reliquary"};
+int LOOTBOX_CHANCE[3]= { 100      ,  75    ,  20        };
+
+Script "QCDE~GiveLoot뮻🅾️x" (int nomessage, int forcegrade, int switch2player)
+{
+	if(switch2player) SetActivatorToPlayer(~-switch2player);
+	Delay(1);
+
+	GiveInventory("RewardToken", 1); // to keep track of how many
+	int userlevel = CheckInventory("RewardToken");
+	str lootbox = "";
+	int lb,chance;
+
+	// Decide lootbox degree of coolness
+	int grade = 0;
+	chance = lcg(100,3);
+	if(chance <= LOOTBOX_CHANCE[1]) grade = 1;
+	if(chance <= LOOTBOX_CHANCE[2]) grade = 2;
+	// Predetermined
+	if(forcegrade) grade =~- forcegrade;
+
+	str item = strparam(s:"LB", s:LOOTBOX_NAMES[grade]);
+	GiveInventory(item,1);
+	deserved[PlayerNumber() + grade*64]++;
+	if(!nomessage)
+	{
+		ACS_NamedExecuteAlways("QCDE_Lootbox_Hint",0,false,grade);
+
+		if(GameType() > GAME_SINGLE_PLAYER)
+		{
+			Log(n:0, s:" completed ", d:userlevel, s:" levels, got ", s:LOOTBOX_NAMES[grade]);
+		}
+	}
+}
+
+
+// ----------------------------------------------------------------------------
+//
+// ACTIVATION
+//
+// ----------------------------------------------------------------------------
+
+str GENERATORS[5] = {"Backpack", "Chest", "Reliquary", "Lootbox", "Loadout"};
+
+// Behold, the linear congruential generator that powers my laboratory.
+// Its output is more than enough for my modest uses.
+function int lcg(int max, int gener)
+{
+			// Reminder:   get LB on map01, open -> A
+			// get LB on map01, goto map02, open -> B
+			// Expected result: A == B
+	int min = 1;
+	str token = strparam(s:"RngState_", s:GENERATORS[gener]);
+	int state = CheckInventory(token);
+	if(!state) state = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) + PlayerNumber();
+
+	// I have journeyed to the nameless city, studied the forgotten tomes of
+	// scholars from Miskatonic University, and travelled to Yekub to coalesce
+	// in thoughts with the ever-colorful Juk-Shabb, who in languages I don't
+	// dare to reproduce here hath spoken to me these formulae.
+	int yukth = (337 * state + 97) % 65536;
+	int tothe = (yukth>>4) % max + 1;
+
+	SetInventory(token, yukth);
+	return tothe;
+}
+// [Ms] Damn, I get such a kick from the word _congruential_ and imagining it
+// a turbine buzzing with electricity, opening portals and Lovecraft and shiet.
+
+//  -- Rerolls --
+// You reroll when your RNG state is 0.
+script "QCDE_InitLCG" (void)
+{
+	if(GameType() >= GAME_NET_DEATHMATCH) terminate;
+
+	int i;
+	for(i = 0; i < 5; i++)
+	{
+		str class = strparam(s:"RngState_", s:GENERATORS[i]);
+		if(!CheckInventory(class))
+			SetInventory(class, random(0,1000));
+	}
+}
+
+// This experiment shows implementation of low-difference weights without
+// excessive complication code-wise. It is not suitable for high-difference
+// weights, such as monster spawning, due to misses.
+//
+// It could be imagined as throwing a random dot into a rectangle, then
+// checking if the dot landed below the histogram of rarity.
+// If the dot doesn't connect with area under histogram, it is rethrown.
+// The closer all weights are to maximum weight, the fewer rethrows are needed.
+
+int LOOTBOX_TYPES[3] = {7, 14, 10};
+int LOOTBOX_SUBRARITY[3][16] =
+	{ {3,3,3,3,3,3,3},               // Backpacks
+	  {3,3,3,3,3,3,3,3,1,1,1,3,1,1}, // Chests
+	  {3,1,2,3,3,2,3,2,2,2}          // Reliquaries
+	};
+#define MAX_SUBRARITY 3
+#define MAX_RETRIES  50
+
+script "QCDE_OpenLootbox" (int grade)
+{
+	if(GameType() >= GAME_NET_DEATHMATCH) terminate;
+	if(CheckInventory("OpeningLootbox")) terminate;
+	GiveInventory("OpeningLootbox",1);
+
+	ACS_NamedExecuteAlways("QCDE_Lootbox_PreShow",0,false,grade);
+	int time = 60;
+	if(grade == 2) time = 77;
+	delay(time);
+
+	str lootbox = "";
+
+	int license = PlayerNumber() + grade*64;
+	if(!deserved[license] && !isSkirmish()) // "isSkirmish" part is a workaround I'm ashamed of [Ms]
+		lootbox = "DEATHDAY:It's a box of fucking nothing!";
+
+	// This loop ends when a prize is chosen, or when max number of retries is reached.
+	// A prize may be denied choosing because it is maxed out.
+	int retries;
+	while(!lootbox || !strlen(lootbox))
+	{
+		int lb = lcg(LOOTBOX_TYPES[grade], grade);
+		int chance = lcg(MAX_SUBRARITY, grade);
+		if(retries++ >= MAX_RETRIES) lb = 0;
+		else if(LOOTBOX_SUBRARITY[grade][lb-1] < chance) continue;
+
+		str scriptName = strparam(s:"鳞~Loot🅱ox", d:grade, s:"_", d:lb);
+		//log(s:"Opening ", s:scriptName);
+		lootbox = ACS(scriptName,0);
+		//log(s:"Result: ", d:lootbox, s:" -> [", d:strlen(lootbox), s:"] ", s:lootbox);
+	}
+
+	// Unpacking two strings from one
+	str icon = strmid(lootbox,0, 8);
+	lootbox  = strmid(lootbox,9,99);
+
+	if(deserved[license]) deserved[license]--;
+	ACS("QCDE_Lootbox_Show",false,grade,lootbox,icon);
+	LogTo(PlayerNumber(), strparam(s:"Your reward: ", s:lootbox));
+	str inventory = strparam(s:"LB", s:LOOTBOX_NAMES[grade]);
+	TakeInventory(inventory,1);
+	TakeInventory("OpeningLootbox",1);
+}
+
+script "QCDE_OpenBackpack" 	(void) { ACS("QCDE_OpenLootbox",0); }
+script "QCDE_OpenChest" 	(void) { ACS("QCDE_OpenLootbox",1); }
+script "QCDE_OpenReliquary"	(void) { ACS("QCDE_OpenLootbox",2); }
+
+script "QCDE_OpenLootboxes" (int checkCvar) net
+{
+	if(checkCvar && !getCvar("cl_autoOpenLootboxes")) terminate;
+
+	delay(35);
+	if(UseInventory("LBBackpack" )) delay(120);
+	if(UseInventory("LBChest"    )) delay(150);
+	if(UseInventory("LBReliquary")) delay(180);
+}
+
+
+// ----------------------------------------------------------------------------
+//
+// BACKPACKS
+//
+// ----------------------------------------------------------------------------
+
+// Fallback: +10% ammo refill
+script "鳞~Loot🅱ox0_0" (void)
+{
+	SetResultValue("AMMO0010:10% Ammo Refilled");
+	GiveInventory("QCBulletAmmo", GetAmmoCapacity("QCBulletAmmo") / 10);
+	GiveInventory("QCShellAmmo" , GetAmmoCapacity("QCShellAmmo" ) / 10);
+	GiveInventory("QCNailAmmo"  , GetAmmoCapacity("QCNailAmmo"  ) / 10);
+	GiveInventory("QCBoltAmmo"  , GetAmmoCapacity("QCBoltAmmo"  ) / 10);
+	GiveInventory("QCRocketAmmo", GetAmmoCapacity("QCRocketAmmo") / 10);
+	GiveInventory("QCCoilAmmo"  , GetAmmoCapacity("QCCoilAmmo"  ) / 10);
+	GiveInventory("QCSlugAmmo"  , GetAmmoCapacity("QCSlugAmmo"  ) / 10);
+	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 10);
+
+	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 10);
+}
+
+// Random weapon
+script "鳞~Loot🅱ox0_1" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("LoadoutRewardToken", 1))
+	{
+		ACS_NamedExecuteAlways("Loadout",0,1); // calling a cheat ;)
+		SetResultValue("        :Random Weapon");
+	}
+}
+
+// +10% ammo refill
+script "鳞~Loot🅱ox0_2" (void)
+{
+	SetResultValue("AMMO0010:10% Ammo Refilled");
+	GiveInventory("QCBulletAmmo", GetAmmoCapacity("QCBulletAmmo") / 10);
+	GiveInventory("QCShellAmmo" , GetAmmoCapacity("QCShellAmmo" ) / 10);
+	GiveInventory("QCNailAmmo"  , GetAmmoCapacity("QCNailAmmo"  ) / 10);
+	GiveInventory("QCBoltAmmo"  , GetAmmoCapacity("QCBoltAmmo"  ) / 10);
+	GiveInventory("QCRocketAmmo", GetAmmoCapacity("QCRocketAmmo") / 10);
+	GiveInventory("QCCoilAmmo"  , GetAmmoCapacity("QCCoilAmmo"  ) / 10);
+	GiveInventory("QCSlugAmmo"  , GetAmmoCapacity("QCSlugAmmo"  ) / 10);
+	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 10);
+
+	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 10);
+}
+
+// -5% cooldown
+script "鳞~Loot🅱ox0_3" (void)
+{
+	SetResultValue("");
+	if(CheckInventory("Class_Sarge")) terminate;
+	if(GiveAndCheck("CooldownRewardToken", 5))
+	{
+		SetResultValue("CDLOOT05:5% Faster Cooldown");
+	}
+}
+
+// Megamega
+script "鳞~Loot🅱ox0_4" (void)
+{
+	SetResultValue("MEGB____:Mega Charge");
+	GiveInventory("QCMegaMega", 1);
+}
+
+// 2 random weapons
+script "鳞~Loot🅱ox0_5" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("LoadoutRewardToken", 2))
+	{
+		ACS_NamedExecuteAlways("Loadout",0,2); // calling a cheat!!
+		SetResultValue("        :Two Random Weapons");
+	}
+}
+
+// Mega Health
+script "鳞~Loot🅱ox0_6" (void)
+{
+	SetResultValue("MEGA____:Mega Health");
+	GiveInventory("QCMegaHealth", 1);
+}
+
+// Armored Vest
+script "鳞~Loot🅱ox0_7" (void)
+{
+	if(CheckInventory("Class_VorMatur"))
+	{
+		// Just don't give this to VorMatur.
+		// He's not used to covering nipples.
+		SetResultValue("");
+	}
+	else
+	{
+		SetResultValue("QCARC___:Armored Vest");
+		GiveInventory("QCBigArmorGiver", 1);
+	}
+}
+
+
+// ----------------------------------------------------------------------------
+//
+// CHESTS
+//
+// ----------------------------------------------------------------------------
+
+// Fallback: 33% ammo
+script "鳞~Loot🅱ox1_0" (void)
+{
+	SetResultValue("AMMO0030:33% Ammo Refilled");
+	GiveInventory("QCBulletAmmo", GetAmmoCapacity("QCBulletAmmo") / 3);
+	GiveInventory("QCShellAmmo" , GetAmmoCapacity("QCShellAmmo" ) / 3);
+	GiveInventory("QCNailAmmo"  , GetAmmoCapacity("QCNailAmmo"  ) / 3);
+	GiveInventory("QCBoltAmmo"  , GetAmmoCapacity("QCBoltAmmo"  ) / 3);
+	GiveInventory("QCRocketAmmo", GetAmmoCapacity("QCRocketAmmo") / 3);
+	GiveInventory("QCCoilAmmo"  , GetAmmoCapacity("QCCoilAmmo"  ) / 3);
+	GiveInventory("QCSlugAmmo"  , GetAmmoCapacity("QCSlugAmmo"  ) / 3);
+	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 3);
+
+	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 3);
+}
+
+// 33% ammo
+script "鳞~Loot🅱ox1_1" (void)
+{
+	SetResultValue("AMMO0030:33% Ammo Refilled");
+	GiveInventory("QCBulletAmmo", GetAmmoCapacity("QCBulletAmmo") / 3);
+	GiveInventory("QCShellAmmo" , GetAmmoCapacity("QCShellAmmo" ) / 3);
+	GiveInventory("QCNailAmmo"  , GetAmmoCapacity("QCNailAmmo"  ) / 3);
+	GiveInventory("QCBoltAmmo"  , GetAmmoCapacity("QCBoltAmmo"  ) / 3);
+	GiveInventory("QCRocketAmmo", GetAmmoCapacity("QCRocketAmmo") / 3);
+	GiveInventory("QCCoilAmmo"  , GetAmmoCapacity("QCCoilAmmo"  ) / 3);
+	GiveInventory("QCSlugAmmo"  , GetAmmoCapacity("QCSlugAmmo"  ) / 3);
+	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 3);
+
+	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 3);
+}
+
+// 50% ammo
+script "鳞~Loot🅱ox1_2" (void)
+{
+	SetResultValue("AMMO0050:Half Ammo Refilled");
+	GiveInventory("QCBulletAmmo", GetAmmoCapacity("QCBulletAmmo") / 2);
+	GiveInventory("QCShellAmmo" , GetAmmoCapacity("QCShellAmmo" ) / 2);
+	GiveInventory("QCNailAmmo"  , GetAmmoCapacity("QCNailAmmo"  ) / 2);
+	GiveInventory("QCBoltAmmo"  , GetAmmoCapacity("QCBoltAmmo"  ) / 2);
+	GiveInventory("QCRocketAmmo", GetAmmoCapacity("QCRocketAmmo") / 2);
+	GiveInventory("QCCoilAmmo"  , GetAmmoCapacity("QCCoilAmmo"  ) / 2);
+	GiveInventory("QCSlugAmmo"  , GetAmmoCapacity("QCSlugAmmo"  ) / 2);
+	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 2);
+
+	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 2);
+}
+
+// Ammo capacity upgrade
+script "鳞~Loot🅱ox1_3" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("BackpackRewardToken", 1))
+	{
+		ACS_NamedExecuteAlways("QCDE_UpdateBackpackStack",0);
+		SetResultValue("AMMOINCR:Extra Ammo Capacity");
+	}
+}
+
+// -10% cooldown
+script "鳞~Loot🅱ox1_4" (void)
+{
+	SetResultValue("");
+	if(CheckInventory("Class_Sarge")) terminate;
+	int given = GiveAndCheck("CooldownRewardToken", 10);
+	if(given == 10)
+	{
+		SetResultValue("CDLOOT10:-10% Cooldown");
+	}
+	else if(given == 5)
+	{
+		SetResultValue("CDLOOT05:-5% Cooldown");
+	}
+}
+
+// Quad Damage next map
+script "鳞~Loot🅱ox1_5" (void)
+{
+	if(isSkirmish() || (IsZandronum(true) && GetInvasionState() > 0))
+	{
+		SetResultValue("QUAD____:Temporary Quad Damage");
+		GiveInventory("QCQuad", 1);
+	}
+	else
+	{
+		SetResultValue("QUAD____:Delayed Quad Damage");
+		GiveInventory("DelayedQuad", 1);
+	}
+}
+
+// Protection next map
+script "鳞~Loot🅱ox1_6" (void)
+{
+	if(isSkirmish() || (IsZandronum(true) && GetInvasionState() > 0))
+	{
+		SetResultValue("PROT____:Temporary Protection");
+		GiveInventory("QCProtec", 1);
+	}
+	else
+	{
+		SetResultValue("PROT____:Delayed Protection");
+		GiveInventory("DelayedProtec", 1);
+	}
+}
+
+// Invul next map
+script "鳞~Loot🅱ox1_7" (void)
+{
+	if(isSkirmish() || (IsZandronum(true) && GetInvasionState() > 0))
+	{
+		SetResultValue("PENT____:Temporary Invulnerability");
+		GiveInventory("QCInvul", 1);
+	}
+	else
+	{
+		SetResultValue("PENT____:Delayed Invulnerability");
+		GiveInventory("DelayedInvul", 1);
+	}
+}
+
+// Infinite Ammo next map
+script "鳞~Loot🅱ox1_8" (void)
+{
+	if(isSkirmish() || (IsZandronum(true) && GetInvasionState() > 0))
+	{
+		SetResultValue("INFN____:Temporary Infinite Ammo");
+		GiveInventory("QCInfin", 1);
+	}
+	else
+	{
+		SetResultValue("INFN____:Delayed Infinite Ammo");
+		GiveInventory("DelayedInfin", 1);
+	}
+}
+
+// Quad Damage + Infinite Ammo next map
+script "鳞~Loot🅱ox1_9" (void)
+{
+	if(isSkirmish() || (IsZandronum(true) && GetInvasionState() > 0))
+	{
+		SetResultValue("QUADINFN:Quad Damage and Infinite Ammo");
+		GiveInventory("QCQuad", 1);
+		GiveInventory("QCInfin", 1);
+	}
+	else
+	{
+		SetResultValue("QUADINFN:Delayed Quad and Infinite Ammo");
+		GiveInventory("DelayedQuad", 1);
+		GiveInventory("DelayedInfin", 1);
+	}
+}
+
+// Protection + Quad Damage next map
+script "鳞~Loot🅱ox1_10" (void)
+{
+	if(isSkirmish() || (IsZandronum(true) && GetInvasionState() > 0))
+	{
+		SetResultValue("PROTQUAD:Protection and Quad Damage");
+		GiveInventory("QCProtec", 1);
+		GiveInventory("QCQuad", 1);
+	}
+	else
+	{
+		SetResultValue("PROTQUAD:Delayed Protection and Quad");
+		GiveInventory("DelayedProtec", 1);
+		GiveInventory("DelayedQuad", 1);
+	}
+}
+
+// Infinite Ammo + Protection next map
+script "鳞~Loot🅱ox1_11" (void)
+{
+	if(isSkirmish() || (IsZandronum(true) && GetInvasionState() > 0))
+	{
+		SetResultValue("INFNPROT:Infinite Ammo and Protection");
+		GiveInventory("QCInfin", 1);
+		GiveInventory("QCProtec", 1);
+	}
+	else
+	{
+		SetResultValue("INFNPROT:Delayed Infinite Ammo and Protection");
+		GiveInventory("DelayedInfin", 1);
+		GiveInventory("DelayedProtec", 1);
+	}
+}
+
+// Random weapon upgrade
+script "鳞~Loot🅱ox1_12" (void)
+{
+	SetResultValue("");
+
+	int weapon = random(0,21) | 1; // doesn't drop gauntlet upgrades... eh
+	if(weapon == 1 || weapon == 5) weapon = random(7,19) | 1;
+	int upgr = random(0,1);
+	if(!CheckInventory(WeaponUpgrades[weapon][upgr][WU_TOKEN]))
+	{
+		GiveInventory(WeaponUpgrades[weapon][upgr][WU_GIVER],1);
+		str result = strparam(s:"A",s:strmid(WeaponUpgrades[weapon][upgr][WU_ICON],1,7), s:":Weapon Upgrade");
+		SetResultValue(result);
+	}
+}
+
+// Full arsenal
+script "鳞~Loot🅱ox1_13" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("LoadoutRewardToken", 8))
+	{
+		ACS_NamedExecuteAlways("Loadout",0,8); // cheater!!!
+		GiveInventory("QCShotgun",1);
+		SetResultValue("        :Full Arsenal");
+	}
+}
+
+// Full ammunition
+script "鳞~Loot🅱ox1_14" (void)
+{
+	SetResultValue("AMMO0100:Full Ammo");
+	GiveInventory("QCBulletAmmo", 99999);
+	GiveInventory("QCShellAmmo" , 99999);
+	GiveInventory("QCNailAmmo"  , 99999);
+	GiveInventory("QCBoltAmmo"  , 99999);
+	GiveInventory("QCRocketAmmo", 99999);
+	GiveInventory("QCCoilAmmo"  , 99999);
+	GiveInventory("QCSlugAmmo"  , 99999);
+	GiveInventory("QCBFGAmmo"   , 99999);
+
+	GiveInventory("SeriousBullets", 99999);
+}
+
+
+// ----------------------------------------------------------------------------
+//
+// RELIQUARIES
+//
+// ----------------------------------------------------------------------------
+
+// Fallback: Full ammunition
+script "鳞~Loot🅱ox2_0" (void)
+{
+	SetResultValue("AMMO0100:Full Ammo");
+	GiveInventory("QCBulletAmmo", 99999);
+	GiveInventory("QCShellAmmo" , 99999);
+	GiveInventory("QCNailAmmo"  , 99999);
+	GiveInventory("QCBoltAmmo"  , 99999);
+	GiveInventory("QCRocketAmmo", 99999);
+	GiveInventory("QCCoilAmmo"  , 99999);
+	GiveInventory("QCSlugAmmo"  , 99999);
+	GiveInventory("QCBFGAmmo"   , 99999);
+
+	GiveInventory("SeriousBullets", 99999);
+}
+
+// Disable degeneration
+script "鳞~Loot🅱ox2_1" (void)
+{
+	SetResultValue("");
+
+	if(CheckInventory("NoHealthDegenerationToken") && CheckInventory("NoArmorDegenerationToken")) terminate;
+
+	GiveInventory("NoHealthDegenerationToken", 1);
+	GiveInventory("NoArmorDegenerationToken" , 1);
+
+	SetResultValue("NODEGENE:No Overstack Degeneration");
+}
+
+// -50% cooldown, capped at -60%
+script "鳞~Loot🅱ox2_2" (void)
+{
+	SetResultValue("");
+	if(CheckInventory("Class_Sarge")) terminate;
+	if(CheckInventory("CooldownRewardToken") >= 50) terminate;
+
+	SetResultValue("CDLOOT50:-50% cooldown");
+	SetInventory("CooldownRewardToken2", CheckInventory("CooldownRewardToken")); // transfer up to 10% of already accumulated
+	SetInventory("CooldownRewardToken" , 50);
+}
+
+// 5 backpack stack levels
+script "鳞~Loot🅱ox2_3" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("BackpackRewardToken", 5))
+	{
+		ACS_NamedExecuteAlways("QCDE_UpdateBackpackStack",0);
+		SetResultValue("AMMOINC5:Extra Ammo Capacity");
+	}
+}
+
+// +25 health
+script "鳞~Loot🅱ox2_4" (void)
+{
+	SetResultValue("");
+
+	int decide = random(-25, CheckInventory("ExtraHealthToken"));
+	if(decide < 0)
+	if(GiveAndCheck("ExtraHealthToken", 25))
+	{
+		GiveInventory("MaxHealthToken", 25);
+		SetResultValue("HEALINCR:Extra Max Health");
+	}
+}
+
+// +25 armor
+script "鳞~Loot🅱ox2_5" (void)
+{
+	SetResultValue("");
+
+	int decide = random(-25, CheckInventory("ExtraArmorToken"));
+	if(decide < 0)
+	if(GiveAndCheck("ExtraArmorToken", 25))
+	{
+		GiveInventory("MaxArmorToken", 25);
+		SetResultValue("ARMOINCR:Extra Max Armor");
+	}
+}
+
+// Longer powerup duration
+script "鳞~Loot🅱ox2_6" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("LongerPowerupToken", 1))
+	{
+		SetResultValue("PWUPDURA:Longer Powerup Duration");
+	}
+}
+
+// Fully upgrade weapon
+script "鳞~Loot🅱ox2_7" (void)
+{
+	SetResultValue("");
+
+	int weapon = random(0,21) | 1;
+	if(weapon == 1 || weapon == 5) weapon = 0;
+
+	// Giving a fully loaded weapon that player didn't have is more beneficial,
+	// so it happens more rarely. Also, BFG is never given, only upgraded.
+	if (!CheckInventory(WeaponList[weapon])) weapon = random(7,19) | 1;
+
+	if (!CheckInventory(WeaponUpgrades[weapon][0][WU_TOKEN]) &&
+		!CheckInventory(WeaponUpgrades[weapon][1][WU_TOKEN]))
+	{
+		str gfx = WeaponUpgrades[weapon][0][WU_WEAPONFULL];
+		str result = strparam(s:gfx, s:":Full Weapon Upgrade");
+		GiveInventory(WeaponUpgrades[weapon][0][WU_TOKEN],1);
+		GiveInventory(WeaponUpgrades[weapon][1][WU_TOKEN],1);
+		GiveInventory(WeaponList[weapon],1);
+		GiveInventory(strparam(s:"Refill", s:WeaponList[weapon]),1);
+		SetWeapon(WeaponList[weapon]);
+		SetResultValue(result);
+	}
+}
+
+// Improved Hourglasses
+script "鳞~Loot🅱ox2_8" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("ImprovedHourglasses", 1))
+	{
+		SetResultValue("BETTHRGL:Improved Hourglasses");
+	}
+}
+
+// Improved Healing
+script "鳞~Loot🅱ox2_9" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("ImprovedHealing", 1))
+	{
+		SetResultValue("BETTHLTH:Better Healing from Pickups");
+	}
+}
+
+// Improved Armor
+script "鳞~Loot🅱ox2_10" (void)
+{
+	SetResultValue("");
+	if(GiveAndCheck("ImprovedArmor", 1))
+	{
+		SetResultValue("BETTARMR:More Armor from Pickups");
+	}
+}
+
+Script "QCDE_UpdateBackpackStack" (void)
+{
+	ACS_NamedExecuteAlways("QCDE_SetBackpackStack",0,CheckInventory("BackpackRewardToken"));
+}
+
+Script "QCDE_SetBackpackStack" (int level)
+{
+	SetAmmoCapacity("QCBulletAmmo", BASE_BulletAmmo + LEVEL_BulletAmmo * level + CheckInventory("HunterQCBulletAmmo"));
+	SetAmmoCapacity("QCShellAmmo" , BASE_ShellAmmo  + LEVEL_ShellAmmo  * level + CheckInventory("HunterQCShellAmmo" ));
+	SetAmmoCapacity("QCNailAmmo"  , BASE_NailAmmo   + LEVEL_NailAmmo   * level + CheckInventory("HunterQCNailAmmo"  ));
+	SetAmmoCapacity("QCBoltAmmo"  , BASE_BoltAmmo   + LEVEL_BoltAmmo   * level + CheckInventory("HunterQCBoltAmmo"  ));
+	SetAmmoCapacity("QCRocketAmmo", BASE_RocketAmmo + LEVEL_RocketAmmo * level + CheckInventory("HunterQCRocketAmmo"));
+	SetAmmoCapacity("QCCoilAmmo"  , BASE_CoilAmmo   + LEVEL_CoilAmmo   * level + CheckInventory("HunterQCCoilAmmo"  ));
+	SetAmmoCapacity("QCSlugAmmo"  , BASE_SlugAmmo   + LEVEL_SlugAmmo   * level + CheckInventory("HunterQCSlugAmmo"  ));
+	SetAmmoCapacity("QCBFGAmmo"   , BASE_BFGAmmo    + LEVEL_BFGAmmo    * level + CheckInventory("HunterQCBFGAmmo"   ));
+
+	SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * level);
+}
+
+str loadoutWeapons[8] = {
+	"QCHeavyMachinegun",
+	"QCSuperShotgun",
+	"QCSuperNailgun",
+	"QCTribolt",
+	"QCRocketLauncher",
+	"QCLightningGun",
+	"QCRailgun",
+	"QCBFG"
+};
+Script "loadout" (int howmany, int player) // A cheat!
+{
+	if(howmany < 1) howmany = 2;
+	if(howmany > 8) howmany = 8;
+
+	int step = random(0,3)*2 + 1;
+	int x = lcg(8,4) - 1;
+
+	int given;
+	int tid = ActivatorTid();
+	if(player >  0) tid = 999 + player; // for multiplayer cheats
+
+	while(given++ < howmany)
+	{
+		SetActivator(tid);
+		GiveInventory(loadoutWeapons[x], 2);
+		ACS_NamedExecuteAlways("QCDE_ShowWeapon", 0, x, given, howmany);
+		x = (x + step) % 8;
+	}
+}
+
+Script "weakloadout" (int howmany, int player) // Also a cheat!
+{
+	if(howmany < 1) howmany = 2;
+	if(howmany > 4) howmany = 4;
+
+	int step = random(0,3)*2 + 1;
+	int x = lcg(4,4) - 1;
+
+	int given;
+	int tid = ActivatorTid();
+	if(player >  0) tid = 999 + player; // for multiplayer cheats
+
+	while(given++ < howmany)
+	{
+		SetActivator(tid);
+		GiveInventory(loadoutWeapons[x], 2);
+		//ACS_NamedExecuteAlways("QCDE_ShowWeapon", 0, x, given + 4, howmany + 4);
+		x = (x + step) % 4;
+	}
+}
+
+int weapons_with_upgrades[10] = {0, 3, 7, 9, 11, 13, 15, 17, 19, 21};
+Script "uppgradera" (int howmany, int player) // Also a cheat!
+{
+	if(howmany <  1) howmany =  3;
+	if(howmany > 16) howmany = 16;
+
+	int step = random(0,3)*2 + 1;
+	int x = lcg(10,4) - 1;
+
+	int given;
+	int tid = ActivatorTid();
+	if(player >  0) tid = 999 + player; // for multiplayer cheats
+
+	while(given++ < howmany)
+	{
+		SetActivator(tid);
+		GiveInventory(WeaponUpgrades[weapons_with_upgrades[x]][random(0,1)][WU_TOKEN], 2);
+		x = (x + step) % 10;
+	}
+}
+
+Script "lcgtest" (int number, int index, int iter)
+{
+	if(!iter) iter = 50;
+
+	str s = "", value, sum, total;
+	while(iter --> 0)
+	{
+		value = lcg(number,index);
+		sum += value;
+		total++;
+		s = strparam(s:s, s:"  ", d:value);
+	}
+
+	printbold(s:"Testing up to ", d:number, s:" from LCG ", d:index, s:":\n", s:s, s:"\nAverage: ", f:sum * 1.0 / total);
+}
+
+#define DELAYED_ITEMS 4
+str delayedItems[DELAYED_ITEMS] = {
+	"Quad",
+	"Protec",
+	"Invul",
+	"Infin"
+};
+
+#define PRE_DELAY 50
+Script "QCDE_GiveDelayed" (void)
+{
+	// Doesn't happen on maps with no monsters
+	if(GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) == NO) terminate;
+
+	// Waits for a second on new map -- otherwise indicators don't spawn
+	while(Timer() < PRE_DELAY) delay(PRE_DELAY);
+
+	int i;
+	for(i = 0; i < DELAYED_ITEMS; i++)
+	{
+		str delayToken = strparam(s:"Delayed", s:delayedItems[i]);
+		if(!CheckInventory(delayToken)) continue;
+
+		str inventory = strparam(s:"QC", s:delayedItems[i]);
+		GiveInventory(inventory,1);
+		TakeInventory(delayToken,1);
+		LocalAmbientSound("QC/Items/PowerupPick", 127);
+	}
+}
+
+// p.s. the languages were pythons 2.7.6 and 3.4.0

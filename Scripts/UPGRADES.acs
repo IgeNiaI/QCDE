@@ -1,0 +1,367 @@
+#library "UPGRADES"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+// .   . ..... ..... ..... .....  ..... ..... .... .....  .....
+// :   : :   : :   : :   : :   :  :   : :   : :    :   :  :   :
+// :.  : :...: :...: :.    :...:. :...: :.  : :... :...:. :...:
+// ::  : ::    ::    :: ": ::   : ::  : ::  : ::   ::   : ::  :
+// ::..: ::    ::    ::..: ::   : ::  : ::..: ::.. ::   : ::  :
+
+#define p 1.0
+
+// They sound low, but remember how many monsters are there :)
+str groups[5] = { 0, "Small" , "Medium",  "Big" , "Boss" , };
+str probab[5] = { 0, p / 333 ,  p / 90 , p / 50 ,  p / 5 , };
+//                   = 0.3%     = 1.11%   = 2.0%    = 20%
+
+int dropped_so_far;
+int slaughtermap_adjustment = 1.0;
+
+Script "QCDE_MonsterCountAdjustment" OPEN
+{
+	delay(5);
+	int total = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	if(total > 100)
+		slaughtermap_adjustment = 10.0 / sqrt(total);
+	//log(s:"slaughtermap adjustment = ", f:slaughtermap_adjustment);
+}
+
+Script "QCDE_MonsterUpgradeDrop" (void)
+{
+	int g;
+	if     (CheckInventory("MonsterSmall" )) g = 1;
+	else if(CheckInventory("MonsterMedium")) g = 2;
+	else if(CheckInventory("MonsterBig"   )) g = 3;
+	else if(CheckInventory("MonsterBoss"  )) g = 4;
+
+	str class = strparam(s:"UpgradeDropper", s:groups[g]);
+
+	int party_adjustment = fixedsqrt(-~PlayerCount() * 1.0);
+
+	int stockpile_adjustment = 100 - PartyUpgradeCount();
+
+	int roll = random(1,p);
+	int threshold = probab[g]
+			/-~ dropped_so_far               // drop less when this map already gave upgrades
+			*-~ isSkirmish()                 // drop twice more in Skirmish Rogue
+			* party_adjustment / 1.0         // drop more when there are many players in party
+			* stockpile_adjustment / 100     // drop less when party already has upgrades
+			* slaughtermap_adjustment / 1.0 ;// drop less in slaughtermaps
+	//str color = "\c[red]- ", sign = " > ";
+	if(roll <= threshold)
+	{
+		DropItem(0,class,1);
+		dropped_so_far++;
+		//color = "\c[cyan]+ "; sign = " < ";
+	}
+	//log(s:color, d:roll, s:sign, d:threshold);
+}
+
+Script "QCDE_UpgradeDropper" (int weapon, int upgrade, int randomPreset)
+{
+	int bad = WeaponUpgrades[2][0][WU_TOKEN];
+
+	// Randomize
+	if(randomPreset)
+	{
+		weapon = getRandomWeaponForGroup(randomPreset);
+		upgrade = random(1,2);
+	}
+	else if (!weapon && !upgrade)
+	{
+		weapon = 2;
+		while(WeaponUpgrades[weapon][0][WU_TOKEN] == bad)
+			weapon = random(0, NUMBER_OF_WEAPONS - 1);
+		upgrade = random(1,2);
+	}
+
+	// Argument validation
+	if (weapon < 0 || weapon >= NUMBER_OF_WEAPONS ||
+		upgrade <= 0 || upgrade > NUMBER_OF_UPGRADES)
+	{
+		log(s:"QCDE Error: upgrader for out of range weapon ", d:weapon, s:" upgrade ", d:upgrade);
+		terminate;
+	}
+
+	// Upgrades are indexed from 1 but arrays are from 0
+	int upgr = upgrade - 1;
+
+	// Implementation check
+	if (WeaponUpgrades[weapon][upgr][WU_TOKEN] == bad)
+	{
+		log(s:"QCDE Error: unimplemented weapon ", d:weapon, s:" upgrade ", d:upgrade);
+		terminate;
+	}
+
+	str actor = WeaponUpgrades[weapon][upgr][WU_GIVER];
+
+	//PrintBold(d:weapon, s:"_", d:upgrade, s:": ", n:0, s:"\co is turning into \cv", s:actor);
+
+	SetTidIfHadNone(UPGRADE_TIDBASE, UPGRADE_TIDLAST);
+	QCDE_SpawnReplacement(actor, false, true, true);
+}
+
+
+int groupWeapons[4][16] = {
+	// Structure: number of elements, followed by elements that are constants from QCDE.acs
+
+	// Easy enemies: starting weapons
+	{ 4,  QCW_Gauntlet, QCW_Shotgun, QCW_HeavyMachinegun, QCW_Tribolt },
+	// Medium enemies: most weapons
+	{ 7,  QCW_Gauntlet, QCW_Shotgun, QCW_HeavyMachinegun, QCW_Tribolt, QCW_SuperShotgun, QCW_SuperNailgun, QCW_LightningGun },
+	// Heavy enemies: emphasis on trinity
+	{ 6,  QCW_SuperShotgun, QCW_SuperNailgun, QCW_RocketLauncher, QCW_LightningGun, QCW_Railgun, QCW_BFG },
+	// Bosses: only trinity and BFG
+	{ 4, QCW_RocketLauncher, QCW_LightningGun, QCW_Railgun, QCW_BFG },
+};
+
+function int getRandomWeaponForGroup(int group)
+{
+	if(group <= 0 || group > 4)
+	{
+		log(s:"QCDE warning: unexpected monster group ", d:group, s:" dropping weapon upgrade.");
+		return 0;
+	}
+
+	group--; // Monster groups are 1-based, arrays are 0-based
+	int weaponcount = groupWeapons[group][0];
+	int weapon = groupWeapons[group][random(1, weaponcount)];
+	// Re-roll once if this weapon is not present for everyone in the party
+	if(weaponNotInParty(weapon)) weapon = groupWeapons[group][random(1, weaponcount)];
+	// Re-roll once if this weapon is maxed out for anyone in the party
+	if(weaponMaxedInParty(weapon)) weapon = groupWeapons[group][random(1, weaponcount)];
+	return weapon;
+}
+
+function int weaponNotInParty(int weapon)
+{
+	int i = 1064;
+	while(i --> 1000)
+		if(CheckActorInventory(i, weaponList[weapon]))
+			return false;
+
+	return true;
+}
+
+function int weaponMaxedInParty(int weapon)
+{
+	int i = 1064;
+	while(i --> 1000)
+		if (CheckActorInventory(i, WeaponUpgrades[weapon][0][WU_TOKEN]) &&
+			CheckActorInventory(i, WeaponUpgrades[weapon][1][WU_TOKEN]))
+			return true;
+
+	return false;
+}
+
+Script "QCDE_Upgrade" (int weapon, int upgrade)
+{
+	// Argument validation
+	if (weapon < 0 || weapon >= NUMBER_OF_WEAPONS ||
+		upgrade <= 0 || upgrade > NUMBER_OF_UPGRADES)
+	{
+		log(s:"QCDE Error: upgrading out of range weapon ", d:weapon, s:" upgrade ", d:upgrade);
+		terminate;
+	}
+
+	// Upgrades are indexed from 1 but arrays are from 0
+	int upgr = upgrade - 1;
+
+	str token = weaponUpgrades[weapon][upgr][WU_TOKEN];
+	int already = CheckInventory(token);
+
+	if(already)
+	{
+		if(PlayerCount() == 1) // For the lone marine, a complete refill
+		{                      // Works both in SP and in coop with 1 player
+			GiveInventory(strparam(s:"Refill", s:weaponList[weapon]), 1);
+			LocalAmbientSound("QC/Items/Backpack", 127);
+			terminate;
+		}
+		else
+		{
+			SetResultValue(false);
+			terminate;
+		}
+	}
+
+	//PrintBold(n:0, s:"\co is getting ", d:weapon, s:"_", d:upgrade, s:", aka ", s:token);
+	GiveInventory(token, 1);
+	ACS("QCDE_UpgradeAcquired", weapon, upgrade);
+	Thing_Remove(0);
+	Fadeto (255, 255, 200, 0.2, 0);
+	Fadeto (255, 255, 200, 0  , 0.2);
+	LocalAmbientSound("QC/Weapons/Upgrade", 127);
+}
+
+// Activator: upgrade frame
+// Unused
+Script "QCDE_UpgradeFrame" (void)
+{
+	int tid = UniqueTid();
+	Thing_ChangeTid(0, tid);
+
+	SetActivatorToTarget(0);
+	// Activator: upgrader
+
+	str name = strparam(n:0);
+	int weapon = GetChar(name, 8) - '0';
+	if(GetChar(name, 9) != '_') weapon = weapon * 10 + GetChar(name, 9) - '0';
+
+	//log(s:"name = ", s:name, s:", weapon = ", d:weapon);
+
+	switch(weapon)
+	{
+	case  0:Thing_SetTranslation(tid, TRANSLATION_GCOLOR   ); break;
+	case  1:Thing_SetTranslation(tid, TRANSLATION_MGCOLOR  ); break; // shouldn't, starting
+	case  2:Thing_SetTranslation(tid, TRANSLATION_MGCOLOR  ); break; // shouldn't, DM
+	case  3:Thing_SetTranslation(tid, TRANSLATION_SGCOLOR  ); break;
+	case  4:Thing_SetTranslation(tid, TRANSLATION_SGCOLOR  ); break; // shouldn't, DM
+	case  5:Thing_SetTranslation(tid, TRANSLATION_NGCOLOR  ); break; // shouldn't, starting
+	case  6:Thing_SetTranslation(tid, TRANSLATION_NGCOLOR  ); break; // shouldn't, DM
+	case  7:Thing_SetTranslation(tid, TRANSLATION_HMGCOLOR ); break;
+	case  8:Thing_SetTranslation(tid, TRANSLATION_HMGCOLOR ); break; // shouldn't, DM
+	case  9:Thing_SetTranslation(tid, TRANSLATION_SSGCOLOR ); break;
+	case 10:Thing_SetTranslation(tid, TRANSLATION_SSGCOLOR ); break; // shouldn't, DM
+	case 11:Thing_SetTranslation(tid, TRANSLATION_SNGCOLOR ); break;
+	case 12:Thing_SetTranslation(tid, TRANSLATION_SNGCOLOR ); break; // shouldn't, DM
+	case 13:Thing_SetTranslation(tid, TRANSLATION_TBCOLOR  ); break;
+	case 14:Thing_SetTranslation(tid, TRANSLATION_TBCOLOR  ); break; // shouldn't, DM
+	case 15:Thing_SetTranslation(tid, TRANSLATION_RLCOLOR  ); break;
+	case 16:Thing_SetTranslation(tid, TRANSLATION_RLCOLOR  ); break; // shouldn't, DM
+	case 17:Thing_SetTranslation(tid, TRANSLATION_LGCOLOR  ); break;
+	case 18:Thing_SetTranslation(tid, TRANSLATION_LGCOLOR  ); break; // shouldn't, DM
+	case 19:Thing_SetTranslation(tid, TRANSLATION_RGCOLOR  ); break;
+	case 20:Thing_SetTranslation(tid, TRANSLATION_RGCOLOR  ); break; // shouldn't, DM
+	case 21:Thing_SetTranslation(tid, TRANSLATION_BFGCOLOR ); break;
+	case 22:Thing_SetTranslation(tid, TRANSLATION_BFGCOLOR ); break; // shouldn't, DM
+	}
+
+	Thing_ChangeTid(tid, 0);
+}
+
+#define UPGRADE_DROP_DIST 50
+Script "drop_upgrade" (int weapon, int upgrade) NET
+{
+	if(!weapon && !upgrade)
+	{
+		DropAnyViableUpgrade();
+		terminate;
+	}
+	if(weapon < 0 || weapon >= NUMBER_OF_WEAPONS)
+	{
+		print(s:"\c[red] Weapon ", d:weapon, s:" is out of range. \n Valid numbers: 0, 3, 7, 9, 11, 13, 15, 17, 19, 21.");
+		terminate;
+	}
+	if(upgrade < 0 || upgrade > NUMBER_OF_UPGRADES)
+	{
+		print(s:"\c[red] Upgrade ", d:upgrade, s:" is out of range. \n Valid numbers: 1, 2.");
+		terminate;
+	}
+	if(upgrade == 0 || upgrade > NUMBER_OF_UPGRADES)
+	{
+		if(weapon == 0)
+			print(s:"\c[red] Specify weapon and upgrade. \n Valid weapons: 0, 3, 7, 9, 11, 13, 15, 17, 19, 21. \n Valid upgrades: 1, 2.");
+		else
+			print(s:"\c[red] Specify upgrade for \c[brite]", s:strmid(weaponList[weapon],2,99), s:". \n Valid numbers: 1, 2.");
+		terminate;
+	}
+
+	int bad = WeaponUpgrades[2][0][WU_TOKEN];
+	int upgr = upgrade - 1;
+	if (WeaponUpgrades[weapon][upgr][WU_TOKEN] == bad)
+	{
+		print(s:"\c[red] Weapon ", s:strmid(weaponList[weapon],2,99), s:" doesn't have upgrade ", d:upgrade, s:".");
+		terminate;
+	}
+	if (!CheckInventory(WeaponUpgrades[weapon][upgr][WU_TOKEN]))
+	{
+		print(s:"\c[yellow] You don't have ", s:WeaponUpgrades[weapon][upgr][WU_PROPERNAME], s:" for ", s:strmid(weaponList[weapon],2,99), s:".");
+		terminate;
+	}
+
+	TakeInventory(WeaponUpgrades[weapon][upgr][WU_TOKEN], 1);
+	int a = GetActorAngle(0);
+	int x = GetActorX(0) + cos(a) * UPGRADE_DROP_DIST;
+	int y = GetActorY(0) + sin(a) * UPGRADE_DROP_DIST;
+	int z = GetActorZ(0);
+	SpawnForced(WeaponUpgrades[weapon][upgr][WU_GIVER], x,y,z);
+	print(s:"\c[brite] You have dropped ", s:WeaponUpgrades[weapon][upgr][WU_PROPERNAME], s:" for ", s:strmid(weaponList[weapon],2,99), s:".");
+
+	delay(1);
+}
+
+function int DropAnyViableUpgrade (void)
+{
+	// Scenario 1: drop the currently used upgrade, or any upgrade for current weapon
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+	{
+		if(!CheckWeapon(WeaponList[w])) continue;
+
+		if(CheckInventory("WeaponZoomedToken") && CheckInventory(WeaponUpgrades[w][1][WU_TOKEN]))
+			return ACS("drop_upgrade", w, 2);
+
+		if(!CheckInventory("WeaponZoomedToken") && CheckInventory(WeaponUpgrades[w][0][WU_TOKEN]))
+			return ACS("drop_upgrade", w, 1);
+
+		if(CheckInventory(WeaponUpgrades[w][1][WU_TOKEN]))
+			return ACS("drop_upgrade", w, 2);
+
+		if(CheckInventory(WeaponUpgrades[w][0][WU_TOKEN]))
+			return ACS("drop_upgrade", w, 1);
+	}
+
+	// Scenario 2: drop an upgrade for an absent weapon
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+	{
+		if(CheckInventory(WeaponList[w])) continue;
+
+		if(CheckInventory(WeaponUpgrades[w][1][WU_TOKEN]))
+			return ACS("drop_upgrade", w, 2);
+
+		if(CheckInventory(WeaponUpgrades[w][0][WU_TOKEN]))
+			return ACS("drop_upgrade", w, 1);
+	}
+
+	// Scenario 3: drop any upgrade
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+	{
+		if(CheckInventory(WeaponUpgrades[w][1][WU_TOKEN]))
+			return ACS("drop_upgrade", w, 2);
+
+		if(CheckInventory(WeaponUpgrades[w][0][WU_TOKEN]))
+			return ACS("drop_upgrade", w, 1);
+	}
+
+	print(s:"\c[yellow] You don't have any weapon upgrades.");
+	return false;
+}
+
+Script "QCDE_DropUpgrades" (void)
+{
+	if(!GetCvar("survival")) terminate; // only in survival
+
+	int lives = GetPlayerLivesLeft(PlayerNumber());
+
+	if(lives) terminate; // only drop upgrades when dying completely
+
+	int w,u,droppedAlready;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		for(u = 0; u < NUMBER_OF_UPGRADES; u++)
+			if(CheckInventory(WeaponUpgrades[w][u][WU_TOKEN]))
+			{
+				TakeInventory(WeaponUpgrades[w][u][WU_TOKEN], 1);
+
+				// todo: make SpawnItemEx for ACS
+				int tid = UniqueTid();
+				int x = GetActorX(0);
+				int y = GetActorY(0);
+				int z = GetActorZ(0) + 16.0;
+				SpawnForced(WeaponUpgrades[w][u][WU_GIVER], x,y,z, tid);
+				SetActorVelocity(tid, random(-90.0,90.0) / random(1,5),random(-90.0,90.0) / random(1,5),random(0,60.0), false,false);
+				Thing_ChangeTid(tid,0);
+			}
+}

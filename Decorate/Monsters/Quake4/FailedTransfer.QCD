@@ -1,0 +1,71 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+Actor Q4FailedTransfer : QCDE_MonsterSmall	15302	//shotguy
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 16
+	Height 56
+	Health 30	//he's the weaker link
+	Mass 100
+	PainChance 64
+	Speed 10
+	Scale 0.38
+	+FLOORCLIP
+	SeeSound "quake4/FailedTransfer/Sight"
+	PainSound "quake4/FailedTransfer/Pain"
+	DeathSound "quake4/FailedTransfer/Death"
+	ActiveSound "quake4/FailedTransfer/Idle"
+	Obituary "$OB_Q4FailedTransfer" // "%o let a brain-dead failed transfer best %h."
+	DropItem "Shotgun"
+	Tag "$TAG_Q4FailedTransfer" // "Failed Transfer"
+	States
+	{
+	Idle:
+		Q04I A 4 A_Look
+		Loop
+	See:
+		Q04W ABCD 6 A_Chase
+		Loop
+	Missile:
+		Q21A A 0 A_PlaySound("quake4/StroggMarine/ReadyShotgun",6)
+		Q04I AAAAAAA 3 A_FaceTarget(0,0)
+		TNT1 A 0 A_PlaySound("quake4/Weapons/Shotgun/Fire",4)
+		TNT1 AAA 0 A_CustomMissile("MonsterTracerLowVol",32,random(3,-3),frandom(5,-5))
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",18,2,38,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomBulletAttack(20,1,4,3)
+		Q04A BC 2
+		Q04A CBA 5
+		TNT1 A 0 A_PlaySound("quake4/Weapons/Shotgun/Pump",5)
+		Q04I A 4
+		Goto See
+	Pain:
+		Q04P A 7 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		Q04D A 0 A_Scream
+		Q04D ABCD 2
+		Q04D A 0 A_Fall
+		Q04D EFG 2
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Small")
+		Q04D HI 3
+	Death.Corpse:
+		Q04D J -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake4/Misc/GibExplosion",7)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		Q04D IHGFEDCBA 3
+		Goto See
+	}
+}

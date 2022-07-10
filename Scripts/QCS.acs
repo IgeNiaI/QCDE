@@ -1,0 +1,104 @@
+#library "QCS"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//=============================================================================
+//=============================================================================
+//
+//
+//		QC:DE CONSOLE SCRIPTING
+//
+//
+//=============================================================================
+//=============================================================================
+//=============================================================================
+
+#define MAX_QCS_LENGTH 256
+
+Script "QCDE_QcsInterpreter" (void)
+{
+	str qcs = GetCvarString("qcs");
+	if(strlen(qcs)  &&  strlen(qcs) < MAX_QCS_LENGTH)
+	{
+		str name = strparam(s:"QCDE_QCS_", s:strmid(qcs, 0, GetSeparatorPos(qcs,0)));
+		int argc = CountArgs(qcs);
+		int arg0, arg1, arg2, arg3;
+		if(argc > 0) arg0 = GetArg(qcs, 1);
+		if(argc > 1) arg1 = GetArg(qcs, 2);
+		if(argc > 2) arg2 = GetArg(qcs, 3);
+		if(argc > 3) arg3 = GetArg(qcs, 4);
+
+		//log(s:"REQUEST:   ", s:name, s:" (", d:arg0, s:", ", d:arg1, s:", ", d:arg2, s:", ", d:arg3, s:")");
+		int result = ACS(name, arg0, arg1, arg2, arg3);
+		if(!result) SetCvarString("qcs_status", strparam(s:"0: Didn't find script ", s:name));
+		log(s:GetCvarString("qcs_status"));
+		// Thy Flesh Consumed
+		SetCvarString("qcs", "");
+	}
+
+	delay(5);
+	restart;
+}
+
+function int CountArgs(str s)
+{
+	int count = 0;
+
+	int i = strlen(s);
+	int last_space = -1;
+	while(i --> 0)
+	{
+		if(!IsSeparator(s,i)) continue;
+
+		if(last_space !=-~ i) count++;
+		last_space = i;
+	}
+
+	return count;
+}
+
+function int GetSeparatorPos(str s, int i)
+{
+	int l = strlen(s);
+	i--;
+	while(i ++<~- l)
+		if(IsSeparator(s,i)) return i;
+
+	return i;
+}
+
+function int GetArg(str s, int which)
+{
+	int count, result;
+
+	int i, l = strlen(s);
+	int last_space = -2;
+	while(i ++<~- l)
+	{
+		if(!IsSeparator(s,i))
+		{
+			if(count == which) // reading number
+			{
+				int c = GetChar(s, i) - '0';
+				if(c < 0 || c > 9) c = 0;
+				result = result * 10 + c;
+			}
+		}
+		else
+		{
+			if(last_space !=~- i) count++;
+			last_space = i;
+		}
+	}
+
+	return result;
+}
+
+function int IsSeparator(str s, int i)
+{
+	return GetChar(s,i) == ' ';
+}
+
+

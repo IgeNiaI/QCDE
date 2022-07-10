@@ -1,0 +1,212 @@
+//=============================================================================
+//=============================================================================
+//
+//		Ngyr Korath related
+//
+//=============================================================================
+//=============================================================================
+
+//***************************************
+//***************************************
+pointlight NgyrBigPoint1
+{
+	color 0.28 1.0  0.85
+	size 140
+	Subtractive 1
+}
+pointlight NgyrBigPoint2
+{
+	color 0.28 1.0  0.85
+	size 110
+	Subtractive 1
+}
+pointlight NgyrBigPoint3
+{
+	color 0.28 1.0  0.85
+	size 80
+	Subtractive 1
+}
+
+//***************************************
+pointlight NgyrMediumPoint1
+{
+	color 0.28 1.0  0.85
+	size 75
+	Subtractive 1
+}
+pointlight NgyrMediumPoint2
+{
+	color 0.28 1.0  0.85
+	size 55
+	Subtractive 1
+}
+pointlight NgyrMediumPoint3
+{
+	color 0.28 1.0  0.85
+	size 45
+	Subtractive 1
+}
+
+//***************************************
+pointlight NgyrSmallPoint1
+{
+	color 0.28 1.0  0.85
+	size 30
+	Subtractive 1
+}
+pointlight NgyrSmallPoint2
+{
+	color 0.28 1.0  0.85
+	size 20
+	Subtractive 1
+}
+pointlight NgyrSmallPoint3
+{
+	color 0.28 1.0  0.85
+	size 10
+	Subtractive 1
+}
+
+
+
+//=============================================================================
+//=============================================================================
+//
+//		Ialdagorth related
+//
+// N.B.: QIaldagorth, unlike most others, has lights attached right here,
+//       not in the actor definition.
+//
+//=============================================================================
+//=============================================================================
+
+//***************************************
+//***************************************
+pointlight IaldaBodyDarkness
+{
+	color 1.0 1.0  1.0
+	size 120
+	Subtractive 1
+	offset 0 50 0
+	dontlightself 1
+}
+pointlight IaldaBodyDarkness1
+{
+	color 1.0 1.0  1.0
+	size 100
+	Subtractive 1
+	offset 0 50 0
+	dontlightself 1
+}
+pointlight IaldaBodyDarkness2
+{
+	color 1.0 1.0  1.0
+	size 80
+	Subtractive 1
+	offset 0 50 0
+	dontlightself 1
+}
+pointlight IaldaBodyDarkness3
+{
+	color 1.0 1.0  1.0
+	size 60
+	Subtractive 1
+	offset 0 50 0
+	dontlightself 1
+}
+pointlight IaldaBodyDarkness4
+{
+	color 1.0 1.0  1.0
+	size 40
+	Subtractive 1
+	offset 0 50 0
+	dontlightself 1
+}
+pointlight IaldaBodyDarkness5
+{
+	color 1.0 1.0  1.0
+	size 20
+	Subtractive 1
+	offset 0 50 0
+	dontlightself 1
+}
+
+object QIaldagorth
+{
+	frame Q37W  { light IaldaBodyDarkness  }
+	frame Q37A  { light IaldaBodyDarkness  }
+	frame Q37M  { light IaldaBodyDarkness  }
+	frame Q37N  { light IaldaBodyDarkness  }
+
+	frame Q37DA { light IaldaBodyDarkness1 }
+	frame Q37DB { light IaldaBodyDarkness2 }
+	frame Q37DC { light IaldaBodyDarkness3 }
+	frame Q37DD { light IaldaBodyDarkness4 }
+	frame Q37DE { light IaldaBodyDarkness5 }
+}
+
+
+//=============================================================================
+//=============================================================================
+//
+//		Powerups related
+//
+//=============================================================================
+//=============================================================================
+
+//***************************************
+//***************************************
+
+pulselight QuadLight
+{
+	color 0.6 0.2 0.6
+	size 36
+	secondarySize 72
+	interval 1.5
+	offset 0 -30 0
+}
+
+//***************************************
+
+pulselight ProtecLight
+{
+	color 0.2 0.6 0.4
+	size 36
+	secondarySize 72
+	interval 1.5
+	offset 0 -30 0
+}
+
+//***************************************
+
+pulselight InvulLight
+{
+	color 1.0 0.8 0.8
+	size 36
+	secondarySize 96
+	interval 1.5
+	offset 0 -29 0
+	subtractive 1
+}
+
+//***************************************
+
+pulselight InfinLight
+{
+	color 0.55 0.45 0.2
+	size 36
+	secondarySize 72
+	interval 1.5
+	offset 0 -30 0
+}
+
+//***************************************
+
+pulselight EldersSoulLight
+{
+	color 0.5 0.0 0.0
+	size 80
+	secondarySize 150
+	interval 1.5
+	offset 0 -30 0
+}

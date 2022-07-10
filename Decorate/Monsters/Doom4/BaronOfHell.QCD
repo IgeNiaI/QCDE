@@ -1,0 +1,325 @@
+//================================================================================================================
+//================================================================================================================
+//
+//
+//================================================================================================================
+//================================================================================================================
+Actor D4BaronOfHell : QCDE_MonsterBig 15451
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	var int user_count;
+	var int user_chasecount;
+	var int user_leapstrength;
+	Health 1300
+	Radius 24
+	Height 64
+	Mass 1000
+	Speed 5.667
+	PainChance 40
+	Speed 10
+	Monster
+	Scale 1.2
+	+FLOORCLIP
+	+BOSSDEATH
+	+DONTHARMSPECIES
+	SeeSound 	"Doom4/Monsters/Baron/Sight"
+	PainSound 	"Doom4/Monsters/Baron/Pain"
+	DeathSound 	"Doom4/Monsters/Baron/Death"
+	ActiveSound "Doom4/Monsters/Baron/Idle"
+	Obituary "$OB_BARON"
+	HitObituary "$OB_BARONHIT"
+	Gravity 0.83
+	MeleeRange 64
+	Damage 5
+	Species "D4TBaronKind"
+	Tag "$TAG_D4BaronOfHell" // "Baron of Hell"
+	DropItem "Hourglass", 48
+	Bloodcolor "2fce44"
+	States
+	{
+	Idle:
+		BOS4 A 10 A_Look
+		Loop
+	See:
+		BOS4 AABBCCDD 3 A_Chase
+		Loop
+
+	SeeNoMissile:		//reached only when landing after a jump
+		BOS4 AABBCCDD 3 A_Chase("Melee","")
+		Goto See
+
+	Missile:
+		BOS4 M 0 A_PlaySound("Doom4/Monsters/Baron/AttackOneInFive",CHAN_AUTO,1.0,false,0.95)
+		"####" "#" 0 A_Jump(210,"FireBall")
+		Goto Leap
+	//--------------------------------------
+	// Regular fireball
+	FireBall:
+		"####" "#" 0 A_Jump(128,"FireBallBig")
+		BOS4 I 6 Light(GreenMediumFlicker3) A_FaceTarget
+		BOS4 JK 3 Light(GreenMediumFlicker3)
+		BOS4 L 5 Light(GreenMediumFlicker3) A_CustomMissile("D4BaronBallNormal")
+		Goto See
+	//--------------------------------------
+	// Charged fireball
+	FireBallBig:
+		BOS4 MMMM 6 Light(GreenMediumFlicker1) A_FaceTarget
+	FireBallBigSkip: //sub state to reach after jump discarded
+		BOS4 M 6 Light(GreenMediumFlicker1) A_FaceTarget
+		BOS4 NO 3 Light(GreenMediumFlicker1)
+		BOS4 P 5 Light(GreenMediumFlicker1) A_CustomMissile("D4BaronBallBig")
+		Goto See
+	//--------------------------------------
+	// Leap attack
+	Leap:
+		BOS4 MMM 3 Light(GreenMediumFlicker1) A_FaceTarget
+		TNT1 A 0 A_JumpIfCloser(256,"FireBallBigSkip") //if too close, just do fireball
+		TNT1 A 0 A_JumpIfCloser(320,"Prep320")
+		TNT1 A 0 A_JumpIfCloser(384,"Prep384")
+		TNT1 A 0 A_JumpIfCloser(448,"Prep448")
+		TNT1 A 0 A_JumpIfCloser(512,"Prep512")
+		TNT1 A 0 A_JumpIfCloser(576,"Prep576")
+		TNT1 A 0 A_JumpIfCloser(640,"Prep640")
+		TNT1 A 0 A_JumpIfCloser(704,"Prep704")
+		TNT1 A 0 A_JumpIfCloser(768,"Prep768")
+		Goto FireBallBigSkip //if farther than 768, also just go with fireball
+
+		Prep320:	TNT1 A 0 A_SetUserVar(user_leapstrength,28)	/*TNT1 A 0 A_PrintBold(320)*/	goto ContinueLeap
+		Prep384:	TNT1 A 0 A_SetUserVar(user_leapstrength,30)	/*TNT1 A 0 A_PrintBold(384)*/	goto ContinueLeap
+		Prep448:	TNT1 A 0 A_SetUserVar(user_leapstrength,33)	/*TNT1 A 0 A_PrintBold(448)*/	goto ContinueLeap
+		Prep512:	TNT1 A 0 A_SetUserVar(user_leapstrength,35)	/*TNT1 A 0 A_PrintBold(512)*/	goto ContinueLeap
+		Prep576:	TNT1 A 0 A_SetUserVar(user_leapstrength,37)	/*TNT1 A 0 A_PrintBold(576)*/	goto ContinueLeap
+		Prep640:	TNT1 A 0 A_SetUserVar(user_leapstrength,39)	/*TNT1 A 0 A_PrintBold(640)*/	goto ContinueLeap
+		Prep704:	TNT1 A 0 A_SetUserVar(user_leapstrength,41)	/*TNT1 A 0 A_PrintBold(704)*/	goto ContinueLeap
+		Prep768:	TNT1 A 0 A_SetUserVar(user_leapstrength,43)	/*TNT1 A 0 A_PrintBold(768)*/	goto ContinueLeap
+
+		ContinueLeap:
+			BOS4 A 0 A_Recoil(-(user_leapstrength/1.5))
+			BOS4 N 2 ThrustThingZ(0,user_leapstrength,0,0)
+
+		LeapLoop:
+			BOS4 N 0 A_CheckFloor("LeapEnd")
+			BOS4 N 1 A_JumpIf(velx==0&&vely==0,"DropFast")
+			BOS4 N 0 A_CheckFloor("LeapEnd")
+			BOS4 N 1 A_JumpIf(velx==0&&vely==0,"DropFast")
+			BOS4 N 0 A_CheckFloor("LeapEnd")
+			BOS4 N 1 A_JumpIf(velx==0&&vely==0,"DropFast")
+			BOS4 N 0 A_SpawnItemEx("BaronLeapTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			Loop
+
+		DropFast:
+			BOS4 N 0 A_ChangeVelocity(0,0,-12,CVF_REPLACE)
+			BOS4 N 0 A_CheckFloor("LeapEnd")
+			BOS4 N 1 A_JumpIf(velx==0&&velZ==0,"LeapEnd")
+			Goto DropFast+1
+
+			LeapEnd:
+				TNT1 A 0 A_PlaySound("Doom4/Monsters/BaronFloorPound",7,1.0,false,0.85)
+				TNT1 A 0 A_Quake(4,20,0,512,"")
+				TNT1 A 0 A_SpawnItemEx("BaronShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+				TNT1 A 0 A_JumpIfCloser(140,"Dodamage")
+				Goto ResumeLeapEnd
+			DoDamage:
+				TNT1 A 0 A_BetaSkullAttack
+				Goto ResumeLeapEnd
+			ResumeLeapEnd:
+				BOS4 O 4 A_Stop
+				BOS4 O 4
+				Goto SeeNoMissile
+
+	//--------------------------------------
+	// Melee attack
+	Melee:
+		BOS4 E 0 A_Jump(256,"Melee1","Melee2")
+
+		Melee1:
+			BOS4 E 3 A_FaceTarget
+			BOS4 F 3 A_PlaySound("Doom4/Other/MeleeSwing",CHAN_AUTO,1.0,false,1.15)
+			BOS4 G 3 A_FaceTarget
+			BOS4 H 5 A_CustomMeleeAttack(random(20,30),"Doom4/Other/MeleeHit","",0,1)
+			Goto See
+		Melee2:
+			BOS4 I 3 A_FaceTarget
+			BOS4 J 3 A_PlaySound("Doom4/Other/MeleeSwing",CHAN_AUTO,1.0,false,1.15)
+			BOS4 K 3 A_FaceTarget
+			BOS4 L 5 A_CustomMeleeAttack(random(20,30),"Doom4/Other/MeleeHit","",0,1)
+			Goto See
+
+	Pain:
+		BOS4 Q 2
+		BOS4 Q  2 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		BO4D A 0 A_Scream
+		BO4D A 4 A_Scream
+		BO4D B 4 Bright
+		BO4D C 4 Bright
+		BO4D D 4 Bright A_NoBlocking
+		BO4D EFGHI 4 Bright
+		BO4D J 4 Bright
+		BO4D Z 100
+	Death.Corpse:
+		BO4D Z 0
+		Stop
+
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Doom4/Gore/Big")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMediumBig",0,0,31,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		E01D I 3
+		E01D HGFEDCBA  3
+		Goto See
+
+
+	//------------------------------------------------------------------------
+	}
+}
+
+Actor HellBaronSoul
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		BFX1 AAABBBCCCDDD 2 Bright A_FadeOut(0.07)
+		Wait
+	}
+}
+
+Actor BaronLeapTrail
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	Renderstyle Translucent
+	Alpha 0.5
+	Scale 1.08
+	States
+	{
+	Spawn:
+		BOS4 N 2 A_FadeOut(0.05)
+		Wait
+	}
+}
+
+Actor BaronShockwave
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Scale 0.2
+	Translation "0:255=%[0,0,0]:[0.5,1.2,0.0]"
+	Alpha 0.99
+	States
+	{
+	Spawn:
+		X072 L 1 NODELAY Bright A_SetScale(scalex*1.3)
+		X075 L 0 A_FadeOut(0.1)
+		Loop
+	}
+}
+
+
+
+//*********************************************
+Actor D4BaronBallNormal
+{
+	Radius 6
+	Height 8
+	Speed 20
+	FastSpeed 25
+	Damage 8
+	Projectile
+	+RANDOMIZE
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 1
+	SeeSound "Doom4/Monsters/Generic/ThrowFireballLow"
+	DeathSound "Doom4/Other/FireballHit2"
+	scale 0.3
+	Translation "0:255=%[0,0,0]:[0.6,1.4,0]"
+	Decal "BaronFireballScorch"
+	States
+	{
+	Spawn:
+		DB58 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 BRIGHT Light("GreenMediumFlicker2")
+		Loop
+	Death:
+		HIBI A 0 A_SetScale(0.6)
+		DB59 AB 1 BRIGHT Light("GreenMediumFlicker3")	//had to separate
+		DB59 CD 1 BRIGHT Light("GreenMediumFlicker2")
+		DB59 EF 1 BRIGHT Light("GreenMediumFlicker2")
+		DB59 GH 1 BRIGHT Light("GreenMediumFlicker2")
+		DB59 IJ 1 BRIGHT Light("GreenMediumFlicker3")
+		DB59 KL 1 BRIGHT Light("GreenSmallFlicker1")
+		DB59 MN 1 BRIGHT Light("GreenSmallFlicker1")
+		DB59 OP 1 BRIGHT Light("GreenSmallFlicker2")
+		DB59 QR 1 BRIGHT Light("GreenSmallFlicker2")
+		DB59 ST 1 BRIGHT Light("GreenSmallFlicker3")
+		Stop
+	}
+}
+
+
+//*********************************************
+Actor D4BaronBallBig
+{
+	Radius 6
+	Height 8
+	Speed 30
+	FastSpeed 35
+	Damage 8
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 1
+	SeeSound "Doom4/Monsters/Generic/ThrowFireball"
+	DeathSound "Doom4/Monsters/BaronFireBallHit"
+	scale 0.4
+	Translation "0:255=%[0,0,0]:[0.6,1.4,0]"
+	+FORCEXYBILLBOARD
+	Decal "BaronFireballScorchBig"
+	States
+	{
+	Spawn:
+		DB57 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1  BRIGHT Light("GreenMediumFlicker1") A_SpawnItemEx("ImpBallFlamelet",random(-2,-8),random(8,-8),random(8,-8),0,0,frandom(0,0.6),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION,96)
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(32,100)
+		TNT1 A 0 A_SetScale(1.2)
+		DB51 ABC 1 Bright Light("GreenMediumFlicker3")
+		DB51 DEF 1 Bright Light("GreenMediumFlicker2")
+		DB51 GHI 1 Bright Light("GreenMediumFlicker1")
+		DB51 JKL 1 Bright Light("GreenMediumFlicker2")
+		DB51 MNO 1 Bright Light("GreenMediumFlicker3")
+		DB51 PQR 1 Bright Light("GreenSmallFlicker1")
+		DB51 STU 1 Bright Light("GreenSmallFlicker2")
+		DB51 VWX 1 Bright Light("GreenSmallFlicker3")
+		Stop
+	}
+}
+
+Actor BaronFireballTrail
+{
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Translation "0:255=%[0,0,0]:[0.6,1.4,0]"
+	RenderStyle Add
+	Scale 0.5
+	Alpha 0.5
+	States
+	{
+	Spawn:
+		PROJ DEFGHI 2 Bright A_SetScale(scalex+0.07)
+		Stop
+	}
+}

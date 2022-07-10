@@ -1,0 +1,280 @@
+//=====================================================================================
+//=====================================================================================
+// This guy has a shield, this shield however, doesnt cover all his body. Only the
+// central part. Meaning you can shoot at his feet or head, and that'll still damage
+// the monster rather than the shield. Also, the shield doesnt protect from railshots
+// or any type of exlosions. Furthermore, the shield can be destroyed after 500dmg and
+// will not regenerate
+//=====================================================================================
+//=====================================================================================
+Actor Q4Gladiator : QCDE_MonsterBig	15303	//arachno
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	var int user_shieldup;
+	Monster
+	Radius 30
+	Height 64
+	Mass 1000
+	Health 500
+	PainChance 40
+	Speed 13
+	Scale 0.45
+	+FLOORCLIP
+	SeeSound "quake4/Gladiator/Sight"
+	PainSound ""
+	DeathSound "quake4/Gladiator/Death"
+	ActiveSound "quake4/Gladiator/Idle"
+	MeleeRange 70
+	Obituary "$OB_Q4Gladiator" // "%o now knows how ruthless the Strogg gladiators are."
+	Hitobituary "$OBH_Q4Gladiator" // "%o would never get in a CQC against a gladiator another time."
+	BloodColor 136 178 8
+	Tag "$TAG_Q4Gladiator" // "Gladiator"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		Q05I A 0 A_JumpIf(user_shieldup>=1,"IdleLoop")
+		Q05I A 0 A_SpawnItemEx("Q4GladiatorShield",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Q05I A 0 A_SetUserVar(user_shieldup,1)
+	IdleLoop:
+		Q05I A 5 A_Look
+		Loop
+
+	See:
+		Q05W ABC 4 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/Step")
+		Q05W DEF 4 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/Step")
+		Loop
+	Melee:
+		TNT1 a 0 A_Jump(64,"Missile")
+		TNT1 A 0 A_FaceTarget
+		Q05M A 4 A_Recoil(-1.4)		TNT1 A 0 A_FaceTarget
+		Q05M B 4 A_Recoil(-1.4)		TNT1 A 0 A_FaceTarget
+		Q05M C 4 A_Recoil(-1.4)		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(20,50),"quake4/Berserker/MeleeHit","quake4/Berserker/MeleeSwing","Normal",1)
+		Q05M DEF 4 A_Recoil(-1.4)
+		Goto See
+	Missile:
+		TNT1 A 0 A_Jump(80,"SkipGrowl")
+		TNT1 A 0 A_PlaySound("quake4/Gladiator/AttackGrowl",3)
+	SkipGrowl:
+		TNT1 A 0 A_Jump(182,"Blaster")	//75% to go to blaster.
+		Goto Railgun
+
+	Railgun:
+		Q05I A 0 A_GiveInventory("PauseShield",1)
+		Q05I A 0 A_TakeInventory("RailgunInterrupted",32767)
+		Q05I A 0 A_CustomMissile("RailgunChargeIndicatorGladiator")
+		TNT1 A 0 A_PlaySound("quake4/Gladiator/RailgunCharge",4,1,0,0.6)
+		Q05I AA 4 Light(OrangeMediumPoint2) A_FaceTarget
+		Q05A ABBBBBBBB 4 Light(OrangeMediumPoint2) A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Gladiator/RailgunShot",4,1,0,0.7)
+		TNT1 A 0 Light(OrangeMediumPoint1) A_CustomRailgun(random(25,60),11,"Orange","White",RGF_SILENT|RGF_FULLBRIGHT,0,0,None,0,0,2048,0,8.0,0,"Q4RailgunTrail",16)
+		Q05A C 5 Light("OrangeMediumFlicker2")
+		Q05A DE 5
+		Q05A A 0 A_TakeInventory("PauseShield",32767)
+		Goto See
+
+	Blaster:
+		Q05I AA 10 A_FaceTarget
+		Q05B A 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Gladiator/BlasterShot")
+		Q05B B 3 A_CustomMissile("Q4BlasterProjBig",39,-20,0)
+		Q05B C 3 A_FaceTarget
+		TNT1 A 0 A_Jump(48,"See")
+		TNT1 A 0 A_Cposrefire
+		Goto Blaster+2
+
+	Pain:
+		Q05P A 0 A_GiveInventory("RailgunInterrupted",1)
+		Q05P A 0 A_StopSound(4) //stops railgun charge sound
+		Q05P A 8 A_Pain
+		Q05A A 0 A_TakeInventory("PauseShield",32767)
+		Goto See
+
+	DeathChecksDone:
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_TakeInventory("PauseShield",32767)
+		TNT1 A 0 A_GiveInventory("RailgunInterrupted",1)
+		TNT1 A 0 A_StopSound(4)
+		TNT1 A 0 A_KillChildren("Removed")	//removes the shield, but if for some magical reason it fails...
+		TNT1 A 0 A_GiveInventory("LOLImDead",1)	//...the shield will check for this token, then shield dies.
+		TNT1 A 0 A_SetUserVar(user_shieldup,0) //and sets it back to zero, in case he gets resurrected
+		Q05D A 0 A_Fall
+		Q05D ABCDEFGH 2
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal")
+	Death.Corpse:
+		Q05D I -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake4/Misc/GibExplosion",7)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		TNT1 A 0 A_TakeInventory("LOLImDead",32767)
+		Q05D HGFEDCBA 3
+		Goto See
+	}
+}
+
+Actor RailgunChargeIndicatorGladiator : RailgunChargeIndicatorTactical
+{
+	States
+	{
+	Spawn:
+		X060 A 0 Bright NODELAY A_Warp(AAPTR_TARGET,20,20,60)
+		X060 A 1 Bright A_SetScale(scalex-0.016)
+		X060 A 0 A_Countdown
+		//Repeat of three prev frames (1)
+		X060 A 0 Bright A_Warp(AAPTR_TARGET,20,20,60)
+		X060 A 1 Bright A_SetScale(scalex-0.016)
+		X060 A 0 A_Countdown
+		//Repeat of three prev frames (2)
+		X060 A 0 Bright A_Warp(AAPTR_TARGET,20,20,60)
+		X060 A 1 Bright A_SetScale(scalex-0.016)
+		X060 A 0 A_Countdown
+		//so that it would check for this token ever 3 tics rather than every single tic
+		X060 A 0 A_JumpIfInTargetInventory("RailgunInterrupted",1,"Death")
+		Loop
+	}
+}
+
+//**********************************************
+Actor ShieldUp : Inventory
+{ Inventory.MaxAmount 1 }
+Actor ShieldDown : Inventory
+{ Inventory.MaxAmount 1 }
+Actor PauseShield : Inventory
+{ Inventory.MaxAmount 1 }
+//**********************************************
+// Big Blaster attack
+Actor Q4BlasterProjBig
+{
+	Projectile
+	Radius 4
+	Height 6
+	Damage 5
+	Speed 22
+	Scale 0.75
+	RenderStyle Add
+	SeeSound ""
+	Translation "0:255=%[0,0,0]:[2,1,0.4]"
+	Decal "Q4PlasmaMonsterBig"
+	+FORCEXYBILLBOARD
+	+THRUGHOST
+	States
+	{
+	Spawn:
+		ACID A 2 Light(OrangeMediumPoint2) Bright
+		Loop
+	Death:
+		TNT1 A 0 A_SpawnItemEx("BigBlasterExplo1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 4 A_SpawnItemEx("BigBlasterExplo2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+Actor BigBlasterTrail
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	Translation "0:255=%[0,0,0]:[1,0.5,0.2]"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.3
+	States
+	{
+	Spawn:
+		ACID BCDE 1 A_FadeOut(0.05)
+	Ending:
+		TNT1 A 0 A_SetScale(scaleX+0.04)
+		ACID F 1 A_FadeOut(0.05)
+		Loop
+	}
+}
+
+//------------------------------------
+
+Actor Q4GladiatorShield
+{
+	var int user_damage;
+	+NOGRAVITY
+	+NEVERTARGET
+	+SHOOTABLE
+	DamageFactor "NailgunWeak", 0.43 //hack for weak nailgun-jump, explained in nailgun.qcd
+	+NOTONAUTOMAP
+	-SOLID
+	+QUICKTORETALIATE
+	+GHOST
+	-COUNTKILL
+	+NOTARGETSWITCH
+	Health 500
+	Radius 28
+	Height 50
+	RenderStyle Add
+	Alpha 0.6
+	Scale 0.35
+	Mass 0x7FFFFFFF
+	PainChance 255
+	+NOBLOOD
+	States
+	{
+	Spawn:
+		//setup stage, puts target (monster that spawned it) as master, and as tracer to keep resetting it
+		Q05S A 0 NODELAY A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
+		Q05S A 0 A_PlaySound("quake4/Gladiator/ShieldLoop",5,0.6,1,6)
+		Q05S A 0 A_PlaySound("quake4/Gladiator/ShieldUp",6,1.0,0)
+	Looper:
+		Q05S A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		Q05S A 0 A_JumpIfInTargetInventory("PauseShield",1,"TempDeactivate") //to deactivate the shield when att, whitout destroying it
+		Q05S A 0 A_JumpIfInTargetInventory("LOLImDead",1,"Death.Removed") //failsafe to remove this shield
+		Q05S A 1 BRIGHT A_Warp(AAPTR_TARGET,21,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Q05S A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		Q05S A 1 BRIGHT A_Warp(AAPTR_TARGET,21,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Q05S A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		Q05S A 1 BRIGHT A_Warp(AAPTR_TARGET,21,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Loop
+
+	TempDeactivate:
+		Q05S A 0 A_ChangeFlag("Shootable",0)	//cant be shot while paused
+	DeactivatedLoop:
+		TNT1 A 3 A_Warp(AAPTR_TARGET,21,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)	//still follows for good measure
+		TNT1 A 0 A_JumpIfInTargetInventory("PauseShield",1,"DeactivatedLoop") //loops if token is in target
+		//Q05S A 0 A_JumpIfInTargetInventory("LOLImDead",1,"Death.Removed") //failsafe to remove this shield
+	Reactivate:
+		Q05S A 0 A_ChangeFlag("Shootable",1)
+		Q05S A 0 A_SetTranslucent(0.6,1) //needed due to some pain-state related shenanigans
+		Goto Looper
+
+	Pain:
+		Q05S A 0 A_JumpIfInTargetInventory("PauseShield",1,"TempDeactivate")	//first, is it being deactivated?
+		Q05S A 0 A_SetTranslucent(0.999,1)
+		Q05S A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		Q05S A 1 BRIGHT Light("OrangeMediumFlicker3") A_Warp(AAPTR_TARGET,21,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Q05S A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		Q05S A 1 BRIGHT Light("OrangeMediumFlicker3") A_Warp(AAPTR_TARGET,21,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Q05S A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		Q05S A 0 A_PlaySound("QCDE/Other/ShieldImpact",7,0.5,false,1.2)
+		Q05S A 1 BRIGHT Light("OrangeMediumFlicker3") A_Warp(AAPTR_TARGET,21,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Q05S A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		Q05S A 1 BRIGHT Light("OrangeMediumFlicker3") A_Warp(AAPTR_TARGET,21,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Q05S A 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		Q05S A 0 A_SetTranslucent(0.6,1)
+		Goto Looper
+
+	Death:
+	Death.Removed:	//when it was deactivated by stun, stagger, or whatever else
+		TNT1 A 10 A_PlaySound("quake4/Gladiator/ShieldDown",6,1,0)
+		Stop
+	}
+}
+
+

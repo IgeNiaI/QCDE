@@ -1,0 +1,78 @@
+#library "CCOMANDS"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+#define NUMBER_OF_MODES 8
+str modes[NUMBER_OF_MODES] = {
+	"survival",        "teamplay",
+	"duel",            "ctf",
+	"lastmanstanding", "teamlms",
+	"domination",      "skulltag",
+};
+
+function void qcde_pvp_mode(int mode)
+{
+	ConsoleCommand("deathmatch true");
+	if(mode)
+		for(int i=0; i < NUMBER_OF_MODES; i++)
+			ConsoleCommand(strparam( s:modes[i], s:" ", d:!stricmp(mode, modes[i]) ));
+}
+
+function void qcde_pve_mode(int mode)
+{
+	ConsoleCommand("cooperative true");
+	if(mode)
+		for(int i=0; i < NUMBER_OF_MODES; i++)
+			ConsoleCommand(strparam( s:modes[i], s:" ", d:!stricmp(mode, modes[i]) ));
+}
+
+function void qcde_common_sense (void)
+{
+	ConsoleCommand("sv_spawnfarthest true");
+	ConsoleCommand("sv_weaponstay false");
+	ConsoleCommand("sv_weapondrop true");
+	ConsoleCommand("sv_itemrespawn true");
+	ConsoleCommand("sv_nocrouch false");
+	ConsoleCommand("sv_allowjump true");
+	ConsoleCommand("sv_allowcrouch true");
+	ConsoleCommand("sv_awarddamageinsteadkills true");
+	ConsoleCommand("sv_forcerespawn true");
+	ConsoleCommand("sv_forcerespawntime 10");
+	ConsoleCommand("sv_unblockallies true");
+	ConsoleCommand("sv_sharekeys true");
+}
+
+function void qcde_mutators(int instagib, int buckshot, int rocketarena)
+{
+	ConsoleCommand(strparam(s:"instagib    ", d:!!instagib   ));
+	ConsoleCommand(strparam(s:"buckshot    ", d:!!buckshot   ));
+	ConsoleCommand(strparam(s:"rocketarena ", d:  rocketarena)); // bitfield, not converted to boolean
+}
+
+function void qcde_speed(int speed)
+{
+	ConsoleCommand(strparam(s:"sv_playerSpeed ", d:speed));
+}
+
+// Mutatable PVP modes
+Script "qcde_dm"   (int ig, int bs, int ra) { qcde_pvp_mode(0                ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_duel" (int ig, int bs, int ra) { qcde_pvp_mode("duel"           ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_lms"  (int ig, int bs, int ra) { qcde_pvp_mode("lastmanstanding"); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_tdm"  (int ig, int bs, int ra) { qcde_pvp_mode("teamplay"       ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_tlms" (int ig, int bs, int ra) { qcde_pvp_mode("teamlms"        ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_dom"  (int ig, int bs, int ra) { qcde_pvp_mode("domination"     ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_st"   (int ig, int bs, int ra) { qcde_pvp_mode("skulltag"       ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_ctf"  (int ig, int bs, int ra) { qcde_pvp_mode("ctf"            ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+
+// PVE modes
+Script "qcde_coop" (void) { qcde_pve_mode(0         ); qcde_speed(100); qcde_mutators(0,0,0); qcde_common_sense(); }
+Script "qcde_surv" (void) { qcde_pve_mode("survival"); qcde_speed(100); qcde_mutators(0,0,0); qcde_common_sense(); }
+
+
+// Shortcuts
+Script "qcde_ig"   (void) { ACS("qcde_dm",1,0,0); ConsoleCommand("sv_dropweapon 0"); }
+Script "qcde_ra"   (void) { ACS("qcde_dm",1,0,1); ConsoleCommand("sv_dropweapon 0"); }
+Script "qcde_bs"   (void) { ACS("qcde_dm",0,1,0); ConsoleCommand("sv_dropweapon 0"); }
+Script "qcde_ffa" (void) { ACS("qcde_dm"); } // exactly same thing
+Script "qcde_fn" (void) { ACS("qcde_lms"); } // for the lulz

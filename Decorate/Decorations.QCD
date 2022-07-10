@@ -1,0 +1,177 @@
+Actor QCExplosiveBarrel replaces ExplosiveBarrel
+{
+	Health 20
+	Radius 10
+	Height 42
+	+SOLID
+	+SHOOTABLE
+	+NOBLOOD
+	+DONTGIB
+	+NOICEDEATH
+	DeathSound "QC/BarrelExplo"
+	+EXTREMEDEATH
+	DamageFactor "NailgunWeak", 0.43 //hack for weak nailgun-jump, explained in nailgun.qcd
+	DamageFactor "CowheadGas", 0
+	States
+	{
+	Spawn:
+		BAR1 AB 6
+		Loop
+	Death:
+		TNT1 A 0  A_PlaySound("QC/BarrelExploDebris",7,1,false,0.9)
+		TNT1 A 0 A_SpawnItemEx("GenericExplosionLight",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		BEXP A 3 Bright A_SpawnItemEx("BarrelExplosionFX",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERPOINTERS)
+		BEXP B 3 Bright A_Scream
+		BEXP CR 3 Bright
+		BEXP SSSTTTUUU 1 Bright A_FadeOut(0.11) //down to 0.01
+		BEXP U 1050 Bright A_BarrelDestroy
+		BEXP U 5 A_Respawn
+		Wait
+	}
+}
+
+
+Actor BarrelExplosionFX
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	+BRIGHT
+	+EXTREMEDEATH
+	Scale 1.5
+	Obituary "$OB_BARREL" // "%o went boom."
+	DamageType "Barrel"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(128,"Type2")
+	Type1:
+		DB27 ABCDEFGHI 1
+		TNT1 A 0 A_Explode(128,140,XF_HURTSOURCE)
+		DB27 JKKLLMMNNOOPPQQRRSSTTUU 1
+		DB27 WWXXYYZZ 1 A_FadeOut(0.05)
+		Wait
+
+	Type2:
+		DB28 ABCDEFGHI 1
+		TNT1 A 0 A_Explode(128,140,XF_HURTSOURCE)
+		DB28 JKKLLMMNNOOPPQQRRSSTTUU 1
+		DB28 WWXXYYZZ 1 A_FadeOut(0.05)
+		Wait
+	}
+}
+
+Actor GenericExplosionLight
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	States
+	{
+	Spawn:
+		TNT1 A 2 Light("OrangeMediumPoint3")
+		TNT1 A 2 Light("OrangeMediumPoint2")
+		TNT1 AA 2 Light("OrangeMediumPoint1")
+		TNT1 A 2 Light("OrangeMediumPoint2")
+		TNT1 A 2 Light("OrangeMediumPoint3")
+		TNT1 A 2 Light("OrangeSmallPoint1")
+		TNT1 A 2 Light("OrangeSmallPoint2")
+		TNT1 A 2 Light("OrangeSmallPoint3")
+		Stop
+	}
+}
+
+Actor QCDDeadPlayer replaces DeadMarine
+{
+	States
+	{
+	Spawn:
+		PLAY N 0 NODELAY A_Jump(250,
+		                            "T01","T02","T03","T04","T05","T06","T07","T08","T09","T10",
+		                            "T11","T12","T13","T14","T15","T16","T17","T18","T19","T20")
+		PLAY N 0 A_Jump(255,"Bones")
+		Goto T01
+	T01:	//ranger
+		TNT1 A 0 A_SetScale(0.9)
+		QP01 N -1
+		Stop
+	T02:	//doomslayer
+		TNT1 A 0 A_SetScale(1.05)
+		QP02 N -1
+		Stop
+	T03:	//corvus
+		TNT1 A 0 A_SetScale(1.1)
+		QP03 P -1
+		Stop
+	T04:	//Kane
+		TNT1 A 0 A_SetScale(0.535)
+		QP04 N -1
+		Stop
+	T05:	//Caleb
+		TNT1 A 0 A_SetScale(0.45)
+		QP05 P -1
+		Stop
+	T06:	//Menelkir
+		TNT1 A 0 A_SetScale(0.78,0.855)
+		QP06 N -1
+		Stop
+	T07:	//terminator
+		TNT1 A 0 A_SetScale(0.92,0.85)
+		QP07 V -1
+		Stop
+	T08:	//Zedek
+		TNT1 A 0 A_SetScale(1.0)
+		QP08 N -1
+		Stop
+	T09:	//Inquisitor
+		TNT1 A 0 A_SetScale(0.465,0.48)
+		QP09 N -1
+		Stop
+	T10:	//Bitterman
+		TNT1 A 0 A_SetScale(0.685)
+		QP10 P -1
+		Stop
+	T11:	//Galen
+		TNT1 A 0 A_SetScale(0.885)
+		QP11 Q -1
+		Stop
+	T12:	//Nyx
+		TNT1 A 0 A_SetScale(0.79,0.905)
+		QP12 Q -1
+		Stop
+	T13:	//Sorgaul
+		TNT1 A 0 A_SetScale(0.57,0.7)
+		QP13 R -1
+		Stop
+	T14:	//Duke Nukem
+		TNT1 A 0 A_SetScale(0.692)
+		QP14 N -1
+		Stop
+	T15:	//Durandal
+		TNT1 A 0 A_SetScale(0.68,0.64)
+		QP15 N -1
+		Stop
+	T16:	//Keel
+		TNT1 A 0 A_SetScale(0.58,0.67)
+		QP16 Q -1
+		Stop
+	T17:	//Sarge
+		TNT1 A 0 A_SetScale(0.71)
+		QP17 O -1
+		Stop
+	T18:	//LoWang
+		TNT1 A 0 A_SetScale(0.52)
+		QP18 R -1
+		Stop
+	T19:	//Grayson
+		TNT1 A 0 A_SetScale(0.75)
+		QP19 P -1
+		Stop
+	T20:	//Eradicator
+		TNT1 A 0 A_SetScale(0.8,0.72)
+		QP20 S -1
+		Stop
+	Bones:	// When
+		TNT1 A 0 A_Jump(256,1,2,3)
+		BONE C -1 A_SetScale(0.4,0.34) // Normal skeleton (side)
+		BONE Z -1 A_SetScale(0.4,0.34) // Cyan skeleton (front)
+		BONE S -1 A_SetScale(0.4,0.34) // Cyan skeleton (side)
+		Stop
+	}
+}

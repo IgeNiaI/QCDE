@@ -1,0 +1,467 @@
+#library "GAMEMODS"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//
+// Gamemode controller scripts
+// Created by Michaelis for Quake Champions: Doom Edition.
+//
+//=============================================================================
+
+#define NUMBER_OF_GAMEMODES 32
+
+str gamemode[NUMBER_OF_GAMEMODES] = {
+	// built-ins
+	"COOPERATIVE",      //  0
+	"SURVIVAL",         //  1
+	"INVASION",         //  2
+	"DEATHMATCH",       //  3
+	"TEAMPLAY",         //  4
+	"DUEL",             //  5
+	"TERMINATOR",       //  6
+	"LASTMANSTANDING",  //  7
+	"TEAMLMS",          //  8
+	"POSSESSION",       //  9
+	"TEAMPOSSESSION",   // 10
+	"TEAMGAME",         // 11
+	"CTF",              // 12
+	"ONEFLAGCTF",       // 13
+	"SKULLTAG",         // 14
+	"DOMINATION",       // 15
+
+	// QCDE
+	"qc_EldersSoul",    // 16
+	"qc_FreezeTag",     // 17
+	"qc_SkirmishRogue", // 18
+};
+
+Script "QCDE_Gamemode" (void)
+{
+	for(int i = 0; i < NUMBER_OF_GAMEMODES; i++)
+		if(GetCvar(gamemode[i]))
+			ACS(strparam(s:"QCDE_Gamemode_", s:gamemode[i]));
+}
+
+Script "QCDE_Gamemode_COOPERATIVE"     (void) {}
+Script "QCDE_Gamemode_SURVIVAL"        (void) {}
+
+int wave_was = -1;
+Script "QCDE_Gamemode_INVASION"        (void)
+{
+	int wave = GetInvasionWave() - 1;
+
+	if(wave != wave_was)
+	{
+		if(wave == 0) ACS("QCDE_Music");
+
+		int grade;
+		switch(wave % 4)
+		{
+		case 0: grade = 1; break;
+		case 1: grade = 2; break;
+		case 2: grade = 1; break;
+		case 3: grade = 3; break;
+		}
+
+		for(int i = 0; i < 64; i++)
+			if(PlayerInGame(i))
+				ACS("QCDE~GiveLoot뮻🅾️x", false, grade, i+1);
+	}
+
+	delay(21);
+	wave_was = wave;
+	restart;
+}
+
+Script "QCDE_Gamemode_DEATHMATCH"      (void) {}
+Script "QCDE_Gamemode_TEAMPLAY"        (void) {}
+Script "QCDE_Gamemode_DUEL"            (void) {}
+
+Script "QCDE_Gamemode_TERMINATOR"      (void)
+{
+	// Basically, Elder's Soul and Terminator are the exact same thing.
+	// So if a game is designated as Terminator but not as Elder's Soul, this
+	// launches Elder's Soul scripts regardless.
+	if(!GetCvar("qc_EldersSoul")) ACS("QCDE_Gamemode_qc_EldersSoul");
+}
+
+Script "QCDE_Gamemode_LASTMANSTANDING" (void) {}
+Script "QCDE_Gamemode_TEAMLMS"         (void) {}
+Script "QCDE_Gamemode_POSSESSION"      (void) {}
+Script "QCDE_Gamemode_TEAMPOSSESSION"  (void) {}
+Script "QCDE_Gamemode_TEAMGAME"        (void) {}
+Script "QCDE_Gamemode_CTF"             (void) {}
+Script "QCDE_Gamemode_ONEFLAGCTF"      (void) {}
+Script "QCDE_Gamemode_SKULLTAG"        (void) {}
+Script "QCDE_Gamemode_DOMINATION"      (void) {}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Based on Skulltag Terminator game mode addon by Ivory Duke
+// Adjusted by Michaelis
+//
+///////////////////////////////////////////////////////////////////////////////
+
+Script "QCDE_Gamemode_qc_EldersSoul" (void)
+{
+	while(true)
+	{
+		if (!IsTidUsed(GAMEMODEITEM_TID)) // no item in the world
+		{
+			bool found = 0;
+			for (int i = 1000; i < 1064; i++)
+				found |= CheckActorInventory(i, "PowerTerminatorArtifact");
+
+			if(!found) // no item on players either
+				ACS("QCDE_SpawnEldersSoul");
+		}
+
+		delay(35);
+	}
+}
+
+Script "QCDE_DM_DropEldersSoul" (void)
+{
+	if(!CheckInventory("PowerTermToken")) terminate;
+
+	TakeInventory("PowerTermToken",1);
+	TakeInventory("PowerTerminatorArtifact",1);
+	TakeInventory("PowerEldersSoul",1);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0) + 30.0;
+	SpawnForced("QCEldersSoul", x,y,z, GAMEMODEITEM_TID);
+
+	int health = GetActorProperty(0, APROP_Health);
+	if(health <= 0)
+	{
+		int target = GetActorProperty(0, APROP_TargetTID);
+		int self = !target || target == ActivatorTID();
+		ACS("QCDE_EldersSoul_HintKill", self);
+	}
+}
+
+Script "QCDE_EldersSoulPickup" (void)
+{
+	ACS("QCDE_EldersSoul_Hint");
+	SetActorProperty(0,APROP_Health,100);
+	TakeInventory("BasicArmor",100);
+	GiveInventory("QCMegaMega",1);
+	delay(1);
+	GiveInventory("QCMegaMega",1);
+	ACS("QCDE_DegenerationElders");
+	delay(1);
+	GiveInventory("QCMegaMega",1);
+	ACS("QCDE_DM_DropPowerups");
+	GiveInventory("EldersSoulPowerTaker",1);
+	ACS("QCDE_ObjectiveTaken",0);
+
+	str protec = 0;
+	switch(PlayerCount())
+	{
+	case  0: case  1: case  2: case  3: case  4:      break;
+	case  5: case  6: protec = "PowerEldersProtec90"; break;
+	case  7: case  8: protec = "PowerEldersProtec80"; break;
+	case  9: case 10: protec = "PowerEldersProtec70"; break;
+	case 11: case 12: protec = "PowerEldersProtec60"; break;
+	case 13: case 14: protec = "PowerEldersProtec50"; break;
+	default:          protec = "PowerEldersProtec40"; break;
+	}
+	if(protec) GiveInventory(protec, 1);
+}
+
+Script "QCDE_CantPickPowerup" (void)
+{
+	SetResultValue(CheckInventory("PowerTerminatorArtifact"));
+}
+
+Script "QCDE_SpawnEldersSoul" (void)
+{
+	SpawnSpotForced("QCEldersSoul", POWERUPFACTORY_TID, GAMEMODEITEM_TID, 0);
+}
+
+Script "QCDE_EldersSoul_RewardSoulCarrier" (void)
+{
+	SetActivatorToTarget(0);
+
+	if(!CheckInventory("PowerTerminatorArtifact")) terminate;
+
+	GiveInventory("EldersSoulTribute", 1);
+	if(CheckInventory("EldersSoulTribute") % 10 == 0)
+		ACS("QCDE_EldersSoul_HintDegeneration");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Loosely based on Quake Live Freezetag game mode addon by Hypnotoad/Bretwalda
+// Rewrite by Ivory Duke and Michaelis
+//
+///////////////////////////////////////////////////////////////////////////////
+
+#define FT_CHECK_RATE   5
+#define FT_MINHEALTH    1
+#define FT_ICEHEALTH   60
+#define FT_HEAL_AMOUNT  7
+#define FT_HEAL_FX_RATE 3
+
+int ft_deaths[2];
+
+Script "QCDE_Gamemode_qc_FreezeTag" (void)
+{
+	// check gametype prerequisite
+	if (!GetCvar("teamlms"))
+	{
+		delay(100);
+		SetFont("BIGFONT");
+		Log(s:"\c[bludi]QCDE Error: \nFreezetag can only be enabled on top of Team Last Man Standing game mode\n(cvar: teamlms)");
+		terminate;
+	}
+
+	// setup
+	SetPlayerProperty(1, 1, PROP_BUDDHA);
+	GiveActorInventory(0, "PowerNoTelefrag", 1);
+	frozen2[0] = 0; frozen2[1] = 0;
+
+	// launch game tracker
+	ACS("QCDE_Freezetag_Loop");
+
+	// launch player trackers
+	int i;
+	for(; i < 64; i++) if(PlayerInGame(i))
+	{
+		SetActivatorToPlayer(i);
+		SpawnSpot("TeleportDest2", 0, RESPSPOT_TIDBASE + i, GetActorAngle(0)); // ex-SnowmenSafeSpace
+		ACS("QCDE_Freezetag_Player");
+	}
+}
+
+int frozen[2], pcount[2];
+Script "QCDE_Freezetag_Loop" (void)
+{
+	// game not started
+	if (GetGameModeState() < 2) // GAMESTATE_INPROGRESS //TeamProperty(0, TPROP_NumPlayers) == 0 || GetTeamProperty(1, TPROP_NumPlayers) == 0)
+	{
+		delay(FT_CHECK_RATE);
+		restart;
+	}
+
+	// freeze counts
+	int i;
+	frozen[0] = 0; frozen[1] = 0; pcount[0] = 0; pcount[1] = 0;
+	for(i = 0; i < 64; i++) if(PlayerInGame(i))
+	{
+		SetActivatorToPlayer(i);
+		if(CheckInventory("NotSpectator"))
+		{
+			pcount[PlayerTeam()]++;
+		}
+		if(CheckInventory("Freezetagged"))
+		{
+			frozen[PlayerTeam()]++;
+		}
+	}
+
+	// game over
+	int team;
+	for(team = 0; team < 2; team++)
+		if(frozen[team] >= pcount[team])
+		{
+			//log(s:"DEFEAT: Team ", d:team, s:": ", d:frozen[team], s:" >= ", d:GetTeamProperty(team, TPROP_NumLivePlayers));
+			ACS("QCDE_Freezetag_Defeat", team);
+			terminate;
+		}
+		// else log(d:Timer(), s:" - Team ", d:team, s:": ", d:frozen[team], s:" < ", d:GetTeamProperty(team, TPROP_NumLivePlayers));
+
+	delay(FT_CHECK_RATE);
+	restart;
+}
+
+Script "QCDE_Freezetag_Defeat" (int team)
+{
+	int i;
+	for(i = 0; i < 64; i++) if(PlayerInGame(i))
+	{
+		SetActivatorToPlayer(i);
+		if(PlayerTeam() == team)
+		{
+			SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+			SetPlayerProperty(0, 0, PROP_BUDDHA);
+			SetPlayerLivesLeft(PlayerNumber(), 0);
+			SetActorProperty(0, APROP_Health, 0);
+		}
+		else
+		{
+			ACS("QCDE_Freezetag_Thaw", 1);
+		}
+	}
+}
+
+
+
+Script "QCDE_Freezetag_ThawProgress" (int team)
+{
+	if ((team == 1 && CheckInventory("PowerFrozenBlue")) ||
+		(team == 2 && CheckInventory("PowerFrozenRed")))
+	{
+		if(GetActorProperty(0, APROP_Health) % (FT_HEAL_AMOUNT * FT_HEAL_FX_RATE) == 1)
+			SpawnSpotForced("ThawFX",0,0,0);
+		HealThing(FT_HEAL_AMOUNT);
+		if(GetActorProperty(0,APROP_Health) >= FT_ICEHEALTH)
+			ACS("QCDE_Freezetag_Thaw");
+	}
+}
+
+Script "QCDE_Freezetag_Player" (void)
+{
+	if(!PlayerInGame(PlayerNumber())) terminate; // for disconnections
+
+	while(GetActorProperty(0, APROP_Health) > FT_MINHEALTH)
+	{
+		if(Timer() / FT_CHECK_RATE % 2)
+			if(!CheckInventory("PowerGhostTint"))
+				GiveBlueRed("BlueStBernard", "RedStBernard");
+		delay(FT_CHECK_RATE);
+	}
+
+	if(!PlayerInGame(PlayerNumber())) terminate; // for disconnections
+
+	ACS("QCDE_Freezetag_Freeze");
+
+	do delay(FT_CHECK_RATE); while(CheckInventory("Freezetagged"));
+
+	restart;
+}
+
+int frozen2[2]; // will this be sufficient? will this be necessary?
+Script "QCDE_Freezetag_Freeze" (int flags)
+{
+	if(CheckInventory("Freezetagged")) terminate;
+	frozen2[PlayerTeam()]++;
+	str s = " was frozen.";
+	if(flags && 0x1) s = " froze from loneliness.";
+	log(n:0,s:s);
+
+	SetActorProperty(0, APROP_Health, FT_MINHEALTH);
+	SpawnSpotForced("FreezetaggedFX",0,0,0);
+	GiveBlueRed("PowerFrozenBlue", "PowerFrozenRed");
+	GiveInventory("Freezetagged",1);
+	GiveInventory("PowerNoEehEehEehEehEeh",1);
+	GiveInventory("NoPickupProc",1);
+	GiveInventory("NoTeleportProc",1);
+	ACS("QCDE_DM_DropPowerups");
+	ACS("QCDE_Freezetag_Hint");
+
+	// Remove ability weapons except some
+	SetInventory("SorgaulFists"     , false);
+	SetInventory("SorgaulFistsBot"  , false);
+	SetInventory("Shieldquisitor"   , false);
+	//SetInventory("SlayerBFG"        , false);
+	SetInventory("DukeFreezeThrower", false);
+	SetInventory("BlazkoAkimbo"     , false);
+	SetInventory("BlazkoAkimboBot"  , false);
+	SetInventory("SamMinigun"       , false);
+	//SetInventory("PostalCowHead"    , false);
+	SetInventory("CalebDoll"       , false);
+	SetInventory("CalebDollBot"    , false);
+	// ^ insert more ability weapons here
+
+	// Check defeat condition
+	if(GetGameModeState() == 2  &&  frozen2[PlayerTeam()] >= GetTeamProperty(PlayerTeam(), TPROP_NumPlayers))
+	{
+		ACS("QCDE_Freezetag_Defeat", PlayerTeam());
+	}
+
+	// Staying frozen
+	while(GetActorProperty(0, APROP_Health) < FT_ICEHEALTH  &&  GetActorProperty(0, APROP_Health) > 0)
+	{
+		GiveInventory("Motionless3sec",1);
+		SetPlayerProperty(0, 1, PROP_FROZEN);
+		SetInventory("NoWeaponFireToken",1);
+		SetInventory("NoAbilitiesToken", 1);
+		delay(10);
+	}
+}
+
+Script "QCDE_Freezetag_Thaw" (int flags)
+{
+	if(!CheckInventory("Freezetagged")) terminate;
+	frozen2[PlayerTeam()]--;
+
+	log(n:0,s:" returns into the fray.");
+
+	TakeInventory("Freezetagged",     1);
+	TakeInventory("PowerFrozenBlue",  1);
+	TakeInventory("PowerFrozenRed",   1);
+	TakeInventory("Motionless3sec",   1);
+	TakeInventory("NoWeaponFireToken",1);
+	TakeInventory("NoAbilitiesToken", 1);
+	TakeInventory("PowerNoEehEehEehEehEeh",1);
+	GiveInventory("PickupProc",1);
+	GiveInventory("TeleportProc",1);
+	SetPlayerProperty(0, 0, PROP_FROZEN);
+	GiveInventory("QCMegaMega", 1);
+	GiveInventory("QCBackpack", 1);
+
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+
+	// Get former snowman out of potential trouble
+	Teleport(RESPSPOT_TIDBASE + PlayerNumber());
+	ACS("QCDE_Freezetag_HintThaw");
+
+	// Reward for teamwork
+	SpawnForced("QCBackpack",        x,y,z);
+	SpawnForced("QCStimpackMapFloat",x,y,z + 24.0);
+
+	// Sound to leave behind
+	int tid = UniqueTID();
+	SpawnForced("Mapspot", x,y,z, tid);
+	if(!(flags & 0x1))
+		PlaySound(tid,"QC/UI/FreezeTag_Thawed",CHAN_7,1.0,false,1.5);
+	delay(111);
+	Thing_Remove(tid);
+}
+
+function void GiveBlueRed(int blue, int red)
+{
+	if(PlayerTeam() == TEAM_BLUE)
+		GiveInventory(blue, 1);
+	else
+		GiveInventory(red , 1);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Maximum random mode that mixes monster classes
+//
+///////////////////////////////////////////////////////////////////////////////
+
+Script "QCDE_Gamemode_qc_SkirmishRogue" (void)
+{
+	ACS("QCDE_Skirmish_SpawnReliq");
+}
+
+Script "QCDE_Skirmish_SpawnReliq" (void)
+{
+	delay(3); // wait until monsters have appeared
+
+	int attempts = 2000, lbtid = LOOTBOX_TIDLAST;
+
+	while(attempts --> 0)
+	{
+		int tid = random(BIGGIE_TIDBASE, KEY_TIDLAST);
+		if(!IsTidUsed(tid)) continue;
+
+		SpawnSpotForced("LBReliquary",tid,lbtid,0);
+		SetThingSpecial(lbtid, 84, 1827, 2, ACS("QCDE_GetLootboxCode"));
+		terminate;
+	}
+
+	// Didn't find random place? Put at first monster on map
+	SpawnSpotForced("LBReliquary",MONSTER1_TIDBASE,lbtid,0);
+	SetThingSpecial(lbtid, 84, 1827, 2, ACS("QCDE_GetLootboxCode"));
+}

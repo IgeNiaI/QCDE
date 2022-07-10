@@ -1,0 +1,62 @@
+Actor QCChaingunGuy : QCDE_MonsterSmall 15405
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom"
+	//$Color 12
+	//$Title "Chaingun Guy"
+	Tag "$TAG_QCChaingunGuy" // "Heavy weapon dude"
+
+	Health 70
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 170
+	Monster
+	+FLOORCLIP
+	SeeSound "chainguy/sight"
+	PainSound "chainguy/pain"
+	DeathSound "chainguy/death"
+	ActiveSound "chainguy/active"
+	AttackSound "chainguy/attack"
+	Obituary "$OB_CHAINGUY"
+	Dropitem "Chaingun"
+	States
+	{
+	Idle:
+		CPOS AB 10 A_Look
+		Loop
+	See:
+		CPOS AABBCCDD 3 A_Chase
+		Loop
+	Missile:
+		CPOS E 10 A_FaceTarget
+		CPOS FE 4 Bright A_CPosAttack
+		CPOS F 1 A_CPosRefire
+		Goto Missile+1
+	Pain:
+		CPOS G 3
+		CPOS G 3 A_Pain
+		Goto See
+	DeathChecksDone:
+		CPOS H 5
+		CPOS I 5 A_Scream
+		CPOS J 5 A_NoBlocking
+		CPOS KLM 5
+	Death.Corpse:
+		CPOS N -1
+		Stop
+	XDeathChecksDone:
+		CPOS O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		CPOS P 5 A_XScream
+		CPOS Q 5 A_NoBlocking
+		CPOS RS 5
+		CPOS T -1
+		Stop
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		CPOS N 5
+		CPOS MLKJIH 5
+		Goto See
+	}
+}

@@ -1,0 +1,251 @@
+//================================================================================================================
+//================================================================================================================
+//
+//
+//================================================================================================================
+//================================================================================================================
+Actor D4Harvester : QCDE_MonsterBig 13504
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	Health 800
+	Radius 20
+	Height 56
+	Mass 400
+	Speed 11
+	PainChance 64
+	Monster
+	+FLOORCLIP
+	+NOTARGET //You know how much infighting this guy would cause? D:
+	+DONTHARMSPECIES
+	SeeSound 	"Doom4/Monsters/Archvile/Sight"
+	PainSound 	"Doom4/Monsters/Archvile/Pain"
+	DeathSound 	"Doom4/Monsters/Archvile/Death"
+	ActiveSound "Doom4/Monsters/Archvile/Idle"
+	Obituary "$OB_D4Harvester" // "%o's soul was taken by a Harvester."
+	Species "D4TArchies"
+	Scale 1.35
+	Tag "$TAG_D4Harvester" // "Harvester"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		VULG A 10 A_Look
+		Loop
+	See:
+		VULG AAABBBCCCDDD 2 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(768,"LightningStream")
+	ChooseMissiles:
+		TNT1 A 0 A_Jump(200,"SoulEnergySingle")
+		Goto SoulEnergyTriple
+	SoulEnergySingle:
+		VULG EEE 5 A_FaceTarget
+		VULG F 3 A_Facetarget
+		VULG F 0 A_CustomMissile("HarvesterSoulEnergySmall")
+		VULG G 30
+		Goto See
+	SoulEnergyTriple:
+		VULG E 0 A_PlaySound("Doom4/Monsters/Harvester/FullCharge",5,1.0,false,0.9)
+		VULG EEEEEEEEE 5 A_FaceTarget 	//come at me bro!!
+		VULG F 3 A_Facetarget
+		VULG E 0 A_PlaySound("Doom4/Monsters/Harvester/AltFire",6,1.0,false,0.8)
+		VULG F 0 A_CustomMissile("HarvesterSoulEnergyBig",32,0,-15)
+		VULG F 0 A_CustomMissile("HarvesterSoulEnergyBig",32,0, 15)
+		VULG F 0 A_CustomMissile("HarvesterSoulEnergyBig",32,0,-30)
+		VULG F 0 A_CustomMissile("HarvesterSoulEnergyBig",32,0, 30)
+		VULG F 0 A_CustomMissile("HarvesterSoulEnergyBig")
+		VULG G 30
+		Goto See
+
+	LightningStream:
+		TNT1 A 0 A_Jump(64,"ChooseMissiles") //even if close enough, some times will still do projectiles
+		VULG EF 6 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Doom4/Monsters/Harvester/StartFire",CHAN_AUTO,1.0,false,0.9)
+		TNT1 A 0 A_PlaySound("Doom4/Monsters/Harvester/FireLoop",5,1,1)
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		VULG G 6 A_CustomRailgun(random(5,11),0,"None","OliveDrab1",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,50,"FakePuff",0,0,896,3,28,0,"HarvesterLgTrail",6)	"####" "#" 0 A_FaceTarget
+		TNT1 A 0 A_StopSound(5)
+		Goto See
+	Pain:
+		VULG H 3 A_StopSound(5)
+		VULG H 3 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_StopSound(5)
+		VULG HIJ 3
+		VULG K 3
+		VULG L 3 A_NoBlocking
+		VULG M 3
+	Death.Corpse:
+		VULG N -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Doom4/Gore/Medium")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	//------------------------------------------------------------------------
+	}
+}
+
+Actor HarvesterSoulEnergySmall
+{
+	Projectile
+	+FORCEXYBILLBOARD
+	Radius 3
+	Height 6
+	RenderStyle Add
+	Scale 0.45
+	Speed 30
+	Damage 10
+	SeeSound "Doom4/Monsters/Harvester/AltFireSmall"
+	DeathSound "Doom4/Other/FireballHit1"
+	States
+	{
+	Spawn:
+		X016 ABCEDFGHIJKLMNOPQRSTUVWXY 2 Bright
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(64,80,0)
+		TNT1 A 10 A_SpawnItemEx("SoulEnergyExploSmall", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+Actor HarvesterSoulEnergyBig : HarvesterSoulEnergySmall
+{
+	Speed 20
+	Damage 20
+	Scale 0.7
+	Alpha 0.7
+	DeathSound "Doom4/Monsters/BaronFireBallHit"
+	States
+	{
+	Spawn:
+		X016 ABCEDFGHIJKLMNOPQRSTUVWXY 2 Bright
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(40,160,0) //low damage in large area, in closed spaces, this will wreck you
+		TNT1 AA 0 A_SpawnItemEx("SoulEnergyFX1", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		TNT1 A 10 A_SpawnItemEx("SoulEnergyExploBig", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+Actor SoulEnergyFX1
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.99
+	scale 0.8
+	Translation "0:255=%[0.0,0.0,0.0]:[0.8,2.0,0.1]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"T1","T2","T3","T4","T5")
+	T1:	DLI1 A 0
+		Goto PlayOff
+	T2:	DLI2 A 0
+		Goto PlayOff
+	T3:	DLI3 A 0
+		Goto PlayOff
+	T4:	DLI4 A 0
+		Goto PlayOff
+	T5:	DLI5 A 0
+		Goto PlayOff
+
+	PlayOff:
+		"####" A 0 A_Jump(128,"FromL")
+	FromA:
+		"####" ABCDEFGHIJK 1 Bright
+		Stop
+	FromL:
+		"####" LMNOPQRSTUV 1 Bright
+		Stop
+
+	}
+}
+
+Actor SoulEnergyExploSmall
+{
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Scale 0.8
+	Translation "0:255=%[0.0,0.0,0.0]:[0.8,2.0,0.1]"
+	RenderStyle Add
+	States
+	{
+	Spawn:
+		DB54 ABCDEFGHIJKLMNOPQR 2 Bright
+		Stop
+	}
+}
+Actor SoulEnergyExploBig : SoulEnergyExploSmall
+{
+	Scale 1.2
+}
+
+
+//----------------------------------------------------------
+// Laser Attack
+Actor HarvesterLgTrail
+{
+	+NOINTERACTION
+	Scale 0.24
+	RenderStyle Add
+	Alpha 1.0
+	+FORCEXYBILLBOARD
+	Translation "0:255=%[0,0,0]:[1.4,1.9,0.2]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"S1","S2","S3","S4","S5","S6","S7","S8")
+	S1:	HSPL A 0 A_Jump(255,"Perform")
+		Goto Perform
+	S2:	HSPL B 0 A_Jump(255,"Perform")
+		Goto Perform
+	S3:	HSPL C 0 A_Jump(255,"Perform")
+		Goto Perform
+	S4:	HSPL D 0 A_Jump(255,"Perform")
+		Goto Perform
+	S5:	HSPL E 0 A_Jump(255,"Perform")
+		Goto Perform
+	S6:	HSPL F 0 A_Jump(255,"Perform")
+		Goto Perform
+	S7:	HSPL G 0 A_Jump(255,"Perform")
+		Goto Perform
+	S8: HSPL H 0 A_Jump(255,"Perform")
+		Goto Perform
+	S8: HSPL J 0 A_Jump(255,"Perform")
+		Goto Perform
+	Perform:
+		"####" "#" 5 Bright
+		"####" "#" 1 Bright A_FadeOut(0.2)
+		Wait
+	}
+}

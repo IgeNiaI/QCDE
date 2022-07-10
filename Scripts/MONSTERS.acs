@@ -1,0 +1,1197 @@
+#library "MONSTERS"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//=============================================================================
+//=============================================================================
+//
+//
+//		MONSTER RANDOMIZATION
+//
+//
+//=============================================================================
+//=============================================================================
+//=============================================================================
+
+// This is the first string in this library.
+// In case something goes South and some numeric 0 gets interpreted as text,
+// we'll see it appearing and immediately understand what's wrong.
+// Don't use for anything.
+str qcdeNULLstring = "qcdeNULLstring";
+
+// MAX_THEMES is an (arbitrary) upper limit on possibly added dynamic themes.
+// NUMBER_OF_THEMES is how many themes are present. By default, this equals
+// number of built-in themes, but NUMBER_OF_THEMES increases with successfully
+// loaded user themes.
+int NUMBER_OF_THEMES = THEMES_BUILTIN;
+str themes[MAX_THEMES] = { "Quake 1", "Quake 2", "Quake 4", "Doom", "Doom 4" };
+
+bool active[MAX_THEMES]; // filled from cvars
+
+// Monsters are sorted in the order of appearance at cast sequence.
+// Except Spectre and SS. They're awkwardly appended to the end of list.
+str mons[NUMBER_OF_MONSTERS] = { "Zombieman", "Shotgun Guy", "Chaingun Guy", "Imp",
+		"Demon", "Lost Soul", "Cacodemon", "Hell Knight", "Baron of Hell",
+		"Arachnotron", "Pain Elemental", "Revenant", "Mancubus", "Arch-vile",
+		"Spider Mastermind", "Cyberdemon", "Spectre", "Wolfenstein SS"};
+
+#define NUMBER_OF_REPLACEMENTS 16
+
+// [Ms] Whoa whoa whoa. You know, I remember the day when 3d array in AEoD felt
+//      like something big and sophisticated. In the end, arrays are but tools.
+//      Yesterday you need 2d, today 3d. Nobody knows what happens tomorrow.
+//      Maybe you can live with 1d. Or even 0d -- dot array, a simple variable.
+//
+// [Ms] That being said... today we need a four-dimensional array. ;D
+//
+// [Ms] Each possible replacement is represented by a pair: class and weight.
+//      Weights decide how likely is this replacement to spawn, compared to
+//      other replacements of same monster.
+//      Weights only matter in comparison to each other.
+//      Two classes with weights 1000 and 2000 spawn exactly like with 1 and 2.
+//
+// [Ms] Yes, numbers must be written as strings.
+//
+// [Ms] Maybe it's time I moved to GDCC and used structs... :thinking:
+//      Nah, that'd be too :ez: :sweetie:
+
+str content[MAX_THEMES][NUMBER_OF_MONSTERS][NUMBER_OF_REPLACEMENTS][2] =
+{
+	//============================================================================
+	// Quake 1
+	//============================================================================
+	{
+		// 0. Zombieman replacements
+		{	{"QGrunt",       "1000"},
+			{"QDog",          "180"}	},
+
+		// 1. Shotgun Guy replacements
+		{	{"QEnforcer",    "1000"}	},
+
+		// 2. Heavy Weapon Dude replacements
+		{	{"QNailEnforcer","1000"}	},
+
+		// 3. Imp replacements
+		{	{"QZombie",      "1000"}	},
+
+		// 4. Demon replacements
+		{	{"QKnight",      "1000"}	},
+
+		// 5. Lost Soul replacements
+		{	{"QLostSpirit",  "1000"}	},
+
+		// 6. Cacodemon replacements
+		{	{"QScrag",       "1000"}	},
+
+		// 7. Hell Knight replacements
+		{	{"QFiend",       "1000"},
+			{"QOgre",        "1000"}	},
+
+		// 8. Baron of Hell replacements
+		{	{"QShambler",    "1000"}	},
+
+		// 9. Arachnotron replacements
+		{	{"QVore",        "1000"}	}, // No, not that vore.
+
+		// 10. Pain Elemental replacements
+		{	{"QWrath",       "1000"}	},
+
+		// 11. Revenant replacements
+		{	{"QSilverKnight","1000"}	},
+
+		// 12. Mancubus replacements
+		{	{"QDeathKnight", "1000"}	},
+
+		// 13. Arch-Vile replacements
+		{	{"QRocketOgre",  "1000"}	},
+
+		// 14. The Spider Mastermind replacements
+		{	{"QNgyrKorath",  "1000"}	},
+
+		// 15. The Cyberdemon replacements
+		{	{"QIaldagorth",  "1000"}	},
+
+		// 16. Spectre replacements
+		{	{"QSpawn",       "1000"}	},
+
+		// 17. Wolfenstein SS replacements
+		{	{"QEnforcer",    "1000"}	},
+	},
+
+	//============================================================================
+	// Quake 2
+	//============================================================================
+	{
+		// 0. Zombieman
+		{	{"Q2LightGuard",       "1000"}	},
+
+		// 1. Shotgun Guy
+		{	{"Q2ShotgunGuard",     "1000"}	},
+
+		// 2. Heavy Weapon Dude
+		{	{"Q2MachinegunGuard",  "1000"},
+			{"Q2Infantry",         "1000"}	},
+
+		// 3. Imp
+		{	{"Q2Parasite",         "1000"}	},
+
+		// 4. Demon
+		{	{"Q2Berserker",        "1000"}	},
+
+		// 5. Lost Soul
+		{	{"Q2Flyer",            "1000"}	},
+
+		// 6. Cacodemon
+		{	{"Q2Hover",            "1000"}	},
+
+		// 7. Hell Knight
+		{	{"Q2IronMaiden",       "1000"},
+			{"Q2Brains",           "1000"}	},
+
+		// 8. Baron of Hell
+		{	{"Q2Tank",             "1000"}	},
+
+		// 9. Arachnotron
+		{	{"Q2PrototypeContainer","1000"}	},
+
+		// 10. Pain Elemental
+		{	{"Q2ShieldHover",      "1000"}	},
+
+		// 11. Revenant
+		{	{"Q2Gunner",           "1000"}	},
+
+		// 12. Mancubus
+		{	{"Q2Gladiator",        "1000"}	},
+
+		// 13. Arch-Vile
+		{	{"Q2Medic",            "1000"},
+			{"Q2TankCommander",    "1000"}	},
+
+		// 14. The Spider Mastermind
+		{	{"Q2Hornet",           "1000"},
+			{"Q2TankBoss",         "1000"}	},
+
+		// 15. The Cyberdemon
+		{	{"Q2JorgMakron",       "1000"}	},
+
+		// 16. Spectre
+		{	{"Q2Mutant",           "1000"},	},
+
+		// 17. Wolfenstein SS
+		{	{"Q2MachinegunGuard",  "1000"},
+			{"Q2ShotgunGuard",     "1000"}	},
+	},
+
+	//============================================================================
+	// Quake 4
+	//============================================================================
+	{
+		// 0. Zombieman replacements
+		{	{"Q4LightGuard",      "1000"}	},
+
+		// 1. Shotgun Guy replacements
+		{	{"Q4ShotgunGuard",    "1000"},
+			{"Q4FailedTransfer",  "1000"}	},
+
+		// 2. Heavy Weapon Dude replacements
+		{	{"Q4MachinegunGuard", "1000"}	},
+
+		// 3. Imp replacements
+		{	{"Q4SlimyTransfer",   "1000"}	},
+
+		// 4. Demon replacements
+		{	{"Q4Grunt",           "1000"}	},
+
+		// 5. Lost Soul replacements
+		{	{"Q4RepairBot",       "1000"}	},
+
+		// 6. Cacodemon replacements
+		{	{"Q4Scientist",       "1000"},
+			{"Q4Sentry",          "1000"}	},
+
+		// 7. Hell Knight replacements
+		{	{"Q4Berserker",       "1000"},
+			{"Q4Gunner",          "1000"}	},
+
+		// 8. Baron of Hell replacements
+		{	{"Q4LightTank",       "1000"}	},
+
+		// 9. Arachnotron replacements
+		{	{"Q4Gladiator",       "1000"}	},
+
+		// 10. Pain Elemental replacements
+		{	{"Q4StroggHover",     "1000"},
+			{"Q4IronMaiden",      "1000"}	},
+
+		// 11. Revenant replacements
+		{	{"Q4HyperBlasterTactical", "1000"},
+			{"Q4RailgunTactical",      "1000"}	},
+
+		// 12. Mancubus replacements
+		{	{"Q4Roller",          "1000"},
+			{"Q4HoverTank",       "1000"}	},
+
+		// 13. Arch-Vile replacements
+		{	{"Q4TeleportDropper", "1000"}	},
+
+		// 14. The Spider Mastermind replacements
+		{	{"Q4StreamProtector", "1000"},
+			{"Q4Harvester",       "1000"},
+			{"Q4NetworkGuardian", "1000"}	},
+
+		// 15. The Cyberdemon replacements
+		{	{"Q4Voss",            "1000"},
+			{"Q4Makron",           "800"}	},
+
+		// 16. Spectre replacements
+		{	{"Q4Grunt",           "1000"}	},
+
+		// 17. Wolfenstein SS replacements
+		{	{"Q4LightGuard",      "1000"},
+			{"Q4ShotgunGuard",    "1000"},
+			{"Q4MachinegunGuard", "1000"}	},
+	},
+
+	//============================================================================
+	// Doom
+	//============================================================================
+	{
+		// 0. Zombieman replacements
+		{	{"QCZombieman", "1000"}	},
+
+		// 1. Shotgun Guy replacements
+		{	{"QCShotgunGuy", "1000"}	},
+
+		// 2. Heavy Weapon Dude replacements
+		{	{"QCChaingunGuy", "1000"}	},
+
+		// 3. Imp replacements
+		{	{"QCDoomImp", "1000"}	},
+
+		// 4. Demon replacements
+		{	{"QCDemon", "1000"}	},
+
+		// 5. Lost Soul replacements
+		{	{"QCLostSoul", "1000"}	},
+
+		// 6. Cacodemon replacements
+		{	{"QCCacodemon", "1000"}	},
+
+		// 7. Hell Knight replacements
+		{	{"QCHellKnight", "1000"}	},
+
+		// 8. Baron of Hell replacements
+		{	{"QCBaronOfHell", "1000"}	},
+
+		// 9. Arachnotron replacements
+		{	{"QCArachnotron", "1000"}	},
+
+		// 10. Pain Elemental replacements
+		{	{"QCPainElemental", "1000"}	},
+
+		// 11. Revenant replacements
+		{	{"QCRevenant", "1000"}	},
+
+		// 12. Mancubus replacements
+		{	{"QCFatso", "1000"}	},
+
+		// 13. Arch-Vile replacements
+		{	{"QCArchvile", "1000"}	},
+
+		// 14. The Spider Mastermind replacements
+		{	{"QCSpiderMastermind", "1000"}	},
+
+		// 15. The Cyberdemon replacements
+		{	{"QCCyberdemon", "1000"}	},
+
+		// 16. Spectre replacements
+		{	{"QCSpectre", "1000"}	},
+
+		// 17. Wolfenstein SS replacements
+		{	{"QCWolfensteinSS", "1000"}	},
+	},
+
+	//============================================================================
+	// Doom 4 (Death Foretold version, by DBThanatos & Michaelis)
+	//============================================================================
+	{
+		// 0. Zombieman replacements
+		{	{"D4Zombieman",         "1000"}	},
+
+		// 1. Shotgun Guy replacements
+		{	{"D4ShotgunGuy",        "1000"},
+			{"D4PossessedSecurity",   "90"}	},
+
+		// 2. Heavy Weapon Dude replacements
+		{	{"D4HellRazer",         "1000"}	},
+
+		// 3. Imp replacements
+		{	{"D4DoomImp",           "1000"}	},
+
+		// 4. Demon replacements
+		{	{"D4Demon",             "1000"},
+			{"D4Prowler",            "100"}	},
+
+		// 5. Lost Soul replacements
+		{	{"D4LostSoul",          "1000"}	},
+
+		// 6. Cacodemon replacements
+		{	{"D4Cacodemon",         "1000"}	},
+
+		// 7. Hell Knight replacements
+		{	{"D4HellKnight",        "1000"}	},
+
+		// 8. Baron of Hell replacements
+		{	{"D4BaronOfHell",       "1000"}	},
+
+		// 9. Arachnotron replacements
+		{	{"D4Arachnotron",       "1000"}	},
+
+		// 10. Pain Elemental replacements
+		{	{"D4PainElemental",     "1000"}	},
+
+		// 11. Revenant replacements
+		{	{"D4Revenant",          "1000"}	},
+
+		// 12. Mancubus replacements
+		{	{"D4FatsoTech",         "1000"},
+			{"D4FatsoHell",         "1000"}	},
+
+		// 13. Arch-Vile replacements
+		{	{"D4Archvile",          "1000"},
+			{"D4Harvester",         "1000"}	},
+
+		// 14. The Spider Mastermind replacements
+		{	{"D4SpiderMastermind",  "1000"}	},
+
+		// 15. The Cyberdemon replacements
+		{	{"D4Cyberdemon",        "1000"}	},
+
+		// 16. Spectre replacements
+		{	{"D4Spectre",           "1000"},
+			{"D4Prowler",            "200"}	},
+
+		// 17. Wolfenstein SS replacements
+		{	{"D4WolfensteinSS",     "1000"}	},
+	},
+};
+
+Script "read" (int theme, int mon, int repl)
+{
+	str text = strparam(s:"\c-In theme \c[brite]", d:theme, s:"\c- (\c[brite]", s:themes[theme], s:"\c-)\n",
+			  s:"\c-replacement for monster \c[brite]", d:mon, s:"\c- (\c[brite]", s:mons[mon], s:"\c-)\n",
+			  s:"\c-accessed by index \c[brite]", d:repl, s:"\n",
+			  s:"\c-is \c[brite]", s:content[theme][mon][repl][0],
+			  s:"\c-, weighted \c[brite]", d:content[theme][mon][repl][1]);
+	PrintBold(s:text);
+	log(s:text);
+}
+
+Script "QCDE_ThemeSetup" (void)
+{
+	if(!enabled_themes[200])
+		fillActiveThemes();
+}
+
+function void fillActiveThemes(void)
+{
+	int i;
+	for(i = 0; i < NUMBER_OF_THEMES; i++)
+	{
+		str cvarname = strparam(s:"theme", d:i);
+		enabled_themes[i] =!! GetCvar(cvarname);
+		enabled_themes[200] += enabled_themes[i];
+	}
+
+	// Default: quakes 1, 2 and 4
+	if(!enabled_themes[200])
+	{
+		enabled_themes[0] = true;
+		enabled_themes[1] = true;
+		enabled_themes[2] = true;
+		enabled_themes[200] = 3;
+	}
+}
+
+bool sumComputed;
+int full_sum_of_weights[NUMBER_OF_MONSTERS];
+int wave_was; // Invasion
+
+#define MAX_RECURSION 5
+Script "QCDE_MonsterSpawner" (int mon, int dead, int recurse)
+{
+	// drop out when things just don't work
+	if(recurse >= MAX_RECURSION)
+	{
+		//log(s:"QCDE warning: recursion limit hit by ", n:0);
+		terminate;
+	}
+
+	// respect "No monsters" settings
+	if(GetCvar("sv_nomonsters")) terminate;
+
+	// re-randomize class... or do something different altogether
+	str class;
+	if(isSkirmish())
+	{
+		int chance = random(0,99);
+
+		// 10% monsters don't spawn, but repeating attempts don't fail here
+		if(chance < 10 && !recurse) class = "RLNothing";
+
+		// 50% monsters get class randomized (60% on repeating attempts)
+		if(chance < 60)
+		{
+			if(mon == 5 || mon == 6 || mon == 10) // flyers
+			{
+				// only replace with flyers
+				mon = random(5,7);
+				if(mon == 7) mon = random(5,7); // re-roll useui
+				if(mon == 7) mon = 10;
+			}
+			else
+			{
+				mon = random(mon, NUMBER_OF_MONSTERS-1);
+				// archie, master, cyber and nazi are re-rolled
+				if(mon == 13 || mon == 14 || mon == 15 || mon == 17)
+					mon = random(0, NUMBER_OF_MONSTERS-1);
+			}
+		}
+		// 39% monsters are replaced with minor pickups
+		else if(chance < 99) class = "RLMinorPickup";
+		// 1% monsters are replaced with major pickups, yay
+		else if(chance < 100) class = "RLMajorPickup";
+	}
+
+	// init once
+	if(!sumComputed) QCDE_ComputeFullSumOfWeights();
+	// but reinit like a new map in Invasion
+	else if(IsZandronum(1)) // necessary to always short-circuit this evaluation to avoid unknown p-code 129 in GZDoom 1.9.1
+		if(GetInvasionWave() > 0  &&  GetInvasionWave() != wave_was)
+	{
+		QCDE_ComputeFullSumOfWeights();
+	}
+	if(IsZandronum(1)) wave_was = GetInvasionWave();
+
+	// possibly fail due to no appropriate themes selected
+	if(full_sum_of_weights[mon] <= 0)
+	{
+		log(s:"\c[bludi]Error: \c-No themes selected that replace \cg", s:mons[mon]);
+		terminate;
+	}
+
+	// pick random mon
+	int pick = random(1, full_sum_of_weights[mon]);
+	//log(s:"Full sum for ", s:mons[mon], s:" is ", d:full_sum_of_weights[mon]);
+	int theme, repl;
+	str sDead = "";
+	int value;
+	if(dead) sDead = "dead ";
+	//log(s:"Pick = ", d:pick);
+	for(theme = 0; theme < NUMBER_OF_THEMES && !class; theme++)
+	if(QCDE_ThemeIsActive(theme))
+	for(repl = 0; repl < NUMBER_OF_REPLACEMENTS && !class; repl++)
+	{
+		value = content[theme][mon][repl][1];
+		//log(s:"    [", d:theme,s:",",d:mon,s:",",d:repl,s:",1] Loading int value ", d:value, s:", string ", s:value);
+
+		if(value <= 0) continue; // if this slot is empty -- pass
+
+		int oldpick = pick;
+		pick -= value;
+		//log(s:"Pick ", d:oldpick, s:" - value ", d:value, s:" = pick ", d:pick);
+		if(pick > 0)
+		{
+			//log(s:"Skip ", s:themes[theme], s:" ", s:content[theme][mon][repl][0], s:"; pick becomes ", d:pick);
+			continue;
+		}
+
+		// we have found it, yay!
+		class = content[theme][mon][repl][0];
+		//log(s:"Spawn ", s:sDead, s:themes[theme], s:" ", s:class);
+	}
+
+	// Spawn replacement
+	bool success = QCDE_SpawnReplacement(class, dead, !isSkirmish(), false);
+
+	if(!success)
+	{
+		if(!isSkirmish())
+		{
+			int x = GetActorX(0);
+			int y = GetActorY(0);
+			int z = GetActorZ(0);
+			int angle = GetActorAngle(0) << 8;
+			log(s:"\c-Failed to spawn \cg", s:class,
+				s:"\c- in theme \cg", s:themes[theme],
+				s:"\c- at (", f:x, s:", ", f:y, s:", ", f:z, s:"; angle ", f:angle,
+				s:"). Typo in add-on source?");
+		}
+		else
+		{
+			// "Reboot and try again" ~Sombra, 2016
+			ACS("QCDE_MonsterSpawner", mon, dead, -~recurse);
+		}
+	}
+}
+
+int theme_list[MAX_THEMES];
+int preparedTheme; // for "One theme per map" mode
+function void QCDE_ComputeFullSumOfWeights(void)
+{
+	//log(s:"Computing them all.");
+	QCDE_ResetWeights();
+
+	int mode = getCvar("qc_shuffleMode");
+	int theme;
+	switch(mode)
+	{
+	default:
+	case 0:
+		for(theme = 0; theme < NUMBER_OF_THEMES; theme++)
+			if(QCDE_ThemeIsEnabled(theme))
+				QCDE_AddToMix(theme);
+			//else log(s:"Not computing inactive ", s:themes[theme]);
+		break;
+	case 1:
+		int i;
+		for(theme = 0; theme < NUMBER_OF_THEMES; theme++)
+		{
+			if(QCDE_ThemeIsEnabled(theme) && QCDE_ThemeHasntPlayedYet(theme))
+			{
+				theme_list[i++] = theme;
+				//log(s:themes[theme_list[~-i]], s:" is possible.");
+			}
+		}
+
+		//log(s:"Selecting from ", d:i, s:" themes...");
+		preparedTheme = theme_list[random(0, ~-i)];
+		//log(s:themes[preparedTheme], s:" selected.");
+		QCDE_AddToMix(preparedTheme);
+		QCDE_MarkThemeAsPlayed(preparedTheme);
+
+		break;
+	}
+
+	sumComputed = true;
+}
+
+// necessary for repeated calls in Invasion
+function void QCDE_ResetWeights(void)
+{
+	for(int mon = 0; mon < NUMBER_OF_MONSTERS; mon++)
+	{
+		full_sum_of_weights[mon] = 0;
+	}
+}
+
+function void QCDE_AddToMix(int theme)
+{
+	int mon, repl, score;
+	for(mon = 0; mon < NUMBER_OF_MONSTERS; mon++)
+	{
+		//log(s:"Computing ", s:themes[theme], s:" for ", s:mons[mon], s:": ");
+		for(repl = 0; repl < NUMBER_OF_REPLACEMENTS; repl++)
+		{
+			score = getint(content[theme][mon][repl][1]);
+			content[theme][mon][repl][1] = score; // store parsed value, not reparse
+			//log(s:"    [", d:theme,s:",",d:mon,s:",",d:repl,s:",1] Storing int value ", d:score, s:", string ", s:score);
+
+			if(!score) continue; // pass on unused replacement slots
+
+			full_sum_of_weights[mon] += score;
+			//log(s:"    Adding ", d:score, s:" of ", s:content[theme][mon][repl][0], s:" to sum of ", d:full_sum_of_weights[mon]);
+		}
+	}
+}
+
+function int getint(str s)
+{
+	// arbitrary heuristic to avoid mutilating actual integers
+	if(s >= 0 && s <= 1000000) return s;
+
+	int result = 0;
+	int i,c,d;
+
+	for (i = 0; i < strlen(s); i++)
+	{
+		c = GetChar(s, i);
+		result *= 10;
+		d = c - '0';
+		if(d < 0 || d > 9) d = 0;
+		result += d;
+	}
+
+	if(result == 1377091799) result = 0;
+	return result;
+}
+
+function int QCDE_ThemeIsEnabled(int whichTheme)
+{
+	// This system can extend to any number of themes at all.
+	// (Unending Annihilation /AEoD theme/ intensifies)
+
+	// Has to be here for GZDoom, there for Zandronum
+	if(!enabled_themes[200])
+		fillActiveThemes();
+
+	return enabled_themes[whichTheme];
+}
+
+function int QCDE_ThemeHasntPlayedYet(int whichTheme)
+{
+	return !enabled_themes[100 + whichTheme];
+}
+
+function void QCDE_MarkThemeAsPlayed(int whichTheme)
+{
+	if(enabled_themes[100 + whichTheme]) return;
+
+	enabled_themes[100 + whichTheme] = true;
+	enabled_themes[201]++;
+
+	if(enabled_themes[200] == enabled_themes[201])
+	{
+		// reset if all themes were already played
+		for(int i = 100; i < 200; i++)
+			enabled_themes[i] = false;
+		enabled_themes[201] = 0;
+
+		// but still don't replay the same theme if there are any others
+		if(enabled_themes[200] > 1)
+		{
+			enabled_themes[100 + whichTheme] = true;
+			enabled_themes[201]++;
+		}
+	}
+}
+
+function int QCDE_ThemeIsActive(int whichTheme)
+{
+	int mode = getCvar("qc_shuffleMode");
+	switch(mode)
+	{
+	default:
+	case 0:
+		// Full shuffle: all enabled themes are active at the same time
+		return QCDE_ThemeIsEnabled(whichTheme);
+	case 1:
+		// One theme per map: only one theme was prepared
+		return whichTheme == preparedTheme;
+	}
+	return false;
+}
+
+Script "QCDE_SpawnerTracking" (void)
+{
+	SetActivator(0,AAPTR_TRACER);
+	int health = GetActorProperty(0,APROP_HEALTH);
+	if((health <= 0) || (health == 0x7CDE9A64))
+	{
+		// ...Now, die, now, die, now...
+		SetResultValue(true);
+	}
+	else
+	{
+		// Continue tracking
+		SetResultValue(false);
+	}
+}
+
+
+
+
+
+//=============================================================================
+//=============================================================================
+//
+//		Dynamic binding scripts
+//
+//=============================================================================
+//=============================================================================
+
+int monsters_added_so_far;
+script "QCDE_RegisterTheme_1_Name" (int name)
+{
+	if(strlen(name) > 32) name = strmid(name,0,32);
+
+	int i;
+	for(i = THEMES_BUILTIN; i < MAX_THEMES; i++)
+	{
+		if(themes[i] != 0 && strlen(themes[i]))
+			if(stricmp(themes[i], name))
+				continue; // slot taken
+			else
+				break; // conflict!
+
+		break;
+	}
+
+	str debug;
+	if(i < MAX_THEMES
+		&& name
+		&& strlen(name)
+		&& stricmp(themes[i], name))
+	{
+		themes[i] = name;
+
+		// Initialize rows with appropriate emptiness
+		int mon, repl;
+		for(mon = 0; mon < NUMBER_OF_MONSTERS; mon++)
+		{
+			for(repl = 0; repl < NUMBER_OF_REPLACEMENTS; repl++)
+			{
+				content[i][mon][repl][0] = "";
+				content[i][mon][repl][1] = "0";
+			}
+		}
+
+		debug = strparam(
+			s:"\n\c[cyan]== New Theme ==\n",
+			s:"1. Theme is about to be written -- \c[brite]", s:name,
+			s:"\n   Using theme slot \c[brite]", d:i,
+			s:""
+		);
+
+		if(i > NUMBER_OF_THEMES)
+		{
+			debug = strparam(
+				s:debug,
+				s:"\n\c[red]Error!",
+				s:" Theme ", s:themes[i-1],
+				s:" might not have been finalized correctly!",
+				s:""
+			);
+		}
+
+		monsters_added_so_far = 0;
+	}
+	else if(!stricmp(themes[i], name))
+	{
+		debug = strparam(
+			s:"\n\c[red]== Can't Add New Theme ==\n",
+			s:"1. Conflict! Theme \c[brite]", s:name,
+			s:"\c+ is already in slot \c[brite]", d:i
+		);
+	}
+	else if(!name || !strlen(name))
+	{
+		debug = strparam(
+			s:"\n\c[red]== Can't Add New Theme ==\n",
+			s:"1. No name provided, or name is empty, or name is not a string.",
+			s:""
+		);
+	}
+	else
+	{
+		debug = strparam(
+			s:"\n\c[red]== Can't Add New Theme ==\n",
+			s:"1. Too many themes -- can't fit \c[brite]", s:name,
+			s:""
+		);
+	}
+	if(getCvar("qc_themedebug"))
+	{
+		printbold(s:debug);
+		log(s:debug);
+	}
+}
+
+// Class should be supplied as int, 0 <= class < NUMBER_OF_MONSTERS
+// Weight should be supplied as string, e.g. "1000" instead of 1000.
+script "QCDE_RegisterTheme_2_Add" (int class, int monster, int weight)
+{
+	int i;
+	int slen = strlen(monster);
+	int wlen = strlen(weight);
+	bool wlen_ok = isNumber(weight);
+	str name = "";
+	for(i = THEMES_BUILTIN; i < MAX_THEMES - 1; i++)
+	{
+		if(themes[i+1] != 0 && strlen(themes[i+1])) continue; // slot taken
+
+		name = themes[i];
+		break;
+	}
+
+	str debug;
+	if( i == NUMBER_OF_THEMES &&
+		class >= 0 &&
+		class < NUMBER_OF_MONSTERS &&
+		slen &&
+		wlen &&
+		wlen_ok)
+	{
+		int repl;
+		// Find empty spot
+		for(repl = 0; repl < NUMBER_OF_REPLACEMENTS; repl++) {
+			if(strlen(content[i][class][repl][0]) == 0) break;
+		}
+
+		// Fill it
+		content[i][class][repl][0] = monster;
+		content[i][class][repl][1] = weight;
+
+		debug = strparam(
+			s:"2. Into theme \c[brite]", s:name,
+			s:"\n   adding a \c[brite]", s:mons[class], s:"\c+ replacement, \c[brite]",
+			s:content[i][class][repl][0], s:"\c+, weighted \c[brite]", s:content[i][class][repl][1],
+			s:""
+		);
+
+		monsters_added_so_far++;
+	}
+	else if (!slen)
+	{
+		debug = strparam(
+			s:"\c[red]2. Error! Empty monster name for class \c[brite]", d:class, s:"\c[red], weighted \c[brite]", s:weight,
+			s:""
+		);
+	}
+	else if (!wlen)
+	{
+		debug = strparam(
+			s:"\c[red]2. Error! Empty weight string for class \c[brite]", d:class, s:"\c[red], replacer \c[brite]", s:monster,
+			s:""
+		);
+	}
+	else if (!wlen_ok)
+	{
+		debug = strparam(
+			s:"\c[red]2. Error! Non-numeric weight string \c[brite]", s:wlen, s:"\c[red] for class \c[brite]", d:class, s:"\c[red], replacer \c[brite]", s:monster,
+			s:""
+		);
+	}
+	else if (class < 0 || class >= NUMBER_OF_MONSTERS)
+	{
+		debug = strparam(
+			s:"\c[red]2. Error! Unknown class \c[brite]", d:class, s:"\c[red], should be from 0 to ", d:NUMBER_OF_MONSTERS-1,
+			s:"\n   while trying to add a \c[brite]", s:mons[class], s:"\c+ replacement, \c[brite]",
+			s:monster, s:"\c+, weighted \c[brite]", s:weight,
+			s:""
+		);
+	}
+	else
+	{
+		debug = strparam(
+			s:"\c[red]2. Error! Did you forget to start new theme? Code: \c[brite]", d:i, s:"!=", d:NUMBER_OF_THEMES,
+			s:"\n   while trying to add a \c[brite]", s:mons[class], s:"\c+ replacement, \c[brite]",
+			s:monster, s:"\c+, weighted \c[brite]", s:weight,
+			s:""
+		);
+	}
+	if(getCvar("qc_themedebug"))
+	{
+		printbold(s:debug);
+		log(s:debug);
+	}
+}
+
+function int isNumber(str s)
+{
+	if(!strlen(s)) return false;
+
+	int i,c;
+	for (i = 0; i < strlen(s); i++)
+	{
+		c = GetChar(s, i);
+		if(c < '0' || c > '9') return false;
+	}
+
+	return true;
+}
+
+script "QCDE_RegisterTheme_3_Finalize" (void)
+{
+	int i;
+	for(i = THEMES_BUILTIN; i < MAX_THEMES - 1; i++)
+	{
+		if(themes[i+1] != 0 && strlen(themes[i+1])) continue; // slot taken
+
+		break;
+	}
+
+	str debug;
+	if (i == NUMBER_OF_THEMES &&
+		monsters_added_so_far)
+	{
+		// Show theme name in menu
+		SetMenuThemeName();
+
+		// Increase theme counter, allowing this theme to be used
+		NUMBER_OF_THEMES++;
+
+		// Show list on titlemap
+		if(GameType() == GAME_TITLE_MAP || getCvar("qc_themedebug"))
+			ACS("QCDE_ShowMonsterPack", themes[i]);
+
+		debug = strparam(
+			s:"3. \c-Successfully finished filling up theme \c[brite]", s:themes[i],
+			s:"\c-! \n Use cvar '\c[brite]theme", d:~-NUMBER_OF_THEMES, s:"\c-' to activate.",
+			s:"\n   *  *  *"
+		);
+
+		// List out all
+		int mon, repl;
+		for(mon = 0; mon < NUMBER_OF_MONSTERS; mon++)
+		{
+			debug = strparam(s:debug, s:"\nReplacing ", s:mons[mon], s:":");
+			for(repl = NUMBER_OF_REPLACEMENTS - 1; repl >= 0; repl--)
+			{
+				if(stricmp(content[i][mon][repl][1], "0"))
+				debug = strparam(s:debug, s:"\n    \c[brite]", s:content[i][mon][repl][0], s:"    \c-", s:content[i][mon][repl][1]);
+			}
+		}
+	}
+	else if (!monsters_added_so_far)
+	{
+		themes[i] = 0;
+
+		debug = strparam(
+			s:"\c[red]3. Error! No monsters added for theme ", s:themes[i], s:".",
+			s:" Rolling back.",
+			s:""
+		);
+	}
+	else
+	{
+		debug = strparam(
+			s:"\c[red]3. Error! Can't finalize a theme not started.",
+			s:"\n If this error is followed by errors of adding monsters in reverse order,",
+			s:" use ACS_NamedExecuteWithResult instead of ACS_NamedExecuteAlways.",
+			s:""
+		);
+	}
+
+	if(getCvar("qc_themedebug"))
+	{
+		printbold(s:debug);
+		log(s:debug);
+	}
+}
+
+function void SetMenuThemeName(void)
+{
+	int me = CPN();
+
+	str cvarname  = strparam(s:"themename", d:NUMBER_OF_THEMES);
+	str cvarvalue = strparam(s:"\c[brite]", s:themes[NUMBER_OF_THEMES]);
+	SetCvarString(cvarname,cvarvalue);
+	SetUserCvarString(me, cvarname, cvarvalue);
+
+	cvarname  = strparam(s:"theme", d:NUMBER_OF_THEMES);
+	cvarvalue = 1;
+	if(GetCvar    (   cvarname) == -1) SetCvar    (    cvarname, cvarvalue);
+	if(GetUserCvar(me,cvarname) == -1) SetUserCvar(me, cvarname, cvarvalue);
+
+
+	int i;
+	for(i = NUMBER_OF_THEMES + 1; i <= 99; i++)
+	{
+		cvarname = strparam(s:"themename", d:i);
+		if(stricmp(GetUserCvarString(me, cvarname), "    ")) break;
+
+		cvarvalue = strparam(s:" ");
+		SetCvarString(cvarname,cvarvalue);
+		SetUserCvarString(me, cvarname, cvarvalue);
+	}
+}
+
+// User-callable script to list loaded themes
+Script "themes" (void) net
+{
+	str s;
+	if(GetCvar("qc_shuffleMode") == 1)
+		s = "One theme per map.";
+	else
+		s = "All themes intermixed.";
+
+	if(isSkirmish())
+		s = strparam(s:s, s:"\n\nRogue-like Skirmish mode:\nMonsters of all classes spawn in unexpected places.");
+
+	s = strparam(s:s, s:"\n\nLoaded themes\n*  *  *");
+	SetFont("BIGFONT");
+
+	int i;
+	for(i = 0; i < NUMBER_OF_THEMES; i++)
+	{
+		// Color if currently active
+		if(enabled_themes[i])
+			s = strparam(s:s, s:"\n\c[brite]");
+		else
+			s = strparam(s:s, s:"\n\c[graey]");
+
+		// Number and name
+		s = strparam(s:s, d:i, s:". ", s:themes[i]);
+
+		// Separate built-ins from user-made
+		if(i < THEMES_BUILTIN)
+			s = strparam(s:s, s:"\c[black]");
+		else
+			s = strparam(s:s, s:"\c[black] -- custom");
+
+		// Pagination
+		if(i % 26 == 25)
+		{
+			Print(s:s);
+			s = "";
+		}
+	}
+
+	Print(s:s);
+}
+
+// Server cheat to apply changes without breaking game session
+Script "reloadthemes" (void)
+{
+	enabled_themes[200] = false;
+	fillActiveThemes();
+}
+
+
+
+//=============================================================================
+//
+//	Permanent Trailing: spawn FX until dead
+//
+//	Decides coordinates by class.
+//	Note that it is generally a better idea to have a bit more ticDelay rather
+//	than extremely high failChance (like 250). However, difference is small.
+//
+//=============================================================================
+
+Script "QCDE_AttachTrailer" (int trailId, int ticDelay, int failChance)
+{
+	int x,y,z,x1,y1,z1,x2,y2,z2;
+	str trailClass;
+	// Spawn coordinates -- depends on trail class
+	switch(trailId)
+	{
+	case 1:
+		trailClass = "NgyrBodyTrail";
+		x1=-30.0; x2= 30.0;
+		y1=-30.0; y2= 30.0;
+		z1= 20.0; z2= 70.0;
+		break;
+	case 2:
+		trailClass = "IronMaidenDress";
+		x1=-1.0; x2=-1.0;
+		y1= 2.0; y2= 2.0;
+		z1= 5.0; z2= 5.0;
+		break;
+	default:
+		log(s:"\c[yellow]QCDE Warning: QCDE_AttachTrailer attached without a known trail. \ntrailId = ", d:trailId, s:"\nticDelay = ", d:ticDelay, s:"\nfailChance = ", d:failChance);
+		break;
+	}
+
+	while(GetActorProperty(0,APROP_Health) > 0)
+	{
+		Delay(ticDelay);
+		if(random(0,255) < failChance)   continue;
+		if(CheckInventory("NoTrailing")) continue;
+
+		x = GetActorX(0) + random(x1,x2);
+		y = GetActorY(0) + random(y1,y2);
+		z = GetActorZ(0) + random(z1,z2);
+		SpawnForced(trailClass, x,y,z);
+	}
+}
+
+
+
+
+//=============================================================================
+//
+//	Boss Health Scalar: extra challenge in cooperative
+//
+//	Increases health proportionally to square root of player count.
+//	Usually only executed once, on spawn.
+//
+//	*-~ is mace operator, borrowed from the Overwatch source code for Brigitte. :V
+//
+//=============================================================================
+
+Script "QCDE_BossHealthScalar" (int type)
+{
+	if(isSkirmish()) terminate;
+	if(!GetCvar("sv_coopBossScalar")) terminate;
+	if(IsZandronum(true) && GetInvasionState() == 2) terminate; // IS_INPROGRESS
+
+	int max = GetActorProperty(0, APROP_HEALTH);
+
+	int players = PlayerCount();
+	if(!players) players = 1;
+	int perc, puc;
+
+	switch(type)
+	{
+	default:
+	case 0: // big boss
+		perc = FixedSqrt(0.5 *-~ players) / 2 + 0.5;
+		puc = PartyUpgradeCount() * 5;
+		break;
+	case 1: // mini boss
+		perc = FixedSqrt(FixedSqrt(0.5 *-~ players)) / 2 + 0.5;
+		puc = PartyUpgradeCount() * 2;
+		break;
+	}
+
+	int newmax = max * perc / 1.0;
+	newmax += max * puc / 100;
+
+	//log(n:0, s:" had ", d:max, s:" HP, but being around ", d:players, s:" players with ", d:puc, s:" upgrades made it ", d:newmax, s:".      Debug info: pc",d:players, s:" $",f:0.5 *-~ players, s:"  perc%",f:perc, s:"  puc%",d:puc);
+	SetActorProperty(0, APROP_HEALTH, newmax);
+}
+
+//=============================================================================
+//
+//	Check if I am a Flyer
+//
+//	Used by the generic monster class to decide which flags to set/unset when
+//  the monster is thumped. You dont want a grounded caco after thump expires
+//
+//=============================================================================
+
+Script "QCDE_CheckIfFlyer" (void)
+{
+	SetResultValue(CheckFlag(0,"FLOAT"));
+}
+
+//=============================================================================
+//
+//	Check if I do not bleed
+//
+//	Used by the generic monster class to decide if it will spawn gibblets of
+//	debris when affected by caleb's crotch voodoo attack
+//
+//=============================================================================
+
+Script "QCDE_CheckIfNoBlood" (void)
+{
+	SetResultValue(CheckFlag(0,"NOBLOOD"));
+}
+
+
+
+//=============================================================================
+//
+//	Monster death
+//
+//	Does all the necessary checks and activates class-based action (for example,
+//	drops a heart for an enemy killed by Caleb).
+//
+//=============================================================================
+
+Script "QCDE_MonsterDeath" (int xdeath)
+{
+	GiveInventory("ImDead",1);
+	ACS("QCDE_MonsterUpgradeDrop");
+	ACS("QCDE_Target_Taunt",3 + xdeath);
+
+	if(!IsKillerEligibleForKillBonus()) terminate;
+
+	str scrypt = strparam(s:"QCDE_MonsterKill_", s:GetActorClass(GetActorProperty(0, APROP_TargetTID)));
+	ACS(scrypt, xdeath);
+}

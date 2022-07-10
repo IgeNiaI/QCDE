@@ -1,0 +1,241 @@
+//================================================================================================================
+//================================================================================================================
+//
+//	Lost soul, sprites Phobos687
+//================================================================================================================
+//================================================================================================================
+Actor D4LostSoul : QCDE_MonsterSmall 15457
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	var int user_cooldown;
+	Health 80
+	Radius 16
+	Height 56
+	Mass 50
+	Speed 8
+	Damage 0
+	PainChance 256
+	Monster
+	+FLOAT +NOGRAVITY +MISSILEMORE +DONTFALL +NOICEDEATH
+	SeeSound	"Doom4/Monsters/LostSoul/Sight"
+	PainSound	"Doom4/Monsters/LostSoul/Pain"
+	DeathSound	"skull/death"
+	ActiveSound	"Doom4/Monsters/LostSoul/Idle"
+	Obituary "$OB_SKULL"
+	+DONTCORPSE
+	Tag "$TAG_D4LostSoul" // "Lost Soul"
+	States
+	{
+	Spawn:
+		PSUL A 0 A_SetUserVar(user_cooldown,4) //gives a bit of time so that it doesnt attack immediately after spawning
+		Goto Super::Spawn
+	Idle:
+		PSUL A 2 BRIGHT Light("BlueSmallFlicker1DLS")
+		PSUL A 0 A_Look
+		Loop
+	See:
+		PSUL A 0 A_JumpIf(user_cooldown>=0,"Wander")
+		PSUL A 0 A_GiveInventory("SoulIdleProc")
+		PSUL A 2 BRIGHT Light("BlueSmallFlicker1DLS") A_Chase
+		PSUL A 0 A_GiveInventory("SoulIdleProc")
+		PSUL A 2 BRIGHT Light("BlueSmallFlicker1DLS") A_Chase("","")
+		Loop
+	Wander:
+		PSUL A 0 A_GiveInventory("SoulIdleProc")
+		PSUL A 0 A_Chase("Melee","",CHF_DONTMOVE)
+		PSUL A 2 BRIGHT Light("BlueSmallFlicker1DLS") A_Wander
+		PSUL A 0 A_GiveInventory("SoulIdleProc")
+		PSUL A 0 A_Chase("Melee","",CHF_DONTMOVE)
+		PSUL A 2 BRIGHT Light("BlueSmallFlicker1DLS") A_Wander
+		PSUL A 0 A_SetUserVar(user_cooldown,user_cooldown-1)
+		Goto See
+
+	Melee:
+		PSUL A 0 A_Die("SkullExplo")
+		Goto Death
+	Missile:
+		PSUL A 0 A_FaceTarget
+		PSUL A 0 A_PlaySound("Doom4/Monsters/LostSoul/Attack",CHAN_AUTO,0.6,false,1.15)
+		PSUL AAAAAAAAAAAAAAA 2 BRIGHT Light("OrangeMediumFlicker3DLS") A_GiveInventory("SoulAggroProc")
+		PSUL B 0 BRIGHT A_SkullAttack(24)	//attack frame
+		PSUL A 0 A_SetUserVar(user_cooldown,26)	//sets the cooldown timer, about 3 sec
+		PSUL B 2 BRIGHT Light("OrangeMediumFlicker3DLS") A_GiveInventory("SoulAttackProc")
+		Wait
+	Pain:
+		PSUL CC 2 BRIGHT Light("BlueSmallFlicker1DLS") A_GiveInventory("SoulIdleProc")
+		PSUL C 0 A_Pain
+		PSUL C 2 BRIGHT Light("BlueSmallFlicker1DLS") A_GiveInventory("SoulIdleProc")
+		Goto See
+
+	Death.SkullExplo:
+		PSUL A 0 A_CustomMissile("LostSoulExploder",0,0,0)
+		Goto Death
+	XDeathChecksDone:
+	DeathChecksDone:
+		PSUL D 0 A_ChangeFlag(THRUACTORS,true)
+		PSUL D 0 A_Scream
+		PSUL D 0 A_NoBlocking
+		PSUL DDDDD 0 A_SpawnItemEx("LostSoulExploParticle",0,0,25,frandom(-2,2),frandom(-2,2),frandom(-2,2),random(0,359),SXF_NOCHECKPOSITION)
+		TNT1 A 2 Light("BlueMediumFlicker1")
+		TNT1 A 2 Light("BlueMediumFlicker2")
+		TNT1 A 1 Light("BlueMediumFlicker3")
+		TNT1 A 1 Light("BlueSmallFlicker1")
+		TNT1 A 1 Light("BlueSmallFlicker2")
+	Death.Corpse:
+		TNT1 A 1 Light("BlueSmallFlicker3")
+		Stop
+	}
+}
+
+
+Actor LostSoulExploder
+{
+	Projectile
+	Speed 0
+	Height 1
+	Radius 1
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 1 NODELAY A_Explode(40,64,0)
+		Stop
+	}
+}
+
+
+
+
+//*********************************************
+//
+Actor LostSoulRedFlame2
+{
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Scale 0.3
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		R031 PQRSTUVWXYZ 2 A_FadeOut(0.05)
+		Wait
+	}
+}
+
+Actor LostSoulExploParticle : LostSoulRedFlame2
+{
+	Scale 0.8
+	Alpha 0.7
+	Translation "0:255=%[0,0,0]:[0.4,0.4,1.5]"
+	States
+	{
+	Spawn:
+		FX58 ABCDEFGHIJKLMNOPQ 1 BRIGHT
+		Stop
+	}
+}
+
+Actor LostSoulRedFlame : LostSoulRedFlame2
+{
+	Alpha 0.8
+	XScale 0.6
+	YScale 0.4
+	Translation "0:255=%[0,0,0]:[2,0.2,0]"
+	States
+	{
+	Spawn:
+		TNT1 A 1 NODELAY A_Jump(255,"Type1","Type2","Type3")
+	Type1:
+		TNT1 A 0 A_Jump(220,5,6,7,8,9,10)
+		X052 ABCDEFGHIJKLMNOPRS 1 Bright A_GiveInventory("FadeShrinkProc")
+		Stop
+	Type2:
+		TNT1 A 0 A_Jump(220,5,6,7,8,9,10)
+		X053 ABCDEFGHIJKLMNOPRSTU 1 Bright A_GiveInventory("FadeShrinkProc")
+		Stop
+	Type3:
+		TNT1 A 0 A_Jump(220,5,6,7,8,9,10)
+		X054 ABCDEFGHIJKLMNOPRS 1 Bright A_GiveInventory("FadeShrinkProc")
+		Stop
+	}
+}
+
+Actor LostSoulBlueFlame : LostSoulRedFlame
+{
+	Translation "0:255=%[0,0,0]:[0.7,0.9,2.0]"
+}
+
+Actor LostSoulGreenFlame : LostSoulRedFlame
+{
+	Translation "0:255=%[0,0,0]:[1.0,2.0,1.1]"
+}
+
+Actor LostSoulRedFlare : LostSoulRedFlame2
+{
+	Scale 0.9
+	Alpha 0.7
+	States
+	{
+	Spawn:
+		TNT1 A 2 NODELAY A_Jump(255,"Type1","Type2")
+	Type1:
+		PROJ DEFGHI 1 Bright
+		Stop
+	Type2:
+		PROJ JKLMNO 1 Bright
+		Stop
+	}
+}
+
+Actor LostSoulBlueFlare : LostSoulRedFlare
+{
+	Translation "0:255=%[0,0,0]:[0.7,0.9,2.0]"
+}
+
+Actor LostSoulGreenFlare : LostSoulRedFlare
+{
+	Translation "0:255=%[0,0,0]:[1.0,2.0,1.1]"
+}
+
+Actor SoulAggroProc : CustomInventory
+{ States { Pickup:
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("LostSoulRedFlame",random(-5,-15),random(10,-10),25,frandom(0,-1.5),frandom(1.5,-1.5),frandom(1,2),0,SXF_NOCHECKPOSITION,160)
+		TNT1 A 0 A_SpawnItemEx("LostSoulRedFlare",-5,random(10,-10),25+random(10,-10),0,0,frandom(0.1,0.5),0,SXF_NOCHECKPOSITION,128)
+		Stop
+}	}
+
+Actor SoulAttackProc : CustomInventory
+{ States { Pickup:
+		TNT1 A 0 A_SpawnItemEx("LostSoulRedFlame",random(-5,-15),random(10,-10),25,frandom(0,-1.5),frandom(1.5,-1.5),frandom(1,2),0,SXF_NOCHECKPOSITION,160)
+		TNT1 A 0 A_SpawnItemEx("LostSoulRedFlare",-5,random(10,-10),25+random(10,-10),0,0,frandom(0.1,0.5),0,SXF_NOCHECKPOSITION,128)
+		Stop
+}	}
+
+Actor SoulIdleProc : CustomInventory
+{ States { Pickup:
+		PSUL A 0 A_SpawnItemEx("LostSoulBlueFlame",random(-5,-15),random(10,-10),25,frandom(0,-1.5),frandom(1.5,-1.5),frandom(1,2),0,SXF_NOCHECKPOSITION,160)
+		PSUL A 0 A_SpawnItemEx("LostSoulBlueFlare",-8,random(10,-10),25+random(10,-10),0,0,frandom(0.1,0.5),0,SXF_NOCHECKPOSITION,128)
+		Stop
+}	}
+
+Actor FriendlySoulIdleProc : CustomInventory
+{ States { Pickup:
+		PSUL A 0 A_SpawnItemEx("LostSoulGreenFlame",random(-5,-15),random(10,-10),25,frandom(0,-1.5),frandom(1.5,-1.5),frandom(1,2),0,SXF_NOCHECKPOSITION,160)
+		PSUL A 0 A_SpawnItemEx("LostSoulGreenFlare",-8,random(10,-10),25+random(10,-10),0,0,frandom(0.1,0.5),0,SXF_NOCHECKPOSITION,128)
+		Stop
+}	}
+
+Actor FadeShrinkProc : CustomInventory
+{ States { Pickup:
+		TNT1 A 0 A_SetScale(scalex-0.03,scaley-0.03)
+		TNT1 A 0 A_FadeOut(0.05)
+		Stop
+}	}
+
+
+

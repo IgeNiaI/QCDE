@@ -1,0 +1,268 @@
+//==========================================================
+//	Base weapon, from which all inherit
+//==========================================================
+Actor QCWeapon : Weapon
+{
+	Weapon.Kickback 100 //this changes in many weapons
+	Weapon.BobStyle Alpha
+	Weapon.BobSpeed 2.3
+	Weapon.BobRangeX 0.7
+	Weapon.BobRangeY 0.5
+	Inventory.PickupSound "QC/Items/WeaponPick"
+	Inventory.Respawntics 175 //5sec
+	+WEAPON.NOALERT
+}
+
+
+
+//==========================================================
+//	Hit beeps, "Low", "Mid", "Big", "Max"
+//==========================================================
+
+Actor HitBeepLow : CustomInventory
+{
+	+INVENTORY.ALWAYSPICKUP
+	RenderStyle None
+	States
+	{
+	Spawn:
+		MEGA A 6
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("PlayHitBeep",1,"Play")
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	Play:
+		TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"PlayStrong")
+		TNT1 A 0 A_PlaySound("QC/UI/HitBeepLow",CHAN_7|CHAN_UI,0.7,0,140)
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	PlayStrong:
+		TNT1 A 0 A_PlaySound("QC/UI/HitBeepMid",CHAN_7|CHAN_UI,0.7,0,140)
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	Mark:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_HitMark",0)
+		Stop
+	}
+}
+
+Actor HitBeepMid : CustomInventory
+{
+	+INVENTORY.ALWAYSPICKUP
+	RenderStyle None
+	States
+	{
+	Spawn:
+		MEGA A 6
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("PlayHitBeep",1,"Play")
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	Play:
+		TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"PlayStrong")
+		TNT1 A 0 A_PlaySound("QC/UI/HitBeepMid",CHAN_7|CHAN_UI,0.85,0,140)
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	PlayStrong:
+		TNT1 A 0 A_PlaySound("QC/UI/HitBeepBig",CHAN_7|CHAN_UI,0.7,0,140)
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	Mark:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_HitMark",0)
+		Stop
+	}
+}
+
+Actor HitBeepBig : CustomInventory
+{
+	+INVENTORY.ALWAYSPICKUP
+	RenderStyle None
+	States
+	{
+	Spawn:
+		MEGA A 6
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("PlayHitBeep",1,"Play")
+		Stop
+	Play:
+		TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"PlayStrong")
+		TNT1 A 0 A_PlaySound("QC/UI/HitBeepBig",CHAN_7|CHAN_UI,1,0,140)
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	PlayStrong:
+		TNT1 A 0 A_PlaySound("QC/UI/HitBeepMax",CHAN_7|CHAN_UI,0.7,0,140)
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	Mark:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_HitMark",0)
+		Stop
+	}
+}
+
+Actor HitBeepMax : CustomInventory
+{
+	+INVENTORY.ALWAYSPICKUP
+	RenderStyle None
+	States
+	{
+	Spawn:
+		MEGA A 6
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("PlayHitBeep",1,"Play")
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	Play:
+		TNT1 A 0 A_PlaySound("QC/UI/HitBeepMax",CHAN_7|CHAN_UI,1,0,140)
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	Mark:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_HitMark",0)
+		Stop
+	}
+}
+
+Actor HitBeepTotem : CustomInventory
+{
+	+INVENTORY.ALWAYSPICKUP
+	RenderStyle None
+	States
+	{
+	Spawn:
+		MEGA A 6
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("PlayHitBeep",1,"Play")
+		Stop
+	Play:
+		TNT1 A 0 A_PlaySound("QC/UI/HitBeepTotem",CHAN_7|CHAN_UI,1,0,140)
+		TNT1 A 0 A_JumpIfInventory("PlayHitMark",1,"Mark")
+		Stop
+	Mark:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_HitMark",0)
+		Stop
+	}
+}
+
+//==========================================================
+//	Generic player bullet puffs
+//==========================================================
+
+Actor QCBulletPuff
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	+CLIENTSIDEONLY +NONETID
+	+PUFFGETSOWNER
+	+PUFFONACTORS
+	+FORCEXYBILLBOARD
+	+MTHRUSPECIES
+	+DONTSPLASH
+	Renderstyle Add
+	Decal "BulletChip"
+	Scale 0.35
+	States
+	{
+	Spawn: //hit non bleeding actor
+		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepLow",1)
+		Goto Crash
+	XDeath: //hit bleeding actor
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		Stop
+	Crash: //hit everything else
+		TNT1 A 0 A_PlaySound("BulletHitConcreteRandom",7,0.6,0,9)
+	Choose:
+		TNT1 A 0 A_Jump(256,"Type1","Type2")
+	Type1:
+		FX57 ABCD 1 Bright
+		FX57 EFGHIJ 2 Bright
+		Stop
+	Type2:
+		FX57 KLMN 1 Bright
+		FX57 OPQRST 2 Bright
+		Stop
+	}
+}
+
+
+//How is this different than the regular puff? Different hit beep sound
+Actor QCShotgunPuff : QCBulletPuff
+{
+	States
+	{
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		Stop
+	}
+}
+
+Actor QCBulletPuff_DM  : QCBulletPuff  { -MTHRUSPECIES }
+Actor QCShotgunPuff_DM : QCShotgunPuff { -MTHRUSPECIES }
+
+
+//Bullet puff for monsters, same as player's, except no hit beep sound
+// and doesn't go through players
+Actor QCBulletPuffMonster : QCBulletPuff replaces BulletPuff
+{
+	-MTHRUSPECIES
+	States
+	{
+	XDeath:
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		Stop
+	}
+}
+
+
+
+//----------------------------------------------
+// This is a fake weapon to hack around the weapon desync in
+// net games caused by ACS weapon switching, like when going
+// from doomslayer bfg back to RL.
+Actor FakeruWeapun : DoomWeapon
+{
+	Height 40
+	Weapon.Kickback 40
+	Weapon.SelectionOrder 988759
+	Obituary "$OB_FakeruWeapun" // "%o was blank'd by %k."
+	Inventory.PickupMessage "$GOT_FakeruWeapun" // "Picked up a nutin."
+	Tag "$TAG_FakeruWeapun" // " "
+	Scale 0.47
+	+CHEATNOTWEAPON
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.NO_AUTO_SWITCH
+	States
+	{
+	Spawn:
+		NULL A 35 NoDelay
+		Stop
+	//-----------------------
+	// Ready Seq
+	//-----------------------
+	Ready:
+		NULL A 0 //A_PrintBold("yep",0.1)
+		NULL A 3 A_WeaponReady(WRF_NOFIRE)
+		Loop
+	//-----------------------
+	// Select/Deselect Seq
+	//-----------------------
+	Select:
+		NULL A 1 A_Raise
+		NULL AAA 0 A_Raise
+		Loop
+
+	Deselect:
+		NULL A 1 A_Lower
+		NULL AAA 0 A_Lower
+		Loop
+
+	Fire:
+		NULL ABC 3
+		Goto Ready
+
+	}
+}

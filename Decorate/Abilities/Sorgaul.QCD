@@ -1,0 +1,406 @@
+// --------------------------------------------------------------------------
+//
+// Sorgaul's abilities
+//
+// Active:	Rage
+//			Becomes melee only, faster, with devastating punches
+//
+// Passive: Armor hoarder
+//			Gets extra armor from shield and vest pickups
+//
+// --------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+
+Actor PrimalRageProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("SorgaulFists")
+		TNT1 A 0 A_GiveInventory("RageSpeed")
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DMPower")
+		TNT1 A 0 A_GiveInventory("RageRegenActivePvE")
+		Goto FinishCommon
+	DMPower:
+		TNT1 A 0 A_GiveInventory("RageRegenActive")
+		Goto FinishCommon
+	FinishCommon:
+		TNT1 A 0 A_GiveInventory("ActiveInProgress")
+		TNT1 A 0 A_SelectWeapon("SorgaulFists")
+		Stop
+	}
+}
+
+
+
+Actor SorgaulFists : QCWeapon
+{
+	Weapon.Kickback 0
+	Weapon.SelectionOrder 2000
+	Obituary "$OB_SorgaulFists" // "%o was torn apart by %k's fists."
+	Tag "$TAG_SorgaulFists" // "Fists"
+	+INVENTORY.UNDROPPABLE
+	+WEAPON.MELEEWEAPON
+	+WEAPON.CHEATNOTWEAPON
+	AttackSound "QC/Abilities/Sorgaul/Hit"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	//-----------------------
+	// Ready Seq
+	//-----------------------
+	Ready:
+		TNT1 A 0 ACS_NamedExecuteAlways("CheckIfCorrectPlayer",0,6) // 6 = sorgaul
+	Readier:
+		QP13 X 4 A_WeaponReady(WRF_DISABLESWITCH)
+		Loop
+	//-----------------------
+	// Select/Deselect Seq
+	//-----------------------
+	Select:
+		TNT1 A 0 A_ZoomFactor(0.8)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Sorgaul/RageLoop",5,1.0,1,0.85)
+		QP13 X 1 A_Raise
+		"####" "########" 0 A_Raise
+		Loop
+
+	Deselect:
+		TNT1 A 0 A_ZoomFactor(1.0)
+		QP13 X 1 A_Lower
+		Loop
+
+	//-----------------------
+	// Fire Seq
+	//-----------------------
+	Fire:
+		QP13 X 1 Offset(0,42)
+		QP13 X 1 Offset(0,52)
+		TNT1 A 3 A_TakeInventory("PunchedAlready")
+		TNT1 A 35 A_Jump(256,"RightHand","LeftHand")
+	RightHand:
+		QP13 Y 0 A_GunFlash("FlashRight",GFF_NOEXTCHANGE)
+		QP13 Z 1 Offset(100,62) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(75,52) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(15,32) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(-35,52) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(-60,62) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(-75,67) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(-85,72) A_GiveInventory("SorgaulMeleeProc")
+		TNT1 A 10
+		TNT1 A 0 A_TakeInventory("PunchedAlready")
+		TNT1 A 0 A_TakeInventory("ThirdPersonPunch")
+		TNT1 A 0 A_Refire("LeftHand")
+		Goto Readier
+	LeftHand:
+		QP13 Y 0 A_GunFlash("FlashLeft",GFF_NOEXTCHANGE)
+		QP13 Y 1 Offset(-100,62) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(-75,52) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(-15,32) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(35,52) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(60,62) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(75,67) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(85,72) A_GiveInventory("SorgaulMeleeProc")
+		TNT1 A 10
+		TNT1 A 0 A_TakeInventory("PunchedAlready")
+		TNT1 A 0 A_TakeInventory("ThirdPersonPunch")
+		TNT1 A 0 A_Refire("RightHand")
+		Goto Readier
+
+	FlashRight:
+			TNT1 A 0 A_GiveInventory("ThirdPersonPunch")
+			TNT1 A 0 A_PlaySound("QC/Abilities/Sorgaul/Whoosh",CHAN_WEAPON)
+			TNT1 A 0 A_SetAngle(angle+1)	TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 0 A_SetAngle(angle+1) 	TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 1
+			TNT1 A 1
+			TNT1 A 0 A_SetAngle(angle-1)	TNT1 A 1 A_SetPitch(pitch+0.5)
+			TNT1 A 0 A_SetAngle(angle-0.5)	TNT1 A 1 A_SetPitch(pitch+0.5)
+			TNT1 A 1 A_SetAngle(angle-0.5)
+			Stop
+	FlashLeft:
+			TNT1 A 0 A_GiveInventory("ThirdPersonPunch")
+			TNT1 A 0 A_PlaySound("QC/Abilities/Sorgaul/Whoosh",CHAN_WEAPON)
+			TNT1 A 0 A_SetAngle(angle-1)	TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 0 A_SetAngle(angle-1) 	TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 1
+			TNT1 A 1
+			TNT1 A 0 A_SetAngle(angle+1)	TNT1 A 1 A_SetPitch(pitch+0.5)
+			TNT1 A 0 A_SetAngle(angle+0.5)	TNT1 A 1 A_SetPitch(pitch+0.5)
+			TNT1 A 1 A_SetAngle(angle+0.5)
+			Stop
+	AltFire:
+		TNT1 A 0 A_CheckFloor("DoLunge")
+		QP13 X 3 A_WeaponReady(WRF_DISABLESWITCH|WRF_NOFIRE) //do nothing since you cant lunge in mid air
+		Goto Readier
+	DoLunge:
+		TNT1 A 0 A_GiveInventory("ThirdPersonPunch")
+		QP13 X 0 A_Recoil((cos(pitch)*-25))
+		QP13 X 0 A_ChangeVelocity(0,0,(sin(pitch)*-25),1)
+		QP13 X 0 SetPlayerProperty(0,1,PROP_TOTALLYFROZEN)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Sorgaul/Whoosh",CHAN_WEAPON)
+		QP13 Z 1 Offset(100,62) A_GiveInventory("SorgaulLungeProc")
+		QP13 Z 1 Offset(75,52) A_GiveInventory("SorgaulLungeProc")
+		QP13 Z 1 Offset(15,32) A_GiveInventory("SorgaulLungeProc")
+		QP13 ZZZZ 1 Offset(1,42) A_GiveInventory("SorgaulLungeProc")
+		QP13 Z 1 Offset(-35,52) A_GiveInventory("SorgaulLungeProc")
+		QP13 Z 1 Offset(-60,62) A_GiveInventory("SorgaulLungeProc")
+		QP13 Z 1 Offset(-75,67) A_GiveInventory("SorgaulLungeProc")
+		QP13 Z 1 Offset(-85,72) A_GiveInventory("SorgaulLungeProc")
+		TNT1 AAAAA 1 Offset(-85,72) A_GiveInventory("SorgaulLungeProc")
+		TNT1 A 0 A_TakeInventory("ThirdPersonPunch")
+		TNT1 A 0 A_TakeInventory("PunchedAlready")
+		TNT1 A 14 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
+		TNT1 A 0 A_JumpIfInventory("ImFullyFrozen",1,"SkipUnfreeze")//if frozen by duke, this doesnt unfreeze her right there
+		QP13 X 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN)
+	SkipUnfreeze:
+		QP13 X 1 Offset(4,62)
+		QP13 X 1 Offset(3,52)
+		QP13 X 1 Offset(2,42)
+		QP13 X 1 Offset(1,32)
+		Goto Readier
+
+	}
+}
+
+
+Actor SorgaulMeleeProc : CustomInventory
+{ States { Pickup:
+		TNT1 A 1 A_JumpIfInventory("PunchedAlready",1,"Death")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)<2,"Coop")
+		TNT1 A 0 A_CustomPunch(75,1,0,"SorgaulPuff",128)
+		Goto Death
+	Coop:
+		TNT1 A 0 A_CustomPunch(random(13,25)*10,1,0,"SorgaulPuffCoop",80)
+		Goto Death
+	Death:
+		TNT1 A 35
+		Stop
+}	}
+
+Actor SorgaulLungeProc : CustomInventory
+{ States { Pickup:
+		TNT1 A 1 A_JumpIfInventory("PunchedAlready",1,"Death")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)<2,"Coop")
+		TNT1 A 0 A_RailAttack(100,0,0,None,None,RGF_SILENT|RGF_NOPIERCING|RGF_EXPLICITANGLE,0,"SorgaulPuffHeavy",-45,0,128)
+		TNT1 A 0 A_RailAttack(100,0,0,None,None,RGF_SILENT|RGF_NOPIERCING|RGF_EXPLICITANGLE,0,"SorgaulPuffHeavy",0,0,128)
+		TNT1 A 0 A_RailAttack(100,0,0,None,None,RGF_SILENT|RGF_NOPIERCING|RGF_EXPLICITANGLE,0,"SorgaulPuffHeavy",45,0,128)
+		Goto Death
+	Coop:
+		TNT1 A 0 A_RailAttack(500,0,0,None,None,RGF_SILENT|RGF_NOPIERCING|RGF_EXPLICITANGLE,0,"SorgaulPuffHeavy",-45,0,128)
+		TNT1 A 0 A_RailAttack(500,0,0,None,None,RGF_SILENT|RGF_NOPIERCING|RGF_EXPLICITANGLE,0,"SorgaulPuffHeavy",0,0,128)
+		TNT1 A 0 A_RailAttack(500,0,0,None,None,RGF_SILENT|RGF_NOPIERCING|RGF_EXPLICITANGLE,0,"SorgaulPuffHeavy",45,0,128)
+		Goto Death
+	Death:
+		TNT1 A 35
+		Stop
+}	}
+
+Actor SorgaulPuff
+{
+	+NOINTERACTION
+	+THRUGHOST
+	+PUFFGETSOWNER
+	+ALWAYSPUFF
+	+PUFFONACTORS
+	+NOTIMEFREEZE
+	+EXTREMEDEATH
+	RenderStyle None
+	SeeSound ""
+	ActiveSound "nothing"
+	AttackSound "nothing"
+	Obituary "$OB_SorgaulPuff" // "%o has lost a fist fight to %k."
+	states
+	{
+	Spawn:	//hit non bleeding actor
+		TNT1 A 0 NODELAY A_GiveToTarget("PunchedAlready",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 10
+		Stop
+	Xdeath:	//hit bleeding actor
+		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 10
+		Stop
+	Crash:	//Hit everything else
+		TNT1 A 10
+		Stop
+	}
+}
+Actor SorgaulPuffHeavy : SorgaulPuff
+{
+	states
+	{
+	Spawn:	//hit non bleeding actor
+		TNT1 A 0 NODELAY A_GiveToTarget("PunchedAlready",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 10
+		Stop
+	Xdeath:	//hit bleeding actor
+		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor SorgaulPuffCoop    : SorgaulPuff    { +MTHRUSPECIES }
+
+Actor PrimalRageCleanerProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("SorgaulFists")
+		TNT1 A 0 A_TakeInventory("SorgaulFistsBot")
+		TNT1 A 0 A_TakeInventory("PowerRageSpeed")
+		TNT1 A 0 A_TakeInventory("PowerRageRegen")
+		TNT1 A 0 A_TakeInventory("PowerRageRegenPvE")
+		TNT1 A 0 A_TakeInventory("PowerFrightener")
+		TNT1 A 0 A_TakeInventory("ThirdPersonPunch")
+		TNT1 A 0 A_TakeInventory("ActiveInProgress")
+		TNT1 A 0 A_JumpIfInventory("ImFullyFrozen",1,"SkipUnfreeze")
+		TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN) //needs to unfreeze in case ability ends in the middle of an alt fire leap
+		Stop
+	SkipUnfreeze:
+		TNT1 A 0
+		Stop
+	}
+}
+
+
+
+Actor PowerRageSpeed : PowerSpeed
+{
+	Speed 1.4
+}
+Actor RageSpeed : InvulnerabilitySphere
+{
+	//Powerup.Colormap 0,0,0, 1,0.7,0.7
+	Powerup.Color 255, 0, 0, 0.25
+	powerup.duration -100
+	Powerup.Type "RageSpeed"
+}
+
+Actor PowerRageRegen : PowerRegeneration
+{
+  Powerup.Strength 10	//max heal is 80
+}
+Actor RageRegenActive : PowerupGiver
+{
+   +INVENTORY.AUTOACTIVATE
+   +INVENTORY.ALWAYSPICKUP
+	powerup.duration -100
+	Powerup.Type "RageRegen"
+}
+
+
+Actor PowerRageRegenPvE : PowerRegeneration
+{
+  Powerup.Strength 30
+}
+Actor RageRegenActivePvE : PowerupGiver
+{
+   +INVENTORY.AUTOACTIVATE
+   +INVENTORY.ALWAYSPICKUP
+	powerup.duration -100
+	Powerup.Type "RageRegenPvE"
+}
+
+
+//--------------------------------------------------------
+// For bots, because they dont know how to go +forward
+// when using a +WEAPON.MELEEWEAPON
+//--------------------------------------------------------
+
+Actor SorgaulFistsBot : SorgaulFists
+{
+	States
+	{
+	//-----------------------
+	// Fire Seq
+	//-----------------------
+	Fire:
+		QP13 X 1 Offset(0,42)
+		QP13 X 1 Offset(0,52)
+		TNT1 A 3 A_TakeInventory("PunchedAlready")
+		TNT1 A 35 A_Jump(256,"RightHand","LeftHand")
+	RightHand:
+		TNT1 A 0 A_Jump(16,"AltFire")
+		QP13 Y 0 A_GunFlash("FlashRightBot",GFF_NOEXTCHANGE)
+		QP13 Z 1 Offset(100,62) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(75,52) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(15,32) A_GiveInventory("SorgaulMeleeProc")
+		TNT1 A 0 A_Recoil(-4)
+		QP13 Z 1 Offset(-35,52) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(-60,62) A_GiveInventory("SorgaulMeleeProc")
+		TNT1 A 0 A_Recoil(-4)
+		QP13 Z 1 Offset(-75,67) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Z 1 Offset(-85,72) A_GiveInventory("SorgaulMeleeProc")
+		TNT1 AAAAA 2 A_Recoil(-4)
+		TNT1 A 0 A_TakeInventory("PunchedAlready")
+		TNT1 A 0 A_TakeInventory("ThirdPersonPunch")
+		TNT1 A 0 A_Refire("LeftHand")
+		Goto Ready
+	LeftHand:
+		QP13 Y 0 A_GunFlash("FlashLeftBot",GFF_NOEXTCHANGE)
+		QP13 Y 1 Offset(-100,62) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(-75,52) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(-15,32) A_GiveInventory("SorgaulMeleeProc")
+		TNT1 A 0 A_Recoil(-4)
+		QP13 Y 1 Offset(35,52) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(60,62) A_GiveInventory("SorgaulMeleeProc")
+		TNT1 A 0 A_Recoil(-4)
+		QP13 Y 1 Offset(75,67) A_GiveInventory("SorgaulMeleeProc")
+		QP13 Y 1 Offset(85,72) A_GiveInventory("SorgaulMeleeProc")
+		TNT1 AAAAA 2 A_Recoil(-4)
+		TNT1 A 0 A_TakeInventory("PunchedAlready")
+		TNT1 A 0 A_TakeInventory("ThirdPersonPunch")
+		TNT1 A 0 A_Refire("RightHand")
+		Goto Ready
+
+	FlashRightBot:
+			TNT1 A 0 A_GiveInventory("ThirdPersonPunch")
+			TNT1 A 0 A_PlaySound("QC/Abilities/Sorgaul/Whoosh",CHAN_WEAPON)
+			TNT1 A 0 A_SetAngle(angle+1)	TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 0 A_SetAngle(angle+1) 	TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 1
+			TNT1 A 1
+			TNT1 A 0 A_SetAngle(angle-1)	TNT1 A 1 A_SetPitch(pitch+0.5)
+			TNT1 A 0 A_SetAngle(angle-0.5)	TNT1 A 1 A_SetPitch(pitch+0.5)
+			TNT1 A 1 A_SetAngle(angle-0.5)
+			Stop
+	FlashLeftBot:
+			TNT1 A 0 A_GiveInventory("ThirdPersonPunch")
+			TNT1 A 0 A_PlaySound("QC/Abilities/Sorgaul/Whoosh",CHAN_WEAPON)
+			TNT1 A 0 A_SetAngle(angle-1)	TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 0 A_SetAngle(angle-1) 	TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 1
+			TNT1 A 1
+			TNT1 A 0 A_SetAngle(angle+1)	TNT1 A 1 A_SetPitch(pitch+0.5)
+			TNT1 A 0 A_SetAngle(angle+0.5)	TNT1 A 1 A_SetPitch(pitch+0.5)
+			TNT1 A 1 A_SetAngle(angle+0.5)
+			Stop
+
+	}
+}
+
+
+
+Actor PrimalRageBotProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("SorgaulFistsBot")
+		TNT1 A 0 A_GiveInventory("RageSpeed")
+		TNT1 A 0 A_GiveInventory("RageRegenActive")
+		TNT1 A 0 A_GiveInventory("ActiveInProgress")
+		TNT1 A 0 A_SelectWeapon("SorgaulFists")
+		Stop
+	}
+}

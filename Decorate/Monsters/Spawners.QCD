@@ -1,0 +1,97 @@
+
+Actor "FriendlyProc" : CustomInventory { States { Pickup: TNT1 A 0 A_ChangeFlag("FRIENDLY", true) Stop } }
+Actor   "AmbushProc" : CustomInventory { States { Pickup: TNT1 A 0 A_ChangeFlag("AMBUSH"  , true) Stop } }
+Actor  "DormantProc" : CustomInventory { States { Pickup: TNT1 A 0 A_ChangeFlag("DORMANT" , true) Stop } }
+
+Actor BaseSpawner { +ISMONSTER +NOINTERACTION +NOTONAUTOMAP -RANDOMIZE }
+
+Actor TrackingSpawner : BaseSpawner
+{
+	Health 0x7CDE9A64
+	States
+	{
+	Track:
+		TNT1 A 100 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SpawnerTracking") == true, "Death")
+		Loop
+	Death:
+		TNT1 A 0 A_BossDeath
+		Stop
+	}
+}
+
+// For E2M8 and E3M8 bosses, who call it immediately on death before animation,
+// to die gorgeously without being interrupted by text screen.
+Actor TrackingSlowner : TrackingSpawner
+{
+	States
+	{
+	Death:
+		TNT1 A 80
+		TNT1 A 0 A_BossDeath
+		Stop
+	}
+}
+
+// 2-tic pause before spawning is necessary for dynamic themes to register
+
+Actor        ZombiemanSpawner :     BaseSpawner replaces        Zombieman { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 0) Stop       } }
+Actor       ShotgunGuySpawner :     BaseSpawner replaces       ShotgunGuy { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 1) Stop       } }
+Actor      ChaingunGuySpawner :     BaseSpawner replaces      ChaingunGuy { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 2) Stop       } }
+Actor          DoomImpSpawner :     BaseSpawner replaces          DoomImp { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 3) Stop       } }
+Actor            DemonSpawner :     BaseSpawner replaces            Demon { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 4) Stop       } }
+Actor         LostSoulSpawner :     BaseSpawner replaces         LostSoul { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 5) Stop       } }
+Actor        CacodemonSpawner :     BaseSpawner replaces        Cacodemon { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 6) Stop       } }
+Actor       HellKnightSpawner :     BaseSpawner replaces       HellKnight { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 7) Stop       } }
+Actor      BaronOfHellSpawner : TrackingSpawner replaces      BaronOfHell { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 8) Goto Track } }
+Actor      ArachnotronSpawner : TrackingSpawner replaces      Arachnotron { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 9) Goto Track } }
+Actor    PainElementalSpawner :     BaseSpawner replaces    PainElemental { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,10) Stop       } }
+Actor         RevenantSpawner :     BaseSpawner replaces         Revenant { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,11) Stop       } }
+Actor            FatsoSpawner : TrackingSpawner replaces            Fatso { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,12) Goto Track } }
+Actor         ArchvileSpawner :     BaseSpawner replaces         Archvile { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,13) Stop       } }
+Actor SpiderMastermindSpawner : TrackingSlowner replaces SpiderMastermind { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,14) Goto Track } }
+Actor       CyberdemonSpawner : TrackingSlowner replaces       Cyberdemon { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,15) Goto Track } }
+Actor          SpectreSpawner :     BaseSpawner replaces          Spectre { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,16) Stop       } }
+Actor    WolfensteinSSSpawner :     BaseSpawner replaces    WolfensteinSS { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,17) Stop       } }
+
+Actor        StealthZombiemanSpawner :        ZombiemanSpawner replaces StealthZombieman        {}
+Actor       StealthShotgunGuySpawner :       ShotgunGuySpawner replaces StealthShotgunGuy       {}
+Actor      StealthChaingunGuySpawner :      ChaingunGuySpawner replaces StealthChaingunGuy      {}
+Actor          StealthDoomImpSpawner :          DoomImpSpawner replaces StealthDoomImp          {}
+Actor            StealthDemonSpawner :            DemonSpawner replaces StealthDemon            {}
+//Actor         StealthLostSoulSpawner :         LostSoulSpawner replaces StealthLostSoul         {}
+Actor        StealthCacodemonSpawner :        CacodemonSpawner replaces StealthCacodemon        {}
+Actor       StealthHellKnightSpawner :       HellKnightSpawner replaces StealthHellKnight       {}
+Actor      StealthBaronOfHellSpawner :      BaronOfHellSpawner replaces StealthBaron            {}
+Actor      StealthArachnotronSpawner :      ArachnotronSpawner replaces StealthArachnotron      {}
+//Actor    StealthPainElementalSpawner :    PainElementalSpawner replaces StealthPainElemental    {}
+Actor         StealthRevenantSpawner :         RevenantSpawner replaces StealthRevenant         {}
+Actor            StealthFatsoSpawner :            FatsoSpawner replaces StealthFatso            {}
+Actor         StealthArchvileSpawner :         ArchvileSpawner replaces StealthArchvile         {}
+//Actor StealthSpiderMastermindSpawner : SpiderMastermindSpawner replaces StealthSpiderMastermind {}
+//Actor       StealthCyberdemonSpawner :       CyberdemonSpawner replaces StealthCyberdemon       {}
+//Actor          StealthSpectreSpawner :          SpectreSpawner replaces StealthSpectre          {}
+//Actor    StealthWolfensteinSSSpawner :    WolfensteinSSSpawner replaces StealthWolfensteinSS    {}
+
+// Corpses
+// Most of these are unused. They're still there, for completeness.
+// Also, you can use them in ACS. Maybe we'll add doomednums to these later.
+
+Actor        DeadZombiemanSpawner : BaseSpawner replaces  DeadZombieman { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 0,true) Stop } }
+Actor       DeadShotgunGuySpawner : BaseSpawner replaces DeadShotgunGuy { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 1,true) Stop } }
+Actor      DeadChaingunGuySpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 2,true) Stop } }
+Actor          DeadDoomImpSpawner : BaseSpawner replaces    DeadDoomImp { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 3,true) Stop } }
+Actor            DeadDemonSpawner : BaseSpawner replaces      DeadDemon { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 4,true) Stop } }
+Actor         DeadLostSoulSpawner : BaseSpawner replaces   DeadLostSoul { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 5,true) Stop } }
+Actor        DeadCacodemonSpawner : BaseSpawner replaces  DeadCacodemon { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 6,true) Stop } }
+Actor       DeadHellKnightSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 7,true) Stop } }
+Actor      DeadBaronOfHellSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 8,true) Stop } }
+Actor      DeadArachnotronSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0, 9,true) Stop } }
+Actor    DeadPainElementalSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,10,true) Stop } }
+Actor         DeadRevenantSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,11,true) Stop } }
+Actor            DeadFatsoSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,12,true) Stop } }
+Actor         DeadArchvileSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,13,true) Stop } }
+Actor DeadSpiderMastermindSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,14,true) Stop } }
+Actor       DeadCyberdemonSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,15,true) Stop } }
+Actor          DeadSpectreSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,16,true) Stop } }
+Actor    DeadWolfensteinSSSpawner : BaseSpawner                         { States { Spawn: TNT1 A 0 NoDelay A_Jump(0,1) TNT1 A 2 A_Jump(0,1) TNT1 A 100 ACS_NamedExecuteAlways("QCDE_MonsterSpawner",0,17,true) Stop } }
+

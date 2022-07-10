@@ -1,0 +1,363 @@
+#library "POWERUPS"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//
+// Droppable powerups
+// Created by Michaelis for Quake Champions: Doom Edition.
+//
+//=============================================================================
+
+str powerups[NUMBER_OF_POWERUPS] = {"Quad", "Protec", "Invul", "Infin"};
+
+
+// This script is called every tic to read tic duration into tokens.
+// [Ms] The script name is lame. But naming things is one of the two hard
+// things in programming.
+// Other two are invalidating cache and off-by-one errors. BA DUM TSSS
+
+Script "QCDE_TokenizePowerups" (void)
+{
+	if(GetActorProperty(0, APROP_HEALTH) <= 0) terminate; // don't touch dead
+
+	int i;
+	for(i = 0; i < NUMBER_OF_POWERUPS; i++)
+	{
+		int ticname = strParam(s:powerups[i], s:"Timer");
+		int powername = strParam(s:"Power", s:powerups[i]);
+
+		int secs = GetActorPowerupTics(0, powername) / 35;
+		SetInventory(ticname, secs);
+
+		// Play timeout sound
+		str soundname = strparam(s:"QC/UI/Powerup/", s:powerups[i], s:"_Off");
+		if(secs  &&  secs <= 8  &&  (Timer() % 35 == 29))
+			LocalAmbientSound(soundname, 127);
+	}
+}
+
+
+
+// This script cycles through all powerups and attempts to drop each.
+
+Script "QCDE_DM_DropPowerups" (void)
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate;
+
+	int i;
+	for(i = 0; i < NUMBER_OF_POWERUPS; i++)
+	{
+		ACS_NamedExecuteAlways("QCDE_DropPowerup", 0, powerups[i]);
+	}
+}
+
+
+// This script drops supplied powerup by name, if it's present.
+
+Script "QCDE_DropPowerup" (int powersubname)
+{
+	int ticname = strParam(s:powersubname, s:"Timer");
+	int secs = CheckInventory(ticname);
+
+	if(secs < 5) terminate;
+
+	int powername = strParam(s:"Power", s:powersubname);
+	SetInventory(powername, 0);
+
+	// Spawn the object
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	str itemname = strParam(s:"QC", s:powersubname);
+	int tid = UniqueTid();
+
+	SpawnForced(itemname, x,y,z, tid);
+	Thing_SetSpecial(tid, 84, 234, secs, secs); // set duration
+	Thing_ChangeTid(tid, 0); // free tid just in case
+}
+
+
+// This script restores indicator if it was removed, for example, by Ghostwalk.
+
+Script "QCDE_RestoreIndicator" (void)
+{
+	int i;
+	for(i = 0; i < NUMBER_OF_POWERUPS; i++)
+	{
+		int powername = strParam(s:"Power", s:powerups[i]               );
+		int indicator = strParam(           s:powerups[i], s:"Indicator");
+
+		bool present = GetActorPowerupTics(0, powername);
+
+		if(present) SpawnProjectile(0, indicator, 0, 0, 0, 0, 0);
+	}
+}
+
+
+// This script is called by dropped powerup on pickup to set duration.
+// Its number is a reference to the alpha tester of D4T.
+
+int powersecs;
+Script 234 (int secs)
+{
+	//PrintBold(s:"Seconds written on pickup = ", d:secs);
+	//log(s:"Seconds written on pickup = ", d:secs);
+	powersecs = secs;
+}
+
+
+// This script gives powerup with duration set by celestial body 234.
+
+int makeMore = true;
+Script "QCDE_ApplyPowerSecs" (int powerType)
+{
+	delay(1); // wait for value from script 234 to arrive
+	//PrintBold(s:"Seconds applied from the pickup = ", d:powersecs);
+	//log(s:"Seconds applied from the pickup = ", d:powersecs);
+	if(powersecs <= 0)
+	{
+		powersecs = 30;
+		if(CheckInventory("LongerPowerupToken"))
+			powersecs = 60;
+		//log(s:"Powerup is newborn, so doesn't carry its amount. Applying ", d:powersecs);
+	}
+	//if(!makeMore) PrintBold(s:"Pickup of ", s:powerups[powerType], s:" signals to factory to make more.");
+	makeMore = true;
+
+	if(GetActorProperty(0, APROP_HEALTH) > 0)
+	{
+		str powerName = strParam(s:"SecondOf", s:powerups[powerType]);
+		while(powersecs --> 0) GiveInventory(powerName,1);
+		ACS("QCDE_TokenizePowerups",0);
+	}
+	else // Unlikely situation where player is dead while picking up powerup
+	{    // Is it even possible? I so much doubt that.
+		GiveInventory(strParam(s:powerups[powerType], s:"Timer"), 30);
+		ACS_NamedExecuteAlways("QCDE_DM_DropPowerups", 0);
+	}
+}
+
+
+// These scripts talk to Decorate about whether powerup has been collected and
+// another one should be made.
+
+Script "QCDE_PowerupSpawned" (int which)
+{
+	SetTidIfHadNone(POWERUP_TIDBASE, POWERUP_TIDLAST);
+	makeMore = false;
+
+	// Powerups made by Powerup Factory have specific TID and float
+	if(ActivatorTID() == FRESHPOWERUP_TID)
+	{
+		SetActorProperty(0,APROP_Gravity,0);
+		SetActorVelocity(0,0,0,0,0,0);
+	}
+}
+
+Script "QCDE_IsPowerupCollected" (void)
+{
+	SetResultValue(makeMore);
+}
+
+
+// This script announces that powerup was taken.
+
+Script "QCDE_PowerupTaken" (int type) clientside
+{
+	if(type < 0 || type >= NUMBER_OF_POWERUPS)
+	{
+		log(s:"Trying to announce pickup of powerup ", d:type);
+		terminate;
+	}
+
+	str sound = strparam(s:"QC/UI/Powerup/", s:powerups[type]);
+
+	// Spectator-aware subjectivity
+	int me = ConsolePlayerNumber();
+	int plr = CheckPlayerCamera(me) - 1000; // player being played, or spectated
+
+	// My own thing
+	if(PlayerNumber() == plr)
+	{
+		sound = strparam(s:sound, s:"_Picked");
+	}
+	// We're all one team in cooperative
+	else if(GameType() < GAME_NET_DEATHMATCH)
+	{
+		terminate; // actually, that was just annoying. Don't make a sound
+		sound = strparam(s:sound, s:"_TeamPicked");
+	}
+	// Maybe we're on one team in a teamgame?
+	else if(GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM) ==
+			GetPlayerInfo(plr,            PLAYERINFO_TEAM) &&
+		CheckInventory("TeamDeathmatch"))
+	{
+		sound = strparam(s:sound, s:"_TeamPicked");
+	}
+	// Alright, we were never friends :nuke:
+	else
+	{
+		sound = strparam(s:sound, s:"_EnemyPicked");
+	}
+
+	AmbientSound(sound,127);
+	//log(s:"Now playing: \c[cyan]", s:sound);
+}
+
+
+// [Ms] I feel mega lame duplicating the script above because I can't list Elder's Soul as a normal powerup T_T
+
+#define NUMBER_OF_OBJECTIVES 1
+str objectives[NUMBER_OF_OBJECTIVES] = { "Soul" };
+Script "QCDE_ObjectiveTaken" (int type) clientside
+{
+	if(type < 0 || type >= NUMBER_OF_OBJECTIVES)
+	{
+		log(s:"Trying to announce pickup of objective ", d:type);
+		terminate;
+	}
+
+	str sound = strparam(s:"QC/UI/Powerup/", s:objectives[type]);
+
+	// Spectator-aware subjectivity
+	int me = ConsolePlayerNumber();
+	int plr = CheckPlayerCamera(me) - 1000; // player being played, or spectated
+
+	// My own thing
+	if(PlayerNumber() == plr)
+	{
+		sound = strparam(s:sound, s:"_Picked");
+	}
+	// We're all one team in cooperative
+	else if(GameType() < GAME_NET_DEATHMATCH)
+	{
+		sound = strparam(s:sound, s:"_TeamPicked");
+	}
+	// Maybe we're on one team in a teamgame?
+	else if(GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM) ==
+			GetPlayerInfo(plr,            PLAYERINFO_TEAM) &&
+		CheckInventory("TeamDeathmatch"))
+	{
+		sound = strparam(s:sound, s:"_TeamPicked");
+	}
+	// Alright, we were never friends :nuke:
+	else
+	{
+		sound = strparam(s:sound, s:"_EnemyPicked");
+	}
+
+	AmbientSound(sound,127);
+	//log(s:"Now playing: \c[bfg]", s:sound);
+}
+
+
+// This script decides where to spawn powerups from now on.
+
+#define SPOT_CANDIDATES 5
+int px[SPOT_CANDIDATES], py[SPOT_CANDIDATES], pz[SPOT_CANDIDATES];
+int decided;
+Script "QCDE_DM_InitPowerups" (int noRoomCheck)
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate;
+	if(decided) terminate;
+
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+
+	int now;
+	if(noRoomCheck || HasRoom("PowerupSpaceRequirement", x,y,z)) now = AddPoint(x,y,z);
+	//log(d:noRoomCheck, s:"added ", d:now, s:" - ", f:x, s:", ", f:y, s:", ", f:z);
+
+	// check if enough points
+	int last = SPOT_CANDIDATES - 1;
+	if(px[last] || py[last] || pz[last])
+	{
+		int gc = GraphCenter();
+		x = px[gc];	y = py[gc];	z = pz[gc];
+		//log(s:"finalized ", d:now, s:" - ", f:x, s:", ", f:y, s:", ", f:z);
+		SpawnForced("PowerupFactory", x,y,z, POWERUPFACTORY_TID);
+		decided = true;
+	}
+}
+
+function int AddPoint(int x, int y, int z)
+{
+	int i;
+
+	// scroll to first uninitialized spot
+	for(i = 0; i < SPOT_CANDIDATES; i++) if(!px[i] && !py[i] && !pz[i]) break;
+
+	// maybe all are already filled by preplaced powerup factory spot?
+	if(i >= SPOT_CANDIDATES) return i;
+
+	// then fill it
+	px[i] = x; py[i] = y; pz[i] = z;
+	return i;
+}
+
+function int GraphCenter(void)
+{
+	int a, b, min = 32000.0, max = 0.0, minimal, now;
+	for(a = 0; a < SPOT_CANDIDATES; a++)
+	{
+		max = 0.0;
+		for(b = 0; b < SPOT_CANDIDATES; b++)
+		if(a != b)
+		{
+			now = fdistance(a,b);
+			if(max < now) max = now;
+		}
+
+		if(min > max)
+		{
+			min = max;
+			minimal = a;
+		}
+	}
+	return minimal;
+}
+
+// From ZDoom wiki, by Isle
+function int fdistance (int a, int b)
+{
+	int len;
+	int x = px[a] - px[b];
+	int y = py[a] - py[b];
+	int z = pz[a] - pz[b];
+
+	int ang = vectorangle(x,y);
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+	else len = fixeddiv(x, cos(ang));
+
+	ang = vectorangle(len, z);
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(z, sin(ang));
+	else len = fixeddiv(len, cos(ang));
+
+	return len;
+}
+
+// Actor utility function.
+// From AcsUtils by Korshun, DjSkaarj, Monsterovich, TechnoDoomed1.
+function bool HasRoom(str classname, int x, int y, int z)
+{
+	int tid = UniqueTid();
+	if(!Spawn(classname, x,y,z, tid)) return false;
+	Thing_Remove(tid);
+	return true;
+}
+
+// Enforces immediate spawning of powerup factory
+// by populating whole list of possible spots with this exact spot.
+Script "QCDE_DM_PowerupFactorySpot" (void)
+{
+	int i = 0;
+	while(i ++< SPOT_CANDIDATES)
+	{
+		px[i] = 0; py[i] = 0; pz[i] = 0;
+		ACS("QCDE_DM_InitPowerups", true);
+	}
+}
+

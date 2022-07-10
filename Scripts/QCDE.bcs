@@ -1,0 +1,1010 @@
+#library "QCDE"
+#include "zcommon.acs"
+#include "AACS.acs"
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Global variables ///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+global int 0:taunt_chance;
+global str 1:timedisplay;
+global str 2:score1[];
+global str 3:score2[];
+global str 4:pos1[];
+global str 5:pos2[];
+global str 6:name1[];
+global str 7:name2[];
+global str 8:frags1[];
+global str 9:frags2[];
+global str 10:speedometer[];
+global int 60:enabled_themes[];
+global int 61:deserved[];
+global int 62:secretkey;
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Conversion /////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+str btos[2] = {"false", "true"};
+
+str dtot[2] = {"blue", "red"};
+
+function int IsPVE(void) { return GameType() <  GAME_NET_DEATHMATCH; }
+function int IsPVP(void) { return GameType() >= GAME_NET_DEATHMATCH; }
+
+function int clamp(int x, int min, int max)
+{
+	if(x < min) x = min;
+	if(x > max) x = max;
+	return x;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// TIDs ///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+#libdefine   FRESHPOWERUP_TID  995
+#libdefine   GAMEMODEITEM_TID  996
+#libdefine POWERUPFACTORY_TID  997
+#libdefine           GMAN_TID  998
+// TID 999 intentionally left unused
+// Player tidbase is just 1000 as a literal
+#libdefine    DIREORB_TIDBASE 1064
+#libdefine      TOTEM_TIDBASE 1128
+#libdefine     HITBOX_TIDBASE 1192
+#libdefine  MAULOTAUR_TIDBASE 1960
+#libdefine     MARKER_TIDBASE 2024
+#libdefine    BFGBALL_TIDBASE 2088
+#libdefine FREEZESHOT_TIDBASE 2152
+#libdefine        BOB_TIDBASE 2216
+#libdefine     BIGGIE_TIDBASE 2280 //  152 items
+#libdefine     BIGGIE_TIDLAST 2431
+#libdefine     WEAPON_TIDBASE 2432 //  232 items
+#libdefine     WEAPON_TIDLAST 2663 //  232 items
+#libdefine   MONSTER1_TIDBASE 2664 // 2048 items
+#libdefine   MONSTER2_TIDBASE 4712 // 2048 items
+#libdefine        KEY_TIDBASE 6760
+#libdefine        KEY_TIDLAST 6823
+#libdefine    LOOTBOX_TIDBASE 6824
+#libdefine    LOOTBOX_TIDLAST 6887
+#libdefine GUIDEDROCK_TIDBASE 6888
+#libdefine GUIDEDROCK_TIDLAST 6951
+#libdefine UPGRADEFRM_TIDBASE 6952
+#libdefine UPGRADEFRM_TIDLAST 7079
+#libdefine    UPGRADE_TIDBASE 7080
+#libdefine    UPGRADE_TIDLAST 7207
+#libdefine DOPPELGANG_TIDBASE 7208
+#libdefine DOPPELGANG_TIDLAST 7271
+#libdefine MAJORCHECK_TIDBASE 7272
+#libdefine  STRIKESET_TIDBASE 7336
+#libdefine    POWERUP_TIDBASE 7400
+#libdefine    POWERUP_TIDLAST 7463
+#libdefine IMMOLATION_TIDBASE 7464
+#libdefine      SKULL_TIDBASE 7528
+#libdefine   MONSTER3_TIDBASE 7592 // 2048 items
+#libdefine   MONSTER4_TIDBASE 9640 // 2048 items
+#libdefine   RESPSPOT_TIDBASE 11688
+
+int fails[256];
+str failnames[256] = {
+	"Dire Orb",
+	"Totem",
+	"Totem Hitbox",0, 0,0, 0,0, 0,0, 0,0, 0,0,
+	"Dave",
+	"Ally Marker",
+	"BFG 9k ball",
+	"Freezeball",
+	"Bob",
+	"Big Item",0,
+	"Weapon",0,0,0,
+	"Small Monster", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	"Medium Monster",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	"Key",
+	"Lootbox",
+	"Guided Rocket",
+	"Upgrade Border",0,
+	"Upgrade Pickup",0,
+	"Eleena Doppelganger",
+	"Major Wall Check",
+	"Airbomb Marker",
+	"Powerup",
+	"Lucienne Immolation",
+	"Hunter Skull",
+	"Big Monster", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	"Boss Monster",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	// and more
+};
+int tiditer[256];
+function int SetTidIfHadNone(int firsttid, int lasttid)
+{
+	if(ActivatorTid()) return ActivatorTid();
+
+	int tidgrp = (firsttid - 1000) / 64 - 1;
+
+	if(!tiditer[tidgrp]) tiditer[tidgrp] = firsttid;
+
+	int tid =~- tiditer[tidgrp];
+	while(IsTidUsed(++tid))
+		if(tid >= lasttid) break;
+
+	tiditer[tidgrp] = tid;
+
+	// Worst case: we're running out of tids
+	if(tid == lasttid)
+	{
+		if(!fails[tidgrp])
+		{
+			fails[tidgrp] = true;
+			log(s:"\c[bludi]QCDE Error: exceeded maximum for ", s:failnames[tidgrp], s:" collection (failid = ", d:tidgrp, s:"). Expect things in this category to break.");
+		}
+	}
+
+	Thing_ChangeTID(0, tid);
+	return tid;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// HMIDs //////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+#libdefine ID_BLOOD_BELOW         3127
+#libdefine ID_BLOOD_MAX           3511
+#libdefine ID_FLASH               3512
+#libdefine ID_FLASH_MAX           3575
+
+#libdefine ID_CHANGEWEAPON_OVER  20000
+#libdefine ID_CHANGEWEAPON_1     20001
+#libdefine ID_CHANGEWEAPON_2     20002
+#libdefine ID_CHANGEWEAPON_3     20003
+#libdefine ID_CHANGEWEAPON_UNDER 20008
+#libdefine ID_CHANGEWEAPON_BACK  20009
+
+#libdefine ID_COOPTANK_1         20011
+#libdefine ID_COOPTANK_2         20012
+#libdefine ID_COOPTANK_3         20013
+
+#libdefine ID_WEAPON_FACE_BASE   20020
+#libdefine ID_WEAPON_TEXT_BASE   20030
+#libdefine ID_WEAPON_BACK_BASE   20040
+
+#libdefine ID_LOOTBOX_OVER       20051
+#libdefine ID_LOOTBOX_TEXT       20052
+#libdefine ID_LOOTBOX_DESC       20053
+#libdefine ID_LOOTBOX_IMAGE      20054
+#libdefine ID_LOOTBOX_UNDER      20055
+#libdefine ID_LOOTBOX_FADE       20056
+#libdefine ID_LOOTBOX_BACK       20057
+
+// K and V refer to "key" and "value".
+// For example, TYPEK is id for word "Type:",
+// and TYPEV is the value keyed as "Type:", be it "Light", "Medium", or "Heavy"
+// D stands for "description".
+#libdefine ID_CLASSINFO_OVER     20061
+#libdefine ID_CLASSINFO_TITLE    20062
+#libdefine ID_CLASSINFO_DESC     20063
+#libdefine ID_CLASSINFO_BODY     20064
+#libdefine ID_CLASSINFO_FACE     20065
+#libdefine ID_CLASSINFO_TYPEK    20066
+#libdefine ID_CLASSINFO_TYPEV    20067
+#libdefine ID_CLASSINFO_HEALK    20068
+#libdefine ID_CLASSINFO_HEALV    20069
+#libdefine ID_CLASSINFO_ARMOK    20070
+#libdefine ID_CLASSINFO_ARMOV    20071
+#libdefine ID_CLASSINFO_ACTIK    20072
+#libdefine ID_CLASSINFO_ACTIV    20073
+#libdefine ID_CLASSINFO_ACTID    20074
+#libdefine ID_CLASSINFO_PASSK    20075
+#libdefine ID_CLASSINFO_PASSV    20076
+#libdefine ID_CLASSINFO_PASSD    20077
+#libdefine ID_CLASSINFO_PAS2K    20078
+#libdefine ID_CLASSINFO_PAS2V    20079
+#libdefine ID_CLASSINFO_PAS2D    20080
+#libdefine ID_CLASSINFO_ACTIMG   20081
+#libdefine ID_CLASSINFO_PVPCD    20082
+#libdefine ID_CLASSINFO_PVECD    20083
+#libdefine ID_CLASSINFO_VERS     20088
+#libdefine ID_CLASSINFO_BACK     20089
+
+#libdefine ID_LOWHEALTH_TEXT     20090
+
+#libdefine ID_CHCLASS_OVER       20091
+#libdefine ID_CHCLASS_TEXT       20092
+#libdefine ID_CHCLASS_DESC       20093
+#libdefine ID_CHCLASS_IMAGE      20094
+#libdefine ID_CHCLASS_UNDER      20095
+#libdefine ID_CHCLASS_FADE       20096
+#libdefine ID_CHCLASS_BACK       20097
+
+#libdefine ID_LOWAMMO_TEXT       20100
+
+#libdefine ID_GRAYSON_PROMPT     20101
+#libdefine ID_GRAYSON_ICON       20102
+#libdefine ID_GRAYSON_PROMPT2    20103
+#libdefine ID_GRAYSON_ICON2      20104
+#libdefine ID_GRAYSON_FLASH      20105
+#libdefine ID_GRAYSON_FLASH2     20106
+
+#libdefine ID_ERADICATOR_PERC    20111
+#libdefine ID_ERADICATOR_MORE    20112
+
+#libdefine ID_UPGRADE_ICON       20124
+#libdefine ID_UPGRADE_OUTLINE    20125
+#libdefine ID_UPGRADE_TEXT       20126
+#libdefine ID_UPGRADE_DESC       20127
+#libdefine ID_UPGRADE_BACK       20129
+
+#libdefine HMID_FT_TEAM_1        20133
+#libdefine HMID_FT_TEAM_2        20134
+
+#libdefine ID_TITLEMAP_VERSION   25322 // collides with radar graphics, THIS_IS_FINE.JPG
+#libdefine ID_TITLEMAP_THEMES    25323 // goes up to 25424
+
+#libdefine ID_SCOREBOARD_FLASH_1 20200 // goes up to 20263
+#libdefine ID_SCOREBOARD_1       20264 // goes up to 20327
+#libdefine ID_POWERUP_TIMERS_1   20328 // goes up to 20359
+#libdefine ID_POWERUP_PICS_1     20360 // goes up to 20391
+#libdefine ID_RADAR_PLAYERS      20392 // goes up to 20455
+#libdefine ID_RADAR_BACKGROUND_1 20456 // goes up to 20457
+#libdefine ID_RADAR_TOTEMS       20458 // goes up to 20777
+#libdefine ID_RADAR_DAVES        20778 // goes up to 20841
+#libdefine ID_RADAR_ITEMS        20842 // goes up to 20993
+#libdefine ID_RADAR_WEAPONS      20994 // goes up to 21225
+#libdefine ID_RADAR_MONSTERS12   21226 // goes up to 25321
+#libdefine ID_RADAR_KEYS         25322 // goes up to 25385
+#libdefine ID_RADAR_LOOTBOXES    25386 // goes up to 25449
+#libdefine ID_RADAR_POWERUPS     25450 // goes up to 25513
+#libdefine ID_RADAR_UPGRADES     25513 // goes up to 25641
+
+#libdefine HMID_VORMATUR_DARKNESS 26576 // up to 26639
+#libdefine HMID_TUNNEL_VISION     26640 // up to 26703
+#libdefine HMID_HUNTER_LESSON     26704 // up to 26767
+#libdefine HMID_COW_GAS           26768 // up to 26799
+#libdefine HMID_SUBTITLES         26997
+#libdefine HMID_LOADING           26998
+#libdefine HMID_CAMERA            26999
+
+#libdefine HMID_CHARGES           26700 // up to 26709
+
+#libdefine HMID_ACS_WEAPON        26710
+
+#libdefine HMID_TAROT_ARROW_L     26711
+#libdefine HMID_TAROT_ARROW_U     26712
+#libdefine HMID_TAROT_ARROW_R     26713
+#libdefine HMID_TAROT_TEXT_L      26714
+#libdefine HMID_TAROT_TEXT_U      26715
+#libdefine HMID_TAROT_TEXT_R      26716
+#libdefine HMID_TAROT_CARDGLW     26717 // up to 26719
+#libdefine HMID_TAROT_CARD_L      26720
+#libdefine HMID_TAROT_CARD_U      26721
+#libdefine HMID_TAROT_CARD_R      26722
+#libdefine HMID_TAROT_PICK_1      26723
+#libdefine HMID_TAROT_PICK_2      26724
+#libdefine HMID_TAROT_PICK_3      26725
+
+#libdefine HMID_CP_CARD_FLASH     26810
+#libdefine HMID_CP_CARD_FRAME     26811
+#libdefine HMID_CP_CURRENT_CARD   26812
+#libdefine HMID_CP_DESC_NAME      26813
+#libdefine HMID_CP_DESC_ABIL1     26814
+#libdefine HMID_CP_DESC_ABIL2     26815
+#libdefine HMID_CP_DESC_ABIL3     26816
+#libdefine HMID_CP_DESC_ABILICON  26817
+#libdefine HMID_CP_DESC_FIGURINE  26818
+#libdefine HMID_CP_DESC_PORTRAIT  26819
+#libdefine HMID_CP_BODY_TYPE1     26820
+#libdefine HMID_CP_BODY_TYPE2     26821
+#libdefine HMID_CP_BODY_TYPE3     26822
+#libdefine HMID_CP_TITLE          26823
+#libdefine HMID_CP_WHEN           26824
+#libdefine HMID_CP_BACK           26825
+#libdefine HMID_CP_BACK_CARDS     26826 // up to 26925
+#libdefine HMID_CP_BACK2          26926
+
+#libdefine ID_RADAR_MONSTERS34    26904 // goes up to 31000
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Translations ///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+#libdefine TRANSLATION_REDTEAM  9200
+#libdefine TRANSLATION_BLUETEAM 9201
+#libdefine TRANSLATION_GCOLOR   9202
+#libdefine TRANSLATION_MGCOLOR  9203
+#libdefine TRANSLATION_SGCOLOR  9204
+#libdefine TRANSLATION_NGCOLOR  9205
+#libdefine TRANSLATION_HMGCOLOR 9206
+#libdefine TRANSLATION_SSGCOLOR 9207
+#libdefine TRANSLATION_SNGCOLOR 9208
+#libdefine TRANSLATION_TBCOLOR  9209
+#libdefine TRANSLATION_RLCOLOR  9210
+#libdefine TRANSLATION_LGCOLOR  9211
+#libdefine TRANSLATION_RGCOLOR  9212
+#libdefine TRANSLATION_BFGCOLOR 9213
+#libdefine TRANSLATION_HUNTERTRACE     9214
+#libdefine TRANSLATION_HUNTERTRACEBLUE 9215
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Misc ///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+#libdefine ALL_OF_IT  0x7FFFFFFF
+#libdefine NUMBER_OF_CLASSES  31
+#libdefine NUMBER_OF_MONSTERS 18
+#libdefine NUMBER_OF_WEAPONS  23
+#libdefine NUMBER_OF_UPGRADES  3 // per weapon
+#libdefine NUMBER_OF_POWERUPS  4
+#libdefine NUMBER_OF_KEYS      6
+#libdefine NUMBER_OF_TEAMS     2
+#libdefine NUMBER_OF_FLAGS     5
+#libdefine MAX_THEMES         99
+#libdefine THEMES_BUILTIN      5
+
+function void CheckQcdeLib(void)
+{
+	PrintBold(d:Timer(), s:": CheckQcdeLib -- PrintBold");
+	log(d:Timer(), s:": CheckQcdeLib -- log");
+}
+
+function int TimeNow(void)
+{
+	int tics    =  Timer()       % 35;
+	int seconds = (Timer() / 35) % 60;
+	int minutes = (Timer() / 35  / 60);
+	return strparam(d:minutes, s:":", d:seconds/10, d:seconds%10, s:".", d:tics);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Replace actor //////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+int _spec, _args0, _args1, _args2, _args3, _args4;
+Function int QCDE_SpawnReplacement(int class, int dead, int noCheckPosition, int removeSelf)
+{
+	// Spawn replacement
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	int angle = GetActorAngle(0) << 8; // just for logs
+	int tid = UniqueTid();
+
+	bool success;
+	if(noCheckPosition)
+		success = SpawnForced(class, x,y,z, tid, angle >> 16);
+	else
+		success = Spawn(class, x,y,z, tid, angle >> 16);
+
+	if(!success) return false;
+
+	// Transfer health (by percentage)
+	TransferHealthTo(tid);
+
+	// Transfer flags, store as spawner's tracer and finally transfer tid
+	if(CheckFlag(0,"FRIENDLY")) GiveActorInventory(tid, "FriendlyProc", 1);
+	if(CheckFlag(0,"AMBUSH"  )) GiveActorInventory(tid,   "AmbushProc", 1);
+	if(CheckFlag(0,"DORMANT" )) GiveActorInventory(tid,  "DormantProc", 1);
+	if(dead) GiveActorInventory(tid, "BecomeCorpseProc", 1);
+	SetPointer(AAPTR_TRACER, tid);
+	GiveInventory("TransferSpecialProc", 1); // <-- given to spawner, not spawnee!
+	SetThingSpecial(tid, _spec, _args0, _args1, _args2, _args3, _args4);
+	Thing_ChangeTid(tid, ActivatorTid());
+	Thing_ChangeTid(0, 0); // release tid from spawner itself
+	//printbold(s:"\c-Spawned ", s:sDead, s:"\c[brite]", s:class, s:"\c- at (", f:x, s:", ", f:y, s:", ", f:z, s:"; angle ", f:angle, s:").");
+
+	if(removeSelf) Thing_Remove(0);
+
+	return true;
+}
+
+// Special care for huge-ass health pools
+Function void TransferHealthTo(int tid)
+{
+	// Special case for spawner actors.
+	// All map-placed monsters are considered to be in 100% condition,
+	// no need to assign the fractional health.
+	int oldmax = GetActorProperty(0, APROP_SpawnHealth);
+	if(oldmax == 0x7CDE9A64) return;
+
+	int subdiv = 1.0;
+	int newmax = GetActorProperty(tid, APROP_SpawnHealth);
+	while((oldmax > fixeddiv(0.5,subdiv) ||
+	       newmax > fixeddiv(0.5,subdiv)) &&
+		   subdiv > 100)
+			subdiv /= 2;
+
+	int healthiness = GetActorProperty(0, APROP_Health) * subdiv / oldmax;
+	//log(d:tid, s:"    Healthiness: ", d:GetActorProperty(0, APROP_Health), s:"  *  ", d:subdiv, s:" / ", d:oldmax, s:"  =  ", d:healthiness, s:" / ", d:subdiv);
+	SetActorProperty(tid, APROP_Health, newmax * healthiness / subdiv);
+
+	//log(d:tid, s:"  Health transfer: ", d:newmax, s:"  *  ", d:healthiness, s:" / ", d:subdiv, s:"  =  ", d:GetActorProperty(tid, APROP_Health));
+}
+Script "QCDE_StoreSpecial1" (int spec, int args0, int args1)
+{
+	_spec = spec;
+	_args0 = args0;
+	_args1 = args1;
+}
+Script "QCDE_StoreSpecial2" (int args2, int args3, int args4)
+{
+	_args2 = args2;
+	_args3 = args3;
+	_args4 = args4;
+}
+Script "selfreplace" (void)
+{
+	QCDE_SpawnReplacement(GetActorClass(0), false, true, true);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Game modes /////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+int _teamplay       = -1;
+int _teamlms        = -1;
+int _teampossession = -1;
+int _ctf            = -1;
+int _domination     = -1;
+int _goddammitcarn  = -1;
+int _teamgame       = -1;
+
+function int isTeamGame(void)
+{
+	if(_teamgame == -1)
+	{
+		_teamplay       = getCvar("teamplay");
+		_teamlms        = getCvar("teamlms");
+		_teampossession = getCvar("teampossession");
+		_ctf            = getCvar("ctf");
+		_domination     = getCvar("domination");
+		_goddammitcarn  = getCvar("skulltag");
+		_teamgame       = getCvar("teamgame");
+	}
+	return _teamgame || _teamplay || _teamlms || _teampossession || _ctf || _domination || _goddammitcarn;
+}
+
+function int hasFlags(void)
+{
+	int Rf = CheckInventory("RedFlag")   << 0;
+	int Wf = CheckInventory("WhiteFlag") << 3;
+	int Bf = CheckInventory("BlueFlag")  << 1;
+	int Yf = CheckInventory("GoldFlag")  << 4;
+	int Gf = CheckInventory("GreenFlag") << 2;
+	int flagItems = rf | bf | gf | wf | yf;
+	return flagItems;
+}
+
+// todo after 2.2: use areEnemies here
+function int isEnemy(int otherPlayerNumber)
+{
+	if (PlayerNumber() == otherPlayerNumber) return false;
+
+	if (GameType() <= GAME_NET_COOPERATIVE && PlayerNumber() > -1) return false;
+
+	if (isTeamGame())
+		if (GetPlayerInfo(otherPlayerNumber,PLAYERINFO_TEAM) ==
+			GetPlayerInfo(PlayerNumber(),   PLAYERINFO_TEAM))
+			return false;
+
+	if (ClassifyActor(0) & ACTOR_MONSTER)
+	{
+		if (CheckFlag(0, "FRIENDLY")) return false;
+
+		if (GetActorProperty(0, APROP_MasterTID) == (otherPlayerNumber + 1000)) return false;
+	}
+
+	return true;
+}
+
+function int areEnemies(int plr, int otherPlayerNumber)
+{
+	if (plr == otherPlayerNumber) return false;
+
+	if (GameType() <= GAME_NET_COOPERATIVE) return false;
+
+	if (!isTeamGame()) return true;
+
+	return GetPlayerInfo(plr, PLAYERINFO_TEAM) !=
+		   GetPlayerInfo(otherPlayerNumber,PLAYERINFO_TEAM);
+}
+
+int skirmish = 0x1827;
+function int isSkirmish(void)
+{
+	// cache cvar
+	if(skirmish == 0x1827)
+		skirmish = GetCvar("qc_skirmishRogue") &&
+		           GameType() < GAME_NET_DEATHMATCH;
+
+	return skirmish;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Give or take ///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////// by Korshun // from ACSUtils //
+
+function void SetInventory(str item, int amount)
+{
+	int diff = amount - CheckInventory(item);
+	if (diff > 0)
+		GiveInventory(item, diff);
+	else if (diff < 0)
+		TakeInventory(item, -diff);
+}
+
+
+function void SetActorInventory(int tid, str item, int amount)
+{
+	int diff = amount - CheckActorInventory(tid, item);
+	if (diff > 0)
+		GiveActorInventory(tid, item, diff);
+	else if (diff < 0)
+		TakeActorInventory(tid, item, -diff);
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Give and check /////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+function int GiveAndCheck(str inventory, int howmuch)
+{
+	int countBefore = CheckInventory(inventory);
+	GiveInventory(inventory, howmuch);
+	int countAfter = CheckInventory(inventory);
+	return countAfter - countBefore;
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Max health cap aware healing ///////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+function void HealThingEx(int howmuch)
+{
+	ACS("HealthGiver",ACS("MaxHealth"), howmuch, 0);
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Manual ACS overlay /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+function void DrawWeapon(int image, int x, int y)
+{
+	if(IsZandronum(true))
+		if(ActivatorTid() != CheckPlayerCamera(ConsolePlayerNumber()))
+			return;
+
+	SetHudSize(320,240,1);
+	SetFont(image);
+	HudMessageBold(s:"A"; HUDMSG_FADEOUT, HMID_ACS_WEAPON, CR_UNTRANSLATED, x, y, 0.1, 0.3);
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Strings & Logs /////////////////////////////////////////////////////////////
+////////////////////////////////////////// by Fused // from Zandronum forums //
+
+#define STRINGRECEIVER_SIZE 8
+
+bool stri[STRINGRECEIVER_SIZE];
+
+function int string_send (str string)
+{
+	// accumulate a free slot
+	int i;
+	for (i = 0; i < STRINGRECEIVER_SIZE; ++i)
+	{
+		if (stri[i] == TRUE)
+			continue;
+
+		stri[i] = TRUE;
+		SetCVarString(StrParam(s:"_temp", d:i), string);
+		break;
+	}
+
+	ANEA("stringdeleter", 0, i);
+	return i;
+}
+
+function str string_receive (int slot)
+{
+	return GetCVarString(StrParam(s:"_temp", d:slot));
+}
+
+script "stringdeleter" (int slot)
+{
+	delay(1);
+	stri[slot] = FALSE;
+	SetCVarString(StrParam(s:"_temp", d:slot), "");
+}
+
+function void LogBold (str string)
+{
+	LogTo(-1, string);
+}
+
+function void LogTo (int player, str string)
+{
+	if(player == -1 && GameType()) Log(s:string);
+
+	int slot = string_send(string);
+	ACS("QCDE_Log_CLIENTSIDE", player, slot);
+}
+
+Script "QCDE_Log_CLIENTSIDE" (int player, int slot) CLIENTSIDE
+{
+	if (player != -1 && CPN() != player) terminate;
+
+	Log(s:string_receive(slot));
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Classes that get bonuses per kill //////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+// Look ma, no KILL scripts!
+
+str ListOfPeopleWhoEnjoyKilling[100] = {
+	"QCMenelkir",
+	"QCCaleb",
+	"QCGrayson",
+	"QCEradicator",
+	"QCHunter",
+	"QCPainkiller",
+	"QCKane",
+	"QCIntruder",
+};
+
+int NumberOfPeopleWhoEnjoyKilling = 8;
+
+function int IsKillerEligibleForKillBonus(void)
+{
+	// Check if the killer enjoyed it or just did it out of necessity
+	int i, found,
+		killertid = GetActorProperty(0, APROP_TargetTID),
+		classname = GetActorClass(killertid);
+	for(i = 0; i < NumberOfPeopleWhoEnjoyKilling; i++)
+	{
+		found = !stricmp(classname, ListOfPeopleWhoEnjoyKilling[i]);
+		if(found) break;
+	}
+	return found;
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Weapons ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+str weaponList[NUMBER_OF_WEAPONS] = {
+	"QCGauntlet",                                 //  0
+	"QCMachinegun" 		, "QCMachinegunDM"     ,  //  1,  2
+	"QCShotgun"			, "QCShotgunDM"        ,  //  3,  4
+	"QCNailgun"			, "QCNailgunDM"        ,  //  5,  6
+	"QCHeavyMachinegun" , "QCHeavyMachinegunDM",  //  7,  8
+	"QCSuperShotgun"	, "QCSuperShotgunDM"   ,  //  9, 10
+	"QCSuperNailgun"	, "QCSuperNailgunDM"   ,  // 11, 12
+	"QCTribolt"	 		, "QCTriboltDM"        ,  // 13, 14
+	"QCRocketLauncher"	, "QCRocketLauncherDM" ,  // 15, 16
+	"QCLightningGun"	, "QCLightningGunDM"   ,  // 17, 18
+	"QCRailgun" 		, "QCRailgunDM"        ,  // 19, 20
+	"QCBFG" 			, "QCBFGDM"            ,  // 21, 22
+};
+
+#libdefine QCW_Gauntlet         0
+#libdefine QCW_Machinegun       1
+#libdefine QCW_Shotgun          3
+#libdefine QCW_Nailgun          5
+#libdefine QCW_HeavyMachinegun  7
+#libdefine QCW_SuperShotgun     9
+#libdefine QCW_SuperNailgun    11
+#libdefine QCW_Tribolt         13
+#libdefine QCW_RocketLauncher  15
+#libdefine QCW_LightningGun    17
+#libdefine QCW_Railgun         19
+#libdefine QCW_BFG             21
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Weapon upgrades ////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+// Same order as weaponList[]
+
+#libdefine WU_GIVER      0
+#libdefine WU_ICON       1
+#libdefine WU_WEAPONICON 2
+#libdefine WU_WEAPONFULL 3
+#libdefine WU_TOKEN      4
+#libdefine WU_SUFFIX     5
+#libdefine WU_PROPERNAME 6
+#libdefine WU_DESC1      7
+#libdefine WU_DESC2      8
+#libdefine WU_DESC3      9
+
+str WeaponUpgrades[NUMBER_OF_WEAPONS][NUMBER_OF_UPGRADES][10] = {
+	// Gauntlet
+	{	{"Upgrade_0_1" , "UPG_00_1", "0AUNTLET", "1AUNTLET", "GNT_UG_Burn"     , "(passive)", "Burning Gauntlet", "Successful hits create embers, dealing", "additional damage.", ""},
+		{"Upgrade_0_2" , "UPG_00_2", "0AUNTLET", "1AUNTLET", "GNT_UG_Omni"     , "(passive)", "Omnislash",        "Gauntlet attacks hurt multiple enemies.", "''Shiver not, Lady Luck will not fail you now.''", ""},
+		{0}},
+
+	// Machinegun
+	{{0},{0},{0}}, // no upgrades for starting weapons
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Shotgun
+	{	{"Upgrade_3_1" , "UPG_03_1", "0HOTGUN" , "1HOTGUN_",  "SG_UG_Spread"   , "(passive)", "Longer Barrel",     "Reduced pellet spread.", "", ""},
+		{"Upgrade_3_2" , "UPG_03_2", "0HOTGUN" , "1HOTGUN_",  "SG_UG_Explosive", "(altfire)", "Surface Explosive", "Hit walls near enemies for extra damage.", "''Never thought missing a shot could be such a good idea.''", ""},
+		{0}},
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Nailgun
+	{{0},{0},{0}}, // no upgrades for starting weapons
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Heavy Machinegun
+	{	{"Upgrade_7_1" , "UPG_07_1", "0MACHINE", "1MACHINE", "HMG_UG_Ricochet" , "(passive)", "Ricochet Shot", "All bullets have a chance to bounce off,", "dealing extra damage.", ""},
+		{"Upgrade_7_2" , "UPG_07_2", "0MACHINE", "1MACHINE", "HMG_UG_Pierce"   , "(altfire)", "Penetration",    "Bullets rip through enemies when zoomed.", "", ""},
+		{0}},
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Super Shotgun
+	{	{"Upgrade_9_1" , "UPG_09_1", "0SHOTGUN", "1SHOTGUN", "SSG_UG_Speed"    , "(passive)", "Demanufacture", "Increased combat effectiveness.", "''You won't find a better crafted shotgun anywhere in hell!''", ""},
+		{"Upgrade_9_2" , "UPG_09_2", "0SHOTGUN", "1SHOTGUN", "SSG_UG_Flame"    , "(altfire)", "Dragon Breath", "Set enemies ablaze with every shot.", "", ""},
+		{0}},
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Super Nailgun
+	{	{"Upgrade_11_1", "UPG_11_1", "0NAILGUN", "1NAILGUN", "SNG_UG_Lava"     , "(passive)", "Lava Nails",   "Deal extra damage with possibility of setting fire.", "''Hotter than they were in the foundry!''", ""},
+		{"Upgrade_11_2", "UPG_11_2", "0NAILGUN", "1NAILGUN", "SNG_UG_Seeker"   , "(altfire)", "Homing Nails", "Every nail augmented with homing module, zoom to enable. ", "''Economically costly, but missing targets is costlier.''", ""},
+		{0}},
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Tribolt
+	{	{"Upgrade_13_1", "UPG_13_1", "0RIBOLT" , "1RIBOLT_",  "TB_UG_Long"     , "(passive)", "Stable Gunpowder", "Bolts don't timeout in flight.", "", ""},
+		{"Upgrade_13_2", "UPG_13_2", "0RIBOLT" , "1RIBOLT_",  "TB_UG_Grenade"  , "(altfire)", "Bouncey Shell",    "Bolts shot when zooming bounce off surfaces", "without exploding.", ""},
+		{0}},
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Rocket Launcher
+	{	{"Upgrade_15_1", "UPG_15_1", "0AUNCHER", "1AUNCHER",  "RL_UG_Cluster"  , "(passive)", "Cluster Rocket",     "Rockets explode into smaller rockets.", "''The only thing better than rockets is more rockets.''", ""},
+		{"Upgrade_15_2", "UPG_15_2", "0AUNCHER", "1AUNCHER",  "RL_UG_Control"  , "(altfire)", "Guided Rocket",      "Rockets shot when zooming are controlled remotely.", "Fire again to detonate in midair.", ""},
+		{"Upgrade_15_3", "UPG_15_3", "0AUNCHER", "1AUNCHER",  0                , "(cheater)", "Square Root Rocket", "''Michaelis would do everything with square roots. ", "He once said we should make a square root rocket launcher.'' ", "    -DBT"}},
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Lightning Gun
+	{	{"Upgrade_17_1", "UPG_17_1", "0IGHTNIN", "1IGHTNIN",  "LG_UG_Residue"  , "(passive)", "Residual Charge", "Releasing arc after keeping it for 1 second ionizes area. ", "Ionized area keeps harming enemies for a duration.", ""},
+		{"Upgrade_17_2", "UPG_17_2", "0IGHTNIN", "1IGHTNIN",  "LG_UG_Static"   , "(altfire)", "Static Field",    "Sustain arc while zoomed to hurt enemies in area.", "", ""},
+		{0}},
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// Railgun
+	{	{"Upgrade_19_1", "UPG_19_1", "0RAILGUN", "1RAILGUN",  "RG_UG_Pierce"   , "(passive)", "Demolisher Slugs",  "Rails penetrate walls when shot point-blank. ", "Damage increased in close range.", ""},
+		{"Upgrade_19_2", "UPG_19_2", "0RAILGUN", "1RAILGUN",  "RG_UG_Explosive", "(altfire)", "Overcharged Slugs", "Charged rails explode when hitting walls.", "", ""},
+		{0}},
+	{{0},{0},{0}}, // no upgrades for DM
+
+	// BFG
+	{	{"Upgrade_21_1", "UPG_21_1", "0BIGFGUN", "1BIGFGUN", "BFG_UG_Rays"     , "(passive)", "Fission Intensifies", "BFG tracers deal significant damage.", "", ""},
+		{"Upgrade_21_2", "UPG_21_2", "0BIGFGUN", "1BIGFGUN", "BFG_UG_Charge"   , "(altfire)", "Argent Capacitor",    "While zooming, hold fire to accumulate power. ", "''BFG Division didn't spend its budget in vain!''", ""},
+		{0}},
+	{{0},{0},{0}}, // no upgrades for DM
+};
+
+int lastPUCrefresh = -99999, lastPUC = -1;
+#define PUC_REFRESH_RATE 35
+function int PartyUpgradeCount(void)
+{
+	// Caching results to prevent lag spikes from massive iterating
+	if(lastPUCrefresh + PUC_REFRESH_RATE > Timer() && lastPUC != -1) return lastPUC;
+	lastPUCrefresh = Timer();
+
+	int result = 0;
+
+	int tid = 1064, w;
+	while(tid --> 1000)
+		if(IsTidUsed(tid))
+			for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+				result += CheckActorInventory(tid, WeaponUpgrades[w][0][WU_TOKEN])
+				        + CheckActorInventory(tid, WeaponUpgrades[w][1][WU_TOKEN]);
+
+	lastPUC = result;
+	return lastPUC;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Classes ////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+typedef struct
+{
+	str canon;
+} class_T;
+
+class_T champion[100] =
+{
+{"Ranger"    ,},
+{"Doomslayer",},
+{"Corvus"    ,},
+{"Kane"      ,},
+{"Caleb"     ,},
+{"Menelkir"  ,},
+{"Terminator",},
+{"Zedek"     ,},
+{"Inquisitor",},
+{"Bitterman" ,},
+{"Galen"     ,},
+{"Nyx"       ,},
+{"Sorgaul"   ,},
+{"DukeNukem" ,},
+{"Durandal"  ,},
+{"Keel"      ,},
+{"Sarge"     ,},
+{"LoWang"    ,},
+{"Grayson"   ,},
+{"Eradicator",},
+{"Blazkowicz",},
+{"Freeman"   ,},
+{"VorMatur"  ,},
+{"Eleena"    ,},
+{"Lucienne"  ,},
+{"Major"     ,},
+{"Hunter"    ,},
+{"Sam"       ,},
+{"Postal"    ,},
+{"Painkiller",},
+{"Intruder"  ,},
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Classes for classpicker ////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+int CLASS_COUNT = NUMBER_OF_CLASSES;
+str cpnames[100] = {
+	"", // zero-length string serves as line break
+	"Kane"      ,"Caleb"     ,"Menelkir"  ,"Nyx"    ,"Durandal"  ,"Lo Wang","Eleena"    ,"Lucienne"  ,"Hunter" ,"Postal",                 "",
+	"Ranger"    ,"Doomslayer","Corvus"    ,"Galen"  ,"Duke Nukem","Sarge"  ,"Grayson"   ,"Blazkowicz","Freeman","Painkiller", "Intruder", "",
+	"Terminator","Zedek"     ,"Inquisitor","Sorgaul","Bitterman" ,"Keel"   ,"Eradicator","VorMatur"  ,"Major"  ,"Sam",                    "",
+	"",
+	// array should end with a zero-length string
+};
+str cpfaces[100] = {
+	"", // zero-length string serves as line break
+	"PortrC04","PortrC05","PortrC06","PortrC12","PortrC15","PortrC18","PortrC24","PortrC25","PortrC27","PortrC29",            "",
+	"PortrC01","PortrC02","PortrC03","PortrC11","PortrC14","PortrC17","PortrC19","PortrC21","PortrC22","PortrC30","PortrC31", "",
+	"PortrC07","PortrC08","PortrC09","PortrC13","PortrC10","PortrC16","PortrC20","PortrC23","PortrC26","PortrC28",            "",
+	"",
+	// array should end with a zero-length string
+};
+
+function void printcpnames(void)
+{
+	str s = "List of cpnames:";
+	for(int y = 1; y <= 3; y++)
+	{
+		s = strparam(s:s, s:"\n\c", c:'m'+y);
+		for(int x = 0; x < 10; x++)
+		{
+			s = strparam(s:s, s:getcpdata(0,y,x), s:", ");
+
+		}
+	}
+	printbold(s:s);
+	return;
+
+	int row;
+	for(int i = 0; i < 100; i++)
+	{
+		str name = cpnames[i];
+		if(!strlen(name))
+		{
+			row++;
+			s = strparam(s:s, s:"\n\c", c:'m'+row);
+			if(row > 4) break;
+		}
+		else
+		{
+			s = strparam(s:s, s:cpnames[i], /*s:" ", s:cpfaces[i],*/ s:", ");
+		}
+	}
+
+	printbold(s:s);
+}
+
+function void addcpname(int newname, int newface, int rowtarget)
+{
+	if(rowtarget < 0) rowtarget = 0;
+	if(rowtarget > 4) rowtarget = 4;
+
+	int row = 5;
+	int i;
+	for(i = CLASS_COUNT + 5; i > 0; i--)
+	{
+		str name = cpnames[i-1];
+		str face = cpfaces[i-1];
+		cpnames[i] = name;
+		cpfaces[i] = face;
+		if(!strlen(name))
+		{
+			row--;
+			if(row < 0) return;
+			if(row == rowtarget)
+			{
+				cpnames[i-1] = strparam(s:newname);
+				cpfaces[i-1] = strparam(s:newface);
+				break;
+			}
+		}
+	}
+	printbold(s:"Added ", s:newname, s:" at index ", d:i);
+	CLASS_COUNT++;
+}
+
+function int getcpdata(int datum, int targetrow, int targetcol)
+{
+	int row, col;
+	for(int i = 0; i < 100; i++)
+	{
+		if(row == targetrow && col == targetcol) switch(datum)
+		{
+		case no  : return cpnames[i];
+		case yes : return cpfaces[i];
+		}
+
+		if(!strlen(cpnames[i]))
+		{
+			row++;
+			col = 0;
+			if(row > 4) break;
+		}
+		else
+		{
+			col++;
+		}
+
+	}
+
+	return false;
+}
+
+function bool IsClassDisabled(void)
+{
+	str cvar = strparam(s:"_bc_", d:CheckInventory("ClassID"));
+	return GetCvar(cvar);
+}
+

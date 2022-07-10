@@ -1,0 +1,339 @@
+// --------------------------------------------------------------------------
+//
+// Nailgun
+// Weapon and Pickup sprite by FrancoTieppo
+// Weapon code by DBT
+//
+// --------------------------------------------------------------------------
+
+// This pickup is only for consistency -- it never gives weapon.
+Actor NailgunPickup : CustomInventory
+{
+	Height 48
+	Radius 20
+	Scale 0.5
+	Inventory.PickupSound "QC/Items/WeaponPick"
+	Inventory.PickupMessage "$GOT_QCNailgun" // "Picked up a Nailgun."
+	Tag "$TAG_QCNailgun" // "Nailgun"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 A_ChangeFlag("DROPPED", 0)
+		Stop
+	Idle:
+		TNT1 A 0
+		Stop
+	Pickup:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMPickup")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"WeaponStay")
+		TNT1 A 0 //A_GiveInventory("QCNailgun")
+		TNT1 A 0
+		Stop
+	DMPickup:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"DMWeaponStay")
+		TNT1 A 0 //A_GiveInventory("QCNailgunDM")
+		TNT1 A 0
+		TNT1 A 0 //A_TakeInventory("QCNailgun")
+		TNT1 A 0
+		Stop
+	WeaponStay:
+		TNT1 A 0 A_JumpIfInventory("QCNailgun",1,"Stay")
+		TNT1 A 0 //A_SpawnItemEx("QCNailgun", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
+		Fail
+	DMWeaponStay:
+		TNT1 A 0 A_TakeInventory("QCNailgun")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunDM",1,"Stay")
+		TNT1 A 0 //A_SpawnItemEx("QCNailgunDM", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
+		Fail
+	Stay:
+		TNT1 A 0
+		Fail
+	}
+}
+
+
+
+Actor QCNailgun : QCWeapon
+{
+	Height 48
+	Weapon.Kickback 30
+	Weapon.SelectionOrder 2000
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 50
+	Weapon.AmmoType "QCNailAmmo"
+	+INVENTORY.UNDROPPABLE
+	Obituary "$OB_QCNailgun" // "%o was nailed by %k."
+	Inventory.PickupMessage "$GOT_QCNailgun" // "Picked up a Nailgun."
+	Tag "$TAG_QCNailgun" // "Nailgun"
+	Scale 0.5
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_ChangeFlag("NOBLOCKMAP",1)	//in DM, if a player drops this weapon, cant be picked
+		TNT1 A 3	//and disappears
+		Stop
+	//-----------------------
+	// Ready Seq
+	//-----------------------
+	Ready:
+		QCG4 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		QCG4 AAA 1 A_WeaponReady
+		Loop
+
+		ReadyCantFire:
+			QCG4 A 0 A_StopSound(5)
+			QCG4 A 0 A_StopSound(6)
+			"####" "#" 0 A_ZoomFactor(1.0)
+			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		RCFLooper:
+			QCG4 A 4 A_WeaponReady(WRF_NOFIRE)
+			QCG4 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
+			Goto Ready
+	//-----------------------
+	// Select/Deselect Seq
+	//-----------------------
+	Select:
+		QCG4 A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
+		QCG4 A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		"####" "#" 0 A_StopSound(5) //stops any weapon looping sound
+		"####" "#" 0 A_ZoomFactor(1.0)
+		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+	SelectLooper:
+		QCG4 A 1 A_Raise
+		"####" "###" 0 A_Raise
+		Loop
+
+	Deselect:
+		QCGB A 0 A_StopSound(5) //stops the looping fire sound
+		"####" "#" 0 A_ZoomFactor(1.0)
+		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+	DeselectLooper:
+		QCG4 A 1 A_Lower
+		"####" "###" 0 A_Lower
+		Loop
+
+	//-----------------------
+	// Fire Seq
+	//-----------------------
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"FireQuadSound")
+		Goto FireNormalSound
+
+		FireNormalSound:
+			QCG4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop",5,1,1)
+			Goto FirePostSoundCheck
+		FireQuadSound:
+			QCG4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop",5,1,1)
+			Goto FirePostSoundCheck
+
+	FirePostSoundCheck:
+		TNT1 A 0 A_AlertMonsters
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DM_FireLooper")
+		Goto FireLooper
+
+		//SP fire, two stages, one uses ammo, the other doesnt
+		FireLooper:
+			QCG4 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			QCG4 B 0 A_GunFlash("SP_Flash")
+			QCG4 B 1 Bright 	Offset(1,33)
+			QCG4 E 1 		 	Offset(2,35)
+			QCG4 F 1 			Offset(1,33)
+			QCG4 A 0 A_ReFire("FireLooperNA")
+			Goto EndFireLooper
+		FireLooperNA:
+			QCG4 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			QCG4 B 0 A_GunFlash("SP_FlashNA")
+			QCG4 C 1 Bright 	Offset(1,33)
+			QCG4 E 1 		 	Offset(2,35)
+			QCG4 F 1 			Offset(1,33)
+			QCG4 A 0 A_ReFire("FireLooper")
+			Goto EndFireLooper
+
+
+		//DM fire
+		DM_FireLooper:
+			QCG4 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			QCG4 B 0 A_GunFlash("DM_Flash")
+			QCG4 B 1 Bright 	Offset(2,33)
+			QCG4 E 1 		 	Offset(4,35)
+			QCG4 F 1 			Offset(2,33)
+			QCG4 A 0 A_ReFire("DM_FireLooper2")
+			Goto EndFireLooper
+		DM_FireLooper2:
+			QCG4 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			QCG4 B 0 A_GunFlash("DM_Flash")
+			QCG4 C 1 Bright 	Offset(2,33)
+			QCG4 E 1 		 	Offset(4,35)
+			QCG4 F 1 			Offset(2,33)
+			QCG4 A 0 A_ReFire("DM_FireLooper")
+			Goto EndFireLooper
+
+	EndFireLooper:
+		QCG4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireEnd",5,1,0)
+		QCG4 GHIGGHHIIGGGHHHIII 1 A_WeaponReady(WRF_NOBOB)
+		Goto Ready
+
+
+	//-----------------------
+	// Attack doers
+	//-----------------------
+
+	//Single player
+	SP_Flash:
+		TNT1 A 0 A_FireCustomMissile("QCNailWeak",0,true,1,5)
+		Goto EndFlash
+	SP_FlashNA:
+		TNT1 A 0 A_FireCustomMissile("QCNailWeak",0, false,1,5) //doesnt use ammo
+		Goto EndFlash
+
+	//Deathmatch
+	DM_Flash:
+		TNT1 A 0 A_FireCustomMissile("QCNailWeakDM",0,true,1,5)
+		Goto EndFlash
+
+		EndFlash:
+			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
+			TNT1 A 0 A_SetBlend("Yellow",0.03,3)
+			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,6,2)
+			TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil")
+			TNT1 A 1 A_SetPitch(Pitch-0.6)
+			TNT1 AA 1 A_SetPitch(Pitch+0.3)
+			Stop
+		EndFlashNoRecoil:
+			TNT1 A 1
+			Stop
+
+
+	//-----------------------
+	// Fire Seq / Zoom
+	//-----------------------
+	AltFire:
+		QCG4 A 0 A_JumpIfInventory("DMToken",1,"StartZoomChecks")	//in Deathmatch, allow zoom checks by Default
+	NoZoom:
+		"####" A 2 A_WeaponReady(WRF_NOSECONDARY)	//dummy state in case player is holding "alt fire" all along
+		"####" A 0 A_Refire("NoZoom")
+		Goto Ready
+	StartZoomChecks:
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken", 1, "ZoomOut")
+	ZoomIn:
+		"####" AAA 1
+		"####" "#" 0 A_ZoomFactor(1.8)
+		"####" "#" 0 A_GiveInventory("WeaponZoomedToken",1)
+	ZoomInHeld:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 1
+		"####" "#" 1 A_Refire("ZoomInHeld")
+		Goto Ready
+
+		ZoomOut:
+			"####" "#" 0 A_ZoomFactor(1.0)
+			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		ZoomOutHeld:
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 1
+			"####" "#" 1 A_Refire("ZoomOutHeld")
+			Goto Ready
+	}
+}
+
+//----------------------------------------------------------------------------------------
+/*
+Okay, here's the explanation of high damage numbers and monsters and players
+having a damagefactor of 0.43 for these nail projectiles.
+Nailjump is achieved through the impulse of the self damage that nails on walls
+gives the player. This works wonderfully with the SuperNailgun where each nail
+deals 7 points of self damage to the user via A_Explode. However, the weak nails are
+not supposed to deal 7 damage, but 3 points of damage to the user. So, by just
+chaging the damage it will also make the jump much weaker. So instead, i had to make
+the projectile deal 7 damage and therefore impulse the player as if he took 7 damage,
+while only actually dealing 3. Damage factor reduces the actual damage taken, but does
+not change the knockback of explosions. So, i made it deal 7 damage with a
+damagefactor of 0.43 which makes it deal 3. But I also had to change the regular damage
+value of the nails so that it would still deal the intended damage, rather than being
+super weak by the factor of 0.43.
+I could not just use the knockback property on the weapon, since that completely
+messes up the actual thrust of the explosion and makes it too pushy on the horizontal
+and pretty samey on the vertical. Damn these hacks to get nailjumping working on this
+weapon!
+As torbjorn said: COME GET YOUR HAXXORS!
+*/
+//----------------------------------------------------------------------------------------
+
+Actor QCNailWeak : FastProjectile
+{
+	Projectile
+	+FORCEXYBILLBOARD
+	+BLOODSPLATTER
+	+MTHRUSPECIES
+	Obituary "$OB_QCNailgun" // "%o was nailed by %k."
+	Speed 52
+	Radius 3
+	Height 6
+	//Damage (random(3,8))
+	Damage (random(12,24)) //why? intended damage is random(5,10). So thanks to damage factor 12*0.43=~5 and 24*0.43=~8
+	Scale 0.34
+	Decal "BulletChipBlack"
+	DamageType "NailgunWeak"
+	+DONTBLAST
+	States
+	{
+	Spawn:
+		TNT1 A 1 Bright
+		NAIL A 1 Bright
+		Wait
+
+	XDeath:
+		TNT1 A 10 A_GiveToTarget("HitBeepLow",1)
+		Stop
+
+	Death:
+		DB09 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact",CHAN_AUTO,0.6,0,1.7)
+		//DB09 A 0 A_Explode(3,32,XF_HURTSOURCE,0,32)
+		DB09 A 0 A_Explode(7,32,XF_HURTSOURCE,0,32)		//7dmg *0.43 = ~3
+		DB09 A 0 A_SetScale(0.45)
+		DB09 A 0 A_Jump(256,"T1","T2","T3","T4")
+
+		T1:		DB09 A 0
+			Goto EndDeath
+		T2:		DB10 A 0
+			Goto EndDeath
+		T3:		DB11 A 0
+			Goto EndDeath
+		T4:		DB12 A 0
+			Goto EndDeath
+
+	EndDeath:
+		"####" ABCDEF 1 Light("YellowSmallFlicker3") Bright
+		"####" GH 1 Bright
+		"####" IJKLMNOPQRST 2 Bright
+		Stop
+	}
+}
+
+
+Actor QCNailWeakDM : QCNailWeak
+{
+	//Damage (10)
+	Damage (28)	//28dmg * 0.43 (damagefactor) = 12.04, which is rounded to 12, as intended
+	-MTHRUSPECIES
+	-DONTBLAST
+}
+
+
+DamageType NailgunWeak
+{
+	Factor 0.43
+}
+
+// --------------------------------------------------------------------------
+//	For competitive DM, weapons dont autoaim
+// --------------------------------------------------------------------------
+Actor QCNailgunDM : QCNailgun
+{
+	+WEAPON.NOAUTOAIM
+	+CHEATNOTWEAPON
+	Tag "$TAG_QCNailgun" // "Nailgun (DM)"
+}

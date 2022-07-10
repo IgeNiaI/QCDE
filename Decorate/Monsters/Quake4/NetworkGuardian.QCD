@@ -1,0 +1,353 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+
+Actor Q4NetworkGuardian : QCDE_MonsterBoss	15314	//spidermaster
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 50
+	Height 90
+	Mass 0x7FFFFFFF	//so that it cant be pushed when soaring
+	Health 3500
+	PainChance 20
+	Speed 10
+	Scale 0.69
+	+BOSS
+	+NORADIUSDMG
+	+NOICEDEATH
+	+FLOORCLIP
+	Gravity 0.5
+	MeleeRange 80
+	SeeSound "quake4/NetworkGuard/Sight"
+	PainSound "quake4/NetworkGuard/Pain"
+	DeathSound "quake4/NetworkGuard/Death"
+	ActiveSound ""
+	Obituary "$OB_Q4NetworkGuardian" // "%o was blown to pieces by the network guardian."
+	Tag "$TAG_Q4NetworkGuardian" // "Network Guardian"
+	DropItem "BigHourglass"
+	States
+	{
+	Idle:
+		Q14I A 0 A_JumpIfInventory("ImFlyingWeeee",1,"IdleFlying")
+		Q14I AAAAAAA 4 A_Look
+		Loop
+	IdleFlying:
+		Q14X ABCDCBA 5 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_JumpIfHealthLower(1000,"FlyStart")
+		Q14W AA 4 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/Step",5)
+		Q14W BBCCDD 4 A_Chase
+		TNT1 A 0 A_JumpIfHealthLower(600,"FlyStart")	//just in case
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/Step",5)
+		Q14W EEFF 4 A_Chase
+		Loop
+	Melee:
+		Q14B ABC 5 A_FaceTarget
+		Q14B D 5 A_CustomMeleeAttack(random(50,120),"quake4/Misc/MeleeHit","quake4/Misc/Swing","Normal",1)
+		Q14B EF 5
+		Goto See
+	Missile:
+		TNT1 A 0 A_Jump(160,"RocketShotgun")
+		TNT1 A 0 A_Jump(256,"SkyRocket","BigRocket")
+
+	RocketShotgun:
+		Q14A AB 5 A_FaceTarget
+		TNT1 a 0 A_FaceTarget
+		TNT1 a 0 A_PlaySound("quake4/NetworkGuard/RocketShot",5)
+		TNT1 AAAAA 0 A_CustomMissile("NetworkGuardRocketSmall",50,20,random(5,-5))
+		Q14A CDD 5 A_FaceTarget
+		TNT1 A 0 A_Jump(32,"See")
+		TNT1 A 0 A_CPosRefire
+		Goto RocketShotgun+1
+
+	SkyRocket:
+		Q14C A 6 A_FaceTarget
+		Q14C BC 6
+		TNT1 a 0 A_PlaySound("quake4/NetworkGuard/RocketShot",5)
+		TNT1 A 0 A_CustomMissile("Q4NGSkyRocket",70,15,0)
+		Q14C DEF 6
+		Goto See
+
+	BigRocket:
+		Q14E ABCCCCC 5 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("NetGuardBigRocket",50,-20,0)
+		Q14E CBA 5
+		Goto See
+
+	FlyStart:
+		TNT1 A 0 A_JumpIfInventory("ImFlyingWeeee",1,"SeeFly")
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)	//so that this sequence cant be interrupted
+		Q14N A 9
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/WingOpen",5)
+		Q14N B 9
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/WingOpen",5)
+		Q14N C 9
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/FlyLoop",6,1,1)
+		Q14N D 9
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		TNT1 A 0 A_ChangeFlag("RELATIVETOFLOOR",1)
+		TNT1 A 0 A_GiveInventory("ImFlyingWeeee",1)
+		Q14N EEEEEEEEEEEEEEE 1 A_Warp(AAPTR_DEFAULT,0,0,3)	//gains 45 units of "flight" and that's it
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)	//back to normal pain chance
+		TNT1 A 0 A_FaceTarget	//to have it look at you when the chasing begins
+		Goto SeeFly
+
+	SeeFly:
+		TNT1 A 0 A_Stop
+		Q14X ABCDCBA 5 A_Chase(0,"FlyingMissile")
+		Loop
+
+	FlyingMissile:
+		Q14F AB 7 A_FaceTarget
+		TNT1 a 0 A_PlaySound("quake4/NetworkGuard/RocketShot",5)
+		TNT1 AAAA 0 A_CustomMissile("NetworkGuardRocketSmall",55,20,random(5,-5))
+		Q14F CCCCCCC 5 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("NetGuardBigRocket",55,-20,0)
+		Q14F DE 5 A_FaceTarget
+		Goto SeeFly
+
+	Pain:
+		TNT1 A 0 A_JumpIfInventory("ImFlyingWeeee",1,"PainFly")
+		Q14P A 7 A_Pain
+		Goto See
+	PainFly:
+		Q14X A 7 A_Pain
+		Goto SeeFly
+
+	XDeathChecksDone:
+	DeathChecksDone:
+		TNT1 A 0 A_StopSound(6)	//stop flying sound
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
+		TNT1 A 0 A_Scream
+		Q14D A 0 A_Fall
+		Q14D ABCD 4
+		Q14D A 1 A_CheckFloor("Crashed")
+		Wait
+	Crashed:
+		Q14D F 1 A_StopSound(6)
+		Q14D F 2 A_PlaySound("quake4/NetworkGuard/BodyFall",6)
+	Death.Corpse:
+		Q14D G -1
+		Stop
+	}
+}
+
+Actor ImFlyingWeeee : Inventory
+{ Inventory.MaxAmount 1 }
+//************************************************************
+Actor NetGuardBigRocket
+{
+	Projectile
+	+RANDOMIZE
+	+ROCKETTRAIL
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
+	Radius 11
+	Height 3
+	Speed 16
+	Health 10000
+	+NOBLOOD
+	+SHOOTABLE
+	DamageFactor "NailgunWeak", 0.43 //hack for weak nailgun-jump, explained in nailgun.qcd
+	-NOBLOCKMAP
+	+SEEKERMISSILE
+	Damage 25
+	SeeSound "quake4/Weapons/RocketLauncher/Fire"
+	DeathSound "quake4/Misc/Explo"
+	Translation "208:223=192:197", "232:235=200:204", "176:191=192:207", "48:63=192:194"
+	Scale 0.7
+	Decal "Q4ExploScorch"
+	DamageType "RocketDamage"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_PlaySound("QC/Weapons/RocketLauncher/Fly",7,1,1,2)
+		TNT1 A 0 A_SpawnItemEx("Q4BigRocketTrail",-4,0,3,0,0,0,0,SXF_NOCHECKPOSITION)
+		QROK A 2 Light("WhiteMediumFlicker2") Bright A_SeekerMissile(6,6,SMF_PRECISE)
+		QROK A 2 Light("WhiteMediumFlicker2") Bright A_SeekerMissile(6,6,SMF_PRECISE)
+		QROK A 2 Light("WhiteMediumFlicker2") Bright A_SeekerMissile(6,6,SMF_PRECISE)
+		Loop
+	Wound:
+		TNT1 A 0 A_UnSetShootable
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_PlaySound("quake4/Misc/Explo",5,0.6)
+		TNT1 A 0 A_Explode(32,128,0)
+		TNT1 A 1 A_SpawnItemEx("QCRocketExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	Death:
+		TNT1 A 0 A_Explode(144,256,0)
+		TNT1 A 3 A_SpawnItemEx("QCRocketExplosionBigger",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+//*****************************************
+// Rocket attack
+
+Actor NetworkGuardRocketSmall
+{
+	Projectile
+	+RANDOMIZE
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
+	Radius 6
+	Height 12
+	Speed 25
+	Damage 3
+	SeeSound "quake4/NetworkGuard/RocketShot"
+	Scale 0.48
+	Decal "Scorch"
+	DamageType "RocketDamage"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ThrustThingZ(0,random(5,-5),0,1)
+	Looper:
+		TNT1 A 0 A_SpawnItemEx("NetGuardRocketTrailFire",-5,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		MICR A 2 Light(OrangeMediumFlicker3)
+		TNT1 A 0 A_SpawnItemEx("NetGuardRocketTrailFire",-4,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		MICR A 2 Light(OrangeMediumFlicker3)
+		Loop
+	Death:
+		TNT1 A 0 A_PlaySound("quake4/Misc/RocketExplo",CHAN_AUTO,0.6)
+		TNT1 A 0 A_Explode(25,64,0)
+		TNT1 A 3 A_SpawnItemEx("Q4GBSwarmExplo",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+Actor NetGuardRocketTrailFire
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.7
+	Scale 0.13
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255,"One","Two")
+	One:
+		X007 ACE 1 Bright
+		X007 GI 1 Bright A_FadeOut
+		Stop
+	Two:
+		X007 KMO 1 Bright
+		X007 QS 1 Bright A_FadeOut
+		Stop
+	}
+}
+
+//************************************************************
+Actor Q4NGSkyRocket
+{
+	Projectile
+	Speed 1
+	Damage 10000 //oh, poor whoever is exactly above this guy...
+	Radius 8
+	Height 12
+	+SKYEXPLODE
+	Scale 0.5
+	States
+	{
+	Spawn:
+		TNT1 a 0
+		TNT1 A 0 ThrustThingZ(0,80,0,1)
+		PWMA A 4 Bright A_SpawnItemEx("PlayerRocketTrailFire",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Wait
+	Death:
+		TNT1 a 0 A_SpawnItemEx("QCRocketExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 5 A_CustomMissile("Q4NGSRocketSpawner",0,0,0)
+		Stop
+	}
+}
+Actor Q4NGSRocketSpawner
+{
+	Radius 1
+	Height 1
+	Speed 0
+	+ISMONSTER
+	+LOOKALLAROUND
+	RENDERSTYLE NONE
+	States
+	{
+	Spawn:
+		SWRM A 1 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,0)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,30)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,60)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,90)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,120)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,150)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,180)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,-30)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,-60)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,-90)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,-120)
+		TNT1 A 0 A_CustomMissile("Q4NGSRSmallExtension",0,0,-150)
+		TNT1 A 999
+		Stop
+	}
+}
+Actor Q4NGSRSmallExtension
+{
+	Projectile
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
+	+SEEKERMISSILE
+	Radius 12
+	Height 12
+	Speed 13
+	Damage 0
+	SeeSound ""
+	DeathSound "quake4/Misc/RocketExplo"
+	Scale 0.18
+	Decal "Scorch"
+	DamageType "RocketDamage"
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItemEx("NetGuardRocketTrailFire",-4,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		QROK A 1 A_SeekerMissile(10,11,0,0,0)
+		QROK A 1
+		TNT1 A 0 A_SpawnItemEx("NetGuardRocketTrailFire",-4,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		QROK A 1 A_SeekerMissile(10,11,0,0,0)
+		QROK A 1
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(24,64,1)
+		TNT1 A 0 A_PlaySound("quake4/Misc/RocketExplo",5,0.6)
+		TNT1 A 3 A_SpawnItemEx("Q4GBSwarmExplo",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+Actor RocketGasTrail
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	Renderstyle Add
+	Scale 0.065
+	Alpha 0.8
+	States
+	{
+	Spawn:
+		X102 V 2 A_FadeOut(0.08)
+		Loop
+	}
+}
+

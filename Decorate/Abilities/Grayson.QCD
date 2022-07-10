@@ -1,0 +1,523 @@
+// --------------------------------------------------------------------------
+//
+// Grayson's abilities
+//
+// Active:	Thumper
+//			Static projectile that crashes on floor to make enemies enter
+//			stasis mode and/or take damage from ceiling smashing
+//
+// Passive: Personal Dropkit
+//			By holding "+use" you can buy ammo for your current weapon
+//
+// --------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+Actor DisableWeaponProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("ActiveInProgress",1)
+		TNT1 A 0 A_GiveInventory("NoWeaponFireToken",1)
+		TNT1 A 35
+		Stop
+	}
+}
+
+Actor ThumpSoundAndHaloProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_AlertMonsters(96)
+		TNT1 A 0 A_FireCustomMissile("ThumperIndicator",0, false)
+		TNT1 A 35
+		Stop
+	}
+}
+
+Actor ThumperArmingToken : Token {}
+Actor ThumperReadyToken : Token {}
+
+Actor ThumperIndicator
+{
+	Radius 1
+	Height 1
+	+NOINTERACTION
+	+BRIGHT
+	Projectile
+	RenderStyle Add
+	Scale 0.9
+	Alpha 0.99
+	Translation "0:255=%[0,0,0]:[0.7,0.7,1.3]"
+	States
+	{
+	Spawn:
+		DB66 A 0 NODELAY A_PlaySound("QC/Abilities/Grayson/LeashCast",5,1,0,0.7)
+		DB66 AABBCCDDEEFF 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_AbilityFXMustDie"),"Death3")
+		DB66 GGHHIIJJKKLL 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_AbilityFXMustDie"),"Death4")
+		DB66 MMNNOOPPQQRR 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_AbilityFXMustDie"),"Death1")
+		//DB66 SSTTUUVVWWXX 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		DB66 A 0 A_FadeOut(0.1)
+		DB66 SS 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		DB66 A 0 A_FadeOut(0.1)
+		DB66 TT 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		DB66 A 0 A_FadeOut(0.1)
+		DB66 UU 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		DB66 A 0 A_FadeOut(0.1)
+		DB66 VV 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		DB66 A 0 A_FadeOut(0.1)
+		DB66 WW 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		DB66 A 0 A_FadeOut(0.1)
+		DB66 XX 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		DB66 A 0 A_FadeOut(0.1)
+		DB66 YY 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		DB66 A 0 A_FadeOut(0.1)
+		DB66 ZZ 1  A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 AAAAAAA 1 A_Warp(AAPTR_TARGET, -5, 0, 30, 0,  WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	Death:
+		X123 SSTTUUVVWWXX 1 A_FadeOut(0.07)
+		Stop
+	}
+}
+
+
+Actor ThumperShootProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_PlaySound("QC/Abilities/Grayson/LeashPhase",CHAN_AUTO,1)
+		TNT1 A 0 A_TakeInventory("ThumperArmingToken")
+		TNT1 A 0 A_TakeInventory("ThumperReadyToken")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMshoot")
+		TNT1 A 0 A_FireCustomMissile("ThumperProjectile", 0     , false)
+		TNT1 A 35
+		Stop
+	DMshoot:
+		TNT1 A 0 A_FireCustomMissile("ThumperProjectileDM", 0     , false)
+		TNT1 A 35
+		Stop
+	}
+}
+
+
+
+
+Actor PowerGrayThumpFlight : PowerFlight
+{
+	//Inventory.Icon "IcnHaste"
+}
+
+Actor GrayThumperFlight : PowerupGiver
+{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	powerup.Type "GrayThumpFlight"
+	powerup.duration -15
+}
+
+
+
+
+
+
+
+
+
+
+Actor ThumperProjectile
+{
+	Projectile
+	var int user_counter1;
+	var int user_counter2;
+	Speed 32
+	Height 6
+	Radius 5
+	Projectile
+	+STRIFEDAMAGE
+	+FORCEXYBILLBOARD
+	+DONTBLAST
+	Damage (1)
+	Scale 0.4
+	Translation "0:255=%[0,0,0]:[1,1,1.5]"
+	+SEEINVISIBLE
+	+BLOODLESSIMPACT
+	+SKYEXPLODE
+	+THRUGHOST
+	RenderStyle Add
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SetUserVar("user_counter1",0)
+	Looper:
+		TNT1 A 0 A_JumpIf(user_counter1>=20,"Outlived")
+		TNT1 A 0 A_SetUserVar("user_counter1",user_counter1+1)
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32)
+		DB52 A 1 BRIGHT //A_CustomRailgun(0,0,"None","None",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT|RGF_CENTERZ,1,0,"CustomPuffLeash",0,0,0,2,10.0,1.0,"LeashTrail")
+		Loop
+	Outlived:	//no target or surface was reached, will still perform but first it no longer interacts with world
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
+		TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
+		TNT1 A 0 A_ChangeFlag("NOCLIP",1)
+		Goto Looper2
+
+	Death: 	//it reached a target or surface, and starts the effect
+		TNT1 A 0 A_SetUserVar("user_counter2",0)
+	Looper2:
+		TNT1 A 0 A_JumpIf(user_counter2>=10,"ThumpAction")
+		TNT1 A 0 A_SetUserVar("user_counter2",user_counter2+1)
+		TNT1 AA 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,0.1),0,32)
+		DB52 A 1 BRIGHT //A_CustomRailgun(0,0,"None","None",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"CustomPuffLeash",0,0,0,2,4.0,1.0,"LeashTrail")
+		Loop
+	ThumpAction:
+		TNT1 A 0 A_PlaySound("DoomStorm/Player/LeashThumper",6,1,0,ATTN_NONE)
+		TNT1 A 0 A_SpawnItemEx("ThumperBall",0,0,0,0.01,0,24,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		TNT1 A 0 A_TakeFromTarget("NoWeaponFireToken")
+		TNT1 A 5 A_TakeFromTarget("ActiveInProgress")
+		Stop
+	}
+}
+Actor ThumperProjectileDM : ThumperProjectile
+{
+	-DONTBLAST
+	States
+	{
+	ThumpAction:
+		TNT1 A 0 A_PlaySound("DoomStorm/Player/LeashThumper",6,1,0,ATTN_NONE)
+		TNT1 A 0 A_SpawnItemEx("ThumperBallDM",0,0,0,0.01,0,24,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		TNT1 A 0 A_TakeFromTarget("NoWeaponFireToken")
+		TNT1 A 5 A_TakeFromTarget("ActiveInProgress")
+		Stop
+	}
+}
+
+//--------------------------------------------------------------
+//	The leash ball that goes up, and falls down
+Actor ThumperBall
+{
+	Projectile
+	Speed 0
+	Radius 2
+	Height 3
+	RenderStyle Add
+	+BOUNCEONCEILINGS
+	+FORCEXYBILLBOARD
+	+SKYEXPLODE
+	Gravity 2.0
+	-NOGRAVITY
+	Scale 0.5
+	+THRUGHOST
+	+THRUACTORS
+	+DONTBLAST
+	Translation "0:255=%[0,0,0]:[1.0,1.0,1.2]"
+	DamageType "ThumperDamage"
+	ReactionTime 3
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		DB66 AABBCCDDEEFFGGHHIIJJKKLLMM 1 Bright A_SpawnItemEx("ThumperBallTrail",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_CountDown
+		DB66 NNOOPPQQRRSSTTUUVVWWXXYYZZ 1 Bright A_SpawnItemEx("ThumperBallTrail",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_CountDown
+		Loop
+	Death:
+		TNT1 A 0 A_SpawnItemEx("ThumperDustSpawner",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Grayson/ThumperExplode",5,1,0,0.85)
+		TNT1 A 0 A_Warp(AAPTR_DEFAULT,0,0,64)	//raise it a bit to avoid "stair-step blocking"
+		TNT1 A 0 A_Explode(1,384,0,1,384)
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor ThumperBallDM : ThumperBall
+{
+	-DONTBLAST
+	States
+	{
+		Death:
+		TNT1 A 0 A_SpawnItemEx("ThumperDustSpawner",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_Warp(AAPTR_DEFAULT,0,0,64)	//raise it a bit to avoid "stair-step blocking"
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ThumperHit")
+		TNT1 A 0 A_PlaySound("QC/Abilities/Grayson/ThumperExplode",5,1,0,0.7)
+		TNT1 A 0 A_Explode(1,384,0,1,384)
+		TNT1 A 10 A_RadiusGive("ThumperOnPlayerProc",384,RGF_PLAYERS)
+		Stop
+	}
+}
+
+
+
+Actor ThumperHitCeilingProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_SpawnItemEx("ThumperDustSpawner",0,0,0,0,0,0,0,32)
+		Stop
+	}
+}
+
+Actor ThumperOnPlayerProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ThumperAffected")
+		Stop
+	}
+}
+
+
+
+Actor PlayerThumpSparkerProc : CustomInventory
+{
++INVENTORY.AUTOACTIVATE
+Inventory.MaxAmount 1
+States
+{
+	Spawn:
+		PLAY A -1 Bright
+		Stop
+	Use:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,30,frandom(1,5),0,frandom(0,1),0,32,120)
+		TNT1 AA 0 A_SpawnItemEx("LeashSpark",0,frandom(-2,2),40, frandom(0,5),0,frandom(0.1,2),random(0,359),32,180)
+		Stop
+	}
+}
+
+Actor ThumperChargeSparkSpawner
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(1,5),0,frandom(0,1),0,32,120)
+		TNT1 AA 0 A_SpawnItemEx("LeashSpark",0,frandom(-2,2),frandom(-4,0),frandom(0,5),0,frandom(0.1,2),random(0,359),32,180)
+		Stop
+	}
+}
+
+
+
+//-------------------------------------------------
+//	Trails and particles, visual only
+
+Actor CustomPuffLeash
+{
+	+Alwayspuff
+	+BLOODLESSIMPACT
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor LeashTrail
+{
+	+NOINTERACTION
+	Scale 0.1
+	+NOCLIP
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Translation "0:255=%[0,0,0]:[0.7,0.7,1.3]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256,"Type1","Type2","Type3","Type4","Type5","Type6","Type7","Type8","Type9")
+	Type1:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL A 1 Bright
+		Stop
+	Type2:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL B 1 Bright
+		Stop
+	Type3:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL C 1 Bright
+		Stop
+	Type4:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL d 1 Bright
+		Stop
+	Type5:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL E 1 Bright
+		Stop
+	Type6:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL F 1 Bright
+		Stop
+	Type7:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL G 1 Bright
+		Stop
+	Type8:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL H 1 Bright
+		Stop
+	Type9:
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32,253)
+		HSPL I 1 Bright
+		Stop
+	}
+}
+
+Actor ThumperBallTrail
+{
+	+NOINTERACTION
+	RenderStyle Add
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	Translation "0:255=%[0,0,0]:[1.0,1.0,1.2]"
+	Scale 0.5
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0,32)
+		X029 A 1 Bright A_FadeOut
+		Wait
+	}
+}
+Actor LeashSpark
+{
+	Translation "0:255=%[0,0,0]:[0.75,0.75,2.0]"
+	+NOINTERACTION
+	Scale 0.15
+	RenderStyle Add
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	Alpha 1.0
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256,"S1","S2","S3","S4","S5","S6","S7","S8")
+	S1:	X079 A 0
+	Goto Perform
+	S2:	X079 B 0
+	Goto Perform
+	S3:	X079 C 0
+	Goto Perform
+	S4:	X079 D 0
+	Goto Perform
+	S5:	X079 E 0
+	Goto Perform
+	S6:	X079 F 0
+	Goto Perform
+	S7:	X079 G 0
+	Goto Perform
+	S8: X079 H 0
+	Goto Perform
+	Perform:
+		"####" "#" 1 Bright A_SetScale(ScaleX+0.005)
+		"####" "#" 0 A_FadeOut(0.05)
+		Loop
+	}
+}
+
+
+
+//-------------------------------------------------
+//	Brown Dust Explosion
+Actor ThumperDustSpawner
+{
+	+NOINTERACTION
+	RenderStyle None
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAA 0 A_SpawnItemEx("BrownSmokeBig",0,0,0,frandom(10,25),0,frandom(0,8),random(0,359),32)
+		TNT1 AAAAAA 0 A_SpawnItemEx("ThumperElectroDust",0,0,0,random(8,14),0,random(9,12),random(0,359),32)
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor BrownSmokeBig
+{
+	var int user_counter;
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	RenderStyle Translucent
+	//Alpha 0.57
+	Alpha 0.0
+	Scale 0.4
+	States
+	{
+	Spawn:
+		TNT1 A 0
+	Choose1of4:
+		TNT1 A 0 A_Jump(256,"T1","T2")
+
+	T1:	X201 C 0 A_Jump(256,"Behavior")
+	T2:	X201 D 0 A_Jump(256,"Behavior")
+
+	Behavior:
+		"####" "#" 0 A_JumpIf(user_counter>=random(5,12),"SlowDown")
+		"####" "#" 0 A_SetUserVar("user_counter",user_counter+1)
+		"####" "#" 1 A_FadeTo(0.57,0.04,0)
+		"####" "#" 0 A_ScaleVelocity(0.9)
+		"####" "#" 0 A_SetScale(scalex+frandom(0.07,0.2))
+		Loop
+	SlowDown:
+		"####" "#" 1 A_FadeOut(frandom(0.005,0.01))
+		"####" "#" 0 A_ScaleVelocity(0.8)
+		"####" "#" 0 A_SetScale(scalex+frandom(0.07,0.2))
+		Loop
+
+	}
+}
+
+
+Actor ThumperElectroDust
+{
+	+NOINTERACTION
+	Scale 1.2
+	Alpha 0.6
+	RenderStyle Add
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	Translation "0:255=%[0,0,0]:[1.0,1.0,1.3]"
+	States
+	{
+	Spawn:
+		X103 J 2 Bright A_FadeOut(0.05)
+		TNT1 A 0 A_SetScale(ScaleX+0.08)
+		TNT1 A 0 A_ScaleVelocity(0.9)
+		Loop
+	}
+}
+
+// For monsters/players stunned
+Actor ShockSparkSpawner
+{
+	+NOINTERACTION
+	Translation "0:255=%[0,0,0]:[1.0,1.0,1.3]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("BFGExploLightningSmall",0,0,0 ,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION,190)
+		Stop
+	}
+}

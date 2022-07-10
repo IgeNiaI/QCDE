@@ -1,0 +1,101 @@
+
+// IMPORTANT NOTE FOR MAPPERS //
+// You can't put a special on a lootbox other than "execute with result 1827".
+// Map-placed lootbox will ensure that it has execution of script 1827 as its
+// special.
+// Dynamically spawned lootbox won't -- so, please, set its special to
+// type = 84 (ACS_ExecuteWithResult)
+// arg0 = 1827
+// Otherwise the lootbox will be empty. :(
+
+Actor LBBackpack : CustomInventory 15514
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 3
+	//$Title "Backpack (common lootbox)"
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.INVBAR
+	+INVENTORY.NEVERRESPAWN
+	Inventory.Icon "LOOTBOX1"
+	Inventory.DefMaxAmount
+	Inventory.InterhubAmount 25
+	Inventory.PickUpSound "QC/Items/Backpack"
+	Inventory.PickupMessage "$GOT_LBBackpack" // "Picked up a bonus backpack!"
+	Scale 0.67
+	Tag "$TAG_LBBackpack" // "Backpack"
+	States
+	{
+	Spawn:
+		LBOX A -1 NoDelay ACS_NamedExecuteWithResult("QCDE_Lootbox",0)
+		Stop
+	Pickup:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_OpenLootboxes", true)
+		Stop
+	Use:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_OpenBackpack")
+		Fail
+	}
+}
+
+Actor LBChest : LBBackpack 15515
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 3
+	//$Title "Chest (rare lootbox)"
+	Inventory.Icon "LOOTBOX2"
+	Inventory.PickupMessage "$GOT_LBChest" // "Picked up a bonus chest!"
+	Scale 0.8
+	Tag "$TAG_LBChest" // "Chest"
+	States
+	{
+	Spawn:
+		LBOX B -1 NoDelay ACS_NamedExecuteWithResult("QCDE_Lootbox",1)
+		Stop
+	Use:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_OpenChest")
+		Fail
+	}
+}
+
+Actor LBReliquary : LBBackpack 15516
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 3
+	//$Title "Reliquary (epic lootbox)"
+	Inventory.Icon "LOOTBOX3"
+	Inventory.PickupMessage "$GOT_LBReliquary" // "Picked up a bonus reliquary!"
+	Scale 1.07
+	Tag "$TAG_LBReliquary" // "Reliquary"
+	States
+	{
+	Spawn:
+		LBOX C -1 NoDelay ACS_NamedExecuteWithResult("QCDE_Lootbox",2)
+		Stop
+	Use:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_OpenReliquary")
+		Fail
+	}
+}
+
+// These matter for lootbox bonuses
+
+Actor RewardToken     : Token { Inventory.MaxAmount 100000 }
+Actor AlreadyRewarded : Token { Inventory.InterhubAmount 0 }
+Actor OpeningLootbox  : Token {}
+
+Actor BackpackRewardToken : Token { Inventory.MaxAmount 10 }
+Actor CooldownRewardToken : Token { Inventory.MaxAmount 50 }
+Actor CooldownRewardToken2: Token { Inventory.MaxAmount 10 }
+Actor LoadoutRewardToken  : Token { Inventory.MaxAmount  6 }
+Actor LongerPowerupToken  : Token {}
+
+// This is crucial for linear congruential generator to sustain the opened rifts
+
+Actor RngState_Backpack  : Token { Inventory.MaxAmount 65536 Inventory.InterhubAmount 65536 }
+Actor RngState_Chest     : Token { Inventory.MaxAmount 65536 Inventory.InterhubAmount 65536 }
+Actor RngState_Reliquary : Token { Inventory.MaxAmount 65536 Inventory.InterhubAmount 65536 }
+Actor RngState_Lootbox   : Token { Inventory.MaxAmount 65536 Inventory.InterhubAmount 65536 }
+Actor RngState_Loadout   : Token { Inventory.MaxAmount 65536 Inventory.InterhubAmount 65536 }

@@ -1,0 +1,862 @@
+//==================================================================================
+//==================================================================================
+//	This is the base class from which most armors and health inherit
+//==================================================================================
+//==================================================================================
+
+Actor InventoryClassChecker : CustomInventory
+{
+	States
+	{
+	Spawn:
+		PLAY A 10
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("Class_Ranger",		1,"DoRanger")
+		TNT1 A 0 A_JumpIfInventory("Class_DoomSlayer",	1,"DoDoomSlayer")
+		TNT1 A 0 A_JumpIfInventory("Class_Corvus",		1,"DoCorvus")
+		TNT1 A 0 A_JumpIfInventory("Class_Kane",		1,"DoKane")
+		TNT1 A 0 A_JumpIfInventory("Class_Caleb",		1,"DoCaleb")
+		TNT1 A 0 A_JumpIfInventory("Class_Menelkir",	1,"DoMenelkir")
+		TNT1 A 0 A_JumpIfInventory("Class_Terminator",	1,"DoTerminator")
+		TNT1 A 0 A_JumpIfInventory("Class_Zedek",		1,"DoZedek")
+		TNT1 A 0 A_JumpIfInventory("Class_Inquisitor",	1,"DoInquisitor")
+		TNT1 A 0 A_JumpIfInventory("Class_Bitterman",	1,"DoBitterman")
+		TNT1 A 0 A_JumpIfInventory("Class_Galen",		1,"DoGalen")
+		TNT1 A 0 A_JumpIfInventory("Class_Nyx",			1,"DoNyx")
+		TNT1 A 0 A_JumpIfInventory("Class_Sorgaul",		1,"DoSorgaul")
+		TNT1 A 0 A_JumpIfInventory("Class_DukeNukem",	1,"DoDukeNukem")
+		TNT1 A 0 A_JumpIfInventory("Class_Durandal",	1,"DoDurandal")
+		TNT1 A 0 A_JumpIfInventory("Class_Keel",		1,"DoKeel")
+		TNT1 A 0 A_JumpIfInventory("Class_Sarge",		1,"DoSarge")
+		TNT1 A 0 A_JumpIfInventory("Class_LoWang",		1,"DoLoWang")
+		TNT1 A 0 A_JumpIfInventory("Class_Grayson",		1,"DoGrayson")
+		TNT1 A 0 A_JumpIfInventory("Class_Eradicator",	1,"DoEradicator")
+		TNT1 A 0 A_JumpIfInventory("Class_Blazkowicz",	1,"DoBlazkowicz")
+		TNT1 A 0 A_JumpIfInventory("Class_Freeman",		1,"DoFreeman")
+		TNT1 A 0 A_JumpIfInventory("Class_VorMatur",	1,"DoVorMatur")
+		TNT1 A 0 A_JumpIfInventory("Class_Eleena",		1,"DoEleena")
+		TNT1 A 0 A_JumpIfInventory("Class_Lucienne",	1,"DoLucienne")
+		TNT1 A 0 A_JumpIfInventory("Class_Major",		1,"DoMajor")
+		TNT1 A 0 A_JumpIfInventory("Class_Hunter",		1,"DoHunter")
+		TNT1 A 0 A_JumpIfInventory("Class_Sam",			1,"DoSam")
+		TNT1 A 0 A_JumpIfInventory("Class_Postal",		1,"DoPostal")
+		TNT1 A 0 A_JumpIfInventory("Class_Painkiller",	1,"DoPainkiller")
+		TNT1 A 0 A_JumpIfInventory("Class_Intruder",	1,"DoIntruder")
+		// ^ insert more classes here
+		TNT1 A 0 A_Jump(256, "Default")
+		Fail
+	DoRanger:		TNT1 A 1 A_PrintBold("$DBG_HARanger")         Stop
+	DoDoomSlayer:	TNT1 A 1 A_PrintBold("$DBG_HADoomSlayer")     Stop
+	DoCorvus:		TNT1 A 1 A_PrintBold("$DBG_HACorvus")         Stop
+	DoKane:			TNT1 A 1 A_PrintBold("$DBG_HAKane")           Stop
+	DoCaleb:		TNT1 A 1 A_PrintBold("$DBG_HACaleb")          Stop
+	DoMenelkir:		TNT1 A 1 A_PrintBold("$DBG_HAMenelkir")       Stop
+	DoTerminator:	TNT1 A 1 A_PrintBold("$DBG_HATerminator")     Stop
+	DoZedek:		TNT1 A 1 A_PrintBold("$DBG_HAZedek")          Stop
+	DoInquisitor:	TNT1 A 1 A_PrintBold("$DBG_HAInquisitor")     Stop
+	DoBitterman:	TNT1 A 1 A_PrintBold("$DBG_HABitterman")      Stop
+	DoGalen:		TNT1 A 1 A_PrintBold("$DBG_HAGalen")          Stop
+	DoNyx:			TNT1 A 1 A_PrintBold("$DBG_HANyx")            Stop
+	DoSorgaul:		TNT1 A 1 A_PrintBold("$DBG_HASorgaul")        Stop
+	DoDukeNukem:	TNT1 A 1 A_PrintBold("$DBG_HADukeNukem")      Stop
+	DoDurandal:		TNT1 A 1 A_PrintBold("$DBG_HADurandal")       Stop
+	DoKeel:			TNT1 A 1 A_PrintBold("$DBG_HAKeel")           Stop
+	DoSarge:		TNT1 A 1 A_PrintBold("$DBG_HASarge")          Stop
+	DoLoWang:		TNT1 A 1 A_PrintBold("$DBG_HALoWang")         Stop
+	DoGrayson:		TNT1 A 1 A_PrintBold("$DBG_HAGrayson")        Stop
+	DoEradicator:	TNT1 A 1 A_PrintBold("$DBG_HAEradicator")     Stop
+	DoBlazkowicz:	TNT1 A 1 A_PrintBold("$DBG_HABlazkowicz")     Stop
+	DoFreeman:		TNT1 A 1 A_PrintBold("$DBG_HAFreeman")        Stop
+	DoVorMatur:		TNT1 A 1 A_PrintBold("$DBG_HAVorMatur")       Stop
+	DoEleena:		TNT1 A 1 A_PrintBold("$DBG_HAEleena")         Stop
+	DoLucienne:		TNT1 A 1 A_PrintBold("$DBG_HALucienne")       Stop
+	DoMajor:		TNT1 A 1 A_PrintBold("$DBG_HAMajor")          Stop
+	DoHunter:		TNT1 A 1 A_PrintBold("$DBG_HAHunter")         Stop
+	DoSam:			TNT1 A 1 A_PrintBold("$DBG_HASam")            Stop
+	DoPostal:		TNT1 A 1 A_PrintBold("$DBG_HAPostal")         Stop
+	DoPainkiller:	TNT1 A 1 A_PrintBold("$DBG_HAPainkiller")     Stop
+	DoIntruder:		TNT1 A 1 A_PrintBold("$DBG_HAIntruder")       Stop
+	// ^ insert more classes here
+	Default:		TNT1 A 1 A_PrintBold("InventoryClassChecker default debug message") Stop
+	}
+}
+
+//==================================================================================
+//==================================================================================
+//			Health
+//==================================================================================
+//==================================================================================
+Actor QCHealthBonus : Health replaces HealthBonus
+{
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Height 48
+	Inventory.Amount 3
+	Inventory.MaxAmount 1000
+	Inventory.PickupMessage "$GOT_QCHealthBonus" // "Picked up an overstacking health bonus."
+	Inventory.PickupSound "QC/Items/SmallHealth"
+	Inventory.RespawnTics 1050 //30 sec
+	Scale 0.7
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(random(1,10)==1, "BeHourglass")
+		Goto BeHealthBonus
+	BeHourglass:
+		TNT1 A 0 A_ChangeFlag("Countitem",0)
+		TNT1 A 0 A_SpawnItemEx("Hourglass")
+		Stop
+	BeHealthBonus:
+		HEAL A -1 Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Loop
+	}
+}
+
+
+Actor QCStimpack : InventoryClassChecker replaces Stimpack
+{
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Radius 20
+	Height 48
+	Scale 0.85
+	Inventory.PickupMessage "$GOT_QCStimpack" // "Picked up a health bubble."
+	Inventory.PickupSound "QC/Items/MediumHealth"
+	Inventory.RespawnTics 1050 //30 sec
+	States
+	{
+	Spawn:
+		HEAL B -1 BRIGHT NODELAY ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+
+		DoRanger:
+		DoDoomSlayer:
+		DoCorvus:
+		DoKane:
+		DoCaleb:
+		DoMenelkir:
+		DoTerminator:
+		DoZedek:
+		DoInquisitor:
+		DoBitterman:
+		DoNyx:
+		DoSorgaul:
+		DoDurandal:
+		DoKeel:
+		DoSarge:
+		DoLoWang:
+		DoGrayson:
+		DoBlazkowicz:
+		DoFreeman:
+		DoVorMatur:
+		DoEleena:
+		DoLucienne:
+		DoMajor:
+		DoHunter:
+		DoSam:
+		DoPostal:
+		DoPainkiller:
+		DoIntruder:
+		Default:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
+			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
+		DoGalen:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
+			TNT1 A 0 ACS_NamedExecuteAlways("QCDE_Hourglass",0,5)
+			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
+		DoDukeNukem:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
+			TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"), 40,  0) Stop
+		DoEradicator:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),15,1)
+			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
+		// ^ insert more classes here
+
+	HealDoneSuccess:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"), 25,  0)
+		Stop
+	Failer:
+		TNT1 A 0
+		Fail
+	}
+}
+
+
+
+Actor QCMedikit : QCStimpack replaces Medikit
+{
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Radius 20
+	Height 48
+	Scale 0.85
+	Inventory.PickupMessage "$GOT_QCMedikit" // "Picked up a health sphere."
+	Inventory.PickupSound "QC/Items/LargeHealth"
+	Inventory.RespawnTics 1050 //30 sec
+	States
+	{
+	Spawn:
+		HEAL C 0 NODELAY A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		HEAL C -1 BRIGHT ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+		//special handler for Duke only
+		DoDukeNukem:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
+			TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"), 70,  0) Stop
+		DoEradicator:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),20,1)
+			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
+
+	HealDoneSuccess:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"), 50,  0)
+		Stop
+	Failer:
+		TNT1 A 0
+		Fail
+	}
+}
+
+
+Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
+{
+	Height 48
+	Radius 20
+	Scale 1.0
+	Inventory.PickupSound "QC/Items/PowerupPick"
+	Inventory.PickupMessage "$GOT_QCMegaHealth" // "Picked up a mega health!"
+	Inventory.RespawnTics 1050 //30 sec
+	States
+	{
+	Spawn:
+		MEGR A 35 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 0)
+		MEGR A 0 A_ThrowGrenade("QCMegaHealthFX")
+		MEGR A 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		MEGR A -1 BRIGHT
+		Stop
+
+	DoRanger:
+	DoDoomSlayer:
+	DoCorvus:
+	DoKane:
+	DoCaleb:
+	DoMenelkir:
+	DoTerminator:
+	DoZedek:
+	DoInquisitor:
+	DoBitterman:
+	DoNyx:
+	DoSorgaul:
+	DoDurandal:
+	DoKeel:
+	DoLoWang:
+	DoGrayson:
+	DoBlazkowicz:
+	DoFreeman:
+	DoVorMatur:
+	DoEleena:
+	DoLucienne:
+	DoMajor:
+	DoHunter:
+	DoSam:
+	DoPainkiller:
+	DoIntruder:
+	Default:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100, 75)
+		Goto HealthDoneSuccess
+	DoGalen:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100, 75)
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_Hourglass",0,20)
+		Goto HealthDoneSuccess
+	DoDukeNukem: //extra health for passive
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),150, 75)
+		Goto HealthDoneSuccess
+	DoSarge: //extra cap for passive
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100,100)
+		Goto HealthDoneSuccess
+	DoEradicator:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100, 75)
+		TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),35,1)
+		Goto HealthDoneSuccess
+	DoPostal:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100,100)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Postal_Mega")
+		Goto HealthDoneSuccess
+	// ^ insert more classes here
+
+	HealthDoneSuccess:
+		TNT1 A 0 A_SpawnItemEx("MegaHealthFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ItemTaken", 0)
+		TNT1 A 0
+		Stop
+	}
+}
+
+// This effect can now be inherited from
+// Set the sprite in Spawn and then use Goto LooperIn for follow/track behavior
+Actor QCMegaHealthFX : GenericPowerupFXBackground
+{
+	Scale 1.0
+	Alpha 0.01
+	States
+	{
+	Spawn:
+		MEGR B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
+		Goto LooperIn
+	}
+}
+
+//*******************************************************
+
+Actor QCMegaMega : CustomInventory replaces MegaSphere
+{
+	Height 48
+	Radius 20
+	Scale 1.0
+	Inventory.PickupMessage "$GOT_QCMegaMega" // "Picked up a mega charge!"
+	Inventory.PickupSound "QC/Items/PowerupPick"
+	Inventory.RespawnTics 2100 //60 sec
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	States
+	{
+	Spawn:
+		MEGB A 35 NODELAY BRIGHT A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		MEGB A 0 A_ThrowGrenade("QCMegamegaFX")
+		MEGB A -1 BRIGHT
+		Stop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("QCMegaHealth",1)
+		TNT1 A 0 A_GiveInventory("QCBigArmorGiver",1)
+		Stop
+	}
+}
+
+Actor QCMegamegaFX : GenericPowerupFXBackground
+{
+	Scale 1.0
+	States
+	{
+	Spawn:
+		MEGB B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
+		Goto LooperIn
+	}
+}
+
+
+
+//==================================================================================
+//==================================================================================
+//			Armor
+//==================================================================================
+//==================================================================================
+
+Actor QCArmorBonus : BasicArmorBonus replaces ArmorBonus
+{
+	Radius 20
+	Height 48
+	Inventory.Pickupmessage "$GOT_QCArmorBonus" // "Picked up an armor shard."
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 66.665
+	Armor.Saveamount 3
+	Armor.Maxsaveamount 200
+	Inventory.RespawnTics 525 //15 sec
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Scale 0.9
+	Inventory.PickupSound "QC/Items/ArmorShardPick"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(random(1,10)==1, "BeHourglass")
+		Goto BeArmorBonus
+	BeHourglass:
+		TNT1 A 0 A_ChangeFlag("Countitem",0)
+		TNT1 A 0 A_SpawnItemEx("Hourglass")
+		Stop
+	BeArmorBonus:
+		QCAR A -1 BRIGHT ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		loop
+	}
+}
+
+Actor QCPlayerArmorDrop
+{
+	+NOINTERACTION
+	RenderStyle None
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck") < 2, "Death")
+		TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("InstagibCheck",true), "Death")
+		TNT1 AAA 1 A_SpawnItemEx("QCArmorShardNoHourGlass",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)
+		Stop
+	Death:
+		TNT1 A 0
+		Stop
+	}
+}
+
+Actor QCArmorShardNoHourGlass : BasicArmorBonus
+{
+	Radius 20
+	Height 48
+	Inventory.Pickupmessage "$GOT_QCArmorShardNoHourGlass" // "Picked up an armor shard."
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 66.665
+	Armor.Saveamount 5
+	Armor.Maxsaveamount 200
+	Inventory.RespawnTics 525 //15 sec
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Scale 0.9
+	Inventory.PickupSound "QC/Items/ArmorShardPick"
+	States
+	{
+	Spawn:
+		QCAR AAAAAAAAAA 35 BRIGHT		//10 seconds
+		Stop
+	}
+}
+
+Actor QCSargeArmorGain : BasicArmorBonus
+{
+	Radius 20
+	Height 48
+	Inventory.Pickupmessage "$GOT_QCSargeArmorGain" // "Picked up an armor shard."
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 66.665
+	Armor.Saveamount 12
+	Armor.Maxsaveamount 200
+	Inventory.RespawnTics 525 //15 sec
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Scale 0.9
+	Inventory.PickupSound "QC/Items/ArmorShardPick"
+	States
+	{
+	Spawn:
+		QCAR AAAAAAAAAA 35 BRIGHT		//10 seconds
+		Stop
+	}
+}
+
+Actor QCArmorPoint : BasicArmorBonus //used for the ACS script that gives armor
+{
+	Armor.Savepercent 66.665
+	Armor.Saveamount 1
+	Armor.Maxsaveamount 65534
+	+INVENTORY.ALWAYSPICKUP
+	States
+	{
+	Spawn:
+		TNT1 A -1 BRIGHT
+		loop
+	}
+}
+
+//************************************************************
+// How much armor points the shield and vest give
+const int SmallArmorAmount	=   5;
+const int MediumArmorAmount	=  50;
+const int BigArmorAmount	= 100;
+//************************************************************
+
+Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
+{
+	Radius 20
+	Height 48
+	Scale 0.9
+	Inventory.PickupMessage "$GOT_QCSmallArmorGiver" // "Picked up an armored plate."
+	Inventory.PickupSound "QC/Items/ArmorSmallPick"
+	Inventory.RespawnTics 1050 //30 sec
+	States
+	{
+	Spawn:
+		QCAR B 0 NODELAY A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QCAR B -1 BRIGHT ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+
+		DoRanger:
+		DoDoomSlayer:
+		DoCorvus:
+		DoKane:
+		DoCaleb:
+		DoMenelkir:
+		DoTerminator:
+		DoZedek:
+		DoInquisitor:
+		DoGalen:
+		DoNyx:
+		DoDukeNukem:
+		DoKeel:
+		DoLoWang:
+		DoGrayson:
+		DoEradicator:
+		DoBlazkowicz:
+		DoFreeman:
+		DoEleena:
+		DoLucienne:
+		DoMajor:
+		DoHunter:
+		DoPostal:
+		DoPainkiller:
+		DoIntruder:
+		Default:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer") //If already at max armor for this class, fails
+			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),	MediumArmorAmount,0) 	//arg 1 = max class armor,
+			Goto ArmorDoneSuccess																		// arg 2 = armor given, arg 3= bool "does it overcharge?"
+		DoBitterman:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
+			TNT1 A 0 A_GiveInventory("PowerShieldCharge",50)
+			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),	MediumArmorAmount,0)
+			Goto ArmorDoneSuccess
+		DoSorgaul:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
+			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),	MediumArmorAmount+20,0) //+20 because of passive
+			Goto ArmorDoneSuccess
+		DoDurandal:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),"ActuallyDoDurandal")//1. if health low, do activate
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")	//2. if armor max, fail
+			ActuallyDoDurandal:			//3. Armor wasnt max, activate
+				TNT1 A 0 ACS_NamedExecuteWithResult("DurandalArmor",	CallACS("MaxArmor"),CallACS("MaxHealth"),MediumArmorAmount)
+				Goto ArmorDoneSuccess
+		DoSarge:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+100,"Failer")
+			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor")+100,	MediumArmorAmount,0)
+			Goto ArmorDoneSuccess
+		DoVorMatur:
+			TNT1 A 0 A_JumpIfInventory("MaxArmorToken",1,"ContinueVorMatur") Goto Failer
+			ContinueVorMatur:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
+			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),	MediumArmorAmount,0)
+			Goto ArmorDoneSuccess
+		DoSam:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
+			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),MediumArmorAmount,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Sam",5) // <- Passive
+			Goto ArmorDoneSuccess
+		// ^ insert more classes here
+
+	ArmorDoneSuccess:
+		TNT1 A 0
+		Stop
+	Failer:
+		TNT1 A 0
+		Fail
+	}
+}
+
+
+Actor QCSmallArmorDoubleGiver : QCSmallArmorGiver
+{
+	Radius 20
+	Height 48
+	Scale 0.9
+	Inventory.PickupSound "QC/Items/ArmorSmallPick"
+	Inventory.RespawnTics 525 //15 sec
+	States
+	{
+	Spawn:
+		QCAR B -1 BRIGHT NODELAY A_SpawnItemEx("QCSmallArmorGiver", random(15,-15),random(15,-15),0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+
+Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
+{
+	Radius 20
+	Height 48
+	Scale 1.1
+	Inventory.PickupMessage "$GOT_QCBigArmorGiver" // "Picked up an armored vest."
+	Inventory.PickupSound "QC/Items/ArmorBigPick"
+	Inventory.RespawnTics 1050 //30 sec
+	States
+	{
+	Spawn:
+		QCAR C 35 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 1)
+		QCAR C 0 A_ThrowGrenade("QCHeavyArmorFX")
+		QCAR C 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QCAR C -1 BRIGHT
+		Stop
+
+		DoRanger:
+		DoDoomSlayer:
+		DoCorvus:
+		DoKane:
+		DoCaleb:
+		DoMenelkir:
+		DoTerminator:
+		DoZedek:
+		DoInquisitor:
+		DoGalen:
+		DoNyx:
+		DoDukeNukem:
+		DoKeel:
+		DoLoWang:
+		DoGrayson:
+		DoEradicator:
+		DoBlazkowicz:
+		DoFreeman:
+		DoEleena:
+		DoMajor:
+		DoHunter:
+		DoPostal:
+		DoPainkiller:
+		DoIntruder:
+		Default:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer") //If already at max armor for this class, fails
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),BigArmorAmount,1) //arg 2 = max class armor, arg 3 = armor given
+			Goto ArmorDoneSuccess																	//arg 4= bool "does it overcharge?"
+		DoBitterman:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")
+			TNT1 A 0 A_GiveInventory("PowerShieldCharge",100)
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),BigArmorAmount,1)
+			Goto ArmorDoneSuccess
+		DoSorgaul:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),BigArmorAmount+50,1) //+50 because of passive
+			Goto ArmorDoneSuccess
+		DoDurandal:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),"ActuallyDoDurandal")		//1. if health low, do activate
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")	//2. if armor max, fail
+			ActuallyDoDurandal:			//3. Armor wasnt max, activate
+				TNT1 A 0 ACS_NamedExecuteAlways("DurandalArmor",0,	CallACS("MaxArmor"),CallACS("MaxHealth"),BigArmorAmount)
+				Goto ArmorDoneSuccess
+		DoLucienne:
+		DoSarge:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+100,"Failer")	//allows overstack of 100
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,CallACS("MaxArmor")+25,BigArmorAmount,1)	//tells it allows sarge cap (100) + 25 + 75 (in script)
+			Goto ArmorDoneSuccess
+		DoVorMatur:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,CallACS("MaxArmor"),BigArmorAmount,1)
+			Goto ArmorDoneSuccess
+		DoSam:
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),BigArmorAmount,1)
+			TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Sam",10) // <- Passive
+			Goto ArmorDoneSuccess
+		// ^ insert more classes here
+
+	ArmorDoneSuccess:
+		TNT1 A 0 A_SpawnItemEx("BigArmorGiverFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ItemTaken", 1)
+		TNT1 A 0
+		Stop
+	Failer:
+		TNT1 A 0
+		Fail
+	}
+}
+
+Actor QCHeavyArmorFX : GenericPowerupFXBackground
+{
+	Scale 1.5
+	Alpha 0.01
+	States
+	{
+	Spawn:
+		NULL A 0 NoDelay A_SetUserVar(user_maxalpha,100)	//it's actually invisible
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
+		Goto LooperIn
+	}
+}
+
+
+//======================================================================================
+//
+//	These are exact copies of the regular items, but GZDoomBuilder has issues with
+//	classifiying items that both have DoomEdNum AND "replaces". So now, these that
+//	are NOT "replacers" have the DoomEdNum for GZDoomBuilder to be placed in maps
+//
+//======================================================================================
+
+//--------------------------
+// Healing items
+Actor QCHealthBonusMap : QCHealthBonus 15500
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor"
+	//$Color 1
+	//$Title "Health Bonus (+3)"
+	States
+	{
+	Spawn:	//needed so that it doesn't spawn hourglasses randomly like "replacers" do
+		HEAL A 0
+		Goto BeHealthBonus
+	}
+}
+Actor QCStimpackMap : QCStimpack  15501
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor"
+	//$Color 1
+	//$Title "Medium Health (+25)"
+}
+Actor QCMedikitMap : QCMedikit  15502
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor"
+	//$Color 1
+	//$Title "Big Health (+50)"
+}
+
+Actor QCMegaHealthMap : QCMegaHealth  15503
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor"
+	//$Color 1
+	//$Title "Mega Health (+100)"
+}
+
+//--------------------------
+// Armor items
+
+Actor QCArmorBonusMap : QCArmorBonus 15504
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor"
+	//$Color 10
+	//$Title "Armor Shard (+3, PvE only)"
+	States
+	{
+	Spawn:			//needed so that it doesn't spawn hourglasses randomly like "replacers" do
+		QCAR A 0 NODELAY A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		Goto BeArmorBonus
+	DMSpawn:	//these shards are not meant to be there in MP maps
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor QCSmallArmorGiverMap : QCSmallArmorGiver  15505
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor"
+	//$Color 10
+	//$Title "Light Armor (+50)"
+}
+Actor QCBigArmorGiverMap : QCBigArmorGiver  15506
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor"
+	//$Color 10
+	//$Title "Heavy Armor (+100)"
+}
+
+
+//--------------------------
+// Mega Mega!
+Actor QCMegaMegaMap : QCMegaMega  15507
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor"
+	//$Color 1
+	//$Title "Mega Charge (+100, +100)"
+}
+
+
+
+//--------------------------
+// Floaty versions
+Actor QCHealthBonusMapFloat : QCHealthBonusMap 15520
+{
+	//$NotAngled
+	//$Category "QCDE Float Health & Armor"
+	//$Color 1
+	//$Title "Float Health Bonus (+3)"
+	+NOGRAVITY
+}
+Actor QCStimpackMapFloat : QCStimpackMap  15521
+{
+	//$NotAngled
+	//$Category "QCDE Float Health & Armor"
+	//$Color 1
+	//$Title "Float Medium Health (+25)"
+	+NOGRAVITY
+}
+Actor QCMedikitMapFloat : QCMedikitMap  15522
+{
+	//$NotAngled
+	//$Category "QCDE Float Health & Armor"
+	//$Color 1
+	//$Title "Float Big Health (+50)"
+	+NOGRAVITY
+}
+
+Actor QCMegaHealthFMapFloat : QCMegaHealth  15523
+{
+	//$NotAngled
+	//$Category "QCDE Float Health & Armor"
+	//$Color 1
+	//$Title "Float Mega Health (+100)"
+	+NOGRAVITY
+}
+
+
+Actor QCArmorBonusMapFloat : QCArmorBonusMap 15524
+{
+	//$NotAngled
+	//$Category "QCDE Float Health & Armor"
+	//$Color 10
+	//$Title "Float Armor Shard (+3)"
+	+NOGRAVITY
+}
+
+Actor QCSmallArmorGiverMapFloat : QCSmallArmorGiverMap  15525
+{
+	//$NotAngled
+	//$Category "QCDE Float Health & Armor"
+	//$Color 10
+	//$Title "Float Light Armor (+50)"
+	+NOGRAVITY
+}
+
+Actor QCBigArmorGiverMapFloat : QCBigArmorGiver  15526
+{
+	//$NotAngled
+	//$Category "QCDE Float Health & Armor"
+	//$Color 10
+	//$Title "Float Heavy Armor (+100)"
+	+NOGRAVITY
+}
+
+
+Actor QCMegaMegaMapFloat : QCMegaMega  15527
+{
+	//$NotAngled
+	//$Category "QCDE Float Health & Armor"
+	//$Color 1
+	//$Title "Float MegaMega (+100, +100)"
+	+NOGRAVITY
+}
+
+
+//======================================================================================
+//
+//		Armor tokens that produce starting stack on (re)spawn
+//
+//======================================================================================
+
+Actor QCStartingArmor25  : Token {}
+Actor QCStartingArmor50  : Token {}
+Actor QCStartingArmor75  : Token {}
+Actor QCStartingArmor100 : Token {}

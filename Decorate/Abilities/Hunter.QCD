@@ -1,0 +1,256 @@
+// ----------------------------------------------------------------------------
+//
+// Hunter's abilities
+//
+// Active:	Head of Bones
+//			Murdered champion lives once more as mere instrument.
+//			Idea from AEoD by DBThanatos.
+//			Implementation by Michaelis.
+//
+// Passive: Smell hax
+//			See visual trail after
+//
+// Passive: Learning
+//
+//
+// ----------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+
+Actor HunterSkullProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("ActiveInProgress",1)
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DM")
+	SP:
+		TNT1 A 0 A_SpawnItemEx("HunterSkull", 0,0,0, 0,0,0,0, SXF_NOCHECKPOSITION,0,tid-1000+7528)
+		Stop
+	DM:
+		TNT1 A 0 A_SpawnItemEx("HunterSkullDM", 0,0,0, 0,0,0,0, SXF_NOCHECKPOSITION,0,tid-1000+7528)
+		Stop
+	}
+}
+
+Actor HunterCleanerProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("ActiveInProgress",1)
+		TNT1 A 0 Thing_Remove(tid-1000+7528)
+		Stop
+	}
+}
+
+Actor HunterSkull
+{
+	var int user_shot;
+	Radius 3
+	Height 3
+	-SOLID
+	-SHOOTABLE
+	+NOINTERACTION
+	+BRIGHT
+	Radius 4 Height 4
+	Scale 0.4
+	Speed 0
+	Gravity 0
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_SkullSpawned")
+		TNT1 A 0 A_PlaySound("QC/Abilities/Hunter/Activate",CHAN_BODY,1.0,0,0.75)
+	Idle:
+		AP27 A 1
+		TNT1 A 0 A_Warp(AAPTR_MASTER, 30,-30,52, 0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_DONTCHASEGOAL|LOF_NOSEESOUND|LOF_NOJUMP, 0,1536, 0, 360)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_HasLivingTarget"), "Shoot")
+		Goto Idle
+	Shoot:
+		TNT1 A 0 A_JumpIf(user_shot>=1,"Waitering")
+		TNT1 A 0 A_JumpIfTargetInLos("Fire")
+		Goto Forget
+	Fire:
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_SetUserVar(user_shot,1)
+		TNT1 A 0 A_CustomMissile("PlHunterBall",2)
+		Goto Idle
+	Forget:
+		TNT1 A 0 A_ClearTarget
+		Goto Idle
+	Waitering:
+		TNT1 A 0 A_SetUserVar(user_shot,0)
+		AP27 A 1 A_FaceTarget	TNT1 A 0 A_Warp(AAPTR_MASTER, 30,-30,52, 0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		AP27 A 1 A_FaceTarget	TNT1 A 0 A_Warp(AAPTR_MASTER, 30,-30,52, 0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		AP27 A 1 A_FaceTarget	TNT1 A 0 A_Warp(AAPTR_MASTER, 30,-30,52, 0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		AP27 A 1 A_FaceTarget	TNT1 A 0 A_Warp(AAPTR_MASTER, 30,-30,52, 0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Goto Idle
+	}
+}
+
+Actor HunterSkullDM : HunterSkull
+{
+	States
+	{
+	Fire:
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_SetUserVar(user_shot,1)
+		TNT1 A 0 A_CustomMissile("PlHunterBallDM",2)
+		Goto Idle
+	}
+}
+
+Actor PlHunterBall
+{
+	Projectile
+	Radius 2
+	Height 4
+	Speed 50
+	Damage 8
+	RenderStyle Add
+	Scale 0.75
+	Translation "0:255=%[0,0,0]:[1.5,0.9,0]"
+	+MTHRUSPECIES
+	+FORCEPAIN
+	+SEEKERMISSILE
+	+DONTBLAST
+	DamageType "ZombieGibber"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_ReattributeToMaster")
+		TNT1 A 0 A_PlaySound("QC/Abilities/Hunter/Fire",CHAN_AUTO,0.7)
+	Looper:
+		ACID A 2 BRIGHT A_SeekerMissile(3,3)
+		Loop
+	Xdeath:	//Direct hit
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_Jump(256,"Death") //for virtual jump to inherited versions
+		Goto Death
+	Death:
+		HIB1 CDEFG 3 Bright
+		Stop
+	}
+}
+Actor PlHunterBallDM : PlHunterBall
+{
+	-MTHRUSPECIES
+	-DONTBLAST
+	-FORCEPAIN
+	Damage (5)
+	States
+	{
+	Death:
+		TNT1 A 0 A_RadiusGive("HunterProjectionProc", 40, RGF_PLAYERS)
+		Goto Super::Death
+	}
+}
+
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+Actor HunterProjectionProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Traced")
+		TNT1 A 0 A_GiveInventory("OverTraced")
+		Stop
+	}
+}
+
+Actor PowerTraced : Powerup
+{
+	Powerup.Duration 2
+}
+
+Actor GetTraced : PowerupGiver
+{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	Powerup.Type "Traced"
+	Powerup.Duration 210
+}
+
+Actor OverTraced : GetTraced
+{
+	+INVENTORY.ADDITIVETIME
+	Powerup.Duration 2
+}
+
+Actor HunterTrace : FX
+{
+	RenderStyle Translucent
+	Alpha 0.4
+	+DONTBLAST
+	States
+	{
+	Spawn:
+		TNT1 A 100 NoDelay
+		Stop
+
+		// --------------------------------------------------------------------
+
+	Ranger:		QP01 "#" 0 A_Turn(0) Goto Frame
+	DoomSlayer:	QP02 "#" 0 A_Turn(0) Goto Frame
+	Corvus:		QP03 "#" 0 A_Turn(0) Goto Frame
+	Kane:		QP04 "#" 0 A_Turn(0) Goto Frame
+	Caleb:		QP05 "#" 0 A_Turn(0) Goto Frame
+	Menelkir:	QP06 "#" 0 A_Turn(0) Goto Frame
+	Terminator:	QP07 "#" 0 A_Turn(0) Goto Frame
+	Zedek:		QP08 "#" 0 A_Turn(0) Goto Frame
+	Inquisitor:	QP09 "#" 0 A_Turn(0) Goto Frame
+	Bitterman:	QP10 "#" 0 A_Turn(0) Goto Frame
+	Galen:		QP11 "#" 0 A_Turn(0) Goto Frame
+	Nyx:		QP12 "#" 0 A_Turn(0) Goto Frame
+	Sorgaul:	QP13 "#" 0 A_Turn(0) Goto Frame
+	DukeNukem:	QP14 "#" 0 A_Turn(0) Goto Frame
+	Durandal:	QP15 "#" 0 A_Turn(0) Goto Frame
+	Keel:		QP16 "#" 0 A_Turn(0) Goto Frame
+	Sarge:		QP17 "#" 0 A_Turn(0) Goto Frame
+	LoWang:		QP18 "#" 0 A_Turn(0) Goto Frame
+	Grayson:	QP19 "#" 0 A_Turn(0) Goto Frame
+	Eradicator:	QP20 "#" 0 A_Turn(0) Goto Frame
+	Blazkowicz:	QP21 "#" 0 A_Turn(0) Goto Frame
+	Freeman:	QP22 "#" 0 A_Turn(0) Goto Frame
+	VorMatur:	QP23 "#" 0 A_Turn(0) Goto Frame
+	Eleena:		QP24 "#" 0 A_Turn(0) Goto Frame
+	Lucienne:	QP25 "#" 0 A_Turn(0) Goto Frame
+	Major:		QP26 "#" 0 A_Turn(0) Goto Frame
+	Hunter:		QP27 "#" 0 A_Turn(0) Goto Frame
+	Sam:		QP28 "#" 0 A_Turn(0) Goto Frame
+	Postal:		QP29 "#" 0 A_Turn(0) Goto Frame
+	Painkiller:	QP30 "#" 0 A_Turn(0) Goto Frame
+	Intruder:	QP31 "#" 0 A_Turn(0) Goto Frame
+	// ^ insert more classes here
+
+	Frame:
+		"####" "#" 0 A_Jump(256,1,2,3,4)
+		"####" A 0 A_Turn(0) Goto Fade
+		"####" B 0 A_Turn(0) Goto Fade
+		"####" C 0 A_Turn(0) Goto Fade
+		"####" D 0 A_Turn(0) Goto Fade
+
+	Fade:
+		"####" "#" 70
+		"####" "#########################################################################################################################################################################################################" 1 A_SetScale(scalex * 0.98)
+		Stop
+	}
+}
+
+Actor "HunterQCBulletAmmo" : Token { Inventory.MaxAmount 800 Inventory.InterHubAmount 0 }
+Actor "HunterQCShellAmmo"  : Token { Inventory.MaxAmount 200 Inventory.InterHubAmount 0 }
+Actor "HunterQCNailAmmo"   : Token { Inventory.MaxAmount 800 Inventory.InterHubAmount 0 }
+Actor "HunterQCBoltAmmo"   : Token { Inventory.MaxAmount 100 Inventory.InterHubAmount 0 }
+Actor "HunterQCRocketAmmo" : Token { Inventory.MaxAmount 100 Inventory.InterHubAmount 0 }
+Actor "HunterQCCoilAmmo"   : Token { Inventory.MaxAmount 800 Inventory.InterHubAmount 0 }
+Actor "HunterQCSlugAmmo"   : Token { Inventory.MaxAmount 100 Inventory.InterHubAmount 0 }
+Actor "HunterQCBFGAmmo"    : Token { Inventory.MaxAmount 100 Inventory.InterHubAmount 0 }

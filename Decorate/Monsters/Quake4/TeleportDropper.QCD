@@ -1,0 +1,157 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+Actor Q4TeleportDropper : QCDE_MonsterBig	15324	//archvile
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 16
+	Height 56
+	Mass 500
+	Health 900
+	PainChance 48
+	Speed 12
+	Scale 0.5
+	+MISSILEEVENMORE 		//because only on half the walk anim it can decide if attack
+	+FLOORCLIP
+	SeeSound "quake4/TportDropper/Sight"
+	PainSound "quake4/TportDropper/Pain"
+	DeathSound "quake4/TportDropper/Death"
+	ActiveSound "quake4/TportDropper/Idle"
+	AttackSound "quake4/Grunt/MachineGunShot"
+	Obituary "$OB_Q4TeleportDropper" // "%o saw that even Strogg animals are out for anyone's blood."
+	Tag "$TAG_Q4TeleportDropper" // "Teleport Dropper"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		Q26I A 4 A_Look
+		Loop
+	See:
+		Q26W AABBCC 2 A_Chase(0,0)	//attacking while in air? Also to prevent attack spam
+		Q26W DDEEFF 2 A_Chase
+		Loop
+	Missile:
+	AttChoose:
+		TNT1 a 0 A_Jump(160,"Machinegun")
+		Goto Summon
+	Machinegun:
+		Q26I A 4
+		Q26A ABBB 4 A_FaceTarget(0,0)
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",5,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",32,random(3,-3),frandom(6,-6))
+		Q26A C 3 A_CustomBulletAttack(9,6,1,5)	TNT1 a 0 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",5,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",32,random(3,-3),frandom(6,-6))
+		Q26A C 3 A_CustomBulletAttack(9,6,1,5)	TNT1 a 0 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",5,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",32,random(3,-3),frandom(6,-6))
+		Q26A C 3 A_CustomBulletAttack(9,6,1,5)	TNT1 a 0 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",5,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",32,random(3,-3),frandom(6,-6))
+		Q26A C 3 A_CustomBulletAttack(9,6,1,5)	TNT1 a 0 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",5,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",32,random(3,-3),frandom(6,-6))
+		Q26A C 3 A_CustomBulletAttack(9,6,1,5)	TNT1 a 0 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",5,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",32,random(3,-3),frandom(6,-6))
+		Q26A C 3 A_CustomBulletAttack(9,6,1,5)	TNT1 a 0 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",5,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",32,random(3,-3),frandom(6,-6))
+		Q26A C 3 A_CustomBulletAttack(9,6,1,5)
+		Q26A BA 7
+		Goto See
+	Summon:
+		Q26I A 4 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/TportDropper/AttackGrowl",6)
+		Q26B ABCCCCCCCCC 5 A_FaceTarget
+		Q26B C 7 A_CustomMissile("TporDropBall",40,6,90+random(20,-20))
+		Q26B C 7 A_CustomMissile("TporDropBall",40,-6,-90+random(20,-20))
+		Q26B C 7 A_CustomMissile("TporDropBall",40,6,135+random(20,-20))
+		Q26B C 7 A_CustomMissile("TporDropBall",40,-6,-135+random(20,-20))
+		Q26B BA 7
+		Goto See
+
+	Pain:
+		Q26P A 8 A_Pain
+		Goto See
+	DeathChecksDone:
+		Q26D A 0 A_Scream
+		Q26D ABCD 3
+		Q26D A 0 A_Fall
+		Q26D A 0 A_PlaySound("quake4/Misc/Body/Beefy",7)
+	Death.Corpse:
+		Q26D E -1
+		Stop
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake4/Misc/GibExplosion",7)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+	}
+}
+
+//*****************************************
+Actor TporDropBall
+{
+	Speed 12
+	Radius 20
+	Height 10
+	Damage 0
+	Scale 0.4
+	Projectile
+	SeeSound "quake4/Weapons/GrenLaunch/Fire"
+	+DONTSPLASH
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+SEEKERMISSILE
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SeekerMissile(1,1)
+		TNT1 A 0 ThrustThingZ(0,20,0,1)
+		MI04 ABCD 4 A_SpawnItemEx("TporDropBallTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto Spawn+2
+	Death:
+		TNT1 A 0 A_SpawnItem("TeleportFog",0,0)
+		TNT1 A 0 A_SeekerMissile(180,180)
+		TNT1 A 1 A_SpawnItemEx("TporDropBallSpawner",0,0,0, 0,0,0, 0,SXF_TRANSFERPOINTERS)
+		Stop
+	}
+}
+
+
+Actor TporDropBallTrail
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION  +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	Scale 0.1
+	RenderStyle Add
+	Alpha 0.7
+	Translation "0:255=%[0,0,0]:[0,0.99,0]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(230,2,6,10)
+		X101 ABCDEFGHIJKLMNOP 2 Bright A_FadeOut(0.06)
+		Goto Spawn+2
+	}
+}
+Actor TporDropBallSpawner : RandomSpawner
+{
+	+LOOKALLAROUND
+	DropItem "Q4LightGuard", 255, 10
+	DropItem "Q4MachinegunGuard", 255, 10
+	DropItem "Q4ShotgunGuard", 255, 10
+	DropItem "Q4Grunt", 255, 9
+	DropItem "Q4Gunner", 255, 5
+}
+
+
+
+

@@ -1,0 +1,38 @@
+Actor ShotgunReplacer : RandomSpawner replaces Shotgun
+{
+	Dropitem "ShotgunPickup"
+}
+
+Actor SuperShotgunReplacer : RandomSpawner replaces SuperShotgun
+{
+	Dropitem "SuperShotgunPickupDMvar"
+}
+
+Actor ChaingunReplacer : RandomSpawner replaces Chaingun
+{
+	Dropitem "HeavyMachinegunPickup", 255, 5
+	Dropitem "SuperNailgunPickup", 255, 1
+}
+
+Actor RocketLauncherReplacer : RandomSpawner replaces RocketLauncher
+{
+	Dropitem "RocketLauncherPickup", 255, 2
+	Dropitem "RailgunPickup", 255, 1
+}
+
+Actor PlasmaRifleReplacer : RandomSpawner replaces PlasmaRifle
+{
+	Dropitem "LightningGunPickup"
+}
+
+Actor ChainsawReplacer : RandomSpawner replaces Chainsaw
+{
+	Dropitem "TriboltPickup"
+}
+
+Actor BFG9000Replacer : RandomSpawner replaces BFG9000
+{
+	Dropitem "BFGPickup"
+}
+
+//Actor Replacer : RandomSpawner replaces

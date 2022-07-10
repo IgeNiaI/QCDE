@@ -1,0 +1,266 @@
+// ----------------------------------------------------------------------------
+//
+// Lo Wang's abilities
+//
+// Active:	Nobitsura Kage
+//			Katana sprites by Franco Tieppo
+//
+// Passive: Peacock Blessing
+//
+// ----------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+
+Actor NobitsuraProc1 : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"PerformDM")
+		TNT1 A 0 A_FireCustomMissile("NobitsuraSlash1SP",0,false,-3)
+		Stop
+	PerformDM:
+		TNT1 A 0 A_FireCustomMissile("NobitsuraSlash1DM",0,false,-3)
+		Stop
+	}
+}
+Actor NobitsuraProc2 : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"PerformDM")
+		TNT1 A 0 A_FireCustomMissile("NobitsuraSlash2SP",0,false,-3)
+		Stop
+	PerformDM:
+		TNT1 A 0 A_FireCustomMissile("NobitsuraSlash2DM",0,false,-3)
+		Stop
+	}
+}
+
+Actor NobitsuraSlash1SP
+{
+	var int user_counter;
+	Projectile
+	Speed 20
+	Radius 8
+	Height 9
+	Damage 2
+	Scale 0.5
+	RenderStyle Add
+	+RIPPER
+	+NODAMAGETHRUST
+	+EXTREMEDEATH
+	+MTHRUSPECIES
+	+FORCERADIUSDMG
+	+DONTBLAST
+	Obituary "$OB_NobitsuraSlash1SP" // "%o was cut in half by %k."
+	ReactionTime 20	//for how long it travels
+	States
+	{
+	Spawn:
+		QP18 A 0 NODELAY A_PlaySound("QC/Abilities/LoWang/Slash1",CHAN_AUTO,1.0,0,0.75)
+		TNT1 A 0 A_Jump(255,"Looper")
+	Looper:
+		QP18 Y 0 A_Explode(40,96,0,0,96)
+		QP18 YY 1 Bright Light(RedMediumPoint3) A_SpawnItemEx("Slash1Trail",0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP18 Y 0 A_SetUserVar(user_counter,1)
+		QP18 YY 0 A_CountDown
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(user_counter<1,"DethExplo")
+		TNT1 A 2
+		Stop
+	DethExplo: //exploded as soon as it spawned
+		QP18 A 0 A_PlaySound("QC/Abilities/LoWang/Slash1",CHAN_AUTO,1.0,0,0.75)
+		TNT1 A 0 A_Explode(120,96,0,0,96)
+		TNT1 A 2
+		Stop
+	}
+}
+
+Actor NobitsuraSlash2SP : NobitsuraSlash1SP
+{
+	States
+	{
+	Spawn:
+		QP18 A 0 NODELAY A_PlaySound("QC/Abilities/LoWang/Slash2",CHAN_AUTO,1.0,0,0.75)
+		TNT1 A 0 A_Jump(255,"Looper")
+	Looper:
+		QP18 Z 0 A_Explode(40,96,0,0,96)
+		QP18 ZZ 1 Bright Light(RedMediumPoint3) A_SpawnItemEx("Slash2Trail",0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP18 Z 0 A_SetUserVar(user_counter,1)
+		QP18 ZZ 0 A_CountDown
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(user_counter<1,"DethExplo")
+		TNT1 A 2
+		Stop
+	DethExplo:	//exploded as soon as it spawned
+		QP18 A 0 A_PlaySound("QC/Abilities/LoWang/Slash2",CHAN_AUTO,1.0,0,0.75)
+		TNT1 A 0 A_Explode(120,96,0,0,96)
+		TNT1 A 2
+		Stop
+	}
+}
+
+
+
+Actor NobitsuraSlash1DM : NobitsuraSlash1SP
+{
+	-MTHRUSPECIES
+	-DONTBLAST
+	Damage 0
+	States
+	{
+	Looper:
+		QP18 Y 0 A_Explode(9,96,0,0,96)
+		QP18 YY 1 Bright Light(RedMediumPoint3) A_SpawnItemEx("Slash1Trail",0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP18 Z 0 A_SetUserVar(user_counter,1)
+		QP18 YY 0 A_CountDown
+		Loop
+	DethExplo: //exploded as soon as it spawned
+		QP18 A 0 A_PlaySound("QC/Abilities/LoWang/Slash1",CHAN_AUTO,1.0,0,0.75)
+		TNT1 A 0 A_Explode(30,96,0,0,96)
+		TNT1 A 2
+		Stop
+	}
+}
+
+Actor NobitsuraSlash2DM : NobitsuraSlash2SP
+{
+	-MTHRUSPECIES
+	-DONTBLAST
+	Damage 0
+	States
+	{
+	Looper:
+		QP18 Z 0 A_Explode(9,96,0,0,96)
+		QP18 ZZ 1 Bright Light(RedMediumPoint3) A_SpawnItemEx("Slash2Trail",0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP18 Z 0 A_SetUserVar(user_counter,1)
+		QP18 ZZ 0 A_CountDown
+		Loop
+	DethExplo:	//exploded as soon as it spawned
+		QP18 A 0  A_PlaySound("QC/Abilities/LoWang/Slash2",CHAN_AUTO,1.0,0,0.75)
+		TNT1 A 0 A_Explode(30,96,0,0,96)
+		TNT1 A 2
+		Stop
+	}
+}
+
+Actor Slash1Trail
+{
+	Scale 0.55
+	RenderStyle Add
+	Alpha 0.6
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+		QP18 Y 1 Bright A_FadeOut(0.05)
+		Loop
+	}
+}
+
+Actor Slash2Trail : Slash1Trail
+{
+	States
+	{
+	Spawn:
+		QP18 Z 1 Bright A_FadeOut(0.05)
+		Loop
+	}
+}
+
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+
+Actor LoWangHealSoundProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_JumpIfHealthLower(60, "PlaySound")
+		Stop
+	PlaySound:
+		TNT1 A 0 A_PlaySound("QC/Abilities/LoWang/Healing",CHAN_AUTO,1)
+		Stop
+	}
+}
+
+Actor LoWangHealAreaProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_RadiusGive("LoWangHealProc", 96, RGF_GIVESELF|RGF_PLAYERS)
+		Stop
+	}
+}
+
+Actor LoWangHealProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		// todo: Check if friendly to healer
+		TNT1 A 0 A_JumpIfHealthLower(60, "Passive")
+		Stop
+	Passive:
+		TNT1 A 0 A_PlaySound("QC/Abilities/Caleb/Ability", CHAN_ITEM, 1.0, false, 2018.0210)
+		TNT1 A 0 HealThing(1)
+		TNT1 A 0 A_SetBlend("FF 88 88", .05, 35)
+		TNT1 A 0 A_SpawnItemEx("LoWangHealFX", random(5,16),random(-12,12),32, 0,0,frandom(0.5,2), 0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+Actor LoWangHealFX
+{
+	+NOTONAUTOMAP
+	+FORCEXYBILLBOARD +BRIGHT
+	Renderstyle Add
+	Scale 0.09
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		LWAB A 0 NODELAY A_Jump(128,2)
+		LWAB B 0
+		LWAB "##########################################" 1 A_Weave(1,1,
+				frandom(frandom(2,2),frandom(2,2)),frandom(frandom(2,2),frandom(2,2)))
+		LWAB "##########" 1 A_FadeOut
+		Stop
+	}
+}
+
+
+
+
+
+Actor LoWangRageSoundProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_PlaySound("QC/Abilities/LoWang/Rage",CHAN_AUTO,1)
+		Stop
+	}
+}
+Actor PowerLoWangDamage : PowerDamage	{ DamageFactor "Normal", 1.334 }
+
+Actor LoWangPassiveDamage : PowerupGiver
+{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	powerup.Type "LoWangDamage"
+	powerup.color "Red", 0.1
+	powerup.duration 9999 // actually 50, removed by ACS
+}

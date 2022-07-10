@@ -1,0 +1,867 @@
+// ----------------------------------------------------------------------------
+//
+// Painkiller's abilities
+//
+// Active:	Black Tarot
+//			Select three buffs, different or same.
+//			By Michaelis.
+//
+// Passive: Demon Morph
+//			Kill X enemies to become a powerful but slow demon.
+//
+// Passive: Painkiller
+//			Gauntlet is replaced by the eponymous weapon
+//
+// ----------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+
+// PvP version
+Actor PainkillerCard1Level0 : PowerProtection { Powerup.Duration -10 Powerup.Color "00 FF 99", 0.00 DamageFactor "Normal", 1.000 }
+Actor PainkillerCard1Level1 : PowerProtection { Powerup.Duration -10 Powerup.Color "00 FF 99", 0.03 DamageFactor "Normal", 0.901 }
+Actor PainkillerCard1Level2 : PowerProtection { Powerup.Duration -10 Powerup.Color "00 FF 99", 0.06 DamageFactor "Normal", 0.801 }
+Actor PainkillerCard1Level3 : PowerProtection { Powerup.Duration -10 Powerup.Color "00 FF 99", 0.10 DamageFactor "Normal", 0.701 }
+
+Actor PainkillerCard2Level0 : PowerDamage     { Powerup.Duration -10 Powerup.Color "FF 00 FF", 0.00 DamageFactor "Normal", 1.000 }
+Actor PainkillerCard2Level1 : PowerDamage     { Powerup.Duration -10 Powerup.Color "FF 00 FF", 0.03 DamageFactor "Normal", 1.101 }
+Actor PainkillerCard2Level2 : PowerDamage     { Powerup.Duration -10 Powerup.Color "FF 00 FF", 0.06 DamageFactor "Normal", 1.201 }
+Actor PainkillerCard2Level3 : PowerDamage     { Powerup.Duration -10 Powerup.Color "FF 00 FF", 0.10 DamageFactor "Normal", 1.301 }
+
+Actor PainkillerCard3Level0 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.00 Speed 1.00 }
+Actor PainkillerCard3Level1 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.03 Speed 1.15 }
+Actor PainkillerCard3Level2 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.06 Speed 1.30 }
+Actor PainkillerCard3Level3 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.10 Speed 1.45 }
+
+// PvE version
+Actor PvEPainkillerCard1Level0 : PowerProtection { Powerup.Duration -20 Powerup.Color "00 FF 99", 0.00 DamageFactor "Normal", 1.000 }
+Actor PvEPainkillerCard1Level1 : PowerProtection { Powerup.Duration -20 Powerup.Color "00 FF 99", 0.03 DamageFactor "Normal", 0.801 }
+Actor PvEPainkillerCard1Level2 : PowerProtection { Powerup.Duration -20 Powerup.Color "00 FF 99", 0.06 DamageFactor "Normal", 0.601 }
+Actor PvEPainkillerCard1Level3 : PowerProtection { Powerup.Duration -20 Powerup.Color "00 FF 99", 0.10 DamageFactor "Normal", 0.401 }
+
+Actor PvEPainkillerCard2Level0 : PowerDamage     { Powerup.Duration -20 Powerup.Color "FF 00 FF", 0.00 DamageFactor "Normal", 1.000 }
+Actor PvEPainkillerCard2Level1 : PowerDamage     { Powerup.Duration -20 Powerup.Color "FF 00 FF", 0.03 DamageFactor "Normal", 1.301 }
+Actor PvEPainkillerCard2Level2 : PowerDamage     { Powerup.Duration -20 Powerup.Color "FF 00 FF", 0.06 DamageFactor "Normal", 1.601 }
+Actor PvEPainkillerCard2Level3 : PowerDamage     { Powerup.Duration -20 Powerup.Color "FF 00 FF", 0.10 DamageFactor "Normal", 2.001 }
+
+Actor PvEPainkillerCard3Level0 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.00 Speed 1.00 }
+Actor PvEPainkillerCard3Level1 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.03 Speed 1.15 }
+Actor PvEPainkillerCard3Level2 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.06 Speed 1.30 }
+Actor PvEPainkillerCard3Level3 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.10 Speed 1.45 }
+
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+Actor DemonMorphProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_AlertMonsters(96)
+		TNT1 A 0 A_StopSound(5)
+		TNT1 A 0 A_StopSound(CHAN_VOICE)
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DMDemon")
+		TNT1 A 0 A_GiveInventory("DemonMorpher",1)
+		Goto CommonEnd
+	DMDemon:
+		TNT1 A 0 A_GiveInventory("DemonMorpherDM",1)
+	CommonEnd:
+		TNT1 A 35
+		Stop
+	}
+}
+Actor DemonMorpher: PowerupGiver
+{
+	Inventory.MaxAmount 1
+	Inventory.Amount 1
+	Powerup.Duration -20
+	+Inventory.AutoActivate
+	Powerup.Type "PowerDemonMorph"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	}
+}
+Actor DemonMorpherDM : DemonMorpher
+{
+	Powerup.Duration -15
+}
+
+Actor DemonTestProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_AlertMonsters(96)
+		TNT1 A 0 A_StopSound(5)
+		TNT1 A 0 A_GiveInventory("DemonMorpherTest",1)
+	CommonEnd:
+		TNT1 A 35
+		Stop
+	}
+}
+Actor DemonMorpherTest: PowerupGiver
+{
+	Inventory.MaxAmount 1
+	Inventory.Amount 1
+	Powerup.Duration -7200
+	+Inventory.AutoActivate
+	Powerup.Type "PowerDemonMorph"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	}
+}
+Actor PainkillerCleanerProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("NoFootstepsToken", 1)
+		TNT1 A 0 A_TakeInventory("NoAbilitiesToken", 1)
+		TNT1 A 0 A_TakeInventory("NoReticle", 1)
+		TNT1 A 0 A_TakeInventory("NoAmmoCount", 1)
+		TNT1 A 0 A_TakeInventory("NoAbilityIcon", 1)
+		TNT1 A 0 A_TakeInventory("PowerDemonViewTint", 1)
+		TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN) //will unfreeze player if he was affected by duke at the time of unmorphing
+		Stop
+	}
+}
+
+
+Actor PowerDemonMorph : PowerMorph
+{
+	PowerMorph.PlayerClass "PKDemonForm"
+	PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_UNDOBYDEATH|MRF_UNDOBYDEATHSAVES|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR|MRF_FAILNOTELEFRAG|MRF_WHENINVULNERABLE)
+	PowerMorph.UnMorphFlash "DemonRuneMorphOff"
+	PowerMorph.MorphFlash "DemonRuneMorphOn"
+}
+
+Actor DemonRuneMorphOn
+{
+	+NOINTERACTION
+	RenderStyle None
+	Radius 32
+	Alpha 0
+	Scale 0
+	States
+	{
+	Spawn:
+		TNT1 AAAAAAAAAAA 1 NODELAY A_SpawnItemEx("DemonMorphFlameFx",random(20,-20),random(20,-20),random(10,60),frandom(1,-1),frandom(1,-1),frandom(0.5,1.5),0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+Actor DemonMorphFlameFx
+{
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Scale 0.9
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(255,"T1","T2","T3")
+		Goto T1
+	T1:
+		X052 ABCDEFGHIJKLMNOPQRS 1 Bright
+		Stop
+	T2:
+		X056 ABCDEFGHIJKLMNOPQRS 1 Bright
+		Stop
+	T3:
+		X054 ABCDEFGHIJKLMNOPQRS 1 Bright
+		Stop
+	}
+
+}
+
+Actor DemonRuneMorphOff
+{
+	var int user_t;
+	var int user_rng;
+	var int user_floor;
+	+NOINTERACTION
+	+BRIGHT
+	RenderStyle Add
+	Radius 32
+	Alpha 0
+	Scale 0
+	//Translation "0:255=%[0,0,0]:[1.0,0.0,0.2]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("QC/Abilities/Painkiller/DemonStop",CHAN_6,1.0,0,0.4)
+		TNT1 AAAAAAAAAAA 1  A_SpawnItemEx("DemonMorphFlameFx",random(20,-20),random(20,-20),random(10,60),frandom(1,-1),frandom(1,-1),frandom(0.5,1.5),0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+
+Actor PKDemonForm : QCPlayer
+{
+	Health 666
+	Radius 22
+	Height 64
+	Mass 800
+	PainChance 96
+	Gravity 0.4
+	Player.JumpZ 8
+	Player.MorphWeapon "PKDemonWeapon"
+	Player.ViewHeight 60
+	Player.AttackZOffset 10
+	Player.CrouchSprite "DP30"
+	Player.SoundClass "DemonForm"
+	ActiveSound ""
+	PainSound 	""
+	DeathSound 	""
+	Player.ForwardMove 0.75, 0.5
+	Player.SideMove 0.75, 0.5
+	+NOSKIN
+	-PICKUP
+	+SLIDESONWALLS
+	+CROUCHABLEMORPH
+	RenderStyle Add
+	Alpha 0.99
+	Scale 1.3
+	States
+	{
+	Spawn:
+		DP30 A 0 NoDelay
+		DP30 A 0 A_JumpIfInventory("TeamDeathmatch",1,1)
+		Goto DefSpawn
+		DP30 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		DP30 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		DP30 A 0 A_JumpIf(true,                   "DefSpawn")
+		DP30 A 100
+		Loop
+
+		RedSpawn:
+			CP30 A 0 A_JumpIf(momx||momy,"RedSee")
+			CP30 A 1
+			Loop
+		BlueSpawn:
+			AP30 A 0 A_JumpIf(momx||momy,"BlueSee")
+			AP30 A 1
+			Loop
+		DefSpawn:
+			DP30 A 0 A_JumpIf(momx||momy,"DefSee")
+			DP30 A 1
+			Goto Spawn // to catch color
+
+	See:
+		"####" B 0 A_JumpIfInventory("TeamDeathmatch",1,1)
+		Goto DefSee
+		"####" B 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" B 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" B 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for prediction
+
+		RedSee:
+			CP30 ABCD 4
+			CP30 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			AP30 ABCD 4
+			AP30 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			DP30 ABCD 4
+			DP30 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Pain:
+		DP30 H 0
+		DP30 H 0 A_JumpIfInventory("TeamDeathmatch",1,1)
+		Goto DefPain
+		DP30 H 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		DP30 H 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		DP30 H 0 A_JumpIf(true,                   "DefPain")
+		DP30 H 100
+		Loop
+
+		RedPain:
+			CP30 H 4 A_Pain
+			Goto RedSpawn
+		BluePain:
+			AP30 H 4 A_Pain
+			Goto BlueSpawn
+		DefPain:
+			DP30 H 4 A_Pain
+			Goto Spawn // to catch color
+
+	Missile:
+	Melee:
+		"####" E 0 A_JumpIfInventory("TeamDeathmatch",1,1)
+		Goto DefMissile
+		"####" E 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" E 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			CP30 E 0
+			CP30 EFG 5
+			CP30 E 0 A_JumpIf(true, "RedSpawn")
+			Loop
+		BlueMissile:
+			AP30 E 0
+			AP30 EFG 5
+			AP30 E 0 A_JumpIf(true, "BlueSpawn")
+			Loop
+		DefMissile:
+			DP30 E 0
+			DP30 EFG 5
+			DP30 E 0 A_JumpIf(true, "DefSpawn")
+			Loop
+
+	Death:
+		DP30 I 4
+		DP30 J 4 A_Scream
+		DP30 K 4 A_NoBlocking
+		DP30 LMN 4
+		DP30 O -1
+		Stop
+	}
+}
+
+Actor PKDemonWeapon : DoomWeapon
+{
+	+WEAPON.CHEATNOTWEAPON
+	Tag "$TAG_PKDemonWeapon" // "Demonic Power"
+	Obituary "$OB_PKDemonWeapon" // "%o's soul was taken by %k."
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	Deselect:
+		TNT1 A 0
+		TNT1 A 0 A_Lower
+		Wait
+	Select:
+		TNT1 A 0 A_Raise
+		Wait
+
+	Ready:
+		TNT1 A 1 A_SetCrosshair(66)
+		"####" "#" 0 ACS_NamedExecuteAlways("RemoveModText",0,0)
+		TNT1 A 0 A_GiveInventory("NoFootstepsToken",1)
+		TNT1 A 0 A_GiveInventory("DemonTintItem",1)
+		TNT1 A 1 A_PlaySound("QC/Abilities/Painkiller/DemonStart",CHAN_6,1.0,0,0.3)
+		TNT1 A 1 A_PlaySound("QC/Abilities/Painkiller/DemonLoop",CHAN_5,0.8,1,0.7)
+		TNT1 A 2
+		Goto WeaponReady
+	WeaponReady:
+		TNT1 A 0 A_Jump(2,"Noise")
+		TNT1 A 1 A_WeaponReady(WRF_DISABLESWITCH)
+		Wait
+	Noise:
+		TNT1 A 0 //A_PlaySound("Doom4/Monsters/Archvile/Idle",CHAN_AUTO,1.0,false,1.2)
+		Goto WeaponReady
+	Fire:
+		TNT1 A 0 A_PlaySound("QC/Abilities/Painkiller/DemonShoot",CHAN_WEAPON,1.0,false,0.8) //same as "max charge"
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"FireDM")
+
+		FireSP:
+			TNT1 A 0 A_FireCustomMissile("PKDemonProjectile_SP",  0,false, 0,15)
+			TNT1 A 0 A_Jump(255,"FireCont")
+			Goto FireCont
+		FireDM:
+			TNT1 A 0 A_FireCustomMissile("PKDemonProjectile_DM",  0,false, 0,15)
+			TNT1 A 0 A_Jump(255,"FireCont")
+			Goto FireCont
+
+	FireCont:
+		TNT1 A 1 A_ZoomFactor(0.9)
+		TNT1 A 1 A_ZoomFactor(0.92)
+		TNT1 A 1 A_ZoomFactor(0.94)
+		TNT1 A 1 A_ZoomFactor(0.96)
+		TNT1 A 1 A_ZoomFactor(0.98)
+		TNT1 A 1 A_ZoomFactor(1.0)
+		TNT1 G 7
+		TNT1 A 0 A_JumpIfInventory("IamBotToken",1,"RandomDelay")
+	FireHolder:
+		TNT1 A 1
+		TNT1 A 1 A_Refire("FireHolder")
+		Goto WeaponReady
+
+	RandomDelay:
+		TNT1 A 0 A_Jump(255,2,3,4,5,6,7,8)
+		TNT1 AAAAAA 1
+		TNT1 A 0 A_Jump(175,"Fire")
+		TNT1 AAAA 1
+		Goto WeaponReady
+	}
+}
+
+
+
+Actor PowerDemonViewTint : PowerSpeed
+{
+	Speed 1.01
+}
+
+Actor DemonTintItem : PowerupGiver
+{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	//Powerup.Colormap 0,0,0, .25,.5,1
+	Powerup.Color "BB BB BB", 0.33
+	Powerup.Duration -100
+	Powerup.Type "DemonViewTint"
+}
+
+Actor PKDemonProjectile_DM
+{
+	Projectile
+	Speed 20
+	Damage (60)
+	Radius 2
+	Height 4
+	RenderStyle Add
+	Scale 0.6
+	Alpha 0.99
+	+SEEKERMISSILE
+	States
+	{
+	Spawn:
+		DB52 A 0 NODELAY A_PlaySound("QC/Abilities/Painkiller/DemonShotLoop",CHAN_5,1.0,1,1.3)
+	Looper:
+		DB52 ABCDEFGHIJKLMNOP 2 Bright A_SpawnItemEx("PKDemProjTrail",0,0,0, 0,0,0,0,SXF_NOCHECKPOSITION)
+		Loop
+	Xdeath:	//Direct hit
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
+		Goto DeathCont
+
+	Death: //crashed somewhere and checks for splash
+		TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
+		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHit",360,JLOSF_PROJECTILE,358)
+		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
+		Goto DeathCont
+
+		RadiusHit:	//splash damage beep
+			TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
+			Goto DeathCont
+
+	DeathCont:
+		DB52 A 0 A_PlaySound("QC/Abilities/Painkiller/DemonShotExplo",CHAN_5,1.0)
+		DB52 A 0 A_SpawnItemEx("PKDemProjExplo",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		DB52 A 0 A_Explode(40,256,0,0,192)
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor PKDemonProjectile_SP : PKDemonProjectile_DM
+{
+	+DONTBLAST
+	Damage 50
+	States
+	{
+	DeathCont:
+		DB52 A 0 A_PlaySound("QC/Abilities/Painkiller/DemonShotExplo",CHAN_5,1.0)
+		DB52 A 0 A_SpawnItemEx("PKDemProjExplo",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		DB52 A 0 A_Explode(160,256,0,0,192)
+		TNT1 A 10
+		Stop
+	}
+}
+
+
+Actor PKDemProjExplo
+{
+	+NOINTERACTION
+	+BRIGHT
+	Scale 0.6
+	RenderStyle Add
+	Alpha 0.99
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	Translation "0:255=%[0,0,0]:[1,1,1]"
+	States
+	{
+	Spawn:
+		DB53 AABBCCDDEEFFGGHHIIJJ 1 A_SetScale(scaleX+frandom(0.1,0.065))
+		DB53 JJKKKLLLMMM 1 A_FadeOut
+		Stop
+	}
+}
+
+Actor PKDemProjTrail
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NONETID
+	RenderStyle Add
+	Scale 0.57
+	Alpha 0.99
+	States
+	{
+	Spawn:
+		DB52 A 0 NODELAY A_Jump(240,2,4,6,8,10,12,14)
+	Looper:
+		DB52 ABCDEFGHIJKLMNOP 2 A_FadeOut
+		Loop
+	}
+}
+
+
+
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+Actor PainsKilled : Token
+{
+	Inventory.MaxAmount 99999
+}
+Actor PainkillerSoul : CustomInventory
+{
+	Height 45
+	Radius 20
+	XScale 0.25
+	YScale 0.18
+	Inventory.PickupSound "QC/Abilities/Painkiller/Soul"
+	Inventory.PickupMessage "$GOT_PainkillerSoul" // "Picked up a soul."
+	VisibleToPlayerClass QCPainkiller, PKDemonForm
+	+DROPPED
+	+FLOATBOB
+	RenderStyle Add
+	Alpha 0.99
+	States
+	{
+	Spawn:
+		//13*10tics = 520, ~15sec
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		PKSL ABCDEFGHIJABCDEFGHIJ 2 BRIGHT
+		Goto FadeOut
+	FadeOut:
+		PKSL AABBCCDDEEFFGGHHIIJJ 1 BRIGHT A_FadeOut
+		Stop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("Class_Painkiller",1,"Success")
+		Fail
+	Success:
+		TNT1 A 0 A_SetBlend("FF FF 88", .1, 4)
+		TNT1 A 0 //ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 1, 50)
+		TNT1 A 0 A_GiveInventory("PainsKilled")
+		TNT1 A 0 A_JumpIfInventory("PainsKilled", 66, "Morph")
+		Stop
+	Morph:
+		TNT1 A 0 A_TakeInventory("PainsKilled", 66)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Painkiller", true)
+		Stop
+	}
+}
+Actor PainkillerSoulBig : PainkillerSoul
+{
+	Translation "0:255=%[0,0,0]:[2,0,0]"
+	States
+	{
+	Success:
+		TNT1 A 0 A_SetBlend("FF FF 88", .15, 5)
+		TNT1 A 0 //ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 5, 50)
+		TNT1 A 0 A_GiveInventory("PainsKilled",  1)
+		TNT1 A 0 A_JumpIfInventory("PainsKilled", 66, "Morph")
+		Stop
+	}
+}
+Actor PainkillerSoulDM : PainkillerSoul
+{
+	XScale 0.3
+	YScale 0.24
+	States
+	{
+	Success:
+		TNT1 A 0 A_SetBlend("FF FF 88", .15, 5)
+		TNT1 A 0 //ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 5, 50)
+		TNT1 A 0 A_GiveInventory("PainsKilled", 11)
+		TNT1 A 0 A_JumpIfInventory("PainsKilled", 66, "Morph")
+		Stop
+	}
+}
+
+// Token that indicates to the weapon that the tip has returned
+// after alt fire was used.
+Actor PKisBack : Inventory
+{	Inventory.MaxAmount 1
+	Inventory.InterHubAmount 0
+}
+
+//this one to tell the projectile "is coming-back time!"
+Actor IWantMyPKBack : Inventory
+{	Inventory.MaxAmount 1
+	Inventory.InterHubAmount 0
+}
+
+Actor PKTipDetached : Inventory
+{	Inventory.MaxAmount 1
+	Inventory.InterHubAmount 0
+}
+
+
+//-----------------------------------------------
+// Painkiller weapon projectile
+Actor PKProjectile
+{
+	Projectile
+	Speed 28
+	Radius 3
+	Height 5
+	Damage (7*random(3,5))
+	+Ripper
+	+DONTREFLECT
+	Scale 0.4
+	ReactionTime 1
+	+SKYEXPLODE
+	+DONTBLAST
+	DamageType "ZombieGibber"
+	Obituary "$OB_PKProjectile" // "%o was minced by %k."
+	States
+	{
+	Spawn:
+		WP30 J 0 NODELAY A_PlaySound("QC/Abilities/Painkiller/Weapon/SpinStartLoop",5,1,1,1.0)
+	Looper:
+		WP30 JK 1 Bright A_JumpIfInTargetInventory("IWantMyPKBack",1,"Destroy")
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		WP30 LM 1 Bright A_JumpIfInTargetInventory("IWantMyPKBack",1,"Destroy")
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		WP30 JK 1 Bright A_JumpIfInTargetInventory("IWantMyPKBack",1,"Destroy")
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		WP30 LM 1 Bright A_JumpIfInTargetInventory("IWantMyPKBack",1,"Destroy")
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail4",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto Looper
+	Death:
+		TNT1 A 10 A_GiveToTarget("PKisBack",1)
+		Stop
+	Destroy:
+		TNT1 A 1 A_CountDown
+		Wait
+	}
+}
+
+Actor PKProjectileDM : PKProjectile
+{
+	Radius 8
+	Height 16
+	Damage (0)
+	+DONTSPLASH
+	-DONTBLAST
+	States
+	{
+	Spawn:
+		WP30 J 0 NODELAY A_PlaySound("QC/Abilities/Painkiller/Weapon/SpinStartLoop",5,1,1,0.8)
+		Goto Looper
+	Looper:
+		WP30 A 0 A_Explode(40,32,0,0,32)
+		WP30 JK 1 Bright A_JumpIfInTargetInventory("IWantMyPKBack",1,"Destroy")
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		WP30 LM 1 Bright A_JumpIfInTargetInventory("IWantMyPKBack",1,"Destroy")
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		WP30 A 0 A_Explode(40,32,0,0,32)
+		WP30 JK 1 Bright A_JumpIfInTargetInventory("IWantMyPKBack",1,"Destroy")
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		WP30 LM 1 Bright A_JumpIfInTargetInventory("IWantMyPKBack",1,"Destroy")
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail4",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Loop
+	}
+}
+
+
+
+
+Actor PKProjectileTrail1
+{
+	+CLIENTSIDEONLY
+	+NONETID
+	+NOINTERACTION
+	+BRIGHT
+	RenderStyle Add
+	Scale 0.4
+	Alpha 0.7
+	States
+	{
+	Spawn:
+		WP30 J 2 A_FadeOut(0.15)
+		Loop
+	}
+}
+Actor PKProjectileTrail2 : PKProjectileTrail1
+{	States	{	Spawn:	WP30 K 2 A_FadeOut(0.15)	Loop }	}
+Actor PKProjectileTrail3 : PKProjectileTrail1
+{	States	{	Spawn:	WP30 L 2 A_FadeOut(0.15)	Loop }	}
+Actor PKProjectileTrail4 : PKProjectileTrail1
+{	States	{	Spawn:	WP30 M 2 A_FadeOut(0.15)	Loop }	}
+
+//-----------------------------------------------
+// Gauntlet puffs
+Actor PKGauntletPuff : GauntletPuff
+{
+	Decal "Nope"
+	States
+	{
+	XDeath:	//hit bleeder
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 10 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitMeat",7,1,0,5)
+		Stop
+	Crash:	//hit everything else
+		TNT1 A 0 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitWall",7,1,0,5)
+		Goto Choose
+	}
+}
+
+Actor PKGauntletPuff_DM : GauntletPuff_DM
+{
+	Decal "Nope"
+	Obituary "$OB_PKGauntletPuff_DM" // "%o was minced by %k."
+	States
+	{
+	XDeath: //hit bleeder
+		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 10 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitMeat",7,1,0,5)
+		Stop
+	Crash:	//hit everything else
+		TNT1 A 0 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitWall",7,1,0,5)
+		Goto Choose
+	}
+}
+
+Actor PKGauntletPuff_DM_NoFX : GauntletPuff_DM_NoFX
+{
+	Decal "Nope"
+	Obituary "$OB_PKGauntletPuff_DM_NoFX" // "%o was minced by %k."
+	States
+	{
+	Crash:
+		TNT1 A 0
+		TNT1 A 10 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitWall",7,1,0,9)
+		Stop
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 10 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitMeat",7,1,0,5)
+		Stop
+	}
+}
+
+Actor PkGauntletPuffBurn : GauntletPuffBurn
+{
+	Decal "Nope"
+	States
+	{
+	XDeath:	//hit bleeder
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 A_SpawnItemEx("GauntletFlameBurner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS,128)
+		TNT1 A 10 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitMeat",7,1,0,5)
+		Stop
+	Crash:	//hit everything else
+		TNT1 A 0 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitWall",7,1,0,5)
+		Goto Choose
+	}
+}
+
+
+
+
+//Card overhead for 3rd person display
+Actor TarotOverheadBase
+{
+	var int user_counter;
+	var int user_limit;
+	Radius 1
+	Height 1
+	+NOINTERACTION
+	+BRIGHT
+	Projectile
+	Scale 0.35
+	Alpha 0.8
+	States
+	{
+	Spawn:
+		PLAY A 0 NODELAY
+		"####" "#" 0 A_Jump(255,"ContinueSpawn")
+	SetPvE:
+		"####" "#" 0 A_JumpIfInTargetInventory("DMToken",1,"SetPvP")
+		"####" "#" 0 A_SetUserVar(user_limit,70)		//if pve, 20 second
+		"####" "#" 0 A_Jump(255,"ContinueSpawn")
+		Goto ContinueSpawn
+
+		SetPvP:
+			"####" "#" 0 A_SetUserVar(user_limit,35)		//if DM, 10 seconds
+			"####" "#" 0 A_Jump(255,"ContinueSpawn")
+			Goto ContinueSpawn
+
+	ContinueSpawn:
+		"####" "#" 0 A_JumpIf(user_counter>=user_limit,"Ender")
+		"####" "#" 0 A_JumpIfInTargetInventory("PowerDemonMorph",1,"Ender")
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_AbilityFXMustDie"),"Ender")
+		"####" "##########" 1 A_Warp(AAPTR_TARGET, -5, 0, 70, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_SetUserVar(user_counter,user_counter+1)
+		"####" "#" 0 A_Jump(255,"ContinueSpawn")
+		Goto ContinueSpawn
+	Ender:
+		"####" "#" 0 A_JumpIf(user_counter == 0, "JustDieAlready")
+	EnderLoop:
+		"####" "#" 0 A_FadeOut(0.1)
+		"####" "#" 1 A_Warp(AAPTR_TARGET, -5, 0, 70, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Loop
+	JustDieAlready:
+		TNT1 A 0
+		Stop
+	}
+}
+
+//	Protect
+Actor TarotOverhead1 : TarotOverheadBase
+{	States	{ Spawn: WP30 O 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+
+//	Damage
+Actor TarotOverhead2 : TarotOverheadBase
+{	States	{ Spawn: WP30 P 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+
+//	Protect + damage
+Actor TarotOverhead3 : TarotOverheadBase
+{	States	{ Spawn: WP30 Q 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+
+//	Speed
+Actor TarotOverhead4 : TarotOverheadBase
+{	States	{ Spawn: WP30 R 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+
+//	Protec + Speed
+Actor TarotOverhead5 : TarotOverheadBase
+{	States	{ Spawn: WP30 S 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+
+//	Damage + Speed
+Actor TarotOverhead6 : TarotOverheadBase
+{	States	{ Spawn: WP30 T 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+
+//	All 3
+Actor TarotOverhead7 : TarotOverheadBase
+{	States	{ Spawn: WP30 U 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}

@@ -1,0 +1,468 @@
+//=========================================================================================
+//=========================================================================================
+//
+// Base class for all monsters. Has all the code for special effect of abilities
+// This class is not to be used directly for inheritance. You should use instead:
+//
+// QCDE_MonsterSmall		Weaklings. E.G. zombies, imps
+// QCDE_MonsterMedium		Normal. E.G. cacos revenants
+// QCDE_MonsterBig			Heavies. E.G. barons and fatsos
+// QCDE_MonsterBoss			Bosses. E.G. Cybies and Masterminds
+//
+// These above define how are they affected by some abilities, like frozen chance by Duke
+// or thump chance/time of Grayson.
+//
+//=========================================================================================
+//=========================================================================================
+
+Actor QCDE_BaseMonster
+{
+	var int user_timer;
+	var int user_healthbefore;
+	var int user_healthdif;
+	DamageFactor "NoDamageToMonsters", 0.0
+	DamageFactor "NailgunWeak", 0.43 //hack for weak nailgun-jump, explained in nailgun.qcd
+	States
+	{
+	Death:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_MonsterDeath",false)
+		TNT1 A 0 A_Jump(256,"DeathChecksDone")	//virtual jump to current class' state
+		"####" "#" 35
+		Wait
+
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_MonsterDeath",true)
+		TNT1 A 0 A_Jump(256,"XDeathChecksDone")	//virtual jump to current class' state
+		"####" "#" 35
+		Wait
+
+
+	// Duke effects
+	Pain.Ice:
+		"####" "#" 0 A_GiveInventory("ImFrozen",1)
+		"####" "#" 0 A_JumpIfInventory("ImFrozen",4,"SemiFrozen") //given by the projectile itself
+		"####" "#" 0 A_CustomMissile("FrozenBlockShort")	//frozen effect
+		"####" "#" 35 A_Pain
+		"####" "#" 0 A_TakeInventory("ImFrozen",255)
+		"####" "#" 0 A_Jump(256,"See") //virtual jump
+		"####" "#" 35
+		Wait//Goto See
+	SemiFrozen:
+		"####" "#" 0 A_CustomMissile("FrozenBlockLong")	//frozen effect
+		"####" "#" 0 A_ChangeFlag("NOPAIN",1)
+		"####" "#" 105
+		"####" "#" 0 A_ChangeFlag("NOPAIN",0)
+		"####" "#" 0 A_TakeInventory("ImFrozen",255)
+		"####" "#" 0 A_Jump(256,"See") //virtual jump
+		"####" "#" 35
+		Wait//Goto See
+    Ice:
+		"####" "#" 0 A_GiveInventory("ImDead",1)
+		"####" "#" 0 ACS_NamedExecuteAlways("QCDE_MonsterUpgradeDrop",0,0)
+		"####" "#" 0 A_StopSound(5)
+		"####" "#" 0 A_StopSound(6)
+		"####" "#" 0 A_StopSound(7)
+		"####" "#" 5 A_GenericFreezeDeath
+		"####" "#" 1 A_FreezeDeathChunks
+		Wait
+
+
+	//	Voodoo doll stun for crotch shot, goes red and spawns a bunch of bloody gibblets
+	Pain.DollStun:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_CheckIfNoBlood"),"DollStunNoBlood")
+		"####" "#" 0 A_Pain
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("NewMeat",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("NewMeat",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("NewMeat",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 0 A_Pain
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("NewMeat",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("NewMeat",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("NewMeat",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 0 A_Jump(256,"See")
+		Goto See
+	DollStunNoBlood:
+		"####" "#" 0 A_Pain
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("Junk",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("Junk",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("Junk",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 0 A_Pain
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("Junk",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("Junk",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 7 Light("RedMediumPoint2") A_SpawnItemEx("Junk",0,0,random(25,55),frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		"####" "#" 0 A_Jump(256,"See")
+		Goto See
+
+
+	//	Thumper Pain effect
+	Pain.ThumperDamage:
+		"####" "#" 0
+		Goto Pain.ThumperDamageGenericContinue
+	Pain.KickSlide:
+		"####" "#" 0 A_GiveInventory("SlideKicked",1)
+		Goto Pain.ThumperDamageGenericContinue
+
+	Pain.ThumperDamageGenericContinue:		//Initial upwards thrust
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_CheckIfFlyer"),"FlyingMonster")
+	NormalMonster:
+		"####" "#" 0 A_StopSound(5)
+		"####" "#" 0 A_ChangeFlag("NoPain",1)
+		"####" "#" 0 A_ChangeFlag("NOBLOCKMONST",1)
+		"####" "#" 0 A_SetUserVar("user_timer",0)
+		"####" "#" 0 A_ScaleVelocity(0.2)
+		"####" "#" 0 ThrustThingZ(0,random(30,45),0,0)
+		"####" "#" 0 A_ChangeFlag("NoGravity",1)
+		"####" "#" 1
+		"####" "#" 2 A_Pain
+		"####" "#" 0 A_JumpIfInventory("SlideKicked",1,"PainLooperAirSlide")	//kane
+		"####" "#" 0 A_CheckCeiling("ThumpHitCeilingMax")
+		"####" "#" 3 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+		"####" "#" 0 A_CheckCeiling("ThumpHitCeilingMax")
+		"####" "#" 3 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+		"####" "#" 0 A_CheckCeiling("ThumpHitCeilingPhase2")
+		"####" "#" 3 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+		"####" "#" 0 A_CheckCeiling("ThumpHitCeilingPhase2")
+		"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+		Goto PainLooperAirThump
+
+	FlyingMonster:
+		"####" "#" 0 A_StopSound(5)
+		"####" "#" 0 A_ChangeFlag("NoPain",1)
+		"####" "#" 0 A_ChangeFlag("NOBLOCKMONST",1)
+		"####" "#" 0 A_SetUserVar("user_timer",0)
+		"####" "#" 0 A_ScaleVelocity(0.2)
+		"####" "#" 0 ThrustThingZ(0,random(30,45),0,0)
+		"####" "#" 0 A_ChangeFlag("Float",0)
+		"####" "#" 0 A_GiveInventory("ImaFlyer",1)
+		"####" "#" 1
+		"####" "#" 2 A_Pain
+		"####" "#" 0 A_JumpIfInventory("SlideKicked",1,"PainLooperAirSlide")	//kane
+		"####" "#" 0 A_CheckCeiling("ThumpHitCeilingMax")
+		"####" "#" 3 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+		"####" "#" 0 A_CheckCeiling("ThumpHitCeilingMax")
+		"####" "#" 3 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+		"####" "#" 0 A_CheckCeiling("ThumpHitCeilingPhase2")
+		"####" "#" 3 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+		"####" "#" 0 A_CheckCeiling("ThumpHitCeilingPhase2")
+		"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+		Goto PainLooperAirThump
+
+		PainLooperAirThump:		//In mid air loops, which slows the velocity
+			"####" "#" 0 A_JumpIfInventory("IHitCeilingAlready",1,"PainLooperAirThumpContinue")
+			"####" "#" 0 A_CheckCeiling("ThumpHitCeilingPhase2")
+			"####" "#" 0 A_Jump(256,"PainLooperAirThumpContinue")
+		PainLooperAirThumpContinue:
+			"####" "#" 0 A_SetUserVar("user_timer",user_timer+1)
+			"####" "#" 0 A_ScaleVelocity(0.75)
+			"####" "#" 0 A_JumpIf(user_timer>=58,"ThumpStasisFalling")	//58*3=174 tics = ~5 sec
+			"####" "#" 0 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+			"####" "#" 3
+			"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+			Goto PainLooperAirThump
+
+
+
+			ThumpHitCeilingPhase2:	//entered if monster didnt hit the ceiling in the initial thrust, but in the slowing, looping mid-air seq
+				"####" "#" 0 A_GiveInventory("IHitCeilingAlready",1)
+				"####" "#" 0 A_JumpIf(user_timer<=1,"ThumpHitCeilingHard")	//2nd most damaging hit
+				"####" "#" 0 A_JumpIf(user_timer<=5,"ThumpHitCeilingMedium")	//3rd most damaging hit
+				"####" "#" 0 A_JumpIf(user_timer<=15,"ThumpHitCeilingWeak")	//Weakest hit
+				"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+				//Goto PainLooperAirThump
+
+			//--------------------------------------
+			//Specific states for kane's slidekick
+			PainLooperAirSlide:		//In mid air loops, which slows the velocity
+				"####" "#" 0 A_SetUserVar(user_timer , user_timer+1)
+				"####" "#" 0 A_SetUserVar(user_healthbefore , health)
+				"####" "#" 0 A_ScaleVelocity(0.75)
+				"####" "#" 0 A_JumpIf(user_timer>=36,"ThumpStasisFalling")	//36*3=108tics, ~3 sec
+				"####" "#" 0 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+				"####" "#" 3
+				"####" "#" 0 A_JumpIfHealthLower(user_healthbefore,"DropShardsFromDamage")
+				"####" "#" 0 A_Jump(256,"PainLooperAirSlide")
+				Goto PainLooperAirSlide
+
+				DropShardsFromDamage:
+					"####" "#" 0 A_SetUserVar(user_healthdif , user_healthbefore-health)
+					"####" "#" 0 A_JumpIf( user_healthdif >250,"Drop7")
+					"####" "#" 0 A_JumpIf( user_healthdif >150,"Drop6")
+					"####" "#" 0 A_JumpIf( user_healthdif >120,"Drop5")
+					"####" "#" 0 A_JumpIf( user_healthdif > 90,"Drop4")
+					"####" "#" 0 A_JumpIf( user_healthdif > 60,"Drop3")
+					"####" "#" 0 A_JumpIf( user_healthdif > 30,"Drop2")
+					"####" "#" 0 A_Jump(255,"Drop1")
+				Drop1:	"####" "#" 0 A_SpawnItemEx("QCArmorKane",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)		"####" "#" 0 A_Jump(256,"PainLooperAirSlidePostShard")	Goto PainLooperAirSlidePostShard
+				Drop2:	"####" "##" 0 A_SpawnItemEx("QCArmorKane",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)		"####" "#" 0 A_Jump(256,"PainLooperAirSlidePostShard")	Goto PainLooperAirSlidePostShard
+				Drop3:	"####" "###" 0 A_SpawnItemEx("QCArmorKane",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)		"####" "#" 0 A_Jump(256,"PainLooperAirSlidePostShard")	Goto PainLooperAirSlidePostShard
+				Drop4:	"####" "####" 0 A_SpawnItemEx("QCArmorKane",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)		"####" "#" 0 A_Jump(256,"PainLooperAirSlidePostShard")	Goto PainLooperAirSlidePostShard
+				Drop5:	"####" "#####" 0 A_SpawnItemEx("QCArmorKane",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)	"####" "#" 0 A_Jump(256,"PainLooperAirSlidePostShard")	Goto PainLooperAirSlidePostShard
+				Drop6:	"####" "######" 0 A_SpawnItemEx("QCArmorKane",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)	"####" "#" 0 A_Jump(256,"PainLooperAirSlidePostShard")	Goto PainLooperAirSlidePostShard
+				Drop7:	"####" "#######" 0 A_SpawnItemEx("QCArmorKane",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)	"####" "#" 0 A_Jump(256,"PainLooperAirSlidePostShard")	Goto PainLooperAirSlidePostShard
+
+				PainLooperAirSlidePostShard:	//does one loop but without checking for health stuff
+					"####" "#" 0 A_SetUserVar(user_timer , user_timer+1)
+					"####" "#" 0 A_ScaleVelocity(0.75)
+					"####" "#" 0 A_JumpIf(user_timer>=35,"ThumpStasisFalling")	//35*3= 3 sec
+					"####" "#" 0 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+					"####" "#" 3
+					"####" "#" 0 A_Jump(256,"PainLooperAirSlide")
+					Goto PainLooperAirSlide
+
+
+		ThumpStasisFalling:	//after the statis time is up, it falls down and waits until is in the floor
+			"####" "#" 0 A_JumpIfInventory("ImaFlyer",1,"ThumpStasisFallingFlyers")
+			"####" "#" 0 A_ChangeFlag("NoGravity",0)
+			"####" "#" 0 A_TakeInventory("IHitCeilingAlready",1)
+			"####" "#" 0 A_TakeInventory("SlideKicked",1)
+			"####" "#" 1 A_CheckFloor("ThumpStasisEnd")
+			Wait
+		ThumpStasisFallingFlyers:	//after the statis time is up, it falls down and waits until is in the floor
+			"####" "#" 0 A_ChangeFlag("FLOAT",1)
+			"####" "#" 0 A_TakeInventory("IHitCeilingAlready",1)
+			"####" "#" 0 A_TakeInventory("SlideKicked",1)
+			"####" "#" 1 A_Jump(255,"ThumpStasisEnd")
+			Wait
+
+			ThumpStasisEnd:		//when it lands
+				"####" "#" 0 A_ChangeFlag("NoPain",0)
+				"####" "#" 0 A_Jump(256,"See")
+
+
+	ThumpHitCeilingMax:	//entered if monster hits the ceiling in the initial upward thrust (max damage)
+		"####" "#" 0 A_GiveInventory("IHitCeilingAlready",1)
+		"####" "#" 0 DamageThing(random(400,900))
+		"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+		Goto PainLooperAirThump
+	ThumpHitCeilingHard:
+		"####" "#" 0 DamageThing(random(250,500))
+		"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+		Goto PainLooperAirThump
+	ThumpHitCeilingMedium:
+		"####" "#" 0 DamageThing(random(150,300))
+		"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+		Goto PainLooperAirThump
+	ThumpHitCeilingWeak:
+		"####" "#" 0 DamageThing(random(75,150))
+		"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+		Goto PainLooperAirThump
+	}
+}
+
+//======================================================================
+// Weakest monsters:
+// -Zombieman
+// -Shotgunguy
+// -ChaingunGuy
+// -Nazi
+// -DoomImp
+// -Demon
+// -Spectre
+// -LostSoul
+//======================================================================
+Actor QCDE_MonsterSmall : QCDE_BaseMonster
+{
+	PainChance "Ice", 255				//100% Duke
+	PainChance "ThumperDamage", 255		//100% Grayson
+	PainChance "KickSlide", 255			//100% Kane
+	PainChance "DollStun", 255			//100% Caleb
+	States
+	{
+		Spawn:
+			TNT1 A 0 NodeLay A_GiveInventory("MonsterSmall")
+			TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+			TNT1 A 100 A_Jump(256,"Idle")
+			Wait//Goto Idle
+		PainLooperAirThumpContinue:		//This state is defined in each base class to define how long it stays in stasis
+			"####" "#" 0 A_SetUserVar("user_timer",user_timer+1)
+			"####" "#" 0 A_ScaleVelocity(0.75)
+			"####" "#" 0 A_JumpIf(user_timer>=140,"ThumpStasisFalling")	//140*3=420 tics = 12 sec
+			"####" "#" 0 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+			"####" "#" 3
+			"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+			Goto PainLooperAirThump
+	}
+}
+Actor MonsterSmall : Token {}
+
+//======================================================================
+// Medium monsters:
+// -Revenant
+// -Cacodemon
+// -PainElemental
+// -HellKnight
+//======================================================================
+Actor QCDE_MonsterMedium : QCDE_BaseMonster
+{
+	PainChance "Ice", 128				//50% Duke
+	PainChance "ThumperDamage", 255		//100% Grayson
+	PainChance "KickSlide", 255			//100% Kane
+	PainChance "DollStun", 255			//100% Caleb
+	States
+	{
+		Spawn:
+			TNT1 A 0 NodeLay A_GiveInventory("MonsterMedium")
+			TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+			TNT1 A 100 A_Jump(256,"Idle")
+			Wait//Goto Idle
+		PainLooperAirThumpContinue:		//This state is defined in each base class to define how long it stays in stasis
+			"####" "#" 0 A_SetUserVar("user_timer",user_timer+1)
+			"####" "#" 0 A_ScaleVelocity(0.75)
+			"####" "#" 0 A_JumpIf(user_timer>=94,"ThumpStasisFalling")	//94*3=282 tics = ~8 sec
+			"####" "#" 0 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+			"####" "#" 3
+			"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+			Goto PainLooperAirThump
+	}
+}
+Actor MonsterMedium : Token {}
+
+//======================================================================
+// Big monsters:
+// -BaronofHell
+// -Arachnotron
+// -Fatso
+// -Archvile
+//======================================================================
+Actor QCDE_MonsterBig : QCDE_BaseMonster
+{
+	PainChance "Ice", 85				//33% Duke
+	PainChance "ThumperDamage", 255		//100% Grayson
+	PainChance "KickSlide", 128			//50% Kane
+	PainChance "DollStun", 128			//50% Caleb, but really is much higher due to several "pellets" on the attack
+	States
+	{
+		Spawn:
+			TNT1 A 0 NodeLay A_GiveInventory("MonsterBig")
+			TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("QCDE_BossHealthScalar",0,1)
+			TNT1 A 100 A_Jump(256,"Idle")
+			Wait//Goto Idle
+		PainLooperAirThumpContinue:		//This state is defined in each base class to define how long it stays in stasis
+			"####" "#" 0 A_SetUserVar("user_timer",user_timer+1)
+			"####" "#" 0 A_ScaleVelocity(0.75)
+			"####" "#" 0 A_JumpIf(user_timer>=70,"ThumpStasisFalling")	//70*3=210 tics = 6 sec
+			"####" "#" 0 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+			"####" "#" 3
+			"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+			Goto PainLooperAirThump
+	}
+}
+Actor MonsterBig : Token {}
+
+//======================================================================
+// Boss monsters:
+// -Cyberdemon
+// -SpiderMastermind
+//======================================================================
+Actor QCDE_MonsterBoss : QCDE_BaseMonster
+{
+	PainChance "Ice", 32				//12.5% Duke, but in reality they're immune to getting frozen
+	PainChance "ThumperDamage", 0		//0% Grayson, bosses can't be thumped
+	PainChance "KickSlide", 0			//0% Kane, bosses can't be kickslid'd
+	PainChance "DollStun", 64			//25% Caleb, but really is much higher due to several "pellets" on the attack
+	+DONTBLAST							//bosses cant be blasted by Freeman
+	+NORADIUSDMG						//bosses shan't take regular explosive damage
+	States
+	{
+		Spawn:
+			TNT1 A 0 NodeLay A_GiveInventory("MonsterBoss")
+			TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("QCDE_BossHealthScalar",0)
+			TNT1 A 100 A_Jump(256,"Idle")
+			Wait//Goto Idle
+		PainLooperAirThumpContinue:		//This state is defined in each base class to define how long it stays in stasis
+			"####" "#" 0 A_SetUserVar("user_timer",user_timer+1)
+			"####" "#" 0 A_ScaleVelocity(0.75)
+			"####" "#" 0 A_JumpIf(user_timer>=10,"ThumpStasisFalling")	//10*3=30 tics = less than a second, in case it ends reaching this state
+			"####" "#" 0 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+			"####" "#" 3
+			"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+			Goto PainLooperAirThump
+	}
+}
+Actor MonsterBoss : Token {}
+
+
+
+//======================================================================
+// Nuisance monsters
+// Not directly used in base QC:DE, but added for addons that add
+// monsters that aren't meant to give out rewards for kills, like
+// Caleb hearth drops
+//======================================================================
+Actor QCDE_MonsterTiny : QCDE_BaseMonster
+{
+	PainChance "Ice", 255				//100% Duke
+	PainChance "ThumperDamage", 255		//100% Grayson
+	PainChance "KickSlide", 255			//100% Kane
+	PainChance "DollStun", 255			//100% Caleb
+	States
+	{
+		Spawn:
+			TNT1 A 0 NodeLay A_GiveInventory("MonsterTiny")
+			TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+			TNT1 A 100 A_Jump(256,"Idle")
+			Wait//Goto Idle
+		PainLooperAirThumpContinue:		//This state is defined in each base class to define how long it stays in stasis
+			"####" "#" 0 A_SetUserVar("user_timer",user_timer+1)
+			"####" "#" 0 A_ScaleVelocity(0.75)
+			"####" "#" 0 A_JumpIf(user_timer>=140,"ThumpStasisFalling")	//140*3=420 tics = 12 sec
+			"####" "#" 0 A_SpawnItemEx("ShockSparkSpawner",random(6,-6),random(6,-6),random(30,60),0,0,0,0,32)
+			"####" "#" 3
+			"####" "#" 0 A_Jump(256,"PainLooperAirThump")
+			Goto PainLooperAirThump
+	Death:
+		TNT1 A 0 //ACS_NamedExecuteWithResult("QCDE_MonsterDeath",false)
+		TNT1 A 0 A_Jump(256,"DeathChecksDone")	//virtual jump to current class' state
+		"####" "#" 35
+		Wait
+
+	XDeath:
+		TNT1 A 0 //ACS_NamedExecuteWithResult("QCDE_MonsterDeath",true)
+		TNT1 A 0 A_Jump(256,"XDeathChecksDone")	//virtual jump to current class' state
+		"####" "#" 35
+		Wait
+	}
+}
+Actor MonsterTiny : Token {}
+
+
+//===================================================================
+// Token unique for monsters, related to thumper
+Actor IHitCeilingAlready : Inventory
+{	Inventory.MaxAmount 1	}
+
+Actor ImaFlyer : Inventory
+{	Inventory.MaxAmount 1	}
+
+
+//===================================================================
+//===================================================================
+//	Muzzle Flash for monsters
+//===================================================================
+//===================================================================
+
+Actor MonMuzzleFlash
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	Scale 0.42
+	RenderStyle Add
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		RR28 ABCDE 0 A_JumpIf(random(1,10) == 1,"Continue") //1/10 for everyone.
+		RR29 ABCDE 0 A_JumpIf(random(1,5) == 1,"Continue")
+	Continue:
+		"----" A 3 Light("YellowMediumFlicker3") Bright
+		Stop
+	}
+}
+
+Actor MonMuzzleFlashSmall : MonMuzzleFlash
+{
+	+CLIENTSIDEONLY
+	Scale 0.22
+}

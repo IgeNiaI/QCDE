@@ -1,0 +1,16 @@
+#library "PROG"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+// Reconstructed without source
+
+Script "Always_3Dfloors" OPEN CLIENTSIDE
+{
+	if(GetCvar("R_3DFloors") == 0)
+	{
+		ConsoleCommand("R_3DFloors 1");
+	}
+	delay(1);
+	restart;
+}

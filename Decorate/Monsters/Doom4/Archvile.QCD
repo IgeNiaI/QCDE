@@ -1,0 +1,397 @@
+//================================================================================================================
+//================================================================================================================
+//
+//
+//================================================================================================================
+//================================================================================================================
+Actor D4Archvile : QCDE_MonsterBig 13509
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	var int user_flee;
+	Health 1000
+	Radius 20
+	Height 56
+	Mass 500
+	Speed 15
+	PainChance 10
+	Monster
+	MaxTargetRange 896
+	+QUICKTORETALIATE
+	+FLOORCLIP
+	+DONTCORPSE
+	+NOTARGET
+	+DONTHARMSPECIES
+	BloodColor Black
+	SeeSound 	"Doom4/Monsters/Archvile/Sight"
+	PainSound 	"Doom4/Monsters/Archvile/Pain"
+	DeathSound 	"Doom4/Monsters/Archvile/Death"
+	ActiveSound "Doom4/Monsters/Archvile/Idle"
+	MeleeSound "vile/stop"
+	Obituary "$OB_VILE"
+	MeleeRange 128
+	Species "D4TArchies"
+	Tag "$TAG_D4Archvile" // "Summoner"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		DIAB A 0
+		DIAB A 0 A_SetShootable
+		DIAB A 0 A_ChangeFlag(NOPAIN,false)
+		DIAB A 0 A_ChangeFlag(FRIGHTENED,false)
+		DIAB AB 10 A_Look
+		Goto Idle+4
+	See:
+		TNT1 A 0 A_Jump(64,"TeleportTowards") //rarely it will teleport even when you´re too far
+		DIAB AABBCCDDEEFF 2 A_Chase
+		Loop
+
+
+	//==============================================
+	// teleport "attack"
+	Melee:
+		TeleportAway:	//melee range teleport will always make it flee
+			TNT1 A 0 A_SetUserVar(user_flee,1)
+			Goto TeleportCommon
+
+		TeleportTowards:	//when he's too far, he "teleports" towards you
+			TNT1 A 0 A_SetUserVar(user_flee,0) //just in case
+			Goto TeleportCommon
+
+		TeleportCommon:
+			DIAB A 0 A_ChangeFlag(NONSHOOTABLE,true)
+			DIAB A 0 A_ChangeFlag(NOPAIN,true)
+			DIAB A 0 A_Jumpif (user_flee == 0, 2)
+			DIAB A 0 A_ChangeFlag(FRIGHTENED,true)
+
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("RedSmallFlicker3") A_GiveInventory("TPortProc")
+			DIAB A 0 A_ChangeFlag(NONSHOOTABLE,false)
+			DIAB A 0 A_ChangeFlag(NOPAIN,false)
+			DIAB A 0 A_ChangeFlag(FRIGHTENED,false)
+			DIAB A 0 A_SetUserVar(user_flee,0) //always set it to not flee
+			Goto SeeNoTeleport //after doing the teleport move, will go for a little bit without trying it again
+
+		SeeNoTeleport:
+			DIAB AABBCCDDEEFF 2 A_Chase("","Missile")
+			DIAB AABBCCDDEEFF 2 A_Chase("","Missile")
+			DIAB AABBCCDDEEFF 2 A_Chase("","Missile")
+			DIAB AABBCCDDEEFF 2 A_Chase("","Missile")
+			DIAB AABBCCDDEEFF 2 A_Chase("","Missile")
+			Goto See
+	//==============================================
+	// Summon and Argent attack
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(1024,"Summon")
+		Goto ArgentAttack
+
+		ArgentAttack:
+			DIAB M 0 A_VileTarget("SummonerSparks")
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker3DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker3DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker3DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker3DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker2DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker2DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker2DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker2DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker1DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker1DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedSmallFlicker1DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedMediumFlicker3DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB M 0 A_FaceTarget
+			DIAB MMM 1 Bright Light("RedMediumFlicker3DLS") A_SpawnItemEx("SummonerHandSparks",0,0,35,frandom(0.1,2.0),frandom(3,-3),frandom(1,-1),0,SXF_NOCHECKPOSITION)
+			DIAB L 3 Bright Light("RedMediumFlicker2DLS")
+			DIAB K 3 Bright Light("RedMediumFlicker1DLS")
+			DIAB J 3 Bright Light("RedBigFlicker3DLS")
+			DIAB I 0 Bright A_CustomMissile("SummonerProjectile")
+			DIAB I 1 Bright Light("RedBigPoint1DLS")
+			DIAB I 1 Bright Light("RedBigPoint2DLS")
+			DIAB I 2 Bright Light("RedBigPoint3DLS")
+			DIAB I 2 Bright Light("RedMediumPoint1DLS")
+			DIAB I 3 Bright Light("RedMediumPoint2DLS")
+			DIAB I 4 Bright Light("RedMediumPoint3DLS")
+			DIAB I 5 Bright Light("RedSmallPoint1DLS")
+			DIAB I 6 Bright Light("RedSmallPoint2DLS")
+			Goto See
+		Summon:
+			TNT1 A 0 A_Jump(128,"ArgentAttack")
+			DIAB "[[[[[[[[[" 1 BRIGHT Light("RedBigFlicker3DLS")
+			DIAB A 0 A_CustomMissile("SummonerMonsterSpawner",40,0,random(80,-80))
+			DIAB "[[\\\\\]" 2 BRIGHT Light("RedMediumFlicker1DLS")
+			DIAB "\]]]" 2 BRIGHT Light("RedBigFlicker2DLS")
+			DIAB "]]]" 2 BRIGHT Light("RedBigFlicker3DLS")
+			Goto See
+
+	Pain:
+		DIAB Q 5 A_Pain
+		Goto See
+	DeathChecksDone:
+		DIAB Q 0 A_Scream
+		DIAB Q 7 A_ChangeFlag(THRUACTORS,true)
+		DIAB R 7
+		DIAB S 7 A_NoBlocking
+		DIAB TUVWXY 7
+		DIAB Z 0 A_ChangeFlag(CORPSE,true)
+	Death.Corpse:
+		DIAB Z -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Doom4/Gore/Medium")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+	//------------------------------------------------------------------------
+	}
+}
+
+Actor SummonerMonsterSpawner
+{
+	Speed 12
+	Radius 32
+	Height 4
+	Damage 0
+	Projectile
+	+THRUACTORS
+	+DONTSPLASH
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+BOUNCEONWALLS
+	+SKYEXPLODE
+	+STEPMISSILE
+	MaxStepHeight 32
+	BounceFactor 1.0
+	WallBounceFactor 1.0
+	RenderStyle None
+	States
+	{
+	Spawn:
+		BAL1 A 8
+		BAL1 A 0 A_Stop
+		Goto Death
+	Death:
+		TNT1 A 0 A_SpawnItemEx("SummonerTeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 1 A_SpawnItemEx("SummonsSpawner",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS)
+		Stop
+	}
+}
+
+Actor SummonsSpawner : RandomSpawner
+{
+	DropItem "D4Zombieman"	, 255, 10
+	DropItem "D4ShotgunGuy"	, 255, 10
+	DropItem "D4HellRazer"	, 255, 10
+	DropItem "D4DoomImp"	, 255, 10
+	DropItem "D4Demon"		, 255,  6
+	DropItem "D4LostSoul"	, 255, 10
+	DropItem "D4Revenant"	, 255,  2
+	DropItem "D4HellKnight"	, 255,  2
+}
+
+Actor SummonerTeleportFog
+{
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.99
+	Scale 1.3
+	States
+	{
+	Spawn:
+		DB26 A 0
+		DB26 A 0 A_PlaySound("Doom4/Monsters/ArchvilePortal",6,1.0,false,1.2)
+		DB26 ABCDEFGHIIJJKKLLMMNNOO 1 Bright
+		DB26 PQQRRSSTTUUVV 1 Bright A_FadeOut(0.035)
+		Stop
+	}
+}
+
+//------------------------------------------
+// The trails used for when it "teleports"
+Actor ArchvileTPortTrail
+{
+	+NOINTERACTION
+	XScale 0.33
+	YScale 0.2
+	RenderStyle Add
+	Alpha 1.0
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"S1","S2","S3","S4","S5","S6","S7","S8")
+	S1:	HSPL A 0
+		Goto Perform
+	S2:	HSPL B 0
+		Goto Perform
+	S3:	HSPL C 0
+		Goto Perform
+	S4:	HSPL D 0
+		Goto Perform
+	S5:	HSPL E 0
+		Goto Perform
+	S6:	HSPL F 0
+		Goto Perform
+	S7:	HSPL G 0
+		Goto Perform
+	S8: HSPL H 0
+		Goto Perform
+	S8: HSPL J 0
+		Goto Perform
+	Perform:
+		"####" "#" 1 Bright A_FadeOut
+		Wait
+	}
+}
+
+//------------------------------------------
+// Argent energy attack
+Actor SummonerProjectile : FastProjectile
+{
+	Projectile
+	Speed 50
+	FastSpeed 80
+	Radius 8
+	Height 16
+	Damage (random(30,60))
+	RenderStyle Add
+	Xscale 0.3
+	Yscale 0.8
+	Translation "0:255=%[0,0,0]:[1.0,0.0,0.0]"
+	SeeSound "Doom4/Monsters/ArgentWaveFire"
+	MissileType "SummonerTrailSpawner"
+	MissileHeight 8
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		X016 ABCDEFGHIJKLMNOPQRSTUVWXY 1 Bright A_Explode(10,64,0)
+		Loop
+	Death:
+		TNT1 A 10
+		Stop
+
+	}
+}
+
+Actor SummonerTrailSpawner //dummy to spawn muliple trails through fastprojectile's method
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 0  NoDelay A_SpawnItemEx("SummonerTrail",-2,0,random(0, 10),0,0,frandom( 0.5, 3),0,SXF_NOCHECKPOSITION,160)
+		TNT1 A 0 A_SpawnItemEx("SummonerTrail",-2,0,random(0,-10),0,0,frandom(-0.5,-3),0,SXF_NOCHECKPOSITION,160)
+		Stop
+	}
+}
+
+Actor SummonerTrail : ArchvileTPortTrail
+{
+	Scale 0.2
+	Translation "0:255=%[0,0,0]:[1.0,0.0,0.0]"
+}
+
+Actor SummonerSparks
+{
+	+NOINTERACTION
+	+BRIGHT
+	+FORCEXYBILLBOARD
+	Translation "0:255=%[0,0,0]:[1.0,0.0,0.0]"
+	Scale 0.4
+	RenderStyle Add
+	Alpha 0.99
+	Height 1
+	Radius 1
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_PlaySound("Doom4/Monsters/ArgentCharge",6,0.8,false,1.2)
+		DB66 ABCDE 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 FGHIJ 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 LKMNO 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 PQRST 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 UVWXY 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 ABCDE 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 FGHIJ 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 LKMNO 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 PQRST 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		DB66 UVWXY 1 Light("RedMediumFlicker2") A_Fire(35)
+		TNT1 A 0 A_SetScale(frandom(0.25,0.45))
+		STOP
+
+	}
+}
+
+Actor SummonerTargetingSparks	//spawned in front of the player
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	Scale 0.2
+	RenderStyle Add
+	Translation "0:255=%[0,0,0]:[1.0,0.0,0.0]"
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_RearrangePointers(AAPTR_MASTER, AAPTR_DEFAULT, AAPTR_TARGET)
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8)
+		X079 ABCDEFGH 0	A_Jump(256,"Perform")
+	Perform:
+		"####" "#" 0 A_JumpIfTargetInLos("Glue")
+		"####" "#" 1 Bright A_FadeOut(0.05)
+		Goto Perform
+	Glue:
+		"####" "#" 0 A_FadeOut(0.05)
+		"####" "#" 1 Bright A_Fire
+		Goto Perform
+	}
+}
+
+Actor SummonerHandSparks	//spawned in the hands of the archvile
+{
+	+NOINTERACTION
+	Scale 0.4
+	RenderStyle Add
+	Translation "0:255=%[0,0,0]:[2.0,0.0,0.0]"
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,1,2,3,4,5,6,7,8)
+		X079 ABCDEFGH 0	A_Jump(256,"Perform")
+	Perform:
+		"####" "#" 1 Bright A_FadeOut(0.05)
+		Loop
+	}
+}
+
+Actor TPortProc : CustomInventory { States { Pickup:
+		TNT1 A 0 A_Chase("","")
+		TNT1 A 0 A_Chase("","")
+		TNT1 A 0 A_SpawnItemEx("ArchvileTPortTrail",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("ArchvileTPortTrail",0,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+}	}

@@ -1,0 +1,283 @@
+// ----------------------------------------------------------------------------
+//
+// Freeman's abilities
+//
+// Active:    Antigrav blast
+//
+// Passive:   Extraction
+//
+// Passive2:  HEV Suit
+//
+// ----------------------------------------------------------------------------
+
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+// PvP pt1: starting blast that spawns FX and deflects projectiles away, and deals 15dmg to nearby enemies
+Actor PvPBlastInitialProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("NoWeaponFireToken",1)
+		TNT1 A 0 A_Explode(15,160,XF_NOTMISSILE,0,160)
+		TNT1 A 0 A_Blast(BF_NOIMPACTDAMAGE|BF_AFFECTBOSSES)
+		//FX spawning
+		TNT1 A 0 A_PlaySound("QC/Abilities/Freeman/Exhaust", 7, 1.0)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustSpawner2",0,0,0, 0,0,0,  0, SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+// PvP pt2: then more blasts that only deflects projectiles away for "extended" blast
+Actor PvPBlastExtraProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 1 A_Blast(BF_NOIMPACTDAMAGE|BF_AFFECTBOSSES,255,192)
+		Goto Stop
+	}
+}
+
+//-------------------------------------------
+// PvE: Blasts once, bigger radius, and deals damage to monsters when they hit a wall
+Actor PvEBlastProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("NoWeaponFireToken",1)
+		TNT1 A 1 A_Blast(0,255,384)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Freeman/Exhaust", 7, 1.0)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustSpawner2",0,0,0, 0,0,0,  0, SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+
+Actor FreemanElectroDustSpawner1
+{
+	+FORCEXYBILLBOARD
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 5,0,0,  0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 5,0,0, 45, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 5,0,0, 90, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 5,0,0,135, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 5,0,0,180, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 5,0,0,225, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 5,0,0,270, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 5,0,0,315, SXF_NOCHECKPOSITION)
+		TNT1 A 10
+		Stop
+	}
+}
+Actor FreemanElectroDustSpawner2
+{
+	+FORCEXYBILLBOARD
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 9,0,0,  0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 9,0,0, 45, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 9,0,0, 90, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 9,0,0,135, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 9,0,0,180, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 9,0,0,225, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 9,0,0,270, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDust",0,0,28, 9,0,0,315, SXF_NOCHECKPOSITION)
+		TNT1 A 10
+		Stop
+	}
+}
+Actor FreemanElectroDustSpawnerMax
+{
+	+FORCEXYBILLBOARD
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,  0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0, 30, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0, 60, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0, 90, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,120, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,150, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,180, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,210, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,240, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,270, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,300, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustMax",0,0,28, 15,0,0,330, SXF_NOCHECKPOSITION)
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor FreemanElectroDust
+{
+	+NOINTERACTION
+	Scale 1.2
+	Alpha 0.6
+	RenderStyle Add
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	+NONETID
+	Translation "0:255=%[0,0,0]:[1.0,1.0,1.3]"
+	States
+	{
+	Spawn:
+		X103 J 2 Bright A_FadeOut(0.05)
+		TNT1 A 0 A_SetScale(ScaleX+0.08)
+		TNT1 A 0 A_ScaleVelocity(0.9)
+		Loop
+	}
+}
+
+Actor FreemanElectroDustMax : FreemanElectroDust
+{
+	Scale 1.5
+	Alpha 0.8
+}
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+Actor HalfLifeToken : Token {}
+
+Actor GmanRezProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_SetBlend("AA AA AA", 0.4, 30)
+		TNT1 A 0 A_SpawnItemEx("TeleportFog")
+		//removes effects of thumper
+		TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+		TNT1 A 0 A_TakeInventory("PowerGrayThumpFlight",1)
+		TNT1 A 0 A_GiveInventory("InvulPostExtract",1)
+		Stop
+	}
+}
+
+Actor GmanRezSound
+{
+	+NOINTERACTION
+	Renderstyle None
+	States
+	{
+	Spawn:
+		TNT1 A 100 NoDelay A_PlaySound("QC/Abilities/Freeman/Extract", CHAN_AUTO, 1.0, false, 0.6)
+		Stop
+	}
+}
+
+// After extraction, you're invulnerable for a tiny bit to avoid suicides by rocket on walls
+ACTOR InvulPostExtract : PowerupGiver
+{
+	-COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	Inventory.MaxAmount 0
+	Powerup.Type "Invulnerable"
+	Powerup.Duration 17	//about half a second
+	States
+	{
+	Spawn:
+		PINV ABCD 6 Bright
+		Loop
+	}
+}
+
+
+Actor PowerHEVFeet : PowerIronFeet
+{
+	Powerup.Duration 0x7FFFFFFF
+	powerup.color 1,1,1,0
+}
+
+Actor Gman
+{
+	var int user_tietie;
+	var int user_walkcycles;
+	Monster
+	Radius 10
+	Height 56
+	+NOTARGET
+	-SHOOTABLE
+	-SOLID
+	+NODAMAGE
+	-COUNTKILL
+	+NOCLIP
+	Scale 0.345
+	Speed 4
+	Renderstyle Translucent
+	Alpha 0.0
+	VisibleToPlayerClass QCFreeman
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay //A_Log("Gman arrived.")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander
+		TNT1 A 140	//4sec
+	FadeIn:
+		N049 AAAAAAAAAA 2 A_FadeIn(0.1)
+		Goto Standing
+	Standing:
+		N049 A 5
+		N049 A 0 A_Jump(20,"Tie")
+		Loop
+	Tie:
+		N049 A 0 A_SetUserVar(user_tietie,user_tietie+1)
+		N049 BC 4
+		N049 DEDED 5 //he's not really ded. Or is he?
+		N049 CB 4
+		N049 A 0 A_JumpIf(user_tietie>=2,"Wander")
+		Goto Standing
+
+	Wander:
+		TNT1 A 0 A_SetUserVar(user_tietie,0)
+		N049 FFGGHHIIJJKK 3 A_Wander
+		N049 FFGGHHIIJJKK 3 A_Wander
+		TNT1 A 0 A_SetUserVar(user_walkcycles,user_walkcycles+2)
+		TNT1 A 0 A_JumpIf(user_walkcycles>=8,"FadeAndWarp")
+		Loop
+	FadeAndWarp:
+		N049 F 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 F 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 G 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 G 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 H 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 H 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 I 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 I 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 J 3 A_Wander	N049 F 0 A_FadeOut(0.09)
+		N049 J 3 A_Wander	N049 F 0 A_SetTranslucent(0.0,0)
+		TNT1 A 0 A_Jump(255,"Warp")
+	Warp:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_GmanShouldLeave"), "Leave")
+		TNT1 A 0 A_Warp(AAPTR_PLAYER1,random(random(-4096,0),random(0,4096)),random(random(-4096,0),random(0,4096)),0,0,WARPF_NOCHECKPOSITION) // <-- Ayy lmao, single-player-style code in QCDE!
+		TNT1 A 0 A_Jump(255,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)	//randomized time he's not showing
+		TNT1 AAAAAAAAAAAAAAAAAAAA 10
+		TNT1 A 0 A_SetUserVar(user_walkcycles,0)
+		TNT1 AAAAAAAAAAAAAAAAA 0 A_Wander
+		TNT1 A 10 A_CheckSight("FadeIn")
+		Goto Warp
+	Leave:
+		TNT1 A 100 //A_Log("Gman left.")
+		Stop
+	}
+}

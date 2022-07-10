@@ -1,0 +1,655 @@
+
+[enu default]
+
+GOT_QCArmorBitterman            = "Picked up a power armor bonus.";
+GOT_BlazkoAkimbo                = "Diesel and Laserkraftwerk!";
+OB_BlazkoAkimbo                 = "%o was put into spotlight by %k.";
+TAG_BlazkoAkimbo                = "Diesel and Laserkraftwerk";
+OB_DieselBall                   = "%o had some of %k's diesel.";
+GOT_CalebHeartDM                = "Picked up a life essence!";
+GOT_CalebHeartSP                = "Picked up a small life essence!";
+OB_SlayerBFG                    = "%o was obliterated by %k's BFG.";
+TAG_SlayerBFG                   = "BFG";
+OB_BFG9000Shot                  = "%o felt the power of argent energy at %k's fingertips.";
+OB_DukeFreezeThrower            = "%o was frozen solid by %k.";
+TAG_DukeFreezeThrower           = "Freeze Thrower";
+OB_DukeBootPuff                 = "%o ate %k's boot.";
+OB_BobSimMain                   = "%o was BOBBQ'd.";
+OB_Doppelganger                 = "%o was barking at the wrong tree all along.";
+OBH_Doppelganger                = "%o was delivered the sweet release of death by snusnu.";
+TAG_TotemHitbox                 = "Unholy Totem";
+OB_Shieldquisitor               = "%o got killed by %k's shield? LOLWUT";
+TAG_Shieldquisitor              = "Shield";
+GOT_QCArmorKane                 = "Picked up an armor shard.";
+OB_KickPuff                     = "%o was kicked too hard by %k.";
+OB_KeelGrenade                  = "%o caught %k's pineapple.";
+OB_NobitsuraSlash1SP            = "%o was cut in half by %k.";
+OB_LucienneBall                 = "%o was cleansed by %k.";
+OB_AirStrikeTargetRocket        = "%o was starstruck by %k.";
+GOT_MenelkirHourglass           = "Picked up a necromantic hourglass.";
+OB_GhostwalkKiller              = "%o was ghosted by %k.";
+OB_GhostwalkKillerDM            = "%o was ghosted by %k.";
+TAG_PKDemonWeapon               = "Demonic Power";
+OB_PKDemonWeapon                = "%o's soul was taken by %k.";
+GOT_PainkillerSoul              = "Picked up a soul.";
+OB_PKProjectile                 = "%o was minced by %k.";
+OB_PKGauntletPuff_DM            = "%o was minced by %k.";
+OB_PKGauntletPuff_DM_NoFX       = "%o was minced by %k.";
+OB_PostalCowHead                = "%o shouldn't have smelled %k'd cow head.";
+TAG_PostalCowHead               = "Cow Head";
+OB_DireOrbExploder              = "%o was too close to %k's dire orb.";
+OB_SamMinigun                   = "%o was given ''acute lead poisoning'' by %k.";
+TAG_SamMinigun                  = "Serious Minigun";
+GOT_SeriousBullets              = "Picked up Minigun Bullets.";
+OB_SorgaulFists                 = "%o was torn apart by %k's fists.";
+TAG_SorgaulFists                = "Fists";
+OB_SorgaulPuff                  = "%o has lost a fist fight to %k.";
+GOT_QCBulletAmmoTerminator      = "Picked up a few surplus bullets.";
+GOT_QCShellAmmoTerminator       = "Picked up a few surplus shells.";
+GOT_QCNailAmmoTerminator        = "Picked up a few surplus nails.";
+GOT_QCBoltAmmoTerminator        = "Picked up a few surplus bolts.";
+GOT_QCRocketAmmoTerminator      = "Picked up a few surplus rockets.";
+GOT_QCCoilAmmoTerminator        = "Picked up a few surplus coils.";
+GOT_QCSlugAmmoTerminator        = "Picked up a few surplus slugs.";
+GOT_QCBfgAmmoTerminator         = "Picked up a few surplus BFG cells.";
+OB_CorrosiveBlood               = "%o bathed in the blood of %k.";
+TAG_QCBulletAmmo                = "Bullet Ammo Big";
+GOT_QCBulletAmmo                = "Picked up a pack of bullets.";
+TAG_QCBulletAmmoSmall           = "Bullet Ammo Small";
+GOT_QCBulletAmmoSmall           = "Picked up a few bullets.";
+TAG_QCShellAmmo                 = "Shell Ammo Big";
+GOT_QCShellAmmo                 = "Picked up a pack of shells.";
+TAG_QCShellAmmoSmall            = "Shell Ammo Small";
+GOT_QCShellAmmoSmall            = "Picked up a few shells.";
+TAG_QCNailAmmo                  = "Nail Ammo Big";
+GOT_QCNailAmmo                  = "Picked up a pack of nails.";
+TAG_QCNailAmmoSmall             = "Nail Ammo Small";
+GOT_QCNailAmmoSmall             = "Picked up a few nails.";
+TAG_QCBoltAmmo                  = "Tribolt Ammo Big";
+GOT_QCBoltAmmo                  = "Picked up a pack of bolts.";
+TAG_QCBoltAmmoSmall             = "Tribolt Ammo Small";
+GOT_QCBoltAmmoSmall             = "Picked up a few bolts.";
+TAG_QCRocketAmmo                = "Rocket Ammo Big";
+GOT_QCRocketAmmo                = "Picked up a pack of rockets.";
+TAG_QCRocketAmmoSmall           = "Rocket Ammo Small";
+GOT_QCRocketAmmoSmall           = "Picked up a few rockets.";
+TAG_QCCoilAmmo                  = "Coils Ammo Big";
+GOT_QCCoilAmmo                  = "Picked up a pack of coils.";
+TAG_QCCoilAmmoSmall             = "Coils Ammo Small";
+GOT_QCCoilAmmoSmall             = "Picked up a few coils.";
+TAG_QCSlugAmmo                  = "Slugs Ammo Big";
+GOT_QCSlugAmmo                  = "Picked up a pack of slugs.";
+TAG_QCSlugAmmoSmall             = "Slugs Ammo Small";
+GOT_QCSlugAmmoSmall             = "Picked up a few slugs.";
+TAG_QCBFGAmmo                   = "BFG Ammo Big";
+GOT_QCBFGAmmo                   = "Picked up a pack of BFG cells.";
+TAG_QCBFGAmmoSmall              = "BFG Ammo Small";
+GOT_QCBFGAmmoSmall              = "Picked up a few BFG cells.";
+PAIN_Tester                     = "Ouch!";
+OB_Testball                     = "%o \c[bludi]has been pwned by %k.";
+GOT_QCAllmap                    = "Picked up the computer area map.";
+TAG_QCQuad                      = "Quad Damage";
+GOT_QCQuad                      = "Picked up Quad Damage!";
+TAG_QCProtec                    = "Protection";
+GOT_QCProtec                    = "Picked up Protection!";
+TAG_QCInvul                     = "Invulnerability";
+GOT_QCInvul                     = "Picked up Invulnerability!";
+TAG_QCInfin                     = "Infinite Ammo";
+GOT_QCInfin                     = "Picked up Infinite Ammo!";
+GOT_QCEldersSoul                = "Picked up an Elder's Soul!";
+OB_BARREL                       = "%o went boom.";
+DBG_HARanger                    = "Ranger debug message";
+DBG_HADoomSlayer                = "Doomslayer debug message";
+DBG_HACorvus                    = "Corvus debug message";
+DBG_HAKane                      = "Kane debug message";
+DBG_HACaleb                     = "Caleb debug message";
+DBG_HAMenelkir                  = "Menelkir debug message";
+DBG_HATerminator                = "Terminator debug message";
+DBG_HAZedek                     = "Zedek debug message";
+DBG_HAInquisitor                = "Inquisitor debug message";
+DBG_HABitterman                 = "Bitterman debug message";
+DBG_HAGalen                     = "Galen debug message";
+DBG_HANyx                       = "Nyx debug message";
+DBG_HASorgaul                   = "Sorgaul debug message";
+DBG_HADukeNukem                 = "DukeNukem debug message";
+DBG_HADurandal                  = "Durandal debug message";
+DBG_HAKeel                      = "Keel debug message";
+DBG_HASarge                     = "Sarge debug message";
+DBG_HALoWang                    = "LoWang debug message";
+DBG_HAGrayson                   = "Grayson debug message";
+DBG_HAEradicator                = "Eradicator debug message";
+DBG_HABlazkowicz                = "Blazkowicz debug message";
+DBG_HAFreeman                   = "Freeman debug message";
+DBG_HAVorMatur                  = "VorMatur debug message";
+DBG_HAEleena                    = "Eleena debug message";
+DBG_HALucienne                  = "Lucienne debug message";
+DBG_HAMajor                     = "Major debug message";
+DBG_HAHunter                    = "Hunter debug message";
+DBG_HASam                       = "Sam debug message";
+DBG_HAPostal                    = "Postal debug message";
+DBG_HAPainkiller                = "Painkiller debug message";
+DBG_HAIntruder                  = "Intruder debug message";
+// ^ insert more classes here
+GOT_QCHealthBonus               = "Picked up an overstacking health bonus.";
+GOT_QCStimpack                  = "Picked up a health bubble.";
+GOT_QCMedikit                   = "Picked up a health sphere.";
+GOT_QCMegaHealth                = "Picked up a mega health!";
+GOT_QCMegaMega                  = "Picked up a mega charge!";
+GOT_QCArmorBonus                = "Picked up an armor shard.";
+GOT_QCArmorShardNoHourGlass     = "Picked up an armor shard.";
+GOT_QCSargeArmorGain            = "Picked up an armor shard.";
+GOT_QCSmallArmorGiver           = "Picked up an armored plate.";
+GOT_QCBigArmorGiver             = "Picked up an armored vest.";
+GOT_QCRedCard                   = "Picked up the Red keycard.";
+TAG_QCRedCard                   = "Red Card";
+GOT_QCYellowCard                = "Picked up the Yellow keycard.";
+TAG_QCYellowCard                = "Yellow Card";
+GOT_QCBlueCard                  = "Picked up the Blue keycard.";
+TAG_QCBlueCard                  = "Blue Card";
+GOT_QCRedSkull                  = "Picked up the Red skull.";
+TAG_QCRedSkull                  = "Red Skull";
+GOT_QCYellowSkull               = "Picked up the Yellow skull.";
+TAG_QCYellowSkull               = "Yellow Skull";
+GOT_QCBlueSkull                 = "Picked up the Blue skull.";
+TAG_QCBlueSkull                 = "Blue Skull";
+TAG_LBBackpack                  = "Backpack";
+TAG_LBChest                     = "Chest";
+TAG_LBReliquary                 = "Reliquary";
+GOT_Hourglass                   = "Picked up an equipment bonus.";
+GOT_BigHourglass                = "Picked up a big equipment bonus.";
+GOT_QCBackPack                  = "Picked up a backpack.";
+TAG_QCArachnotron               = "Arachnotron";
+TAG_QCArchvile                  = "Archvile";
+TAG_QCBaronOfHell               = "Baron of Hell";
+TAG_QCCacodemon                 = "Cacodemon";
+TAG_QCChaingunGuy               = "Heavy weapon dude";
+TAG_QCCyberdemon                = "Cyberdemon";
+TAG_QCDemon                     = "Demon";
+TAG_QCSpectre                   = "Spectre";
+TAG_QCDoomImp                   = "Imp";
+TAG_QCFatso                     = "Mancubus";
+TAG_QCHellKnight                = "Hell knight";
+TAG_QCLostSoul                  = "Lost soul";
+TAG_QCPainElemental             = "Pain elemental";
+TAG_QCRevenant                  = "Revenant";
+TAG_QCShotgunGuy                = "Shotgun guy";
+TAG_QCSpiderMastermind          = "Spider Mastermind";
+TAG_QCWolfensteinSS             = "Wolfenstein SS";
+TAG_QCZombieman                 = "Zombieman";
+OB_SMMGas                       = "%o fell to the stench of great evil.";
+TAG_D4Archvile                  = "Summoner";
+OB_D4HellRazer                  = "%o was disintegrated by a Hell Razer.";
+TAG_D4HellRazer                 = "Hell Razer";
+TAG_D4FatsoTech                 = "Cyber Mancubus";
+OB_D4Harvester                  = "%o's soul was taken by a Harvester.";
+TAG_D4Harvester                 = "Harvester";
+OB_D4Prowler                    = "%o was splattered by a Prowler.";
+TAG_D4Prowler                   = "Prowler";
+TAG_D4Revenant                  = "Revenant";
+TAG_D4PossessedSecurity         = "Possessed Security";
+TAG_D4ShotgunGuy                = "Possessed Security";
+TAG_QDeathKnight                = "Death Knight";
+OB_QDeathKnight                 = "%o was burned by a Death Knight.";
+OBH_QDeathKnight                = "%o was chopped in half by a Death Knight.";
+TAG_QDog                        = "Rottweiler";
+OB_QDog                         = "%o was mauled by a rottweiler.";
+TAG_QEnforcer                   = "Laser Enforcer";
+OB_QEnforcer                    = "%o was blasted by an enforcer.";
+TAG_QFiend                      = "Fiend";
+OB_QFiend                       = "%o was eviscerated by a fiend.";
+TAG_QGrunt                      = "Shotgun Grunt";
+OB_QGrunt                       = "%o was shot by a Grunt.";
+TAG_QIaldagorth                 = "Ialdagorth";
+OBH_QIaldagorth                 = "%o crumbled before Ialdagorth.";
+OB_QIaldagorth                  = "%o rode the lightning of Ialdagorth.";
+OB_LightningBallLooker          = "%o turned into a conductor of Ialdagorth's power.";
+TAG_QKnight                     = "Knight";
+OBH_QKnight                     = "%o was slashed by a knight.";
+TAG_QLostSpirit                 = "Lost Spirit";
+OB_QLostSpirit                  = "%o joins the lost spirits.";
+TAG_QNailEnforcer               = "Nailgun Enforcer";
+OB_QNailEnforcer                = "%o got nailed to a wall by an Enforcer.";
+TAG_QNgyrKorath                 = "Ngyr-Korath";
+OB_QNgyrKorath                  = "%o was terrorized by Ngyr-Korath.";
+TAG_QOgre                       = "Ogre";
+OB_QOgre                        = "%o was exploded by an ogre.";
+OBH_QOgre                       = "%o was cut in half by an ogre.";
+TAG_QRocketOgre                 = "Rocket Ogre";
+OB_QRocketOgre                  = "%o was blasted by a rocket ogre.";
+OBH_QRocketOgre                 = "%o was sawed in half by a rocket ogre.";
+TAG_QScrag                      = "Scrag";
+OB_QScrag                       = "%o was scragged by a scrag.";
+TAG_QShambler                   = "Shambler";
+OBH_QShambler                   = "%o was smashed by a shambler.";
+OB_QShambler                    = "%o couldn't avoid the shambler's lightning.";
+TAG_QSilverKnight               = "Silver Knight";
+OB_QSilverKnight                = "%o was cleansed by a silver knight.";
+OBH_QSilverKnight               = "%o was sliced by a silver knight.";
+TAG_QSpawn                      = "Spawn";
+OB_QSpawn                       = "%o was annoyed to death by a tarbaby.";
+TAG_QVore                       = "Shalrath";
+OB_QVore                        = "%o was exploded by a Vore.";
+TAG_QWrath                      = "Wrath";
+OB_QWrath                       = "%o was terrified by a wrath.";
+TAG_QZombie                     = "Zombie";
+OB_QZombie                      = "%o joins the zombies.";
+TAG_Q2Berserker                 = "Berserker";
+OB_Q2Berserker                  = "%o was smashed by a berserker.";
+TAG_Q2Brains                    = "Brains";
+OB_Q2Brains                     = "%o was slaughtered by a weird entity.";
+TAG_Q2Flyer                     = "Flyer";
+OB_Q2Flyer                      = "%o was melted by a flyer.";
+TAG_Q2Gladiator                 = "Gladiator";
+OB_Q2Gladiator                  = "%o was bested by a gladiator.";
+TAG_Q2Gunner                    = "Gunner";
+OB_Q2Gunner                     = "%o was eliminated by a gunner.";
+TAG_Q2Hornet                    = "Hornet";
+OB_Q2Hornet                     = "%o was destroyed by a hover boss.";
+TAG_Q2Hover                     = "Icarus";
+OB_Q2Hover                      = "%o was blasted by a hover.";
+TAG_Q2Infantry                  = "Infantry";
+OB_Q2Infantry                   = "%o was shot down by infantry.";
+TAG_Q2IronMaiden                = "Iron Maiden";
+OB_Q2IronMaiden                 = "%o was exploded by an Iron Maiden.";
+OBH_Q2IronMaiden                = "%o shouldn't have come that close to an Iron Maiden.";
+TAG_Q2LightGuard                = "Light Guard";
+OB_Q2LightGuard                 = "%o saw the light of a Light Guard.";
+TAG_Q2MachinegunGuard           = "Machinegun Guard";
+OB_Q2MachinegunGuard            = "%o got lead poisoning from a machinegun guard.";
+TAG_Q2JorgMakron                = "Makron's Jorg";
+OB_Q2JorgMakron                 = "%o was annihilated by Makron's Jorg.";
+OB_BFG10KShot                   = "%o felt the power of Makron's BFG.";
+TAG_Q2Makron                    = "Makron";
+OB_Q2Makron                     = "%o met the leader of Stroggos.";
+TAG_Q2Medic                     = "Medic";
+OB_Q2Medic                      = "%o was vivisected by a medic.";
+TAG_Q2Mutant                    = "Mutant";
+OB_Q2Mutant                     = "%o was disemboweled by a mutant.";
+TAG_Q2Parasite                  = "Parasite";
+OB_Q2Parasite                   = "%o contracted a deadly parasite.";
+TAG_Q2PrototypeContainer        = "Prototype Container";
+OB_Q2PrototypeContainer         = "%o found a prototype container.";
+TAG_Q2ShieldHover               = "Shield Hover";
+OB_Q2ShieldHover                = "%o was blasted by a hover.";
+TAG_Q2ShotgunGuard              = "Shotgun Guard";
+OB_Q2ShotgunGuard               = "%o got too close to a shotgun guard.";
+TAG_Q2Tank                      = "Tank";
+OB_Q2Tank                       = "%o encountered a tank.";
+TAG_Q2TankBoss                  = "Tank Boss";
+OB_Q2TankBoss                   = "%o was smeared over the ground by a tank-boss.";
+TAG_Q2TankCommander             = "Tank Commander";
+OB_Q2TankCommander              = "%o was put in %p place by a tank commander.";
+OB_Q4Berserker                  = "A berserker gave %o a shock therapy.";
+OBH_Q4Berserker                 = "%o was bludgeoned by a berserker.";
+TAG_Q4Berserker                 = "Berserker";
+OB_Q4FailedTransfer             = "%o let a brain-dead failed transfer best %h.";
+TAG_Q4FailedTransfer            = "Failed Transfer";
+OB_Q4Gladiator                  = "%o now knows how ruthless the Strogg gladiators are.";
+OBH_Q4Gladiator                 = "%o would never get in a CQC against a gladiator another time.";
+TAG_Q4Gladiator                 = "Gladiator";
+OB_Q4Grunt                      = "%o got lots of holes thanks to a grunt's hidden machine gun.";
+OBH_Q4Grunt                     = "%o was whacked right in the face by a Strogg grunt.";
+TAG_Q4Grunt                     = "Grunt";
+OB_Q4Gunner                     = "%o was taken down by a Strogg gunner.";
+TAG_Q4Gunner                    = "Gunner";
+OB_Q4Harvester                  = "%o got reduced into a bloody pulp by a Strogg harvester.";
+OBH_Q4Harvester                 = "%o will now be turned into stroyent.";
+TAG_Q4Harvester                 = "Harvester";
+OB_Q4HoverTank                  = "%o learned not to play with hover tanks.";
+TAG_Q4HoverTank                 = "Hover Tank";
+OB_Q4HyperBlasterTactical       = "%o was barraged with plasma by a Strogg tactical transfer.";
+TAG_Q4HyperBlasterTactical      = "Tactical Transfer (Hyperblaster)";
+OB_Q4IronMaiden                 = "%o found out that Strogg women don't play around.";
+OBH_Q4IronMaiden                = "%o tried to hit on an Iron Maiden.";
+TAG_Q4IronMaiden                = "Iron Maiden";
+OB_Q4LightGuard                 = "A Strogg guard pelted %o to death with his mere blaster.";
+TAG_Q4LightGuard                = "Light Guard";
+OB_Q4LightTank                  = "%o met a cyber-dude with plenty of guns.";
+OBH_Q4LightTank                 = "%o got battered by a Light Tank.";
+OB_Q4MachinegunGuard            = "%o got overwhelmed by a Strogg guard.";
+TAG_Q4MachinegunGuard           = "Machinegun Guard";
+OB_Q4Makron                     = "%o was purely intimidated by the dreaded Makron.";
+TAG_Q4Makron                    = "Makron";
+OB_Q4Makron2                    = "%o can't fully obliterate the Makron.";
+TAG_Q4Makron2                   = "Makron (Torso)";
+OB_Q4NetworkGuardian            = "%o was blown to pieces by the network guardian.";
+TAG_Q4NetworkGuardian           = "Network Guardian";
+OB_Q4RailgunTactical            = "%o was railed by a Strogg tactical transfer.";
+TAG_Q4RailgunTactical           = "Tactical Transfer (Railgun)";
+OB_Q4RepairBot                  = "%o was given severe bruises by a repair bot.";
+TAG_Q4RepairBot                 = "Repair Bot";
+OB_Q4Roller                     = "%o was gunned down recklessly by a Strogg roller.";
+TAG_Q4Roller                    = "Roller";
+OB_Q4Scientist                  = "%o volunteered as a test-subject to a scientist's new concoctions.";
+OBH_Q4Scientist                 = "%o got mutilated by a Strogg scientist.";
+TAG_Q4Scientist                 = "Scientist";
+OB_Q4Sentry                     = "%o was denied access to life by a sentry.";
+TAG_Q4Sentry                    = "Sentry";
+OB_Q4ShotgunGuard               = "%o was shotgunned by a Strogg guard.";
+TAG_Q4ShotgunGuard              = "Shotgun Guard";
+OB_Q4SlimyTransfer              = "%o was melted by a Slimy Transfer with his acidic vomit.";
+OBH_Q4SlimyTransfer             = "A slimy transfer somehow killed %o with a headbutt.";
+TAG_Q4SlimyTransfer             = "Slimy Transfer";
+OB_Q4StreamProtector            = "%o was gunned down by a Stream Protector.";
+TAG_Q4StreamProtector           = "Stream Protector";
+OB_Q4StroggHover                = "%o let %hself be harassed by a Strogg Hornet.";
+TAG_Q4StroggHover               = "Hornet";
+OB_Q4TeleportDropper            = "%o saw that even Strogg animals are out for anyone's blood.";
+TAG_Q4TeleportDropper           = "Teleport Dropper";
+OB_Q4Voss                       = "%o didn't listen to Voss' commands.";
+OBH_Q4Voss                      = "%o was brutally impaled by the stroggified Voss.";
+TAG_Q4Voss                      = "Voss";
+OB_FakeruWeapun                 = "%o was blank'd by %k.";
+GOT_FakeruWeapun                = "Picked up a nutin.";
+TAG_FakeruWeapun                = " ";
+OB_QCBFG                        = "%o was melted by %k's BFG.";
+GOT_QCBFG                       = "Picked up the BFG 10k.";
+TAG_QCBFG                       = "BFG 10k";
+OB_QCBFGShot                    = "%o felt the power of argent energy at %k's fingertips.";
+GOT_QCGauntlet                  = "Picked up a Gauntlet.";
+OB_QCGauntlet                   = "%o got shredded by %k's gauntlet.";
+TAG_QCGauntlet                  = "Gauntlet";
+OB_GauntletPuff_DM              = "%o was pummeled by %k.";
+OB_GauntletPuff_DM_NoFX         = "%o tried to stop %k's rotating blade with a wrong limb.";
+GOT_QCHeavyMachinegun           = "Picked up a Heavy Machinegun.";
+TAG_QCHeavyMachinegun           = "Heavy Machinegun";
+OB_QCHeavyMachinegun            = "%o got lead poisoning from %k.";
+GOT_QCLightningGun              = "Picked up a Lightning Gun.";
+TAG_QCLightningGun              = "Lightning Gun";
+OB_QCLightningGun               = "%o was electrocuted by %k.";
+OB_LGPuff                       = "%o was electrified by %k.";
+OB_LGPuffStatic                 = "%o was conductive for %k.";
+GOT_QCMachinegun                = "Picked up a Machinegun.";
+OB_QCMachinegun                 = "%o was riddled with holes by %k.";
+TAG_QCMachinegun                = "Machinegun";
+GOT_QCNailgun                   = "Picked up a Nailgun.";
+TAG_QCNailgun                   = "Nailgun";
+OB_QCNailgun                    = "%o was nailed by %k.";
+GOT_QCRailGun                   = "Picked up a Railgun.";
+TAG_QCRailGun                   = "Railgun";
+OB_QCRailGun                    = "%o was railed by %k.";
+OB_RailgunExplosivePuffoid      = "%o was besieged by %k.";
+TAG_QCRocketLauncher            = "Rocket Launcher";
+GOT_QCRocketLauncher            = "Picked up a Rocket Launcher.";
+OB_QCRocketLauncher             = "%o embraced %k's rockets.";
+OB_QCRocketPlayer               = "%o rode %k's rocket.";
+GOT_QCShotgun                   = "Picked up a Shotgun.";
+TAG_QCShotgun                   = "Shotgun";
+OB_QCShotgun                    = "%o was shot down by %k.";
+GOT_QCSuperNailgun              = "Picked up a Super Nailgun.";
+TAG_QCSuperNailgun              = "Super Nailgun";
+OB_QCSuperNailgun               = "%o was perforated by %k.";
+TAG_QCSuperShotgun              = "Super Shotgun";
+OB_QCSuperShotgun               = "%o was too close to %k's double barreled shotgun.";
+GOT_QCSuperShotgun              = "Picked up a Super Shotgun.";
+GOT_QCTribolt                   = "Picked up a Tribolt.";
+TAG_QCTribolt                   = "Tribolt";
+OB_QCTribolt                    = "%o was bolted by %k.";
+OB_TriboltBoltGrenade           = "%o caught %k's pineapple.";
+OB_ClassDisabled                = "%o picked a class currently disabled by server.";
+
+KEY_QcdeSection    = "QCDE bindings"         ;
+KEY_ActiveAbility  = "Use Active Ability"    ;
+KEY_ClassInfo      = "Show Class Information";
+KEY_StartingWeapon = "Change Starting Weapon";
+KEY_Voice          = "Voice Line"            ;
+KEY_MPClassMenu    = "MP: Change Class Menu" ;
+
+QUITMSG1  = "Press Y to quit like a big loser in life,\npress N to stay proud and successful";           // Quake 1
+QUITMSG2  = "Man, I oughta smack you for trying to quit!\nPress Y to get smacked out.";                  // Quake 1
+QUITMSG3  = "Um, Asmodeus dislikes his children trying to quit.\nPress Y to return to your tinkertoys."; // Quake 1
+QUITMSG4  = "If you press Y to quit, I will summon Satan all over your hard drive!";                     // Quake 1
+QUITMSG5  = "Milord, methinks that thou art a lowly quitter.\nIs this true?";                            // Quake 1
+QUITMSG6  = "Do I need to bust your face open for trying to quit?";                                      // Quake 1
+QUITMSG7  = "If you quit now, I'll throw a blanket-party for you next time!";                            // Quake 1
+QUITMSG8  = "Are you gonna quit this game just like everything else?";                                   // Quake 1
+QUITMSG9  = "In Soviet Russia, game quits you!";
+QUITMSG10 = "The monsters so wished they could quit like you.";
+QUITMSG11 = "Are you cheating on me with another game?";
+QUITMSG12 = "Just blame it on lag next time.";
+QUITMSG13 = "It was probably past your bedtime anyway.";
+QUITMSG14 = "Exit command acknowledged.\nIncreasing chipset voltage by 300%. Shutting down...";
+QUITMSG15 = "Yeah, I agree, you haven't played D4T for too long.";                                                          // Michaelis
+QUITMSG16 = "Press 'n' if you still need help getting away from yourself.";                                                 // Michaelis
+QUITMSG17 = "All that remains is a binary choice to be made.\nAre you sure?";                                               // Michaelis
+QUITMSG18 = "You are escaping the escapist realm.\nDo you see the irony?";                                                  // Michaelis
+QUITMSG19 = "Protip: opening console and typing 'quit' can be faster than using menus.";                                    // Michaelis
+QUITMSG20 = "Hint: using console command 'exit' can be faster than clicking through menus.";                                // Michaelis
+QUITMSG21 = "Do you really want to play the original Quake Champions?";                                                     // Michaelis
+QUITMSG22 = "Are you sure you want to play actual Quake Champions?";                                                        // Michaelis
+QUITMSG23 = "This game dispenses the lootboxes.\nCompared to it, you are nothing.";                                         // Michaelis
+QUITMSG24 = "Have you already tried all the classes and found them all broken and overpowered?";                            // Michaelis
+QUITMSG25 = "Don't you just love it when a game tries to hold you on your way out?";                                        // Michaelis
+QUITMSG26 = "OK, go have a meal, do homework and pay for Internet, but then, come back!";                                   // Michaelis
+QUITMSG27 = "Do you agree that this game is metal as hell?";                                                                // Michaelis
+QUITMSG28 = "Did you have a great time?";                                                                                   // Michaelis
+QUITMSG29 = "We have updated our Privacy Policy.\nAccept to proceed with exiting.";                                         // Michaelis
+QUITMSG30 = "At some point during production of v3.0, \n QCDE class hierarchy contained 2500 actors.\nNow there are more."; // Michaelis
+QUITMSG31 = "Come on, just ask me about Bones one more time.";                                                              // Michaelis
+QUITMSG32 = "Buying a Golden Lootbox with a guaranteed Legendary item for $24.99. Are you sure?";                           // Michaelis
+QUITMSG33 = "DON'T HIT YES -- we have a bug where it closes the game.";                                                          // Jckfrbn
+QUITMSG34 = "No more pew pew pew?";                                                                                              // Jckfrbn
+QUITMSG35 = "Look... I know we have had our difficulties, \n but one more level wouldn't hurt.";                                 // Jckfrbn
+QUITMSG36 = "I'm proud of you, getting off your ass and doing something with your life.... oh wait--";                           // Jckfrbn
+QUITMSG37 = "Survey Question:\nDo you hate this mod?";                                                                           // Jckfrbn
+QUITMSG38 = "Oh, don't think this isn't in your statistics.";                                                                    // Jckfrbn
+QUITMSG39 = "Wait, give us a minute to load a meme quote...\nhuh. Seems broken. Go play a little more while we work on this..."; // Jckfrbn
+QUITMSG40 = "I've heard if you collect everything...\nwell, I won't spoil it.";                                                  // Jckfrbn
+QUITMSG41 = "Awww, bored of playing all alone? \n Go download Doomseeker and join the rest of us!";                              // Jckfrbn
+QUITMSG42 = "I just wanna thank you for playing, \n because without you this wouldn't be so much fun.";                          // Jckfrbn
+QUITMSG43 = "Don't quit yet.\nWe promise netcode will be fixed asap!";                                                                // Alphaent (Blorc)
+QUITMSG44 = "Press Y to feel shame and disgrace.\nPress N to feel a strong sense of pride and accomplishment.";                       // Powershifter
+QUITMSG45 = "This is my Railgun.\nThere are many like it, but this one is mine.";                                                     // Ivory Duke
+QUITMSG46 = "Can you feel the scent of death tonight?";                                                                               // Ivory Duke
+QUITMSG47 = "They said you couldn't be struck by lightning twice. They lied.";                                                        // Ivory Duke
+QUITMSG48 = "DBT...\nWe need to talk about Dave.";                                                                                    // Jehar + Ivory Duke
+QUITMSG49 = "Mama... I just killed a man...\nput the gun against his head,\npulled my trigger, now he's dead\nand I won the match!";  // Ivory Duke
+QUITMSG50 = " Barons bleed green. \n Cacos bleed blue. \n Dear shotgun. \n I choose you.";                                            // DBThanatos
+QUITMSG51 = "Press Y to postpone addition of Bones champion.";                                                                        // revenatn + Michaelis
+QUITMSG52 = "A Bethesda.net account is required to exit this title. \n Please press ''no'' and connect to the Internet to continue."; // revenatn + Michaelis
+QUITMSG53 = "You did not--";                                                                                                          // scaryred24
+QUITMSG54 = "Cacodemons are red,\nNailguns are Blue,\nYou are Yellow if you press Y.";                                                // Captain J
+QUITMSG55 = "Sure thing. Let's see how your browser entertains you better.";                                                          // Captain J
+QUITMSG56 = "I guess this is how H. P. Lovecraft quit his job, huh?";                                                                 // Captain J
+QUITMSG57 = "What, leaving already?\nBut I haven't filled my kill quota yet!";                                                        // Cryomundus
+QUITMSG58 = "Hey Michaelis!\nCan we say 'fuck' in the game?";                                                                         // Nems
+QUITMSG59 = "So you think you can escape the arena?";                                                                                 // Redead-ITA
+QUITMSG60 = "Escaping from \n your game \n is \n impossible.";                                                                        // revenatn + Michaelis
+
+HUSTR_TITLE      = "Quake Champions: Doom Edition";
+SKILL_NORMAL_MIN = "Normal:   Few Monsters";
+SKILL_NORMAL_MED = "Normal: More Monsters";
+SKILL_NORMAL_MAX = "Normal:   Max Monsters";
+SKILL_HARD_MIN   = "Hard:   Few Monsters";
+SKILL_HARD_MED   = "Hard: More Monsters";
+SKILL_HARD_MAX   = "Hard:   Max Monsters";
+NOT_ULTRAVIOLENCE= "\cdN.B.: This is \c[bludi]NOT ''Ultra-Violence''\cd, this is much harder! For UV, select \cvNormal: Max Monsters.";
+SKILL_NIGHTMARE  = "D E A T H B O U N D";
+NIGHTMARE        = "Extreme difficulty. Only for those who want to see how far they can get.";
+SKILL_EASY_MIN   = "Mobile:   Few Monsters";
+SKILL_EASY_MED   = "Mobile: More Monsters";
+SKILL_EASY_MAX   = "Mobile:   Max Monsters";
+
+STARTUP1 =                                                                                                  "\n"
+			"\cm___\ck$$$$\cm____\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"                             "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm__\ck$$\cm_\ck$$$\cm__\ck$$\cm__" "__" "__" "____\ci$$\cm__\ci$$\cm__\ci$$$$\cm____"        "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm___\ck$$$$_$\cm__\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"  "\n"
+			   "   " "      " "  " "     \ck v2.7     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "You are playing Quake Champions: Doom Edition. \n"
+			"Join our Discord to chat with other players, \n"
+			"report bugs and enjoy multiplayer events!";
+STARTUP4 = "\n"
+			"\ci->  https://\ckis.gd/qc_de  \ci<- \n"
+			" \cj- DBThanatos & Michaelis ";
+STARTUP5 = " ";
+
+
+
+[rus ru] // Thanks to Revenatn, Dech and Excedentia!
+
+STARTUP1 =                                               "\n"
+			"\cc___$$$$____$$$$_______$$$$$___$$$$$$__"  "\n"
+			"\cj__$$__$$__$$__$$__$$__$$__$$__$$______"  "\n"
+			"\cn__$$__$$__$$__________$$__$$__$$$$____"  "\n"
+			"\ch__$$_$$$__$$__________$$__$$__$$______"  "\n"
+			"\cg__$$__$$__$$__$$__$$__$$__$$__$$______"  "\n"
+			"\cg___$$$$_$__$$$$_______$$$$$___$$$$$$__"  "\n"
+			"                \ca v2.7     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "Добро пожаловать в Quake Champions: Doom Edition. \n"
+			"Заходи в Дискорд: у нас можно поиграть по сети, \n"
+			"поболтать с игроками или доложить о багах авторам. \n"
+			"(только на английском языке) \n"
+			"\ci->  https://\ckis.gd/qc_de  \ci<-";
+STARTUP4 =  " \n"
+			"Также есть неофициальный чат на русском: \n"
+			"\ci->  https://\ckis.gd/qc_de_ru  \ci<-";
+STARTUP5 =  " ";
+
+
+
+[ita it] // Thanks to Ivory Duke!
+
+STARTUP1 =                                                     "\n"
+			"\cd___$$$$____$$\cj$$_______$$$\cg$$___$$$$$$__"  "\n"
+			"\cd__$$__$$__$$_\cj_$$__$$__$$_\cg_$$__$$______"  "\n"
+			"\cd__$$_$$$__$$_\cj_________$$_\cg_$$__$$$$____"  "\n"
+			"\cd__$$__$$__$$_\cj_$$__$$__$$_\cg_$$__$$______"  "\n"
+			"\cd___$$$$_$__$$\cj$$_______$$$\cg$$___$$$$$$__"  "\n"
+			   "                \cj v2.7     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "Stai ora giocando Quake Champions : Doom Edition. \n"
+			"Entra a far parte del nostro server Discord. Chatta con gli altri \n"
+			"giocatori, segnala bugs, e partecipa agli eventi multiplayer! \n"
+			"\ci->  https://\ckis.gd/qc_de  \ci<- \n";
+STARTUP4 =
+			" \n"
+			"L'Inglese e' l'unica lingua permessa nel server Discord ufficiale, \n"
+			"ma esistono servers non ufficiale dedicati ad altri linguaggi: \n"
+			"\ci->  https://\ckis.gd/qc_de_it  \ci<-\n";
+STARTUP5 =  " ";
+
+
+
+[es esm] // Thanks to JD-513 and Elfriede!
+
+STARTUP1 =                                           "\n"
+			"\cm___\ck$$$$\cm____\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"  "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm__\ck$$\cm_\ck$$$\cm__\ck$$\cm__" "__" "__" "____\ci$$\cm__\ci$$\cm__\ci$$$$\cm____"     "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm___\ck$$$$_$\cm__\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"  "\n"
+			   "   " "      " "  " "     \ck v2.7     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "Estás jugando Quake Champions: Doom Edition. \n"
+			"Únete a nuestra comunidad de Discord para disfrutar al máximo \n"
+			"partidas online con otros jugadores, asistencia a las dudas que \n"
+			"tengas acerca del mod, reportar bugs o simplemente para pasar el \n"
+			"rato y disfrutar de diversas charlas con varios integrantes e \n"
+			"inclusive dialogar con los creadores para estar al tanto de este \n"
+			"excelente mod. Ten en cuenta que en el servidor solo se admite \n"
+			"Inglés para la comodidad de todos los jugadores.";
+STARTUP4 =  " \n"
+			"\ci->  https://\ckis.gd/qc_de  \ci<- ";
+STARTUP5 =  " ";
+
+
+
+[es] // Thanks to JD-513 and Elfriede!
+
+STARTUP3 =  "Estas jugando Quake Champions: Doom Edition. \n"
+			"Unete a nuestra comunidad de Discord para disfrutar al maximo \n"
+			"partidas online con otros jugadores, asistencia a las dudas que \n"
+			"tengas acerca del mod, reportar bugs o simplemente para pasar el \n"
+			"rato y disfrutar de diversas charlas con varios integrantes e \n"
+			"inclusive los creadores para estar al tanto de este excelente mod. \n"
+			"Ten en cuenta que en el servidor solo se admite Ingles para la \n"
+			"comodidad de todos los jugadores.";
+
+
+
+[ko] // Thanks to Foxtongue!
+
+STARTUP1 =                                                                                                  "\n"
+			"\cm___\ck$$$$\cm____\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"                             "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm__\ck$$\cm_\ck$$$\cm__\ck$$\cm__" "__" "__" "____\ci$$\cm__\ci$$\cm__\ci$$$$\cm____"        "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm___\ck$$$$_$\cm__\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"  "\n"
+			   "   " "      " "  " "     \ck v2.7     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "퀘이크 챔피언즈: 둠 에디션에 오신걸 환영합니다. \n"
+			"저희 디스코드에 들어와 더 많은 유저들과 소통하면서 매칭도 \n"
+			"찾고 혹시라도 버그를 발견하시면 제보해주시면 됩니다! \n"
+			"매주 금요일 GMT 시간으로 15:00시에 멀티플레이 \n"
+			"모임도 하니 한번 참여해보시길 바랍니다! \n"
+			"(디스코드는 공용어인 영어만 사용이 가능합니다) \n";
+STARTUP4 =  " \n"
+			"\ci->  https://\ckis.gd/qc_de  \ci<- ";
+STARTUP5 =  " ";
+
+
+// TO DO:
+
+[cz] // Thanks to QuakedoomNukem!
+
+STARTUP1 =                                                                                                  "\n"
+			"\cm___\ck$$$$\cm____\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"                             "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm__\ck$$\cm_\ck$$$\cm__\ck$$\cm__" "__" "__" "____\ci$$\cm__\ci$$\cm__\ci$$$$\cm____"        "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm___\ck$$$$_$\cm__\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"  "\n"
+			   "   " "      " "  " "     \ck v2.7     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "Hrajete Quake Champions: Doom Edici."
+      "\n"  "Připojte se na náš Discord server s ostatními hráči,"
+      "\n"  "oznamujte chyby a užívejte si o pátečních vícehráčských událostech."
+      "\n"  "Události se vždy odehrávají v pátek v 17 hodin večer,"
+      "\n"  "začíná se Co-Opem, po hodině je Deathmatch a nakonec Duel po další hodině."
+      "\n"  "Jaké herní módy a mapy budou hrány jsou vždy voleny den předem."
+      "\n"  "Discord je pouze anglický, jsou na něm také vývojáři a je se všemi legrace.";
+STARTUP4 =  "\n"
+			"\ci->  https://\ckis.gd/qc_de  \ci<- \n";
+STARTUP5 =  " ";
+
+
+
+[pl] // Thanks to Hurykles!
+
+STARTUP1 =                                                                                                  "\n"
+			"\cm___\ck$$$$\cm____\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"                             "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm__\ck$$\cm_\ck$$$\cm__\ck$$\cm__" "__" "__" "____\ci$$\cm__\ci$$\cm__\ci$$$$\cm____"        "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm___\ck$$$$_$\cm__\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"  "\n"
+			   "   " "      " "  " "     \ck v2.7     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "Witaj w Quake Champions: Doom Edition!"
+      "\n"  "Jeśli masz jakieś problemy z modyfikacją lub po porostu chcesz "
+      "\n"  "pogadać z innymi graczami zapraszamy na nasz serwer na Discordzie "
+      "\n"  "(na którym obowiązuje tylko język angielski)."
+      "\n"  "Pamiętajcie że co piątek organizujemy eventy od 17:00 GMT +2. "
+      "\n"  "Do zobaczenia na arenie!";
+STARTUP4 =  "\n"
+			"\ci->  https://\ckis.gd/qc_de  \ci<- \n";
+STARTUP5 =  " ";
+
+[fr] // Thanks to 1 anonymous collaborator!
+
+STARTUP1 =                                                                                                  "\n"
+			"\cm___\ck$$$$\cm____\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"                             "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm__\ck$$\cm_\ck$$$\cm__\ck$$\cm__" "__" "__" "____\ci$$\cm__\ci$$\cm__\ci$$$$\cm____"        "\n"
+			"\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$$\cm__\ck$\ci$\cm__\ci$$\cm__\ci$$\cm__\ci$$\cm______"  "\n"
+			"\cm___\ck$$$$_$\cm__\ck$$$$\cm_______\ci$$$$$\cm___\ci$$$$$$\cm__"  "\n"
+			   "   " "      " "  " "     \ck v2.7     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "Vous jouez Quake Champions: Doom Edition."
+      "\n"  "Rejoignez notre Discord pour vous contacter d'autres joueurs, "
+      "\n"  "rapporer les bogues and profiter des événements de jeu.";
+STARTUP4 =  "\n"
+			"\ci->  https://\ckis.gd/qc_de  \ci<- \n";
+STARTUP5 =  " ";

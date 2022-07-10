@@ -1,0 +1,224 @@
+// ----------------------------------------------------------------------------
+//
+// Sam's abilities
+//
+// Active:	Serious Minigun
+//
+// Passive: Huge ego
+//          Receive more health from healing bubbles (except small ones)
+//
+// ----------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+
+Actor SamMinigunProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("SamMinigun")
+		TNT1 A 0 A_GiveInventory("ActiveInProgress")
+		TNT1 A 0 A_SelectWeapon("SamMinigun")
+		Stop
+	}
+}
+
+Actor SamMinigunCleanerProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("SamMinigun")
+		TNT1 A 0 A_StopSound(5)
+		TNT1 A 0 A_TakeInventory("ActiveInProgress")
+		Stop
+	}
+}
+
+
+Actor SamMinigun : QCWeapon
+{
+	Weapon.Kickback 0
+	Weapon.SelectionOrder 2000
+	Obituary "$OB_SamMinigun" // "%o was given ''acute lead poisoning'' by %k."
+	Tag "$TAG_SamMinigun" // "Serious Minigun"
+	+INVENTORY.UNDROPPABLE
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	Weapon.AmmoUse 1
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive 0
+	Weapon.AmmoType "SeriousBullets"
+	Weapon.AmmoType2 "SeriousBullets"
+	+WEAPON.AMMO_OPTIONAL
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	//-----------------------
+	// Ready Seq
+	//-----------------------
+	Ready:
+		TNT1 A 0 ACS_NamedExecuteAlways("CheckIfCorrectPlayer",0,5) // 5 = sam
+	Readier:
+		QP28 U 10 A_WeaponReady(WRF_DISABLESWITCH)
+		Wait
+	//-----------------------
+	// Select/Deselect Seq
+	//-----------------------
+	Select:
+		TNT1 A 0 A_ZoomFactor(1)
+		QP28 U 1 A_Raise
+		Wait
+
+	Deselect:
+		QP28 U 0 A_StopSound(5)
+		QP28 U 0 A_ZoomFactor(1.0)
+		QP28 U 1 A_Lower
+		QP28 "#######" 0 A_Lower
+		Loop
+
+	//-------------------------------------------------------
+	// Primary fire
+	//-------------------------------------------------------
+	Fire:
+	SpinUp:
+		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinUp",CHAN_5,1.0)
+		QP28 UUVVW 1
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"Holder1DM")
+		QP28 A 0 A_Refire("Holder1")
+		Goto SpinDown
+
+		Holder1:
+			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_5,0.8,true)
+			QP28 X 0 A_AlertMonsters
+			//Fires every other tic
+			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(2.5,-2.5),false,3,0,0,frandom(2.5,-2.5))
+			QP28 X 1 Bright A_GunFlash("FlashSP")
+			QP28 Y 1 Bright
+			QP28 Z 1 Bright A_GunFlash("FlashSP")
+			QP28 A 0 A_Refire("Holder2")
+			Goto SpinDown
+		Holder2:
+			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(2.5,-2.5),false,3,0,0,frandom(2.5,-2.5))
+			QP28 X 1 Bright
+			QP28 Y 1 Bright A_GunFlash("FlashSP")
+			QP28 Z 1 Bright
+			QP28 A 0 A_Refire("Holder1")
+			Goto SpinDown
+
+		Holder1DM:
+			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_5,0.8,true)
+			QP28 X 0 A_AlertMonsters
+			QP28 X 1 Bright A_GunFlash("FlashDM")
+			QP28 Y 1 Bright
+			QP28 Z 1 Bright A_GunFlash("FlashDM")
+			QP28 A 0 A_Refire("Holder2DM")
+			Goto SpinDown
+		Holder2DM:
+			QP28 X 1 Bright
+			QP28 Y 1 Bright A_GunFlash("FlashDM")
+			QP28 Z 1 Bright
+			QP28 A 0 A_Refire("Holder1DM")
+			Goto SpinDown
+
+	SpinDown:
+		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinDown",CHAN_5,1.0,false)
+		QP28 UVW 1
+		QP28 UVW 2 A_WeaponReady(WRF_NOBOB)
+		QP28 UVW 3 A_WeaponReady(WRF_NOBOB)
+		QP28 UVW 4 A_WeaponReady(WRF_NOBOB)
+		Goto Readier
+
+		FlashSP:
+			TNT1 A 1 A_FireBullets(2.0,2.0,1,random(3,5)*10,"QCBulletPuff_ZombieGibber",FBF_NORANDOM|FBF_USEAMMO)
+			Stop
+		FlashDM:
+			TNT1 A 1 A_FireBullets(2.5,2.5,1,8,"QCBulletPuff_DM",FBF_NORANDOM|FBF_USEAMMO)
+			Stop
+
+	//----------------
+	// alt fire: Very spread and more damage, good for close range only
+	AltFire:
+	AltSpinUp:
+		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinUp",CHAN_5,1.0)
+		QP28 UVW 3
+		QP28 UVW 2
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"AltHolder1DM")
+		QP28 A 0 A_Refire("AltHolder1")
+		Goto AltSpinDown
+
+		AltHolder1:
+			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_5,0.8,true)
+			QP28 X 0 A_AlertMonsters
+			//Fires every other tic
+			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(2.5,-2.5),false,3,0,0,frandom(8,-8))
+			QP28 X 1 Bright A_GunFlash("AltFlashSP")
+			QP28 Y 1 Bright
+			QP28 Z 1 Bright A_GunFlash("AltFlashSP")
+			QP28 A 0 A_Refire("AltHolder2")
+			Goto AltSpinDown
+		AltHolder2:
+			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(2.5,-2.5),false,3,0,0,frandom(8,-8))
+			QP28 X 1 Bright
+			QP28 Y 1 Bright A_GunFlash("AltFlashSP")
+			QP28 Z 1 Bright
+			QP28 A 0 A_Refire("AltHolder1")
+			Goto AltSpinDown
+
+		AltHolder1DM:
+			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_5,0.8,true)
+			QP28 X 0 A_AlertMonsters
+			QP28 X 1 Bright A_GunFlash("AltFlashDM")
+			QP28 Y 1 Bright
+			QP28 Z 1 Bright A_GunFlash("AltFlashDM")
+			QP28 A 0 A_Refire("AltHolder2DM")
+			Goto AltSpinDown
+		AltHolder2DM:
+			QP28 X 1 Bright
+			QP28 Y 1 Bright A_GunFlash("AltFlashDM")
+			QP28 Z 1 Bright
+			QP28 A 0 A_Refire("AltHolder1DM")
+			Goto AltSpinDown
+
+	AltSpinDown:
+		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinDown",CHAN_5,1.0,false)
+		QP28 UVW 1
+		QP28 UVW 2 A_WeaponReady(WRF_NOBOB)
+		QP28 UVW 3 A_WeaponReady(WRF_NOBOB)
+		QP28 UVW 4 A_WeaponReady(WRF_NOBOB)
+		Goto Readier
+
+		AltFlashSP:
+			TNT1 A 0 A_FireBullets(8.0,8.0,1,random(3,5)*10,"QCBulletPuff_ZombieGibber",FBF_NORANDOM|FBF_USEAMMO,1536)
+			TNT1 A 1 A_FireBullets(8.0,8.0,1,random(3,5)*10,"QCBulletPuff_ZombieGibber",FBF_NORANDOM|FBF_USEAMMO,1536)
+			Stop
+		AltFlashDM:
+			TNT1 A 0 A_FireBullets(8.0,8.0,1,8,"QCBulletPuff_DM",FBF_NORANDOM|FBF_USEAMMO,1536)
+			TNT1 A 1 A_FireBullets(8.0,8.0,1,8,"QCBulletPuff_DM",FBF_NORANDOM|FBF_USEAMMO,1536)
+			Stop
+	}
+}
+//======================================================================
+Actor SeriousBullets : Ammo
+{
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_SeriousBullets" // "You shouldn't be reading this"
+	Inventory.Amount 50
+	Inventory.MaxAmount 175
+	Ammo.BackpackMaxAmount 175
+	Ammo.BackpackAmount 0
+	Scale 0.1
+	States
+	{
+	Spawn:
+		QP28 A -1
+		Stop
+	}
+}

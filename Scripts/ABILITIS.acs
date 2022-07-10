@@ -1,0 +1,5179 @@
+#library "ABILITIS"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+
+//=============================================================================
+//
+//	Cooldowns for Active Abilities
+//	expressed in tics (x *35)
+//
+//=============================================================================
+
+#define AD_COOLDOWN      0
+#define AD_COOLDOWN_PVE  1
+#define AD_DURATION      2
+#define AD_DURATION_PVE  3
+#define AD_MULTIUSE      4
+#define AD_MULTIUSEDELAY 5
+#define AD_MULTIUSEFAILSOUND 6
+#define AD_COLUMNS       7
+#define XYZ              1000 // oh my fucking god
+
+int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
+	// COOLDOWN PVP,  COOLDOWN PVE , DURATION         , DURATION PVE     , MULTIUSE     , MULTIUSE     , MULTIUSE
+	//             ,               ,                  ,                  ,              , COOLDOWN     , FAIL SND
+	  (25 *35) +XYZ, ( 60 *35) +XYZ, (17)         +XYZ, (17)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // RANGER
+	  (60 *35) +XYZ, (150 *35) +XYZ, (83)         +XYZ, (83)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DOOMSLAYER
+	  (30 *35) +XYZ, ( 30 *35) +XYZ, ( 7 *35)     +XYZ, ( 7 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // CORVUS
+	  (40 *35) +XYZ, ( 35 *35) +XYZ, (30)         +XYZ, (30)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // KANE
+	  (30 *35) +XYZ, ( 30 *35) +XYZ, ( 8 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // CALEB
+	  (50 *35) +XYZ, (120 *35) +XYZ, (17)         +XYZ, (17)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // MENELKIR
+	  (45 *35) +XYZ, (135 *35) +XYZ, ( 3 *35)     +XYZ, ( 3 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // TERMINATOR
+	  (35 *35) +XYZ, ( 35 *35) +XYZ, ( 1 *35)     +XYZ, ( 1 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ZEDEK
+	  (40 *35) +XYZ, ( 90 *35) +XYZ, ( 5 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INQUISITOR
+	  (35 *35) +XYZ, ( 35 *35) +XYZ, ( 1 *35)     +XYZ, ( 1 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // BITTERMAN
+	  (35 *35) +XYZ, ( 35 *35) +XYZ, (28)         +XYZ, (28)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GALEN
+	  (35 *35) +XYZ, ( 15 *35) +XYZ,(( 3 *35)-10) +XYZ,(( 3 *35)-10) +XYZ, no       +XYZ, no       +XYZ, no                                  , // NYX
+	  (45 *35) +XYZ, ( 90 *35) +XYZ, ( 8 *35)     +XYZ, ( 8 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SORGAUL
+	  (40 *35) +XYZ, ( 80 *35) +XYZ,(( 7 *35)+17) +XYZ, (14 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // DUKENUKEM
+	  (40 *35) +XYZ, (120 *35) +XYZ, (53)         +XYZ, (53)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DURANDAL
+	  (50 *35) +XYZ, ( 30 *35) +XYZ, ( 9)         +XYZ, ( 9)         +XYZ,   5      +XYZ,   9      +XYZ, "QC/UI/PlayerSounds/LowAmmoWarning" , // KEEL
+	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // SARGE
+	  (25 *35) +XYZ, ( 25 *35) +XYZ, (30)         +XYZ, (30)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // LOWANG
+	  (35 *35) +XYZ, (110 *35) +XYZ, (75)         +XYZ, (75)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GRAYSON
+	  (30 *35) +XYZ, ( 30 *35) +XYZ, (10 *35)     +XYZ, (10 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ERADICATOR
+	  (40 *35) +XYZ, (120 *35) +XYZ, (10 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // BLAZKOWICZ
+	  (50 *35) +XYZ, ( 35 *35) +XYZ, (14)         +XYZ, (14)         +XYZ,   5      +XYZ, 18       +XYZ, "NoSoundHax"                        , // FREEMAN
+	  (25 *35) +XYZ, ( 25 *35) +XYZ, (20)         +XYZ, (20)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // VORMATUR
+	  (30 *35) +XYZ, ( 20 *35) +XYZ, ( 7 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ELEENA
+	  (50 *35) +XYZ, ( 25 *35) +XYZ, ( 5)         +XYZ, ( 5)         +XYZ,   4      +XYZ,  16      +XYZ, "NoSoundHax"                        , // LUCIENNE
+	  (45 *35) +XYZ, (135 *35) +XYZ, ( 4 *35)     +XYZ, ( 4 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // MAJOR
+	  (40 *35) +XYZ, ( 60 *35) +XYZ, ( 7 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // HUNTER
+	  (35 *35) +XYZ, ( 80 *35) +XYZ, ((11 *35)+8) +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SAM
+	  (45 *35) +XYZ, ( 60 *35) +XYZ, (5 *35 )     +XYZ, ( 5 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // POSTAL
+	  (40 *35) +XYZ, (120 *35) +XYZ, (10*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // PAINKILLER
+	  (45 *35) +XYZ, ( 90 *35) +XYZ, (12*35 )     +XYZ, (24 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INTRUDER
+// ^ insert more classes here
+};
+
+function int GetCooldown (void)
+{
+	SanityCheck();
+	int column = AD_COOLDOWN;
+	if(IsPVE()) column = AD_COOLDOWN_PVE;
+	return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + column] -XYZ;
+}
+function int GetDuration(void)
+{
+	SanityCheck();
+	int column = AD_DURATION;
+	if(IsPVE()) column = AD_DURATION_PVE;
+	return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + column] -XYZ;
+}
+function int  GetMultiuse            (void){ SanityCheck(); return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSE         ]    -XYZ; }
+function int  GetMultiuseDelay       (void){ SanityCheck(); return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSEDELAY    ]    -XYZ; }
+function int  GetMultiuseFailSound   (void){ SanityCheck(); return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSEFAILSOUND]        ; } // no -XYZ here because this is a string
+
+int              LastUse      [64];
+function int  GetLastUse    (void){ SanityCheck(); return LastUse[PlayerNumber()]    ; }
+function void SetLastUse   (int x){ SanityCheck();        LastUse[PlayerNumber()] = x; }
+
+int MultiusePeriod[64];
+
+function void SanityCheck(void)
+{
+	//if(!CheckInventory("ClassID") && !CheckInventory("Class_Ranger"))
+	//	printbold(d:timer(), s:": ", s:GetActorClass(0), s:" ", n:0, s:" checks its ability stats.");
+}
+
+// Once classes are rewritten as objects, these scripts won't be needed anymore
+Script "PVP CD" (int class) clientside { SetResultValue(AbilityData[class * AD_COLUMNS + AD_COOLDOWN    ]   -XYZ); }
+Script "PVE CD" (int class) clientside { SetResultValue(AbilityData[class * AD_COLUMNS + AD_COOLDOWN_PVE]   -XYZ); }
+
+
+//=============================================================================
+//=============================================================================
+//
+//		Script that upon entering a level, cleans up flag/token changes
+//		made by active ability used in the previous level
+//
+//=============================================================================
+//=============================================================================
+
+Script "QCDE_CleanUpAbilities" (void)
+{
+		 if(CheckInventory("Class_Ranger"		))	{} // do nothing
+	else if(CheckInventory("Class_Doomslayer"	))	GiveInventory("SlayerBFGCleanerProc",1); // removes possible residual BFG
+	else if(CheckInventory("Class_Corvus"		))	{} // do nothing
+	else if(CheckInventory("Class_Kane"			))	GiveInventory("InjectionCleanerProc",1); // removes the NoFire token
+	else if(CheckInventory("Class_Caleb"		))	GiveInventory("DollCleanerProc",1); //removes the doll
+	else if(CheckInventory("Class_Menelkir"		))	{} // do nothing
+	else if(CheckInventory("Class_Terminator"	))	GiveInventory("TerminatorCleanerProc",1);
+	else if(CheckInventory("Class_Zedek"		))	{} // do nothing
+	else if(CheckInventory("Class_Inquisitor"	))	{GiveInventory("ReflectiveCleanerProc",1);GiveInventory("BecomeShieldCleanerProc",1);}
+	else if(CheckInventory("Class_Bitterman"	))	{} // do nothing
+	else if(CheckInventory("Class_Galen"		))	GiveInventory("TotemCleanerProc",1);	// removes the NoFire token
+	else if(CheckInventory("Class_Nyx"			))	GiveInventory("GhostWalkCleanerProc",1);
+	else if(CheckInventory("Class_Sorgaul"		))	GiveInventory("PrimalRageCleanerProc",1);
+	else if(CheckInventory("Class_DukeNukem"	))	GiveInventory("DukeFreezerCleanerProc",1);
+	else if(CheckInventory("Class_Durandal"		))	{} // do nothing
+	else if(CheckInventory("Class_Keel"			))	{} // do nothing
+	else if(CheckInventory("Class_Sarge"		))	{} // do nothing
+	else if(CheckInventory("Class_LoWang"		))	{} // do nothing
+	else if(CheckInventory("Class_Grayson"		))	{} // do nothing
+	else if(CheckInventory("Class_Eradicator"	))	{} // do nothing
+	else if(CheckInventory("Class_Blazkowicz"	))	GiveInventory("AkimboCleanerProc",1);
+	else if(CheckInventory("Class_Freeman"		))	{} // do nothing
+	else if(CheckInventory("Class_VorMatur"		))	{} // do nothing
+	else if(CheckInventory("Class_Eleena"		))	{} // do nothing
+	else if(CheckInventory("Class_Lucienne"		))	{} // do nothing
+	else if(CheckInventory("Class_Major"		))	{} // do nothing
+	else if(CheckInventory("Class_Hunter"		))	GiveInventory("HunterCleanerProc",1); // remove the cubes
+	else if(CheckInventory("Class_Sam"			))	{} // do nothing
+	else if(CheckInventory("Class_Postal"		))	{} // do nothing
+	else if(CheckInventory("Class_Painkiller"	))	GiveInventory("PainkillerCleanerProc",1); // restore HUD elements
+	else if(CheckInventory("Class_Intruder"		))	GiveInventory("WendigoOutProc",1); // Back to normal
+	// ^ insert more classes here
+
+	SetInventory("StrikesCounter"   , false);
+	SetInventory("PowerShieldCharge", false);
+	SetInventory("MultiuseCharge"   , false);
+
+	// It's generic, so it makes sense for everyone
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+//=============================================================================
+//=============================================================================
+//
+//		ABILITY-RELATED SCRIPTS
+//
+//=============================================================================
+//=============================================================================
+
+// Startup script
+
+Script "QCDE_PassiveAbility" (void)
+{
+	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
+
+		 if(CheckInventory("Class_Ranger"		))	ACS("QCDE_Passive_Ranger"    );
+	else if(CheckInventory("Class_Doomslayer"	))	ACS("QCDE_Passive_Doomslayer");
+	else if(CheckInventory("Class_Corvus"		))	ACS("QCDE_Passive_Corvus"    );
+	else if(CheckInventory("Class_Kane"			))	ACS("QCDE_Passive_Kane"      );
+	else if(CheckInventory("Class_Caleb"		))	ACS("QCDE_Passive_Caleb"     );
+	else if(CheckInventory("Class_Menelkir"		))	ACS("QCDE_Passive_Menelkir"  );
+	else if(CheckInventory("Class_Terminator"	))	ACS("QCDE_Passive_Terminator");
+	else if(CheckInventory("Class_Zedek"		))	ACS("QCDE_Passive_Zedek"     );
+	else if(CheckInventory("Class_Inquisitor"	))	ACS("QCDE_Passive_Inquisitor");
+	else if(CheckInventory("Class_Bitterman"	))	ACS("QCDE_Passive_Bitterman" );
+	else if(CheckInventory("Class_Galen"		))	ACS("QCDE_Passive_Galen"     );
+	else if(CheckInventory("Class_Nyx"			))	ACS("QCDE_Passive_Nyx"       );
+	else if(CheckInventory("Class_Sorgaul"		))	ACS("QCDE_Passive_Sorgaul"   );
+	else if(CheckInventory("Class_DukeNukem"	))	ACS("QCDE_Passive_DukeNukem" );
+	else if(CheckInventory("Class_Durandal"		))	ACS("QCDE_Passive_Durandal"  );
+	else if(CheckInventory("Class_Keel"			))	ACS("QCDE_Passive_Keel"      );
+	else if(CheckInventory("Class_Sarge"		))	ACS("QCDE_Passive_Sarge"     );
+	else if(CheckInventory("Class_LoWang"		))	ACS("QCDE_Passive_LoWang"    );
+	else if(CheckInventory("Class_Grayson"		))	ACS("QCDE_Passive_Grayson"   );
+	else if(CheckInventory("Class_Eradicator"	))	ACS("QCDE_Passive_Eradicator");
+	else if(CheckInventory("Class_Blazkowicz"	))	ACS("QCDE_Passive_Blazkowicz");
+	else if(CheckInventory("Class_Freeman"		))	ACS("QCDE_Passive_Freeman"   );
+	else if(CheckInventory("Class_VorMatur"		))	ACS("QCDE_Passive_VorMatur"  );
+	else if(CheckInventory("Class_Eleena"		))	ACS("QCDE_Passive_Eleena"    );
+	else if(CheckInventory("Class_Lucienne"		))	ACS("QCDE_Passive_Lucienne"  );
+	else if(CheckInventory("Class_Major"		))	ACS("QCDE_Passive_Major"     );
+	else if(CheckInventory("Class_Hunter"		))	ACS("QCDE_Passive_Hunter"    );
+	else if(CheckInventory("Class_Sam"			))	ACS("QCDE_Passive_Sam"       );
+	else if(CheckInventory("Class_Postal"		))	ACS("QCDE_Passive_Postal"    );
+	else if(CheckInventory("Class_Painkiller"	))	ACS("QCDE_Passive_Painkiller");
+	else if(CheckInventory("Class_Intruder"		))	ACS("QCDE_Passive_Intruder"  );
+	// ^ insert more classes here
+}
+
+// Trigger script
+
+int tics[64];
+Script "QCDE_ActiveAbility" (void) net
+{
+	//log(s:"Active ability impulse from ", n:0, s:":");
+	// Forbidden?
+	if(CheckInventory("NoAbilitiesToken")) terminate;
+
+	// CTF special case
+	if(hasFlags())
+	{
+		ACS("QCDE_Ability_Flag", hasFlags());
+		terminate;
+	}
+
+	// qc_elderssoul special case
+	if(CheckInventory("PowerTerminatorArtifact"))
+		terminate;
+
+	// Don't do ability if not ready yet
+	// NOTE: There's an identical block after delay(1)
+	int plr = PlayerNumber();
+	int multiuse = GetMultiuse();
+	{
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) 	terminate;
+		if(!CheckInventory("AbilityChecksItself") && !multiuse)
+		{
+			if(CheckInventory("ActiveInProgress")) 	terminate;
+			if(tics[plr] == -1) tics[plr] = 0; // :thinking:
+			if(tics[plr]) 							terminate;
+		}
+	}
+
+	// Prevent immediate retriggering
+	tics[plr]++;
+	delay(1);
+	tics[plr]--;
+
+	{
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) 	terminate;
+		if(!CheckInventory("AbilityChecksItself") && !multiuse)
+		{
+			if(CheckInventory("ActiveInProgress")) 	terminate;
+			if(tics[plr]) 				terminate;
+		}
+	}
+	//log(s:"Not retriggered immediately");
+
+	// Multi-use
+	if(GetLastUse() + GetMultiuseDelay() > Timer()) terminate; // Prevent spam
+	SetLastUse(Timer());
+	ACS("QCDE_UpdateMultiusePeriod");
+	//log(s:"Not overspammed (multiuse). Period = ", d:MultiusePeriod[plr]);
+
+	//log(s:"Impulse passed on into class handler!");
+		 if(CheckInventory("Class_Ranger"	))	ACS("QCDE_Ability_Ranger"    );
+	else if(CheckInventory("Class_Doomslayer"))	ACS("QCDE_Ability_Doomslayer");
+	else if(CheckInventory("Class_Corvus"	))	ACS("QCDE_Ability_Corvus"    );
+	else if(CheckInventory("Class_Kane"		))	ACS("QCDE_Ability_Kane"      );
+	else if(CheckInventory("Class_Caleb"	))	ACS("QCDE_Ability_Caleb"     );
+	else if(CheckInventory("Class_Menelkir"	))	ACS("QCDE_Ability_Menelkir"  );
+	else if(CheckInventory("Class_Terminator"))	ACS("QCDE_Ability_Terminator");
+	else if(CheckInventory("Class_Zedek"	))	ACS("QCDE_Ability_Zedek"     );
+	else if(CheckInventory("Class_Inquisitor"))	ACS("QCDE_Ability_Inquisitor");
+	else if(CheckInventory("Class_Bitterman"))	ACS("QCDE_Ability_Bitterman" );
+	else if(CheckInventory("Class_Galen" 	))	ACS("QCDE_Ability_Galen"     );
+	else if(CheckInventory("Class_Nyx"		))	ACS("QCDE_Ability_Nyx"       );
+	else if(CheckInventory("Class_Sorgaul"	))	ACS("QCDE_Ability_Sorgaul"   );
+	else if(CheckInventory("Class_DukeNukem"))	ACS("QCDE_Ability_DukeNukem" );
+	else if(CheckInventory("Class_Durandal"	))	ACS("QCDE_Ability_Durandal"  );
+	else if(CheckInventory("Class_Keel"		))	ACS("QCDE_Ability_Keel"      );
+	else if(CheckInventory("Class_Sarge"	))	ACS("QCDE_Ability_Sarge"     );
+	else if(CheckInventory("Class_LoWang"	))	ACS("QCDE_Ability_LoWang"    );
+	else if(CheckInventory("Class_Grayson"	))	ACS("QCDE_Ability_Grayson"   );
+	else if(CheckInventory("Class_Eradicator"))	ACS("QCDE_Ability_Eradicator");
+	else if(CheckInventory("Class_Blazkowicz"))	ACS("QCDE_Ability_Blazkowicz");
+	else if(CheckInventory("Class_Freeman"	))	ACS("QCDE_Ability_Freeman"   );
+	else if(CheckInventory("Class_VorMatur"	))	ACS("QCDE_Ability_VorMatur"  );
+	else if(CheckInventory("Class_Eleena"	))	ACS("QCDE_Ability_Eleena"    );
+	else if(CheckInventory("Class_Lucienne"	))	ACS("QCDE_Ability_Lucienne"  );
+	else if(CheckInventory("Class_Major"	))	ACS("QCDE_Ability_Major"     );
+	else if(CheckInventory("Class_Hunter"	))	ACS("QCDE_Ability_Hunter"    );
+	else if(CheckInventory("Class_Sam"		))	ACS("QCDE_Ability_Sam"       );
+	else if(CheckInventory("Class_Postal"	))	ACS("QCDE_Ability_Postal"    );
+	else if(CheckInventory("Class_Painkiller"))	ACS("QCDE_Ability_Painkiller");
+	else if(CheckInventory("Class_Intruder"	))	ACS("QCDE_Ability_Intruder"  );
+	// ^ insert more classes here
+}
+
+// Shared counters
+
+Script "QCDE_UpdateMultiusePeriod" (void)
+{
+	int multiuse = GetMultiuse();
+	if(multiuse)
+	{
+		MultiusePeriod[PlayerNumber()] = (GetCooldown() / GetMultiuse())
+				* GetCvar("sv_cooldownPercentage") / 100
+				* (100 - CheckInventory("CooldownRewardToken") - CheckInventory("CooldownRewardToken2")) / 100;
+		int charges = multiuse - ((PlayerNumber() + (MultiusePeriod[PlayerNumber()] - 1)) / MultiusePeriod[PlayerNumber()]);
+		SetInventory("MultiuseCharge", charges);
+	}
+	else
+	{
+		MultiusePeriod[PlayerNumber()] = 1;
+		SetInventory("MultiuseCharge", no);
+	}
+}
+
+#define AP_TOTAL 0
+#define AP_NOW   1
+int activeProgress[64][2];
+Script "QCDE_ShowActiveInProgress" (int duration, int now)
+{
+	if(duration <= 0) terminate;
+	if(!now) now = duration;
+	int plr = PlayerNumber();
+	//log(n:0, s:" showing progress: ", d:now, s:" / ", d:duration, s:"      concurrent? ", d:activeProgress[plr][AP_NOW]);
+
+	int concurrent = activeProgress[plr][AP_NOW] > 0;
+
+	activeProgress[plr][AP_TOTAL] = duration;
+	activeProgress[plr][AP_NOW  ] = now;
+
+	if(concurrent) terminate;
+
+	int amount = 256 * activeProgress[plr][AP_NOW] / activeProgress[plr][AP_TOTAL];
+	while(activeProgress[plr][AP_NOW] --> 0 && GetActorProperty(0, APROP_HEALTH) > 0)
+	{
+		if(CheckInventory("ActiveProgressToken") > amount) terminate; // allows preempting previously launched ability
+
+		amount = 256 * activeProgress[plr][AP_NOW] / activeProgress[plr][AP_TOTAL];
+		SetInventory("ActiveProgressToken",amount);
+		delay(1);
+	}
+	activeProgress[plr][AP_NOW] = 0;
+	SetInventory("ActiveProgressToken",0);
+	//log(n:0, s:" completes progress: ", d:activeProgress[plr][AP_NOW], s:" / ", d:activeProgress[plr][AP_TOTAL]);
+}
+
+Script "QCDE_AbilityCooldown" (int in_tics, int dontPlayAlert)
+{
+	int multiuse = GetMultiuse();
+	int plr = PlayerNumber();
+	int cooldownId = timer() * 100 + plr;
+	//log(s:"Cooldown ", d:cooldownId, s:" runs, ", d:in_tics, s:", ", d:dontPlayAlert);
+
+	if(in_tics != -1) // if not resuming
+	{
+		// Not starting a cooldown if either:
+		// - Already in cooldown
+		// - Ability is multiuse
+		if(tics[plr] && !multiuse) terminate;
+
+		// For abilities that have multiple charges
+		if(multiuse)
+		{
+			if(tics[plr] <= 0) // First grenade
+			{
+				in_tics = MultiusePeriod[plr];
+			}
+			else if(tics[plr] <= MultiusePeriod[plr] * (multiuse - 1)) // Up to last grenade
+			{
+				tics[plr] += MultiusePeriod[plr];
+				//log(s:"Added period ", d:MultiusePeriod[plr], s:", is now ", d:tics[plr]);
+				terminate;
+			}
+			else // Out of charges
+			{
+				LocalAmbientSound(GetMultiUseFailSound(), 127);
+				//log(s:"Out of charges: ", d:tics[plr], s:" > ", d:MultiusePeriod[plr], s:" * ", d:(multiuse - 1));
+				SetResultValue(false); // signal to ability code that this sort of spam ain't gonna fly
+				terminate;
+			}
+		}
+	}
+
+	// Scale input according to percentage server cvar
+	if(in_tics > -1) in_tics = in_tics * GetCvar("sv_cooldownPercentage") / 100;
+
+	// If not resuming, set duration and prepare to play DING! on replenishment
+	bool playAlert = false;
+	if(in_tics > 0)
+	{
+		tics[plr] = in_tics;
+		playAlert = true;
+
+		if(!multiuse)
+		{
+			// Apply completionist bonus of reduced cooldown, if applicable
+			int bonus = CheckInventory("CooldownRewardToken") + CheckInventory("CooldownRewardToken2");
+			ACS_NamedExecuteAlways("QCDE_Hourglass",0,bonus,true);
+		}
+	}
+
+	GiveInventory("AbilityCooldownToken", 1);
+
+	CapCooldown();
+
+	if(playAlert && !dontPlayAlert) ACS("QCDE_AbilityIconFlash", no);
+	// Actual countdown
+	while(tics[plr] > 0)
+	{
+		delay(1);
+
+		if(GetActorProperty(0,APROP_HEALTH) <= 0)
+		{
+			//log(s:"Cooldown ", d:cooldownId, s:" is interrupted by death at ", d:Timer());
+			terminate;
+		}
+
+		if(CheckInventory("ActiveInProgress")) continue;
+
+		tics[plr]--;
+
+		// Update charges count if ability is multi-usable
+		if(multiuse)
+		{
+			int charges = multiuse - ((tics[plr] + (MultiusePeriod[plr] - 1)) / MultiusePeriod[plr]);
+			SetInventory("MultiuseCharge", charges);
+		}
+
+		// Update second count if it changed
+		SetInventory("AbilityCooldownSeconds", tics[plr] / 35);
+
+		// Update decisecond count if it's relevant
+		if(tics[plr] < 5 *35)
+			SetInventory("AbilityCooldownDeciseconds", (tics[plr] % 35) * 10 / 35);
+	}
+
+	//log(s:"Cooldown ", d:cooldownId, s:" is done by ", d:Timer());
+	tics[plr] = 0;
+	SetInventory("AbilityCooldownToken",       0);
+	SetInventory("AbilityCooldownSeconds",     0);
+	SetInventory("AbilityCooldownDeciseconds", 0);
+	if(playAlert && !dontPlayAlert) ACS("QCDE_AbilityIconFlash", yes);
+}
+
+script "QCDE_AbilityIconFlash" (int sound) clientside
+{
+	if(IsZandronum(true))
+		if(ActivatorTid() != CheckPlayerCamera(ConsolePlayerNumber()))
+			terminate;
+
+	SetHudSize(1400,1050,1);
+
+	if(sound) AmbientSound("QC/Abilities/General/AbilityCharged",127);
+	SetHudSize(1400,1050,1);
+	SetFont("BLINKGL2");
+	HudMessageBold(s:"A"; HUDMSG_FADEOUT, 3244, CR_UNTRANSLATED, 700.0, 911.0, 0.18, 0.2);
+}
+
+// Useful when switching from high cooldown champion to lower cooldown champion after using ability
+Function void CapCooldown(void)
+{
+	if(CheckInventory("Class_Sarge")) return; // MAP31: DBThanatos says no cheating
+
+	int p = PlayerNumber();
+	int perc = GetCvar("sv_cooldownPercentage");
+	int baseCooldown = GetCooldown();
+	if (tics[p] > baseCooldown * perc / 100)
+		tics[p] = baseCooldown * perc / 100;
+}
+
+Script "nocd" (void) // cheat for debugging
+{
+	tics[PlayerNumber()] = 0;
+}
+
+
+// This is added to ensure the ability-weapons are being held only by the correct
+// class and only when his ability is being used
+str ClassxWeapon[8][2] = {
+		{"nothing",				"nothing"			},		//0  Empty
+		{"Class_Blazkowicz",	"BlazkoAkimbo"		},		//1
+		{"Class_Doomslayer",	"SlayerBFG"			},		//2
+		{"Class_DukeNukem",		"DukeFreezeThrower"	},		//3
+		{"Class_Inquisitor",	"Shieldquisitor"	},		//4
+		{"Class_Sam",			"SamMinigun"		},		//5
+		{"Class_Sorgaul",		"SorgaulFists"		},		//6
+		{"Class_Caleb",			"CalebDoll"			}		//7
+		// ^ insert more ability weapons here
+		};
+
+script "CheckIfCorrectPlayer" (int who)
+{
+	if(CheckInventory(ClassxWeapon[who][0]) && CheckInventory("ActiveInProgress"))
+	{
+		//PrintBold(s:"we good");
+	}
+	else
+	{
+		if(!checkinventory("AbilityWeaponDebug")) //if you have this token, you can use the weap with any champ anytime
+		{
+			//PrintBold(s:"something's off, bye");
+			TakeInventory(ClassxWeapon[who][1],1);
+		}
+	}
+}
+
+//=============================================================================
+//
+//		Active Ability: Per Class handlers
+//
+//=============================================================================
+
+
+//---------------------------------
+//		CTF special case: drop flag if holding flag
+
+int flagNames[NUMBER_OF_FLAGS] = {
+	"RedFlag"  ,
+	"BlueFlag" ,
+	"GreenFlag",
+	"WhiteFlag",
+	"GoldFlag" ,
+};
+
+Script "QCDE_Ability_Flag" (void)
+{
+	// Cannot drop flag. Capture or die.
+	terminate;
+}
+
+
+//---------------------------------
+//		Ranger's Active
+
+Script "QCDE_Ability_Ranger" (void)
+{
+	if(tics[PlayerNumber()]) terminate;
+
+	if(!CheckInventory("TeleporterThrownToken"))
+	{
+		GiveInventory("DireOrbFireProc",1);
+		ACS("QCDE_RangerHandAnimation");
+		delay(3);
+		GiveInventory("GenericActiveCleanerProc",1);
+	}
+	else
+	{
+		GiveInventory("DireOrbTeleProc",1);
+		ACS("QCDE_AbilityCooldown", GetCooldown());
+		delay(3);
+		GiveInventory("GenericActiveCleanerProc",1);
+
+		GiveInventory("NoWeaponFireToken",1);
+		ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+		delay(GetDuration()); //duration of active ability
+		TakeInventory("NoWeaponFireToken",1);
+	}
+}
+Script "QCDE_RangerHandAnimation" (void) clientside
+{
+	// *.0 on coordinates means "align to center"
+	DrawWeapon("QP01X0",  60.0, 310.0);	delay(1);
+	DrawWeapon("QP01X0",  90.0, 290.0);	delay(1);
+	DrawWeapon("QP01X0", 120.0, 270.0);	delay(1);
+	DrawWeapon("QP01X0", 150.0, 250.0); delay(1);
+	DrawWeapon("QP01X0", 150.0, 250.0); delay(1);
+	DrawWeapon("QP01X0", 150.0, 250.0); delay(1);
+	DrawWeapon("QP01X0", 150.0, 250.0); delay(1);
+
+	DrawWeapon("QP01Y0", 150.0, 260.0); delay(1);
+	DrawWeapon("QP01Y0", 150.0, 280.0); delay(1);
+	DrawWeapon("QP01Y0", 150.0, 300.0); delay(1);
+	DrawWeapon("QP01Y0", 150.0, 320.0); delay(1);
+	DrawWeapon("QP01Y0", 150.0, 340.0); delay(1);
+	DrawWeapon("QP01Y0", 150.0, 360.0); delay(1);
+}
+
+//---------------------------------
+//		Doomslayer's Active
+
+Script "QCDE_Ability_Doomslayer" (void)
+{
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		if(!stricmp(getWeapon(), weaponList[w]))
+			break;
+
+	GiveInventory("SlayerBFGProc",1);
+	ACS("QCDE_SetWeapon", "SlayerBFG", 80);
+	PlaySound(0,"QC/Abilities/Doomslayer/BFGWeaponRaise",CHAN_7,0.75,false,0.5);
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	while(CheckInventory("BFGstarted")<1)	//token is given by the weapon. This is to ensure the meter starts when the weapon is out
+		delay(1);							//because if you fire a RG, RG animation has to end before the weapon is switched
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+
+	//total duration is 83
+	//firing delay is 34
+	//remaining time is 83-34=49
+
+	Delay(34);
+
+	GiveInventory("SlayerBFGFireProc",1);
+
+	int t = 35;
+
+	while(t --> 0)
+	{
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		delay(1);
+	}
+
+	//Give and select fake weapon
+	GiveInventory("FakeruWeapun",1);
+	SetWeapon("FakeruWeapun");
+	//Remove ability weapon
+	TakeInventory("SlayerBFG",1);
+	TakeInventory("BFGstarted",1);
+	GiveInventory("SlayerBFGCleanerProc",1);
+	//
+	delay(5);
+	SetWeapon(weaponList[w]);
+	TakeInventory("FakeruWeapun",1);
+}
+
+
+//---------------------------------
+//		Corvus's Active
+
+Script "QCDE_Ability_Corvus" (void)
+{
+	GiveInventory("CorvusFlightProc",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	delay(GetDuration()); //duration of active ability
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+
+//---------------------------------
+//		Kane's Active
+
+Script "QCDE_Ability_Kane" (void)
+{
+	GiveInventory("InjectionProc",1);
+
+	// Disable remaining damage over time from possible Postal's cow head or Quietus
+	cowgassing_for[PlayerNumber()] = 0;
+	quieting_for[PlayerNumber()] = 0;
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	delay(GetDuration()); //duration of active ability
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+
+//---------------------------------
+//		Caleb's Active
+//---------------------------------
+
+Script "QCDE_Ability_Caleb" (void)
+{
+	//PlaySound(0,"QC/Abilities/Caleb/ActivateDrain",CHAN_5,0.75,false,1.0);
+	SetPlayerProperty(0,1,PROP_INSTANTWEAPONSWITCH);
+
+
+	if(PlayerIsBot(PlayerNumber()))
+	{
+		GiveInventory("DollBotProc",1);
+		ACS("QCDE_SetWeapon", "CalebDollBot", GetDuration());
+	}
+	else
+	{
+		GiveInventory("DollProc",1);
+		ACS("QCDE_SetWeapon", "CalebDoll", GetDuration());
+	}
+
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		if(!stricmp(getWeapon(), weaponList[w]))
+			break;
+
+
+	int t = GetDuration();
+	while(t --> 0)
+	{
+		if(checkinventory("DollSpent")) t=0;
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		delay(1);
+	}
+
+	// Break progress meter: 1 total duration, 1 remaining tic
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
+
+	//Give and select fake weapon
+	GiveInventory("FakeruWeapun",1);
+	SetWeapon("FakeruWeapun");
+	//Remove ability weapon
+	GiveInventory("DollCleanerProc",1);
+	TakeInventory("CalebDoll",1);
+	TakeInventory("CalebDollBot",1);
+
+	if(!++t) // survived entire duration
+	{
+		delay(5);
+		SetWeapon(weaponList[w]);
+		TakeInventory("FakeruWeapun",1);
+		TakeInventory("DollSpent",1);
+	}
+}
+
+Script "VoodooHealer" (int deathmatcher)
+{
+	int maxhealth = CheckInventory("MaxHealthToken");
+	int healnormal, healover;
+
+	if(deathmatcher==1)
+	{
+		healnormal=25;
+		healover=5;
+	}
+	else
+	{
+		healnormal=35;
+		healover=10;
+	}
+
+
+	if( GetActorProperty(0,APROP_HEALTH) < maxhealth)
+		ACS_NamedExecuteWithResult("HealthGiver",maxhealth,healnormal, 0);
+	else
+		ACS_NamedExecuteWithResult("HealthGiver",maxhealth,healover, 75);
+
+}
+
+
+
+int last_voodoocaster = -2;
+int last_voodootime;
+int last_voodoovictimtime[64];
+// Activator: Casting Caleb
+Script "QCDE_VoodooOwner" (void)
+{
+	last_voodoocaster = ActivatorTid();
+	last_voodootime = Timer();
+	//PrintBold(s:"\cv VOODOO CASTER IS NOW ", d:last_voodoocaster, s:" ", n:last_voodoocaster-999);
+}
+
+#define VOODOO_ALTFIRE_DMG 30
+// Activator: Voodoo Victim
+Script "QCDE_VoodooVictim" (void)
+{
+	int tid = ActivatorTid();
+	if(tid == last_voodoocaster) terminate; // no self damage
+	if(last_voodoovictimtime[tid-999] == last_voodootime) terminate; // don't repeat
+	last_voodoovictimtime[tid-999] = last_voodootime;
+
+	// Activator: Casting Caleb
+	SetActivator(last_voodoocaster);
+
+	Thing_Damage(tid, VOODOO_ALTFIRE_DMG, MOD_DISINTEGRATE);
+	GiveInventory("HitBeepMid",1);
+	//PrintBold(n:0, s:"\ck damaging ", d:tid-1000, s:" ", n:tid-999);
+}
+
+//---------------------------------
+//		Menelkir's Active
+
+Script "QCDE_Ability_Menelkir" (void)
+{
+	if(CheckInventory("ActiveProgressToken")) terminate;
+
+	if(!CheckDaveRoom())
+	{
+		LocalAmbientSound("Menelkir/fail",80);
+		terminate;
+	}
+
+	GiveInventory("SummonProc",1);
+	//ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	delay(GetDuration()); // duration before rethrow is allowed
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+function int CheckDaveRoom(void)
+{
+	int a = GetActorAngle(0);
+	int x = GetActorX(0) + cos(a) * 60;
+	int y = GetActorY(0) + sin(a) * 60;
+	int z = GetActorZ(0);
+
+	int tid = UniqueTid();
+	bool succ = Spawn("DaveRoomTest", x,y,z, tid);
+	Thing_Remove(tid);
+
+	return succ;
+}
+
+script "MyBoyIsDed" (void)	//played on menelkir's head when dave dies
+{
+	LocalAmbientSound("minotaur/death",90);
+}
+
+
+//---------------------------------
+//		Terminator's Active
+
+#define TERMINATOR_ROCKET_COUNT 18
+#define TERMINATOR_ROCKET_DELAY  3
+Script "QCDE_Ability_Terminator" (void)
+{
+	int counterer;
+	GiveInventory("TerminatorMainProc",1); //plays voice line and stop weapons
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+
+	GiveInventory("ActiveProgressToken",256);
+	Delay(25);	//waits a bit before using them, chance to escape
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, TERMINATOR_ROCKET_COUNT * TERMINATOR_ROCKET_DELAY);
+
+	while(counterer++ <= TERMINATOR_ROCKET_COUNT)
+	{
+		GiveInventory("TermRocketProc",1);
+		delay(TERMINATOR_ROCKET_DELAY);
+	}
+
+	Delay(10);
+	GiveInventory("TerminatorCleanerProc",1);
+}
+
+
+//---------------------------------
+//		Zedek's Active
+
+Script "QCDE_Ability_Zedek" (void)
+{
+	GiveInventory("QuietusAttackProc",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS("QCDE_ZedekSwordAnimation");
+
+	Delay(GetDuration());
+	GiveInventory("GenericActiveCleanerProc",1);
+
+}
+
+Script "QCDE_ZedekSwordAnimation" (void) clientside
+{
+
+	// *.1 on coordinates means "align to top-left"
+	DrawWeapon("QP08Z0",  40.1, 235.1);	delay(1);
+	DrawWeapon("QP08Z0", 130.1, 260.1);	delay(1);
+	DrawWeapon("QP08Z0", 200.1, 300.1);	delay(1);
+	DrawWeapon("QP08Z0", 260.1, 320.1);	delay(1);
+	DrawWeapon("QP08Z0", 300.1, 335.1);	delay(1);
+	DrawWeapon("QP08Z0", 330.1, 350.1);	delay(1);
+	DrawWeapon("QP08Z0", 360.1, 365.1);	delay(1);
+	DrawWeapon("QP08Z0", 390.1, 375.1);	delay(1);
+	DrawWeapon("QP08Z0", 420.1, 385.1);	delay(1);
+	DrawWeapon("QP08Z0", 420.1, 955.1);	delay(1);	//super far away, to not be visible
+}
+
+int last_quieter;
+Script "QCDE_QuietusHit" (void)
+{
+	last_quieter = GetActorProperty(0, APROP_TargetTID);
+	//log(s:"Last quieter is set to ", d:last_quieter, s:" -- ", n:last_quieter -999);
+}
+
+int quieting_for[64], quieter_of[64];
+#define QUIETING_AMOUNT  6
+#define QUIETING_DAMAGE 10
+#define QUIETING_PERIOD 35
+Script "QCDE_QuietusVictim" (void)
+{
+	int plr = PlayerNumber();
+	if(!isEnemy(last_quieter - 1000)) terminate; // No self nor team quietance
+	quieter_of[plr] = last_quieter;
+
+	// Already quieted by somebody? Update the other script
+	if(quieting_for[plr])
+	{
+		quieting_for[plr] = QUIETING_AMOUNT;
+		//log(n:plr+1, s:" updates quieter ", d:quieter_of[plr], s:" -- ", n:quieter_of[plr] -999, s:" and duration to ", d:quieting_for[plr]);
+		terminate;
+	}
+
+	// New quietance
+	//log(n:plr+1, s:" gets quieted by ", d:quieter_of[plr], s:" -- ", n:quieter_of[plr] -999, s:" for ", d:quieting_for[plr]);
+	quieting_for[plr] = QUIETING_AMOUNT;
+	while(quieting_for[plr] --> 0)
+	{
+		int t = QUIETING_PERIOD;
+		while(t --> 0)
+			if(GetActorProperty(plr+1000,APROP_HEALTH) > 0)
+				delay(1);
+
+		SetActivator(quieter_of[plr]);
+		Thing_Damage(plr+1000, QUIETING_DAMAGE, MOD_LAVA);
+		GiveInventory("HitBeepLow",1);
+		if(GetActorProperty(plr+1000,APROP_HEALTH) <= 0) break;
+		//log(n:plr+1, s:" gets quieted by ", d:quieter_of[plr], s:" -- ", n:quieter_of[plr] -999, s:" for ", d:quieting_for[plr]);
+	}
+	quieting_for[plr] = 0;
+}
+
+
+
+//---------------------------------
+//		Inqusitor's Active
+
+
+// This define must be float
+#define SHIELD_PROLONGATION 1.5
+Script "QCDE_Ability_Inquisitor" (void)
+{
+	if(tics[PlayerNumber()]) terminate;
+	int stage = CheckInventory("InquisitorStageToken");
+
+	// bots only activate second stage 5% of the clicks, about every 3rd ability use, at random
+	if(stage == 1 && PlayerIsBot(PlayerNumber()) && random(0,20)) terminate;
+
+	GiveInventory("InquisitorStageToken",1); // post-incrementing token count
+
+	if(stage) terminate;
+
+	GiveInventory("ReflectiveInProc",1);
+	int baseDuration = GetDuration();
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, baseDuration);
+	int t = baseDuration;
+	while(t --> 0)
+	{
+		// stage 1: be stronk
+		delay(1);
+		stage = CheckInventory("InquisitorStageToken");
+		if(stage > 1)
+		{
+			// stage 2: literally become shield and protec
+			GiveInventory("ReflectiveCleanerProc",1);
+			GiveInventory("BecomeShieldProc",1);
+			ACS_NamedExecuteAlways("QCDE_Display_Shield_Message", 0, 0);
+
+			int maxTics = baseDuration * SHIELD_PROLONGATION / 1.0;
+			int moreTics = t * SHIELD_PROLONGATION / 1.0;
+			ACS("QCDE_SetWeapon", "Shieldquisitor", moreTics);
+			ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, maxTics, moreTics);
+			SetWeapon("Shieldquisitor");
+
+			int w;
+			for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+				if(!stricmp(getWeapon(), weaponList[w]))
+					break;
+
+			t = moreTics; // prolonged duration
+			while(t --> 0)
+				if(GetActorProperty(0, APROP_Health) > 0) delay(1);
+				else break;
+
+			GiveInventory("BecomeShieldCleanerProc",1);
+			ACS_NamedExecuteAlways("QCDE_Clean_Shield_Message", 0, 0);
+
+			//Give and select fake weapon
+			GiveInventory("FakeruWeapun",1);
+			SetWeapon("FakeruWeapun");
+			//Remove ability weapon
+			TakeInventory("Shieldquisitor",1);
+			tics[PlayerNumber()] = true; // prevent from retriggering before cooldown starts
+			//Select proper weapon and remove fake one
+			delay(5);
+			SetWeapon(weaponList[w]);
+			TakeInventory("FakeruWeapun",1);
+
+			break; // exit outer loop
+		}
+
+		if(GetActorProperty(0, APROP_Health) <= 0) break;
+	}
+	tics[PlayerNumber()] = false; // required to start cooldown
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	GiveInventory("ReflectiveOutProc",1);
+}
+
+script "QCDE_Display_Shield_Message" (void)
+{
+	SetHUDsize(800,600,1);
+	if(gametype()<=1)
+		HUDmessage(s:"SP/Coop: Block only enemy attacks";HUDMSG_PLAIN,53,CR_GOLD,400.0,570.0,100.0);
+	else if(gametype()>=2)
+		HUDmessage(s:"Deathmatch: Block enemy and friendly attacks";HUDMSG_PLAIN,53,CR_GOLD,400.0,570.0,100.0);
+}
+
+script "QCDE_Clean_Shield_Message" (void)
+{
+		HUDmessage(s:" ";HUDMSG_PLAIN,53,CR_GOLD,400.0,570.0,0.3);
+}
+
+
+//---------------------------------
+//		Bitterman's Active
+
+Script "QCDE_Ability_Bitterman" (void)
+{
+	int howmuch = CheckInventory("PowerShieldCharge");
+	int gameidentifierhere;
+	// not more than max allowed, starting from
+	int max = CheckInventory("MaxArmorToken") + 25 - CheckInventory("BasicArmor");
+	if(howmuch > max) howmuch = max;
+
+	GiveInventory("QCArmorPoint", howmuch);
+	TakeInventory("PowerShieldCharge", howmuch);
+
+	//The "Michaelis' Magic Code" that figures if it's coop, FFA or TDM!
+	if(GameType() < GAME_NET_DEATHMATCH || CheckInventory("TeamDeathmatch"))
+	{
+		gameidentifierhere=2; // coop or TDM
+	}
+	else
+	{
+		gameidentifierhere=3; //FFA
+	}
+
+	PlaySound(0,"QC/Abilities/Bitterman/ShieldRestore",CHAN_7,1.0,false,0.9);
+
+	// GetActorPitch is -0.25 at highest and +0.25 at lowest
+	// Extra height goes from +26.0 at highest to -26.0 at lowest
+	int extraheight = GetActorPitch(0) * 26 * -4;
+
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0) + 30.0 + extraheight;
+	int count = CheckInventory("PowerShieldCharge");
+	SetInventory("PowerShieldCharge", 0);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	if(gameidentifierhere!=3) //Not FFA
+	{
+		if(IsPVE()) count = count * FixedSqrt(PlayerCount() * 2.0) / 5.0;
+		while(count --> 0)
+		{
+			SpawnForced("QCArmorBitterman", x,y,z);
+
+			if(count % 40 == 0)
+			{
+				z += 4.0;
+				delay(1);
+			}
+		}
+	}
+
+	delay(GetDuration());
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+
+//---------------------------------
+//		Galen's Active
+
+Script "QCDE_Ability_Galen" (void)
+{
+	GiveInventory("TotemProc",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS("QCDE_GalenHandAnimation");
+	delay(GetDuration()); //duration of active ability
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+
+Script "QCDE_GalenHandAnimation" (void) clientside
+{
+	// *.1 on x means "align to left", *.0 on y means "vertically centered"
+	DrawWeapon("GLNHA0", -60.1, 250.0);	delay(1);
+	DrawWeapon("GLNHA0", -30.1, 240.0);	delay(1);
+	DrawWeapon("GLNHB0", -10.1, 230.0);	delay(1);
+	DrawWeapon("GLNHB0",  10.1, 230.0);	delay(1);
+	DrawWeapon("GLNHC0",  20.1, 210.0);	delay(1);
+	DrawWeapon("GLNHC0",  30.1, 205.0);	delay(1);
+	DrawWeapon("GLNHD0",  40.1, 200.0);	delay(1);
+	DrawWeapon("GLNHD0",  45.1, 202.0);	delay(1);
+	DrawWeapon("GLNHD0",  50.1, 205.0);	delay(1);
+	DrawWeapon("GLNHC0",  55.1, 210.0);	delay(1);
+	DrawWeapon("GLNHC0",  50.1, 215.0);	delay(1);
+	DrawWeapon("GLNHB0",  40.1, 235.0);	delay(1);
+	DrawWeapon("GLNHB0",  30.1, 255.0);	delay(1);
+	DrawWeapon("GLNHA0",  20.1, 275.0);	delay(1);
+	DrawWeapon("GLNHA0",  10.1, 295.0);	delay(1);
+}
+
+
+//---------------------------------
+//		Nyx's Active
+
+#define NYX_TRAIL_LENGTH 10
+Script "QCDE_Ability_Nyx" (void)
+{
+	// Saving position to ghost-recall to if stuck
+	int ox = GetActorX(0);
+	int oy = GetActorY(0);
+	int oz = GetActorZ(0);
+
+	// Begin
+	GiveInventory("GhostWalkInProc",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration() + NYX_TRAIL_LENGTH);
+	quieting_for[PlayerNumber()] = 0; // Disable remaining damage over time from possible Quietus hit
+	LocalAmbientSound("QC/Abilities/Nyx/GhostWalkStart",127);
+
+	// First loop: leaving slight trail
+	int counter;
+	while(counter++ < NYX_TRAIL_LENGTH) //for first N tics, it will spawn a trail every tic
+	{
+		if(counter==5||counter==10)
+			GiveInventory("GhostWalkFullTrailProc",1);
+		GiveInventory("GhostWalkTrailProc",1);
+		delay(1);
+	}
+
+	// Main loop: leaving Durandal-only trail
+	counter=0;
+	while(counter <= GetDuration())
+	{
+		delay(5);
+		counter += 5;
+		GiveInventory("GhostWalkFullTrailProc",1);
+	}
+
+	// Exit at destination
+	GiveInventory("GhostWalkOutProc",1);
+	ACS_NamedExecuteAlways("QCDE_RestoreIndicator",0);
+	LocalAmbientSound("QC/Abilities/Nyx/GhostWalkEnd",127);
+
+	// Stuck check (not in PVP)
+	if(IsPVP()) terminate;
+
+	int nx = GetActorX(0);
+	int ny = GetActorY(0);
+	int nz = GetActorZ(0);
+	SetActorVelocity(0, 0.1,0.1,0.1, true,true);
+	delay(1);
+	if(GetActorX(0) != nx || GetActorY(0) != ny || GetActorZ(0) != nz) terminate;
+	SetActorVelocity(0, -0.2,-0.2,-0.2, true,true);
+	delay(1);
+	if(GetActorX(0) != nx || GetActorY(0) != ny || GetActorZ(0) != nz) terminate;
+
+	// Got stuck, activate Ghost Recall
+	SetActorPosition(0, ox,oy,oz, 0);
+	GiveInventory("GhostWalkOutProc",1);
+}
+
+
+
+//---------------------------------
+//		Sorgaul's Active
+
+Script "QCDE_Ability_Sorgaul" (void)
+{
+	PlaySound(0,"QC/Abilities/Sorgaul/RageStart",CHAN_7,1.0,false,0.8);
+	//PlaySound(0,"QC/Abilities/Sorgaul/RageLoop",CHAN_5,1.0,true,1.0); //has to be played through weapon itself
+
+	if(PlayerIsBot(PlayerNumber()))
+	{
+		GiveInventory("PrimalRageBotProc",1);
+		ACS("QCDE_SetWeapon", "SorgaulFistsBot", GetDuration());
+	}
+	else
+	{
+		GiveInventory("PrimalRageProc",1);
+		ACS("QCDE_SetWeapon", "SorgaulFists", GetDuration());
+	}
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		if(!stricmp(getWeapon(), weaponList[w]))
+			break;
+
+
+	int t = GetDuration();
+	while(t --> 0)
+	{
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		delay(1);
+	}
+
+	//Give and select fake weapon
+	GiveInventory("FakeruWeapun",1);
+	SetWeapon("FakeruWeapun");
+	//Remove ability weapon
+	GiveInventory("PrimalRageCleanerProc",1);
+	TakeInventory("SorgaulFists",1);
+	TakeInventory("SorgaulFistsBot",1);
+
+	if(!++t) // survived entire duration
+	{
+		PlaySound(0,"QC/Abilities/Sorgaul/RageEnd",CHAN_7,1.0,false,1.0);
+		StopSound(5);
+		delay(5);
+		SetWeapon(weaponList[w]);
+		TakeInventory("FakeruWeapun",1);
+	}
+}
+
+
+//---------------------------------
+//		Duke Nukem's Active
+
+Script "QCDE_Ability_DukeNukem" (void)
+{
+	PlaySound(0,"QC/Abilities/DukeNukem/PullWeapon",CHAN_7,1.0,false,0.5);
+	GiveInventory("DukeFreezerProc",1);
+	ACS("QCDE_SetWeapon", "DukeFreezeThrower", GetDuration());
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		if(!stricmp(getWeapon(), weaponList[w]))
+			break;
+
+
+	int t = GetDuration();
+	while(t --> 0)
+	{
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		delay(1);
+	}
+
+	//Give and select fake weapon
+	GiveInventory("FakeruWeapun",1);
+	SetWeapon("FakeruWeapun");
+	//Remove ability weapon
+	GiveInventory("DukeFreezerCleanerProc",1);
+	TakeInventory("DukeFreezeThrower",1);
+
+	if(!++t) // survived entire duration
+	{
+		delay(5);
+		SetWeapon(weaponList[w]);
+		TakeInventory("FakeruWeapun",1);
+	}
+}
+
+#define BALLS_TIL_FREEZE 5
+Script "QCDE_StartFreezeCounter" (void)
+{
+	int t = 35*3;	//window to connect freezeballs to freeze solid
+	int tokensnow, tokensbefore;
+
+	tokensnow = checkinventory("ImFrozen");
+	tokensbefore = tokensnow; //equalize them on initialization
+
+	while(t>0)
+	{
+		tokensnow=checkinventory("ImFrozen");
+		if(tokensnow>=BALLS_TIL_FREEZE)							//if it has X tokens, freeze for X seconds
+		{
+			//printbold(s:"Frozen solid");
+			GiveInventory("IceCubePlayerProc",1);
+			GiveInventory("ImFullyFrozen",1);
+			GiveInventory("NoAbilitiesToken",1);
+			SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
+
+			//Freeze for ~2.5sec
+			delay(88);
+
+			SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+			TakeInventory("PowerIceProtection",1);
+			delay(35);			//tiny window in which player cant be frozen again
+			TakeInventory("ImFrozen",999); 			//then take the tokens afterwards
+			TakeInventory("ImFullyFrozen",1); 		//then take the tokens afterwards
+			if(!CheckInventory("Freezetagged"))
+				TakeInventory("NoAbilitiesToken",1);
+			t=0;									//set time to zero to end loop
+		}
+		else
+		{
+			if(tokensnow>tokensbefore)	//if it has one more token than it did before
+			{
+				GiveInventory("IceDamageTintProc",1);
+				t=35*3;					//reset timer
+				tokensbefore=tokensnow; //and equalizes them again for next count
+			}
+		}
+		t--;
+		//printbold(d:t);
+		delay(1);
+	}
+	TakeInventory("ImFrozen",999); //when the script ends, remove all tokens
+}
+
+
+Script "CheckTargetFrozen" (void)
+{
+	int radius;
+	SetActivator(0,AAPTR_PLAYER_GETTARGET);
+
+	if(checkinventory("ImFrozen")>=1)
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+}
+
+
+// Activator: exploding freeze shot
+script "QCDE_FreezeShotHits" (void)
+{
+	Thing_ChangeTid(0, FREEZESHOT_TIDBASE + GetActorProperty(0, APROP_TargetTID) - 1000);
+}
+
+// Activator: frostbitten victim
+script "QCDE_HitByFreezeShot" (void)
+{
+	// This distance goes from center of freeze shot to center of player,
+	// so should have quite some wiggle room
+	int radius = 50;
+	int tokencount = CheckInventory("ImFrozen");
+
+	if (tokencount < BALLS_TIL_FREEZE &&
+		HostileRadiusCheck(FREEZESHOT_TIDBASE, radius, true))
+	{
+		if (tokencount == 0) //if it doesnt have any tokens prior
+		{	ACS_NamedExecuteAlways("QCDE_StartFreezeCounter",0,0,0);	} //start the counter
+
+		GiveInventory("FreezeSlowerer", 1);
+		GiveInventory("ImFrozen",       1);
+		ACS_NamedExecuteAlways("QCDE_FreezeIndicator_CLIENT",0,CheckInventory("ImFrozen") * (100 / BALLS_TIL_FREEZE));
+	}
+}
+
+
+//---------------------------------
+//		Durandal's Active
+
+#define HOW_MANY_BOBS 4
+#define HOW_MANY_BOBS_PVE 8
+Script "QCDE_Ability_Durandal" (void)
+{
+	int counter;
+	int How_Many_Bobs_PvX;
+	if(IsPvE())
+		How_Many_Bobs_PvX = HOW_MANY_BOBS_PVE;
+	else
+		How_Many_Bobs_PvX = HOW_MANY_BOBS;
+
+	str BobType="SingleBOBSPProc";
+
+	if(gametype()>=2)
+		BobType="SingleBOBDMProc";
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	PlaySound(0,"QC/Abilities/Durandal/Summon",CHAN_7,0.7,false,0.5);
+	PlaySound(0,"QC/Abilities/Durandal/FBTVCrandom",CHAN_VOICE,1.0,false,0.7);
+
+	while(counter++ < How_Many_Bobs_PvX) //Spawn N bobs
+	{
+		GiveInventory(BobType,1);
+		delay(3);
+	}
+
+	delay(GetDuration()); //duration of active ability
+
+	// second check after time is up: have bobs spawned?
+	int spawned = ThingCount(T_NONE, BOB_TIDBASE + PlayerNumber());
+	while(spawned++ < How_Many_Bobs_PvX)
+	{
+		GiveInventory(BobType,1);
+		delay(3);
+	}
+}
+
+
+//---------------------------------
+//		Keel's Active
+
+Script "QCDE_Ability_Keel" (void)
+{
+	if(ACS("QCDE_AbilityCooldown", GetCooldown()))
+		GiveInventory("KeelFireGrenProc",1); //Fire grenade
+}
+
+//---------------------------------
+//		Sarge's Active
+
+Script "QCDE_Ability_Sarge" (void)
+{
+	//Does nothing.
+}
+
+
+
+//---------------------------------
+//		Lo Wang's Active
+
+Script "QCDE_Ability_LoWang" (void)
+{
+	int counter;
+	GiveInventory("NobitsuraProc1",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS("QCDE_NobitsuraAnimation");
+
+	GiveInventory("ThirdPersonPunch",1);
+
+
+	delay(12);
+
+	GiveInventory("NobitsuraProc2",1);
+
+	delay(7);
+
+	TakeInventory("ThirdPersonPunch",32767);
+}
+
+Script "QCDE_NobitsuraAnimation" (void) clientside
+{
+	// *.1 on coordinates means "align to top-left"
+	DrawWeapon("QP18W0",  80.1, 200.1);	delay(1);
+	DrawWeapon("QP18W0", 140.1, 250.1);	delay(1);
+	DrawWeapon("QP18W0", 190.1, 300.1);	delay(1);
+	DrawWeapon("QP18W0", 230.1, 330.1);	delay(1);
+	DrawWeapon("QP18W0", 250.1, 360.1);
+
+	delay(8);
+
+	GiveInventory("NobitsuraProc2",1);
+	DrawWeapon("QP18X0",  300.1, 180.1);	delay(1);
+	DrawWeapon("QP18X0",  250.1, 187.1);	delay(1);
+	DrawWeapon("QP18X0",  175.1, 194.1);	delay(1);
+	DrawWeapon("QP18X0",   75.1, 201.1);	delay(1);
+	DrawWeapon("QP18X0",    0.1, 208.1);	delay(1);
+	DrawWeapon("QP18X0",  -75.1, 215.1);	delay(1);
+	DrawWeapon("QP18X0", -225.1, 229.1);	delay(1);
+	DrawWeapon("QP18X0", -400.1, 400.1);	//away from sight to remove without fadeout
+}
+
+
+//---------------------------------
+//		Grayson's Active
+
+
+#define TICS_BEFORE_THUMPER  27
+#define TICS_FOR_THUMPER     30
+#define TICS_BETWEEN_SPARKS   2
+
+Script "QCDE_Ability_Grayson" (void)
+{
+	if(tics[PlayerNumber()]) terminate;
+	if(CheckInventory("ThumperArmingToken")) terminate;
+
+	int i;
+
+	if(CheckInventory("ThumperReadyToken"))
+	{
+		// Second press on ability key signalling to fire
+		TakeInventory("ThumperReadyToken",1);
+		terminate;
+	}
+
+	//Stop regular weapons and show ability used
+	GiveInventory("DisableWeaponProc",1);
+	GiveInventory("ThumpSoundAndHaloProc",1);
+	GiveInventory("ThumperArmingToken",1);
+
+	//Spawn player sparks
+	while(i < TICS_BEFORE_THUMPER)
+	{
+		if(GetActorProperty(0, APROP_HEALTH) <= 0) break;
+
+		GiveInventory("PlayerThumpSparkerProc",1);
+		GiveInventory("ActiveProgressToken",256 * TICS_BETWEEN_SPARKS / TICS_BEFORE_THUMPER);
+		Delay(TICS_BETWEEN_SPARKS);
+		i += TICS_BETWEEN_SPARKS;
+	}
+
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration() - TICS_BEFORE_THUMPER);
+	TakeInventory("ThumperArmingToken",1);
+	GiveInventory("ThumperReadyToken",1);
+
+	//Continue spawning sparks, and fire when ready
+	while(i < GetDuration())
+	{
+		if(GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_ATTACK) break;
+		if(GetActorProperty(0, APROP_HEALTH) <= 0) break;
+		if(!CheckInventory("ThumperReadyToken")) break; // means other instance sends signal to fire
+
+		GiveInventory("PlayerThumpSparkerProc",1);
+		Delay(TICS_BETWEEN_SPARKS);
+		i += TICS_BETWEEN_SPARKS;
+	}
+
+	//Fire projectile
+	GiveInventory("ThumperShootProc",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+
+	Delay(5);	//slight delay before he can shoot again
+
+	//Clean the rest
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+
+//When thumper hits -- should happen immediately before ThumperAffected
+int thumperOwner;
+Script "QCDE_ThumperHit" (void)
+{
+	SetActivatorToTarget(0);
+	thumperOwner = PlayerNumber();
+	//log(s:"\c[brite]Thumper hit. Owner: ", n:0, s:" -- #", d:thumperOwner);
+}
+
+//When a player gets hit by the thumper -- should happen immediately after ThumperHit
+#define THUMPER_THRUSTZ 15
+Script "QCDE_ThumperAffected" (void)
+{
+	int victim = PlayerNumber();
+	if(!HostileCheck(thumperOwner, true)) {
+		//log(s:"\c[black]Thumper thrown by ", n:-~thumperOwner, s:" -- #", d:thumperOwner, s:" harmlessly skips ", n:0, s:" -- #", d:victim);
+		terminate;
+	}
+
+	//log(s:"\c[bludi]Thumper thrown by ", n:-~thumperOwner, s:" -- #", d:thumperOwner, s:" affects ", n:0, s:" -- #", d:victim);
+	SetPlayerProperty(0,1,PROP_FROZEN);
+	Thing_Stop(0);
+	GiveInventory("GrayThumperFlight",1);
+	GiveInventory("Twitchless3sec",1);
+	ThrustThingZ(0,THUMPER_THRUSTZ * 4,0,0);
+
+	int t = 35*3, velz, hit;
+	while(t --> 0)
+	{
+		if(GetActorVelZ(0) == 0 && !hit)
+		{
+			if(GetActorProperty(0, APROP_HEALTH) >= 0)
+			{
+				GiveInventory("ThumperHitCeilingProc",1);
+
+				SetActivator(1000 + thumperOwner);
+				// Activator: thumper thrower
+
+				int dmg = 40 + velz / 1.0 * 5;
+				Thing_Damage(1000 + victim, dmg, MOD_SPLASH);
+				GiveInventory("HitBeepMid",1);
+				//log(s:"\c[bludi]", n:-~victim, s:" -- #", d:thumperOwner, s:" hits the ceiling! +", d:dmg, s:" damage!");
+
+				SetActivator(1000 + victim);
+				// Activator: thumper victim
+			}
+			hit = true;
+		}
+		velz = GetActorVelZ(0);
+		if(velz < 0) velz = 0;
+		delay(1);
+	}
+
+	SetActivator(1000 + victim);
+	SetPlayerProperty(0,0,PROP_FROZEN);
+
+	if(!checkinventory("PowerCorvusFlight"))	//if corvus flying, skip removing flight, since he'll lose it automatically
+		TakeInventory("PowerGrayThumpFlight",1);
+}
+
+// Activator: somebody already caught in radius
+function int HostileCheck (int friendOrFoe, int blockable)
+{
+	// if not DM, skip
+	if(GameType() < GAME_NET_DEATHMATCH) return false;
+
+	if(blockable)
+	{
+		// if this player is invulnerable by ability, skip
+		if(CheckInventory("PowerGhostTint")) return false;    //doesnt affect ghostwalking nyx
+	}
+
+	// if the projectile is your own, skip
+	if(friendOrFoe == PlayerNumber()) return false;
+
+	// if that player is on same team in TDM, skip
+	if (CheckInventory("TeamDeathmatch") &&
+		GetPlayerInfo(friendOrFoe,    PLAYERINFO_TEAM) ==
+		GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM))
+		return false;
+
+	return true;
+}
+
+
+//---------------------------------
+//		Eradicator's Active
+
+Script "QCDE_Ability_Eradicator" (void)
+{
+	LocalAmbientSound("QC/Abilities/Eradicator/Radar",127);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+
+	for(int t = GetDuration(); t; t--)
+	{
+		// ensures radar persists regardless of possible death
+		if(!CheckInventory("Radar") && CheckInventory("Class_Eradicator")) GiveInventory("Radar",1);
+		if(!CheckInventory("ActiveInProgress"))
+		{
+			GiveInventory("ActiveInProgress",1);
+			ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, t);
+		}
+		delay(1);
+	}
+
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+//---------------------------------
+//		Blazkowicz's Active
+
+Script "QCDE_Ability_Blazkowicz" (void)
+{
+	PlaySound(0,"QC/Abilities/Blazkowicz/AbilityVoice",CHAN_VOICE,0.75,false,1.0);
+	SetPlayerProperty(0,1,PROP_INSTANTWEAPONSWITCH);
+
+	if(PlayerIsBot(PlayerNumber()))
+	{
+		GiveInventory("AkimboBotProc",1);
+		ACS("QCDE_SetWeapon", "BlazkoAkimboBot", GetDuration());
+	}
+	else
+	{
+		GiveInventory("AkimboProc",1);
+		ACS("QCDE_SetWeapon", "BlazkoAkimbo", GetDuration());
+	}
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		if(!stricmp(getWeapon(), weaponList[w]))
+			break;
+
+
+	int t = GetDuration();
+	while(t --> 0)
+	{
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		delay(1);
+	}
+
+	//Give and select fake weapon
+	GiveInventory("FakeruWeapun",1);
+	SetWeapon("FakeruWeapun");
+	//Remove ability weapon
+	GiveInventory("AkimboCleanerProc",1);
+	TakeInventory("BlazkoAkimbo",1);
+	TakeInventory("BlazkoAkimboBot",1);
+
+	if(!++t) // survived entire duration
+	{
+		delay(5);
+		SetWeapon(weaponList[w]);
+		TakeInventory("FakeruWeapun",1);
+	}
+}
+
+script "BJTimerLeft" (void)
+{
+	delay(28);
+	TakeInventory("BJLeft",1);
+}
+script "BJTimerRight" (void)
+{
+	delay(28);
+	TakeInventory("BJRight",1);
+}
+
+
+//---------------------------------
+//		Freeman's Active
+
+Script "QCDE_Ability_Freeman" (void)
+{
+	if(ACS("QCDE_AbilityCooldown", GetCooldown()))
+	{
+		if(checkInventory("DMToken"))	//DM version does 3 blasts to deflect projectiles
+		{
+			ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+			GiveInventory("PvPBlastInitialProc",1); //spawns FX, deals 10dmg of explosion, and A_Blast
+			Delay(6);
+			GiveInventory("PvPBlastExtraProc",1); //does only A_Blast
+			Delay(6);
+			GiveInventory("PvPBlastExtraProc",1); //does only A_Blast
+			delay(GetDuration()-12); //duration of ability, minus x tics due to those 2 "delay(y)"
+			GiveInventory("GenericActiveCleanerProc",1);
+		}
+		else		//PvE version does a single a_blast that pushes enemies and deals damage to them
+		{
+			ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+			GiveInventory("PvEBlastProc",1); //spawns FX and A_Blast
+			delay(GetDuration()); //duration of active ability
+			GiveInventory("GenericActiveCleanerProc",1);
+		}
+	}
+}
+
+
+//---------------------------------
+//		VorMatur's Active
+
+Script "QCDE_Ability_VorMatur" (void)
+{
+	GiveInventory("DarkeningProc",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	Delay(GetDuration());
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+int darkener_now;
+Script "QCDE_DarkeningShotHits" (void)
+{
+	darkener_now = GetActorProperty(0, APROP_TargetTID) - 1000;
+}
+
+#define DARKEN_DURATION 1.5
+#define DARKEN_FADEIN   0.1
+#define DARKEN_FADEOUT  1.0
+Script "QCDE_DarkenedVictim" (void)
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate; // DM-only
+
+	if(!isEnemy(darkener_now)) terminate; // don't darken allies
+
+	ACS("QCDE_Darkening_Start", DARKEN_DURATION, DARKEN_FADEIN, DARKEN_FADEOUT);
+
+	if(PlayerIsBot(PlayerNumber())) GiveInventory("NoWeaponFireToken",1);
+
+	SpawnProjectile(0, "BlindVisualizer", 0,0,0,0,0);
+
+	int t = (DARKEN_DURATION + DARKEN_FADEIN + DARKEN_FADEOUT) * 35 / 1.0;
+	while(t --> 0)
+		if(GetActorProperty(0, APROP_HEALTH) > 0)
+			delay(1);
+		else
+		{
+			// Remove darkness if died
+			ACS("QCDE_Darkening_Stop");
+			TakeInventory("NoWeaponFireToken",1);
+			terminate;
+		}
+
+	if(PlayerIsBot(PlayerNumber())) TakeInventory("NoWeaponFireToken",1);
+}
+
+//---------------------------------
+//		Eleena's Active
+
+Script "QCDE_Ability_Eleena" (void)
+{
+	if(tics[PlayerNumber()] && !CheckInventory("ActiveProgressToken")) terminate;
+
+	int plrtid = ActivatorTid();
+	int doptid = plrtid - 1000 + DOPPELGANG_TIDBASE;
+
+	int px = GetActorX(0); int pxs = GetActorVelX(0);
+	int py = GetActorY(0); int pys = GetActorVelY(0);
+	int pz = GetActorZ(0); int pzs = GetActorVelZ(0);
+	int pan = GetActorAngle(0);
+	int ppi = GetActorPitch(0);
+
+	// Spawn Doppelganger
+	if(!tics[PlayerNumber()])
+	{
+		SetActorState(doptid, "Vanish"); // Vanish other possible doppelgangers
+
+		SpawnForced("Doppelganger", px,py,pz, doptid, pan >> 8);
+		SetInventory("PowerShieldCharge", 3);
+		SetActorVelocity(doptid, pxs,pys,pzs, false, true);
+		GiveActorInventory(doptid, "TeamColor", CheckInventory("TeamColor"));
+		ACS("QCDE_ColorDoppelganger_CLIENTSIDE");
+		GiveInventory("ActiveInProgress",1);
+		ACS("QCDE_AbilityCooldown", GetCooldown());
+		ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+		PlaySound(0,"QC/Abilities/Eleena/Activate",CHAN_AUTO,1.0,0,1.5);
+
+		SetActivator(doptid);
+		SetPointer(AAPTR_MASTER,plrtid);
+		SetActivator(plrtid);
+
+		int t = GetDuration();
+		while(t --> 0) delay(1);
+
+		SetInventory("PowerShieldCharge", 0);
+		GiveInventory("GenericActiveCleanerProc", 1);
+		terminate;
+	}
+
+	if(!CheckInventory("ActiveProgressToken")) terminate;
+
+	if(!CheckInventory("PowerShieldCharge")) terminate;
+	TakeInventory("PowerShieldCharge", 1);
+
+	// pxs, pys, pzs, dxs, dys, dzs
+	int dxs = GetActorVelX(doptid);
+	int dys = GetActorVelY(doptid);
+	int dzs = GetActorVelZ(doptid);
+	int dan = GetActorAngle(doptid);
+	int dpi = GetActorPitch(doptid);
+
+	// warp p to d; thrust p like d; turn p like d
+	int recalltid = UniqueTid();
+	SpawnForced("MapSpot", px,py,pz, recalltid);
+
+	Thing_Move(plrtid, doptid, true);
+	SetActorVelocity(plrtid, dxs,dys,dzs, false, true);
+	//SetActorAngle(plrtid, dan);
+	//SetActorPitch(plrtid, dpi);
+
+	// warp d to p; thrust d like p; turn d like p
+	GiveActorInventory(doptid, "DrawAttentionProc", 1);
+	Thing_Move(doptid, recalltid, true);
+	GiveActorInventory(doptid, "DrawAttentionProc", 1);
+	SetActorVelocity(doptid, pxs,pys,pzs, false, true);
+	SetActorAngle(doptid, pan);
+	SetActorPitch(doptid, ppi);
+
+	Thing_Remove(recalltid);
+
+	// FX
+	PlaySound(doptid,"QC/Abilities/Eleena/SwapFake",CHAN_AUTO,1.0,false,1.5); // fake Eleena sound
+	GiveInventory("EleenaSwapProc",1);
+}
+
+Script "QCDE_ColorDoppelganger_CLIENTSIDE" (void) CLIENTSIDE
+{
+	int plrtid = ActivatorTid();
+	int plr = plrtid - 1000;
+	int spec = PlayerIsSpectator(ConsolePlayerNumber());
+	if(!spec) // judges always see real Eleena
+	{
+		if(!CheckActorInventory(1000 + ConsolePlayerNumber(), "Class_Durandal")) // Durandals can see through the catsy tricks
+			if(plr != ConsolePlayerNumber()) terminate; // only owner can notice their own clone
+		if(PlayerCount() <= 1) terminate; // no other Eleenas when no other players
+	}
+
+	int doptid = plr + DOPPELGANG_TIDBASE;
+
+	bool teamplay       = getCvar("teamplay");
+	bool teamlms        = getCvar("teamlms");
+	bool teampossession = getCvar("teampossession");
+	bool ctf            = getCvar("ctf");
+
+	// Your own is always blue in non-team games
+	if(!(teamplay || teamlms || teampossession || ctf))
+		Thing_SetTranslation(doptid, TRANSLATION_LGCOLOR);
+	// In team games and from other people, has same color as spawner
+	else
+	{
+		if(CheckInventory("TeamColor") == 1)
+			Thing_SetTranslation(doptid, TRANSLATION_LGCOLOR);
+		else if(CheckInventory("TeamColor") == 2)
+			Thing_SetTranslation(doptid, TRANSLATION_RLCOLOR);
+		else // shouldn't happen
+			Thing_SetTranslation(doptid, TRANSLATION_RGCOLOR);
+	}
+}
+
+#define DURATION_DOPPELGANGER 15
+Script "QCDE_DoppelgangerSpawned" (void)
+{
+	if(CheckInventory("NotSpectator")) terminate;
+	GiveInventory("NotSpectator",true);
+
+	if(GetCvar("rocketarena")) GiveInventory("QCRocketLauncherDM",1); // needs rework
+	if(GetCvar("instagib"   )) GiveInventory("QCRailgunDM"       ,1);
+
+	delay(DURATION_DOPPELGANGER * 35);
+	SetActorState(0, "Vanish");
+}
+
+
+//---------------------------------
+//		Lucienne's Active
+
+#define LUCIENNE_MIN_DAMAGE    25
+#define LUCIENNE_MAX_DAMAGE  2000
+#define LUCIENNE_HURT_PERCENT  10
+#define LUCIENNE_HEAL_PERCENT  20
+
+Script "QCDE_Ability_Lucienne" (void)
+{
+	if(ACS("QCDE_AbilityCooldown", GetCooldown()))
+	{
+		GiveInventory("LucienneFireBallProc",1); //Fire ball
+		ACS("QCDE_LucienneHandAnimation");
+	}
+}
+
+int currentCleanser;
+Script "QCDE_LucienneBallHits" (void)
+{
+	currentCleanser = GetActorProperty(0, APROP_TargetTID) - 1000;
+}
+
+#define LUCIENNE_CURSE_DURATION  100
+#define LUCIENNE_TINT_DURATION 99999
+Script "QCDE_Cleansed" (void)
+{
+	//log(n:0, s:" cleansed by ", n:currentCleanser + 1);
+
+	if(isEnemy(currentCleanser))
+		CleanseHurt();
+	else
+		CleanseHeal();
+
+	while(GetActorPowerupTics(0,"PowerCleanVulnerable") > LUCIENNE_TINT_DURATION - LUCIENNE_CURSE_DURATION) delay(1);
+	TakeInventory("PowerCleanVulnerable", 1);
+	TakeInventory("CleansingWeakener", 1);
+}
+
+function void CleanseHeal(void)
+{
+	int maxhp = CheckInventory("MaxHealthToken");
+	if(!maxhp) maxhp = GetActorProperty(0, APROP_SPAWNHEALTH);
+	int heal = maxhp * LUCIENNE_HEAL_PERCENT / 100;
+	HealThingEx(heal);
+
+	// Reduce damages over time
+	int plr = PlayerNumber();
+	if(cowgassing_for[plr]) cowgassing_for[plr]--;
+	if(  quieting_for[plr])   quieting_for[plr]--;
+
+	GiveInventory("CleansingHealProc", 1);
+}
+
+function void CleanseHurt(void)
+{
+	int maxhp = CheckInventory("MaxHealthToken");
+	if(!maxhp) maxhp = GetActorProperty(0, APROP_SPAWNHEALTH);
+
+	int hurt = maxhp * LUCIENNE_HURT_PERCENT / 100;
+	if(GameType() <= GAME_NET_COOPERATIVE && hurt < LUCIENNE_MIN_DAMAGE)
+		hurt = LUCIENNE_MIN_DAMAGE; // ensure minimum damage in PvE
+	// cap max damage
+	if(hurt > LUCIENNE_MAX_DAMAGE) hurt = LUCIENNE_MAX_DAMAGE;
+
+	GiveInventory("CleansingHurtProc", 1);
+
+	int victim = ActivatorTid(), temptid;
+	if(!victim) // special case to prevent Lucienne from hurting herself when enemy had no tids
+	{
+		temptid = true;
+		victim = UniqueTid();
+		Thing_ChangeTID(0,victim);
+	}
+	SetActivator(currentCleanser + 1000);
+	Thing_Damage2(victim, hurt, "Cleanse");
+	SetActivator(victim);
+	if(temptid)
+	{
+		Thing_ChangeTID(0,0);
+	}
+}
+
+Script "QCDE_LucienneHandAnimation" (void) clientside
+{
+	// *.0 on coordinates means "align to center"
+	DrawWeapon("QP25Y0",  60.0, 310.0);	delay(1);
+	DrawWeapon("QP25Y0", 100.0, 290.0);	delay(1);
+	DrawWeapon("QP25Y0", 140.0, 270.0);	delay(1);
+	DrawWeapon("QP25Y0", 160.0, 250.0); delay(1);
+	DrawWeapon("QP25Y0", 160.0, 270.0); delay(1);
+	DrawWeapon("QP25Y0", 160.0, 270.0); delay(1);
+	DrawWeapon("QP25Z0", 160.0, 290.0); delay(1);
+	DrawWeapon("QP25Z0", 160.0, 310.0); delay(1);
+	DrawWeapon("QP25Z0", 160.0, 340.0); delay(1);
+	DrawWeapon("QP25Z0", 160.0, 380.0); delay(1);
+	DrawWeapon("QP25Z0", 160.0, 980.0); delay(1);
+}
+
+//---------------------------------
+//		Major's Active
+
+#define MAJOR_ROCKETS   4
+
+Script "QCDE_Ability_Major" (void)
+{
+	int rocketsfired=0;
+	int duration;
+	int imabot;
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	GiveInventory("ActiveInProgress",1);
+	GiveInventory("NoWeaponFireToken",1);
+
+	GiveInventory("StrikesCounter",MAJOR_ROCKETS);
+
+	//PlaySound(0, "QC/Abilities/Major/IncomingVO", CHAN_VOICE, 1.0, false, 1.0);
+	PlaySound(0, "QC/Abilities/Major/Activate", 7, 0.8, false, 0.3);
+
+	if(PlayerIsBot(PlayerNumber()))
+		imabot=1;
+
+	ACS("QCDE_MajorCharges", MAJOR_ROCKETS);
+
+	while(rocketsfired < MAJOR_ROCKETS && duration<= GetDuration())
+	{
+		if (GetPlayerInput(-1, INPUT_BUTTONS) & BT_ATTACK || imabot>=1 )
+		{
+			GiveInventory("MajorAirStrikeProc",1);
+			AmbientSound("QC/Abilities/Major/Launch",64);	//everyone hears it low
+			rocketsfired++;
+			TakeInventory("StrikesCounter",1);
+			ACS("QCDE_MajorCharges", CheckInventory("StrikesCounter"), true);
+			delay(10);
+			duration=duration+10;
+		}
+		duration++;
+		delay(1);
+		if(GetActorProperty(0,APROP_HEALTH) <= 0)
+		{
+			while(rocketsfired<MAJOR_ROCKETS)
+			{
+				GiveInventory("MajorAirStrikeShortProc",1);
+				rocketsfired++;
+				TakeInventory("StrikesCounter",1);
+				ACS("QCDE_MajorCharges", CheckInventory("StrikesCounter"), true);
+				delay(10);
+			}
+		}
+	}
+
+	while(CheckInventory("StrikesCounter"))
+	{
+		TakeInventory("StrikesCounter",1);
+		ACS("QCDE_MajorCharges", CheckInventory("StrikesCounter"), true);
+	}
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+
+Script "QCDE_StrikeSetter" (void)
+{
+	Thing_ChangeTID(0,GetActorProperty(0, APROP_TargetTID) - 1000 + STRIKESET_TIDBASE);
+}
+
+Script "QCDE_BombIncoming" (void)
+{
+	int plrtid = GetActorProperty(0, APROP_TargetTID);
+
+	bool teamplay       = getCvar("teamplay");
+	bool teamlms        = getCvar("teamlms");
+	bool teampossession = getCvar("teampossession");
+	bool ctf            = getCvar("ctf");
+
+	// Always red in non-team games
+	if(!(teamplay || teamlms || teampossession || ctf)) terminate;
+
+	// If coming from a blue guy, color blue
+	if(CheckActorInventory(plrtid, "TeamColor") == 1)
+		Thing_SetTranslation(0, TRANSLATION_SNGCOLOR);
+}
+
+
+
+//---------------------------------
+//		Hunter's Active
+
+Script "QCDE_Ability_Hunter" (void)
+{
+	GiveInventory("HunterSkullProc",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	delay(GetDuration()); //duration of active ability
+	GiveInventory("HunterCleanerProc",1);
+}
+
+Script "QCDE_SkullSpawned" (void)
+{
+	int tid = ActivatorTid();
+	int plr = tid - SKULL_TIDBASE;
+	int plrtid = plr + 1000;
+
+	GiveInventory("TargetForgetter",1);
+	SetPointer(AAPTR_MASTER, plrtid);
+
+	if(GameType() <= GAME_NET_COOPERATIVE) GiveInventory("FriendlyProc",1);
+
+	//ACS("iamamiwhoami");
+}
+
+Script "QCDE_ReattributeToMaster" (void)
+{
+	SetPointer (AAPTR_TARGET,
+				GetActorProperty(0, APROP_TargetTID) - SKULL_TIDBASE + 1000);
+
+	//ACS("iamamiwhoami");
+}
+
+Script "QCDE_HasLivingTarget" (void)
+{
+	int tid1 = ActivatorTid();
+	SetActivatorToTarget(0);
+	int tid2 = ActivatorTid();
+	int hp = GetActorProperty(0, APROP_HEALTH);
+
+	bool enemies = GameType() <= GAME_NET_COOPERATIVE  ||  areEnemies((tid1 - 1000) % 64, (tid2 - 1000) % 64);
+
+	SetResultValue(
+			tid2  &&
+			tid1 != tid2  &&
+			(tid1 - SKULL_TIDBASE) != (tid2 - 1000)  &&
+			hp > 0  &&
+			enemies);
+}
+
+
+//---------------------------------
+//		Serious Sam's Active
+
+Script "QCDE_Ability_Sam" (void)
+{
+	PlaySound(0,"QC/Abilities/Sam/Activate",CHAN_7,0.85,false,0.5);
+	GiveInventory("SamMinigunProc",1);
+	ACS("QCDE_SetWeapon", "SamMinigun", GetDuration());
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+
+	// Rocket arena special case: disable infinite ammo for duration
+	if(CheckInventory("RocketArena")) TakeInventory("PowerInfiniteAmmo",1);
+
+	// Store previously used weapon
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		if(!stricmp(getWeapon(), weaponList[w]))
+			break;
+
+
+	// Main loop
+	int t = GetDuration();
+	while(t --> 0)
+	{
+		if(CheckInventory("SeriousBullets") <= 0) t = 0;
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		delay(1);
+	}
+
+	// Break progress meter: 1 total duration, 1 remaining tic
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
+
+	//Give and select fake weapon
+	GiveInventory("FakeruWeapun",1);
+	SetWeapon("FakeruWeapun");
+	//Remove ability weapon
+	GiveInventory("SamMinigunCleanerProc",1);
+	TakeInventory("SamMinigun",1);
+	If(CheckInventory("DMToken"))	//this if is no longer needed, kept "just in case" in the future
+		GiveInventory("SeriousBullets",80);
+	else
+		GiveInventory("SeriousBullets",120);
+
+	// Rocket arena special case: reenable infinite ammo for duration
+	if(CheckInventory("RocketArena")) GiveInventory("EndlessInfiniteAmmo",1);
+
+	if(!++t) // survived entire duration
+	{
+		delay(5);
+		SetWeapon(weaponList[w]);
+		TakeInventory("FakeruWeapun",1);
+	}
+}
+
+
+//---------------------------------
+//		Postal Dude's Active
+
+Script "QCDE_Ability_Postal" (void)
+{
+	GiveInventory("PostalCowProc",1);
+	ACS("QCDE_SetWeapon", "PostalCowHead", GetDuration());
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		if(!stricmp(getWeapon(), weaponList[w]))
+			break;
+
+
+	int t = GetDuration();
+	while(t --> 0 )
+	{
+		if(checkinventory("CowHeadToken")<= 0) t=0;
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		delay(1);
+	}
+
+	// Break progress meter: 1 total duration, 1 remaining tic
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
+
+	if(checkinventory("CowHeadToken"))
+	{
+		GiveInventory("PostalCowDropProc",1);
+		TakeInventory("CowHeadToken",1);
+	}
+
+	//Give and select fake weapon
+	GiveInventory("FakeruWeapun",1);
+	SetWeapon("FakeruWeapun");
+	//Remove ability weapon
+	GiveInventory("PostalCowCleanerProc",1);
+	TakeInventory("PostalCowHead",1);
+
+	if(!++t) // survived entire duration
+	{
+		delay(5);
+		SetWeapon(weaponList[w]);
+		TakeInventory("FakeruWeapun",1);
+	}
+}
+
+
+
+
+int last_cowgasser;
+Script "QCDE_CowGasHit" (void)
+{
+	last_cowgasser = GetActorProperty(0, APROP_TargetTID);
+	//log(s:"Last cowgasser is set to ", d:last_cowgasser, s:" -- ", n:last_cowgasser -999);
+}
+
+int cowgassing_for[64], cowgasser_of[64];
+#define COWGASSING_AMOUNT     9
+#define COWGASSING_INCREMENT  1
+#define COWGASSING_DAMAGE     9
+#define COWGASSING_PERIOD    35
+Script "QCDE_CowGasVictim" (void)
+{
+	int plr = PlayerNumber(), victid = plr + 1000;
+	if(!isEnemy(last_cowgasser - 1000)) terminate; // No self nor team damage
+	cowgasser_of[plr] = last_cowgasser;
+
+	// Already gassed by somebody? Update the other script
+	if(cowgassing_for[plr])
+	{
+		cowgassing_for[plr] += COWGASSING_INCREMENT;
+		//log(n:plr+1, s:" updates gasser ", d:cowgasser_of[plr], s:" -- ", n:cowgasser_of[plr] -999, s:" and duration to ", d:cowgassing_for[plr]);
+		terminate;
+	}
+
+	// New gassing
+	//log(n:plr+1, s:" gets gassed by cow of ", d:cowgasser_of[plr], s:" -- ", n:cowgasser_of[plr] -999, s:" for ", d:cowgassing_for[plr]);
+	cowgassing_for[plr] = COWGASSING_AMOUNT;
+	while(cowgassing_for[plr] --> 0)
+	{
+		if(CheckActorInventory(victid, "PowerGhostTint")) break;
+
+		SetActivator(cowgasser_of[plr]);
+
+		if(PlayerNumber() == -1) break; // if player disconnected
+
+		if(!CheckActorInventory(victid, "Class_Freeman"))
+			Thing_Damage(victid, COWGASSING_DAMAGE, MOD_WATER); // MOD_WATER ignores armor
+		else // Freeman ignores water though :shrug:
+			Thing_Damage(victid, COWGASSING_DAMAGE, MOD_POISON);
+
+		if(!CheckActorInventory(victid, "Freezetagged"))
+		{
+			GiveActorInventory(victid, "VomitBloodProc",1);
+			GiveInventory("HitBeepLow",1);
+		}
+
+		ACS("QCDE_CowGasLevel", cowgassing_for[plr], victid);
+		if(GetActorProperty(victid,APROP_HEALTH) <= 0) break;
+		//log(n:plr+1, s:" gets gassed by cow of ", d:cowgasser_of[plr], s:" -- ", n:cowgasser_of[plr] -999, s:" for ", d:cowgassing_for[plr]);
+
+		int t = COWGASSING_PERIOD;
+		while(t --> 0)
+			if(GetActorProperty(victid,APROP_HEALTH) > 0)
+				delay(1);
+	}
+	cowgassing_for[plr] = 0;
+}
+
+
+
+//---------------------------------
+//		Painkiller's Active
+
+#define CARD_BUTTONS (BT_MOVELEFT|BT_FORWARD|BT_MOVERIGHT)
+#define CARD_SELECT_TIME 150
+#define CARD_CD_PENALTY_DIVISOR 3
+#define CARDS_TO_PICK 3
+
+Script "QCDE_Ability_Painkiller" (void)
+{
+	int buttons, oldbuttons, triggers;
+	int lastTapValue, ws_axis, ad_axis;
+	int card1, card2, card3, cards, time;
+	int plr = PlayerNumber();
+
+	// Prefill buttons
+	buttons = 0;
+	ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
+	ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
+	if(ws_axis > 0) buttons |= BT_FORWARD;
+	if(ad_axis < 0) buttons |= BT_MOVELEFT;
+	if(ad_axis > 0) buttons |= BT_MOVERIGHT;
+
+	// Sound cue
+	PlaySound(0,"QC/Abilities/Painkiller/Choose",CHAN_7,1.0,false,0.9);
+
+	// Input stage
+	GiveInventory("ActiveInProgress",1);
+	if(!PlayerIsBot(PlayerNumber()))
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// "Make your selection" visuals
+		if(time % 35 == 0)
+			ACS("QCDE_Tarot_Hint");
+
+		oldbuttons = buttons;
+		buttons = 0;
+		ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
+		ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
+		if(ws_axis > 0) buttons |= BT_FORWARD;
+		if(ad_axis < 0) buttons |= BT_MOVELEFT;
+		if(ad_axis > 0) buttons |= BT_MOVERIGHT;
+		triggers = buttons & ~oldbuttons;
+
+		if (triggers & CARD_BUTTONS && !oldbuttons)
+		{
+			if(triggers & BT_MOVELEFT)  { ACS("QCDE_Tarot_Hint_Success", 1, ++card1, ++cards); lastTapValue = 1; }
+			if(triggers & BT_FORWARD)   { ACS("QCDE_Tarot_Hint_Success", 2, ++card2, ++cards); lastTapValue = 2; }
+			if(triggers & BT_MOVERIGHT) { ACS("QCDE_Tarot_Hint_Success", 3, ++card3, ++cards); lastTapValue = 3; }
+		}
+
+		if(cards >= CARDS_TO_PICK) break;
+		if(time++ > CARD_SELECT_TIME) break;
+		SetInventory("ActiveProgressToken",256 * time / CARD_SELECT_TIME);
+
+		// Oops! Turned into a demon
+		if(CheckInventory("PowerDemonMorph"))
+		{
+			SetInventory("ActiveProgressToken",no);
+			SetInventory("ActiveInProgress",no);
+			ACS("QCDE_Tarot_Hint_End");
+			terminate;
+		}
+
+		delay(1);
+	}
+	else switch(random(1,3))
+	{
+	case 1: card1 = 3; cards = 3; break;
+	case 2: card2 = 3; cards = 3; break;
+	case 3: card3 = 3; cards = 3; break;
+	}
+	TakeInventory("ActiveInProgress",1);
+
+	// Selection not started, punish
+	if(cards == 0)
+	{
+		SetInventory("ActiveProgressToken",no);
+		ACS("QCDE_Tarot_Hint_Failure");
+		ACS("QCDE_AbilityCooldown", GetCooldown() / CARD_CD_PENALTY_DIVISOR);
+		terminate;
+	}
+
+	// Selection unfinished, auto complete
+	while(cards < CARDS_TO_PICK && lastTapValue)
+	{
+		SetInventory("ActiveProgressToken",no);
+		//log(n:0, s:" hasn't selected all cards. Autofill: ", d:card1, s:", ", d:card2, s:", ", d:card3);
+		switch(lastTapValue)
+		{
+		case 1: ACS("QCDE_Tarot_Hint_Success", 1, ++card1, ++cards); break;
+		case 2: ACS("QCDE_Tarot_Hint_Success", 2, ++card2, ++cards); break;
+		case 3: ACS("QCDE_Tarot_Hint_Success", 3, ++card3, ++cards); break;
+		}
+	}
+
+	// Sanity checks
+	if(card1 > CARDS_TO_PICK || card2 > CARDS_TO_PICK || card3 > CARDS_TO_PICK)
+	{
+		PrintBold(n:0, s:" got bad card selection: ", d:card1, s:", ", d:card2, s:", ", d:card3);
+	}
+
+	// Selection complete, apply effects
+	ACS("QCDE_Tarot_Hint_Apply");
+	PlaySound(0,"QC/Abilities/Painkiller/Apply",CHAN_7,1.0,false,0.9);
+	GiveInventory("ActiveInProgress",1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	if(IsPvP())
+	{
+		GiveInventory(strparam(s:"PainkillerCard1Level", d:card1), 1);
+		GiveInventory(strparam(s:"PainkillerCard2Level", d:card2), 1);
+		GiveInventory(strparam(s:"PainkillerCard3Level", d:card3), 1);
+	}
+	else
+	{
+		GiveInventory(strparam(s:"PvEPainkillerCard1Level", d:card1), 1);
+		GiveInventory(strparam(s:"PvEPainkillerCard2Level", d:card2), 1);
+		GiveInventory(strparam(s:"PvEPainkillerCard3Level", d:card3), 1);
+	}
+	str class = strparam(s:"TarotOverhead", d:(!!card1 << 0) | (!!card2 << 1) | (!!card3 << 2));
+	SpawnProjectile(0,class,0,0,0,0,0);
+
+	// Wait for duration
+	int t = GetDuration();
+	while(t --> 0) if(GetActorProperty(0, APROP_Health) > 0  &&  !CheckInventory("NoAbilitiesToken")) delay(1);
+
+	// End of effects
+	ACS("QCDE_Tarot_Hint_End");
+	GiveInventory("GenericActiveCleanerProc",1);
+}
+
+
+
+//---------------------------------
+//		Intruder's Active
+
+Script "QCDE_Ability_Intruder" (void)
+{
+	int counter;
+	// Begin
+	GiveInventory("WendigoInProc",1);
+	TakeInventory("PowerIntruderSpeed",1);	//cancels passive buffs
+	TakeInventory("PowerIntruderProtect",1); //cancels passive buffs
+
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+
+	// Disable remaining damage over time from possible Quietus hit or Postal's cow head
+	quieting_for[PlayerNumber()] = 0;
+	cowgassing_for[PlayerNumber()] = 0;
+
+	ACS("QCDE_IntruderLoop");
+
+	// Main loop: Battles between visible and fadeout
+	counter=0;
+	while(counter <= GetDuration() && GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(CheckInventory("IntruderFadeBreakToken"))	//if token (given by fire and pain states in player def)
+		{
+			ACS_NamedExecuteAlways("IntruderRestoreVisibility",0);  //makes visible
+			delay(10);                                              //and waits a bit before trying to fadeout again
+			counter += 10;
+		}
+		else
+		{
+			if(GetActorProperty(0,APROP_Alpha)>0)
+			{
+				ACS_NamedExecuteAlways("IntruderFadeOut",0);
+			}
+
+			If(random(1,10)==1)	//small % of the time it will deal damage to enemies
+				GiveInventory("WendigoAuraDmgProc",1);
+
+			delay(1);
+			counter += 1;
+		}
+	}
+
+	// Exit at destination
+	ACS_NamedExecuteAlways("IntruderRestoreVisibility",0);  //makes visible again
+	GiveInventory("WendigoOutProc",1);
+	ACS_NamedExecuteAlways("QCDE_RestoreIndicator",0);
+	//LocalAmbientSound("QC/Abilities/Nyx/GhostWalkEnd",127);
+}
+
+
+Script "IntruderFadeOut" (void)
+{
+	int counter=10;
+
+	SetActorProperty(0,APROP_RenderStyle,STYLE_Translucent);
+	while(counter>0)
+	{
+		SetActorProperty(0,APROP_Alpha,counter*0.1);
+		//printbold(f:counter*0.1);
+		counter--;
+		delay(1);
+		if(CheckInventory("IntruderFadeBreakToken"))
+			Break;
+	}
+
+	if(!GetActorPowerupTics(0,"PowerWendigoTint"))
+		terminate; // The ability is over, everything was already taken care of
+
+	if(!CheckInventory("IntruderFadeBreakToken"))	//if the loop wasnt interrupted, then fully invis
+	{
+		SetActorProperty(0,APROP_Alpha,0);
+		GiveInventory("WendiInvisPowerUpProc",1);
+	}
+	else	//if it was interrupted, then go full visible
+	{
+		SetActorProperty(0,APROP_RenderStyle,STYLE_Normal);
+		SetActorProperty(0,APROP_Alpha,1.0);
+		GiveInventory("WendiInvisPowerDownProc",1);
+	}
+}
+
+Script "IntruderRestoreVisibility" (void)
+{
+	SetActorProperty(0,APROP_RenderStyle,STYLE_Normal);
+	SetActorProperty(0,APROP_Alpha,1.0);
+	GiveInventory("WendiInvisPowerDownProc",1);
+	delay(2);
+	TakeInventory("IntruderFadeBreakToken",1);
+}
+
+#define WENDIGO_ALERT_COOLDOWN   60
+#define WENDIGO_FOOTPRINT_PERIOD 10
+#define WENDIGO_FOOTPRINT_RADIUS  8.0
+
+Script "QCDE_IntruderLoop" (void) CLIENTSIDE
+{
+	int revealed = 0, last_revealed = 0;
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(!GetActorPowerupTics(0, "PowerWendigoTint")) break;
+
+		// Reveal sound
+		if(!revealed  &&  CheckInventory("IntruderFadeBreakToken")) // just revealing now
+			if(last_revealed + WENDIGO_ALERT_COOLDOWN < Timer())
+			{
+				//PlaySound(0, "QC/Abilities/Intruder/WendigoReveal", 7, 1.0, false, 0.75);
+				GiveInventory("PowerWendigoReveal",1);
+				last_revealed = 0x7FFFFFFF;
+			}
+		if(revealed  &&  !CheckInventory("IntruderFadeBreakToken")) last_revealed = Timer();
+		revealed = CheckInventory("IntruderFadeBreakToken");
+
+		// Footprint FX
+		if(Timer() % WENDIGO_FOOTPRINT_PERIOD == 0)
+		{
+			//GiveInventory("IntruderBodyTrailProc",1);
+			int x = GetActorX(0) + random(-WENDIGO_FOOTPRINT_RADIUS, WENDIGO_FOOTPRINT_RADIUS);
+			int y = GetActorY(0) + random(-WENDIGO_FOOTPRINT_RADIUS, WENDIGO_FOOTPRINT_RADIUS);
+			int z0 = GetActorFloorZ(0);
+			int z1 = GetActorZ(0);
+			if(CheckInventory("Instagib")) SpawnForced("IntruderBodyTrailInstagib",x,y,z1, 0, random(0, 255));
+			SpawnForced("IntruderBodyTrail",x,y,z1, 0, random(0, 255));
+			SpawnForced("D4TBlood",         x,y,z0, 0, random(0, 255));
+			SpawnForced("WendigoFootprint", x,y,z0, 0, random(0, 255));
+		}
+
+		delay(1);
+	}
+}
+
+//=============================================================================
+//
+//		Active Ability: individual effects
+//
+//=============================================================================
+
+// Activator: Player
+script "QCDE_DireOrbThrown" (void)
+{
+	if(tics[PlayerNumber()]) terminate;
+
+	int tid = GetActorProperty(0, APROP_TargetTID) + 64;
+	Thing_Remove(tid);
+	Thing_ChangeTID(0, tid);
+}
+
+// Activator: Player
+script "QCDE_DireOrbUsed" (void)
+{
+	int tid = 1000+64 + PlayerNumber();
+	Teleport_NoFog(tid, 0, 0, FALSE);
+	Thing_Remove(tid);
+	SpawnProjectile(0, "DireOrbExploder", 0, 0, 0, 0, 0);
+	delay(1); //waits a bit
+	GiveInventory("DireOrbTeleFogOutProc",1); //then spawns dire orb fog, which also plays sound
+}
+
+// Activator: Dire Orb
+script "QCDE_DireOrbTimedOut" (void)
+{
+	SetActivatorToTarget(0);
+	// Activator: Player
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	delay(3);
+	TakeInventory("TeleporterThrownToken",1);
+}
+
+Script "QCDE_SetWeapon" (int weapon, int tics)
+{
+	while(tics --> 0)
+	{
+		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		SetWeapon(weapon);
+		delay(1);
+	}
+}
+
+// Activator: BFG ball
+script "QCDE_BFGBallSpawned" (void)
+{
+	Thing_ChangeTid(0, BFGBALL_TIDBASE - 1000 + GetActorProperty(0, APROP_TargetTID));
+	//log(s:"Spawned BFG ball, tid ", d:ActivatorTid());
+}
+
+#define BFG_ARMOR_MELT 8
+
+// Activator: irradiated victim
+script "QCDE_BFGRadiation" (void)
+{
+	// Only change "radius" here if changed A_RadiusGive in BFG9000Shot_DM
+	int radius = 384;
+
+	if(HostileRadiusCheck(BFGBALL_TIDBASE, radius, true))
+	{
+		int ac = CheckInventory("BasicArmor");
+
+		if(ac) // if this player has armor, melt it
+		{
+			TakeInventory("BasicArmor", BFG_ARMOR_MELT);
+			GiveInventory("BfgSlow2", 1); // this doesn't actually slow, but gives color and HUD icon
+		}
+		else // if this player is naked, apply debuff
+		{
+			str debuff = "BfgSlow";
+			debuff = strparam(s:debuff, x:random(3,15));
+			GiveInventory("BfgSlow1", 1); // always here for HUD indication
+			GiveInventory(debuff, 1);
+		}
+	}
+}
+
+function int HostileRadiusCheck (int projectileTidBase, int radius, int blockable)
+{
+	// if not DM, skip
+	if(GameType() < GAME_NET_DEATHMATCH) return false;
+
+	if(blockable)
+	{
+		// if this player is invulnerable by ability, skip
+		if(CheckInventory("PowerGhostTint")) return false;    //doesnt affect ghostwalking nyx
+	}
+
+	int i;
+
+	int x = GetActorX(0) >> 16;
+	int y = GetActorY(0) >> 16;
+
+	for(i = 0; i < 64; i++)
+	{
+		// if the projectile is your own, skip
+		if(i == PlayerNumber()) continue;
+
+		// if that owner player doesn't have a projectile, skip
+		if(!ClassifyActor(projectileTidBase + i)) continue;
+
+		// this projectile should be the only one in existence
+		// if that player's projectile is too far, skip
+		int bx = GetActorX(projectileTidBase + i) >> 16;
+		if(bx - x > radius || x - bx > radius) continue;
+		int by = GetActorY(projectileTidBase + i) >> 16;
+		if(by - y > radius || y - by > radius) continue;
+
+		// if that player is on same team in TDM, skip
+		if (CheckInventory("TeamDeathmatch") &&
+			GetPlayerInfo(i,              PLAYERINFO_TEAM) ==
+			GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM))
+			continue;
+
+		return true;
+	}
+	return false;
+}
+
+#define MAX_TOTEMS     5
+int totemsUp[64][MAX_TOTEMS];
+
+// Activator: Totem
+script "QCDE_TotemSpawned" (void)
+{
+	int plr = GetActorProperty(0, APROP_TargetTID) - 1000;
+	int lastTotem = getLastTotem(plr);
+
+	removeTotem(plr,lastTotem);
+
+	int tid = TOTEM_TIDBASE + plr + lastTotem * 128;
+
+	Thing_ChangeTID(0,tid);
+	totemsUp[plr][lastTotem] = Timer();
+	ACS_NamedExecuteAlways("QCDE_TotemSpawned_Client",0);
+	//log(s:"Totem[", d:plr, s:"][", d:lastTotem, s:"] spawned at ", d:totemsUp[plr][lastTotem], s:", tidded ", d:tid);
+}
+
+// Activator: Totem
+script "QCDE_TotemSpawned_Client" (void) clientside
+{
+	bool cooperative    = getCvar("cooperative");
+	bool teamplay       = getCvar("teamplay");
+	bool teamlms        = getCvar("teamlms");
+	bool teampossession = getCvar("teampossession");
+	bool ctf            = getCvar("ctf");
+	int plr = (ActivatorTid() - TOTEM_TIDBASE) % 64;
+
+	if(cooperative)
+	{
+		SpawnProjectile(0, "TotemFriendlyFX", 0, 0, 0, 0, 0);
+	}
+	if(teamplay || teamlms || teampossession || ctf)
+	{
+		if (GetPlayerInfo(plr, PLAYERINFO_TEAM) == 0)
+			SpawnProjectile(0, "TotemFriendlyFX", 0, 0, 0, 0, 0);
+		else
+			SpawnProjectile(0, "TotemHostileFX", 0, 0, 0, 0, 0);
+	}
+	else // ffa or duel
+	{
+		if(ConsolePlayerNumber() == plr)
+			SpawnProjectile(0, "TotemFriendlyFX", 0, 0, 0, 0, 0);
+		else
+			SpawnProjectile(0, "TotemHostileFX", 0, 0, 0, 0, 0);
+	}
+}
+
+// Activator: Totem's hitbox
+script "QCDE_HitboxSpawned" (void)
+{
+	int plr = GetActorProperty(0, APROP_TargetTID) - 1000;
+	int tid = HITBOX_TIDBASE + plr + getRecentTotem(plr) * 128;
+
+	Thing_ChangeTID(0,tid);
+
+	SetActivator(1000 + plr);
+	// Activator: Galen
+	ACS_NamedExecuteAlways("QCDE_UpdateTotemCount",0);
+
+	// Cooperative has indestructible totems
+	if(GameType() < GAME_NET_DEATHMATCH)
+		Thing_Remove(tid);
+
+	delay(20);
+
+	// Totem never settled, nothing to check for hits?
+	int totemtid = tid - HITBOX_TIDBASE + TOTEM_TIDBASE;
+	if(!IsTidUsed(totemtid))
+		Thing_Remove(tid);
+
+	// Or wrong tid altogether?
+	if(tid && tid < 1000)
+		Thing_Remove(tid);
+
+	// Once more! With feeling!
+	delay(20);
+
+	if(!IsTidUsed(totemtid))
+		Thing_Remove(tid);
+
+	if(tid && tid < 1000)
+		Thing_Remove(tid);
+
+	// Update count if anything changed
+	ACS_NamedExecuteAlways("QCDE_UpdateTotemCount",0);
+
+	// Hitbox follows the totem in case it's moved
+	while(GetActorProperty(tid, APROP_Health) > 0)
+	{
+		int x = GetActorX(tid); int xt = GetActorX(totemtid);
+		int y = GetActorY(tid); int yt = GetActorY(totemtid);
+		int z = GetActorZ(tid); int zt = GetActorZ(totemtid);
+		if(x != xt || y != yt || z != zt)
+			Thing_Move(tid, totemtid, true);
+		delay(1);
+	}
+}
+
+function int getLastTotem(int plr)
+{
+	int i, min = totemsUp[plr][0], res = 0;
+	for(i = 1; i < MAX_TOTEMS; i++)
+	{
+		if(totemsUp[plr][i] < min)
+		{
+			min = totemsUp[plr][i];
+			res = i;
+		}
+	}
+	return res;
+}
+
+function int getRecentTotem(int plr)
+{
+	int i, max = totemsUp[plr][0], res = 0;
+	for(i = 1; i < MAX_TOTEMS; i++)
+	{
+		if(totemsUp[plr][i] > max)
+		{
+			max = totemsUp[plr][i];
+			res = i;
+		}
+	}
+	return res;
+}
+
+function void removeTotem(int plr, int totem)
+{
+	Thing_Remove( TOTEM_TIDBASE + plr + totem * 128);
+	Thing_Remove(HITBOX_TIDBASE + plr + totem * 128);
+}
+
+// Activator: Totem
+script "QCDE_TotemAttacks" (void)
+{
+	int plr = (ActivatorTid() - 1000) % 64;
+	int plrtid = plr + 1000;
+	int target = GetActorProperty(0, APROP_TargetTID);
+	int targetplr = target - 1000;
+
+	bool friendly = false;
+
+	bool teamplay       = getCvar("teamplay");
+	bool teamlms        = getCvar("teamlms");
+	bool teampossession = getCvar("teampossession");
+	bool ctf            = getCvar("ctf");
+
+	if(teamplay || teamlms || teampossession || ctf)
+		friendly = GetPlayerInfo(plr,       PLAYERINFO_TEAM) ==
+		           GetPlayerInfo(targetplr, PLAYERINFO_TEAM);
+	else
+		friendly = plrtid == target;
+
+	if(friendly)
+	{
+		SetActorState(0,"NoAttack");
+		//log(s:"\c[green]Totem attack averted, target is friendly: ", d:plrtid, s:" <3 ", d:target, s:",   teams: ", d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" == ", d:GetPlayerInfo(targetplr, PLAYERINFO_TEAM));
+	}
+	else
+	{
+		SetActorState(0,"Explode");
+		//log(s:"\c[gold]Totem from ", n:plr, s:" tid ", d:plrtid, s:" explodes tid ", d:target, s:",   teams: ", d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" != ", d:GetPlayerInfo(targetplr, PLAYERINFO_TEAM));
+	}
+
+	delay(20);
+
+	SetActivator(1000 + plr);
+	// Activator: Galen
+	ACS_NamedExecuteAlways("QCDE_UpdateTotemCount",0);
+}
+
+// Activator: Totem
+script "QCDE_TotemDestroyed" (void)
+{
+	// Totem never spawned, only projectile blew up?
+	if(!ActivatorTid()) terminate;
+
+	Thing_Destroy(ActivatorTid() + 64);
+	int plr = (ActivatorTid() - 1000) % 64;
+	int totem = (ActivatorTid() - 1064) / 128;
+	totemsUp[plr][totem] = 0;
+	//log(s:"Totem ", d:ActivatorTid(), s:" exploding, removing hitbox ", d:ActivatorTid() + 64, s:", evicting record ", s:"[", d:plr, s:"][", d:totem, s:"]");
+
+	SetActivator(1000 + plr);
+	// Activator: Galen
+	ACS_NamedExecuteAlways("QCDE_UpdateTotemCount",0);
+}
+
+// Activator: Totem's hitbox
+script "QCDE_HitboxDestroyed" (void)
+{
+	Thing_Remove(ActivatorTid() - 64);
+	int plr = (ActivatorTid() - 1000) % 64;
+	int totem = (ActivatorTid() - 1128) / 128;
+	totemsUp[plr][totem] = 0;
+	//log(s:"Hitbox ", d:ActivatorTid(), s:" dying, destroying totem ", d:ActivatorTid() - 64, s:", evicting record ", s:"[", d:plr, s:"][", d:totem, s:"]");
+
+	SetActivator(1000 + plr);
+	// Activator: Galen
+	ACS_NamedExecuteAlways("QCDE_UpdateTotemCount",0);
+}
+
+// Activator: Galen, or ex-Galen
+script "QCDE_UpdateTotemCount" (void)
+{
+	int plr = PlayerNumber();
+
+	// Remove totems from ex-Galen
+	if(!CheckInventory("Class_Galen"))
+	{
+		Thing_Remove(TOTEM_TIDBASE + plr      ); Thing_Remove(HITBOX_TIDBASE + plr      );
+		Thing_Remove(TOTEM_TIDBASE + plr + 128); Thing_Remove(HITBOX_TIDBASE + plr + 128);
+		Thing_Remove(TOTEM_TIDBASE + plr + 256); Thing_Remove(HITBOX_TIDBASE + plr + 256);
+		Thing_Remove(TOTEM_TIDBASE + plr + 384); Thing_Remove(HITBOX_TIDBASE + plr + 384);
+		Thing_Remove(TOTEM_TIDBASE + plr + 512); Thing_Remove(HITBOX_TIDBASE + plr + 512);
+	}
+
+	int count;
+	count += IsTidUsed(TOTEM_TIDBASE + plr      );
+	count += IsTidUsed(TOTEM_TIDBASE + plr + 128);
+	count += IsTidUsed(TOTEM_TIDBASE + plr + 256);
+	count += IsTidUsed(TOTEM_TIDBASE + plr + 384);
+	count += IsTidUsed(TOTEM_TIDBASE + plr + 512);
+
+	SetInventory("TotemToken", count);
+}
+
+
+#define MAULOTAUR_DURATION 25
+// Activator: Dave
+script "QCDE_MaulotaurSpawned" (void)
+{
+	// In coop, don't block players
+	if (GameType() <= GAME_NET_COOPERATIVE) GiveInventory("ThruSpeciesProc", 1);
+
+	int tid = ActivatorTid();
+	int plr = tid - MAULOTAUR_TIDBASE;
+	int plrtid = plr + 1000;
+
+	SetPointer(AAPTR_TARGET, UniqueTid());
+	SetPointer(AAPTR_MASTER, plrtid);
+
+	//ACS("iamamiwhoami");
+
+	// Seppuku if ronin.
+	if (!plrtid)
+	{
+		Thing_Destroy(tid);
+		//log(s:"Orphaned Maulotaur without master dying");
+		terminate;
+	}
+
+	// If DM, apply reduced health
+	if (GameType() >= GAME_NET_DEATHMATCH)
+		SetActorProperty(0,APROP_HEALTH,200);
+
+
+	//log(s:"Maulotaur spawned for ", n:plr+1, s:" with tid ", d:tid);
+	ACS("QCDE_ObjectAllyMarker_Client", plr);
+
+	// Set target to an arbitrary enemy
+	int i;
+	for(i = 0; i < 64; i++)
+	{
+		if(!PlayerInGame(i)) continue;
+		if(!areEnemies(plr, i)) continue;
+
+		SetPointer(AAPTR_TARGET, i+1000);
+		//PrintBold(n:plr+1, s:"'s ", n:0, s:" now hates ", n:i+1);
+		break;
+	}
+
+	// Activator: Player
+	SetActivator(plrtid);
+	delay(1);
+	ACS("QCDE_AbilityCooldown", GetCooldown());
+	GiveInventory("MaulotaurAliveToken", 1);
+
+	// Keep track of current Maulotaur, and kill it in 25 seconds.
+	int ttl = MAULOTAUR_DURATION;
+	while(ttl --> 0)
+	{
+		if(GetActorProperty(tid, APROP_HEALTH) <= 0) break;
+		SetInventory("MaulotaurAliveToken", true);
+		delay(35);
+	}
+
+	SetInventory("MaulotaurAliveToken", false);
+
+	Thing_Destroy(tid);
+}
+
+// Activator: Minion Missile
+Script "QCDE_MaulotaurAttacks" (void)
+{
+	//int tid = UniqueTid();
+	//Thing_ChangeTID(0, tid);
+	int res = SetPointer(AAPTR_TARGET, GetActorProperty(0, APROP_TargetTID) - MAULOTAUR_TIDBASE + 1000);
+
+	//str s = strparam(n:0);
+	//SetActivatorToTarget(0);
+	//str col = "\c[green]";
+	//if(!res) col = "\c[red]";
+	//PrintBold(s:col, s:s, s:" comes from ", n:0);
+}
+
+// Activator: attacking Dave
+Script "QCDE_DavieDontHurtMeDontHurtMeNoMore" (void)
+{
+	int target = GetActorProperty(0, APROP_TargetTID) - 1000;
+	int player = GetActorProperty(0, APROP_MasterTID) - 1000;
+
+	if (target < 0 || target > 63 ||
+	    player < 0 || player > 63) terminate;
+
+	if(!areEnemies(player, target))
+	{
+		GiveInventory("TargetForgetter", 1);
+		SetActorState(0,"Idle");
+	}
+}
+
+// Activator: Player
+script "QCDE_Hourglass" (int percentage, int nosandswirl)
+{
+	if(!percentage) terminate;
+
+	int take = GetCooldown() * percentage / 100;
+
+	// Scale bonus according to percentage server cvar
+	take = take * GetCvar("sv_cooldownPercentage") / 100;
+
+	SetHudSize(1400,1050,1);
+
+	if(percentage > 0)
+	{
+		int size = (percentage + 9) / 10 * 10 + 40;
+		if(size <  30) size =  30;
+		if(size > 100) size = 100;
+		str font = strparam(s:"QCFNT", d:size/100, d:size%100/10, d:size%10);
+		SetFont(font);
+		HudMessage(s:"-", d:percentage, s:"%"; HUDMSG_FADEOUT, 3243, CR_GOLD, 760.1, 946.1, 0.2, 0.04 * percentage);
+	}
+	SetFont("BLINKGLD");
+	//HudMessage(s:"A"; HUDMSG_FADEOUT, 3245, CR_UNTRANSLATED, 700.0, 911.0, 0.08, 0.005 * percentage);
+	if(!nosandswirl) ACS("QCDE_BlinkSandwatch");
+	tics[PlayerNumber()] -= take;
+    if(tics[PlayerNumber()] < 0) tics[PlayerNumber()] = 0;
+}
+
+script "QCDE_BlinkSandwatch" (void) clientside
+{
+	if(IsZandronum(true))
+		if(ActivatorTid() != CheckPlayerCamera(ConsolePlayerNumber()))
+			terminate;
+
+	SetHudSize(1400,1050,1);
+
+	SetFont("SWIRLIN1"); HudMessageBold(s:"A"; HUDMSG_FADEOUT, 3246, CR_UNTRANSLATED, 700.0, 911.0, 0.1, 0.1); delay(2);
+	SetFont("SWIRLIN2"); HudMessageBold(s:"A"; HUDMSG_FADEOUT, 3246, CR_UNTRANSLATED, 700.0, 911.0, 0.1, 0.1); delay(2);
+	SetFont("SWIRLIN3"); HudMessageBold(s:"A"; HUDMSG_FADEOUT, 3246, CR_UNTRANSLATED, 700.0, 911.0, 0.1, 0.1); delay(2);
+	SetFont("SWIRLIN4"); HudMessageBold(s:"A"; HUDMSG_FADEOUT, 3246, CR_UNTRANSLATED, 700.0, 911.0, 0.1, 0.1); delay(2);
+	SetFont("SWIRLIN5"); HudMessageBold(s:"A"; HUDMSG_FADEOUT, 3246, CR_UNTRANSLATED, 700.0, 911.0, 0.1, 0.1); delay(2);
+	SetFont("SWIRLIN6"); HudMessageBold(s:"A"; HUDMSG_FADEOUT, 3246, CR_UNTRANSLATED, 700.0, 911.0, 0.1, 0.1); delay(2);
+}
+
+
+// Activator: freshly spawned BOB
+Script "QCDE_BobRecolor" (void)
+{
+	int mast = GetActorProperty(0, APROP_MasterTID) - 1000;
+	int targ = GetActorProperty(0, APROP_TargetTID) - 1000;
+	if(mast >= 0)
+		Thing_ChangeTID(0, BOB_TIDBASE + mast);
+	else if(targ >= 0)
+		Thing_ChangeTID(0, BOB_TIDBASE + targ);
+	//log(n:0, s:" ownership: mast ", n:mast+1, s:", targ ", n:targ+1, s:" tid ", d:ActivatorTid());
+}
+
+// Activator: BOB spawned a few tics ago
+Script "QCDE_BobRecolor_CLIENTSIDE" (int tid) CLIENTSIDE
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only recolor in PvP
+
+	int plr = tid - BOB_TIDBASE;
+	if(CheckActorClass(0, "QCDEMaulotaur")) plr = tid - MAULOTAUR_TIDBASE;
+
+	int me = ConsolePlayerNumber();
+
+	bool teamplay       = getCvar("teamplay");
+	bool teamlms        = getCvar("teamlms");
+	bool teampossession = getCvar("teampossession");
+	bool ctf            = getCvar("ctf");
+
+	int mast = GetActorProperty(0, APROP_MasterTID) - 1000;
+	int targ = GetActorProperty(0, APROP_TargetTID) - 1000;
+	//log(n:plr + 1, s:" aka ", d:plr, s:" owns BOBs");
+
+	if(teamplay || teamlms || teampossession || ctf)
+		if(GetPlayerInfo(plr, PLAYERINFO_TEAM) == 0)
+		{
+			//log(d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" == 0 , so blue");
+			Thing_SetTranslation(0, TRANSLATION_BLUETEAM);
+		}
+		else
+		{
+			//log(d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" > 0 , so red");
+			Thing_SetTranslation(0, TRANSLATION_REDTEAM);
+		}
+	else
+		if(me != plr)
+		{
+			//log(d:me, s:" != ", d:plr, s:", so red");
+			Thing_SetTranslation(0, TRANSLATION_REDTEAM);
+		}
+}
+
+// Activator: BOB's explosive hack
+Script "QCDE_BobExplosionAttribution" (void)
+{
+	//log(s:" my target tids ", d:GetActorProperty(0, APROP_TargetTID), s:", remainder ", d:(GetActorProperty(0, APROP_TargetTID) % 64));
+	SetPointer(AAPTR_TARGET, 960 + (GetActorProperty(0, APROP_TargetTID) % 64));
+}
+
+
+
+//=============================================================================
+//
+//		Passive Ability: Per Class handlers
+//
+//=============================================================================
+
+//---------------------------------
+//		Ranger's Passive
+
+Script "QCDE_Passive_Ranger" (void)
+{
+	//Passive is done through player properties, kept this for maybe future use.
+}
+
+
+//---------------------------------
+//		Doomslayer's Passive
+
+Script "QCDE_Passive_Doomslayer" (void)
+{
+	int jumped;
+	int zs0,zs1,zs2;
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Speed history -- you're grounded if not flying for 3 tics.
+		// Multiplied to reduce loss of precision on truncation.
+		zs0 = zs1;
+		zs1 = zs2;
+		zs2 = GetActorVelZ(0) * 10 >> 16;
+
+		int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+		int buttons    = GetPlayerInput(-1, INPUT_BUTTONS);
+		int triggers   = buttons & ~oldbuttons; // Current AND NOT past -- means "started just now"
+
+		if((zs0 != 0) && (zs1 != 0) && (zs2 != 0))
+		if(triggers & BT_JUMP)
+		{
+
+			if((zs0 != 0) && (zs1 != 0) && (zs2 != 0))
+			if(jumped < 2)
+			{
+				GiveInventory("ChangeVelocityDoerProc",1);
+			}
+			else {} // jumped all you could
+			else {} // not in flight
+
+			jumped++;
+		}
+		else {} // don't wanna jump
+		else // wasn't in flight for last 3 tics
+		{
+			if((zs0 == 0) && (zs1 == 0) && (zs2 == 0)) // grounded
+				jumped = 0;
+			else // transient state between jumping and landing
+				if(!jumped) // when airborne, it's always like jumped once
+					jumped = 1;
+		}
+
+		delay(1);
+	}
+}
+
+
+//---------------------------------
+//		Corvus's Passive
+
+Script "QCDE_Passive_Corvus" (void)
+{
+	if (GameType() >= GAME_NET_DEATHMATCH)
+		GiveInventory("CorvusRegenerationDM",1);
+	else
+		GiveInventory("CorvusRegenerationCoop",1);
+}
+
+
+//---------------------------------
+//		Kane's Passive
+
+#define PRE_LAND_THRESHOLD  10
+#define POST_LAND_THRESHOLD  3
+#define TIME_BETWEEN_SLIDES 10
+#define MIN_SLIDE_DURATION  26 //0.75 sec
+#define MAX_SLIDE_ADDITION  7 //0.2 sec
+#define CROUCH_UPDATE_RATE   4
+#define TURN_MIN             0.00 // fixed point angle per CROUCH_UPDATE_RATE tics
+#define TURN_MAX             0.33 // 1.0 = 360 deg, 0.25 = 90 deg, 0.05 = 18 deg
+//#define TURN_GOLDILOCKS_PUSH 2
+#define BASE_SLIDE_STRENGTH  1
+int PlayerSpeed;
+Script "QCDE_Passive_Kane" (void)
+{
+	// Crouch-slide for Kanerki-sh
+	int buttons, oldbuttons, triggers;
+	int lastTimeCrouched = -PRE_LAND_THRESHOLD - 1;
+	int lastTimeGrounded, diff;
+	int zs0, zs1, last_angle, angle, landSpeed;
+	int ws_axis, ad_axis;
+	int power, duration;
+
+	if(!playerSpeed)
+	{
+		playerSpeed = GetCvar("sv_PlayerSpeed");
+		//Sets the var to the limit in case someone tries sv_PlayerSpeed=1000
+		if(PlayerSpeed < 70)
+			PlayerSpeed = 70;
+		else if(PlayerSpeed > 130)
+			PlayerSpeed = 130;
+	}
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Player input information
+		oldbuttons = buttons;
+		buttons = GetPlayerInput(PlayerNumber(), INPUT_BUTTONS);
+		triggers = buttons & ~oldbuttons;
+		if(triggers & BT_CROUCH) lastTimeCrouched = Timer();
+
+		// Speed history -- you're grounded if were flying but aren't anymore.
+		zs0 = zs1;
+		zs1 = GetActorVelZ(0) >> 16;
+		if(zs0 < 0 && !zs1)
+		{
+			lastTimeGrounded = Timer();
+			landSpeed = -zs0;
+		}
+
+		diff = lastTimeCrouched - lastTimeGrounded;
+		if(-PRE_LAND_THRESHOLD < diff && diff < POST_LAND_THRESHOLD && (buttons & BT_CROUCH) && !CheckInventory("Freezetagged"))
+		{
+			power = (BASE_SLIDE_STRENGTH*PlayerSpeed)/100; //kinda very rounded, but it does increase/decrease
+			if(diff < 0) duration = MIN_SLIDE_DURATION - MAX_SLIDE_ADDITION * sqrt(landSpeed) * PlayerSpeed / 100 /  PRE_LAND_THRESHOLD / diff;
+			if(diff >=0) duration = MIN_SLIDE_DURATION + MAX_SLIDE_ADDITION * sqrt(landSpeed) * PlayerSpeed / 100 / POST_LAND_THRESHOLD / (diff + 1);
+			//Print(s:"\c[brite]slide! \n speed of fall = ", d:landSpeed, s:" \n timing imprecision = ", d:diff, s:"\n\n power of slide = ", d:power, s:"\n duration of slide = ", d:duration);
+			lastTimeCrouched = 0; // prevent further slides
+			GiveInventory("CrouchSlideProc",1); // decreases speed when slide starts
+			PlaySound (0, "QC/Abilities/Kane/SlideStartLoop", CHAN_BODY, 0.5, true, 1.8);
+
+			GiveInventory("NoFootstepsToken",1);
+			angle = GetActorAngle(0);
+			// and adds intentional speed over duration
+			for(; duration > 0; duration -= CROUCH_UPDATE_RATE)
+			{
+				if(CheckInventory("KickedAlready")!=0) duration=0;
+
+				// Read inputs
+				buttons = GetPlayerInput(PlayerNumber(), INPUT_BUTTONS);
+				ws_axis = GetPlayerInput(PlayerNumber(), INPUT_FORWARDMOVE);
+				ad_axis = GetPlayerInput(PlayerNumber(), INPUT_SIDEMOVE);
+				if(ws_axis < 0) buttons |= BT_BACK;
+				if(ws_axis > 0) buttons |= BT_FORWARD;
+				if(ad_axis < 0) buttons |= BT_MOVELEFT;
+				if(ad_axis > 0) buttons |= BT_MOVERIGHT;
+
+				// Goldilocks push
+				last_angle = angle;
+				angle = GetActorAngle(0);
+				int x = GetActorX(0);
+				int y = GetActorY(0);
+				int z = GetActorZ(0) + 8.0;
+				str color = "";
+
+				// 65536ths of a full turn per CROUCH_UPDATE_RATE tics
+				// 65536 = 360 deg, 16384 = 90 deg, 182 = 1 deg
+				// Or use fixed points: 1.0 = 360 deg, 0.25 = 90 deg, 0.00278 = 1 deg
+				int turn = abs(angle - last_angle);
+				if(turn > 0.8) turn = 1.0 - turn;
+				int goldipush = turn / 0.012;
+
+				if(turn > TURN_MAX) {
+					//SpawnForced("DebugBadTurn2", x,y,z + goldipush*1.0);
+					color = "\c[cyan]";
+				}
+				else
+				{
+					//SpawnForced("DebugGoodTurn", x,y,z + goldipush*1.0);
+					if(buttons & BT_BACK) goldipush = -goldipush;
+					ThrustThing(angle >> 8, goldipush, 0, 0);
+					if(IsPvE()) GiveInventory("SlideKickForwProc",1);
+					color = "\c[brite]";
+				}
+				//PrintBold(n:0, s:color, s:" turning at rate ", f:abs(angle - last_angle), s:" < " , f:TURN_MAX, s:" \n pushed ", d:goldipush);
+
+				// Static push
+				if(buttons & BT_MOVELEFT)	{ ThrustThing(angle>>8+ 64, power, 0, 0); if(IsPvE()) GiveInventory("SlideKickForwProc",1); }
+				if(buttons & BT_BACK)		{ ThrustThing(angle>>8+128, power, 0, 0); /*if(IsPvE()) GiveInventory("SlideKickBackProc",1);*/ }
+				if(buttons & BT_MOVERIGHT)	{ ThrustThing(angle>>8+192, power, 0, 0); if(IsPvE()) GiveInventory("SlideKickForwProc",1); }
+				if(!(buttons & BT_BACK))	{ ThrustThing(angle>>8    , power, 0, 0); if(IsPvE()) GiveInventory("SlideKickForwProc",1); }
+				delay(CROUCH_UPDATE_RATE);
+
+				if(!(buttons & BT_CROUCH)) break;
+				if(buttons & BT_JUMP)      break;
+			}
+			TakeInventory("NoFootstepsToken",1);
+			TakeInventory("KickedAlready",1);
+			//Print(s:"\c[bludi]slide is over.");
+			PlaySound (0, "NoSoundHax", CHAN_BODY, 0.01, false, 2018.0210);
+			delay(TIME_BETWEEN_SLIDES);
+		}
+
+		delay(1);
+	}
+}
+
+
+
+// Activator: dying monster
+Script "QCDE_MonsterKill_QCKane" (int xdeath)
+{
+	int hb, hn, hd;
+	if(CheckInventory("SlideKicked")) //if he wasn't slidekick'd, dont worry about this at all
+	{
+		hb = GetUserVariable(0,"user_healthbefore");
+		hn = GetActorProperty(0,APROP_Health);
+		hd = hb+(hn*-1);
+
+		//if health now is neg spawnhealth -1, means forced xdeath, useless value, random shards
+		if((hn*-1)-1==GetActorProperty(0,APROP_SpawnHealth))
+			{ GiveInventory("KaneShardDropProc",random(1,5)); /*Printbold(s:"FML");*/ }
+		//if health now makes some sense, then...
+		else if(hd>=250)
+			{ GiveInventory("KaneShardDropProc",7); /*Printbold(s:"7");*/ }
+		else if(hd>=150)
+			{ GiveInventory("KaneShardDropProc",6); /*Printbold(s:"6");*/ }
+		else if(hd>=120)
+			{ GiveInventory("KaneShardDropProc",5); /*Printbold(s:"5");*/ }
+		else if(hd>=90)
+			{ GiveInventory("KaneShardDropProc",4); /*Printbold(s:"4");*/ }
+		else if(hd>=60)
+			{ GiveInventory("KaneShardDropProc",3); /*Printbold(s:"3");*/ }
+		else if(hd>=30)
+			{ GiveInventory("KaneShardDropProc",2); /*Printbold(s:"2");*/ }
+		else
+			{ GiveInventory("KaneShardDropProc",1); /*Printbold(s:"1");*/ }
+
+		/*Printbold(s:"Spawn Health: ",d:GetActorProperty(0,APROP_SpawnHealth),
+		s:"\nHealth Before: ",d:hb,
+		s:"\nHealth now: ",d:hn);*/
+	}
+}
+Script "QCDE_PlayerKill_QCKane" (void) {} //does nothing when killing a player
+
+
+//---------------------------------
+//		Caleb's Passive
+
+Script "QCDE_Passive_Caleb" (void)
+{}
+
+// Activator: dying monster
+Script "QCDE_MonsterKill_QCCaleb" (int xdeath)
+{
+	int killertid = GetActorProperty(0,APROP_TargetTID);
+	if(CheckActorInventory(killertid,"PowerCalebDrain")) // killer uses ability?
+	{
+		GiveActorInventory(killertid,"CalebHeartSP",1); // instant delivery
+	}
+	else
+	{
+		SpawnSpotForced("CalebHeartSP",0,0,0);
+	}
+}
+
+// Activator: dying victim
+Script "QCDE_PlayerKill_QCCaleb" (void)
+{
+	if(GetActorProperty(0,APROP_HEALTH) > 0) terminate;
+
+	int killertid = GetActorProperty(0,APROP_TargetTID);
+	if(!CheckActorInventory(killertid,"Class_Caleb")) terminate; // killer is not Caleb?
+
+	if(CheckActorInventory(killertid,"PowerCalebDrain")) // killer uses ability?
+	{
+		GiveActorInventory(killertid,"CalebHeartDM",1); // instant delivery
+	}
+	else
+	{
+		SpawnSpotForced("CalebHeartDM",0,0,0);
+	}
+}
+
+
+//---------------------------------
+//		Menelkir's Passive
+
+Script "QCDE_Passive_Menelkir" (void)
+{}
+
+// Activator: dying monster
+Script "QCDE_MonsterKill_QCMenelkir" (void)
+{
+	if(GetActorProperty(0,APROP_HEALTH) > 0) terminate;
+
+	int killertid = GetActorProperty(0,APROP_TargetTID);
+	if(!CheckActorInventory(killertid, "Class_Menelkir")) terminate;
+	if(GetActorProperty(killertid, APROP_HEALTH) <= 0) terminate;
+
+	if(random(1,100) < 20)
+		SpawnSpotForced("MenelkirMonsterHourglass",0,0,0);
+}
+
+// Activator: dying victim
+Script "QCDE_PlayerKill_QCMenelkir" (void)
+{
+	if(GetActorProperty(0,APROP_HEALTH) > 0) terminate;
+
+	int killertid = GetActorProperty(0,APROP_TargetTID);
+	if(!CheckActorInventory(killertid, "Class_Menelkir")) terminate;
+	if(GetActorProperty(killertid, APROP_HEALTH) <= 0) terminate;
+
+	SpawnSpotForced("MenelkirHourglass",0,0,0);
+}
+
+
+//---------------------------------
+//		Terminator's Passive
+
+str AmmoType[9] = {
+		"",		//0  Empty
+		"QCBulletAmmo",		//1  bullet
+		"QCShellAmmo",		//2  shell
+		"QCNailAmmo",		//3  nail
+		"QCBoltAmmo",		//4  bolt
+		"QCRocketAmmo",		//5  rocket
+		"QCCoilAmmo",		//6  coil
+		"QCSlugAmmo",		//7  slug
+		"QCBFGAmmo"			//8  bfg
+		};
+int AmmoValues[9][2] = {
+		//Amount	interval(10tic)
+		{	0,		1000,	},	//0  Empty
+		{	3,		   4,	},	//1  bullet	a bit more than a second
+		{	1,		   4,	},	//2  shell	a bit more than a second
+		{	3,		   4,	},	//3  nail	a bit more than a second
+		{	1,		   7,	},	//4  bolt	2 sec
+		{	1,		   7,	},	//5  rocket	2 sec
+		{	3,		   4,	},	//6  coil	a bit more than a second
+		{	1,		  10,	},	//7  slug	a bit less than 3 seconds
+		{	1,		  28,	}	//8  bfg	8 sec
+		};
+
+Script "QCDE_Passive_Terminator" (void)
+{
+	//if(GetActorProperty(0,APROP_HEALTH) > 0) terminate;
+	int TenTics, CurrentAmmo, PreviousAmmo;
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(CheckInventory("Freezetagged")) // FT fix
+		{
+			delay(50);
+			continue;
+		}
+
+		if		(qcContains("Mac"))	CurrentAmmo=1;
+		else if (qcContains("Sho"))	CurrentAmmo=2;
+		else if (qcContains("Nai"))	CurrentAmmo=3;
+		else if (qcContains("Tri"))	CurrentAmmo=4;
+		else if (qcContains("Roc"))	CurrentAmmo=5;
+		else if (qcContains("Lig"))	CurrentAmmo=6;
+		else if (qcContains("Rai"))	CurrentAmmo=7;
+		else if (qcContains("BFG"))	CurrentAmmo=8;
+		else	//if any other weapon
+			CurrentAmmo=0;	//nothing at all
+
+		TenTics++;			//Increase counter of tics
+
+		if(TenTics >= AmmoValues[CurrentAmmo][1])
+		{
+			if(CheckInventory(AmmoType[CurrentAmmo]) < GetAmmoCapacity(AmmoType[CurrentAmmo]))
+				GiveInventory(AmmoType[CurrentAmmo] , AmmoValues[CurrentAmmo][0]);
+			else if(GameType() == GAME_NET_COOPERATIVE || // in cooperative
+					CheckInventory("TeamDeathmatch"))  // or team deathmatch
+			{
+				// Drop small pickup and stop regen for time equal to normal regen period
+				int x = GetActorX(0);
+				int y = GetActorY(0);
+				int z = GetActorZ(0) + 64.0;
+				SpawnForced(strparam(s:AmmoType[CurrentAmmo], s:"Terminator"), x,y,z);
+				//Log(s:strparam(s:AmmoType[CurrentAmmo], s:"Terminator"), s:" shared");
+				Delay(AmmoValues[CurrentAmmo][1]);
+			}
+			TenTics=0;
+		}
+
+		Delay(10);
+	}
+}
+
+function int qcContains(str subst)
+{
+	// If 3-letter substring starting at second ("qcBFGdm") or at seventh ("qcheavyMAChinegun")
+	// character equals weapon name input, that's the weapon we're looking for.
+	// Partially inspired by AcsUtils StrFind.
+	str weapon = GetWeapon();
+	return  !stricmp(strmid(weapon, 2, 3), subst) ||
+			!stricmp(strmid(weapon, 7, 3), subst);
+}
+
+//---------------------------------
+//		Zedek's Passive
+
+#define ZEDEK_MIN_FALL_SPEED  10
+#define ZEDEK_POST_FALL_DELAY 10
+Script "QCDE_Passive_Zedek" (void)
+{
+	// Give the ironfeet powerup
+	if (GameType() >= GAME_NET_DEATHMATCH)
+		GiveInventory("PowerZedekFeet_DM",1);
+	else
+		GiveInventory("PowerZedekFeet",1);
+
+	// Stomping on landing for Zedek
+	int zs0, zs1, landSpeed;
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Speed history -- you're grounded if were flying but aren't anymore.
+		zs0 = zs1;
+		zs1 = GetActorVelZ(0) >> 16;
+		if(zs0 < -ZEDEK_MIN_FALL_SPEED && !zs1)
+		{
+			landSpeed = -zs0;
+			SpawnProjectile(0, "ZedekCannonball", 0, 0,landSpeed*8, 0,0);
+			delay(ZEDEK_POST_FALL_DELAY);
+		}
+
+		delay(1);
+	}
+}
+
+
+//---------------------------------
+//		Inquisitor's Passive
+
+//#define INQUISITOR_TAP_DELAY    5
+//#define MAXIMUM_TAP_DELAY      15
+int INQUISITOR_TAP_DELAY   =  2;
+int MAXIMUM_TAP_DELAY      = 15;
+int INQUISITOR_TAP_COOLDOWN= 35;
+#define INQUISITOR_THRUST      10
+#define INQUISITOR_THRUSTSIDE  13
+#define MOVEMENT_BUTTONS (BT_MOVELEFT|BT_FORWARD|BT_MOVERIGHT|BT_BACK)
+Script "QCDE_Passive_Inquisitor" (void)
+{
+	// Mid-air tap movement for ~~Clutch~~ Inquisitor
+	int buttons, oldbuttons, triggers;
+	int lastTapTime, lastTapValue, angle, ableToJump;
+	int ws_axis, ad_axis;
+	int plr = PlayerNumber();
+
+	// This passive is human-scum-only.
+	if(PlayerIsBot(plr)) terminate;
+
+	if(!playerSpeed)
+	{
+		playerSpeed = GetCvar("sv_PlayerSpeed");
+		//Sets the var to the limit in case someone tries sv_PlayerSpeed=1000
+		if(PlayerSpeed < 70)
+			PlayerSpeed = 70;
+		else if(PlayerSpeed > 130)
+			PlayerSpeed = 130;
+	}
+
+	// Thrust that is scaled by the sv_PlayerSpeed var
+	int ThrustScaled = (INQUISITOR_THRUST*PlayerSpeed)/100;
+	int ThrustSideScaled = (INQUISITOR_THRUSTSIDE*PlayerSpeed)/100;
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Player input information
+		oldbuttons = buttons;
+		buttons = 0;
+		ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
+		ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
+		if(ws_axis < 0) buttons |= BT_BACK;
+		if(ws_axis > 0) buttons |= BT_FORWARD;
+		if(ad_axis < 0) buttons |= BT_MOVELEFT;
+		if(ad_axis > 0) buttons |= BT_MOVERIGHT;
+		triggers = buttons & ~oldbuttons;
+
+		// Still defense
+		bool stillDefense = !CheckInventory("InquisitorStageToken") && !(buttons & MOVEMENT_BUTTONS);
+		if (!stillDefense)
+			TakeInventory("PowerClutchProtec",1);
+		else if(!CheckInventory("PowerClutchProtec"))
+			GiveInventory("ClutchPassiveProtec",1);
+
+		// Tap movement
+		if (triggers & MOVEMENT_BUTTONS)                         // Player taps a movement key,
+		if (!CheckInventory("Freezetagged"))                     // while not being frozen in freezetag
+		{
+			MAXIMUM_TAP_DELAY = GetCvar("cl_clutchTapMax");
+			if (lastTapTime + (INQUISITOR_TAP_DELAY) <= Timer() && // at sane rate,
+				lastTapTime +     MAXIMUM_TAP_DELAY  >  Timer()){// but not too rarely,
+				if (lastTapValue == triggers)                    // the same movement key is hit second time,
+				{	if (ableToJump && GetActorVelZ(0))           // they haven't yet spent the in-air lunge,
+					{                                            // -- they can has dash
+						ableToJump = false;
+						lastTapValue = 0;
+						angle = GetActorAngle(0) >> 8;
+						ThrustThingZ(0,15,0,1);		//first, throws player a bit up
+						if(triggers & BT_FORWARD)	ThrustThing(angle    , ThrustScaled,     0, 0);
+						if(triggers & BT_MOVELEFT)	ThrustThing(angle+ 64, ThrustSideScaled, 0, 0);
+						if(triggers & BT_BACK)		ThrustThing(angle+128, ThrustScaled,     0, 0);
+						if(triggers & BT_MOVERIGHT)	ThrustThing(angle+192, ThrustSideScaled, 0, 0);
+						PlaySound (0, "QC/Abilities/Inquisitor/Dodge", 6, 0.75, false, 1.8);
+						//PrintBold(s:"Scaled forward push: ",d:ThrustScaled,s:"\n Scaled side push: ",d:ThrustSideScaled);
+						//Log      (s:"Scaled forward push: ",d:ThrustScaled,s:"\n Scaled side push: ",d:ThrustSideScaled);
+
+						int t = INQUISITOR_TAP_COOLDOWN;
+						while(t --> 0) {
+							if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+							delay(1);
+						}
+					}
+				}
+			}
+			lastTapValue = triggers;
+			lastTapTime = Timer();
+		}
+
+		// Grounded? Reset ability to lunge in mid-air.
+		if(!GetActorVelZ(0)) ableToJump = true;
+
+		delay(1);
+	}
+}
+
+
+//---------------------------------
+//		Bitterman's Passive
+
+#define BITTERMAN_REGEN_PERIOD 20
+
+Script "QCDE_Passive_Bitterman" (void)
+{
+	if(GameType() < GAME_NET_DEATHMATCH)
+	{
+		if(!CheckInventory("ExtraAmmoCapacity"))
+		{
+			GiveInventory("ExtraAmmoCapacity",1);
+			GiveInventory("QCBackpack",1);
+			ACS_NamedExecuteAlways("鳞~Loot🅱ox0_2",0,0,0,0);
+			ACS_NamedExecuteAlways("鳞~Loot🅱ox0_2",0,0,0,0);
+			ACS_NamedExecuteAlways("鳞~Loot🅱ox0_2",0,0,0,0);
+		}
+	}
+	else
+	{
+		delay(1);
+		SetAmmoCapacity("QCBulletAmmo",	220);
+		SetAmmoCapacity("QCShellAmmo",	 35);
+		SetAmmoCapacity("QCNailAmmo",	220);
+		SetAmmoCapacity("QCBoltAmmo", 	 25);
+		SetAmmoCapacity("QCRocketAmmo",	 25);
+		SetAmmoCapacity("QCCoilAmmo", 	220);
+		SetAmmoCapacity("QCSlugAmmo", 	 25);
+		SetAmmoCapacity("QCBFGAmmo",	 25);
+	}
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(CheckInventory("PowerShieldCharge") < 200 || GameType() > GAME_SINGLE_PLAYER)
+			GiveInventory("PowerShieldCharge", Timer() % BITTERMAN_REGEN_PERIOD == 0);
+		delay(1);
+	}
+}
+
+//Passive 2 "Armor Efficient", where armor degenerates MUCH slower,
+//the effect takes place in the script "QCDE_Degeneration" in "HLTHARMR.acs"
+
+
+
+//---------------------------------
+//		Galen's Passive
+
+Script "QCDE_Passive_Galen" (void)
+{
+	// Implemented in health pickup code
+}
+
+
+
+
+//---------------------------------
+//		Nyx's Passive
+
+#define NYX_THRUST		3
+#define NYX_THRUST_Z	4
+
+Script "QCDE_Passive_Nyx" (void)
+{
+	int jumped;
+	int zs0,zs1,zs2, angle;
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Speed history -- you're grounded if not flying for 3 tics.
+		// Multiplied to reduce loss of precision on truncation.
+		zs0 = zs1;
+		zs1 = zs2;
+		zs2 = GetActorVelZ(0) * 10 >> 16;
+
+		int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+		int buttons    = GetPlayerInput(-1, INPUT_BUTTONS);
+		int ws_axis = GetPlayerInput(PlayerNumber(), INPUT_FORWARDMOVE);
+		int ad_axis = GetPlayerInput(PlayerNumber(), INPUT_SIDEMOVE);
+		if(ws_axis < 0) buttons |= BT_BACK;
+		if(ws_axis > 0) buttons |= BT_FORWARD;
+		if(ad_axis < 0) buttons |= BT_MOVELEFT;
+		if(ad_axis > 0) buttons |= BT_MOVERIGHT;
+		int triggers   = buttons & ~oldbuttons; // Current AND NOT past -- means "started just now"
+
+		if((zs0 != 0) && (zs1 != 0) && (zs2 != 0))
+		{
+			if(triggers & BT_JUMP)
+			if(!CheckInventory("Freezetagged"))
+			{
+				if((zs0 != 0) && (zs1 != 0) && (zs2 != 0))
+				if(jumped < 2)
+				{
+					// Attempt to spawn an actor with radius larger than hers.
+					// If it succeeds and coordinates are exactly as it should be, there's no wall.
+					int tid = UniqueTid();
+
+					int x = GetActorX(0);
+					int y = GetActorY(0);
+					int z = GetActorZ(0) - 4.0; // under her feet
+
+					// Check for one-sided walls
+					if(!Spawn("NyxWallTest", x,y,z, tid)) wallJump(buttons);
+					else
+					{
+						ThrustThing(234,20,true,tid); // enforce position change
+						delay(1);
+
+						// After speed is added to object, check for position.
+						// If it's the same, then wall test is stuck --
+						// thus detecting the wall.
+						int cond = x == GetActorX(tid) &&
+						           y == GetActorY(tid) &&
+						           z == GetActorZ(tid);
+
+						if (cond) wallJump(buttons);
+
+						Thing_Remove(tid);
+					}
+				}
+				else {} //print(s:"Jumped too much"); // jumped all you could
+				else {} // not in flight
+
+				jumped++;
+			}
+			else {} // freezetagged
+			else {} // don't wanna jump
+		}
+		else // wasn't in flight for last 3 tics
+		{
+			if((zs0 == 0) && (zs1 == 0) && (zs2 == 0)) // grounded
+			{
+				jumped = 0;
+			}
+			else // transient state between jumping and landing
+				if(!jumped) // when airborne, it's always like jumped once
+					jumped = 1;
+
+			if(zs1 < 0  &&  zs2 == 0)                    // landed
+				if(!CheckInventory("NoFootstepsToken")) // in material world
+					if(zs1 < -90)                      // from quite a height
+					{
+						PlaySound(0,"NyxGrunt",CHAN_VOICE);
+						PlaySound(0,"NyxStomp",CHAN_BODY);	//"*land" sound plays in CHANNEL_AUTO, so it can't be overwritten
+					}
+					else if(zs1 < -50)                            // from a step or something
+						PlaySound(0,"NyxStomp",CHAN_BODY);
+
+			if((buttons & BT_JUMP) && !zs1 && (zs2 > 0)) // if trying to jump and getting push up
+				if(!CheckInventory("NoFootstepsToken")) // and if not in ¢§Ոth dimension
+					PlaySound(0,"NyxJump",CHAN_BODY);  // manual jump grunt
+		}
+		delay(1);
+	}
+}
+
+function void wallJump(int buttons)
+{
+	GiveInventory("ChangeVelocityDoerNyxProc",1);
+	ThrustThingZ(0,NYX_THRUST_Z*4,0,1);		// Extra jump height
+
+	// and a noticeable nudge in preferred direction
+	// (diagonal is 1.414 times greater, that's a feature)
+	int angle = GetActorAngle(0) >> 8;
+	if(buttons & BT_FORWARD)	ThrustThing(angle    , NYX_THRUST, 0, 0);
+	if(buttons & BT_MOVELEFT)	ThrustThing(angle+ 64, NYX_THRUST, 0, 0);
+	if(buttons & BT_BACK)		ThrustThing(angle+128, NYX_THRUST, 0, 0);
+	if(buttons & BT_MOVERIGHT)	ThrustThing(angle+192, NYX_THRUST, 0, 0);
+}
+
+
+
+//---------------------------------
+//		Sorgaul's Passive
+Script "QCDE_Passive_Sorgaul" (void)
+{
+	// Implemented in pickups
+}
+
+
+//---------------------------------
+//		Duke's Passive
+Script "QCDE_Passive_DukeNukem" (void)
+{
+	// Implemented in pickups
+}
+
+//---------------------------------
+//		Durandal's Passive
+Script "QCDE_Passive_Durandal" (void)
+{
+	// Implemented in armor pickups, calls script below
+}
+
+//This is derived of the script "ArmorGiver" from HLTHARMR.acs
+//Edited to work for Durandal's rules
+Script "DurandalArmor" (int ClassArmorMax, int ClassHealthMax, int ArmorToGive)
+{
+	if( ArmorToGive >= 100 ) 				//if it's a heavy armor
+		ClassArmorMax = ClassArmorMax+75;	//allow overcharge of +75
+
+	int ArmorCount;
+	int CurrentHealth = GetActorProperty(0,APROP_HEALTH);
+	int HealthMissing = 0;
+
+	if(CurrentHealth < ClassHealthMax)
+	{
+		HealthMissing = ClassHealthMax - CurrentHealth;	//determines how much health was missing
+
+		if(HealthMissing<=ArmorToGive)
+			SetActorProperty(0, APROP_Health, CurrentHealth+HealthMissing);	//and heals it
+		else
+		{
+			SetActorProperty(0, APROP_Health, CurrentHealth+ArmorToGive);
+			HealthMissing=0;
+		}
+	}
+
+	if(GetActorProperty(0,APROP_HEALTH)>= ClassHealthMax) //if current health max or above
+	{
+		ArmorToGive= ArmorToGive - HealthMissing;
+		if(ArmorToGive>0)
+			while(CheckInventory("BasicArmor") < ClassArmorMax  &&  ArmorCount < ArmorToGive)
+			{
+				GiveInventory("QCArmorPoint", 1);
+				ArmorCount++;
+			}
+	}
+}
+
+
+//---------------------------------
+//		Keel's Passive
+
+Script "QCDE_Passive_Keel" (void)
+{
+	int amm0, amm1;
+
+	// Remember initial state (not to get cooldown bonus on respawn)
+	amm0 =  CheckInventory("QCBulletAmmo") +
+			CheckInventory("QCShellAmmo" ) +
+			CheckInventory("QCNailAmmo"  ) +
+			CheckInventory("QCBoltAmmo"  ) +
+			CheckInventory("QCRocketAmmo") +
+			CheckInventory("QCCoilAmmo"  ) +
+			CheckInventory("QCSlugAmmo"  ) +
+			CheckInventory("QCBFGAmmo"   );
+
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Reduce cooldown with ammo
+		amm1 =
+				CheckInventory("QCBulletAmmo") +
+				CheckInventory("QCShellAmmo" ) +
+				CheckInventory("QCNailAmmo"  ) +
+				CheckInventory("QCBoltAmmo"  ) +
+				CheckInventory("QCRocketAmmo") +
+				CheckInventory("QCCoilAmmo"  ) +
+				CheckInventory("QCSlugAmmo"  ) +
+				CheckInventory("QCBFGAmmo"   );
+
+		if(amm1 > amm0  &&  tics[PlayerNumber()])
+		{
+			if(GameType() >= GAME_NET_DEATHMATCH)
+				ACS("QCDE_Hourglass", 5);
+			else
+				ACS("QCDE_Hourglass", 5);
+		}
+
+		amm0 = amm1;
+
+		delay(1);
+	}
+}
+
+//---------------------------------
+//		Sarge's Passive
+
+Script "QCDE_Passive_Sarge" (void)
+{
+	if(IsPVE())
+	{
+		GiveInventory("NoHealthDegenerationToken", 1);
+		GiveInventory("NoArmorDegenerationToken" , 1);
+	}
+}
+
+
+
+//---------------------------------
+//		Lo Wang's Passive
+
+#define LOWANG_TAP_DELAY    25
+#define LOWANG_TIC_PERIOD    5
+#define LOWANG_MAX_DURATION 35
+#define LOWANG_LOW_HEALTH   40
+#define LOWANG_DMG_PERIOD   10
+Script "QCDE_Passive_LoWang" (void)
+{
+	// Right-right-use healing and extra damage when low
+	int buttons, oldbuttons, triggers;
+	int lastTapTime, lastTapValue, tapSequence, angle;
+	int ws_axis, ad_axis;
+	int rageTime, healTime;
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Player input information
+		oldbuttons = buttons;
+		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+		ws_axis = GetPlayerInput(-1, INPUT_FORWARDMOVE);
+		ad_axis = GetPlayerInput(-1, INPUT_SIDEMOVE);
+		if(ws_axis < 0) buttons |= BT_BACK;
+		if(ws_axis > 0) buttons |= BT_FORWARD;
+		if(ad_axis < 0) buttons |= BT_MOVELEFT;
+		if(ad_axis > 0) buttons |= BT_MOVERIGHT;
+		triggers = buttons & ~oldbuttons;
+
+		// Extra damage when low
+		if (!(Timer() % LOWANG_DMG_PERIOD))
+			if (GetActorProperty(0, APROP_HEALTH) <= LOWANG_LOW_HEALTH)
+			{
+				if(!rageTime) GiveInventory("LoWangRageSoundProc", 1);
+				rageTime++;
+
+				GiveInventory("LoWangPassiveDamage", 1);
+			}
+			else
+			{
+				TakeInventory("PowerLoWangDamage", 1);
+				rageTime=0;
+			}
+
+
+		// Hold detection
+		// Player holds +use
+		if (buttons & BT_USE)
+		{
+			if (lastTapTime + LOWANG_TAP_DELAY > Timer()) // if tapping time hasn't yet expired
+			{
+				if (!(Timer() % LOWANG_TIC_PERIOD))
+				{
+					if(!healTime) GiveInventory("LoWangHealSoundProc", 1);
+					healTime++;
+
+					GiveInventory("LoWangHealAreaProc", 1);
+				}
+
+				lastTapTime = Timer();
+
+				// Duration cap. Measured in LOWANG_TIC_PERIODs.
+				if (healTime > LOWANG_MAX_DURATION) lastTapTime = 0;
+			}
+		}
+		// Tap detection
+		// Player taps D, holds no other button
+		else if (buttons == BT_MOVERIGHT && !oldbuttons)
+		{
+			healTime=0;
+			if (lastTapTime + LOWANG_TAP_DELAY > Timer()){ // if tapping time hasn't yet expired
+				tapSequence += 1;
+			} else {
+				tapSequence = 1;
+			}
+			//printbold(s:"\c[bludi] TAP! \nseq = ", d:tapSequence, s:"\ndelay = ", d:Timer() - lastTapTime);
+			lastTapTime = Timer();
+		}
+
+		delay(1);
+	}
+}
+
+
+
+
+//---------------------------------
+//		Grayson's Passive
+
+#define GRAYSON_NEWLIFE_DELAY 15
+#define GRAYSON_INITIAL_DELAY 20
+#define GRAYSON_HOLD_DELAY    28
+#define GRAYSON_ARMOR_TAKE    25
+
+int AmmoPackSize[9] = {
+		  0, //0  noth
+		100, //1  bullet
+		 30, //2  shell
+		100, //3  nail
+		 15, //4  bolt
+		 10, //5  rocket
+		100, //6  coil
+		 10, //7  slug
+		  5  //8  bfg
+		};
+
+Script "QCDE_Passive_Grayson" (void)
+{
+	// Hold +use to buy ammo packs for armor blocks
+	int holdPulses, lastHoldPulses;
+	int lastHoldStartTime = Timer();
+	int CurrentAmmo;
+
+	// Separate block to wait for respawn spacebar to release
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(CurrentAmmo ++> GRAYSON_NEWLIFE_DELAY) break;
+		delay(1);
+	}
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		delay(1);
+
+		if (!(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)) continue;
+
+		// -- Now alive and holding +use --
+
+		if (!(GetPlayerInput(-1, INPUT_OLDBUTTONS) & BT_USE))
+			lastHoldStartTime = Timer();
+
+		if		(qcContains("Mac"))	CurrentAmmo = 1;
+		else if (qcContains("Sho"))	CurrentAmmo = 2;
+		else if (qcContains("Nai"))	CurrentAmmo = 3;
+		else if (qcContains("Tri"))	CurrentAmmo = 4;
+		else if (qcContains("Roc"))	CurrentAmmo = 5;
+		else if (qcContains("Lig"))	CurrentAmmo = 6;
+		else if (qcContains("Rai"))	CurrentAmmo = 7;
+		else if (qcContains("BFG"))	CurrentAmmo = 8;
+		else continue;
+		int amount = AmmoPackSize[CurrentAmmo];
+
+		lastHoldPulses = holdPulses;
+		int duration = Timer() - lastHoldStartTime;
+		holdPulses = (duration + GRAYSON_HOLD_DELAY - GRAYSON_INITIAL_DELAY) / GRAYSON_HOLD_DELAY; // [Ms] sorry for arcaneness, but this is still better than previous attempt
+
+		if (lastHoldPulses == holdPulses) continue; // prevent from triggering every tic
+
+		//log(s:"trig: ", d:lastHoldStartTime, s:" -> ", d:Timer(), s:". diff ", d:duration + GRAYSON_HOLD_DELAY - GRAYSON_INITIAL_DELAY, s:".  pulse = ", d:holdPulses);
+
+		if (holdPulses < 1) continue; // prevent from triggering too early
+
+		if (holdPulses == 1)
+		{
+			// Show initial prompt
+			ACS("QCDE_GraysonText", amount, 0, CurrentAmmo);
+			continue;
+		}
+
+		// -- holdPulses > 1: now buying stuff --
+
+		if(CheckInventory("BasicArmor") >= GRAYSON_ARMOR_TAKE)
+		{
+			// To be used if we decide to drop player's excess ammo
+			//int x = GetActorX(0);
+			//int y = GetActorY(0);
+			//int z = GetActorZ(0) + 30.0;
+			if(GiveAndCheck(AmmoType[CurrentAmmo], amount))
+			{
+				// Bought successfully
+				TakeInventory("BasicArmor", GRAYSON_ARMOR_TAKE);
+				ACS("QCDE_GraysonText", amount, 1, CurrentAmmo);
+				//log(d:Timer(), s:": pulses = ", d:holdPulses, s:", lastHoldStartTime = ", d:lastHoldStartTime, s:" (duration = ", d:duration, s:")");
+			}
+			else
+			{
+				// Full already
+				ACS("QCDE_GraysonText", amount, -2, CurrentAmmo);
+			}
+		}
+		else
+		{
+			// No money -- no honey
+			ACS("QCDE_GraysonText", amount, -1, CurrentAmmo);
+		}
+	}
+}
+
+// Activator: dying monster
+Script "QCDE_MonsterKill_QCGrayson" (void)
+{
+	int max = GetActorProperty(0,APROP_SPAWNHEALTH);
+	int bounty = sqrt(max / 5);
+
+	SetActivatorToTarget(0);
+	// Activator: Player
+
+	if(!CheckInventory("Class_Grayson")) terminate;
+
+	LocalAmbientSound("QC/Abilities/Grayson/Earn", 127);
+	ACS("QCDE_AwardArmorOverTime", bounty);
+}
+
+// Activator: dying victim
+#define GRAYSON_REWARD_DM 25
+Script "QCDE_PlayerKill_QCGrayson" (void)
+{
+	if(GetActorProperty(0,APROP_HEALTH) > 0) terminate;
+
+	SetActivatorToTarget(0);
+	// Activator: Player
+	if(!CheckInventory("Class_Grayson")) terminate;
+	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
+
+	LocalAmbientSound("QC/Abilities/Grayson/Earn", 127);
+	ACS("QCDE_AwardArmorOverTime", GRAYSON_REWARD_DM);
+}
+
+Script "QCDE_AwardArmorOverTime" (int amount)
+{
+	while(amount --> 0)
+	{
+		if(CheckInventory("BasicArmor") > CheckInventory("MaxArmorToken") + 50) terminate;
+		GiveInventory("QCArmorPoint",1);
+		if(amount < 25) delay(1);
+	}
+}
+
+
+
+//---------------------------------
+//		Eradicator's Passive
+
+int level_up_at[100] =
+{
+	    3,     5,    15,    20,    25,    30,    40,    55,    70,    85, //  1--10
+	  100,   120,   140,   160,   180,   200,   220,   240,   265,   280, // 11--20
+	  300,   330,   360,   390,   404,   420,   451,   512,   555,   570, // 21--30
+	  600,   640,   666,   700,   740,   777,   800,   840,   888,   900, // 31--40
+	  950,  1024,  1111,  1234,  1337,  1496,  1515,  1666,  1789,  1827, // 41--50
+	 1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827, // 51--60
+	 1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827, // 61--70
+	 1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827, // 71--80
+	 1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827, // 81--90
+	 1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  1827,  6969, // 91--99
+};
+
+Script "QCDE_Passive_Eradicator" (void)
+{
+	// Is it even Eradicator?
+	if(!CheckInventory("Class_Eradicator")) terminate;
+
+	// Is it even alive?
+	if(GetActorProperty(0,APROP_Health) < 0) terminate;
+
+	int kills_had  = CheckInventory("MurderToken");
+	TakeInventory("MurderToken", 1);
+	int kills_left = CheckInventory("MurderToken");
+	int murder     = CheckInventory("MurderLevel");
+
+	// Does map have enough monsters in cooperative to provide another level?
+	if(GameType() < GAME_NET_DEATHMATCH)
+	{
+		int toofew = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) - GetLevelInfo(LEVELINFO_KILLED_MONSTERS) < kills_left;
+		SetInventory("TooFewMonst", toofew);
+	}
+
+	// Initial setup
+	if(!murder && !kills_had && !kills_left)
+	{
+		GiveInventory("MurderToken", level_up_at[murder]);
+	}
+
+	// Upgrade time
+	else if(!kills_left)
+	{
+		str take = strparam(s:"PowerMurder", d:murder);
+		murder++;
+		str give = strparam(s:"PowerMurder", d:murder);
+		TakeInventory(take, 1);
+		GiveInventory(give, 1);
+
+		GiveInventory("MurderLevel", 1);
+		GiveInventory("MurderToken", level_up_at[murder]);
+		PlaySound(0,"QC/Abilities/Eradicator/DamageUp", CHAN_VOICE, 1.0, false, 0.6); // couldn't use chans 5 to 7
+	}
+}
+
+// Activator: dying monster
+Script "QCDE_MonsterKill_QCEradicator" (void)
+{
+	// Due to how this ability was originally coded, it's easier to just
+	// change activator pointer and let main passive script do the rest.
+	SetActivatorToTarget(0);
+	ACS("QCDE_Passive_Eradicator");
+}
+
+// Activator: dying victim
+Script "QCDE_PlayerKill_QCEradicator" (void)
+{
+	SetActivatorToTarget(0);
+	ACS("QCDE_Passive_Eradicator");
+}
+
+
+//---------------------------------
+//		Blazko's Passive
+
+#define TICS_BEFORE_HEAL  70
+#define TICS_HEALING_RATE  3
+Script "QCDE_Passive_Blazkowicz" (void)
+{
+	int hp = GetActorProperty(0,APROP_HEALTH);
+	int wasntDamagedFor, maxHp;
+	while(hp > 0)
+	{
+		int hpWas = hp;
+		hp = GetActorProperty(0,APROP_HEALTH);
+		maxHp = CheckInventory("MaxHealthToken");
+
+		if(hp != hpWas) wasntDamagedFor = 0;
+
+		wasntDamagedFor++;
+
+		// heal time! also has room to heal
+		if(wasntDamagedFor >= TICS_BEFORE_HEAL  &&  hp % 25  &&  hp < maxHp)
+		{
+			// play notif
+			if(wasntDamagedFor == TICS_BEFORE_HEAL)
+				if(hp % 25 < 17)
+					LocalAmbientSound("QC/Abilities/Blazkowicz/Regen", 72);
+				else
+					LocalAmbientSound("QC/Abilities/Blazkowicz/RegenShort", 72);
+
+			// heal
+			if(!(Timer() % TICS_HEALING_RATE))
+			{
+				hp++;
+				HealThingEx(1);
+			}
+		}
+
+		delay(1);
+	}
+}
+
+
+
+//---------------------------------
+//		Freeman's Passive
+
+#define COILS_TO_1_ARMOR    3
+#define PERCENT_PER_BFGCELL 2
+#define REZ_COOLDOWN_SECS  60
+#define FREEMAN_SPOTS       8
+int rezCharge[64];
+int freem[FREEMAN_SPOTS][3];
+Script "QCDE_Passive_Freeman" (void)
+{
+	int lg0, lg1 = CheckInventory("QCCoilAmmo"), lgdiff;
+	int bfg0, bfg1 = CheckInventory("QCBFGAmmo"), bfgdiff;
+	int plr = PlayerNumber();
+	rezCharge[plr] = 0; // reset extra-half-life
+	GiveInventory("PowerHEVFeet",1);
+	InitFreemanSpots();
+	InitGman();
+
+	while(GetActorProperty(0,APROP_Health) > 0)
+	{
+		// Energetic Armor charge
+		if(lgdiff > 0)
+		{
+			LocalAmbientSound("QC/Abilities/Freeman/Battery", 127);
+			ACS("QCDE_AwardArmorOverTime", lgdiff / COILS_TO_1_ARMOR);
+		}
+
+		lg0 = lg1; lg1 = CheckInventory("QCCoilAmmo");
+		lgdiff = lg1 - lg0;
+
+		if(bfgdiff > 0) ACS("QCDE_Hourglass", bfgdiff * PERCENT_PER_BFGCELL);
+		bfg0 = bfg1; bfg1 = CheckInventory("QCBFGAmmo");
+		bfgdiff = bfg1 - bfg0;
+
+		// Puppet / Extraction / Extra-half-life
+		// Prevent death.
+		rezCharge[plr]++;
+		bool ready   = rezCharge[plr] >= REZ_COOLDOWN_SECS * 35;
+		bool readyRN = rezCharge[plr] == REZ_COOLDOWN_SECS * 35;
+		bool needRez = GetActorProperty(0,APROP_Health) == 1;
+
+		if(hasFlags()) ready = false; // CTF fix
+		if(CheckInventory("PowerTerminatorArtifact")) ready = false; // ES fix
+		if(GetCvar("qc_freezetag")) // FT fix
+		{
+			delay(1);
+			continue;
+		}
+
+		SetInventory("HalfLifeToken", ready);
+		SetPlayerProperty(0, ready, PROP_BUDDHA);
+
+		if(ready)
+		{
+			if(readyRN) LocalAmbientSound("QC/Abilities/Freeman/HalfLife", 127);
+			if(needRez)
+			{
+				rezCharge[plr] = -99999999; // don't restore in this level
+				SpawnForced("GmanRezSound", GetActorX(0),GetActorY(0),GetActorZ(0));
+				GiveInventory("GmanRezProc", 1);
+
+				int spot = PickFreemanSpot();
+				//log(s:"Used spot ", d:spot);
+				SetActorPosition(0, freem[spot][0],freem[spot][1],freem[spot][2], true);
+				HealThing(24);
+				LocalAmbientSound("QC/Abilities/Freeman/Extract", 90);
+				if(random(1,10)==1)	LocalAmbientSound("GmanInvestments", 127);
+			}
+		}
+
+		delay(1);
+	}
+}
+
+function void InitFreemanSpots(void)
+{
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0) + 0.1337;
+
+	int i;
+	for(i = 0; i < FREEMAN_SPOTS; i++)
+	{
+		if(!freem[FREEMAN_SPOTS-1][2]) // z-coord is chosen because it's ensured to be non-zero
+		{
+			//log(s:" Initialized spot ", d:i);
+			freem[i][0] = x;
+			freem[i][1] = y;
+			freem[i][2] = z;
+		}
+		else
+			UpdateFreemanSpot();
+	}
+}
+
+function int PickFreemanSpot(void)
+{
+	int i, maxdist, maxdistspot;
+
+	for(i = 0; i < FREEMAN_SPOTS; i++)
+	{
+		int plr = 64;
+		int mindist = 0x7FFFFFFF;
+		while(plr --> 0)
+		{
+			if (!PlayerInGame(plr) ||
+				PlayerIsSpectator(plr) || // sugondeesedronum
+				PlayerNumber() == plr) continue;
+
+			int dx = (GetActorX(1000 + plr) >> 16) - (freem[i][0] >> 16);
+			int dy = (GetActorY(1000 + plr) >> 16) - (freem[i][1] >> 16);
+			int dz = (GetActorZ(1000 + plr) >> 16) - (freem[i][2] >> 16);
+
+			int dista = Dist(Dist(dx, dy), dz);
+
+			if(dista < mindist) mindist = dista;
+		}
+
+		// new best candidate
+		if(mindist > maxdist)
+		{
+			maxdist = mindist;
+			maxdistspot = i;
+		}
+	}
+
+	return maxdistspot;
+
+	//
+	// Unused implementation of "farthest to death" below
+	//
+
+	int x,y,z;
+	for(i = 0; i < FREEMAN_SPOTS; i++)
+	{
+		int x2 = (freem[i][0]  >> 16) - x;
+		int y2 = (freem[i][1]  >> 16) - y;
+		int z2 = (freem[i][2]  >> 16) - z;
+
+		int d = Dist(Dist(x2, y2), z2);
+
+		// new best candidate
+		if(d > maxdist)
+		{
+			maxdist = d;
+			maxdistspot = i;
+		}
+	}
+
+	return maxdistspot;
+}
+
+function void UpdateFreemanSpot(void)
+{
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0) + 1.0;
+
+	int i = random(0,random(0,random(1,FREEMAN_SPOTS-1)));
+	//log(s:"Updated spot ", d:i);
+
+	freem[i][0] = x;
+	freem[i][1] = y;
+	freem[i][2] = z;
+}
+
+function void InitGman(void)
+{
+	if(IsTidUsed(GMAN_TID)) return;
+
+	SpawnForced("Gman",-666.666,-1337.101,-420.69,GMAN_TID);
+}
+
+Script "QCDE_GmanShouldLeave" (void)
+{
+	int leave = true;
+
+	int plrtid;
+	for(plrtid = 1000; plrtid < 1064; plrtid++)
+		if(CheckActorInventory(plrtid,"Class_Freeman"))
+			leave = false;
+
+	SetResultValue(leave);
+}
+
+
+//---------------------------------
+//		VorMatur's Passive
+
+Script "QCDE_Passive_VorMatur" (void)
+{
+	// PVE buff: don't take extra damage
+	TakeInventory("PowerPve3BodyProtection",1);
+
+	int hp = GetActorProperty(0,APROP_HEALTH);
+	int wasntDamagedFor;
+	while(hp > 0)
+	{
+		delay(1);
+
+		int hpWas = hp;
+		hp = GetActorProperty(0,APROP_HEALTH);
+
+		if(hp < hpWas)
+		{
+			if(hp < -50) hp = -50; // no excess
+			int diff = hpWas - hp;
+
+			if(diff < 2) continue; // don't care for degeneration
+
+			if((diff < 11) && (Timer() % 7 < 3)) continue; // rapid-fires don't do this too often
+
+			// How far to spit blood
+			int speed = sqrt(diff * 3);
+			SetActorProperty(0, APROP_Accuracy, speed/2);
+
+			while(speed --> 0)
+				GiveInventory("CorrosiveBloodProc",1);
+		}
+	}
+}
+
+Script "QCDE_SetTarget" (int tid)
+{
+	str s1 = strparam(n:0);
+	SetPointer(AAPTR_TARGET, tid);
+	SetActivatorToTarget(0);
+	str s2 = strparam(n:0);
+	//printbold(s:s1, s:" set target to ", s:s2, s:" tid ", d:tid);
+}
+
+
+
+
+
+
+
+//---------------------------------
+//		Eleena's Passive
+
+#define ARCADEJUMP_PUSH          1
+#define ARCADEFALL_PUSH          5
+Script "QCDE_Passive_Eleena" (void)
+{
+	int cond;
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Training Weights
+		SetInventory("PowerEleenaSpeed", !CheckInventory("BasicArmor"));
+
+		// Cat Leap
+		if (GetActorVelZ(0) > 1.0)
+			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP)
+				ThrustThingZ(0,ARCADEJUMP_PUSH,0,1);
+
+		// Lands on All Fours
+		if (GetActorVelZ(0))
+			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_CROUCH)
+				if(!CheckInventory("PowerGrayThumpFlight"))
+					ThrustThingZ(0,ARCADEFALL_PUSH,1,1);
+
+		delay(1);
+	}
+}
+
+//---------------------------------
+//		Lucienne's Passive
+
+Script "QCDE_Passive_Lucienne" (void)
+{
+	GiveInventory("NoArmorDegenerationToken", 1);
+
+	// Wait while alive
+	while(GetActorProperty(0,APROP_HEALTH) > 0) delay(1);
+
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	int plrtid = ActivatorTid();
+	int tid = plrtid - 1000 + IMMOLATION_TIDBASE;
+	SpawnForced("LucienneImmolation", x,y,z, tid);
+
+	SetActivator(tid);
+	// Activator: Immolation
+	SetPointer(AAPTR_TARGET, plrtid);
+}
+
+
+//---------------------------------
+//		Major's Passive
+
+#define CLIMBING_TICS      105
+#define CLIMBING_COOLDOWN  69
+Script "QCDE_Passive_Major" (void)
+{
+	ACS("QCDE_Passive_Major_CLIENTSIDE");
+}
+
+#define WALL_TOUCH_RANGE 18
+#define DELAY_AFTER_JUMP 5
+int jumpheld[64], climbing[64], climbtime[64];
+Script "QCDE_Passive_Major_CLIENTSIDE" (void) CLIENTSIDE
+{
+	int plr = PlayerNumber();
+	if(PlayerNumber() != CPN()) terminate;
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		// Scale the Bastion
+		if(GetPlayerInput(-1,MODINPUT_BUTTONS) == BT_JUMP)
+		{
+			jumpheld[plr]++;
+
+			if(jumpheld[plr] > DELAY_AFTER_JUMP)
+				if(isTouchingWall())
+					setClimbing(true);
+				else
+					setClimbing(false);
+			else
+				setClimbing(false);
+		}
+		else
+		{
+			jumpheld[plr] = 0;
+			setClimbing(false);
+		}
+
+		delay(1);
+	}
+}
+
+function int abs(int a)
+{
+	if(a < 0) return -a;
+	return a;
+}
+
+function int isTouchingWall(void)
+{
+	int a = GetActorAngle(0);
+	int dista = WALL_TOUCH_RANGE * (abs(cos(a)) + abs(sin(a))) / 1.0;
+	int x = GetActorX(0), x1 = x + cos(a) * dista;
+	int y = GetActorY(0), y1 = y + sin(a) * dista;
+	int z = GetActorZ(0), z1 = z;
+
+	int succ = SetActorPosition(0, x1,y1,z1, false);
+
+	if(!succ) return true;
+
+	SetActorPosition(0, x,y,z, false);
+	return false;
+}
+
+function void setClimbing(int value)
+{
+	int plr = PlayerNumber();
+
+	// Starting climbing
+	if(!climbing[plr] && value)
+		if(isZandronum(true))
+			NamedRequestScriptPuke("QCDE_MajorClimb",plr);
+		else
+			ACS("QCDE_MajorClimb",0);
+	// Still climbing but shouldn't be
+	else if(CheckInventory("PowerMajorFlight") && !value)
+		if(isZandronum(true))
+			NamedRequestScriptPuke("QCDE_MajorDrop",plr);
+		else
+			ACS("QCDE_MajorDrop",0);
+
+	climbing[plr] = value;
+}
+
+Script "QCDE_MajorClimb" (int plr) NET
+{
+	if(plr < 0 || plr > 63) terminate;
+	SetActivator(1000 + plr);
+	if(!CheckInventory("Class_Major")) terminate;
+	if(climbtime[plr] > 0) terminate;
+
+	int buttons = GetPlayerInput(-1,MODINPUT_BUTTONS);
+	int ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
+	int ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
+	if(ws_axis < 0) buttons |= BT_BACK;
+	if(ws_axis > 0) buttons |= BT_FORWARD;
+	if(ad_axis < 0) buttons |= BT_MOVELEFT;
+	if(ad_axis > 0) buttons |= BT_MOVERIGHT;
+
+	int a = GetActorAngle(0) >> 8;
+
+	if(!buttons == BT_JUMP) terminate;
+	if(!isTouchingWall()) terminate;
+
+	GiveInventory("MajorClimbProc",1);
+
+	PlaySound(0, "QC/Abilities/Major/Climb", CHAN_7, 1.0, false, 1.5);
+	while(CheckInventory("MajorClimbing"))
+	{
+		climbtime[plr]++;
+		if(climbtime[plr] >= CLIMBING_TICS) ACS("QCDE_MajorDrop", plr);
+		if(climbtime[plr] == 25) PlaySound(0, "QC/Abilities/Major/Climb", CHAN_7, 0.5, false, 1.5);
+
+		ThrustThingZ(0,2,0,1);
+		ThrustThing(a,1,0,0); // Extra friction with the wall to prevent climbing through 3d floors. Awesome ZDoom collision code!
+		delay(1);
+	}
+	PlaySound(0, "QC/Abilities/Major/Climb", CHAN_7, 1.0, false, 1.5);
+	ThrustThingZ(0,25,0,1);
+
+	while(climbtime[plr] --> 0) delay(1);
+}
+
+Script "QCDE_MajorDrop" (int plr) NET
+{
+	if(plr < 0 || plr > 63) terminate;
+	SetActivator(1000 + plr);
+	if(!CheckInventory("Class_Major")) terminate;
+
+	int buttons = GetPlayerInput(-1,MODINPUT_BUTTONS);
+	int ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
+	int ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
+	if(ws_axis < 0) buttons |= BT_BACK;
+	if(ws_axis > 0) buttons |= BT_FORWARD;
+	if(ad_axis < 0) buttons |= BT_MOVELEFT;
+	if(ad_axis > 0) buttons |= BT_MOVERIGHT;
+
+	if(buttons == BT_JUMP && isTouchingWall() && climbtime[plr] < CLIMBING_TICS) terminate;
+
+	GiveInventory("MajorDropProc",1);
+}
+
+
+
+//---------------------------------
+//		Hunter's Passive
+
+#define HUNTER_TRACING_PERIOD 4
+// Activator: hunter
+Script "QCDE_Passive_Hunter" (void)
+{
+	// Reset previous life's lessons
+	if(GameType() <= GAME_NET_COOPERATIVE)
+	{
+		SetInventory("HunterQCBulletAmmo" ,0);
+		SetInventory("HunterQCShellAmmo"  ,0);
+		SetInventory("HunterQCNailAmmo"   ,0);
+		SetInventory("HunterQCBoltAmmo"   ,0);
+		SetInventory("HunterQCRocketAmmo" ,0);
+		SetInventory("HunterQCCoilAmmo"   ,0);
+		SetInventory("HunterQCSlugAmmo"   ,0);
+		SetInventory("HunterQCBFGAmmo"    ,0);
+		ACS("QCDE_UpdateBackpackStack");
+	}
+
+	int plrtid = ActivatorTid();
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(GameType() >= GAME_NET_DEATHMATCH) // PVP-only
+		{
+			SetActivator(plrtid, AAPTR_PLAYER_GETTARGET);
+			if(ActivatorTid() && ActivatorTid() != plrtid)
+			{
+				// Activator: victim
+				GiveInventory("HunterProjectionProc",1);
+			}
+			SetActivator(plrtid);
+			// Activator: hunter
+		}
+		delay(1);
+	}
+	Thing_Remove(plrtid - 1000 + SKULL_TIDBASE);
+}
+
+// Activator: dying enemy
+#define HUNTER_LESSONS 10
+str HunterLessons[HUNTER_LESSONS] = {
+	"MaxHealthToken","MaxArmorToken",
+	"HunterQCBulletAmmo" ,
+	"HunterQCShellAmmo"  ,
+	"HunterQCNailAmmo"   ,
+	"HunterQCBoltAmmo"   ,
+	"HunterQCRocketAmmo" ,
+	"HunterQCCoilAmmo"   ,
+	"HunterQCSlugAmmo"   ,
+	"HunterQCBFGAmmo"    ,
+};
+int HunterLessonsAmount[HUNTER_LESSONS] = { 2,2, 1,1,1,1,1,1,1,1, };
+str HunterLessonGFX[HUNTER_LESSONS] = {
+	"HEALINCR","ARMOINCR",
+	"AmmBullt",
+	"AmmShell",
+	"AmmNails",
+	"AmmBolts",
+	"AmmRockt",
+	"AmmCoils",
+	"AmmSlugs",
+	"AmmBfugs",
+};
+
+#define MAX_LESSONS_PER_TIC 10
+int lastlesson, lessonrn;
+Script "QCDE_MonsterKill_QCHunter" (void)
+{
+	SetActivatorToTarget(0);
+	// Activator: Player
+
+	if(!CheckInventory("Class_Hunter")) terminate;
+
+	if(lastlesson != Timer())
+	{
+		lastlesson = Timer();
+		lessonrn = 0;
+	}
+	else if(lessonrn < MAX_LESSONS_PER_TIC)
+		lessonrn++;
+
+	if(!lessonrn) LocalAmbientSound("QC/Abilities/Hunter/Learn", 110);
+
+	int type = random(1, HUNTER_LESSONS) - 1;
+	//log(n:0, s:" taking the ", s:HunterLessons[type], s:" lesson.");
+	GiveInventory(HunterLessons[type],HunterLessonsAmount[type]);
+	ACS("QCDE_UpdateBackpackStack");
+
+	SetHudSize(2800,2100,true);
+	SetFont(HunterLessonGFX[type]);
+	HudMessage(s:"A"; HUDMSG_FADEOUT, HMID_HUNTER_LESSON + lessonrn, -1, 174.0, 1590.0 - lessonrn * 80.0, 0.1, 0.3);
+}
+
+Script "QCDE_PlayerKill_QCHunter" (void)
+{
+	SetActivatorToTarget(0);
+	// Activator: Player
+
+	if(!CheckInventory("Class_Hunter")) terminate;
+
+	if(lastlesson != Timer())
+	{
+		lastlesson = Timer();
+		lessonrn = 0;
+	}
+	else if(lessonrn < MAX_LESSONS_PER_TIC)
+		lessonrn++;
+
+	if(!lessonrn) LocalAmbientSound("QC/Abilities/Hunter/Learn", 127);
+
+	int type = (random(1, HUNTER_LESSONS) - 1) % 2;
+	//log(n:0, s:" taking the ", s:HunterLessons[type], s:" lesson.");
+	GiveInventory(HunterLessons[type],HunterLessonsAmount[type]);
+
+	SetHudSize(2800,2100,true);
+	SetFont(HunterLessonGFX[type]);
+	HudMessage(s:"A"; HUDMSG_FADEOUT, HMID_HUNTER_LESSON + lessonrn, -1, 174.0, 1590.0 - lessonrn * 80.0, 0.1, 0.3);
+}
+
+Script "QCDE_Traced" (void)
+{
+	if(GetActorPowerupTics(0, "PowerTraced")) terminate;
+	if(CheckInventory("PowerGhostTint")) terminate;
+
+	//Log(n:0, s:" starting getting traced");
+	GiveInventory("GetTraced",1);
+	int plr = PlayerNumber();
+	ACS("QCDE_Traced_CLIENTSIDE");
+	while(GetActorProperty(0,APROP_HEALTH) > 0 && GetActorPowerupTics(0, "PowerTraced")) delay(1);
+}
+
+Script "QCDE_Traced_CLIENTSIDE" (void) clientside
+{
+	int spectator = PlayerIsSpectator(CPN()); // Spectators can see
+	int iam = CheckActorInventory(CPN()+1000, "Class_Hunter"); // Hunters can see
+
+	if(!(spectator || iam)) terminate;
+
+	int plr = PlayerNumber();
+	int mine = CPN() == plr; // You can't see your own
+	int spectatee = CheckPlayerCamera(CPN()) == 1000 + plr; // Nor your spectatee
+	int team = !areEnemies(CPN(), plr); // Nor do you care about your team's
+
+	if(mine || spectatee || team) terminate;
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0 && GetActorPowerupTics(0, "PowerTraced"))
+	{
+		int x = GetActorX(0);
+		int y = GetActorY(0);
+		int z = GetActorZ(0);
+		int tid = UniqueTid();
+		int a = GetActorAngle(0) >> 8;
+		SpawnForced("HunterTrace", x,y,z, tid, a);
+
+		SetStateByClass(tid);
+		Thing_SetTranslation(tid, TRANSLATION_HUNTERTRACE);
+		if(isTeamgame() && GetPlayerInfo(plr,PLAYERINFO_TEAM) == TEAM_BLUE)
+			Thing_SetTranslation(tid, TRANSLATION_HUNTERTRACEBLUE);
+
+		Thing_ChangeTID(tid,0); // free tid just in case
+		//Log(n:0, s:" trace remaining tics: ", d:GetActorPowerupTics(0, "PowerTraced"));
+		int t = 0;
+		while(t ++< 1 + HUNTER_TRACING_PERIOD * 20 /-~ dist(GetActorVelX(0)>>16, GetActorVelY(0)>>16)) delay(1);
+	}
+}
+
+function void SetStateByClass(int tid)
+{
+	SetActorProperty(tid, APROP_ScaleX, GetActorProperty(0, APROP_ScaleX));
+	SetActorProperty(tid, APROP_ScaleY, GetActorProperty(0, APROP_ScaleY));
+
+	if(CheckActorClass(0,"QCRanger"    )) { SetActorState(tid, "Ranger"    ); return; }
+	if(CheckActorClass(0,"QCDoomslayer")) { SetActorState(tid, "Doomslayer"); return; }
+	if(CheckActorClass(0,"QCCorvus"    )) { SetActorState(tid, "Corvus"    ); return; }
+	if(CheckActorClass(0,"QCKane"      )) { SetActorState(tid, "Kane"      ); return; }
+	if(CheckActorClass(0,"QCCaleb"     )) { SetActorState(tid, "Caleb"     ); return; }
+	if(CheckActorClass(0,"QCMenelkir"  )) { SetActorState(tid, "Menelkir"  ); return; }
+	if(CheckActorClass(0,"QCTerminator")) { SetActorState(tid, "Terminator"); return; }
+	if(CheckActorClass(0,"QCZedek"     )) { SetActorState(tid, "Zedek"     ); return; }
+	if(CheckActorClass(0,"QCInquisitor")) { SetActorState(tid, "Inquisitor"); return; }
+	if(CheckActorClass(0,"QCBitterman" )) { SetActorState(tid, "Bitterman" ); return; }
+	if(CheckActorClass(0,"QCGalen"     )) { SetActorState(tid, "Galen"     ); return; }
+	if(CheckActorClass(0,"QCNyx"       )) { SetActorState(tid, "Nyx"       ); return; }
+	if(CheckActorClass(0,"QCSorgaul"   )) { SetActorState(tid, "Sorgaul"   ); return; }
+	if(CheckActorClass(0,"QCDukeNukem" )) { SetActorState(tid, "DukeNukem" ); return; }
+	if(CheckActorClass(0,"QCDurandal"  )) { SetActorState(tid, "Durandal"  ); return; }
+	if(CheckActorClass(0,"QCKeel"      )) { SetActorState(tid, "Keel"      ); return; }
+	if(CheckActorClass(0,"QCSarge"     )) { SetActorState(tid, "Sarge"     ); return; }
+	if(CheckActorClass(0,"QCLoWang"    )) { SetActorState(tid, "LoWang"    ); return; }
+	if(CheckActorClass(0,"QCGrayson"   )) { SetActorState(tid, "Grayson"   ); return; }
+	if(CheckActorClass(0,"QCEradicator")) { SetActorState(tid, "Eradicator"); return; }
+	if(CheckActorClass(0,"QCBlazkowicz")) { SetActorState(tid, "Blazkowicz"); return; }
+	if(CheckActorClass(0,"QCFreeman"   )) { SetActorState(tid, "Freeman"   ); return; }
+	if(CheckActorClass(0,"QCVorMatur"  )) { SetActorState(tid, "VorMatur"  ); return; }
+	if(CheckActorClass(0,"QCEleena"    )) { SetActorState(tid, "Eleena"    ); return; }
+	if(CheckActorClass(0,"QCLucienne"  )) { SetActorState(tid, "Lucienne"  ); return; }
+	if(CheckActorClass(0,"QCMajor"     )) { SetActorState(tid, "Major"     ); return; }
+	if(CheckActorClass(0,"QCHunter"    )) { SetActorState(tid, "Hunter"    ); return; }
+	if(CheckActorClass(0,"QCSam"       )) { SetActorState(tid, "Sam"       ); return; }
+	if(CheckActorClass(0,"QCPostal"    )) { SetActorState(tid, "Postal"    ); return; }
+	if(CheckActorClass(0,"QCPainkiller")) { SetActorState(tid, "Painkiller"); return; }
+	if(CheckActorClass(0,"QCIntruder"  )) { SetActorState(tid, "Intruder"  ); return; }
+	// ^ insert more classes here
+}
+
+
+
+
+//---------------------------------
+//		Serious Sam's Passive
+// Same script for start of life and picking up armor
+// Because it was more fun to code it that way
+// I'll commit SMH now [Ms]
+
+Script "QCDE_Passive_Sam" (int ammo)
+{
+	if(!ammo) // Start of life
+	{
+		SetInventory("SeriousBullets",80);
+		if(GameType() <= GAME_NET_COOPERATIVE)
+		{
+			SetInventory("QCMachineGun",1);
+			SetInventory("QCShotgun"   ,1);
+			SetInventory("QCNailgun"   ,1);
+			SetInventory("SamMinigun"  ,0);
+			SetInventory("SeriousBullets",80);
+		}
+		else if(!GetCvar("instagib") && !GetCvar("rocketarena"))
+		{
+			SetInventory("QCMachineGunDM",1);
+			SetInventory("QCShotgunDM"   ,1);
+			SetInventory("QCNailgunDM"   ,1);
+		}
+	}
+	else // Giving ammo
+	{
+		int type, amount;
+		if      (qcContains("Mac"))	{ type = AmmoType[1]; amount = 15 * ammo; }
+		else if (qcContains("Sho"))	{ type = AmmoType[2]; amount =  3 * ammo; }
+		else if (qcContains("Nai"))	{ type = AmmoType[3]; amount = 15 * ammo; }
+		else if (qcContains("Tri"))	{ type = AmmoType[4]; amount =  3 * ammo; }
+		else if (qcContains("Roc"))	{ type = AmmoType[5]; amount =  2 * ammo; }
+		else if (qcContains("Lig"))	{ type = AmmoType[6]; amount = 15 * ammo; }
+		else if (qcContains("Rai"))	{ type = AmmoType[7]; amount =  2 * ammo; }
+		else if (qcContains("BFG"))	{ type = AmmoType[8]; amount =  1 * ammo; }
+		else if (qcContains("mMi"))	{ type = "SeriousBullets"; amount = 10 * ammo; }
+		else terminate;
+
+		GiveInventory(type, amount);
+	}
+}
+
+
+
+
+//---------------------------------
+//		Postal's Passive
+
+#define POSTAL_UPWARD_PUSH 3
+Script "QCDE_Passive_Postal" (void)
+{
+	// Check crackpipe stuck in throat from last map
+	if(!CheckInventory("NoArmorDegenerationToken") && // Having no armor degen means there was a reliq
+	    CheckInventory("NoHealthDegenerationToken"))
+		TakeInventory("NoHealthDegenerationToken",1);
+
+
+	// Crouch while jumping to get higher
+	int ready;
+
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(GetActorVelZ(0) <= 0)
+			ready = true;
+		else if(ready) if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_CROUCH)
+		{
+			ThrustThingZ(0, POSTAL_UPWARD_PUSH * 4, 0, 1);
+			ready = false;
+		}
+
+		delay(1);
+	}
+}
+
+#define POSTAL_CRACKPIPE_SECONDS_COOP 90
+#define POSTAL_CRACKPIPE_SECONDS_DM   40
+#define POSTAL_CRACKPIPE_WARNING      15
+#define POSTAL_EXTRA_DEGEN_MAX        50
+#define POSTAL_EXTRA_DEGEN_PERIOD     20
+#define POSTAL_INSTANT_WITHDRAWAL     25
+#define POSTAL_LOGGING             false
+Script "QCDE_Passive_Postal_Mega" (void)
+{
+	if(CheckInventory("NoArmorDegenerationToken")) terminate; // has "no degen" reliq
+
+	int t = POSTAL_CRACKPIPE_SECONDS_DM;
+	if(GameType() < GAME_NET_DEATHMATCH) t = POSTAL_CRACKPIPE_SECONDS_COOP;
+	if(CheckInventory("HighOnCrack")) // hooked
+	{
+		if(POSTAL_LOGGING) print(s:"\c[RG]Updated seconds before withdrawal, not starting another counter");
+		SetInventory("HighOnCrack", t);
+		terminate;
+	}
+
+	// High
+	GiveInventory("HighOnCrack", t);
+	delay(1);
+	GiveInventory("NoHealthDegenerationToken",1);
+
+	delay(16);
+	if(!random(0,3))
+		LocalAmbientSound("QC/Abilities/Postal/Postal_Smoke",127);
+
+	while(CheckInventory("HighOnCrack"))
+	{
+		if(GetActorProperty(0, APROP_Health) <= 0) terminate; // keep an eye on staying alive
+		if(CheckInventory("HighOnCrack") == POSTAL_CRACKPIPE_WARNING) LocalAmbientSound("QC/Abilities/Postal/Postal_Warning",127);
+		if(POSTAL_LOGGING) print(s:"\c[brite]Seconds before withdrawal: ", d:CheckInventory("HighOnCrack"));
+		TakeInventory("HighOnCrack", 1);
+		delay(35);
+	}
+
+	if(CheckInventory("NoArmorDegenerationToken")) terminate; // got "no degen" reliq
+	TakeInventory("NoHealthDegenerationToken",1);
+
+	// Withdrawal
+	LocalAmbientSound("QC/Abilities/Postal/Postal_Withdraw",127);
+	t = POSTAL_EXTRA_DEGEN_MAX;
+	int hp = GetActorProperty(0, APROP_Health);
+	if(hp <= CheckInventory("MaxHealthToken")) // has no overstack, so instant pain of withdrawal
+	{
+		hp -= POSTAL_INSTANT_WITHDRAWAL;
+		if(hp > 0)
+			SetActorProperty(0, APROP_Health, hp);
+		else
+			SetActorProperty(0, APROP_Health, 1);
+		if(POSTAL_LOGGING) print(s:"No overstack: instant punishment to \c[bludi]", d:hp);
+		terminate;
+	}
+	else while(t --> 0)
+	{
+		delay(POSTAL_EXTRA_DEGEN_PERIOD);
+		if(POSTAL_LOGGING) print(s:"Extra degen after withdrawal: \c[bludi]", d:t);
+		if(CheckInventory("NoHealthDegenerationToken")) terminate; // got "no degen" reliq or another mega
+
+		hp = GetActorProperty(0, APROP_Health);
+		if(hp <= 0) break; // died. New body shouldn't suffer for old one's sins (but it might due to rompy-stompy bug)
+		if(hp <= CheckInventory("MaxHealthToken")) break; // has no overstack, no more withdrawal
+
+		SetActorProperty(0, APROP_Health, hp - 1);
+	}
+	if(POSTAL_LOGGING) print(s:"\c[SNG]I'm fine today.");
+}
+
+
+
+//---------------------------------
+//		Painkiller's Passive
+
+#define SOUL_THRESHOLD_COOP 66
+#define SOUL_THRESHOLD_DM    6
+
+
+Script "QCDE_Passive_Painkiller" (int activate)
+{
+	if(!activate) terminate;
+
+	int hp = GetActorProperty(0, APROP_Health);
+	int ap = CheckInventory("BasicArmor");
+
+	delay(1); // Necessary not to crash GZDoom on morph
+
+	GiveInventory("DemonMorphProc",1);
+	// Break tarot if active
+	GiveInventory("NoAbilitiesToken",1);
+	for(int i = 1; i <= 3; i++)
+		for(int j = 1; j <= 3; j++)
+			SetInventory(strparam(s:"PainkillerCard", d:i, s:"Level", d:j), 0);
+
+	// ES fix: consume soul, let it respawn
+	TakeInventory("PowerTermToken",1);
+	TakeInventory("PowerTerminatorArtifact",1);
+	TakeInventory("PowerEldersSoul",1);
+
+	ACS("QCDE_DM_DropPowerups");
+
+	int t = GetActorPowerupTics(0, "PowerDemonMorph");
+	ACS("QCDE_ShowActiveInProgress", t);
+
+	GiveInventory("NoReticle", 1);
+	GiveInventory("NoAmmoCount", 1);
+	GiveInventory("NoAbilityIcon", 1);
+
+	// Progress
+	while(CheckInventory("PowerDemonMorph"))
+		if(t --> 0)
+			delay(1);
+		else
+			break;
+	UnmorphActor(0,true); // necessary extra layer
+
+	// Morph ended
+	GiveInventory("PainkillerCleanerProc",1);
+	if(GetActorProperty(0, APROP_Health) < 0) terminate;
+
+	// Morph ended successfully
+	SetActorProperty(0, APROP_Health, hp);
+	TakeInventory("QCArmorPoint", ap);
+	GiveInventory("QCArmorPoint", ap);
+}
+
+// Activator: dying monster
+Script "QCDE_MonsterKill_QCPainkiller" (int xdeath)
+{
+	str class = "PainkillerSoul";
+	if(CheckInventory("MonsterBig") || CheckInventory("MonsterBoss"))
+		class = "PainkillerSoulBig";
+	SpawnSpotForced(class,0,0,0);
+}
+
+// Activator: dying victim
+Script "QCDE_PlayerKill_QCPainkiller" (void)
+{
+	str class = "PainkillerSoulDM";
+	SpawnSpotForced(class,0,0,0);
+
+	// Activator: Pain killer
+	SetActivatorToTarget(0);
+	if(PlayerIsBot(PlayerNumber()) && random(0,3))
+		GiveInventory("PainkillerSoulDM", 1);
+}
+
+
+Script "QCDE_Passive_Intruder" (void)
+{
+	int secrets;
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(secrets < GetLevelInfo(LEVELINFO_FOUND_SECRETS))
+		{
+			ACS("ArmorGiver", ACS("MaxArmor"), 50, true);
+			ACS("QCDE_IntruderMoraleBoost");
+		}
+
+		secrets = GetLevelInfo(LEVELINFO_FOUND_SECRETS);
+		delay(1);
+	}
+}
+
+
+
+
+
+Script "QCDE_MonsterKill_QCIntruder" (void)
+{
+	SetActivatorToTarget(0);
+	// Activator: Player
+
+	if(!CheckInventory("Class_Intruder")) terminate;
+
+	if(!CheckInventory("PowerWendigoTint"))
+	{
+		LocalAmbientSound("QC/Abilities/Intruder/BonusPick", 110);
+		GiveInventory("IntruderSpeeder",1);
+	}
+}
+
+Script "QCDE_PlayerKill_QCIntruder" (void)
+{
+	SetActivatorToTarget(0);
+	// Activator: Player
+
+	if(!CheckInventory("Class_Intruder")) terminate;
+
+	if(!CheckInventory("PowerWendigoTint"))
+	{
+		LocalAmbientSound("QC/Abilities/Intruder/BonusPick", 110);
+		GiveInventory("IntruderSpeeder",1);
+	}
+}

@@ -1,0 +1,148 @@
+//===========================================================================
+//===========================================================================
+// When the strogg were making designs for makron's brain container, this was
+// an early design of it. While not as resistent, and with a lighter arsenal,
+// this served perfectly as that, a prototype. They later expanded it and
+// changed the weapons for something deadlier.
+//===========================================================================
+//===========================================================================
+
+Actor Q2PrototypeContainer : QCDE_MonsterBig	  15216	//arachno
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	Health 600
+	Radius 24
+	Height 64
+	Scale 0.45
+	Speed 6
+	PainChance 40
+	Mass 4000
+	MONSTER
+	+FLOORCLIP
+	+NOBLOOD
+	MinMissileChance 248
+	Tag "$TAG_Q2PrototypeContainer" // "Prototype Container"
+	BloodColor "olive drab"	//used for the gibblets
+	SeeSound "q2makron2/voice"
+	PainSound "q2makron1/pain"
+	DeathSound "q2makron2/death"
+	ActiveSound "q2makron2/seeking"
+	AttackSound "q2weapon/railgunfire"
+	Obituary "$OB_Q2PrototypeContainer" // "%o found a prototype container."
+	Translation "0:255=%[0.0,0.0,0.0]:[0.8,0.8,0.8]", "176:191=112:127", "32:47=112:127", "208:223=112:127", "232:235=112:127"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		BS5I A 5 A_Look
+		Loop
+	See:
+		BS5W AABBCCDDEE 3 A_Chase
+		Loop
+
+	Missile:
+		TNT1 A 0 A_Jump(190,"TeslaAttack")
+		Goto RocketAttack
+
+	TeslaAttack:
+		BS5R ABCD 6 A_FaceTarget
+	TeslaLoop:
+		BS5R E 0 A_PlaySound("Quake2/Extra/TeslaShot")
+		BS5R E 4 A_CustomMissile("PCGreensmaShot",48,0,0)
+		BS5R E 4
+		BS5R E 1 A_CposRefire
+		Goto TeslaLoop
+
+	RocketAttack:
+		BS5B ABC 6 A_FaceTarget
+		BS5B D 3 A_FaceTarget
+		BS5B D 0 A_CustomMissile("BitchRocket",45,-7,0)
+		BS5B EFG 6
+		BS5R E 0 A_CPosRefire
+		BS5B ABC 6 A_FaceTarget
+		BS5B D 3 A_FaceTarget
+		BS5B D 0 A_CustomMissile("BitchRocket",45,-7,0)
+		BS5B EFG 6
+		Goto See
+
+	Pain:
+		BS5P A 2
+		BS5P A 5 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		TNT1 A 0 A_Scream
+		TNT1 AAAAAA 0 A_TossGib
+		TNT1 A 0 A_SpawnItemEx("PContTorso",0,0,50, random(3,-3),random(3,-3),5,random(0,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		BS5D B 25
+		BS5D C 20 A_Fall
+		BS5D D 6
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal")
+		BS5D EFGH 6
+	Death.Corpse:
+		BS5D H -1
+		Stop
+
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+	}
+}
+
+Actor PContTorso
+{
+	+CLIENTSIDEONLY
+	-NOLIFTDROP
+	-SOLID
+	+DROPOFF
+	+NOTELEPORT
+	+CORPSE
+	Scale 0.45
+	Radius 6
+	Height 5
+	States
+	{
+	Spawn:
+		BS5D A 6
+		Wait
+	Crash:
+		BS5D Z -1
+		Stop
+	}
+}
+
+
+Actor PCGreensmaShot	//green plasma
+{
+	Projectile
+	Speed 25
+	Damage 5
+	Radius 4
+	Height 8
+	RenderStyle Add
+	Scale 0.45
+	Translation "0:255=%[0,0,0]:[0.8,2.0,1.0]"
+	DeathSound "Quake2/Extra/TeslaImpact"
+	States
+	{
+	Spawn:
+		X020 ABCDEFGHIJKLMNOPQRST 2 Bright Light("GreenMediumPoint3")
+		Loop
+	Death:
+		X019 AB 2 Bright Light("GreenMediumPoint3")
+		X019 CDEF 2 Bright Light("GreenMediumPoint2")
+		X019 GH 2 Bright Light("GreenMediumPoint3")
+		X019 IJ 2 Bright Light("GreenSmallPoint1")
+		X019 KL 2 Bright Light("GreenSmallPoint2")
+		X019 MN 2 Bright Light("GreenSmallPoint3")
+		X019 OPQRS 2 Bright
+		Stop
+	}
+}
+
+
+

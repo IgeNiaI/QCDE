@@ -1,0 +1,123 @@
+//================================================================
+//================================================================
+
+Actor QZombie : QCDE_MonsterSmall	15119	//imp
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake"
+	//$Color 12
+	Health 50
+	Radius 16
+	Height 56
+	Mass 60
+	Monster
+	PainChance 40
+	Speed 9
+	Tag "$TAG_QZombie" // "Zombie"
+	SeeSound "Quake1/Zombie/Idle"
+	PainSound "Quake1/Zombie/Pain"
+	DeathSound "Quake1/Zombie/Pain"
+	ActiveSound "Quake1/Zombie/Idle"
+	Scale 0.45
+	+FLOORCLIP
+	-LOOKALLAROUND
+	Obituary "$OB_QZombie" // "%o joins the zombies."
+	States
+	{
+	Idle:
+		Q40I A 10 A_Look
+		Loop
+	See:
+		Q40W ABCDEF 8 A_Chase
+		Loop
+	Missile:
+		Q40A ABCDE 5 A_FaceTarget
+		Q40A F 5 A_CustomMissile("ZombieGib",34,0,0)		//for balance concerns, this wont be affected by gravity
+		Goto See
+	Pain:
+		Q40P A 5
+		Q40P A 3 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		Q40D A 4 A_Scream
+		Q40D B 4 A_Fall
+		Q40D C 4
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Small")
+		Q40D DEF 4
+		TNT1 A 0 A_Jump(180,2,3,4,5,6)
+		Q40D FFFFFFFFFFFFF 90
+		TNT1 A 10 A_SpawnItemEx("Q1ZombieNoKillCount",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		Stop
+
+	Death.Corpse:
+		Q40D F -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Quake1/Zombie/Gibbed")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 10 A_Fall
+		Stop
+
+	Death.ZombieGibber:
+		TNT1 A 0 A_Jump(256,"XDeath")
+		Goto XDeath
+
+	Raise:
+		Q40D GHIJKLM 5
+		Goto See
+	}
+}
+
+
+Actor Q1ZombieNoKillCount : QZombie	//imp
+{
+	var int user_alreadyrisen;
+	Translation "0:255=%[0,0,0]:[0.7,0.7,0.7]"
+	-COUNTKILL
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_Jump(256,"Idle")
+		Goto Super::Spawn
+	Idle:
+		TNT1 A 0 A_JumpIf(user_alreadyrisen>=1,"StandingIdle")
+		TNT1 A 0 A_ChangeFlag("Shootable",0)
+		Q40D GHIJKLM 5
+		TNT1 A 0 A_SetUserVar(user_alreadyrisen,1)
+		TNT1 A 0 A_ChangeFlag("Shootable",1)
+		Goto See
+	StandingIdle:
+		Q40I A 10 A_Look
+		Loop
+
+	DeathChecksDone:
+		Q40D A 0 A_Jump(128,"XDeathChecksDone")
+		Goto Super::DeathChecksDone
+	}
+}
+
+Actor ZombieGib
+{
+    Radius 5
+    Height 10
+    Speed 13
+    Damage 3
+    Scale 0.15
+    Projectile
+	Translation "0:255=%[0,0,0]:[2,0.2,0]"
+    SeeSound "Quake1/Zombie/ThrowGib"
+    States
+    {
+    Spawn:
+		CACT A 5 BRIGHT A_SpawnItemEx("BloodParticleSmall",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,64)
+		Loop
+	Xdeath:
+		TNT1 A 10 A_PlaySound("Quake1/Zombie/Impact")
+		Stop
+    Death:
+		TNT1 A 5 A_PlaySound("Quake1/Zombie/Missed")
+		Stop
+    }
+}

@@ -1,0 +1,135 @@
+//===========================================================================
+//===========================================================================
+//
+//===========================================================================
+//===========================================================================
+
+Actor Q2ShieldHover : QCDE_MonsterMedium	15217	// painelement
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	var int user_shieldup;
+	Health 400
+	Translation "230:230=112:112","215:223=113:121","186:190=122:124","232:235=123:126",
+		"167:167=121:121","33:47=122:127"
+	Speed 8
+	Radius 20
+	Height 56
+	PainChance 128
+	Mass 400
+	Scale 0.55
+	REACTIONTIME 8
+	MONSTER
+	+NOGRAVITY
+	+FLOAT
+	+NOBLOOD
+	Tag "$TAG_Q2ShieldHover" // "Shield Hover"
+	SeeSound "q2hover/sight"
+	PainSound "q2hover/pain"
+	DeathSound "q2hover/death"
+	ActiveSound "q2hover/search"
+	Obituary "$OB_Q2ShieldHover" // "%o was blasted by a hover."
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		RPZM A 0 A_JumpIf(user_shieldup>=1,"IdleLoop")
+		RPZM A 0 A_SpawnItemEx("HoverShield",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		RPZM A 0 A_SetUserVar(user_shieldup,1)
+		HVRW A 0 A_PlaySound("q2hover/flying",6,0.4,0,4)
+	IdleLoop:
+		HVRW ABCDEFGHIJK 7 A_Look
+		Loop
+	See:
+		HVRW ABCDEFGHIJK 7 A_Chase
+		Loop
+	Missile:
+		HVRA ABCD 4 A_FaceTarget
+		HVRA EE 4 bright A_CustomMissile("HoverBeam2", 24, 0, 0, 1)
+		HVRA E 0 A_FaceTarget
+		HVRA EE 4 bright A_CustomMissile("HoverBeam2", 24, 0, 0, 1)
+		HVRA E 0 A_FaceTarget
+		HVRA EE 4 bright A_CustomMissile("HoverBeam2", 24, 0, 0, 1)
+		HVRA E 0 A_FaceTarget
+		HVRA EE 4 bright A_CustomMissile("HoverBeam2", 24, 0, 0, 1)
+		HVRA E 0 A_FaceTarget
+		HVRA FGH 4 A_FaceTarget
+		Goto See
+	Pain:
+		HVRP A 4 A_Pain
+		Goto See
+	DeathChecksDone:
+		HVRD A 0 A_Scream
+		BRND A 0 A_KillChildren("Removed")	//removes the shield, but if for some magical reason it fails...
+		BRND A 0 A_GiveInventory("LOLImDead",1)	 //...the shield will check for this token, then shield dies.
+		HVRD A 0 A_StopSound(6)
+		HVRD A 6 A_ChangeFlag("THRUACTORS",1)
+		HVRD B 6 A_Fall
+
+		FallingLoop:
+			HVRD B 1 A_CheckFloor("Crashing")
+			Loop
+
+	Crashing:
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Beefy")
+		HVRD DEFGHIJ 3
+		TNT1 A 0 A_PlaySound("q2weapon/rocketexplo",7)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 AAAAAA 0 A_TossGib
+		TNT1 A 0 A_SpawnItemEx("QCRocketExplosion",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
+	Death.Corpse:
+		TNT1 A 10
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_KillChildren("Removed")	//removes the shield, but if for some magical reason it fails...
+		TNT1 A 0 A_GiveInventory("LOLImDead",1)	 //...the shield will check for this token, then shield dies.
+		TNT1 A 0 A_StopSound(6)
+		TNT1 A 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_PlaySound("q2weapon/rocketexplo",7)
+		TNT1 A 0 A_SpawnItemEx("QCRocketExplosion",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 AAAAAA 0 A_TossGib
+		TNT1 A 10 A_Fall
+		Stop
+	}
+}
+Actor HoverBeam2 : HoverBeam
+{
+	Speed 22
+	DamageType "Plasma"
+	Damage (random(3,8)*4)
+	RenderStyle Add
+	+THRUGHOST
+	Translation "0:255=%[0,0,0]:[0.5,1.5,0.5]"
+	States
+	{
+	Spawn:
+		SPIR P 1 Light("GreenSmallPoint1") Bright
+		Loop
+	Death:
+		TNT1 AA 0 A_SpawnItemEx("EnforcerBeamExtra",0,0,0,frandom(0.2,1.5),0,frandom(1.5,-1.5),random(0,359),SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SetScale(0.65)
+		R058 F 3 Bright Light("GreenMediumPoint2")
+		R058 G 3 Bright Light("GreenMediumPoint3")
+		R058 H 3 Bright Light("GreenSmallPoint1")
+		R058 I 3 Bright Light("GreenSmallPoint2")
+		R058 J 3 Bright Light("GreenmallPoint2")
+		R058 K 3 Bright Light("GreenSmallPoint3")
+		Stop
+	}
+}
+
+
+Actor HoverShield : BrainsShield
+{
+	Radius 22
+	YScale 0.9
+	XScale 0.9
+	Health 400
+}
+
+
+
+

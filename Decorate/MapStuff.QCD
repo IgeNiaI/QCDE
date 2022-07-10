@@ -1,0 +1,999 @@
+
+//=================================================================================================
+//=================================================================================================
+//
+//										TITLEMAP STUFF
+//
+//=================================================================================================
+//=================================================================================================
+
+Actor TitlemapFlaresSpawner 31002
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 15
+	//$Title "Titlemap flare spawner"
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(CallACS("QCDE_GetDate") == 1402, "Hearts")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_GetDate") == 2512, "Flakes")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_GetDate") ==  101, "Flakes")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_GetDate") == 1301, "Flakes")
+		TNT1 A 8 A_SpawnItemEx("TitlemapFlares",0,random(300,-300),0,  0,random(3,15),random(4,15), 0,0,96)
+		Wait
+	Hearts:		TNT1 A 7 A_SpawnItemEx("TitlemapHearts",0,random(300,-300),   0, 0,random(3,15),random( 4, 15), 0,0, 96)	Wait
+	Flakes:		TNT1 A 7 A_SpawnItemEx("TitlemapFlakes",0,random(300,-300),1500, 0,random(3,15),random(-4,-15), 0,0, 96)	Wait
+	}
+}
+Actor TitlemapFlares
+{
+	+NOINTERACTION
+	RenderStyle Add
+	Scale 0.35
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY
+	Looper:
+		X029 A 0 A_JumpIf(random(1,10)==1,"DoVel")
+		X029 A 3 Bright A_FadeOut(0.01)
+		Loop
+
+		DoVel:
+			X029 A 0 Bright A_ChangeVelocity(0,random(3,-3),0)
+			Goto Looper+1
+	}
+}
+Actor TitlemapHearts : TitlemapFlares
+{
+	Scale 0.2
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY
+	Looper:
+		X029 L 0 A_JumpIf(random(1,10)==1,"DoVel")
+		X029 L 3 Bright A_FadeOut(0.01)
+		Loop
+
+		DoVel:
+			X029 L 0 Bright A_ChangeVelocity(0,random(3,-3),0)
+			Goto Looper+1
+	}
+}
+Actor TitlemapFlakes : TitlemapHearts
+{
+	Scale 0.24
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SetScale(frandom(0.2,0.6))
+	Looper:
+		X029 M 0 A_Weave(1,1, 3.0,2.0)
+		X029 M 1 Bright A_FadeOut(0.003)
+		Loop
+	}
+}
+
+Actor TitlemapGlow 31003
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 15
+	//$Title "Titlemap glow"
+	+NOINTERACTION
+	Scale 8.0
+	RenderStyle Add
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(CallACS("QCDE_GetDate") == 2512, "Flakes")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_GetDate") ==  101, "Flakes")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_GetDate") == 1301, "Flakes")
+		FX01 F -1 BRIGHT
+		Loop
+	Flakes:
+		FX01 G -1 BRIGHT
+		Stop
+	}
+}
+
+
+Actor TestThing
+{
+	+NOINTERACTION
+	Scale 10.0
+	States
+	{
+	Spawn:
+		PLAY A 10 Bright
+		Loop
+	}
+}
+
+
+//-----------------------------------------------------------------
+// For QCDE base maps, colored smoke marking weapon spawn points
+//-----------------------------------------------------------------
+Actor WeaponSpawnPointBase
+{
+	//+NOINTERACTION
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.52
+	Radius 8
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY
+		Goto Idle
+	Idle:
+		X108 ABCDEFGHIJKLMNOPQRSTUVWX 2 Bright
+		Loop
+	}
+}
+
+
+Actor SpawnPoint_HMG : WeaponSpawnPointBase 14960
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 15
+	//$Title "DM_Point H.Machinegun"
+	Translation "0:255=%[0,0,0]:[1.5,1.39,0.45]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SpawnItemEx("SpawnVoxBase_HMG", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	}
+}
+
+Actor SpawnPoint_SSG : WeaponSpawnPointBase 14962
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 15
+	//$Title "DM_Point SuperShotgun"
+	Translation "0:255=%[0,0,0]:[1.5,0.75,0]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SpawnItemEx("SpawnVoxBase_SSG", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	}
+}
+
+
+Actor SpawnPoint_SNG : WeaponSpawnPointBase 14963
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 15
+	//$Title "DM_Point SuperNailgun"
+	Translation "0:255=%[0,0,0]:[0.0,0.64,2]"
+		States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SpawnItemEx("SpawnVoxBase_SNG", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	}
+}
+
+Actor SpawnPoint_TB : WeaponSpawnPointBase 14964
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 15
+	//$Title "DM_Point Tribolt"
+	Translation "0:255=%[0,0,0]:[1.24,1.41,0]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SpawnItemEx("SpawnVoxBase_TB", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	}
+}
+
+Actor SpawnPoint_RL : WeaponSpawnPointBase 14965
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 15
+	//$Title "DM_Point RocketLauncher"
+	Translation "0:255=%[0,0,0]:[1.5,0,0]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SpawnItemEx("SpawnVoxBase_RL", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	}
+}
+
+
+Actor SpawnPoint_LG : WeaponSpawnPointBase 14966
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 15
+	//$Title "DM_Point LightningGun"
+	Translation "0:255=%[0,0,0]:[0,1.1,1.1]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SpawnItemEx("SpawnVoxBase_LG", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	}
+}
+
+
+Actor SpawnPoint_RG : WeaponSpawnPointBase 14967
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 15
+	//$Title "DM_Point Railgun"
+	Translation "0:255=%[0,0,0]:[0.0,1.5,0.27]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SpawnItemEx("SpawnVoxBase_RG", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	}
+}
+
+
+
+Actor SpawnPoint_BFG : WeaponSpawnPointBase 14968
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 15
+	//$Title "DM_Point BFG"
+	Translation "0:255=%[0,0,0]:[0.88,0.23,0.97]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SpawnItemEx("SpawnVoxBase_BFG", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	}
+}
+
+//--------------------------------------------------------------
+//	These actors are invisible without the voxel addon pack.
+//  However, with the voxels, it will show a physical base
+//  for the weapons, by Ivory Duke
+Actor SpawnVoxBase_Base
+{
+	+BRIGHT
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+		VXZZ A -1 A_Gravity	//this isnt really needed, but is to allow "two line actors" below
+		Stop
+	}
+}
+
+Actor SpawnVoxBase_HMG : SpawnVoxBase_Base { States { Spawn: VXMG A -1 A_Gravity Stop } }
+Actor SpawnVoxBase_SSG : SpawnVoxBase_Base { States { Spawn: VXSG A -1 A_Gravity Stop } }
+Actor SpawnVoxBase_SNG : SpawnVoxBase_Base { States { Spawn: VXNG A -1 A_Gravity Stop } }
+Actor SpawnVoxBase_TB  : SpawnVoxBase_Base { States { Spawn: VXTB A -1 A_Gravity Stop } }
+Actor SpawnVoxBase_RL  : SpawnVoxBase_Base { States { Spawn: VXRL A -1 A_Gravity Stop } }
+Actor SpawnVoxBase_LG  : SpawnVoxBase_Base { States { Spawn: VXLG A -1 A_Gravity Stop } }
+Actor SpawnVoxBase_RG  : SpawnVoxBase_Base { States { Spawn: VXRG A -1 A_Gravity Stop } }
+Actor SpawnVoxBase_BFG : SpawnVoxBase_Base { States { Spawn: VXBF A -1 A_Gravity Stop } }
+
+
+//-----------------------------------------------------------------
+// Wall torch decorations
+//-----------------------------------------------------------------
+
+Actor QCDEWallTorchGreen 16500
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Torch Green"
+	+NOINTERACTION
+	+FORCEYBILLBOARD
+	States
+	{
+	Spawn:
+		WLTR ABCDEFGH 3 Bright
+		Loop
+	}
+}
+
+Actor QCDEWallTorchBlue : QCDEWallTorchGreen 16501
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Torch Blue"
+	Translation "112:127=%[0,0,0]:[1.5,1.5,2.0]"
+}
+
+Actor QCDEWallTorchOrange : QCDEWallTorchGreen 16502
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Torch Orange"
+	Translation "112:127=%[0,0,0]:[2.0,1.2,0.0]"
+}
+
+Actor QCDEWallTorchRed : QCDEWallTorchGreen 16503
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Torch Red"
+	Translation "112:127=%[0,0,0]:[1.6,0.0,0.0]"
+}
+
+Actor QCDEWallTorchMagenta : QCDEWallTorchGreen 16504
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Torch Magenta"
+	Translation "112:127=%[0,0,0]:[1.5,0.0,1.5]"
+}
+
+Actor QCDEWallTorchWhite : QCDEWallTorchGreen 16505
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Torch White"
+	Translation "112:127=%[0,0,0]:[1.5,1.5,1.5]"
+}
+
+
+
+//------------------------------------------------------------------
+
+Actor QCDEWallLampGreen 16506
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Lamp Green"
+	+NOINTERACTION
+	+FORCEYBILLBOARD
+	Scale 1.3
+	States
+	{
+	Spawn:
+		WLLM A -1 Bright
+		Stop
+	}
+}
+
+Actor QCDEWallLampBlue : QCDEWallLampGreen 16507
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Lamp Blue"
+	Translation "112:127=%[0,0,0]:[0.8,0.8,2.0]"
+}
+
+Actor QCDEWallLampOrange : QCDEWallLampGreen 16508
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Lamp Orange"
+	Translation "112:127=%[0,0,0]:[2.0,1.2,0.0]"
+}
+
+Actor QCDEWallLampRed : QCDEWallLampGreen 16509
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Lamp Red"
+	Translation "112:127=%[0,0,0]:[1.6,0.0,0.0]"
+}
+
+Actor QCDEWallLampMagenta : QCDEWallLampGreen 16510
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Lamp Magenta"
+	Translation "112:127=%[0,0,0]:[1.5,0.0,1.5]"
+}
+
+Actor QCDEWallLampWhite : QCDEWallLampGreen 16511
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Wall Torch White"
+	Translation "112:127=%[0,0,0]:[1.5,1.5,1.5]"
+}
+
+
+//-----------------------------------------------------------------
+// For Aeon04 where nyx can fall off the fake 3d floor steps
+//-----------------------------------------------------------------
+Actor DontGhostWalkHere 14959
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 15
+	//$Title "Don't Ghostwalk here"
+	VisibleToPlayerClass QCNyx
+	Scale 0.1
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		NOGW A -1 Bright
+		Stop
+	}
+}
+
+
+//----------------------------------------------------------------------
+// DBT's trick of the day:
+// Bots aren't great at navigating a map, and definitely very dumb when
+// it's about them getting to some point of relevance in a map: jump pad,
+// for example. However, adding this little bait in a jumppad makes the
+// bots try to pick it because "OH MY! A POWERUP! GIMME!" and therefore
+// "effectively" (AKA hackishly) making them go for it
+//----------------------------------------------------------------------
+
+Actor PowerBotBaiter : PowerProtection	{	DamageFactor "Normal", 1.0	}
+
+Actor QCDEBotBait : PowerupGiver 16499
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 19
+	//$Title "Bot Bait"
+	+INVENTORY.QUIET
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	powerup.Type "PowerBotBaiter"
+	powerup.duration 35
+	Inventory.RespawnTics 210 // 6 seconds
+	Scale 0.2
+	RenderStyle Add
+	Alpha 0.01
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_StopSound(1)	//stops respawn sound
+		TNT1 A 0 A_StopSound(2)
+		TNT1 A 0 A_StopSound(3)
+		TNT1 A 0 A_StopSound(4)
+		TNT1 A 0 A_StopSound(5)
+		TNT1 A 0 A_StopSound(6)
+		TNT1 A 0 A_StopSound(7)
+		TNT1 A 0 A_StopSound(8)
+		SARG A -1
+		Loop
+	}
+}
+//-----------------------------------------------------------------
+// Blood pool healer thing for Quake Champions maps
+//-----------------------------------------------------------------
+
+Actor QCDEBloodPoolHealer160 16515
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 16
+	//$Title "BldPool Healer 160"
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 35 A_RadiusGive("BloodPoolHealth",160,RGF_PLAYERS)
+		Loop
+	}
+}
+
+Actor BloodPoolHealth : CustomInventory
+{
+	+INVENTORY.QUIET
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("PowerGhostTint",1,"Nope")
+		TNT1 A 0 A_GiveInventory("BloodPoolHealthGiven",1)
+		TNT1 A 35 A_SetBlend("SkyBlue", 0.05, 10)
+		Stop
+	Nope:
+		TNT1 A 35
+		Stop
+	}
+}
+
+Actor BloodPoolHealthGiven : Health
+{
+	Inventory.Amount 5
+	+INVENTORY.QUIET
+	States
+	{
+		Spawn:
+		STIM A -1
+		Stop
+	}
+}
+
+//Only for QCDE05
+Actor QCDEBloodPoolHealerSwitch160 : SwitchableDecoration 16516
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 16
+	//$Title "BldPool Healer Swtch 160"
+	Radius 10
+	Height 20
+	+RELATIVETOFLOOR
+	States
+	{
+	Spawn:
+	Inactive:
+		TNT1 A 5
+		loop
+	Active:
+		TNT1 A 35 A_RadiusGive("BloodPoolHealth",160,RGF_PLAYERS)
+		Loop
+	}
+}
+//Only for QCDE05
+Actor QCDEBloodPoolHealerSwitch100 : QCDEBloodPoolHealerSwitch160 16517
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 16
+	//$Title "BldPool Healer Swtch 100"
+	States
+	{
+	Active:
+		TNT1 A 35 A_RadiusGive("BloodPoolHealth",100,RGF_PLAYERS)
+		Loop
+	}
+}
+
+
+
+Actor QCDEBloodPoolHealer190 16518
+{
+	//$NotAngled
+	//$Category "QCDE Misc"
+	//$Color 16
+	//$Title "BldPool Healer 190"
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 35 A_RadiusGive("BloodPoolHealth",190,RGF_PLAYERS)
+		Loop
+	}
+}
+
+
+//Mini Scrags for blood covenant, non monster, unshootable, unkillable
+Actor BCScrag : QScrag 16520
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Covenant Scrag Decorative"
+	-COUNTKILL
+	+NOTARGET
+	-SHOOTABLE
+	-IsMonster
+	+SLIDESONWALLS
+	+CLIENTSIDEONLY
+	Radius 10
+	Height 15
+	Scale 0.13
+	Speed 2
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"Fast", "Medium", "Slow")
+		Goto Fast
+	Fast:
+		Q36W AAAAABBBBBCCCCCDDDDDEEEEEFFFFF 1 A_GiveInventory("BCScragProc")
+		TNT1 A 0 A_Jump(256,"Fast", "Medium", "Slow")
+		Loop
+	Medium:
+		Q36W AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 A_GiveInventory("BCScragProc")
+		TNT1 A 0 A_Jump(256,"Fast", "Medium", "Slow")
+		Loop
+	Slow:
+		Q36W AAAAAAABBBBBBBCCCCCCCDDDDDDDEEEEEEEFFFFFFF 1 A_GiveInventory("BCScragProc")
+		TNT1 A 0 A_Jump(256,"Fast", "Medium", "Slow")
+		Loop
+	}
+}
+
+Actor BCScragProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_Turn(random(0,2))
+		TNT1 A 0 A_ChangeVelocity(1,0,0,CVF_RELATIVE|CVF_REPLACE)
+		Stop
+	}
+}
+
+
+//--------------------------------------------------------------------------------
+//		STATUES FOR BLOOD RUN
+//--------------------------------------------------------------------------------
+Actor BRKoraxHalf 16568
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Korax Statue (half)"
+	Radius 72
+	Height 128
+	Scale 1.4
+	+SOLID
+	+FORCEYBILLBOARD
+	States
+	{
+	Spawn:
+		DECR C -1
+		Stop
+	}
+}
+
+Actor BRKoraxFull 16569
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Korax Statue (full)"
+	Scale 2.5
+	Radius 72
+	Height 256
+	+SOLID
+	+FORCEYBILLBOARD
+	States
+	{
+	Spawn:
+		DECR B -1
+		Stop
+	}
+}
+
+Actor BRBishop 16570
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Bishop Statue"
+	Scale 2.0
+	Radius 30
+	Height 128
+	+SOLID
+	+FORCEYBILLBOARD
+	States
+	{
+	Spawn:
+		DECR A -1
+		Stop
+	}
+}
+
+Actor "QCDE OST" : Inventory 23492
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay Thing_ChangeTID(0,46290)
+	Hibernate:
+		TNT1 A -1
+		Stop
+	Play:
+		PLAY A 0 A_Turn(CallACS("QCDE_Jukebox", args[0]))
+		Goto Hibernate
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//=======================================================
+//=======================================================
+// Created by DBThanatos
+//=======================================================
+//=======================================================
+Actor Nyancodemon : SwitchableDecoration 16571
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Nyancodemon (switchable)"
+	Speed 0
+	+NOGRAVITY
+	+THRUACTORS
+	+NOINTERACTION
+	+NOTARGET
+	+FLOATBOB
+	Monster
+	-IsMonster
+	-COUNTKILL
+	-SOLID
+	-CANPUSHWALLS
+	-CANUSEWALLS
+	-ACTIVATEMCROSS
+	Height 56
+	Radius 31
+	Scale 0.55
+	states
+	{
+	Spawn:
+	Inactive:
+		TNT1 A 5
+		loop
+	Active:
+		HEAD A 0 A_Turn(1)
+		HEAD A 1 BRIGHT A_ChangeVelocity(3,0,0,CVF_RELATIVE|CVF_REPLACE)
+		TNT1 A 0 A_SpawnItemEx("RainbowTrail",-10,0,20,0,0,0,0,32)
+		HEAD A 0 A_Turn(1)
+		HEAD A 1 BRIGHT A_ChangeVelocity(3,0,0,CVF_RELATIVE|CVF_REPLACE)
+		loop
+	}
+}
+
+
+/*Actor NyancodemonProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_Turn(1)
+		TNT1 A 0 A_ChangeVelocity(3,0,0,CVF_RELATIVE|CVF_REPLACE)
+		Stop
+	}
+}*/
+
+
+
+Actor RainbowTrail
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("NyanRTRed",0,0,8,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("NyanRTOrange",0,0,4,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("NyanRTYellow",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("NyanRTGreen",0,0,-4,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("NyanRTBlue",0,0,-8,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("NyanRTPurple",0,0,-12,0,0,0,0,32)
+		TNT1 A 2
+		Stop
+	}
+}
+
+Actor NyanRTRed
+{
+	Renderstyle Add
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NONETID
+	+FORCEXYBILLBOARD
+	Scale 0.45
+	Translation "0:255=%[0,0,0]:[1,0,0]"
+	States
+	{
+	Spawn:
+		BAL1 AB 2 Bright A_FadeOut(0.03)
+		Loop
+	}
+}
+
+Actor NyanRTOrange : NyanRTRed
+{	Translation "0:255=%[0,0,0]:[1,0.5,0.15]"	}
+Actor NyanRTYellow : NyanRTRed
+{	Translation "0:255=%[0,0,0]:[1,0.94,0]"	}
+Actor NyanRTGreen : NyanRTRed
+{	Translation "0:255=%[0,0,0]:[0.13,0.69,0.29]"	}
+Actor NyanRTBlue : NyanRTRed
+{	Translation "0:255=%[0,0,0]:[0,0.63,0.9]"	}
+Actor NyanRTPurple : NyanRTRed
+{	Translation "0:255=%[0,0,0]:[0.57,0.25,0.57]"	}
+
+
+
+
+//--------------------------------------------------------------------------------
+//		HEXEN TREES AND DECORATIONS (for sarnath)
+//--------------------------------------------------------------------------------
+Actor BaseNonBlockingDeco
+{
+	Radius 10
+	Height 20
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	-SOLID
+	+FORCEYBILLBOARD
+}
+
+Actor NB_Stalactite1 : BaseNonBlockingDeco 16572
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Stalactite 1 (No Blocking)"
+	States
+	{
+	Spawn:
+		HXDC A -1
+		Stop
+	}
+}
+
+Actor NB_Stalactite2 : BaseNonBlockingDeco 16573
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Stalactite 2 (No Blocking)"
+	States
+	{
+	Spawn:
+		HXDC B -1
+		Stop
+	}
+}
+Actor NB_Stalactite3 : BaseNonBlockingDeco 16574
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Stalactite 3 (No Blocking)"
+	States
+	{
+	Spawn:
+		HXDC C -1
+		Stop
+	}
+}
+
+Actor NB_Impaled : BaseNonBlockingDeco 16575
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Impaled corpse (No Blocking)"
+	States
+	{
+	Spawn:
+		HXDC D -1
+		Stop
+	}
+}
+Actor NB_Corpse : BaseNonBlockingDeco 16576
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Corpse (No Blocking)"
+	States
+	{
+	Spawn:
+		HXDC G 0 NODELAY A_Jump(128,2)
+		HXDC G 0 A_SetScale(scalex*-1,scaley)
+		HXDC E -1
+		Stop
+	}
+}
+Actor NB_Banner : BaseNonBlockingDeco 16577
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Banner (No Blocking)"
+	States
+	{
+	Spawn:
+		HXDC F -1
+		Stop
+	}
+}
+
+Actor NB_Tree1 : BaseNonBlockingDeco 16578
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Tree 1 (No Blocking)"
+	Scale 1.2
+	States
+	{
+	Spawn:
+		HXDC G 0 NODELAY A_Jump(128,2)
+		HXDC G 0 A_SetScale(scalex*-1,scaley)
+		HXDC G -1
+		Stop
+	}
+}
+
+Actor NB_Tree2 : BaseNonBlockingDeco 16579
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Tree 2 (No Blocking)"
+	Scale 1.2
+	States
+	{
+	Spawn:
+		HXDC G 0 NODELAY A_Jump(128,2)
+		HXDC G 0 A_SetScale(scalex*-1,scaley)
+		HXDC H -1
+		Stop
+	}
+}
+
+Actor NB_Tree3 : BaseNonBlockingDeco 16580
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Tree 3 (No Blocking)"
+	Scale 1.2
+	States
+	{
+	Spawn:
+		HXDC G 0 NODELAY A_Jump(128,2)
+		HXDC G 0 A_SetScale(scalex*-1,scaley)
+		HXDC I -1
+		Stop
+	}
+}
+
+Actor NB_Tree4 : BaseNonBlockingDeco 16581
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Tree 4 (No Blocking)"
+	Scale 1.2
+	States
+	{
+	Spawn:
+		HXDC G 0 NODELAY A_Jump(128,2)
+		HXDC G 0 A_SetScale(scalex*-1,scaley)
+		HXDC J -1
+		Stop
+	}
+}
+
+

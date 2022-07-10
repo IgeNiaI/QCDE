@@ -1,0 +1,5025 @@
+//==================================================================================
+//==================================================================================
+//			Constants
+//==================================================================================
+//==================================================================================
+
+// Maximum stacks are now defined with tokens -- see SETCLASS
+// Maximum health is also defined in player pawns, no way around that
+
+
+//======================================================================================
+//======================================================================================
+//
+//		Base class they all inherit from. Defines weapon slots and some other stuff
+//
+//======================================================================================
+//======================================================================================
+
+Actor QCPlayer : PlayerPawn
+{
+	Speed 0.9
+	Health 100
+	Mass 58
+	PainChance 255
+	Gravity 0.75
+	Player.JumpZ 7.45
+	+BRIGHT
+
+	Player.WeaponSlot 1, QCGauntlet
+	Player.WeaponSlot 2, QCMachinegun, QCHeavyMachinegun,		QCMachinegunDM, QCHeavyMachinegunDM
+	Player.WeaponSlot 3, QCShotgun, QCSuperShotgun,				QCShotgunDM, QCSuperShotgunDM
+	Player.WeaponSlot 4, QCNailgun, QCSuperNailgun,				QCNailgunDM, QCSuperNailgunDM
+	Player.WeaponSlot 5, QCTribolt, QCRocketLauncher,			QCTriboltDM, QCRocketLauncherDM
+	Player.WeaponSlot 6, QCLightningGun,						QCLightningGunDM
+	Player.WeaponSlot 7, QCRailgun,								QCRailgunDM
+	Player.WeaponSlot 8, QCBFG,									QCBFGDM
+
+
+	Player.ForwardMove 0.75,1.0
+	Player.SideMove 0.75,1.0
+
+	DamageFactor "NoDamageToPlayers", 0.0
+	DamageFactor "NailgunWeak", 0.43 //hack for weak nailgun-jump, explained in nailgun.qcd
+	DamageFactor "BobExploSP", 0.0
+
+	Species "Players" +THRUSPECIES
+	+DONTBLAST
+
+	States
+	{
+	Death.Disable:
+		TNT1 A  0 A_StopSound(1)
+		TNT1 A  0 A_StopSound(2)
+		TNT1 A  0 A_StopSound(3)
+		TNT1 A  0 A_StopSound(4)
+		TNT1 A  0 A_StopSound(5)
+		TNT1 A  0 A_StopSound(6)
+		TNT1 A  0 A_StopSound(7)
+		TNT1 A  0 A_StopSound(8)
+		TNT1 A  0 A_ChangeFlag("NOGRAVITY",true)
+		TNT1 A  0 A_SetGravity(0)
+		TNT1 A  0 A_ChangeVelocity(0,0,1, CVF_REPLACE)
+		TNT1 A 35 A_GiveInventory("DisableColor")
+		TNT1 A  0 A_Stop
+		TNT1 A -1
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		Subclasses, determines hitbox and viewhight properties
+//
+//======================================================================================
+
+Actor QCPlayerLight : QCPlayer
+{
+	Radius 13
+	Height 52
+	Player.AttackZOffset 13
+	Player.ViewHeight 41
+}
+
+Actor QCPlayerMedium : QCPlayer
+{
+	Radius 16
+	Height 56
+	Player.AttackZOffset 11 //13 is perfect, but makes projectiles hit below. so a middle point	to fix the hitscan attacks not hitting where they should
+	Player.ViewHeight 41
+}
+
+
+Actor QCPlayerHeavy : QCPlayer
+{
+	Radius 18
+	Height 60
+	Player.AttackZOffset 18
+	Player.ViewHeight 50
+}
+
+
+
+//======================================================================================
+//
+//		1. Ranger. AKA Quakeguy
+//
+//======================================================================================
+Actor QCRanger : QCPlayerMedium
+{
+	Player.DisplayName "Ranger"
+	Player.SoundClass "Ranger"
+
+	Speed 0.9
+	Scale 0.88
+
+	Player.MaxHealth 125
+	Health 125
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 125
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 100
+
+	Player.StartItem "Class_Ranger"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	DamageFactor "RocketDamage", 0.8181
+
+	States
+	{
+	Spawn:
+		QP01 E 0 NoDelay
+		QP01 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP01 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP01 E 0 A_JumpIf(true,                   "DefSpawn")
+		QP01 E 100
+		Loop
+
+		RedSpawn:
+			RP01 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP01 E 4
+			Loop
+		BlueSpawn:
+			BP01 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP01 E 4
+			Loop
+		DefSpawn:
+			QP01 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP01 E 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP01 ABCD 4
+			RP01 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP01 ABCD 4
+			BP01 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP01 ABCD 4
+			QP01 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP01 E 12
+			RP01 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP01 E 12
+			BP01 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP01 E 12
+			QP01 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP01 F 6 BRIGHT Light("PlayerFiringLight")
+			RP01 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP01 F 6 BRIGHT Light("PlayerFiringLight")
+			BP01 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP01 F 6 BRIGHT Light("PlayerFiringLight")
+			QP01 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP01 G 4
+			RP01 G 4 A_Pain
+			RP01 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP01 G 4
+			BP01 G 4 A_Pain
+			BP01 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP01 G 4
+			QP01 G 4 A_Pain
+			QP01 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		QP01 H 0 A_ChangeFlag("BRIGHT",0)
+		QP01 H 0 A_StopSound(5) //stops looping sounds
+		QP01 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP01 H 6
+		QP01 I 6 A_PlayerScream
+		QP01 J 6 A_NoBlocking
+		QP01 KLM 6
+		QP01 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		QP01 O 0 A_ChangeFlag("BRIGHT",0)
+		QP01 O 0 A_StopSound(5) //stops looping sounds
+		QP01 O 0 A_SetScale(1.0)
+		QP01 O 0 A_XScream
+		QP01 O 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP01 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP01 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP01 P 5
+		QP01 Q 5 A_NoBlocking
+		QP01 RSTUV 5
+		QP01 W -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		2. Doomslayer. AKA Dewmguy
+//
+//======================================================================================
+Actor QCDoomSlayer : QCPlayerMedium
+{
+	Player.DisplayName "DoomSlayer"
+	Player.SoundClass "DoomSlayer"
+
+	Speed 0.89
+	XScale 0.98
+	YScale 1.02
+
+	Player.MaxHealth 150
+	Health 150
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 150
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 75
+
+	Player.StartItem "Class_Doomslayer"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	Damagefactor "Falling", 0.1 // game w/o falling damage, so he's resistant
+
+	States
+	{
+	Spawn:
+		QP02 E 0 NoDelay
+		QP02 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP02 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP02 E 0 A_JumpIf(true,                   "DefSpawn")
+		QP02 E 100
+		Loop
+
+		RedSpawn:
+			RP02 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP02 E 4
+			Loop
+		BlueSpawn:
+			BP02 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP02 E 4
+			Loop
+		DefSpawn:
+			QP02 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP02 E 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP02 ABCD 4
+			RP02 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP02 ABCD 4
+			BP02 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP02 ABCD 4
+			QP02 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP02 E 12
+			RP02 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP02 E 12
+			BP02 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP02 E 12
+			QP02 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP02 F 6 BRIGHT Light("PlayerFiringLight")
+			RP02 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP02 F 6 BRIGHT Light("PlayerFiringLight")
+			BP02 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP02 F 6 BRIGHT Light("PlayerFiringLight")
+			QP02 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP02 G 4
+			RP02 G 4 A_Pain
+			RP02 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP02 G 4
+			BP02 G 4 A_Pain
+			BP02 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP02 G 4
+			QP02 G 4 A_Pain
+			QP02 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP02 H 10
+		QP02 I 10 A_PlayerScream
+		QP02 J 10 A_NoBlocking
+		QP02 KLM 10
+		QP02 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		QP02 O 0 A_XScream
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.4,false,1.2)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP02 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP02 P 5
+		QP02 Q 5 A_NoBlocking
+		QP02 RSTUV 5
+		QP02 W -1 A_StopSound(5)
+		Stop
+	}
+}
+
+//======================================================================================
+//
+//		3. Corvus. AKA Hereticguy
+//
+//======================================================================================
+
+Actor QCCorvus : QCPlayerMedium
+{
+	Player.DisplayName "Corvus"
+	Player.SoundClass "Corvus"
+
+	Speed 0.9
+	Scale 1.1
+
+	Player.MaxHealth 125
+	Health 125
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 125
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 100
+
+	Player.StartItem "Class_Corvus"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+	Damagefactor "Falling", 0.1 // game w/o falling damage, so he's resistant
+
+	States
+	{
+	Spawn:
+		QP03 E 0 NoDelay
+		QP03 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP03 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP03 E 0 A_JumpIf(true,                   "DefSpawn")
+		QP03 E 100
+		Loop
+
+		RedSpawn:
+			RP03 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP03 E 4
+			Loop
+		BlueSpawn:
+			BP03 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP03 E 4
+			Loop
+		DefSpawn:
+			QP03 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP03 E 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP03 ABCD 4
+			RP03 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP03 ABCD 4
+			BP03 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP03 ABCD 4
+			QP03 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP03 E 12
+			RP03 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP03 E 12
+			BP03 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP03 E 12
+			QP03 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP03 F 6 BRIGHT Light("PlayerFiringLight")
+			RP03 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP03 F 6 BRIGHT Light("PlayerFiringLight")
+			BP03 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP03 F 6 BRIGHT Light("PlayerFiringLight")
+			QP03 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP03 G 4
+			RP03 G 4 A_Pain
+			RP03 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP03 G 4
+			BP03 G 4 A_Pain
+			BP03 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP03 G 4
+			QP03 G 4 A_Pain
+			QP03 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP03 H 5
+		QP03 I 5 A_PlayerScream
+		QP03 J 5 A_NoBlocking
+		QP03 KLMNO 5
+		QP03 P -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP03 Q 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.4,false,1.2)
+		QP03 R 5 A_XScream
+		QP03 S 5 A_NoBlocking
+		QP03 TUVWX 5
+		QP03 Y -1 A_StopSound(5)
+		Stop
+	}
+}
+//======================================================================================
+//
+//		4. Kane. AKA Quake4guy
+//
+//======================================================================================
+
+Actor QCKane : QCPlayerLight
+{
+	Player.DisplayName "Kane"
+	Player.SoundClass "Kane"
+
+	Speed 0.91
+	Scale 0.537
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Kane"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+	Damagefactor "Falling", 0.1 // passive relies on falling, so he's resistant
+
+	States
+	{
+	Spawn:
+		QP04 E 0 NoDelay
+		QP04 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP04 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP04 E 0 A_JumpIf(true,                   "DefSpawn")
+		QP04 E 100
+		Loop
+
+		RedSpawn:
+			RP04 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP04 E 4
+			Loop
+		BlueSpawn:
+			BP04 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP04 E 4
+			Loop
+		DefSpawn:
+			QP04 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP04 E 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP04 ABCD 4
+			RP04 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP04 ABCD 4
+			BP04 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP04 ABCD 4
+			QP04 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP04 E 12
+			RP04 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP04 E 12
+			BP04 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP04 E 12
+			QP04 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP04 F 6 BRIGHT Light("PlayerFiringLight")
+			RP04 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP04 F 6 BRIGHT Light("PlayerFiringLight")
+			BP04 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP04 F 6 BRIGHT Light("PlayerFiringLight")
+			QP04 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP04 G 4
+			RP04 G 4 A_Pain
+			RP04 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP04 G 4
+			BP04 G 4 A_Pain
+			BP04 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP04 G 4
+			QP04 G 4 A_Pain
+			QP04 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP04 H 4
+		QP04 I 4 A_PlayerScream
+		QP04 J 4 A_NoBlocking
+		QP04 KLM 4
+		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
+		QP04 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP04 H 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP04 I 4 A_XScream
+		QP04 J 4 A_NoBlocking
+		QP04 KLM 4
+		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
+		QP04 N -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		5. Caleb. AKA Bloodguy
+//
+//======================================================================================
+
+Actor QCCaleb : QCPlayerLight
+{
+	Player.DisplayName "Caleb"
+	Player.SoundClass "Caleb"
+
+	Speed 0.91
+	Scale 0.46
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Caleb"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP05 G 0 NoDelay
+		QP05 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP05 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP05 G 0 A_JumpIf(true,                   "DefSpawn")
+		QP05 G 100
+		Loop
+
+		RedSpawn:
+			RP05 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP05 G 4
+			Loop
+		BlueSpawn:
+			BP05 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP05 G 4
+			Loop
+		DefSpawn:
+			QP05 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP05 G 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP05 ABCDEF 3
+			RP05 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP05 ABCDEF 3
+			BP05 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP05 ABCDEF 3
+			QP05 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" G 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP05 G 12
+			RP05 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP05 G 12
+			BP05 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP05 G 12
+			QP05 G 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP05 H 6 BRIGHT Light("PlayerFiringLight")
+			RP05 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP05 H 6 BRIGHT Light("PlayerFiringLight")
+			BP05 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP05 H 6 BRIGHT Light("PlayerFiringLight")
+			QP05 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" I 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP05 I 4
+			RP05 I 4 A_Pain
+			RP05 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP05 I 4
+			BP05 I 4 A_Pain
+			BP05 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP05 I 4
+			QP05 I 4 A_Pain
+			QP05 I 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP05 J 6
+		QP05 K 6 A_PlayerScream
+		QP05 L 6 A_NoBlocking
+		QP05 MNO 6
+		QP05 P -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP05 J 6 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP05 K 6 //A_XScream
+		QP05 L 6 A_NoBlocking
+		QP05 MNO 6
+		QP05 P -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+
+//======================================================================================
+//
+//		6. Menelkir. AKA Hexen mage
+//
+//======================================================================================
+
+Actor QCMenelkir : QCPlayerLight
+{
+	Player.DisplayName "Menelkir"
+	Player.SoundClass "Menelkir"
+
+	Speed 0.9
+	XScale 0.79
+	YScale 0.9
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Menelkir"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP06 E 0 NoDelay
+		QP06 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP06 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP06 E 0 A_JumpIf(true,                   "DefSpawn")
+		QP06 E 100
+		Loop
+
+		RedSpawn:
+			RP06 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP06 E 4
+			Loop
+		BlueSpawn:
+			BP06 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP06 E 4
+			Loop
+		DefSpawn:
+			QP06 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP06 E 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP06 ABCD 4
+			RP06 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP06 ABCD 4
+			BP06 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP06 ABCD 4
+			QP06 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP06 E 12
+			RP06 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP06 E 12
+			BP06 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP06 E 12
+			QP06 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP06 F 6 BRIGHT Light("PlayerFiringLight")
+			RP06 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP06 F 6 BRIGHT Light("PlayerFiringLight")
+			BP06 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP06 F 6 BRIGHT Light("PlayerFiringLight")
+			QP06 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP06 G 4
+			RP06 G 4 A_Pain
+			RP06 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP06 G 4
+			BP06 G 4 A_Pain
+			BP06 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP06 G 4
+			QP06 G 4 A_Pain
+			QP06 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP06 H 5
+		QP06 I 5 A_PlayerScream
+		QP06 J 5 A_NoBlocking
+		QP06 KLM 5
+		QP06 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP06 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP06 P 5 //A_XScream
+		QP06 Q 5 A_NoBlocking
+		QP06 RSTUVW 5
+		QP06 X -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		7. Terminator. Tank.
+//
+//======================================================================================
+
+Actor QCTerminator : QCPlayerHeavy
+{
+	Player.DisplayName "Terminator"
+	Player.SoundClass "Terminator"
+
+	Speed 0.89
+	XScale 0.87
+	YScale 0.9
+
+	Player.MaxHealth 150
+	Health 150
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 150
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 150
+
+	Player.StartItem "Class_Terminator"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP07 E 0 NoDelay
+		QP07 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP07 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP07 E 0 A_JumpIf(true,                   "DefSpawn")
+		QP07 E 100
+		Loop
+
+		RedSpawn:
+			RP07 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP07 E 4
+			Loop
+		BlueSpawn:
+			BP07 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP07 E 4
+			Loop
+		DefSpawn:
+			QP07 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP07 E 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP07 ABCD 4
+			RP07 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP07 ABCD 4
+			BP07 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP07 ABCD 4
+			QP07 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP07 E 12
+			RP07 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP07 E 12
+			BP07 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP07 E 12
+			QP07 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP07 F 6 BRIGHT Light("PlayerFiringLight")
+			RP07 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP07 F 6 BRIGHT Light("PlayerFiringLight")
+			BP07 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP07 F 6 BRIGHT Light("PlayerFiringLight")
+			QP07 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP07 G 4
+			RP07 G 4 A_Pain
+			RP07 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP07 G 4
+			BP07 G 4 A_Pain
+			BP07 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP07 G 4
+			QP07 G 4 A_Pain
+			QP07 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP07 H 3
+		QP07 I 3 A_PlayerScream
+		QP07 J 3 A_NoBlocking
+		QP07 KL 3 Bright
+		QP07 A 0 A_SpawnItemEx("TerminatorArm", 0,0,40, frandom(4,-4),frandom(4,-4),frandom(1,3), random(0,359),SXF_NOCHECKPOSITION)
+		QP07 MNOPQ 3 Bright
+		QP07 RSTU 3
+		QP07 V 1050 A_StopSound(5)
+		QP07 VVVVVVV 35 A_SetScale(scalex,scaley-0.05)
+		QP07 V -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP07 H 3 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP07 I 3 //A_XScream
+		QP07 J 3 A_NoBlocking
+		QP07 KL 3 Bright
+		QP07 A 0 A_SpawnItemEx("TerminatorArm", 0,0,40, frandom(4,-4),frandom(4,-4),frandom(1,3), random(0,359),SXF_NOCHECKPOSITION)
+		QP07 MNOPQ 3 Bright
+		QP07 RSTU 3
+		QP07 V 1050 A_StopSound(5)
+		QP07 VVVVVVV 35 A_SetScale(scalex,scaley-0.05)
+		QP07 V -1 A_StopSound(5)
+		Stop
+	}
+}
+
+Actor TerminatorArm
+{
+	+CLIENTSIDEONLY
+	-NOLIFTDROP
+	-SOLID
+	+DROPOFF
+	+NOTELEPORT
+	+CORPSE
+	Scale 1.025
+	Radius 6
+	Height 5
+	States
+	{
+	Spawn:
+		QP07 WXY 6
+		Wait
+	Crash:
+		WP07 Z 3
+		"####" "#" 175 //5sec
+		"####" "#" 1 A_FadeOut
+		Wait
+	}
+}
+
+
+//======================================================================================
+//
+//		8. Zedek. AKA Hexen Fighter
+//
+//======================================================================================
+
+Actor QCZedek : QCPlayerHeavy
+{
+	Player.DisplayName "Zedek"
+	Player.SoundClass "Zedek"
+
+	Speed 0.89
+	XScale 0.93
+	YScale 0.98
+
+	Player.MaxHealth 150
+	Health 150
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 150
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 150
+
+	Player.StartItem "Class_Zedek"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	Damagefactor "Falling", 0.1 // passive relies on falling, so he's resistant
+
+	States
+	{
+	Spawn:
+		QP08 A 0 NoDelay
+		QP08 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP08 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP08 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP08 A 100
+		Loop
+
+		RedSpawn:
+			RP08 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP08 A 4
+			Loop
+		BlueSpawn:
+			BP08 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP08 A 4
+			Loop
+		DefSpawn:
+			QP08 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP08 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP08 ABCD 4
+			RP08 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP08 ABCD 4
+			BP08 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP08 ABCD 4
+			QP08 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP08 E 12
+			RP08 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP08 E 12
+			BP08 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP08 E 12
+			QP08 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP08 F 6 BRIGHT Light("PlayerFiringLight")
+			RP08 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP08 F 6 BRIGHT Light("PlayerFiringLight")
+			BP08 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP08 F 6 BRIGHT Light("PlayerFiringLight")
+			QP08 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP08 G 4
+			RP08 G 4 A_Pain
+			RP08 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP08 G 4
+			BP08 G 4 A_Pain
+			BP08 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP08 G 4
+			QP08 G 4 A_Pain
+			QP08 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP08 H 5
+		QP08 I 5 A_PlayerScream
+		QP08 J 5 A_NoBlocking
+		QP08 KLM 5
+		QP08 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP08 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP08 P 5 A_XScream
+		QP08 Q 5 A_NoBlocking
+		QP08 RSTUV 5
+		QP08 W -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		9. Inquisitor. AKA Strife miniboss
+//
+//======================================================================================
+
+Actor QCInquisitor : QCPlayerHeavy
+{
+	Speed 0.9
+	XScale 0.41
+	YScale 0.525
+
+	Player.MaxHealth 175
+	Health 175
+	//Player.StartItem "QCStartingArmor0"
+
+	Player.DisplayName "Inquisitor"
+	Player.SoundClass "Inquisitor"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 175
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 125
+
+	Player.StartItem "Class_Inquisitor"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+	BloodColor "olive drab"
+
+	States
+	{
+	Spawn:
+		QP09 F 0 NoDelay
+		QP09 F 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP09 F 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP09 F 0 A_JumpIf(true,                   "DefSpawn")
+		QP09 F 100
+		Loop
+
+		RedSpawn:
+			RP09 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP09 F 4
+			Loop
+		BlueSpawn:
+			BP09 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP09 F 4
+			Loop
+		DefSpawn:
+			QP09 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP09 F 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP09 ABCDCB 4
+			RP09 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP09 ABCDCB 4
+			BP09 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP09 ABCDCB 4
+			QP09 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" F 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP09 F 12
+			RP09 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP09 F 12
+			BP09 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP09 F 12
+			QP09 F 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" E 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP09 E 6 BRIGHT Light("PlayerFiringLight")
+			RP09 E 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP09 E 6 BRIGHT Light("PlayerFiringLight")
+			BP09 E 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP09 E 6 BRIGHT Light("PlayerFiringLight")
+			QP09 E 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" I 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP09 I 4
+			RP09 I 4 A_Pain
+			RP09 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP09 I 4
+			BP09 I 4 A_Pain
+			BP09 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP09 I 4
+			QP09 I 4 A_Pain
+			QP09 I 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_GiveInventory("DeactivateShieldToken")	//failsafe to remove the shields
+		QP09 I 5
+		QP09 J 5 Bright A_PlayerScream
+		QP09 K 5 Bright A_NoBlocking
+		QP09 L 5 Bright
+		QP09 M 5
+		QP09 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_GiveInventory("DeactivateShieldToken")	//failsafe to remove the shields
+		QP09 I 5 A_SpawnItemEx("GibDropperMediumOlive",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP09 J 5 Bright //A_XScream
+		QP09 K 5 Bright A_NoBlocking
+		QP09 L 5 Bright
+		QP09 M 5
+		QP09 N -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		10. Bitterman. AKA Quake2guy
+//
+//======================================================================================
+Actor QCBitterman : QCPlayerHeavy
+{
+	Player.DisplayName "Bitterman"
+	Player.SoundClass "Bitterman"
+
+	Speed 0.89
+	Scale 0.74
+
+	Player.MaxHealth 150
+	Health 150
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 150
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 150
+
+	Player.StartItem "Class_Bitterman"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+	Player.StartItem "PowerShieldCharge", 25
+
+	States
+	{
+	Spawn:
+		QP10 G 0 NoDelay
+		QP10 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP10 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP10 G 0 A_JumpIf(true,                   "DefSpawn")
+		QP10 G 100
+		Loop
+
+		RedSpawn:
+			RP10 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP10 G 4
+			Loop
+		BlueSpawn:
+			BP10 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP10 G 4
+			Loop
+		DefSpawn:
+			QP10 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP10 G 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP10 ABCDEF 4
+			RP10 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP10 ABCDEF 4
+			BP10 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP10 ABCDEF 4
+			QP10 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" G 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP10 G 12
+			RP10 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP10 G 12
+			BP10 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP10 G 12
+			QP10 G 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP10 H 6 BRIGHT Light("PlayerFiringLight")
+			RP10 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP10 H 6 BRIGHT Light("PlayerFiringLight")
+			BP10 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP10 H 6 BRIGHT Light("PlayerFiringLight")
+			QP10 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" I 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP10 I 4
+			RP10 I 4 A_Pain
+			RP10 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP10 I 4
+			BP10 I 4 A_Pain
+			BP10 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP10 I 4
+			QP10 I 4 A_Pain
+			QP10 I 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP10 J 5
+		QP10 K 5 A_PlayerScream
+		QP10 L 5 A_NoBlocking
+		QP10 MNO 5
+		QP10 P -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP10 O 0 A_XScream
+		QP10 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP10 K 5
+		QP10 L 5 A_NoBlocking
+		QP10 MNO 5
+		QP10 p -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		11. Galen. AKA Hexen cleric.
+//
+//======================================================================================
+
+Actor QCGalen : QCPlayerMedium
+{
+	Player.DisplayName "Galen"
+	Player.SoundClass "Galen"
+
+	Speed 0.9
+	Scale 0.885
+
+	Player.MaxHealth 125
+	Health 125
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 125
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 100
+
+	Player.StartItem "Class_Galen"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP11 A 0 NoDelay
+		QP11 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP11 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP11 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP11 A 100
+		Loop
+
+		RedSpawn:
+			RP11 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP11 A 4
+			Loop
+		BlueSpawn:
+			BP11 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP11 A 4
+			Loop
+		DefSpawn:
+			QP11 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP11 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP11 ABCD 4
+			RP11 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP11 ABCD 4
+			BP11 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP11 ABCD 4
+			QP11 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP11 E 12
+			RP11 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP11 E 12
+			BP11 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP11 E 12
+			QP11 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" G 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP11 G 6 BRIGHT Light("PlayerFiringLight")
+			RP11 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP11 G 6 BRIGHT Light("PlayerFiringLight")
+			BP11 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP11 G 6 BRIGHT Light("PlayerFiringLight")
+			QP11 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" H 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP11 H 4
+			RP11 H 4 A_Pain
+			RP11 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP11 H 4
+			BP11 H 4 A_Pain
+			BP11 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP11 H 4
+			QP11 H 4 A_Pain
+			QP11 H 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP11 I 4 A_PlayerScream
+		QP11 J 4 A_NoBlocking
+		QP11 KLMNOP 4
+		QP11 Q -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP11 R 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP11 S 4 //A_XScream
+		QP11 T 4 A_NoBlocking
+		QP11 UVWXY 4
+		QP11 Z -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		12. Nyx.
+//
+//======================================================================================
+
+Actor QCNyx : QCPlayerLight
+{
+	Player.DisplayName "Nyx"
+	Player.SoundClass "Nyx"
+
+	Speed 0.91
+	XScale 0.82
+	YScale 0.925
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Nyx"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP12 E 0 NoDelay
+		QP12 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP12 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP12 E 0 A_JumpIf(true,                   "DefSpawn")
+		QP12 E 100
+		Loop
+
+		RedSpawn:
+			RP12 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP12 E 4
+			Loop
+		BlueSpawn:
+			BP12 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP12 E 4
+			Loop
+		DefSpawn:
+			QP12 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP12 E 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP12 ABCD 4
+			RP12 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP12 ABCD 4
+			BP12 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP12 ABCD 4
+			QP12 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP12 E 12
+			RP12 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP12 E 12
+			BP12 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP12 E 12
+			QP12 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP12 F 6 BRIGHT Light("PlayerFiringLight")
+			RP12 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP12 F 6 BRIGHT Light("PlayerFiringLight")
+			BP12 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP12 F 6 BRIGHT Light("PlayerFiringLight")
+			QP12 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP12 G 4
+			RP12 G 4 A_Pain
+			RP12 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP12 G 4
+			BP12 G 4 A_Pain
+			BP12 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP12 G 4
+			QP12 G 4 A_Pain
+			QP12 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP12 H 4
+		QP12 I 4 A_PlayerScream
+		QP12 J 4 A_NoBlocking
+		QP12 KLMNOP 4
+		QP12 Q -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP12 H 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP12 I 4 //A_XScream
+		QP12 J 4 A_NoBlocking
+		QP12 KLMNOP 4
+		QP12 Q -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+
+//======================================================================================
+//
+//		13. Sorgaul. AKA Sorkek
+//
+//======================================================================================
+
+Actor QCSorgaul : QCPlayerHeavy
+{
+	Player.DisplayName "Sorgaul"
+	Player.SoundClass "Sorgaul"
+
+	Speed 0.9
+	XScale 0.54
+	YScale 0.74
+
+	Player.MaxHealth 125
+	Health 125
+	Player.StartItem "QCStartingArmor50"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 125
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 175
+
+	Player.StartItem "Class_Sorgaul"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+
+	Spawn:
+		QP13 G 0 NoDelay
+		QP13 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP13 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP13 G 0 A_JumpIf(true,                   "DefSpawn")
+		QP13 G 100
+		Loop
+
+		RedSpawn:
+			RP13 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP13 G 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			Loop
+		BlueSpawn:
+			BP13 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP13 G 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			Loop
+		DefSpawn:
+			QP13 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP13 G 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP13 ABCDEF 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			RP13 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP13 ABCDEF 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			BP13 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP13 ABCDEF 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP13 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP13 GGGG 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			RP13 G 3 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP13 GGGG 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			BP13 G 3 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP13 GGGG 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP13 G 3 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP13 H 6 BRIGHT Light("PlayerFiringLight")
+			RP13 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP13 H 6 BRIGHT Light("PlayerFiringLight")
+			BP13 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP13 H 6 BRIGHT Light("PlayerFiringLight")
+			QP13 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" L 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP13 L 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			RP13 L 4 A_Pain
+			RP13 L 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP13 L 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			BP13 L 4 A_Pain
+			BP13 L 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP13 L 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP13 L 4 A_Pain
+			QP13 L 4 A_JumpIf(true, "Spawn")
+			Loop
+
+		RedPuncheroo:
+			RP13 IJK 4
+			RP13 K 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePuncheroo:
+			BP13 IJK 4
+			BP13 K 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPuncheroo:
+			QP13 IJK 4
+			QP13 K 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP13 M 4
+		QP13 N 4 A_PlayerScream
+		QP13 O 4 A_NoBlocking
+		QP13 PQ 4
+		QP13 R -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP13 M 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP13 N 4 //A_XScream
+		QP13 O 4 A_NoBlocking
+		QP13 PQ 4
+		QP13 R -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		14. Duke Nukem
+//
+//======================================================================================
+Actor QCDukeNukem : QCPlayerMedium
+{
+	Player.DisplayName "Duke Nukem" //Needed to have that space
+	Player.SoundClass "DukeNukem"
+
+	Speed 0.9
+	Scale 0.692
+
+	Player.MaxHealth 150
+	Health 150
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 150
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 75
+
+	Player.StartItem "Class_DukeNukem"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP14 e 0 nodelay
+		QP14 e 0 a_jumpifinventory("teamcolor",2, "RedSpawn")
+		QP14 e 0 a_jumpifinventory("teamcolor",1,"BlueSpawn")
+		QP14 e 0 a_jumpif(true,                   "DefSpawn")
+		QP14 e 100
+		loop
+
+		RedSpawn:
+			RP14 a 0 a_jumpif(momx||momy,"RedSee")
+			RP14 e 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			loop
+		BlueSpawn:
+			BP14 a 0 a_jumpif(momx||momy,"BlueSee")
+			BP14 e 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			loop
+		DefSpawn:
+			QP14 a 0 a_jumpif(momx||momy,"DefSee")
+			QP14 e 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			goto Spawn // to catch color
+
+	See:
+		"####" a 0 a_jumpifinventory("teamcolor",2, "RedSee") // so tempted to call it "red sea"
+		"####" a 0 a_jumpifinventory("teamcolor",1,"BlueSee")
+		"####" a 1 a_jumpif(true,                   "DefSee")
+		goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			RP14 a 0 a_jumpif(true,"RedSpawn")
+			loop
+		BlueSee:
+			BP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			BP14 a 0 a_jumpif(true,"BlueSpawn")
+			loop
+		DefSee:
+			QP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP14 a 0 a_jumpif(true,"Spawn") // to catch color
+			loop
+
+	Missile:
+		"####" a 0 a_jumpifinventory("teamcolor",2, "RedMissile")
+		"####" a 0 a_jumpifinventory("teamcolor",1,"BlueMissile")
+		"####" e 1 a_jumpif(true,                   "DefMissile")
+		loop
+
+		RedMissile:
+			RP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			RP14 e 12 a_jumpif(true, "Spawn")
+			loop
+		BlueMissile:
+			BP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			BP14 e 12 a_jumpif(true, "Spawn")
+			loop
+		DefMissile:
+			QP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP14 e 12 a_jumpif(true, "Spawn")
+			loop
+
+		RedPuncheroo:
+			RP14 GH 5
+			RP14 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePuncheroo:
+			BP14 GH 5
+			BP14 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPuncheroo:
+			QP14 GH 5
+			QP14 H 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" a 0 a_jumpifinventory("teamcolor",2, "RedMelee")
+		"####" a 0 a_jumpifinventory("teamcolor",1,"BlueMelee")
+		"####" f 1 a_jumpif(true,                   "DefMelee")
+		loop
+
+		RedMelee:
+			RP14 f 6 bright light("playerfiringlight")
+			RP14 f 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
+			loop
+		BlueMelee:
+			BP14 f 6 bright light("playerfiringlight")
+			BP14 f 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
+			loop
+		DefMelee:
+			QP14 f 6 bright light("playerfiringlight")
+			QP14 f 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
+			loop
+
+	Pain:
+		"####" a 0 a_jumpifinventory("teamcolor",2, "RedPain")
+		"####" a 0 a_jumpifinventory("teamcolor",1,"BluePain")
+		"####" g 1 a_jumpif(true,                   "DefPain")
+		loop
+
+		RedPain:
+			RP14 b 4
+			RP14 b 4 a_Pain
+			RP14 b 4 a_jumpif(true, "Spawn")
+			loop
+		BluePain:
+			BP14 b 4
+			BP14 b 4 a_Pain
+			BP14 b 4 a_jumpif(true, "Spawn")
+			loop
+		DefPain:
+			QP14 b 4
+			QP14 b 4 a_Pain
+			QP14 b 4 a_jumpif(true, "Spawn")
+			loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP14 I 5 A_PlayerScream
+		QP14 J 5 A_NoBlocking
+		QP14 KLM 5
+		QP14 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP14 O 0 A_XScream
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP14 I 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP14 J 5 A_NoBlocking
+		QP14 KLM 5
+		QP14 N -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		15. Durandal, the AI in a Mjolnir battleroid
+//
+//======================================================================================
+Actor QCDurandal : QCPlayerLight
+{
+	Player.DisplayName "Durandal"
+	Player.SoundClass "Durandal"
+
+	Speed 0.91
+	XScale 0.7
+	YScale 0.65
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Durandal"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+	DamageFactor "BobExploSP", 0.2599 //takes 1/4 of SP bob explo damage
+
+	States
+	{
+	Spawn:
+		QP15 A 0 NoDelay
+		QP15 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP15 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP15 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP15 A 100
+		Loop
+
+		RedSpawn:
+			RP15 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP15 A 4
+			Loop
+		BlueSpawn:
+			BP15 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP15 A 4
+			Loop
+		DefSpawn:
+			QP15 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP15 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP15 BCDE 4
+			RP15 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP15 BCDE 4
+			BP15 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP15 BCDE 4
+			QP15 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP15 F 12
+			RP15 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP15 F 12
+			BP15 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP15 F 12
+			QP15 F 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" G 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP15 G 6 BRIGHT Light("PlayerFiringLight")
+			RP15 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP15 G 6 BRIGHT Light("PlayerFiringLight")
+			BP15 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP15 G 6 BRIGHT Light("PlayerFiringLight")
+			QP15 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP15 A 4
+			RP15 A 4 A_Pain
+			RP15 A 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP15 A 4
+			BP15 A 4 A_Pain
+			BP15 A 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP15 A 4
+			QP15 A 4 A_Pain
+			QP15 A 4 A_JumpIf(true, "Spawn")
+			Loop
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP15 H 5 A_PlayerScream
+		QP15 I 5 A_NoBlocking
+		QP15 JKLM 5
+		QP15 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_XScream
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP15 O 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP15 P 4 A_NoBlocking
+		QP15 QR 4
+		QP15 S -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		16. Keel, fully droided
+//
+//======================================================================================
+Actor QCKeel : QCPlayerHeavy
+{
+	Player.DisplayName "Keel"
+	Player.SoundClass "Keel"
+
+	Speed 0.89
+	XScale 0.52
+	YScale 0.645
+
+	Player.MaxHealth 175
+	Health 175
+	//Player.StartItem "QCStartingArmor0"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 175
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 125
+
+	Player.StartItem "Class_Keel"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP16 A 0 NoDelay
+		QP16 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP16 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP16 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP16 A 100
+		Loop
+
+		RedSpawn:
+			RP16 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP16 A 4
+			Loop
+		BlueSpawn:
+			BP16 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP16 A 4
+			Loop
+		DefSpawn:
+			QP16 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP16 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP16 ABCD 5
+			RP16 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP16 ABCD 5
+			BP16 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP16 ABCD 5
+			QP16 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP16 E 12
+			RP16 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP16 E 12
+			BP16 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP16 E 12
+			QP16 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP16 F 6 BRIGHT Light("PlayerFiringLight")
+			RP16 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP16 F 6 BRIGHT Light("PlayerFiringLight")
+			BP16 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP16 F 6 BRIGHT Light("PlayerFiringLight")
+			QP16 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" I 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP16 I 4
+			RP16 I 4 A_Pain
+			RP16 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP16 I 4
+			BP16 I 4 A_Pain
+			BP16 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP16 I 4
+			QP16 I 4 A_Pain
+			QP16 I 4 A_JumpIf(true, "Spawn")
+			Loop
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP16 J 5 A_PlayerScream
+		QP16 K 5 A_NoBlocking
+		QP16 LMNOP 5
+		QP16 Q -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_XScream
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP16 J 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP16 K 5 A_NoBlocking
+		QP16 LMNOP 5
+		QP16 Q -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		17. Sarge, oldschool as it gets
+//
+//======================================================================================
+Actor QCSarge : QCPlayerMedium
+{
+	Player.DisplayName "Sarge"
+	Player.SoundClass "Sarge"
+
+	Speed 0.92
+	Scale 0.71
+
+	Player.MaxHealth 100
+	Health 100
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 175
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Sarge"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP17 A 0 NoDelay
+		QP17 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP17 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP17 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP17 A 100
+		Loop
+
+		RedSpawn:
+			RP17 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP17 A 4
+			Loop
+		BlueSpawn:
+			BP17 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP17 A 4
+			Loop
+		DefSpawn:
+			QP17 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP17 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP17 BCDE 4
+			RP17 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP17 BCDE 4
+			BP17 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP17 BCDE 4
+			QP17 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" F 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP17 F 12
+			RP17 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP17 F 12
+			BP17 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP17 F 12
+			QP17 F 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" G 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP17 G 6 BRIGHT Light("PlayerFiringLight")
+			RP17 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP17 G 6 BRIGHT Light("PlayerFiringLight")
+			BP17 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP17 G 6 BRIGHT Light("PlayerFiringLight")
+			QP17 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" H 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP17 H 4
+			RP17 H 4 A_Pain
+			RP17 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP17 H 4
+			BP17 H 4 A_Pain
+			BP17 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP17 H 4
+			QP17 H 4 A_Pain
+			QP17 H 4 A_JumpIf(true, "Spawn")
+			Loop
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP17 I 5 A_PlayerScream
+		QP17 J 5 A_NoBlocking
+		QP17 KLMN 5
+		QP17 O -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_XScream
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP17 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP17 J 5 A_NoBlocking
+		QP17 KLMN 5
+		QP17 O -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		18. Lo Wang, he whom you no mess with
+//
+//======================================================================================
+Actor QCLoWang : QCPlayerLight
+{
+	Player.DisplayName "Lo Wang"
+	Player.SoundClass "LoWang"
+
+	Speed 0.91
+	Scale 0.53
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_LoWang"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP18 C 0 NoDelay
+		QP18 C 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP18 C 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP18 C 0 A_JumpIf(true,                   "DefSpawn")
+		QP18 C 100
+		Loop
+
+		RedSpawn:
+			RP18 C 0 A_JumpIf(momx||momy,"RedSee")
+			RP18 C 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			Loop
+		BlueSpawn:
+			BP18 C 0 A_JumpIf(momx||momy,"BlueSee")
+			BP18 C 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			Loop
+		DefSpawn:
+			QP18 C 0 A_JumpIf(momx||momy,"DefSee")
+			QP18 C 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP18 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			RP18 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP18 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			BP18 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP18 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP18 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP18 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+			RP18 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP18 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			BP18 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP18 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP18 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP18 FF 3 BRIGHT Light("PlayerFiringLight") //A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo") //had to remove or it gets weird with quick fire weapons
+			RP18 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP18 FF 3 BRIGHT Light("PlayerFiringLight") //A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+			BP18 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP18 FF 3 BRIGHT Light("PlayerFiringLight") //A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP18 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+		RedPuncheroo:
+			RP18 GHIGHI 3
+			RP18 K 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePuncheroo:
+			BP18 GHIGHI 3
+			BP18 K 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPuncheroo:
+			QP18 GHIGHI 3
+			QP18 K 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" B 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP18 B 4
+			RP18 B 4 A_Pain
+			RP18 B 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP18 B 4
+			BP18 B 4 A_Pain
+			BP18 B 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP18 B 4
+			QP18 B 4 A_Pain
+			QP18 B 4 A_JumpIf(true, "Spawn")
+			Loop
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP18 J 5 A_PlayerScream
+		QP18 K 5 A_NoBlocking
+		QP18 LMNOPQ 5
+		QP18 R -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_XScream
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP18 J 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP18 K 5 A_NoBlocking
+		QP18 LMNOPQ 5
+		QP18 R -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+
+//======================================================================================
+//
+//		19. Grayson (Hunt). AKA BulletstormGuy
+//
+//======================================================================================
+Actor QCGrayson : QCPlayerMedium
+{
+	Player.DisplayName "Grayson"
+	Player.SoundClass "Grayson"
+
+	Speed 0.9
+	Scale 0.745
+
+	Player.MaxHealth 125
+	Health 125
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 125
+
+	Player.StartItem "Class_Grayson"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP19 E 0 NoDelay
+		QP19 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP19 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP19 E 0 A_JumpIf(true,                   "DefSpawn")
+		QP19 E 100
+		Loop
+
+		RedSpawn:
+			RP19 E 0 A_JumpIf(momx||momy,"RedSee")
+			RP19 E 4
+			Loop
+		BlueSpawn:
+			BP19 E 0 A_JumpIf(momx||momy,"BlueSee")
+			BP19 E 4
+			Loop
+		DefSpawn:
+			QP19 E 0 A_JumpIf(momx||momy,"DefSee")
+			QP19 E 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP19 ABCD 4
+			RP19 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP19 ABCD 4
+			BP19 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP19 ABCD 4
+			QP19 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP19 E 12
+			RP19 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP19 E 12
+			BP19 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP19 E 12
+			QP19 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP19 F 6 BRIGHT Light("PlayerFiringLight")
+			RP19 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP19 F 6 BRIGHT Light("PlayerFiringLight")
+			BP19 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP19 F 6 BRIGHT Light("PlayerFiringLight")
+			QP19 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP19 G 4
+			RP19 G 4 A_Pain
+			RP19 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP19 G 4
+			BP19 G 4 A_Pain
+			BP19 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP19 G 4
+			QP19 G 4 A_Pain
+			QP19 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP19 H 5
+		QP19 I 5 A_PlayerScream
+		QP19 J 5 A_NoBlocking
+		QP19 KLMNO 5
+		QP19 P -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 a 0 A_XScream
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP19 Q 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP19 R 5
+		QP19 S 5 A_NoBlocking
+		QP19 TUVWXY 5
+		QP19 Z -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		20. Eradicator. AKA Dan + Ishi
+//
+//======================================================================================
+
+Actor QCEradicator : QCPlayerHeavy
+{
+	Player.DisplayName "Eradicator"
+	Player.SoundClass "Eradicator"
+
+	Speed 0.9
+	XScale 0.76
+	YScale 0.75
+
+	Player.MaxHealth 150
+	Health 150
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 150
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 150
+
+	Player.StartItem "Class_Eradicator"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP20 A 0 NoDelay
+		QP20 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP20 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP20 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP20 A 100
+		Loop
+
+		RedSpawn:
+			RP20 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP20 A 4
+			Loop
+		BlueSpawn:
+			BP20 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP20 A 4
+			Loop
+		DefSpawn:
+			QP20 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP20 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP20 BCDEFG 3
+			RP20 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP20 BCDEFG 3
+			BP20 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP20 BCDEFG 3
+			QP20 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" H 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP20 H 12
+			RP20 H 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP20 H 12
+			BP20 H 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP20 H 12
+			QP20 H 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" I 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP20 I 6 BRIGHT Light("PlayerFiringLight")
+			RP20 I 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP20 I 6 BRIGHT Light("PlayerFiringLight")
+			BP20 I 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP20 I 6 BRIGHT Light("PlayerFiringLight")
+			QP20 I 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP20 M 4
+			RP20 M 4 A_Pain
+			RP20 M 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP20 M 4
+			BP20 M 4 A_Pain
+			BP20 M 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP20 M 4
+			QP20 M 4 A_Pain
+			QP20 M 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP20 N 5
+		QP20 O 5 A_PlayerScream
+		QP20 P 5 A_NoBlocking
+		QP20 QR 5
+		QP20 S -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sound
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP20 N 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP20 O 5 A_XScream
+		QP20 P 5 A_NoBlocking
+		QP20 QR 5
+		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sound
+		QP20 S -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		21. BJ Blazkowicz
+//
+//======================================================================================
+
+Actor QCBlazkowicz : QCPlayerMedium
+{
+	Player.DisplayName "Blazkowicz"
+	Player.SoundClass "Blazkowicz"
+
+	Speed 0.9
+	XScale 0.82
+	YScale 1.02
+
+	Player.MaxHealth 125
+	Health 125
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 125
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 100
+
+	Player.StartItem "Class_Blazkowicz"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP21 A 0 NoDelay
+		QP21 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP21 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP21 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP21 A 100
+		Loop
+
+		RedSpawn:
+			RP21 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP21 A 4
+			Loop
+		BlueSpawn:
+			BP21 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP21 A 4
+			Loop
+		DefSpawn:
+			QP21 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP21 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP21 ABCD 4
+			RP21 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP21 ABCD 4
+			BP21 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP21 ABCD 4
+			QP21 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP21 E 12
+			RP21 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP21 E 12
+			BP21 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP21 E 12
+			QP21 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP21 F 6 BRIGHT Light("PlayerFiringLight")
+			RP21 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP21 F 6 BRIGHT Light("PlayerFiringLight")
+			BP21 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP21 F 6 BRIGHT Light("PlayerFiringLight")
+			QP21 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP21 G 4
+			RP21 G 4 A_Pain
+			RP21 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP21 G 4
+			BP21 G 4 A_Pain
+			BP21 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP21 G 4
+			QP21 G 4 A_Pain
+			QP21 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP21 H 6
+		QP21 I 6 A_PlayerScream
+		QP21 J 6 A_NoBlocking
+		QP21 KL 6
+		QP21 M -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP21 N 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP21 O 5 A_XScream
+		QP21 P 5 A_NoBlocking
+		QP21 QRSTU 5
+		QP21 V -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		22. Gordon Freeman
+//
+//======================================================================================
+
+Actor QCFreeman : QCPlayerMedium
+{
+	Player.DisplayName "Freeman"
+	Player.SoundClass "Freeman"
+
+	Speed 0.88	//he's a bit slow
+	Scale 0.55
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor50"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 125
+
+	Player.StartItem "Class_Freeman"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP22 A 0 NoDelay
+		QP22 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP22 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP22 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP22 G 100
+		Loop
+
+		RedSpawn:
+			RP22 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP22 G 4
+			Loop
+		BlueSpawn:
+			BP22 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP22 G 4
+			Loop
+		DefSpawn:
+			QP22 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP22 G 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP22 ABCDEF 3
+			RP22 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP22 ABCDEF 3
+			BP22 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP22 ABCDEF 3
+			QP22 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" G 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP22 G 12
+			RP22 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP22 G 12
+			BP22 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP22 G 12
+			QP22 G 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP22 H 6 BRIGHT Light("PlayerFiringLight")
+			RP22 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP22 H 6 BRIGHT Light("PlayerFiringLight")
+			BP22 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP22 H 6 BRIGHT Light("PlayerFiringLight")
+			QP22 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" I 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP22 I 4
+			RP22 I 4 A_Pain
+			RP22 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP22 I 4
+			BP22 I 4 A_Pain
+			BP22 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP22 I 4
+			QP22 I 4 A_Pain
+			QP22 I 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP22 J 6
+		QP22 K 6 A_PlayerScream
+		QP22 L 6 A_NoBlocking
+		QP22 MNOP 6
+		QP22 Q -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP22 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP22 K 5 A_XScream
+		QP22 L 5 A_NoBlocking
+		QP22 MNOP 5
+		QP22 Q -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+//======================================================================================
+//
+//		23. Vor Matur
+//
+//======================================================================================
+
+Actor QCVorMatur : QCPlayerHeavy
+{
+	Player.DisplayName "VorMatur"
+	Player.SoundClass "VorMatur"
+
+	Speed 0.88
+	XScale 0.58
+	YScale 0.76
+
+	Mass 85
+
+	Player.MaxHealth 300
+	Health 300
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 300
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 0
+
+	Player.StartItem "Class_VorMatur"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	BloodColor "63 1F 7C"	//dark purpleish
+
+	DamageFactor "VormaturBlood", 0.0	//all VorMaturs are immune to blood of their kin
+
+	States
+	{
+	Spawn:
+		QP23 A 0 NoDelay
+		QP23 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP23 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP23 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP23 F 100
+		Loop
+
+		RedSpawn:
+			RP23 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP23 F 4
+			Loop
+		BlueSpawn:
+			BP23 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP23 F 4
+			Loop
+		DefSpawn:
+			QP23 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP23 F 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP23 ABCD 4
+			RP23 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP23 ABCD 4
+			BP23 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP23 ABCD 4
+			QP23 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" F 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP23 F 12
+			RP23 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP23 F 12
+			BP23 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP23 F 12
+			QP23 F 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" G 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP23 G 6 BRIGHT Light("PlayerFiringLight")
+			RP23 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP23 G 6 BRIGHT Light("PlayerFiringLight")
+			BP23 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP23 G 6 BRIGHT Light("PlayerFiringLight")
+			QP23 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" H 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP23 H 4
+			RP23 H 4 A_Pain
+			RP23 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP23 H 4
+			BP23 H 4 A_Pain
+			BP23 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP23 H 4
+			QP23 H 4 A_Pain
+			QP23 H 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP23 I 4
+		QP23 J 4 A_PlayerScream
+		QP23 K 4 A_NoBlocking
+		QP23 LM 4
+		QP23 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP23 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP23 J 4 A_XScream
+		QP23 K 4 A_NoBlocking
+		QP23 LM 4
+		QP23 N -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		24. Eleena
+//
+//======================================================================================
+
+Actor QCEleena : QCPlayerLight
+{
+	Player.DisplayName "Eleena"
+	Player.SoundClass "Eleena"
+
+	Speed 0.91
+	Scale 0.595
+
+	Player.JumpZ 7.8
+
+	Player.MaxHealth 125
+	Health 125
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 125
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 25
+
+	Player.StartItem "Class_Eleena"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	Damagefactor "Falling", 0.1 // passive ability sends her down fast, so she's resistant
+	// and btw cats land on all fours
+
+
+	States
+	{
+	Spawn:
+		QP24 A 0 NoDelay
+		QP24 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP24 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP24 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP24 G 100
+		Loop
+
+		RedSpawn:
+			RP24 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP24 G 4
+			Loop
+		BlueSpawn:
+			BP24 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP24 G 4
+			Loop
+		DefSpawn:
+			QP24 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP24 G 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP24 ABCDEF 3
+			RP24 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP24 ABCDEF 3
+			BP24 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP24 ABCDEF 3
+			QP24 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" G 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP24 G 12
+			RP24 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP24 G 12
+			BP24 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP24 G 12
+			QP24 G 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP24 H 6 BRIGHT Light("PlayerFiringLight")
+			RP24 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP24 H 6 BRIGHT Light("PlayerFiringLight")
+			BP24 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP24 H 6 BRIGHT Light("PlayerFiringLight")
+			QP24 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" L 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP24 L 4
+			RP24 L 4 A_Pain
+			RP24 L 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP24 L 4
+			BP24 L 4 A_Pain
+			BP24 L 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP24 L 4
+			QP24 L 4 A_Pain
+			QP24 L 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP24 M 5
+		QP24 N 5 A_PlayerScream
+		QP24 O 5 A_NoBlocking
+		QP24 PQ 5
+		QP24 R -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP24 M 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP24 N 5 A_XScream
+		QP24 O 5 A_NoBlocking
+		QP24 PQ 5
+		QP24 R -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		25. Lucienne
+//
+//======================================================================================
+
+Actor QCLucienne : QCPlayerLight
+{
+	Player.DisplayName "Lucienne"
+	Player.SoundClass "Lucienne"
+
+	Speed 0.91
+	Scale 0.551
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Lucienne"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP25 A 0 NoDelay
+		QP25 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP25 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP25 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP25 C 100
+		Loop
+
+		RedSpawn:
+			RP25 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP25 C 4
+			Loop
+		BlueSpawn:
+			BP25 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP25 C 4
+			Loop
+		DefSpawn:
+			QP25 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP25 C 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP25 ABCDCB 3
+			RP25 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP25 ABCDCB 3
+			BP25 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP25 ABCDCB 3
+			QP25 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP25 E 12
+			RP25 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP25 E 12
+			BP25 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP25 E 12
+			QP25 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP25 F 6 BRIGHT Light("PlayerFiringLight")
+			RP25 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP25 F 6 BRIGHT Light("PlayerFiringLight")
+			BP25 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP25 F 6 BRIGHT Light("PlayerFiringLight")
+			QP25 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP25 G 4
+			RP25 G 4 A_Pain
+			RP25 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP25 G 4
+			BP25 G 4 A_Pain
+			BP25 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP25 G 4
+			QP25 G 4 A_Pain
+			QP25 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP25 H 5
+		QP25 I 5 A_PlayerScream
+		QP25 J 5 A_NoBlocking
+		QP25 A 0 A_SpawnItemEx("LucienneWeapon", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QP25 KLMN 5
+		QP25 o -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP25 H 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP25 I 5 A_XScream
+		QP25 J 5 A_NoBlocking
+		QP25 A 0 A_SpawnItemEx("LucienneWeapon", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QP25 KLMN 5
+		QP25 O -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+Actor LucienneWeapon
+{
+	+CLIENTSIDEONLY
+	-NOLIFTDROP
+	-SOLID
+	+DROPOFF
+	+NOTELEPORT
+	+CORPSE
+	Scale 0.52
+	Radius 6
+	Height 5
+	States
+	{
+	Spawn:
+		QP25 P 6
+		"####" "#" 175 //5sec
+		"####" "#" 1 A_FadeOut
+		Wait
+	}
+}
+
+
+
+
+//======================================================================================
+//
+//		26. Major, AKA Susan
+//
+//======================================================================================
+
+Actor QCMajor : QCPlayerHeavy
+{
+	Player.DisplayName "Major"
+	Player.SoundClass "Major"
+
+	//Passive 2:
+	Radius 16	// Same as a medium
+	MaxStepHeight 36
+
+	Speed 0.89
+	Scale 0.88
+
+	Player.MaxHealth 150
+	Health 150
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 150
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 150
+
+	Player.StartItem "Class_Major"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP26 A 0 NoDelay
+		QP26 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP26 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP26 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP26 A 100
+		Loop
+
+		RedSpawn:
+			RP26 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP26 A 4
+			Loop
+		BlueSpawn:
+			BP26 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP26 A 4
+			Loop
+		DefSpawn:
+			QP26 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP26 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" B 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP26 BCDE 4
+			RP26 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP26 BCDE 4
+			BP26 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP26 BCDE 4
+			QP26 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" F 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP26 F 12
+			RP26 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP26 F 12
+			BP26 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP26 F 12
+			QP26 F 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" G 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP26 G 6 BRIGHT Light("PlayerFiringLight")
+			RP26 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP26 G 6 BRIGHT Light("PlayerFiringLight")
+			BP26 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP26 G 6 BRIGHT Light("PlayerFiringLight")
+			QP26 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" H 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP26 H 4
+			RP26 H 4 A_Pain
+			RP26 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP26 H 4
+			BP26 H 4 A_Pain
+			BP26 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP26 H 4
+			QP26 H 4 A_Pain
+			QP26 H 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP26 I 5
+		QP26 J 5 A_PlayerScream
+		QP26 K 5 A_NoBlocking
+		QP26 LMN 5
+		QP26 O -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP26 I 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP26 J 5 A_XScream
+		QP26 K 5 A_NoBlocking
+		QP26 LMN 5
+		QP26 O -1 A_StopSound(5)
+		Stop
+	}
+}
+
+//======================================================================================
+//
+//		27. Hunter
+//
+//======================================================================================
+
+Actor QCHunter : QCPlayerLight
+{
+	Player.DisplayName "Hunter"
+	Player.SoundClass "Hunter"
+
+	Speed 0.91
+	Scale 0.715
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Hunter"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP27 A 0 NoDelay
+		QP27 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP27 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP27 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP27 A 100
+		Loop
+
+		RedSpawn:
+			RP27 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP27 A 4
+			Loop
+		BlueSpawn:
+			BP27 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP27 A 4
+			Loop
+		DefSpawn:
+			QP27 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP27 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP27 BCDE 4
+			RP27 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP27 BCDE 4
+			BP27 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP27 BCDE 4
+			QP27 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" F 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP27 F 12
+			RP27 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP27 F 12
+			BP27 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP27 F 12
+			QP27 F 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" G 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP27 G 6 BRIGHT Light("PlayerFiringLight")
+			RP27 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP27 G 6 BRIGHT Light("PlayerFiringLight")
+			BP27 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP27 G 6 BRIGHT Light("PlayerFiringLight")
+			QP27 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" H 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP27 H 4
+			RP27 H 4 A_Pain
+			RP27 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP27 H 4
+			BP27 H 4 A_Pain
+			BP27 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP27 H 4
+			QP27 H 4 A_Pain
+			QP27 H 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP27 I 4
+		QP27 J 4 A_PlayerScream
+		QP27 K 4 A_NoBlocking
+		QP27 LMN 4
+		QP27 O -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP27 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP27 J 4 A_XScream
+		QP27 K 4 A_NoBlocking
+		QP27 LMN 4
+		QP27 O -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+
+//======================================================================================
+//
+//		28. Sam, Serious Sam
+//
+//======================================================================================
+
+Actor QCSam : QCPlayerHeavy
+{
+	Player.DisplayName "Sam"
+	Player.SoundClass "Sam"
+
+	Speed 0.89
+	XScale 0.69
+	YScale 0.57
+
+	Player.MaxHealth 175
+	Health 175
+	//Player.StartItem "QCStartingArmor0"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 175
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 125
+
+	Player.StartItem "Class_Sam"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP28 A 0 NoDelay
+		QP28 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP28 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP28 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP28 A 100
+		Loop
+
+		RedSpawn:
+			RP28 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP28 A 4
+			Loop
+		BlueSpawn:
+			BP28 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP28 A 4
+			Loop
+		DefSpawn:
+			QP28 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP28 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" B 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP28 BCDEFG 4
+			RP28 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP28 BCDEFG 4
+			BP28 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP28 BCDEFG 4
+			QP28 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP28 A 12
+			RP28 A 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP28 A 12
+			BP28 A 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP28 A 12
+			QP28 A 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP28 H 6 BRIGHT Light("PlayerFiringLight")
+			RP28 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP28 H 6 BRIGHT Light("PlayerFiringLight")
+			BP28 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP28 H 6 BRIGHT Light("PlayerFiringLight")
+			QP28 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" I 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP28 I 4
+			RP28 I 4 A_Pain
+			RP28 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP28 I 4
+			BP28 I 4 A_Pain
+			BP28 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP28 I 4
+			QP28 I 4 A_Pain
+			QP28 I 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP28 J 5
+		QP28 K 5 A_PlayerScream
+		QP28 L 5 A_NoBlocking
+		QP28 MN 5
+		QP28 O -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP28 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
+		QP28 K 5 A_XScream
+		QP28 L 5 A_NoBlocking
+		QP28 MN 5
+		QP28 O -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		29. Postal. AKA Postal Dude
+//
+//======================================================================================
+
+Actor QCPostal : QCPlayerLight
+{
+	Player.DisplayName "Postal"
+	Player.SoundClass "Postal"
+
+	Speed 0.91
+	XScale 0.5
+	YScale 0.58
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 50
+
+	Player.StartItem "Class_Postal"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP29 A 0 NoDelay
+		QP29 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP29 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP29 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP29 A 100
+		Loop
+
+		RedSpawn:
+			RP29 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP29 A 4
+			Loop
+		BlueSpawn:
+			BP29 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP29 A 4
+			Loop
+		DefSpawn:
+			QP29 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP29 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP29 ABCD 4
+			RP29 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP29 ABCD 4
+			BP29 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP29 ABCD 4
+			QP29 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP29 E 12
+			RP29 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP29 E 12
+			BP29 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP29 E 12
+			QP29 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" L 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP29 L 6 BRIGHT Light("PlayerFiringLight")
+			RP29 L 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP29 L 6 BRIGHT Light("PlayerFiringLight")
+			BP29 L 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP29 L 6 BRIGHT Light("PlayerFiringLight")
+			QP29 L 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" F 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" F 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" F 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP29 F 4
+			RP29 F 4 A_Pain
+			RP29 F 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP29 F 4
+			BP29 F 4 A_Pain
+			BP29 F 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP29 F 4
+			QP29 F 4 A_Pain
+			QP29 F 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP29 G 5
+		QP29 H 5 A_PlayerScream
+		QP29 I 5 A_NoBlocking
+		QP29 J 5
+		QP29 K -1 A_StopSound(5)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(5) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP29 G 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP29 H 5 //A_XScream
+		QP29 I 5 A_NoBlocking
+		QP29 J 5
+		QP29 K -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+
+
+
+//======================================================================================
+//
+//		30. Painkiller. AKA Daniel Garner
+//
+//======================================================================================
+Actor QCPainkiller : QCPlayerMedium
+{
+	Player.DisplayName "Painkiller"
+	Player.SoundClass "Painkiller"
+
+	Speed 0.9
+	Scale 0.75
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor50"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 125
+
+	Player.StartItem "Class_Painkiller"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP30 A 0 NoDelay
+		QP30 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP30 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP30 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP30 A 100
+		Loop
+
+		RedSpawn:
+			RP30 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP30 A 4
+			Loop
+		BlueSpawn:
+			BP30 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP30 A 4
+			Loop
+		DefSpawn:
+			QP30 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP30 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" B 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" B 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" B 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP30 BCDE 4
+			RP30 B 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP30 BCDE 4
+			BP30 B 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP30 BCDE 4
+			QP30 B 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" F 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP30 F 12
+			RP30 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP30 F 12
+			BP30 F 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP30 F 12
+			QP30 F 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" G 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP30 G 6 BRIGHT Light("PlayerFiringLight")
+			RP30 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP30 G 6 BRIGHT Light("PlayerFiringLight")
+			BP30 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP30 G 6 BRIGHT Light("PlayerFiringLight")
+			QP30 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" H 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP30 H 4
+			RP30 H 4 A_Pain
+			RP30 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP30 H 4
+			BP30 H 4 A_Pain
+			BP30 H 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP30 H 4
+			QP30 H 4 A_Pain
+			QP30 H 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		QP30 I 0 A_ChangeFlag("BRIGHT",0)
+		QP30 I 0 A_StopSound(5) //stops looping sounds
+		QP30 I 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP30 I 0 A_SetScale(0.74)
+		QP30 I 6
+		QP30 I 0 A_SetScale(0.73)
+		QP30 J 6 A_PlayerScream
+		QP30 I 0 A_SetScale(0.72)
+		QP30 K 6 A_NoBlocking
+		QP30 I 0 A_SetScale(0.71)
+		QP30 L 6
+		QP30 I 0 A_SetScale(0.70)
+		QP30 M 6
+		QP30 N -1 A_StopSound(5)
+		Stop
+	XDeath:
+		QP30 I 0 A_ChangeFlag("BRIGHT",0)
+		QP30 I 0 A_StopSound(5) //stops looping sounds
+		QP30 I 0 A_XScream
+		QP30 I 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP30 I 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP30 I 0 A_SetScale(0.74)
+		QP30 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP30 I 0 A_SetScale(0.73)
+		QP30 K 5
+		QP30 I 0 A_SetScale(0.72)
+		QP30 L 5 A_NoBlocking
+		QP30 I 0 A_SetScale(0.71)
+		QP30 M 5
+		QP30 I 0 A_SetScale(0.70)
+		QP30 N -1 A_StopSound(5)
+		Stop
+	}
+}
+
+
+//======================================================================================
+//
+//		31. Intruder. AKA DuskDude
+//
+//======================================================================================
+
+Actor QCIntruder : QCPlayerMedium
+{
+	Player.DisplayName "Intruder"
+	Player.SoundClass "Intruder"
+
+	Speed 0.9
+	XScale 0.68
+	YScale 0.75
+
+	Player.MaxHealth 150
+	Health 150
+	//Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 150
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 75
+
+	Player.StartItem "Class_Intruder"
+	Player.StartItem "Body_Medium"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+
+	States
+	{
+	Spawn:
+		QP31 A 0 NoDelay
+		QP31 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP31 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP31 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP31 A 100
+		Loop
+
+		RedSpawn:
+			RP31 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP31 A 4
+			Loop
+		BlueSpawn:
+			BP31 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP31 A 4
+			Loop
+		DefSpawn:
+			QP31 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP31 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP31 ABCD 4
+			RP31 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP31 ABCD 4
+			BP31 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP31 ABCD 4
+			QP31 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_GiveInventory("IntruderFadeBreakToken",1)
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP31 E 12
+			RP31 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP31 E 12
+			BP31 E 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP31 E 12
+			QP31 E 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_GiveInventory("IntruderFadeBreakToken",1)
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP31 F 6 BRIGHT Light("PlayerFiringLight")
+			RP31 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP31 F 6 BRIGHT Light("PlayerFiringLight")
+			BP31 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP31 F 6 BRIGHT Light("PlayerFiringLight")
+			QP31 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_GiveInventory("IntruderFadeBreakToken",1)
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" G 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP31 G 4
+			RP31 G 4 A_Pain
+			RP31 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP31 G 4
+			BP31 G 4 A_Pain
+			BP31 G 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP31 G 4
+			QP31 G 4 A_Pain
+			QP31 G 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		QP31 H 0 A_GiveInventory("ImDead",1)
+		QP31 H 0 A_ChangeFlag("BRIGHT",0)
+		QP31 H 0 A_StopSound(5) //stops looping sounds
+		QP31 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP31 H 4
+		QP31 I 4 A_PlayerScream
+		QP31 J 4 A_NoBlocking
+		QP31 KLMN 4
+		QP31 O -1 A_StopSound(5)
+		Stop
+	XDeath:
+		QP31 O 0 A_GiveInventory("ImDead",1)
+		QP31 O 0 A_ChangeFlag("BRIGHT",0)
+		QP31 O 0 A_StopSound(5) //stops looping sounds
+		QP31 O 0 A_XScream
+		QP31 O 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
+		QP31 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP31 O 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP31 P 4
+		QP31 Q 4 A_NoBlocking
+		QP31 RSTUVW 4
+		QP31 X -1 A_StopSound(5)
+		Stop
+	}
+}
+

@@ -1,0 +1,158 @@
+//================================================================
+//================================================================
+Actor QVore : QCDE_MonsterBig	15117	// Arachnotron
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake"
+	//$Color 12
+	Health 600
+	Radius 20
+	Height 64
+	Speed 8
+	PainChance 30
+	Mass 1000
+	Scale 0.48
+	MeleeDamage 4
+	Monster
+	REACTIONTIME 16
+	+BOSSDEATH
+	+FLOORCLIP
+	Tag "$TAG_QVore" // "Shalrath"
+	MeleeRange 80
+	Obituary "$OB_QVore" // "%o was exploded by a Vore."
+	SeeSound "Quake1/Vore/Sight"
+	PainSound "Quake1/Vore/Pain"
+	DeathSound "Quake1/Vore/Death"
+	ActiveSound "Quake1/Vore/Idle"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		Q39I A 10 A_Look
+		Loop
+	See:
+		Q39W ABCDEF 5 A_Chase
+		Loop
+	Melee: //very damaging, since this guy is slow AF, so why would you be that close?
+		Q39A ABCD 3 A_FaceTarget
+		Q39A E 4 A_CustomMeleeAttack(random(30,60),"quake4/Berserker/MeleeHit","quake4/Misc/Swing","Normal",1)
+		Q39A F 5
+		Goto See
+
+	Missile:
+		TNT1 A 0 A_JumpIfInventory("VoreBallToken",2,"NoMissile")
+		Q39A A 0 A_PlaySound("Quake1/Vore/Attack")
+		Q39A ABCD 4 A_FaceTarget
+		Q39A E 5 A_CustomMissile("VoreBall",35,0,0)
+		Q39A F 6
+		Goto See
+
+		NoMissile:
+			Q39W DEF 5 A_Chase("","")
+			Goto See
+
+	Pain:
+		Q39P A 3
+		Q39P A 3 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		Q39D A 0 A_Scream
+		BRND A 0 A_GiveInventory("LOLImDead",1)	 //...this will kill the projectile
+		Q39D A 4 A_TakeInventory("VoreBallToken",32767)
+		Q39D B 4 A_Fall
+		Q39D C 4
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Beefy")
+		Q39D DEF 4
+	Death.Corpse:
+		Q39D G -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Quake1/Xdeath")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		TNT1 A 0 A_TakeInventory("LOLImDead",32767)
+		Q39D GFEDCBA 5
+		Goto See
+	}
+}
+
+Actor VoreBallToken : Inventory
+{
+	Inventory.MaxAmount 2
+}
+
+Actor VoreBall
+{
+	Radius 8
+	Height 6
+	Speed 7
+	Damage (25)	//damage it will be 25+35(explo)=60
+	+FORCEXYBILLBOARD
+	+FORCERADIUSDMG
+	+SEEKERMISSILE
+	+SKYEXPLODE	//so that it doesnt just vanish without taking..
+	+EXPLODEONWATER //...the counter token for the monster
+	PROJECTILE
+	DeathSound "Quake1/Weapons/RocketExplo"
+	Translation "0:255=%[0,0,0]:[1.5,0,1.0]"
+	scale 0.67
+    States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_GiveToTarget("VoreBallToken",1)
+	Looper:
+		VORS AB 3 Bright Light("PurpleMediumPoint2")	A_SeekerMissile(5,90,SMF_PRECISE)
+		TNT1 A 0 A_JumpIfInTargetInventory("LOLImDead",1,"Remove")
+		VORS A 0 Bright A_SpawnItemEx("VoreTrail", 0,0,0, 0,0,frandom(0.1,0.5), 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		VORS CD 3 Bright Light("PurpleMediumPoint2")	A_SeekerMissile(5,90,SMF_PRECISE)
+		TNT1 A 0 A_JumpIfInTargetInventory("LOLImDead",1,"Remove")
+		VORS A 0 Bright A_SpawnItemEx("VoreTrail", 0,0,0, 0,0,frandom(0.1,0.5), 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		Loop
+	Remove:
+		VORS A 0 A_ChangeFlag("THRUACTORS",1)
+		VORS A 0 A_ChangeFlag("NOCLIP",1)
+		VORS AAABBBCCCDDD 1 A_FadeOut
+		Stop
+	Death:
+		TNT1 A 0 A_TakeFromTarget("VoreBallToken",1)
+		TNT1 A 0 Bright A_Explode(35,64,1)
+		TNT1 A 0 A_SetTranslucent(1,1)
+		TNT1 A 0 A_SetScale(0.8)
+		DB59 ABC 1 Bright Light("PurpleMediumPoint1")
+		DB59 DEF 1 Bright Light("PurpleMediumPoint2")
+		DB59 GHI 1 Bright Light("PurpleMediumPoint3")
+		DB59 JJK 1 Bright Light("PurpleSmallPoint1")
+		DB59 KLL 1 Bright Light("PurpleSmallPoint2")
+		DB59 MM 1 Bright Light("PurpleSmallPoint3")
+		DB59 NOPQRS 2 Bright
+		stop
+	}
+}
+
+Actor VoreTrail
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	Scale 0.27
+	RenderStyle Add
+	Alpha 0.0
+	Translation "0:255=%[0,0,0]:[0.6,0.2,1.0]"
+	States
+	{
+	Spawn:
+		X101 NOP 2 NODELAY Bright A_FadeIn(0.2)
+	Looper:
+		X101 ABCDEFGHIJKLMNOP 2 Bright A_FadeOut(0.05)
+		Loop
+	}
+}
+
+
+
+

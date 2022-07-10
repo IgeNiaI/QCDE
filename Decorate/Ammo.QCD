@@ -1,0 +1,935 @@
+//=======================================================================
+//=======================================================================
+// Special ammo spawners
+//=======================================================================
+//=======================================================================
+
+//Base class for ammo spawners. I had to spawn them via an "ammo" inventory
+//because otherwise it wouldnt respawn in deathmatch
+Actor FakeAmmo : Ammo
+{
+	-TELESTOMP
+	Radius 1
+	Height 1
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 1
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	RenderStyle None
+	Inventory.RespawnTics 1400 // 40sec
+	States
+	{
+	Spawn:
+		TNT1 A -1
+		Stop
+	}
+}
+
+
+//---------------------------------------
+//	Bullets replacers
+//---------------------------------------
+Actor ClipReplacer : FakeAmmo replaces Clip
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Bullets, likely nails"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
+		Goto SPSpawn
+	DMSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A -1
+		Stop
+	SPSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
+		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCNailAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A -1
+		Stop
+	}
+}
+Actor ClipBoxReplacer : FakeAmmo replaces ClipBox
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Bullets (pack), likely nails, unlikely bolts"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
+		Goto SPSpawn
+	DMSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A -1
+		Stop
+	SPSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
+		TNT1 A 0 A_SpawnItemEx("QCBulletAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,36)
+		TNT1 A 0 A_SpawnItemEx("QCNailAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+		TNT1 A -1
+		Stop
+	}
+}
+
+//---------------------------------------
+//	Shells replacers
+//---------------------------------------
+Actor ShellReplacer : FakeAmmo replaces Shell
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Shells, maybe slugs, unlikely bolts"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
+		Goto SPSpawn
+	DMSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCShellAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
+		TNT1 A -1
+		Stop
+	SPSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
+		TNT1 A 0 A_SpawnItemEx("QCShellAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,50)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,180)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,220)
+		TNT1 A -1
+		Stop
+	}
+}
+Actor ShellBoxReplacer : FakeAmmo replaces ShellBox
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Shells (pack), maybe slugs, unlikely bolts and armor"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
+		Goto SPSpawn
+	DMSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCShellAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
+		TNT1 A -1
+		Stop
+	SPSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
+		TNT1 A 0 A_SpawnItemEx("QCShellAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,50)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,180)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,220)
+		TNT1 A -1
+		Stop
+	}
+}
+
+//---------------------------------------
+//	Rockets replacers
+//---------------------------------------
+Actor RocketAmmoReplacer : FakeAmmo replaces RocketAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Rockets, likely bolts"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
+		Goto SPSpawn
+	DMSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCRocketAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A -1
+		Stop
+	SPSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
+		TNT1 A 0 A_SpawnItemEx("QCRocketAmmoSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A -1
+		Stop
+	}
+}
+
+Actor RocketBoxReplacer : FakeAmmo replaces RocketBox
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Rockets (pack), likely bolts"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
+		Goto SPSpawn
+	DMSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCRocketAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A -1
+		Stop
+	SPSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
+		TNT1 A 0 A_SpawnItemEx("QCRocketAmmo",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A -1
+		Stop
+	}
+}
+
+//---------------------------------------
+//	Cells replacers
+//---------------------------------------
+Actor CellReplacer : FakeAmmo replaces Cell
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Coils, likely slugs, unlikely BFG ammo"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
+		Goto SPSpawn
+	DMSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCCoilAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
+		TNT1 A -1
+		Stop
+	SPSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
+		TNT1 A 0 A_SpawnItemEx("QCCoilAmmoSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,56)
+		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,170)
+		TNT1 A -1
+		Stop
+	}
+}
+Actor CellPackReplacer : FakeAmmo replaces CellPack
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Coils (pack), likely slugs, maybe BFG ammo, unlikely armor"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
+		Goto SPSpawn
+	DMSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCCoilAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,64)
+		TNT1 A -1
+		Stop
+	SPSpawn:
+		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
+		TNT1 A 0 A_SpawnItemEx("QCCoilAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,56)
+		TNT1 A 0 A_SpawnItemEx("QCBFGAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,140)
+		TNT1 A -1
+		Stop
+	}
+}
+
+
+//====================================================================================
+//====================================================================================
+//
+// Actual ammo definitions
+// Normal, "Small" and "DM" versions
+//
+//====================================================================================
+//====================================================================================
+
+
+//======================================================================
+//	Bullets ammo
+//======================================================================
+Actor QCBulletAmmo : Ammo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Bullet Ammo Big"
+	Tag "$TAG_QCBulletAmmo" // "Bullet Ammo Big"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCBulletAmmo" // "Picked up a pack of bullets."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.Amount 50
+	Inventory.MaxAmount 200
+	Ammo.BackpackMaxAmount 300
+	Ammo.BackpackAmount 20
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMBU A 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	Common:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
+		"####" "#" 0 A_ChangeFlag("BRIGHT",1)
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	Idle:
+		"####" "#" -1 ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	}
+}
+
+Actor QCBulletAmmoSmall : QCBulletAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Bullet Ammo Small"
+	Tag "$TAG_QCBulletAmmoSmall" // "Bullet Ammo Small"
+	Inventory.Amount 10
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.PickupMessage "$GOT_QCBulletAmmoSmall" // "Picked up a few bullets."
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMBU C 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	}
+}
+
+Actor QCBulletAmmoMap : QCBulletAmmo 15021
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Bullets (+50, DM)"
+}
+
+Actor QCBulletAmmoSmallMap : QCBulletAmmoSmall 15022
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Bullets (+10)"
+}
+
+
+Actor QCBulletAmmoDM : QCBulletAmmo
+{
+	Inventory.Amount 25
+}
+
+//======================================================================
+//	Shell ammo
+//======================================================================
+Actor QCShellAmmo : Ammo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Shell Ammo Big"
+	Tag "$TAG_QCShellAmmo" // "Shell Ammo Big"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCShellAmmo" // "Picked up a pack of shells."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.Amount 16
+	Inventory.MaxAmount 40
+	Ammo.BackpackMaxAmount 60
+	Ammo.BackpackAmount 4
+	Scale 0.902
+	States
+	{
+	Spawn:
+		AMSH A 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	Common:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
+		"####" "#" 0 A_ChangeFlag("BRIGHT",1)
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	Idle:
+		"####" "#" -1 ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	}
+}
+
+Actor QCShellAmmoSmall : QCShellAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Shell Ammo Small"
+	Tag "$TAG_QCShellAmmoSmall" // "Shell Ammo Small"
+	Inventory.Amount 4
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.PickupMessage "$GOT_QCShellAmmoSmall" // "Picked up a few shells."
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMSH C 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	}
+}
+
+Actor QCShellAmmoMap : QCShellAmmo 15031
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Shells (+16)"
+}
+
+Actor QCShellAmmoSmallMap : QCShellAmmoSmall 15032
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Shells (+4)"
+}
+
+Actor QCShellAmmoDM : QCShellAmmo 15033
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Shells (+10, DM)"
+	Inventory.Amount 10
+}
+
+//======================================================================
+//	Nail ammo
+//======================================================================
+Actor QCNailAmmo : Ammo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Nail Ammo Big"
+	Tag "$TAG_QCNailAmmo" // "Nail Ammo Big"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCNailAmmo" // "Picked up a pack of nails."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.Amount 30
+	Inventory.MaxAmount 150
+	Ammo.BackpackMaxAmount 200
+	Ammo.BackpackAmount 15
+	Scale 0.903
+	States
+	{
+	Spawn:
+		AMNA A 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	Common:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
+		"####" "#" 0 A_ChangeFlag("BRIGHT",1)
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	Idle:
+		"####" "#" -1 ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	}
+}
+
+Actor QCNailAmmoSmall : QCNailAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Nail Ammo Small"
+	Tag "$TAG_QCNailAmmoSmall" // "Nail Ammo Small"
+	Inventory.Amount 10
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.PickupMessage "$GOT_QCNailAmmoSmall" // "Picked up a few nails."
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMNA C 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	}
+}
+
+Actor QCNailAmmoMap : QCNailAmmo 15041
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Nails (+40, DM)"
+}
+
+Actor QCNailAmmoSmallMap : QCNailAmmoSmall 15042
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Nails (+10)"
+}
+
+Actor QCNailAmmoDM : QCNailAmmo
+{
+	Inventory.Amount 25
+}
+
+//======================================================================
+//	Tribolt ammo
+//======================================================================
+Actor QCBoltAmmo : Ammo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Tribolt Ammo Big"
+	Tag "$TAG_QCBoltAmmo" // "Tribolt Ammo Big"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCBoltAmmo" // "Picked up a pack of bolts."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.Amount 5
+	Inventory.MaxAmount 30
+	Ammo.BackpackMaxAmount 50
+	Ammo.BackpackAmount 3
+	Scale 0.904
+	States
+	{
+	Spawn:
+		AMTB A 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	Common:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
+		"####" "#" 0 A_ChangeFlag("BRIGHT",1)
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	Idle:
+		"####" "#" -1 ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	}
+}
+
+Actor QCBoltAmmoSmall : QCBoltAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Tribolt Ammo Small"
+	Tag "$TAG_QCBoltAmmoSmall" // "Tribolt Ammo Small"
+	Inventory.Amount 2
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.PickupMessage "$GOT_QCBoltAmmoSmall" // "Picked up a few bolts."
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMTB C 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	}
+}
+
+Actor QCBoltAmmoMap : QCBoltAmmo 15051
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Bolts (+5, DM)"
+}
+
+Actor QCBoltAmmoSmallMap : QCBoltAmmoSmall 15052
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Bolts (+2)"
+}
+
+Actor QCBoltAmmoDM : QCBoltAmmo
+{
+	Inventory.Amount 5
+}
+
+//======================================================================
+//	Rocket ammo
+//======================================================================
+Actor QCRocketAmmo : Ammo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Rocket Ammo Big"
+	Tag "$TAG_QCRocketAmmo" // "Rocket Ammo Big"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCRocketAmmo" // "Picked up a pack of rockets."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.Amount 5
+	Inventory.MaxAmount 50
+	Ammo.BackpackMaxAmount 80
+	Ammo.BackpackAmount 2
+	Scale 0.905
+	States
+	{
+	Spawn:
+		AMRO A 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	Common:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
+		"####" "#" 0 A_ChangeFlag("BRIGHT",1)
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	Idle:
+		"####" "#" -1 ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	}
+}
+
+Actor QCRocketAmmoSmall : QCRocketAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Rocket Ammo Small"
+	Tag "$TAG_QCRocketAmmoSmall" // "Rocket Ammo Small"
+	Inventory.Amount 2
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.PickupMessage "$GOT_QCRocketAmmoSmall" // "Picked up a few rockets."
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMRO C 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	}
+}
+
+Actor QCRocketAmmoMap : QCRocketAmmo 15061
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Rockets (+5, DM)"
+}
+
+Actor QCRocketAmmoSmallMap : QCRocketAmmoSmall 15062
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Rockets (+2)"
+}
+
+Actor QCRocketAmmoDM : QCRocketAmmo
+{
+	Inventory.Amount 5
+}
+
+//======================================================================
+//	Coil ammo
+//======================================================================
+Actor QCCoilAmmo : Ammo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Coils Ammo Big"
+	Tag "$TAG_QCCoilAmmo" // "Coils Ammo Big"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCCoilAmmo" // "Picked up a pack of coils."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.Amount 50
+	Inventory.MaxAmount 150
+	Ammo.BackpackMaxAmount 300
+	Ammo.BackpackAmount 20
+	Scale 0.906
+	States
+	{
+	Spawn:
+		AMCL A 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	Common:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
+		"####" "#" 0 A_ChangeFlag("BRIGHT",1)
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	Idle:
+		"####" "#" -1 ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	}
+}
+
+Actor QCCoilAmmoSmall : QCCoilAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Coils Ammo Small"
+	Tag "$TAG_QCCoilAmmoSmall" // "Coils Ammo Small"
+	Inventory.Amount 20
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.PickupMessage "$GOT_QCCoilAmmoSmall" // "Picked up a few coils."
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMCL C 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	}
+}
+
+Actor QCCoilAmmoMap : QCCoilAmmo 15071
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Coils (+50, DM)"
+}
+
+Actor QCCoilAmmoSmallMap : QCCoilAmmoSmall 15072
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Coils (+20)"
+}
+
+Actor QCCoilAmmoDM : QCCoilAmmo
+{
+	Inventory.Amount 25
+}
+
+//======================================================================
+//	Slug ammo
+//======================================================================
+Actor QCSlugAmmo : Ammo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Slugs Ammo Big"
+	Tag "$TAG_QCSlugAmmo" // "Slugs Ammo Big"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCSlugAmmo" // "Picked up a pack of slugs."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.Amount 5
+	Inventory.MaxAmount 25
+	Ammo.BackpackMaxAmount 40
+	Ammo.BackpackAmount 2
+	Scale 0.907
+	States
+	{
+	Spawn:
+		AMRA A 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	Common:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
+		"####" "#" 0 A_ChangeFlag("BRIGHT",1)
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	Idle:
+		"####" "#" -1 ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	}
+}
+
+Actor QCSlugAmmoSmall : QCSlugAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Slugs Ammo Small"
+	Tag "$TAG_QCSlugAmmoSmall" // "Slugs Ammo Small"
+	Inventory.Amount 2
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.PickupMessage "$GOT_QCSlugAmmoSmall" // "Picked up a few slugs."
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMRA C 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	}
+}
+
+Actor QCSlugAmmoMap : QCSlugAmmo 15081
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Slugs (+5, DM)"
+}
+
+Actor QCSlugAmmoSmallMap : QCSlugAmmoSmall 15082
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Slugs (+2)"
+}
+
+Actor QCSlugAmmoDM : QCSlugAmmo
+{
+	Inventory.Amount 5
+}
+
+//======================================================================
+//	BFG ammo
+//======================================================================
+Actor QCBFGAmmo : Ammo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "BFG Ammo Big"
+	Tag "$TAG_QCBFGAmmo" // "BFG Ammo Big"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCBFGAmmo" // "Picked up a pack of BFG cells."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.Amount 8
+	Inventory.MaxAmount 20
+	Ammo.BackpackMaxAmount 30
+	Ammo.BackpackAmount 2
+	Scale 0.908
+	States
+	{
+	Spawn:
+		AMBF A 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	Common:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
+		"####" "#" 0 A_ChangeFlag("BRIGHT",1)
+		"####" "#" 0 A_Jump(255,"Idle")
+		Goto Idle
+	Idle:
+		"####" "#" -1 ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	}
+}
+
+Actor QCBFGAmmoSmall : QCBFGAmmo
+{
+	//$NotAngled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "BFG Ammo Small"
+	Tag "$TAG_QCBFGAmmoSmall" // "BFG Ammo Small"
+	Inventory.Amount 4
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Inventory.PickupMessage "$GOT_QCBFGAmmoSmall" // "Picked up a few BFG cells."
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMBF C 0  NODELAY A_SetAngle(random(0,359))
+		Goto Common
+	}
+}
+
+Actor QCBFGAmmoMap : QCBFGAmmo 15091
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "BFG ammo (+8)"
+}
+
+Actor QCBFGAmmoSmallMap : QCBFGAmmoSmall 15092
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "BFG ammo (+4, DM)"
+}
+
+Actor QCBFGAmmoDM : QCBFGAmmo
+{
+	Inventory.Amount 5
+}
+
+
+
+// Full ammo
+
+Actor RefillQCGauntlet          : CustomInventory { States { Pickup: TNT1 A 0 A_Turn(0)                               Stop } } //  0
+Actor RefillQCMachinegun        : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCBulletAmmo" , 10000) Stop } } //  1
+Actor RefillQCMachinegunDM      : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCBulletAmmo" , 10000) Stop } } //  2
+Actor RefillQCShotgun           : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCShellAmmo"  , 10000) Stop } } //  3
+Actor RefillQCShotgunDM         : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCShellAmmo"  , 10000) Stop } } //  4
+Actor RefillQCNailgun           : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCNailAmmo"   , 10000) Stop } } //  5
+Actor RefillQCNailgunDM         : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCNailAmmo"   , 10000) Stop } } //  6
+Actor RefillQCHeavyMachinegun   : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCBulletAmmo" , 10000) Stop } } //  7
+Actor RefillQCHeavyMachinegunDM : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCBulletAmmo" , 10000) Stop } } //  8
+Actor RefillQCSuperShotgun      : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCShellAmmo"  , 10000) Stop } } //  9
+Actor RefillQCSuperShotgunDM    : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCShellAmmo"  , 10000) Stop } } // 10
+Actor RefillQCSuperNailgun      : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCNailAmmo"   , 10000) Stop } } // 11
+Actor RefillQCSuperNailgunDM    : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCNailAmmo"   , 10000) Stop } } // 12
+Actor RefillQCTribolt           : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCBoltAmmo"   , 10000) Stop } } // 13
+Actor RefillQCTriboltDM         : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCBoltAmmo"   , 10000) Stop } } // 14
+Actor RefillQCRocketLauncher    : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCRocketAmmo" , 10000) Stop } } // 15
+Actor RefillQCRocketLauncherDM  : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCRocketAmmo" , 10000) Stop } } // 16
+Actor RefillQCLightningGun      : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCCoilAmmo"   , 10000) Stop } } // 17
+Actor RefillQCLightningGunDM    : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCCoilAmmo"   , 10000) Stop } } // 18
+Actor RefillQCRailgun           : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCSlugAmmo"   , 10000) Stop } } // 19
+Actor RefillQCRailgunDM         : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCSlugAmmo"   , 10000) Stop } } // 20
+Actor RefillQCBFG               : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCBFGAmmo"    , 10000) Stop } } // 21
+Actor RefillQCBFGDM             : CustomInventory { States { Pickup: TNT1 A 0 A_GiveInventory("QCBFGAmmo"    , 10000) Stop } } // 22

@@ -1,0 +1,227 @@
+#library "HLTHARMR"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+
+Script "MaxHealth" (void) { SetResultValue(CheckInventory("MaxHealthToken")); }
+Script "MaxArmor"  (void) { SetResultValue(CheckInventory("MaxArmorToken" )); }
+
+Script "ArmorGiver" (int ClassArmorMax, int ArmorToGive, int overcharge)
+{
+	if(CheckInventory("ImprovedArmor"))
+		ArmorToGive = ArmorToGive * 3 / 2;
+
+	int ArmorCount;
+	if(ClassArmorMax == -1) ClassArmorMax = 25; // visibly wrong but doesn't crash :ok_hand:
+
+	if(overcharge != 0) ClassArmorMax = ClassArmorMax + 75;
+
+	// Todo: replace loop with "give 1000" & "take 1000-x"
+	while(CheckInventory("BasicArmor") < ClassArmorMax  &&  ArmorCount < ArmorToGive)
+	{
+		GiveInventory("QCArmorPoint", 1);
+		ArmorCount++;
+	}
+}
+
+
+Script "HealthGiver" (int ClassHealthMax, int HealingAmount, int Overheal)
+{
+	if(CheckInventory("ImprovedHealing"))
+		HealingAmount = HealingAmount * 3 / 2;
+
+	int HealthBefore = GetActorProperty(0,APROP_HEALTH);
+	int HealthAfter = HealthBefore + HealingAmount;
+	if(ClassHealthMax == -1) ClassHealthMax = 25; // visibly wrong but doesn't crash :+1:
+	ClassHealthMax += Overheal;
+
+	//log(s:"ClassHealthMax = ", d:ClassHealthMax, s:";  HealingAmount = ", d:HealingAmount, s:";  HealthAfter = ", d:HealthAfter);
+	if(HealthBefore >= ClassHealthMax) terminate; // never reduce health
+
+	if(HealthAfter >= ClassHealthMax) // don't award over maximum
+		SetActorProperty(0, APROP_Health, ClassHealthMax);
+	else
+		SetActorProperty(0, APROP_Health, HealthAfter);
+}
+
+
+// Used for Kanerki
+
+Script "SetThisActorHealthTo" (int howmuch)
+{
+	SetActorProperty(0, APROP_Health, howmuch);
+}
+
+
+// Reduce health and armor if over maximum
+
+Script "QCDE_Degeneration" (void)
+{
+	if(CheckInventory("DegenerationSingleton")) terminate;
+	GiveInventory("DegenerationSingleton",1);
+	int DegenerateTics;
+
+	//Special case for bitterman's passive
+	if(CheckInventory("Class_Bitterman"	))	DegenerateTics = 35*3; 		//~3 sec
+
+	else if(CheckInventory("Body_Medium"))	DegenerateTics = 35; 	//1 sec
+	else if(CheckInventory("Body_Big"	))	DegenerateTics = 70; 	//2 sec
+	else if(CheckInventory("Body_Small"	))	DegenerateTics = 25; 	//~0.7 sec
+
+	int t;
+	while(GetActorProperty(0,APROP_Health) > 0)
+	{
+		if(t --> 0) {} else
+		{
+			// Health
+			if (GetActorProperty(0, APROP_Health) > CheckInventory("MaxHealthToken") &&
+			    !CheckInventory("NoHealthDegenerationToken"))
+				SetActorProperty(0, APROP_Health, GetActorProperty(0,APROP_Health) - 1);
+
+			// Armor
+			if (CheckInventory("BasicArmor") > CheckInventory("MaxArmorToken") &&
+			    !CheckInventory("NoArmorDegenerationToken"))
+				TakeInventory("BasicArmor", 1);
+
+			// Time when next point is taken
+			t = DegenerateTics;
+		}
+
+		delay(1);
+	}
+	TakeInventory("DegenerationSingleton",1);
+}
+
+// Reduce health and armor if cursed with Elder's Soul
+
+Script "QCDE_DegenerationElders" (void)
+{
+	int DegenerateTics;
+
+	//Special case for Bitterman's passive
+	if(CheckInventory("Class_Bitterman" )) DegenerateTics = 35*3; //~3 sec
+	//Special case for Sarge's massive stack
+	else if(CheckInventory("Class_Sarge")) DegenerateTics = 17; //~0.5 sec
+
+	else if(CheckInventory("Body_Medium")) DegenerateTics = 35; //1 sec
+	else if(CheckInventory("Body_Big"   )) DegenerateTics = 17; //~0.5 sec
+	else if(CheckInventory("Body_Small" )) DegenerateTics = 70; //2 sec
+
+	int t;
+	while(GetActorProperty(0,APROP_Health) > 0 && CheckInventory("PowerTerminatorArtifact"))
+	{
+		if(t --> 0) {} else
+		{
+			int health = GetActorProperty(0,APROP_Health) - 1;
+			SetActorProperty(0, APROP_Health, health); // Health
+			if(health == 0) ACS("QCDE_EldersSoul_HintKill", true); // Burned away
+			TakeInventory("BasicArmor", 1); // Armor
+			TakeInventory("PainsKilled", 1); // Special case for Painkiller's souls
+
+			// Time when next point is taken
+			t = DegenerateTics / (1 + CheckInventory("EldersSoulTribute") / 10);
+		}
+		delay(1);
+	}
+}
+
+
+// Used on spawn, respawn, map change to restore armor for champions who have
+// starting armor.
+
+Script "QCDE_StartingArmor" (void)
+{
+	int armor;
+	if(CheckInventory("QCStartingArmor25" )) armor =  25;
+	if(CheckInventory("QCStartingArmor50" )) armor =  50;
+	if(CheckInventory("QCStartingArmor75" )) armor =  75;
+	if(CheckInventory("QCStartingArmor100")) armor = 100;
+	armor -= CheckInventory("BasicArmor");
+
+	GiveInventory("QCArmorPoint",armor);
+}
+
+
+
+// Remove item with tid.
+// Used as special on glowing items to get rid of glow at pickup.
+
+Script 235 (int tidToRemove)
+{
+	if(tidToRemove)                              // Don't use for self-removal
+	{
+		if(ThingCount(T_NONE, tidToRemove) == 1) // Don't remove if tid collision happened
+		{
+			SetActorState(tidToRemove, "Remove");
+			//Thing_Remove(tidToRemove,0);
+			Thing_ChangeTID(tidToRemove,0);
+			ACS_NamedExecuteAlways("235_CLIENT",0,tidToRemove);
+			//log(s:"Effect ", d:tidToRemove, s:" untidded serverly");
+		}
+	}
+}
+
+Script "235_CLIENT" (int tidToRemove) CLIENTSIDE
+{
+	SetActorState(tidToRemove, "Remove");
+	//Thing_Remove(tidToRemove,0);
+	Thing_ChangeTID(tidToRemove,0);
+	//log(s:"Effect ", d:tidToRemove, s:" untidded clientsidely");
+}
+
+
+// Set "Remove item with tid" special to target (FX's original actor).
+// Used by FX actors.
+
+Script "QCDE_EffectBinding" (void)
+{
+	SetTidIfHadNone(BIGGIE_TIDBASE, BIGGIE_TIDLAST);
+	int tid = ActivatorTid();
+
+	// Set target's special
+	// This will overwrite any map-assigned special :(
+	// But Samuel Hayden wouldn't falter at the thought, and neither will Michaelis.
+	SetActivatorToTarget(0);
+	SetThingSpecial(0, 84, 235, tid);
+
+	//log(s:"Effect for ", n:0, s:" spawns successfully and special is set, tid = ", d:tid);
+}
+
+
+
+// Used to over-randomize minor pickups like health bonuses and ammo in Skirmish
+
+Script "QCDE_PickupSpawned" (int modReplace) // param: force replace with monster
+{
+	// Skirmish: super randomize
+	if(isSkirmish())
+	{
+		int chance = random(0,99);
+
+		// 30% pickups don't change
+		if(chance >= 30)
+		{
+			// 33% pickups become small
+			if(chance < 63)
+				QCDE_SpawnReplacement("RLMinorPickup", false, true, true);
+			// 5% pickups become big
+			else if(chance < 67)
+				QCDE_SpawnReplacement("RLMajorPickup", false, true, true);
+			// 32% weapons become monsters, but only during setup or if modReplace is true
+			else if(chance < 100 && (Timer() < 35 || modReplace))
+				QCDE_SpawnReplacement("Demon", chance == 99, true, true);
+		}
+	}
+
+	//log(s:"Pickup ", n:0, s:" spawns successfully");
+}
+
+// Used to mark keys on the radar
+
+Script "QCDE_KeySpawned" (void)
+{
+	SetTidIfHadNone(KEY_TIDBASE, KEY_TIDLAST);
+
+	//log(s:"Key ", n:0, s:" spawns successfully");
+}

@@ -1,0 +1,651 @@
+#library "MP"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+
+//=======================================================================================
+//=======================================================================================
+//=======================================================================================
+//
+//
+//		MULTIPLAYER RELATED SCRIPTS
+//
+//
+//=======================================================================================
+//=======================================================================================
+//=======================================================================================
+
+//*****************************************************************************
+//*****************************************************************************
+// This script is called by items to know what kind the game is.
+//
+//	Game types:
+//	 0 	Single player
+//	 1 	Cooperative
+//	 2 	Deathmatch
+//	 3 	Title map
+//	 4 	(Skull/dronum) Team game
+//*****************************************************************************
+//*****************************************************************************
+
+
+Script "MultiplayerCheck" (void)
+{
+	if(GameType() == 4)
+		SetResultValue(2); // team games have same weapons as DM
+	else
+		SetResultValue(GameType());
+}
+
+int weaponStay;
+Script "WeaponStayCheck" (void)
+{
+	SetResultValue(weaponStay);
+}
+
+int instagib=-1, rocketarena=-1;
+Script "InstagibCheck" (int withoutrocketarena)
+{
+	if(withoutrocketarena)
+		SetResultValue(instagib && !rocketarena);
+	else
+		SetResultValue(instagib);
+}
+
+Script "QCDE_DespawnIfInstagib" (void)
+{
+	if(instagib == -1 && rocketarena == -1) // not loaded yet
+	{
+		instagib    = GetCvar("instagib");
+		rocketarena = GetCvar("rocketarena");
+	}
+
+	if(instagib || rocketarena) Thing_Remove(0);
+}
+
+Script "CvarTrack" OPEN
+{
+	instagib    = GetCvar("instagib");
+	rocketarena = GetCvar("rocketarena");
+	while(true)
+	{
+		delay(35);
+		weaponStay = GetCvar("sv_weaponStay");
+	}
+}
+
+Script "iamamiwhoami" (void)
+{
+	str iam = strparam(n:0);
+	int iam_ = ActivatorTid();
+
+	int owner = GetActorProperty(0, APROP_MasterTID);
+
+	SetActivatorToTarget(0);
+
+	str Amy = strparam(n:0);
+	int Amy_ = ActivatorTid();
+
+	str ownerinfo = ".";
+	if(owner)
+	{
+		SetActivator(owner);
+		ownerinfo = strparam(s:", owned by ", n:0, s:" tid ", d:owner);
+	}
+
+	printbold(s:"I am ", s:iam, s:" tid ", d:iam_,
+	   s:", targeting ", s:Amy, s:" tid ", d:Amy_, s:ownerinfo);
+}
+
+
+
+Script "QCDE_DM_HealthAndWeapons" (void)
+{
+	if (GameType() < GAME_NET_DEATHMATCH) terminate; // only if game is DM
+
+	str unused = ""; // beats "DMToken" in case of broken string table
+	GiveInventory("DMToken", 1);
+}
+
+
+Script "QCDE_StoreTeam" (void)
+{
+	if(CheckInventory("TeamDeathmatch")) // Team color
+	{
+		SetInventory("TeamColor", GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM) + 1);
+	}
+	else if(GameType() >= GAME_NET_DEATHMATCH) // Red outlines in non-team PvP
+	{
+		SetInventory("TeamColor", 2);
+	}
+}
+
+
+int lastTime = -999999;
+Script "QCDE_FirstInSeconds" (int secs)
+{
+	SetResultValue(false);
+	if (Timer() > lastTime + secs*35)
+	{
+		SetResultValue(true);
+		lastTime = Timer();
+	}
+}
+
+
+str keys[NUMBER_OF_KEYS][3] = {
+	{"RedCard",     "Red Card",     false},
+	{"YellowCard",  "Yellow Card",  false},
+	{"BlueCard",    "Blue Card",    false},
+	{"RedSkull",    "Red Skull",    false},
+	{"YellowSkull", "Yellow Skull", false},
+	{"BlueSkull",   "Blue Skull",   false},
+};
+Script "QCDE_RegiveKeys" (void)
+{
+	for(int i = 0; i < NUMBER_OF_KEYS; i++)
+		if(keys[i][2] == true)
+			GiveInventory(keys[i][0], 1);
+}
+Script "QCDE_GiveKey" (int which)
+{
+	if(which < 0 || which --> NUMBER_OF_KEYS)
+		log(s:"\c[yellow]QCDE warning: attempt to give key number ", d:-~which);
+
+	GiveInventory(keys[which][0], 1);
+
+	// Give to all players -- shared keys are the norm, not a quirky option
+	GiveActorInventory(0, keys[which][0], 1);
+	if(keys[which][2] != true)
+	{
+		ACS("QCDE_PickupMessage", which);
+		keys[which][2] = true;
+	}
+}
+Script "QCDE_PickupMessage" (int what) CLIENTSIDE
+{
+	str pickupmessage = strparam(n:0, s:" picked up a ", s:keys[what][1], s:".");
+	Log(s:pickupmessage);
+}
+
+
+
+// Kill in coop if changed class mid-game, because otherwise on map change
+// client and server start disagreeing over class.
+
+Script "QCDE_SendKey" ENTER
+{
+	while(true)
+	{
+		if(!secretkey) secretkey = random(1, 12345);
+
+		ACS_NamedExecuteAlways("QCDE_ReceiveKey", 0, secretkey);
+
+		delay(random(35,70));
+	}
+}
+
+Script "QCDE_ReceiveKey" (int data) CLIENTSIDE
+{
+	secretkey = data;
+}
+
+Script "QCDE_ClassCheck_ENTER" ENTER CLIENTSIDE
+{
+	// Spectators: Please don't
+	if(PlayerIsSpectator(PlayerNumber())) terminate;
+
+	// Only care about yourself
+	if(CPN() != PlayerNumber()) terminate;
+
+	int mustbe1 =
+		CheckInventory("Class_Ranger"		) +
+		CheckInventory("Class_Doomslayer"	) +
+		CheckInventory("Class_Corvus"		) +
+		CheckInventory("Class_Kane"			) +
+		CheckInventory("Class_Caleb"		) +
+		CheckInventory("Class_Menelkir"		) +
+		CheckInventory("Class_Terminator"	) +
+		CheckInventory("Class_Zedek"		) +
+		CheckInventory("Class_Inquisitor"	) +
+		CheckInventory("Class_Bitterman"	) +
+		CheckInventory("Class_Galen"		) +
+		CheckInventory("Class_Nyx"			) +
+		CheckInventory("Class_Sorgaul"		) +
+		CheckInventory("Class_DukeNukem"	) +
+		CheckInventory("Class_Durandal"		) +
+		CheckInventory("Class_Keel"			) +
+		CheckInventory("Class_Sarge"		) +
+		CheckInventory("Class_LoWang"		) +
+		CheckInventory("Class_Grayson"		) +
+		CheckInventory("Class_Eradicator"	) +
+		CheckInventory("Class_Blazkowicz"	) +
+		CheckInventory("Class_Freeman"		) +
+		CheckInventory("Class_VorMatur"		) +
+		CheckInventory("Class_Eleena"		) +
+		CheckInventory("Class_Lucienne"		) +
+		CheckInventory("Class_Major"		) +
+		CheckInventory("Class_Hunter"		) +
+		CheckInventory("Class_Sam"			) +
+		CheckInventory("Class_Postal"		) +
+		CheckInventory("Class_Painkiller"	) +
+		CheckInventory("Class_Intruder"	);
+	// ^ insert more classes here
+
+	if(mustbe1 > 1)
+		while(!NamedRequestScriptPuke("QCDE_KMP", GetCvar("playerclass"), secretkey));
+}
+
+Script "QCDE_KMP" (int to, int security) NET
+{
+	int plr = PlayerNumber();
+
+	if(security == secretkey)
+		if(!SetPlayerLivesLeft(plr, GetPlayerLivesLeft(plr) + 1))
+			log(s:"\c[red]QCDE ERROR: Failed to reimburse life to player ", n:0, s:" \c[red]killed by class switch.");
+
+	DamageThing(0,0);
+	ACS_NamedExecuteAlways("QCDE_ChangeClass_Hint", 0, to);
+}
+
+
+
+// Activator: Player
+script "QCDE_InitLMS" (void)
+{
+	if(!(GetCvar("lastmanstanding") || GetCvar("teamlms"))) terminate;
+
+	GiveInventory("QCMegaMega", 1);
+	GiveInventory("QCMegaMega", 1);
+
+	GiveInventory("QCHeavyMachinegunDM", 1);
+	GiveInventory("QCSuperShotgunDM",    1);
+	GiveInventory("QCSuperNailgunDM",    1);
+	GiveInventory("QCTriboltDM",         1);
+	GiveInventory("QCRocketLauncherDM",  1);
+	GiveInventory("QCLightningGunDM",    1);
+	GiveInventory("QCRailgunDM",         1);
+}
+
+
+
+// Activator: Player
+script "QCDE_UpdateLives" (void)
+{
+	if(!(
+		getcvar("lastmanstanding") ||
+		getcvar("teamlms") ||
+		getcvar("survival") ||
+		(getcvar("invasion") && getcvar("sv_maxlives") > 0)
+	)) terminate;
+
+	SetInventory("LifeToken", GetPlayerLivesLeft(PlayerNumber()) + 1);
+}
+
+script "AddLives" (int how_many, int plr)
+{
+	int a = 0, b = 63;
+	if(plr) { a = plr; b = plr; }
+	if(!how_many) { how_many = 1; }
+	for(int i = a; i <= b; i++)
+	{
+		SetActivatorToPlayer(i);
+		SetPlayerLivesLeft(i, GetPlayerLivesLeft(i) + how_many);
+		ACS("QCDE_UpdateLives");
+	}
+}
+
+// Activator: Player
+script "QCDE_ReduceLife" DEATH
+{
+	if(!(getcvar("lastmanstanding") || getcvar("teamlms") || getcvar("survival"))) terminate;
+
+	TakeInventory("LifeToken", 1);
+}
+
+
+
+Script "QCDE_UndropDuringInit" (void)
+{
+	if(Timer()) terminate;
+
+	GiveInventory("UndroppedProc", 1);
+}
+
+
+
+Script "QCDE_DM_PlayerCollision" (void)
+{
+	if (GameType() < GAME_NET_DEATHMATCH) terminate; // only if game is DM
+
+	GiveInventory("EnablePlayerCollisionProc", 1);
+}
+
+
+
+Script "QCDE_DM_ReplaceWeapons" (void)
+{
+	if (GameType() < GAME_NET_DEATHMATCH) terminate; // only if game is DM
+
+	if(CheckInventory("QCMachinegun"		)) 	{ TakeInventory("QCMachinegun"		,1);	QCDE_Store("QCBulletAmmo");	GiveInventory("QCMachinegunDM"		,1); QCDE_Restore("QCBulletAmmo");	}
+	if(CheckInventory("QCShotgun"			)) 	{ TakeInventory("QCShotgun"			,1);	QCDE_Store("QCShellAmmo");	GiveInventory("QCShotgunDM"			,1); QCDE_Restore("QCShellAmmo"	);	}
+	if(CheckInventory("QCNailgun"			)) 	{ TakeInventory("QCNailgun"			,1);	QCDE_Store("QCNailAmmo"	);	GiveInventory("QCNailgunDM"			,1); QCDE_Restore("QCNailAmmo"	);	}
+	if(CheckInventory("QCHeavyMachinegun"	)) 	{ TakeInventory("QCHeavyMachinegun"	,1);	QCDE_Store("QCBulletAmmo");	GiveInventory("QCHeavyMachinegunDM"	,1); QCDE_Restore("QCBulletAmmo");	}
+	if(CheckInventory("QCSuperShotgun"		)) 	{ TakeInventory("QCSuperShotgun"	,1);	QCDE_Store("QCShellAmmo");	GiveInventory("QCSuperShotgunDM"	,1); QCDE_Restore("QCShellAmmo"	);	}
+	if(CheckInventory("QCSuperNailgun"		)) 	{ TakeInventory("QCSuperNailgun"	,1);	QCDE_Store("QCNailAmmo"	);	GiveInventory("QCSuperNailgunDM"	,1); QCDE_Restore("QCNailAmmo"	);	}
+	if(CheckInventory("QCTribolt"			))	{ TakeInventory("QCTribolt"			,1);	QCDE_Store("QCBoltAmmo"	);	GiveInventory("QCTriboltDM"			,1); QCDE_Restore("QCBoltAmmo"	);	}
+	if(CheckInventory("QCRocketLauncher"	))	{ TakeInventory("QCRocketLauncher"	,1);	QCDE_Store("QCRocketAmmo");	GiveInventory("QCRocketLauncherDM"	,1); QCDE_Restore("QCRocketAmmo");	}
+	if(CheckInventory("QCLightningGun"		)) 	{ TakeInventory("QCLightningGun"	,1);	QCDE_Store("QCCoilAmmo"	);	GiveInventory("QCLightningGunDM"	,1); QCDE_Restore("QCCoilAmmo"	);	}
+	if(CheckInventory("QCRailgun"			)) 	{ TakeInventory("QCRailgun"			,1);	QCDE_Store("QCSlugAmmo"	);	GiveInventory("QCRailgunDM"			,1); QCDE_Restore("QCSlugAmmo"	);	}
+	if(CheckInventory("QCBFG"				)) 	{ TakeInventory("QCBFG"				,1);	QCDE_Store("QCBFGAmmo"	);	GiveInventory("QCBFGDM"				,1); QCDE_Restore("QCBFGAmmo"	);	}
+}
+int store;
+function void QCDE_Store(str what)
+{
+	store = CheckInventory(what);
+}
+function void QCDE_Restore(str what)
+{
+	SetInventory(what,store);
+}
+
+
+//This script dropped shards on player's death (called by a "Death"script)
+//but due to lag+sv_forcerespawn, player would die, immediately respawn, and
+//in the respawn point the script would barely take place, and player would
+//get +15 armor free on respawn thanks to these shards.
+//Now shards are spawned by the corpse actor itself.
+/*Script "QCDE_DM_DropShards" (void)
+{
+	if (GameType() < GAME_NET_DEATHMATCH) terminate; // only if game is DM
+	SpawnForced("QCPlayerArmorDrop",GetActorX(0),GetActorY(0),GetActorZ(0));
+}*/
+
+
+
+// Activator: victim
+Script "QCDE_DM_FragBeep" (void) clientside
+{
+	if (GameType() < GAME_NET_DEATHMATCH) terminate;      // only if game is DM
+	if (!GetActorProperty(0, APROP_TargetTID)) terminate; // only if killer has TID
+
+	SetActivatorToTarget(0);
+	// Activator: killer
+
+	if(CheckPlayerCamera(ConsolePlayerNumber()) != PlayerNumber() + 1000) terminate;
+	if(CheckInventory("DisableColor")) terminate;
+	AmbientSound("QC/UI/FragBeep",127);
+}
+
+
+
+Script "QCDE_DM_AmmoCapacity" (void)
+{
+	if (GameType() == GAME_NET_DEATHMATCH)
+	{
+		SetAmmoCapacity("QCBulletAmmo",	150);
+		SetAmmoCapacity("QCShellAmmo",	 25);
+		SetAmmoCapacity("QCNailAmmo",	150);
+		SetAmmoCapacity("QCBoltAmmo", 	 15);
+		SetAmmoCapacity("QCRocketAmmo",	 15);
+		SetAmmoCapacity("QCCoilAmmo", 	150);
+		SetAmmoCapacity("QCSlugAmmo", 	 15);
+		SetAmmoCapacity("QCBFGAmmo",	 20);
+	}
+
+	if(GetCvar("qc_freezetag"))
+	{
+		SetAmmoCapacity("QCBulletAmmo",	200); SetInventory("QCBulletAmmo",	200);
+		SetAmmoCapacity("QCShellAmmo",	 25); SetInventory("QCShellAmmo",	 25);
+		SetAmmoCapacity("QCNailAmmo",	150); SetInventory("QCNailAmmo",	150);
+		SetAmmoCapacity("QCBoltAmmo", 	 25); SetInventory("QCBoltAmmo", 	 25);
+		SetAmmoCapacity("QCRocketAmmo",	 25); SetInventory("QCRocketAmmo",	 25);
+		SetAmmoCapacity("QCCoilAmmo", 	200); SetInventory("QCCoilAmmo", 	200);
+		SetAmmoCapacity("QCSlugAmmo", 	 25); SetInventory("QCSlugAmmo", 	 25);
+		SetAmmoCapacity("QCBFGAmmo",	 20); SetInventory("QCBFGAmmo", 	 20);
+	}
+
+	// Reduce ammo cap to have nicely filled icons in weapon bar
+	if(rocketarena)
+	{
+		SetAmmoCapacity("QCBulletAmmo", 5);
+		SetAmmoCapacity("QCShellAmmo" , 5);
+		SetAmmoCapacity("QCNailAmmo"  , 5);
+		SetAmmoCapacity("QCRocketAmmo", 5);
+		SetAmmoCapacity("QCBoltAmmo"  , 5);
+		SetAmmoCapacity("QCSlugAmmo"  , 5);
+		SetAmmoCapacity("QCCoilAmmo"  , 5);
+		SetAmmoCapacity("QCBFGAmmo"   , 5);
+	}
+}
+
+
+
+// Make players slower or faster depending on server settings
+
+Script "QCDE_PlayerSpeed" (void)
+{
+	int sv_PlayerSpeed = GetCvar("sv_PlayerSpeed");
+
+	sv_PlayerSpeed = sv_PlayerSpeed / 5 * 5; // floor to multiple of 5
+	if(sv_PlayerSpeed <  70) sv_PlayerSpeed =  70;
+	if(sv_PlayerSpeed > 130) sv_PlayerSpeed = 130;
+
+	str power = strparam(s:"PlayerSpeed", d:sv_PlayerSpeed);
+	GiveInventory(power, 1);
+}
+
+
+// For effects tracking items that might respawn, additional condition to
+// finish animation.
+// Spawner is expected to be target.
+Script "QCDE_EffectMustDie" (void)
+{
+	SetActivatorToTarget(0);
+	SetResultValue(CheckFlag(0, "INVISIBLE"));
+}
+
+// For effects tracking players who might die, condition to disappear.
+// Player is expected to be target.
+Script "QCDE_AbilityFXMustDie" (void)
+{
+	SetActivatorToTarget(0);
+	bool result = false;
+	result |= GetActorProperty(0,APROP_HEALTH) <= 0;
+	result |= GetActorProperty(0,APROP_HEALTH) > 0 && GetActorProperty(0,APROP_HEIGHT) == 0;
+	result |= CheckInventory("NoFootstepsToken") && !CheckActorClass(0,"QCKane");
+	SetResultValue(result);
+}
+
+// For effects that follow players affected by powerup, condition to finish
+// animation.
+// For indicator XyzIndicator, powerup is expected to be named PowerXyz.
+// Affected player is expected to be target.
+// Special case: if target has NoFootstepsToken, it must be sneaky, so this
+// removes powerup indicator as well. Used by Nyx's Ghostwalk.
+Script "QCDE_PowerupIndicatorMustDie" (void)
+{
+	str indicatorName = strparam(n:0);
+	int nameLength = strlen(indicatorName) - 9; // 9 = "indicator"
+	str powerName = strparam(s:"Power", s:strmid(indicatorName,0,nameLength));
+
+	SetActivatorToTarget(0);
+	bool expired = !GetActorPowerupTics(0,powerName);
+	bool sneaky = CheckInventory("NoFootstepsToken") && !CheckActorClass(0,"QCKane");
+
+	SetResultValue(expired || sneaky);
+}
+
+// For items that would be wildly unbalanced if used in a duel.
+// Technically name should be QCDE_RemoveIfDuelOrTriel, but that's a mouthful.
+// A 1v1v1 is thus also considered a duel.
+Script "QCDE_RemoveIfDuel" (int noRestore)
+{
+	//log(n:0, s:" pve?");
+	if(GameType() < GAME_NET_DEATHMATCH) terminate; // [Ms] Shouldn't this be Thing_Remove(0);?
+
+	//log(n:0, s:" elder's?");
+	if(GetCvar("qc_elderssoul")) terminate; // sic!
+
+	// auto: remove if fewer than 4 players intended
+	//log(n:0, s:" no players?");
+	if((GetCvar("sv_QCDEPowerups") == 2) && (PlayerCount() < 4) && (GetCvar("sv_minPlayers") < 4)) Thing_Remove(0);
+
+	if(GetCvar("duel")) Thing_Remove(0);
+
+	// off: remov
+	//log(n:0, s:" no powers?");
+	if(!GetCvar("sv_QCDEPowerups")) Thing_Remove(0);
+
+	// on: do nothing
+	//log(n:0, s:" \c[green]good to go!");
+}
+
+// Prevent Dave & Merlin from farming too many frags on bots.
+// Not too much, because Merlin's own kills on bots also hurt his Dave.
+#define DAVE_BOT_PENALTY 40 //+ slight randomization
+Script "QCDE_DM_HurtDave" (void)
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate;
+	if(!PlayerIsBot(PlayerNumber())) terminate;
+
+	SetActivatorToTarget(0);
+	if(!CheckActorClass(0,"QCMenelkir")) terminate;
+
+	Thing_Damage(PlayerNumber() + MAULOTAUR_TIDBASE, DAVE_BOT_PENALTY+random(-5,5), MOD_UNKNOWN);
+}
+
+// Automatically spectate players if you're a spectator.
+// Useful when DBT is AFK on stream.
+// https://twitch.tv/dbthanatos <- RT for a free ipod! Limited offer!
+Script "QCDE_AutoSpyNext" OPEN CLIENTSIDE
+{
+	while(true)
+	{
+		delay(35);
+
+		if(!GetCvar("cl_autoSpecDelay")) continue;
+
+		if(PlayerIsSpectator(ConsolePlayerNumber()))
+		{
+			ConsoleCommand("spynext");
+
+			// Failed to acquire watchable target?
+			delay(1);
+			int tid = CheckPlayerCamera(ConsolePlayerNumber());
+			if(tid < 1000) continue;
+
+			int time = GetCvar("cl_autoSpecDelay");
+			log(s:"Automatically spectating ", n:tid - 999, s:" for ", d:time, s:" seconds...");
+			Delay(time * 35);
+		}
+	}
+}
+
+
+//*****************************************************************************
+//*****************************************************************************
+// These scripts check if there are fewer players than `sv_minplayers` and
+// tries to add bots. Removes bots if people connect.
+//*****************************************************************************
+//*****************************************************************************
+Script "QCDE_Players=0" OPEN
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
+	if(GameType() == GAME_TITLE_MAP) terminate;
+	if(GetCvar("duel")) terminate; // not in duels
+
+	int max =~- GetCvar("sv_maxplayers");
+	int min = clamp(GetCvar("sv_minplayers"), 0, max);
+
+	if(GetCvar("sv_minPlayers"))
+	{
+		if(GetCvar("sv_shuffleBots") == 1) ConsoleCommand("removebots");
+		if(GetCvar("sv_shuffleBots") == 2) ConsoleCommand("removebot");
+	}
+
+	while(true)
+	{
+		if(!GetCvar("sv_minplayers")) terminate;
+		//log(s:"Prefill. ", d:PlayerCount(), s:" >= ", d:min, s:"? ", s:btos[PlayerCount() >= min]);
+		if(PlayerCount() >= min) terminate;
+		addOrRemoveBot(-1);
+		delay(35);
+
+		// Special case for `removebots`: don't restore them immediately
+		if(thereAreNoBots()) terminate;
+	}
+}
+Script "QCDE_Players++" ENTER
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
+	if(GameType() == GAME_TITLE_MAP) terminate;
+	if(!GetCvar("sv_minplayers")) terminate;
+	if(GetCvar("duel")) terminate; // not in duels
+
+	int plr = PlayerNumber();
+	if(PlayerIsBot(plr)) terminate; // allow overprovising bots
+
+	addOrRemoveBot(plr);
+}
+Script "QCDE_Players--" (int plr) DISCONNECT
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
+	if(GameType() == GAME_TITLE_MAP) terminate;
+	if(!GetCvar("sv_minplayers")) terminate;
+	if(GetCvar("duel")) terminate; // not in duels
+
+	addOrRemoveBot(plr);
+}
+
+function int thereAreNoBots(void)
+{
+	int i;
+	for(i = 0; i < 64; i++)
+	{
+		if(!ClassifyActor(1000 + i)) continue; // absent in any form? can't judge
+		if(PlayerIsBot(i))
+		{
+			//log(n:i + 1, s:" is present and a bot, so there are bots.");
+			return false;
+		}
+	}
+	//log(s:"No bots in sight.");
+	return true;
+}
+
+function void addOrRemoveBot(int plr)
+{
+	if(GetCvar("duel")) return; // not in duels
+
+	int max =~- GetCvar("sv_maxplayers");
+	int min = clamp(GetCvar("sv_minplayers"), 0, max);
+	int now = PlayerCount();
+
+	if(now > min)
+	{
+		//log(n:plr + 1, s:" -- There are ", d:now, s:" players, and minimum is set at ", d:min, s:", so one bot is kicked.");
+		ConsoleCommand("removebot");
+	}
+	else if(now < min)
+	{
+		if(GetCvar("lastmanstanding") || GetCvar("teamlms"))
+			if(GetGameModeState() >= 2) // GAMESTATE_INPROGRESS
+				return; // not in LMS in progress
+		//log(n:plr + 1, s:" ++ There are ", d:now, s:" players, and minimum is set at ", d:min, s:", so one bot is added.");
+		ConsoleCommand("addbot");
+	}
+}
+
+
+
+
+
+//*****************************************************************************
+//*****************************************************************************
+// Pings
+//*****************************************************************************
+//*****************************************************************************
+
+// TBD

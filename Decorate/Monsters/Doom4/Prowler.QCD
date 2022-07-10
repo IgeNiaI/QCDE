@@ -1,0 +1,231 @@
+
+
+//================================================================================================================
+//================================================================================================================
+//
+//================================================================================================================
+//================================================================================================================
+Actor D4Prowler : QCDE_MonsterSmall 13503
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	var int user_leapstrength;
+	Health 200
+	Radius 18
+	Height 56
+	Mass 150
+	Speed 10
+	PainChance 64
+	Monster
+	+FLOORCLIP
+	SeeSound 	"Doom4/Monsters/Prowler/Sight"
+	PainSound 	"Doom4/Monsters/Prowler/Pain"
+	DeathSound 	"Doom4/Monsters/Prowler/Death"
+	ActiveSound "Doom4/Monsters/Prowler/Idle"
+	Obituary "$OB_D4Prowler" // "%o was splattered by a Prowler."
+	DamageFactor "PlasmaExploder", 0.3	//because otherwise, zombiemen would be killing everyone else easily
+	MinMissileChance 600
+	Scale 1.05
+	Tag "$TAG_D4Prowler" // "Prowler"
+	MeleeRange 80
+	MaxTargetRange 768
+	States
+	{
+	Idle:
+		SHDW E 10 A_Look
+		Loop
+	See:
+		SHDW A 0 A_CheckSight("SeeSimple")
+		SHDW A 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowA",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW A 2 A_Chase
+		SHDW A 2 A_Chase("Melee","")
+		SHDW B 2 A_Chase				"####" "#" 0 A_SpawnItemEx("ProwlerShadowB",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW B 2 A_Chase("Melee","")
+		SHDW B 2 A_Chase
+		SHDW C 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowC",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW C 2 A_Chase
+		SHDW C 2 A_Chase("Melee","")
+		SHDW D 2 A_Chase				"####" "#" 0 A_SpawnItemEx("ProwlerShadowD",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW D 2 A_Chase("Melee","")
+		SHDW D 2 A_Chase
+		Loop
+
+		SeeSimple:	//no trail spawning, to avoid actor clutter when not in sight
+			SHDW A 2 A_Chase("Melee","")
+			SHDW A 2 A_Chase
+			SHDW A 2 A_Chase("Melee","")
+			SHDW B 2 A_Chase
+			SHDW B 2 A_Chase("Melee","")
+			SHDW B 2 A_Chase
+			SHDW C 2 A_Chase("Melee","")
+			SHDW C 2 A_Chase
+			SHDW C 2 A_Chase("Melee","")
+			SHDW D 2 A_Chase
+			SHDW D 2 A_Chase("Melee","")
+			SHDW D 2 A_Chase
+			Goto See
+
+	SeeNoMissile:
+		SHDW A 0 A_CheckSight("SeeNoMissileSimple")
+		SHDW A 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowA",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW AA 2 A_Chase("Melee","")
+		SHDW B 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowB",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW BB 2 A_Chase("Melee","")
+		SHDW C 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowC",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW CC 2 A_Chase("Melee","")
+		SHDW D 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowD",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW DD 2 A_Chase("Melee","")
+		SHDW A 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowA",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW AA 2 A_Chase("Melee","")
+		SHDW B 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowB",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW BB 2 A_Chase("Melee","")
+		SHDW C 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowC",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW CC 2 A_Chase("Melee","")
+		SHDW D 2 A_Chase("Melee","")	"####" "#" 0 A_SpawnItemEx("ProwlerShadowD",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW DD 2 A_Chase("Melee","")
+		Goto See
+
+		SeeNoMissileSimple: 	//no trail spawning, to avoid actor clutter when not in sight
+			SHDW AAABBBCCCDDD 2 A_Chase("Melee","")
+			SHDW AAABBBCCCDDD 2 A_Chase("Melee","")
+			Goto See
+
+	//-------------------------------------------------
+	// Attacks
+	Missile:
+		SHDW E 0 A_PlaySound("Doom4/Monsters/Prowler/Growl",6,1.0,false,1.5)
+		SHDW EEEE 4 A_FaceTarget
+		TNT1 A 0 A_JumpIfCloser(320,"Prep320")
+		TNT1 A 0 A_JumpIfCloser(384,"Prep384")
+		TNT1 A 0 A_JumpIfCloser(448,"Prep448")
+		TNT1 A 0 A_JumpIfCloser(512,"Prep512")
+		TNT1 A 0 A_JumpIfCloser(576,"Prep576")
+		TNT1 A 0 A_JumpIfCloser(640,"Prep640")
+		TNT1 A 0 A_JumpIfCloser(704,"Prep704")
+		Goto Prep768
+
+		Prep320:	TNT1 A 0 A_SetUserVar(user_leapstrength,28)	/*TNT1 A 0 A_PrintBold(320)*/	goto ContinueLeap
+		Prep384:	TNT1 A 0 A_SetUserVar(user_leapstrength,30)	/*TNT1 A 0 A_PrintBold(384)*/	goto ContinueLeap
+		Prep448:	TNT1 A 0 A_SetUserVar(user_leapstrength,33)	/*TNT1 A 0 A_PrintBold(448)*/	goto ContinueLeap
+		Prep512:	TNT1 A 0 A_SetUserVar(user_leapstrength,35)	/*TNT1 A 0 A_PrintBold(512)*/	goto ContinueLeap
+		Prep576:	TNT1 A 0 A_SetUserVar(user_leapstrength,37)	/*TNT1 A 0 A_PrintBold(576)*/	goto ContinueLeap
+		Prep640:	TNT1 A 0 A_SetUserVar(user_leapstrength,39)	/*TNT1 A 0 A_PrintBold(640)*/	goto ContinueLeap
+		Prep704:	TNT1 A 0 A_SetUserVar(user_leapstrength,41)	/*TNT1 A 0 A_PrintBold(704)*/	goto ContinueLeap
+		Prep768:	TNT1 A 0 A_SetUserVar(user_leapstrength,43)	/*TNT1 A 0 A_PrintBold(768)*/	goto ContinueLeap
+
+		ContinueLeap:
+			SHDW A 0 A_PlaySound("Doom4/Monsters/Prowler/Leap",CHAN_AUTO,1.0,false,1.2)
+			SHDW A 0 A_Recoil(-(user_leapstrength/1.2))
+			SHDW F 2 ThrustThingZ(0,user_leapstrength,0,0)
+			Goto LeapLoop
+	LeapLoop:
+		SHDW G 0 A_SpawnItemEx("ProwlerShadowG",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SHDW G 0 A_CheckFloor("LeapEnd")
+		SHDW G 1 A_JumpIfCloser(60,"LeapMelee")
+		SHDW G 0 A_CheckFloor("LeapEnd")
+		SHDW G 1 A_JumpIfCloser(60,"LeapMelee")
+		SHDW G 0 A_CheckFloor("LeapEnd")
+		SHDW G 1 A_JumpIfCloser(60,"LeapMelee")
+		Loop
+
+		LeapMelee:
+			SHDW G 1 A_Explode(8*random(1,5),50,XF_NOTMISSILE,0,50)
+			SHDW G 1 A_CheckFloor("LeapEnd")
+			Wait
+
+	LeapEnd:
+		SHDW A 0 A_PlaySound("fiend/land",CHAN_AUTO,1.0,false,1.15)
+		SHDW A 0 A_ChangeFlag("NOPAIN",0)
+		SHDW E 4 A_Stop
+		SHDW E 4
+		Goto SeeNoMissile  //dont leap immediately after... leaping
+
+	Melee:
+		SHDW E 5 A_FaceTarget
+		SHDW E 0 A_PlaySound("Doom4/Other/MeleeSwing",CHAN_AUTO,1.0,false,1.2)
+		SHDW E 5 A_FaceTarget
+		SHDW G 10 A_CustomMeleeAttack(random(10,40),"","MissSound")
+		Goto SeeNoMissile	//dont leap immediately after meleeing
+
+
+	Pain:
+		SHDW H 3
+		SHDW H 3 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		SHDW I 0 A_Scream
+		SHDW I 4 A_Scream
+		SHDW J 4
+		SHDW K 4 A_SpawnItemEx("Shadowtorso", 0, 0, 0, 1, 0, 0, 0, 128)
+		SHDW L 4 A_Fall
+		SHDW MNO 4
+	Death.Corpse:
+		SHDW P -1
+		Stop
+
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Doom4/Gore/Medium")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+
+
+	//------------------------------------------------------------------------
+	}
+}
+
+Actor ProwlerShadowA
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NONETID
+	Scale 1.05
+	RenderStyle Translucent
+	Alpha 0.7
+	States
+	{
+	Spawn:
+		SHDW A 0
+		Goto Idle
+	Idle:
+		"####" "#" 2 A_FadeOut(0.1)
+		Loop
+	}
+}
+Actor ProwlerShadowB : ProwlerShadowA
+{	States	{	Spawn:	SHDW B 0
+				Goto Idle	}}
+Actor ProwlerShadowC : ProwlerShadowA
+{	States	{	Spawn:	SHDW C 0
+				Goto Idle	}}
+Actor ProwlerShadowD : ProwlerShadowA
+{	States	{	Spawn:	SHDW D 0
+				Goto Idle	}}
+Actor ProwlerShadowG : ProwlerShadowA
+{	States	{	Spawn:	SHDW G 0
+				Goto Idle	}}
+
+
+
+Actor Shadowtorso
+{
+	Radius 10
+	Height 15
+	Speed 1
+	Scale 1.05
+	Mass 5000
+	+Doombounce
+	+THRUACTORS
+    States
+	{
+	Spawn:
+		SHDW QRS 5
+		SHDW T 5
+		SHDW U 5
+		SHDW V -1
+		Stop
+	}
+}

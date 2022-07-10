@@ -1,0 +1,119 @@
+//===========================================================================
+//===========================================================================
+
+Actor Q2Hornet : QCDE_MonsterBoss	15206	// spider mastermind
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	Health 3500
+	Radius 70
+	Height 100
+	Speed 6
+	PainChance 64
+	Mass 0x7FFFFFFF //massive so that it cant be pushed, otherwise it will get stuck due to it not "+FLOATing"
+	Scale 0.8
+	MONSTER
+	+BOSSDEATH
+	+BOSS
+	+NOGRAVITY
+	+RELATIVETOFLOOR
+	+NORADIUSDMG
+	+NOBLOOD
+	Tag "$TAG_Q2Hornet" // "Hornet"
+	BloodColor "68 89 04"	//used for the giblets
+	SeeSound "q2flyingboss/sight"
+	DeathSound "q2flyingboss/death"
+	PainSound "q2flyingboss/pain"
+	AttackSound ""
+	Obituary "$OB_Q2Hornet" // "%o was destroyed by a hover boss."
+	DropItem "BigHourglass"
+	States
+	{
+	Spawn:
+		BS2W A 0 A_Warp(AAPTR_DEFAULT,0,0,20)
+		Goto Super::Spawn
+	Idle:
+		BS2W A 0 A_PlaySound("q2flyingboss/walk",6,0.4,1,1)
+		BS2W A 4 Bright A_Look
+		Loop
+	See:
+		BS2W AAAAAA 2 Bright A_Chase
+		Loop
+	Missile:
+		BS2A A 0 A_Jump(96,"Rockets")
+		BS2A AAAA 4 A_FaceTarget
+
+	Chaingun:
+		BS2A A 3 Bright A_CustomBulletAttack(22.5, 0, 2, random(1,5)*3, "BulletPuff", 0, CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("q2weapon/machinegun",6,1,0,0.6)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",82,60,frandom(5,-5))
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlash",40,60,75,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlash",40,-60,75,0,0,0,0,32)
+
+		BS2A A 3 Bright A_CustomBulletAttack(22.5, 0, 2, random(1,5)*3, "BulletPuff", 0, CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("q2weapon/machinegun",6,1,0,0.6)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",82,-60,frandom(5,-5))
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlash",40,60,75,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlash",40,-60,75,0,0,0,0,32)
+		BS2A E 0 A_CPosRefire
+		BS2A A 0
+		Goto Chaingun
+	Rockets:
+		BS2A BBCCDD 5 A_FaceTarget
+		BS2A D 0 A_CustomMissile("Q2BossRocketNoDecal",10, 18,0,CMF_AIMOFFSET)
+		BS2A D 0 A_CustomMissile("Q2BossRocketNoDecal",10,  6,0,CMF_AIMOFFSET)
+		BS2A D 0 A_CustomMissile("Q2BossRocketNoDecal",10, -6,0,CMF_AIMOFFSET)
+		BS2A D 0 A_CustomMissile("Q2BossRocketNoDecal",10,-18,0,CMF_AIMOFFSET)
+		BS2A CB 10
+		Goto See
+	Pain:
+		BS2P A 3
+		BS2P A 3 A_Pain
+		Goto See
+
+	XDeathChecksDone:
+	DeathChecksDone:
+		BS2D A 0 A_Scream
+		BS2D A 0 A_ChangeFlag("THRUACTORS",1)
+		BS2D A 0 A_ChangeFlag("NOGRAVITY",0)
+		BS2D A 6 A_LowGravity
+		BS2D B 6
+		TNT1 A 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(20,70),0,0,0,random(0,359),32)
+		BS2D D 5 A_Fall
+		BS2D E 4
+		TNT1 A 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(20,70),0,0,0,random(0,359),32)
+		BS2D G 5
+		BS2D G 1 A_CheckFloor("Crashed")
+		Wait
+	Crashed:
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal")
+		BS2D H 6 A_SetFloorClip
+		BS2D I 6
+		TNT1 A 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(20,70),0,0,0,random(0,359),32)
+		BS2D J 6
+		BS2D K 6
+		BS2D L 6
+		BS2D M 6
+		TNT1 A 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(20,70),0,0,0,random(0,359),32)
+		BS2D N 6
+		BS2D O 6
+		TNT1 A 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(20,70),0,0,0,random(0,359),32)
+		BS2D P 20
+		TNT1 A 0 A_SpawnItemEx("GibDropperBig",0,0,50,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 AAAAAAAAAAAAA 0 A_TossGib
+		TNT1 AA 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(20,70),0,0,0,random(0,359),32)
+	Death.Corpse:
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor Q2BossRocketNoDecal : TankCommanderRocket
+{
+	Speed 24
+	Decal ""
+}
+
+
+

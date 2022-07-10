@@ -1,0 +1,2569 @@
+//**************************************************************************************
+//**************************************************************************************
+//
+//		Player sounds
+//
+//**************************************************************************************
+//**************************************************************************************
+
+//Hack for a "no sound" in zandronum players. If you dont define a sound, call a 100% silent
+//sound file, or call an invalid sound name, the engine in DM will use the default doom sounds.
+//So this is a couple layers of "silent sound" hacks to ensure it works. The sound file itself
+//makes a noise, but a very, very low one, then limimted the $volume to almost zero, but
+//NOT zero, otherwise, again, the engine will just play the default. Thanks zandro!
+NoSoundHax	"Sounds/NoSound.ogg"
+$volume NoSoundHax 0.01
+
+//================================================================
+//================================================================
+// Ranger, from QC
+//================================================================
+//================================================================
+
+$random RangerDeath { RangerDeath1 RangerDeath2 }
+RangerDeath1 "Sounds/Players/Ranger/RangerDeath1.ogg"
+RangerDeath2 "Sounds/Players/Ranger/RangerDeath2.ogg"
+
+$random RangerJump { RangerJump1 RangerJump2 None }
+RangerJump1 "Sounds/Players/Ranger/RangerJump1.ogg"
+RangerJump2 "Sounds/Players/Ranger/RangerJump2.ogg"
+
+$volume RangerJump1 0.8
+$volume RangerJump2 0.8
+$attenuation RangerJump1 2.0
+$attenuation RangerJump1 2.0
+
+QCRangerTaunt01 "Sounds/Players/Ranger/RangerTaunt1.ogg"
+QCRangerTaunt02 "Sounds/Players/Ranger/RangerTaunt2.ogg"
+QCRangerTaunt03 "Sounds/Players/Ranger/RangerTaunt3.ogg"
+QCRangerTaunt04 "Sounds/Players/Ranger/RangerTaunt4.ogg"
+QCRangerTaunt05 "Sounds/Players/Ranger/RangerTaunt5.ogg"
+QCRangerTaunt06 "Sounds/Players/Ranger/RangerTaunt6.ogg"
+QCRangerTaunt07 "Sounds/Players/Ranger/RangerTaunt7.ogg"
+QCRangerTaunt08 "Sounds/Players/Ranger/RangerTaunt8.ogg"
+QCRangerTaunt09 "Sounds/Players/Ranger/RangerTaunt9.ogg"
+QCRangerTaunt10 "Sounds/Players/Ranger/RangerTaunt10.ogg"
+QCRangerTaunt11 "Sounds/Players/Ranger/RangerTaunt11.ogg"
+QCRangerTaunt12 "Sounds/Players/Ranger/RangerTaunt12.ogg"
+QCRangerTaunt13 "Sounds/Players/Ranger/RangerTaunt13.ogg"
+QCRangerTaunt14 "Sounds/Players/Ranger/RangerTaunt14.ogg"
+
+$playeralias	Ranger	male	*death		RangerDeath
+$playersound	Ranger	male	*xdeath		"Sounds/Players/Ranger/RangerXDeath.ogg"
+$playersound	Ranger	male	*gibbed		"Sounds/Players/Ranger/RangerXDeath.ogg"	//A_XScream plays *gibbed, not *xdeath
+$playersound	Ranger	male	*pain100	"Sounds/Players/Ranger/RangerPain100.ogg"
+$playersound	Ranger	male	*pain75		"Sounds/Players/Ranger/RangerPain075.ogg"
+$playersound	Ranger	male	*pain50		"Sounds/Players/Ranger/RangerPain050.ogg"
+$playersound	Ranger	male	*pain25		"Sounds/Players/Ranger/RangerPain025.ogg"
+$playersound	Ranger	male	*grunt		"Sounds/Players/Ranger/RangerLand.ogg"
+$playersound	Ranger	male	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Ranger	male	*jump		RangerJump
+$playersound	Ranger	male	*usefail	"Sounds/Players/Ranger/RangerOof.ogg"
+$playeralias	Ranger	male	*taunt		NoSoundHax
+
+$playeralias	Ranger	female	*death		RangerDeath
+$playersound	Ranger	female	*xdeath		"Sounds/Players/Ranger/RangerXDeath.ogg"
+$playersound	Ranger	female	*gibbed		"Sounds/Players/Ranger/RangerXDeath.ogg"	//A_XScream plays *gibbed, not *xdeath
+$playersound	Ranger	female	*pain100	"Sounds/Players/Ranger/RangerPain100.ogg"
+$playersound	Ranger	female	*pain75		"Sounds/Players/Ranger/RangerPain075.ogg"
+$playersound	Ranger	female	*pain50		"Sounds/Players/Ranger/RangerPain050.ogg"
+$playersound	Ranger	female	*pain25		"Sounds/Players/Ranger/RangerPain025.ogg"
+$playersound	Ranger	female	*grunt		"Sounds/Players/Ranger/RangerLand.ogg"
+$playersound	Ranger	female	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Ranger	female	*jump		RangerJump
+$playersound	Ranger	female	*usefail	"Sounds/Players/Ranger/RangerOof.ogg"
+$playeralias	Ranger	female	*taunt		NoSoundHax
+
+$playeralias	Ranger	other	*death		RangerDeath
+$playersound	Ranger	other	*xdeath		"Sounds/Players/Ranger/RangerXDeath.ogg"
+$playersound	Ranger	other	*gibbed		"Sounds/Players/Ranger/RangerXDeath.ogg"	//A_XScream plays *gibbed, not *xdeath
+$playersound	Ranger	other	*pain100	"Sounds/Players/Ranger/RangerPain100.ogg"
+$playersound	Ranger	other	*pain75		"Sounds/Players/Ranger/RangerPain075.ogg"
+$playersound	Ranger	other	*pain50		"Sounds/Players/Ranger/RangerPain050.ogg"
+$playersound	Ranger	other	*pain25		"Sounds/Players/Ranger/RangerPain025.ogg"
+$playersound	Ranger	other	*grunt		"Sounds/Players/Ranger/RangerLand.ogg"
+$playersound	Ranger	other	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Ranger	other	*jump		RangerJump
+$playersound	Ranger	other	*usefail	"Sounds/Players/Ranger/RangerOof.ogg"
+$playeralias	Ranger	other	*taunt		NoSoundHax
+
+//-------------
+// DoomSlayer
+$random DoomXdeath { DoomXdeath1 DoomXdeath2 DoomXdeath3 }
+DoomXdeath1		"Sounds/Players/DoomSlayer/Xdeath1.ogg"
+DoomXdeath2		"Sounds/Players/DoomSlayer/Xdeath2.ogg"
+DoomXdeath3		"Sounds/Players/DoomSlayer/Xdeath3.ogg"
+
+$random DoomStomp  { DoomStomp1 DoomStomp2 }
+DoomStomp1		"Sounds/Players/FootSteps/DoomStomp1.ogg"
+DoomStomp2		"Sounds/Players/FootSteps/DoomStomp2.ogg"
+
+QCDoomslayerTaunt01 "Sounds/Players/DoomSlayer/Taunt1.ogg"
+QCDoomslayerTaunt02 "Sounds/Players/DoomSlayer/Taunt2.ogg"
+QCDoomslayerTaunt03 "Sounds/Players/DoomSlayer/Taunt3.ogg"
+QCDoomslayerTaunt04 "Sounds/Players/DoomSlayer/Taunt4.ogg"
+QCDoomslayerTaunt05 "Sounds/Players/DoomSlayer/Taunt5.ogg"
+QCDoomslayerTaunt06 "Sounds/Players/DoomSlayer/Taunt6.ogg"
+QCDoomslayerTaunt07 "Sounds/Players/DoomSlayer/Taunt7.ogg"
+QCDoomslayerTaunt08 "Sounds/Players/DoomSlayer/Taunt8.ogg"
+QCDoomslayerTaunt09 "Sounds/Players/DoomSlayer/Taunt9.ogg"
+QCDoomslayerTaunt10 "Sounds/Players/DoomSlayer/Taunt10.ogg"
+QCDoomslayerTaunt11 "Sounds/Players/DoomSlayer/Taunt11.ogg"
+QCDoomslayerTaunt12 "Sounds/Players/DoomSlayer/Taunt12.ogg"
+QCDoomslayerTaunt13 "Sounds/Players/DoomSlayer/Taunt13.ogg"
+
+DoomJump		"Sounds/Players/DoomSlayer/Jump.ogg"
+$volume DoomJump 0.8
+$attenuation DoomJump 2.0
+
+
+$playeralias	DoomSlayer	male	*death		NoSoundHax
+$playeralias	DoomSlayer	male	*xdeath		DoomXdeath
+$playeralias	DoomSlayer	male	*gibbed		DoomXdeath
+$playeralias	DoomSlayer	male	*pain100	NoSoundHax
+$playeralias	DoomSlayer	male	*pain75		NoSoundHax
+$playeralias	DoomSlayer	male	*pain50		NoSoundHax
+$playeralias	DoomSlayer	male	*pain25		NoSoundHax
+$playeralias	DoomSlayer	male	*grunt		NoSoundHax
+$playeralias	DoomSlayer	male	*land		DoomStomp
+$playeralias	DoomSlayer	male	*jump		DoomJump
+$playersound	DoomSlayer	male	*usefail	"Sounds/Players/DoomSlayer/Oof.ogg"
+$playeralias	DoomSlayer	male	*taunt		NoSoundHax
+
+$playeralias	DoomSlayer	female	*death		NoSoundHax
+$playeralias	DoomSlayer	female	*xdeath		DoomXdeath
+$playeralias	DoomSlayer	female	*gibbed		DoomXdeath
+$playeralias	DoomSlayer	female	*pain100	NoSoundHax
+$playeralias	DoomSlayer	female	*pain75		NoSoundHax
+$playeralias	DoomSlayer	female	*pain50		NoSoundHax
+$playeralias	DoomSlayer	female	*pain25		NoSoundHax
+$playeralias	DoomSlayer	female	*grunt		NoSoundHax
+$playeralias	DoomSlayer	female	*land		DoomStomp
+$playeralias	DoomSlayer	female	*jump		DoomJump
+$playersound	DoomSlayer	female	*usefail	"Sounds/Players/DoomSlayer/Oof.ogg"
+$playeralias	DoomSlayer	female	*taunt		NoSoundHax
+
+$playeralias	DoomSlayer	other	*death		NoSoundHax
+$playeralias	DoomSlayer	other	*xdeath		DoomXdeath
+$playeralias	DoomSlayer	other	*gibbed		DoomXdeath
+$playeralias	DoomSlayer	other	*pain100	NoSoundHax
+$playeralias	DoomSlayer	other	*pain75		NoSoundHax
+$playeralias	DoomSlayer	other	*pain50		NoSoundHax
+$playeralias	DoomSlayer	other	*pain25		NoSoundHax
+$playeralias	DoomSlayer	other	*grunt		NoSoundHax
+$playeralias	DoomSlayer	other	*land		DoomStomp
+$playeralias	DoomSlayer	other	*jump		DoomJump
+$playersound	DoomSlayer	other	*usefail	"Sounds/Players/DoomSlayer/Oof.ogg"
+$playeralias	DoomSlayer	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Corvus, from Heretic and taunts from Heretic 2
+//================================================================
+//================================================================
+
+$random CorvusPain { CorvusPain1 CorvusPain2 }
+CorvusPain1		"Sounds/Players/Corvus/Pain1.ogg"
+CorvusPain2		"Sounds/Players/Corvus/Pain2.ogg"
+
+QCCorvusTaunt01 "Sounds/Players/Corvus/Taunt1.ogg"
+QCCorvusTaunt02 "Sounds/Players/Corvus/Taunt2.ogg"
+QCCorvusTaunt03 "Sounds/Players/Corvus/Taunt3.ogg"
+QCCorvusTaunt04 "Sounds/Players/Corvus/Taunt4.ogg"
+QCCorvusTaunt05 "Sounds/Players/Corvus/Taunt5.ogg"
+QCCorvusTaunt06 "Sounds/Players/Corvus/Taunt6.ogg"
+QCCorvusTaunt07 "Sounds/Players/Corvus/Taunt7.ogg"
+QCCorvusTaunt08 "Sounds/Players/Corvus/Taunt8.ogg"
+QCCorvusTaunt09 "Sounds/Players/Corvus/Taunt9.ogg"
+QCCorvusTaunt10 "Sounds/Players/Corvus/Taunt10.ogg"
+QCCorvusTaunt11 "Sounds/Players/Corvus/Taunt11.ogg"
+QCCorvusTaunt12 "Sounds/Players/Corvus/Taunt12.ogg"
+QCCorvusTaunt13 "Sounds/Players/Corvus/Taunt13.ogg"
+
+$random CorvusJump { CorvusJump1 CorvusJump1 None }
+CorvusJump1		"Sounds/Players/Corvus/Jump.ogg"
+
+$volume CorvusJump1 0.8
+$attenuation CorvusJump1 2.0
+
+$playersound	Corvus	male	*death		"Sounds/Players/Corvus/Death.ogg"
+$playersound	Corvus	male	*xdeath		"Sounds/Players/Corvus/Xdeath.ogg"
+$playersound	Corvus	male	*gibbed		"Sounds/Players/Corvus/Xdeath.ogg"
+$playeralias	Corvus	male	*pain100	CorvusPain
+$playeralias	Corvus	male	*pain75		CorvusPain
+$playeralias	Corvus	male	*pain50		CorvusPain
+$playeralias	Corvus	male	*pain25		CorvusPain
+$playersound	Corvus	male	*grunt		"Sounds/Players/Corvus/Land.ogg"
+$playersound	Corvus	male	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Corvus	male	*jump		CorvusJump
+$playersound	Corvus	male	*usefail	"Sounds/Players/Corvus/Oof.ogg"
+$playeralias	Corvus	male	*taunt		NoSoundHax
+
+$playersound	Corvus	female	*death		"Sounds/Players/Corvus/Death.ogg"
+$playersound	Corvus	female	*xdeath		"Sounds/Players/Corvus/Xdeath.ogg"
+$playersound	Corvus	female	*gibbed		"Sounds/Players/Corvus/Xdeath.ogg"
+$playeralias	Corvus	female	*pain100	CorvusPain
+$playeralias	Corvus	female	*pain75		CorvusPain
+$playeralias	Corvus	female	*pain50		CorvusPain
+$playeralias	Corvus	female	*pain25		CorvusPain
+$playersound	Corvus	female	*grunt		"Sounds/Players/Corvus/Land.ogg"
+$playersound	Corvus	female	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Corvus	female	*jump		CorvusJump
+$playersound	Corvus	female	*usefail	"Sounds/Players/Corvus/Oof.ogg"
+$playeralias	Corvus	female	*taunt		NoSoundHax
+
+$playersound	Corvus	other	*death		"Sounds/Players/Corvus/Death.ogg"
+$playersound	Corvus	other	*xdeath		"Sounds/Players/Corvus/Xdeath.ogg"
+$playersound	Corvus	other	*gibbed		"Sounds/Players/Corvus/Xdeath.ogg"
+$playeralias	Corvus	other	*pain100	CorvusPain
+$playeralias	Corvus	other	*pain75		CorvusPain
+$playeralias	Corvus	other	*pain50		CorvusPain
+$playeralias	Corvus	other	*pain25		CorvusPain
+$playersound	Corvus	other	*grunt		"Sounds/Players/Corvus/Land.ogg"
+$playersound	Corvus	other	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Corvus	other	*jump		CorvusJump
+$playersound	Corvus	other	*usefail	"Sounds/Players/Corvus/Oof.ogg"
+$playeralias	Corvus	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Kane, from Q4
+//================================================================
+//================================================================
+
+QCKaneTaunt01 "Sounds/Players/Kane/KTaunt1.ogg"
+QCKaneTaunt02 "Sounds/Players/Kane/KTaunt2.ogg"
+QCKaneTaunt03 "Sounds/Players/Kane/KTaunt3.ogg"
+QCKaneTaunt04 "Sounds/Players/Kane/KTaunt4.ogg"
+QCKaneTaunt05 "Sounds/Players/Kane/KTaunt5.ogg"
+QCKaneTaunt06 "Sounds/Players/Kane/KTaunt6.ogg"
+QCKaneTaunt07 "Sounds/Players/Kane/KTaunt7.ogg"
+QCKaneTaunt08 "Sounds/Players/Kane/KTaunt8.ogg"
+QCKaneTaunt09 "Sounds/Players/Kane/KTaunt9.ogg"
+QCKaneTaunt10 "Sounds/Players/Kane/KTaunt10.ogg"
+QCKaneTaunt11 "Sounds/Players/Kane/KTaunt11.ogg"
+QCKaneTaunt12 "Sounds/Players/Kane/KTaunt12.ogg"
+QCKaneTaunt13 "Sounds/Players/Kane/KTaunt13.ogg"
+
+$random KaneJump { KaneJump1 KaneJump1 None }
+KaneJump1 "Sounds/Players/Kane/Q4PLJUMP.ogg"
+
+$volume KaneJump1 0.8
+$attenuation KaneJump1 2.0
+
+KaneStomp		"Sounds/Players/Footsteps/KaneStomp.ogg"
+$volume KaneStomp 0.65
+
+
+$playersound	Kane	male	*death		Q4PLDIE
+$playersound	Kane	male	*xdeath		Q4PLDIEX
+$playersound	Kane	male	*gibbed		Q4PLDIEX
+$playersound	Kane	male	*pain100	Q4PLP100
+$playersound	Kane	male	*pain75		Q4PLP075
+$playersound	Kane	male	*pain50		Q4PLP050
+$playersound	Kane	male	*pain25		Q4PLP025
+$playersound	Kane	male	*grunt		Q4PLJMPN
+$playeralias	Kane	male	*land		KaneStomp
+$playeralias	Kane	male	*jump		KaneJump
+$playersound	Kane	male	*fist		dspunch
+$playersound	Kane	male	*usefail	Q4PLFAIL
+$playeralias	Kane	male	*taunt		NoSoundHax
+
+$playersound	Kane	female	*death		Q4PLDIE
+$playersound	Kane	female	*xdeath		Q4PLDIEX
+$playersound	Kane	female	*gibbed		Q4PLDIEX
+$playersound	Kane	female	*pain100	Q4PLP100
+$playersound	Kane	female	*pain75		Q4PLP075
+$playersound	Kane	female	*pain50		Q4PLP050
+$playersound	Kane	female	*pain25		Q4PLP025
+$playersound	Kane	female	*grunt		Q4PLJMPN
+$playeralias	Kane	female	*land		KaneStomp
+$playeralias	Kane	female	*jump		KaneJump
+$playersound	Kane	female	*fist		dspunch
+$playersound	Kane	female	*usefail	Q4PLFAIL
+$playeralias	Kane	female	*taunt		NoSoundHax
+
+$playersound	Kane	other	*death		Q4PLDIE
+$playersound	Kane	other	*xdeath		Q4PLDIEX
+$playersound	Kane	other	*gibbed		Q4PLDIEX
+$playersound	Kane	other	*pain100	Q4PLP100
+$playersound	Kane	other	*pain75		Q4PLP075
+$playersound	Kane	other	*pain50		Q4PLP050
+$playersound	Kane	other	*pain25		Q4PLP025
+$playersound	Kane	other	*grunt		Q4PLJMPN
+$playeralias	Kane	other	*land		KaneStomp
+$playeralias	Kane	other	*jump		KaneJump
+$playersound	Kane	other	*fist		dspunch
+$playersound	Kane	other	*usefail	Q4PLFAIL
+$playeralias	Kane	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Caleb, from blood
+//================================================================
+//================================================================
+
+CalebPainA1 "Sounds/Players/Caleb/PAINA1.ogg"
+CalebPainA2 "Sounds/Players/Caleb/PAINA2.ogg"
+CalebPainA3 "Sounds/Players/Caleb/PAINA3.ogg"
+CalebPainB1 "Sounds/Players/Caleb/PAINB1.ogg"
+CalebPainB2 "Sounds/Players/Caleb/PAINB2.ogg"
+CalebPainB3 "Sounds/Players/Caleb/PAINB3.ogg"
+CalebPainC1 "Sounds/Players/Caleb/PAINC1.ogg"
+CalebPainC2 "Sounds/Players/Caleb/PAINC2.ogg"
+CalebPainC3 "Sounds/Players/Caleb/PAINC3.ogg"
+CalebPainC4 "Sounds/Players/Caleb/PAINC4.ogg"
+CalebPainC5 "Sounds/Players/Caleb/PAINC5.ogg"
+CalebPainD1 "Sounds/Players/Caleb/PAIND1.ogg"
+CalebPainD2 "Sounds/Players/Caleb/PAIND2.ogg"
+CalebPainD3 "Sounds/Players/Caleb/PAIND3.ogg"
+$random CalebPainA { CalebPainA1 CalebPainA2 CalebPainA3 }
+$random CalebPainB { CalebPainB1 CalebPainB2 CalebPainB3 }
+$random CalebPainC { CalebPainC1 CalebPainC2 CalebPainC3 CalebPainC4 CalebPainC5 }
+$random CalebPainD { CalebPainD1 CalebPainD2 CalebPainD3 }
+
+QCCalebTaunt01 "Sounds/Players/Caleb/TAUNT1.ogg"
+QCCalebTaunt02 "Sounds/Players/Caleb/TAUNT2.ogg"
+QCCalebTaunt03 "Sounds/Players/Caleb/TAUNT3.ogg"
+QCCalebTaunt04 "Sounds/Players/Caleb/TAUNT4.ogg"
+QCCalebTaunt05 "Sounds/Players/Caleb/TAUNT5.ogg"
+QCCalebTaunt06 "Sounds/Players/Caleb/TAUNT6.ogg"
+QCCalebTaunt07 "Sounds/Players/Caleb/TAUNT7.ogg"
+QCCalebTaunt08 "Sounds/Players/Caleb/TAUNT8.ogg"
+QCCalebTaunt09 "Sounds/Players/Caleb/TAUNT9.ogg"
+QCCalebTaunt10 "Sounds/Players/Caleb/TAUNT10.ogg"
+QCCalebTaunt11 "Sounds/Players/Caleb/TAUNT11.ogg"
+QCCalebTaunt12 "Sounds/Players/Caleb/TAUNT12.ogg"
+QCCalebTaunt13 "Sounds/Players/Caleb/TAUNT13.ogg"
+QCCalebTaunt14 "Sounds/Players/Caleb/TAUNT14.ogg"
+QCCalebTaunt15 "Sounds/Players/Caleb/TAUNT15.ogg"
+QCCalebTaunt16 "Sounds/Players/Caleb/TAUNT16.ogg"
+QCCalebTaunt17 "Sounds/Players/Caleb/TAUNT17.ogg"
+QCCalebTaunt18 "Sounds/Players/Caleb/TAUNT18.ogg"
+QCCalebTaunt19 "Sounds/Players/Caleb/TAUNT19.ogg"
+
+CalebDeath1 "Sounds/Players/Caleb/DEATH1.ogg"
+CalebDeath2 "Sounds/Players/Caleb/DEATH2.ogg"
+CalebDeath3 "Sounds/Players/Caleb/DEATH3.ogg"
+$random CalebDeath { CalebDeath1 CalebDeath2 CalebDeath3 }
+CalebXDeath1 "Sounds/Players/Caleb/XDEATH1.ogg"
+CalebXDeath2 "Sounds/Players/Caleb/XDEATH2.ogg"
+$random CalebXDeath { CalebXDeath1 CalebXDeath2 }
+
+$random CalebJump { CalebJump1 CalebJump1 None }
+CalebJump1 "Sounds/Players/Caleb/Jump.ogg"
+
+$volume CalebJump1 0.8
+$attenuation CalebJump1 2.0
+
+$playeralias	Caleb	male	*death		CalebDeath
+$playeralias	Caleb	male	*xdeath		CalebXDeath
+$playeralias	Caleb	male	*gibbed		CalebXDeath
+$playeralias	Caleb	male	*pain100	CalebPainA
+$playeralias	Caleb	male	*pain75		CalebPainB
+$playeralias	Caleb	male	*pain50		CalebPainC
+$playeralias	Caleb	male	*pain25		CalebPainD
+$playersound	Caleb	male	*grunt		"Sounds/Players/Caleb/Oof.ogg"
+$playersound	Caleb	male	*land		"Sounds/Players/Footsteps/MediumStomp.ogg" //he uses "litesteps" but i dont like the stomp sound of that
+$playeralias	Caleb	male	*jump		CalebJump
+$playersound	Caleb	male	*usefail	"Sounds/Players/Caleb/Oof.ogg"
+$playeralias	Caleb	male	*taunt		NoSoundHax
+$playeralias	Caleb	male	*evillaugh	 CalebTaunt10
+$playeralias	Caleb	male	*weaponlaugh CalebTaunt6
+$playersound	Caleb	male	*falling	"Sounds/Players/Caleb/Fall.ogg"
+
+$playeralias	Caleb	female	*death		CalebDeath
+$playeralias	Caleb	female	*xdeath		CalebXDeath
+$playeralias	Caleb	female	*gibbed		CalebXDeath
+$playeralias	Caleb	female	*pain100	CalebPainA
+$playeralias	Caleb	female	*pain75		CalebPainB
+$playeralias	Caleb	female	*pain50		CalebPainC
+$playeralias	Caleb	female	*pain25		CalebPainD
+$playersound	Caleb	female	*grunt		"Sounds/Players/Caleb/Oof.ogg"
+$playersound	Caleb	female	*land		"Sounds/Players/Footsteps/MediumStomp.ogg" //he uses "litesteps" but i dont like the stomp sound of that
+$playeralias	Caleb	female	*jump		CalebJump
+$playersound	Caleb	female	*usefail	"Sounds/Players/Caleb/Oof.ogg"
+$playeralias	Caleb	female	*taunt		NoSoundHax
+$playeralias	Caleb	female	*evillaugh	 CalebTaunt10
+$playeralias	Caleb	female	*weaponlaugh CalebTaunt6
+$playersound	Caleb	female	*falling	"Sounds/Players/Caleb/Fall.ogg"
+
+$playeralias	Caleb	other	*death		CalebDeath
+$playeralias	Caleb	other	*xdeath		CalebXDeath
+$playeralias	Caleb	other	*gibbed		CalebXDeath
+$playeralias	Caleb	other	*pain100	CalebPainA
+$playeralias	Caleb	other	*pain75		CalebPainB
+$playeralias	Caleb	other	*pain50		CalebPainC
+$playeralias	Caleb	other	*pain25		CalebPainD
+$playersound	Caleb	other	*grunt		"Sounds/Players/Caleb/Oof.ogg"
+$playersound	Caleb	other	*land		"Sounds/Players/Footsteps/MediumStomp.ogg" //he uses "litesteps" but i dont like the stomp sound of that
+$playeralias	Caleb	other	*jump		CalebJump
+$playersound	Caleb	other	*usefail	"Sounds/Players/Caleb/Oof.ogg"
+$playeralias	Caleb	other	*taunt		NoSoundHax
+$playeralias	Caleb	other	*evillaugh	 CalebTaunt10
+$playeralias	Caleb	other	*weaponlaugh CalebTaunt6
+$playersound	Caleb	other	*falling	"Sounds/Players/Caleb/Fall.ogg"
+
+
+//================================================================
+//================================================================
+// Menelkir, from Hexen, using pitch edited Korax vo for taunts
+//================================================================
+//================================================================
+
+
+QCMenelkirTaunt01 "Sounds/Players/Menelkir/MenelkirTaunt1.ogg"
+QCMenelkirTaunt02 "Sounds/Players/Menelkir/MenelkirTaunt2.ogg"
+QCMenelkirTaunt03 "Sounds/Players/Menelkir/MenelkirTaunt3.ogg"
+QCMenelkirTaunt04 "Sounds/Players/Menelkir/MenelkirTaunt4.ogg"
+QCMenelkirTaunt05 "Sounds/Players/Menelkir/MenelkirTaunt5.ogg"
+QCMenelkirTaunt06 "Sounds/Players/Menelkir/MenelkirTaunt6.ogg"
+
+$playersound	Menelkir	male	*death		"Sounds/Players/Menelkir/Death.ogg"
+$playersound	Menelkir	male	*xdeath		"Sounds/Players/Menelkir/Xdeath.ogg"
+$playersound	Menelkir	male	*gibbed		"Sounds/Players/Menelkir/Xdeath.ogg"
+$playersound	Menelkir	male	*pain100	"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	male	*pain75		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	male	*pain50		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	male	*pain25		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	male	*grunt		"Sounds/Players/Menelkir/Oof.ogg"
+$playersound	Menelkir	male	*land		"Sounds/Players/Footsteps/LiteStep3.ogg"
+$playeralias	Menelkir	male	*jump		NoSoundHax
+$playersound	Menelkir	male	*usefail	"Sounds/Players/Menelkir/Oof.ogg"
+$playeralias	Menelkir	male	*taunt		NoSoundHax
+
+$playersound	Menelkir	female	*death		"Sounds/Players/Menelkir/Death.ogg"
+$playersound	Menelkir	female	*xdeath		"Sounds/Players/Menelkir/Xdeath.ogg"
+$playeralias	Menelkir	female	*gibbed		NoSoundHax
+$playersound	Menelkir	female	*pain100	"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	female	*pain75		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	female	*pain50		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	female	*pain25		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	female	*grunt		"Sounds/Players/Menelkir/Oof.ogg"
+$playersound	Menelkir	female	*land		"Sounds/Players/Footsteps/LiteStep3.ogg"
+$playeralias	Menelkir	female	*jump		NoSoundHax
+$playersound	Menelkir	female	*usefail	"Sounds/Players/Menelkir/Oof.ogg"
+$playeralias	Menelkir	female	*taunt		NoSoundHax
+
+$playersound	Menelkir	other	*death		"Sounds/Players/Menelkir/Death.ogg"
+$playersound	Menelkir	other	*xdeath		"Sounds/Players/Menelkir/Xdeath.ogg"
+$playeralias	Menelkir	other	*gibbed		NoSoundHax
+$playersound	Menelkir	other	*pain100	"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	other	*pain75		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	other	*pain50		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	other	*pain25		"Sounds/Players/Menelkir/Pain.ogg"
+$playersound	Menelkir	other	*grunt		"Sounds/Players/Menelkir/Oof.ogg"
+$playersound	Menelkir	other	*land		"Sounds/Players/Footsteps/LiteStep3.ogg"
+$playeralias	Menelkir	other	*jump		NoSoundHax
+$playersound	Menelkir	other	*usefail	"Sounds/Players/Menelkir/Oof.ogg"
+$playeralias	Menelkir	other	*taunt		NoSoundHax
+
+Menelkir/fail	"Sounds/Players/Menelkir/Oof.ogg"
+
+minotaur/sight			minsit
+minotaur/melee			stfhit
+minotaur/attack1		minat1
+minotaur/attack2		minat2
+minotaur/attack3		minat3
+minotaur/pain			minpai
+minotaur/death			mindth
+minotaur/active			minact
+minotaur/fx2hit			phohit
+minotaur/fx3hit			phohit
+
+
+//================================================================
+//================================================================
+// Terminator, using QC's Visor voice
+//================================================================
+//================================================================
+
+QCTerminatorTaunt01 "Sounds/Players/Terminator/VisorTaunt1.ogg"
+QCTerminatorTaunt02 "Sounds/Players/Terminator/VisorTaunt2.ogg"
+QCTerminatorTaunt03 "Sounds/Players/Terminator/VisorTaunt3.ogg"
+QCTerminatorTaunt04 "Sounds/Players/Terminator/VisorTaunt4.ogg"
+QCTerminatorTaunt05 "Sounds/Players/Terminator/VisorTaunt5.ogg"
+QCTerminatorTaunt06 "Sounds/Players/Terminator/VisorTaunt6.ogg"
+QCTerminatorTaunt07 "Sounds/Players/Terminator/VisorTaunt7.ogg"
+QCTerminatorTaunt08 "Sounds/Players/Terminator/VisorTaunt8.ogg"
+QCTerminatorTaunt09 "Sounds/Players/Terminator/VisorTaunt9.ogg"
+QCTerminatorTaunt10 "Sounds/Players/Terminator/VisorTaunt10.ogg"
+QCTerminatorTaunt11 "Sounds/Players/Terminator/VisorTaunt11.ogg"
+QCTerminatorTaunt12 "Sounds/Players/Terminator/VisorTaunt12.ogg"
+QCTerminatorTaunt13 "Sounds/Players/Terminator/VisorTaunt13.ogg"
+QCTerminatorTaunt14 "Sounds/Players/Terminator/VisorTaunt14.ogg"
+
+
+$random VisorDeath { VisorDeath1 VisorDeath2 VisorDeath3 }
+VisorDeath1 "Sounds/Players/Terminator/VisorDeath1.ogg"
+VisorDeath2 "Sounds/Players/Terminator/VisorDeath2.ogg"
+VisorDeath3 "Sounds/Players/Terminator/VisorDeath3.ogg"
+
+$random VisorJump { VisorJump1 VisorJump2 None }
+VisorJump1 "Sounds/Players/Terminator/VisorJump1.ogg"
+VisorJump2 "Sounds/Players/Terminator/VisorJump2.ogg"
+
+$volume VisorJump1 0.8
+$volume VisorJump2 0.8
+$attenuation VisorJump1 2.0
+$attenuation VisorJump2 2.0
+
+$playeralias	Terminator	male	*death		VisorDeath
+$playeralias	Terminator	male	*xdeath		VisorDeath
+$playeralias	Terminator	male	*gibbed		NoSoundHax
+$playersound	Terminator	male	*pain100	"Sounds/Players/Terminator/VisorPain100.ogg"
+$playersound	Terminator	male	*pain75		"Sounds/Players/Terminator/VisorPain075.ogg"
+$playersound	Terminator	male	*pain50		"Sounds/Players/Terminator/VisorPain050.ogg"
+$playersound	Terminator	male	*pain25		"Sounds/Players/Terminator/VisorPain025.ogg"
+$playersound	Terminator	male	*grunt		"Sounds/Players/Terminator/VisorLand.ogg"
+$playersound	Terminator	male	*land		"Sounds/Players/Footsteps/VisorStomp.ogg"
+$playeralias	Terminator	male	*jump		VisorJump
+$playersound	Terminator	male	*usefail	"Sounds/Players/Terminator/VisorOof.ogg"
+$playeralias	Terminator	male	*taunt		NoSoundHax
+
+$playeralias	Terminator	female	*death		VisorDeath
+$playeralias	Terminator	female	*xdeath		VisorDeath
+$playeralias	Terminator	female	*gibbed		NoSoundHax
+$playersound	Terminator	female	*pain100	"Sounds/Players/Terminator/VisorPain100.ogg"
+$playersound	Terminator	female	*pain75		"Sounds/Players/Terminator/VisorPain075.ogg"
+$playersound	Terminator	female	*pain50		"Sounds/Players/Terminator/VisorPain050.ogg"
+$playersound	Terminator	female	*pain25		"Sounds/Players/Terminator/VisorPain025.ogg"
+$playersound	Terminator	female	*grunt		"Sounds/Players/Terminator/VisorLand.ogg"
+$playersound	Terminator	female	*land		"Sounds/Players/Footsteps/VisorStomp.ogg"
+$playeralias	Terminator	female	*jump		VisorJump
+$playersound	Terminator	female	*usefail	"Sounds/Players/Terminator/VisorOof.ogg"
+$playeralias	Terminator	female	*taunt		NoSoundHax
+
+$playeralias	Terminator	other	*death		VisorDeath
+$playeralias	Terminator	other	*xdeath		VisorDeath
+$playeralias	Terminator	other	*gibbed		NoSoundHax
+$playersound	Terminator	other	*pain100	"Sounds/Players/Terminator/VisorPain100.ogg"
+$playersound	Terminator	other	*pain75		"Sounds/Players/Terminator/VisorPain075.ogg"
+$playersound	Terminator	other	*pain50		"Sounds/Players/Terminator/VisorPain050.ogg"
+$playersound	Terminator	other	*pain25		"Sounds/Players/Terminator/VisorPain025.ogg"
+$playersound	Terminator	other	*grunt		"Sounds/Players/Terminator/VisorLand.ogg"
+$playersound	Terminator	other	*land		"Sounds/Players/Footsteps/VisorStomp.ogg"
+$playeralias	Terminator	other	*jump		VisorJump
+$playersound	Terminator	other	*usefail	"Sounds/Players/Terminator/VisorOof.ogg"
+$playeralias	Terminator	other	*taunt		NoSoundHax
+
+//================================================================
+//================================================================
+// Zedek, from Hexen and taunts by DBT
+//================================================================
+//================================================================
+
+QCZedekTaunt01	"Sounds/Players/Zedek/ZedekTaunt01.ogg"
+QCZedekTaunt02	"Sounds/Players/Zedek/ZedekTaunt02.ogg"
+QCZedekTaunt03	"Sounds/Players/Zedek/ZedekTaunt03.ogg"
+QCZedekTaunt04	"Sounds/Players/Zedek/ZedekTaunt04.ogg"
+QCZedekTaunt05	"Sounds/Players/Zedek/ZedekTaunt05.ogg"
+QCZedekTaunt06	"Sounds/Players/Zedek/ZedekTaunt06.ogg"
+QCZedekTaunt07	"Sounds/Players/Zedek/ZedekTaunt07.ogg"
+QCZedekTaunt08	"Sounds/Players/Zedek/ZedekTaunt08.ogg"
+QCZedekTaunt09	"Sounds/Players/Zedek/ZedekTaunt09.ogg"
+QCZedekTaunt10	 "Sounds/Players/Zedek/ZedekTaunt10.ogg"
+QCZedekTaunt11 	"Sounds/Players/Zedek/ZedekTaunt11.ogg"
+QCZedekTaunt12 	"Sounds/Players/Zedek/ZedekTaunt12.ogg"
+QCZedekTaunt13 	"Sounds/Players/Zedek/ZedekTaunt13.ogg"
+QCZedekTaunt14 	"Sounds/Players/Zedek/ZedekTaunt14.ogg"
+QCZedekTaunt15 	"Sounds/Players/Zedek/ZedekTaunt15.ogg"
+QCZedekTaunt16	 "Sounds/Players/Zedek/ZedekTaunt16.ogg"
+
+
+$playersound	Zedek	male	*death		"Sounds/Players/Zedek/Death.ogg"
+$playeralias	Zedek	male	*xdeath		NoSoundHax
+$playersound	Zedek	male	*gibbed		"Sounds/Players/Zedek/Xdeath.ogg"
+$playersound	Zedek	male	*pain100	"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	male	*pain75		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	male	*pain50		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	male	*pain25		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	male	*grunt		"Sounds/Players/Zedek/Oof.ogg"
+$playersound	Zedek	male	*land		"Sounds/Players/Footsteps/HeavyStomp.ogg"
+$playeralias	Zedek	male	*jump		NoSoundHax
+$playersound	Zedek	male	*usefail	"Sounds/Players/Zedek/Oof.ogg"
+$playeralias	Zedek	male	*taunt		NoSoundHax
+
+$playersound	Zedek	female	*death		"Sounds/Players/Zedek/Death.ogg"
+$playeralias	Zedek	female	*xdeath		NoSoundHax
+$playersound	Zedek	female	*gibbed		"Sounds/Players/Zedek/Xdeath.ogg"
+$playersound	Zedek	female	*pain100	"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	female	*pain75		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	female	*pain50		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	female	*pain25		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	female	*grunt		"Sounds/Players/Zedek/Oof.ogg"
+$playersound	Zedek	female	*land		"Sounds/Players/Footsteps/HeavyStomp.ogg"
+$playeralias	Zedek	female	*jump		NoSoundHax
+$playersound	Zedek	female	*usefail	"Sounds/Players/Zedek/Oof.ogg"
+$playeralias	Zedek	female	*taunt		NoSoundHax
+
+$playersound	Zedek	other	*death		"Sounds/Players/Zedek/Death.ogg"
+$playeralias	Zedek	other	*xdeath		NoSoundHax
+$playersound	Zedek	other	*gibbed		"Sounds/Players/Zedek/Xdeath.ogg"
+$playersound	Zedek	other	*pain100	"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	other	*pain75		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	other	*pain50		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	other	*pain25		"Sounds/Players/Zedek/Pain.ogg"
+$playersound	Zedek	other	*grunt		"Sounds/Players/Zedek/Oof.ogg"
+$playersound	Zedek	other	*land		"Sounds/Players/Footsteps/HeavyStomp.ogg"
+$playeralias	Zedek	other	*jump		NoSoundHax
+$playersound	Zedek	other	*usefail	"Sounds/Players/Zedek/Oof.ogg"
+$playeralias	Zedek	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Inquisitor, using QC's Clutch voice
+//================================================================
+//================================================================
+
+QCInquisitorTaunt01 "Sounds/Players/Inquisitor/ClutchTaunt1.ogg"
+QCInquisitorTaunt02 "Sounds/Players/Inquisitor/ClutchTaunt2.ogg"
+QCInquisitorTaunt03 "Sounds/Players/Inquisitor/ClutchTaunt3.ogg"
+QCInquisitorTaunt04 "Sounds/Players/Inquisitor/ClutchTaunt4.ogg"
+QCInquisitorTaunt05 "Sounds/Players/Inquisitor/ClutchTaunt5.ogg"
+QCInquisitorTaunt06 "Sounds/Players/Inquisitor/ClutchTaunt6.ogg"
+QCInquisitorTaunt07 "Sounds/Players/Inquisitor/ClutchTaunt7.ogg"
+QCInquisitorTaunt08 "Sounds/Players/Inquisitor/ClutchTaunt8.ogg"
+QCInquisitorTaunt09 "Sounds/Players/Inquisitor/ClutchTaunt9.ogg"
+QCInquisitorTaunt10 "Sounds/Players/Inquisitor/ClutchTaunt10.ogg"
+QCInquisitorTaunt11 "Sounds/Players/Inquisitor/ClutchTaunt11.ogg"
+QCInquisitorTaunt12 "Sounds/Players/Inquisitor/ClutchTaunt12.ogg"
+QCInquisitorTaunt13 "Sounds/Players/Inquisitor/ClutchTaunt13.ogg"
+QCInquisitorTaunt14 "Sounds/Players/Inquisitor/ClutchTaunt14.ogg"
+
+$random InquisDeath { InquisDeath1 InquisDeath2 }
+InquisDeath1 "Sounds/Players/Inquisitor/ClutchDeath1.ogg"
+InquisDeath2 "Sounds/Players/Inquisitor/ClutchDeath2.ogg"
+
+$random InquisJump { InquisJump1 InquisJump2 None }
+InquisJump1 "Sounds/Players/Inquisitor/ClutchJump1.ogg"
+InquisJump2 "Sounds/Players/Inquisitor/ClutchJump2.ogg"
+
+$volume InquisJump1 0.8
+$volume InquisJump2 0.8
+$attenuation InquisJump1 2.0
+$attenuation InquisJump2 2.0
+
+
+$playeralias	Inquisitor	male	*death		InquisDeath
+$playeralias	Inquisitor	male	*xdeath		InquisDeath
+$playeralias	Inquisitor	male	*gibbed		NoSoundHax
+$playersound	Inquisitor	male	*pain100	"Sounds/Players/Inquisitor/ClutchPain100.ogg"
+$playersound	Inquisitor	male	*pain75		"Sounds/Players/Inquisitor/ClutchPain075.ogg"
+$playersound	Inquisitor	male	*pain50		"Sounds/Players/Inquisitor/ClutchPain050.ogg"
+$playersound	Inquisitor	male	*pain25		"Sounds/Players/Inquisitor/ClutchPain025.ogg"
+$playersound	Inquisitor	male	*grunt		"Sounds/Players/Inquisitor/ClutchLand.ogg"
+$playersound	Inquisitor	male	*land		"Sounds/Players/Footsteps/RobotStomp.ogg"
+$playeralias	Inquisitor	male	*jump		InquisJump
+$playersound	Inquisitor	male	*usefail	"Sounds/Players/Inquisitor/ClutchOof.ogg"
+$playeralias	Inquisitor	male	*taunt		NoSoundHax
+
+$playeralias	Inquisitor	female	*death		InquisDeath
+$playeralias	Inquisitor	female	*xdeath		InquisDeath
+$playeralias	Inquisitor	female	*gibbed		NoSoundHax
+$playersound	Inquisitor	female	*pain100	"Sounds/Players/Inquisitor/ClutchPain100.ogg"
+$playersound	Inquisitor	female	*pain75		"Sounds/Players/Inquisitor/ClutchPain075.ogg"
+$playersound	Inquisitor	female	*pain50		"Sounds/Players/Inquisitor/ClutchPain050.ogg"
+$playersound	Inquisitor	female	*pain25		"Sounds/Players/Inquisitor/ClutchPain025.ogg"
+$playersound	Inquisitor	female	*grunt		"Sounds/Players/Inquisitor/ClutchLand.ogg"
+$playersound	Inquisitor	female	*land		"Sounds/Players/Footsteps/RobotStomp.ogg"
+$playeralias	Inquisitor	female	*jump		InquisJump
+$playersound	Inquisitor	female	*usefail	"Sounds/Players/Inquisitor/ClutchOof.ogg"
+$playeralias	Inquisitor	female	*taunt		NoSoundHax
+
+$playeralias	Inquisitor	Other	*death		InquisDeath
+$playeralias	Inquisitor	Other	*xdeath		InquisDeath
+$playeralias	Inquisitor	Other	*gibbed		NoSoundHax
+$playersound	Inquisitor	Other	*pain100	"Sounds/Players/Inquisitor/ClutchPain100.ogg"
+$playersound	Inquisitor	Other	*pain75		"Sounds/Players/Inquisitor/ClutchPain075.ogg"
+$playersound	Inquisitor	Other	*pain50		"Sounds/Players/Inquisitor/ClutchPain050.ogg"
+$playersound	Inquisitor	Other	*pain25		"Sounds/Players/Inquisitor/ClutchPain025.ogg"
+$playersound	Inquisitor	Other	*grunt		"Sounds/Players/Inquisitor/ClutchLand.ogg"
+$playersound	Inquisitor	Other	*land		"Sounds/Players/Footsteps/RobotStomp.ogg"
+$playeralias	Inquisitor	Other	*jump		InquisJump
+$playersound	Inquisitor	Other	*usefail	"Sounds/Players/Inquisitor/ClutchOof.ogg"
+$playeralias	Inquisitor	Other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Bitterman, from Q2 and taunts from Q4
+//================================================================
+//================================================================
+
+QCBittermanTaunt01 "Sounds/Players/Bitterman/BmanTaunt1.ogg"
+QCBittermanTaunt02 "Sounds/Players/Bitterman/BmanTaunt2.ogg"
+QCBittermanTaunt03 "Sounds/Players/Bitterman/BmanTaunt3.ogg"
+QCBittermanTaunt04 "Sounds/Players/Bitterman/BmanTaunt4.ogg"
+QCBittermanTaunt05 "Sounds/Players/Bitterman/BmanTaunt5.ogg"
+QCBittermanTaunt06 "Sounds/Players/Bitterman/BmanTaunt6.ogg"
+QCBittermanTaunt07 "Sounds/Players/Bitterman/BmanTaunt7.ogg"
+QCBittermanTaunt08 "Sounds/Players/Bitterman/BmanTaunt8.ogg"
+QCBittermanTaunt09 "Sounds/Players/Bitterman/BmanTaunt9.ogg"
+QCBittermanTaunt10 "Sounds/Players/Bitterman/BmanTaunt10.ogg"
+QCBittermanTaunt11 "Sounds/Players/Bitterman/BmanTaunt11.ogg"
+QCBittermanTaunt12 "Sounds/Players/Bitterman/BmanTaunt12.ogg"
+QCBittermanTaunt13 "Sounds/Players/Bitterman/BmanTaunt13.ogg"
+
+
+$random BitterJump { BitterJump1 BitterJump1 None }
+BitterJump1 "Sounds/Players/Bitterman/Jump.ogg"
+
+$volume BitterJump1 0.7
+$attenuation BitterJump1 2.0
+
+$playersound	Bitterman	male	*death		"Sounds/Players/Bitterman/death.ogg"
+$playersound	Bitterman	male	*xdeath		"Sounds/Players/Bitterman/xdeath.ogg"
+$playersound	Bitterman	male	*gibbed		"Sounds/Players/Bitterman/xdeath.ogg"
+$playersound	Bitterman	male	*pain100	"Sounds/Players/Bitterman/Pain100.ogg"
+$playersound	Bitterman	male	*pain75		"Sounds/Players/Bitterman/Pain75.ogg"
+$playersound	Bitterman	male	*pain50		"Sounds/Players/Bitterman/Pain50.ogg"
+$playersound	Bitterman	male	*pain25		"Sounds/Players/Bitterman/Pain25.ogg"
+$playersound	Bitterman	male	*grunt		"Sounds/Players/Bitterman/Grunt.ogg"
+$playersound	Bitterman	male	*land		"Sounds/Players/Footsteps/Q2Stomp.ogg"
+$playeralias	Bitterman	male	*jump		BitterJump
+$playersound	Bitterman	male	*usefail	"Sounds/Players/Bitterman/oof.ogg"
+$playeralias	Bitterman	male	*taunt		NoSoundHax
+
+$playersound	Bitterman	female	*death		"Sounds/Players/Bitterman/death.ogg"
+$playersound	Bitterman	female	*xdeath		"Sounds/Players/Bitterman/xdeath.ogg"
+$playersound	Bitterman	female	*gibbed		"Sounds/Players/Bitterman/xdeath.ogg"
+$playersound	Bitterman	female	*pain100	"Sounds/Players/Bitterman/Pain100.ogg"
+$playersound	Bitterman	female	*pain75		"Sounds/Players/Bitterman/Pain75.ogg"
+$playersound	Bitterman	female	*pain50		"Sounds/Players/Bitterman/Pain50.ogg"
+$playersound	Bitterman	female	*pain25		"Sounds/Players/Bitterman/Pain25.ogg"
+$playersound	Bitterman	female	*grunt		"Sounds/Players/Bitterman/Grunt.ogg"
+$playersound	Bitterman	female	*land		"Sounds/Players/Footsteps/Q2Stomp.ogg"
+$playeralias	Bitterman	female	*jump		BitterJump
+$playersound	Bitterman	female	*usefail	"Sounds/Players/Bitterman/oof.ogg"
+$playeralias	Bitterman	female	*taunt		NoSoundHax
+
+$playersound	Bitterman	other	*death		"Sounds/Players/Bitterman/death.ogg"
+$playersound	Bitterman	other	*xdeath		"Sounds/Players/Bitterman/xdeath.ogg"
+$playersound	Bitterman	other	*gibbed		"Sounds/Players/Bitterman/xdeath.ogg"
+$playersound	Bitterman	other	*pain100	"Sounds/Players/Bitterman/Pain100.ogg"
+$playersound	Bitterman	other	*pain75		"Sounds/Players/Bitterman/Pain75.ogg"
+$playersound	Bitterman	other	*pain50		"Sounds/Players/Bitterman/Pain50.ogg"
+$playersound	Bitterman	other	*pain25		"Sounds/Players/Bitterman/Pain25.ogg"
+$playersound	Bitterman	other	*grunt		"Sounds/Players/Bitterman/Grunt.ogg"
+$playersound	Bitterman	other	*land		"Sounds/Players/Footsteps/Q2Stomp.ogg"
+$playeralias	Bitterman	other	*jump		BitterJump
+$playersound	Bitterman	other	*usefail	"Sounds/Players/Bitterman/oof.ogg"
+$playeralias	Bitterman	other	*taunt		NoSoundHax
+
+
+
+
+
+//================================================================
+//================================================================
+// Galen, totally NOT a modified Galena voice
+//================================================================
+//================================================================
+
+QCGalenTaunt01 "Sounds/Players/Galen/GalenTaunt1.ogg"
+QCGalenTaunt02 "Sounds/Players/Galen/GalenTaunt2.ogg"
+QCGalenTaunt03 "Sounds/Players/Galen/GalenTaunt3.ogg"
+QCGalenTaunt04 "Sounds/Players/Galen/GalenTaunt4.ogg"
+QCGalenTaunt05 "Sounds/Players/Galen/GalenTaunt5.ogg"
+QCGalenTaunt06 "Sounds/Players/Galen/GalenTaunt6.ogg"
+QCGalenTaunt07 "Sounds/Players/Galen/GalenTaunt7.ogg"
+QCGalenTaunt08 "Sounds/Players/Galen/GalenTaunt8.ogg"
+QCGalenTaunt09 "Sounds/Players/Galen/GalenTaunt9.ogg"
+QCGalenTaunt10 "Sounds/Players/Galen/GalenTaunt10.ogg"
+QCGalenTaunt11 "Sounds/Players/Galen/GalenTaunt11.ogg"
+QCGalenTaunt12 "Sounds/Players/Galen/GalenTaunt12.ogg"
+QCGalenTaunt13 "Sounds/Players/Galen/GalenTaunt13.ogg"
+QCGalenTaunt14 "Sounds/Players/Galen/GalenTaunt14.ogg"
+QCGalenTaunt15 "Sounds/Players/Galen/GalenTaunt15.ogg"
+
+
+$random GalenJump { GalenJump1 GalenJump1 None }
+GalenJump1 "Sounds/Players/Galen/GalenJump.ogg"
+
+$volume GalenJump1 0.8
+$attenuation GalenJump1 2.0
+
+$playersound	Galen	male	*death		"Sounds/Players/Galen/GalenDeath1.ogg"
+$playersound	Galen	male	*xdeath		"Sounds/Players/Galen/GalenDeath2.ogg"
+$playersound	Galen	male	*gibbed		"Sounds/Players/Galen/GalenDeath2.ogg"
+$playersound	Galen	male	*pain100	"Sounds/Players/Galen/GalenPain100.ogg"
+$playersound	Galen	male	*pain75		"Sounds/Players/Galen/GalenPain075.ogg"
+$playersound	Galen	male	*pain50		"Sounds/Players/Galen/GalenPain050.ogg"
+$playersound	Galen	male	*pain25		"Sounds/Players/Galen/GalenPain025.ogg"
+$playersound	Galen	male	*grunt		"Sounds/Players/Galen/GalenGrunt.ogg"
+$playersound	Galen	male	*land		"Sounds/Players/Footsteps/GalenStomp.ogg"
+$playeralias	Galen	male	*jump		GalenJump
+$playersound	Galen	male	*usefail	"Sounds/Players/Galen/GalenOof.ogg"
+$playeralias	Galen	male	*taunt		NoSoundHax
+
+$playersound	Galen	female	*death		"Sounds/Players/Galen/GalenDeath1.ogg"
+$playersound	Galen	female	*xdeath		"Sounds/Players/Galen/GalenDeath2.ogg"
+$playersound	Galen	female	*gibbed		"Sounds/Players/Galen/GalenDeath2.ogg"
+$playersound	Galen	female	*pain100	"Sounds/Players/Galen/GalenPain100.ogg"
+$playersound	Galen	female	*pain75		"Sounds/Players/Galen/GalenPain075.ogg"
+$playersound	Galen	female	*pain50		"Sounds/Players/Galen/GalenPain050.ogg"
+$playersound	Galen	female	*pain25		"Sounds/Players/Galen/GalenPain025.ogg"
+$playersound	Galen	female	*grunt		"Sounds/Players/Galen/GalenGrunt.ogg"
+$playersound	Galen	female	*land		"Sounds/Players/Footsteps/GalenStomp.ogg"
+$playeralias	Galen	female	*jump		GalenJump
+$playersound	Galen	female	*usefail	"Sounds/Players/Galen/GalenOof.ogg"
+$playeralias	Galen	female	*taunt		NoSoundHax
+
+$playersound	Galen	other	*death		"Sounds/Players/Galen/GalenDeath1.ogg"
+$playersound	Galen	other	*xdeath		"Sounds/Players/Galen/GalenDeath2.ogg"
+$playersound	Galen	other	*gibbed		"Sounds/Players/Galen/GalenDeath2.ogg"
+$playersound	Galen	other	*pain100	"Sounds/Players/Galen/GalenPain100.ogg"
+$playersound	Galen	other	*pain75		"Sounds/Players/Galen/GalenPain075.ogg"
+$playersound	Galen	other	*pain50		"Sounds/Players/Galen/GalenPain050.ogg"
+$playersound	Galen	other	*pain25		"Sounds/Players/Galen/GalenPain025.ogg"
+$playersound	Galen	other	*grunt		"Sounds/Players/Galen/GalenGrunt.ogg"
+$playersound	Galen	other	*land		"Sounds/Players/Footsteps/GalenStomp.ogg"
+$playeralias	Galen	other	*jump		GalenJump
+$playersound	Galen	other	*usefail	"Sounds/Players/Galen/GalenOof.ogg"
+$playeralias	Galen	other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// Nyx, from QC
+//================================================================
+//================================================================
+
+NyxDebug "Sounds/Players/Nyx/NyxDebugSound.ogg"
+NyxDebug2 "Sounds/Players/Nyx/NyxDebugSound2.ogg"
+NyxGrunt "Sounds/Players/Nyx/NyxGrunt.ogg"
+NyxStomp "Sounds/Players/Footsteps/NyxStomp.ogg"
+
+$random NyxJump { NyxJump1 NyxJump2 None }
+NyxJump1 "Sounds/Players/Nyx/NyxJump1.ogg"
+NyxJump2 "Sounds/Players/Nyx/NyxJump2.ogg"
+
+$volume NyxJump1 0.8
+$volume NyxJump2 0.8
+$attenuation NyxJump1 2.0
+$attenuation NyxJump2 2.0
+
+
+QCNyxTaunt01 "Sounds/Players/Nyx/NyxTaunt1.ogg"
+QCNyxTaunt02 "Sounds/Players/Nyx/NyxTaunt2.ogg"
+QCNyxTaunt03 "Sounds/Players/Nyx/NyxTaunt3.ogg"
+QCNyxTaunt04 "Sounds/Players/Nyx/NyxTaunt4.ogg"
+QCNyxTaunt05 "Sounds/Players/Nyx/NyxTaunt5.ogg"
+QCNyxTaunt06 "Sounds/Players/Nyx/NyxTaunt6.ogg"
+QCNyxTaunt07 "Sounds/Players/Nyx/NyxTaunt7.ogg"
+QCNyxTaunt08 "Sounds/Players/Nyx/NyxTaunt8.ogg"
+QCNyxTaunt09 "Sounds/Players/Nyx/NyxTaunt9.ogg"
+QCNyxTaunt10 "Sounds/Players/Nyx/NyxTaunt10.ogg"
+QCNyxTaunt11 "Sounds/Players/Nyx/NyxTaunt11.ogg"
+QCNyxTaunt12 "Sounds/Players/Nyx/NyxTaunt12.ogg"
+QCNyxTaunt13 "Sounds/Players/Nyx/NyxTaunt13.ogg"
+QCNyxTaunt14 "Sounds/Players/Nyx/NyxTaunt14.ogg"
+
+
+// Male Nyx :joy:
+$playersound	Nyx		male	*death		"Sounds/Players/Nyx/NyxDeath1.ogg"
+$playersound	Nyx		male	*xdeath		"Sounds/Players/Nyx/NyxDeath2.ogg"
+$playersound	Nyx		male	*gibbed		"Sounds/Players/Nyx/NyxDeath2.ogg"
+$playersound	Nyx		male	*pain100	"Sounds/Players/Nyx/NyxPain100.ogg"
+$playersound	Nyx		male	*pain75		"Sounds/Players/Nyx/NyxPain075.ogg"
+$playersound	Nyx		male	*pain50		"Sounds/Players/Nyx/NyxPain050.ogg"
+$playersound	Nyx		male	*pain25		"Sounds/Players/Nyx/NyxPain025.ogg"
+$playeralias	Nyx		male	*grunt		NoSoundHax	//these are played by ACS
+$playeralias	Nyx		male	*land		NoSoundHax	//these are played by ACS
+$playeralias	Nyx		male	*jump		NoSoundHax	//these are played by ACS
+$playersound	Nyx		male	*usefail	"Sounds/Players/Nyx/NyxOof.ogg"
+$playeralias	Nyx		male	*taunt		NoSoundHax
+
+$playersound	Nyx		female	*death		"Sounds/Players/Nyx/NyxDeath1.ogg"
+$playersound	Nyx		female	*xdeath		"Sounds/Players/Nyx/NyxDeath2.ogg"
+$playersound	Nyx		female	*gibbed		"Sounds/Players/Nyx/NyxDeath2.ogg"
+$playersound	Nyx		female	*pain100	"Sounds/Players/Nyx/NyxPain100.ogg"
+$playersound	Nyx		female	*pain75		"Sounds/Players/Nyx/NyxPain075.ogg"
+$playersound	Nyx		female	*pain50		"Sounds/Players/Nyx/NyxPain050.ogg"
+$playersound	Nyx		female	*pain25		"Sounds/Players/Nyx/NyxPain025.ogg"
+$playeralias	Nyx		female	*grunt		NoSoundHax
+$playeralias	Nyx		female	*land		NoSoundHax
+$playeralias	Nyx		female	*jump		NoSoundHax
+$playersound	Nyx		female	*usefail	"Sounds/Players/Nyx/NyxOof.ogg"
+$playeralias	Nyx		female	*taunt		NoSoundHax
+
+$playersound	Nyx		other	*death		"Sounds/Players/Nyx/NyxDeath1.ogg"
+$playersound	Nyx		other	*xdeath		"Sounds/Players/Nyx/NyxDeath2.ogg"
+$playersound	Nyx		other	*gibbed		"Sounds/Players/Nyx/NyxDeath2.ogg"
+$playersound	Nyx		other	*pain100	"Sounds/Players/Nyx/NyxPain100.ogg"
+$playersound	Nyx		other	*pain75		"Sounds/Players/Nyx/NyxPain075.ogg"
+$playersound	Nyx		other	*pain50		"Sounds/Players/Nyx/NyxPain050.ogg"
+$playersound	Nyx		other	*pain25		"Sounds/Players/Nyx/NyxPain025.ogg"
+$playeralias	Nyx		other	*grunt		NoSoundHax
+$playeralias	Nyx		other	*land		NoSoundHax
+$playeralias	Nyx		other	*jump		NoSoundHax
+$playersound	Nyx		other	*usefail	"Sounds/Players/Nyx/NyxOof.ogg"
+$playeralias	Nyx		other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// Sorgaul, totally NOT Sorlag from QC
+//================================================================
+//================================================================
+QCSorgaulTaunt01 "Sounds/Players/Sorgaul/SorgaulTaunt1.ogg"
+QCSorgaulTaunt02 "Sounds/Players/Sorgaul/SorgaulTaunt2.ogg"
+QCSorgaulTaunt03 "Sounds/Players/Sorgaul/SorgaulTaunt3.ogg"
+QCSorgaulTaunt04 "Sounds/Players/Sorgaul/SorgaulTaunt4.ogg"
+QCSorgaulTaunt05 "Sounds/Players/Sorgaul/SorgaulTaunt5.ogg"
+QCSorgaulTaunt06 "Sounds/Players/Sorgaul/SorgaulTaunt6.ogg"
+QCSorgaulTaunt07 "Sounds/Players/Sorgaul/SorgaulTaunt7.ogg"
+QCSorgaulTaunt08 "Sounds/Players/Sorgaul/SorgaulTaunt8.ogg"
+QCSorgaulTaunt09 "Sounds/Players/Sorgaul/SorgaulTaunt9.ogg"
+QCSorgaulTaunt10 "Sounds/Players/Sorgaul/SorgaulTaunt10.ogg"
+QCSorgaulTaunt11 "Sounds/Players/Sorgaul/SorgaulTaunt11.ogg"
+QCSorgaulTaunt12 "Sounds/Players/Sorgaul/SorgaulTaunt12.ogg"
+QCSorgaulTaunt13 "Sounds/Players/Sorgaul/SorgaulTaunt13.ogg"
+QCSorgaulTaunt14 "Sounds/Players/Sorgaul/SorgaulTaunt14.ogg"
+QCSorgaulTaunt15 "Sounds/Players/Sorgaul/SorgaulTaunt15.ogg"
+
+
+SorgaulJump1 "Sounds/Players/Sorgaul/SorgaulJump1.ogg"
+SorgaulJump2 "Sounds/Players/Sorgaul/SorgaulJump2.ogg"
+$random SorgaulJump { SorgaulJump1 SorgaulJump2 None }
+
+
+$volume SorgaulJump1 0.8
+$volume SorgaulJump2 0.8
+$attenuation SorgaulJump1 2.0
+$attenuation SorgaulJump2 2.0
+
+$playersound	Sorgaul	male	*death		"Sounds/Players/Sorgaul/SorgaulDeath1.ogg"
+$playersound	Sorgaul	male	*xdeath		"Sounds/Players/Sorgaul/SorgaulDeath2.ogg"
+$playersound	Sorgaul	male	*gibbed		"Sounds/Players/Sorgaul/SorgaulDeath2.ogg"
+$playersound	Sorgaul	male	*pain100	"Sounds/Players/Sorgaul/SorgaulPain100.ogg"
+$playersound	Sorgaul	male	*pain75		"Sounds/Players/Sorgaul/SorgaulPain075.ogg"
+$playersound	Sorgaul	male	*pain50		"Sounds/Players/Sorgaul/SorgaulPain050.ogg"
+$playersound	Sorgaul	male	*pain25		"Sounds/Players/Sorgaul/SorgaulPain025.ogg"
+$playersound	Sorgaul	male	*grunt		"Sounds/Players/Sorgaul/SorgaulGrunt.ogg"
+$playersound	Sorgaul	male	*land		"Sounds/Players/Footsteps/SorgaulStomp.ogg"
+$playeralias	Sorgaul	male	*jump		SorgaulJump
+$playersound	Sorgaul	male	*usefail	"Sounds/Players/Sorgaul/SorgaulOof.ogg"
+$playeralias	Sorgaul	male	*taunt		NoSoundHax
+
+
+$playersound	Sorgaul	female	*death		"Sounds/Players/Sorgaul/SorgaulDeath1.ogg"
+$playersound	Sorgaul	female	*xdeath		"Sounds/Players/Sorgaul/SorgaulDeath2.ogg"
+$playersound	Sorgaul	female	*gibbed		"Sounds/Players/Sorgaul/SorgaulDeath2.ogg"
+$playersound	Sorgaul	female	*pain100	"Sounds/Players/Sorgaul/SorgaulPain100.ogg"
+$playersound	Sorgaul	female	*pain75		"Sounds/Players/Sorgaul/SorgaulPain075.ogg"
+$playersound	Sorgaul	female	*pain50		"Sounds/Players/Sorgaul/SorgaulPain050.ogg"
+$playersound	Sorgaul	female	*pain25		"Sounds/Players/Sorgaul/SorgaulPain025.ogg"
+$playersound	Sorgaul	female	*grunt		"Sounds/Players/Sorgaul/SorgaulGrunt.ogg"
+$playersound	Sorgaul	female	*land		"Sounds/Players/Footsteps/SorgaulStomp.ogg"
+$playeralias	Sorgaul	female	*jump		SorgaulJump
+$playersound	Sorgaul	female	*usefail	"Sounds/Players/Sorgaul/SorgaulOof.ogg"
+$playeralias	Sorgaul	female	*taunt		NoSoundHax
+
+$playersound	Sorgaul	other	*death		"Sounds/Players/Sorgaul/SorgaulDeath1.ogg"
+$playersound	Sorgaul	other	*xdeath		"Sounds/Players/Sorgaul/SorgaulDeath2.ogg"
+$playersound	Sorgaul	other	*gibbed		"Sounds/Players/Sorgaul/SorgaulDeath2.ogg"
+$playersound	Sorgaul	other	*pain100	"Sounds/Players/Sorgaul/SorgaulPain100.ogg"
+$playersound	Sorgaul	other	*pain75		"Sounds/Players/Sorgaul/SorgaulPain075.ogg"
+$playersound	Sorgaul	other	*pain50		"Sounds/Players/Sorgaul/SorgaulPain050.ogg"
+$playersound	Sorgaul	other	*pain25		"Sounds/Players/Sorgaul/SorgaulPain025.ogg"
+$playersound	Sorgaul	other	*grunt		"Sounds/Players/Sorgaul/SorgaulGrunt.ogg"
+$playersound	Sorgaul	other	*land		"Sounds/Players/Footsteps/SorgaulStomp.ogg"
+$playeralias	Sorgaul	other	*jump		SorgaulJump
+$playersound	Sorgaul	other	*usefail	"Sounds/Players/Sorgaul/SorgaulOof.ogg"
+$playeralias	Sorgaul	other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// Duke Nukem, from DN3D world tour
+//================================================================
+//================================================================
+
+QCDukeNukemTaunt01 "Sounds/Players/DukeNukem/DukeNukemTaunt01.ogg"
+QCDukeNukemTaunt02 "Sounds/Players/DukeNukem/DukeNukemTaunt02.ogg"
+QCDukeNukemTaunt03 "Sounds/Players/DukeNukem/DukeNukemTaunt03.ogg"
+QCDukeNukemTaunt04 "Sounds/Players/DukeNukem/DukeNukemTaunt04.ogg"
+QCDukeNukemTaunt05 "Sounds/Players/DukeNukem/DukeNukemTaunt05.ogg"
+QCDukeNukemTaunt06 "Sounds/Players/DukeNukem/DukeNukemTaunt06.ogg"
+QCDukeNukemTaunt07 "Sounds/Players/DukeNukem/DukeNukemTaunt07.ogg"
+QCDukeNukemTaunt08 "Sounds/Players/DukeNukem/DukeNukemTaunt08.ogg"
+QCDukeNukemTaunt09 "Sounds/Players/DukeNukem/DukeNukemTaunt09.ogg"
+QCDukeNukemTaunt10 "Sounds/Players/DukeNukem/DukeNukemTaunt10.ogg"
+QCDukeNukemTaunt11 "Sounds/Players/DukeNukem/DukeNukemTaunt11.ogg"
+QCDukeNukemTaunt12 "Sounds/Players/DukeNukem/DukeNukemTaunt12.ogg"
+QCDukeNukemTaunt13 "Sounds/Players/DukeNukem/DukeNukemTaunt13.ogg"
+QCDukeNukemTaunt14 "Sounds/Players/DukeNukem/DukeNukemTaunt14.ogg"
+QCDukeNukemTaunt15 "Sounds/Players/DukeNukem/DukeNukemTaunt15.ogg"
+QCDukeNukemTaunt16 "Sounds/Players/DukeNukem/DukeNukemTaunt16.ogg"
+QCDukeNukemTaunt17 "Sounds/Players/DukeNukem/DukeNukemTaunt17.ogg"
+QCDukeNukemTaunt18 "Sounds/Players/DukeNukem/DukeNukemTaunt18.ogg"
+QCDukeNukemTaunt19 "Sounds/Players/DukeNukem/DukeNukemTaunt19.ogg"
+QCDukeNukemTaunt20 "Sounds/Players/DukeNukem/DukeNukemTaunt20.ogg"
+QCDukeNukemTaunt21 "Sounds/Players/DukeNukem/DukeNukemTaunt21.ogg"
+QCDukeNukemTaunt22 "Sounds/Players/DukeNukem/DukeNukemTaunt22.ogg"
+$random DukeNukemTauntCommon
+{ DukeNukemTaunt01 DukeNukemTaunt02 DukeNukemTaunt03 DukeNukemTaunt04 DukeNukemTaunt05 DukeNukemTaunt06
+  DukeNukemTaunt07 DukeNukemTaunt08 DukeNukemTaunt09 DukeNukemTaunt10 DukeNukemTaunt11 DukeNukemTaunt12
+  DukeNukemTaunt13 DukeNukemTaunt14 DukeNukemTaunt15 DukeNukemTaunt16 DukeNukemTaunt17 DukeNukemTaunt18
+  DukeNukemTaunt19 DukeNukemTaunt20 DukeNukemTaunt21 DukeNukemTaunt22 }
+
+DukeNukemTauntRare "Sounds/Players/DukeNukem/DukeNukemTauntRare.ogg"
+
+$random DukeNukemTaunt
+{
+	// Probability of picking rare taunt: 1%
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+	DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon DukeNukemTauntCommon
+
+	DukeNukemTauntRare
+}
+
+$random DukeNukemJump { DukeNukemJump1 DukeNukemJump2 None }
+DukeNukemJump1 "Sounds/Players/DukeNukem/DukeNukemJump1.ogg"
+DukeNukemJump2 "Sounds/Players/DukeNukem/DukeNukemJump2.ogg"
+
+$volume DukeNukemJump1 0.8
+$volume DukeNukemJump2 0.8
+$attenuation DukeNukemJump1 2.0
+$attenuation DukeNukemJump2 2.0
+
+$random DukeNukemPainRandomizer { DukeNukemPain100 DukeNukemPain100 DukeNukemPain100 DukeNukemPain100 DukeNukemPain100
+								DukeNukemPain100 DukeNukemPain100 DukeNukemPain100 DukeNukemPain100 DukeNukemPain100rare}
+DukeNukemPain100 		"Sounds/Players/DukeNukem/DukeNukemPain100.ogg"
+DukeNukemPain100rare 	"Sounds/Players/DukeNukem/DukeNukemPain100r.ogg"
+
+
+$random DukeNukemOof { DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1
+DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOof1 DukeNukemOofRare }
+DukeNukemOof1 		"Sounds/Players/DukeNukem/DukeNukemOof.ogg"
+DukeNukemOofRare 	"Sounds/Players/DukeNukem/DukeNukemOofRare.ogg"
+
+$playersound	DukeNukem	male	*death		"Sounds/Players/DukeNukem/DukeNukemDeath.ogg"
+$playersound	DukeNukem	male	*xdeath		"Sounds/Players/DukeNukem/DukeNukemXDeath.ogg"
+$playersound	DukeNukem	male	*gibbed		"Sounds/Players/DukeNukem/DukeNukemXDeath.ogg" //A_XScream plays *gibbed, not *xdeath
+$playeralias	DukeNukem	male	*pain100	DukeNukemPainRandomizer
+$playersound	DukeNukem	male	*pain75		"Sounds/Players/DukeNukem/DukeNukemPain075.ogg"
+$playersound	DukeNukem	male	*pain50		"Sounds/Players/DukeNukem/DukeNukemPain050.ogg"
+$playersound	DukeNukem	male	*pain25		"Sounds/Players/DukeNukem/DukeNukemPain025.ogg"
+$playersound	DukeNukem	male	*grunt		"Sounds/Players/DukeNukem/DukeNukemGrunt.ogg"
+$playersound	DukeNukem	male	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	DukeNukem	male	*jump		DukeNukemJump
+$playeralias	DukeNukem	male	*usefail	DukeNukemOof
+$playeralias	DukeNukem	male	*taunt		NoSoundHax
+
+$playersound	DukeNukem	female	*death		"Sounds/Players/DukeNukem/DukeNukemDeath.ogg"
+$playersound	DukeNukem	female	*xdeath		"Sounds/Players/DukeNukem/DukeNukemXDeath.ogg"
+$playersound	DukeNukem	female	*gibbed		"Sounds/Players/DukeNukem/DukeNukemXDeath.ogg" //A_XScream plays *gibbed, not *xdeath
+$playeralias	DukeNukem	female	*pain100	DukeNukemPainRandomizer
+$playersound	DukeNukem	female	*pain75		"Sounds/Players/DukeNukem/DukeNukemPain075.ogg"
+$playersound	DukeNukem	female	*pain50		"Sounds/Players/DukeNukem/DukeNukemPain050.ogg"
+$playersound	DukeNukem	female	*pain25		"Sounds/Players/DukeNukem/DukeNukemPain025.ogg"
+$playersound	DukeNukem	female	*grunt		"Sounds/Players/DukeNukem/DukeNukemGrunt.ogg"
+$playersound	DukeNukem	female	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	DukeNukem	female	*jump		DukeNukemJump
+$playeralias	DukeNukem	female	*usefail	DukeNukemOof
+$playeralias	DukeNukem	female	*taunt		NoSoundHax
+
+
+$playersound	DukeNukem	other	*death		"Sounds/Players/DukeNukem/DukeNukemDeath.ogg"
+$playersound	DukeNukem	other	*xdeath		"Sounds/Players/DukeNukem/DukeNukemXDeath.ogg"
+$playersound	DukeNukem	other	*gibbed		"Sounds/Players/DukeNukem/DukeNukemXDeath.ogg" //A_XScream plays *gibbed, not *xdeath
+$playeralias	DukeNukem	other	*pain100	DukeNukemPainRandomizer
+$playersound	DukeNukem	other	*pain75		"Sounds/Players/DukeNukem/DukeNukemPain075.ogg"
+$playersound	DukeNukem	other	*pain50		"Sounds/Players/DukeNukem/DukeNukemPain050.ogg"
+$playersound	DukeNukem	other	*pain25		"Sounds/Players/DukeNukem/DukeNukemPain025.ogg"
+$playersound	DukeNukem	other	*grunt		"Sounds/Players/DukeNukem/DukeNukemGrunt.ogg"
+$playersound	DukeNukem	other	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	DukeNukem	other	*jump		DukeNukemJump
+$playeralias	DukeNukem	other	*usefail	DukeNukemOof
+$playeralias	DukeNukem	other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// Durandal, voiced by David M Neyland for QCDE
+//================================================================
+//================================================================
+
+QCDurandalTaunt01 "Sounds/Players/Durandal/DurandalTaunt01.ogg"
+QCDurandalTaunt02 "Sounds/Players/Durandal/DurandalTaunt02.ogg"
+QCDurandalTaunt03 "Sounds/Players/Durandal/DurandalTaunt03.ogg"
+QCDurandalTaunt04 "Sounds/Players/Durandal/DurandalTaunt04.ogg"
+QCDurandalTaunt05 "Sounds/Players/Durandal/DurandalTaunt05.ogg"
+QCDurandalTaunt06 "Sounds/Players/Durandal/DurandalTaunt06.ogg"
+QCDurandalTaunt07 "Sounds/Players/Durandal/DurandalTaunt07.ogg"
+QCDurandalTaunt08 "Sounds/Players/Durandal/DurandalTaunt08.ogg"
+QCDurandalTaunt09 "Sounds/Players/Durandal/DurandalTaunt09.ogg"
+QCDurandalTaunt10 "Sounds/Players/Durandal/DurandalTaunt10.ogg"
+QCDurandalTaunt11 "Sounds/Players/Durandal/DurandalTaunt11.ogg"
+QCDurandalTaunt12 "Sounds/Players/Durandal/DurandalTaunt12.ogg"
+QCDurandalTaunt13 "Sounds/Players/Durandal/DurandalTaunt13.ogg"
+QCDurandalTaunt14 "Sounds/Players/Durandal/DurandalTaunt14.ogg"
+
+
+DurandalJump1 "Sounds/Players/Durandal/DurandalJump1.ogg"
+DurandalJump2 "Sounds/Players/Durandal/DurandalJump2.ogg"
+$random DurandalJump { DurandalJump1 DurandalJump2 None }
+
+$volume DurandalJump1 0.9
+$volume DurandalJump2 0.9
+$attenuation DurandalJump1 2.0
+$attenuation DurandalJump2 2.0
+
+$playersound	Durandal	male	*death		"Sounds/Players/Durandal/DurandalDeath.ogg"
+$playersound	Durandal	male	*xdeath		"Sounds/Players/Durandal/DurandalXDeath.ogg"
+$playersound	Durandal	male	*gibbed		"Sounds/Players/Durandal/DurandalXDeath.ogg"
+$playersound	Durandal	male	*pain100	"Sounds/Players/Durandal/DurandalPain100.ogg"
+$playersound	Durandal	male	*pain75		"Sounds/Players/Durandal/DurandalPain075.ogg"
+$playersound	Durandal	male	*pain50		"Sounds/Players/Durandal/DurandalPain050.ogg"
+$playersound	Durandal	male	*pain25		"Sounds/Players/Durandal/DurandalPain025.ogg"
+$playersound	Durandal	male	*grunt		"Sounds/Players/Durandal/DurandalGrunt.ogg"
+$playersound	Durandal	male	*land		"Sounds/Players/Footsteps/DurandalStomp.ogg"
+$playeralias	Durandal	male	*jump		DurandalJump
+$playersound	Durandal	male	*usefail	"Sounds/Players/Durandal/DurandalOof.ogg"
+$playeralias	Durandal	male	*taunt		NoSoundHax
+
+$playersound	Durandal	female	*death		"Sounds/Players/Durandal/DurandalDeath.ogg"
+$playersound	Durandal	female	*xdeath		"Sounds/Players/Durandal/DurandalXDeath.ogg"
+$playersound	Durandal	female	*gibbed		"Sounds/Players/Durandal/DurandalXDeath.ogg"
+$playersound	Durandal	female	*pain100	"Sounds/Players/Durandal/DurandalPain100.ogg"
+$playersound	Durandal	female	*pain75		"Sounds/Players/Durandal/DurandalPain075.ogg"
+$playersound	Durandal	female	*pain50		"Sounds/Players/Durandal/DurandalPain050.ogg"
+$playersound	Durandal	female	*pain25		"Sounds/Players/Durandal/DurandalPain025.ogg"
+$playersound	Durandal	female	*grunt		"Sounds/Players/Durandal/DurandalGrunt.ogg"
+$playersound	Durandal	female	*land		"Sounds/Players/Footsteps/DurandalStomp.ogg"
+$playeralias	Durandal	female	*jump		DurandalJump
+$playersound	Durandal	female	*usefail	"Sounds/Players/Durandal/DurandalOof.ogg"
+$playeralias	Durandal	female	*taunt		NoSoundHax
+
+$playersound	Durandal	other	*death		"Sounds/Players/Durandal/DurandalDeath.ogg"
+$playersound	Durandal	other	*xdeath		"Sounds/Players/Durandal/DurandalXDeath.ogg"
+$playersound	Durandal	other	*gibbed		"Sounds/Players/Durandal/DurandalXDeath.ogg"
+$playersound	Durandal	other	*pain100	"Sounds/Players/Durandal/DurandalPain100.ogg"
+$playersound	Durandal	other	*pain75		"Sounds/Players/Durandal/DurandalPain075.ogg"
+$playersound	Durandal	other	*pain50		"Sounds/Players/Durandal/DurandalPain050.ogg"
+$playersound	Durandal	other	*pain25		"Sounds/Players/Durandal/DurandalPain025.ogg"
+$playersound	Durandal	other	*grunt		"Sounds/Players/Durandal/DurandalGrunt.ogg"
+$playersound	Durandal	other	*land		"Sounds/Players/Footsteps/DurandalStomp.ogg"
+$playeralias	Durandal	other	*jump		DurandalJump
+$playersound	Durandal	other	*usefail	"Sounds/Players/Durandal/DurandalOof.ogg"
+$playeralias	Durandal	other	*taunt		NoSoundHax
+
+
+//-------------
+// Keel
+QCKeelTaunt01 "Sounds/Players/Keel/KeelTaunt01.ogg"
+QCKeelTaunt02 "Sounds/Players/Keel/KeelTaunt02.ogg"
+QCKeelTaunt03 "Sounds/Players/Keel/KeelTaunt03.ogg"
+QCKeelTaunt04 "Sounds/Players/Keel/KeelTaunt04.ogg"
+QCKeelTaunt05 "Sounds/Players/Keel/KeelTaunt05.ogg"
+QCKeelTaunt06 "Sounds/Players/Keel/KeelTaunt06.ogg"
+QCKeelTaunt07 "Sounds/Players/Keel/KeelTaunt07.ogg"
+QCKeelTaunt08 "Sounds/Players/Keel/KeelTaunt08.ogg"
+QCKeelTaunt09 "Sounds/Players/Keel/KeelTaunt09.ogg"
+QCKeelTaunt10 "Sounds/Players/Keel/KeelTaunt10.ogg"
+QCKeelTaunt11 "Sounds/Players/Keel/KeelTaunt11.ogg"
+QCKeelTaunt12 "Sounds/Players/Keel/KeelTaunt12.ogg"
+QCKeelTaunt13 "Sounds/Players/Keel/KeelTaunt13.ogg"
+QCKeelTaunt14 "Sounds/Players/Keel/KeelTaunt14.ogg"
+
+
+KeelJump1 "Sounds/Players/Keel/KeelJump1.ogg"
+KeelJump2 "Sounds/Players/Keel/KeelJump2.ogg"
+$random KeelJump { KeelJump1 KeelJump2 None }
+
+$volume KeelJump1 0.9
+$volume KeelJump2 0.9
+$attenuation KeelJump1 2.0
+$attenuation KeelJump2 2.0
+
+$playersound	Keel	male	*death		"Sounds/Players/Keel/KeelDeath1.ogg"
+$playersound	Keel	male	*xdeath		"Sounds/Players/Keel/KeelDeath2.ogg"
+$playersound	Keel	male	*gibbed		"Sounds/Players/Keel/KeelDeath2.ogg"
+$playersound	Keel	male	*pain100	"Sounds/Players/Keel/KeelPain100.ogg"
+$playersound	Keel	male	*pain75		"Sounds/Players/Keel/KeelPain075.ogg"
+$playersound	Keel	male	*pain50		"Sounds/Players/Keel/KeelPain050.ogg"
+$playersound	Keel	male	*pain25		"Sounds/Players/Keel/KeelPain025.ogg"
+$playersound	Keel	male	*grunt		"Sounds/Players/Keel/KeelGrunt.ogg"
+$playersound	Keel	male	*land		"Sounds/Players/Footsteps/KeelStomp.ogg"
+$playeralias	Keel	male	*jump		KeelJump
+$playersound	Keel	male	*usefail	"Sounds/Players/Keel/KeelOof.ogg"
+$playeralias	Keel	male	*taunt		NoSoundHax
+
+$playersound	Keel	female	*death		"Sounds/Players/Keel/KeelDeath1.ogg"
+$playersound	Keel	female	*xdeath		"Sounds/Players/Keel/KeelDeath2.ogg"
+$playersound	Keel	female	*gibbed		"Sounds/Players/Keel/KeelDeath2.ogg"
+$playersound	Keel	female	*pain100	"Sounds/Players/Keel/KeelPain100.ogg"
+$playersound	Keel	female	*pain75		"Sounds/Players/Keel/KeelPain075.ogg"
+$playersound	Keel	female	*pain50		"Sounds/Players/Keel/KeelPain050.ogg"
+$playersound	Keel	female	*pain25		"Sounds/Players/Keel/KeelPain025.ogg"
+$playersound	Keel	female	*grunt		"Sounds/Players/Keel/KeelGrunt.ogg"
+$playersound	Keel	female	*land		"Sounds/Players/Footsteps/KeelStomp.ogg"
+$playeralias	Keel	female	*jump		KeelJump
+$playersound	Keel	female	*usefail	"Sounds/Players/Keel/KeelOof.ogg"
+$playeralias	Keel	female	*taunt		NoSoundHax
+
+$playersound	Keel	other	*death		"Sounds/Players/Keel/KeelDeath1.ogg"
+$playersound	Keel	other	*xdeath		"Sounds/Players/Keel/KeelDeath2.ogg"
+$playersound	Keel	other	*gibbed		"Sounds/Players/Keel/KeelDeath2.ogg"
+$playersound	Keel	other	*pain100	"Sounds/Players/Keel/KeelPain100.ogg"
+$playersound	Keel	other	*pain75		"Sounds/Players/Keel/KeelPain075.ogg"
+$playersound	Keel	other	*pain50		"Sounds/Players/Keel/KeelPain050.ogg"
+$playersound	Keel	other	*pain25		"Sounds/Players/Keel/KeelPain025.ogg"
+$playersound	Keel	other	*grunt		"Sounds/Players/Keel/KeelGrunt.ogg"
+$playersound	Keel	other	*land		"Sounds/Players/Footsteps/KeelStomp.ogg"
+$playeralias	Keel	other	*jump		KeelJump
+$playersound	Keel	other	*usefail	"Sounds/Players/Keel/KeelOof.ogg"
+$playeralias	Keel	other	*taunt		NoSoundHax
+
+
+
+
+//================================================================
+//================================================================
+// Sarge
+// Voiced by George Exley for QCDE
+//================================================================
+//================================================================
+
+QCSargeTaunt01 "Sounds/Players/Sarge/SargeTaunt01.ogg"
+QCSargeTaunt02 "Sounds/Players/Sarge/SargeTaunt02.ogg"
+QCSargeTaunt03 "Sounds/Players/Sarge/SargeTaunt03.ogg"
+QCSargeTaunt04 "Sounds/Players/Sarge/SargeTaunt04.ogg"
+QCSargeTaunt05 "Sounds/Players/Sarge/SargeTaunt05.ogg"
+QCSargeTaunt06 "Sounds/Players/Sarge/SargeTaunt06.ogg"
+QCSargeTaunt07 "Sounds/Players/Sarge/SargeTaunt07.ogg"
+QCSargeTaunt08 "Sounds/Players/Sarge/SargeTaunt08.ogg"
+QCSargeTaunt09 "Sounds/Players/Sarge/SargeTaunt09.ogg"
+QCSargeTaunt10 "Sounds/Players/Sarge/SargeTaunt10.ogg"
+QCSargeTaunt11 "Sounds/Players/Sarge/SargeTaunt11.ogg"
+QCSargeTaunt12 "Sounds/Players/Sarge/SargeTaunt12.ogg"
+QCSargeTaunt13 "Sounds/Players/Sarge/SargeTaunt13.ogg"
+QCSargeTaunt14 "Sounds/Players/Sarge/SargeTaunt14.ogg"
+QCSargeTaunt15 "Sounds/Players/Sarge/SargeTaunt15.ogg"
+QCSargeTaunt16 "Sounds/Players/Sarge/SargeTaunt16.ogg"
+
+
+
+$random SargeDeath { SargeDeath1 SargeDeath2 }
+SargeDeath1 "Sounds/Players/Sarge/SargeDeath1.ogg"
+SargeDeath2 "Sounds/Players/Sarge/SargeDeath2.ogg"
+
+$random SargeJump { SargeJump1 SargeJump2 None }
+SargeJump1 "Sounds/Players/Sarge/SargeJump1.ogg"
+SargeJump2 "Sounds/Players/Sarge/SargeJump2.ogg"
+$volume SargeJump1 0.9
+$attenuation SargeJump1 2.0
+
+$playeralias	Sarge	male	*death		SargeDeath
+$playersound	Sarge	male	*xdeath		"Sounds/Players/Sarge/SargeXDeath.ogg"
+$playersound	Sarge	male	*gibbed		"Sounds/Players/Sarge/SargeXDeath.ogg"
+$playersound	Sarge	male	*pain100	"Sounds/Players/Sarge/SargePain100.ogg"
+$playersound	Sarge	male	*pain75		"Sounds/Players/Sarge/SargePain075.ogg"
+$playersound	Sarge	male	*pain50		"Sounds/Players/Sarge/SargePain050.ogg"
+$playersound	Sarge	male	*pain25		"Sounds/Players/Sarge/SargePain025.ogg"
+$playersound	Sarge	male	*grunt		"Sounds/Players/Sarge/SargeGrunt.ogg"
+$playersound	Sarge	male	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Sarge	male	*jump		SargeJump
+$playersound	Sarge	male	*usefail	"Sounds/Players/Sarge/SargeOof.ogg"
+$playeralias	Sarge	male	*taunt		NoSoundHax
+
+$playeralias	Sarge	female	*death		SargeDeath
+$playersound	Sarge	female	*xdeath		"Sounds/Players/Sarge/SargeXDeath.ogg"
+$playersound	Sarge	female	*gibbed		"Sounds/Players/Sarge/SargeXDeath.ogg"
+$playersound	Sarge	female	*pain100	"Sounds/Players/Sarge/SargePain100.ogg"
+$playersound	Sarge	female	*pain75		"Sounds/Players/Sarge/SargePain075.ogg"
+$playersound	Sarge	female	*pain50		"Sounds/Players/Sarge/SargePain050.ogg"
+$playersound	Sarge	female	*pain25		"Sounds/Players/Sarge/SargePain025.ogg"
+$playersound	Sarge	female	*grunt		"Sounds/Players/Sarge/SargeGrunt.ogg"
+$playersound	Sarge	female	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Sarge	female	*jump		SargeJump
+$playersound	Sarge	female	*usefail	"Sounds/Players/Sarge/SargeOof.ogg"
+$playeralias	Sarge	female	*taunt		NoSoundHax
+
+$playeralias	Sarge	other	*death		SargeDeath
+$playersound	Sarge	other	*xdeath		"Sounds/Players/Sarge/SargeXDeath.ogg"
+$playersound	Sarge	other	*gibbed		"Sounds/Players/Sarge/SargeXDeath.ogg"
+$playersound	Sarge	other	*pain100	"Sounds/Players/Sarge/SargePain100.ogg"
+$playersound	Sarge	other	*pain75		"Sounds/Players/Sarge/SargePain075.ogg"
+$playersound	Sarge	other	*pain50		"Sounds/Players/Sarge/SargePain050.ogg"
+$playersound	Sarge	other	*pain25		"Sounds/Players/Sarge/SargePain025.ogg"
+$playersound	Sarge	other	*grunt		"Sounds/Players/Sarge/SargeGrunt.ogg"
+$playersound	Sarge	other	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Sarge	other	*jump		SargeJump
+$playersound	Sarge	other	*usefail	"Sounds/Players/Sarge/SargeOof.ogg"
+$playeralias	Sarge	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Lo Wang, from Shadow Warrior
+//================================================================
+//================================================================
+
+QCLoWangTaunt01 "Sounds/Players/LoWang/LoWangTaunt01.ogg"
+QCLoWangTaunt02 "Sounds/Players/LoWang/LoWangTaunt02.ogg"
+QCLoWangTaunt03 "Sounds/Players/LoWang/LoWangTaunt03.ogg"
+QCLoWangTaunt04 "Sounds/Players/LoWang/LoWangTaunt04.ogg"
+QCLoWangTaunt05 "Sounds/Players/LoWang/LoWangTaunt05.ogg"
+QCLoWangTaunt06 "Sounds/Players/LoWang/LoWangTaunt06.ogg"
+QCLoWangTaunt07 "Sounds/Players/LoWang/LoWangTaunt07.ogg"
+QCLoWangTaunt08 "Sounds/Players/LoWang/LoWangTaunt08.ogg"
+QCLoWangTaunt09 "Sounds/Players/LoWang/LoWangTaunt09.ogg"
+QCLoWangTaunt10 "Sounds/Players/LoWang/LoWangTaunt10.ogg"
+QCLoWangTaunt11 "Sounds/Players/LoWang/LoWangTaunt11.ogg"
+QCLoWangTaunt12 "Sounds/Players/LoWang/LoWangTaunt12.ogg"
+QCLoWangTaunt13 "Sounds/Players/LoWang/LoWangTaunt13.ogg"
+QCLoWangTaunt14 "Sounds/Players/LoWang/LoWangTaunt14.ogg"
+QCLoWangTaunt15 "Sounds/Players/LoWang/LoWangTaunt15.ogg"
+QCLoWangTaunt16 "Sounds/Players/LoWang/LoWangTaunt16.ogg"
+QCLoWangTaunt17 "Sounds/Players/LoWang/LoWangTaunt17.ogg"
+QCLoWangTaunt18 "Sounds/Players/LoWang/LoWangTaunt18.ogg"
+QCLoWangTaunt19 "Sounds/Players/LoWang/LoWangTaunt19.ogg"
+QCLoWangTaunt20 "Sounds/Players/LoWang/LoWangTaunt20.ogg"
+$random LoWangTaunt
+{ LoWangTaunt01 LoWangTaunt02 LoWangTaunt03 LoWangTaunt04 LoWangTaunt05 LoWangTaunt06
+  LoWangTaunt07 LoWangTaunt08 LoWangTaunt09 LoWangTaunt10 LoWangTaunt11 LoWangTaunt12
+  LoWangTaunt13 LoWangTaunt14 LoWangTaunt15 LoWangTaunt16 LoWangTaunt17 LoWangTaunt18
+  LoWangTaunt19 LoWangTaunt20 }
+
+$random LoWangJump { LoWangJump1 None None None }
+LoWangJump1 "Sounds/Players/LoWang/LoWangJump.ogg"
+
+$volume LoWangJump1 0.8
+$attenuation LoWangJump1 2.0
+
+$random LoWangPainMid { LoWangPainMid1 LoWangPainMid2 }
+$random LoWangPainLow { LoWangPainLow1 LoWangPainLow2 }
+
+LoWangPainMid1		"Sounds/Players/LoWang/LoWangPain100.ogg"
+LoWangPainMid2		"Sounds/Players/LoWang/LoWangPain075.ogg"
+LoWangPainLow1		"Sounds/Players/LoWang/LoWangPain050.ogg"
+LoWangPainLow2		"Sounds/Players/LoWang/LoWangPain025.ogg"
+
+$random LoWangDeath { LoWangDeath1 LoWangDeath2 }
+LoWangDeath1		"Sounds/Players/LoWang/LoWangDeath1.ogg"
+LoWangDeath2		"Sounds/Players/LoWang/LoWangDeath2.ogg"
+
+$random LoWangOof { LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1
+LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1 LoWangOof1 LoWangOofRare }
+LoWangOof1 		"Sounds/Players/LoWang/LoWangGrunt.ogg"
+LoWangOofRare 	"Sounds/Players/LoWang/LoWangOofRare.ogg"
+
+$playeralias	LoWang	male	*death		LoWangDeath
+$playersound	LoWang	male	*xdeath		"Sounds/Players/LoWang/LoWangXDeath.ogg"
+$playersound	LoWang	male	*gibbed		"Sounds/Players/LoWang/LoWangXDeath.ogg" //A_XScream plays *gibbed, not *xdeath
+$playeralias	LoWang	male	*pain100	LoWangPainMid
+$playeralias	LoWang	male	*pain75		LoWangPainMid
+$playeralias	LoWang	male	*pain50		LoWangPainLow
+$playeralias	LoWang	male	*pain25		LoWangPainLow
+$playersound	LoWang	male	*grunt		"Sounds/Players/LoWang/LoWangGrunt.ogg"
+$playersound	LoWang	male	*land		"Sounds/Players/Footsteps/LoWangStomp.ogg"
+$playeralias	LoWang	male	*jump		LoWangJump
+$playeralias	LoWang	male	*usefail	LoWangOof
+$playeralias	LoWang	male	*taunt		NoSoundHax
+
+$playeralias	LoWang	female	*death		LoWangDeath
+$playersound	LoWang	female	*xdeath		"Sounds/Players/LoWang/LoWangXDeath.ogg"
+$playersound	LoWang	female	*gibbed		"Sounds/Players/LoWang/LoWangXDeath.ogg" //A_XScream plays *gibbed, not *xdeath
+$playeralias	LoWang	female	*pain100	LoWangPainMid
+$playeralias	LoWang	female	*pain75		LoWangPainMid
+$playeralias	LoWang	female	*pain50		LoWangPainLow
+$playeralias	LoWang	female	*pain25		LoWangPainLow
+$playersound	LoWang	female	*grunt		"Sounds/Players/LoWang/LoWangGrunt.ogg"
+$playersound	LoWang	female	*land		"Sounds/Players/Footsteps/LoWangStomp.ogg"
+$playeralias	LoWang	female	*jump		LoWangJump
+$playeralias	LoWang	female	*usefail	LoWangOof
+$playeralias	LoWang	female	*taunt		NoSoundHax
+
+
+$playeralias	LoWang	other	*death		LoWangDeath
+$playersound	LoWang	other	*xdeath		"Sounds/Players/LoWang/LoWangXDeath.ogg"
+$playersound	LoWang	other	*gibbed		"Sounds/Players/LoWang/LoWangXDeath.ogg" //A_XScream plays *gibbed, not *xdeath
+$playeralias	LoWang	other	*pain100	LoWangPainMid
+$playeralias	LoWang	other	*pain75		LoWangPainMid
+$playeralias	LoWang	other	*pain50		LoWangPainLow
+$playeralias	LoWang	other	*pain25		LoWangPainLow
+$playersound	LoWang	other	*grunt		"Sounds/Players/LoWang/LoWangGrunt.ogg"
+$playersound	LoWang	other	*land		"Sounds/Players/Footsteps/LoWangStomp.ogg"
+$playeralias	LoWang	other	*jump		LoWangJump
+$playeralias	LoWang	other	*usefail	LoWangOof
+$playeralias	LoWang	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Grayson Hunt. From Bulletstorm
+//================================================================
+//================================================================
+
+QCGraysonTaunt01 "Sounds/Players/Grayson/GraysonTaunt01.ogg"
+QCGraysonTaunt02 "Sounds/Players/Grayson/GraysonTaunt02.ogg"
+QCGraysonTaunt03 "Sounds/Players/Grayson/GraysonTaunt03.ogg"
+QCGraysonTaunt04 "Sounds/Players/Grayson/GraysonTaunt04.ogg"
+QCGraysonTaunt05 "Sounds/Players/Grayson/GraysonTaunt05.ogg"
+QCGraysonTaunt06 "Sounds/Players/Grayson/GraysonTaunt06.ogg"
+QCGraysonTaunt07 "Sounds/Players/Grayson/GraysonTaunt07.ogg"
+QCGraysonTaunt08 "Sounds/Players/Grayson/GraysonTaunt08.ogg"
+QCGraysonTaunt09 "Sounds/Players/Grayson/GraysonTaunt09.ogg"
+QCGraysonTaunt10 "Sounds/Players/Grayson/GraysonTaunt10.ogg"
+QCGraysonTaunt11 "Sounds/Players/Grayson/GraysonTaunt11.ogg"
+QCGraysonTaunt12 "Sounds/Players/Grayson/GraysonTaunt12.ogg"
+QCGraysonTaunt13 "Sounds/Players/Grayson/GraysonTaunt13.ogg"
+QCGraysonTaunt14 "Sounds/Players/Grayson/GraysonTaunt14.ogg"
+QCGraysonTaunt15 "Sounds/Players/Grayson/GraysonTaunt15.ogg"
+QCGraysonTaunt16 "Sounds/Players/Grayson/GraysonTaunt16.ogg"
+QCGraysonTaunt17 "Sounds/Players/Grayson/GraysonTaunt17.ogg"
+QCGraysonTaunt18 "Sounds/Players/Grayson/GraysonTaunt18.ogg"
+QCGraysonTaunt19 "Sounds/Players/Grayson/GraysonTaunt19.ogg"
+QCGraysonTaunt20 "Sounds/Players/Grayson/GraysonTaunt20.ogg"
+QCGraysonTaunt21 "Sounds/Players/Grayson/GraysonTaunt21.ogg"
+
+
+
+$random GraysonJump { GraysonJump1 GraysonJump2 None }
+GraysonJump1 "Sounds/Players/Grayson/GraysonJump1.ogg"
+GraysonJump2 "Sounds/Players/Grayson/GraysonJump2.ogg"
+$volume GraysonJump1 0.9
+$volume GraysonJump2 0.9
+$attenuation GraysonJump1 2.0
+$attenuation GraysonJump2 2.0
+
+$playersound	Grayson	male	*death		"Sounds/Players/Grayson/GraysonDeath.ogg"
+$playersound	Grayson	male	*xdeath		"Sounds/Players/Grayson/GraysonXDeath.ogg"
+$playersound	Grayson	male	*gibbed		"Sounds/Players/Grayson/GraysonXDeath.ogg"
+$playersound	Grayson	male	*pain100	"Sounds/Players/Grayson/GraysonPain100.ogg"
+$playersound	Grayson	male	*pain75		"Sounds/Players/Grayson/GraysonPain075.ogg"
+$playersound	Grayson	male	*pain50		"Sounds/Players/Grayson/GraysonPain050.ogg"
+$playersound	Grayson	male	*pain25		"Sounds/Players/Grayson/GraysonPain025.ogg"
+$playersound	Grayson	male	*grunt		"Sounds/Players/Grayson/GraysonGrunt.ogg"
+$playersound	Grayson	male	*land		"Sounds/Players/Footsteps/GraysonStomp.ogg"
+$playeralias	Grayson	male	*jump		GraysonJump
+$playersound	Grayson	male	*usefail	"Sounds/Players/Grayson/GraysonOof.ogg"
+$playeralias	Grayson	male	*taunt		NoSoundHax
+
+$playeralias	Grayson	female	*death		GraysonDeath
+$playersound	Grayson	female	*xdeath		"Sounds/Players/Grayson/GraysonXDeath.ogg"
+$playersound	Grayson	female	*gibbed		"Sounds/Players/Grayson/GraysonXDeath.ogg"
+$playersound	Grayson	female	*pain100	"Sounds/Players/Grayson/GraysonPain100.ogg"
+$playersound	Grayson	female	*pain75		"Sounds/Players/Grayson/GraysonPain075.ogg"
+$playersound	Grayson	female	*pain50		"Sounds/Players/Grayson/GraysonPain050.ogg"
+$playersound	Grayson	female	*pain25		"Sounds/Players/Grayson/GraysonPain025.ogg"
+$playersound	Grayson	female	*grunt		"Sounds/Players/Grayson/GraysonGrunt.ogg"
+$playersound	Grayson	female	*land		"Sounds/Players/Footsteps/GraysonStomp.ogg"
+$playeralias	Grayson	female	*jump		GraysonJump
+$playersound	Grayson	female	*usefail	"Sounds/Players/Grayson/GraysonOof.ogg"
+$playeralias	Grayson	female	*taunt		NoSoundHax
+
+$playeralias	Grayson	other	*death		GraysonDeath
+$playersound	Grayson	other	*xdeath		"Sounds/Players/Grayson/GraysonXDeath.ogg"
+$playersound	Grayson	other	*gibbed		"Sounds/Players/Grayson/GraysonXDeath.ogg"
+$playersound	Grayson	other	*pain100	"Sounds/Players/Grayson/GraysonPain100.ogg"
+$playersound	Grayson	other	*pain75		"Sounds/Players/Grayson/GraysonPain075.ogg"
+$playersound	Grayson	other	*pain50		"Sounds/Players/Grayson/GraysonPain050.ogg"
+$playersound	Grayson	other	*pain25		"Sounds/Players/Grayson/GraysonPain025.ogg"
+$playersound	Grayson	other	*grunt		"Sounds/Players/Grayson/GraysonGrunt.ogg"
+$playersound	Grayson	other	*land		"Sounds/Players/Footsteps/GraysonStomp.ogg"
+$playeralias	Grayson	other	*jump		GraysonJump
+$playersound	Grayson	other	*usefail	"Sounds/Players/Grayson/GraysonOof.ogg"
+$playeralias	Grayson	other	*taunt		NoSoundHax
+
+
+
+
+//================================================================
+//================================================================
+// Eradicator. Sounds modified from Bulletstorm's Ishi
+//================================================================
+//================================================================
+
+QCEradicatorTaunt01 "Sounds/Players/Eradicator/EradicatorTaunt01.ogg"
+QCEradicatorTaunt02 "Sounds/Players/Eradicator/EradicatorTaunt02.ogg"
+QCEradicatorTaunt03 "Sounds/Players/Eradicator/EradicatorTaunt03.ogg"
+QCEradicatorTaunt04 "Sounds/Players/Eradicator/EradicatorTaunt04.ogg"
+QCEradicatorTaunt05 "Sounds/Players/Eradicator/EradicatorTaunt05.ogg"
+QCEradicatorTaunt06 "Sounds/Players/Eradicator/EradicatorTaunt06.ogg"
+QCEradicatorTaunt07 "Sounds/Players/Eradicator/EradicatorTaunt07.ogg"
+QCEradicatorTaunt08 "Sounds/Players/Eradicator/EradicatorTaunt08.ogg"
+QCEradicatorTaunt09 "Sounds/Players/Eradicator/EradicatorTaunt09.ogg"
+QCEradicatorTaunt10 "Sounds/Players/Eradicator/EradicatorTaunt10.ogg"
+QCEradicatorTaunt11 "Sounds/Players/Eradicator/EradicatorTaunt11.ogg"
+QCEradicatorTaunt12 "Sounds/Players/Eradicator/EradicatorTaunt12.ogg"
+QCEradicatorTaunt13 "Sounds/Players/Eradicator/EradicatorTaunt13.ogg"
+QCEradicatorTaunt14 "Sounds/Players/Eradicator/EradicatorTaunt14.ogg"
+QCEradicatorTaunt15 "Sounds/Players/Eradicator/EradicatorTaunt15.ogg"
+QCEradicatorTaunt16 "Sounds/Players/Eradicator/EradicatorTaunt16.ogg"
+QCEradicatorTaunt17 "Sounds/Players/Eradicator/EradicatorTaunt17.ogg"
+QCEradicatorTaunt18 "Sounds/Players/Eradicator/EradicatorTaunt18.ogg"
+QCEradicatorTaunt19 "Sounds/Players/Eradicator/EradicatorTaunt19.ogg"
+QCEradicatorTaunt20 "Sounds/Players/Eradicator/EradicatorTaunt20.ogg"
+QCEradicatorTaunt21 "Sounds/Players/Eradicator/EradicatorTaunt21.ogg"
+
+
+
+$random EradicatorJump { EradicatorJump1 EradicatorJump1 None }
+EradicatorJump1 "Sounds/Players/Eradicator/EradicatorJump.ogg"
+$volume EradicatorJump1 0.9
+$attenuation EradicatorJump1 2.0
+
+$playersound	Eradicator	male	*death		"Sounds/Players/Eradicator/EradicatorDeath.ogg"
+$playersound	Eradicator	male	*xdeath		"Sounds/Players/Eradicator/EradicatorXDeath.ogg"
+$playersound	Eradicator	male	*gibbed		"Sounds/Players/Eradicator/EradicatorXDeath.ogg"
+$playersound	Eradicator	male	*pain100	"Sounds/Players/Eradicator/EradicatorPain100.ogg"
+$playersound	Eradicator	male	*pain75		"Sounds/Players/Eradicator/EradicatorPain075.ogg"
+$playersound	Eradicator	male	*pain50		"Sounds/Players/Eradicator/EradicatorPain050.ogg"
+$playersound	Eradicator	male	*pain25		"Sounds/Players/Eradicator/EradicatorPain025.ogg"
+$playersound	Eradicator	male	*grunt		"Sounds/Players/Eradicator/EradicatorGrunt.ogg"
+$playersound	Eradicator	male	*land		"Sounds/Players/Footsteps/EradicatorStomp.ogg"
+$playeralias	Eradicator	male	*jump		EradicatorJump
+$playersound	Eradicator	male	*usefail	"Sounds/Players/Eradicator/EradicatorOof.ogg"
+$playeralias	Eradicator	male	*taunt		NoSoundHax
+
+$playersound	Eradicator	female	*death		"Sounds/Players/Eradicator/EradicatorDeath.ogg"
+$playersound	Eradicator	female	*xdeath		"Sounds/Players/Eradicator/EradicatorXDeath.ogg"
+$playersound	Eradicator	female	*gibbed		"Sounds/Players/Eradicator/EradicatorXDeath.ogg"
+$playersound	Eradicator	female	*pain100	"Sounds/Players/Eradicator/EradicatorPain100.ogg"
+$playersound	Eradicator	female	*pain75		"Sounds/Players/Eradicator/EradicatorPain075.ogg"
+$playersound	Eradicator	female	*pain50		"Sounds/Players/Eradicator/EradicatorPain050.ogg"
+$playersound	Eradicator	female	*pain25		"Sounds/Players/Eradicator/EradicatorPain025.ogg"
+$playersound	Eradicator	female	*grunt		"Sounds/Players/Eradicator/EradicatorGrunt.ogg"
+$playersound	Eradicator	female	*land		"Sounds/Players/Footsteps/EradicatorStomp.ogg"
+$playeralias	Eradicator	female	*jump		EradicatorJump
+$playersound	Eradicator	female	*usefail	"Sounds/Players/Eradicator/EradicatorOof.ogg"
+$playeralias	Eradicator	female	*taunt		NoSoundHax
+
+$playersound	Eradicator	other	*death		"Sounds/Players/Eradicator/EradicatorDeath.ogg"
+$playersound	Eradicator	other	*xdeath		"Sounds/Players/Eradicator/EradicatorXDeath.ogg"
+$playersound	Eradicator	other	*gibbed		"Sounds/Players/Eradicator/EradicatorXDeath.ogg"
+$playersound	Eradicator	other	*pain100	"Sounds/Players/Eradicator/EradicatorPain100.ogg"
+$playersound	Eradicator	other	*pain75		"Sounds/Players/Eradicator/EradicatorPain075.ogg"
+$playersound	Eradicator	other	*pain50		"Sounds/Players/Eradicator/EradicatorPain050.ogg"
+$playersound	Eradicator	other	*pain25		"Sounds/Players/Eradicator/EradicatorPain025.ogg"
+$playersound	Eradicator	other	*grunt		"Sounds/Players/Eradicator/EradicatorGrunt.ogg"
+$playersound	Eradicator	other	*land		"Sounds/Players/Footsteps/EradicatorStomp.ogg"
+$playeralias	Eradicator	other	*jump		EradicatorJump
+$playersound	Eradicator	other	*usefail	"Sounds/Players/Eradicator/EradicatorOof.ogg"
+$playeralias	Eradicator	other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// BJ Blazkowicz, sounds from Quake Champions
+// I dont care he's not Brian Bloom. I will keep the AAAAAAAAHHHH
+//================================================================
+//================================================================
+
+QCBlazkowiczTaunt01 "Sounds/Players/Blazkowicz/BlazkowiczTaunt01.ogg"
+QCBlazkowiczTaunt02 "Sounds/Players/Blazkowicz/BlazkowiczTaunt02.ogg"
+QCBlazkowiczTaunt03 "Sounds/Players/Blazkowicz/BlazkowiczTaunt03.ogg"
+QCBlazkowiczTaunt04 "Sounds/Players/Blazkowicz/BlazkowiczTaunt04.ogg"
+QCBlazkowiczTaunt05 "Sounds/Players/Blazkowicz/BlazkowiczTaunt05.ogg"
+QCBlazkowiczTaunt06 "Sounds/Players/Blazkowicz/BlazkowiczTaunt06.ogg"
+QCBlazkowiczTaunt07 "Sounds/Players/Blazkowicz/BlazkowiczTaunt07.ogg"
+QCBlazkowiczTaunt08 "Sounds/Players/Blazkowicz/BlazkowiczTaunt08.ogg"
+QCBlazkowiczTaunt09 "Sounds/Players/Blazkowicz/BlazkowiczTaunt09.ogg"
+QCBlazkowiczTaunt10 "Sounds/Players/Blazkowicz/BlazkowiczTaunt10.ogg"
+QCBlazkowiczTaunt11 "Sounds/Players/Blazkowicz/BlazkowiczTaunt11.ogg"
+QCBlazkowiczTaunt12 "Sounds/Players/Blazkowicz/BlazkowiczTaunt12.ogg"
+QCBlazkowiczTaunt13 "Sounds/Players/Blazkowicz/BlazkowiczTaunt13.ogg"
+
+
+
+
+$random BlazkowiczJump { BlazkowiczJump1 BlazkowiczJump2 None }
+BlazkowiczJump1 "Sounds/Players/Blazkowicz/BlazkowiczJump1.ogg"
+BlazkowiczJump2 "Sounds/Players/Blazkowicz/BlazkowiczJump2.ogg"
+$volume BlazkowiczJump1 0.9
+$volume BlazkowiczJump2 0.9
+$attenuation BlazkowiczJump1 2.0
+$attenuation BlazkowiczJump2 2.0
+
+$random BlazkowiczDeath { BlazkowiczDeath1 BlazkowiczDeath2 }
+BlazkowiczDeath1 "Sounds/Players/Blazkowicz/BlazkowiczDeath1.ogg"
+BlazkowiczDeath2 "Sounds/Players/Blazkowicz/BlazkowiczDeath2.ogg"
+
+$random BlazkowiczRandomPain100 	// 1/36 to AAAHHH
+{
+	BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75
+	BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75
+	BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50
+	BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50
+	BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75
+	BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50
+	BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50
+	BlazkowiczAAAHHH
+}
+
+$random BlazkowiczRandomPain75 	// 1/21 to AAAHHH
+{
+	BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75 BlazkowiczPain75
+	BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50 BlazkowiczPain50
+	BlazkowiczPain25 BlazkowiczPain25 BlazkowiczPain25 BlazkowiczPain25
+	BlazkowiczPain25 BlazkowiczPain25 BlazkowiczPain25 BlazkowiczPain25
+	BlazkowiczPain25 BlazkowiczPain25 BlazkowiczPain25 BlazkowiczPain25
+	BlazkowiczAAAHHH
+}
+$random BlazkowiczRandomPain50 	// 1/3 to AAAHHH
+{
+	BlazkowiczPain50
+	BlazkowiczPain25
+	BlazkowiczAAAHHH
+}
+
+$random BlazkowiczRandomPain25 	// always AAAHHH but sound name kept in prev structure
+{
+	BlazkowiczAAAHHH
+}
+
+BlazkowiczPain75 "Sounds/Players/Blazkowicz/BlazkowiczPain75.ogg"
+BlazkowiczPain50 "Sounds/Players/Blazkowicz/BlazkowiczPain50.ogg"
+BlazkowiczPain25 "Sounds/Players/Blazkowicz/BlazkowiczPain25.ogg"
+BlazkowiczAAAHHH "Sounds/Players/Blazkowicz/BlazkowiczAAAHHH.ogg"
+
+
+$playeralias	Blazkowicz	male	*death		BlazkowiczDeath
+$playeralias	Blazkowicz	male	*xdeath		BlazkowiczDeath
+$playeralias	Blazkowicz	male	*gibbed		BlazkowiczDeath
+$playeralias	Blazkowicz	male	*pain100	BlazkowiczRandomPain100
+$playeralias	Blazkowicz	male	*pain75		BlazkowiczRandomPain75
+$playeralias	Blazkowicz	male	*pain50		BlazkowiczRandomPain50
+$playeralias	Blazkowicz	male	*pain25		BlazkowiczRandomPain25
+$playersound	Blazkowicz	male	*grunt		"Sounds/Players/Blazkowicz/BlazkowiczGrunt.ogg"
+$playersound	Blazkowicz	male	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Blazkowicz	male	*jump		BlazkowiczJump
+$playersound	Blazkowicz	male	*usefail	"Sounds/Players/Blazkowicz/BlazkowiczOof.ogg"
+$playeralias	Blazkowicz	male	*taunt		NoSoundHax
+
+
+$playeralias	Blazkowicz	female	*death		BlazkowiczDeath
+$playeralias	Blazkowicz	female	*xdeath		BlazkowiczDeath
+$playeralias	Blazkowicz	female	*gibbed		BlazkowiczDeath
+$playeralias	Blazkowicz	female	*pain100	BlazkowiczRandomPain100
+$playeralias	Blazkowicz	female	*pain75		BlazkowiczRandomPain75
+$playeralias	Blazkowicz	female	*pain50		BlazkowiczRandomPain50
+$playeralias	Blazkowicz	female	*pain25		BlazkowiczRandomPain25
+$playersound	Blazkowicz	female	*grunt		"Sounds/Players/Blazkowicz/BlazkowiczGrunt.ogg"
+$playersound	Blazkowicz	female	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Blazkowicz	female	*jump		BlazkowiczJump
+$playersound	Blazkowicz	female	*usefail	"Sounds/Players/Blazkowicz/BlazkowiczOof.ogg"
+$playeralias	Blazkowicz	female	*taunt		NoSoundHax
+
+$playeralias	Blazkowicz	other	*death		BlazkowiczDeath
+$playeralias	Blazkowicz	other	*xdeath		BlazkowiczDeath
+$playeralias	Blazkowicz	other	*gibbed		BlazkowiczDeath
+$playeralias	Blazkowicz	other	*pain100	BlazkowiczRandomPain100
+$playeralias	Blazkowicz	other	*pain75		BlazkowiczRandomPain75
+$playeralias	Blazkowicz	other	*pain50		BlazkowiczRandomPain50
+$playeralias	Blazkowicz	other	*pain25		BlazkowiczRandomPain25
+$playersound	Blazkowicz	other	*grunt		"Sounds/Players/Blazkowicz/BlazkowiczGrunt.ogg"
+$playersound	Blazkowicz	other	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Blazkowicz	other	*jump		BlazkowiczJump
+$playersound	Blazkowicz	other	*usefail	"Sounds/Players/Blazkowicz/BlazkowiczOof.ogg"
+$playeralias	Blazkowicz	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Eleena. Totally not using trishka's voice ;)
+//================================================================
+//================================================================
+
+QCEleenaTaunt01 "Sounds/Players/Eleena/EleenaTaunt01.ogg"
+QCEleenaTaunt02 "Sounds/Players/Eleena/EleenaTaunt02.ogg"
+QCEleenaTaunt03 "Sounds/Players/Eleena/EleenaTaunt03.ogg"
+QCEleenaTaunt04 "Sounds/Players/Eleena/EleenaTaunt04.ogg"
+QCEleenaTaunt05 "Sounds/Players/Eleena/EleenaTaunt05.ogg"
+QCEleenaTaunt06 "Sounds/Players/Eleena/EleenaTaunt06.ogg"
+QCEleenaTaunt07 "Sounds/Players/Eleena/EleenaTaunt07.ogg"
+QCEleenaTaunt08 "Sounds/Players/Eleena/EleenaTaunt08.ogg"
+QCEleenaTaunt09 "Sounds/Players/Eleena/EleenaTaunt09.ogg"
+QCEleenaTaunt10 "Sounds/Players/Eleena/EleenaTaunt10.ogg"
+QCEleenaTaunt11 "Sounds/Players/Eleena/EleenaTaunt11.ogg"
+QCEleenaTaunt12 "Sounds/Players/Eleena/EleenaTaunt12.ogg"
+QCEleenaTaunt13 "Sounds/Players/Eleena/EleenaTaunt13.ogg"
+QCEleenaTaunt14 "Sounds/Players/Eleena/EleenaTaunt14.ogg"
+QCEleenaTaunt15 "Sounds/Players/Eleena/EleenaTaunt15.ogg"
+QCEleenaTaunt16 "Sounds/Players/Eleena/EleenaTaunt16.ogg"
+QCEleenaTaunt17 "Sounds/Players/Eleena/EleenaTaunt17.ogg"
+
+
+
+$random EleenaJump { EleenaJump1 EleenaJump2 None }
+EleenaJump1 "Sounds/Players/Eleena/EleenaJump1.ogg"
+EleenaJump2 "Sounds/Players/Eleena/EleenaJump2.ogg"
+$volume EleenaJump1 0.9
+$volume EleenaJump2 0.9
+$attenuation EleenaJump1 2.0
+$attenuation EleenaJump2 2.0
+
+$playersound	Eleena	male	*death		"Sounds/Players/Eleena/EleenaDeath.ogg"
+$playersound	Eleena	male	*xdeath		"Sounds/Players/Eleena/EleenaXDeath.ogg"
+$playersound	Eleena	male	*gibbed		"Sounds/Players/Eleena/EleenaXDeath.ogg"
+$playersound	Eleena	male	*pain100	"Sounds/Players/Eleena/EleenaPain100.ogg"
+$playersound	Eleena	male	*pain75		"Sounds/Players/Eleena/EleenaPain075.ogg"
+$playersound	Eleena	male	*pain50		"Sounds/Players/Eleena/EleenaPain050.ogg"
+$playersound	Eleena	male	*pain25		"Sounds/Players/Eleena/EleenaPain025.ogg"
+$playersound	Eleena	male	*grunt		"Sounds/Players/Eleena/EleenaGrunt.ogg"
+$playersound	Eleena	male	*land		"Sounds/Players/Footsteps/EleenaStomp.ogg"
+$playeralias	Eleena	male	*jump		EleenaJump
+$playersound	Eleena	male	*usefail	"Sounds/Players/Eleena/EleenaOof.ogg"
+$playeralias	Eleena	male	*taunt		NoSoundHax
+
+$playeralias	Eleena	female	*death		EleenaDeath
+$playersound	Eleena	female	*xdeath		"Sounds/Players/Eleena/EleenaXDeath.ogg"
+$playersound	Eleena	female	*gibbed		"Sounds/Players/Eleena/EleenaXDeath.ogg"
+$playersound	Eleena	female	*pain100	"Sounds/Players/Eleena/EleenaPain100.ogg"
+$playersound	Eleena	female	*pain75		"Sounds/Players/Eleena/EleenaPain075.ogg"
+$playersound	Eleena	female	*pain50		"Sounds/Players/Eleena/EleenaPain050.ogg"
+$playersound	Eleena	female	*pain25		"Sounds/Players/Eleena/EleenaPain025.ogg"
+$playersound	Eleena	female	*grunt		"Sounds/Players/Eleena/EleenaGrunt.ogg"
+$playersound	Eleena	female	*land		"Sounds/Players/Footsteps/EleenaStomp.ogg"
+$playeralias	Eleena	female	*jump		EleenaJump
+$playersound	Eleena	female	*usefail	"Sounds/Players/Eleena/EleenaOof.ogg"
+$playeralias	Eleena	female	*taunt		NoSoundHax
+
+$playeralias	Eleena	other	*death		EleenaDeath
+$playersound	Eleena	other	*xdeath		"Sounds/Players/Eleena/EleenaXDeath.ogg"
+$playersound	Eleena	other	*gibbed		"Sounds/Players/Eleena/EleenaXDeath.ogg"
+$playersound	Eleena	other	*pain100	"Sounds/Players/Eleena/EleenaPain100.ogg"
+$playersound	Eleena	other	*pain75		"Sounds/Players/Eleena/EleenaPain075.ogg"
+$playersound	Eleena	other	*pain50		"Sounds/Players/Eleena/EleenaPain050.ogg"
+$playersound	Eleena	other	*pain25		"Sounds/Players/Eleena/EleenaPain025.ogg"
+$playersound	Eleena	other	*grunt		"Sounds/Players/Eleena/EleenaGrunt.ogg"
+$playersound	Eleena	other	*land		"Sounds/Players/Footsteps/EleenaStomp.ogg"
+$playeralias	Eleena	other	*jump		EleenaJump
+$playersound	Eleena	other	*usefail	"Sounds/Players/Eleena/EleenaOof.ogg"
+$playeralias	Eleena	other	*taunt		NoSoundHax
+
+
+
+
+//================================================================
+//================================================================
+// VorMatur, voiced by George Exley for QCDE
+//================================================================
+//================================================================
+
+QCVorMaturTaunt01 "Sounds/Players/VorMatur/VorMaturTaunt01.ogg"
+QCVorMaturTaunt02 "Sounds/Players/VorMatur/VorMaturTaunt02.ogg"
+QCVorMaturTaunt03 "Sounds/Players/VorMatur/VorMaturTaunt03.ogg"
+QCVorMaturTaunt04 "Sounds/Players/VorMatur/VorMaturTaunt04.ogg"
+QCVorMaturTaunt05 "Sounds/Players/VorMatur/VorMaturTaunt05.ogg"
+QCVorMaturTaunt06 "Sounds/Players/VorMatur/VorMaturTaunt06.ogg"
+QCVorMaturTaunt07 "Sounds/Players/VorMatur/VorMaturTaunt07.ogg"
+QCVorMaturTaunt08 "Sounds/Players/VorMatur/VorMaturTaunt08.ogg"
+QCVorMaturTaunt09 "Sounds/Players/VorMatur/VorMaturTaunt09.ogg"
+QCVorMaturTaunt10 "Sounds/Players/VorMatur/VorMaturTaunt10.ogg"
+QCVorMaturTaunt11 "Sounds/Players/VorMatur/VorMaturTaunt11.ogg"
+QCVorMaturTaunt12 "Sounds/Players/VorMatur/VorMaturTaunt12.ogg"
+QCVorMaturTaunt13 "Sounds/Players/VorMatur/VorMaturTaunt13.ogg"
+QCVorMaturTaunt14 "Sounds/Players/VorMatur/VorMaturTaunt14.ogg"
+QCVorMaturTaunt15 "Sounds/Players/VorMatur/VorMaturTaunt15.ogg"
+QCVorMaturTaunt16 "Sounds/Players/VorMatur/VorMaturTaunt16.ogg"
+QCVorMaturTaunt17 "Sounds/Players/VorMatur/VorMaturTaunt17.ogg"
+QCVorMaturTaunt18 "Sounds/Players/VorMatur/VorMaturTaunt18.ogg"
+
+
+VorMaturJump1 "Sounds/Players/VorMatur/VorMaturJump1.ogg"
+VorMaturJump2 "Sounds/Players/VorMatur/VorMaturJump2.ogg"
+$random VorMaturJump { VorMaturJump1 VorMaturJump2 None }
+
+$volume VorMaturJump1 0.9
+$volume VorMaturJump2 0.9
+$attenuation VorMaturJump1 2.0
+$attenuation VorMaturJump2 2.0
+
+VorMaturDeath1 "Sounds/Players/VorMatur/VorMaturDeath1.ogg"
+VorMaturDeath2 "Sounds/Players/VorMatur/VorMaturDeath2.ogg"
+$random VorMaturDeath { VorMaturDeath1 VorMaturDeath2 }
+
+VorMaturXDeath1 "Sounds/Players/VorMatur/VorMaturXDeath1.ogg"
+
+VorMaturXDeath2 "Sounds/Players/VorMatur/VorMaturXDeath2.ogg"
+$random VorMaturXDeath { VorMaturXDeath1 VorMaturXDeath2 }
+
+VorMaturPain100a "Sounds/Players/VorMatur/VorMaturPain100a.ogg"
+VorMaturPain100b "Sounds/Players/VorMatur/VorMaturPain100b.ogg"
+VorMaturPain100c "Sounds/Players/VorMatur/VorMaturPain100c.ogg"
+$random VorMaturPain100 { VorMaturPain100a VorMaturPain100b VorMaturPain100c }
+
+$playeralias	VorMatur	male	*death		VorMaturDeath
+$playeralias	VorMatur	male	*xdeath		VorMaturXDeath
+$playeralias	VorMatur	male	*gibbed		VorMaturXDeath
+$playeralias	VorMatur	male	*pain100	VorMaturPain100	//3 variations because his health is almost always above 100
+$playersound	VorMatur	male	*pain75		"Sounds/Players/VorMatur/VorMaturPain075.ogg"
+$playersound	VorMatur	male	*pain50		"Sounds/Players/VorMatur/VorMaturPain050.ogg"
+$playersound	VorMatur	male	*pain25		"Sounds/Players/VorMatur/VorMaturPain025.ogg"
+$playersound	VorMatur	male	*grunt		"Sounds/Players/VorMatur/VorMaturGrunt.ogg"
+$playersound	VorMatur	male	*land		"Sounds/Players/Footsteps/VorMaturStomp.ogg"
+$playeralias	VorMatur	male	*jump		VorMaturJump
+$playersound	VorMatur	male	*usefail	"Sounds/Players/VorMatur/VorMaturOof.ogg"
+$playeralias	VorMatur	male	*taunt		NoSoundHax
+
+$playeralias	VorMatur	female	*death		VorMaturDeath
+$playeralias	VorMatur	female	*xdeath		VorMaturXDeath
+$playeralias	VorMatur	female	*gibbed		VorMaturXDeath
+$playeralias	VorMatur	female	*pain100	VorMaturPain100	//3 variations because his health is almost always above 100
+$playersound	VorMatur	female	*pain75		"Sounds/Players/VorMatur/VorMaturPain075.ogg"
+$playersound	VorMatur	female	*pain50		"Sounds/Players/VorMatur/VorMaturPain050.ogg"
+$playersound	VorMatur	female	*pain25		"Sounds/Players/VorMatur/VorMaturPain025.ogg"
+$playersound	VorMatur	female	*grunt		"Sounds/Players/VorMatur/VorMaturGrunt.ogg"
+$playersound	VorMatur	female	*land		"Sounds/Players/Footsteps/VorMaturStomp.ogg"
+$playeralias	VorMatur	female	*jump		VorMaturJump
+$playersound	VorMatur	female	*usefail	"Sounds/Players/VorMatur/VorMaturOof.ogg"
+$playeralias	VorMatur	female	*taunt		NoSoundHax
+
+$playeralias	VorMatur	other	*death		VorMaturDeath
+$playeralias	VorMatur	other	*xdeath		VorMaturXDeath
+$playeralias	VorMatur	other	*gibbed		VorMaturXDeath
+$playeralias	VorMatur	other	*pain100	VorMaturPain100	//3 variations because his health is almost always above 100
+$playersound	VorMatur	other	*pain75		"Sounds/Players/VorMatur/VorMaturPain075.ogg"
+$playersound	VorMatur	other	*pain50		"Sounds/Players/VorMatur/VorMaturPain050.ogg"
+$playersound	VorMatur	other	*pain25		"Sounds/Players/VorMatur/VorMaturPain025.ogg"
+$playersound	VorMatur	other	*grunt		"Sounds/Players/VorMatur/VorMaturGrunt.ogg"
+$playersound	VorMatur	other	*land		"Sounds/Players/Footsteps/VorMaturStomp.ogg"
+$playeralias	VorMatur	other	*jump		VorMaturJump
+$playersound	VorMatur	other	*usefail	"Sounds/Players/VorMatur/VorMaturOof.ogg"
+$playeralias	VorMatur	other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// Freeman, from HL and using Gman's vo for taunts
+//================================================================
+//================================================================
+
+QCFreemanTaunt01 "Sounds/Players/Freeman/FreemanTaunt01.ogg"
+QCFreemanTaunt02 "Sounds/Players/Freeman/FreemanTaunt02.ogg"
+QCFreemanTaunt03 "Sounds/Players/Freeman/FreemanTaunt03.ogg"
+QCFreemanTaunt04 "Sounds/Players/Freeman/FreemanTaunt04.ogg"
+QCFreemanTaunt05 "Sounds/Players/Freeman/FreemanTaunt05.ogg"
+QCFreemanTaunt06 "Sounds/Players/Freeman/FreemanTaunt06.ogg"
+QCFreemanTaunt07 "Sounds/Players/Freeman/FreemanTaunt07.ogg"
+QCFreemanTaunt08 "Sounds/Players/Freeman/FreemanTaunt08.ogg"
+QCFreemanTaunt09 "Sounds/Players/Freeman/FreemanTaunt09.ogg"
+QCFreemanTaunt10 "Sounds/Players/Freeman/FreemanTaunt10.ogg"
+QCFreemanTaunt11 "Sounds/Players/Freeman/FreemanTaunt11.ogg"
+QCFreemanTaunt12 "Sounds/Players/Freeman/FreemanTaunt12.ogg"
+QCFreemanTaunt13 "Sounds/Players/Freeman/FreemanTaunt13.ogg"
+QCFreemanTaunt14 "Sounds/Players/Freeman/FreemanTaunt14.ogg"
+QCFreemanTaunt15 "Sounds/Players/Freeman/FreemanTaunt15.ogg"
+QCFreemanTaunt16 "Sounds/Players/Freeman/FreemanTaunt16.ogg"
+QCFreemanTaunt17 "Sounds/Players/Freeman/FreemanTaunt17.ogg"
+QCFreemanTaunt18 "Sounds/Players/Freeman/FreemanTaunt18.ogg"
+QCFreemanTaunt19 "Sounds/Players/Freeman/FreemanTaunt19.ogg"
+
+
+GmanInvestments "Sounds/Players/Freeman/GmanInvestments.ogg"
+
+FreemanDeath		"Sounds/Players/Freeman/FreemanDeath.ogg"
+$attenuation FreemanDeath 4.0	//very low attenuation because it's annoying for the other players
+
+$playeralias	Freeman	male	*death		FreemanDeath
+$playeralias	Freeman	male	*xdeath		FreemanDeath
+$playeralias	Freeman	male	*gibbed		FreemanDeath
+$playeralias	Freeman	male	*pain100	NoSoundHax
+$playeralias	Freeman	male	*pain75		NoSoundHax
+$playeralias	Freeman	male	*pain50		NoSoundHax
+$playeralias	Freeman	male	*pain25		NoSoundHax
+$playeralias	Freeman	male	*grunt		NoSoundHax
+$playersound	Freeman	male	*land		"Sounds/Players/Footsteps/FreemanStomp.ogg"
+$playeralias	Freeman	male	*jump		NoSoundHax
+$playersound	Freeman	male	*usefail	"Sounds/Players/Freeman/FreemanOof.ogg"
+$playeralias	Freeman	male	*taunt		NoSoundHax
+
+$playeralias	Freeman	female	*death		FreemanDeath
+$playeralias	Freeman	female	*xdeath		FreemanDeath
+$playeralias	Freeman	female	*gibbed		FreemanDeath
+$playeralias	Freeman	female	*pain100	NoSoundHax
+$playeralias	Freeman	female	*pain75		NoSoundHax
+$playeralias	Freeman	female	*pain50		NoSoundHax
+$playeralias	Freeman	female	*pain25		NoSoundHax
+$playeralias	Freeman	female	*grunt		NoSoundHax
+$playersound	Freeman	female	*land		"Sounds/Players/Footsteps/FreemanStomp.ogg"
+$playeralias	Freeman	female	*jump		NoSoundHax
+$playersound	Freeman	female	*usefail	"Sounds/Players/Freeman/FreemanOof.ogg"
+$playeralias	Freeman	female	*taunt		NoSoundHax
+
+$playeralias	Freeman	other	*death		FreemanDeath
+$playeralias	Freeman	other	*xdeath		FreemanDeath
+$playeralias	Freeman	other	*gibbed		FreemanDeath
+$playeralias	Freeman	other	*pain100	NoSoundHax
+$playeralias	Freeman	other	*pain75		NoSoundHax
+$playeralias	Freeman	other	*pain50		NoSoundHax
+$playeralias	Freeman	other	*pain25		NoSoundHax
+$playeralias	Freeman	other	*grunt		NoSoundHax
+$playersound	Freeman	other	*land		"Sounds/Players/Footsteps/FreemanStomp.ogg"
+$playeralias	Freeman	other	*jump		NoSoundHax
+$playersound	Freeman	other	*usefail	"Sounds/Players/Freeman/FreemanOof.ogg"
+$playeralias	Freeman	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Major. Lauren from UT3
+//================================================================
+//================================================================
+
+QCMajorTaunt01 "Sounds/Players/Major/MajorTaunt01.ogg"
+QCMajorTaunt02 "Sounds/Players/Major/MajorTaunt02.ogg"
+QCMajorTaunt03 "Sounds/Players/Major/MajorTaunt03.ogg"
+QCMajorTaunt04 "Sounds/Players/Major/MajorTaunt04.ogg"
+QCMajorTaunt05 "Sounds/Players/Major/MajorTaunt05.ogg"
+QCMajorTaunt06 "Sounds/Players/Major/MajorTaunt06.ogg"
+QCMajorTaunt07 "Sounds/Players/Major/MajorTaunt07.ogg"
+QCMajorTaunt08 "Sounds/Players/Major/MajorTaunt08.ogg"
+QCMajorTaunt09 "Sounds/Players/Major/MajorTaunt09.ogg"
+QCMajorTaunt10 "Sounds/Players/Major/MajorTaunt10.ogg"
+QCMajorTaunt11 "Sounds/Players/Major/MajorTaunt11.ogg"
+QCMajorTaunt12 "Sounds/Players/Major/MajorTaunt12.ogg"
+QCMajorTaunt13 "Sounds/Players/Major/MajorTaunt13.ogg"
+QCMajorTaunt14 "Sounds/Players/Major/MajorTaunt14.ogg"
+QCMajorTaunt15 "Sounds/Players/Major/MajorTaunt15.ogg"
+QCMajorTaunt16 "Sounds/Players/Major/MajorTaunt16.ogg"
+
+
+
+$random MajorJump { MajorJump1 MajorJump2 None }
+MajorJump1 "Sounds/Players/Major/MajorJump1.ogg"
+MajorJump2 "Sounds/Players/Major/MajorJump2.ogg"
+$volume MajorJump1 0.9
+$volume MajorJump2 0.9
+$attenuation MajorJump1 2.0
+$attenuation MajorJump2 2.0
+
+$playersound	Major	male	*death		"Sounds/Players/Major/MajorDeath.ogg"
+$playersound	Major	male	*xdeath		"Sounds/Players/Major/MajorXDeath.ogg"
+$playersound	Major	male	*gibbed		"Sounds/Players/Major/MajorXDeath.ogg"
+$playersound	Major	male	*pain100	"Sounds/Players/Major/MajorPain100.ogg"
+$playersound	Major	male	*pain75		"Sounds/Players/Major/MajorPain075.ogg"
+$playersound	Major	male	*pain50		"Sounds/Players/Major/MajorPain050.ogg"
+$playersound	Major	male	*pain25		"Sounds/Players/Major/MajorPain025.ogg"
+$playersound	Major	male	*grunt		"Sounds/Players/Major/MajorGrunt.ogg"
+$playersound	Major	male	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Major	male	*jump		MajorJump
+$playersound	Major	male	*usefail	"Sounds/Players/Major/MajorOof.ogg"
+$playeralias	Major	male	*taunt		NoSoundHax
+
+$playeralias	Major	female	*death		MajorDeath
+$playersound	Major	female	*xdeath		"Sounds/Players/Major/MajorXDeath.ogg"
+$playersound	Major	female	*gibbed		"Sounds/Players/Major/MajorXDeath.ogg"
+$playersound	Major	female	*pain100	"Sounds/Players/Major/MajorPain100.ogg"
+$playersound	Major	female	*pain75		"Sounds/Players/Major/MajorPain075.ogg"
+$playersound	Major	female	*pain50		"Sounds/Players/Major/MajorPain050.ogg"
+$playersound	Major	female	*pain25		"Sounds/Players/Major/MajorPain025.ogg"
+$playersound	Major	female	*grunt		"Sounds/Players/Major/MajorGrunt.ogg"
+$playersound	Major	female	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Major	female	*jump		MajorJump
+$playersound	Major	female	*usefail	"Sounds/Players/Major/MajorOof.ogg"
+$playeralias	Major	female	*taunt		NoSoundHax
+
+$playeralias	Major	other	*death		MajorDeath
+$playersound	Major	other	*xdeath		"Sounds/Players/Major/MajorXDeath.ogg"
+$playersound	Major	other	*gibbed		"Sounds/Players/Major/MajorXDeath.ogg"
+$playersound	Major	other	*pain100	"Sounds/Players/Major/MajorPain100.ogg"
+$playersound	Major	other	*pain75		"Sounds/Players/Major/MajorPain075.ogg"
+$playersound	Major	other	*pain50		"Sounds/Players/Major/MajorPain050.ogg"
+$playersound	Major	other	*pain25		"Sounds/Players/Major/MajorPain025.ogg"
+$playersound	Major	other	*grunt		"Sounds/Players/Major/MajorGrunt.ogg"
+$playersound	Major	other	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Major	other	*jump		MajorJump
+$playersound	Major	other	*usefail	"Sounds/Players/Major/MajorOof.ogg"
+$playeralias	Major	other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// Lucienne. Voice from a NPC in HL2
+//================================================================
+//================================================================
+
+QCLucienneTaunt01 "Sounds/Players/Lucienne/LucienneTaunt01.ogg"
+QCLucienneTaunt02 "Sounds/Players/Lucienne/LucienneTaunt02.ogg"
+QCLucienneTaunt03 "Sounds/Players/Lucienne/LucienneTaunt03.ogg"
+QCLucienneTaunt04 "Sounds/Players/Lucienne/LucienneTaunt04.ogg"
+QCLucienneTaunt05 "Sounds/Players/Lucienne/LucienneTaunt05.ogg"
+QCLucienneTaunt06 "Sounds/Players/Lucienne/LucienneTaunt06.ogg"
+QCLucienneTaunt07 "Sounds/Players/Lucienne/LucienneTaunt07.ogg"
+QCLucienneTaunt08 "Sounds/Players/Lucienne/LucienneTaunt08.ogg"
+QCLucienneTaunt09 "Sounds/Players/Lucienne/LucienneTaunt09.ogg"
+QCLucienneTaunt10 "Sounds/Players/Lucienne/LucienneTaunt10.ogg"
+QCLucienneTaunt11 "Sounds/Players/Lucienne/LucienneTaunt11.ogg"
+QCLucienneTaunt12 "Sounds/Players/Lucienne/LucienneTaunt12.ogg"
+QCLucienneTaunt13 "Sounds/Players/Lucienne/LucienneTaunt13.ogg"
+QCLucienneTaunt14 "Sounds/Players/Lucienne/LucienneTaunt14.ogg"
+QCLucienneTaunt15 "Sounds/Players/Lucienne/LucienneTaunt15.ogg"
+QCLucienneTaunt16 "Sounds/Players/Lucienne/LucienneTaunt16.ogg"
+QCLucienneTaunt17 "Sounds/Players/Lucienne/LucienneTaunt17.ogg"
+QCLucienneTaunt18 "Sounds/Players/Lucienne/LucienneTaunt18.ogg"
+QCLucienneTaunt19 "Sounds/Players/Lucienne/LucienneTaunt19.ogg"
+QCLucienneTaunt20 "Sounds/Players/Lucienne/LucienneTaunt20.ogg"
+
+
+
+$random LucienneJump { LucienneJump1 LucienneJump1 None }
+LucienneJump1 "Sounds/Players/Lucienne/LucienneJump.ogg"
+$volume LucienneJump1 0.9
+$attenuation LucienneJump1 2.0
+
+$random LucienneDeath { LucienneDeath1 LucienneDeath2 }
+LucienneDeath1 "Sounds/Players/Lucienne/LucienneDeath1.ogg"
+LucienneDeath2 "Sounds/Players/Lucienne/LucienneDeath2.ogg"
+
+$random LuciennePain100 { LuciennePain100a LuciennePain100b }
+LuciennePain100a "Sounds/Players/Lucienne/LuciennePain100a.ogg"
+LuciennePain100b "Sounds/Players/Lucienne/LuciennePain100b.ogg"
+
+$playeralias	Lucienne	male	*death		LucienneDeath
+$playeralias	Lucienne	male	*xdeath		LucienneDeath
+$playeralias	Lucienne	male	*gibbed		LucienneDeath
+$playeralias	Lucienne	male	*pain100	LuciennePain100
+$playersound	Lucienne	male	*pain75		"Sounds/Players/Lucienne/LuciennePain075.ogg"
+$playersound	Lucienne	male	*pain50		"Sounds/Players/Lucienne/LuciennePain050.ogg"
+$playersound	Lucienne	male	*pain25		"Sounds/Players/Lucienne/LuciennePain025.ogg"
+$playersound	Lucienne	male	*grunt		"Sounds/Players/Lucienne/LucienneGrunt.ogg"
+$playersound	Lucienne	male	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Lucienne	male	*jump		LucienneJump
+$playersound	Lucienne	male	*usefail	"Sounds/Players/Lucienne/LucienneOof.ogg"
+$playeralias	Lucienne	male	*taunt		NoSoundHax
+
+
+$playeralias	Lucienne	female	*death		LucienneDeath
+$playeralias	Lucienne	female	*xdeath		LucienneDeath
+$playeralias	Lucienne	female	*gibbed		LucienneDeath
+$playeralias	Lucienne	female	*pain100	LuciennePain100
+$playersound	Lucienne	female	*pain75		"Sounds/Players/Lucienne/LuciennePain075.ogg"
+$playersound	Lucienne	female	*pain50		"Sounds/Players/Lucienne/LuciennePain050.ogg"
+$playersound	Lucienne	female	*pain25		"Sounds/Players/Lucienne/LuciennePain025.ogg"
+$playersound	Lucienne	female	*grunt		"Sounds/Players/Lucienne/LucienneGrunt.ogg"
+$playersound	Lucienne	female	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Lucienne	female	*jump		LucienneJump
+$playersound	Lucienne	female	*usefail	"Sounds/Players/Lucienne/LucienneOof.ogg"
+$playeralias	Lucienne	female	*taunt		NoSoundHax
+
+$playeralias	Lucienne	other	*death		LucienneDeath
+$playeralias	Lucienne	other	*xdeath		LucienneDeath
+$playeralias	Lucienne	other	*gibbed		LucienneDeath
+$playeralias	Lucienne	other	*pain100	LuciennePain100
+$playersound	Lucienne	other	*pain75		"Sounds/Players/Lucienne/LuciennePain075.ogg"
+$playersound	Lucienne	other	*pain50		"Sounds/Players/Lucienne/LuciennePain050.ogg"
+$playersound	Lucienne	other	*pain25		"Sounds/Players/Lucienne/LuciennePain025.ogg"
+$playersound	Lucienne	other	*grunt		"Sounds/Players/Lucienne/LucienneGrunt.ogg"
+$playersound	Lucienne	other	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
+$playeralias	Lucienne	other	*jump		LucienneJump
+$playersound	Lucienne	other	*usefail	"Sounds/Players/Lucienne/LucienneOof.ogg"
+$playeralias	Lucienne	other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// Hunter. Kitana from MKX
+//================================================================
+//================================================================
+
+QCHunterTaunt01 "Sounds/Players/Hunter/HunterTaunt01.ogg"
+QCHunterTaunt02 "Sounds/Players/Hunter/HunterTaunt02.ogg"
+QCHunterTaunt03 "Sounds/Players/Hunter/HunterTaunt03.ogg"
+QCHunterTaunt04 "Sounds/Players/Hunter/HunterTaunt04.ogg"
+QCHunterTaunt05 "Sounds/Players/Hunter/HunterTaunt05.ogg"
+QCHunterTaunt06 "Sounds/Players/Hunter/HunterTaunt06.ogg"
+QCHunterTaunt07 "Sounds/Players/Hunter/HunterTaunt07.ogg"
+QCHunterTaunt08 "Sounds/Players/Hunter/HunterTaunt08.ogg"
+QCHunterTaunt09 "Sounds/Players/Hunter/HunterTaunt09.ogg"
+QCHunterTaunt10 "Sounds/Players/Hunter/HunterTaunt10.ogg"
+QCHunterTaunt11 "Sounds/Players/Hunter/HunterTaunt11.ogg"
+QCHunterTaunt12 "Sounds/Players/Hunter/HunterTaunt12.ogg"
+QCHunterTaunt13 "Sounds/Players/Hunter/HunterTaunt13.ogg"
+QCHunterTaunt14 "Sounds/Players/Hunter/HunterTaunt14.ogg"
+QCHunterTaunt15 "Sounds/Players/Hunter/HunterTaunt15.ogg"
+QCHunterTaunt16 "Sounds/Players/Hunter/HunterTaunt16.ogg"
+
+
+
+$random HunterJump { HunterJump1 HunterJump2 None }
+HunterJump1 "Sounds/Players/Hunter/HunterJump1.ogg"
+HunterJump2 "Sounds/Players/Hunter/HunterJump2.ogg"
+$volume HunterJump1 0.9
+$volume HunterJump2 0.9
+$attenuation HunterJump1 2.0
+$attenuation HunterJump2 2.0
+
+$playersound	Hunter	male	*death		"Sounds/Players/Hunter/HunterDeath.ogg"
+$playersound	Hunter	male	*xdeath		"Sounds/Players/Hunter/HunterXDeath.ogg"
+$playersound	Hunter	male	*gibbed		"Sounds/Players/Hunter/HunterXDeath.ogg"
+$playersound	Hunter	male	*pain100	"Sounds/Players/Hunter/HunterPain100.ogg"
+$playersound	Hunter	male	*pain75		"Sounds/Players/Hunter/HunterPain075.ogg"
+$playersound	Hunter	male	*pain50		"Sounds/Players/Hunter/HunterPain050.ogg"
+$playersound	Hunter	male	*pain25		"Sounds/Players/Hunter/HunterPain025.ogg"
+$playersound	Hunter	male	*grunt		"Sounds/Players/Hunter/HunterGrunt.ogg"
+$playersound	Hunter	male	*land		"Sounds/Players/Footsteps/HunterStomp.ogg"
+$playeralias	Hunter	male	*jump		HunterJump
+$playersound	Hunter	male	*usefail	"Sounds/Players/Hunter/HunterOof.ogg"
+$playeralias	Hunter	male	*taunt		NoSoundHax
+
+$playeralias	Hunter	female	*death		HunterDeath
+$playersound	Hunter	female	*xdeath		"Sounds/Players/Hunter/HunterXDeath.ogg"
+$playersound	Hunter	female	*gibbed		"Sounds/Players/Hunter/HunterXDeath.ogg"
+$playersound	Hunter	female	*pain100	"Sounds/Players/Hunter/HunterPain100.ogg"
+$playersound	Hunter	female	*pain75		"Sounds/Players/Hunter/HunterPain075.ogg"
+$playersound	Hunter	female	*pain50		"Sounds/Players/Hunter/HunterPain050.ogg"
+$playersound	Hunter	female	*pain25		"Sounds/Players/Hunter/HunterPain025.ogg"
+$playersound	Hunter	female	*grunt		"Sounds/Players/Hunter/HunterGrunt.ogg"
+$playersound	Hunter	female	*land		"Sounds/Players/Footsteps/HunterStomp.ogg"
+$playeralias	Hunter	female	*jump		HunterJump
+$playersound	Hunter	female	*usefail	"Sounds/Players/Hunter/HunterOof.ogg"
+$playeralias	Hunter	female	*taunt		NoSoundHax
+
+$playeralias	Hunter	other	*death		HunterDeath
+$playersound	Hunter	other	*xdeath		"Sounds/Players/Hunter/HunterXDeath.ogg"
+$playersound	Hunter	other	*gibbed		"Sounds/Players/Hunter/HunterXDeath.ogg"
+$playersound	Hunter	other	*pain100	"Sounds/Players/Hunter/HunterPain100.ogg"
+$playersound	Hunter	other	*pain75		"Sounds/Players/Hunter/HunterPain075.ogg"
+$playersound	Hunter	other	*pain50		"Sounds/Players/Hunter/HunterPain050.ogg"
+$playersound	Hunter	other	*pain25		"Sounds/Players/Hunter/HunterPain025.ogg"
+$playersound	Hunter	other	*grunt		"Sounds/Players/Hunter/HunterGrunt.ogg"
+$playersound	Hunter	other	*land		"Sounds/Players/Footsteps/HunterStomp.ogg"
+$playeralias	Hunter	other	*jump		HunterJump
+$playersound	Hunter	other	*usefail	"Sounds/Players/Hunter/HunterOof.ogg"
+$playeralias	Hunter	other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// Sam. Sam from SS3 BFE
+//================================================================
+//================================================================
+
+QCSamTaunt01 "Sounds/Players/Sam/SamTaunt01.ogg"
+QCSamTaunt02 "Sounds/Players/Sam/SamTaunt02.ogg"
+QCSamTaunt03 "Sounds/Players/Sam/SamTaunt03.ogg"
+QCSamTaunt04 "Sounds/Players/Sam/SamTaunt04.ogg"
+QCSamTaunt05 "Sounds/Players/Sam/SamTaunt05.ogg"
+QCSamTaunt06 "Sounds/Players/Sam/SamTaunt06.ogg"
+QCSamTaunt07 "Sounds/Players/Sam/SamTaunt07.ogg"
+QCSamTaunt08 "Sounds/Players/Sam/SamTaunt08.ogg"
+QCSamTaunt09 "Sounds/Players/Sam/SamTaunt09.ogg"
+QCSamTaunt10 "Sounds/Players/Sam/SamTaunt10.ogg"
+QCSamTaunt11 "Sounds/Players/Sam/SamTaunt11.ogg"
+QCSamTaunt12 "Sounds/Players/Sam/SamTaunt12.ogg"
+QCSamTaunt13 "Sounds/Players/Sam/SamTaunt13.ogg"
+QCSamTaunt14 "Sounds/Players/Sam/SamTaunt14.ogg"
+QCSamTaunt15 "Sounds/Players/Sam/SamTaunt15.ogg"
+QCSamTaunt16 "Sounds/Players/Sam/SamTaunt16.ogg"
+QCSamTaunt17 "Sounds/Players/Sam/SamTaunt17.ogg"
+QCSamTaunt18 "Sounds/Players/Sam/SamTaunt18.ogg"
+QCSamTaunt19 "Sounds/Players/Sam/SamTaunt19.ogg"
+QCSamTaunt20 "Sounds/Players/Sam/SamTaunt20.ogg"
+QCSamTaunt21 "Sounds/Players/Sam/SamTaunt21.ogg"
+QCSamTaunt22 "Sounds/Players/Sam/SamTaunt22.ogg"
+
+
+
+$random SamJump { SamJump1 SamJump2 None }
+SamJump1 "Sounds/Players/Sam/SamJump1.ogg"
+SamJump2 "Sounds/Players/Sam/SamJump2.ogg"
+$volume SamJump1 0.9
+$volume SamJump2 0.9
+$attenuation SamJump1 2.0
+$attenuation SamJump2 2.0
+
+$playersound	Sam	male	*death		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	male	*xdeath		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	male	*gibbed		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	male	*pain100	"Sounds/Players/Sam/SamPain100.ogg"
+$playersound	Sam	male	*pain75		"Sounds/Players/Sam/SamPain100.ogg"
+$playersound	Sam	male	*pain50		"Sounds/Players/Sam/SamPain050.ogg"
+$playersound	Sam	male	*pain25		"Sounds/Players/Sam/SamPain025.ogg"
+$playersound	Sam	male	*grunt		"Sounds/Players/Sam/SamGrunt.ogg"
+$playersound	Sam	male	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Sam	male	*jump		SamJump
+$playersound	Sam	male	*usefail	"Sounds/Players/Sam/SamOof.ogg"
+$playeralias	Sam	male	*taunt		NoSoundHax
+
+$playersound	Sam	female	*death		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	female	*xdeath		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	female	*gibbed		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	female	*pain100	"Sounds/Players/Sam/SamPain100.ogg"
+$playersound	Sam	female	*pain75		"Sounds/Players/Sam/SamPain100.ogg"
+$playersound	Sam	female	*pain50		"Sounds/Players/Sam/SamPain050.ogg"
+$playersound	Sam	female	*pain25		"Sounds/Players/Sam/SamPain025.ogg"
+$playersound	Sam	female	*grunt		"Sounds/Players/Sam/SamGrunt.ogg"
+$playersound	Sam	female	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Sam	female	*jump		SamJump
+$playersound	Sam	female	*usefail	"Sounds/Players/Sam/SamOof.ogg"
+$playeralias	Sam	female	*taunt		NoSoundHax
+
+$playersound	Sam	other	*death		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	other	*xdeath		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	other	*gibbed		"Sounds/Players/Sam/SamDeath.ogg"
+$playersound	Sam	other	*pain100	"Sounds/Players/Sam/SamPain100.ogg"
+$playersound	Sam	other	*pain75		"Sounds/Players/Sam/SamPain100.ogg"
+$playersound	Sam	other	*pain50		"Sounds/Players/Sam/SamPain050.ogg"
+$playersound	Sam	other	*pain25		"Sounds/Players/Sam/SamPain025.ogg"
+$playersound	Sam	other	*grunt		"Sounds/Players/Sam/SamGrunt.ogg"
+$playersound	Sam	other	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Sam	other	*jump		SamJump
+$playersound	Sam	other	*usefail	"Sounds/Players/Sam/SamOof.ogg"
+$playeralias	Sam	other	*taunt		NoSoundHax
+
+
+//================================================================
+//================================================================
+// Postal Dude, from postal 2
+//================================================================
+//================================================================
+
+QCPostalTaunt01 "Sounds/Players/Postal/PostalTaunt01.ogg"
+QCPostalTaunt02 "Sounds/Players/Postal/PostalTaunt02.ogg"
+QCPostalTaunt03 "Sounds/Players/Postal/PostalTaunt03.ogg"
+QCPostalTaunt04 "Sounds/Players/Postal/PostalTaunt04.ogg"
+QCPostalTaunt05 "Sounds/Players/Postal/PostalTaunt05.ogg"
+QCPostalTaunt06 "Sounds/Players/Postal/PostalTaunt06.ogg"
+QCPostalTaunt07 "Sounds/Players/Postal/PostalTaunt07.ogg"
+QCPostalTaunt08 "Sounds/Players/Postal/PostalTaunt08.ogg"
+QCPostalTaunt09 "Sounds/Players/Postal/PostalTaunt09.ogg"
+QCPostalTaunt10 "Sounds/Players/Postal/PostalTaunt10.ogg"
+QCPostalTaunt11 "Sounds/Players/Postal/PostalTaunt11.ogg"
+QCPostalTaunt12 "Sounds/Players/Postal/PostalTaunt12.ogg"
+QCPostalTaunt13 "Sounds/Players/Postal/PostalTaunt13.ogg"
+QCPostalTaunt14 "Sounds/Players/Postal/PostalTaunt14.ogg"
+QCPostalTaunt15 "Sounds/Players/Postal/PostalTaunt15.ogg"
+QCPostalTaunt16 "Sounds/Players/Postal/PostalTaunt16.ogg"
+QCPostalTaunt17 "Sounds/Players/Postal/PostalTaunt17.ogg"
+QCPostalTaunt18 "Sounds/Players/Postal/PostalTaunt18.ogg"
+QCPostalTaunt19 "Sounds/Players/Postal/PostalTaunt19.ogg"
+QCPostalTaunt20 "Sounds/Players/Postal/PostalTaunt20.ogg"
+QCPostalTaunt21 "Sounds/Players/Postal/PostalTaunt21.ogg"
+QCPostalTaunt22 "Sounds/Players/Postal/PostalTaunt22.ogg"
+
+
+
+$random PostalDeath { PostalDeath1 PostalDeath2 PostalDeath3 }
+PostalDeath1 "Sounds/Players/Postal/PostalDeath1.ogg"
+PostalDeath2 "Sounds/Players/Postal/PostalDeath2.ogg"
+PostalDeath3 "Sounds/Players/Postal/PostalDeath3.ogg"
+
+$random PostalPain100 { PostalPain100a PostalPain100b PostalPain100c }
+PostalPain100a "Sounds/Players/Postal/PostalPain100a.ogg"
+PostalPain100b "Sounds/Players/Postal/PostalPain100b.ogg"
+PostalPain100c "Sounds/Players/Postal/PostalPain100c.ogg"
+
+$random PostalPain25 { PostalPain25a PostalPain25b PostalPain25a PostalPain25b
+                       PostalPain25a PostalPain25b PostalPain25a PostalPain25b
+					   PostalPain25a PostalPain25b PostalPain25a PostalPain25b
+                       PostalPain25rare }
+PostalPain25a "Sounds/Players/Postal/PostalPain25a.ogg"
+PostalPain25b "Sounds/Players/Postal/PostalPain25b.ogg"
+PostalPain25rare "Sounds/Players/Postal/PostalPain25rare.ogg"
+
+
+$random PostalJump { PostalJump1 PostalJump1 None }
+PostalJump1 "Sounds/Players/Postal/PostalJump.ogg"
+$volume PostalJump1 0.9
+$attenuation PostalJump1 2.0
+
+$playeralias	Postal	male	*death		PostalDeath
+$playeralias	Postal	male	*xdeath		PostalDeath
+$playeralias	Postal	male	*gibbed		PostalDeath
+$playeralias	Postal	male	*pain100	PostalPain100
+$playersound	Postal	male	*pain75		"Sounds/Players/Postal/PostalPain75.ogg"
+$playersound	Postal	male	*pain50		"Sounds/Players/Postal/PostalPain50.ogg"
+$playeralias	Postal	male	*pain25		PostalPain25
+$playersound	Postal	male	*grunt		"Sounds/Players/Postal/PostalGrunt.ogg"
+$playersound	Postal	male	*land		"Sounds/Players/Footsteps/PostalStomp.ogg"
+$playeralias	Postal	male	*jump		PostalJump
+$playersound	Postal	male	*usefail	"Sounds/Players/Postal/PostalOof.ogg"
+$playeralias	Postal	male	*taunt		NoSoundHax
+
+$playeralias	Postal	female	*death		PostalDeath
+$playeralias	Postal	female	*xdeath		PostalDeath
+$playeralias	Postal	female	*gibbed		PostalDeath
+$playeralias	Postal	female	*pain100	PostalPain100
+$playersound	Postal	female	*pain75		"Sounds/Players/Postal/PostalPain75.ogg"
+$playersound	Postal	female	*pain50		"Sounds/Players/Postal/PostalPain50.ogg"
+$playeralias	Postal	female	*pain25		PostalPain25
+$playersound	Postal	female	*grunt		"Sounds/Players/Postal/PostalGrunt.ogg"
+$playersound	Postal	female	*land		"Sounds/Players/Footsteps/PostalStomp.ogg"
+$playeralias	Postal	female	*jump		PostalJump
+$playersound	Postal	female	*usefail	"Sounds/Players/Postal/PostalOof.ogg"
+$playeralias	Postal	female	*taunt		NoSoundHax
+
+$playeralias	Postal	other	*death		PostalDeath
+$playeralias	Postal	other	*xdeath		PostalDeath
+$playeralias	Postal	other	*gibbed		PostalDeath
+$playeralias	Postal	other	*pain100	PostalPain100
+$playersound	Postal	other	*pain75		"Sounds/Players/Postal/PostalPain75.ogg"
+$playersound	Postal	other	*pain50		"Sounds/Players/Postal/PostalPain50.ogg"
+$playeralias	Postal	other	*pain25		PostalPain25
+$playersound	Postal	other	*grunt		"Sounds/Players/Postal/PostalGrunt.ogg"
+$playersound	Postal	other	*land		"Sounds/Players/Footsteps/PostalStomp.ogg"
+$playeralias	Postal	other	*jump		PostalJump
+$playersound	Postal	other	*usefail	"Sounds/Players/Postal/PostalOof.ogg"
+$playeralias	Postal	other	*taunt		NoSoundHax
+
+
+
+
+//================================================================
+//================================================================
+// Painkiller.
+// Vocalizations from the original Painkiller game
+// Daniel taunts, and all demon taunts/vocal. by George Exley
+//================================================================
+//================================================================
+
+QCPainkillerTaunt01 "Sounds/Players/Painkiller/PainkillerTaunt01.ogg"
+QCPainkillerTaunt02 "Sounds/Players/Painkiller/PainkillerTaunt02.ogg"
+QCPainkillerTaunt03 "Sounds/Players/Painkiller/PainkillerTaunt03.ogg"
+QCPainkillerTaunt04 "Sounds/Players/Painkiller/PainkillerTaunt04.ogg"
+QCPainkillerTaunt05 "Sounds/Players/Painkiller/PainkillerTaunt05.ogg"
+QCPainkillerTaunt06 "Sounds/Players/Painkiller/PainkillerTaunt06.ogg"
+QCPainkillerTaunt07 "Sounds/Players/Painkiller/PainkillerTaunt07.ogg"
+QCPainkillerTaunt08 "Sounds/Players/Painkiller/PainkillerTaunt08.ogg"
+QCPainkillerTaunt09 "Sounds/Players/Painkiller/PainkillerTaunt09.ogg"
+QCPainkillerTaunt10 "Sounds/Players/Painkiller/PainkillerTaunt10.ogg"
+QCPainkillerTaunt11 "Sounds/Players/Painkiller/PainkillerTaunt11.ogg"
+QCPainkillerTaunt12 "Sounds/Players/Painkiller/PainkillerTaunt12.ogg"
+QCPainkillerTaunt13 "Sounds/Players/Painkiller/PainkillerTaunt13.ogg"
+QCPainkillerTaunt14 "Sounds/Players/Painkiller/PainkillerTaunt14.ogg"
+QCPainkillerTaunt15 "Sounds/Players/Painkiller/PainkillerTaunt15.ogg"
+QCPainkillerTaunt16 "Sounds/Players/Painkiller/PainkillerTaunt16.ogg"
+QCPainkillerTaunt17 "Sounds/Players/Painkiller/PainkillerTaunt17.ogg"
+QCPainkillerTaunt18 "Sounds/Players/Painkiller/PainkillerTaunt18.ogg"
+QCPainkillerTaunt19 "Sounds/Players/Painkiller/PainkillerTaunt19.ogg"
+QCPainkillerTaunt20 "Sounds/Players/Painkiller/PainkillerTaunt20.ogg"
+QCPainkillerTaunt21 "Sounds/Players/Painkiller/PainkillerTaunt21.ogg"
+QCPainkillerTaunt22 "Sounds/Players/Painkiller/PainkillerTaunt22.ogg"
+QCPainkillerTaunt23 "Sounds/Players/Painkiller/PainkillerTaunt23.ogg"
+QCPainkillerTaunt24 "Sounds/Players/Painkiller/PainkillerTaunt24.ogg"
+QCPainkillerTaunt25 "Sounds/Players/Painkiller/PainkillerTaunt25.ogg"
+QCPainkillerTaunt26 "Sounds/Players/Painkiller/PainkillerTaunt26.ogg"
+
+
+QCPainkillerPage1Taunt01 "Sounds/Players/Painkiller/PKDemonTaunt01.ogg"
+QCPainkillerPage1Taunt02 "Sounds/Players/Painkiller/PKDemonTaunt02.ogg"
+QCPainkillerPage1Taunt03 "Sounds/Players/Painkiller/PKDemonTaunt03.ogg"
+QCPainkillerPage1Taunt04 "Sounds/Players/Painkiller/PKDemonTaunt04.ogg"
+QCPainkillerPage1Taunt05 "Sounds/Players/Painkiller/PKDemonTaunt05.ogg"
+QCPainkillerPage1Taunt06 "Sounds/Players/Painkiller/PKDemonTaunt06.ogg"
+QCPainkillerPage1Taunt07 "Sounds/Players/Painkiller/PKDemonTaunt07.ogg"
+QCPainkillerPage1Taunt08 "Sounds/Players/Painkiller/PKDemonTaunt08.ogg"
+QCPainkillerPage1Taunt09 "Sounds/Players/Painkiller/PKDemonTaunt09.ogg"
+
+$random PainkillerJump { PainkillerJump1 PainkillerJump2 None }
+PainkillerJump1 "Sounds/Players/Painkiller/PainkillerJump1.ogg"
+PainkillerJump2 "Sounds/Players/Painkiller/PainkillerJump2.ogg"
+$volume PainkillerJump1 0.9
+$volume PainkillerJump2 0.9
+$attenuation PainkillerJump1 2.0
+$attenuation PainkillerJump2 2.0
+
+$playersound	Painkiller	male	*death		"Sounds/Players/Painkiller/PainkillerDeath.ogg"
+$playersound	Painkiller	male	*xdeath		"Sounds/Players/Painkiller/PainkillerXDeath.ogg"
+$playersound	Painkiller	male	*gibbed		"Sounds/Players/Painkiller/PainkillerXDeath.ogg"
+$playersound	Painkiller	male	*pain100	"Sounds/Players/Painkiller/PainkillerPain100.ogg"
+$playersound	Painkiller	male	*pain75		"Sounds/Players/Painkiller/PainkillerPain075.ogg"
+$playersound	Painkiller	male	*pain50		"Sounds/Players/Painkiller/PainkillerPain050.ogg"
+$playersound	Painkiller	male	*pain25		"Sounds/Players/Painkiller/PainkillerPain025.ogg"
+$playersound	Painkiller	male	*grunt		"Sounds/Players/Painkiller/PainkillerGrunt.ogg"
+$playersound	Painkiller	male	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Painkiller	male	*jump		PainkillerJump
+$playersound	Painkiller	male	*usefail	"Sounds/Players/Painkiller/PainkillerOof.ogg"
+$playeralias	Painkiller	male	*taunt		NoSoundHax
+
+$playersound	Painkiller	female	*death		"Sounds/Players/Painkiller/PainkillerDeath.ogg"
+$playersound	Painkiller	female	*xdeath		"Sounds/Players/Painkiller/PainkillerXDeath.ogg"
+$playersound	Painkiller	female	*gibbed		"Sounds/Players/Painkiller/PainkillerXDeath.ogg"
+$playersound	Painkiller	female	*pain100	"Sounds/Players/Painkiller/PainkillerPain100.ogg"
+$playersound	Painkiller	female	*pain75		"Sounds/Players/Painkiller/PainkillerPain075.ogg"
+$playersound	Painkiller	female	*pain50		"Sounds/Players/Painkiller/PainkillerPain050.ogg"
+$playersound	Painkiller	female	*pain25		"Sounds/Players/Painkiller/PainkillerPain025.ogg"
+$playersound	Painkiller	female	*grunt		"Sounds/Players/Painkiller/PainkillerGrunt.ogg"
+$playersound	Painkiller	female	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Painkiller	female	*jump		PainkillerJump
+$playersound	Painkiller	female	*usefail	"Sounds/Players/Painkiller/PainkillerOof.ogg"
+$playeralias	Painkiller	female	*taunt		NoSoundHax
+
+$playersound	Painkiller	other	*death		"Sounds/Players/Painkiller/PainkillerDeath.ogg"
+$playersound	Painkiller	other	*xdeath		"Sounds/Players/Painkiller/PainkillerXDeath.ogg"
+$playersound	Painkiller	other	*gibbed		"Sounds/Players/Painkiller/PainkillerXDeath.ogg"
+$playersound	Painkiller	other	*pain100	"Sounds/Players/Painkiller/PainkillerPain100.ogg"
+$playersound	Painkiller	other	*pain75		"Sounds/Players/Painkiller/PainkillerPain075.ogg"
+$playersound	Painkiller	other	*pain50		"Sounds/Players/Painkiller/PainkillerPain050.ogg"
+$playersound	Painkiller	other	*pain25		"Sounds/Players/Painkiller/PainkillerPain025.ogg"
+$playersound	Painkiller	other	*grunt		"Sounds/Players/Painkiller/PainkillerGrunt.ogg"
+$playersound	Painkiller	other	*land		"Sounds/Players/Footsteps/DukeNukemStomp.ogg"
+$playeralias	Painkiller	other	*jump		PainkillerJump
+$playersound	Painkiller	other	*usefail	"Sounds/Players/Painkiller/PainkillerOof.ogg"
+$playeralias	Painkiller	other	*taunt		NoSoundHax
+
+
+// Demon form is soundless
+$playeralias	DemonForm		male	*death		NoSoundHax
+$playeralias	DemonForm		male	*xdeath		NoSoundHax
+$playeralias	DemonForm		male	*gibbed		NoSoundHax
+$playeralias	DemonForm		male	*pain100	NoSoundHax
+$playeralias	DemonForm		male	*pain75		NoSoundHax
+$playeralias	DemonForm		male	*pain50		NoSoundHax
+$playeralias	DemonForm		male	*pain25		NoSoundHax
+$playeralias	DemonForm		male	*grunt		NoSoundHax
+$playeralias	DemonForm		male	*land		NoSoundHax
+$playeralias	DemonForm		male	*jump		NoSoundHax
+$playeralias	DemonForm		male	*usefail	NoSoundHax
+$playeralias	DemonForm		male	*taunt		NoSoundHax
+
+$playeralias	DemonForm		female	*death		NoSoundHax
+$playeralias	DemonForm		female	*xdeath		NoSoundHax
+$playeralias	DemonForm		female	*gibbed		NoSoundHax
+$playeralias	DemonForm		female	*pain100	NoSoundHax
+$playeralias	DemonForm		female	*pain75		NoSoundHax
+$playeralias	DemonForm		female	*pain50		NoSoundHax
+$playeralias	DemonForm		female	*pain25		NoSoundHax
+$playeralias	DemonForm		female	*grunt		NoSoundHax
+$playeralias	DemonForm		female	*land		NoSoundHax
+$playeralias	DemonForm		female	*jump		NoSoundHax
+$playeralias	DemonForm		female	*usefail	NoSoundHax
+$playeralias	DemonForm		female	*taunt		NoSoundHax
+
+$playeralias	DemonForm		other	*death		NoSoundHax
+$playeralias	DemonForm		other	*xdeath		NoSoundHax
+$playeralias	DemonForm		other	*gibbed		NoSoundHax
+$playeralias	DemonForm		other	*pain100	NoSoundHax
+$playeralias	DemonForm		other	*pain75		NoSoundHax
+$playeralias	DemonForm		other	*pain50		NoSoundHax
+$playeralias	DemonForm		other	*pain25		NoSoundHax
+$playeralias	DemonForm		other	*grunt		NoSoundHax
+$playeralias	DemonForm		other	*land		NoSoundHax
+$playeralias	DemonForm		other	*jump		NoSoundHax
+$playeralias	DemonForm		other	*usefail	NoSoundHax
+$playeralias	DemonForm		other	*taunt		NoSoundHax
+
+
+
+//================================================================
+//================================================================
+// The Intruder
+// Voiced by Gianni Matragrano
+//================================================================
+//================================================================
+
+QCIntruderTaunt01 "Sounds/Players/Intruder/IntruderTaunt01.ogg"
+QCIntruderTaunt02 "Sounds/Players/Intruder/IntruderTaunt02.ogg"
+QCIntruderTaunt03 "Sounds/Players/Intruder/IntruderTaunt03.ogg"
+QCIntruderTaunt04 "Sounds/Players/Intruder/IntruderTaunt04.ogg"
+QCIntruderTaunt05 "Sounds/Players/Intruder/IntruderTaunt05.ogg"
+QCIntruderTaunt06 "Sounds/Players/Intruder/IntruderTaunt06.ogg"
+QCIntruderTaunt07 "Sounds/Players/Intruder/IntruderTaunt07.ogg"
+QCIntruderTaunt08 "Sounds/Players/Intruder/IntruderTaunt08.ogg"
+QCIntruderTaunt09 "Sounds/Players/Intruder/IntruderTaunt09.ogg"
+QCIntruderTaunt10 "Sounds/Players/Intruder/IntruderTaunt10.ogg"
+QCIntruderTaunt11 "Sounds/Players/Intruder/IntruderTaunt11.ogg"
+QCIntruderTaunt12 "Sounds/Players/Intruder/IntruderTaunt12.ogg"
+QCIntruderTaunt13 "Sounds/Players/Intruder/IntruderTaunt13.ogg"
+QCIntruderTaunt14 "Sounds/Players/Intruder/IntruderTaunt14.ogg"
+QCIntruderTaunt15 "Sounds/Players/Intruder/IntruderTaunt15.ogg"
+QCIntruderTaunt16 "Sounds/Players/Intruder/IntruderTaunt16.ogg"
+QCIntruderTaunt17 "Sounds/Players/Intruder/IntruderTaunt17.ogg"
+QCIntruderTaunt18 "Sounds/Players/Intruder/IntruderTaunt18.ogg"
+QCIntruderTaunt19 "Sounds/Players/Intruder/IntruderTaunt19.ogg"
+QCIntruderTaunt20 "Sounds/Players/Intruder/IntruderTaunt20.ogg"
+QCIntruderTaunt21 "Sounds/Players/Intruder/IntruderTaunt21.ogg"
+QCIntruderTaunt22 "Sounds/Players/Intruder/IntruderTaunt22.ogg"
+QCIntruderTaunt23 "Sounds/Players/Intruder/IntruderTaunt23.ogg"
+QCIntruderTaunt24 "Sounds/Players/Intruder/IntruderTaunt24.ogg"
+QCIntruderTaunt25 "Sounds/Players/Intruder/IntruderTaunt25.ogg"
+QCIntruderTaunt26 "Sounds/Players/Intruder/IntruderTaunt26.ogg"
+QCIntruderTaunt27 "Sounds/Players/Intruder/IntruderTaunt27.ogg"
+
+QCIntruderPage1Taunt01 "Sounds/Players/Intruder/NyarlaTaunt01.ogg"
+QCIntruderPage1Taunt02 "Sounds/Players/Intruder/NyarlaTaunt02.ogg"
+QCIntruderPage1Taunt03 "Sounds/Players/Intruder/NyarlaTaunt03.ogg"
+QCIntruderPage1Taunt04 "Sounds/Players/Intruder/NyarlaTaunt04.ogg"
+QCIntruderPage1Taunt05 "Sounds/Players/Intruder/NyarlaTaunt05.ogg"
+QCIntruderPage1Taunt06 "Sounds/Players/Intruder/NyarlaTaunt06.ogg"
+QCIntruderPage1Taunt07 "Sounds/Players/Intruder/NyarlaTaunt07.ogg"
+QCIntruderPage1Taunt08 "Sounds/Players/Intruder/NyarlaTaunt08.ogg"
+QCIntruderPage1Taunt09 "Sounds/Players/Intruder/NyarlaTaunt09.ogg"
+QCIntruderPage1Taunt10 "Sounds/Players/Intruder/NyarlaTaunt10.ogg"
+QCIntruderPage1Taunt11 "Sounds/Players/Intruder/NyarlaTaunt11.ogg"
+
+
+$random IntruderJump { IntruderJump1 IntruderJump2 }
+IntruderJump1 "Sounds/Players/Intruder/IntruderJump1.ogg"
+IntruderJump2 "Sounds/Players/Intruder/IntruderJump2.ogg"
+$volume IntruderJump1 0.9
+$volume IntruderJump2 0.9
+$attenuation IntruderJump1 2.0
+$attenuation IntruderJump2 2.0
+
+$random IntruderOof { IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1
+IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOofRare }
+IntruderOof1 		"Sounds/Players/Intruder/IntruderOof.ogg"
+IntruderOofRare 	"Sounds/Players/Intruder/IntruderOofRare.ogg"
+
+$random IntruderPain100 { IntruderPain100a IntruderPain100b IntruderPain100c }
+IntruderPain100a "Sounds/Players/Intruder/IntruderPain100a.ogg"
+IntruderPain100b "Sounds/Players/Intruder/IntruderPain100b.ogg"
+IntruderPain100c "Sounds/Players/Intruder/IntruderPain100c.ogg"
+
+$playersound	Intruder	male	*death		"Sounds/Players/Intruder/IntruderDeath.ogg"
+$playersound	Intruder	male	*xdeath		"Sounds/Players/Intruder/IntruderXDeath.ogg"
+$playersound	Intruder	male	*gibbed		"Sounds/Players/Intruder/IntruderXDeath.ogg"
+$playeralias	Intruder	male	*pain100	IntruderPain100
+$playersound	Intruder	male	*pain75		"Sounds/Players/Intruder/IntruderPain075.ogg"
+$playersound	Intruder	male	*pain50		"Sounds/Players/Intruder/IntruderPain050.ogg"
+$playersound	Intruder	male	*pain25		"Sounds/Players/Intruder/IntruderPain025.ogg"
+$playersound	Intruder	male	*grunt		"Sounds/Players/Intruder/IntruderGrunt.ogg"
+$playersound	Intruder	male	*land		"Sounds/Players/Footsteps/IntruderStomp.ogg"
+$playeralias	Intruder	male	*jump		IntruderJump
+$playeralias	Intruder	male	*usefail	IntruderOof
+$playeralias	Intruder	male	*taunt		NoSoundHax
+
+$playersound	Intruder	female	*death		"Sounds/Players/Intruder/IntruderDeath.ogg"
+$playersound	Intruder	female	*xdeath		"Sounds/Players/Intruder/IntruderXDeath.ogg"
+$playersound	Intruder	female	*gibbed		"Sounds/Players/Intruder/IntruderXDeath.ogg"
+$playeralias	Intruder	female	*pain100	IntruderPain100
+$playersound	Intruder	female	*pain75		"Sounds/Players/Intruder/IntruderPain075.ogg"
+$playersound	Intruder	female	*pain50		"Sounds/Players/Intruder/IntruderPain050.ogg"
+$playersound	Intruder	female	*pain25		"Sounds/Players/Intruder/IntruderPain025.ogg"
+$playersound	Intruder	female	*grunt		"Sounds/Players/Intruder/IntruderGrunt.ogg"
+$playersound	Intruder	female	*land		"Sounds/Players/Footsteps/IntruderStomp.ogg"
+$playeralias	Intruder	female	*jump		IntruderJump
+$playeralias	Intruder	female	*usefail	IntruderOof
+$playeralias	Intruder	female	*taunt		NoSoundHax
+
+$playersound	Intruder	other	*death		"Sounds/Players/Intruder/IntruderDeath.ogg"
+$playersound	Intruder	other	*xdeath		"Sounds/Players/Intruder/IntruderXDeath.ogg"
+$playersound	Intruder	other	*gibbed		"Sounds/Players/Intruder/IntruderXDeath.ogg"
+$playeralias	Intruder	other	*pain100	IntruderPain100
+$playersound	Intruder	other	*pain75		"Sounds/Players/Intruder/IntruderPain075.ogg"
+$playersound	Intruder	other	*pain50		"Sounds/Players/Intruder/IntruderPain050.ogg"
+$playersound	Intruder	other	*pain25		"Sounds/Players/Intruder/IntruderPain025.ogg"
+$playersound	Intruder	other	*grunt		"Sounds/Players/Intruder/IntruderGrunt.ogg"
+$playersound	Intruder	other	*land		"Sounds/Players/Footsteps/IntruderStomp.ogg"
+$playeralias	Intruder	other	*jump		IntruderJump
+$playeralias	Intruder	other	*usefail	IntruderOof
+$playeralias	Intruder	other	*taunt		NoSoundHax

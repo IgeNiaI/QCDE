@@ -1,0 +1,127 @@
+// --------------------------------------------------------------------------
+//
+// Eradicator's abilities
+//
+// Active:  Radar
+//          See objects on a temporary map.
+//
+// Passive: Murderface
+//          Every X killed enemies increases damage by 10%.
+//          Maximum possible damage is 1090%.
+//
+// --------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+
+// Implemented entirely in ACS.
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+Actor MurderToken : Token { Inventory.MaxAmount 99999 Inventory.InterHubAmount 0 }
+Actor MurderLevel : Token { Inventory.MaxAmount    99 Inventory.InterHubAmount 0 }
+Actor TooFewMonst : Token {                           Inventory.InterHubAmount 0 }
+
+Actor PowerMurderBase : PowerDamage { Powerup.Duration 0x7FFFFFFF }
+Actor PowerMurder1  : PowerMurderBase { DamageFactor "Normal", 1.109 }
+Actor PowerMurder2  : PowerMurderBase { DamageFactor "Normal", 1.209 }
+Actor PowerMurder3  : PowerMurderBase { DamageFactor "Normal", 1.309 }
+Actor PowerMurder4  : PowerMurderBase { DamageFactor "Normal", 1.409 }
+Actor PowerMurder5  : PowerMurderBase { DamageFactor "Normal", 1.509 }
+Actor PowerMurder6  : PowerMurderBase { DamageFactor "Normal", 1.609 }
+Actor PowerMurder7  : PowerMurderBase { DamageFactor "Normal", 1.709 }
+Actor PowerMurder8  : PowerMurderBase { DamageFactor "Normal", 1.809 }
+Actor PowerMurder9  : PowerMurderBase { DamageFactor "Normal", 1.909 }
+Actor PowerMurder10 : PowerMurderBase { DamageFactor "Normal", 2.009 }
+Actor PowerMurder11 : PowerMurderBase { DamageFactor "Normal", 2.109 }
+Actor PowerMurder12 : PowerMurderBase { DamageFactor "Normal", 2.209 }
+Actor PowerMurder13 : PowerMurderBase { DamageFactor "Normal", 2.309 }
+Actor PowerMurder14 : PowerMurderBase { DamageFactor "Normal", 2.409 }
+Actor PowerMurder15 : PowerMurderBase { DamageFactor "Normal", 2.509 }
+Actor PowerMurder16 : PowerMurderBase { DamageFactor "Normal", 2.609 }
+Actor PowerMurder17 : PowerMurderBase { DamageFactor "Normal", 2.709 }
+Actor PowerMurder18 : PowerMurderBase { DamageFactor "Normal", 2.809 }
+Actor PowerMurder19 : PowerMurderBase { DamageFactor "Normal", 2.909 }
+Actor PowerMurder20 : PowerMurderBase { DamageFactor "Normal", 3.009 }
+Actor PowerMurder21 : PowerMurderBase { DamageFactor "Normal", 3.109 }
+Actor PowerMurder22 : PowerMurderBase { DamageFactor "Normal", 3.209 }
+Actor PowerMurder23 : PowerMurderBase { DamageFactor "Normal", 3.309 }
+Actor PowerMurder24 : PowerMurderBase { DamageFactor "Normal", 3.409 }
+Actor PowerMurder25 : PowerMurderBase { DamageFactor "Normal", 3.509 }
+Actor PowerMurder26 : PowerMurderBase { DamageFactor "Normal", 3.609 }
+Actor PowerMurder27 : PowerMurderBase { DamageFactor "Normal", 3.709 }
+Actor PowerMurder28 : PowerMurderBase { DamageFactor "Normal", 3.809 }
+Actor PowerMurder29 : PowerMurderBase { DamageFactor "Normal", 3.909 }
+Actor PowerMurder30 : PowerMurderBase { DamageFactor "Normal", 4.009 }
+Actor PowerMurder31 : PowerMurderBase { DamageFactor "Normal", 4.109 }
+Actor PowerMurder32 : PowerMurderBase { DamageFactor "Normal", 4.209 }
+Actor PowerMurder33 : PowerMurderBase { DamageFactor "Normal", 4.309 }
+Actor PowerMurder34 : PowerMurderBase { DamageFactor "Normal", 4.409 }
+Actor PowerMurder35 : PowerMurderBase { DamageFactor "Normal", 4.509 }
+Actor PowerMurder36 : PowerMurderBase { DamageFactor "Normal", 4.609 }
+Actor PowerMurder37 : PowerMurderBase { DamageFactor "Normal", 4.709 }
+Actor PowerMurder38 : PowerMurderBase { DamageFactor "Normal", 4.809 }
+Actor PowerMurder39 : PowerMurderBase { DamageFactor "Normal", 4.909 }
+Actor PowerMurder40 : PowerMurderBase { DamageFactor "Normal", 5.009 }
+Actor PowerMurder41 : PowerMurderBase { DamageFactor "Normal", 5.109 }
+Actor PowerMurder42 : PowerMurderBase { DamageFactor "Normal", 5.209 }
+Actor PowerMurder43 : PowerMurderBase { DamageFactor "Normal", 5.309 }
+Actor PowerMurder44 : PowerMurderBase { DamageFactor "Normal", 5.409 }
+Actor PowerMurder45 : PowerMurderBase { DamageFactor "Normal", 5.509 }
+Actor PowerMurder46 : PowerMurderBase { DamageFactor "Normal", 5.609 }
+Actor PowerMurder47 : PowerMurderBase { DamageFactor "Normal", 5.709 }
+Actor PowerMurder48 : PowerMurderBase { DamageFactor "Normal", 5.809 }
+Actor PowerMurder49 : PowerMurderBase { DamageFactor "Normal", 5.909 }
+Actor PowerMurder50 : PowerMurderBase { DamageFactor "Normal", 6.009 }
+Actor PowerMurder51 : PowerMurderBase { DamageFactor "Normal", 6.109 }
+Actor PowerMurder52 : PowerMurderBase { DamageFactor "Normal", 6.209 }
+Actor PowerMurder53 : PowerMurderBase { DamageFactor "Normal", 6.309 }
+Actor PowerMurder54 : PowerMurderBase { DamageFactor "Normal", 6.409 }
+Actor PowerMurder55 : PowerMurderBase { DamageFactor "Normal", 6.509 }
+Actor PowerMurder56 : PowerMurderBase { DamageFactor "Normal", 6.609 }
+Actor PowerMurder57 : PowerMurderBase { DamageFactor "Normal", 6.709 }
+Actor PowerMurder58 : PowerMurderBase { DamageFactor "Normal", 6.809 }
+Actor PowerMurder59 : PowerMurderBase { DamageFactor "Normal", 6.909 }
+Actor PowerMurder60 : PowerMurderBase { DamageFactor "Normal", 7.009 }
+Actor PowerMurder61 : PowerMurderBase { DamageFactor "Normal", 7.109 }
+Actor PowerMurder62 : PowerMurderBase { DamageFactor "Normal", 7.209 }
+Actor PowerMurder63 : PowerMurderBase { DamageFactor "Normal", 7.309 }
+Actor PowerMurder64 : PowerMurderBase { DamageFactor "Normal", 7.409 }
+Actor PowerMurder65 : PowerMurderBase { DamageFactor "Normal", 7.509 }
+Actor PowerMurder66 : PowerMurderBase { DamageFactor "Normal", 7.609 }
+Actor PowerMurder67 : PowerMurderBase { DamageFactor "Normal", 7.709 }
+Actor PowerMurder68 : PowerMurderBase { DamageFactor "Normal", 7.809 }
+Actor PowerMurder69 : PowerMurderBase { DamageFactor "Normal", 7.909 }
+Actor PowerMurder70 : PowerMurderBase { DamageFactor "Normal", 8.009 }
+Actor PowerMurder71 : PowerMurderBase { DamageFactor "Normal", 8.109 }
+Actor PowerMurder72 : PowerMurderBase { DamageFactor "Normal", 8.209 }
+Actor PowerMurder73 : PowerMurderBase { DamageFactor "Normal", 8.309 }
+Actor PowerMurder74 : PowerMurderBase { DamageFactor "Normal", 8.409 }
+Actor PowerMurder75 : PowerMurderBase { DamageFactor "Normal", 8.509 }
+Actor PowerMurder76 : PowerMurderBase { DamageFactor "Normal", 8.609 }
+Actor PowerMurder77 : PowerMurderBase { DamageFactor "Normal", 8.709 }
+Actor PowerMurder78 : PowerMurderBase { DamageFactor "Normal", 8.809 }
+Actor PowerMurder79 : PowerMurderBase { DamageFactor "Normal", 8.909 }
+Actor PowerMurder80 : PowerMurderBase { DamageFactor "Normal", 9.009 }
+Actor PowerMurder81 : PowerMurderBase { DamageFactor "Normal", 9.109 }
+Actor PowerMurder82 : PowerMurderBase { DamageFactor "Normal", 9.209 }
+Actor PowerMurder83 : PowerMurderBase { DamageFactor "Normal", 9.309 }
+Actor PowerMurder84 : PowerMurderBase { DamageFactor "Normal", 9.409 }
+Actor PowerMurder85 : PowerMurderBase { DamageFactor "Normal", 9.509 }
+Actor PowerMurder86 : PowerMurderBase { DamageFactor "Normal", 9.609 }
+Actor PowerMurder87 : PowerMurderBase { DamageFactor "Normal", 9.709 }
+Actor PowerMurder88 : PowerMurderBase { DamageFactor "Normal", 9.809 }
+Actor PowerMurder89 : PowerMurderBase { DamageFactor "Normal", 9.909 }
+Actor PowerMurder90 : PowerMurderBase { DamageFactor "Normal",10.009 }
+Actor PowerMurder91 : PowerMurderBase { DamageFactor "Normal",10.109 }
+Actor PowerMurder92 : PowerMurderBase { DamageFactor "Normal",10.209 }
+Actor PowerMurder93 : PowerMurderBase { DamageFactor "Normal",10.309 }
+Actor PowerMurder94 : PowerMurderBase { DamageFactor "Normal",10.409 }
+Actor PowerMurder95 : PowerMurderBase { DamageFactor "Normal",10.509 }
+Actor PowerMurder96 : PowerMurderBase { DamageFactor "Normal",10.609 }
+Actor PowerMurder97 : PowerMurderBase { DamageFactor "Normal",10.709 }
+Actor PowerMurder98 : PowerMurderBase { DamageFactor "Normal",10.809 }
+Actor PowerMurder99 : PowerMurderBase { DamageFactor "Normal",10.909 }

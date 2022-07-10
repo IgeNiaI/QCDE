@@ -1,0 +1,1886 @@
+// For QCDE.
+// By Michaelis, the Official DBTeam Sbarinfo Guy.
+
+height 0;
+CompleteBorder True;
+
+// Center is at 700,525
+Resolution 1400,1050; // actually 1680x1050, reduce screenshot X by 140
+InterpolateHealth false, 20;
+InterpolateArmor false, 20;
+
+//================================================================================================
+//================================================================================================
+//
+//================================================================================================
+//================================================================================================
+
+statusbar Normal, forcescaled
+{ inInventory NotSpectator {  // You only lack it when you don't exist.
+	inInventory DemonMorpher || DemonMorpherDM { // Demon HUD for online
+		drawImage "PCORN001",-234,   0;
+		drawImage "PCORN002",1634,   0;
+		drawImage "PCORN003",1634,1050;
+		drawImage "PCORN004",-234,1050;
+		drawImage "DEMNBAR0", 444,1015;
+		drawBar "DEMNBAR1", "DEMNBAR0", health(600)        , horizontal, interpolate(9), 444,1015;
+		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(1), 444, 943;
+	} else { inInventory PowerDemonMorph { // Demon HUD for offline
+		drawImage "PCORN001",-234,   0;
+		drawImage "PCORN002",1634,   0;
+		drawImage "PCORN003",1634,1050;
+		drawImage "PCORN004",-234,1050;
+		drawImage "DEMNBAR0", 444,1015;
+		drawBar "DEMNBAR1", "DEMNBAR0", health(600)        , horizontal, interpolate(9), 444,1015;
+		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(1), 444, 943;
+	} else {
+	inInventory not NoPortrait {
+	// Team color
+	inInventory TeamDeathmatch {
+		inInventory TeamColor, 255 {	drawImage "TEAMBACA", 15,789; } else {
+		inInventory TeamColor,   8 {	drawImage "TEAMBAC8", 15,789; } else {
+		inInventory TeamColor,   7 {	drawImage "TEAMBAC7", 15,789; } else {
+		inInventory TeamColor,   6 {	drawImage "TEAMBAC6", 15,789; } else {
+		inInventory TeamColor,   5 {	drawImage "TEAMBAC5", 15,789; } else {
+		inInventory TeamColor,   4 {	drawImage "TEAMBAC4", 15,789; } else {
+		inInventory TeamColor,   3 {	drawImage "TEAMBAC3", 15,789; } else {
+		inInventory TeamColor,   2 {	drawImage "TEAMBAC2", 15,789; } else {
+		inInventory TeamColor,   1 {	drawImage "TEAMBAC1", 15,789;
+		}}}}}}}}} // 9 braces
+	}
+
+	// Portrait
+	inInventory Class_Ranger		{ drawImage "PORTRX01", 	10,795; }
+	inInventory Class_Doomslayer	{ drawImage "PORTRX02", 	10,795; }
+	inInventory Class_Corvus		{ drawImage "PORTRX03", 	10,795; }
+	inInventory Class_Kane			{ drawImage "PORTRX04", 	10,795; }
+	inInventory Class_Caleb			{ drawImage "PORTRX05", 	10,795; }
+	inInventory Class_Menelkir		{ drawImage "PORTRX06", 	10,795; }
+	inInventory Class_Terminator	{ drawImage "PORTRX07", 	10,795; }
+	inInventory Class_Zedek			{ drawImage "PORTRX08", 	10,795; }
+	inInventory Class_Inquisitor	{ drawImage "PORTRX09", 	10,795; }
+	inInventory Class_Bitterman		{ drawImage "PORTRX10", 	10,795; }
+	inInventory Class_Galen			{ drawImage "PORTRX11", 	10,795; }
+	inInventory Class_Nyx			{ drawImage "PORTRX12", 	10,795; }
+	inInventory Class_Sorgaul		{ drawImage "PORTRX13", 	10,795; }
+	inInventory Class_DukeNukem		{ drawImage "PORTRX14", 	10,795; }
+	inInventory Class_Durandal		{ drawImage "PORTRX15", 	10,795; }
+	inInventory Class_Keel			{ drawImage "PORTRX16", 	10,795; }
+	inInventory Class_Sarge			{ drawImage "PORTRX17", 	10,795; }
+	inInventory Class_LoWang		{ drawImage "PORTRX18", 	10,795; }
+	inInventory Class_Grayson		{ drawImage "PORTRX19", 	10,795; }
+	inInventory Class_Eradicator	{ drawImage "PORTRX20", 	10,795; }
+	inInventory Class_Blazkowicz	{ drawImage "PORTRX21", 	10,795; }
+	inInventory Class_Freeman		{ drawImage "PORTRX22", 	10,795; }
+	inInventory Class_VorMatur		{ drawImage "PORTRX23", 	10,795; }
+	inInventory Class_Eleena		{ drawImage "PORTRX24", 	10,795; }
+	inInventory Class_Lucienne		{ drawImage "PORTRX25", 	10,795; }
+	inInventory Class_Major			{ drawImage "PORTRX26", 	10,795; }
+	inInventory Class_Hunter		{ drawImage "PORTRX27", 	10,795; }
+	inInventory Class_Sam			{ drawImage "PORTRX28", 	10,795; }
+	inInventory Class_Postal		{ drawImage "PORTRX29", 	10,795; }
+	inInventory Class_Painkiller	{ drawImage "PORTRX30", 	10,795; }
+	inInventory Class_Intruder			{ drawImage "PORTRX31", 	10,795; }
+	// ^ insert more classes here
+
+	// Number of lives
+	inInventory LifeToken
+	{
+		inInventory LifeToken, 2 {
+			drawString QCFNT100, brite, "x", 127,935, 0, alignment(right);
+			drawnumber 2, QCFNT100, brite, LifeToken,   alignment( left), 127,925;
+		}
+		else
+		{
+			drawString BIGFONT, bludi, "LAST LIFE", 120,937, 0, alignment(center);
+		}
+	}
+	}
+
+	inInventory not NoVitals {
+	// CSMA
+	inInventory Resurrected
+	{
+		drawString BIGFONT, white, "resurrected", 240,825, 0, alignment(left);
+
+		// Health
+		drawImage "ICONHLTH", 206,879;
+		drawImage "BARF0",                              245,890;
+		drawBar   "BARF1", "BARS_", Health, horizontal, 245,890;
+		drawnumber 5, QCFNT070, white, Health,   alignment(right), 325,846;
+
+		// Armor
+		drawImage "ICONSHLD", 182,958;
+		drawImage "BARF0",                              221,969;
+		drawbar   "BARF1", "BARS_", Armor,  horizontal, 221,969;
+		drawnumber 5, QCFNT070, white, Armor,    alignment(right), 291,924;
+	}
+	else
+	{
+		// Health
+		drawImage "ICONHLTH", 206,879;
+		inInventory not FlatHealthToken || FlatHealthPref {
+			drawBar "BARS0", "BARS_",     MaxHealthBar, horizontal, 245,890;
+			drawBar "BARS2", "BARS_",   SuperHealthBar, horizontal, 245,890;
+			drawBar "BARS1", "BARS_", CurrentHealthBar, horizontal, 245,890;
+			inInventory NoHealthDegenerationToken {
+			drawBar "BARS8", "BARS_",   SuperHealthBar, horizontal, 245,890;
+			}
+		} else {
+			drawBar "BARF0", "BARS_",     MaxHealthBar, horizontal, 245,890;
+			drawBar "BARF2", "BARS_",   SuperHealthBar, horizontal, 245,890;
+			drawBar "BARF1", "BARS_", CurrentHealthBar, horizontal, 245,890;
+			inInventory NoHealthDegenerationToken {
+			drawBar "BARF8", "BARS_",   SuperHealthBar, horizontal, 245,890;
+			}
+		}
+		inInventory not PowerEldersSoul {
+			drawnumber 5, QCFNT070, white,   SuperHealthToken,alignment(right), 325,846;
+			drawString    QCFNT060, white, "/",                                    328,856, 0, alignment(left);
+			drawnumber 5, QCFNT040, white,     MaxHealthToken,   alignment(left),  342,863;
+		} else {
+			drawnumber 5, QCFNT070, bludi,   SuperHealthToken,alignment(right), 325,846;
+			drawString    QCFNT060, bludi, "/",                                    328,856, 0, alignment(left);
+			drawnumber 5, QCFNT040, bludi,     MaxHealthToken,   alignment(left),  342,863;
+		}
+
+		// Armor
+		drawImage "ICONSHLD", 182,958;
+		inInventory not FlatArmorToken || FlatArmorPref {
+			drawBar "BARS0", "BARS_",     MaxArmorBar,  horizontal, 221,969;
+			drawBar "BARS3", "BARS_",   SuperArmorBar,  horizontal, 221,969;
+			drawBar "BARS1", "BARS_", CurrentArmorBar,  horizontal, 221,969;
+			inInventory NoArmorDegenerationToken {
+			drawBar "BARS8", "BARS_",   SuperArmorBar,  horizontal, 221,969;
+			}
+		} else {
+			drawBar "BARF0", "BARS_",     MaxArmorBar,  horizontal, 221,969;
+			drawBar "BARF3", "BARS_",   SuperArmorBar,  horizontal, 221,969;
+			drawBar "BARF1", "BARS_", CurrentArmorBar,  horizontal, 221,969;
+			inInventory NoArmorDegenerationToken {
+			drawBar "BARF8", "BARS_",   SuperArmorBar,  horizontal, 221,969;
+			}
+		}
+		inInventory not PowerEldersSoul {
+			inInventory PowerInvul { drawString QCFNT070, bludi, "666", 291,924, 0, alignment(right); }
+			else {
+				drawnumber 5, QCFNT070, white, SuperArmorToken, alignment(right), 291,924;
+			}
+			drawString    QCFNT060, white, "/",                                    294,933, 0, alignment(left);
+			drawnumber 5, QCFNT040, white,     MaxArmorToken,    alignment(left),  307,940;
+		} else {
+			drawnumber 5, QCFNT070, bludi, SuperArmorToken, alignment(right), 291,924;
+			drawString    QCFNT060, bludi, "/",                               294,933, 0, alignment(left);
+			drawnumber 5, QCFNT040, bludi,   MaxArmorToken, alignment(left),  307,940;
+		}
+
+		// Quad
+		inInventory PowerQuad {
+			drawImage "PWUPFRAM", 182,780;
+			drawImage "PWUPFIR1", 182,780;
+			drawImage "PWUPQUAD", 182,780;
+			inInventory QuadTimer, 1 {
+			inInventory QuadTimer,20 { drawImage "PWUPSC20",  182,780; } else {
+			inInventory QuadTimer,19 { drawImage "PWUPSC19",  182,780; } else {
+			inInventory QuadTimer,18 { drawImage "PWUPSC18",  182,780; } else {
+			inInventory QuadTimer,17 { drawImage "PWUPSC17",  182,780; } else {
+			inInventory QuadTimer,16 { drawImage "PWUPSC16",  182,780; } else {
+			inInventory QuadTimer,15 { drawImage "PWUPSC15",  182,780; } else {
+			inInventory QuadTimer,14 { drawImage "PWUPSC14",  182,780; } else {
+			inInventory QuadTimer,13 { drawImage "PWUPSC13",  182,780; } else {
+			inInventory QuadTimer,12 { drawImage "PWUPSC12",  182,780; } else {
+			inInventory QuadTimer,11 { drawImage "PWUPSC11",  182,780; } else {
+			inInventory QuadTimer,10 { drawImage "PWUPSC10",  182,780; } else {
+			inInventory QuadTimer, 9 { drawImage "PWUPSC09",  182,780; } else {
+			inInventory QuadTimer, 8 { drawImage "PWUPSC08",  182,780; } else {
+			inInventory QuadTimer, 7 { drawImage "PWUPSC07",  182,780; } else {
+			inInventory QuadTimer, 6 { drawImage "PWUPSC06",  182,780; } else {
+			inInventory QuadTimer, 5 { drawImage "PWUPSC05",  182,780; } else {
+			inInventory QuadTimer, 4 { drawImage "PWUPSC04",  182,780; } else {
+			inInventory QuadTimer, 3 { drawImage "PWUPSC03",  182,780; } else {
+			inInventory QuadTimer, 2 { drawImage "PWUPSC02",  182,780; } else {
+                                             drawImage "PWUPSC01",  182,780;
+			}}}}}}}}}}}}}}}}}}}} // 20 braces
+			else {                           drawImage "PWUPSC00",  182,780; }
+		}
+
+		// Protec
+		inInventory PowerProtec {
+			drawImage "PWUPFRAM", 242,780;
+			drawImage "PWUPFIR1", 242,780;
+			drawImage "PWUPPROT", 242,780;
+			inInventory ProtecTimer, 1 {
+			inInventory ProtecTimer,20 { drawImage "PWUPSC20",  242,780; } else {
+			inInventory ProtecTimer,19 { drawImage "PWUPSC19",  242,780; } else {
+			inInventory ProtecTimer,18 { drawImage "PWUPSC18",  242,780; } else {
+			inInventory ProtecTimer,17 { drawImage "PWUPSC17",  242,780; } else {
+			inInventory ProtecTimer,16 { drawImage "PWUPSC16",  242,780; } else {
+			inInventory ProtecTimer,15 { drawImage "PWUPSC15",  242,780; } else {
+			inInventory ProtecTimer,14 { drawImage "PWUPSC14",  242,780; } else {
+			inInventory ProtecTimer,13 { drawImage "PWUPSC13",  242,780; } else {
+			inInventory ProtecTimer,12 { drawImage "PWUPSC12",  242,780; } else {
+			inInventory ProtecTimer,11 { drawImage "PWUPSC11",  242,780; } else {
+			inInventory ProtecTimer,10 { drawImage "PWUPSC10",  242,780; } else {
+			inInventory ProtecTimer, 9 { drawImage "PWUPSC09",  242,780; } else {
+			inInventory ProtecTimer, 8 { drawImage "PWUPSC08",  242,780; } else {
+			inInventory ProtecTimer, 7 { drawImage "PWUPSC07",  242,780; } else {
+			inInventory ProtecTimer, 6 { drawImage "PWUPSC06",  242,780; } else {
+			inInventory ProtecTimer, 5 { drawImage "PWUPSC05",  242,780; } else {
+			inInventory ProtecTimer, 4 { drawImage "PWUPSC04",  242,780; } else {
+			inInventory ProtecTimer, 3 { drawImage "PWUPSC03",  242,780; } else {
+			inInventory ProtecTimer, 2 { drawImage "PWUPSC02",  242,780; } else {
+                                         drawImage "PWUPSC01",  242,780;
+			}}}}}}}}}}}}}}}}}}}} // 20 braces
+			else {                       drawImage "PWUPSC00",  242,780; }
+		}
+
+		// Invul
+		inInventory PowerInvul {
+			drawImage "PWUPFRAM", 302,780;
+			drawImage "PWUPFIR1", 302,780;
+			drawImage "PWUPPENT", 303,780;
+			inInventory InvulTimer, 1 {
+			inInventory InvulTimer,20 { drawImage "PWUPSC20",  302,780; } else {
+			inInventory InvulTimer,19 { drawImage "PWUPSC19",  302,780; } else {
+			inInventory InvulTimer,18 { drawImage "PWUPSC18",  302,780; } else {
+			inInventory InvulTimer,17 { drawImage "PWUPSC17",  302,780; } else {
+			inInventory InvulTimer,16 { drawImage "PWUPSC16",  302,780; } else {
+			inInventory InvulTimer,15 { drawImage "PWUPSC15",  302,780; } else {
+			inInventory InvulTimer,14 { drawImage "PWUPSC14",  302,780; } else {
+			inInventory InvulTimer,13 { drawImage "PWUPSC13",  302,780; } else {
+			inInventory InvulTimer,12 { drawImage "PWUPSC12",  302,780; } else {
+			inInventory InvulTimer,11 { drawImage "PWUPSC11",  302,780; } else {
+			inInventory InvulTimer,10 { drawImage "PWUPSC10",  302,780; } else {
+			inInventory InvulTimer, 9 { drawImage "PWUPSC09",  302,780; } else {
+			inInventory InvulTimer, 8 { drawImage "PWUPSC08",  302,780; } else {
+			inInventory InvulTimer, 7 { drawImage "PWUPSC07",  302,780; } else {
+			inInventory InvulTimer, 6 { drawImage "PWUPSC06",  302,780; } else {
+			inInventory InvulTimer, 5 { drawImage "PWUPSC05",  302,780; } else {
+			inInventory InvulTimer, 4 { drawImage "PWUPSC04",  302,780; } else {
+			inInventory InvulTimer, 3 { drawImage "PWUPSC03",  302,780; } else {
+			inInventory InvulTimer, 2 { drawImage "PWUPSC02",  302,780; } else {
+                                        drawImage "PWUPSC01",  302,780;
+			}}}}}}}}}}}}}}}}}}}} // 20 braces
+			else {                   drawImage "PWUPSC00",  302,780; }
+		}
+
+		// Infin
+		inInventory PowerInfin {
+			drawImage "PWUPFRAM", 362,780;
+			drawImage "PWUPFIR1", 362,780;
+			drawImage "PWUPINFI", 362,780;
+			inInventory InfinTimer, 1 {
+			inInventory InfinTimer,20 { drawImage "PWUPSC20",  362,780; } else {
+			inInventory InfinTimer,19 { drawImage "PWUPSC19",  362,780; } else {
+			inInventory InfinTimer,18 { drawImage "PWUPSC18",  362,780; } else {
+			inInventory InfinTimer,17 { drawImage "PWUPSC17",  362,780; } else {
+			inInventory InfinTimer,16 { drawImage "PWUPSC16",  362,780; } else {
+			inInventory InfinTimer,15 { drawImage "PWUPSC15",  362,780; } else {
+			inInventory InfinTimer,14 { drawImage "PWUPSC14",  362,780; } else {
+			inInventory InfinTimer,13 { drawImage "PWUPSC13",  362,780; } else {
+			inInventory InfinTimer,12 { drawImage "PWUPSC12",  362,780; } else {
+			inInventory InfinTimer,11 { drawImage "PWUPSC11",  362,780; } else {
+			inInventory InfinTimer,10 { drawImage "PWUPSC10",  362,780; } else {
+			inInventory InfinTimer, 9 { drawImage "PWUPSC09",  362,780; } else {
+			inInventory InfinTimer, 8 { drawImage "PWUPSC08",  362,780; } else {
+			inInventory InfinTimer, 7 { drawImage "PWUPSC07",  362,780; } else {
+			inInventory InfinTimer, 6 { drawImage "PWUPSC06",  362,780; } else {
+			inInventory InfinTimer, 5 { drawImage "PWUPSC05",  362,780; } else {
+			inInventory InfinTimer, 4 { drawImage "PWUPSC04",  362,780; } else {
+			inInventory InfinTimer, 3 { drawImage "PWUPSC03",  362,780; } else {
+			inInventory InfinTimer, 2 { drawImage "PWUPSC02",  362,780; } else {
+                                        drawImage "PWUPSC01",  362,780;
+			}}}}}}}}}}}}}}}}}}}} // 20 braces
+			else {                   drawImage "PWUPSC00",  362,780; }
+		}
+	}
+
+	// Ability status and (de)buffs
+	inInventory PowerClutchProtec     { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPSHLD", 122,780; }
+	inInventory TeleporterThrownToken { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPDORB", 122,780; }
+	inInventory MaulotaurAliveToken   { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPMAUL", 122,780; }
+	inInventory PowerIntruderSpeed    { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPSPED", 122,780; }
+	inInventory PowerInjectionSpeed   { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPSPED", 122,780; }
+	inInventory PowerEleenaSpeed      { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPSPED", 122,780; }
+	inInventory PowerBfgSlow2         { drawImage "PWUPFRAM",  72,780; drawImage "PWDNFIR1",  72,780; drawImage "PWDNSHLD",  72,780; }
+	inInventory PowerBfgSlow1         { drawImage "PWUPFRAM",  72,780; drawImage "PWDNFIR1",  72,780; drawImage "PWDNSPED",  72,780; }
+	inInventory PowerCleanVulnerable  { drawImage "PWUPFRAM",  72,780; drawImage "PWDNFIR1",  72,780; drawImage "PWDNSHLD",  72,780; }
+	inInventory PowerLoWangDamage     { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPTIGR", 122,780; }
+	inInventory HalfLifeToken         { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPGMAN", 122,780; }
+	}
+
+	inInventory not NoReticle {
+	// Altfire reticle
+	isSelected QCGauntlet		 { inInventory                                 GNT_UG_Omni      { drawImage "RET_00_2", 654,479; }
+								   inInventory                                 GNT_UG_Burn      { drawImage "RET_00_1", 654,479; } }
+	isSelected QCShotgun		 { inInventory WeaponZoomedToken { inInventory  SG_UG_Explosive { drawImage "RET_03_2", 654,479; } } }
+	isSelected QCHeavyMachinegun { inInventory WeaponZoomedToken { inInventory HMG_UG_Pierce    { drawImage "RET_07_2", 654,479; } } }
+	isSelected QCSuperShotgun	 { inInventory WeaponZoomedToken { inInventory SSG_UG_Flame     { drawImage "RET_09_2", 654,479; } } }
+	isSelected QCSuperNailgun	 { inInventory WeaponZoomedToken { inInventory SNG_UG_Seeker    { drawImage "RET_11_2", 654,479; } } }
+	isSelected QCTribolt	 	 { inInventory WeaponZoomedToken { inInventory  TB_UG_Grenade   { drawImage "RET_13_2", 654,479; } } }
+	isSelected QCRocketLauncher	 { inInventory WeaponZoomedToken { inInventory  RL_UG_Control   { drawImage "RET_15_2", 654,479; } } }
+	isSelected QCLightningGun	 { inInventory WeaponZoomedToken { inInventory  LG_UG_Static    { drawImage "RET_17_2", 654,479; } } }
+	isSelected QCRailgun 		 { inInventory WeaponZoomedToken { inInventory  RG_UG_Explosive { drawImage "RET_19_2", 654,479; } } }
+	isSelected QCBFG 			 { inInventory WeaponZoomedToken { inInventory BFG_UG_Charge    { drawImage "RET_21_2", 654,479; } } }
+
+	// Remote control reticle
+	isSelected QCRocketLauncher	 { inInventory PowerControllerProtection                        { drawImage "RET_15_2", 654,479; } }
+
+	// Railgun charge
+	inInventory RailgunCharges {
+		drawImage "RGCHAR00", 668, 493;
+		drawBar "RGCHARG1", "RGCHAR01", RailgunCharges, vertical  ,          667,363;
+		drawBar "RGCHARG2", "RGCHAR02", RailgunCharges, horizontal,          654,493;
+		drawBar "RGCHARG4", "RGCHAR04", RailgunCharges, vertical  , reverse, 668,433;
+		drawBar "RGCHARG6", "RGCHAR06", RailgunCharges, horizontal, reverse, 654,493;
+		drawBar "RGCHARG8", "RGCHAR08", RailgunCharges, vertical  ,          667,527;
+
+		inInventory RailgunCharges, 52 { drawImage "RGCHARG0", 668, 493; }
+	}
+
+	// Railgun and HMG reticles when zoomed
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM
+	{	inInventory WeaponZoomedToken	{ drawImage "HMGRETCL", 	184,172; }		}
+	isSelected QCRailgun 			, QCRailgunDM
+	{	inInventory WeaponZoomedToken	{ drawImage "RGNRETCL", 	184,172; }		}
+	}
+
+	inInventory not NoAmmoCount {
+	inInventory not RocketArena || Instagib {
+	// Ammo
+	inInventory not PowerInfin || PowerInfiniteAmmo { drawNumber 3, QCFNT100, brite, ammo1, alignment(right), 1140,900; }
+	else { drawImage "QcdeInf2", 1080, 890; }
+	isSelected QCMachinegun 		, QCMachinegunDM		{ drawImage "AmmBullt", 1170, 897; }
+	isSelected QCShotgun			, QCShotgunDM			{ drawImage "AmmShell", 1170, 897; }
+	isSelected QCNailgun			, QCNailgunDM			{ drawImage "AmmNails", 1170, 897; }
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawImage "AmmBullt", 1170, 897; }
+	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawImage "AmmShell", 1170, 897; }
+	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawImage "AmmNails", 1170, 897; }
+	isSelected QCTribolt	 		, QCTriboltDM			{ drawImage "AmmBolts", 1170, 897; }
+	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawImage "AmmRockt", 1170, 897; }
+	isSelected QCLightningGun		, QCLightningGunDM		{ drawImage "AmmCoils", 1170, 897; }
+	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "AmmSlugs", 1170, 897; }
+	isSelected QCBFG 				, QCBFGDM				{ drawImage "AmmBfugs", 1170, 897; }
+	}
+
+	// Upgrades for current weapon
+	isSelected QCGauntlet		 { inInventory GNT_UG_Burn      { drawImage "APG_00_1",1237,901; }   inInventory GNT_UG_Omni      { drawImage "APG_00_2",1299,901; } }
+	isSelected QCShotgun		 { inInventory  SG_UG_Spread    { drawImage "APG_03_1",1237,901; }   inInventory  SG_UG_Explosive { drawImage "APG_03_2",1299,901; } }
+	isSelected QCHeavyMachinegun { inInventory HMG_UG_Ricochet  { drawImage "APG_07_1",1237,901; }   inInventory HMG_UG_Pierce    { drawImage "APG_07_2",1299,901; } }
+	isSelected QCSuperShotgun	 { inInventory SSG_UG_Speed     { drawImage "APG_09_1",1237,901; }   inInventory SSG_UG_Flame     { drawImage "APG_09_2",1299,901; } }
+	isSelected QCSuperNailgun	 { inInventory SNG_UG_Lava      { drawImage "APG_11_1",1237,901; }   inInventory SNG_UG_Seeker    { drawImage "APG_11_2",1299,901; } }
+	isSelected QCTribolt	 	 { inInventory  TB_UG_Long      { drawImage "APG_13_1",1237,901; }   inInventory  TB_UG_Grenade   { drawImage "APG_13_2",1299,901; } }
+	isSelected QCRocketLauncher	 { inInventory  RL_UG_Cluster   { drawImage "APG_15_1",1237,901; }   inInventory  RL_UG_Control   { drawImage "APG_15_2",1299,901; } }
+	isSelected QCLightningGun	 { inInventory  LG_UG_Residue   { drawImage "APG_17_1",1237,901; }   inInventory  LG_UG_Static    { drawImage "APG_17_2",1299,901; } }
+	isSelected QCRailgun 		 { inInventory  RG_UG_Pierce    { drawImage "APG_19_1",1237,901; }   inInventory  RG_UG_Explosive { drawImage "APG_19_2",1299,901; } }
+	isSelected QCBFG 			 { inInventory BFG_UG_Rays      { drawImage "APG_21_1",1237,901; }   inInventory BFG_UG_Charge    { drawImage "APG_21_2",1299,901; } }
+	}
+
+	// Speedometer
+	inInventory Speedometer {
+		drawImage "SPEEDOM", 684, 600;
+		drawString QCFNT030, yellow, GlobalArray 10, 700,646, 0, alignment(center);// frags 2nd
+	}
+
+	// Keybag
+	gameMode cooperative, singlePlayer
+	{
+		drawSwitchableImage BlueCard, 	"nullimage", "KEYCB", 	1250,  994;
+		drawSwitchableImage YellowCard,	"nullimage", "KEYCY", 	1300,  994;
+		drawSwitchableImage RedCard, 	"nullimage", "KEYCR", 	1350,  994;
+		drawSwitchableImage BlueSkull, 	"nullimage", "SKKYB", 	1254, 1004;
+		drawSwitchableImage YellowSkull,"nullimage", "SKKYY",	1304, 1004;
+		drawSwitchableImage RedSkull, 	"nullimage", "SKKYR", 	1354, 1004;
+	}
+
+	// Weapon bar
+
+	// Here we go again with super long lines.
+	// Surprisingly, they make my process so much unbelievably easier.
+
+	AspectRatio "16:10" {
+	inInventory not NoWeaponBar
+	{
+	// Gauntlet -- special case, only drawn when there are upgrades
+	inInventory GNT_UG_Burn || GNT_UG_Omni {
+	isSelected QCGauntlet                                   { drawImage "SELECTOR", 1440,277;
+	                                                          drawImage "1AUNTLET", 1399,280;
+	} else {                                                  drawImage "GAUNTLET", 1399,280;
+	}}
+
+	// Orange pad behind selected weapon
+	isSelected QCMachinegun 		, QCMachinegunDM		{ drawImage "SELECTOR", 1440,347; }
+	isSelected QCShotgun			, QCShotgunDM			{ drawImage "SELECTOR", 1440,417; }
+	isSelected QCNailgun			, QCNailgunDM			{ drawImage "SELECTOR", 1440,487; }
+
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawImage "SELECTOR", 1440,347; }
+	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawImage "SELECTOR", 1440,417; }
+	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawImage "SELECTOR", 1440,487; }
+	isSelected QCTribolt	 		, QCTriboltDM			{ drawImage "SELECTOR", 1440,557; }
+	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawImage "SELECTOR", 1440,627; }
+	isSelected QCLightningGun		, QCLightningGunDM		{ drawImage "SELECTOR", 1440,697; }
+	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "SELECTOR", 1440,767; }
+	isSelected QCBFG 				, QCBFGDM				{ drawImage "SELECTOR", 1440,837; }
+
+	// Ammo measure inherent to every individual weapon
+	// +59, +12 from SELECTOR to bar
+	inInventory not RocketArena || Instagib {
+		inInventory QCMachinegun 		|| QCMachinegunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,360; }
+		inInventory QCShotgun			|| QCShotgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,430; }
+		inInventory QCNailgun			|| QCNailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1499,500; }
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,360; }
+		inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,430; }
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1499,500; }
+		inInventory QCTribolt	 		|| QCTriboltDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBoltAmmo 		, vertical, 1499,570; }
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCRocketAmmo	, vertical, 1499,640; }
+		inInventory QCLightningGun		|| QCLightningGunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo 		, vertical, 1499,710; }
+		inInventory QCRailgun 			|| QCRailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo 		, vertical, 1499,780; }
+		inInventory QCBFG 				|| QCBFGDM				{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1499,850; }
+	}
+
+	// Weapon icons themselves
+	inInventory QCMachinegun 	|| QCMachinegunDM	{ 	inInventory not QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ isSelected QCMachinegun 	, QCMachinegunDM	{ drawBar "1ACHINEG", "0ACHINEG", QCBulletAmmo	, horizontal, 1380,350; } else { drawBar "MACHINEG", "0ACHINEG", QCBulletAmmo	, horizontal, 1380,350; } } } else { inInventory not QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawImage "0ACHINEG", 1380,350; } }
+	inInventory QCShotgun		|| QCShotgunDM		{ 	inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ isSelected QCShotgun		, QCShotgunDM		{ drawBar "1HOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1380,420; } else { drawBar "SHOTGUN" , "0HOTGUN" , QCShellAmmo		, horizontal, 1380,420; } } } else { inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ drawImage "0HOTGUN" , 1380,420; } }
+	inInventory QCNailgun		|| QCNailgunDM		{ 	inInventory not QCSuperNailgun		|| QCSuperNailgunDM		{ isSelected QCNailgun		, QCNailgunDM		{ drawBar "1AILGUN" , "0AILGUN" , QCNailAmmo	, horizontal, 1380,490; } else { drawBar "NAILGUN" , "0AILGUN" , QCNailAmmo		, horizontal, 1380,490; } } } else { inInventory not QCSuperNailgun		|| QCSuperNailgunDM		{ drawImage "0AILGUN" , 1380,490; } }
+
+	inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ 	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawBar "1MACHINE", "0MACHINE", QCBulletAmmo	, horizontal, 1380,350; } else { drawBar "HMACHINE", "0MACHINE", QCBulletAmmo	, horizontal, 1380,350; } }
+	inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ 	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawBar "1SHOTGUN", "0SHOTGUN", QCShellAmmo	, horizontal, 1380,420; } else { drawBar "SSHOTGUN", "0SHOTGUN", QCShellAmmo		, horizontal, 1380,420; } }
+	inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ 	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawBar "1NAILGUN", "0NAILGUN", QCNailAmmo	, horizontal, 1380,490; } else { drawBar "SNAILGUN", "0NAILGUN", QCNailAmmo		, horizontal, 1380,490; } }
+	inInventory QCTribolt	 		|| QCTriboltDM			{ 	isSelected QCTribolt	 		, QCTriboltDM			{ drawBar "1RIBOLT" , "0RIBOLT" , QCBoltAmmo 	, horizontal, 1380,560; } else { drawBar "TRIBOLT" , "0RIBOLT" , QCBoltAmmo 		, horizontal, 1380,560; } } else { drawImage "0RIBOLT" , 1380,560;}
+	inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ 	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawBar "1AUNCHER", "0AUNCHER", QCRocketAmmo	, horizontal, 1380,630; } else { drawBar "LAUNCHER", "0AUNCHER", QCRocketAmmo	, horizontal, 1380,630; } } else { drawImage "0AUNCHER", 1380,630;}
+	inInventory QCLightningGun		|| QCLightningGunDM		{ 	isSelected QCLightningGun		, QCLightningGunDM		{ drawBar "1IGHTNIN", "0IGHTNIN", QCCoilAmmo 	, horizontal, 1380,700; } else { drawBar "LIGHTNIN", "0IGHTNIN", QCCoilAmmo 		, horizontal, 1380,700; } } else { drawImage "0IGHTNIN", 1380,700;}
+	inInventory QCRailgun 			|| QCRailgunDM			{ 	isSelected QCRailgun 			, QCRailgunDM			{ drawBar "1RAILGUN", "0RAILGUN", QCSlugAmmo 	, horizontal, 1380,770; } else { drawBar "RRAILGUN", "0RAILGUN", QCSlugAmmo 		, horizontal, 1380,770; } } else { drawImage "0RAILGUN", 1380,770;}
+	inInventory QCBFG 				|| QCBFGDM				{ 	isSelected QCBFG 				, QCBFGDM				{ drawBar "1BIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1380,840; } else { drawBar "DBIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1380,840; } } else { drawImage "0BIGFGUN", 1380,840;}
+
+	// Upgrade icons on top of weapons
+	inInventory QCGauntlet 			{ inInventory GNT_UG_Burn      { drawImage "HPG_00_1",1393,335; }   inInventory GNT_UG_Omni      { drawImage "HPG_00_2",1423,335; } } else { inInventory GNT_UG_Burn      { drawImage "GPG_00_1",1393,335; }   inInventory GNT_UG_Omni      { drawImage "GPG_00_2",1423,335; } }
+	inInventory QCHeavyMachinegun 	{ inInventory HMG_UG_Ricochet  { drawImage "HPG_07_1",1393,405; }   inInventory HMG_UG_Pierce    { drawImage "HPG_07_2",1423,405; } } else { inInventory HMG_UG_Ricochet  { drawImage "GPG_07_1",1393,405; }   inInventory HMG_UG_Pierce    { drawImage "GPG_07_2",1423,405; } }
+	inInventory QCSuperShotgun		{ inInventory SSG_UG_Speed     { drawImage "HPG_09_1",1393,475; }   inInventory SSG_UG_Flame     { drawImage "HPG_09_2",1423,475; } } else { inInventory SSG_UG_Speed     { drawImage "GPG_09_1",1393,475; }   inInventory SSG_UG_Flame     { drawImage "GPG_09_2",1423,475; } }
+	inInventory QCSuperNailgun		{ inInventory SNG_UG_Lava      { drawImage "HPG_11_1",1393,545; }   inInventory SNG_UG_Seeker    { drawImage "HPG_11_2",1423,545; } } else { inInventory SNG_UG_Lava      { drawImage "GPG_11_1",1393,545; }   inInventory SNG_UG_Seeker    { drawImage "GPG_11_2",1423,545; } }
+	inInventory QCTribolt	 		{ inInventory  TB_UG_Long      { drawImage "HPG_13_1",1393,615; }   inInventory  TB_UG_Grenade   { drawImage "HPG_13_2",1423,615; } } else { inInventory  TB_UG_Long      { drawImage "GPG_13_1",1393,615; }   inInventory  TB_UG_Grenade   { drawImage "GPG_13_2",1423,615; } }
+	inInventory QCRocketLauncher	{ inInventory  RL_UG_Cluster   { drawImage "HPG_15_1",1393,685; }   inInventory  RL_UG_Control   { drawImage "HPG_15_2",1423,685; } } else { inInventory  RL_UG_Cluster   { drawImage "GPG_15_1",1393,685; }   inInventory  RL_UG_Control   { drawImage "GPG_15_2",1423,685; } }
+	inInventory QCLightningGun		{ inInventory  LG_UG_Residue   { drawImage "HPG_17_1",1393,755; }   inInventory  LG_UG_Static    { drawImage "HPG_17_2",1423,755; } } else { inInventory  LG_UG_Residue   { drawImage "GPG_17_1",1393,755; }   inInventory  LG_UG_Static    { drawImage "GPG_17_2",1423,755; } }
+	inInventory QCRailgun 			{ inInventory  RG_UG_Pierce    { drawImage "HPG_19_1",1393,825; }   inInventory  RG_UG_Explosive { drawImage "HPG_19_2",1423,825; } } else { inInventory  RG_UG_Pierce    { drawImage "GPG_19_1",1393,825; }   inInventory  RG_UG_Explosive { drawImage "GPG_19_2",1423,825; } }
+	inInventory QCBFG 				{ inInventory BFG_UG_Rays      { drawImage "HPG_21_1",1393,895; }   inInventory BFG_UG_Charge    { drawImage "HPG_21_2",1423,895; } } else { inInventory BFG_UG_Rays      { drawImage "GPG_21_1",1393,895; }   inInventory BFG_UG_Charge    { drawImage "GPG_21_2",1423,895; } }
+
+	// Ammo number near weapons
+	inInventory not RocketArena || Instagib {
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM {
+			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM	{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1489,400; } } else { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM		{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1489,400; } } }
+		} else {
+		inInventory QCMachinegun 	|| QCMachinegunDM {
+			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCMachinegun		, QCMachinegunDM		{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1489,400; } } else { isSelected QCMachinegun		, QCMachinegunDM			{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1489,400; } } }
+		}}
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM {
+			inInventory QCNailAmmo	 { inInventory QCNailAmmo	, 30 { isSelected QCSuperNailgun	, QCSuperNailgunDM		{ drawNumber 3, QCFNT040, brite, QCNailAmmo		, alignment(right), 1489,540; } else { drawNumber 3, QCFNT030, darkgrey, QCNailAmmo		, alignment(right), 1489,540; } } else { isSelected QCSuperNailgun		, QCSuperNailgunDM			{ drawNumber 3, QCFNT040, red, QCNailAmmo	, alignment(right), 1489,540; } else { drawNumber 3, QCFNT030, darkred, QCNailAmmo	, alignment(right), 1489,540; } } }
+		} else {
+		inInventory QCNailgun		|| QCNailgunDM {
+			inInventory QCNailAmmo	 { inInventory QCNailAmmo	, 30 { isSelected QCNailgun			, QCNailgunDM			{ drawNumber 3, QCFNT040, brite, QCNailAmmo		, alignment(right), 1489,540; } else { drawNumber 3, QCFNT030, darkgrey, QCNailAmmo		, alignment(right), 1489,540; } } else { isSelected QCNailgun			, QCNailgunDM				{ drawNumber 3, QCFNT040, red, QCNailAmmo	, alignment(right), 1489,540; } else { drawNumber 3, QCFNT030, darkred, QCNailAmmo	, alignment(right), 1489,540; } } }
+		}}
+		inInventory QCTribolt	 		|| QCTriboltDM			{ inInventory QCBoltAmmo 	, 10 { isSelected QCTribolt	 		, QCTriboltDM				{ drawNumber 3, QCFNT040, brite, QCBoltAmmo 	, alignment(right), 1489,610; } else { drawNumber 3, QCFNT030, darkgrey, QCBoltAmmo 	, alignment(right), 1489,610; } } else { isSelected QCTribolt	 		, QCTriboltDM				{ drawNumber 3, QCFNT040, red, QCBoltAmmo 	, alignment(right), 1489,610; } else { drawNumber 3, QCFNT030, darkred, QCBoltAmmo 	, alignment(right), 1489,610; } } }
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ inInventory QCRocketAmmo	, 10 { isSelected QCRocketLauncher	, QCRocketLauncherDM		{ drawNumber 3, QCFNT040, brite, QCRocketAmmo	, alignment(right), 1489,680; } else { drawNumber 3, QCFNT030, darkgrey, QCRocketAmmo	, alignment(right), 1489,680; } } else { isSelected QCRocketLauncher	, QCRocketLauncherDM		{ drawNumber 3, QCFNT040, red, QCRocketAmmo	, alignment(right), 1489,680; } else { drawNumber 3, QCFNT030, darkred, QCRocketAmmo	, alignment(right), 1489,680; } } }
+		inInventory QCLightningGun		|| QCLightningGunDM		{ inInventory QCCoilAmmo 	, 30 { isSelected QCLightningGun	, QCLightningGunDM			{ drawNumber 3, QCFNT040, brite, QCCoilAmmo 	, alignment(right), 1489,750; } else { drawNumber 3, QCFNT030, darkgrey, QCCoilAmmo 	, alignment(right), 1489,750; } } else { isSelected QCLightningGun		, QCLightningGunDM			{ drawNumber 3, QCFNT040, red, QCCoilAmmo 	, alignment(right), 1489,750; } else { drawNumber 3, QCFNT030, darkred, QCCoilAmmo 	, alignment(right), 1489,750; } } }
+		inInventory QCRailgun 			|| QCRailgunDM			{ inInventory QCSlugAmmo 	, 10 { isSelected QCRailgun 		, QCRailgunDM				{ drawNumber 3, QCFNT040, brite, QCSlugAmmo 	, alignment(right), 1489,820; } else { drawNumber 3, QCFNT030, darkgrey, QCSlugAmmo 	, alignment(right), 1489,820; } } else { isSelected QCRailgun 			, QCRailgunDM				{ drawNumber 3, QCFNT040, red, QCSlugAmmo 	, alignment(right), 1489,820; } else { drawNumber 3, QCFNT030, darkred, QCSlugAmmo 	, alignment(right), 1489,820; } } }
+		inInventory QCBFG 				|| QCBFGDM				{ inInventory QCBFGAmmo 	, 10 { isSelected QCBFG 			, QCBFGDM					{ drawNumber 3, QCFNT040, brite, QCBFGAmmo		, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkgrey, QCBFGAmmo		, alignment(right), 1489,890; } } else { isSelected QCBFG 				, QCBFGDM					{ drawNumber 3, QCFNT040, red, QCBFGAmmo	, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkred, QCBFGAmmo	, alignment(right), 1489,890; } } }
+
+		// This is special due to how it's basic in DM but not in solo
+		isSelected QCSuperShotgun	, QCSuperShotgunDM		{ inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1489,470; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1489,470; }
+		} else {
+		isSelected QCShotgun		, QCShotgunDM			{ inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1489,470; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1489,470; }
+		} else {
+			inInventory QCShotgun   || QCSuperShotgun	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1489,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1489,470; } }
+			inInventory QCShotgunDM || QCSuperShotgunDM	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1489,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1489,470; } }
+		}}
+	}
+	}
+	} else {
+	inInventory not NoWeaponBar
+	{
+	// Gauntlet -- special case, only drawn when there are upgrades
+	inInventory GNT_UG_Burn || GNT_UG_Omni {
+	isSelected QCGauntlet                                   { drawImage "SELECTOR", 1540,277;
+	                                                          drawImage "1AUNTLET", 1499,280;
+	} else {                                                  drawImage "GAUNTLET", 1499,280;
+	}}
+	// Orange pad behind selected weapon
+	isSelected QCMachinegun 		, QCMachinegunDM		{ drawImage "SELECTOR", 1540,347; }
+	isSelected QCShotgun			, QCShotgunDM			{ drawImage "SELECTOR", 1540,417; }
+	isSelected QCNailgun			, QCNailgunDM			{ drawImage "SELECTOR", 1540,487; }
+
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawImage "SELECTOR", 1540,347; }
+	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawImage "SELECTOR", 1540,417; }
+	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawImage "SELECTOR", 1540,487; }
+	isSelected QCTribolt	 		, QCTriboltDM			{ drawImage "SELECTOR", 1540,557; }
+	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawImage "SELECTOR", 1540,627; }
+	isSelected QCLightningGun		, QCLightningGunDM		{ drawImage "SELECTOR", 1540,697; }
+	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "SELECTOR", 1540,767; }
+	isSelected QCBFG 				, QCBFGDM				{ drawImage "SELECTOR", 1540,837; }
+
+	// Ammo measure inherent to every individual weapon
+	// +59, +12 from SELECTOR to bar
+	inInventory not RocketArena || Instagib {
+		inInventory QCMachinegun 		|| QCMachinegunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,360; }
+		inInventory QCShotgun			|| QCShotgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,430; }
+		inInventory QCNailgun			|| QCNailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1599,500; }
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,360; }
+		inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,430; }
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1599,500; }
+		inInventory QCTribolt	 		|| QCTriboltDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBoltAmmo 		, vertical, 1599,570; }
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCRocketAmmo	, vertical, 1599,640; }
+		inInventory QCLightningGun		|| QCLightningGunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo 		, vertical, 1599,710; }
+		inInventory QCRailgun 			|| QCRailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo 		, vertical, 1599,780; }
+		inInventory QCBFG 				|| QCBFGDM				{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1599,850; }
+	}
+
+	// Weapon icons themselves
+	inInventory QCMachinegun 	|| QCMachinegunDM	{ 	inInventory not QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ isSelected QCMachinegun 	, QCMachinegunDM	{ drawBar "1ACHINEG", "0ACHINEG", QCBulletAmmo	, horizontal, 1480,350; } else { drawBar "MACHINEG", "0ACHINEG", QCBulletAmmo	, horizontal, 1480,350; } } } else { inInventory not QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawImage "0ACHINEG", 1480,350; } }
+	inInventory QCShotgun		|| QCShotgunDM		{ 	inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ isSelected QCShotgun		, QCShotgunDM		{ drawBar "1HOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1480,420; } else { drawBar "SHOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1480,420; } } } else { inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ drawImage "0HOTGUN" , 1480,420; } }
+	inInventory QCNailgun		|| QCNailgunDM		{ 	inInventory not QCSuperNailgun		|| QCSuperNailgunDM		{ isSelected QCNailgun		, QCNailgunDM		{ drawBar "1AILGUN" , "0AILGUN" , QCNailAmmo	, horizontal, 1480,490; } else { drawBar "NAILGUN" , "0AILGUN" , QCNailAmmo		, horizontal, 1480,490; } } } else { inInventory not QCSuperNailgun		|| QCSuperNailgunDM		{ drawImage "0AILGUN" , 1480,490; } }
+
+	inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ 	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawBar "1MACHINE", "0MACHINE", QCBulletAmmo	, horizontal, 1480,350; } else { drawBar "HMACHINE", "0MACHINE", QCBulletAmmo	, horizontal, 1480,350; } }
+	inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ 	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawBar "1SHOTGUN", "0SHOTGUN", QCShellAmmo	, horizontal, 1480,420; } else { drawBar "SSHOTGUN", "0SHOTGUN", QCShellAmmo	, horizontal, 1480,420; } }
+	inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ 	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawBar "1NAILGUN", "0NAILGUN", QCNailAmmo	, horizontal, 1480,490; } else { drawBar "SNAILGUN", "0NAILGUN", QCNailAmmo		, horizontal, 1480,490; } }
+	inInventory QCTribolt	 		|| QCTriboltDM			{ 	isSelected QCTribolt	 		, QCTriboltDM			{ drawBar "1RIBOLT" , "0RIBOLT" , QCBoltAmmo 	, horizontal, 1480,560; } else { drawBar "TRIBOLT" , "0RIBOLT" , QCBoltAmmo 	, horizontal, 1480,560; } } else { drawImage "0RIBOLT" , 1480,560;}
+	inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ 	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawBar "1AUNCHER", "0AUNCHER", QCRocketAmmo	, horizontal, 1480,630; } else { drawBar "LAUNCHER", "0AUNCHER", QCRocketAmmo	, horizontal, 1480,630; } } else { drawImage "0AUNCHER", 1480,630;}
+	inInventory QCLightningGun		|| QCLightningGunDM		{ 	isSelected QCLightningGun		, QCLightningGunDM		{ drawBar "1IGHTNIN", "0IGHTNIN", QCCoilAmmo 	, horizontal, 1480,700; } else { drawBar "LIGHTNIN", "0IGHTNIN", QCCoilAmmo 	, horizontal, 1480,700; } } else { drawImage "0IGHTNIN", 1480,700;}
+	inInventory QCRailgun 			|| QCRailgunDM			{ 	isSelected QCRailgun 			, QCRailgunDM			{ drawBar "1RAILGUN", "0RAILGUN", QCSlugAmmo 	, horizontal, 1480,770; } else { drawBar "RRAILGUN", "0RAILGUN", QCSlugAmmo 	, horizontal, 1480,770; } } else { drawImage "0RAILGUN", 1480,770;}
+	inInventory QCBFG 				|| QCBFGDM				{ 	isSelected QCBFG 				, QCBFGDM				{ drawBar "1BIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1480,840; } else { drawBar "DBIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1480,840; } } else { drawImage "0BIGFGUN", 1480,840;}
+
+	// Upgrade icons on top of weapons
+	inInventory QCGauntlet 			{ inInventory GNT_UG_Burn      { drawImage "HPG_00_1",1493,335; }   inInventory GNT_UG_Omni      { drawImage "HPG_00_2",1523,335; } } else { inInventory GNT_UG_Burn      { drawImage "GPG_00_1",1493,335; }   inInventory GNT_UG_Omni      { drawImage "GPG_00_2",1523,335; } }
+	inInventory QCHeavyMachinegun 	{ inInventory HMG_UG_Ricochet  { drawImage "HPG_07_1",1493,405; }   inInventory HMG_UG_Pierce    { drawImage "HPG_07_2",1523,405; } } else { inInventory HMG_UG_Ricochet  { drawImage "GPG_07_1",1493,405; }   inInventory HMG_UG_Pierce    { drawImage "GPG_07_2",1523,405; } }
+	inInventory QCSuperShotgun		{ inInventory SSG_UG_Speed     { drawImage "HPG_09_1",1493,475; }   inInventory SSG_UG_Flame     { drawImage "HPG_09_2",1523,475; } } else { inInventory SSG_UG_Speed     { drawImage "GPG_09_1",1493,475; }   inInventory SSG_UG_Flame     { drawImage "GPG_09_2",1523,475; } }
+	inInventory QCSuperNailgun		{ inInventory SNG_UG_Lava      { drawImage "HPG_11_1",1493,545; }   inInventory SNG_UG_Seeker    { drawImage "HPG_11_2",1523,545; } } else { inInventory SNG_UG_Lava      { drawImage "GPG_11_1",1493,545; }   inInventory SNG_UG_Seeker    { drawImage "GPG_11_2",1523,545; } }
+	inInventory QCTribolt	 		{ inInventory  TB_UG_Long      { drawImage "HPG_13_1",1493,615; }   inInventory  TB_UG_Grenade   { drawImage "HPG_13_2",1523,615; } } else { inInventory  TB_UG_Long      { drawImage "GPG_13_1",1493,615; }   inInventory  TB_UG_Grenade   { drawImage "GPG_13_2",1523,615; } }
+	inInventory QCRocketLauncher	{ inInventory  RL_UG_Cluster   { drawImage "HPG_15_1",1493,685; }   inInventory  RL_UG_Control   { drawImage "HPG_15_2",1523,685; } } else { inInventory  RL_UG_Cluster   { drawImage "GPG_15_1",1493,685; }   inInventory  RL_UG_Control   { drawImage "GPG_15_2",1523,685; } }
+	inInventory QCLightningGun		{ inInventory  LG_UG_Residue   { drawImage "HPG_17_1",1493,755; }   inInventory  LG_UG_Static    { drawImage "HPG_17_2",1523,755; } } else { inInventory  LG_UG_Residue   { drawImage "GPG_17_1",1493,755; }   inInventory  LG_UG_Static    { drawImage "GPG_17_2",1523,755; } }
+	inInventory QCRailgun 			{ inInventory  RG_UG_Pierce    { drawImage "HPG_19_1",1493,825; }   inInventory  RG_UG_Explosive { drawImage "HPG_19_2",1523,825; } } else { inInventory  RG_UG_Pierce    { drawImage "GPG_19_1",1493,825; }   inInventory  RG_UG_Explosive { drawImage "GPG_19_2",1523,825; } }
+	inInventory QCBFG 				{ inInventory BFG_UG_Rays      { drawImage "HPG_21_1",1493,895; }   inInventory BFG_UG_Charge    { drawImage "HPG_21_2",1523,895; } } else { inInventory BFG_UG_Rays      { drawImage "GPG_21_1",1493,895; }   inInventory BFG_UG_Charge    { drawImage "GPG_21_2",1523,895; } }
+
+	// Ammo number near weapons
+	inInventory not RocketArena || Instagib {
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM {
+			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM	{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1589,400; } } else { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM		{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1589,400; } } }
+		} else {
+		inInventory QCMachinegun 	|| QCMachinegunDM {
+			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCMachinegun		, QCMachinegunDM		{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1589,400; } } else { isSelected QCMachinegun		, QCMachinegunDM			{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1589,400; } } }
+		}}
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM {
+			inInventory QCNailAmmo	 { inInventory QCNailAmmo	, 30 { isSelected QCSuperNailgun	, QCSuperNailgunDM		{ drawNumber 3, QCFNT040, brite, QCNailAmmo		, alignment(right), 1589,540; } else { drawNumber 3, QCFNT030, darkgrey, QCNailAmmo		, alignment(right), 1589,540; } } else { isSelected QCSuperNailgun		, QCSuperNailgunDM			{ drawNumber 3, QCFNT040, red, QCNailAmmo	, alignment(right), 1589,540; } else { drawNumber 3, QCFNT030, darkred, QCNailAmmo	, alignment(right), 1589,540; } } }
+		} else {
+		inInventory QCNailgun		|| QCNailgunDM {
+			inInventory QCNailAmmo	 { inInventory QCNailAmmo	, 30 { isSelected QCNailgun			, QCNailgunDM			{ drawNumber 3, QCFNT040, brite, QCNailAmmo		, alignment(right), 1589,540; } else { drawNumber 3, QCFNT030, darkgrey, QCNailAmmo		, alignment(right), 1589,540; } } else { isSelected QCNailgun			, QCNailgunDM				{ drawNumber 3, QCFNT040, red, QCNailAmmo	, alignment(right), 1589,540; } else { drawNumber 3, QCFNT030, darkred, QCNailAmmo	, alignment(right), 1589,540; } } }
+		}}
+		inInventory QCTribolt	 		|| QCTriboltDM			{ inInventory QCBoltAmmo 	, 10 { isSelected QCTribolt	 		, QCTriboltDM				{ drawNumber 3, QCFNT040, brite, QCBoltAmmo 	, alignment(right), 1589,610; } else { drawNumber 3, QCFNT030, darkgrey, QCBoltAmmo 	, alignment(right), 1589,610; } } else { isSelected QCTribolt	 		, QCTriboltDM				{ drawNumber 3, QCFNT040, red, QCBoltAmmo 	, alignment(right), 1589,610; } else { drawNumber 3, QCFNT030, darkred, QCBoltAmmo 	, alignment(right), 1589,610; } } }
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ inInventory QCRocketAmmo	, 10 { isSelected QCRocketLauncher	, QCRocketLauncherDM		{ drawNumber 3, QCFNT040, brite, QCRocketAmmo	, alignment(right), 1589,680; } else { drawNumber 3, QCFNT030, darkgrey, QCRocketAmmo	, alignment(right), 1589,680; } } else { isSelected QCRocketLauncher	, QCRocketLauncherDM		{ drawNumber 3, QCFNT040, red, QCRocketAmmo	, alignment(right), 1589,680; } else { drawNumber 3, QCFNT030, darkred, QCRocketAmmo, alignment(right), 1589,680; } } }
+		inInventory QCLightningGun		|| QCLightningGunDM		{ inInventory QCCoilAmmo 	, 30 { isSelected QCLightningGun	, QCLightningGunDM			{ drawNumber 3, QCFNT040, brite, QCCoilAmmo 	, alignment(right), 1589,750; } else { drawNumber 3, QCFNT030, darkgrey, QCCoilAmmo 	, alignment(right), 1589,750; } } else { isSelected QCLightningGun		, QCLightningGunDM			{ drawNumber 3, QCFNT040, red, QCCoilAmmo 	, alignment(right), 1589,750; } else { drawNumber 3, QCFNT030, darkred, QCCoilAmmo 	, alignment(right), 1589,750; } } }
+		inInventory QCRailgun 			|| QCRailgunDM			{ inInventory QCSlugAmmo 	, 10 { isSelected QCRailgun 		, QCRailgunDM				{ drawNumber 3, QCFNT040, brite, QCSlugAmmo 	, alignment(right), 1589,820; } else { drawNumber 3, QCFNT030, darkgrey, QCSlugAmmo 	, alignment(right), 1589,820; } } else { isSelected QCRailgun 			, QCRailgunDM				{ drawNumber 3, QCFNT040, red, QCSlugAmmo 	, alignment(right), 1589,820; } else { drawNumber 3, QCFNT030, darkred, QCSlugAmmo 	, alignment(right), 1589,820; } } }
+		inInventory QCBFG 				|| QCBFGDM				{ inInventory QCBFGAmmo 	, 10 { isSelected QCBFG 			, QCBFGDM					{ drawNumber 3, QCFNT040, brite, QCBFGAmmo		, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkgrey, QCBFGAmmo		, alignment(right), 1589,890; } } else { isSelected QCBFG 				, QCBFGDM					{ drawNumber 3, QCFNT040, red, QCBFGAmmo	, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkred, QCBFGAmmo	, alignment(right), 1589,890; } } }
+
+		// This is special due to how it's basic in DM but not in solo
+		isSelected QCSuperShotgun	, QCSuperShotgunDM		{ inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1589,470; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1589,470; }
+		} else {
+		isSelected QCShotgun		, QCShotgunDM			{ inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1589,470; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1589,470; }
+		} else {
+			inInventory QCShotgun   || QCSuperShotgun	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1589,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1589,470; } }
+			inInventory QCShotgunDM || QCSuperShotgunDM	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1589,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1589,470; } }
+		}}
+		}
+	}
+	}
+
+
+	// Active Ability
+
+	InInventory not NoAbilityIcon {
+	// Frame
+	inInventory not Class_Sarge {
+		inInventory AbilityCooldownToken {
+			inInventory not MultiuseCharge {
+				drawImage "ACTFRAM0", 572,800;
+			} else {
+				drawImage "ACTFRAM2", 572,800;
+			}
+		} else {
+				drawImage "ACTFRAME", 572,800;
+		}
+	}
+	// Icon
+	inInventory Class_Ranger		{ drawSwitchableImage AbilityCooldownToken, 	"DIREORB1", "DIREORB0", 	636,850; }
+	inInventory Class_Doomslayer	{ drawSwitchableImage AbilityCooldownToken, 	"BIGFGUN1", "BIGFGUN0", 	636,850; }
+	inInventory Class_Corvus		{ drawSwitchableImage AbilityCooldownToken, 	"FLIGHT_1", "FLIGHT_0", 	636,850; }
+	inInventory Class_Kane			{ drawSwitchableImage AbilityCooldownToken, 	"STROYEN1", "STROYEN0", 	636,850; }
+	inInventory Class_Caleb			{ drawSwitchableImage AbilityCooldownToken, 	"LIFDRAN1", "LIFDRAN0", 	636,850; }
+	inInventory Class_Menelkir		{ drawSwitchableImage AbilityCooldownToken, 	"MAULOTR1", "MAULOTR0", 	636,850; }
+	inInventory Class_Terminator	{ drawSwitchableImage AbilityCooldownToken, 	"BARRAGE1", "BARRAGE0", 	636,850; }
+	inInventory Class_Zedek			{ drawSwitchableImage AbilityCooldownToken, 	"ACIDSWR1", "ACIDSWR0", 	636,850; }
+	inInventory Class_Inquisitor	{ drawSwitchableImage AbilityCooldownToken, 	"REFLECT1", "REFLECT0", 	636,850; }
+	inInventory Class_Bitterman		{ drawSwitchableImage AbilityCooldownToken, 	"PWRSHLD1", "PWRSHLD0", 	636,850; }
+	inInventory Class_Galen			{ drawSwitchableImage AbilityCooldownToken, 	"TOTEM001", "TOTEM000", 	636,850; }
+	inInventory Class_Nyx			{ drawSwitchableImage AbilityCooldownToken, 	"GHSTWLK1", "GHSTWLK0", 	636,850; }
+	inInventory Class_Sorgaul		{ drawSwitchableImage AbilityCooldownToken, 	"RAGE0001", "RAGE0000", 	636,850; }
+	inInventory Class_DukeNukem		{ drawSwitchableImage AbilityCooldownToken, 	"FREEZE01", "FREEZE00", 	636,850; }
+	inInventory Class_Durandal		{ drawSwitchableImage AbilityCooldownToken, 	"BOBBQ001", "BOBBQ000", 	636,850; }
+	inInventory Class_Keel			{ drawSwitchableImage AbilityCooldownToken, 	"GRENADE1", "GRENADE0", 	636,850; }
+	inInventory Class_Sarge			{ drawSwitchableImage AbilityCooldownToken, 	"OLDSCHOL", "OLDSCHOL", 	636,850; }
+	inInventory Class_LoWang		{ drawSwitchableImage AbilityCooldownToken, 	"NOBITSU1", "NOBITSU0", 	636,850; }
+	inInventory Class_Grayson		{ drawSwitchableImage AbilityCooldownToken, 	"THUMPER1", "THUMPER0", 	636,850; }
+	inInventory Class_Eradicator	{ drawSwitchableImage AbilityCooldownToken, 	"RADAR001", "RADAR000", 	636,850; }
+	inInventory Class_Blazkowicz	{ drawSwitchableImage AbilityCooldownToken, 	"AKIMBO01", "AKIMBO00", 	636,850; }
+	inInventory Class_Freeman		{ drawSwitchableImage AbilityCooldownToken, 	"EXHAUST1", "EXHAUST0", 	636,850; }
+	inInventory Class_VorMatur		{ drawSwitchableImage AbilityCooldownToken, 	"TERROR01", "TERROR00", 	636,850; }
+	inInventory Class_Eleena		{ drawSwitchableImage AbilityCooldownToken, 	"HOLOTP01", "HOLOTP00", 	636,850; }
+	inInventory Class_Lucienne		{ drawSwitchableImage AbilityCooldownToken, 	"CLNFIRE1", "CLNFIRE0", 	636,850; }
+	inInventory Class_Major			{ drawSwitchableImage AbilityCooldownToken, 	"AIRSTRK1", "AIRSTRK0", 	636,850; }
+	inInventory Class_Hunter		{ drawSwitchableImage AbilityCooldownToken, 	"HUNTSKL1", "HUNTSKL0", 	636,850; }
+	inInventory Class_Sam			{ drawSwitchableImage AbilityCooldownToken, 	"MINIGUN1", "MINIGUN0", 	636,850; }
+	inInventory Class_Postal		{ drawSwitchableImage AbilityCooldownToken, 	"COWHEAD1", "COWHEAD0", 	636,850; }
+	inInventory Class_Painkiller	{ drawSwitchableImage AbilityCooldownToken, 	"TAROT001", "TAROT000", 	636,850; }
+	inInventory Class_Intruder		{ drawSwitchableImage AbilityCooldownToken, 	"WENDIG01", "WENDIG00", 	636,850; }
+	// ^ insert more classes here
+
+	// Counter
+	inInventory not Class_Sarge {
+	inInventory not ActiveInProgress
+	{
+		inInventory AbilityCooldownSeconds, 4
+		{
+			drawNumber 3, QCFNT100, brite, AbilityCooldownSeconds,     alignment(center),700,886;
+		} else { inInventory AbilityCooldownToken {
+			inInventory AbilityCooldownSeconds || AbilityCooldownDeciseconds {
+				drawNumber 1, QCFNT080, brite, AbilityCooldownSeconds,     alignment(right), 696,890;
+				drawString    QCFNT080, brite, ".",                                          700,890, 0, alignment(center);
+				drawNumber 1, QCFNT080, brite, AbilityCooldownDeciseconds, alignment(left),  704,890;
+			} else {
+				drawImage "ACTFRAME", 572,800;
+				drawImage "ACTFRAM1", 572,800;
+			}
+		}}
+	}
+	}
+	// Progress reticle
+	inInventory ActiveProgressToken {
+		drawImage "ABILRET0",444,269;
+		drawImage "ABIRLET0",700,269;
+		drawBar "ABILRET1", "ABILRET0",	ActiveProgressToken	, horizontal         , 444,269;
+		drawBar "ABIRLET1", "ABIRLET0",	ActiveProgressToken	, horizontal, reverse, 700,269;
+	}
+	// Major's HUD reticle
+	inInventory StrikesCounter	{ drawImage "STRKHUDL", 	184,172; }
+
+	// Bitterman special charge
+	inInventory PowerShieldCharge {
+		drawNumber 3, QCFNT050, brite, PowerShieldCharge, alignment(center),700,950;
+	}
+	// Galen totem count
+	inInventory TotemToken {
+		inInventory TotemToken, 5 {
+			drawBar "GTOTEMS5", "GTOTEMS0", TotemToken, horizontal, 604, 800;
+		} else {
+			drawBar "GTOTEMS4", "GTOTEMS0", TotemToken, horizontal, 604, 800;
+		}
+	}
+	// Eradicator murder boner
+	inInventory MurderLevel {
+		drawNumber 3, QCFNT050, bludi, MurderLevel, alignment(right),  960,960;
+		drawString    QCFNT050, bludi, "0%"                         ,  962,960, 0, alignment(left);
+		drawString     BIGFONT, brite, "          extra damage"     ,  960,970, 0, alignment(left);
+	}
+	inInventory MurderToken { inInventory not TooFewMonst {
+		drawNumber 3, QCFNT040, bludi, MurderToken, alignment(right), 1014,991;
+		drawString     BIGFONT, brite, " kills to buff"             , 1014,996, 0, alignment(left);
+	}}
+	// Multiuse charges (Keel, Lucienne, Freeman, etc)
+	inInventory MultiuseCharge {
+		drawNumber 2, QCFNT060, brite, MultiuseCharge, alignment(center),700,950;
+	}
+	// Sam's ammo
+	inInventory Class_Sam {
+		inInventory not AbilityCooldownToken {
+			InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950; }
+		} else {
+			inInventory ActiveProgressToken {
+				InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950; }
+			} else {
+				InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, graey, SeriousBullets, alignment(center), 700,950; }
+			}
+		}
+	}
+	// Painkiller's souls counter
+	inInventory PainsKilled {
+		gameMode deathmatch {
+			inInventory PainsKilled, 55 {
+				drawNumber 3, QCFNT070, bludi, PainsKilled, alignment(right), 1170,970;
+			} else {
+				drawNumber 3, QCFNT060, brite, PainsKilled, alignment(right), 1170,973;
+			}
+		} else {
+			inInventory PainsKilled, 60 {
+				drawNumber 3, QCFNT070, bludi, PainsKilled, alignment(right), 1170,970;
+			} else {
+				drawNumber 3, QCFNT060, brite, PainsKilled, alignment(right), 1170,973;
+			}
+		}
+		drawImage "SOLCOUNT",                                         1180,970;
+	}
+	}
+
+	// Leaderboard and clock
+	inInventory not TeamDeathmatch || Duel
+	{
+		gameMode deathmatch
+		{
+			inInventory CurrentLeader {
+				drawImage "TEAM0FR1", 600,50;
+			} else {
+				drawImage "TEAM0FR2", 600,50;
+			}
+			drawBar "TEAM0BA1", "TEAM0BA0", Team1Score, horizontal, 644,50;
+
+			drawString QCFNT080, white, GlobalVar   1, 585,54, 0, alignment(right);  // timer
+			drawString QCFNT030, white, GlobalArray 4, 620,55, 0, alignment(center); // position 1st
+			drawString QCFNT030, white, GlobalArray 5, 620,82, 0, alignment(center); // position 2nd
+			drawString BIGFONT , white, GlobalArray 6, 648,53, 0, alignment(left);   // name 1st
+			drawString BIGFONT , white, GlobalArray 7, 648,80, 0, alignment(left);   // name 2nd
+			drawString QCFNT030, white, GlobalArray 8, 892,55, 0, alignment(center); // frags 1st
+			drawString QCFNT030, white, GlobalArray 9, 892,82, 0, alignment(center); // frags 2nd
+		}
+	}
+	else
+	{
+		inInventory TeamDeathmatch
+		{
+			// Current team bar highlight
+			inInventory TeamColor,   2 {
+				drawImage "TEAMBAC2", 750,-30;
+				drawImage "TEAMBAC2", 850,-30;
+			} else {
+				drawImage "TEAMBAC1", 330,-30;
+				drawImage "TEAMBAC1", 430,-30;
+			}
+
+			drawImage "TEAM1FRM", 380,50;
+			drawImage "TEAM2FRM", 800,50;
+		}
+		inInventory Duel
+		{
+			drawImage "TEAM1DUO", 380,50;
+			drawImage "TEAM2DUO", 800,50;
+
+			drawString bigfont, brite, GlobalArray 6,  383,90, 0, alignment( left);
+			drawString bigfont, brite, GlobalArray 7, 1012,90, 0, alignment(right);
+
+			//-----------------------------------------------------
+			//
+			// Spectator HUD
+			//
+			//-----------------------------------------------------
+			inInventory BeingSpectated
+			{
+				// Center is at 700,525
+				inInventory not FlatHealthToken {
+					drawBar "BARS6", "BARS_",   SuperHealthBar, horizontal, reverse, 210,115;
+					drawBar "BARS4", "BARS_", CurrentHealthBar, horizontal, reverse, 210,115;
+				} else {
+					drawBar "BARF6", "BARS_",   SuperHealthBar, horizontal, reverse, 210,115;
+					drawBar "BARF4", "BARS_", CurrentHealthBar, horizontal, reverse, 210,115;
+				}
+				inInventory not FlatArmorToken {
+					drawBar "BARS7", "BARS_",   SuperArmorBar,  horizontal, reverse, 210,130;
+					drawBar "BARS5", "BARS_", CurrentArmorBar,  horizontal, reverse, 210,130;
+				} else {
+					drawBar "BARF7", "BARS_",   SuperArmorBar,  horizontal, reverse, 210,130;
+					drawBar "BARF5", "BARS_", CurrentArmorBar,  horizontal, reverse, 210,130;
+				}
+
+				inInventory Class_Ranger			{ drawImage "PORTRY01", 	250,6; }
+				inInventory Class_Doomslayer		{ drawImage "PORTRY02", 	250,6; }
+				inInventory Class_Corvus			{ drawImage "PORTRY03", 	250,6; }
+				inInventory Class_Kane				{ drawImage "PORTRY04", 	250,6; }
+				inInventory Class_Caleb				{ drawImage "PORTRY05", 	250,6; }
+				inInventory Class_Menelkir			{ drawImage "PORTRY06", 	250,6; }
+				inInventory Class_Terminator		{ drawImage "PORTRY07", 	250,6; }
+				inInventory Class_Zedek				{ drawImage "PORTRY08", 	250,6; }
+				inInventory Class_Inquisitor		{ drawImage "PORTRY09", 	250,6; }
+				inInventory Class_Bitterman			{ drawImage "PORTRY10", 	250,6; }
+				inInventory Class_Galen				{ drawImage "PORTRY11", 	250,6; }
+				inInventory Class_Nyx				{ drawImage "PORTRY12", 	250,6; }
+				inInventory Class_Sorgaul			{ drawImage "PORTRY13", 	250,6; }
+				inInventory Class_DukeNukem			{ drawImage "PORTRY14", 	250,6; }
+				inInventory Class_Durandal			{ drawImage "PORTRY15", 	250,6; }
+				inInventory Class_Keel				{ drawImage "PORTRY16", 	250,6; }
+				inInventory Class_Sarge				{ drawImage "PORTRY17", 	250,6; }
+				inInventory Class_LoWang			{ drawImage "PORTRY18", 	250,6; }
+				inInventory Class_Grayson			{ drawImage "PORTRY19", 	250,6; }
+				inInventory Class_Eradicator		{ drawImage "PORTRY20", 	250,6; }
+				inInventory Class_Blazkowicz		{ drawImage "PORTRY21", 	250,6; }
+				inInventory Class_Freeman			{ drawImage "PORTRY22", 	250,6; }
+				inInventory Class_VorMatur			{ drawImage "PORTRY23", 	250,6; }
+				inInventory Class_Eleena			{ drawImage "PORTRY24", 	250,6; }
+				inInventory Class_Lucienne			{ drawImage "PORTRY25", 	250,6; }
+				inInventory Class_Major				{ drawImage "PORTRY26", 	250,6; }
+				inInventory Class_Hunter			{ drawImage "PORTRY27", 	250,6; }
+				inInventory Class_Sam				{ drawImage "PORTRY28", 	250,6; }
+				inInventory Class_Postal			{ drawImage "PORTRY29", 	250,6; }
+				inInventory Class_Painkiller		{ drawImage "PORTRY30", 	250,6; }
+				inInventory Class_Intruder				{ drawImage "PORTRY31", 	250,6; }
+				// ^ insert more classes here
+
+				inInventory QCHeavyMachinegunDM		{ drawImage "LedBullt", 	360,145; }
+				inInventory QCSuperShotgunDM		{ drawImage "LedShell", 	390,145; }
+				inInventory QCSuperNailgunDM		{ drawImage "LedNails", 	420,145; }
+				inInventory QCTriboltDM				{ drawImage "LedBolts", 	450,145; }
+				inInventory QCRocketLauncherDM		{ drawImage "LedRockt", 	480,145; }
+				inInventory QCLightningGunDM		{ drawImage "LedCoils", 	510,145; }
+				inInventory QCRailgunDM				{ drawImage "LedSlugs", 	540,145; }
+				inInventory QCBFGDM					{ drawImage "LedBfugs", 	570,145; }
+
+				inInventory not AbilityCooldownToken { drawImage "ABILREDY", 316,70; } else {
+					inInventory AbilityCooldownSeconds {
+						drawNumber 3, QCFNT050, brite, AbilityCooldownSeconds, alignment(center),345,90;
+					} else {
+						drawImage "ABILISRN", 316,70;
+					}
+				}
+
+				inInventory not EnemyFlatHealthToken {
+					drawBar "BARS6", "BARS_",   EnemySuperHealthBar, horizontal, 800,115;
+					drawBar "BARS4", "BARS_", EnemyCurrentHealthBar, horizontal, 800,115;
+				} else {
+					drawBar "BARF6", "BARS_",   EnemySuperHealthBar, horizontal, 800,115;
+					drawBar "BARF4", "BARS_", EnemyCurrentHealthBar, horizontal, 800,115;
+				}
+				inInventory not EnemyFlatArmorToken {
+					drawBar "BARS7", "BARS_",   EnemySuperArmorBar,  horizontal, 800,130;
+					drawBar "BARS5", "BARS_", EnemyCurrentArmorBar,  horizontal, 800,130;
+				} else {
+					drawBar "BARF7", "BARS_",   EnemySuperArmorBar,  horizontal, 800,130;
+					drawBar "BARF5", "BARS_", EnemyCurrentArmorBar,  horizontal, 800,130;
+				}
+
+				inInventory EnemyClass_Ranger		{ drawImage "PORTRY01", 	1010,6; }
+				inInventory EnemyClass_Doomslayer	{ drawImage "PORTRY02", 	1010,6; }
+				inInventory EnemyClass_Corvus		{ drawImage "PORTRY03", 	1010,6; }
+				inInventory EnemyClass_Kane			{ drawImage "PORTRY04", 	1010,6; }
+				inInventory EnemyClass_Caleb		{ drawImage "PORTRY05", 	1010,6; }
+				inInventory EnemyClass_Menelkir		{ drawImage "PORTRY06", 	1010,6; }
+				inInventory EnemyClass_Terminator	{ drawImage "PORTRY07", 	1010,6; }
+				inInventory EnemyClass_Zedek		{ drawImage "PORTRY08", 	1010,6; }
+				inInventory EnemyClass_Inquisitor	{ drawImage "PORTRY09", 	1010,6; }
+				inInventory EnemyClass_Bitterman	{ drawImage "PORTRY10", 	1010,6; }
+				inInventory EnemyClass_Galen		{ drawImage "PORTRY11", 	1010,6; }
+				inInventory EnemyClass_Nyx			{ drawImage "PORTRY12", 	1010,6; }
+				inInventory EnemyClass_Sorgaul		{ drawImage "PORTRY13", 	1010,6; }
+				inInventory EnemyClass_DukeNukem	{ drawImage "PORTRY14", 	1010,6; }
+				inInventory EnemyClass_Durandal		{ drawImage "PORTRY15", 	1010,6; }
+				inInventory EnemyClass_Keel			{ drawImage "PORTRY16", 	1010,6; }
+				inInventory EnemyClass_Sarge		{ drawImage "PORTRY17", 	1010,6; }
+				inInventory EnemyClass_LoWang		{ drawImage "PORTRY18", 	1010,6; }
+				inInventory EnemyClass_Grayson		{ drawImage "PORTRY19", 	1010,6; }
+				inInventory EnemyClass_Eradicator	{ drawImage "PORTRY20", 	1010,6; }
+				inInventory EnemyClass_Blazkowicz	{ drawImage "PORTRY21", 	1010,6; }
+				inInventory EnemyClass_Freeman		{ drawImage "PORTRY22", 	1010,6; }
+				inInventory EnemyClass_VorMatur		{ drawImage "PORTRY23", 	1010,6; }
+				inInventory EnemyClass_Eleena		{ drawImage "PORTRY24", 	1010,6; }
+				inInventory EnemyClass_Lucienne		{ drawImage "PORTRY25", 	1010,6; }
+				inInventory EnemyClass_Major		{ drawImage "PORTRY26", 	1010,6; }
+				inInventory EnemyClass_Hunter		{ drawImage "PORTRY27", 	1010,6; }
+				inInventory EnemyClass_Sam			{ drawImage "PORTRY28", 	1010,6; }
+				inInventory EnemyClass_Postal		{ drawImage "PORTRY29", 	1010,6; }
+				inInventory EnemyClass_Painkiller	{ drawImage "PORTRY30", 	1010,6; }
+				inInventory EnemyClass_Intruder			{ drawImage "PORTRY31", 	1010,6; }
+				// ^ insert more classes here
+
+				inInventory EnemyQCHeavyMachinegunDM	{ drawImage "LedBullt", 	 990,145; }
+				inInventory EnemyQCSuperShotgunDM		{ drawImage "LedShell", 	 960,145; }
+				inInventory EnemyQCSuperNailgunDM		{ drawImage "LedNails", 	 930,145; }
+				inInventory EnemyQCTriboltDM			{ drawImage "LedBolts", 	 900,145; }
+				inInventory EnemyQCRocketLauncherDM		{ drawImage "LedRockt", 	 870,145; }
+				inInventory EnemyQCLightningGunDM		{ drawImage "LedCoils", 	 840,145; }
+				inInventory EnemyQCRailgunDM			{ drawImage "LedSlugs", 	 810,145; }
+				inInventory EnemyQCBFGDM				{ drawImage "LedBfugs", 	 780,145; }
+
+				inInventory not EnemyAbilityCooldownToken { drawImage "ABILREDY", 1014,70; } else {
+					inInventory EnemyAbilityCooldownSeconds {
+						drawNumber 3, QCFNT050, brite, EnemyAbilityCooldownSeconds, alignment(center),1047,90;
+					} else {
+						drawImage "ABILISRN", 1014,70;
+					}
+				}
+			}
+		}
+		drawBar "TEAM1BA1", "TEAM1BA0", Team1Score, horizontal, 380,50;
+		drawString QCFNT050, white, GlobalArray 2,              383,54, 0, alignment(left);
+
+		drawBar "TEAM2BA1", "TEAM2BA0", Team2Score, horizontal, reverse, 800,50;
+		drawString QCFNT050, white, GlobalArray 3,                      1015,54, 0, alignment(right);
+
+		drawString QCFNT050, white, GlobalVar 1,                         700,54, 0, alignment(center);	//timer
+	}
+
+	drawselectedinventory INDEXFON, 15, 980;
+
+	// Damage
+	DrawMugShot 1, disableouch, disablerampage, disablegrin, 628, 812;
+
+	//Flag on top of ability, and everything else
+	inInventory RedFlag			{ drawImage "FLAGCARY", 	623,848; }
+	inInventory WhiteFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory BlueFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory GoldFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory GreenFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory PowerEldersSoul	{ drawImage "DEMNCARY", 	603,819; }
+
+	inInventory QCEverything
+	{ drawString BIGFONT, bludi, "warranty void", 240,810, 0, alignment(left); }
+	}
+	}
+}
+else // Spectator
+{
+	drawString QCFNT100, white, GlobalVar 1, 700,25, 0, alignment(center);	//timer
+}}
+
+//================================================================================================
+//================================================================================================
+//
+//================================================================================================
+//================================================================================================
+
+statusbar Fullscreen, forcescaled
+{ inInventory NotSpectator {  // You only lack it when you don't exist.
+	inInventory DemonMorpher || DemonMorpherDM { // Demon HUD for online
+		drawImage "PCORN001",-234,   0;
+		drawImage "PCORN002",1634,   0;
+		drawImage "PCORN003",1634,1050;
+		drawImage "PCORN004",-234,1050;
+		drawImage "DEMNBAR0", 444,1015;
+		drawBar "DEMNBAR1", "DEMNBAR0", health(600)        , horizontal, interpolate(9), 444,1015;
+		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(1), 444, 943;
+	} else { inInventory PowerDemonMorph { // Demon HUD for offline
+		drawImage "PCORN001",-234,   0;
+		drawImage "PCORN002",1634,   0;
+		drawImage "PCORN003",1634,1050;
+		drawImage "PCORN004",-234,1050;
+		drawImage "DEMNBAR0", 444,1015;
+		drawBar "DEMNBAR1", "DEMNBAR0", health(600)        , horizontal, interpolate(9), 444,1015;
+		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(1), 444, 943;
+	} else {
+	inInventory not NoPortrait {
+	// Team color
+	inInventory TeamDeathmatch {
+		inInventory TeamColor, 255 {	drawImage "TEAMBACA", 15,789; } else {
+		inInventory TeamColor,   8 {	drawImage "TEAMBAC8", 15,789; } else {
+		inInventory TeamColor,   7 {	drawImage "TEAMBAC7", 15,789; } else {
+		inInventory TeamColor,   6 {	drawImage "TEAMBAC6", 15,789; } else {
+		inInventory TeamColor,   5 {	drawImage "TEAMBAC5", 15,789; } else {
+		inInventory TeamColor,   4 {	drawImage "TEAMBAC4", 15,789; } else {
+		inInventory TeamColor,   3 {	drawImage "TEAMBAC3", 15,789; } else {
+		inInventory TeamColor,   2 {	drawImage "TEAMBAC2", 15,789; } else {
+		inInventory TeamColor,   1 {	drawImage "TEAMBAC1", 15,789;
+		}}}}}}}}} // 9 braces
+	}
+
+	// Portrait
+	inInventory Class_Ranger		{ drawImage "PORTRX01", 	10,795; }
+	inInventory Class_Doomslayer	{ drawImage "PORTRX02", 	10,795; }
+	inInventory Class_Corvus		{ drawImage "PORTRX03", 	10,795; }
+	inInventory Class_Kane			{ drawImage "PORTRX04", 	10,795; }
+	inInventory Class_Caleb			{ drawImage "PORTRX05", 	10,795; }
+	inInventory Class_Menelkir		{ drawImage "PORTRX06", 	10,795; }
+	inInventory Class_Terminator	{ drawImage "PORTRX07", 	10,795; }
+	inInventory Class_Zedek			{ drawImage "PORTRX08", 	10,795; }
+	inInventory Class_Inquisitor	{ drawImage "PORTRX09", 	10,795; }
+	inInventory Class_Bitterman		{ drawImage "PORTRX10", 	10,795; }
+	inInventory Class_Galen			{ drawImage "PORTRX11", 	10,795; }
+	inInventory Class_Nyx			{ drawImage "PORTRX12", 	10,795; }
+	inInventory Class_Sorgaul		{ drawImage "PORTRX13", 	10,795; }
+	inInventory Class_DukeNukem		{ drawImage "PORTRX14", 	10,795; }
+	inInventory Class_Durandal		{ drawImage "PORTRX15", 	10,795; }
+	inInventory Class_Keel			{ drawImage "PORTRX16", 	10,795; }
+	inInventory Class_Sarge			{ drawImage "PORTRX17", 	10,795; }
+	inInventory Class_LoWang		{ drawImage "PORTRX18", 	10,795; }
+	inInventory Class_Grayson		{ drawImage "PORTRX19", 	10,795; }
+	inInventory Class_Eradicator	{ drawImage "PORTRX20", 	10,795; }
+	inInventory Class_Blazkowicz	{ drawImage "PORTRX21", 	10,795; }
+	inInventory Class_Freeman		{ drawImage "PORTRX22", 	10,795; }
+	inInventory Class_VorMatur		{ drawImage "PORTRX23", 	10,795; }
+	inInventory Class_Eleena		{ drawImage "PORTRX24", 	10,795; }
+	inInventory Class_Lucienne		{ drawImage "PORTRX25", 	10,795; }
+	inInventory Class_Major			{ drawImage "PORTRX26", 	10,795; }
+	inInventory Class_Hunter		{ drawImage "PORTRX27", 	10,795; }
+	inInventory Class_Sam			{ drawImage "PORTRX28", 	10,795; }
+	inInventory Class_Postal		{ drawImage "PORTRX29", 	10,795; }
+	inInventory Class_Painkiller	{ drawImage "PORTRX30", 	10,795; }
+	inInventory Class_Intruder			{ drawImage "PORTRX31", 	10,795; }
+	// ^ insert more classes here
+
+	// Number of lives
+	inInventory LifeToken
+	{
+		inInventory LifeToken, 2 {
+			drawString QCFNT100, brite, "x", 127,935, 0, alignment(right);
+			drawnumber 2, QCFNT100, brite, LifeToken,   alignment( left), 127,925;
+		}
+		else
+		{
+			drawString BIGFONT, bludi, "LAST LIFE", 120,937, 0, alignment(center);
+		}
+	}
+	}
+
+	inInventory not NoVitals {
+	// CSMA
+	inInventory Resurrected
+	{
+		drawString BIGFONT, white, "resurrected", 240,825, 0, alignment(left);
+
+		// Health
+		drawImage "ICONHLTH", 206,879;
+		drawImage "BARF0",                              245,890;
+		drawBar   "BARF1", "BARS_", Health, horizontal, 245,890;
+		drawnumber 5, QCFNT070, white, Health,   alignment(right), 325,846;
+
+		// Armor
+		drawImage "ICONSHLD", 182,958;
+		drawImage "BARF0",                              221,969;
+		drawbar   "BARF1", "BARS_", Armor,  horizontal, 221,969;
+		drawnumber 5, QCFNT070, white, Armor,    alignment(right), 291,924;
+	}
+	else
+	{
+		// Health
+		drawImage "ICONHLTH", 206,879;
+		inInventory not FlatHealthToken || FlatHealthPref {
+			drawBar "BARS0", "BARS_",     MaxHealthBar, horizontal, 245,890;
+			drawBar "BARS2", "BARS_",   SuperHealthBar, horizontal, 245,890;
+			drawBar "BARS1", "BARS_", CurrentHealthBar, horizontal, 245,890;
+			inInventory NoHealthDegenerationToken {
+			drawBar "BARS8", "BARS_",   SuperHealthBar, horizontal, 245,890;
+			}
+		} else {
+			drawBar "BARF0", "BARS_",     MaxHealthBar, horizontal, 245,890;
+			drawBar "BARF2", "BARS_",   SuperHealthBar, horizontal, 245,890;
+			drawBar "BARF1", "BARS_", CurrentHealthBar, horizontal, 245,890;
+			inInventory NoHealthDegenerationToken {
+			drawBar "BARF8", "BARS_",   SuperHealthBar, horizontal, 245,890;
+			}
+		}
+		inInventory not PowerEldersSoul {
+			drawnumber 5, QCFNT070, white,   SuperHealthToken,alignment(right), 325,846;
+			drawString    QCFNT060, white, "/",                                    328,856, 0, alignment(left);
+			drawnumber 5, QCFNT040, white,     MaxHealthToken,   alignment(left),  342,863;
+		} else {
+			drawnumber 5, QCFNT070, bludi,   SuperHealthToken,alignment(right), 325,846;
+			drawString    QCFNT060, bludi, "/",                                    328,856, 0, alignment(left);
+			drawnumber 5, QCFNT040, bludi,     MaxHealthToken,   alignment(left),  342,863;
+		}
+
+		// Armor
+		drawImage "ICONSHLD", 182,958;
+		inInventory not FlatArmorToken || FlatArmorPref {
+			drawBar "BARS0", "BARS_",     MaxArmorBar,  horizontal, 221,969;
+			drawBar "BARS3", "BARS_",   SuperArmorBar,  horizontal, 221,969;
+			drawBar "BARS1", "BARS_", CurrentArmorBar,  horizontal, 221,969;
+			inInventory NoArmorDegenerationToken {
+			drawBar "BARS8", "BARS_",   SuperArmorBar,  horizontal, 221,969;
+			}
+		} else {
+			drawBar "BARF0", "BARS_",     MaxArmorBar,  horizontal, 221,969;
+			drawBar "BARF3", "BARS_",   SuperArmorBar,  horizontal, 221,969;
+			drawBar "BARF1", "BARS_", CurrentArmorBar,  horizontal, 221,969;
+			inInventory NoArmorDegenerationToken {
+			drawBar "BARF8", "BARS_",   SuperArmorBar,  horizontal, 221,969;
+			}
+		}
+		inInventory not PowerEldersSoul {
+			inInventory PowerInvul { drawString QCFNT070, bludi, "666", 291,924, 0, alignment(right); }
+			else {
+				drawnumber 5, QCFNT070, white, SuperArmorToken, alignment(right), 291,924;
+			}
+			drawString    QCFNT060, white, "/",                                    294,933, 0, alignment(left);
+			drawnumber 5, QCFNT040, white,     MaxArmorToken,    alignment(left),  307,940;
+		} else {
+			drawnumber 5, QCFNT070, bludi, SuperArmorToken, alignment(right), 291,924;
+			drawString    QCFNT060, bludi, "/",                               294,933, 0, alignment(left);
+			drawnumber 5, QCFNT040, bludi,   MaxArmorToken, alignment(left),  307,940;
+		}
+
+		// Quad
+		inInventory PowerQuad {
+			drawImage "PWUPFRAM", 182,780;
+			drawImage "PWUPFIR1", 182,780;
+			drawImage "PWUPQUAD", 182,780;
+			inInventory QuadTimer, 1 {
+			inInventory QuadTimer,20 { drawImage "PWUPSC20",  182,780; } else {
+			inInventory QuadTimer,19 { drawImage "PWUPSC19",  182,780; } else {
+			inInventory QuadTimer,18 { drawImage "PWUPSC18",  182,780; } else {
+			inInventory QuadTimer,17 { drawImage "PWUPSC17",  182,780; } else {
+			inInventory QuadTimer,16 { drawImage "PWUPSC16",  182,780; } else {
+			inInventory QuadTimer,15 { drawImage "PWUPSC15",  182,780; } else {
+			inInventory QuadTimer,14 { drawImage "PWUPSC14",  182,780; } else {
+			inInventory QuadTimer,13 { drawImage "PWUPSC13",  182,780; } else {
+			inInventory QuadTimer,12 { drawImage "PWUPSC12",  182,780; } else {
+			inInventory QuadTimer,11 { drawImage "PWUPSC11",  182,780; } else {
+			inInventory QuadTimer,10 { drawImage "PWUPSC10",  182,780; } else {
+			inInventory QuadTimer, 9 { drawImage "PWUPSC09",  182,780; } else {
+			inInventory QuadTimer, 8 { drawImage "PWUPSC08",  182,780; } else {
+			inInventory QuadTimer, 7 { drawImage "PWUPSC07",  182,780; } else {
+			inInventory QuadTimer, 6 { drawImage "PWUPSC06",  182,780; } else {
+			inInventory QuadTimer, 5 { drawImage "PWUPSC05",  182,780; } else {
+			inInventory QuadTimer, 4 { drawImage "PWUPSC04",  182,780; } else {
+			inInventory QuadTimer, 3 { drawImage "PWUPSC03",  182,780; } else {
+			inInventory QuadTimer, 2 { drawImage "PWUPSC02",  182,780; } else {
+                                             drawImage "PWUPSC01",  182,780;
+			}}}}}}}}}}}}}}}}}}}} // 20 braces
+			else {                           drawImage "PWUPSC00",  182,780; }
+		}
+
+		// Protec
+		inInventory PowerProtec {
+			drawImage "PWUPFRAM", 242,780;
+			drawImage "PWUPFIR1", 242,780;
+			drawImage "PWUPPROT", 242,780;
+			inInventory ProtecTimer, 1 {
+			inInventory ProtecTimer,20 { drawImage "PWUPSC20",  242,780; } else {
+			inInventory ProtecTimer,19 { drawImage "PWUPSC19",  242,780; } else {
+			inInventory ProtecTimer,18 { drawImage "PWUPSC18",  242,780; } else {
+			inInventory ProtecTimer,17 { drawImage "PWUPSC17",  242,780; } else {
+			inInventory ProtecTimer,16 { drawImage "PWUPSC16",  242,780; } else {
+			inInventory ProtecTimer,15 { drawImage "PWUPSC15",  242,780; } else {
+			inInventory ProtecTimer,14 { drawImage "PWUPSC14",  242,780; } else {
+			inInventory ProtecTimer,13 { drawImage "PWUPSC13",  242,780; } else {
+			inInventory ProtecTimer,12 { drawImage "PWUPSC12",  242,780; } else {
+			inInventory ProtecTimer,11 { drawImage "PWUPSC11",  242,780; } else {
+			inInventory ProtecTimer,10 { drawImage "PWUPSC10",  242,780; } else {
+			inInventory ProtecTimer, 9 { drawImage "PWUPSC09",  242,780; } else {
+			inInventory ProtecTimer, 8 { drawImage "PWUPSC08",  242,780; } else {
+			inInventory ProtecTimer, 7 { drawImage "PWUPSC07",  242,780; } else {
+			inInventory ProtecTimer, 6 { drawImage "PWUPSC06",  242,780; } else {
+			inInventory ProtecTimer, 5 { drawImage "PWUPSC05",  242,780; } else {
+			inInventory ProtecTimer, 4 { drawImage "PWUPSC04",  242,780; } else {
+			inInventory ProtecTimer, 3 { drawImage "PWUPSC03",  242,780; } else {
+			inInventory ProtecTimer, 2 { drawImage "PWUPSC02",  242,780; } else {
+                                         drawImage "PWUPSC01",  242,780;
+			}}}}}}}}}}}}}}}}}}}} // 20 braces
+			else {                       drawImage "PWUPSC00",  242,780; }
+		}
+
+		// Invul
+		inInventory PowerInvul {
+			drawImage "PWUPFRAM", 302,780;
+			drawImage "PWUPFIR1", 302,780;
+			drawImage "PWUPPENT", 303,780;
+			inInventory InvulTimer, 1 {
+			inInventory InvulTimer,20 { drawImage "PWUPSC20",  302,780; } else {
+			inInventory InvulTimer,19 { drawImage "PWUPSC19",  302,780; } else {
+			inInventory InvulTimer,18 { drawImage "PWUPSC18",  302,780; } else {
+			inInventory InvulTimer,17 { drawImage "PWUPSC17",  302,780; } else {
+			inInventory InvulTimer,16 { drawImage "PWUPSC16",  302,780; } else {
+			inInventory InvulTimer,15 { drawImage "PWUPSC15",  302,780; } else {
+			inInventory InvulTimer,14 { drawImage "PWUPSC14",  302,780; } else {
+			inInventory InvulTimer,13 { drawImage "PWUPSC13",  302,780; } else {
+			inInventory InvulTimer,12 { drawImage "PWUPSC12",  302,780; } else {
+			inInventory InvulTimer,11 { drawImage "PWUPSC11",  302,780; } else {
+			inInventory InvulTimer,10 { drawImage "PWUPSC10",  302,780; } else {
+			inInventory InvulTimer, 9 { drawImage "PWUPSC09",  302,780; } else {
+			inInventory InvulTimer, 8 { drawImage "PWUPSC08",  302,780; } else {
+			inInventory InvulTimer, 7 { drawImage "PWUPSC07",  302,780; } else {
+			inInventory InvulTimer, 6 { drawImage "PWUPSC06",  302,780; } else {
+			inInventory InvulTimer, 5 { drawImage "PWUPSC05",  302,780; } else {
+			inInventory InvulTimer, 4 { drawImage "PWUPSC04",  302,780; } else {
+			inInventory InvulTimer, 3 { drawImage "PWUPSC03",  302,780; } else {
+			inInventory InvulTimer, 2 { drawImage "PWUPSC02",  302,780; } else {
+                                        drawImage "PWUPSC01",  302,780;
+			}}}}}}}}}}}}}}}}}}}} // 20 braces
+			else {                   drawImage "PWUPSC00",  302,780; }
+		}
+
+		// Infin
+		inInventory PowerInfin {
+			drawImage "PWUPFRAM", 362,780;
+			drawImage "PWUPFIR1", 362,780;
+			drawImage "PWUPINFI", 362,780;
+			inInventory InfinTimer, 1 {
+			inInventory InfinTimer,20 { drawImage "PWUPSC20",  362,780; } else {
+			inInventory InfinTimer,19 { drawImage "PWUPSC19",  362,780; } else {
+			inInventory InfinTimer,18 { drawImage "PWUPSC18",  362,780; } else {
+			inInventory InfinTimer,17 { drawImage "PWUPSC17",  362,780; } else {
+			inInventory InfinTimer,16 { drawImage "PWUPSC16",  362,780; } else {
+			inInventory InfinTimer,15 { drawImage "PWUPSC15",  362,780; } else {
+			inInventory InfinTimer,14 { drawImage "PWUPSC14",  362,780; } else {
+			inInventory InfinTimer,13 { drawImage "PWUPSC13",  362,780; } else {
+			inInventory InfinTimer,12 { drawImage "PWUPSC12",  362,780; } else {
+			inInventory InfinTimer,11 { drawImage "PWUPSC11",  362,780; } else {
+			inInventory InfinTimer,10 { drawImage "PWUPSC10",  362,780; } else {
+			inInventory InfinTimer, 9 { drawImage "PWUPSC09",  362,780; } else {
+			inInventory InfinTimer, 8 { drawImage "PWUPSC08",  362,780; } else {
+			inInventory InfinTimer, 7 { drawImage "PWUPSC07",  362,780; } else {
+			inInventory InfinTimer, 6 { drawImage "PWUPSC06",  362,780; } else {
+			inInventory InfinTimer, 5 { drawImage "PWUPSC05",  362,780; } else {
+			inInventory InfinTimer, 4 { drawImage "PWUPSC04",  362,780; } else {
+			inInventory InfinTimer, 3 { drawImage "PWUPSC03",  362,780; } else {
+			inInventory InfinTimer, 2 { drawImage "PWUPSC02",  362,780; } else {
+                                        drawImage "PWUPSC01",  362,780;
+			}}}}}}}}}}}}}}}}}}}} // 20 braces
+			else {                   drawImage "PWUPSC00",  362,780; }
+		}
+	}
+
+	// Ability status and (de)buffs
+	inInventory PowerClutchProtec     { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPSHLD", 122,780; }
+	inInventory TeleporterThrownToken { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPDORB", 122,780; }
+	inInventory MaulotaurAliveToken   { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPMAUL", 122,780; }
+	inInventory PowerIntruderSpeed    { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPSPED", 122,780; }
+	inInventory PowerInjectionSpeed   { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPSPED", 122,780; }
+	inInventory PowerEleenaSpeed      { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPSPED", 122,780; }
+	inInventory PowerBfgSlow2         { drawImage "PWUPFRAM",  72,780; drawImage "PWDNFIR1",  72,780; drawImage "PWDNSHLD",  72,780; }
+	inInventory PowerBfgSlow1         { drawImage "PWUPFRAM",  72,780; drawImage "PWDNFIR1",  72,780; drawImage "PWDNSPED",  72,780; }
+	inInventory PowerCleanVulnerable  { drawImage "PWUPFRAM",  72,780; drawImage "PWDNFIR1",  72,780; drawImage "PWDNSHLD",  72,780; }
+	inInventory PowerLoWangDamage     { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPTIGR", 122,780; }
+	inInventory HalfLifeToken         { drawImage "PWUPFRAM", 122,780; drawImage "PWUPFIR1", 122,780; drawImage "PWUPGMAN", 122,780; }
+	}
+
+	inInventory not NoReticle {
+	// Altfire reticle
+	isSelected QCGauntlet		 { inInventory                                 GNT_UG_Omni      { drawImage "RET_00_2", 654,479; }
+								   inInventory                                 GNT_UG_Burn      { drawImage "RET_00_1", 654,479; } }
+	isSelected QCShotgun		 { inInventory WeaponZoomedToken { inInventory  SG_UG_Explosive { drawImage "RET_03_2", 654,479; } } }
+	isSelected QCHeavyMachinegun { inInventory WeaponZoomedToken { inInventory HMG_UG_Pierce    { drawImage "RET_07_2", 654,479; } } }
+	isSelected QCSuperShotgun	 { inInventory WeaponZoomedToken { inInventory SSG_UG_Flame     { drawImage "RET_09_2", 654,479; } } }
+	isSelected QCSuperNailgun	 { inInventory WeaponZoomedToken { inInventory SNG_UG_Seeker    { drawImage "RET_11_2", 654,479; } } }
+	isSelected QCTribolt	 	 { inInventory WeaponZoomedToken { inInventory  TB_UG_Grenade   { drawImage "RET_13_2", 654,479; } } }
+	isSelected QCRocketLauncher	 { inInventory WeaponZoomedToken { inInventory  RL_UG_Control   { drawImage "RET_15_2", 654,479; } } }
+	isSelected QCLightningGun	 { inInventory WeaponZoomedToken { inInventory  LG_UG_Static    { drawImage "RET_17_2", 654,479; } } }
+	isSelected QCRailgun 		 { inInventory WeaponZoomedToken { inInventory  RG_UG_Explosive { drawImage "RET_19_2", 654,479; } } }
+	isSelected QCBFG 			 { inInventory WeaponZoomedToken { inInventory BFG_UG_Charge    { drawImage "RET_21_2", 654,479; } } }
+
+	// Remote control reticle
+	isSelected QCRocketLauncher	 { inInventory PowerControllerProtection                        { drawImage "RET_15_2", 654,479; } }
+
+	// Railgun charge
+	inInventory RailgunCharges {
+		drawImage "RGCHAR00", 668, 493;
+		drawBar "RGCHARG1", "RGCHAR01", RailgunCharges, vertical  ,          667,363;
+		drawBar "RGCHARG2", "RGCHAR02", RailgunCharges, horizontal,          654,493;
+		drawBar "RGCHARG4", "RGCHAR04", RailgunCharges, vertical  , reverse, 668,433;
+		drawBar "RGCHARG6", "RGCHAR06", RailgunCharges, horizontal, reverse, 654,493;
+		drawBar "RGCHARG8", "RGCHAR08", RailgunCharges, vertical  ,          667,527;
+
+		inInventory RailgunCharges, 52 { drawImage "RGCHARG0", 668, 493; }
+	}
+
+	// Railgun and HMG reticles when zoomed
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM
+	{	inInventory WeaponZoomedToken	{ drawImage "HMGRETCL", 	184,172; }		}
+	isSelected QCRailgun 			, QCRailgunDM
+	{	inInventory WeaponZoomedToken	{ drawImage "RGNRETCL", 	184,172; }		}
+	}
+
+	inInventory not NoAmmoCount {
+	inInventory not RocketArena || Instagib {
+	// Ammo
+	inInventory not PowerInfin || PowerInfiniteAmmo { drawNumber 3, QCFNT100, brite, ammo1, alignment(right), 1140,900; }
+	else { drawImage "QcdeInf2", 1080, 890; }
+	isSelected QCMachinegun 		, QCMachinegunDM		{ drawImage "AmmBullt", 1170, 897; }
+	isSelected QCShotgun			, QCShotgunDM			{ drawImage "AmmShell", 1170, 897; }
+	isSelected QCNailgun			, QCNailgunDM			{ drawImage "AmmNails", 1170, 897; }
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawImage "AmmBullt", 1170, 897; }
+	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawImage "AmmShell", 1170, 897; }
+	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawImage "AmmNails", 1170, 897; }
+	isSelected QCTribolt	 		, QCTriboltDM			{ drawImage "AmmBolts", 1170, 897; }
+	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawImage "AmmRockt", 1170, 897; }
+	isSelected QCLightningGun		, QCLightningGunDM		{ drawImage "AmmCoils", 1170, 897; }
+	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "AmmSlugs", 1170, 897; }
+	isSelected QCBFG 				, QCBFGDM				{ drawImage "AmmBfugs", 1170, 897; }
+	}
+
+	// Upgrades for current weapon
+	isSelected QCGauntlet		 { inInventory GNT_UG_Burn      { drawImage "APG_00_1",1237,901; }   inInventory GNT_UG_Omni      { drawImage "APG_00_2",1299,901; } }
+	isSelected QCShotgun		 { inInventory  SG_UG_Spread    { drawImage "APG_03_1",1237,901; }   inInventory  SG_UG_Explosive { drawImage "APG_03_2",1299,901; } }
+	isSelected QCHeavyMachinegun { inInventory HMG_UG_Ricochet  { drawImage "APG_07_1",1237,901; }   inInventory HMG_UG_Pierce    { drawImage "APG_07_2",1299,901; } }
+	isSelected QCSuperShotgun	 { inInventory SSG_UG_Speed     { drawImage "APG_09_1",1237,901; }   inInventory SSG_UG_Flame     { drawImage "APG_09_2",1299,901; } }
+	isSelected QCSuperNailgun	 { inInventory SNG_UG_Lava      { drawImage "APG_11_1",1237,901; }   inInventory SNG_UG_Seeker    { drawImage "APG_11_2",1299,901; } }
+	isSelected QCTribolt	 	 { inInventory  TB_UG_Long      { drawImage "APG_13_1",1237,901; }   inInventory  TB_UG_Grenade   { drawImage "APG_13_2",1299,901; } }
+	isSelected QCRocketLauncher	 { inInventory  RL_UG_Cluster   { drawImage "APG_15_1",1237,901; }   inInventory  RL_UG_Control   { drawImage "APG_15_2",1299,901; } }
+	isSelected QCLightningGun	 { inInventory  LG_UG_Residue   { drawImage "APG_17_1",1237,901; }   inInventory  LG_UG_Static    { drawImage "APG_17_2",1299,901; } }
+	isSelected QCRailgun 		 { inInventory  RG_UG_Pierce    { drawImage "APG_19_1",1237,901; }   inInventory  RG_UG_Explosive { drawImage "APG_19_2",1299,901; } }
+	isSelected QCBFG 			 { inInventory BFG_UG_Rays      { drawImage "APG_21_1",1237,901; }   inInventory BFG_UG_Charge    { drawImage "APG_21_2",1299,901; } }
+	}
+
+	// Speedometer
+	inInventory Speedometer {
+		drawImage "SPEEDOM", 684, 600;
+		drawString QCFNT030, yellow, GlobalArray 10, 700,646, 0, alignment(center);// frags 2nd
+	}
+
+	// Keybag
+	gameMode cooperative, singlePlayer
+	{
+		drawSwitchableImage BlueCard, 	"nullimage", "KEYCB", 	1250,  994;
+		drawSwitchableImage YellowCard,	"nullimage", "KEYCY", 	1300,  994;
+		drawSwitchableImage RedCard, 	"nullimage", "KEYCR", 	1350,  994;
+		drawSwitchableImage BlueSkull, 	"nullimage", "SKKYB", 	1254, 1004;
+		drawSwitchableImage YellowSkull,"nullimage", "SKKYY",	1304, 1004;
+		drawSwitchableImage RedSkull, 	"nullimage", "SKKYR", 	1354, 1004;
+	}
+
+	// Weapon bar
+
+	// Here we go again with super long lines.
+	// Surprisingly, they make my process so much unbelievably easier.
+
+	AspectRatio "16:10" {
+	inInventory not NoWeaponBar
+	{
+	// Gauntlet -- special case, only drawn when there are upgrades
+	inInventory GNT_UG_Burn || GNT_UG_Omni {
+	isSelected QCGauntlet                                   { drawImage "SELECTOR", 1440,277;
+	                                                          drawImage "1AUNTLET", 1399,280;
+	} else {                                                  drawImage "GAUNTLET", 1399,280;
+	}}
+
+	// Orange pad behind selected weapon
+	isSelected QCMachinegun 		, QCMachinegunDM		{ drawImage "SELECTOR", 1440,347; }
+	isSelected QCShotgun			, QCShotgunDM			{ drawImage "SELECTOR", 1440,417; }
+	isSelected QCNailgun			, QCNailgunDM			{ drawImage "SELECTOR", 1440,487; }
+
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawImage "SELECTOR", 1440,347; }
+	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawImage "SELECTOR", 1440,417; }
+	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawImage "SELECTOR", 1440,487; }
+	isSelected QCTribolt	 		, QCTriboltDM			{ drawImage "SELECTOR", 1440,557; }
+	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawImage "SELECTOR", 1440,627; }
+	isSelected QCLightningGun		, QCLightningGunDM		{ drawImage "SELECTOR", 1440,697; }
+	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "SELECTOR", 1440,767; }
+	isSelected QCBFG 				, QCBFGDM				{ drawImage "SELECTOR", 1440,837; }
+
+	// Ammo measure inherent to every individual weapon
+	// +59, +12 from SELECTOR to bar
+	inInventory not RocketArena || Instagib {
+		inInventory QCMachinegun 		|| QCMachinegunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,360; }
+		inInventory QCShotgun			|| QCShotgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,430; }
+		inInventory QCNailgun			|| QCNailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1499,500; }
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,360; }
+		inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,430; }
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1499,500; }
+		inInventory QCTribolt	 		|| QCTriboltDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBoltAmmo 		, vertical, 1499,570; }
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCRocketAmmo	, vertical, 1499,640; }
+		inInventory QCLightningGun		|| QCLightningGunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo 		, vertical, 1499,710; }
+		inInventory QCRailgun 			|| QCRailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo 		, vertical, 1499,780; }
+		inInventory QCBFG 				|| QCBFGDM				{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1499,850; }
+	}
+
+	// Weapon icons themselves
+	inInventory QCMachinegun 	|| QCMachinegunDM	{ 	inInventory not QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ isSelected QCMachinegun 	, QCMachinegunDM	{ drawBar "1ACHINEG", "0ACHINEG", QCBulletAmmo	, horizontal, 1380,350; } else { drawBar "MACHINEG", "0ACHINEG", QCBulletAmmo	, horizontal, 1380,350; } } } else { inInventory not QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawImage "0ACHINEG", 1380,350; } }
+	inInventory QCShotgun		|| QCShotgunDM		{ 	inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ isSelected QCShotgun		, QCShotgunDM		{ drawBar "1HOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1380,420; } else { drawBar "SHOTGUN" , "0HOTGUN" , QCShellAmmo		, horizontal, 1380,420; } } } else { inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ drawImage "0HOTGUN" , 1380,420; } }
+	inInventory QCNailgun		|| QCNailgunDM		{ 	inInventory not QCSuperNailgun		|| QCSuperNailgunDM		{ isSelected QCNailgun		, QCNailgunDM		{ drawBar "1AILGUN" , "0AILGUN" , QCNailAmmo	, horizontal, 1380,490; } else { drawBar "NAILGUN" , "0AILGUN" , QCNailAmmo		, horizontal, 1380,490; } } } else { inInventory not QCSuperNailgun		|| QCSuperNailgunDM		{ drawImage "0AILGUN" , 1380,490; } }
+
+	inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ 	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawBar "1MACHINE", "0MACHINE", QCBulletAmmo	, horizontal, 1380,350; } else { drawBar "HMACHINE", "0MACHINE", QCBulletAmmo	, horizontal, 1380,350; } }
+	inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ 	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawBar "1SHOTGUN", "0SHOTGUN", QCShellAmmo	, horizontal, 1380,420; } else { drawBar "SSHOTGUN", "0SHOTGUN", QCShellAmmo		, horizontal, 1380,420; } }
+	inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ 	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawBar "1NAILGUN", "0NAILGUN", QCNailAmmo	, horizontal, 1380,490; } else { drawBar "SNAILGUN", "0NAILGUN", QCNailAmmo		, horizontal, 1380,490; } }
+	inInventory QCTribolt	 		|| QCTriboltDM			{ 	isSelected QCTribolt	 		, QCTriboltDM			{ drawBar "1RIBOLT" , "0RIBOLT" , QCBoltAmmo 	, horizontal, 1380,560; } else { drawBar "TRIBOLT" , "0RIBOLT" , QCBoltAmmo 		, horizontal, 1380,560; } } else { drawImage "0RIBOLT" , 1380,560;}
+	inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ 	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawBar "1AUNCHER", "0AUNCHER", QCRocketAmmo	, horizontal, 1380,630; } else { drawBar "LAUNCHER", "0AUNCHER", QCRocketAmmo	, horizontal, 1380,630; } } else { drawImage "0AUNCHER", 1380,630;}
+	inInventory QCLightningGun		|| QCLightningGunDM		{ 	isSelected QCLightningGun		, QCLightningGunDM		{ drawBar "1IGHTNIN", "0IGHTNIN", QCCoilAmmo 	, horizontal, 1380,700; } else { drawBar "LIGHTNIN", "0IGHTNIN", QCCoilAmmo 		, horizontal, 1380,700; } } else { drawImage "0IGHTNIN", 1380,700;}
+	inInventory QCRailgun 			|| QCRailgunDM			{ 	isSelected QCRailgun 			, QCRailgunDM			{ drawBar "1RAILGUN", "0RAILGUN", QCSlugAmmo 	, horizontal, 1380,770; } else { drawBar "RRAILGUN", "0RAILGUN", QCSlugAmmo 		, horizontal, 1380,770; } } else { drawImage "0RAILGUN", 1380,770;}
+	inInventory QCBFG 				|| QCBFGDM				{ 	isSelected QCBFG 				, QCBFGDM				{ drawBar "1BIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1380,840; } else { drawBar "DBIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1380,840; } } else { drawImage "0BIGFGUN", 1380,840;}
+
+	// Upgrade icons on top of weapons
+	inInventory QCGauntlet 			{ inInventory GNT_UG_Burn      { drawImage "HPG_00_1",1393,335; }   inInventory GNT_UG_Omni      { drawImage "HPG_00_2",1423,335; } } else { inInventory GNT_UG_Burn      { drawImage "GPG_00_1",1393,335; }   inInventory GNT_UG_Omni      { drawImage "GPG_00_2",1423,335; } }
+	inInventory QCHeavyMachinegun 	{ inInventory HMG_UG_Ricochet  { drawImage "HPG_07_1",1393,405; }   inInventory HMG_UG_Pierce    { drawImage "HPG_07_2",1423,405; } } else { inInventory HMG_UG_Ricochet  { drawImage "GPG_07_1",1393,405; }   inInventory HMG_UG_Pierce    { drawImage "GPG_07_2",1423,405; } }
+	inInventory QCSuperShotgun		{ inInventory SSG_UG_Speed     { drawImage "HPG_09_1",1393,475; }   inInventory SSG_UG_Flame     { drawImage "HPG_09_2",1423,475; } } else { inInventory SSG_UG_Speed     { drawImage "GPG_09_1",1393,475; }   inInventory SSG_UG_Flame     { drawImage "GPG_09_2",1423,475; } }
+	inInventory QCSuperNailgun		{ inInventory SNG_UG_Lava      { drawImage "HPG_11_1",1393,545; }   inInventory SNG_UG_Seeker    { drawImage "HPG_11_2",1423,545; } } else { inInventory SNG_UG_Lava      { drawImage "GPG_11_1",1393,545; }   inInventory SNG_UG_Seeker    { drawImage "GPG_11_2",1423,545; } }
+	inInventory QCTribolt	 		{ inInventory  TB_UG_Long      { drawImage "HPG_13_1",1393,615; }   inInventory  TB_UG_Grenade   { drawImage "HPG_13_2",1423,615; } } else { inInventory  TB_UG_Long      { drawImage "GPG_13_1",1393,615; }   inInventory  TB_UG_Grenade   { drawImage "GPG_13_2",1423,615; } }
+	inInventory QCRocketLauncher	{ inInventory  RL_UG_Cluster   { drawImage "HPG_15_1",1393,685; }   inInventory  RL_UG_Control   { drawImage "HPG_15_2",1423,685; } } else { inInventory  RL_UG_Cluster   { drawImage "GPG_15_1",1393,685; }   inInventory  RL_UG_Control   { drawImage "GPG_15_2",1423,685; } }
+	inInventory QCLightningGun		{ inInventory  LG_UG_Residue   { drawImage "HPG_17_1",1393,755; }   inInventory  LG_UG_Static    { drawImage "HPG_17_2",1423,755; } } else { inInventory  LG_UG_Residue   { drawImage "GPG_17_1",1393,755; }   inInventory  LG_UG_Static    { drawImage "GPG_17_2",1423,755; } }
+	inInventory QCRailgun 			{ inInventory  RG_UG_Pierce    { drawImage "HPG_19_1",1393,825; }   inInventory  RG_UG_Explosive { drawImage "HPG_19_2",1423,825; } } else { inInventory  RG_UG_Pierce    { drawImage "GPG_19_1",1393,825; }   inInventory  RG_UG_Explosive { drawImage "GPG_19_2",1423,825; } }
+	inInventory QCBFG 				{ inInventory BFG_UG_Rays      { drawImage "HPG_21_1",1393,895; }   inInventory BFG_UG_Charge    { drawImage "HPG_21_2",1423,895; } } else { inInventory BFG_UG_Rays      { drawImage "GPG_21_1",1393,895; }   inInventory BFG_UG_Charge    { drawImage "GPG_21_2",1423,895; } }
+
+	// Ammo number near weapons
+	inInventory not RocketArena || Instagib {
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM {
+			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM	{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1489,400; } } else { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM		{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1489,400; } } }
+		} else {
+		inInventory QCMachinegun 	|| QCMachinegunDM {
+			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCMachinegun		, QCMachinegunDM		{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1489,400; } } else { isSelected QCMachinegun		, QCMachinegunDM			{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1489,400; } } }
+		}}
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM {
+			inInventory QCNailAmmo	 { inInventory QCNailAmmo	, 30 { isSelected QCSuperNailgun	, QCSuperNailgunDM		{ drawNumber 3, QCFNT040, brite, QCNailAmmo		, alignment(right), 1489,540; } else { drawNumber 3, QCFNT030, darkgrey, QCNailAmmo		, alignment(right), 1489,540; } } else { isSelected QCSuperNailgun		, QCSuperNailgunDM			{ drawNumber 3, QCFNT040, red, QCNailAmmo	, alignment(right), 1489,540; } else { drawNumber 3, QCFNT030, darkred, QCNailAmmo	, alignment(right), 1489,540; } } }
+		} else {
+		inInventory QCNailgun		|| QCNailgunDM {
+			inInventory QCNailAmmo	 { inInventory QCNailAmmo	, 30 { isSelected QCNailgun			, QCNailgunDM			{ drawNumber 3, QCFNT040, brite, QCNailAmmo		, alignment(right), 1489,540; } else { drawNumber 3, QCFNT030, darkgrey, QCNailAmmo		, alignment(right), 1489,540; } } else { isSelected QCNailgun			, QCNailgunDM				{ drawNumber 3, QCFNT040, red, QCNailAmmo	, alignment(right), 1489,540; } else { drawNumber 3, QCFNT030, darkred, QCNailAmmo	, alignment(right), 1489,540; } } }
+		}}
+		inInventory QCTribolt	 		|| QCTriboltDM			{ inInventory QCBoltAmmo 	, 10 { isSelected QCTribolt	 		, QCTriboltDM				{ drawNumber 3, QCFNT040, brite, QCBoltAmmo 	, alignment(right), 1489,610; } else { drawNumber 3, QCFNT030, darkgrey, QCBoltAmmo 	, alignment(right), 1489,610; } } else { isSelected QCTribolt	 		, QCTriboltDM				{ drawNumber 3, QCFNT040, red, QCBoltAmmo 	, alignment(right), 1489,610; } else { drawNumber 3, QCFNT030, darkred, QCBoltAmmo 	, alignment(right), 1489,610; } } }
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ inInventory QCRocketAmmo	, 10 { isSelected QCRocketLauncher	, QCRocketLauncherDM		{ drawNumber 3, QCFNT040, brite, QCRocketAmmo	, alignment(right), 1489,680; } else { drawNumber 3, QCFNT030, darkgrey, QCRocketAmmo	, alignment(right), 1489,680; } } else { isSelected QCRocketLauncher	, QCRocketLauncherDM		{ drawNumber 3, QCFNT040, red, QCRocketAmmo	, alignment(right), 1489,680; } else { drawNumber 3, QCFNT030, darkred, QCRocketAmmo	, alignment(right), 1489,680; } } }
+		inInventory QCLightningGun		|| QCLightningGunDM		{ inInventory QCCoilAmmo 	, 30 { isSelected QCLightningGun	, QCLightningGunDM			{ drawNumber 3, QCFNT040, brite, QCCoilAmmo 	, alignment(right), 1489,750; } else { drawNumber 3, QCFNT030, darkgrey, QCCoilAmmo 	, alignment(right), 1489,750; } } else { isSelected QCLightningGun		, QCLightningGunDM			{ drawNumber 3, QCFNT040, red, QCCoilAmmo 	, alignment(right), 1489,750; } else { drawNumber 3, QCFNT030, darkred, QCCoilAmmo 	, alignment(right), 1489,750; } } }
+		inInventory QCRailgun 			|| QCRailgunDM			{ inInventory QCSlugAmmo 	, 10 { isSelected QCRailgun 		, QCRailgunDM				{ drawNumber 3, QCFNT040, brite, QCSlugAmmo 	, alignment(right), 1489,820; } else { drawNumber 3, QCFNT030, darkgrey, QCSlugAmmo 	, alignment(right), 1489,820; } } else { isSelected QCRailgun 			, QCRailgunDM				{ drawNumber 3, QCFNT040, red, QCSlugAmmo 	, alignment(right), 1489,820; } else { drawNumber 3, QCFNT030, darkred, QCSlugAmmo 	, alignment(right), 1489,820; } } }
+		inInventory QCBFG 				|| QCBFGDM				{ inInventory QCBFGAmmo 	, 10 { isSelected QCBFG 			, QCBFGDM					{ drawNumber 3, QCFNT040, brite, QCBFGAmmo		, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkgrey, QCBFGAmmo		, alignment(right), 1489,890; } } else { isSelected QCBFG 				, QCBFGDM					{ drawNumber 3, QCFNT040, red, QCBFGAmmo	, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkred, QCBFGAmmo	, alignment(right), 1489,890; } } }
+
+		// This is special due to how it's basic in DM but not in solo
+		isSelected QCSuperShotgun	, QCSuperShotgunDM		{ inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1489,470; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1489,470; }
+		} else {
+		isSelected QCShotgun		, QCShotgunDM			{ inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1489,470; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1489,470; }
+		} else {
+			inInventory QCShotgun   || QCSuperShotgun	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1489,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1489,470; } }
+			inInventory QCShotgunDM || QCSuperShotgunDM	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1489,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1489,470; } }
+		}}
+	}
+	}
+	} else {
+	inInventory not NoWeaponBar
+	{
+	// Gauntlet -- special case, only drawn when there are upgrades
+	inInventory GNT_UG_Burn || GNT_UG_Omni {
+	isSelected QCGauntlet                                   { drawImage "SELECTOR", 1540,277;
+	                                                          drawImage "1AUNTLET", 1499,280;
+	} else {                                                  drawImage "GAUNTLET", 1499,280;
+	}}
+	// Orange pad behind selected weapon
+	isSelected QCMachinegun 		, QCMachinegunDM		{ drawImage "SELECTOR", 1540,347; }
+	isSelected QCShotgun			, QCShotgunDM			{ drawImage "SELECTOR", 1540,417; }
+	isSelected QCNailgun			, QCNailgunDM			{ drawImage "SELECTOR", 1540,487; }
+
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawImage "SELECTOR", 1540,347; }
+	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawImage "SELECTOR", 1540,417; }
+	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawImage "SELECTOR", 1540,487; }
+	isSelected QCTribolt	 		, QCTriboltDM			{ drawImage "SELECTOR", 1540,557; }
+	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawImage "SELECTOR", 1540,627; }
+	isSelected QCLightningGun		, QCLightningGunDM		{ drawImage "SELECTOR", 1540,697; }
+	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "SELECTOR", 1540,767; }
+	isSelected QCBFG 				, QCBFGDM				{ drawImage "SELECTOR", 1540,837; }
+
+	// Ammo measure inherent to every individual weapon
+	// +59, +12 from SELECTOR to bar
+	inInventory not RocketArena || Instagib {
+		inInventory QCMachinegun 		|| QCMachinegunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,360; }
+		inInventory QCShotgun			|| QCShotgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,430; }
+		inInventory QCNailgun			|| QCNailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1599,500; }
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,360; }
+		inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,430; }
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1599,500; }
+		inInventory QCTribolt	 		|| QCTriboltDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBoltAmmo 		, vertical, 1599,570; }
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCRocketAmmo	, vertical, 1599,640; }
+		inInventory QCLightningGun		|| QCLightningGunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo 		, vertical, 1599,710; }
+		inInventory QCRailgun 			|| QCRailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo 		, vertical, 1599,780; }
+		inInventory QCBFG 				|| QCBFGDM				{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1599,850; }
+	}
+
+	// Weapon icons themselves
+	inInventory QCMachinegun 	|| QCMachinegunDM	{ 	inInventory not QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ isSelected QCMachinegun 	, QCMachinegunDM	{ drawBar "1ACHINEG", "0ACHINEG", QCBulletAmmo	, horizontal, 1480,350; } else { drawBar "MACHINEG", "0ACHINEG", QCBulletAmmo	, horizontal, 1480,350; } } } else { inInventory not QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawImage "0ACHINEG", 1480,350; } }
+	inInventory QCShotgun		|| QCShotgunDM		{ 	inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ isSelected QCShotgun		, QCShotgunDM		{ drawBar "1HOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1480,420; } else { drawBar "SHOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1480,420; } } } else { inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ drawImage "0HOTGUN" , 1480,420; } }
+	inInventory QCNailgun		|| QCNailgunDM		{ 	inInventory not QCSuperNailgun		|| QCSuperNailgunDM		{ isSelected QCNailgun		, QCNailgunDM		{ drawBar "1AILGUN" , "0AILGUN" , QCNailAmmo	, horizontal, 1480,490; } else { drawBar "NAILGUN" , "0AILGUN" , QCNailAmmo		, horizontal, 1480,490; } } } else { inInventory not QCSuperNailgun		|| QCSuperNailgunDM		{ drawImage "0AILGUN" , 1480,490; } }
+
+	inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ 	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM	{ drawBar "1MACHINE", "0MACHINE", QCBulletAmmo	, horizontal, 1480,350; } else { drawBar "HMACHINE", "0MACHINE", QCBulletAmmo	, horizontal, 1480,350; } }
+	inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ 	isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawBar "1SHOTGUN", "0SHOTGUN", QCShellAmmo	, horizontal, 1480,420; } else { drawBar "SSHOTGUN", "0SHOTGUN", QCShellAmmo	, horizontal, 1480,420; } }
+	inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ 	isSelected QCSuperNailgun		, QCSuperNailgunDM		{ drawBar "1NAILGUN", "0NAILGUN", QCNailAmmo	, horizontal, 1480,490; } else { drawBar "SNAILGUN", "0NAILGUN", QCNailAmmo		, horizontal, 1480,490; } }
+	inInventory QCTribolt	 		|| QCTriboltDM			{ 	isSelected QCTribolt	 		, QCTriboltDM			{ drawBar "1RIBOLT" , "0RIBOLT" , QCBoltAmmo 	, horizontal, 1480,560; } else { drawBar "TRIBOLT" , "0RIBOLT" , QCBoltAmmo 	, horizontal, 1480,560; } } else { drawImage "0RIBOLT" , 1480,560;}
+	inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ 	isSelected QCRocketLauncher		, QCRocketLauncherDM	{ drawBar "1AUNCHER", "0AUNCHER", QCRocketAmmo	, horizontal, 1480,630; } else { drawBar "LAUNCHER", "0AUNCHER", QCRocketAmmo	, horizontal, 1480,630; } } else { drawImage "0AUNCHER", 1480,630;}
+	inInventory QCLightningGun		|| QCLightningGunDM		{ 	isSelected QCLightningGun		, QCLightningGunDM		{ drawBar "1IGHTNIN", "0IGHTNIN", QCCoilAmmo 	, horizontal, 1480,700; } else { drawBar "LIGHTNIN", "0IGHTNIN", QCCoilAmmo 	, horizontal, 1480,700; } } else { drawImage "0IGHTNIN", 1480,700;}
+	inInventory QCRailgun 			|| QCRailgunDM			{ 	isSelected QCRailgun 			, QCRailgunDM			{ drawBar "1RAILGUN", "0RAILGUN", QCSlugAmmo 	, horizontal, 1480,770; } else { drawBar "RRAILGUN", "0RAILGUN", QCSlugAmmo 	, horizontal, 1480,770; } } else { drawImage "0RAILGUN", 1480,770;}
+	inInventory QCBFG 				|| QCBFGDM				{ 	isSelected QCBFG 				, QCBFGDM				{ drawBar "1BIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1480,840; } else { drawBar "DBIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1480,840; } } else { drawImage "0BIGFGUN", 1480,840;}
+
+	// Upgrade icons on top of weapons
+	inInventory QCGauntlet 			{ inInventory GNT_UG_Burn      { drawImage "HPG_00_1",1493,335; }   inInventory GNT_UG_Omni      { drawImage "HPG_00_2",1523,335; } } else { inInventory GNT_UG_Burn      { drawImage "GPG_00_1",1493,335; }   inInventory GNT_UG_Omni      { drawImage "GPG_00_2",1523,335; } }
+	inInventory QCHeavyMachinegun 	{ inInventory HMG_UG_Ricochet  { drawImage "HPG_07_1",1493,405; }   inInventory HMG_UG_Pierce    { drawImage "HPG_07_2",1523,405; } } else { inInventory HMG_UG_Ricochet  { drawImage "GPG_07_1",1493,405; }   inInventory HMG_UG_Pierce    { drawImage "GPG_07_2",1523,405; } }
+	inInventory QCSuperShotgun		{ inInventory SSG_UG_Speed     { drawImage "HPG_09_1",1493,475; }   inInventory SSG_UG_Flame     { drawImage "HPG_09_2",1523,475; } } else { inInventory SSG_UG_Speed     { drawImage "GPG_09_1",1493,475; }   inInventory SSG_UG_Flame     { drawImage "GPG_09_2",1523,475; } }
+	inInventory QCSuperNailgun		{ inInventory SNG_UG_Lava      { drawImage "HPG_11_1",1493,545; }   inInventory SNG_UG_Seeker    { drawImage "HPG_11_2",1523,545; } } else { inInventory SNG_UG_Lava      { drawImage "GPG_11_1",1493,545; }   inInventory SNG_UG_Seeker    { drawImage "GPG_11_2",1523,545; } }
+	inInventory QCTribolt	 		{ inInventory  TB_UG_Long      { drawImage "HPG_13_1",1493,615; }   inInventory  TB_UG_Grenade   { drawImage "HPG_13_2",1523,615; } } else { inInventory  TB_UG_Long      { drawImage "GPG_13_1",1493,615; }   inInventory  TB_UG_Grenade   { drawImage "GPG_13_2",1523,615; } }
+	inInventory QCRocketLauncher	{ inInventory  RL_UG_Cluster   { drawImage "HPG_15_1",1493,685; }   inInventory  RL_UG_Control   { drawImage "HPG_15_2",1523,685; } } else { inInventory  RL_UG_Cluster   { drawImage "GPG_15_1",1493,685; }   inInventory  RL_UG_Control   { drawImage "GPG_15_2",1523,685; } }
+	inInventory QCLightningGun		{ inInventory  LG_UG_Residue   { drawImage "HPG_17_1",1493,755; }   inInventory  LG_UG_Static    { drawImage "HPG_17_2",1523,755; } } else { inInventory  LG_UG_Residue   { drawImage "GPG_17_1",1493,755; }   inInventory  LG_UG_Static    { drawImage "GPG_17_2",1523,755; } }
+	inInventory QCRailgun 			{ inInventory  RG_UG_Pierce    { drawImage "HPG_19_1",1493,825; }   inInventory  RG_UG_Explosive { drawImage "HPG_19_2",1523,825; } } else { inInventory  RG_UG_Pierce    { drawImage "GPG_19_1",1493,825; }   inInventory  RG_UG_Explosive { drawImage "GPG_19_2",1523,825; } }
+	inInventory QCBFG 				{ inInventory BFG_UG_Rays      { drawImage "HPG_21_1",1493,895; }   inInventory BFG_UG_Charge    { drawImage "HPG_21_2",1523,895; } } else { inInventory BFG_UG_Rays      { drawImage "GPG_21_1",1493,895; }   inInventory BFG_UG_Charge    { drawImage "GPG_21_2",1523,895; } }
+
+	// Ammo number near weapons
+	inInventory not RocketArena || Instagib {
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM {
+			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM	{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1589,400; } } else { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM		{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1589,400; } } }
+		} else {
+		inInventory QCMachinegun 	|| QCMachinegunDM {
+			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCMachinegun		, QCMachinegunDM		{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1589,400; } } else { isSelected QCMachinegun		, QCMachinegunDM			{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1589,400; } } }
+		}}
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM {
+			inInventory QCNailAmmo	 { inInventory QCNailAmmo	, 30 { isSelected QCSuperNailgun	, QCSuperNailgunDM		{ drawNumber 3, QCFNT040, brite, QCNailAmmo		, alignment(right), 1589,540; } else { drawNumber 3, QCFNT030, darkgrey, QCNailAmmo		, alignment(right), 1589,540; } } else { isSelected QCSuperNailgun		, QCSuperNailgunDM			{ drawNumber 3, QCFNT040, red, QCNailAmmo	, alignment(right), 1589,540; } else { drawNumber 3, QCFNT030, darkred, QCNailAmmo	, alignment(right), 1589,540; } } }
+		} else {
+		inInventory QCNailgun		|| QCNailgunDM {
+			inInventory QCNailAmmo	 { inInventory QCNailAmmo	, 30 { isSelected QCNailgun			, QCNailgunDM			{ drawNumber 3, QCFNT040, brite, QCNailAmmo		, alignment(right), 1589,540; } else { drawNumber 3, QCFNT030, darkgrey, QCNailAmmo		, alignment(right), 1589,540; } } else { isSelected QCNailgun			, QCNailgunDM				{ drawNumber 3, QCFNT040, red, QCNailAmmo	, alignment(right), 1589,540; } else { drawNumber 3, QCFNT030, darkred, QCNailAmmo	, alignment(right), 1589,540; } } }
+		}}
+		inInventory QCTribolt	 		|| QCTriboltDM			{ inInventory QCBoltAmmo 	, 10 { isSelected QCTribolt	 		, QCTriboltDM				{ drawNumber 3, QCFNT040, brite, QCBoltAmmo 	, alignment(right), 1589,610; } else { drawNumber 3, QCFNT030, darkgrey, QCBoltAmmo 	, alignment(right), 1589,610; } } else { isSelected QCTribolt	 		, QCTriboltDM				{ drawNumber 3, QCFNT040, red, QCBoltAmmo 	, alignment(right), 1589,610; } else { drawNumber 3, QCFNT030, darkred, QCBoltAmmo 	, alignment(right), 1589,610; } } }
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ inInventory QCRocketAmmo	, 10 { isSelected QCRocketLauncher	, QCRocketLauncherDM		{ drawNumber 3, QCFNT040, brite, QCRocketAmmo	, alignment(right), 1589,680; } else { drawNumber 3, QCFNT030, darkgrey, QCRocketAmmo	, alignment(right), 1589,680; } } else { isSelected QCRocketLauncher	, QCRocketLauncherDM		{ drawNumber 3, QCFNT040, red, QCRocketAmmo	, alignment(right), 1589,680; } else { drawNumber 3, QCFNT030, darkred, QCRocketAmmo, alignment(right), 1589,680; } } }
+		inInventory QCLightningGun		|| QCLightningGunDM		{ inInventory QCCoilAmmo 	, 30 { isSelected QCLightningGun	, QCLightningGunDM			{ drawNumber 3, QCFNT040, brite, QCCoilAmmo 	, alignment(right), 1589,750; } else { drawNumber 3, QCFNT030, darkgrey, QCCoilAmmo 	, alignment(right), 1589,750; } } else { isSelected QCLightningGun		, QCLightningGunDM			{ drawNumber 3, QCFNT040, red, QCCoilAmmo 	, alignment(right), 1589,750; } else { drawNumber 3, QCFNT030, darkred, QCCoilAmmo 	, alignment(right), 1589,750; } } }
+		inInventory QCRailgun 			|| QCRailgunDM			{ inInventory QCSlugAmmo 	, 10 { isSelected QCRailgun 		, QCRailgunDM				{ drawNumber 3, QCFNT040, brite, QCSlugAmmo 	, alignment(right), 1589,820; } else { drawNumber 3, QCFNT030, darkgrey, QCSlugAmmo 	, alignment(right), 1589,820; } } else { isSelected QCRailgun 			, QCRailgunDM				{ drawNumber 3, QCFNT040, red, QCSlugAmmo 	, alignment(right), 1589,820; } else { drawNumber 3, QCFNT030, darkred, QCSlugAmmo 	, alignment(right), 1589,820; } } }
+		inInventory QCBFG 				|| QCBFGDM				{ inInventory QCBFGAmmo 	, 10 { isSelected QCBFG 			, QCBFGDM					{ drawNumber 3, QCFNT040, brite, QCBFGAmmo		, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkgrey, QCBFGAmmo		, alignment(right), 1589,890; } } else { isSelected QCBFG 				, QCBFGDM					{ drawNumber 3, QCFNT040, red, QCBFGAmmo	, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkred, QCBFGAmmo	, alignment(right), 1589,890; } } }
+
+		// This is special due to how it's basic in DM but not in solo
+		isSelected QCSuperShotgun	, QCSuperShotgunDM		{ inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1589,470; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1589,470; }
+		} else {
+		isSelected QCShotgun		, QCShotgunDM			{ inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1589,470; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1589,470; }
+		} else {
+			inInventory QCShotgun   || QCSuperShotgun	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1589,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1589,470; } }
+			inInventory QCShotgunDM || QCSuperShotgunDM	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1589,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1589,470; } }
+		}}
+		}
+	}
+	}
+
+
+	// Active Ability
+
+	InInventory not NoAbilityIcon {
+	// Frame
+	inInventory not Class_Sarge {
+		inInventory AbilityCooldownToken {
+			inInventory not MultiuseCharge {
+				drawImage "ACTFRAM0", 572,800;
+			} else {
+				drawImage "ACTFRAM2", 572,800;
+			}
+		} else {
+				drawImage "ACTFRAME", 572,800;
+		}
+	}
+	// Icon
+	inInventory Class_Ranger		{ drawSwitchableImage AbilityCooldownToken, 	"DIREORB1", "DIREORB0", 	636,850; }
+	inInventory Class_Doomslayer	{ drawSwitchableImage AbilityCooldownToken, 	"BIGFGUN1", "BIGFGUN0", 	636,850; }
+	inInventory Class_Corvus		{ drawSwitchableImage AbilityCooldownToken, 	"FLIGHT_1", "FLIGHT_0", 	636,850; }
+	inInventory Class_Kane			{ drawSwitchableImage AbilityCooldownToken, 	"STROYEN1", "STROYEN0", 	636,850; }
+	inInventory Class_Caleb			{ drawSwitchableImage AbilityCooldownToken, 	"LIFDRAN1", "LIFDRAN0", 	636,850; }
+	inInventory Class_Menelkir		{ drawSwitchableImage AbilityCooldownToken, 	"MAULOTR1", "MAULOTR0", 	636,850; }
+	inInventory Class_Terminator	{ drawSwitchableImage AbilityCooldownToken, 	"BARRAGE1", "BARRAGE0", 	636,850; }
+	inInventory Class_Zedek			{ drawSwitchableImage AbilityCooldownToken, 	"ACIDSWR1", "ACIDSWR0", 	636,850; }
+	inInventory Class_Inquisitor	{ drawSwitchableImage AbilityCooldownToken, 	"REFLECT1", "REFLECT0", 	636,850; }
+	inInventory Class_Bitterman		{ drawSwitchableImage AbilityCooldownToken, 	"PWRSHLD1", "PWRSHLD0", 	636,850; }
+	inInventory Class_Galen			{ drawSwitchableImage AbilityCooldownToken, 	"TOTEM001", "TOTEM000", 	636,850; }
+	inInventory Class_Nyx			{ drawSwitchableImage AbilityCooldownToken, 	"GHSTWLK1", "GHSTWLK0", 	636,850; }
+	inInventory Class_Sorgaul		{ drawSwitchableImage AbilityCooldownToken, 	"RAGE0001", "RAGE0000", 	636,850; }
+	inInventory Class_DukeNukem		{ drawSwitchableImage AbilityCooldownToken, 	"FREEZE01", "FREEZE00", 	636,850; }
+	inInventory Class_Durandal		{ drawSwitchableImage AbilityCooldownToken, 	"BOBBQ001", "BOBBQ000", 	636,850; }
+	inInventory Class_Keel			{ drawSwitchableImage AbilityCooldownToken, 	"GRENADE1", "GRENADE0", 	636,850; }
+	inInventory Class_Sarge			{ drawSwitchableImage AbilityCooldownToken, 	"OLDSCHOL", "OLDSCHOL", 	636,850; }
+	inInventory Class_LoWang		{ drawSwitchableImage AbilityCooldownToken, 	"NOBITSU1", "NOBITSU0", 	636,850; }
+	inInventory Class_Grayson		{ drawSwitchableImage AbilityCooldownToken, 	"THUMPER1", "THUMPER0", 	636,850; }
+	inInventory Class_Eradicator	{ drawSwitchableImage AbilityCooldownToken, 	"RADAR001", "RADAR000", 	636,850; }
+	inInventory Class_Blazkowicz	{ drawSwitchableImage AbilityCooldownToken, 	"AKIMBO01", "AKIMBO00", 	636,850; }
+	inInventory Class_Freeman		{ drawSwitchableImage AbilityCooldownToken, 	"EXHAUST1", "EXHAUST0", 	636,850; }
+	inInventory Class_VorMatur		{ drawSwitchableImage AbilityCooldownToken, 	"TERROR01", "TERROR00", 	636,850; }
+	inInventory Class_Eleena		{ drawSwitchableImage AbilityCooldownToken, 	"HOLOTP01", "HOLOTP00", 	636,850; }
+	inInventory Class_Lucienne		{ drawSwitchableImage AbilityCooldownToken, 	"CLNFIRE1", "CLNFIRE0", 	636,850; }
+	inInventory Class_Major			{ drawSwitchableImage AbilityCooldownToken, 	"AIRSTRK1", "AIRSTRK0", 	636,850; }
+	inInventory Class_Hunter		{ drawSwitchableImage AbilityCooldownToken, 	"HUNTSKL1", "HUNTSKL0", 	636,850; }
+	inInventory Class_Sam			{ drawSwitchableImage AbilityCooldownToken, 	"MINIGUN1", "MINIGUN0", 	636,850; }
+	inInventory Class_Postal		{ drawSwitchableImage AbilityCooldownToken, 	"COWHEAD1", "COWHEAD0", 	636,850; }
+	inInventory Class_Painkiller	{ drawSwitchableImage AbilityCooldownToken, 	"TAROT001", "TAROT000", 	636,850; }
+	inInventory Class_Intruder		{ drawSwitchableImage AbilityCooldownToken, 	"WENDIG01", "WENDIG00", 	636,850; }
+	// ^ insert more classes here
+
+	// Counter
+	inInventory not Class_Sarge {
+	inInventory not ActiveInProgress
+	{
+		inInventory AbilityCooldownSeconds, 4
+		{
+			drawNumber 3, QCFNT100, brite, AbilityCooldownSeconds,     alignment(center),700,886;
+		} else { inInventory AbilityCooldownToken {
+			inInventory AbilityCooldownSeconds || AbilityCooldownDeciseconds {
+				drawNumber 1, QCFNT080, brite, AbilityCooldownSeconds,     alignment(right), 696,890;
+				drawString    QCFNT080, brite, ".",                                          700,890, 0, alignment(center);
+				drawNumber 1, QCFNT080, brite, AbilityCooldownDeciseconds, alignment(left),  704,890;
+			} else {
+				drawImage "ACTFRAME", 572,800;
+				drawImage "ACTFRAM1", 572,800;
+			}
+		}}
+	}
+	}
+	// Progress reticle
+	inInventory ActiveProgressToken {
+		drawImage "ABILRET0",444,269;
+		drawImage "ABIRLET0",700,269;
+		drawBar "ABILRET1", "ABILRET0",	ActiveProgressToken	, horizontal         , 444,269;
+		drawBar "ABIRLET1", "ABIRLET0",	ActiveProgressToken	, horizontal, reverse, 700,269;
+	}
+	// Major's HUD reticle
+	inInventory StrikesCounter	{ drawImage "STRKHUDL", 	184,172; }
+
+	// Bitterman special charge
+	inInventory PowerShieldCharge {
+		drawNumber 3, QCFNT050, brite, PowerShieldCharge, alignment(center),700,950;
+	}
+	// Galen totem count
+	inInventory TotemToken {
+		inInventory TotemToken, 5 {
+			drawBar "GTOTEMS5", "GTOTEMS0", TotemToken, horizontal, 604, 800;
+		} else {
+			drawBar "GTOTEMS4", "GTOTEMS0", TotemToken, horizontal, 604, 800;
+		}
+	}
+	// Eradicator murder boner
+	inInventory MurderLevel {
+		drawNumber 3, QCFNT050, bludi, MurderLevel, alignment(right),  960,960;
+		drawString    QCFNT050, bludi, "0%"                         ,  962,960, 0, alignment(left);
+		drawString     BIGFONT, brite, "          extra damage"     ,  960,970, 0, alignment(left);
+	}
+	inInventory MurderToken { inInventory not TooFewMonst {
+		drawNumber 3, QCFNT040, bludi, MurderToken, alignment(right), 1014,991;
+		drawString     BIGFONT, brite, " kills to buff"             , 1014,996, 0, alignment(left);
+	}}
+	// Multiuse charges (Keel, Lucienne, Freeman, etc)
+	inInventory MultiuseCharge {
+		drawNumber 2, QCFNT060, brite, MultiuseCharge, alignment(center),700,950;
+	}
+	// Sam's ammo
+	inInventory Class_Sam {
+		inInventory not AbilityCooldownToken {
+			InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950; }
+		} else {
+			inInventory ActiveProgressToken {
+				InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950; }
+			} else {
+				InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, graey, SeriousBullets, alignment(center), 700,950; }
+			}
+		}
+	}
+	// Painkiller's souls counter
+	inInventory PainsKilled {
+		gameMode deathmatch {
+			inInventory PainsKilled, 55 {
+				drawNumber 3, QCFNT070, bludi, PainsKilled, alignment(right), 1170,970;
+			} else {
+				drawNumber 3, QCFNT060, brite, PainsKilled, alignment(right), 1170,973;
+			}
+		} else {
+			inInventory PainsKilled, 60 {
+				drawNumber 3, QCFNT070, bludi, PainsKilled, alignment(right), 1170,970;
+			} else {
+				drawNumber 3, QCFNT060, brite, PainsKilled, alignment(right), 1170,973;
+			}
+		}
+		drawImage "SOLCOUNT",                                         1180,970;
+	}
+	}
+
+	// Leaderboard and clock
+	inInventory not TeamDeathmatch || Duel
+	{
+		gameMode deathmatch
+		{
+			inInventory CurrentLeader {
+				drawImage "TEAM0FR1", 600,50;
+			} else {
+				drawImage "TEAM0FR2", 600,50;
+			}
+			drawBar "TEAM0BA1", "TEAM0BA0", Team1Score, horizontal, 644,50;
+
+			drawString QCFNT080, white, GlobalVar   1, 585,54, 0, alignment(right);  // timer
+			drawString QCFNT030, white, GlobalArray 4, 620,55, 0, alignment(center); // position 1st
+			drawString QCFNT030, white, GlobalArray 5, 620,82, 0, alignment(center); // position 2nd
+			drawString BIGFONT , white, GlobalArray 6, 648,53, 0, alignment(left);   // name 1st
+			drawString BIGFONT , white, GlobalArray 7, 648,80, 0, alignment(left);   // name 2nd
+			drawString QCFNT030, white, GlobalArray 8, 892,55, 0, alignment(center); // frags 1st
+			drawString QCFNT030, white, GlobalArray 9, 892,82, 0, alignment(center); // frags 2nd
+		}
+	}
+	else
+	{
+		inInventory TeamDeathmatch
+		{
+			// Current team bar highlight
+			inInventory TeamColor,   2 {
+				drawImage "TEAMBAC2", 750,-30;
+				drawImage "TEAMBAC2", 850,-30;
+			} else {
+				drawImage "TEAMBAC1", 330,-30;
+				drawImage "TEAMBAC1", 430,-30;
+			}
+
+			drawImage "TEAM1FRM", 380,50;
+			drawImage "TEAM2FRM", 800,50;
+		}
+		inInventory Duel
+		{
+			drawImage "TEAM1DUO", 380,50;
+			drawImage "TEAM2DUO", 800,50;
+
+			drawString bigfont, brite, GlobalArray 6,  383,90, 0, alignment( left);
+			drawString bigfont, brite, GlobalArray 7, 1012,90, 0, alignment(right);
+
+			//-----------------------------------------------------
+			//
+			// Spectator HUD
+			//
+			//-----------------------------------------------------
+			inInventory BeingSpectated
+			{
+				// Center is at 700,525
+				inInventory not FlatHealthToken {
+					drawBar "BARS6", "BARS_",   SuperHealthBar, horizontal, reverse, 210,115;
+					drawBar "BARS4", "BARS_", CurrentHealthBar, horizontal, reverse, 210,115;
+				} else {
+					drawBar "BARF6", "BARS_",   SuperHealthBar, horizontal, reverse, 210,115;
+					drawBar "BARF4", "BARS_", CurrentHealthBar, horizontal, reverse, 210,115;
+				}
+				inInventory not FlatArmorToken {
+					drawBar "BARS7", "BARS_",   SuperArmorBar,  horizontal, reverse, 210,130;
+					drawBar "BARS5", "BARS_", CurrentArmorBar,  horizontal, reverse, 210,130;
+				} else {
+					drawBar "BARF7", "BARS_",   SuperArmorBar,  horizontal, reverse, 210,130;
+					drawBar "BARF5", "BARS_", CurrentArmorBar,  horizontal, reverse, 210,130;
+				}
+
+				inInventory Class_Ranger			{ drawImage "PORTRY01", 	250,6; }
+				inInventory Class_Doomslayer		{ drawImage "PORTRY02", 	250,6; }
+				inInventory Class_Corvus			{ drawImage "PORTRY03", 	250,6; }
+				inInventory Class_Kane				{ drawImage "PORTRY04", 	250,6; }
+				inInventory Class_Caleb				{ drawImage "PORTRY05", 	250,6; }
+				inInventory Class_Menelkir			{ drawImage "PORTRY06", 	250,6; }
+				inInventory Class_Terminator		{ drawImage "PORTRY07", 	250,6; }
+				inInventory Class_Zedek				{ drawImage "PORTRY08", 	250,6; }
+				inInventory Class_Inquisitor		{ drawImage "PORTRY09", 	250,6; }
+				inInventory Class_Bitterman			{ drawImage "PORTRY10", 	250,6; }
+				inInventory Class_Galen				{ drawImage "PORTRY11", 	250,6; }
+				inInventory Class_Nyx				{ drawImage "PORTRY12", 	250,6; }
+				inInventory Class_Sorgaul			{ drawImage "PORTRY13", 	250,6; }
+				inInventory Class_DukeNukem			{ drawImage "PORTRY14", 	250,6; }
+				inInventory Class_Durandal			{ drawImage "PORTRY15", 	250,6; }
+				inInventory Class_Keel				{ drawImage "PORTRY16", 	250,6; }
+				inInventory Class_Sarge				{ drawImage "PORTRY17", 	250,6; }
+				inInventory Class_LoWang			{ drawImage "PORTRY18", 	250,6; }
+				inInventory Class_Grayson			{ drawImage "PORTRY19", 	250,6; }
+				inInventory Class_Eradicator		{ drawImage "PORTRY20", 	250,6; }
+				inInventory Class_Blazkowicz		{ drawImage "PORTRY21", 	250,6; }
+				inInventory Class_Freeman			{ drawImage "PORTRY22", 	250,6; }
+				inInventory Class_VorMatur			{ drawImage "PORTRY23", 	250,6; }
+				inInventory Class_Eleena			{ drawImage "PORTRY24", 	250,6; }
+				inInventory Class_Lucienne			{ drawImage "PORTRY25", 	250,6; }
+				inInventory Class_Major				{ drawImage "PORTRY26", 	250,6; }
+				inInventory Class_Hunter			{ drawImage "PORTRY27", 	250,6; }
+				inInventory Class_Sam				{ drawImage "PORTRY28", 	250,6; }
+				inInventory Class_Postal			{ drawImage "PORTRY29", 	250,6; }
+				inInventory Class_Painkiller		{ drawImage "PORTRY30", 	250,6; }
+				inInventory Class_Intruder				{ drawImage "PORTRY31", 	250,6; }
+				// ^ insert more classes here
+
+				inInventory QCHeavyMachinegunDM		{ drawImage "LedBullt", 	360,145; }
+				inInventory QCSuperShotgunDM		{ drawImage "LedShell", 	390,145; }
+				inInventory QCSuperNailgunDM		{ drawImage "LedNails", 	420,145; }
+				inInventory QCTriboltDM				{ drawImage "LedBolts", 	450,145; }
+				inInventory QCRocketLauncherDM		{ drawImage "LedRockt", 	480,145; }
+				inInventory QCLightningGunDM		{ drawImage "LedCoils", 	510,145; }
+				inInventory QCRailgunDM				{ drawImage "LedSlugs", 	540,145; }
+				inInventory QCBFGDM					{ drawImage "LedBfugs", 	570,145; }
+
+				inInventory not AbilityCooldownToken { drawImage "ABILREDY", 316,70; } else {
+					inInventory AbilityCooldownSeconds {
+						drawNumber 3, QCFNT050, brite, AbilityCooldownSeconds, alignment(center),345,90;
+					} else {
+						drawImage "ABILISRN", 316,70;
+					}
+				}
+
+				inInventory not EnemyFlatHealthToken {
+					drawBar "BARS6", "BARS_",   EnemySuperHealthBar, horizontal, 800,115;
+					drawBar "BARS4", "BARS_", EnemyCurrentHealthBar, horizontal, 800,115;
+				} else {
+					drawBar "BARF6", "BARS_",   EnemySuperHealthBar, horizontal, 800,115;
+					drawBar "BARF4", "BARS_", EnemyCurrentHealthBar, horizontal, 800,115;
+				}
+				inInventory not EnemyFlatArmorToken {
+					drawBar "BARS7", "BARS_",   EnemySuperArmorBar,  horizontal, 800,130;
+					drawBar "BARS5", "BARS_", EnemyCurrentArmorBar,  horizontal, 800,130;
+				} else {
+					drawBar "BARF7", "BARS_",   EnemySuperArmorBar,  horizontal, 800,130;
+					drawBar "BARF5", "BARS_", EnemyCurrentArmorBar,  horizontal, 800,130;
+				}
+
+				inInventory EnemyClass_Ranger		{ drawImage "PORTRY01", 	1010,6; }
+				inInventory EnemyClass_Doomslayer	{ drawImage "PORTRY02", 	1010,6; }
+				inInventory EnemyClass_Corvus		{ drawImage "PORTRY03", 	1010,6; }
+				inInventory EnemyClass_Kane			{ drawImage "PORTRY04", 	1010,6; }
+				inInventory EnemyClass_Caleb		{ drawImage "PORTRY05", 	1010,6; }
+				inInventory EnemyClass_Menelkir		{ drawImage "PORTRY06", 	1010,6; }
+				inInventory EnemyClass_Terminator	{ drawImage "PORTRY07", 	1010,6; }
+				inInventory EnemyClass_Zedek		{ drawImage "PORTRY08", 	1010,6; }
+				inInventory EnemyClass_Inquisitor	{ drawImage "PORTRY09", 	1010,6; }
+				inInventory EnemyClass_Bitterman	{ drawImage "PORTRY10", 	1010,6; }
+				inInventory EnemyClass_Galen		{ drawImage "PORTRY11", 	1010,6; }
+				inInventory EnemyClass_Nyx			{ drawImage "PORTRY12", 	1010,6; }
+				inInventory EnemyClass_Sorgaul		{ drawImage "PORTRY13", 	1010,6; }
+				inInventory EnemyClass_DukeNukem	{ drawImage "PORTRY14", 	1010,6; }
+				inInventory EnemyClass_Durandal		{ drawImage "PORTRY15", 	1010,6; }
+				inInventory EnemyClass_Keel			{ drawImage "PORTRY16", 	1010,6; }
+				inInventory EnemyClass_Sarge		{ drawImage "PORTRY17", 	1010,6; }
+				inInventory EnemyClass_LoWang		{ drawImage "PORTRY18", 	1010,6; }
+				inInventory EnemyClass_Grayson		{ drawImage "PORTRY19", 	1010,6; }
+				inInventory EnemyClass_Eradicator	{ drawImage "PORTRY20", 	1010,6; }
+				inInventory EnemyClass_Blazkowicz	{ drawImage "PORTRY21", 	1010,6; }
+				inInventory EnemyClass_Freeman		{ drawImage "PORTRY22", 	1010,6; }
+				inInventory EnemyClass_VorMatur		{ drawImage "PORTRY23", 	1010,6; }
+				inInventory EnemyClass_Eleena		{ drawImage "PORTRY24", 	1010,6; }
+				inInventory EnemyClass_Lucienne		{ drawImage "PORTRY25", 	1010,6; }
+				inInventory EnemyClass_Major		{ drawImage "PORTRY26", 	1010,6; }
+				inInventory EnemyClass_Hunter		{ drawImage "PORTRY27", 	1010,6; }
+				inInventory EnemyClass_Sam			{ drawImage "PORTRY28", 	1010,6; }
+				inInventory EnemyClass_Postal		{ drawImage "PORTRY29", 	1010,6; }
+				inInventory EnemyClass_Painkiller	{ drawImage "PORTRY30", 	1010,6; }
+				inInventory EnemyClass_Intruder			{ drawImage "PORTRY31", 	1010,6; }
+				// ^ insert more classes here
+
+				inInventory EnemyQCHeavyMachinegunDM	{ drawImage "LedBullt", 	 990,145; }
+				inInventory EnemyQCSuperShotgunDM		{ drawImage "LedShell", 	 960,145; }
+				inInventory EnemyQCSuperNailgunDM		{ drawImage "LedNails", 	 930,145; }
+				inInventory EnemyQCTriboltDM			{ drawImage "LedBolts", 	 900,145; }
+				inInventory EnemyQCRocketLauncherDM		{ drawImage "LedRockt", 	 870,145; }
+				inInventory EnemyQCLightningGunDM		{ drawImage "LedCoils", 	 840,145; }
+				inInventory EnemyQCRailgunDM			{ drawImage "LedSlugs", 	 810,145; }
+				inInventory EnemyQCBFGDM				{ drawImage "LedBfugs", 	 780,145; }
+
+				inInventory not EnemyAbilityCooldownToken { drawImage "ABILREDY", 1014,70; } else {
+					inInventory EnemyAbilityCooldownSeconds {
+						drawNumber 3, QCFNT050, brite, EnemyAbilityCooldownSeconds, alignment(center),1047,90;
+					} else {
+						drawImage "ABILISRN", 1014,70;
+					}
+				}
+			}
+		}
+		drawBar "TEAM1BA1", "TEAM1BA0", Team1Score, horizontal, 380,50;
+		drawString QCFNT050, white, GlobalArray 2,              383,54, 0, alignment(left);
+
+		drawBar "TEAM2BA1", "TEAM2BA0", Team2Score, horizontal, reverse, 800,50;
+		drawString QCFNT050, white, GlobalArray 3,                      1015,54, 0, alignment(right);
+
+		drawString QCFNT050, white, GlobalVar 1,                         700,54, 0, alignment(center);	//timer
+	}
+
+	drawselectedinventory INDEXFON, 15, 980;
+
+	// Damage
+	DrawMugShot 1, disableouch, disablerampage, disablegrin, 628, 812;
+
+	//Flag on top of ability, and everything else
+	inInventory RedFlag			{ drawImage "FLAGCARY", 	623,848; }
+	inInventory WhiteFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory BlueFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory GoldFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory GreenFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory PowerEldersSoul	{ drawImage "DEMNCARY", 	603,819; }
+
+	inInventory QCEverything
+	{ drawString BIGFONT, bludi, "warranty void", 240,810, 0, alignment(left); }
+	}
+	}
+}
+else // Spectator
+{
+	drawString QCFNT100, white, GlobalVar 1, 700,25, 0, alignment(center);	//timer
+}}
+
+//================================================================================================
+
+mugshot "Normal"{ tnt1a 35; }
+mugshot "Death"	{ tnt1a 35; }
+mugshot "God" 	{ tnt1a 35; }
+
+mugshot "Pain", directional
+{
+	{wrig, wfor, wlef} 1;
+}
+

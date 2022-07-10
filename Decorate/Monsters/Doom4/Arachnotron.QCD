@@ -1,0 +1,152 @@
+//================================================================================================================
+//================================================================================================================
+//
+//
+//================================================================================================================
+//================================================================================================================
+
+Actor D4Arachnotron : QCDE_MonsterBig 15450
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	Health 500
+	Radius 48
+	Height 64
+	Mass 600
+	Speed 12
+	PainChance 100
+	Monster
+	+FLOORCLIP
+	+BOSSDEATH
+	SeeSound "Doom4/Monsters/Arachnotron/Sight"
+	PainSound "Doom4/Monsters/Arachnotron/Pain"
+	DeathSound "Doom4/Monsters/Arachnotron/Death"
+	ActiveSound "Doom4/Monsters/Arachnotron/Idle"
+	Obituary "$OB_BABY"
+	DamageFactor "SMMGas", 0.1
+	PainChance "SMMGas", 1
+	Radius 48
+	Tag "$TAG_D4Arachnotron" // "Arachnotron"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		ARAC AB 10 A_Look
+		Loop
+	See:
+		ARAC A 8
+		ARAC A 0 A_PlaySound("Player/Demon/ArachnotronStep",CHAN_AUTO,1.0,false,1.0)
+		ARAC A 3 A_Chase
+		ARAC ABBCC 3 A_Chase
+		ARAC A 0 A_PlaySound("Player/Demon/ArachnotronStep",CHAN_AUTO,1.0,false,1.0)
+		ARAC D 3 A_Chase
+		ARAC DEEFF 3 A_Chase
+		Goto See+1
+	Missile:
+		ARAC A 20 BRIGHT A_FaceTarget
+		ARAC G 2 BRIGHT A_FaceTarget
+		ARAC H 2 BRIGHT A_CustomMissile("ArachnoPlasma",24,0,0)
+		ARAC G 2 BRIGHT
+		ARAC H 2 BRIGHT A_CustomMissile("ArachnoPlasma",24,0,0)
+		TNT1 A 0 A_MonsterRefire(20,"See")
+		Goto Missile+1
+	Pain:
+		ARAC I 3
+		ARAC I 3 A_Pain
+		Goto See+1
+	DeathChecksDone:
+		ARAC J 0 A_Scream
+		ARAC J 10 A_Scream
+		ARAC K 5 A_NoBlocking
+		ARAC LMNO 4
+	Death.Corpse:
+		ARAC P -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Doom4/Gore/Big")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMediumBig",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		ARAC P 5
+		ARAC ONMLKJ 5
+		Goto See+1
+
+	//------------------------------------------------------------------------
+	}
+}
+
+Actor ArachnoPlasma
+{
+	Projectile
+	Scale 0.2
+	Height 8
+	Radius 4
+	Speed 25
+	FastSpeed 30
+	Damage 2	//because it travels faster and arachnos are more aggressive
+	RenderStyle Add
+	Alpha 0.99
+	+FORCEXYBILLBOARD
+	SeeSound "Doom4/Monsters/PlasmaShot"
+	DeathSound "baby/shotx"
+	Translation "0:255=%[0,0,0]:[1.2,0.2,0.9]"
+	DeathSound "Doom4/Weapon/PlasmaGun/PlasmaCrash"
+	Decal "PurplePlasmaMonster"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetScale(frandom(0.18,0.22))
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11)
+		Goto Moving
+	Moving:
+		PLS1 ABCDEFGHIJKL 1 Light("PurpleSmallPoint1") Bright
+		Loop
+	Death:
+		TNT1 A 10 A_SpawnItemEx("D4ArachnoPuffBig1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		Stop
+	}
+}
+
+Actor D4PistolPuffNormal
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+PUFFONACTORS
+	+PUFFGETSOWNER
+	+MTHRUSPECIES
+	Scale 0.15
+	RenderStyle Add
+	Alpha 0.99
+	Translation "0:255=%[0,0,0]:[0.6,1.0,1.8]"
+	Decal "D4Pistol"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+	Continue:
+		DB21 ABCDEFGHI 1 Bright
+		Stop
+	}
+}
+
+Actor D4PistolPuffBig1 : D4PistolPuffNormal
+{
+	Scale 0.20
+}
+
+Actor D4ArachnoPuffBig1 : D4PistolPuffBig1
+{
+	Scale 0.35
+	Translation "0:255=%[0,0,0]:[1.2,0.2,0.9]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Goto Continue
+	}
+}

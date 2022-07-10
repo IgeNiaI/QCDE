@@ -1,0 +1,66 @@
+Actor QCDoomImp : QCDE_MonsterSmall 15408
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom"
+	//$Color 12
+	//$Title "Imp"
+	Tag "$TAG_QCDoomImp" // "Imp"
+
+	Health 60
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 200
+	Monster
+	+FLOORCLIP
+	SeeSound "imp/sight"
+	PainSound "imp/pain"
+	DeathSound "imp/death"
+	ActiveSound "imp/active"
+	HitObituary "$OB_IMPHIT"
+	Obituary "$OB_IMP"
+	States
+	{
+	Idle:
+		TROO AB 10 A_Look
+		Loop
+	See:
+		TROO AABBCCDD 3 A_Chase
+		Loop
+	Melee:
+	Missile:
+		TROO EF 8 A_FaceTarget
+		TROO G 6 A_TroopAttack
+		Goto See
+	Pain:
+		TROO H 2
+		TROO H 2 A_Pain
+		Goto See
+	DeathChecksDone:
+		TROO I 8
+		TROO J 8 A_Scream
+		TROO K 6
+		TROO L 6 A_NoBlocking
+	Death.Corpse:
+		TROO M -1
+		Stop
+	XDeathChecksDone:
+		TROO N 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TROO O 5 A_XScream
+		TROO P 5
+		TROO Q 5 A_NoBlocking
+		TROO RST 5
+		TROO U -1
+		Stop
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		TROO MLKJI 8
+		Goto See
+	}
+}
+
+Actor QCDoomImpBall : DoomImpBall replaces DoomImpBall
+{
+	Damage (random(2,9)*3)
+}

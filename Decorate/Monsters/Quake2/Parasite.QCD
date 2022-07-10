@@ -1,0 +1,118 @@
+//===========================================================================
+//===========================================================================
+
+Actor Q2Parasite  : QCDE_MonsterSmall	15215	//imp
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	var int user_counter;
+	Health 60
+	Radius 20
+	Height 48
+	Speed 8
+	PainChance 128
+	Scale 0.48
+	MONSTER
+	+FLOORCLIP
+	+STRIFEDAMAGE
+	minmissilechance 255
+	Tag "$TAG_Q2Parasite" // "Parasite"
+	SeeSound "q2parasite/sight"
+	PainSound "q2parasite/pain"
+	DeathSound "q2parasite/death"
+	ActiveSound "q2parasite/search"
+	Obituary "$OB_Q2Parasite" // "%o contracted a deadly parasite."
+	States
+	{
+	Idle:
+		PARA A 10 A_Look
+		Loop
+	See:
+		PARW A 2 A_Chase("","")	PARW A 1 A_Chase("","")
+		PARW B 2 A_Chase("","")	PARW B 1 A_Chase("","")
+		PARW C 2 A_Chase("","")	PARW C 1 A_Chase("","")
+		PARW D 2 A_Chase("","")	PARW D 1 A_Chase("","")
+		PARW E 2 A_Chase		PARW E 1 A_Chase("","")
+		PARW F 2 A_Chase		PARW F 1 A_Chase("","")
+		PARW G 2 A_Chase		PARW G 1 A_Chase("","")
+		Loop
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(384,"Tongue")
+	Blaster:
+		PARA AB 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("q2parasite/tongueout")
+		PARA C 10 A_CustomMissile("ParasiteProjectile",30,0,0)
+		Goto See
+	Tongue:
+		TNT1 A 0 A_Jump(200,"Blaster") //about 80% of the time will still do a blaster attack
+		PARA AB 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("q2parasite/tongueout")
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_SetUserVar("user_counter",0)
+
+		TongueLoop:
+			TNT1 A 0 A_JumpIf(user_counter>=12,"TongueEnd")
+			TNT1 A 0 A_FaceTarget
+			PARA C 4 A_CustomRailgun(random(2,4),0,none,"maroon",RGF_SILENT|RGF_FULLBRIGHT,1,0,None,0,0,512,4)
+			TNT1 A 0 A_SetUserVar("user_counter",user_counter+1)
+			Loop
+
+	TongueEnd:
+		TNT1 A 0 A_PlaySound("q2parasite/tongueinside")
+		PARA EF 5
+		Goto See
+
+	Pain:
+		PARP A 1
+		PARP A 3 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		PARD A 0 A_Scream
+		PARD A 4
+		PARD BCD 3
+		PARD D 3 A_Fall
+		PARD E 4
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Small")
+		PARD F 4
+	Death.Corpse:
+		PARD G -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		PARD GFEDCBA 3
+		Goto See
+	}
+}
+
+Actor ParasiteProjectile
+{
+	Projectile
+	Speed 13
+	Damage (random(3,8)*3)
+	Radius 8
+	Height 12
+	RenderStyle Add
+	Translation "0:255=%[0,0,0]:[1.2,0.6,0.6]"
+	Scale 0.45
+	DeathSound "quake4/SlimyTrans/VomitSplash"
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		X008 ABCD 3 Bright
+		TNT1 A 0 A_SpawnItemEx("STroopGrenTrailGas",0,random(2,-2),random(0,2),0,0,frandom(0.2,0.6),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		Loop
+	Death:
+		TNT1 A 0 A_SetScale(0.55)
+		X009 ABCDEFGHIJKLMNO 1 Bright
+		Stop
+	}
+}

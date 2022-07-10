@@ -1,0 +1,112 @@
+//===========================================================================
+//===========================================================================
+
+Actor Q2Gunner : QCDE_MonsterMedium	15205	//revenant
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	var int user_counter;
+	Health 350
+	Radius 20
+	Height 56
+	Scale 0.42
+	Speed 12
+	PainChance 100
+	Mass 200
+	MONSTER
+	+FLOORCLIP
+	+MISSILEMORE
+	Tag "$TAG_Q2Gunner" // "Gunner"
+	SeeSound "q2gunner/sight"
+	PainSound "q2gunner/pain"
+	DeathSound "q2gunner/death"
+	ActiveSound "q2gunner/seeking"
+	AttackSound ""
+	Obituary "$OB_Q2Gunner" // "%o was eliminated by a gunner."
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		GNNI A 5 A_Look
+		Loop
+	See:
+		GNNW AABBCCDDEEFF 2 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(128,"MGun")
+	Grenades:
+		GNNA C 12 A_FaceTarget
+		GNNA A 0 A_PlaySound("q2weapon/grenadelaunfire")
+		GNNA A 4 A_CustomMissile("GunnerGrenade", 50, -20, 0)
+		GNNA BC 6 A_FaceTarget
+		GNNA A 0 A_PlaySound("q2weapon/grenadelaunfire")
+		GNNA A 4 A_CustomMissile("GunnerGrenade", 50, -20, 0)
+		GNNA BC 6 A_FaceTarget
+		GNNA A 0 A_PlaySound("q2weapon/grenadelaunfire")
+		GNNA A 4 A_CustomMissile("GunnerGrenade", 50, -20, 0)
+		GNNA BC 6 A_FaceTarget
+		Goto See
+
+	MGun:
+		GNNA DEFG 5 A_FaceTarget
+		TNT1 A 0 A_SetUserVar(user_counter,0)
+
+		MGunLoop:
+			TNT1 A 0 A_Jumpif(user_counter>=20,"MgunEnd")
+			TNT1 A 0 A_PlaySound("q2gunner/chaingunattack",6,1,0,0.85)
+			TNT1 A 0 A_CustomMissile("MonsterTracerMidVol",52,10,frandom(5,-5))
+			TNT1 A 0 A_SpawnItemEx("MonMuzzleFlashSmall",20,10,56,0,0,0,0,32)
+			GNNA H 4 Bright A_CustomBulletAttack(9,6,1,2)
+			GNNA H 0 A_FaceTarget
+			TNT1 A 0 A_SetUserVar(user_counter,user_counter+1)
+			Loop
+		MGunEnd:
+			GNNA KLM 6
+			Goto See
+
+	Pain:
+		GNNP A 6 A_Pain
+		Goto See
+	DeathChecksDone:
+		GNND A 0 A_Scream
+		GNND A 5
+		GNND B 4
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Beefy",6)
+		GNND CDEFGH 4
+		GNND I 5 A_Fall
+		GNND JK 4
+	Death.Corpse:
+		GNND K -1
+		Stop
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		GNND KJIHGFEDCBA 4
+		Goto See
+	}
+}
+
+Actor GunnerGrenade : OgreGrenade
+{
+	Speed 20
+	Scale 0.2
+	Damage 2
+	BounceType "Doom"
+	BounceSound "q2weapon/grenadelbounce"
+	DeathSound "q2weapon/grenadeexplosion"
+	Translation "176:191=%[1,0.5,0]:[0,0,0]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY ThrustThingZ(0,20,0,0)
+	See:
+		Q99E NMLKJIHGFEDC 5 Bright Light("OrangeSmallPoint1")
+		Goto See
+	}
+}
+
+

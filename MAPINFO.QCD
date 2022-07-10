@@ -1,0 +1,183 @@
+GameInfo
+{
+	PlayerClasses 		= "QCRanger"
+	AddPlayerClasses	= "QCDoomSlayer"
+	AddPlayerClasses	= "QCCorvus"
+	AddPlayerClasses	= "QCGalen"
+	AddPlayerClasses	= "QCDukeNukem"
+	AddPlayerClasses	= "QCSarge"
+	AddPlayerClasses	= "QCGrayson"
+	AddPlayerClasses	= "QCBlazkowicz"
+	AddPlayerClasses	= "QCFreeman"
+	AddPlayerClasses	= "QCPainkiller"
+	AddPlayerClasses	= "QCIntruder"
+
+	AddPlayerClasses	= "QCKane"
+	AddPlayerClasses	= "QCCaleb"
+	AddPlayerClasses	= "QCMenelkir"
+	AddPlayerClasses	= "QCNyx"
+	AddPlayerClasses	= "QCDurandal"
+	AddPlayerClasses	= "QCLoWang"
+	AddPlayerClasses	= "QCEleena"
+	AddPlayerClasses	= "QCLucienne"
+	AddPlayerClasses	= "QCHunter"
+	AddPlayerClasses	= "QCPostal"
+
+	AddPlayerClasses	= "QCTerminator"
+	AddPlayerClasses	= "QCZedek"
+	AddPlayerClasses	= "QCInquisitor"
+	AddPlayerClasses	= "QCSorgaul"
+	AddPlayerClasses	= "QCBitterman"
+	AddPlayerClasses	= "QCKeel"
+	AddPlayerClasses	= "QCEradicator"
+	AddPlayerClasses	= "QCVorMatur"
+	AddPlayerClasses	= "QCMajor"
+	AddPlayerClasses	= "QCSam"
+	// ^ insert more classes here
+
+	QuitMessages =	"$QUITMSG1" , "$QUITMSG11", "$QUITMSG21", "$QUITMSG31", "$QUITMSG41", "$QUITMSG51",
+                    "$QUITMSG2" , "$QUITMSG12", "$QUITMSG22", "$QUITMSG32", "$QUITMSG42", "$QUITMSG52",
+                    "$QUITMSG3" , "$QUITMSG13", "$QUITMSG23", "$QUITMSG33", "$QUITMSG43", "$QUITMSG53",
+                    "$QUITMSG4" , "$QUITMSG14", "$QUITMSG24", "$QUITMSG34", "$QUITMSG44", "$QUITMSG54",
+                    "$QUITMSG5" , "$QUITMSG15", "$QUITMSG25", "$QUITMSG35", "$QUITMSG45", "$QUITMSG55",
+                    "$QUITMSG6" , "$QUITMSG16", "$QUITMSG26", "$QUITMSG36", "$QUITMSG46", "$QUITMSG56",
+                    "$QUITMSG7" , "$QUITMSG17", "$QUITMSG27", "$QUITMSG37", "$QUITMSG47", "$QUITMSG57",
+                    "$QUITMSG8" , "$QUITMSG18", "$QUITMSG28", "$QUITMSG38", "$QUITMSG48", "$QUITMSG58",
+                    "$QUITMSG9" , "$QUITMSG19", "$QUITMSG29", "$QUITMSG39", "$QUITMSG49", "$QUITMSG59",
+                    "$QUITMSG10", "$QUITMSG20", "$QUITMSG30", "$QUITMSG40", "$QUITMSG50", "$QUITMSG60"
+
+	dimcolor = "80 00 00"
+	dimamount = 0.2
+
+	InfoPage = "QCDEHLP1", "QCDEHLP2"
+
+	intermissionmusic = "QCDinter"
+
+    AddEventHandlers = "UnisizeHandler"
+}
+
+
+Map TITLEMAP "$HUSTR_TITLE"
+{
+	PrecacheSounds = "Sounds/Music/QCDETheme"
+}
+
+
+clearskills
+//----------------------------------------
+// normal skills
+Skill Normal_FewMonsters
+{
+	SpawnFilter = Easy
+	Aggressiveness = 0.8
+	Name = "$SKILL_NORMAL_MIN"
+	TextColor = White
+	ACSReturn = 1
+}
+Skill Normal_MoreMonsters
+{
+	SpawnFilter = Normal
+	Aggressiveness = 0.8
+	Name = "$SKILL_NORMAL_MED"
+	TextColor = White
+	DefaultSkill
+	ACSReturn = 2
+}
+Skill Normal_MaxMonsters
+{
+	SpawnFilter = Hard
+	Aggressiveness = 0.8
+	Name = "$SKILL_NORMAL_MAX"
+	TextColor = White
+	ACSReturn = 3
+}
+
+//----------------------------------------
+// Hard skills
+Skill Hard_FewMonsters
+{
+	SpawnFilter = Easy
+	Aggressiveness = 0.85
+	Name = "$SKILL_HARD_MIN"
+	TextColor = Orange
+	DamageFactor = 1.201
+	MonsterHealth = 1.25
+	ACSReturn = 4
+}
+
+Skill Hard_MoreMonsters
+{
+	SpawnFilter = Normal
+	Aggressiveness = 0.85
+	Name = "$SKILL_HARD_MED"
+	TextColor = Orange
+	DamageFactor = 1.201
+	MonsterHealth = 1.25
+	ACSReturn = 5
+}
+
+Skill Hard_MaxMonsters
+{
+	SpawnFilter = Nightmare
+	Aggressiveness = 0.85
+	Name = "$SKILL_HARD_MAX"
+	TextColor = Orange
+	DamageFactor = 1.201
+	MonsterHealth = 1.25
+	Mustconfirm = "$NOT_ULTRAVIOLENCE"
+	ACSReturn = 6
+}
+
+//----------------------------------------
+// WTF skill
+Skill Deathbound
+{
+	SpawnFilter = Nightmare
+	Name = "$SKILL_NIGHTMARE"
+	TextColor = Red
+	DamageFactor = 2.01
+	AmmoFactor = 2.0
+	MonsterHealth = 1.5
+	Aggressiveness = 1.0
+	ReplaceActor = "Medikit", "Stimpack"
+	ReplaceActor = "BlueArmor", "GreenArmor"
+	FastMonsters
+	Mustconfirm = "$NIGHTMARE"
+	ACSReturn = 7
+}
+
+//----------------------------------------
+// Easy skills
+Skill CellphoneEasy_FewMonsters
+{
+	SpawnFilter = Easy
+	DamageFactor = 0.501
+	Aggressiveness = 0
+	EasyBossBrain
+	Name = "$SKILL_EASY_MIN"
+	EasyKey
+	TextColor = Green
+	ACSReturn = -2
+}
+Skill CellphoneEasy_NormalMonsters
+{
+	SpawnFilter = Normal
+	DamageFactor = 0.501
+	Aggressiveness = 0
+	EasyBossBrain
+	Name = "$SKILL_EASY_MED"
+	EasyKey
+	TextColor = Green
+	ACSReturn = -1
+}
+Skill CellphoneEasy_MaxMonsters
+{
+	SpawnFilter = Hard
+	DamageFactor = 0.501
+	Aggressiveness = 0
+	EasyBossBrain
+	Name = "$SKILL_EASY_MAX"
+	EasyKey
+	TextColor = Green
+	ACSReturn = 0
+}

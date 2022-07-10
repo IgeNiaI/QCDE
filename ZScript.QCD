@@ -1,0 +1,32 @@
+version "2.4"
+
+class RedFlag   : Inventory {}
+class WhiteFlag : Inventory {}
+class BlueFlag  : Inventory {}
+class GoldFlag  : Inventory {}
+class GreenFlag : Inventory {}
+
+class PowerTerminatorArtifact : Inventory {}
+
+
+
+// Thanks to Ivory Duke for help with this!
+
+Class UnisizeHandler : EventHandler
+{
+    Override void PlayerEntered(PlayerEvent e)
+    {
+        if(e.PlayerNumber >= 0 && PlayerInGame[e.PlayerNumber] && Players[e.PlayerNumber].Mo)
+        {
+            Players[e.PlayerNumber].Mo.A_SetSize(16, 56, True);
+        }
+    }
+
+    Override void PlayerRespawned(PlayerEvent e)
+    {
+        if(e.PlayerNumber >= 0 && PlayerInGame[e.PlayerNumber] && Players[e.PlayerNumber].Mo)
+        {
+            Players[e.PlayerNumber].Mo.A_SetSize(16, 56, True);
+        }
+    }
+}

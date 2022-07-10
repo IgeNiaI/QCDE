@@ -1,0 +1,193 @@
+//================================================================================================================
+//================================================================================================================
+//
+//	Doom imp, sprites "Roach" from realm667, sprite recolor by DBT
+//  Doom 4 reskin by Phobos867
+//================================================================================================================
+//================================================================================================================
+Actor D4DoomImp : QCDE_MonsterSmall 15455
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	Health 60
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 128
+	Monster
+	+FLOORCLIP
+	SeeSound 	"Doom4/Monsters/Imp/Sight"
+	PainSound 	"Doom4/Monsters/Imp/Pain"
+	DeathSound 	"Doom4/Monsters/Imp/Death"
+	ActiveSound "Doom4/Monsters/Imp/Idle"
+	HitObituary "$OB_IMPHIT"
+	Obituary "$OB_IMP"
+	DamageFactor "PlasmaExploder", 0.3	//because otherwise, zombiemen would be killing everyone else easily
+	Tag "$TAG_D4DoomImp" // "Imp"
+	States
+	{
+	Idle:
+		ROAC A 10 A_Look
+		Loop
+	See:
+		ROAC BBCCDDEE 2 A_Chase
+		Loop
+	Melee:
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(1024,"FireBall")	//if too far away, will always use the big ball
+
+		FireBall:
+			TNT1 A 0 A_Jump(64,"FireBallhuge")	//yet, if close enough, it will still use sometimes the big ball
+			ROAC FFFF 4 Light("ImpPrepareAttackSmall") A_FaceTarget
+			ROAC G 6 A_CustomMissile("D4DoomImpBall",35,5,0)
+			Goto See
+		FireBallhuge:
+			ROAC FFFFFFFFFF 4 Light("ImpPrepareAttackBig") A_FaceTarget
+			ROAC G 0 A_PlaySound("Doom4/Monsters/Imp/Attack",CHAN_AUTO,1.0,false,1.3)
+			ROAC G 6 A_CustomMissile("D4DoomImpBallHuge",35,5,0)
+			Goto See
+
+	Pain:
+		ROAC H 2
+		ROAC H 2 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		ROAC I 4 A_Scream
+		ROAC J 4
+		ROAC K 4
+		ROAC L 4 A_NoBlocking
+	Death.Corpse:
+		ROAC M -1
+		Stop
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Doom4/Gore/Medium")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		ROAC N 4
+		ROAC O 4 A_NoBlocking
+		ROAC PQRS 4
+		ROAC T -1
+		Stop
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		ROAC MLKJI 8
+		Goto See
+
+
+	//------------------------------------------------------------------------
+	}
+}
+
+
+//*********************************************
+Actor D4DoomImpBall
+{
+	Radius 6
+	Height 8
+	Speed 18
+	FastSpeed 25
+	Damage 3
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 1
+	SeeSound "Doom4/Monsters/FireBallThrow"
+	DeathSound "Doom4/Other/FireballHit2"
+	scale 0.2
+	+FORCEXYBILLBOARD
+	Decal "FireballScorch"
+	Translation "0:255=%[0,0,0]:[1.8,1.1,0.1]"
+	States
+	{
+	Spawn:
+		DB58 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 BRIGHT Light("YellowMediumFlicker3")
+		Loop
+	Death:
+		HIBI A 0 A_SetScale(0.4)
+		DB59 AB 1 BRIGHT Light("YellowSmallFlicker1")	//had to separate
+		DB59 CD 1 BRIGHT Light("YellowMediumFlicker3")
+		DB59 EF 1 BRIGHT Light("YellowMediumFlicker3")
+		DB59 GH 1 BRIGHT Light("YellowSmallFlicker1")
+		DB59 IJ 1 BRIGHT Light("YellowSmallFlicker1")
+		DB59 KL 1 BRIGHT Light("YellowSmallFlicker2")
+		DB59 MN 1 BRIGHT Light("YellowSmallFlicker2")
+		DB59 OP 1 BRIGHT Light("YellowSmallFlicker3")
+		DB59 QR 1 BRIGHT Light("YellowSmallFlicker3")
+		DB59 ST 1 BRIGHT Light("YellowSmallFlicker3")
+		Stop
+	}
+}
+//*********************************************
+Actor D4DoomImpBallHuge
+{
+	Radius 6
+	Height 8
+	Speed 28
+	FastSpeed 35
+	Damage 5
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 1
+	SeeSound "Doom4/Monsters/Generic/ThrowFireball"
+	DeathSound "Doom4/Other/FireballHit2"
+	scale 0.35
+	+FORCEXYBILLBOARD
+	Translation "0:255=%[0,0,0]:[1.8,1.1,0.1]"
+	Decal "FireballScorchBig"
+	States
+	{
+	Spawn:
+		DB57 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1  BRIGHT Light("YellowMediumFlicker2") A_SpawnItemEx("ImpBallFlamelet",random(-2,-8),random(8,-8),random(8,-8),0,0,frandom(0,0.6),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION,100)
+		Loop
+	Death:
+		TNT1 A 0 A_SetScale(0.8)
+		DB51 ABC 1 Bright Light("YellowMediumFlicker3")
+		DB51 DEF 1 Bright Light("YellowMediumFlicker2")
+		DB51 GHI 1 Bright Light("YellowMediumFlicker2")
+		DB51 JKL 1 Bright Light("YellowMediumFlicker3")
+		DB51 MNO 1 Bright Light("YellowSmallFlicker1")
+		DB51 PQR 1 Bright Light("YellowSmallFlicker2")
+		DB51 STU 1 Bright Light("YellowSmallFlicker3")
+		DB51 VWX 1 Bright Light("YellowSmallFlicker3")
+		Stop
+	}
+}
+
+Actor DoomImpBallFlarePrepare
+{
+	+NOINTERACTION
+	Alpha 0.5
+	Scale 0.7
+	RenderStyle Add
+	Alpha 0.99
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SetScale(frandom(0.25,0.5))
+		PROJ DEFDEF 3 Bright A_FadeOut(0.07)
+		PROJ GHI 1 Bright A_FadeOut(0.2)
+		Wait
+	}
+}
+Actor ImpBallFlamelet
+{
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.14
+	States
+	{
+	Spawn:
+		PROJ D 0 NODELAY A_Jump(220,5,6,7,8,9)
+		X056 ABCDEFGHIJKLMNOPR 1 Bright
+		Stop
+	}
+}

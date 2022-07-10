@@ -1,0 +1,459 @@
+// --------------------------------------------------------------------------
+//
+// Heavy Machinegun
+// Weapon and Pickup sprite by FrancoTieppo
+// Weapon code by DBT
+//
+// --------------------------------------------------------------------------
+
+Actor HeavyMachinegunPickup : CustomInventory 15600
+{
+	//$NotAngled
+	//$Category "QCDE Weapons"
+	//$Color 14
+	//$Title "Heavy Machinegun"
+	Height 48
+	Radius 20
+	Scale 0.64
+	Inventory.PickupMessage "$GOT_QCHeavyMachinegun" // "Picked up a Heavy Machinegun."
+	Inventory.PickupSound "QC/Items/WeaponPick"
+	Inventory.RespawnTics 175
+	Tag "$TAG_QCHeavyMachinegun" // "Heavy Machinegun"
+	States
+	{
+	Spawn:
+		QCGB Y 35 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		QCGB Y 35 A_CheckFlag("DROPPED", "BecomeWeaponItself")
+		Goto Idle
+	DMSpawn:
+		"####" "#" 0 A_ChangeFlag("DROPPED", 0)
+		QCGB Z -1 Bright ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",8,args[4])
+		Stop
+
+	BecomeWeaponItself:
+		TNT1 A 0 A_SpawnItemEx("QCHeavyMachinegun")
+		TNT1 A 0 A_JumpIf(true, "End") Goto Idle // <-- this is to fool client-side predictor
+	End:TNT1 A 0
+		Stop
+
+	Idle:
+		QCGB Y -1 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",7,args[4])
+		Wait
+	Pickup:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMPickup")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"WeaponStay")
+		TNT1 A 0 A_GiveInventory("QCHeavyMachinegun")
+		TNT1 A 0 A_TakeInventory("QCMachinegun")
+		Stop
+	DMPickup:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"DMWeaponStay")
+		TNT1 A 0 A_GiveInventory("QCHeavyMachinegunDM")
+		TNT1 A 0 A_TakeInventory("QCMachinegunDM")
+		TNT1 A 0 A_TakeInventory("QCHeavyMachinegun")
+		TNT1 A 0 A_TakeInventory("QCMachinegun")
+		Stop
+	WeaponStay:
+		TNT1 A 0 A_JumpIfInventory("QCHeavyMachinegun",1,"Stay")
+		TNT1 A 0 A_SpawnItemEx("QCHeavyMachinegun", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
+		Fail
+	DMWeaponStay:
+		TNT1 A 0 A_TakeInventory("QCHeavyMachinegun")
+		TNT1 A 0 A_JumpIfInventory("QCHeavyMachinegunDM",1,"Stay")
+		TNT1 A 0 A_SpawnItemEx("QCHeavyMachinegunDM", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
+		Fail
+	Stay:
+		TNT1 A 0
+		Fail
+	}
+}
+
+
+Actor QCHeavyMachinegun : QCWeapon
+{
+	Height 48
+	Weapon.Kickback 20
+	Weapon.SelectionOrder 1000
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 50
+	Weapon.AmmoType "QCBulletAmmo"
+	Obituary "$OB_QCHeavyMachinegun" // "%o got lead poisoning from %k."
+	Inventory.PickupMessage "$GOT_QCHeavyMachinegun" // "Picked up a Heavy Machinegun."
+	Tag "$TAG_QCHeavyMachinegun" // "Heavy Machinegun"
+	Scale 0.64
+	States
+	{
+	Spawn:
+		QCGB Y 35 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		Goto Idle
+	DMSpawn:
+		QCGB ZZZZZZZZZZZZZZZ 35 Bright
+		Stop
+	Idle:
+		QCGB Y -1
+		Wait
+	//-----------------------
+	// Ready Seq
+	//-----------------------
+	Ready:
+		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		QCGB A 3 A_WeaponReady
+		Loop
+
+		ReadyCantFire:
+			QCGB A 0 A_StopSound(5)
+			QCGB A 0 A_StopSound(6)
+			"####" "#" 0 A_ZoomFactor(1.0)
+			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		RCFLooper:
+			QCGB A 4 A_WeaponReady(WRF_NOFIRE)
+			QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
+			Goto Ready
+	//-----------------------
+	// Select/Deselect Seq
+	//-----------------------
+	Select:
+		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
+		QCGB A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		QCGB A 0 A_TakeInventory("QCMachinegunDM")
+		QCGB A 0 A_TakeInventory("QCMachinegun")
+		"####" "#" 0 A_StopSound(5) //stops any weapon looping sound
+		"####" "#" 0 A_ZoomFactor(1.0)
+		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+	SelectLooper:
+		QCGB A 1 A_Raise
+		"####" "###" 0 A_Raise
+		Loop
+
+	Deselect:
+		"####" "#" 0 A_StopSound(5) //stops any weapon looping sound
+		"####" "#" 0 A_ZoomFactor(1.0)
+		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+	DeselectLooper:
+		QCGB A 1 A_Lower
+		"####" "###" 0 A_Lower
+		Loop
+
+	//-----------------------
+	// Fire Seq
+	//-----------------------
+	Fire:
+		QCGB A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
+		TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"FireQuadSound")
+		Goto FireNormalSound
+
+		FireNormalSound:
+			TNT1 A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop",5,1,1)
+			Goto FirePostSoundCheck
+		FireQuadSound:
+			TNT1 A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop",5,1,1)
+			Goto FirePostSoundCheck
+
+	FirePostSoundCheck:
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DM_FireLooper")
+		Goto FireLooper
+
+	FireLooper:
+		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		QCGB B 0 A_GunFlash("SP_Flash")
+		QCGB B 1 Offset(2,33) Bright
+		QCGB B 1 Offset(4,35) Bright
+		QCGB A 1 Offset(2,33)
+		QCGB A 1 Offset(1,32)
+		QCGB A 1 Offset(1,32) A_ReFire("FireLooper2")
+		Goto EndFireLooper
+	FireLooper2:
+		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		QCGB B 0 A_GunFlash("SP_Flash")
+		QCGB C 1 Offset(2,33) Bright
+		QCGB C 1 Offset(4,35) Bright
+		QCGB A 1 Offset(2,33)
+		//QCGB A 1 Offset(1,32)
+		QCGB A 1 Offset(1,32) A_ReFire("FireLooper3")
+		Goto EndFireLooper
+	FireLooper3:
+		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		QCGB B 0 A_GunFlash("SP_Flash")
+		QCGB D 1 Offset(2,33) Bright
+		QCGB D 1 Offset(4,35) Bright
+		QCGB A 1 Offset(2,33)
+		QCGB A 1 Offset(1,32)
+		QCGB A 1 Offset(1,32) A_ReFire("FireLooper")
+		Goto EndFireLooper
+
+	DM_FireLooper:
+		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		QCGB B 0 A_GunFlash("DM_Flash")
+		QCGB B 1 Offset(2,33) Bright
+		QCGB B 1 Offset(4,35) Bright
+		QCGB A 1 Offset(2,33)
+		QCGB A 1 Offset(1,32)
+		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper2")
+		Goto EndFireLooper
+	DM_FireLooper2:
+		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		QCGB B 0 A_GunFlash("DM_Flash")
+		QCGB C 1 Offset(2,33) Bright
+		QCGB C 1 Offset(4,35) Bright
+		QCGB A 1 Offset(2,33)
+		//QCGB A 1 Offset(1,32)
+		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper3")
+		Goto EndFireLooper
+	DM_FireLooper3:
+		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		QCGB B 0 A_GunFlash("DM_Flash")
+		QCGB D 1 Offset(2,33) Bright
+		QCGB D 1 Offset(4,35) Bright
+		QCGB A 1 Offset(2,33)
+		QCGB A 1 Offset(1,32)
+		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper")
+		Goto EndFireLooper
+
+	EndFireLooper:
+		QCGB A 1 A_PlaySound("QC/Weapons/Machinegun/FireEnd",5,1,0)
+		QCGB AAAA 1 A_WeaponReady(WRF_NOBOB)
+		Goto Ready
+
+	//-----------------------
+	// Attack doers
+	//-----------------------
+	SP_Flash:
+		TNT1 A 0 A_JumpIfInventory("HMG_UG_Ricochet",1,"PerformRicochet")
+		TNT1 A 0 A_FireBullets(1.75,1.75,1,random(10,15),"QCBulletPuff",FBF_NORANDOM|FBF_USEAMMO)
+		Goto EndFlash
+
+		PerformRicochet:
+			TNT1 A 0 A_FireBullets(1.75,1.75,1,random(9,13),"QCBulletPuffRicochet",FBF_NORANDOM|FBF_USEAMMO|FBF_NORANDOMPUFFZ)
+			Goto EndFlash
+
+	DM_Flash:
+		TNT1 A 0 A_FireBullets(1.75,1.75,1,10,"QCBulletPuff_DM",FBF_NORANDOM|FBF_USEAMMO)
+		Goto EndFlash
+
+		EndFlash:
+			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
+			TNT1 A 0 A_SetBlend("Yellow",0.03,3)
+			TNT1 A 0 A_AlertMonsters
+			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,8,0,0,frandom(1.75,-1.75))
+			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,7,2)
+			TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil")
+			TNT1 A 1 A_SetPitch(Pitch-0.8)
+			TNT1 AA 1 A_SetPitch(Pitch+0.4)
+			Stop
+		EndFlashNoRecoil:
+			TNT1 A 1
+			Stop
+
+	//-----------------------
+	// Fire Seq / Zoom
+	//-----------------------
+	AltFire:
+		QCGB A 0 A_JumpIfInventory("WeaponZoomedToken", 1, "ZoomOut")
+	ZoomIn:
+		R016 NN 1 Bright
+		"####" "#" 0 A_ZoomFactor(1.8)
+		"####" "#" 0 A_PlaySound("QC/Weapons/HeavyMachinegun/ZoomIn", CHAN_WEAPON, 1.0, 0)
+		"####" "#" 0 A_GiveInventory("WeaponZoomedToken",1)
+		"####" "#" 0 A_JumpIfInventory("HMG_UG_Pierce",1,"PlayUpgradeBeep")
+		Goto ZoomInHeld
+
+		PlayUpgradeBeep:
+			"####" "#" 0 A_PlaySound("QC/Weapons/Upgrade/HMGBeep",CHAN_AUTO)
+			"####" "#" 0 ACS_NamedExecuteAlways("QCDE_ModSelectedText",0,7)
+			Goto ZoomInHeld
+
+	ZoomInHeld:
+		"####" N 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" N 1 Bright
+		"####" "#" 1 Bright A_Refire("ZoomInHeld")
+		Goto ReadyZoomed
+
+		ZoomOut:
+			"####" "#" 0 A_ZoomFactor(1.0)
+			"####" "#" 0 A_PlaySound("QC/Weapons/HeavyMachinegun/ZoomOut", CHAN_WEAPON, 1.0, 0)
+			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		ZoomOutHeld:
+			"####" N 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 1
+			"####" "#" 1 A_Refire("ZoomOutHeld")
+			Goto Ready
+
+	ReadyZoomed:
+		R016 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		R016 N 3 Bright A_WeaponReady(WRF_NOBOB)
+		Loop
+
+
+
+
+
+	ZoomedFire:
+		TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"ZoomedFireQuadSound")
+		Goto ZoomedFireNormalSound
+
+		ZoomedFireNormalSound:
+			TNT1 A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireZoomedStart",5,1,1)
+			Goto ZoomedFirePostSoundCheck
+		ZoomedFireQuadSound:
+			TNT1 A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart",5,1,1)
+			Goto ZoomedFirePostSoundCheck
+
+	ZoomedFirePostSoundCheck:
+	ZoomedFireLooper:
+		R016 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		R016 N 0 A_GunFlash("ZoomedFlash")
+		R016 N 1 Bright
+		R016 N 1 Bright
+		R016 N 1 Bright
+		R016 N 3 Bright
+		R016 N 0 A_ReFire("ZoomedFireLooper2")
+		R016 N 3 Bright A_PlaySound("QC/Weapons/HeavyMachinegun/FireZoomedEnd",5,1) //but plays the end so that it keeps ringing
+		Goto ReadyZoomed
+	ZoomedFireLooper2:
+		R016 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		R016 N 0 A_GunFlash("ZoomedFlash")
+		R016 N 1 Bright
+		R016 N 1 Bright
+		R016 N 1 Bright
+		R016 N 2 Bright
+		R016 N 0 A_ReFire("ZoomedFireLooper")
+		R016 N 3 Bright A_PlaySound("QC/Weapons/HeavyMachinegun/FireZoomedEnd",5,1) //but plays the end so that it keeps ringing
+		Goto ReadyZoomed
+
+
+
+	ZoomedFlash:
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DM_FlashZoomed")
+		TNT1 A 0 A_JumpIfInventory("HMG_UG_Pierce",1,"PerformZoomedPierce")
+		TNT1 A 0 A_JumpIfInventory("HMG_UG_Ricochet",1,"PerformZoomedRicochet")
+		TNT1 A 0 A_FireBullets(0.5,0.5,1,random(11,22),"QCBulletPuff_ZombieGibber",FBF_NORANDOM|FBF_USEAMMO)
+		Goto EndFlashZoomed
+
+		PerformZoomedRicochet:
+			TNT1 A 0 A_FireBullets(0.5,0.5,1,random(11,22),"QCBulletPuffRicochet_ZombieGibber",FBF_NORANDOM|FBF_USEAMMO|FBF_NORANDOMPUFFZ)
+			Goto EndFlashZoomed
+
+		PerformZoomedPierce:	//zoomed will not add ricochet
+			TNT1 A 0 A_FireBullets(0.5,0.5,1,random(11,22),"QCBulletPuff_ZombieGibber",FBF_NORANDOM|FBF_USEAMMO|FBF_NORANDOMPUFFZ)
+			TNT1 A 0 A_RailAttack(random(11,22),0,0,"none","b79400",RGF_SILENT|RGF_FULLBRIGHT,0.9,"QCBulletPuff_ZombieGibber",0,0,4096,8)
+			Goto EndFlashZoomed
+
+	DM_FlashZoomed:
+		TNT1 A 0 A_FireBullets(0.5,0.5,1,15,"QCBulletPuff_DM",FBF_NORANDOM|FBF_USEAMMO)
+		Goto EndFlashZoomed
+
+		EndFlashZoomed:
+			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
+			TNT1 A 0 A_SetBlend("Yellow",0.06,3)
+			TNT1 A 0 A_AlertMonsters
+			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(0.5,-0.5),false,1,0,0,frandom(0.5,-0.5))
+			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,0,2)
+			TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil") //same as unzoomed, because it does nothing
+			TNT1 A 1 A_SetPitch(Pitch-0.4)
+			TNT1 AA 1 A_SetPitch(Pitch+0.2)
+			Stop
+	}
+}
+
+Actor QCBulletPuff_ZombieGibber : QCBulletPuff
+{
+	DamageType "ZombieGibber"
+}
+
+// --------------------------------------------------------------------------
+//	For competitive DM, weapons dont autoaim
+// --------------------------------------------------------------------------
+Actor QCHeavyMachinegunDM : QCHeavyMachinegun
+{
+	+WEAPON.NOAUTOAIM
+	+CHEATNOTWEAPON
+	Tag "$TAG_QCHeavyMachinegun" // "Heavy Machinegun (DM)"
+}
+
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+//	Weapon tokens
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+Actor HMG_UG_Ricochet : Token {}
+Actor HMG_UG_Pierce   : Token {}
+
+Actor QCBulletPuffRicochet
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	+PUFFGETSOWNER
+	+PUFFONACTORS
+	+FORCEXYBILLBOARD
+	+MTHRUSPECIES
+	+DONTBLAST
+	Renderstyle Add
+	Decal "BulletChip"
+	DamageType "ZombieGibber"
+	Scale 0.35
+	States
+	{
+	Spawn: //hit non bleeding actor
+		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepLow",1)
+		Goto Crash
+	XDeath: //hit bleeding actor
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		Goto Ricochet
+	Crash: //hit everything else
+		TNT1 A 0 A_PlaySound("BulletHitConcreteRandom",7,0.6,0,9)
+	Ricochet:
+		TNT1 A 0 A_SpawnItemEx("RicochetProjectile", 0,0,0, 12,0,frandom(0,4), random(0,359), SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS,128)
+		Goto Choose
+
+	Choose:
+		TNT1 A 0 A_Jump(256,"Type1","Type2")
+	Type1:
+		FX57 ABCD 1 Bright
+		FX57 EFGHIJ 2 Bright
+		Stop
+	Type2:
+		FX57 KLMN 1 Bright
+		FX57 OPQRST 2 Bright
+		Stop
+	}
+}
+Actor QCBulletPuffRicochet_ZombieGibber : QCBulletPuffRicochet
+{
+	DamageType "ZombieGibber"
+	States
+	{
+	Ricochet:
+		TNT1 A 0 A_SpawnItemEx("RicochetProjectile", 0,0,0, 12,0,frandom(0,4), random(0,359), SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		Goto Choose
+	}
+}
+
+
+
+Actor RicochetProjectile
+{
+	Projectile
+	+RIPPER
+	Speed 0
+	Damage 4
+	Radius 1
+	Height 1
+	-NOGRAVITY
+	+ROCKETTRAIL
+	+BLOODLESSIMPACT
+	+PAINLESS
+	+DONTBLAST
+	RenderStyle Add
+	Gravity 0.4
+	Scale 0.1
+	DamageType "ZombieGibber"
+	ProjectileKickBack 0
+	States
+	{
+	Spawn:
+		X029 A 1 Bright
+		Loop
+	Death:
+		TNT1 A 3
+		Stop
+	}
+}

@@ -1,0 +1,132 @@
+Actor QCDEBossBrain : BossBrain replaces BossBrain
+{
+	Health 1500
+	DamageFactor "Barrel", 8.0
+	DamageFactor "BFGDamage", 0.2
+}
+//-------------------------------------------------------
+//	Ammo Droppers based on starting weapon
+//-------------------------------------------------------
+Actor ZombieAmmoDropper
+{
+	+THRUACTORS
+	States
+	{
+	Spawn:
+		TNT1 A 0  NODELAY		A_JumpIfInTargetInventory("Starter_Nailgun",1,"DropNails")
+		Goto DropBullets	//if player doesnt have starter nailgun, drop bullets as default, also if zombie was killed by a non-player
+	DropBullets:
+		TNT1 A 10 A_SpawnItemEx("BulletsDroppedByMonster",0,0,0, frandom(0,1),0,frandom(1,4), 0,SXF_NOCHECKPOSITION)
+		Stop
+	DropNails:
+		TNT1 A 10 A_SpawnItemEx("NailsDroppedByMonster",0,0,0, frandom(0,1),0,frandom(1,4), 0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+Actor BulletsDroppedByMonster : QCBulletAmmoSmall
+{
+	+Inventory.IgnoreSkill
+	Inventory.Amount 5
+}
+
+Actor NailsDroppedByMonster : QCNailAmmoSmall
+{
+	+Inventory.IgnoreSkill
+	Inventory.Amount 5
+}
+
+
+
+//*****************************************************************************
+//	This thing plays the "bullet in the air" sound. Made it fast projectile
+//	so it can travel real fast, actually giving you the impression that a
+//	bullet just passed by.
+//*****************************************************************************
+Actor MonsterTracer : FastProjectile //DBTBulletWhiz
+{
+	+CLIENTSIDEONLY	//because it really isnt about dealing damage, is only audio-cosmetic only
+	+RANDOMIZE
+	+FORCEXYBILLBOARD
+	+DONTSPLASH
+	+NOEXTREMEDEATH
+	damage 0
+	radius 2
+	height 2
+	speed 225
+	renderstyle ADD
+	alpha 0.9
+	scale 0.13
+	States
+	{
+	Spawn:
+		TRAC A 1
+		TRAC A 70 A_PlaySound("QCDE/Other/BulletWhoosh",CHAN_BODY,1.0,false,3.0)
+		Stop
+	Death:
+		TNT1 A 1
+		STOP
+	}
+}
+
+Actor MonsterTracerLowVol : MonsterTracer	//shotgun, DBTBulletWhizWeak
+{
+    States
+    {
+    Spawn:
+		TRAC A 1
+    	TRAC A 70 A_PlaySound("QCDE/Other/BulletWhoosh",CHAN_BODY,0.3,false,3.0)
+    	Stop
+    }
+}
+
+Actor MonsterTracerMidVol : MonsterTracer	//DBTBulletWhizMedium
+{
+    States
+    {
+    Spawn:
+		TRAC A 1
+    	TRAC A 70 A_PlaySound("QCDE/Other/BulletWhoosh",CHAN_BODY,0.5,false,3.0)
+    	Stop
+    }
+}
+
+
+
+//*****************************************************************************
+//	This processor is given by monster spawners that replace dead monsters.
+//	It removes monster from kill tally and immediately changes it into an
+//	unmoving corpse, or, possibly, lack thereof.
+//*****************************************************************************
+
+Actor BecomeCorpseProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_ChangeFlag("COUNTKILL", false)
+		TNT1 A 0 A_ChangeFlag("SOLID",     false)
+		TNT1 A 0 A_ChangeFlag("STEALTH",   false)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 A_Die("Corpse")
+		Stop
+	}
+}
+
+
+
+//*****************************************************************************
+//	This processor transfers special and args to map-scope variable, from
+//	which script then picks them up.
+//*****************************************************************************
+
+Actor TransferSpecialProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_StoreSpecial1", special, args[0], args[1])
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_StoreSpecial2", args[2], args[3], args[4])
+		Stop
+	}
+}

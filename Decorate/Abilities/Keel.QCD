@@ -1,0 +1,142 @@
+// ----------------------------------------------------------------------------
+//
+// Keel's abilities
+//
+// Active:	Grenades
+//			Instantly fires his shoulder mounted grenade launcher
+//
+// Passive: Ammo something
+//			Picking up ammo reduces his cooldown
+//
+// ----------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+Actor KeelFireGrenProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_AlertMonsters(2024)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Keel/Fire",6,0.8) //chan6, will be interrupted, but chan_weap is used by the weapons themselves
+
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)>=2,"FireDM")
+		TNT1 A 0 A_FireCustomMissile ("KeelGrenade",0,false,0,9,0,0)
+		Stop
+	FireDM:
+		TNT1 A 0 A_FireCustomMissile ("KeelGrenadeDM",0,false,0,9,0,0)
+		Stop
+		Stop
+	}
+}
+
+
+Actor KeelGrenade
+{
+	Radius 4
+	Height 6
+	Speed 25
+	Scale 0.14
+	Gravity 0.4
+	Damage 5
+	PROJECTILE
+	+EXTREMEDEATH
+	+CANBOUNCEWATER
+	+FORCERADIUSDMG
+	+FORCEXYBILLBOARD
+	+SEEKERMISSILE
+	+MTHRUSPECIES
+	+DONTBLAST
+	BounceType "Doom"
+	BounceFactor 0.4
+	WallBounceFactor 0.4
+	ReactionTime 11 //~2 seconds
+	BounceSound "quake4/Weapons/GrenLaunch/Bounce"
+	DeathSound "quake4/Misc/GrenadeExplo"
+	DamageType "RocketDamage"
+	Obituary "$OB_KeelGrenade" // "%o caught %k's pineapple."
+	States
+	{
+	Spawn:
+		Q99E N 3 BRIGHT NODELAY A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Q99E N 0 BRIGHT A_ChangeFlag("NOGRAVITY",0)
+	Idle:
+		Q99E NNN 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E MMM 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E LLL 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E KKK 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E JJJ 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E III 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E HHH 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E GGG 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E FFF 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E EEE 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E DDD 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Q99E CCC 2 Bright Light("RedSmallPoint1") A_SpawnItemEx("PlayerGrenSmokeParticle",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)		TNT1 A 0 A_CountDown
+		Loop
+
+	Xdeath:	//Direct hit
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
+		Goto DeathCont
+
+
+	Death: //crashed somewhere and checks for splash
+		TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
+		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHit",360,JLOSF_PROJECTILE,180)
+		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
+		Goto DeathCont
+
+		RadiusHit:	//splash damage beep
+			TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
+			Goto DeathCont
+
+	DeathCont:
+		TNT1 A 0 A_Explode(50,128,1,0,16)
+		TNT1 A 0 A_Explode(78,128,0,0,16)
+	FinishExplosion:
+		TNT1 A 15 A_SpawnItemEx("QCRocketExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+Actor KeelGrenadeDM : KeelGrenade
+{
+	Damage 0
+	-MTHRUSPECIES
+	-DONTBLAST
+	States
+	{
+	DeathCont:
+		TNT1 A 0 A_Explode(30,128,1,0,16)
+		TNT1 A 0 A_Explode(45,128,0,0,16)
+		TNT1 A 0 A_Jump(255,"FinishExplosion")
+		Goto FinishExplosion
+	}
+}
+
+Actor PlayerGrenSmokeParticle
+{
+	+CLIENTSIDEONLY
+	+NONETID
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Scale 0.08
+	Alpha 0.9
+	Translation "0:255=%[0,0,0]:[1.2,0.8,0.1]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		X102 VVV 2 A_SetScale(scalex+0.015)
+	Looper:
+		X102 V 2 A_SetScale(scalex+0.015)
+		TNT1 V 0 A_FadeOut(0.1)
+		Loop
+	}
+}

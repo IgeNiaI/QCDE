@@ -1,0 +1,167 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+
+Actor Q4Voss : QCDE_MonsterBoss	15325	//cyberdemon
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 35
+	Height 80
+	Mass 8000
+	Health 4000
+	PainChance 20
+	Speed 7
+	Scale 0.55
+	+NOBLOOD
+	+BOSS
+	+NORADIUSDMG
+	+FLOORCLIP
+	SeeSound "quake4/Voss/Voice"
+	PainSound ""
+	DeathSound "quake4/Gladiator/Death"
+	ActiveSound "quake4/Voss/Voice"
+	Obituary "$OB_Q4Voss" // "%o didn't listen to Voss' commands."
+	HitObituary "$OBH_Q4Voss" // "%o was brutally impaled by the stroggified Voss."
+	Tag "$TAG_Q4Voss" // "Voss"
+	DropItem "BigHourglass"
+	States
+	{
+	Idle:
+		Q02I A 4 A_Look
+		Loop
+	See:
+		Q02W A 2 A_Chase		Q02W A 3 A_Chase
+		Q02W B 2 A_Chase		Q02W B 3 A_Chase
+		Q02W C 2 A_Chase		Q02W C 3 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/Step")
+		Q02W D 2 A_Chase		Q02W D 3 A_Chase
+		Q02W E 2 A_Chase		Q02W E 3 A_Chase
+		Q02W F 2 A_Chase		Q02W F 3 A_Chase
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/Step")
+		Loop
+	Melee:
+		TNT1 a 0 A_Jump(128,"Missile")
+		Q02M ABBC 4 A_FaceTarget
+		Q02M D 0 A_CustomMeleeAttack(random(25,50),"quake4/Misc/BladeHit","quake4/Misc/Swing")
+		Q02M DDE 4
+		Goto See
+	Missile:
+		TNT1 A 0 A_Jump(256,"Missiles","Lightning","DMG")
+	Lightning:
+		Q02A AB 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Berserker/Lightning")
+		Q02A C 8 Light(WhiteBigFlicker3) A_Customrailgun(random(30,50),10,"none","LightBlue",3,1,2)
+		Q02A C 17
+		Q02A DA 4
+		Goto See
+
+	Missiles:
+		Q02B AB 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/Step",4)
+		Q02B C 15 A_CustomMissile("VossRocket",60,-14,random(15,-15)) TNT1 A 0 A_FaceTarget
+		Q02B C 15 A_CustomMissile("VossRocket",60,-14,random(15,-15)) TNT1 A 0 A_FaceTarget
+		Q02B C 15 A_CustomMissile("VossRocket",60,-14,random(15,-15)) TNT1 A 0 A_FaceTarget
+		Q02B C 15 A_CustomMissile("VossRocket",60,-14,random(15,-15)) TNT1 A 0 A_FaceTarget
+		Q02B C 15 A_CustomMissile("VossRocket",60,-14,random(15,-15)) TNT1 A 0 A_FaceTarget
+		Q02B C 15 A_CustomMissile("VossRocket",60,-14,random(15,-15)) TNT1 A 0 A_FaceTarget
+		Q02B DEF 5
+		Goto See
+
+	DMG:
+		Q02C A 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/NetworkGuard/Step",4)
+		Q02C BCCCCCC 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Weapons/DMG/Fire",5)
+		TNT1 A 0 A_CustomMissile("DMGShotMonster",35,-17,0)
+		Q02C D 20
+		TNT1 A 0 A_PlaySound("quake4/Weapons/DMG/Recharge",4)
+		Q02C EF 6
+		Goto See
+
+	Pain:
+		Q02P A 7 A_Pain
+		Goto See
+
+	XDeathChecksDone:
+	DeathChecksDone:
+		Q02P A 0 A_Scream
+		Q02P AAAAA 10 A_SpawnItemEx("BossDeathExplosion",random(30,-30),random(30,-30),random(20,80),0,0,0,0,SXF_NOCHECKPOSITION)
+		Q02P A 0 A_SpawnItemEx("BossDeathExplosion",random(30,-30),random(30,-30),random(20,80),0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 AAAAAAA 0 A_TossGib
+		Q02P A 0 A_Fall
+		TNT1 A 0 A_SpawnItemEx("GibDropperMediumBig",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_KillMaster
+		Q02P AA 0 A_SpawnItemEx("BossDeathExplosion",random(30,-30),random(30,-30),random(20,80),0,0,0,0,SXF_NOCHECKPOSITION)
+	Death.Corpse:
+		TNT1 A 10
+		Stop
+	}
+}
+
+
+//*****************************************
+// Rocket attack
+
+Actor VossRocket
+{
+	Projectile
+	+RANDOMIZE
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
+	Radius 12
+	Height 12
+	Speed 16
+	+SEEKERMISSILE
+	Damage 12
+	SeeSound "quake4/NetworkGuard/RocketShot"
+	DeathSound "quake4/Misc/RocketExplo"
+	Scale 0.48
+	Decal "Scorch"
+	DamageType "RocketDamage"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("MonsterRocketTrailFire",-5,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		MICR A 2 Light(OrangeMediumFlicker3) A_SeekerMissile(3,3)
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(72,64,0)
+		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebris",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 10 A_SpawnItemEx("QCRocketExplosion",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+Actor MonsterRocketTrailFire //centered flare behind the rocket
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.7
+	Scale 0.13
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255,"One","Two")
+	One:
+		X007 ABCDE 1 Bright
+		X007 FGHIJ 1 Bright A_FadeOut
+		Stop
+	Two:
+		X007 KLMNO 1 Bright
+		X007 PQRST 1 Bright A_FadeOut
+		Stop
+	}
+}
+
+
+

@@ -1,0 +1,156 @@
+//================================================================
+//================================================================
+
+Actor QSpawn : QCDE_MonsterSmall	15116	// spectre
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake"
+	//$Color 12
+	var int user_leapstrength;
+	var int user_counter;
+	Monster
+	Health 120
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 2
+	MeleeRange 90
+	+FORCERADIUSDMG
+	+NOICEDEATH
+	+DONTMORPH
+	+BOUNCEONWALLS
+	+BOUNCEONACTORS
+	+NOEXPLODEFLOOR
+	+BOUNCEONCEILINGS
+	BounceFactor 0.7
+	WallBounceFactor 1
+	MinMissileChance 0
+	+MissileMore
+	+MissileEvenMore
+	BloodColor Purple
+	Scale 0.38
+	Tag "$TAG_QSpawn" // "Spawn"
+	SeeSound "Quake1/Spawn/Sight"
+	Obituary "$OB_QSpawn" // "%o was annoyed to death by a tarbaby."
+	States
+	{
+	Idle:
+		Q38I A 10 A_Look
+		Loop
+	See:
+		Q38W AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 A_Chase("","Missile")
+		Loop
+	Missile:
+		Q38A A 0 A_Stop
+		Q38A D 0 A_SetUserVar(user_counter,0)
+		Q38A A 0 A_FaceTarget
+		Q38A ABC 4 A_FaceTarget
+
+		TNT1 A 0 A_JumpIfCloser(320,"Prep320")
+		TNT1 A 0 A_JumpIfCloser(384,"Prep384")
+		TNT1 A 0 A_JumpIfCloser(448,"Prep448")
+		TNT1 A 0 A_JumpIfCloser(512,"Prep512")
+		TNT1 A 0 A_JumpIfCloser(576,"Prep576")
+		TNT1 A 0 A_JumpIfCloser(640,"Prep640")
+		TNT1 A 0 A_JumpIfCloser(704,"Prep704")
+		TNT1 A 0 A_JumpIfCloser(768,"Prep768")
+		Goto See //if farther than 768, also just drops the whole thing
+
+		Prep320:	TNT1 A 0 A_SetUserVar(user_leapstrength,32)	goto ContinueLeap
+		Prep384:	TNT1 A 0 A_SetUserVar(user_leapstrength,34)	goto ContinueLeap
+		Prep448:	TNT1 A 0 A_SetUserVar(user_leapstrength,37)	goto ContinueLeap
+		Prep512:	TNT1 A 0 A_SetUserVar(user_leapstrength,39)	goto ContinueLeap
+		Prep576:	TNT1 A 0 A_SetUserVar(user_leapstrength,41)	goto ContinueLeap
+		Prep640:	TNT1 A 0 A_SetUserVar(user_leapstrength,43)	goto ContinueLeap
+		Prep704:	TNT1 A 0 A_SetUserVar(user_leapstrength,45)	goto ContinueLeap
+		Prep768:	TNT1 A 0 A_SetUserVar(user_leapstrength,47)	goto ContinueLeap
+
+		ContinueLeap:
+			Q38A D 0 A_FaceTarget
+			Q38A D 0 A_Recoil(-(user_leapstrength/1.5))
+			Q38A D 1 ThrustThingZ(0,user_leapstrength*0.75,0,0)
+		LeapLoop:
+			Q38A D 0 A_JumpIf(user_counter>=105,"Land")	//if after 3 seconds it hasnt landed still, it will reset
+			Q38A D 1 A_JumpIfCloser(70,"DoQuickMelee")
+			Q38A D 0 A_SetUserVar(user_counter,user_counter+1)
+			Q38A D 0 A_CheckFloor("Land")
+			Loop
+
+		DoQuickMelee:
+			Q38A D 0 A_CustomMeleeAttack(random(12,24))
+			Q38A D 0 A_PlaySound("Quake1/Spawn/Hit")
+			Goto AirLooperPostAttack
+
+		AirLooperPostAttack:
+			Q38A D 3
+			Q38A D 0 A_CheckFloor("Land")
+			Loop
+	Land:
+		Q38W D 0 A_PlaySound("Quake1/Spawn/Land")
+		Q38W D 0 A_stop
+		Q38W DEF 3
+		Q38W F 0 A_Jump(64,"See")
+		Q38W F 0 A_JumpIfCloser(768,"Missile")
+		Goto See
+
+	XDeathChecksDone:
+	DeathChecksDone:
+		TNT1 A 0 A_Fall
+		TNT1 B 0 bright A_Stop
+		TNT1 A 0 A_PlaySound("Quake1/Weapons/RocketExplo",7,0.8,0)
+		TNT1 A 0 A_PlaySound("Quake1/Spawn/Death",CHAN_BODY,1,0)
+		TNT1 A 0 A_PlaySound("Quake1/Xdeath",CHAN_WEAPON,0.5,0)
+		TNT1 A 0 A_ChangeFlag("EXTREMEDEATH",1)
+		TNT1 A 0 A_Explode(random(25,45),128,XF_NOTMISSILE,1,16)
+		TNT1 A 0 A_SpawnItemEx("GibberPurplish",0,0,20,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 3 Light("PurpleMediumPoint3")
+		TNT1 A 3 Light("PurpleMediumPoint2")
+		TNT1 A 3 Light("PurpleMediumPoint3")
+		TNT1 A 3 Light("PurpleSmallPoint1")
+		TNT1 A 3 Light("PurpleSmallPoint2")
+		TNT1 A 3 Light("PurpleSmallPoint3")
+	Death.Corpse:
+		TNT1 A 3
+		Stop
+	}
+}
+
+Actor SpawnMonsterExplosion
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Scale 0.8
+	Translation "0:255=%[0,0,0]:[0.82,0.55,1.16]"
+	States
+	{
+	Spawn:
+		X006 ABCDEFGHIJKLMNOP 2 Bright
+		Stop
+	}
+}
+
+Actor GibberPurplish
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION +NOTONAUTOMAP
+	+NOTONAUTOMAP
+	RenderStyle None
+	//Translation "0:255=%[0,0,0]:[0.55,0.37,0.77]"
+	Translation "0:255=%[0,0,0]:[0.82,0.55,1.16]"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_CheckSight("Simple")
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("NewMeat",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		TNT1 AA 0 	A_SpawnItemEx("BloodCloud",random(15,-15),random(15,-15),random(15,-15),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		Stop
+	Simple:
+		TNT1 AAAA 0 A_SpawnItemEx("NewMeat",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		TNT1 A 10 A_SpawnItemEx("BloodCloud",random(15,-15),random(15,-15),random(15,-15),0,0,0,0,32,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		Stop
+	}
+}
+

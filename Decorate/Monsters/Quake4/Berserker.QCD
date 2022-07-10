@@ -1,0 +1,157 @@
+//=====================================================================================
+//=====================================================================================
+
+//=====================================================================================
+//=====================================================================================
+
+Actor Q4Berserker : QCDE_MonsterMedium 	15301	//hellknight
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 20
+	Height 64
+	Health 400
+	Mass 300
+	PainChance 40
+	Speed 11
+	Scale 0.57
+	MeleeDamage 1
+	MeleeRange 80
+	MaxTargetRange 250
+	+FLOORCLIP
+	SeeSound "quake4/Berserker/Sight"
+	PainSound "quake4/Berserker/Pain"
+	DeathSound "quake4/Berserker/Death"
+	ActiveSound "quake4/Berserker/Idle"
+	Obituary "$OB_Q4Berserker" // "A berserker gave %o a shock therapy."
+	HitObituary "$OBH_Q4Berserker" // "%o was bludgeoned by a berserker."
+	Tag "$TAG_Q4Berserker" // "Berserker"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		Q01I A 4 A_Look
+		Loop
+	See:
+		Q01W AABBCCDDEEFF 2 A_Chase
+		Loop
+	See2:
+		Q01W AABBCCDDEEFF 2 A_Chase("","Missile")
+		Goto See
+	Melee:
+		TNT1 A 0 A_FaceTarget
+		Q01M A 4 A_Recoil(-1) TNT1 A 0 A_FaceTarget
+		Q01M B 4 A_Recoil(-1) TNT1 A 0 A_FaceTarget
+		Q01M C 4 A_Recoil(-1) TNT1 A 0 A_FaceTarget
+		Q01M D 0 A_CustomMeleeAttack(random(14,22),"quake4/Berserker/MeleeHit","quake4/Berserker/MeleeSwing","Normal",1)
+		Q01M DEF 5
+		Goto See2
+	Missile:
+		TNT1 A 0 A_Jump(160,"Choose")
+		TNT1 A 0 A_PlaySound("quake4/Berserker/AttackGrowl",4)
+	Choose:
+		TNT1 A 0 A_JumpIfCloser(128,"Pike")
+	Lightning:
+		Q01I AAAA 4 A_FaceTarget
+		Q01A AB 4 A_FaceTarget
+		TNT1 A 0 A_PlaySound("quake4/Berserker/Lightning")
+		Q01A C 8 Light(WhiteBigFlicker3) A_Customrailgun(random(7,17),7,"none","LightBlue",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,0,2,"None",5,5,768,0,0,0,"None",16)
+		Q01A C 5
+		Q01A D 6
+		Goto See
+	Pike:
+		Q01I AA 4 A_FaceTarget
+		Q01B AB 3
+		TNT1 A 0 A_PlaySound("quake4/Berserker/PikeIn",5)
+		TNT1 A 0 A_CustomMissile("Q4BerserkLightning",0,0,0+random(25,-25))
+		TNT1 A 0 A_CustomMissile("Q4BerserkLightning",0,0,180+random(25,-25))
+		TNT1 A 0 A_CustomMissile("Q4BerserkLightning",0,0,45+random(25,-25))
+		TNT1 A 0 A_CustomMissile("Q4BerserkLightning",0,0,-45+random(25,-25))
+		TNT1 A 0 A_CustomMissile("Q4BerserkLightning",0,0,135+random(25,-25))
+		TNT1 A 0 A_CustomMissile("Q4BerserkLightning",0,0,-135+random(25,-25))
+		TNT1 A 0 A_CustomMissile("Q4BerExplo",0,0,0)
+		Q01B C 20
+		Q01B C 30
+		TNT1 A 0 A_PlaySound("quake4/Berserker/PikeOut",5)
+		Q01B BA 3
+		Goto See
+	Pain:
+		Q01P A 7 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		Q01D A 0 A_Scream
+		Q01D AB 3
+		TNT1 A 0 A_Fall
+		Q01D CD 3
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Beefy")
+	Death.Corpse:
+		Q01D E -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake4/Misc/GibExplosion",7)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		Q01D DCBA 3
+		Goto See
+	}
+}
+
+//****************************
+Actor Q4BerExplo	//explosion created on the pike attack
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 30 Light(WhiteBigFlicker3) A_Explode(random(15,30),160,0,1,50)
+		TNT1 A 5 Light(WhiteMediumFlicker1)
+		TNT1 A 5 Light(WhiteMediumFlicker2)
+		TNT1 A 5 Light(WhiteMediumFlicker3)
+		Stop
+	}
+}
+
+Actor Q4BerserkLightning
+{
+	Projectile
+	+FloorHugger
+	Speed 20
+	Damage 0
+	Radius 4
+	Height 5
+	+NOCLIP
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAAAA 1 A_SpawnItemEx("Q4BLTrail",0,random(3,-3),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+Actor Q4BLTrail
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Scale 0.21
+	Translation "0:255=%[0,0,0]:[1,1,1.5]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(160,2,3,4,5)
+		HSPL ABCDEFGHIJAB 4 Bright A_FadeOut(0.07)
+		Goto Spawn+5
+	}
+}
+

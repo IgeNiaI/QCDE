@@ -1,0 +1,92 @@
+//=====================================================================================
+//=====================================================================================
+//
+//=====================================================================================
+//=====================================================================================
+Actor Q4HyperBlasterTactical : QCDE_MonsterMedium	15308 //revenant
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 4"
+	//$Color 12
+	Monster
+	Radius 16
+	Height 56
+	Mass 150
+	Health 300
+	PainChance 64
+	Speed 11
+	Scale 0.49
+	MeleeDamage 1
+	+FLOORCLIP
+	SeeSound "quake4/Tactical/Voice"
+	PainSound "quake4/Tactical/Pain"
+	DeathSound "quake4/Tactical/Death"
+	ActiveSound "quake4/Tactical/Voice"
+	Obituary "$OB_Q4HyperBlasterTactical" // "%o was barraged with plasma by a Strogg tactical transfer."
+	Tag "$TAG_Q4HyperBlasterTactical" // "Tactical Transfer (Hyperblaster)"
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		Q24I A 4 A_Look
+		Loop
+	See:
+		Q24W AABBCCDD 3 A_Chase
+		Loop
+	Missile:
+		Q24A AB 5 A_FaceTarget
+		TNT1 a 0 A_PlaySound("quake4/Weapons/HyperBlast/Fire",5)
+		TNT1 a 0 A_FaceTarget
+		Q24A C 2 A_CustomMissile("TacticalBlasterShot",49,2,0+random(1,-1))
+		Q24A D 2
+		TNT1 a 0 A_MonsterRefire(0,"MissileEnd")
+		Goto Missile+2
+
+		MissileEnd:
+			Q24A BA 6
+			Goto See
+
+	Pain:
+		Q24P A 8 A_Pain
+		Goto See
+	DeathChecksDone:		//I know is stupid they explode on death, but I couldnt rip a barely acceptable death sequence :(
+		"####" "#" 0 A_UnsetSolid
+		Q24D A 0 A_Scream
+		Q24D ABCD 3
+		Q24D E 70 A_PlaySound("quake4/Misc/Body/Small")
+		TNT1 a 0 A_Jump(210,2,4,6,8,10,12)
+		Q25D EEEEEEEEEEEEEE 5
+		Q24D A 0 A_Fall
+		TNT1 A 0 A_PlaySound("quake4/Misc/Explo",6)
+		TNT1 A 0 A_Explode(25,96,XF_NOTMISSILE)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_SpawnItemEx("QCRocketExplosion",0,0,25,0,0,0,0,SXF_NOCHECKPOSITION)
+	Death.Corpse:
+		TNT1 A 10
+		Stop
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake4/Misc/GibExplosion",7)
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 10 A_Fall
+		Stop
+	}
+}
+
+Actor TacticalBlasterShot : HoverTankBlaster
+{
+	Speed 22
+	Damage (random(1,5)*2)
+	Scale 0.3
+	Decal "Q4PlasmaMonster"
+	+FORCEXYBILLBOARD
+	States
+	{
+	Death:
+		TNT1 A 0 A_SpawnItemEx("HoverTankBlasterExplo1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 4 A_SpawnItemEx("HoverTankBlasterExplo2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
+

@@ -1,0 +1,141 @@
+#library "BLOODIED"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+// Blood on screen.
+// Created by Michaelis for D4T.
+// Ported by Michaelis from D4T.
+
+// Graphic name, fade in time, fade out time
+str BloodProg[16][3]={
+		{"blddroq", 0.02, 1.5}, //  1
+		{"blddrob", 0.04, 1.0}, //  2
+		{"speckle", 0.06, 2.0}, //  3
+		{"blddroq", 0.08, 1.0}, //  4
+		{"blddrop", 0.10, 1.5}, //  5
+		{"bldspry", 0.16, 1.0}, //  6
+		{"blddrob", 0.14, 1.0}, //  7
+		{"speckle", 0.08, 1.5}, //  8
+		{"blddrob", 0.06, 2.0}, //  9
+		{"blddroq", 0.08, 2.0}, // 10
+		{"blddrop", 0.19, 1.0}, // 11
+		{"blddrop", 0.15, 1.0}, // 12
+		{"bldspry", 0.28, 1.5}, // 13
+		{"blddrop", 0.16, 1.5}, // 14
+		{"bldmist", 0.14, 3.0}, // 15
+		{"speckle", 0.12, 3.0}, // 16
+		};
+
+int bloodspot = ID_BLOOD_BELOW;
+int lastsound;
+#define TIME_BETWEEN_PAINS 3
+#define FLASHES_NUM 3
+
+script "QCDE_Blood_CLIENTSIDE" (int degree, int tid, int armortoo) clientside
+{
+	if(IsZandronum(true)) // Zandronum, where people play together.
+	{
+		SetActivator(tid);
+		int me = CheckPlayerCamera(ConsolePlayerNumber());
+		if(me != tid) terminate;
+		if(PlayerNumber() != me - 1000) terminate;
+	} else // GZDoom, where people watch pretty things.
+		SetActivator(1000);
+	if(degree <  1) terminate;
+	if(degree > 16) degree = 16;
+
+	//pain sound
+	if(lastsound + TIME_BETWEEN_PAINS <= Timer())
+	{
+		LocalAmbientSound ("QC/UI/PlayerSounds/PainBeep", 127);
+		lastsound = Timer();
+	}
+
+	//stroke over health and armor
+	ACS("QCDE_StrokeFlash", tid, 'R', degree, 2 + !!armortoo);
+
+	//actual blood
+	if(!GetCvar("cl_ShowHUDBloodSmears")) terminate;
+
+	int radius = random(-0.99, -0.01);
+	int sel = random(0,3);
+
+	int x, y;
+
+	switch(sel)
+	{
+	case 1:
+		x = -0.01;
+		y = radius;
+		break;
+	case 2:
+		x = -0.99;
+		y = radius;
+		break;
+	case 3:
+		y = -0.01;
+		x = radius;
+		break;
+	default:
+		y = -0.99;
+		x = radius;
+		break;
+	}
+
+	for(int i=0; i < degree; i++)
+	{
+		str filename = strparam(s:BloodProg[i][0], d:random(1,4));
+		SetFont(filename);
+		HudMessageBold(s:"A"; HUDMSG_FADEINOUT|HUDMSG_ALPHA , ++bloodspot, -1,
+				x+random(random(-0.2,0.04),random(-0.04, 0.2)),
+				y+random(random(-0.2,0.04),random(-0.04, 0.2)),
+				1.0, BloodProg[i][1], BloodProg[i][2], 0.85);
+	}
+	if(bloodspot > ID_BLOOD_MAX)  bloodspot = ID_BLOOD_BELOW;
+	if(bloodspot < ID_BLOOD_BELOW)bloodspot = ID_BLOOD_BELOW;
+
+}
+
+Script "QCDE_CleanBlood" (void) CLIENTSIDE
+{
+	if(ConsolePlayerNumber() != PlayerNumber()) terminate;
+
+	for(int i=ID_BLOOD_MAX; i > ID_BLOOD_BELOW; i--)
+		HudMessageBold(s:" "; HUDMSG_PLAIN,i,-1, 0,0, 1);
+}
+
+#define SFF_ARMOR  (1 << 0)
+#define SFF_HEALTH (1 << 1)
+Script "QCDE_StrokeFlash" (int tid, int color, int degree, int flags) CLIENTSIDE
+{
+	if(IsZandronum(true))
+		if(tid != CheckPlayerCamera(ConsolePlayerNumber()))
+			terminate;
+	if(degree < 1) terminate;
+	if(degree > 16) degree = 16;
+
+	int start;
+	//if(degree < 5) start = 1;
+	//if(degree < 3) start = 2;
+
+	SetHudSize(1400,1050,1);
+
+	for(int i = start; i < FLASHES_NUM; i++)
+	{
+		str stroke = strparam(s:"HUDGLO", c:color, d:-~i);
+		int fadetime = 0.01 * degree + 0.04 * i;
+		int alpha = 0.4 + degree * 0.03;
+		SetFont(stroke);
+
+		if(flags & SFF_HEALTH) HudMessageBold(s:"A"; HUDMSG_LAYER_UNDERHUD|HUDMSG_FADEINOUT|HUDMSG_ALPHA,
+				ID_FLASH + i, -1,
+				338.0, 864.0, 0.05, fadetime, 0.05, alpha);
+
+		if(flags & SFF_ARMOR) HudMessageBold(s:"A"; HUDMSG_LAYER_UNDERHUD|HUDMSG_FADEINOUT|HUDMSG_ALPHA,
+				ID_FLASH + FLASHES_NUM + i, -1,
+				285.0, 941.0, 0.05, fadetime, 0.05, alpha);
+
+		delay(1);
+	}
+}

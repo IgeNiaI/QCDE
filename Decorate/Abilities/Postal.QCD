@@ -1,0 +1,415 @@
+// ----------------------------------------------------------------------------
+//
+// Postal Dude's Abilities
+//
+// Active:	Diseased Cow Head
+//
+// Passive: CrouchJump
+//
+// ----------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+//--------------------------------------------------------
+
+Actor PostalCowProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_GiveInventory("PostalCowHead")
+		TNT1 A 0 A_GiveInventory("ActiveInProgress")
+		TNT1 A 0 A_GiveInventory("CowHeadToken")
+		TNT1 A 0 A_GiveInventory("CowHeadToken")
+		TNT1 A 0 A_SelectWeapon("PostalCowHead")
+		TNT1 A 35 A_FireCustomMissile("PostalSFXplayerHax",0, false)
+		Stop
+	}
+}
+
+Actor PostalCowCleanerProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("PostalCowHead")
+		TNT1 A 0 A_TakeInventory("ActiveInProgress")
+		//TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN)
+		Stop
+	}
+}
+
+//only used if ability timed out and player didnt press fire
+Actor PostalCowDropProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DM")
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlace",0,0,0,-10)
+		Stop
+	DM:
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10)
+		Stop
+	}
+}
+
+
+Actor PostalCowHead : QCWeapon
+{
+	Weapon.Kickback 0
+	Weapon.SelectionOrder 2000
+	Obituary "$OB_PostalCowHead" // "%o shouldn't have smelled %k'd cow head."
+	Tag "$TAG_PostalCowHead" // "Cow Head"
+	+INVENTORY.UNDROPPABLE
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	Weapon.Kickback 8000
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	//-----------------------
+	// Ready Seq
+	//-----------------------
+	Ready:
+		QP29 W 5
+	Readier:
+		QP29 W 10 A_WeaponReady(WRF_DISABLESWITCH)
+		Loop
+	Ready2:
+		TNT1 A 1 A_WeaponReady(WRF_DISABLESWITCH|WRF_NOFIRE)
+		Loop
+	//-----------------------
+	// Select/Deselect Seq
+	//-----------------------
+	Select:
+		TNT1 W 0 A_ZoomFactor(1)
+		TNT1 W 0 A_PlaySound("QC/Abilities/Postal/ActivateLine",CHAN_AUTO,0.85,0,0.85)
+		QP29 W 1 A_Raise
+		Wait
+
+	Deselect:
+		TNT1 W 0 A_ZoomFactor(1.0)
+		QP29 W 1 A_Lower
+		Loop
+
+	//-------------------------------------------------------
+	// Primary fire: Throw the head
+	//-------------------------------------------------------
+	Fire:
+		QP29 W 1 Bright Offset(0,40)
+		QP29 W 1 Bright Offset(0,48)
+		QP29 W 1 Bright Offset(0,56)
+		QP29 W 1 Bright Offset(0,64)
+		QP29 W 1 Bright Offset(0,72)
+		QP29 W 1 Bright Offset(0,88)
+		QP29 W 1 Bright Offset(0,96)
+		TNT1 A 5
+		QP29 X 1 Bright Offset(0,100) A_PlaySound("QC/Abilities/Postal/Throw",CHAN_7)
+		QP29 X 1 Bright Offset(0,66) A_GunFlash("Primary")
+		QP29 X 7 Bright Offset(0,33)
+		QP29 Y 1 Bright Offset(0,36)
+		QP29 Y 1 Bright Offset(0,42)
+		QP29 Y 1 Bright Offset(0,49)
+		QP29 Y 1 Bright Offset(0,58)
+		QP29 Y 1 Bright Offset(0,68)
+		QP29 Y 1 Bright Offset(0,80)
+		QP29 Y 1 Bright Offset(0,92)
+		QP29 Y 1 Bright Offset(0,100)
+		Goto Ready2
+	Primary:
+		TNT1 A 0 A_TakeInventory("CowHeadToken",1)
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"PrimaryDM")
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectile")
+		Stop
+	PrimaryDM:
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectileDM")
+		Stop
+
+	//-------------------------------------------------------
+	// Seconday fire: Place head
+	//-------------------------------------------------------
+	AltFire:
+		QP29 W 1 Bright Offset(0,40)
+		QP29 W 1 Bright Offset(0,48)
+		QP29 W 1 Bright Offset(0,56)
+		QP29 W 1 Bright Offset(0,64)
+		QP29 W 1 Bright Offset(0,72)
+		QP29 W 1 Bright Offset(0,88)
+		QP29 W 1 Bright Offset(0,96)
+		TNT1 A 5 A_GunFlash("Secondary")
+		TNT1 A 0 A_TakeInventory("CowHeadToken",1)
+		Goto Ready2
+
+	Secondary:
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"SecondaryDM")
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlace",0,0,0,-10)
+		Stop
+	SecondaryDM:
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10)
+		Stop
+	}
+}
+
+Actor CowHeadToken : Token
+{ Inventory.InterHubAmount 0 }
+
+
+Actor CowHeadProjectile
+{
+	var int user_counter;
+	Projectile
+	-NOGRAVITY
+	Speed 14
+	Radius 8
+	Height 4
+	BounceType Doom
+	BounceFactor 0.5
+	WallBounceFactor 0.5
+	Gravity 0.8
+	Scale 0.3
+	+BLOODLESSIMPACT
+	+FORCERADIUSDMG
+	+NODAMAGETHRUST
+	+SEEKERMISSILE
+	+DONTSPLASH
+	+FORCEXYBILLBOARD
+	+BRIGHT
+	+DONTBLAST
+	DamageType "CowheadGas"
+	States
+	{
+	Spawn:
+		QP29 Z 0 NODELAY ACS_NamedExecuteAlways("QCDE_ObjectAllyMarker_Client",0)
+
+	Idle:
+		TNT1 A 0 A_Explode(random(2,8)*10,128,0,0,128)
+		QP29 Z 5 A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP29 Z 5 A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Loop
+	Death:
+		TNT1 A 10 A_SpawnItemEx("CowHeadGasSpawner",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		Stop
+	}
+}
+
+// I had to create a separate actor because the "hitbeep" detection in a looping
+// "dead" projectile is super wonky and only reacted when the shooter was near
+// instead of the tracer
+Actor CowHeadGasSpawner
+{
+	Projectile
+	+THRUACTORS
+	-NOGRAVITY
+	+NODAMAGETHRUST
+	+BLOODLESSIMPACT
+	+SEEKERMISSILE
+	+FLOORHUGGER
+	+DONTSPLASH
+	+FORCEXYBILLBOARD
+	+BRIGHT
+	+FORCERADIUSDMG
+	Radius 4
+	Height 2
+	Damage 0
+	Scale 0.28
+	var int user_counter;
+	BounceType "Hexen"
+	BounceFactor 0.1
+	WallBounceFactor 0.1
+	DamageType "CowheadGas"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ChangeFlag("Painless",1)
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_ObjectAllyMarker_Client",0)
+
+		Looper:
+		Death:
+			TNT1 A 0 A_JumpIf(user_counter>=42,"End")	//420 tics, 12sec
+			QP29 Z 0 A_SpawnItemEx("CowHeadGasBig",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
+			TNT1 A 0 A_JumpIfTargetInLOS("Sounder",360,JLOSF_PROJECTILE,269)
+			TNT1 A 0 A_Jump(255,"ContinueLooper")
+		ContinueLooper:
+			QP29 Z 10 A_Explode(random(2,8)*10,192,0,0,192)
+			TNT1 A 0 A_SetUserVar(user_counter,user_counter+1)
+			Goto Looper
+
+	Sounder:
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_Jump(255,"ContinueLooper")
+		Goto ContinueLooper
+
+	End:
+		QP29 Z 1 A_FadeOut
+		Wait
+	}
+}
+
+
+Actor CowHeadProjectilePlace : CowHeadProjectile
+{
+	Speed 1
+	BounceFactor 0.1
+}
+
+
+
+Actor CowHeadProjectileDM
+{
+	var int user_counter;
+	Projectile
+	-NOGRAVITY
+	Speed 14
+	Radius 8
+	Height 4
+	BounceType Doom
+	BounceFactor 0.5
+	WallBounceFactor 0.5
+	Gravity 0.8
+	Scale 0.3
+	+FORCEXYBILLBOARD
+	+BRIGHT
+	States
+	{
+	Spawn:
+		QP29 Z 0 NODELAY ACS_NamedExecuteAlways("QCDE_ObjectAllyMarker_Client",0)
+
+	Idle:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_CowGasHit")
+		TNT1 A 0 A_RadiusGive("CowHeadVictimProc", 192, RGF_PLAYERS)
+		QP29 Z 1 A_JumpIfInTargetInventory("TeamDeathmatch",1,"ColorsIdle")
+		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	ColorsIdle:
+		TNT1 A 1 A_JumpIfInTargetInventory("TeamColor",2,"RedIdle")
+	BlueIdle:
+		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrailBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto Idle
+	RedIdle:
+		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrailRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto Idle
+
+	Death:
+		QP29 Z 1 A_JumpIfInTargetInventory("TeamDeathmatch",1,"ColorsDeath")
+		QP29 ZZZ 0 A_SpawnItemEx("CowHeadGasBig",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION)
+		Goto Deathloop
+	ColorsDeath:
+		TNT1 A 1 A_JumpIfInTargetInventory("TeamColor",2,"RedDeath")
+	BlueDeath: TNT1 AAA 0 Bright A_SpawnItemEx("CowHeadGasBigBlue",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
+	RedDeath:  TNT1 AAA 0 Bright A_SpawnItemEx("CowHeadGasBigRed" ,random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
+
+	DeathLoop:
+		TNT1 A 0 A_SetUserVar(user_counter,user_counter+1)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_CowGasHit")
+		TNT1 A 0 A_RadiusGive("CowHeadVictimProc", 192, RGF_PLAYERS)
+		TNT1 A 0 A_JumpIf(user_counter>=28,"End")
+		QP29 Z 1 A_JumpIfInTargetInventory("TeamDeathmatch",1,"ColorsDeathLoop")
+		QP29 Z 9 A_SpawnItemEx("CowHeadGasBig",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION)
+		Goto DeathLoop
+	ColorsDeathLoop:
+		TNT1 A 1 A_JumpIfInTargetInventory("TeamColor",2,"RedDeathLoop")
+	BlueDeathLoop: QP29 Z 10 Bright A_SpawnItemEx("CowHeadGasBigBlue",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
+	RedDeathLoop:  QP29 Z 10 Bright A_SpawnItemEx("CowHeadGasBigRed" ,random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
+	End:
+		QP29 Z 1 A_FadeOut
+		Wait
+	}
+}
+
+Actor CowHeadProjectilePlaceDM : CowHeadProjectileDM
+{
+	Speed 1
+	BounceFactor 0.1
+}
+
+Actor CowHeadGasTrail
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY +NONETID
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.0
+	Scale 0.4
+	Translation "0:255=%[0,0,0]:[2.0,1.0,0]"
+	States
+	{
+	Spawn:
+		X110 A 0 NODELAY A_Jump(128,"Flip")
+		Goto Spawnn
+	Flip:
+		X110 A 0 A_SetScale(scalex*-1,scaley)
+		Goto Spawnn
+	Spawnn:
+		X110 ABCDEFGHIJK 2 Bright A_FadeIn(0.09)
+		X110 LMNOPQRSTUVWXY 2 Bright
+	Looper:
+		X110 ABCDEFGHIJKLMNOPQRSTUVWXY 2 Bright A_FadeOut(0.03)
+		Loop
+	}
+}
+
+Actor CowHeadGasBig : CowHeadGasTrail
+{
+	Scale 0.7
+}
+
+Actor CowHeadGasTrailRed  : CowHeadGasTrail { Translation "0:255=%[0,0,0]:[2,0,0]" }
+Actor CowHeadGasTrailBlue : CowHeadGasTrail { Translation "0:255=%[0,0,0]:[0,0,2]" }
+
+Actor CowHeadGasBigRed  : CowHeadGasBig { Translation "0:255=%[0,0,0]:[2,0,0]" }
+Actor CowHeadGasBigBlue : CowHeadGasBig { Translation "0:255=%[0,0,0]:[0,0,2]" }
+
+
+Actor CowHeadVictimProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_CowGasVictim")
+		Stop
+	}
+}
+
+Actor VomitBloodProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_SpawnItemEx("NewMeat",0,0,30,frandom(0.2,2),frandom(2,-2),frandom(1,3),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Stop
+	}
+}
+
+
+
+
+
+Actor PostalSFXplayerHax
+{
+	Radius 1
+	Height 1
+	+NOINTERACTION
+	Projectile
+	RenderStyle Add
+	Scale 0.38
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_PlaySound("QC/Abilities/Postal/ActivateSFX",CHAN_5,1.0,0,0.4)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		Stop
+	}
+}
+
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+Actor HighOnCrack : Token { Inventory.MaxAmount 90 Inventory.InterHubAmount 0 }

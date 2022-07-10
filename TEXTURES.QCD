@@ -1,0 +1,1364 @@
+
+//=============================================================================
+//
+// Main Menu graphics
+//
+//=============================================================================
+
+remap Q_NEWGAM 	H_NEWGAM
+remap Q_OPTION 	H_OPTION
+remap Q_QUITG 	H_QUITG
+remap Q_RDTHIS	H_RDTHIS
+remap Q_LOADG 	H_LOADG
+remap Q_SAVEG 	H_SAVEG
+remap Q_CHAMP 	H_CHAMP
+remap Q_QCDEOP 	H_QCDEOP
+remap M_EPI1 	H_EPI1
+remap M_EPI2 	H_EPI2
+remap M_EPI3 	H_EPI3
+remap M_EPI4 	H_EPI4
+remap M_DOOM 	H_DOOM // No, not that one.
+
+//=============================================================================
+//
+// Explosion debris variation
+//
+//=============================================================================
+
+//DB01 flipped
+Sprite DB05A0, 160, 160 { Offset 71, 79		Patch DB01A0, 0, 0	{ FlipX } }
+Sprite DB05B0, 160, 160 { Offset 71, 79		Patch DB01B0, 0, 0	{ FlipX } }
+Sprite DB05C0, 160, 160 { Offset 71, 79		Patch DB01C0, 0, 0	{ FlipX } }
+Sprite DB05D0, 160, 160 { Offset 71, 79		Patch DB01D0, 0, 0	{ FlipX } }
+Sprite DB05E0, 160, 160 { Offset 71, 79		Patch DB01E0, 0, 0	{ FlipX } }
+Sprite DB05F0, 160, 160 { Offset 71, 79		Patch DB01F0, 0, 0	{ FlipX } }
+Sprite DB05G0, 160, 160 { Offset 71, 79		Patch DB01G0, 0, 0	{ FlipX } }
+Sprite DB05H0, 160, 160 { Offset 71, 79		Patch DB01H0, 0, 0	{ FlipX } }
+Sprite DB05I0, 160, 160 { Offset 71, 79		Patch DB01I0, 0, 0	{ FlipX } }
+Sprite DB05J0, 160, 160 { Offset 71, 79		Patch DB01J0, 0, 0	{ FlipX } }
+Sprite DB05K0, 160, 160 { Offset 71, 79		Patch DB01K0, 0, 0	{ FlipX } }
+Sprite DB05L0, 160, 160 { Offset 71, 79		Patch DB01L0, 0, 0	{ FlipX } }
+Sprite DB05M0, 160, 160 { Offset 71, 79		Patch DB01M0, 0, 0	{ FlipX } }
+Sprite DB05N0, 160, 160 { Offset 71, 79		Patch DB01N0, 0, 0	{ FlipX } }
+Sprite DB05O0, 160, 160 { Offset 71, 79		Patch DB01O0, 0, 0	{ FlipX } }
+Sprite DB05P0, 160, 160 { Offset 71, 79		Patch DB01P0, 0, 0	{ FlipX } }
+Sprite DB05Q0, 160, 160 { Offset 71, 79		Patch DB01Q0, 0, 0	{ FlipX } }
+Sprite DB05R0, 160, 160 { Offset 71, 79		Patch DB01R0, 0, 0	{ FlipX } }
+Sprite DB05S0, 160, 160 { Offset 71, 79		Patch DB01S0, 0, 0	{ FlipX } }
+Sprite DB05T0, 160, 160 { Offset 71, 79		Patch DB01T0, 0, 0	{ FlipX } }
+Sprite DB05U0, 160, 160 { Offset 71, 79		Patch DB01U0, 0, 0	{ FlipX } }
+Sprite DB05V0, 160, 160 { Offset 71, 79		Patch DB01V0, 0, 0	{ FlipX } }
+Sprite DB05W0, 160, 160 { Offset 71, 79		Patch DB01W0, 0, 0	{ FlipX } }
+Sprite DB05X0, 160, 160 { Offset 71, 79		Patch DB01X0, 0, 0	{ FlipX } }
+Sprite DB05Y0, 160, 160 { Offset 71, 79		Patch DB01Y0, 0, 0	{ FlipX } }
+Sprite DB05Z0, 160, 160 { Offset 71, 79		Patch DB01Z0, 0, 0	{ FlipX } }
+
+
+//DB02 flipped
+Sprite DB06A0, 160, 160 { Offset 71, 78		Patch DB02A0, 0, 0	{ FlipX } }
+Sprite DB06B0, 160, 160 { Offset 71, 78		Patch DB02B0, 0, 0	{ FlipX } }
+Sprite DB06C0, 160, 160 { Offset 71, 78		Patch DB02C0, 0, 0	{ FlipX } }
+Sprite DB06D0, 160, 160 { Offset 71, 78		Patch DB02D0, 0, 0	{ FlipX } }
+Sprite DB06E0, 160, 160 { Offset 71, 78		Patch DB02E0, 0, 0	{ FlipX } }
+Sprite DB06F0, 160, 160 { Offset 71, 78		Patch DB02F0, 0, 0	{ FlipX } }
+Sprite DB06G0, 160, 160 { Offset 71, 78		Patch DB02G0, 0, 0	{ FlipX } }
+Sprite DB06H0, 160, 160 { Offset 71, 78		Patch DB02H0, 0, 0	{ FlipX } }
+Sprite DB06I0, 160, 160 { Offset 71, 78		Patch DB02I0, 0, 0	{ FlipX } }
+Sprite DB06J0, 160, 160 { Offset 71, 78		Patch DB02J0, 0, 0	{ FlipX } }
+Sprite DB06K0, 160, 160 { Offset 71, 78		Patch DB02K0, 0, 0	{ FlipX } }
+Sprite DB06L0, 160, 160 { Offset 71, 78		Patch DB02L0, 0, 0	{ FlipX } }
+Sprite DB06M0, 160, 160 { Offset 71, 78		Patch DB02M0, 0, 0	{ FlipX } }
+Sprite DB06N0, 160, 160 { Offset 71, 78		Patch DB02N0, 0, 0	{ FlipX } }
+Sprite DB06O0, 160, 160 { Offset 71, 78		Patch DB02O0, 0, 0	{ FlipX } }
+Sprite DB06P0, 160, 160 { Offset 71, 78		Patch DB02P0, 0, 0	{ FlipX } }
+Sprite DB06Q0, 160, 160 { Offset 71, 78		Patch DB02Q0, 0, 0	{ FlipX } }
+Sprite DB06R0, 160, 160 { Offset 71, 78		Patch DB02R0, 0, 0	{ FlipX } }
+Sprite DB06S0, 160, 160 { Offset 71, 78		Patch DB02S0, 0, 0	{ FlipX } }
+Sprite DB06T0, 160, 160 { Offset 71, 78		Patch DB02T0, 0, 0	{ FlipX } }
+Sprite DB06U0, 160, 160 { Offset 71, 78		Patch DB02U0, 0, 0	{ FlipX } }
+Sprite DB06V0, 160, 160 { Offset 71, 78		Patch DB02V0, 0, 0	{ FlipX } }
+Sprite DB06W0, 160, 160 { Offset 71, 78		Patch DB02W0, 0, 0	{ FlipX } }
+Sprite DB06X0, 160, 160 { Offset 71, 78		Patch DB02X0, 0, 0	{ FlipX } }
+Sprite DB06Y0, 160, 160 { Offset 71, 78		Patch DB02Y0, 0, 0	{ FlipX } }
+Sprite DB06Z0, 160, 160 { Offset 71, 78		Patch DB02Z0, 0, 0	{ FlipX } }
+
+//DB03 flipped
+Sprite DB07A0, 160, 160 { Offset 73, 102		Patch DB03A0, 0, 0	{ FlipX } }
+Sprite DB07B0, 160, 160 { Offset 73, 102		Patch DB03B0, 0, 0	{ FlipX } }
+Sprite DB07C0, 160, 160 { Offset 73, 102		Patch DB03C0, 0, 0	{ FlipX } }
+Sprite DB07D0, 160, 160 { Offset 73, 102		Patch DB03D0, 0, 0	{ FlipX } }
+Sprite DB07E0, 160, 160 { Offset 73, 102		Patch DB03E0, 0, 0	{ FlipX } }
+Sprite DB07F0, 160, 160 { Offset 73, 102		Patch DB03F0, 0, 0	{ FlipX } }
+Sprite DB07G0, 160, 160 { Offset 73, 102		Patch DB03G0, 0, 0	{ FlipX } }
+Sprite DB07H0, 160, 160 { Offset 73, 102		Patch DB03H0, 0, 0	{ FlipX } }
+Sprite DB07I0, 160, 160 { Offset 73, 102		Patch DB03I0, 0, 0	{ FlipX } }
+Sprite DB07J0, 160, 160 { Offset 73, 102		Patch DB03J0, 0, 0	{ FlipX } }
+Sprite DB07K0, 160, 160 { Offset 73, 102		Patch DB03K0, 0, 0	{ FlipX } }
+Sprite DB07L0, 160, 160 { Offset 73, 102		Patch DB03L0, 0, 0	{ FlipX } }
+Sprite DB07M0, 160, 160 { Offset 73, 102		Patch DB03M0, 0, 0	{ FlipX } }
+Sprite DB07N0, 160, 160 { Offset 73, 102		Patch DB03N0, 0, 0	{ FlipX } }
+Sprite DB07O0, 160, 160 { Offset 73, 102		Patch DB03O0, 0, 0	{ FlipX } }
+Sprite DB07P0, 160, 160 { Offset 73, 102		Patch DB03P0, 0, 0	{ FlipX } }
+Sprite DB07Q0, 160, 160 { Offset 73, 102		Patch DB03Q0, 0, 0	{ FlipX } }
+Sprite DB07R0, 160, 160 { Offset 73, 102		Patch DB03R0, 0, 0	{ FlipX } }
+Sprite DB07S0, 160, 160 { Offset 73, 102		Patch DB03S0, 0, 0	{ FlipX } }
+Sprite DB07T0, 160, 160 { Offset 73, 102		Patch DB03T0, 0, 0	{ FlipX } }
+Sprite DB07U0, 160, 160 { Offset 73, 102		Patch DB03U0, 0, 0	{ FlipX } }
+Sprite DB07V0, 160, 160 { Offset 73, 102		Patch DB03V0, 0, 0	{ FlipX } }
+Sprite DB07W0, 160, 160 { Offset 73, 102		Patch DB03W0, 0, 0	{ FlipX } }
+Sprite DB07X0, 160, 160 { Offset 73, 102		Patch DB03X0, 0, 0	{ FlipX } }
+Sprite DB07Y0, 160, 160 { Offset 73, 102		Patch DB03Y0, 0, 0	{ FlipX } }
+Sprite DB07Z0, 160, 160 { Offset 73, 102		Patch DB03Z0, 0, 0	{ FlipX } }
+
+//DB04 flipped
+Sprite DB08A0, 160, 160 { Offset 83, 67		Patch DB04A0, 0, 0	{ FlipX } }
+Sprite DB08B0, 160, 160 { Offset 83, 67		Patch DB04B0, 0, 0	{ FlipX } }
+Sprite DB08C0, 160, 160 { Offset 83, 67		Patch DB04C0, 0, 0	{ FlipX } }
+Sprite DB08D0, 160, 160 { Offset 83, 67		Patch DB04D0, 0, 0	{ FlipX } }
+Sprite DB08E0, 160, 160 { Offset 83, 67		Patch DB04E0, 0, 0	{ FlipX } }
+Sprite DB08F0, 160, 160 { Offset 83, 67		Patch DB04F0, 0, 0	{ FlipX } }
+Sprite DB08G0, 160, 160 { Offset 83, 67		Patch DB04G0, 0, 0	{ FlipX } }
+Sprite DB08H0, 160, 160 { Offset 83, 67		Patch DB04H0, 0, 0	{ FlipX } }
+Sprite DB08I0, 160, 160 { Offset 83, 67		Patch DB04I0, 0, 0	{ FlipX } }
+Sprite DB08J0, 160, 160 { Offset 83, 67		Patch DB04J0, 0, 0	{ FlipX } }
+Sprite DB08K0, 160, 160 { Offset 83, 67		Patch DB04K0, 0, 0	{ FlipX } }
+Sprite DB08L0, 160, 160 { Offset 83, 67		Patch DB04L0, 0, 0	{ FlipX } }
+Sprite DB08M0, 160, 160 { Offset 83, 67		Patch DB04M0, 0, 0	{ FlipX } }
+Sprite DB08N0, 160, 160 { Offset 83, 67		Patch DB04N0, 0, 0	{ FlipX } }
+Sprite DB08O0, 160, 160 { Offset 83, 67		Patch DB04O0, 0, 0	{ FlipX } }
+Sprite DB08P0, 160, 160 { Offset 83, 67		Patch DB04P0, 0, 0	{ FlipX } }
+Sprite DB08Q0, 160, 160 { Offset 83, 67		Patch DB04Q0, 0, 0	{ FlipX } }
+Sprite DB08R0, 160, 160 { Offset 83, 67		Patch DB04R0, 0, 0	{ FlipX } }
+Sprite DB08S0, 160, 160 { Offset 83, 67		Patch DB04S0, 0, 0	{ FlipX } }
+Sprite DB08T0, 160, 160 { Offset 83, 67		Patch DB04T0, 0, 0	{ FlipX } }
+Sprite DB08U0, 160, 160 { Offset 83, 67		Patch DB04U0, 0, 0	{ FlipX } }
+Sprite DB08V0, 160, 160 { Offset 83, 67		Patch DB04V0, 0, 0	{ FlipX } }
+Sprite DB08W0, 160, 160 { Offset 83, 67		Patch DB04W0, 0, 0	{ FlipX } }
+Sprite DB08X0, 160, 160 { Offset 83, 67		Patch DB04X0, 0, 0	{ FlipX } }
+Sprite DB08Y0, 160, 160 { Offset 83, 67		Patch DB04Y0, 0, 0	{ FlipX } }
+Sprite DB08Z0, 160, 160 { Offset 83, 67		Patch DB04Z0, 0, 0	{ FlipX } }
+
+
+
+//Nail explo variations
+Sprite DB11A0, 80, 80 { Offset 35, 37		Patch DB09A0, 0, 0	{ FlipX } }
+Sprite DB11B0, 80, 80 { Offset 35, 37		Patch DB09B0, 0, 0	{ FlipX } }
+Sprite DB11C0, 80, 80 { Offset 35, 37		Patch DB09C0, 0, 0	{ FlipX } }
+Sprite DB11D0, 80, 80 { Offset 35, 37		Patch DB09D0, 0, 0	{ FlipX } }
+Sprite DB11E0, 80, 80 { Offset 35, 37		Patch DB09E0, 0, 0	{ FlipX } }
+Sprite DB11F0, 80, 80 { Offset 35, 37		Patch DB09F0, 0, 0	{ FlipX } }
+Sprite DB11G0, 80, 80 { Offset 35, 37		Patch DB09G0, 0, 0	{ FlipX } }
+Sprite DB11H0, 80, 80 { Offset 35, 37		Patch DB09H0, 0, 0	{ FlipX } }
+Sprite DB11I0, 80, 80 { Offset 35, 37		Patch DB09I0, 0, 0	{ FlipX } }
+Sprite DB11J0, 80, 80 { Offset 35, 37		Patch DB09J0, 0, 0	{ FlipX } }
+Sprite DB11K0, 80, 80 { Offset 35, 37		Patch DB09K0, 0, 0	{ FlipX } }
+Sprite DB11L0, 80, 80 { Offset 35, 37		Patch DB09L0, 0, 0	{ FlipX } }
+Sprite DB11M0, 80, 80 { Offset 35, 37		Patch DB09M0, 0, 0	{ FlipX } }
+Sprite DB11N0, 80, 80 { Offset 35, 37		Patch DB09N0, 0, 0	{ FlipX } }
+Sprite DB11O0, 80, 80 { Offset 35, 37		Patch DB09O0, 0, 0	{ FlipX } }
+Sprite DB11P0, 80, 80 { Offset 35, 37		Patch DB09P0, 0, 0	{ FlipX } }
+Sprite DB11Q0, 80, 80 { Offset 35, 37		Patch DB09Q0, 0, 0	{ FlipX } }
+Sprite DB11R0, 80, 80 { Offset 35, 37		Patch DB09R0, 0, 0	{ FlipX } }
+Sprite DB11S0, 80, 80 { Offset 35, 37		Patch DB09S0, 0, 0	{ FlipX } }
+Sprite DB11T0, 80, 80 { Offset 35, 37		Patch DB09T0, 0, 0	{ FlipX } }
+
+Sprite DB12A0, 80, 80 { Offset 43, 38		Patch DB10A0, 0, 0	{ FlipX } }
+Sprite DB12B0, 80, 80 { Offset 43, 38		Patch DB10B0, 0, 0	{ FlipX } }
+Sprite DB12C0, 80, 80 { Offset 43, 38		Patch DB10C0, 0, 0	{ FlipX } }
+Sprite DB12D0, 80, 80 { Offset 43, 38		Patch DB10D0, 0, 0	{ FlipX } }
+Sprite DB12E0, 80, 80 { Offset 43, 38		Patch DB10E0, 0, 0	{ FlipX } }
+Sprite DB12F0, 80, 80 { Offset 43, 38		Patch DB10F0, 0, 0	{ FlipX } }
+Sprite DB12G0, 80, 80 { Offset 43, 38		Patch DB10G0, 0, 0	{ FlipX } }
+Sprite DB12H0, 80, 80 { Offset 43, 38		Patch DB10H0, 0, 0	{ FlipX } }
+Sprite DB12I0, 80, 80 { Offset 43, 38		Patch DB10I0, 0, 0	{ FlipX } }
+Sprite DB12J0, 80, 80 { Offset 43, 38		Patch DB10J0, 0, 0	{ FlipX } }
+Sprite DB12K0, 80, 80 { Offset 43, 38		Patch DB10K0, 0, 0	{ FlipX } }
+Sprite DB12L0, 80, 80 { Offset 43, 38		Patch DB10L0, 0, 0	{ FlipX } }
+Sprite DB12M0, 80, 80 { Offset 43, 38		Patch DB10M0, 0, 0	{ FlipX } }
+Sprite DB12N0, 80, 80 { Offset 43, 38		Patch DB10N0, 0, 0	{ FlipX } }
+Sprite DB12O0, 80, 80 { Offset 43, 38		Patch DB10O0, 0, 0	{ FlipX } }
+Sprite DB12P0, 80, 80 { Offset 43, 38		Patch DB10P0, 0, 0	{ FlipX } }
+Sprite DB12Q0, 80, 80 { Offset 43, 38		Patch DB10Q0, 0, 0	{ FlipX } }
+Sprite DB12R0, 80, 80 { Offset 43, 38		Patch DB10R0, 0, 0	{ FlipX } }
+Sprite DB12S0, 80, 80 { Offset 43, 38		Patch DB10S0, 0, 0	{ FlipX } }
+Sprite DB12T0, 80, 80 { Offset 43, 38		Patch DB10T0, 0, 0	{ FlipX } }
+
+
+
+//Rail variations
+Sprite DB14A0, 64, 64 { Offset 27, 30		Patch DB13A0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14B0, 64, 64 { Offset 27, 30		Patch DB13B0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14C0, 64, 64 { Offset 27, 30		Patch DB13C0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14D0, 64, 64 { Offset 27, 30		Patch DB13D0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14E0, 64, 64 { Offset 27, 30		Patch DB13E0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14F0, 64, 64 { Offset 27, 30		Patch DB13F0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14G0, 64, 64 { Offset 27, 30		Patch DB13G0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14H0, 64, 64 { Offset 27, 30		Patch DB13H0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14I0, 64, 64 { Offset 27, 30		Patch DB13I0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14J0, 64, 64 { Offset 27, 30		Patch DB13J0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14K0, 64, 64 { Offset 27, 30		Patch DB13K0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14L0, 64, 64 { Offset 27, 30		Patch DB13L0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14M0, 64, 64 { Offset 27, 30		Patch DB13M0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14N0, 64, 64 { Offset 27, 30		Patch DB13N0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14O0, 64, 64 { Offset 27, 30		Patch DB13O0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14P0, 64, 64 { Offset 27, 30		Patch DB13P0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14Q0, 64, 64 { Offset 27, 30		Patch DB13Q0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14R0, 64, 64 { Offset 27, 30		Patch DB13R0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14S0, 64, 64 { Offset 27, 30		Patch DB13S0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14T0, 64, 64 { Offset 27, 30		Patch DB13T0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14U0, 64, 64 { Offset 27, 30		Patch DB13U0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14V0, 64, 64 { Offset 27, 30		Patch DB13V0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14W0, 64, 64 { Offset 27, 30		Patch DB13W0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14X0, 64, 64 { Offset 27, 30		Patch DB13X0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14Y0, 64, 64 { Offset 27, 30		Patch DB13Y0, 0, 0	{ FlipX Rotate 90} }
+Sprite DB14Z0, 64, 64 { Offset 27, 30		Patch DB13Z0, 0, 0	{ FlipX Rotate 90} }
+
+Sprite DB15A0, 64, 64 { Offset 34, 26		Patch DB13A0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15B0, 64, 64 { Offset 34, 26		Patch DB13B0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15C0, 64, 64 { Offset 34, 26		Patch DB13C0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15D0, 64, 64 { Offset 34, 26		Patch DB13D0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15E0, 64, 64 { Offset 34, 26		Patch DB13E0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15F0, 64, 64 { Offset 34, 26		Patch DB13F0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15G0, 64, 64 { Offset 34, 26		Patch DB13G0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15H0, 64, 64 { Offset 34, 26		Patch DB13H0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15I0, 64, 64 { Offset 34, 26		Patch DB13I0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15J0, 64, 64 { Offset 34, 26		Patch DB13J0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15K0, 64, 64 { Offset 34, 26		Patch DB13K0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15L0, 64, 64 { Offset 34, 26		Patch DB13L0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15M0, 64, 64 { Offset 34, 26		Patch DB13M0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15N0, 64, 64 { Offset 34, 26		Patch DB13N0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15O0, 64, 64 { Offset 34, 26		Patch DB13O0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15P0, 64, 64 { Offset 34, 26		Patch DB13P0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15Q0, 64, 64 { Offset 34, 26		Patch DB13Q0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15R0, 64, 64 { Offset 34, 26		Patch DB13R0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15S0, 64, 64 { Offset 34, 26		Patch DB13S0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15T0, 64, 64 { Offset 34, 26		Patch DB13T0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15U0, 64, 64 { Offset 34, 26		Patch DB13U0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15V0, 64, 64 { Offset 34, 26		Patch DB13V0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15W0, 64, 64 { Offset 34, 26		Patch DB13W0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15X0, 64, 64 { Offset 34, 26		Patch DB13X0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15Y0, 64, 64 { Offset 34, 26		Patch DB13Y0, 0, 0	{ FlipX Rotate 180} }
+Sprite DB15Z0, 64, 64 { Offset 34, 26		Patch DB13Z0, 0, 0	{ FlipX Rotate 180} }
+
+Sprite DB16A0, 64, 64 { Offset 38, 34		Patch DB13A0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16B0, 64, 64 { Offset 38, 34		Patch DB13B0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16C0, 64, 64 { Offset 38, 34		Patch DB13C0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16D0, 64, 64 { Offset 38, 34		Patch DB13D0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16E0, 64, 64 { Offset 38, 34		Patch DB13E0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16F0, 64, 64 { Offset 38, 34		Patch DB13F0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16G0, 64, 64 { Offset 38, 34		Patch DB13G0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16H0, 64, 64 { Offset 38, 34		Patch DB13H0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16I0, 64, 64 { Offset 38, 34		Patch DB13I0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16J0, 64, 64 { Offset 38, 34		Patch DB13J0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16K0, 64, 64 { Offset 38, 34		Patch DB13K0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16L0, 64, 64 { Offset 38, 34		Patch DB13L0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16M0, 64, 64 { Offset 38, 34		Patch DB13M0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16N0, 64, 64 { Offset 38, 34		Patch DB13N0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16O0, 64, 64 { Offset 38, 34		Patch DB13O0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16P0, 64, 64 { Offset 38, 34		Patch DB13P0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16Q0, 64, 64 { Offset 38, 34		Patch DB13Q0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16R0, 64, 64 { Offset 38, 34		Patch DB13R0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16S0, 64, 64 { Offset 38, 34		Patch DB13S0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16T0, 64, 64 { Offset 38, 34		Patch DB13T0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16U0, 64, 64 { Offset 38, 34		Patch DB13U0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16V0, 64, 64 { Offset 38, 34		Patch DB13V0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16W0, 64, 64 { Offset 38, 34		Patch DB13W0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16X0, 64, 64 { Offset 38, 34		Patch DB13X0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16Y0, 64, 64 { Offset 38, 34		Patch DB13Y0, 0, 0	{ FlipX Rotate 270} }
+Sprite DB16Z0, 64, 64 { Offset 38, 34		Patch DB13Z0, 0, 0	{ FlipX Rotate 270} }
+
+
+
+//==============================================================================
+// Terminator rocket explo flipped
+//==============================================================================
+
+Sprite X001A0, 64, 64	{ Offset  32,  32	Patch X002A0, 0, 0	{ FlipX } }
+Sprite X001B0, 64, 64	{ Offset  32,  32	Patch X002B0, 0, 0	{ FlipX } }
+Sprite X001C0, 64, 64	{ Offset  32,  32	Patch X002C0, 0, 0	{ FlipX } }
+Sprite X001D0, 64, 64	{ Offset  32,  32	Patch X002D0, 0, 0	{ FlipX } }
+Sprite X001E0, 64, 64	{ Offset  32,  32	Patch X002E0, 0, 0	{ FlipX } }
+Sprite X001F0, 64, 64	{ Offset  32,  32	Patch X002F0, 0, 0	{ FlipX } }
+Sprite X001G0, 64, 64	{ Offset  32,  32	Patch X002G0, 0, 0	{ FlipX } }
+Sprite X001H0, 64, 64	{ Offset  32,  32	Patch X002H0, 0, 0	{ FlipX } }
+Sprite X001I0, 64, 64	{ Offset  32,  32	Patch X002I0, 0, 0	{ FlipX } }
+Sprite X001J0, 64, 64	{ Offset  32,  32	Patch X002J0, 0, 0	{ FlipX } }
+Sprite X001K0, 64, 64	{ Offset  32,  32	Patch X002K0, 0, 0	{ FlipX } }
+Sprite X001L0, 64, 64	{ Offset  32,  32	Patch X002L0, 0, 0	{ FlipX } }
+Sprite X001M0, 64, 64	{ Offset  32,  32	Patch X002M0, 0, 0	{ FlipX } }
+Sprite X001N0, 64, 64	{ Offset  32,  32	Patch X002N0, 0, 0	{ FlipX } }
+Sprite X001O0, 64, 64	{ Offset  32,  32	Patch X002O0, 0, 0	{ FlipX } }
+Sprite X001P0, 64, 64	{ Offset  32,  32	Patch X002P0, 0, 0	{ FlipX } }
+Sprite X001Q0, 64, 64	{ Offset  32,  32	Patch X002Q0, 0, 0	{ FlipX } }
+Sprite X001R0, 64, 64	{ Offset  32,  32	Patch X002R0, 0, 0	{ FlipX } }
+Sprite X001S0, 64, 64	{ Offset  32,  32	Patch X002S0, 0, 0	{ FlipX } }
+Sprite X001T0, 64, 64	{ Offset  32,  32	Patch X002T0, 0, 0	{ FlipX } }
+Sprite X001U0, 64, 64	{ Offset  32,  32	Patch X002U0, 0, 0	{ FlipX } }
+
+//=================================================================================
+//
+//		Damage numbers
+//
+//=================================================================================
+
+//
+// NORMAL.
+// WHITE filling, BLACK border.
+//
+
+Sprite DN10A0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	120,0 { Style Translucent } }
+Sprite DN11A0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	135,0 { Style Translucent } }
+Sprite DN12A0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	120,0 { Style Translucent } }
+Sprite DN13A0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	120,0 { Style Translucent } }
+Sprite DN14A0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	120,0 { Style Translucent } }
+Sprite DN15A0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	120,0 { Style Translucent } }
+Sprite DN16A0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	120,0 { Style Translucent } }
+Sprite DN17A0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	120,0 { Style Translucent } }
+Sprite DN18A0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	120,0 { Style Translucent } }
+Sprite DN19A0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	120,0 { Style Translucent } }
+Sprite DN20A0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	 80,0 { Style Translucent } }
+Sprite DN21A0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 95,0 { Style Translucent } }
+Sprite DN22A0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	 80,0 { Style Translucent } }
+Sprite DN23A0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	 80,0 { Style Translucent } }
+Sprite DN24A0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	 80,0 { Style Translucent } }
+Sprite DN25A0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	 80,0 { Style Translucent } }
+Sprite DN26A0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	 80,0 { Style Translucent } }
+Sprite DN27A0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	 80,0 { Style Translucent } }
+Sprite DN28A0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	 80,0 { Style Translucent } }
+Sprite DN29A0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	 80,0 { Style Translucent } }
+Sprite DN30A0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	 40,0 { Style Translucent } }
+Sprite DN31A0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 55,0 { Style Translucent } }
+Sprite DN32A0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	 40,0 { Style Translucent } }
+Sprite DN33A0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	 40,0 { Style Translucent } }
+Sprite DN34A0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	 40,0 { Style Translucent } }
+Sprite DN35A0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	 40,0 { Style Translucent } }
+Sprite DN36A0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	 40,0 { Style Translucent } }
+Sprite DN37A0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	 40,0 { Style Translucent } }
+Sprite DN38A0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	 40,0 { Style Translucent } }
+Sprite DN39A0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	 40,0 { Style Translucent } }
+Sprite DN40A0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	  0,0 { Style Translucent } }
+Sprite DN41A0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 15,0 { Style Translucent } }
+Sprite DN42A0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	  0,0 { Style Translucent } }
+Sprite DN43A0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	  0,0 { Style Translucent } }
+Sprite DN44A0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	  0,0 { Style Translucent } }
+Sprite DN45A0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	  0,0 { Style Translucent } }
+Sprite DN46A0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	  0,0 { Style Translucent } }
+Sprite DN47A0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	  0,0 { Style Translucent } }
+Sprite DN48A0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	  0,0 { Style Translucent } }
+Sprite DN49A0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	  0,0 { Style Translucent } }
+
+Sprite DNINA0,  72, 56 { Offset 35,  0	Patch QCDEINF2,	  0,0 { Style Translucent } }
+
+//
+// BLOODY.
+// WHITE filling, RED border.
+//
+
+Sprite DN10B0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN11B0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	135,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN12B0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN13B0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN14B0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN15B0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN16B0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN17B0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN18B0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN19B0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	120,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN20B0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN21B0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 95,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN22B0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN23B0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN24B0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN25B0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN26B0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN27B0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN28B0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN29B0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	 80,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN30B0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN31B0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 55,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN32B0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN33B0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN34B0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN35B0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN36B0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN37B0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN38B0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN39B0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	 40,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN40B0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN41B0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 15,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN42B0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN43B0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN44B0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN45B0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN46B0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN47B0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN48B0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+Sprite DN49B0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+
+Sprite DNINB0,  72, 56 { Offset 35,  0	Patch QCDEINF2,	  0,0 { Style Translucent Translation "0:255=%[1,0,0]:[1,1,1]" } }
+
+
+//
+// ICEY.
+// WHITE filling, BLUE border.
+//
+
+Sprite DN10C0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN11C0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	135,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN12C0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN13C0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN14C0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN15C0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN16C0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN17C0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN18C0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN19C0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	120,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN20C0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN21C0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 95,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN22C0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN23C0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN24C0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN25C0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN26C0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN27C0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN28C0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN29C0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	 80,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN30C0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN31C0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 55,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN32C0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN33C0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN34C0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN35C0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN36C0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN37C0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN38C0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN39C0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	 40,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN40C0, 170, 56 { Offset 80, 28	Patch QCDENUM0,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN41C0, 170, 56 { Offset 80, 28	Patch QCDENUM1,	 15,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN42C0, 170, 56 { Offset 80, 28	Patch QCDENUM2,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN43C0, 170, 56 { Offset 80, 28	Patch QCDENUM3,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN44C0, 170, 56 { Offset 80, 28	Patch QCDENUM4,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN45C0, 170, 56 { Offset 80, 28	Patch QCDENUM5,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN46C0, 170, 56 { Offset 80, 28	Patch QCDENUM6,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN47C0, 170, 56 { Offset 80, 28	Patch QCDENUM7,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN48C0, 170, 56 { Offset 80, 28	Patch QCDENUM8,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+Sprite DN49C0, 170, 56 { Offset 80, 28	Patch QCDENUM9,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+
+Sprite DNINC0,  72, 56 { Offset 35,  0	Patch QCDEINF2,	  0,0 { Style Translucent Translation "0:255=%[0,0,1]:[1,1,1]" } }
+
+//=================================================================================
+//
+//		Blood variants
+//
+//=================================================================================
+
+Sprite XA57A0, 64, 64 { Offset 32, 32	Patch X057A0, 0, 0	{ Rotate  90 } }
+Sprite XA57B0, 64, 64 { Offset 32, 32	Patch X057B0, 0, 0	{ Rotate  90 } }
+Sprite XA57C0, 64, 64 { Offset 32, 32	Patch X057C0, 0, 0	{ Rotate  90 } }
+Sprite XA57D0, 64, 64 { Offset 32, 32	Patch X057D0, 0, 0	{ Rotate  90 } }
+Sprite XA57E0, 64, 64 { Offset 32, 32	Patch X057E0, 0, 0	{ Rotate  90 } }
+Sprite XA57F0, 64, 64 { Offset 32, 32	Patch X057F0, 0, 0	{ Rotate  90 } }
+Sprite XA57G0, 64, 64 { Offset 32, 32	Patch X057G0, 0, 0	{ Rotate  90 } }
+Sprite XA57H0, 64, 64 { Offset 32, 32	Patch X057H0, 0, 0	{ Rotate  90 } }
+Sprite XA57I0, 64, 64 { Offset 32, 32	Patch X057I0, 0, 0	{ Rotate  90 } }
+Sprite XA57J0, 64, 64 { Offset 32, 32	Patch X057J0, 0, 0	{ Rotate  90 } }
+Sprite XA57K0, 64, 64 { Offset 32, 32	Patch X057K0, 0, 0	{ Rotate  90 } }
+Sprite XA57L0, 64, 64 { Offset 32, 32	Patch X057L0, 0, 0	{ Rotate  90 } }
+Sprite XA57M0, 64, 64 { Offset 32, 32	Patch X057M0, 0, 0	{ Rotate  90 } }
+Sprite XA57N0, 64, 64 { Offset 32, 32	Patch X057N0, 0, 0	{ Rotate  90 } }
+Sprite XA57O0, 64, 64 { Offset 32, 32	Patch X057O0, 0, 0	{ Rotate  90 } }
+Sprite XA57P0, 64, 64 { Offset 32, 32	Patch X057P0, 0, 0	{ Rotate  90 } }
+Sprite XA57Q0, 64, 64 { Offset 32, 32	Patch X057Q0, 0, 0	{ Rotate  90 } }
+Sprite XA57R0, 64, 64 { Offset 32, 32	Patch X057R0, 0, 0	{ Rotate  90 } }
+Sprite XA57S0, 64, 64 { Offset 32, 32	Patch X057S0, 0, 0	{ Rotate  90 } }
+
+Sprite XA58A0, 64, 64 { Offset 32, 32	Patch X058A0, 0, 0	{ Rotate  90 } }
+Sprite XA58B0, 64, 64 { Offset 32, 32	Patch X058B0, 0, 0	{ Rotate  90 } }
+Sprite XA58C0, 64, 64 { Offset 32, 32	Patch X058C0, 0, 0	{ Rotate  90 } }
+Sprite XA58D0, 64, 64 { Offset 32, 32	Patch X058D0, 0, 0	{ Rotate  90 } }
+Sprite XA58E0, 64, 64 { Offset 32, 32	Patch X058E0, 0, 0	{ Rotate  90 } }
+Sprite XA58F0, 64, 64 { Offset 32, 32	Patch X058F0, 0, 0	{ Rotate  90 } }
+Sprite XA58G0, 64, 64 { Offset 32, 32	Patch X058G0, 0, 0	{ Rotate  90 } }
+Sprite XA58H0, 64, 64 { Offset 32, 32	Patch X058H0, 0, 0	{ Rotate  90 } }
+Sprite XA58I0, 64, 64 { Offset 32, 32	Patch X058I0, 0, 0	{ Rotate  90 } }
+Sprite XA58J0, 64, 64 { Offset 32, 32	Patch X058J0, 0, 0	{ Rotate  90 } }
+Sprite XA58K0, 64, 64 { Offset 32, 32	Patch X058K0, 0, 0	{ Rotate  90 } }
+Sprite XA58L0, 64, 64 { Offset 32, 32	Patch X058L0, 0, 0	{ Rotate  90 } }
+Sprite XA58M0, 64, 64 { Offset 32, 32	Patch X058M0, 0, 0	{ Rotate  90 } }
+Sprite XA58N0, 64, 64 { Offset 32, 32	Patch X058N0, 0, 0	{ Rotate  90 } }
+Sprite XA58O0, 64, 64 { Offset 32, 32	Patch X058O0, 0, 0	{ Rotate  90 } }
+Sprite XA58P0, 64, 64 { Offset 32, 32	Patch X058P0, 0, 0	{ Rotate  90 } }
+Sprite XA58Q0, 64, 64 { Offset 32, 32	Patch X058Q0, 0, 0	{ Rotate  90 } }
+Sprite XA58R0, 64, 64 { Offset 32, 32	Patch X058R0, 0, 0	{ Rotate  90 } }
+
+Sprite XA59A0, 64, 64 { Offset 32, 32	Patch X059A0, 0, 0	{ Rotate  90 } }
+Sprite XA59B0, 64, 64 { Offset 32, 32	Patch X059B0, 0, 0	{ Rotate  90 } }
+Sprite XA59C0, 64, 64 { Offset 32, 32	Patch X059C0, 0, 0	{ Rotate  90 } }
+Sprite XA59D0, 64, 64 { Offset 32, 32	Patch X059D0, 0, 0	{ Rotate  90 } }
+Sprite XA59E0, 64, 64 { Offset 32, 32	Patch X059E0, 0, 0	{ Rotate  90 } }
+Sprite XA59F0, 64, 64 { Offset 32, 32	Patch X059F0, 0, 0	{ Rotate  90 } }
+Sprite XA59G0, 64, 64 { Offset 32, 32	Patch X059G0, 0, 0	{ Rotate  90 } }
+Sprite XA59H0, 64, 64 { Offset 32, 32	Patch X059H0, 0, 0	{ Rotate  90 } }
+Sprite XA59I0, 64, 64 { Offset 32, 32	Patch X059I0, 0, 0	{ Rotate  90 } }
+Sprite XA59J0, 64, 64 { Offset 32, 32	Patch X059J0, 0, 0	{ Rotate  90 } }
+Sprite XA59K0, 64, 64 { Offset 32, 32	Patch X059K0, 0, 0	{ Rotate  90 } }
+Sprite XA59L0, 64, 64 { Offset 32, 32	Patch X059L0, 0, 0	{ Rotate  90 } }
+Sprite XA59M0, 64, 64 { Offset 32, 32	Patch X059M0, 0, 0	{ Rotate  90 } }
+
+Sprite XB57A0, 64, 64 { Offset 32, 32	Patch X057A0, 0, 0	{ Rotate 180 } }
+Sprite XB57B0, 64, 64 { Offset 32, 32	Patch X057B0, 0, 0	{ Rotate 180 } }
+Sprite XB57C0, 64, 64 { Offset 32, 32	Patch X057C0, 0, 0	{ Rotate 180 } }
+Sprite XB57D0, 64, 64 { Offset 32, 32	Patch X057D0, 0, 0	{ Rotate 180 } }
+Sprite XB57E0, 64, 64 { Offset 32, 32	Patch X057E0, 0, 0	{ Rotate 180 } }
+Sprite XB57F0, 64, 64 { Offset 32, 32	Patch X057F0, 0, 0	{ Rotate 180 } }
+Sprite XB57G0, 64, 64 { Offset 32, 32	Patch X057G0, 0, 0	{ Rotate 180 } }
+Sprite XB57H0, 64, 64 { Offset 32, 32	Patch X057H0, 0, 0	{ Rotate 180 } }
+Sprite XB57I0, 64, 64 { Offset 32, 32	Patch X057I0, 0, 0	{ Rotate 180 } }
+Sprite XB57J0, 64, 64 { Offset 32, 32	Patch X057J0, 0, 0	{ Rotate 180 } }
+Sprite XB57K0, 64, 64 { Offset 32, 32	Patch X057K0, 0, 0	{ Rotate 180 } }
+Sprite XB57L0, 64, 64 { Offset 32, 32	Patch X057L0, 0, 0	{ Rotate 180 } }
+Sprite XB57M0, 64, 64 { Offset 32, 32	Patch X057M0, 0, 0	{ Rotate 180 } }
+Sprite XB57N0, 64, 64 { Offset 32, 32	Patch X057N0, 0, 0	{ Rotate 180 } }
+Sprite XB57O0, 64, 64 { Offset 32, 32	Patch X057O0, 0, 0	{ Rotate 180 } }
+Sprite XB57P0, 64, 64 { Offset 32, 32	Patch X057P0, 0, 0	{ Rotate 180 } }
+Sprite XB57Q0, 64, 64 { Offset 32, 32	Patch X057Q0, 0, 0	{ Rotate 180 } }
+Sprite XB57R0, 64, 64 { Offset 32, 32	Patch X057R0, 0, 0	{ Rotate 180 } }
+Sprite XB57S0, 64, 64 { Offset 32, 32	Patch X057S0, 0, 0	{ Rotate 180 } }
+
+Sprite XB58A0, 64, 64 { Offset 32, 32	Patch X058A0, 0, 0	{ Rotate 180 } }
+Sprite XB58B0, 64, 64 { Offset 32, 32	Patch X058B0, 0, 0	{ Rotate 180 } }
+Sprite XB58C0, 64, 64 { Offset 32, 32	Patch X058C0, 0, 0	{ Rotate 180 } }
+Sprite XB58D0, 64, 64 { Offset 32, 32	Patch X058D0, 0, 0	{ Rotate 180 } }
+Sprite XB58E0, 64, 64 { Offset 32, 32	Patch X058E0, 0, 0	{ Rotate 180 } }
+Sprite XB58F0, 64, 64 { Offset 32, 32	Patch X058F0, 0, 0	{ Rotate 180 } }
+Sprite XB58G0, 64, 64 { Offset 32, 32	Patch X058G0, 0, 0	{ Rotate 180 } }
+Sprite XB58H0, 64, 64 { Offset 32, 32	Patch X058H0, 0, 0	{ Rotate 180 } }
+Sprite XB58I0, 64, 64 { Offset 32, 32	Patch X058I0, 0, 0	{ Rotate 180 } }
+Sprite XB58J0, 64, 64 { Offset 32, 32	Patch X058J0, 0, 0	{ Rotate 180 } }
+Sprite XB58K0, 64, 64 { Offset 32, 32	Patch X058K0, 0, 0	{ Rotate 180 } }
+Sprite XB58L0, 64, 64 { Offset 32, 32	Patch X058L0, 0, 0	{ Rotate 180 } }
+Sprite XB58M0, 64, 64 { Offset 32, 32	Patch X058M0, 0, 0	{ Rotate 180 } }
+Sprite XB58N0, 64, 64 { Offset 32, 32	Patch X058N0, 0, 0	{ Rotate 180 } }
+Sprite XB58O0, 64, 64 { Offset 32, 32	Patch X058O0, 0, 0	{ Rotate 180 } }
+Sprite XB58P0, 64, 64 { Offset 32, 32	Patch X058P0, 0, 0	{ Rotate 180 } }
+Sprite XB58Q0, 64, 64 { Offset 32, 32	Patch X058Q0, 0, 0	{ Rotate 180 } }
+Sprite XB58R0, 64, 64 { Offset 32, 32	Patch X058R0, 0, 0	{ Rotate 180 } }
+
+Sprite XB59A0, 64, 64 { Offset 32, 32	Patch X059A0, 0, 0	{ Rotate 180 } }
+Sprite XB59B0, 64, 64 { Offset 32, 32	Patch X059B0, 0, 0	{ Rotate 180 } }
+Sprite XB59C0, 64, 64 { Offset 32, 32	Patch X059C0, 0, 0	{ Rotate 180 } }
+Sprite XB59D0, 64, 64 { Offset 32, 32	Patch X059D0, 0, 0	{ Rotate 180 } }
+Sprite XB59E0, 64, 64 { Offset 32, 32	Patch X059E0, 0, 0	{ Rotate 180 } }
+Sprite XB59F0, 64, 64 { Offset 32, 32	Patch X059F0, 0, 0	{ Rotate 180 } }
+Sprite XB59G0, 64, 64 { Offset 32, 32	Patch X059G0, 0, 0	{ Rotate 180 } }
+Sprite XB59H0, 64, 64 { Offset 32, 32	Patch X059H0, 0, 0	{ Rotate 180 } }
+Sprite XB59I0, 64, 64 { Offset 32, 32	Patch X059I0, 0, 0	{ Rotate 180 } }
+Sprite XB59J0, 64, 64 { Offset 32, 32	Patch X059J0, 0, 0	{ Rotate 180 } }
+Sprite XB59K0, 64, 64 { Offset 32, 32	Patch X059K0, 0, 0	{ Rotate 180 } }
+Sprite XB59L0, 64, 64 { Offset 32, 32	Patch X059L0, 0, 0	{ Rotate 180 } }
+Sprite XB59M0, 64, 64 { Offset 32, 32	Patch X059M0, 0, 0	{ Rotate 180 } }
+
+Sprite XC57A0, 64, 64 { Offset 32, 32	Patch X057A0, 0, 0	{ Rotate 270 } }
+Sprite XC57B0, 64, 64 { Offset 32, 32	Patch X057B0, 0, 0	{ Rotate 270 } }
+Sprite XC57C0, 64, 64 { Offset 32, 32	Patch X057C0, 0, 0	{ Rotate 270 } }
+Sprite XC57D0, 64, 64 { Offset 32, 32	Patch X057D0, 0, 0	{ Rotate 270 } }
+Sprite XC57E0, 64, 64 { Offset 32, 32	Patch X057E0, 0, 0	{ Rotate 270 } }
+Sprite XC57F0, 64, 64 { Offset 32, 32	Patch X057F0, 0, 0	{ Rotate 270 } }
+Sprite XC57G0, 64, 64 { Offset 32, 32	Patch X057G0, 0, 0	{ Rotate 270 } }
+Sprite XC57H0, 64, 64 { Offset 32, 32	Patch X057H0, 0, 0	{ Rotate 270 } }
+Sprite XC57I0, 64, 64 { Offset 32, 32	Patch X057I0, 0, 0	{ Rotate 270 } }
+Sprite XC57J0, 64, 64 { Offset 32, 32	Patch X057J0, 0, 0	{ Rotate 270 } }
+Sprite XC57K0, 64, 64 { Offset 32, 32	Patch X057K0, 0, 0	{ Rotate 270 } }
+Sprite XC57L0, 64, 64 { Offset 32, 32	Patch X057L0, 0, 0	{ Rotate 270 } }
+Sprite XC57M0, 64, 64 { Offset 32, 32	Patch X057M0, 0, 0	{ Rotate 270 } }
+Sprite XC57N0, 64, 64 { Offset 32, 32	Patch X057N0, 0, 0	{ Rotate 270 } }
+Sprite XC57O0, 64, 64 { Offset 32, 32	Patch X057O0, 0, 0	{ Rotate 270 } }
+Sprite XC57P0, 64, 64 { Offset 32, 32	Patch X057P0, 0, 0	{ Rotate 270 } }
+Sprite XC57Q0, 64, 64 { Offset 32, 32	Patch X057Q0, 0, 0	{ Rotate 270 } }
+Sprite XC57R0, 64, 64 { Offset 32, 32	Patch X057R0, 0, 0	{ Rotate 270 } }
+Sprite XC57S0, 64, 64 { Offset 32, 32	Patch X057S0, 0, 0	{ Rotate 270 } }
+
+Sprite XC58A0, 64, 64 { Offset 32, 32	Patch X058A0, 0, 0	{ Rotate 270 } }
+Sprite XC58B0, 64, 64 { Offset 32, 32	Patch X058B0, 0, 0	{ Rotate 270 } }
+Sprite XC58C0, 64, 64 { Offset 32, 32	Patch X058C0, 0, 0	{ Rotate 270 } }
+Sprite XC58D0, 64, 64 { Offset 32, 32	Patch X058D0, 0, 0	{ Rotate 270 } }
+Sprite XC58E0, 64, 64 { Offset 32, 32	Patch X058E0, 0, 0	{ Rotate 270 } }
+Sprite XC58F0, 64, 64 { Offset 32, 32	Patch X058F0, 0, 0	{ Rotate 270 } }
+Sprite XC58G0, 64, 64 { Offset 32, 32	Patch X058G0, 0, 0	{ Rotate 270 } }
+Sprite XC58H0, 64, 64 { Offset 32, 32	Patch X058H0, 0, 0	{ Rotate 270 } }
+Sprite XC58I0, 64, 64 { Offset 32, 32	Patch X058I0, 0, 0	{ Rotate 270 } }
+Sprite XC58J0, 64, 64 { Offset 32, 32	Patch X058J0, 0, 0	{ Rotate 270 } }
+Sprite XC58K0, 64, 64 { Offset 32, 32	Patch X058K0, 0, 0	{ Rotate 270 } }
+Sprite XC58L0, 64, 64 { Offset 32, 32	Patch X058L0, 0, 0	{ Rotate 270 } }
+Sprite XC58M0, 64, 64 { Offset 32, 32	Patch X058M0, 0, 0	{ Rotate 270 } }
+Sprite XC58N0, 64, 64 { Offset 32, 32	Patch X058N0, 0, 0	{ Rotate 270 } }
+Sprite XC58O0, 64, 64 { Offset 32, 32	Patch X058O0, 0, 0	{ Rotate 270 } }
+Sprite XC58P0, 64, 64 { Offset 32, 32	Patch X058P0, 0, 0	{ Rotate 270 } }
+Sprite XC58Q0, 64, 64 { Offset 32, 32	Patch X058Q0, 0, 0	{ Rotate 270 } }
+Sprite XC58R0, 64, 64 { Offset 32, 32	Patch X058R0, 0, 0	{ Rotate 270 } }
+
+Sprite XC59A0, 64, 64 { Offset 32, 32	Patch X059A0, 0, 0	{ Rotate 270 } }
+Sprite XC59B0, 64, 64 { Offset 32, 32	Patch X059B0, 0, 0	{ Rotate 270 } }
+Sprite XC59C0, 64, 64 { Offset 32, 32	Patch X059C0, 0, 0	{ Rotate 270 } }
+Sprite XC59D0, 64, 64 { Offset 32, 32	Patch X059D0, 0, 0	{ Rotate 270 } }
+Sprite XC59E0, 64, 64 { Offset 32, 32	Patch X059E0, 0, 0	{ Rotate 270 } }
+Sprite XC59F0, 64, 64 { Offset 32, 32	Patch X059F0, 0, 0	{ Rotate 270 } }
+Sprite XC59G0, 64, 64 { Offset 32, 32	Patch X059G0, 0, 0	{ Rotate 270 } }
+Sprite XC59H0, 64, 64 { Offset 32, 32	Patch X059H0, 0, 0	{ Rotate 270 } }
+Sprite XC59I0, 64, 64 { Offset 32, 32	Patch X059I0, 0, 0	{ Rotate 270 } }
+Sprite XC59J0, 64, 64 { Offset 32, 32	Patch X059J0, 0, 0	{ Rotate 270 } }
+Sprite XC59K0, 64, 64 { Offset 32, 32	Patch X059K0, 0, 0	{ Rotate 270 } }
+Sprite XC59L0, 64, 64 { Offset 32, 32	Patch X059L0, 0, 0	{ Rotate 270 } }
+Sprite XC59M0, 64, 64 { Offset 32, 32	Patch X059M0, 0, 0	{ Rotate 270 } }
+
+
+// Blood, just with W instead of X. Needed to separate gibblet blood from
+// from blood spawned when hitting a player/monster. Separated to allow
+// an addon that disables blood sprites for competitive play without disabling
+// blood trails on gibblets (gibbing an enemy still gotta look cool)
+Sprite WA57A0, 64, 64 { Offset 32, 32	Patch W057A0, 0, 0	{ Rotate  90 } }
+Sprite WA57B0, 64, 64 { Offset 32, 32	Patch W057B0, 0, 0	{ Rotate  90 } }
+Sprite WA57C0, 64, 64 { Offset 32, 32	Patch W057C0, 0, 0	{ Rotate  90 } }
+Sprite WA57D0, 64, 64 { Offset 32, 32	Patch W057D0, 0, 0	{ Rotate  90 } }
+Sprite WA57E0, 64, 64 { Offset 32, 32	Patch W057E0, 0, 0	{ Rotate  90 } }
+Sprite WA57F0, 64, 64 { Offset 32, 32	Patch W057F0, 0, 0	{ Rotate  90 } }
+Sprite WA57G0, 64, 64 { Offset 32, 32	Patch W057G0, 0, 0	{ Rotate  90 } }
+Sprite WA57H0, 64, 64 { Offset 32, 32	Patch W057H0, 0, 0	{ Rotate  90 } }
+Sprite WA57I0, 64, 64 { Offset 32, 32	Patch W057I0, 0, 0	{ Rotate  90 } }
+Sprite WA57J0, 64, 64 { Offset 32, 32	Patch W057J0, 0, 0	{ Rotate  90 } }
+Sprite WA57K0, 64, 64 { Offset 32, 32	Patch W057K0, 0, 0	{ Rotate  90 } }
+Sprite WA57L0, 64, 64 { Offset 32, 32	Patch W057L0, 0, 0	{ Rotate  90 } }
+Sprite WA57M0, 64, 64 { Offset 32, 32	Patch W057M0, 0, 0	{ Rotate  90 } }
+Sprite WA57N0, 64, 64 { Offset 32, 32	Patch W057N0, 0, 0	{ Rotate  90 } }
+Sprite WA57O0, 64, 64 { Offset 32, 32	Patch W057O0, 0, 0	{ Rotate  90 } }
+Sprite WA57P0, 64, 64 { Offset 32, 32	Patch W057P0, 0, 0	{ Rotate  90 } }
+Sprite WA57Q0, 64, 64 { Offset 32, 32	Patch W057Q0, 0, 0	{ Rotate  90 } }
+Sprite WA57R0, 64, 64 { Offset 32, 32	Patch W057R0, 0, 0	{ Rotate  90 } }
+Sprite WA57S0, 64, 64 { Offset 32, 32	Patch W057S0, 0, 0	{ Rotate  90 } }
+
+Sprite WA58A0, 64, 64 { Offset 32, 32	Patch W058A0, 0, 0	{ Rotate  90 } }
+Sprite WA58B0, 64, 64 { Offset 32, 32	Patch W058B0, 0, 0	{ Rotate  90 } }
+Sprite WA58C0, 64, 64 { Offset 32, 32	Patch W058C0, 0, 0	{ Rotate  90 } }
+Sprite WA58D0, 64, 64 { Offset 32, 32	Patch W058D0, 0, 0	{ Rotate  90 } }
+Sprite WA58E0, 64, 64 { Offset 32, 32	Patch W058E0, 0, 0	{ Rotate  90 } }
+Sprite WA58F0, 64, 64 { Offset 32, 32	Patch W058F0, 0, 0	{ Rotate  90 } }
+Sprite WA58G0, 64, 64 { Offset 32, 32	Patch W058G0, 0, 0	{ Rotate  90 } }
+Sprite WA58H0, 64, 64 { Offset 32, 32	Patch W058H0, 0, 0	{ Rotate  90 } }
+Sprite WA58I0, 64, 64 { Offset 32, 32	Patch W058I0, 0, 0	{ Rotate  90 } }
+Sprite WA58J0, 64, 64 { Offset 32, 32	Patch W058J0, 0, 0	{ Rotate  90 } }
+Sprite WA58K0, 64, 64 { Offset 32, 32	Patch W058K0, 0, 0	{ Rotate  90 } }
+Sprite WA58L0, 64, 64 { Offset 32, 32	Patch W058L0, 0, 0	{ Rotate  90 } }
+Sprite WA58M0, 64, 64 { Offset 32, 32	Patch W058M0, 0, 0	{ Rotate  90 } }
+Sprite WA58N0, 64, 64 { Offset 32, 32	Patch W058N0, 0, 0	{ Rotate  90 } }
+Sprite WA58O0, 64, 64 { Offset 32, 32	Patch W058O0, 0, 0	{ Rotate  90 } }
+Sprite WA58P0, 64, 64 { Offset 32, 32	Patch W058P0, 0, 0	{ Rotate  90 } }
+Sprite WA58Q0, 64, 64 { Offset 32, 32	Patch W058Q0, 0, 0	{ Rotate  90 } }
+Sprite WA58R0, 64, 64 { Offset 32, 32	Patch W058R0, 0, 0	{ Rotate  90 } }
+
+Sprite WA59A0, 64, 64 { Offset 32, 32	Patch W059A0, 0, 0	{ Rotate  90 } }
+Sprite WA59B0, 64, 64 { Offset 32, 32	Patch W059B0, 0, 0	{ Rotate  90 } }
+Sprite WA59C0, 64, 64 { Offset 32, 32	Patch W059C0, 0, 0	{ Rotate  90 } }
+Sprite WA59D0, 64, 64 { Offset 32, 32	Patch W059D0, 0, 0	{ Rotate  90 } }
+Sprite WA59E0, 64, 64 { Offset 32, 32	Patch W059E0, 0, 0	{ Rotate  90 } }
+Sprite WA59F0, 64, 64 { Offset 32, 32	Patch W059F0, 0, 0	{ Rotate  90 } }
+Sprite WA59G0, 64, 64 { Offset 32, 32	Patch W059G0, 0, 0	{ Rotate  90 } }
+Sprite WA59H0, 64, 64 { Offset 32, 32	Patch W059H0, 0, 0	{ Rotate  90 } }
+Sprite WA59I0, 64, 64 { Offset 32, 32	Patch W059I0, 0, 0	{ Rotate  90 } }
+Sprite WA59J0, 64, 64 { Offset 32, 32	Patch W059J0, 0, 0	{ Rotate  90 } }
+Sprite WA59K0, 64, 64 { Offset 32, 32	Patch W059K0, 0, 0	{ Rotate  90 } }
+Sprite WA59L0, 64, 64 { Offset 32, 32	Patch W059L0, 0, 0	{ Rotate  90 } }
+Sprite WA59M0, 64, 64 { Offset 32, 32	Patch W059M0, 0, 0	{ Rotate  90 } }
+
+Sprite WB57A0, 64, 64 { Offset 32, 32	Patch W057A0, 0, 0	{ Rotate 180 } }
+Sprite WB57B0, 64, 64 { Offset 32, 32	Patch W057B0, 0, 0	{ Rotate 180 } }
+Sprite WB57C0, 64, 64 { Offset 32, 32	Patch W057C0, 0, 0	{ Rotate 180 } }
+Sprite WB57D0, 64, 64 { Offset 32, 32	Patch W057D0, 0, 0	{ Rotate 180 } }
+Sprite WB57E0, 64, 64 { Offset 32, 32	Patch W057E0, 0, 0	{ Rotate 180 } }
+Sprite WB57F0, 64, 64 { Offset 32, 32	Patch W057F0, 0, 0	{ Rotate 180 } }
+Sprite WB57G0, 64, 64 { Offset 32, 32	Patch W057G0, 0, 0	{ Rotate 180 } }
+Sprite WB57H0, 64, 64 { Offset 32, 32	Patch W057H0, 0, 0	{ Rotate 180 } }
+Sprite WB57I0, 64, 64 { Offset 32, 32	Patch W057I0, 0, 0	{ Rotate 180 } }
+Sprite WB57J0, 64, 64 { Offset 32, 32	Patch W057J0, 0, 0	{ Rotate 180 } }
+Sprite WB57K0, 64, 64 { Offset 32, 32	Patch W057K0, 0, 0	{ Rotate 180 } }
+Sprite WB57L0, 64, 64 { Offset 32, 32	Patch W057L0, 0, 0	{ Rotate 180 } }
+Sprite WB57M0, 64, 64 { Offset 32, 32	Patch W057M0, 0, 0	{ Rotate 180 } }
+Sprite WB57N0, 64, 64 { Offset 32, 32	Patch W057N0, 0, 0	{ Rotate 180 } }
+Sprite WB57O0, 64, 64 { Offset 32, 32	Patch W057O0, 0, 0	{ Rotate 180 } }
+Sprite WB57P0, 64, 64 { Offset 32, 32	Patch W057P0, 0, 0	{ Rotate 180 } }
+Sprite WB57Q0, 64, 64 { Offset 32, 32	Patch W057Q0, 0, 0	{ Rotate 180 } }
+Sprite WB57R0, 64, 64 { Offset 32, 32	Patch W057R0, 0, 0	{ Rotate 180 } }
+Sprite WB57S0, 64, 64 { Offset 32, 32	Patch W057S0, 0, 0	{ Rotate 180 } }
+
+Sprite WB58A0, 64, 64 { Offset 32, 32	Patch W058A0, 0, 0	{ Rotate 180 } }
+Sprite WB58B0, 64, 64 { Offset 32, 32	Patch W058B0, 0, 0	{ Rotate 180 } }
+Sprite WB58C0, 64, 64 { Offset 32, 32	Patch W058C0, 0, 0	{ Rotate 180 } }
+Sprite WB58D0, 64, 64 { Offset 32, 32	Patch W058D0, 0, 0	{ Rotate 180 } }
+Sprite WB58E0, 64, 64 { Offset 32, 32	Patch W058E0, 0, 0	{ Rotate 180 } }
+Sprite WB58F0, 64, 64 { Offset 32, 32	Patch W058F0, 0, 0	{ Rotate 180 } }
+Sprite WB58G0, 64, 64 { Offset 32, 32	Patch W058G0, 0, 0	{ Rotate 180 } }
+Sprite WB58H0, 64, 64 { Offset 32, 32	Patch W058H0, 0, 0	{ Rotate 180 } }
+Sprite WB58I0, 64, 64 { Offset 32, 32	Patch W058I0, 0, 0	{ Rotate 180 } }
+Sprite WB58J0, 64, 64 { Offset 32, 32	Patch W058J0, 0, 0	{ Rotate 180 } }
+Sprite WB58K0, 64, 64 { Offset 32, 32	Patch W058K0, 0, 0	{ Rotate 180 } }
+Sprite WB58L0, 64, 64 { Offset 32, 32	Patch W058L0, 0, 0	{ Rotate 180 } }
+Sprite WB58M0, 64, 64 { Offset 32, 32	Patch W058M0, 0, 0	{ Rotate 180 } }
+Sprite WB58N0, 64, 64 { Offset 32, 32	Patch W058N0, 0, 0	{ Rotate 180 } }
+Sprite WB58O0, 64, 64 { Offset 32, 32	Patch W058O0, 0, 0	{ Rotate 180 } }
+Sprite WB58P0, 64, 64 { Offset 32, 32	Patch W058P0, 0, 0	{ Rotate 180 } }
+Sprite WB58Q0, 64, 64 { Offset 32, 32	Patch W058Q0, 0, 0	{ Rotate 180 } }
+Sprite WB58R0, 64, 64 { Offset 32, 32	Patch W058R0, 0, 0	{ Rotate 180 } }
+
+Sprite WB59A0, 64, 64 { Offset 32, 32	Patch W059A0, 0, 0	{ Rotate 180 } }
+Sprite WB59B0, 64, 64 { Offset 32, 32	Patch W059B0, 0, 0	{ Rotate 180 } }
+Sprite WB59C0, 64, 64 { Offset 32, 32	Patch W059C0, 0, 0	{ Rotate 180 } }
+Sprite WB59D0, 64, 64 { Offset 32, 32	Patch W059D0, 0, 0	{ Rotate 180 } }
+Sprite WB59E0, 64, 64 { Offset 32, 32	Patch W059E0, 0, 0	{ Rotate 180 } }
+Sprite WB59F0, 64, 64 { Offset 32, 32	Patch W059F0, 0, 0	{ Rotate 180 } }
+Sprite WB59G0, 64, 64 { Offset 32, 32	Patch W059G0, 0, 0	{ Rotate 180 } }
+Sprite WB59H0, 64, 64 { Offset 32, 32	Patch W059H0, 0, 0	{ Rotate 180 } }
+Sprite WB59I0, 64, 64 { Offset 32, 32	Patch W059I0, 0, 0	{ Rotate 180 } }
+Sprite WB59J0, 64, 64 { Offset 32, 32	Patch W059J0, 0, 0	{ Rotate 180 } }
+Sprite WB59K0, 64, 64 { Offset 32, 32	Patch W059K0, 0, 0	{ Rotate 180 } }
+Sprite WB59L0, 64, 64 { Offset 32, 32	Patch W059L0, 0, 0	{ Rotate 180 } }
+Sprite WB59M0, 64, 64 { Offset 32, 32	Patch W059M0, 0, 0	{ Rotate 180 } }
+
+Sprite WC57A0, 64, 64 { Offset 32, 32	Patch W057A0, 0, 0	{ Rotate 270 } }
+Sprite WC57B0, 64, 64 { Offset 32, 32	Patch W057B0, 0, 0	{ Rotate 270 } }
+Sprite WC57C0, 64, 64 { Offset 32, 32	Patch W057C0, 0, 0	{ Rotate 270 } }
+Sprite WC57D0, 64, 64 { Offset 32, 32	Patch W057D0, 0, 0	{ Rotate 270 } }
+Sprite WC57E0, 64, 64 { Offset 32, 32	Patch W057E0, 0, 0	{ Rotate 270 } }
+Sprite WC57F0, 64, 64 { Offset 32, 32	Patch W057F0, 0, 0	{ Rotate 270 } }
+Sprite WC57G0, 64, 64 { Offset 32, 32	Patch W057G0, 0, 0	{ Rotate 270 } }
+Sprite WC57H0, 64, 64 { Offset 32, 32	Patch W057H0, 0, 0	{ Rotate 270 } }
+Sprite WC57I0, 64, 64 { Offset 32, 32	Patch W057I0, 0, 0	{ Rotate 270 } }
+Sprite WC57J0, 64, 64 { Offset 32, 32	Patch W057J0, 0, 0	{ Rotate 270 } }
+Sprite WC57K0, 64, 64 { Offset 32, 32	Patch W057K0, 0, 0	{ Rotate 270 } }
+Sprite WC57L0, 64, 64 { Offset 32, 32	Patch W057L0, 0, 0	{ Rotate 270 } }
+Sprite WC57M0, 64, 64 { Offset 32, 32	Patch W057M0, 0, 0	{ Rotate 270 } }
+Sprite WC57N0, 64, 64 { Offset 32, 32	Patch W057N0, 0, 0	{ Rotate 270 } }
+Sprite WC57O0, 64, 64 { Offset 32, 32	Patch W057O0, 0, 0	{ Rotate 270 } }
+Sprite WC57P0, 64, 64 { Offset 32, 32	Patch W057P0, 0, 0	{ Rotate 270 } }
+Sprite WC57Q0, 64, 64 { Offset 32, 32	Patch W057Q0, 0, 0	{ Rotate 270 } }
+Sprite WC57R0, 64, 64 { Offset 32, 32	Patch W057R0, 0, 0	{ Rotate 270 } }
+Sprite WC57S0, 64, 64 { Offset 32, 32	Patch W057S0, 0, 0	{ Rotate 270 } }
+
+Sprite WC58A0, 64, 64 { Offset 32, 32	Patch W058A0, 0, 0	{ Rotate 270 } }
+Sprite WC58B0, 64, 64 { Offset 32, 32	Patch W058B0, 0, 0	{ Rotate 270 } }
+Sprite WC58C0, 64, 64 { Offset 32, 32	Patch W058C0, 0, 0	{ Rotate 270 } }
+Sprite WC58D0, 64, 64 { Offset 32, 32	Patch W058D0, 0, 0	{ Rotate 270 } }
+Sprite WC58E0, 64, 64 { Offset 32, 32	Patch W058E0, 0, 0	{ Rotate 270 } }
+Sprite WC58F0, 64, 64 { Offset 32, 32	Patch W058F0, 0, 0	{ Rotate 270 } }
+Sprite WC58G0, 64, 64 { Offset 32, 32	Patch W058G0, 0, 0	{ Rotate 270 } }
+Sprite WC58H0, 64, 64 { Offset 32, 32	Patch W058H0, 0, 0	{ Rotate 270 } }
+Sprite WC58I0, 64, 64 { Offset 32, 32	Patch W058I0, 0, 0	{ Rotate 270 } }
+Sprite WC58J0, 64, 64 { Offset 32, 32	Patch W058J0, 0, 0	{ Rotate 270 } }
+Sprite WC58K0, 64, 64 { Offset 32, 32	Patch W058K0, 0, 0	{ Rotate 270 } }
+Sprite WC58L0, 64, 64 { Offset 32, 32	Patch W058L0, 0, 0	{ Rotate 270 } }
+Sprite WC58M0, 64, 64 { Offset 32, 32	Patch W058M0, 0, 0	{ Rotate 270 } }
+Sprite WC58N0, 64, 64 { Offset 32, 32	Patch W058N0, 0, 0	{ Rotate 270 } }
+Sprite WC58O0, 64, 64 { Offset 32, 32	Patch W058O0, 0, 0	{ Rotate 270 } }
+Sprite WC58P0, 64, 64 { Offset 32, 32	Patch W058P0, 0, 0	{ Rotate 270 } }
+Sprite WC58Q0, 64, 64 { Offset 32, 32	Patch W058Q0, 0, 0	{ Rotate 270 } }
+Sprite WC58R0, 64, 64 { Offset 32, 32	Patch W058R0, 0, 0	{ Rotate 270 } }
+
+Sprite WC59A0, 64, 64 { Offset 32, 32	Patch W059A0, 0, 0	{ Rotate 270 } }
+Sprite WC59B0, 64, 64 { Offset 32, 32	Patch W059B0, 0, 0	{ Rotate 270 } }
+Sprite WC59C0, 64, 64 { Offset 32, 32	Patch W059C0, 0, 0	{ Rotate 270 } }
+Sprite WC59D0, 64, 64 { Offset 32, 32	Patch W059D0, 0, 0	{ Rotate 270 } }
+Sprite WC59E0, 64, 64 { Offset 32, 32	Patch W059E0, 0, 0	{ Rotate 270 } }
+Sprite WC59F0, 64, 64 { Offset 32, 32	Patch W059F0, 0, 0	{ Rotate 270 } }
+Sprite WC59G0, 64, 64 { Offset 32, 32	Patch W059G0, 0, 0	{ Rotate 270 } }
+Sprite WC59H0, 64, 64 { Offset 32, 32	Patch W059H0, 0, 0	{ Rotate 270 } }
+Sprite WC59I0, 64, 64 { Offset 32, 32	Patch W059I0, 0, 0	{ Rotate 270 } }
+Sprite WC59J0, 64, 64 { Offset 32, 32	Patch W059J0, 0, 0	{ Rotate 270 } }
+Sprite WC59K0, 64, 64 { Offset 32, 32	Patch W059K0, 0, 0	{ Rotate 270 } }
+Sprite WC59L0, 64, 64 { Offset 32, 32	Patch W059L0, 0, 0	{ Rotate 270 } }
+Sprite WC59M0, 64, 64 { Offset 32, 32	Patch W059M0, 0, 0	{ Rotate 270 } }
+
+// Damage on HUD
+
+Graphic bldmist2, 512, 512 { 						Patch bldmist1, 0,0 { Rotate  90 } }
+Graphic bldmist3, 512, 512 { 						Patch bldmist1, 0,0 { Rotate 180 } }
+Graphic bldmist4, 512, 512 { 						Patch bldmist1, 0,0 { Rotate 270 } }
+Graphic blddroq2,  64,  64 { XScale 2.0	YScale 2.0	Patch blddroq1, 0,0 { Rotate  90 } }
+Graphic blddroq3,  64,  64 { XScale 2.0	YScale 2.0	Patch blddroq1, 0,0 { Rotate 180 } }
+Graphic blddroq4,  64,  64 { XScale 2.0	YScale 2.0	Patch blddroq1, 0,0 { Rotate 270 } }
+
+
+
+//==============================================================================
+//
+// Electric sparks
+//
+//==============================================================================
+
+Sprite X079A0, 128, 128 {	Offset 64, 64	Patch X079A0, 0, 0 {} }
+Sprite X079B0, 128, 128 {	Offset 64, 64	Patch X079A0, 0, 0 { Rotate 90 	} 	}
+Sprite X079C0, 128, 128 {	Offset 64, 64	Patch X079A0, 0, 0 { Rotate 180 } 	}
+Sprite X079D0, 128, 128 {	Offset 64, 64	Patch X079A0, 0, 0 { Rotate 270 } 	}
+Sprite X079E0, 128, 128 {	Offset 64, 64	Patch X079A0, 0, 0 { flipx } 	}
+Sprite X079F0, 128, 128 {	Offset 64, 64	Patch X079B0, 0, 0 { flipx } 	}
+Sprite X079G0, 128, 128 {	Offset 64, 64	Patch X079C0, 0, 0 { flipx } 	}
+Sprite X079H0, 128, 128 {	Offset 64, 64	Patch X079D0, 0, 0 { flipx } 	}
+
+
+
+//==============================================================================
+//
+// Abilities
+//
+//==============================================================================
+
+// Eradiradar
+
+Graphic RADARBG1, 412, 412 { Patch RADARBG0, 0, 0 { flipx } }
+
+Graphic RDRABOV3, 32, 32 { Patch RDRICONS,   0,    0 {} }
+Graphic RDRBELO3, 32, 32 { Patch RDRICONS, -32,    0 {} }
+Graphic RDRSAME3, 32, 32 { Patch RDRICONS, -64,    0 {} }
+Graphic RDRQUADD, 32, 32 { Patch RDRICONS, -96,    0 {} }
+Graphic RDRINFIN, 32, 32 { Patch RDRICONS,-128,    0 {} }
+
+Graphic RDRABOV2, 32, 32 { Patch RDRICONS,   0,  -32 {} }
+Graphic RDRBELO2, 32, 32 { Patch RDRICONS, -32,  -32 {} }
+Graphic RDRSAME2, 32, 32 { Patch RDRICONS, -64,  -32 {} }
+Graphic RDRPROTE, 32, 32 { Patch RDRICONS, -96,  -32 {} }
+Graphic RDRINVUL, 32, 32 { Patch RDRICONS,-128,  -32 {} }
+
+Graphic RDRABOV1, 32, 32 { Patch RDRICONS,   0,  -64 {} }
+Graphic RDRBELO1, 32, 32 { Patch RDRICONS, -32,  -64 {} }
+Graphic RDRSAME1, 32, 32 { Patch RDRICONS, -64,  -64 {} }
+Graphic RDRMONST, 32, 32 { Patch RDRICONS, -96,  -64 {} }
+Graphic RD09F911, 32, 32 { Patch RDRICONS,-128,  -64 {} }
+
+Graphic RDRTOT_R, 32, 32 { Patch RDRICONS,   0,  -96 {} }
+Graphic RDRTOT_B, 32, 32 { Patch RDRICONS, -32,  -96 {} }
+Graphic RDRMEGAH, 32, 32 { Patch RDRICONS, -64,  -96 {} }
+Graphic RDRHEAVY, 32, 32 { Patch RDRICONS, -96,  -96 {} }
+Graphic RD029D74, 32, 32 { Patch RDRICONS,-128,  -96 {} }
+
+Graphic RDRMONS1, 32, 32 { Patch RDRICONS,   0, -128 {} }
+Graphic RDRMONS2, 32, 32 { Patch RDRICONS, -32, -128 {} }
+Graphic RDRMONS3, 32, 32 { Patch RDRICONS, -64, -128 {} }
+Graphic RDRMONS4, 32, 32 { Patch RDRICONS, -96, -128 {} }
+Graphic RDE35BD8, 32, 32 { Patch RDRICONS,-128, -128 {} }
+
+Graphic RDRABOVQ, 32, 32 { Patch RDRICONS,   0, -160 {} }
+Graphic RDRBELOQ, 32, 32 { Patch RDRICONS, -32, -160 {} }
+Graphic RDRSAMEQ, 32, 32 { Patch RDRICONS, -64, -160 {} }
+Graphic RDRMMEGA, 32, 32 { Patch RDRICONS, -96, -160 {} }
+Graphic RD4156C5, 32, 32 { Patch RDRICONS,-128, -160 {} }
+
+Graphic RDRABOVP, 32, 32 { Patch RDRICONS,   0, -192 {} }
+Graphic RDRBELOP, 32, 32 { Patch RDRICONS, -32, -192 {} }
+Graphic RDRSAMEP, 32, 32 { Patch RDRICONS, -64, -192 {} }
+Graphic RDREXCLA, 32, 32 { Patch RDRICONS, -96, -192 {} }
+Graphic RD635688, 32, 32 { Patch RDRICONS,-128, -192 {} }
+
+Graphic RDRCARDB, 32, 32 { Patch RDRICONS,   0, -224 {} }
+Graphic RDRCARDY, 32, 32 { Patch RDRICONS, -32, -224 {} }
+Graphic RDRCARDR, 32, 32 { Patch RDRICONS, -64, -224 {} }
+Graphic RDREMPTY, 32, 32 { Patch RDRICONS, -96, -224 {} }
+Graphic RDPLUSC0, 32, 32 { Patch RDRICONS,-128, -224 {} }
+
+
+// Demon morph
+
+Graphic PCORN002, 722, 482 { Offset 722,   0   Patch PCORN001,0,0 { FlipX       } }
+Graphic PCORN003, 722, 482 { Offset 722, 482   Patch PCORN001,0,0 { FlipX FlipY } }
+Graphic PCORN004, 722, 482 { Offset   0, 482   Patch PCORN001,0,0 {       FlipY } }
+
+
+
+//=============================================================================
+//
+// Teleport Fog FX inverted
+//
+//=============================================================================
+
+Sprite TFOYA0, 128, 128	{ Offset  64, 128 	Patch TFOGA0, 0, 0	{ FlipY } }
+Sprite TFOYB0, 128, 128	{ Offset  64, 128 	Patch TFOGB0, 0, 0	{ FlipY } }
+Sprite TFOYC0, 128, 128	{ Offset  64, 128 	Patch TFOGC0, 0, 0	{ FlipY } }
+Sprite TFOYD0, 128, 128	{ Offset  64, 128 	Patch TFOGD0, 0, 0	{ FlipY } }
+Sprite TFOYE0, 128, 128	{ Offset  64, 128 	Patch TFOGE0, 0, 0	{ FlipY } }
+Sprite TFOYF0, 128, 128	{ Offset  64, 128 	Patch TFOGF0, 0, 0	{ FlipY } }
+Sprite TFOYG0, 128, 128	{ Offset  64, 128 	Patch TFOGG0, 0, 0	{ FlipY } }
+Sprite TFOYH0, 128, 128	{ Offset  64, 128 	Patch TFOGH0, 0, 0	{ FlipY } }
+Sprite TFOYI0, 128, 128	{ Offset  64, 128 	Patch TFOGI0, 0, 0	{ FlipY } }
+Sprite TFOYJ0, 128, 128	{ Offset  64, 128 	Patch TFOGJ0, 0, 0	{ FlipY } }
+Sprite TFOYK0, 128, 128	{ Offset  64, 128 	Patch TFOGK0, 0, 0	{ FlipY } }
+Sprite TFOYL0, 128, 128	{ Offset  64, 128 	Patch TFOGL0, 0, 0	{ FlipY } }
+Sprite TFOYM0, 128, 128	{ Offset  64, 128 	Patch TFOGM0, 0, 0	{ FlipY } }
+Sprite TFOYN0, 128, 128	{ Offset  64, 128 	Patch TFOGN0, 0, 0	{ FlipY } }
+Sprite TFOYO0, 128, 128	{ Offset  64, 128 	Patch TFOGO0, 0, 0	{ FlipY } }
+Sprite TFOYP0, 128, 128	{ Offset  64, 128 	Patch TFOGP0, 0, 0	{ FlipY } }
+Sprite TFOYQ0, 128, 128	{ Offset  64, 128 	Patch TFOGQ0, 0, 0	{ FlipY } }
+Sprite TFOYR0, 128, 128	{ Offset  64, 128 	Patch TFOGR0, 0, 0	{ FlipY } }
+Sprite TFOYS0, 128, 128	{ Offset  64, 128 	Patch TFOGS0, 0, 0	{ FlipY } }
+Sprite TFOYT0, 128, 128	{ Offset  64, 128 	Patch TFOGT0, 0, 0	{ FlipY } }
+Sprite TFOYU0, 128, 128	{ Offset  64, 128 	Patch TFOGU0, 0, 0	{ FlipY } }
+Sprite TFOYV0, 128, 128	{ Offset  64, 128 	Patch TFOGV0, 0, 0	{ FlipY } }
+Sprite TFOYW0, 128, 128	{ Offset  64, 128 	Patch TFOGW0, 0, 0	{ FlipY } }
+Sprite TFOYX0, 128, 128	{ Offset  64, 128 	Patch TFOGX0, 0, 0	{ FlipY } }
+Sprite TFOYY0, 128, 128	{ Offset  64, 128 	Patch TFOGY0, 0, 0	{ FlipY } }
+Sprite TFOYZ0, 128, 128	{ Offset  64, 128 	Patch TFOGZ0, 0, 0	{ FlipY } }
+
+//=============================================================================
+//
+// Super pixelated portraits
+//
+//=============================================================================
+
+Graphic portrX01,  70,  70 { XScale 0.3	YScale 0.3	Patch portra01, 0,0 {} }
+Graphic portrX02,  70,  70 { XScale 0.3	YScale 0.3	Patch portra02, 0,0 {} }
+Graphic portrX03,  70,  70 { XScale 0.3	YScale 0.3	Patch portra03, 0,0 {} }
+Graphic portrX04,  70,  70 { XScale 0.3	YScale 0.3	Patch portra04, 0,0 {} }
+Graphic portrX05,  70,  70 { XScale 0.3	YScale 0.3	Patch portra05, 0,0 {} }
+Graphic portrX06,  70,  70 { XScale 0.3	YScale 0.3	Patch portra06, 0,0 {} }
+Graphic portrX07,  70,  70 { XScale 0.3	YScale 0.3	Patch portra07, 0,0 {} }
+Graphic portrX08,  70,  70 { XScale 0.3	YScale 0.3	Patch portra08, 0,0 {} }
+Graphic portrX09,  70,  70 { XScale 0.3	YScale 0.3	Patch portra09, 0,0 {} }
+Graphic portrX10,  70,  70 { XScale 0.3	YScale 0.3	Patch portra10, 0,0 {} }
+Graphic portrX11,  70,  70 { XScale 0.3	YScale 0.3	Patch portra11, 0,0 {} }
+Graphic portrX12,  70,  70 { XScale 0.3	YScale 0.3	Patch portra12, 0,0 {} }
+Graphic portrX13,  70,  70 { XScale 0.3	YScale 0.3	Patch portra13, 0,0 {} }
+Graphic portrX14,  70,  70 { XScale 0.3	YScale 0.3	Patch portra14, 0,0 {} }
+Graphic portrX15,  70,  70 { XScale 0.3	YScale 0.3	Patch portra15, 0,0 {} }
+Graphic portrX16,  70,  70 { XScale 0.3	YScale 0.3	Patch portra16, 0,0 {} }
+Graphic portrX17,  70,  70 { XScale 0.3	YScale 0.3	Patch portra17, 0,0 {} }
+Graphic portrX18,  70,  70 { XScale 0.3	YScale 0.3	Patch portra18, 0,0 {} }
+Graphic portrX19,  70,  70 { XScale 0.3	YScale 0.3	Patch portra19, 0,0 {} }
+Graphic portrX20,  70,  70 { XScale 0.3	YScale 0.3	Patch portra20, 0,0 {} }
+Graphic portrX21,  70,  70 { XScale 0.3	YScale 0.3	Patch portra21, 0,0 {} }
+Graphic portrX22,  70,  70 { XScale 0.3	YScale 0.3	Patch portra22, 0,0 {} }
+Graphic portrX23,  70,  70 { XScale 0.3	YScale 0.3	Patch portra23, 0,0 {} }
+Graphic portrX24,  70,  70 { XScale 0.3	YScale 0.3	Patch portra24, 0,0 {} }
+Graphic portrX25,  70,  70 { XScale 0.3	YScale 0.3	Patch portra25, 0,0 {} }
+Graphic portrX26,  70,  70 { XScale 0.3	YScale 0.3	Patch portra26, 0,0 {} }
+Graphic portrX27,  70,  70 { XScale 0.3	YScale 0.3	Patch portra27, 0,0 {} }
+Graphic portrX28,  70,  70 { XScale 0.3	YScale 0.3	Patch portra28, 0,0 {} }
+Graphic portrX29,  70,  70 { XScale 0.3	YScale 0.3	Patch portra29, 0,0 {} }
+Graphic portrX30,  70,  70 { XScale 0.3	YScale 0.3	Patch portra30, 0,0 {} }
+Graphic portrX31,  70,  70 { XScale 0.3	YScale 0.3	Patch portra31, 0,0 {} }
+// ^ insert more classes here
+
+Graphic portrY01,  70,  70 { XScale 0.5	YScale 0.5	Patch portra01, 0,0 {} }
+Graphic portrY02,  70,  70 { XScale 0.5	YScale 0.5	Patch portra02, 0,0 {} }
+Graphic portrY03,  70,  70 { XScale 0.5	YScale 0.5	Patch portra03, 0,0 {} }
+Graphic portrY04,  70,  70 { XScale 0.5	YScale 0.5	Patch portra04, 0,0 {} }
+Graphic portrY05,  70,  70 { XScale 0.5	YScale 0.5	Patch portra05, 0,0 {} }
+Graphic portrY06,  70,  70 { XScale 0.5	YScale 0.5	Patch portra06, 0,0 {} }
+Graphic portrY07,  70,  70 { XScale 0.5	YScale 0.5	Patch portra07, 0,0 {} }
+Graphic portrY08,  70,  70 { XScale 0.5	YScale 0.5	Patch portra08, 0,0 {} }
+Graphic portrY09,  70,  70 { XScale 0.5	YScale 0.5	Patch portra09, 0,0 {} }
+Graphic portrY10,  70,  70 { XScale 0.5	YScale 0.5	Patch portra10, 0,0 {} }
+Graphic portrY11,  70,  70 { XScale 0.5	YScale 0.5	Patch portra11, 0,0 {} }
+Graphic portrY12,  70,  70 { XScale 0.5	YScale 0.5	Patch portra12, 0,0 {} }
+Graphic portrY13,  70,  70 { XScale 0.5	YScale 0.5	Patch portra13, 0,0 {} }
+Graphic portrY14,  70,  70 { XScale 0.5	YScale 0.5	Patch portra14, 0,0 {} }
+Graphic portrY15,  70,  70 { XScale 0.5	YScale 0.5	Patch portra15, 0,0 {} }
+Graphic portrY16,  70,  70 { XScale 0.5	YScale 0.5	Patch portra16, 0,0 {} }
+Graphic portrY17,  70,  70 { XScale 0.5	YScale 0.5	Patch portra17, 0,0 {} }
+Graphic portrY18,  70,  70 { XScale 0.5	YScale 0.5	Patch portra18, 0,0 {} }
+Graphic portrY19,  70,  70 { XScale 0.5	YScale 0.5	Patch portra19, 0,0 {} }
+Graphic portrY20,  70,  70 { XScale 0.5	YScale 0.5	Patch portra20, 0,0 {} }
+Graphic portrY21,  70,  70 { XScale 0.5	YScale 0.5	Patch portra21, 0,0 {} }
+Graphic portrY22,  70,  70 { XScale 0.5	YScale 0.5	Patch portra22, 0,0 {} }
+Graphic portrY23,  70,  70 { XScale 0.5	YScale 0.5	Patch portra23, 0,0 {} }
+Graphic portrY24,  70,  70 { XScale 0.5	YScale 0.5	Patch portra24, 0,0 {} }
+Graphic portrY25,  70,  70 { XScale 0.5	YScale 0.5	Patch portra25, 0,0 {} }
+Graphic portrY26,  70,  70 { XScale 0.5	YScale 0.5	Patch portra26, 0,0 {} }
+Graphic portrY27,  70,  70 { XScale 0.5	YScale 0.5	Patch portra27, 0,0 {} }
+Graphic portrY28,  70,  70 { XScale 0.5	YScale 0.5	Patch portra28, 0,0 {} }
+Graphic portrY29,  70,  70 { XScale 0.5	YScale 0.5	Patch portra29, 0,0 {} }
+Graphic portrY30,  70,  70 { XScale 0.5	YScale 0.5	Patch portra30, 0,0 {} }
+Graphic portrY31,  70,  70 { XScale 0.5	YScale 0.5	Patch portra31, 0,0 {} }
+// ^ insert more classes here
+
+// Portraits for Class Picker: upscaled, pre-cropped
+// Squishies' portraits are smaller
+//	{ 3,  4,  5, 11, 14, 17, 23, 24, 26, 28, -1, },
+//	{ 0,  1,  2,  9, 10, 13, 16, 18, 20, 21, -1, },
+//	{ 6,  7,  8, 12, 15, 19, 22, 25, 27, -1, -1, },
+Graphic portrC01,  30,  60 { XScale 0.6	YScale 0.6	Patch portra01, -20, -6 {} } //  med
+Graphic portrC02,  30,  60 { XScale 0.6	YScale 0.6	Patch portra02, -20, -6 {} } //  med
+Graphic portrC03,  30,  60 { XScale 0.6	YScale 0.6	Patch portra03, -20, -6 {} } //  med
+Graphic portrC04,  35,  70 { XScale 0.7	YScale 0.7	Patch portra04, -20,  0 {} } // light
+Graphic portrC05,  35,  70 { XScale 0.7	YScale 0.7	Patch portra05, -20,  0 {} } // light
+Graphic portrC06,  35,  70 { XScale 0.7	YScale 0.7	Patch portra06, -20,  0 {} } // light
+Graphic portrC07,  25,  50 { XScale 0.5	YScale 0.5	Patch portra07, -25,-10 {} }
+Graphic portrC08,  25,  50 { XScale 0.5	YScale 0.5	Patch portra08, -25,-10 {} }
+Graphic portrC09,  25,  50 { XScale 0.5	YScale 0.5	Patch portra09, -25,-10 {} }
+Graphic portrC10,  30,  60 { XScale 0.6	YScale 0.6	Patch portra10, -20, -6 {} } //  med
+Graphic portrC11,  30,  60 { XScale 0.6	YScale 0.6	Patch portra11, -20, -6 {} } //  med
+Graphic portrC12,  35,  70 { XScale 0.7	YScale 0.7	Patch portra12, -20,  0 {} } // light
+Graphic portrC13,  25,  50 { XScale 0.5	YScale 0.5	Patch portra13, -25,-10 {} }
+Graphic portrC14,  30,  60 { XScale 0.6	YScale 0.6	Patch portra14, -20, -6 {} } //  med
+Graphic portrC15,  35,  70 { XScale 0.7	YScale 0.7	Patch portra15, -20,  0 {} } // light
+Graphic portrC16,  25,  50 { XScale 0.5	YScale 0.5	Patch portra16, -25,-10 {} }
+Graphic portrC17,  30,  60 { XScale 0.6	YScale 0.6	Patch portra17, -20, -6 {} } //  med
+Graphic portrC18,  35,  70 { XScale 0.7	YScale 0.7	Patch portra18, -20,  0 {} } // light
+Graphic portrC19,  30,  60 { XScale 0.6	YScale 0.6	Patch portra19, -20, -6 {} } //  med
+Graphic portrC20,  25,  50 { XScale 0.5	YScale 0.5	Patch portra20, -25,-10 {} }
+Graphic portrC21,  30,  60 { XScale 0.6	YScale 0.6	Patch portra21, -20, -6 {} } //  med
+Graphic portrC22,  30,  60 { XScale 0.6	YScale 0.6	Patch portra22, -20, -6 {} } //  med
+Graphic portrC23,  25,  50 { XScale 0.5	YScale 0.5	Patch portra23, -25,-10 {} }
+Graphic portrC24,  35,  70 { XScale 0.7	YScale 0.7	Patch portra24, -20,  0 {} } // light
+Graphic portrC25,  35,  70 { XScale 0.7	YScale 0.7	Patch portra25, -20,  0 {} } // light
+Graphic portrC26,  25,  50 { XScale 0.5	YScale 0.5	Patch portra26, -25,-10 {} }
+Graphic portrC27,  35,  70 { XScale 0.7	YScale 0.7	Patch portra27, -20,  0 {} } // light
+Graphic portrC28,  25,  50 { XScale 0.5	YScale 0.5	Patch portra28, -25,-10 {} }
+Graphic portrC29,  35,  70 { XScale 0.7	YScale 0.7	Patch portra29, -20,  0 {} } // light
+Graphic portrC30,  30,  60 { XScale 0.6	YScale 0.6	Patch portra30, -20, -6 {} } //  med
+Graphic portrC31,  30,  60 { XScale 0.6	YScale 0.6	Patch portra31, -20, -6 {} } //  med
+// ^ insert more classes here
+
+
+//=============================================================================
+//
+// Menu remap
+//
+//=============================================================================
+
+define CPicker0 4000 1200
+define CPickerB 4000 1200
+define CPickerR 4000 1200
+define ModBacc1 1600  149
+define ModBacc2 1600  149
+define ModBacc3 1600  149
+define ModOpen  1600  149
+define ModFront 1600  149
+define ModBack1 1600  180
+define ModBack2 1600  180
+define ModBack3 1600  180
+define ClassBck 1280 1600
+define ClassFrn 1280 1600
+define MenuBack  320  480
+define UpgrdGot 1600  149
+
+define Cursor1   320   17      define Cursor36  320   17
+define Cursor2   320   17      define Cursor37  320   17
+define Cursor3   320   17      define Cursor38  320   17
+define Cursor4   320   17      define Cursor39  320   17
+define Cursor5   320   17      define Cursor40  320   17
+define Cursor6   320   17      define Cursor41  320   17
+define Cursor7   320   17      define Cursor42  320   17
+define Cursor8   320   17      define Cursor43  320   17
+define Cursor9   320   17      define Cursor44  320   17
+define Cursor10  320   17      define Cursor45  320   17
+define Cursor11  320   17      define Cursor46  320   17
+define Cursor12  320   17      define Cursor47  320   17
+define Cursor13  320   17      define Cursor48  320   17
+define Cursor14  320   17      define Cursor49  320   17
+define Cursor15  320   17      define Cursor50  320   17
+define Cursor16  320   17      define Cursor51  320   17
+define Cursor17  320   17      define Cursor52  320   17
+define Cursor18  320   17      define Cursor53  320   17
+define Cursor19  320   17      define Cursor54  320   17
+define Cursor20  320   17      define Cursor55  320   17
+define Cursor21  320   17      define Cursor56  320   17
+define Cursor22  320   17      define Cursor57  320   17
+define Cursor23  320   17      define Cursor58  320   17
+define Cursor24  320   17      define Cursor59  320   17
+define Cursor25  320   17      define Cursor60  320   17
+define Cursor26  320   17      define Cursor61  320   17
+define Cursor27  320   17      define Cursor62  320   17
+define Cursor28  320   17      define Cursor63  320   17
+define Cursor29  320   17      define Cursor64  320   17
+define Cursor30  320   17      define Cursor65  320   17
+define Cursor31  320   17      define Cursor66  320   17
+define Cursor32  320   17      define Cursor67  320   17
+define Cursor33  320   17      define Cursor68  320   17
+define Cursor34  320   17      define Cursor69  320   17
+define Cursor35  320   17
+
+
+
+//=============================================================================
+//
+//		HUD fonts
+//
+//=============================================================================
+
+//Font 90% size               //Font 80% size               //Font 70% size                //Font 60% size                  //Font 50% size             //Font 40% size                //Font 30% size
+Graphic QF90N0, 37, 50 {}      Graphic QF80N0, 33, 45 {}      Graphic QF70N0, 29, 39 {}      Graphic QF60N0, 25, 34 {}      Graphic QF50N0, 21, 28 {}      Graphic QF40N0, 16, 22 {}       Graphic QF30N0, 12, 17 {}
+Graphic QF90N1, 20, 50 {}      Graphic QF80N1, 18, 45 {}      Graphic QF70N1, 15, 39 {}      Graphic QF60N1, 13, 34 {}      Graphic QF50N1, 11, 28 {}      Graphic QF40N1,  9, 22 {}       Graphic QF30N1,  7, 17 {}
+Graphic QF90N2, 37, 50 {}      Graphic QF80N2, 33, 45 {}      Graphic QF70N2, 29, 39 {}      Graphic QF60N2, 25, 34 {}      Graphic QF50N2, 21, 28 {}      Graphic QF40N2, 16, 22 {}       Graphic QF30N2, 12, 17 {}
+Graphic QF90N3, 37, 50 {}      Graphic QF80N3, 33, 45 {}      Graphic QF70N3, 29, 39 {}      Graphic QF60N3, 25, 34 {}      Graphic QF50N3, 21, 28 {}      Graphic QF40N3, 16, 22 {}       Graphic QF30N3, 12, 17 {}
+Graphic QF90N4, 40, 50 {}      Graphic QF80N4, 35, 45 {}      Graphic QF70N4, 31, 39 {}      Graphic QF60N4, 26, 34 {}      Graphic QF50N4, 22, 28 {}      Graphic QF40N4, 18, 22 {}       Graphic QF30N4, 13, 17 {}
+Graphic QF90N5, 37, 50 {}      Graphic QF80N5, 33, 45 {}      Graphic QF70N5, 29, 39 {}      Graphic QF60N5, 25, 34 {}      Graphic QF50N5, 21, 28 {}      Graphic QF40N5, 16, 22 {}       Graphic QF30N5, 12, 17 {}
+Graphic QF90N6, 37, 50 {}      Graphic QF80N6, 33, 45 {}      Graphic QF70N6, 29, 39 {}      Graphic QF60N6, 25, 34 {}      Graphic QF50N6, 21, 28 {}      Graphic QF40N6, 16, 22 {}       Graphic QF30N6, 12, 17 {}
+Graphic QF90N7, 35, 50 {}      Graphic QF80N7, 31, 45 {}      Graphic QF70N7, 27, 39 {}      Graphic QF60N7, 23, 34 {}      Graphic QF50N7, 20, 28 {}      Graphic QF40N7, 16, 22 {}       Graphic QF30N7, 12, 17 {}
+Graphic QF90N8, 37, 50 {}      Graphic QF80N8, 33, 45 {}      Graphic QF70N8, 29, 39 {}      Graphic QF60N8, 25, 34 {}      Graphic QF50N8, 21, 28 {}      Graphic QF40N8, 16, 22 {}       Graphic QF30N8, 12, 17 {}
+Graphic QF90N9, 37, 50 {}      Graphic QF80N9, 33, 45 {}      Graphic QF70N9, 29, 39 {}      Graphic QF60N9, 25, 34 {}      Graphic QF50N9, 21, 28 {}      Graphic QF40N9, 16, 22 {}       Graphic QF30N9, 12, 17 {}
+Graphic QF90SL, 18, 50 {}      Graphic QF80SL, 16, 45 {}      Graphic QF70SL, 14, 39 {}      Graphic QF60SL, 12, 34 {}      Graphic QF50SL, 10, 28 {}      Graphic QF40SL,  8, 22 {}       Graphic QF30SL,  6, 17 {}
+Graphic QF90CO, 11, 50 {}      Graphic QF80CO, 10, 45 {}      Graphic QF70CO,  8, 39 {}      Graphic QF60CO,  7, 34 {}      Graphic QF50CO,  6, 28 {}      Graphic QF40CO,  5, 22 {}       Graphic QF30CO,  4, 17 {}
+Graphic QF90PL, 37, 50 {}      Graphic QF80PL, 33, 45 {}      Graphic QF70PL, 29, 39 {}      Graphic QF60PL, 25, 34 {}      Graphic QF50PL, 21, 28 {}      Graphic QF40PL, 16, 22 {}       Graphic QF30PL, 12, 17 {}
+Graphic QF90MI, 37, 50 {}      Graphic QF80MI, 33, 45 {}      Graphic QF70MI, 29, 39 {}      Graphic QF60MI, 25, 34 {}      Graphic QF50MI, 21, 28 {}      Graphic QF40MI, 16, 22 {}       Graphic QF30MI, 12, 17 {}
+Graphic QF90PE, 11, 50 {}      Graphic QF80PE, 10, 45 {}      Graphic QF70PE,  8, 39 {}      Graphic QF60PE,  7, 34 {}      Graphic QF50PE,  6, 28 {}      Graphic QF40PE,  5, 22 {}       Graphic QF30PE,  4, 17 {}
+Graphic QF90MU, 37, 50 {}      Graphic QF80MU, 33, 45 {}      Graphic QF70MU, 29, 39 {}      Graphic QF60MU, 25, 34 {}      Graphic QF50MU, 21, 28 {}      Graphic QF40MU, 16, 22 {}       Graphic QF30MU, 12, 17 {}
+Graphic QF90PR, 37, 50 {}      Graphic QF80PR, 33, 45 {}      Graphic QF70PR, 29, 39 {}      Graphic QF60PR, 25, 34 {}      Graphic QF50PR, 21, 28 {}      Graphic QF40PR, 16, 22 {}       Graphic QF30PR, 12, 17 {}
+
+
+remap QF90N0 QCDENUM0          remap QF80N0 QCDENUM0          remap QF70N0 QCDENUM0          remap QF60N0 QCDENUM0          remap QF50N0 QCDENUM0          remap QF40N0 QCDENUM0           remap QF30N0 QCDENUM0
+remap QF90N1 QCDENUM1          remap QF80N1 QCDENUM1          remap QF70N1 QCDENUM1          remap QF60N1 QCDENUM1          remap QF50N1 QCDENUM1          remap QF40N1 QCDENUM1           remap QF30N1 QCDENUM1
+remap QF90N2 QCDENUM2          remap QF80N2 QCDENUM2          remap QF70N2 QCDENUM2          remap QF60N2 QCDENUM2          remap QF50N2 QCDENUM2          remap QF40N2 QCDENUM2           remap QF30N2 QCDENUM2
+remap QF90N3 QCDENUM3          remap QF80N3 QCDENUM3          remap QF70N3 QCDENUM3          remap QF60N3 QCDENUM3          remap QF50N3 QCDENUM3          remap QF40N3 QCDENUM3           remap QF30N3 QCDENUM3
+remap QF90N4 QCDENUM4          remap QF80N4 QCDENUM4          remap QF70N4 QCDENUM4          remap QF60N4 QCDENUM4          remap QF50N4 QCDENUM4          remap QF40N4 QCDENUM4           remap QF30N4 QCDENUM4
+remap QF90N5 QCDENUM5          remap QF80N5 QCDENUM5          remap QF70N5 QCDENUM5          remap QF60N5 QCDENUM5          remap QF50N5 QCDENUM5          remap QF40N5 QCDENUM5           remap QF30N5 QCDENUM5
+remap QF90N6 QCDENUM6          remap QF80N6 QCDENUM6          remap QF70N6 QCDENUM6          remap QF60N6 QCDENUM6          remap QF50N6 QCDENUM6          remap QF40N6 QCDENUM6           remap QF30N6 QCDENUM6
+remap QF90N7 QCDENUM7          remap QF80N7 QCDENUM7          remap QF70N7 QCDENUM7          remap QF60N7 QCDENUM7          remap QF50N7 QCDENUM7          remap QF40N7 QCDENUM7           remap QF30N7 QCDENUM7
+remap QF90N8 QCDENUM8          remap QF80N8 QCDENUM8          remap QF70N8 QCDENUM8          remap QF60N8 QCDENUM8          remap QF50N8 QCDENUM8          remap QF40N8 QCDENUM8           remap QF30N8 QCDENUM8
+remap QF90N9 QCDENUM9          remap QF80N9 QCDENUM9          remap QF70N9 QCDENUM9          remap QF60N9 QCDENUM9          remap QF50N9 QCDENUM9          remap QF40N9 QCDENUM9           remap QF30N9 QCDENUM9
+remap QF90SL QCDESLSH          remap QF80SL QCDESLSH          remap QF70SL QCDESLSH          remap QF60SL QCDESLSH          remap QF50SL QCDESLSH          remap QF40SL QCDESLSH           remap QF30SL QCDESLSH
+remap QF90CO QCDECOLN          remap QF80CO QCDECOLN          remap QF70CO QCDECOLN          remap QF60CO QCDECOLN          remap QF50CO QCDECOLN          remap QF40CO QCDECOLN           remap QF30CO QCDECOLN
+remap QF90PL QCDEPLUS          remap QF80PL QCDEPLUS          remap QF70PL QCDEPLUS          remap QF60PL QCDEPLUS          remap QF50PL QCDEPLUS          remap QF40PL QCDEPLUS           remap QF30PL QCDEPLUS
+remap QF90MI QCDEMINS          remap QF80MI QCDEMINS          remap QF70MI QCDEMINS          remap QF60MI QCDEMINS          remap QF50MI QCDEMINS          remap QF40MI QCDEMINS           remap QF30MI QCDEMINS
+remap QF90PE QCDEPERD          remap QF80PE QCDEPERD          remap QF70PE QCDEPERD          remap QF60PE QCDEPERD          remap QF50PE QCDEPERD          remap QF40PE QCDEPERD           remap QF30PE QCDEPERD
+remap QF90MU QCDEMULT          remap QF80MU QCDEMULT          remap QF70MU QCDEMULT          remap QF60MU QCDEMULT          remap QF50MU QCDEMULT          remap QF40MU QCDEMULT           remap QF30MU QCDEMULT
+remap QF90PR QCDEPERC          remap QF80PR QCDEPERC          remap QF70PR QCDEPERC          remap QF60PR QCDEPERC          remap QF50PR QCDEPERC          remap QF40PR QCDEPERC           remap QF30PR QCDEPERC
+
+
+// Scoped graphics
+remap HMGRETCL HMGRETCS //QC machinegun
+remap RGNRETCL RGNRETCS //QC railgun
+remap STRKHUDL STRKHUDS //Major's AirStrike HUD piece
+
+
+// Qweke stuff
+Sprite ALLYA0, 1024, 1024
+{
+	Offset 511,1111
+	XScale 32
+	YScale 32
+	Patch ALLYB0, 0, 0 {}
+}
+
+define TALKA0 32 32
+define FLAKES10 320 32
+define FLAKES00 320 32
+
+
+
+
+//=============================================================================
+//
+// Weapon resizing
+//
+//=============================================================================
+
+// Shotgun
+remap QCG3A0 	HCG3A0
+remap QCG3B0 	HCG3B0
+remap QCG3C0 	HCG3C0
+remap QCG3D0 	HCG3D0
+remap QCG3E0 	HCG3E0
+remap QCG3F0 	HCG3F0
+remap QCG3G0 	HCG3G0
+remap QCG3H0 	HCG3H0
+
+// Super Shotgun
+remap QCGCA0 	HCGCA0
+remap QCGCB0 	HCGCB0
+remap QCGCC0 	HCGCC0
+remap QCGCD0 	HCGCD0
+remap QCGCE0 	HCGCE0
+remap QCGCF0 	HCGCF0
+remap QCGCG0 	HCGCG0
+remap QCGCH0 	HCGCH0
+remap QCGCI0 	HCGCI0
+remap QCGCJ0 	HCGCJ0
+remap QCGCK0 	HCGCK0
+remap QCGCL0 	HCGCL0
+remap QCGCM0 	HCGCM0
+remap QCGCN0 	HCGCN0
+remap QCGCO0 	HCGCO0
+remap QCGCP0 	HCGCP0
+remap QCGCQ0 	HCGCQ0
+remap QCGCR0 	HCGCR0
+remap QCGCS0 	HCGCS0
+remap QCGCT0 	HCGCT0
+remap QCGCU0 	HCGCU0
+
+// Super nailgun
+remap QCGDA0 	HCGDA0
+remap QCGDB0 	HCGDB0
+remap QCGDC0 	HCGDC0
+remap QCGDD0 	HCGDD0
+remap QCGDE0 	HCGDE0
+remap QCGDF0 	HCGDF0
+remap QCGDH0 	HCGDH0
+remap QCGDI0 	HCGDI0
+remap QCGDJ0 	HCGDJ0
+remap QCGDK0 	HCGDK0
+remap QCGDL0 	HCGDL0
+remap QCGDM0 	HCGDM0
+remap QCGDN0 	HCGDN0
+
+
+// Railgun
+remap QCG7A0 	HCG7A0
+remap QCG7B0 	HCG7B0
+remap QCG7C0 	HCG7C0
+remap QCG7D0 	HCG7D0
+remap QCG7E0 	HCG7E0
+remap QCG7F0 	HCG7F0
+remap QCG7G0 	HCG7G0
+remap QCG7H0 	HCG7H0
+remap QCG7I0 	HCG7I0
+remap QCG7J0 	HCG7J0
+remap QCG7K0 	HCG7K0
+remap QCG7L0 	HCG7L0
+remap QCG7M0 	HCG7M0
+remap QCG7N0 	HCG7N0
+remap QCG7O0 	HCG7O0
+remap QCG7P0 	HCG7P0
+remap QCG7Q0 	HCG7Q0
+remap QCG7R0 	HCG7R0
+remap QCG7S0 	HCG7S0
+remap QCG7T0 	HCG7T0
+remap QCG7U0 	HCG7U0
+remap QCG7V0 	HCG7V0
+remap QCG7W0 	HCG7W0
+
+// BFG
+remap QCG8A0 	HCG8A0
+remap QCG8B0 	HCG8B0
+remap QCG8C0 	HCG8C0
+remap QCG8D0 	HCG8D0
+remap QCG8E0 	HCG8E0
+remap QCG8F0 	HCG8F0
+remap QCG8G0 	HCG8G0
+remap QCG8H0 	HCG8H0
+remap QCG8I0 	HCG8I0
+remap QCG8J0 	HCG8J0
+remap QCG8K0 	HCG8K0
+remap QCG8L0 	HCG8L0
+
+
+
+
+//----------------------
+// For controlled Rocket
+texture CAMERT, 1152, 640
+{Patch BAL1A0, 0, 0}
+
+//----------------------
+// For hitmarkers
+remap HITMED 	HITMARK
+
+//----------------------
+// Misc
+define POSTPOIS 96 96
+
+
+//=============================================================================
+//
+// Weapon upgrade resizing
+//
+//=============================================================================
+
+remap U001A0 UPG_00_1    remap U002A0 UPG_00_2    remap U003A0 UPG_00_3
+remap U031A0 UPG_03_1    remap U032A0 UPG_03_2    remap U033A0 UPG_03_3
+remap U071A0 UPG_07_1    remap U072A0 UPG_07_2    remap U073A0 UPG_07_3
+remap U091A0 UPG_09_1    remap U092A0 UPG_09_2    remap U093A0 UPG_09_3
+remap U111A0 UPG_11_1    remap U112A0 UPG_11_2    remap U113A0 UPG_11_3
+remap U131A0 UPG_13_1    remap U132A0 UPG_13_2    remap U133A0 UPG_13_3
+remap U151A0 UPG_15_1    remap U152A0 UPG_15_2    remap U153A0 UPG_15_3
+remap U171A0 UPG_17_1    remap U172A0 UPG_17_2    remap U173A0 UPG_17_3
+remap U191A0 UPG_19_1    remap U192A0 UPG_19_2    remap U193A0 UPG_19_3
+remap U211A0 UPG_21_1    remap U212A0 UPG_21_2    remap U213A0 UPG_21_3
+
+// H for HUD, G for Grayed out, A for near Ammo
+Graphic HPG_00_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_00_1,0,0{} }
+Graphic HPG_03_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_03_1,0,0{} }
+Graphic HPG_07_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_07_1,0,0{} }
+Graphic HPG_09_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_09_1,0,0{} }
+Graphic HPG_11_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_11_1,0,0{} }
+Graphic HPG_13_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_13_1,0,0{} }
+Graphic HPG_15_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_15_1,0,0{} }
+Graphic HPG_17_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_17_1,0,0{} }
+Graphic HPG_19_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_19_1,0,0{} }
+Graphic HPG_21_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_21_1,0,0{} }
+Graphic HPG_00_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_00_2,0,0{} }
+Graphic HPG_03_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_03_2,0,0{} }
+Graphic HPG_07_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_07_2,0,0{} }
+Graphic HPG_09_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_09_2,0,0{} }
+Graphic HPG_11_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_11_2,0,0{} }
+Graphic HPG_13_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_13_2,0,0{} }
+Graphic HPG_15_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_15_2,0,0{} }
+Graphic HPG_17_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_17_2,0,0{} }
+Graphic HPG_19_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_19_2,0,0{} }
+Graphic HPG_21_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_21_2,0,0{} }
+Graphic HPG_00_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_00_3,0,0{} }
+Graphic HPG_03_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_03_3,0,0{} }
+Graphic HPG_07_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_07_3,0,0{} }
+Graphic HPG_09_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_09_3,0,0{} }
+Graphic HPG_11_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_11_3,0,0{} }
+Graphic HPG_13_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_13_3,0,0{} }
+Graphic HPG_15_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_15_3,0,0{} }
+Graphic HPG_17_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_17_3,0,0{} }
+Graphic HPG_19_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_19_3,0,0{} }
+Graphic HPG_21_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_21_3,0,0{} }
+
+Graphic APG_00_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_00_1,0,0{} }
+Graphic APG_03_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_03_1,0,0{} }
+Graphic APG_07_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_07_1,0,0{} }
+Graphic APG_09_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_09_1,0,0{} }
+Graphic APG_11_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_11_1,0,0{} }
+Graphic APG_13_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_13_1,0,0{} }
+Graphic APG_15_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_15_1,0,0{} }
+Graphic APG_17_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_17_1,0,0{} }
+Graphic APG_19_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_19_1,0,0{} }
+Graphic APG_21_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_21_1,0,0{} }
+Graphic APG_00_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_00_2,0,0{} }
+Graphic APG_03_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_03_2,0,0{} }
+Graphic APG_07_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_07_2,0,0{} }
+Graphic APG_09_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_09_2,0,0{} }
+Graphic APG_11_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_11_2,0,0{} }
+Graphic APG_13_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_13_2,0,0{} }
+Graphic APG_15_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_15_2,0,0{} }
+Graphic APG_17_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_17_2,0,0{} }
+Graphic APG_19_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_19_2,0,0{} }
+Graphic APG_21_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_21_2,0,0{} }
+Graphic APG_00_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_00_3,0,0{} }
+Graphic APG_03_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_03_3,0,0{} }
+Graphic APG_07_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_07_3,0,0{} }
+Graphic APG_09_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_09_3,0,0{} }
+Graphic APG_11_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_11_3,0,0{} }
+Graphic APG_13_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_13_3,0,0{} }
+Graphic APG_15_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_15_3,0,0{} }
+Graphic APG_17_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_17_3,0,0{} }
+Graphic APG_19_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_19_3,0,0{} }
+Graphic APG_21_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_21_3,0,0{} }
+
+Graphic GPG_00_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_00_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_03_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_03_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_07_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_07_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_09_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_09_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_11_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_11_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_13_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_13_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_15_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_15_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_17_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_17_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_19_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_19_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_21_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_21_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_00_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_00_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_03_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_03_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_07_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_07_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_09_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_09_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_11_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_11_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_13_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_13_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_15_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_15_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_17_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_17_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_19_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_19_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_21_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_21_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_00_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_00_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_03_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_03_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_07_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_07_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_09_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_09_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_11_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_11_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_13_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_13_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_15_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_15_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_17_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_17_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_19_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_19_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_21_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_21_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }

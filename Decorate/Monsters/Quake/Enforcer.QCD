@@ -1,0 +1,143 @@
+//================================================================
+//================================================================
+
+Actor QEnforcer : QCDE_MonsterSmall	15103	//shotguy
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake"
+	//$Color 12
+	Health 60
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 6
+	PainChance 200
+	Monster
+	Scale 0.37
+	+FLOORCLIP
+	MinMissileChance 255
+	Tag "$TAG_QEnforcer" // "Laser Enforcer"
+	SeeSound "Quake1/Enforcer/Sight"
+	PainSound "Quake1/Enforcer/Pain"
+	DeathSound "Quake1/Enforcer/Death"
+	ActiveSound "Quake1/Enforcer/Idle"
+	Obituary "$OB_QEnforcer" // "%o was blasted by an enforcer."
+	DropItem "Shotgun"
+	States
+	{
+	Idle:
+		Q30I A 10 A_Look
+		Loop
+	See:
+		Q30W AABBCCDDEEFF 2 A_Chase
+		Loop
+	Missile:
+		Q30A A 0 A_Jump(256,"TwoShots","PlasmaShotgun")
+	TwoShots:
+		Q30A AB 5 A_FaceTarget
+		Q30A A 0 A_PlaySound("Quake1/Enforcer/Fire",7)
+		Q30A C 5 A_CustomMissile("EnforcerBeam",32,7,0)
+		Q30A D 5
+		Q30A B 5 A_FaceTarget
+		Q30A A 0 A_PlaySound("Quake1/Enforcer/Fire",7)
+		Q30A C 5 A_CustomMissile("EnforcerBeam",32,7,0)
+		Q30A D 5
+		Goto See
+	PlasmaShotgun:
+		Q30A ABBB 5 A_FaceTarget
+		Q30A A 0 A_PlaySound("Quake1/Enforcer/Fire",7)
+		TNT1 AAAAA 0 A_CustomMissile("EnforcerBeamWeak",32,7,frandom(7,-7))
+		Q30A CD 5
+		Goto See
+	Pain:
+		Q30P A 8 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		Q30D A 0 A_Scream
+		Q30D A 4
+		Q30D B 4 A_Fall
+		Q30D CDEFG 4
+		Q30D H 4 A_PlaySound("quake4/Misc/Body/Small")
+	Death.Corpse:
+		Q30D I -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Quake1/Xdeath")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		Q30D HGFEDCBA 4
+		Goto See
+	}
+}
+
+
+Actor EnforcerBeam
+{
+	PROJECTILE
+	Mass 1
+	Radius 8
+	Height 6
+	Speed 25
+	Damage 3
+	Scale 0.22
+	DeathSound "Quake1/Enforcer/FireImpact"
+	Translation "0:255=%[0,0,0]:[1.5,0.7,0.0]"
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	States
+	{
+	Spawn:
+		R058 ABCDE 3 Bright Light("OrangeMediumPoint3") A_SpawnItemEx("EnforcerBeamExtra",random(0,-4),random(2,-2),random(2,-2),0,0,0,0,32,128)
+		Loop
+	Death:
+		TNT1 AAAA 0 A_SpawnItemEx("EnforcerBeamExtra",0,0,0,frandom(0.2,1.5),0,frandom(1.5,-1.5),random(0,359),SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SetScale(0.4)
+		R058 F 3 Bright Light("OrangeMediumPoint2")
+		R058 G 3 Bright Light("OrangeMediumPoint3")
+		R058 H 3 Bright Light("OrangeSmallPoint1")
+		R058 I 3 Bright Light("OrangeSmallPoint2")
+		R058 J 3 Bright Light("OrangeSmallPoint2")
+		R058 K 3 Bright Light("OrangeSmallPoint3")
+		Stop
+	}
+}
+
+Actor EnforcerBeamWeak : EnforcerBeam
+{
+	Damage (random(1,8))
+	Speed 30
+	Scale 0.15
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY ThrustThingZ(0,random(2,-2),0,1)
+		Goto SpawnLooper
+	SpawnLooper:
+		R058 ABCDE 3 Bright Light("OrangeSmallPoint1")
+		Loop
+	}
+}
+
+
+Actor EnforcerBeamExtra
+{
+	Scale 0.4
+	RenderStyle Add
+	+NOINTERACTION +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	Translation "0:255=%[0,0,0]:[1.5,0.7,0.0]"
+	States
+	{
+	Spawn:
+		EBLT ABCDEF 2 Bright
+		Stop
+	}
+}
+
+

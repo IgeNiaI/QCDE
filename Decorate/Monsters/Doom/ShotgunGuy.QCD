@@ -1,0 +1,62 @@
+Actor QCShotgunGuy : QCDE_MonsterSmall 15414
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom"
+	//$Color 12
+	//$Title "Shotgun Guy"
+	Tag "$TAG_QCShotgunGuy" // "Shotgun guy"
+
+	Health 30
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 170
+	Monster
+	+FLOORCLIP
+	SeeSound "shotguy/sight"
+	AttackSound "shotguy/attack"
+	PainSound "shotguy/pain"
+	DeathSound "shotguy/death"
+	ActiveSound "shotguy/active"
+	Obituary "$OB_SHOTGUY"
+	DropItem "Shotgun"
+	States
+	{
+	Idle:
+		SPOS AB 10 A_Look
+		Loop
+	See:
+		SPOS AABBCCDD 3 A_Chase
+		Loop
+	Missile:
+		SPOS E 10 A_FaceTarget
+		SPOS F 10 BRIGHT A_SposAttackUseAtkSound
+		SPOS E 10
+		Goto See
+	Pain:
+		SPOS G 3
+		SPOS G 3 A_Pain
+		Goto See
+	DeathChecksDone:
+		SPOS H 5
+		SPOS I 5 A_Scream
+		SPOS J 5 A_NoBlocking
+		SPOS K 5
+	Death.Corpse:
+		SPOS L -1
+		Stop
+	XDeathChecksDone:
+		SPOS M 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		SPOS N 5 A_XScream
+		SPOS O 5 A_NoBlocking
+		SPOS PQRST 5
+		SPOS U -1
+		Stop
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		SPOS L 5
+		SPOS KJIH 5
+		Goto See
+	}
+}

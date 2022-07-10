@@ -1,0 +1,134 @@
+//===========================================================================
+//===========================================================================
+
+Actor Q2Medic : QCDE_MonsterBig	15213	// arch-vile
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	Health 800
+	Radius 20
+	Height 56
+	Speed 16
+	Mass 800
+	PainChance 50
+	Scale 0.45
+	MONSTER
+	+FLOORCLIP
+	+STRIFEDAMAGE
+	+DONTMORPH
+	MinMissileChance 255
+	Tag "$TAG_Q2Medic" // "Medic"
+	SeeSound "q2medic/sight"
+	PainSound "q2medic/pain"
+	DeathSound "q2medic/death"
+	ActiveSound "q2medic/search"
+	Obituary "$OB_Q2Medic" // "%o was vivisected by a medic."
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		MEDN A 10 A_Look
+		Loop
+	See:
+		MEDW ABCDEF 3 A_VileChase
+		Loop
+	Missile:
+		MEDA ABCD 5 A_FaceTarget
+		MEDA DD 5 A_CustomMissile("MedicBlasterStrong",40,12,0)
+		MEDA EFGH 4 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		MEDA I 1 A_CustomMissile("MedicBlasterWeak",40,12,0)	MEDA I 1 A_FaceTarget
+		Goto See
+	Heal:
+		MEDH A 4 A_PlaySound("q2medic/tongueout")
+		MEDH B 12
+		MEDH C 8 A_PlaySound("q2medic/heal")
+		MEDH D 6
+		MEDH E 6 A_PlaySound("q2medic/tongueinside")
+		MEDH F 6
+	Pain:
+		MEDP A 1
+		MEDP A 3 A_Pain
+		Goto See
+	DeathChecksDone:
+		MEDD A 0 A_Scream
+		MEDD A 4
+		MEDD BCD 3
+		MEDD D 3 A_Fall
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal",6)
+		MEDD EFGHI 4
+		MEDD JKLMNOPQR 3
+	Death.Corpse:
+		MEDD S -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+	}
+}
+
+Actor MedicBlasterStrong : HoverBeam
+{
+	Speed 22
+	Damage 12
+	SeeSound "Quake1/Enforcer/Fire"
+	DeathSound "q2weapon/laserhit"
+	Scale 0.28
+	Translation "0:255=%[0,0,0]:[1.0,0.0,0.0]"
+	Alpha 0.99
+	States
+	{
+	Spawn:
+		R058 ABCDE 3 Bright Light("RedMediumPoint3") A_SpawnItemEx("EnforcerBeamExtra",random(0,-4),random(2,-2),random(2,-2),0,0,0,0,32,128)
+		Loop
+	Death:
+		TNT1 AA 0 A_SpawnItemEx("EnforcerBeamExtra",0,0,0,frandom(0.2,1.5),0,frandom(1.5,-1.5),random(0,359),SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SetScale(0.8)
+		R058 F 3 Bright Light("RedMediumPoint2")
+		R058 G 3 Bright Light("RedMediumPoint3")
+		R058 H 3 Bright Light("RedSmallPoint1")
+		R058 I 3 Bright Light("RedSmallPoint2")
+		R058 J 3 Bright Light("RedSmallPoint2")
+		R058 K 3 Bright Light("RedSmallPoint3")
+		Stop
+	}
+}
+
+
+
+
+Actor MedicBlasterWeak : Soldier1Beam
+{
+	Speed 30
+	Scale 0.15
+	RenderStyle Add
+	Damage (random(2,8))
+	SeeSound "q2medic/blasterattack"
+	DeathSound "q2weapon/laserhit"
+	States
+	{
+	Death:
+		TNT1 A 0 A_SetScale(0.3)
+		R058 F 3 Bright Light("OrangeSmallPoint2")
+		R058 G 3 Bright Light("OrangeSmallPoint1")
+		R058 H 3 Bright Light("OrangeSmallPoint1")
+		R058 I 3 Bright Light("OrangeSmallPoint2")
+		R058 J 3 Bright Light("OrangeSmallPoint2")
+		R058 K 3 Bright Light("OrangeSmallPoint3")
+		Stop
+	}
+}
+
+
+

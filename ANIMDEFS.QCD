@@ -1,0 +1,347 @@
+// Menu cursor
+texture optional CURSOR1
+	pic Cursor1  tics 1
+	pic Cursor2  tics 1
+	pic Cursor3  tics 1
+	pic Cursor4  tics 1
+	pic Cursor5  tics 1
+	pic Cursor6  tics 1
+	pic Cursor7  tics 1
+	pic Cursor8  tics 1
+	pic Cursor9  tics 1
+	pic Cursor10 tics 1
+	pic Cursor11 tics 1
+	pic Cursor12 tics 1
+	pic Cursor13 tics 1
+	pic Cursor14 tics 1
+	pic Cursor15 tics 1
+	pic Cursor16 tics 1
+	pic Cursor17 tics 1
+	pic Cursor18 tics 1
+	pic Cursor19 tics 1
+	pic Cursor20 tics 1
+	pic Cursor21 tics 1
+	pic Cursor22 tics 1
+	pic Cursor23 tics 1
+	pic Cursor24 tics 1
+	pic Cursor25 tics 1
+	pic Cursor26 tics 1
+	pic Cursor27 tics 1
+	pic Cursor28 tics 1
+	pic Cursor29 tics 1
+	pic Cursor30 tics 1
+	pic Cursor31 tics 1
+	pic Cursor32 tics 1
+	pic Cursor33 tics 1
+	pic Cursor34 tics 1
+	pic Cursor35 tics 1
+	pic Cursor36 tics 1
+	pic Cursor37 tics 1
+	pic Cursor38 tics 1
+	pic Cursor39 tics 1
+	pic Cursor40 tics 1
+	pic Cursor41 tics 1
+	pic Cursor42 tics 1
+	pic Cursor43 tics 1
+	pic Cursor44 tics 1
+	pic Cursor45 tics 1
+	pic Cursor46 tics 1
+	pic Cursor47 tics 1
+	pic Cursor48 tics 1
+	pic Cursor49 tics 1
+	pic Cursor50 tics 1
+	pic Cursor51 tics 1
+	pic Cursor52 tics 1
+	pic Cursor53 tics 1
+	pic Cursor54 tics 1
+	pic Cursor55 tics 1
+	pic Cursor56 tics 1
+	pic Cursor57 tics 1
+	pic Cursor58 tics 1
+	pic Cursor59 tics 1
+	pic Cursor60 tics 1
+	pic Cursor61 tics 1
+	pic Cursor62 tics 1
+	pic Cursor63 tics 1
+	pic Cursor64 tics 1
+	pic Cursor65 tics 1
+	pic Cursor66 tics 1
+	pic Cursor67 tics 1
+	pic Cursor68 tics 1
+	pic Cursor69 tics 1
+
+texture optional PWUPFIR1
+	pic PWUPFIR1 tics 1
+	pic PWUPFIR2 tics 1
+	pic PWUPFIR3 tics 1
+	pic PWUPFIR4 tics 1
+	pic PWUPFIR5 tics 1
+	pic PWUPFIR6 tics 1
+
+texture optional PWDNFIR1
+	pic PWDNFIR1 tics 1
+	pic PWDNFIR2 tics 1
+	pic PWDNFIR3 tics 1
+	pic PWDNFIR4 tics 1
+	pic PWDNFIR5 tics 1
+	pic PWDNFIR6 tics 1
+
+
+
+
+
+TEXTURE QCTP01
+    pic QCTP01 tics 3
+	pic QCTP02 tics 3
+	pic QCTP03 tics 3
+	pic QCTP04 tics 3
+	pic QCTP05 tics 3
+	pic QCTP06 tics 3
+	pic QCTP07 tics 3
+	pic QCTP08 tics 3
+	pic QCTP09 tics 3
+	pic QCTP10 tics 3
+	pic QCTP11 tics 3
+	pic QCTP12 tics 3
+	pic QCTP13 tics 3
+	pic QCTP14 tics 3
+	pic QCTP15 tics 3
+	pic QCTP16 tics 3
+
+warp texture QCTP01
+warp texture QCTP02
+warp texture QCTP03
+warp texture QCTP04
+warp texture QCTP05
+warp texture QCTP06
+warp texture QCTP07
+warp texture QCTP08
+warp texture QCTP09
+warp texture QCTP10
+warp texture QCTP11
+warp texture QCTP12
+warp texture QCTP13
+warp texture QCTP14
+warp texture QCTP15
+warp texture QCTP16
+
+
+
+
+
+warp texture SP_FACE1
+warp texture SKSNAKE1
+warp texture SKSNAKE2
+warp flat SFLR6_1
+warp flat SFLR6_4
+
+
+texture optional BLOOD1
+pic BLOOD1 tics 1
+pic BLOOD1 tics 1
+texture optional BLOOD2
+pic BLOOD2 tics 1
+pic BLOOD2 tics 1
+texture optional BLOOD3
+pic BLOOD3 tics 1
+pic BLOOD3 tics 1
+warp2 texture BLOOD1
+warp2 texture BLOOD2
+warp2 texture BLOOD3
+
+texture optional BLOOD01
+pic BLOOD01 tics 1
+pic BLOOD01 tics 1
+texture optional BLOOD02
+pic BLOOD02 tics 1
+pic BLOOD02 tics 1
+texture optional BLOOD03
+pic BLOOD03 tics 1
+pic BLOOD03 tics 1
+warp2 texture BLOOD01
+warp2 texture BLOOD02
+warp2 texture BLOOD03
+
+texture optional FWATER1
+pic FWATER1 tics 1
+pic FWATER1 tics 1
+texture optional FWATER2
+pic FWATER2 tics 1
+pic FWATER2 tics 1
+texture optional FWATER3
+pic FWATER3 tics 1
+pic FWATER3 tics 1
+texture optional FWATER4
+pic FWATER4 tics 1
+pic FWATER4 tics 1
+warp2 texture FWATER1
+warp2 texture FWATER2
+warp2 texture FWATER3
+warp2 texture FWATER4
+
+texture optional FWATER01
+pic FWATER01 tics 1
+pic FWATER01 tics 1
+texture optional FWATER02
+pic FWATER02 tics 1
+pic FWATER02 tics 1
+texture optional FWATER03
+pic FWATER03 tics 1
+pic FWATER03 tics 1
+texture optional FWATER04
+pic FWATER04 tics 1
+pic FWATER04 tics 1
+warp2 texture FWATER01
+warp2 texture FWATER02
+warp2 texture FWATER03
+warp2 texture FWATER04
+
+texture optional LAVA1
+pic LAVA1 tics 1
+pic LAVA1 tics 1
+texture optional LAVA2
+pic LAVA2 tics 1
+pic LAVA2 tics 1
+texture optional LAVA3
+pic LAVA3 tics 1
+pic LAVA3 tics 1
+texture optional LAVA4
+pic LAVA4 tics 1
+pic LAVA4 tics 1
+warp texture LAVA1
+warp texture LAVA2
+warp texture LAVA3
+warp texture LAVA4
+
+texture optional LAVA01
+pic LAVA01 tics 1
+pic LAVA01 tics 1
+texture optional LAVA02
+pic LAVA02 tics 1
+pic LAVA02 tics 1
+texture optional LAVA03
+pic LAVA03 tics 1
+pic LAVA03 tics 1
+texture optional LAVA04
+pic LAVA04 tics 1
+pic LAVA04 tics 1
+warp texture LAVA01
+warp texture LAVA02
+warp texture LAVA03
+warp texture LAVA04
+
+texture optional SLIME01
+pic SLIME01 tics 1
+pic SLIME01 tics 1
+texture optional SLIME02
+pic SLIME02 tics 1
+pic SLIME02 tics 1
+texture optional SLIME03
+pic SLIME03 tics 1
+pic SLIME03 tics 1
+texture optional SLIME04
+pic SLIME04 tics 1
+pic SLIME04 tics 1
+texture optional SLIME05
+pic SLIME05 tics 1
+pic SLIME05 tics 1
+texture optional SLIME06
+pic SLIME06 tics 1
+pic SLIME06 tics 1
+texture optional SLIME07
+pic SLIME07 tics 1
+pic SLIME07 tics 1
+texture optional SLIME08
+pic SLIME08 tics 1
+pic SLIME08 tics 1
+warp texture SLIME01
+warp texture SLIME02
+warp texture SLIME03
+warp texture SLIME04
+warp texture SLIME05
+warp texture SLIME06
+warp texture SLIME07
+warp texture SLIME08
+
+texture optional NUKAGE1
+pic NUKAGE1 tics 1
+pic NUKAGE1 tics 1
+texture optional NUKAGE2
+pic NUKAGE2 tics 1
+pic NUKAGE2 tics 1
+texture optional NUKAGE3
+pic NUKAGE3 tics 1
+pic NUKAGE3 tics 1
+warp2 texture NUKAGE1
+warp2 texture NUKAGE2
+warp2 texture NUKAGE3
+
+texture optional NUKAGE01
+pic NUKAGE01 tics 1
+pic NUKAGE01 tics 1
+texture optional NUKAGE02
+pic NUKAGE02 tics 1
+pic NUKAGE02 tics 1
+texture optional NUKAGE03
+pic NUKAGE03 tics 1
+pic NUKAGE03 tics 1
+warp2 texture NUKAGE01
+warp2 texture NUKAGE02
+warp2 texture NUKAGE03
+
+
+
+//------------------------------------------
+// For the controlled rocket
+//cameratexture CAMERT 800 600
+cameratexture CAMERT 1280 720
+
+
+
+warp2 texture DP30A1
+warp2 texture DP30A2A8
+warp2 texture DP30A3A7
+warp2 texture DP30A4A6
+warp2 texture DP30A5
+warp2 texture DP30B1
+warp2 texture DP30B2B8
+warp2 texture DP30B3B7
+warp2 texture DP30B4B6
+warp2 texture DP30B5
+warp2 texture DP30C1
+warp2 texture DP30C2C8
+warp2 texture DP30C3C7
+warp2 texture DP30C4C6
+warp2 texture DP30C5
+warp2 texture DP30D1
+warp2 texture DP30D2D8
+warp2 texture DP30D3D7
+warp2 texture DP30D4D6
+warp2 texture DP30D5
+warp2 texture DP30E1
+warp2 texture DP30E2E8
+warp2 texture DP30E3E7
+warp2 texture DP30E4E6
+warp2 texture DP30E5
+warp2 texture DP30F1
+warp2 texture DP30F2F8
+warp2 texture DP30F3F7
+warp2 texture DP30F4F6
+warp2 texture DP30F5
+warp2 texture DP30G1
+warp2 texture DP30G2G8
+warp2 texture DP30G3G7
+warp2 texture DP30G4G6
+warp2 texture DP30G5
+warp2 texture DP30H1
+warp2 texture DP30H2H8
+warp2 texture DP30H3H7
+warp2 texture DP30H4H6
+warp2 texture DP30H5
+warp2 texture DP30I0
+warp2 texture DP30J0
+warp2 texture DP30K0
+warp2 texture DP30L0
+warp2 texture DP30M0
+warp2 texture DP30N0
+warp2 texture DP30O0

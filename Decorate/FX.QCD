@@ -1,0 +1,428 @@
+//$GZDB_SKIP
+
+//----------------------------------------------------------------------
+// Teleport fogs
+//----------------------------------------------------------------------
+
+Actor QCFog replaces TeleportFog
+{
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	+BRIGHT
+	Radius 3
+	Height 5
+	Renderstyle Add
+	Scale 0.5
+	Alpha 0.99
+	+NOINTERACTION
+	SeeSound ""
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Playsound("QCDE/Other/QCTeleport",CHAN_AUTO,1.0,false)
+		TNT1 A 0 A_Warp(AAPTR_DEFAULT,0,0,30)
+		DB17 AB        1 Bright Light("PurpleSmallPoint2")	A_SetScale(scalex+0.035)
+		DB17 CD        1 Bright Light("PurpleSmallPoint1")	A_SetScale(scalex+0.035)
+		DB17 EF        1 Bright Light("PurpleMediumPoint3")	A_SetScale(scalex+0.035)
+		DB17 GHIJKLMNO 1 Bright Light("PurpleMediumPoint2")	A_SetScale(scalex+0.035)
+		DB17 PQ        1 Bright Light("PurpleMediumPoint3")	A_SetScale(scalex+0.035)
+		DB17 RS        1 Bright Light("PurpleMediumPoint3")	A_SetScale(scalex+0.035)
+		DB17 TU        1 Bright Light("PurpleSmallPoint1")	A_SetScale(scalex+0.035)
+		DB17 VW        1 Bright Light("PurpleSmallPoint2")	A_SetScale(scalex+0.035)
+		DB17 XYZ       1 Bright Light("PurpleSmallPoint3")	A_SetScale(scalex+0.035)
+		//DB17 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 Bright A_SetScale(scalex+0.035)
+		Stop
+	}
+}
+
+Actor NewItemFog : QCFog replaces ItemFog
+{
+	Scale 0.4
+	RenderStyle None
+	Translation "0:255=%[0,0,0]:[0,1,2]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 10
+		Stop
+	}
+}
+
+
+
+//----------------------------------------------------------------------
+//	Tracers
+//----------------------------------------------------------------------
+
+Actor BulletSmallTracer : FastProjectile
+{
+	Projectile
+	+RANDOMIZE
+	+FORCEXYBILLBOARD
+	+DONTSPLASH
+	+NOEXTREMEDEATH
+	+DONTBLAST
+	damage 0
+	radius 2
+	height 2
+	speed 125
+	renderstyle ADD
+	alpha 0.9
+	scale 0.13
+	states
+	{
+	Spawn:
+		TRAC A 1
+		TRAC A 70 BRIGHT A_PlaySound("QCDE/Other/BulletWhoosh",5,1.0,false,3.0)
+		Stop
+	Death:
+		TNT1 A 1
+		Stop
+	XDeath:
+		TNT1 A 1
+		Stop
+	}
+}
+
+
+//==================================================================================
+//==================================================================================
+//	This is used for powerup blurry background, like megahealth, invul, protecc,
+//	quad, and galen's totems.
+//==================================================================================
+//==================================================================================
+Actor GenericPowerupFXBackground
+{
+	var int user_t;
+	var int user_x;
+	var int user_y;
+	var int user_z;
+	var int user_minalpha;
+	var int user_maxalpha;
+	var int user_rendermode;
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NONETID
+	Radius 1
+	Height 2
+	Gravity 1.0
+	Scale 0.8
+	Alpha 0.01
+	States
+	{
+	Spawn:
+		PLAY B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		Goto LooperIn
+	PreLooperIn:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_EffectMustDie"), "EndOfLife")
+		Goto LooperIn
+	LooperIn:
+		"####" "#" 1 BRIGHT A_SetTranslucent(user_t / 100.0, 1-user_rendermode)
+		"####" "#" 0 A_SetUserVar(user_t, user_t + 5)
+		"####" "#" 0 A_JumpIf(user_t >= user_maxalpha, "PreLooperOut")
+		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE,"LooperIn")
+		Goto EndOfLife
+	PreLooperOut:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_EffectMustDie"), "EndOfLife")
+		Goto LooperOut
+	LooperOut:
+		"####" "#" 1 BRIGHT A_SetTranslucent(user_t / 100.0, 1-user_rendermode)
+		"####" "#" 0 A_SetUserVar(user_t, user_t - 2)
+		"####" "#" 0 A_JumpIf(user_t <= user_minalpha, "PreLooperIn")
+		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE,"LooperOut")
+		Goto EndOfLife
+	EndOfLife:
+	Death:
+		// This Long trail of invisible existence is required for lagged net games.
+		// During the network downtime, the target is considered inexistent, so this
+		// state will often be hit wrongly. If the FX actor actually hits Stop, item
+		// stops shining after lag is over. This allows for up to 2 seconds of lag at
+		// a time during which FX actor can find out that item wasn't actually taken.
+		"####" "############################################################################" 1 BRIGHT A_FadeOut(0.25, false)
+		Stop
+	Remove:
+		// This is immediate, for scripted removal.
+		TNT1 A 0 Thing_ChangeTID(0,0)
+		Stop
+	}
+}
+
+const int TRANSLATION_REDTEAM   = 9200;
+const int TRANSLATION_BLUETEAM  = 9201;
+const int TRANSLATION_GCOLOR    = 9202;
+const int TRANSLATION_MGCOLOR   = 9203;
+const int TRANSLATION_SGCOLOR   = 9204;
+const int TRANSLATION_NGCOLOR   = 9205;
+const int TRANSLATION_HMGCOLOR  = 9206;
+const int TRANSLATION_SSGCOLOR  = 9207;
+const int TRANSLATION_SNGCOLOR  = 9208;
+const int TRANSLATION_TBCOLOR   = 9209;
+const int TRANSLATION_RLCOLOR   = 9210;
+const int TRANSLATION_LGCOLOR   = 9211;
+const int TRANSLATION_RGCOLOR   = 9212;
+const int TRANSLATION_BFGCOLOR  = 9213;
+
+
+//-----------------------------------------------------------------------------
+//	Ally Marker
+//-----------------------------------------------------------------------------
+
+Actor AllyMarker : GenericPowerupFXBackground
+{
+	+FORCEXYBILLBOARD
+	Renderstyle Stencil
+	Scale .02
+	Alpha 1
+	States
+	{
+	Spawn:
+		ALLY B 0 NoDelay
+		ALLY B 0 ACS_NamedExecuteWithResult("QCDE_AllyMarkerSpawned", args[0])
+		Goto Looper
+	Looper:
+		"####" "#" 1 BRIGHT
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_AbilityFXMustDie"), "Death")
+		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE,"Looper")
+		Goto Death
+	}
+}
+
+//-----------------------------------------------------------------------------
+//	Foe Marker
+//-----------------------------------------------------------------------------
+
+Actor CrownProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_ThrowGrenade("BestMarker")
+		Stop
+	}
+}
+
+Actor BestMarker : GenericPowerupFXBackground
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NONETID
+	+BRIGHT
+	Radius 1
+	Height 2
+	Gravity 0.0
+	Scale 0.15
+	States
+	{
+	Spawn:
+		TNT1 A 1 NoDelay A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerGhostTint",1,"Disappear")
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerWendigoTint",1,"Disappear") // This is a bad way of doing this, needs a refactor before 3.0
+		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerGhostTint",1,"Disappear")
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerWendigoTint",1,"Disappear")
+		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerGhostTint",1,"Disappear")
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerWendigoTint",1,"Disappear")
+		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerGhostTint",1,"Disappear")
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerWendigoTint",1,"Disappear")
+		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		Stop
+	Disappear:
+		TNT1 A 10
+		Stop
+	}
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+//	GL light flashes for powerups
+//-----------------------------------------------------------------------------
+
+// Maybe move these to Powerups.QCD? :thinking:
+// That way, when a new powerup is added, only Powerups.QCD needs to be changed
+// in Decorate.
+Actor QuadFlash
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 1 Light("MagentaBigPoint2")
+		TNT1 A 1 Light("MagentaBigPoint3")
+		TNT1 A 1 Light("MagentaMediumPoint1")
+		TNT1 A 1 Light("MagentaMediumPoint2")
+		TNT1 A 1 Light("MagentaMediumPoint3")
+		TNT1 A 1 Light("MagentaSmallPoint1")
+		TNT1 A 1 Light("MagentaSmallPoint2")
+		TNT1 A 1 Light("MagentaSmallPoint3")
+		TNT1 A 100
+		Stop
+	}
+}
+Actor ProtecFlash
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 1 Light("GreenCyanBigPoint2")
+		TNT1 A 1 Light("GreenCyanBigPoint3")
+		TNT1 A 1 Light("GreenCyanMediumPoint1")
+		TNT1 A 1 Light("GreenCyanMediumPoint2")
+		TNT1 A 1 Light("GreenCyanMediumPoint3")
+		TNT1 A 1 Light("GreenCyanSmallPoint1")
+		TNT1 A 1 Light("GreenCyanSmallPoint2")
+		TNT1 A 1 Light("GreenCyanSmallPoint3")
+		TNT1 A 100
+		Stop
+	}
+}
+
+Actor InvulFlash
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 1 Light("RedBigPoint2")
+		TNT1 A 1 Light("RedBigPoint3")
+		TNT1 A 1 Light("RedMediumPoint1")
+		TNT1 A 1 Light("RedMediumPoint2")
+		TNT1 A 1 Light("RedMediumPoint3")
+		TNT1 A 1 Light("RedSmallPoint1")
+		TNT1 A 1 Light("RedSmallPoint2")
+		TNT1 A 1 Light("RedSmallPoint3")
+		TNT1 A 100
+		Stop
+	}
+}
+
+Actor InfinFlash
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 1 Light("YellowBigPoint2")
+		TNT1 A 1 Light("YellowBigPoint3")
+		TNT1 A 1 Light("YellowMediumPoint1")
+		TNT1 A 1 Light("YellowMediumPoint2")
+		TNT1 A 1 Light("YellowMediumPoint3")
+		TNT1 A 1 Light("YellowSmallPoint1")
+		TNT1 A 1 Light("YellowSmallPoint2")
+		TNT1 A 1 Light("YellowSmallPoint3")
+		TNT1 A 100
+		Stop
+	}
+}
+
+Actor BigArmorGiverFlash
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 1 Light("GreenBigPoint2")
+		TNT1 A 1 Light("GreenBigPoint3")
+		TNT1 A 1 Light("GreenMediumPoint1")
+		TNT1 A 1 Light("GreenMediumPoint2")
+		TNT1 A 1 Light("GreenMediumPoint3")
+		TNT1 A 1 Light("GreenSmallPoint1")
+		TNT1 A 1 Light("GreenSmallPoint2")
+		TNT1 A 1 Light("GreenSmallPoint3")
+		TNT1 A 100
+		Stop
+	}
+}
+
+Actor MegaHealthFlash
+{
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		TNT1 A 1 Light("BlueCyanBigPoint2")
+		TNT1 A 1 Light("BlueCyanBigPoint3")
+		TNT1 A 1 Light("BlueCyanMediumPoint1")
+		TNT1 A 1 Light("BlueCyanMediumPoint2")
+		TNT1 A 1 Light("BlueCyanMediumPoint3")
+		TNT1 A 1 Light("BlueCyanSmallPoint1")
+		TNT1 A 1 Light("BlueCyanSmallPoint2")
+		TNT1 A 1 Light("BlueCyanSmallPoint3")
+		TNT1 A 100
+		Stop
+	}
+}
+
+
+
+
+
+
+//------------------------------------------------------------------
+// New ice chunks, ported from AEOD
+Actor QCIceChunk replaces IceChunk
+{
+	Radius 3
+	Height 4
+	Mass 5
+	Gravity 0.35
+	+CORPSE
+	+DROPOFF
+	+CANNOTPUSH
+	+FLOORCLIP
+	+NOTELEPORT
+	+NOBLOCKMAP
+	+MOVEWITHSECTOR
+	+CLIENTSIDEONLY
+	+NONETID
+	Scale 0.12
+	RenderStyle Add
+	Translation "0:255=%[0.57,0.6,0.84]:[0.9,0.9,0.9]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SetTranslucent(0.9,1)
+		TNT1 A 35 A_Jump(256,"Type1","Type2","Type3")
+		Goto Type1
+	Type1:
+		GIB7 ABCDEFG 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		GIB7 HIJKLMNOP 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		GIB7 QRSTUVWXYZ 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		Loop
+	Type2:
+		GIB8 ABCDEFG 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		GIB8 HIJKLMNOP 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		GIB8 QRSTUVWXYZ 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		Loop
+	Type3:
+		GIB9 ABCDEFG 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		GIB9 HIJKLMNOP 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		GIB9 QRSTUVWXYZ 1
+		"####" "#" 0 A_JumpIf(waterlevel==3,"Staph")
+		Loop
+	Crash:
+		"####" "#" 3 A_FadeOut(0.02)
+		Loop
+	Staph:
+		"####" "#" 0 A_Jump(200,3,4,5,6)
+		"####" "########" 15
+		Goto Crash
+	}
+}

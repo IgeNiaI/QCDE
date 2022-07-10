@@ -1,0 +1,1268 @@
+$pitchshiftrange 0
+
+//*********************************************************************************
+//*********************************************************************************
+// 		Menu Sounds
+//*********************************************************************************
+//*********************************************************************************
+
+Sounds/Music/QCDETheme	"Sounds/Menu/QCDEtheme.ogg"
+
+menu/activate		"Sounds/UI/Menu/PlayNow.ogg"	// Activate a new menu
+menu/backup			"Sounds/UI/Menu/ClickBack.ogg"	// Backup to previous menu
+menu/prompt			dsswtchn	// Activate a prompt "menu"
+menu/cursor			"Sounds/UI/Menu/MouseHover.ogg"		// Move cursor up/down
+menu/change			"Sounds/UI/Menu/TickSmallIn.ogg"	// Select new value for option
+menu/invalid		dsoof		// Menu not available
+menu/dismiss		"Sounds/UI/Menu/TickSmallOut.ogg"	// Dismiss a prompt message
+menu/choose			"Sounds/UI/Menu/ClickForward.ogg"	// Choose a menu item
+menu/clear			"Sounds/UI/Menu/PlayNow.ogg"	// Close top menu
+
+
+intermission/tick			"Sounds/UI/Menu/ScoreLoop.ogg"
+intermission/cooptotal		"Sounds/UI/Menu/ConfirmChamp.ogg"
+intermission/pastdmstats	"Sounds/UI/Menu/ConfirmChamp.ogg"
+intermission/nextstage		"Sounds/UI/Menu/MatchFound.ogg"
+intermission/paststats		"Sounds/UI/Menu/ConfirmChamp.ogg"
+intermission/pastcoopstats	"Sounds/UI/Menu/ConfirmChamp.ogg"
+
+menu/quit1	"Sounds/UI/Menu/ObeliskCaptured.ogg"
+menu/quit2	"Sounds/UI/Menu/ObeliskCaptured.ogg"
+
+Map/Completionist/Backpack		"Sounds/UI/Complet_Backpack.ogg"
+Map/Completionist/Chest			"Sounds/UI/Complet_Chest.ogg"
+Map/Completionist/Reliquary		"Sounds/UI/Complet_Reliquary.ogg"
+Map/Completionist/Reveal		"Sounds/UI/Complet_Reveal.ogg"
+Map/Completionist/Acquire		"Sounds/UI/Complet_Acquire.ogg"
+
+Map/MonstersKilled	"Sounds/UI/Map_MonstersKilled.ogg"
+Map/SecretsFound	"Sounds/UI/Map_AllSecrets.ogg"
+
+Map/CTF/FlagCaptureFriendly		"Sounds/UI/Flag_capture_friendly.ogg"
+Map/CTF/FlagCaptureHostile		"Sounds/UI/Flag_pickup_Hostile.ogg"
+Map/CTF/FlagDeliverFriendly		"Sounds/UI/Flag_deliver_friendly.ogg"
+Map/CTF/FlagDeliverHostile		"Sounds/UI/Flag_deliver_Hostile.ogg"
+Map/CTF/FlagReset				"Sounds/UI/Flag_reset.ogg"
+Map/CTF/FlagSpawn				"Sounds/UI/Flag_spawn.ogg"
+
+//*********************************************************************************
+//*********************************************************************************
+// 		Footsteps
+//*********************************************************************************
+//*********************************************************************************
+
+
+//Ranger's
+$random QC/UI/MediumStep	{ QC/UI/MediumStep1 QC/UI/MediumStep2 QC/UI/MediumStep3
+	QC/UI/MediumStep4 QC/UI/MediumStep5 QC/UI/MediumStep6 QC/UI/MediumStep7
+	QC/UI/MediumStep8 QC/UI/MediumStep9 QC/UI/MediumStep0	}
+
+QC/UI/MediumStep1			"Sounds/Players/Footsteps/MediumStep1.ogg"
+QC/UI/MediumStep2			"Sounds/Players/Footsteps/MediumStep2.ogg"
+QC/UI/MediumStep3			"Sounds/Players/Footsteps/MediumStep3.ogg"
+QC/UI/MediumStep4			"Sounds/Players/Footsteps/MediumStep4.ogg"
+QC/UI/MediumStep5			"Sounds/Players/Footsteps/MediumStep5.ogg"
+QC/UI/MediumStep6			"Sounds/Players/Footsteps/MediumStep6.ogg"
+QC/UI/MediumStep7			"Sounds/Players/Footsteps/MediumStep7.ogg"
+QC/UI/MediumStep8			"Sounds/Players/Footsteps/MediumStep8.ogg"
+QC/UI/MediumStep9			"Sounds/Players/Footsteps/MediumStep9.ogg"
+QC/UI/MediumStep0			"Sounds/Players/Footsteps/MediumStep0.ogg"
+
+$volume QC/UI/MediumStep1 0.9
+$volume QC/UI/MediumStep2 0.9
+$volume QC/UI/MediumStep3 0.9
+$volume QC/UI/MediumStep4 0.9
+$volume QC/UI/MediumStep5 0.9
+$volume QC/UI/MediumStep6 0.9
+$volume QC/UI/MediumStep7 0.9
+$volume QC/UI/MediumStep8 0.9
+$volume QC/UI/MediumStep9 0.9
+$volume QC/UI/MediumStep0 0.9
+
+$rolloff QC/UI/MediumStep1 150 1700
+$rolloff QC/UI/MediumStep2 150 1700
+$rolloff QC/UI/MediumStep3 150 1700
+$rolloff QC/UI/MediumStep4 150 1700
+$rolloff QC/UI/MediumStep5 150 1700
+$rolloff QC/UI/MediumStep6 150 1700
+$rolloff QC/UI/MediumStep7 150 1700
+$rolloff QC/UI/MediumStep8 150 1700
+$rolloff QC/UI/MediumStep9 150 1700
+$rolloff QC/UI/MediumStep0 150 1700
+//BJB
+//"cloth" is same as "light", but as alias to be clear it sounds like clothes moving too
+$random QC/UI/ClothStep	{ QC/UI/LightStep1 QC/UI/LightStep2 QC/UI/LightStep3
+						QC/UI/LightStep4 QC/UI/LightStep5 }
+$random QC/UI/LightStep	{ QC/UI/LightStep1 QC/UI/LightStep2 QC/UI/LightStep3
+						QC/UI/LightStep4 QC/UI/LightStep5 }
+QC/UI/LightStep1			"Sounds/Players/Footsteps/LiteStep1.ogg"
+QC/UI/LightStep2			"Sounds/Players/Footsteps/LiteStep2.ogg"
+QC/UI/LightStep3			"Sounds/Players/Footsteps/LiteStep3.ogg"
+QC/UI/LightStep4			"Sounds/Players/Footsteps/LiteStep4.ogg"
+QC/UI/LightStep5			"Sounds/Players/Footsteps/LiteStep5.ogg"
+
+$volume QC/UI/LightStep1 0.7
+$volume QC/UI/LightStep2 0.7
+$volume QC/UI/LightStep3 0.7
+$volume QC/UI/LightStep4 0.7
+$volume QC/UI/LightStep5 0.7
+
+$rolloff QC/UI/LightStep1 150 1700
+$rolloff QC/UI/LightStep2 150 1700
+$rolloff QC/UI/LightStep3 150 1700
+$rolloff QC/UI/LightStep4 150 1700
+$rolloff QC/UI/LightStep5 150 1700
+
+
+//Clutch
+$random QC/UI/RobotStep	{ QC/UI/RobotStep1 QC/UI/RobotStep2 QC/UI/RobotStep3
+						QC/UI/RobotStep4 QC/UI/RobotStep5 QC/UI/RobotStep6 }
+QC/UI/RobotStep1			"Sounds/Players/Footsteps/RobotStep1.ogg"
+QC/UI/RobotStep2			"Sounds/Players/Footsteps/RobotStep2.ogg"
+QC/UI/RobotStep3			"Sounds/Players/Footsteps/RobotStep3.ogg"
+QC/UI/RobotStep4			"Sounds/Players/Footsteps/RobotStep4.ogg"
+QC/UI/RobotStep5			"Sounds/Players/Footsteps/RobotStep5.ogg"
+QC/UI/RobotStep6			"Sounds/Players/Footsteps/RobotStep6.ogg"
+
+$volume QC/UI/RobotStep1 0.7
+$volume QC/UI/RobotStep2 0.7
+$volume QC/UI/RobotStep3 0.7
+$volume QC/UI/RobotStep4 0.7
+$volume QC/UI/RobotStep5 0.7
+$volume QC/UI/RobotStep6 0.7
+
+$rolloff QC/UI/RobotStep1 150 1700
+$rolloff QC/UI/RobotStep2 150 1700
+$rolloff QC/UI/RobotStep3 150 1700
+$rolloff QC/UI/RobotStep4 150 1700
+$rolloff QC/UI/RobotStep5 150 1700
+$rolloff QC/UI/RobotStep6 150 1700
+
+
+//Doomguy
+$random QC/UI/DoomStep { QC/UI/DoomStep1 QC/UI/DoomStep2 QC/UI/DoomStep3
+						QC/UI/DoomStep4 QC/UI/DoomStep5 QC/UI/DoomStep6 }
+
+QC/UI/DoomStep1			"Sounds/Players/Footsteps/DoomStep1.ogg"
+QC/UI/DoomStep2			"Sounds/Players/Footsteps/DoomStep2.ogg"
+QC/UI/DoomStep3			"Sounds/Players/Footsteps/DoomStep3.ogg"
+QC/UI/DoomStep4			"Sounds/Players/Footsteps/DoomStep4.ogg"
+QC/UI/DoomStep5			"Sounds/Players/Footsteps/DoomStep5.ogg"
+QC/UI/DoomStep6			"Sounds/Players/Footsteps/DoomStep6.ogg"
+
+
+$rolloff QC/UI/DoomStep1 150 1700
+$rolloff QC/UI/DoomStep2 150 1700
+$rolloff QC/UI/DoomStep3 150 1700
+$rolloff QC/UI/DoomStep4 150 1700
+$rolloff QC/UI/DoomStep5 150 1700
+$rolloff QC/UI/DoomStep6 150 1700
+
+
+//ScaleBearer
+$random QC/UI/HeavyStep { QC/UI/HeavyStep1 QC/UI/HeavyStep2 QC/UI/HeavyStep3
+						QC/UI/HeavyStep4 QC/UI/HeavyStep5 QC/UI/HeavyStep6 }
+QC/UI/HeavyStep1		"Sounds/Players/Footsteps/HeavyStep1.ogg"
+QC/UI/HeavyStep2		"Sounds/Players/Footsteps/HeavyStep2.ogg"
+QC/UI/HeavyStep3		"Sounds/Players/Footsteps/HeavyStep3.ogg"
+QC/UI/HeavyStep4		"Sounds/Players/Footsteps/HeavyStep4.ogg"
+QC/UI/HeavyStep5		"Sounds/Players/Footsteps/HeavyStep5.ogg"
+QC/UI/HeavyStep6		"Sounds/Players/Footsteps/HeavyStep6.ogg"
+
+$volume QC/UI/HeavyStep1 0.7
+$volume QC/UI/HeavyStep2 0.7
+$volume QC/UI/HeavyStep3 0.7
+$volume QC/UI/HeavyStep4 0.7
+$volume QC/UI/HeavyStep5 0.7
+$volume QC/UI/HeavyStep6 0.7
+
+$rolloff QC/UI/HeavyStep1 150 1700
+$rolloff QC/UI/HeavyStep2 150 1700
+$rolloff QC/UI/HeavyStep3 150 1700
+$rolloff QC/UI/HeavyStep4 150 1700
+$rolloff QC/UI/HeavyStep5 150 1700
+$rolloff QC/UI/HeavyStep6 150 1700
+
+
+//Visor
+$random QC/UI/VisorStep { QC/UI/VisorStep1 QC/UI/VisorStep2 QC/UI/VisorStep3
+						QC/UI/VisorStep4 QC/UI/VisorStep5 QC/UI/VisorStep6 }
+QC/UI/VisorStep1		"Sounds/Players/Footsteps/VisorStep1.ogg"
+QC/UI/VisorStep2		"Sounds/Players/Footsteps/VisorStep2.ogg"
+QC/UI/VisorStep3		"Sounds/Players/Footsteps/VisorStep3.ogg"
+QC/UI/VisorStep4		"Sounds/Players/Footsteps/VisorStep4.ogg"
+QC/UI/VisorStep5		"Sounds/Players/Footsteps/VisorStep5.ogg"
+QC/UI/VisorStep6		"Sounds/Players/Footsteps/VisorStep6.ogg"
+
+$rolloff QC/UI/VisorStep1 150 1700
+$rolloff QC/UI/VisorStep2 150 1700
+$rolloff QC/UI/VisorStep3 150 1700
+$rolloff QC/UI/VisorStep4 150 1700
+$rolloff QC/UI/VisorStep5 150 1700
+$rolloff QC/UI/VisorStep6 150 1700
+
+
+//Kane
+$random QC/UI/KaneStep { QC/UI/KaneStep1 QC/UI/KaneStep2 QC/UI/KaneStep3
+						QC/UI/KaneStep4 QC/UI/KaneStep5 }
+QC/UI/KaneStep1		"Sounds/Players/Footsteps/KaneStep1.ogg"
+QC/UI/KaneStep2		"Sounds/Players/Footsteps/KaneStep2.ogg"
+QC/UI/KaneStep3		"Sounds/Players/Footsteps/KaneStep3.ogg"
+QC/UI/KaneStep4		"Sounds/Players/Footsteps/KaneStep4.ogg"
+QC/UI/KaneStep5		"Sounds/Players/Footsteps/KaneStep5.ogg"
+
+$rolloff QC/UI/KaneStep1 150 1700
+$rolloff QC/UI/KaneStep2 150 1700
+$rolloff QC/UI/KaneStep3 150 1700
+$rolloff QC/UI/KaneStep4 150 1700
+$rolloff QC/UI/KaneStep5 150 1700
+
+
+//Boot steps
+$random QC/UI/BootStep { QC/UI/BootStep1 QC/UI/BootStep2 QC/UI/BootStep3 QC/UI/BootStep4 }
+QC/UI/BootStep1		"Sounds/Players/Footsteps/BootStep1.ogg"
+QC/UI/BootStep2		"Sounds/Players/Footsteps/BootStep2.ogg"
+QC/UI/BootStep3		"Sounds/Players/Footsteps/BootStep3.ogg"
+QC/UI/BootStep4		"Sounds/Players/Footsteps/BootStep4.ogg"
+
+$rolloff QC/UI/BootStep1 150 1700
+$rolloff QC/UI/BootStep2 150 1700
+$rolloff QC/UI/BootStep3 150 1700
+$rolloff QC/UI/BootStep4 150 1700
+
+
+//Bitterman steps (q2)
+$random QC/UI/Q2Step { QC/UI/Q2Step1 QC/UI/Q2Step2 QC/UI/Q2Step3 QC/UI/Q2Step4 }
+QC/UI/Q2Step1		"Sounds/Players/Footsteps/Q2Step1.ogg"
+QC/UI/Q2Step2		"Sounds/Players/Footsteps/Q2Step2.ogg"
+QC/UI/Q2Step3		"Sounds/Players/Footsteps/Q2Step3.ogg"
+QC/UI/Q2Step4		"Sounds/Players/Footsteps/Q2Step4.ogg"
+
+$rolloff QC/UI/Q2Step1 150 1700
+$rolloff QC/UI/Q2Step2 150 1700
+$rolloff QC/UI/Q2Step3 150 1700
+$rolloff QC/UI/Q2Step4 150 1700
+
+//Nyx
+$random QC/UI/NyxStep { QC/UI/NyxStep1 QC/UI/NyxStep2 QC/UI/NyxStep3 QC/UI/NyxStep4 QC/UI/NyxStep5 QC/UI/NyxStep6 }
+QC/UI/NyxStep1		"Sounds/Players/Footsteps/NyxStep1.ogg"
+QC/UI/NyxStep2		"Sounds/Players/Footsteps/NyxStep2.ogg"
+QC/UI/NyxStep3		"Sounds/Players/Footsteps/NyxStep3.ogg"
+QC/UI/NyxStep4		"Sounds/Players/Footsteps/NyxStep4.ogg"
+QC/UI/NyxStep5		"Sounds/Players/Footsteps/NyxStep5.ogg"
+QC/UI/NyxStep6		"Sounds/Players/Footsteps/NyxStep6.ogg"
+
+
+$rolloff QC/UI/NyxStep1 150 1700
+$rolloff QC/UI/NyxStep2 150 1700
+$rolloff QC/UI/NyxStep3 150 1700
+$rolloff QC/UI/NyxStep4 150 1700
+$rolloff QC/UI/NyxStep5 150 1700
+$rolloff QC/UI/NyxStep6 150 1700
+
+
+
+//Galen
+$random QC/UI/GalenStep { QC/UI/GalenStep1 QC/UI/GalenStep2 QC/UI/GalenStep3 QC/UI/GalenStep4 QC/UI/GalenStep5 QC/UI/GalenStep6 }
+QC/UI/GalenStep1		"Sounds/Players/Footsteps/GalenStep1.ogg"
+QC/UI/GalenStep2		"Sounds/Players/Footsteps/GalenStep2.ogg"
+QC/UI/GalenStep3		"Sounds/Players/Footsteps/GalenStep3.ogg"
+QC/UI/GalenStep4		"Sounds/Players/Footsteps/GalenStep4.ogg"
+QC/UI/GalenStep5		"Sounds/Players/Footsteps/GalenStep5.ogg"
+QC/UI/GalenStep6		"Sounds/Players/Footsteps/GalenStep6.ogg"
+
+$rolloff QC/UI/GalenStep1 150 1700
+$rolloff QC/UI/GalenStep2 150 1700
+$rolloff QC/UI/GalenStep3 150 1700
+$rolloff QC/UI/GalenStep4 150 1700
+$rolloff QC/UI/GalenStep5 150 1700
+$rolloff QC/UI/GalenStep6 150 1700
+
+
+//Sorgaul, totally not sorlag
+$random QC/UI/SorgaulStep { QC/UI/SorgaulStep1 QC/UI/SorgaulStep2 QC/UI/SorgaulStep3 QC/UI/SorgaulStep4 QC/UI/SorgaulStep5 QC/UI/SorgaulStep6 }
+QC/UI/SorgaulStep1		"Sounds/Players/Footsteps/SorgaulStep1.ogg"
+QC/UI/SorgaulStep2		"Sounds/Players/Footsteps/SorgaulStep2.ogg"
+QC/UI/SorgaulStep3		"Sounds/Players/Footsteps/SorgaulStep3.ogg"
+QC/UI/SorgaulStep4		"Sounds/Players/Footsteps/SorgaulStep4.ogg"
+QC/UI/SorgaulStep5		"Sounds/Players/Footsteps/SorgaulStep5.ogg"
+QC/UI/SorgaulStep6		"Sounds/Players/Footsteps/SorgaulStep6.ogg"
+
+$rolloff QC/UI/SorgaulStep1 150 1700
+$rolloff QC/UI/SorgaulStep2 150 1700
+$rolloff QC/UI/SorgaulStep3 150 1700
+$rolloff QC/UI/SorgaulStep4 150 1700
+$rolloff QC/UI/SorgaulStep5 150 1700
+$rolloff QC/UI/SorgaulStep6 150 1700
+
+
+//Duke steps, from DNF
+$random QC/UI/DukeNukemStep { QC/UI/DukeNukemStep1 QC/UI/DukeNukemStep2 QC/UI/DukeNukemStep3
+							QC/UI/DukeNukemStep4 QC/UI/DukeNukemStep5 QC/UI/DukeNukemStep6 }
+QC/UI/DukeNukemStep1		"Sounds/Players/Footsteps/DukeNukemStep1.ogg"
+QC/UI/DukeNukemStep2		"Sounds/Players/Footsteps/DukeNukemStep2.ogg"
+QC/UI/DukeNukemStep3		"Sounds/Players/Footsteps/DukeNukemStep3.ogg"
+QC/UI/DukeNukemStep4		"Sounds/Players/Footsteps/DukeNukemStep4.ogg"
+QC/UI/DukeNukemStep5		"Sounds/Players/Footsteps/DukeNukemStep5.ogg"
+QC/UI/DukeNukemStep6		"Sounds/Players/Footsteps/DukeNukemStep6.ogg"
+
+
+$rolloff QC/UI/DukeNukemStep1 150 1700
+$rolloff QC/UI/DukeNukemStep2 150 1700
+$rolloff QC/UI/DukeNukemStep3 150 1700
+$rolloff QC/UI/DukeNukemStep4 150 1700
+$rolloff QC/UI/DukeNukemStep5 150 1700
+$rolloff QC/UI/DukeNukemStep6 150 1700
+
+
+
+//Durandal steps, by DBT
+// Mixed from L4D + Hard reset steps
+$random QC/UI/DurandalStep { QC/UI/DurandalStep1 QC/UI/DurandalStep2 QC/UI/DurandalStep3  QC/UI/DurandalStep4
+							QC/UI/DurandalStep5 QC/UI/DurandalStep6 QC/UI/DurandalStep7 QC/UI/DurandalStep8 }
+QC/UI/DurandalStep1		"Sounds/Players/Footsteps/DurandalStep1.ogg"
+QC/UI/DurandalStep2		"Sounds/Players/Footsteps/DurandalStep2.ogg"
+QC/UI/DurandalStep3		"Sounds/Players/Footsteps/DurandalStep3.ogg"
+QC/UI/DurandalStep4		"Sounds/Players/Footsteps/DurandalStep4.ogg"
+QC/UI/DurandalStep5		"Sounds/Players/Footsteps/DurandalStep5.ogg"
+QC/UI/DurandalStep6		"Sounds/Players/Footsteps/DurandalStep6.ogg"
+QC/UI/DurandalStep7		"Sounds/Players/Footsteps/DurandalStep7.ogg"
+QC/UI/DurandalStep8		"Sounds/Players/Footsteps/DurandalStep8.ogg"
+
+$rolloff QC/UI/DurandalStep1 150 1700
+$rolloff QC/UI/DurandalStep2 150 1700
+$rolloff QC/UI/DurandalStep3 150 1700
+$rolloff QC/UI/DurandalStep4 150 1700
+$rolloff QC/UI/DurandalStep5 150 1700
+$rolloff QC/UI/DurandalStep6 150 1700
+$rolloff QC/UI/DurandalStep7 150 1700
+$rolloff QC/UI/DurandalStep8 150 1700
+
+
+
+//Keel steps, by DBT
+// Mixed from  Hard reset + Quake 4
+$random QC/UI/KeelStep { QC/UI/KeelStep1 QC/UI/KeelStep2 QC/UI/KeelStep3
+						QC/UI/KeelStep4 QC/UI/KeelStep5 QC/UI/KeelStep6 }
+QC/UI/KeelStep1		"Sounds/Players/Footsteps/KeelStep1.ogg"
+QC/UI/KeelStep2		"Sounds/Players/Footsteps/KeelStep2.ogg"
+QC/UI/KeelStep3		"Sounds/Players/Footsteps/KeelStep3.ogg"
+QC/UI/KeelStep4		"Sounds/Players/Footsteps/KeelStep4.ogg"
+QC/UI/KeelStep5		"Sounds/Players/Footsteps/KeelStep5.ogg"
+QC/UI/KeelStep6		"Sounds/Players/Footsteps/KeelStep6.ogg"
+
+$rolloff QC/UI/KeelStep1 150 1700
+$rolloff QC/UI/KeelStep2 150 1700
+$rolloff QC/UI/KeelStep3 150 1700
+$rolloff QC/UI/KeelStep4 150 1700
+$rolloff QC/UI/KeelStep5 150 1700
+$rolloff QC/UI/KeelStep6 150 1700
+
+
+//Lo wang steps, by DBT
+//From L4D2
+$random QC/UI/LoWangStep { QC/UI/LoWangStep1 QC/UI/LoWangStep2 QC/UI/LoWangStep3  QC/UI/LoWangStep4  }
+QC/UI/LoWangStep1		"Sounds/Players/Footsteps/LoWangStep1.ogg"
+QC/UI/LoWangStep2		"Sounds/Players/Footsteps/LoWangStep2.ogg"
+QC/UI/LoWangStep3		"Sounds/Players/Footsteps/LoWangStep3.ogg"
+QC/UI/LoWangStep4		"Sounds/Players/Footsteps/LoWangStep4.ogg"
+
+$rolloff QC/UI/LoWangStep1 150 1700
+$rolloff QC/UI/LoWangStep2 150 1700
+$rolloff QC/UI/LoWangStep3 150 1700
+$rolloff QC/UI/LoWangStep4 150 1700
+
+
+
+//Grayson steps
+//From Bulletstorm
+$random QC/UI/GraysonStep { QC/UI/GraysonStep1 QC/UI/GraysonStep2 QC/UI/GraysonStep3
+						QC/UI/GraysonStep4 QC/UI/GraysonStep5 QC/UI/GraysonStep6 }
+QC/UI/GraysonStep1		"Sounds/Players/Footsteps/GraysonStep1.ogg"
+QC/UI/GraysonStep2		"Sounds/Players/Footsteps/GraysonStep2.ogg"
+QC/UI/GraysonStep3		"Sounds/Players/Footsteps/GraysonStep3.ogg"
+QC/UI/GraysonStep4		"Sounds/Players/Footsteps/GraysonStep4.ogg"
+QC/UI/GraysonStep5		"Sounds/Players/Footsteps/GraysonStep5.ogg"
+QC/UI/GraysonStep6		"Sounds/Players/Footsteps/GraysonStep6.ogg"
+
+$rolloff QC/UI/GraysonStep1 150 1700
+$rolloff QC/UI/GraysonStep2 150 1700
+$rolloff QC/UI/GraysonStep3 150 1700
+$rolloff QC/UI/GraysonStep4 150 1700
+$rolloff QC/UI/GraysonStep5 150 1700
+$rolloff QC/UI/GraysonStep6 150 1700
+
+//Eradicator steps
+//From Bulletstorm
+$random QC/UI/EradicatorStep { QC/UI/EradicatorStep1 QC/UI/EradicatorStep2 QC/UI/EradicatorStep3 QC/UI/EradicatorStep4  }
+QC/UI/EradicatorStep1		"Sounds/Players/Footsteps/EradicatorStep1.ogg"
+QC/UI/EradicatorStep2		"Sounds/Players/Footsteps/EradicatorStep2.ogg"
+QC/UI/EradicatorStep3		"Sounds/Players/Footsteps/EradicatorStep3.ogg"
+QC/UI/EradicatorStep4		"Sounds/Players/Footsteps/EradicatorStep4.ogg"
+
+$rolloff QC/UI/EradicatorStep1 150 1700
+$rolloff QC/UI/EradicatorStep2 150 1700
+$rolloff QC/UI/EradicatorStep3 150 1700
+$rolloff QC/UI/EradicatorStep4 150 1700
+
+//VorMatur steps
+//By Michael Markie. Stomp sound by DBT using step sounds + Hard reset sound
+$random QC/UI/VorMaturStep { QC/UI/VorMaturStep1 QC/UI/VorMaturStep2 QC/UI/VorMaturStep3
+                             QC/UI/VorMaturStep4 QC/UI/VorMaturStep5 QC/UI/VorMaturStep6 }
+QC/UI/VorMaturStep1		"Sounds/Players/Footsteps/VorMaturStep1.ogg"
+QC/UI/VorMaturStep2		"Sounds/Players/Footsteps/VorMaturStep2.ogg"
+QC/UI/VorMaturStep3		"Sounds/Players/Footsteps/VorMaturStep3.ogg"
+QC/UI/VorMaturStep4		"Sounds/Players/Footsteps/VorMaturStep4.ogg"
+QC/UI/VorMaturStep5		"Sounds/Players/Footsteps/VorMaturStep5.ogg"
+QC/UI/VorMaturStep6		"Sounds/Players/Footsteps/VorMaturStep6.ogg"
+
+$rolloff QC/UI/VorMaturStep1 150 1700
+$rolloff QC/UI/VorMaturStep2 150 1700
+$rolloff QC/UI/VorMaturStep3 150 1700
+$rolloff QC/UI/VorMaturStep4 150 1700
+$rolloff QC/UI/VorMaturStep5 150 1700
+$rolloff QC/UI/VorMaturStep6 150 1700
+
+
+//Freeman steps
+//HL2 mixed with QC's
+$random QC/UI/FreemanStep { QC/UI/FreemanStep1 QC/UI/FreemanStep2 QC/UI/FreemanStep3
+                            QC/UI/FreemanStep4 QC/UI/FreemanStep5 QC/UI/FreemanStep6 }
+QC/UI/FreemanStep1		"Sounds/Players/Footsteps/FreemanStep1.ogg"
+QC/UI/FreemanStep2		"Sounds/Players/Footsteps/FreemanStep2.ogg"
+QC/UI/FreemanStep3		"Sounds/Players/Footsteps/FreemanStep3.ogg"
+QC/UI/FreemanStep4		"Sounds/Players/Footsteps/FreemanStep4.ogg"
+QC/UI/FreemanStep5		"Sounds/Players/Footsteps/FreemanStep5.ogg"
+QC/UI/FreemanStep6		"Sounds/Players/Footsteps/FreemanStep6.ogg"
+
+$rolloff QC/UI/FreemanStep1 150 1700
+$rolloff QC/UI/FreemanStep2 150 1700
+$rolloff QC/UI/FreemanStep3 150 1700
+$rolloff QC/UI/FreemanStep4 150 1700
+$rolloff QC/UI/FreemanStep5 150 1700
+$rolloff QC/UI/FreemanStep6 150 1700
+
+
+//Eleena steps
+//Modified from Painkiller's NPC steps
+$random QC/UI/EleenaStep { QC/UI/EleenaStep1 QC/UI/EleenaStep2 QC/UI/EleenaStep3 QC/UI/EleenaStep4 }
+
+QC/UI/EleenaStep1		"Sounds/Players/Footsteps/EleenaStep1.ogg"
+QC/UI/EleenaStep2		"Sounds/Players/Footsteps/EleenaStep2.ogg"
+QC/UI/EleenaStep3		"Sounds/Players/Footsteps/EleenaStep3.ogg"
+QC/UI/EleenaStep4		"Sounds/Players/Footsteps/EleenaStep4.ogg"
+
+$rolloff QC/UI/EleenaStep1 150 1700
+$rolloff QC/UI/EleenaStep2 150 1700
+$rolloff QC/UI/EleenaStep3 150 1700
+$rolloff QC/UI/EleenaStep4 150 1700
+
+//Hunter steps
+//Modified from Painkiller's NPC steps
+$random QC/UI/HunterStep { QC/UI/HunterStep1 QC/UI/HunterStep2 QC/UI/HunterStep3 QC/UI/HunterStep4 }
+
+QC/UI/HunterStep1		"Sounds/Players/Footsteps/HunterStep1.ogg"
+QC/UI/HunterStep2		"Sounds/Players/Footsteps/HunterStep2.ogg"
+QC/UI/HunterStep3		"Sounds/Players/Footsteps/HunterStep3.ogg"
+QC/UI/HunterStep4		"Sounds/Players/Footsteps/HunterStep4.ogg"
+
+$rolloff QC/UI/HunterStep1 150 1700
+$rolloff QC/UI/HunterStep2 150 1700
+$rolloff QC/UI/HunterStep3 150 1700
+$rolloff QC/UI/HunterStep4 150 1700
+
+//Postal dude steps
+//From postal2
+$random QC/UI/PostalStep { QC/UI/PostalStep1 QC/UI/PostalStep2 QC/UI/PostalStep3
+                           QC/UI/PostalStep4 QC/UI/PostalStep5 }
+
+QC/UI/PostalStep1		"Sounds/Players/Footsteps/PostalStep1.ogg"
+QC/UI/PostalStep2		"Sounds/Players/Footsteps/PostalStep2.ogg"
+QC/UI/PostalStep3		"Sounds/Players/Footsteps/PostalStep3.ogg"
+QC/UI/PostalStep4		"Sounds/Players/Footsteps/PostalStep4.ogg"
+QC/UI/PostalStep5		"Sounds/Players/Footsteps/PostalStep5.ogg"
+
+$rolloff QC/UI/PostalStep1 150 1700
+$rolloff QC/UI/PostalStep2 150 1700
+$rolloff QC/UI/PostalStep3 150 1700
+$rolloff QC/UI/PostalStep4 150 1700
+$rolloff QC/UI/PostalStep5 150 1700
+
+
+//Intruder steps
+$random QC/UI/IntruderStep { QC/UI/IntruderStep1 QC/UI/IntruderStep2 QC/UI/IntruderStep3
+                           QC/UI/IntruderStep4 }
+
+QC/UI/IntruderStep1		"Sounds/Players/Footsteps/IntruderStep1.ogg"
+QC/UI/IntruderStep2		"Sounds/Players/Footsteps/IntruderStep2.ogg"
+QC/UI/IntruderStep3		"Sounds/Players/Footsteps/IntruderStep3.ogg"
+QC/UI/IntruderStep4		"Sounds/Players/Footsteps/IntruderStep4.ogg"
+
+$rolloff QC/UI/IntruderStep1 150 1700
+$rolloff QC/UI/IntruderStep2 150 1700
+$rolloff QC/UI/IntruderStep3 150 1700
+$rolloff QC/UI/IntruderStep4 150 1700
+
+//==============================================================================
+//	Weapons
+//==============================================================================
+
+//********************
+// Gauntlet
+QC/Weapons/Gauntlet/FireEnd			"Sounds/Weapons/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Idle			"Sounds/Weapons/Gaunt_Idle.ogg"
+QC/Weapons/Gauntlet/FireStartLoop	"Sounds/Weapons/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Select			"Sounds/Weapons/Gaunt_Select.ogg"
+
+QC/Weapons/Gauntlet/Quad/FireStartLoop	"Sounds/Weapons/Quad/Gaunt_Start_Loop.ogg"
+
+$random QC/Weapons/Gauntlet/Hit { QC/Weapons/Gauntlet/Hit1 QC/Weapons/Gauntlet/Hit2 QC/Weapons/Gauntlet/Hit3 }
+QC/Weapons/Gauntlet/Hit1			"Sounds/Weapons/Gaunt_Hit1.ogg"
+QC/Weapons/Gauntlet/Hit2			"Sounds/Weapons/Gaunt_Hit2.ogg"
+QC/Weapons/Gauntlet/Hit3			"Sounds/Weapons/Gaunt_Hit3.ogg"
+
+
+//********************
+// Lightning Gun
+QC/Weapons/LightningGun/FireEnd			"Sounds/Weapons/LG_End.ogg"
+QC/Weapons/LightningGun/FireStartLoop	"Sounds/Weapons/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Idle			"Sounds/Weapons/LG_Idle.ogg"
+QC/Weapons/LightningGun/BeamLoop		"Sounds/Weapons/LG_BeamLoop.ogg"
+
+QC/Weapons/LightningGun/Quad/FireStartLoop		"Sounds/Weapons/Quad/LG_Start_Loop.ogg"
+
+QC/Weapons/LightningGun/ElectroLoop		"Sounds/Weapons/Add/ElectroLoop.ogg"
+QC/Weapons/LightningGun/ElectroStop		"Sounds/Weapons/Add/ElectroStop.ogg"
+
+
+//********************
+// Nailgun
+QC/Weapons/Nailgun/FireEnd			"Sounds/Weapons/NG_End.ogg"
+QC/Weapons/Nailgun/FireStartLoop	"Sounds/Weapons/NG_Start_Loop.ogg"
+
+QC/Weapons/Nailgun/Quad/FireStartLoop	"Sounds/Weapons/Quad/NG_Start_Loop.ogg"
+
+$random QC/Weapons/Nailgun/Impact { QC/Weapons/Nailgun/Impact1 QC/Weapons/Nailgun/Impact2 QC/Weapons/Nailgun/Impact3
+		QC/Weapons/Nailgun/Impact4 QC/Weapons/Nailgun/Impact5 QC/Weapons/Nailgun/Impact6 QC/Weapons/Nailgun/Impact7 }
+
+QC/Weapons/Nailgun/Impact1			"Sounds/Weapons/NailImpact1.ogg"
+QC/Weapons/Nailgun/Impact2			"Sounds/Weapons/NailImpact2.ogg"
+QC/Weapons/Nailgun/Impact3			"Sounds/Weapons/NailImpact3.ogg"
+QC/Weapons/Nailgun/Impact4			"Sounds/Weapons/NailImpact4.ogg"
+QC/Weapons/Nailgun/Impact5			"Sounds/Weapons/NailImpact5.ogg"
+QC/Weapons/Nailgun/Impact6			"Sounds/Weapons/NailImpact6.ogg"
+QC/Weapons/Nailgun/Impact7			"Sounds/Weapons/NailImpact7.ogg"
+
+
+//********************
+// Super Nailgun
+QC/Weapons/SuperNailgun/FireEnd			"Sounds/Weapons/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireStartLoop	"Sounds/Weapons/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireSeeker		"Sounds/Weapons/SNG_Single.ogg"
+
+QC/Weapons/SuperNailgun/Quad/FireSeeker		"Sounds/Weapons/Quad/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop		"Sounds/Weapons/Quad/SNG_Start_Loop.ogg"
+
+
+//********************
+// Railgun
+$random QC/Weapons/Railgun/Fire		{ QC/Weapons/Railgun/Fire1 QC/Weapons/Railgun/Fire2 QC/Weapons/Railgun/Fire3 }
+QC/Weapons/Railgun/Fire1			"Sounds/Weapons/RG_Fire1.ogg"
+QC/Weapons/Railgun/Fire2			"Sounds/Weapons/RG_Fire2.ogg"
+QC/Weapons/Railgun/Fire3			"Sounds/Weapons/RG_Fire3.ogg"
+QC/Weapons/Railgun/Idle				"Sounds/Weapons/RG_idle.ogg"
+QC/Weapons/Railgun/Whoosh			"Sounds/Weapons/RG_Whoosh.ogg"
+QC/Weapons/Railgun/ZoomIn			"Sounds/Weapons/RG_ZoomIn.ogg"
+QC/Weapons/Railgun/ZoomOut			"Sounds/Weapons/RG_ZoomOut.ogg"
+QC/Weapons/Railgun/ChargeFull		"Sounds/Weapons/RG_ChargeFull.ogg"
+
+$random QC/Weapons/Railgun/Quad/Fire		{ QC/Weapons/Railgun/Quad/Fire1 QC/Weapons/Railgun/Quad/Fire2 QC/Weapons/Railgun/Quad/Fire3 }
+QC/Weapons/Railgun/Quad/Fire1			"Sounds/Weapons/Quad/RG_Fire1.ogg"
+QC/Weapons/Railgun/Quad/Fire2			"Sounds/Weapons/Quad/RG_Fire2.ogg"
+QC/Weapons/Railgun/Quad/Fire3			"Sounds/Weapons/Quad/RG_Fire3.ogg"
+
+$random QC/Weapons/Railgun/Quad/Impact { QC/Weapons/Railgun/Quad/Impact1 QC/Weapons/Railgun/Quad/Impact2 }
+QC/Weapons/Railgun/Quad/Impact1			"Sounds/Weapons/RG_Impact1.ogg"
+QC/Weapons/Railgun/Quad/Impact2			"Sounds/Weapons/RG_Impact2.ogg"
+
+$rolloff QC/Weapons/Railgun/Quad/Impact1 300 768
+$rolloff QC/Weapons/Railgun/Quad/Impact2 300 768
+
+
+//********************
+// Rocket Launcher
+$random QC/Weapons/RocketLauncher/Fire  		{ QC/Weapons/RocketLauncher/Fire1 QC/Weapons/RocketLauncher/Fire2 QC/Weapons/RocketLauncher/Fire3 }
+$random QC/Weapons/RocketLauncher/RocketExplo 	{ QC/Weapons/RocketLauncher/RocketExplo1 QC/Weapons/RocketLauncher/RocketExplo2 QC/Weapons/RocketLauncher/RocketExplo3 }
+
+QC/Weapons/RocketLauncher/RocketExplo1			"Sounds/Weapons/RL_explo1.ogg"
+QC/Weapons/RocketLauncher/RocketExplo2			"Sounds/Weapons/RL_explo2.ogg"
+QC/Weapons/RocketLauncher/RocketExplo3			"Sounds/Weapons/RL_explo3.ogg"
+QC/Weapons/RocketLauncher/Fire1					"Sounds/Weapons/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Fire2					"Sounds/Weapons/RL_Fire2.ogg"
+QC/Weapons/RocketLauncher/Fire3					"Sounds/Weapons/RL_Fire3.ogg"
+QC/Weapons/RocketLauncher/Fly					"Sounds/Weapons/RL_Fly.ogg"
+
+$attenuation QC/Weapons/RocketLauncher/RocketExplo1 0.8
+$attenuation QC/Weapons/RocketLauncher/RocketExplo2 0.8
+$attenuation QC/Weapons/RocketLauncher/RocketExplo2 0.8
+
+
+$random QC/Weapons/RocketLauncher/Quad/Fire  		{ QC/Weapons/RocketLauncher/Quad/Fire1 QC/Weapons/RocketLauncher/Quad/Fire2 QC/Weapons/RocketLauncher/Quad/Fire3 }
+QC/Weapons/RocketLauncher/Quad/Fire1					"Sounds/Weapons/Quad/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire2					"Sounds/Weapons/Quad/RL_Fire2.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire3					"Sounds/Weapons/Quad/RL_Fire3.ogg"
+
+$rolloff "QC/Weapons/RocketLauncher/Fly" 64 2048
+
+$attenuation "QC/Weapons/RocketLauncher/RocketExplo" 0.7
+$limit "QC/Weapons/RocketLauncher/RocketExplo1" 3
+$limit "QC/Weapons/RocketLauncher/RocketExplo2" 3
+$limit "QC/Weapons/RocketLauncher/RocketExplo3" 3
+$limit "QC/Weapons/RocketLauncher/Fly" 5
+
+
+//********************
+// Machinegun
+QC/Weapons/Machinegun/FireEnd			"Sounds/Weapons/MG_End.ogg"
+QC/Weapons/Machinegun/FireStartLoop		"Sounds/Weapons/MG_Fire_Looper.ogg"
+
+QC/Weapons/Machinegun/Quad/FireStartLoop		"Sounds/Weapons/Quad/MG_Fire_Looper.ogg"
+
+
+//********************
+// Heavy Manchinegun
+QC/Weapons/HeavyMachinegun/FireEnd			"Sounds/Weapons/HMG_End.ogg"
+QC/Weapons/HeavyMachinegun/FireStartLoop	"Sounds/Weapons/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedStart	"Sounds/Weapons/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedEnd	"Sounds/Weapons/HMG_Zoomed_End.ogg"
+QC/Weapons/HeavyMachinegun/ZoomIn	"Sounds/Weapons/HMG_ZoomIn.ogg"
+QC/Weapons/HeavyMachinegun/ZoomOut	"Sounds/Weapons/HMG_ZoomOut.ogg"
+
+QC/Weapons/HeavyMachinegun/Quad/FireStartLoop	"Sounds/Weapons/Quad/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart	"Sounds/Weapons/Quad/HMG_Zoomed_Start.ogg"
+
+
+//********************
+// Shotgun
+$random QC/Weapons/Shotgun/Fire 	{ QC/Weapons/Shotgun/Fire1 QC/Weapons/Shotgun/Fire2 QC/Weapons/Shotgun/Fire3 }
+QC/Weapons/Shotgun/Fire1			"Sounds/Weapons/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Fire2			"Sounds/Weapons/SG_Fire2.ogg"
+QC/Weapons/Shotgun/Fire3			"Sounds/Weapons/SG_Fire3.ogg"
+
+$random QC/Weapons/Shotgun/Quad/Fire 	{ QC/Weapons/Shotgun/Quad/Fire1 QC/Weapons/Shotgun/Quad/Fire2 QC/Weapons/Shotgun/Quad/Fire3 }
+QC/Weapons/Shotgun/Quad/Fire1			"Sounds/Weapons/Quad/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Quad/Fire2			"Sounds/Weapons/Quad/SG_Fire2.ogg"
+QC/Weapons/Shotgun/Quad/Fire3			"Sounds/Weapons/Quad/SG_Fire3.ogg"
+
+//********************
+// Super Shotgun
+$random QC/Weapons/SuperShotgun/Fire 	{ QC/Weapons/SuperShotgun/Fire1 QC/Weapons/SuperShotgun/Fire2 QC/Weapons/SuperShotgun/Fire3 QC/Weapons/SuperShotgun/Fire4 QC/Weapons/SuperShotgun/Fire5 }
+QC/Weapons/SuperShotgun/Fire1			"Sounds/Weapons/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Fire2			"Sounds/Weapons/SSG_Fire2.ogg"
+QC/Weapons/SuperShotgun/Fire3			"Sounds/Weapons/SSG_Fire3.ogg"
+QC/Weapons/SuperShotgun/Fire4			"Sounds/Weapons/SSG_Fire4.ogg"
+QC/Weapons/SuperShotgun/Fire5			"Sounds/Weapons/SSG_Fire5.ogg"
+
+$random QC/Weapons/SuperShotgun/Quad/Fire 	{ QC/Weapons/SuperShotgun/Quad/Fire1 QC/Weapons/SuperShotgun/Quad/Fire2 QC/Weapons/SuperShotgun/Quad/Fire3 QC/Weapons/SuperShotgun/Quad/Fire4 }
+QC/Weapons/SuperShotgun/Quad/Fire1			"Sounds/Weapons/Quad/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire2			"Sounds/Weapons/Quad/SSG_Fire2.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire3			"Sounds/Weapons/Quad/SSG_Fire3.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire4			"Sounds/Weapons/Quad/SSG_Fire4.ogg"
+
+
+//********************
+// Tribolt
+QC/Weapons/Tribolt/Fire			"Sounds/Weapons/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Explo		"Sounds/Weapons/Tribolt_Explo.ogg"
+
+QC/Weapons/Tribolt/Quad/Fire			"Sounds/Weapons/Quad/Tribolt_FireFast.ogg"
+
+$limit "QC/Weapons/Tribolt/Explo" 9
+$attenuation QC/Weapons/Tribolt/Explo 0.8
+
+//bounce sounds from Hard Reset
+$random QC/Weapons/Tribolt/Bounce { QC/Weapons/Tribolt/Bounce1 QC/Weapons/Tribolt/Bounce2 QC/Weapons/Tribolt/Bounce3 }
+QC/Weapons/Tribolt/Bounce1		"Sounds/Weapons/BoltBounce1.ogg"
+QC/Weapons/Tribolt/Bounce2		"Sounds/Weapons/BoltBounce2.ogg"
+QC/Weapons/Tribolt/Bounce3		"Sounds/Weapons/BoltBounce3.ogg"
+
+
+//********************
+// BFG19k (Sounds by Michael Markie)
+QC/Weapons/BFG/BallFlying			"Sounds/Weapons/BFGFlying.ogg"
+QC/Weapons/BFG/Idle					"Sounds/Weapons/NeoBFG_Idle.ogg"
+QC/Weapons/BFG/Raise				"Sounds/Weapons/NeoBFG_Raise.ogg"
+QC/Weapons/BFG/Fire					"Sounds/Weapons/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Charge				"Sounds/Weapons/BFGCharge.ogg"
+QC/Weapons/BFG/ChargeLoop			"Sounds/Weapons/BFGChargeLoop.ogg"
+QC/Weapons/BFG/ChargedShot			"Sounds/Weapons/BFGChargedShot.ogg"
+
+QC/Weapons/BFG/Quad/Fire					"Sounds/Weapons/Quad/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot				"Sounds/Weapons/Quad/BFGChargedShot.ogg"
+
+$random QC/Weapons/BFG/Explo { QC/Weapons/BFG/NeoExplo1 QC/Weapons/BFG/NeoExplo2 QC/Weapons/BFG/NeoExplo3 }
+
+QC/Weapons/BFG/NeoExplo1			"Sounds/Weapons/NeoBFG_Explo1.ogg"
+QC/Weapons/BFG/NeoExplo2			"Sounds/Weapons/NeoBFG_Explo2.ogg"
+QC/Weapons/BFG/NeoExplo3			"Sounds/Weapons/NeoBFG_Explo3.ogg"
+
+
+$limit QC/Weapons/BFG/NeoExplo1 3
+$limit QC/Weapons/BFG/NeoExplo2 3
+$limit QC/Weapons/BFG/NeoExplo3 3
+$limit QC/Weapons/BFG/BallFlying 5
+
+QC/Weapons/Upgrade				"Sounds/UI/WeaponUpgrade.ogg"
+
+QC/Weapons/Upgrade/HMGBeep				"Sounds/Weapons/Upgrade/UGHMG.ogg"
+QC/Weapons/Upgrade/SGBeep				"Sounds/Weapons/Upgrade/UGSG.ogg"
+QC/Weapons/Upgrade/SSGBeep				"Sounds/Weapons/Upgrade/UGSSG.ogg"
+QC/Weapons/Upgrade/SNGBeep				"Sounds/Weapons/Upgrade/UGSNG.ogg"
+QC/Weapons/Upgrade/RLBeep				"Sounds/Weapons/Upgrade/UGRL.ogg"
+QC/Weapons/Upgrade/TBBeep				"Sounds/Weapons/Upgrade/UGTB.ogg"
+QC/Weapons/Upgrade/LGBeep				"Sounds/Weapons/Upgrade/UGLG.ogg"
+QC/Weapons/Upgrade/RGBeep				"Sounds/Weapons/Upgrade/UGRG.ogg"
+QC/Weapons/Upgrade/BFGBeep				"Sounds/Weapons/Upgrade/UGBFG.ogg"
+
+
+
+//********************
+// Misc
+QC/Weapons/Switch			"Sounds/Weapons/WepSwitch.ogg"
+
+$random  QC/Weapons/Gore { QC/Weapons/Gore1 QC/Weapons/Gore2 QC/Weapons/Gore3 QC/Weapons/Gore4 }
+QC/Weapons/Gore1			"Sounds/Misc/QCGore1.ogg"
+QC/Weapons/Gore2			"Sounds/Misc/QCGore2.ogg"
+QC/Weapons/Gore3			"Sounds/Misc/QCGore3.ogg"
+QC/Weapons/Gore4			"Sounds/Misc/QCGore4.ogg"
+
+//Barrel explo sounds, from doom2016
+$random QC/BarrelExploDebris { QC/BarrelExploDebris1 QC/BarrelExploDebris2 }
+QC/BarrelExplo				"Sounds/Misc/BarrelExplo.ogg"
+QC/BarrelExploDebris1		"Sounds/Misc/BarrelExploMetal1.ogg"
+QC/BarrelExploDebris2		"Sounds/Misc/BarrelExploMetal2.ogg"
+
+
+QCDE/Misc/WaterSplash		"Sounds/Misc/WaterSplash.ogg"
+
+
+//==============================================================================
+//	UI
+//==============================================================================
+
+QC/UI/PlayerSounds/PainBeep			"Sounds/UI/PainBeep.ogg"
+QC/UI/PlayerSounds/LowAmmoWarning	"Sounds/UI/LowAmmo.ogg"
+QC/UI/PlayerSounds/LowHealthWarning	"Sounds/UI/LowHealth.ogg"
+
+
+QC/UI/HitBeepMax					"Sounds/UI/HitBeepMax.ogg"
+QC/UI/HitBeepBig					"Sounds/UI/HitBeepBig.ogg"
+QC/UI/HitBeepMid					"Sounds/UI/HitBeepMid.ogg"
+QC/UI/HitBeepLow					"Sounds/UI/HitBeepLow.ogg"
+QC/UI/HitBeepTotem					"Sounds/UI/HitBeepTot.ogg"
+
+QC/UI/FragBeep						"Sounds/UI/FragBeep.ogg"
+
+QC/UI/MonstersKilled				"Sounds/UI/Menu/ConfirmChamp.ogg"
+QC/UI/Completionist					"Sounds/UI/Menu/PlayNow.ogg"
+
+
+QC/UI/Powerup/Protec_Incoming			"Sounds/UI/Power_Protection_Incoming.ogg"
+QC/UI/Powerup/Protec_Spawned			"Sounds/UI/Power_Protection_Spawned.ogg"
+QC/UI/Powerup/Protec_Picked				"Sounds/UI/Power_Protection_Picked.ogg"
+QC/UI/Powerup/Protec_EnemyPicked		"Sounds/UI/Power_Protection_Enemy.ogg"
+QC/UI/Powerup/Protec_TeamPicked			"Sounds/UI/Power_Protection_Team.ogg"
+QC/UI/Powerup/Protec_Off				"Sounds/Items/Quad_Off.ogg"
+
+QC/UI/Powerup/Quad_Incoming		"Sounds/UI/Power_Quad_Incoming.ogg"
+QC/UI/Powerup/Quad_Spawned		"Sounds/UI/Power_Quad_Spawned.ogg"
+QC/UI/Powerup/Quad_Picked		"Sounds/UI/Power_Quad_Picked.ogg"
+QC/UI/Powerup/Quad_EnemyPicked	"Sounds/UI/Power_Quad_Enemy.ogg"
+QC/UI/Powerup/Quad_TeamPicked	"Sounds/UI/Power_Quad_Team.ogg"
+QC/UI/Powerup/Quad_Off			"Sounds/Items/Quad_Off.ogg"
+
+QC/UI/Powerup/Soul_Incoming			"Sounds/UI/Power_Soul_Incoming.ogg"
+QC/UI/Powerup/Soul_Picked			"Sounds/UI/Power_Soul_Picked.ogg"
+QC/UI/Powerup/Soul_EnemyPicked		"Sounds/UI/Power_Soul_Enemy.ogg"
+QC/UI/Powerup/Soul_TeamPicked		"Sounds/UI/Power_Soul_Team.ogg"
+QC/UI/Powerup/Soul_Off				"Sounds/Items/Quad_Off.ogg"
+
+QC/UI/Powerup/Invul_Off				"Sounds/Items/Quad_Off.ogg"
+
+QC/UI/EldersSoul_Picked		"Sounds/UI/EldersSoulPick.ogg"
+QC/UI/EldersSoul_Carrier	"Sounds/UI/EldersSoulCarry.ogg"
+QC/UI/EldersSoul_Idle		"Sounds/UI/EldersSoulIdle.ogg"
+
+QC/UI/FreezeTag_Frozen				"Sounds/UI/FreezeTag_Frozen.ogg"
+QC/UI/FreezeTag_Thawed				"Sounds/UI/FreezeTag_Thawed.ogg"
+QC/UI/FreezeTag_ThawPartial			"Sounds/UI/FreezeTag_ThawPartial.ogg"
+
+
+//==============================================================================
+//	Item related
+//==============================================================================
+
+QC/Items/ArmorBigPick			"Sounds/Items/Armor_Big_Pick.ogg"
+QC/Items/ArmorSmallPick			"Sounds/Items/Armor_Small_Pick.ogg"
+QC/Items/ArmorShardPick			"Sounds/Items/Armor_Shard_Pick.ogg"
+
+
+QC/Items/AmmoPick				"Sounds/Items/Ammo_Pick.ogg"
+QC/Items/HourglassPick			"Sounds/Items/Hourglass_Pick.ogg"
+QC/Items/PowerupPick			"Sounds/Items/Powerup_Pick.ogg"
+
+QC/Items/WeaponPick				"Sounds/Items/Weap_Pick.ogg"
+$volume QC/Items/WeaponPick 0.6
+QC/Items/WeaponRespawn			"Sounds/Items/Weap_Respawn.ogg"
+QC/Items/ItemRespawn			"Sounds/Items/DSITMBK.ogg"
+QC/Items/Backpack				"Sounds/Items/BackPack_Pick.ogg"
+
+QC/Items/LargeHealth			"Sounds/Items/HealthLarge.ogg"
+QC/Items/MediumHealth			"Sounds/Items/HealthMedium.ogg"
+QC/Items/SmallHealth			"Sounds/Items/HealthSmall.ogg"
+
+$volume QC/Items/LargeHealth 0.9
+
+QC/Items/KeyCardPickup			"Sounds/Items/D4TKeyPick.ogg"
+QC/Items/SkullPickup			"Sounds/Items/D4TSkullPick.ogg"
+QC/Items/RadsuitPickup			"Sounds/Items/D4TPickupSuit.ogg"
+
+QC/Items/AutomapPick			"Sounds/Items/Automap.ogg"
+
+
+//==============================================================================
+//	Abilities related
+//==============================================================================
+
+//------------------------
+// General
+QC/Abilities/General/AbilityCharged					"Sounds/UI/Abilities/Ability_Recharged.ogg"
+
+
+//------------------------
+//Ranger
+QC/Abilities/Ranger/BallAttach			"Sounds/UI/Abilities/Ranger_Ball_Attach.ogg"
+QC/Abilities/Ranger/BallTeleport		"Sounds/UI/Abilities/Ranger_Ball_Teleport.ogg"
+QC/Abilities/Ranger/BallThrow			"Sounds/UI/Abilities/Ranger_Ball_Throw.ogg"
+QC/Abilities/Ranger/BallExplode			"Sounds/UI/Abilities/Ranger_Ball_Explode.ogg"
+
+
+//------------------------
+//Doomslayer
+
+QC/Abilities/Doomslayer/BFGFire			"Sounds/UI/Abilities/Doom_BFG_Fire.ogg"
+QC/Abilities/Doomslayer/BFGExplosion	"Sounds/UI/Abilities/Doom_BFG_Impact.ogg"
+QC/Abilities/Doomslayer/BFGWeaponRaise	"Sounds/UI/Abilities/Doom_BFG_Raise.ogg"
+
+
+$random QC/Abilities/Doomslayer/DoubleJump { Doomslayer/DoubleJump1 Doomslayer/DoubleJump2 }
+Doomslayer/DoubleJump1		"Sounds/UI/Abilities/Doom_DoubleJump1.ogg"
+Doomslayer/DoubleJump2		"Sounds/UI/Abilities/Doom_DoubleJump2.ogg"
+
+
+//------------------------
+//Caleb
+QC/Abilities/Caleb/Ability				"Sounds/Players/Caleb/Ability.ogg"
+QC/Abilities/Caleb/ActivateDrain		"Sounds/UI/Abilities/Caleb_Drain.ogg"
+//QC/Abilities/Caleb/DollFire				"Sounds/UI/Abilities/Caleb_Fire.ogg"
+QC/Abilities/Caleb/DollAltFire			"Sounds/UI/Abilities/Caleb_AltFire.ogg"
+
+$random QC/Abilities/Caleb/DollFire { CalebStab1 CalebStab2 CalebStab3 }
+CalebStab1			"Sounds/UI/Abilities/Caleb_Stab1.ogg"
+CalebStab2			"Sounds/UI/Abilities/Caleb_Stab2.ogg"
+CalebStab3			"Sounds/UI/Abilities/Caleb_Stab3.ogg"
+
+
+//------------------------
+//Kane
+QC/Abilities/Kane/Inject						"Sounds/Players/Kane/heal.ogg"
+QC/Abilities/Kane/SlideStartLoop				"Sounds/UI/Abilities/Kane_SlideStartLoop.ogg"
+QC/Abilities/Kane/SlideEnd						""
+
+
+//------------------------
+//Inquisitor
+$random QC/Abilities/Inquisitor/Dodge { QC/Abilities/Inquisitor/Dodge1 QC/Abilities/Inquisitor/Dodge2 QC/Abilities/Inquisitor/Dodge3 }
+QC/Abilities/Inquisitor/Dodge1				"Sounds/Players/Inquisitor/ClutchDodge1.ogg"
+QC/Abilities/Inquisitor/Dodge2				"Sounds/Players/Inquisitor/ClutchDodge2.ogg"
+QC/Abilities/Inquisitor/Dodge3				"Sounds/Players/Inquisitor/ClutchDodge3.ogg"
+
+QC/Abilities/Inquisitor/ShieldLoop				"Sounds/Players/Inquisitor/ClutchShieldLooper.ogg"
+QC/Abilities/Inquisitor/ShieldStart				"Sounds/Players/Inquisitor/ClutchShieldStart.ogg"
+QC/Abilities/Inquisitor/ShieldStop				"Sounds/Players/Inquisitor/ClutchShieldStop.ogg"
+
+$random QC/Abilities/Inquisitor/ShieldHit { QC/Abilities/Inquisitor/ShieldHit1 QC/Abilities/Inquisitor/ShieldHit2
+								QC/Abilities/Inquisitor/ShieldHit3 QC/Abilities/Inquisitor/ShieldHit4 QC/Abilities/Inquisitor/ShieldHit5 }
+QC/Abilities/Inquisitor/ShieldHit1				"Sounds/Players/Inquisitor/ClutchShieldHit1.ogg"
+QC/Abilities/Inquisitor/ShieldHit2				"Sounds/Players/Inquisitor/ClutchShieldHit2.ogg"
+QC/Abilities/Inquisitor/ShieldHit3				"Sounds/Players/Inquisitor/ClutchShieldHit3.ogg"
+QC/Abilities/Inquisitor/ShieldHit4				"Sounds/Players/Inquisitor/ClutchShieldHit4.ogg"
+QC/Abilities/Inquisitor/ShieldHit5				"Sounds/Players/Inquisitor/ClutchShieldHit5.ogg"
+
+
+//------------------------
+//Corvus
+QC/Abilities/Corvus/UseFlight				"Sounds/UI/Abilities/Corvus_Flight.ogg"
+
+
+//------------------------
+//Zedek
+QC/Abilities/Zedek/QuietusFire				"Sounds/UI/Abilities/Zedek_Quietus.ogg"
+QC/Abilities/Zedek/QuietusExplosion			"Sounds/UI/Abilities/Zedek_Quietus_Explo.ogg"
+QC/Abilities/Zedek/FireCrackle				"Sounds/UI/Abilities/Zedek_FireCrackle.ogg"
+QC/Abilities/Zedek/FireCrackleFadeOut		"Sounds/UI/Abilities/Zedek_FireCrackle_Fadeout.ogg"
+
+$random QC/Abilities/Zedek/FloorPound { QC/Abilities/Zedek/FloorPound1 QC/Abilities/Zedek/FloorPound2 }
+QC/Abilities/Zedek/FloorPound1		"Sounds/Misc/FloorPound1.ogg"
+QC/Abilities/Zedek/FloorPound2		"Sounds/Misc/FloorPound2.ogg"
+
+$limit QC/Abilities/Zedek/FireCrackle 10
+$limit QC/Abilities/Zedek/FireCrackleFadeOut 10
+
+
+//------------------------
+//Menelkir
+$random QC/Abilities/Menelkir/CorpseExplo { CorpseExplo1 CorpseExplo2 CorpseExplo3 CorpseExplo4 }
+CorpseExplo1				"Sounds/UI/Abilities/Menelkir_CorpseExplo1.ogg"
+CorpseExplo2				"Sounds/UI/Abilities/Menelkir_CorpseExplo2.ogg"
+CorpseExplo3				"Sounds/UI/Abilities/Menelkir_CorpseExplo3.ogg"
+CorpseExplo4				"Sounds/UI/Abilities/Menelkir_CorpseExplo4.ogg"
+
+
+//------------------------
+//Terminator
+$random QC/Abilities/Terminator/FireMissile { TermFire1 TermFire2 TermFire3 }
+$random QC/Abilities/Terminator/MissileWhoosh { TermWhoosh1 TermWhoosh2 TermWhoosh3 TermWhoosh4 }
+$random QC/Abilities/Terminator/MissileExplo { TermMissExplo1 TermMissExplo2 TermMissExplo3 TermMissExplo4 }
+$random QC/Abilities/Terminator/ActiveAbilityVoice { QC/Abilities/Terminator/ActiveAbilityVoice1 QC/Abilities/Terminator/ActiveAbilityVoice2 }
+
+QC/Abilities/Terminator/ActiveAbilityVoice1 "Sounds/Players/Terminator/VisorActive1.ogg"
+QC/Abilities/Terminator/ActiveAbilityVoice2 "Sounds/Players/Terminator/VisorActive2.ogg"
+
+TermFire1 "Sounds/UI/Abilities/Terminator_MissFire1.ogg"
+TermFire2 "Sounds/UI/Abilities/Terminator_MissFire2.ogg"
+TermFire3 "Sounds/UI/Abilities/Terminator_MissFire3.ogg"
+
+TermWhoosh1 "Sounds/UI/Abilities/Terminator_MissWhoosh1.ogg"
+TermWhoosh2 "Sounds/UI/Abilities/Terminator_MissWhoosh2.ogg"
+TermWhoosh3 "Sounds/UI/Abilities/Terminator_MissWhoosh3.ogg"
+TermWhoosh4 "Sounds/UI/Abilities/Terminator_MissWhoosh4.ogg"
+
+TermMissExplo1 "Sounds/UI/Abilities/Terminator_MissExplo1.ogg"
+TermMissExplo2 "Sounds/UI/Abilities/Terminator_MissExplo2.ogg"
+TermMissExplo3 "Sounds/UI/Abilities/Terminator_MissExplo3.ogg"
+TermMissExplo4 "Sounds/UI/Abilities/Terminator_MissExplo4.ogg"
+
+//------------------------
+//Bitterman
+QC/Abilities/Bitterman/ShieldRestore	"Sounds/UI/Abilities/Bitterman_Shield.ogg"
+
+//------------------------
+//Galen
+QC/Abilities/Galen/TotemExplosion		"Sounds/UI/Abilities/Galen_Explo.ogg"
+QC/Abilities/Galen/TotemLoop			"Sounds/UI/Abilities/Galen_Loop.ogg"
+QC/Abilities/Galen/TotemArm				"Sounds/UI/Abilities/Galen_Start.ogg"
+QC/Abilities/Galen/TotemThrow			"Sounds/UI/Abilities/Galen_Throw.ogg"
+
+//------------------------
+//Nyx
+QC/Abilities/Nyx/GhostWalkStart				"Sounds/UI/Abilities/Nyx_GhostWalk_Start.ogg"
+QC/Abilities/Nyx/GhostWalkEnd				"Sounds/UI/Abilities/Nyx_GhostWalk_End.ogg"
+
+$random QC/Abilities/Nyx/Nyx_Walljump { QC/Abilities/Nyx/Nyx_Walljump1 QC/Abilities/Nyx/Nyx_Walljump2 }
+QC/Abilities/Nyx/Nyx_Walljump1				"Sounds/UI/Abilities/Nyx_Walljump1.ogg"
+QC/Abilities/Nyx/Nyx_Walljump2				"Sounds/UI/Abilities/Nyx_Walljump2.ogg"
+
+//------------------------
+//Sorgaul
+$random QC/Abilities/Sorgaul/Whoosh { QC/Abilities/Sorgaul/Whoosh1 QC/Abilities/Sorgaul/Whoosh2 QC/Abilities/Sorgaul/Whoosh3 QC/Abilities/Sorgaul/Whoosh4 }
+QC/Abilities/Sorgaul/Whoosh1				"Sounds/UI/Abilities/Sorgaul_Whoosh1.ogg"
+QC/Abilities/Sorgaul/Whoosh2				"Sounds/UI/Abilities/Sorgaul_Whoosh2.ogg"
+QC/Abilities/Sorgaul/Whoosh3				"Sounds/UI/Abilities/Sorgaul_Whoosh3.ogg"
+QC/Abilities/Sorgaul/Whoosh4				"Sounds/UI/Abilities/Sorgaul_Whoosh4.ogg"
+
+$random QC/Abilities/Sorgaul/Hit { QC/Abilities/Sorgaul/Hit1 QC/Abilities/Sorgaul/Hit2 QC/Abilities/Sorgaul/Hit3 }
+QC/Abilities/Sorgaul/Hit1				"Sounds/UI/Abilities/Sorgaul_Hit1.ogg"
+QC/Abilities/Sorgaul/Hit2				"Sounds/UI/Abilities/Sorgaul_Hit2.ogg"
+QC/Abilities/Sorgaul/Hit3				"Sounds/UI/Abilities/Sorgaul_Hit3.ogg"
+
+QC/Abilities/Sorgaul/RageStart				"Sounds/UI/Abilities/Sorgaul_Rage_Start.ogg"
+QC/Abilities/Sorgaul/RageEnd				"Sounds/UI/Abilities/Sorgaul_Rage_End.ogg"
+QC/Abilities/Sorgaul/RageLoop				"Sounds/UI/Abilities/Sorgaul_Rage_Loop.ogg"
+
+
+//------------------------
+//Duke Nukem
+QC/Abilities/DukeNukem/FreezeShot		"Sounds/UI/Abilities/Duke_FreezeShot.ogg"
+QC/Abilities/DukeNukem/PullWeapon		"Sounds/UI/Abilities/Duke_StartAbility.ogg"
+
+$random QC/Abilities/DukeNukem/FreezeShotExplo { QC/Abilities/DukeNukem/FreezeShotExplo1 QC/Abilities/DukeNukem/FreezeShotExplo2 }
+QC/Abilities/DukeNukem/FreezeShotExplo1	"Sounds/UI/Abilities/Duke_FreezeShotExplo1.ogg"
+QC/Abilities/DukeNukem/FreezeShotExplo2	"Sounds/UI/Abilities/Duke_FreezeShotExplo2.ogg"
+
+//------------------------
+//Durandal
+
+QC/Abilities/Durandal/Summon		"Sounds/UI/Abilities/Durandal_Ability.ogg"
+QC/Abilities/Durandal/FBTVC1		"Sounds/Players/Durandal/DurandalFBtVC1.ogg"
+QC/Abilities/Durandal/FBTVC2		"Sounds/Players/Durandal/DurandalFBtVC2.ogg"
+
+$random QC/Abilities/Durandal/FBTVCrandom 	{ QC/Abilities/Durandal/FBTVC1 QC/Abilities/Durandal/FBTVC2 None None None None }
+
+$random QC/Abilities/Durandal/BOBAnyDeath 	{ QC/Abilities/Durandal/BOBDeath1 QC/Abilities/Durandal/BOBDeath2 QC/Abilities/Durandal/BOBXdeath }
+$random QC/Abilities/Durandal/BOBDeath 		{ QC/Abilities/Durandal/BOBDeath1 QC/Abilities/Durandal/BOBDeath2 }
+$random QC/Abilities/Durandal/BOBPain 		{ QC/Abilities/Durandal/BOBPain1  QC/Abilities/Durandal/BOBPain2  }
+$random QC/Abilities/Durandal/BOBBeg 		{ QC/Abilities/Durandal/BOBBeg1   QC/Abilities/Durandal/BOBBeg2   QC/Abilities/Durandal/BOBBeg3
+											  QC/Abilities/Durandal/BOBBeg4   QC/Abilities/Durandal/BOBBeg5   }
+
+QC/Abilities/Durandal/BOBExplo		"Sounds/Misc/BOBExplo.ogg"
+QC/Abilities/Durandal/BOBTeleport	"Sounds/Misc/BOBTeleIn.ogg"
+QC/Abilities/Durandal/BOBXdeath		"Sounds/Misc/BOBXdeath.ogg"
+
+QC/Abilities/Durandal/BOBDeath1		"Sounds/Misc/BOBDeath1.ogg"
+QC/Abilities/Durandal/BOBDeath2		"Sounds/Misc/BOBDeath2.ogg"
+QC/Abilities/Durandal/BOBPain1		"Sounds/Misc/BOBPain1.ogg"
+QC/Abilities/Durandal/BOBPain2		"Sounds/Misc/BOBPain2.ogg"
+QC/Abilities/Durandal/BOBBeg1		"Sounds/Misc/BOBBeg1.ogg"
+QC/Abilities/Durandal/BOBBeg2		"Sounds/Misc/BOBBeg2.ogg"
+QC/Abilities/Durandal/BOBBeg3		"Sounds/Misc/BOBBeg3.ogg"
+QC/Abilities/Durandal/BOBBeg4		"Sounds/Misc/BOBBeg4.ogg"
+QC/Abilities/Durandal/BOBBeg5		"Sounds/Misc/BOBBeg5.ogg"
+
+$limit QC/Abilities/Durandal/BOBTeleport 6
+
+$random QC/Abilities/Durandal/BOBRun { QC/Abilities/Durandal/BOBRun1 QC/Abilities/Durandal/BOBRun2 }
+QC/Abilities/Durandal/BOBRun1		"Sounds/Misc/BobWalkLoop1.ogg"
+QC/Abilities/Durandal/BOBRun2		"Sounds/Misc/BobWalkLoop2.ogg"
+
+$limit QC/Abilities/Durandal/BOBRun1 8
+$limit QC/Abilities/Durandal/BOBRun2 8
+
+
+//------------------------
+//Keel
+$random QC/Abilities/Keel/Fire { QC/Abilities/Keel/Fire1 QC/Abilities/Keel/Fire2 QC/Abilities/Keel/Fire3 }
+
+QC/Abilities/Keel/Fire1	"Sounds/UI/Abilities/Keel_Fire1.ogg"
+QC/Abilities/Keel/Fire2	"Sounds/UI/Abilities/Keel_Fire2.ogg"
+QC/Abilities/Keel/Fire3	"Sounds/UI/Abilities/Keel_Fire3.ogg"
+
+
+
+//------------------------
+//Lo wang
+
+QC/Abilities/LoWang/Slash1	"Sounds/UI/Abilities/LoWang_Slash1.ogg"
+QC/Abilities/LoWang/Slash2	"Sounds/UI/Abilities/LoWang_Slash2.ogg"
+
+QC/Abilities/LoWang/Healing	"Sounds/UI/Abilities/LoWang_Healing.ogg"
+QC/Abilities/LoWang/Rage	"Sounds/UI/Abilities/LoWang_Rage.ogg"
+
+
+//------------------------
+//Grayson
+QC/Abilities/Grayson/ThumperExplode	"Sounds/UI/Abilities/Grayson_ThumpImpact.ogg"
+QC/Abilities/Grayson/LeashPhase		"Sounds/UI/Abilities/Grayson_LeashPhase.ogg"
+QC/Abilities/Grayson/LeashCast		"Sounds/UI/Abilities/Grayson_LeashCast.ogg"
+QC/Abilities/Grayson/Buy			"Sounds/UI/Abilities/Grayson_Buy.ogg"
+QC/Abilities/Grayson/CantBuy		"Sounds/UI/Abilities/Grayson_CantBuy.ogg"
+QC/Abilities/Grayson/Prebuy			"Sounds/UI/Abilities/Grayson_Prebuy.ogg"
+QC/Abilities/Grayson/Earn			"Sounds/UI/Abilities/Grayson_Earn.ogg"
+
+//------------------------
+//Eradicator
+QC/Abilities/Eradicator/Radar		"Sounds/UI/Abilities/Eradicator_Radar.ogg"
+QC/Abilities/Eradicator/DamageUp	"Sounds/UI/Abilities/Eradicator_DamageUp.ogg"
+
+
+//------------------------
+//Blazkowicz
+$random QC/Abilities/Blazkowicz/AbilityVoice { QC/Abilities/Blazkowicz/Ability1 QC/Abilities/Blazkowicz/Ability2 QC/Abilities/Blazkowicz/Ability3 }
+QC/Abilities/Blazkowicz/Ability1 		"Sounds/Players/Blazkowicz/BlazkowiczAbility1.ogg"
+QC/Abilities/Blazkowicz/Ability2 		"Sounds/Players/Blazkowicz/BlazkowiczAbility2.ogg"
+QC/Abilities/Blazkowicz/Ability3 		"Sounds/Players/Blazkowicz/BlazkowiczAbility3.ogg"
+QC/Abilities/Blazkowicz/Alarm 			"Sounds/UI/Abilities/Blazkowicz_Alarm.ogg"
+QC/Abilities/Blazkowicz/Napalm 			"Sounds/UI/Abilities/Blazkowicz_Napalm.ogg"
+QC/Abilities/Blazkowicz/Laser 			"Sounds/UI/Abilities/Blazkowicz_Laser.ogg"
+QC/Abilities/Blazkowicz/Regen 			"Sounds/UI/Abilities/Blazkowicz_Regen.ogg"
+QC/Abilities/Blazkowicz/RegenShort 		"Sounds/UI/Abilities/Blazkowicz_RegenShort.ogg"
+
+
+//------------------------
+//VorMatur
+QC/Abilities/VorMatur/DarkenShot "Sounds/UI/Abilities/VorMaturBlindActivate.ogg"
+QC/Abilities/VorMatur/Darkening  "Sounds/UI/Abilities/VorMaturBlindImpact.ogg"
+QC/Abilities/VorMatur/Darkened   "Sounds/UI/Abilities/VorMaturBlindVictim.ogg"
+
+
+//------------------------
+//Freeman
+QC/Abilities/Freeman/Exhaust "Sounds/UI/Abilities/Freeman_Exhaust.ogg"
+QC/Abilities/Freeman/Extract "Sounds/UI/Abilities/Freeman_Extract.ogg"
+QC/Abilities/Freeman/Battery "Sounds/UI/Abilities/Freeman_Battery.ogg"
+QC/Abilities/Freeman/HalfLife "Sounds/UI/Abilities/Freeman_HalfLife.ogg"
+
+//------------------------
+//Eleena
+QC/Abilities/Eleena/Activate "Sounds/UI/Abilities/Eleena_Activate.ogg"
+QC/Abilities/Eleena/SwapFake "Sounds/UI/Abilities/Eleena_Swap.ogg"
+QC/Abilities/Eleena/SwapReal "Sounds/UI/Abilities/Eleena_Swap.ogg"
+
+//------------------------
+//Lucienne
+QC/Abilities/Lucienne/Fire			"Sounds/UI/Abilities/Lucienne_Cast.ogg"
+QC/Abilities/Lucienne/Impact		"Sounds/UI/Abilities/Lucienne_ImpactSmall.ogg"
+QC/Abilities/Lucienne/ImpactBig		"Sounds/UI/Abilities/Lucienne_ImpactBig.ogg"
+QC/Abilities/Lucienne/Heal			"Sounds/UI/Abilities/Lucienne_Heal.ogg"
+QC/Abilities/Lucienne/Hurt			"Sounds/UI/Abilities/Lucienne_Hurt.ogg"
+QC/Abilities/Lucienne/FireLoop		"Sounds/UI/Abilities/Lucienne_FireLoop.ogg"
+QC/Abilities/Lucienne/BigExplo		"Sounds/UI/Abilities/Lucienne_FireExplosion.ogg"
+
+
+//------------------------
+//Major
+QC/Abilities/Major/Launch 		"Sounds/UI/Abilities/Major_Launch.ogg"
+QC/Abilities/Major/Confirm 		"Sounds/UI/Abilities/Major_Confirm.ogg"
+QC/Abilities/Major/Activate 	"Sounds/UI/Abilities/Major_Activate.ogg"
+QC/Abilities/Major/Whistle	 	"Sounds/UI/Abilities/Major_Whistle.ogg"
+
+$random QC/Abilities/Major/Climb {QC/Abilities/Major/Climb1 QC/Abilities/Major/Climb2 QC/Abilities/Major/Climb3 QC/Abilities/Major/Climb4 }
+QC/Abilities/Major/Climb1 	"Sounds/UI/Abilities/Major_Climb1.ogg"
+QC/Abilities/Major/Climb2 	"Sounds/UI/Abilities/Major_Climb2.ogg"
+QC/Abilities/Major/Climb3 	"Sounds/UI/Abilities/Major_Climb3.ogg"
+QC/Abilities/Major/Climb4 	"Sounds/UI/Abilities/Major_Climb4.ogg"
+
+//------------------------
+//Hunter
+QC/Abilities/Hunter/Activate 		"Sounds/UI/Abilities/Hunter_Activate.ogg"
+QC/Abilities/Hunter/Learn 		"Sounds/UI/Abilities/Hunter_Learn.ogg"
+$random QC/Abilities/Hunter/Fire
+{QC/Abilities/Hunter/Fire1 QC/Abilities/Hunter/Fire2 QC/Abilities/Hunter/Fire3}
+
+QC/Abilities/Hunter/Fire1 		"Sounds/UI/Abilities/Hunter_Fire1.ogg"
+QC/Abilities/Hunter/Fire2 		"Sounds/UI/Abilities/Hunter_Fire2.ogg"
+QC/Abilities/Hunter/Fire3 		"Sounds/UI/Abilities/Hunter_Fire3.ogg"
+
+//------------------------
+//Sam
+QC/Abilities/Sam/FireLoop 		"Sounds/UI/Abilities/Sam_FireLoop.ogg"
+QC/Abilities/Sam/SpinDown 		"Sounds/UI/Abilities/Sam_SpinDown.ogg"
+QC/Abilities/Sam/SpinUp 		"Sounds/UI/Abilities/Sam_SpinUp.ogg"
+$random QC/Abilities/Sam/Activate {QC/Abilities/Sam/Activate1 QC/Abilities/Sam/Activate2 QC/Abilities/Sam/Activate3}
+
+QC/Abilities/Sam/Activate1 		"Sounds/UI/Abilities/Sam_Activate1.ogg"
+QC/Abilities/Sam/Activate2 		"Sounds/UI/Abilities/Sam_Activate2.ogg"
+QC/Abilities/Sam/Activate3 		"Sounds/UI/Abilities/Sam_Activate3.ogg"
+
+
+//------------------------
+//Postal
+$random QC/Abilities/Postal/ActivateLine {QC/Abilities/Postal/Activate1 QC/Abilities/Postal/Activate2 QC/Abilities/Postal/Activate3}
+
+QC/Abilities/Postal/ActivateSFX 		"Sounds/UI/Abilities/Postal_Activate.ogg"
+
+QC/Abilities/Postal/Activate1 		"Sounds/Players/Postal/PostalAbility1.ogg"
+QC/Abilities/Postal/Activate2 		"Sounds/Players/Postal/PostalAbility2.ogg"
+QC/Abilities/Postal/Activate3 		"Sounds/Players/Postal/PostalAbility3.ogg"
+QC/Abilities/Postal/Throw 			"Sounds/Players/Postal/PostalThrow.ogg"
+
+$random QC/Abilities/Postal/Postal_Smoke 		{ QC/Abilities/Postal/Postal_Smoke1 QC/Abilities/Postal/Postal_Smoke2 }
+$random QC/Abilities/Postal/Postal_Warning 	{ QC/Abilities/Postal/Postal_Warning1 QC/Abilities/Postal/Postal_Warning2 }
+$random QC/Abilities/Postal/Postal_Withdraw	{ QC/Abilities/Postal/Postal_Withdraw1 QC/Abilities/Postal/Postal_Withdraw2
+                                              QC/Abilities/Postal/Postal_Withdraw3 QC/Abilities/Postal/Postal_Withdraw4 }
+
+QC/Abilities/Postal/Postal_Smoke1 		"Sounds/UI/Abilities/Postal_Smoke1.ogg"
+QC/Abilities/Postal/Postal_Smoke2 		"Sounds/UI/Abilities/Postal_Smoke2.ogg"
+
+QC/Abilities/Postal/Postal_Warning1 		"Sounds/UI/Abilities/Postal_Warning1.ogg"
+QC/Abilities/Postal/Postal_Warning2 		"Sounds/UI/Abilities/Postal_Warning2.ogg"
+
+QC/Abilities/Postal/Postal_Withdraw1 		"Sounds/UI/Abilities/Postal_Withdraw1.ogg"
+QC/Abilities/Postal/Postal_Withdraw2 		"Sounds/UI/Abilities/Postal_Withdraw2.ogg"
+QC/Abilities/Postal/Postal_Withdraw3 		"Sounds/UI/Abilities/Postal_Withdraw3.ogg"
+QC/Abilities/Postal/Postal_Withdraw4 		"Sounds/UI/Abilities/Postal_Withdraw4.ogg"
+
+
+//------------------------
+//Painkiller
+QC/Abilities/Painkiller/Defense		"Sounds/UI/Abilities/Painkiller_CardProtec.ogg"
+QC/Abilities/Painkiller/Attack		"Sounds/UI/Abilities/Painkiller_CardDamage.ogg"
+QC/Abilities/Painkiller/Speed		"Sounds/UI/Abilities/Painkiller_CardSpeed.ogg"
+QC/Abilities/Painkiller/Choose		"Sounds/UI/Abilities/Painkiller_Activate.ogg"
+QC/Abilities/Painkiller/Failure		"Sounds/UI/Abilities/Painkiller_Failed.ogg"
+QC/Abilities/Painkiller/Apply		"Sounds/UI/Abilities/Painkiller_Apply.ogg"
+
+QC/Abilities/Painkiller/DemonStart		"Sounds/UI/Abilities/Painkiller_DemonStart.ogg"
+QC/Abilities/Painkiller/DemonLoop		"Sounds/UI/Abilities/Painkiller_DemonLoop.ogg"
+QC/Abilities/Painkiller/DemonStop		"Sounds/UI/Abilities/Painkiller_DemonStop.ogg"
+$random QC/Abilities/Painkiller/DemonShoot {QC/Abilities/Painkiller/DemonShoot1 QC/Abilities/Painkiller/DemonShoot2}
+QC/Abilities/Painkiller/DemonShoot1		"Sounds/UI/Abilities/Painkiller_DemonShoot1.ogg"
+QC/Abilities/Painkiller/DemonShoot2		"Sounds/UI/Abilities/Painkiller_DemonShoot2.ogg"
+QC/Abilities/Painkiller/DemonShotLoop	"Sounds/UI/Abilities/Painkiller_DemonProjLoop.ogg"
+QC/Abilities/Painkiller/DemonShotExplo	"Sounds/UI/Abilities/Painkiller_DemonProjExpl.ogg"
+
+$random QC/Abilities/Painkiller/Soul { QC/Abilities/Painkiller/Soul1 QC/Abilities/Painkiller/Soul2 QC/Abilities/Painkiller/Soul3 }
+QC/Abilities/Painkiller/Soul1		"Sounds/UI/Abilities/Painkiller_SoulPick1.ogg"
+QC/Abilities/Painkiller/Soul2		"Sounds/UI/Abilities/Painkiller_SoulPick2.ogg"
+QC/Abilities/Painkiller/Soul3		"Sounds/UI/Abilities/Painkiller_SoulPick3.ogg"
+
+
+QC/Abilities/Painkiller/Weapon/ShootTip			"Sounds/UI/Abilities/Painkiller_WP_Shoot.ogg"
+QC/Abilities/Painkiller/Weapon/TipReturn		"Sounds/UI/Abilities/Painkiller_WP_Back.ogg"
+QC/Abilities/Painkiller/Weapon/SpinStartLoop	"Sounds/UI/Abilities/Painkiller_WP_FireLoop.ogg"
+QC/Abilities/Painkiller/Weapon/SpinStop			"Sounds/UI/Abilities/Painkiller_WP_FireStop.ogg"
+QC/Abilities/Painkiller/Weapon/HitMeat			"Sounds/UI/Abilities/Painkiller_WP_HitMeat.ogg"
+QC/Abilities/Painkiller/Weapon/HitWall			"Sounds/UI/Abilities/Painkiller_WP_HitWall.ogg"
+
+$limit QC/Abilities/Painkiller/Weapon/HitMeat 6
+$limit QC/Abilities/Painkiller/Weapon/HitWall 6
+$limit QC/Abilities/Painkiller/DemonShotExplo 6
+
+//------------------------
+//Intruder (duskdude)
+QC/Abilities/Intruder/WendigoStart		"Sounds/UI/Abilities/Intruder_WendigoStart.ogg"
+QC/Abilities/Intruder/WendigoReveal		"Sounds/UI/Abilities/Intruder_WendigoReveal.ogg"
+QC/Abilities/Intruder/WendigoIdle		"Sounds/UI/Abilities/Intruder_WendigoIdle.ogg"
+QC/Abilities/Intruder/WendigoIdleOut	"Sounds/UI/Abilities/Intruder_WendigoIdleOut.ogg"
+QC/Abilities/Intruder/BonusPick			"Sounds/UI/Abilities/Intruder_Bonus.ogg"
+//==============================================================================
+//	Misc sounds
+//==============================================================================
+
+QCDE/Other/D4Teleport					"Sounds/Misc/Teleport.ogg"
+QCDE/Other/QCTeleport					"Sounds/UI/DSTelept.ogg"
+
+QCDE/Other/QCJumpPad					"Sounds/Movers/QCJumpPad.ogg"
+$limit QCDE/Other/QCJumpPad 10
+$volume QCDE/Other/QCJumpPad 0.8
+
+$random QCDE/Other/BulletHitMetal { QCDE/Other/BullMetal1 QCDE/Other/BullMetal2 QCDE/Other/BullMetal3 QCDE/Other/BullMetal4 QCDE/Other/BullMetal5 }
+$random QCDE/Other/BulletHitConcrete { QCDE/Other/BullConcrete1 QCDE/Other/BullConcrete2 QCDE/Other/BullConcrete3 QCDE/Other/BullConcrete4 }
+$random QCDE/Other/BulletHitFlesh { QCDE/Other/BullFlesh1 QCDE/Other/BullFlesh2 QCDE/Other/BullFlesh3 }
+$random QCDE/Other/BulletWhoosh  { QCDE/Other/BulletWhoosh1 QCDE/Other/BulletWhoosh2 QCDE/Other/BulletWhoosh3 QCDE/Other/BulletWhoosh4 }
+
+"Airplane!"	"Sounds/UI/Planeair.ogg"
+$random BulletHitFleshRandom { QCDE/Other/BulletHitFlesh nope nope nope }
+$random BulletHitConcreteRandom { QCDE/Other/BulletHitConcrete nope nope nope }
+
+QCDE/Other/BullMetal1				"Sounds/Misc/blt_s_metal1.ogg"
+QCDE/Other/BullMetal2				"Sounds/Misc/blt_s_metal2.ogg"
+QCDE/Other/BullMetal3				"Sounds/Misc/blt_s_metal3.ogg"
+QCDE/Other/BullMetal4				"Sounds/Misc/blt_s_metal4.ogg"
+QCDE/Other/BullMetal5				"Sounds/Misc/blt_s_metal5.ogg"
+QCDE/Other/BullConcrete1			"Sounds/Misc/blt_concrete1.ogg"
+QCDE/Other/BullConcrete2			"Sounds/Misc/blt_concrete2.ogg"
+QCDE/Other/BullConcrete3			"Sounds/Misc/blt_concrete3.ogg"
+QCDE/Other/BullConcrete4			"Sounds/Misc/blt_concrete4.ogg"
+QCDE/Other/BullFlesh1				"Sounds/Misc/blt_flesh1.ogg"
+QCDE/Other/BullFlesh2				"Sounds/Misc/blt_flesh2.ogg"
+QCDE/Other/BullFlesh3				"Sounds/Misc/blt_flesh3.ogg"
+QCDE/Other/BulletWhoosh1			"Sounds/Misc/DSWHIZ1.ogg"
+QCDE/Other/BulletWhoosh2			"Sounds/Misc/DSWHIZ2.ogg"
+QCDE/Other/BulletWhoosh3			"Sounds/Misc/DSWHIZ3.ogg"
+QCDE/Other/BulletWhoosh4			"Sounds/Misc/DSWHIZ4.ogg"
+
+$random QCDE/Other/ShieldImpact		{ QCDE/Other/ShieldImpact1 QCDE/Other/ShieldImpact2 }
+QCDE/Other/ShieldImpact1			"Sounds/Misc/ShieldImpact1.ogg"
+QCDE/Other/ShieldImpact2			"Sounds/Misc/ShieldImpact2.ogg"
+QCDE/Other/ShieldFail				"Sounds/Misc/ShieldFail.ogg"

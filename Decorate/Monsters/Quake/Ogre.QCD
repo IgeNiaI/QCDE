@@ -1,0 +1,130 @@
+
+
+//================================================================
+//================================================================
+Actor QOgre : QCDE_MonsterMedium	15111	// hell knight
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake"
+	//$Color 12
+	Health 600
+	Radius 20
+	Height 56
+	Speed 14
+	PainChance 64
+	Mass 600
+	Scale 0.51
+	MeleeRange 70
+	Monster
+	Tag "$TAG_QOgre" // "Ogre"
+	SeeSound "Quake1/Ogre/Sight"
+	PainSound "Quake1/Ogre/Pain"
+	DeathSound "Quake1/Ogre/Death"
+	ActiveSound "Quake1/Ogre/Idle"
+	MeleeSound ""
+	+FLOORCLIP
+	Obituary "$OB_QOgre" // "%o was exploded by an ogre."
+	HitObituary "$OBH_QOgre" // "%o was cut in half by an ogre."
+	DropItem "Hourglass", 48
+	States
+	{
+	Idle:
+		Q35I A 10 A_Look
+		Loop
+	See:
+		Q35W ABCDEF 4 A_Chase
+		Loop
+	PostMelee:
+		TNT1 A 0 A_ChangeFlag("NODROPOFF",0)
+		Q35W AB 4 A_Chase("","")
+		Goto See+2
+	Melee:
+		TNT1 A 0 A_ChangeFlag("NODROPOFF",1)
+		Q33C A 0 A_Jump(256,"Melee1","Melee2")
+
+		Melee1:
+			TNT1 A 0 A_Recoil(-1.4)
+			Q35A A 5 A_FaceTarget		TNT1 A 0 A_Recoil(-1.4)		TNT1 A 0 A_PlaySound("Quake1/Ogre/ChainSwing")
+			Q35A B 5 A_FaceTarget		TNT1 A 0 A_Recoil(-1.4)		TNT1 A 0 A_FaceTarget
+			Q35A CCCCC 1 A_CustomMeleeAttack(random(2,8))			TNT1 A 0 A_Recoil(-1.4)
+			Q35A D 5 A_FaceTarget		TNT1 A 0 A_Recoil(-1.4)
+			Q35A E 5 A_FaceTarget		TNT1 A 0 A_Recoil(-1.4)		TNT1 A 0 A_FaceTarget
+			Q35A FFFFF 1 A_CustomMeleeAttack(random(2,8))			TNT1 A 0 A_Recoil(-1.4)
+			Q35A G 5 A_FaceTarget
+			Goto PostMelee
+		Melee2:
+			Q35B A 5 A_FaceTarget		TNT1 A 0 A_Recoil(-1.4)		TNT1 A 0 A_PlaySound("Quake1/Ogre/ChainSwing")
+			Q35B B 5 A_FaceTarget		TNT1 A 0 A_Recoil(-1.4)
+			Q35B C 5 A_FaceTarget		TNT1 A 0 A_Recoil(-1.4)
+			Q35B DDDDD 1 A_CustomMeleeAttack(random(2,8))			TNT1 A 0 A_Recoil(-1.4)
+			Q35B EEEEE 1 A_CustomMeleeAttack(random(2,8))
+			Goto PostMelee
+
+	Missile:
+		Q35C AAA 5 A_FaceTarget
+		Q35C B 0 A_PlaySound("Quake1/Weapons/GrenadeFire",6)
+		Q35C B 5 A_CustomMissile("OgreGrenade",35,-5,0)
+		Q35C C 5
+		Goto See
+	Pain:
+		Q35P A 3 A_ChangeFlag("NODROPOFF",0)
+		Q35P A 3 A_Pain
+		Goto See
+
+	DeathChecksDone:
+		Q35D A 0 A_Scream
+		Q35D A 4
+		Q35D B 4 A_Fall
+		Q35D CDEF 4
+		Q35D G 4 A_PlaySound("quake4/Misc/Body/Small")
+	Death.Corpse:
+		Q35D H -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("Quake1/Xdeath")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		Q35D HGFEDCBA 5
+		Goto See
+	}
+}
+
+
+Actor OgreGrenade
+{
+    Radius 6
+    Height 10
+    Speed 15
+    Scale 0.2
+    Gravity 0.7
+    Damage 2
+    PROJECTILE
+    -NOGRAVITY
+    +CANBOUNCEWATER
+	+FORCEXYBILLBOARD
+	BounceType "Doom"
+    BounceSound "Quake1/Weapons/GrenadeBounce"
+    DeathSound "Quake1/Weapons/RocketExplo"
+	DamageType "RocketDamage"
+    States
+    {
+    Spawn:
+		TNT1 A 0 NODELAY ThrustThingZ(0,20,0,0)
+		Q99E NMLKJIHGFEDC 5 Bright Light("RedSmallPoint1")
+        Goto Spawn+1
+    Death:
+		TNT1 A 0 A_SpawnItemEx("BoltExplosion",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 2 Light("YellowSmallFlicker1") A_Explode(48,64,1)
+		TNT1 A 2 Light("YellowMediumFlicker3")
+		TNT1 A 2 Light("YellowMediumFlicker2")
+		TNT1 A 2 Light("YellowMediumFlicker3")
+		TNT1 A 2 Light("YellowSmallFlicker1")
+		TNT1 A 2 Light("YellowSmallFlicker2")
+		TNT1 A 2 Light("YellowSmallFlicker3")
+		Stop
+    }
+}

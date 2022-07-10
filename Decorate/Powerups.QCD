@@ -1,0 +1,952 @@
+
+//=======================================================================
+//=======================================================================
+// No blursphere, thanks!
+//=======================================================================
+//=======================================================================
+
+
+Actor ArmorProtecQuadSpawner : RandomSpawner replaces BlurSphere
+{
+	DropItem "QCSmallArmorDoubleGiver"
+	DropItem "QCProtec"
+	DropItem "QCQuad"
+}
+
+//=======================================================================
+//=======================================================================
+// No berserk pack
+//=======================================================================
+//=======================================================================
+
+
+Actor BerserkSpawner : ArmorProtecQuadSpawner replaces Berserk
+{	}
+
+//=======================================================================
+//=======================================================================
+
+// Radsuit with D4T sprite
+//=======================================================================
+//=======================================================================
+Actor QCRadSuit : RadSuit replaces RadSuit
+{
+	Inventory.PickupSound "QC/Items/RadsuitPickup"
+	States
+	{
+	Spawn:
+		SUIT A -1 Bright
+		Stop
+	}
+}
+
+//=======================================================================
+//=======================================================================
+// Allmap with D4T-ish sprite
+//=======================================================================
+//=======================================================================
+Actor QCAllmap : CustomInventory replaces Allmap
+{
+	Inventory.PickupSound "QC/Items/AutomapPick"
+	Inventory.RespawnTics 2100 //60 secs
+	Inventory.PickupMessage "$GOT_QCAllmap" // "Picked up the computer area map."
+	States
+	{
+	Spawn:
+		DMAP ABCDCB 6 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("Allmap")
+		TNT1 A 0 A_GiveInventory("ExtendedScanner")
+		Stop
+	}
+}
+Actor ExtendedScanner : Scanner
+{
+	Inventory.MaxAmount 0
+	Powerup.Duration 0x7FFFFFFA
+	+Inventory.AUTOACTIVATE
+}
+
+
+//=======================================================================
+//=======================================================================
+// Quad Damage droppable powerup (Deathmatch only)
+//=======================================================================
+//=======================================================================
+
+Actor PowerQuad : PowerDamage
+{
+	DamageFactor "Normal", 4
+	//Inventory.Icon "IcnDamag"
+	+INVENTORY.ADDITIVETIME
+}
+
+Actor SecondOfQuad : PowerupGiver
+{
+	Inventory.PickupMessage ""
+	Inventory.UseSound "Nothing"
+	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
+	Powerup.Color Magenta 0.125
+	Powerup.Type "Quad"
+	Powerup.Duration 35
+}
+
+Actor QCQuad : CustomInventory 15511
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 9
+	//$Title "Quad Damage"
+	Height 48
+	Radius 20
+	Scale 0.95
+	Tag "$TAG_QCQuad" // "Quad Damage"
+	Inventory.PickupMessage "$GOT_QCQuad" // "Picked up Quad Damage!"
+	Inventory.PickupSound "QC/Items/PowerupPick"
+	Inventory.RespawnTics 3150 //90 sec
+	+INVENTORY.BIGPOWERUP
+
+	States
+	{
+	Spawn:
+		QUAD A 35 BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",0)
+		QUAD A 0 A_SpawnItemEx("PowerupBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QUAD A 0 A_ThrowGrenade("QCQuadFX")
+		Goto Idle
+	Idle:
+		"####" "#" 0
+		Goto Arg1
+	Arg1:
+		"####" "#" 0 A_JumpIf(args[1] > 0, "Arg2")
+		"####" "#" 0 A_SetArg(1,30) // default duration of powerup
+		Goto Arg2
+	Arg2:
+		"####" "#" 0 A_JumpIf(args[2] > 0, "See")
+		"####" "#" 0 A_SetArg(2,32767) // default time before disappearing
+		Goto See
+	See:
+		"####" "#" 35 BRIGHT A_SetArg(2, args[2] - 1)
+		"####" "#" 0 A_JumpIf(args[2] <= 0, "Death")
+		Loop
+	Death:
+		"####" AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_FadeOut(1/35)
+		Stop
+	Pickup:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_CantPickPowerup"), "Failer")
+		TNT1 A 0 A_SpawnItemEx("QuadFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ApplyPowerSecs",0)
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupTaken",0,0)
+		TNT1 A 0 A_ThrowGrenade("QuadIndicator")
+		Stop
+	Failer:
+		TNT1 A 0
+		Fail
+	}
+}
+
+Actor QCQuadFX : GenericPowerupFXBackground
+{
+	Scale 0.95
+	States
+	{
+	Spawn:
+		QUAD B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		Goto LooperIn
+	}
+}
+
+
+
+Actor QuadTimer : Inventory
+{
+	Inventory.MaxAmount 0x7FFFFFFF
+	Inventory.InterhubAmount 0
+}
+
+Actor QuadIndicator
+{
+	Radius 1
+	Height 1
+	+NOINTERACTION
+	+BRIGHT
+	Projectile
+	RenderStyle Add
+	Scale 0.5
+	Translation "0:255=%[0,0,0]:[1.9,0.4,2]"
+	States
+	{
+	Spawn:
+		X123 A 0 NODELAY
+	Idle:
+		X123 ABCDEFGHIJKL 1 Light("QuadLight") A_Warp(AAPTR_TARGET, -5, 0, 40, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death1")
+		X123 MNOPQRSTUVWX 1 Light("QuadLight") A_Warp(AAPTR_TARGET, -5, 0, 40, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death2")
+		Goto Idle
+	Death1:
+		X123 MNOPQRSTUVWX 1 A_FadeOut(0.09)
+		Stop
+	Death2:
+		X123 ABCDEFGHIJKL 1 A_FadeOut(0.09)
+		Stop
+	}
+}
+
+//=======================================================================
+//=======================================================================
+// Quad Damage powerup (SP/Coop)
+// In DM, it becomes a "super ammo pack": ~66% of ammo for all weps
+//=======================================================================
+//=======================================================================
+
+Actor QuadFull : PowerupGiver
+{
+	Inventory.PickupMessage ""
+	Inventory.UseSound "Nothing"
+	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
+	Powerup.Color Magenta 0.125
+	Powerup.Type "Quad"
+	Powerup.Duration 1050
+}
+
+Actor QuadFuller : QuadFull
+{
+	Powerup.Duration 2100
+}
+
+Actor QCQuadSP : CustomInventory
+{
+	Height 48
+	Radius 20
+	Scale 0.95
+	Tag "$TAG_QCQuad" // "Quad Damage"
+	Inventory.PickupMessage "$GOT_QCQuad" // "Picked up Quad Damage!"
+	Inventory.PickupSound ""
+	Inventory.RespawnTics 3150 //90 sec
+	+INVENTORY.BIGPOWERUP
+	States
+	{
+	Spawn:
+		QUAD A 35 BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		QUAD A 0 ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",0)
+		QUAD A 0 A_ThrowGrenade("QCQuadFX")
+		QUAD A -1 BRIGHT
+		Stop
+	DMSpawn:	//Super ammo pack
+		AMAL A 0 A_SetScale(1.15)
+		AMAL A -1 Bright
+		Wait
+	Pickup:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMGiveSuperAmmo")
+		TNT1 A 0 A_SpawnItemEx("QuadFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Items/PowerupPick",CHAN_ITEM)
+		TNT1 A 0 A_ThrowGrenade("QuadIndicator")
+		TNT1 A 0 A_JumpIfInventory("LongerPowerupToken",1,"Longer")
+		TNT1 A 0 A_GiveInventory("QuadFull",1)
+		Stop
+	Longer:
+		TNT1 A 0 A_GiveInventory("QuadFuller",1)
+		Stop
+	DMGiveSuperAmmo:
+		TNT1 A 0 A_PlaySound("QC/Items/Backpack",CHAN_ITEM)
+		TNT1 A 0 A_GiveInventory("QCBulletAmmo",	100)
+		TNT1 A 0 A_GiveInventory("QCShellAmmo",		 18)
+		TNT1 A 0 A_GiveInventory("QCNailAmmo",		100)
+		TNT1 A 0 A_GiveInventory("QCRocketAmmo",	 10)
+		TNT1 A 0 A_GiveInventory("QCBoltAmmo",		 10)
+		TNT1 A 0 A_GiveInventory("QCSlugAmmo",		 10)
+		TNT1 A 0 A_GiveInventory("QCCoilAmmo",		100)
+		TNT1 A 0 A_GiveInventory("QCBFGAmmo",		  8)
+		Stop
+	}
+}
+
+
+
+//=======================================================================
+//=======================================================================
+// Protection droppable powerup
+// named Protec not to conflict with built-in PowerProtection
+// and most definitely not because it's a meme
+//=======================================================================
+//=======================================================================
+
+Actor PowerProtec : PowerProtection
+{
+	DamageFactor "Normal", .40999
+	+INVENTORY.ADDITIVETIME
+}
+
+Actor SecondOfProtec : PowerupGiver
+{
+	Inventory.PickupMessage ""
+	Inventory.UseSound "Nothing"
+	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
+	Powerup.Color Green 0.125
+	Powerup.Type "Protec"
+	Powerup.Duration 35
+}
+
+Actor QCProtec : QCQuad 15512
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 9
+	//$Title "Protection"
+	Tag "$TAG_QCProtec" // "Protection"
+	Inventory.PickupMessage "$GOT_QCProtec" // "Picked up Protection!"
+	Scale 0.95
+	States
+	{
+	Spawn:
+		PROT A 35 BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",1)
+		PROT A 0 A_SpawnItemEx("PowerupBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PROT A 0 A_ThrowGrenade("QCProtecFX")
+		Goto Idle
+	Pickup:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_CantPickPowerup"), "Failer")
+		TNT1 A 0 A_SpawnItemEx("ProtecFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ApplyPowerSecs",1)
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupTaken",0,1)
+		TNT1 A 0 A_ThrowGrenade("ProtecIndicator")
+		Stop
+	}
+}
+
+
+Actor QCProtecFX : GenericPowerupFXBackground
+{
+	Scale 0.95
+	States
+	{
+	Spawn:
+		PROT B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		Goto LooperIn
+	}
+}
+
+Actor ProtecTimer : Inventory
+{
+	Inventory.MaxAmount 0x7FFFFFFF
+	Inventory.InterhubAmount 0
+}
+
+Actor ProtecIndicator : QuadIndicator
+{
+	Translation "0:255=%[0,0,0]:[0.5,2.0,1.0]"
+	States
+	{
+	Spawn:
+		X123 A 0 NODELAY
+	Idle:
+		X123 XWVUTSRQPONM 1 Light("ProtecLight") A_Warp(AAPTR_TARGET, -5 , 0, 40, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death1")
+		X123 LKJIHGFEDCBA 1 Light("ProtecLight") A_Warp(AAPTR_TARGET, -5 , 0, 40, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death2")
+		Goto Idle
+	Death1:
+		X123 LKJIHGFEDCBA 1 A_FadeOut(0.09)
+		Stop
+	Death2:
+		X123 XWVUTSRQPONM 1 A_FadeOut(0.09)
+		Stop
+	}
+}
+
+
+//=======================================================================
+//=======================================================================
+// Protection droppable powerup (SP/Coop)
+// In DM, it becomes a "super ammo pack": ~66% of ammo for all weps
+//=======================================================================
+//=======================================================================
+
+Actor ProtecFull : PowerupGiver
+{
+	Inventory.PickupMessage ""
+	Inventory.UseSound "Nothing"
+	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
+	Powerup.Color Green 0.125
+	Powerup.Type "Protec"
+	Powerup.Duration 1575 //45 sec
+}
+
+Actor ProtecFuller : ProtecFull
+{
+	Powerup.Duration 2100
+}
+
+Actor QCProtecSP : CustomInventory
+{
+	Height 48
+	Radius 20
+	Scale 0.95
+	Tag "$TAG_QCProtec" // "Protection"
+	Inventory.PickupMessage "$GOT_QCProtec" // "Picked up Protection!"
+	Inventory.PickupSound ""
+	Inventory.RespawnTics 3150 //90 sec
+	+INVENTORY.BIGPOWERUP
+	States
+	{
+	Spawn:
+		PROT A 35 BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		PROT A 0 ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",1)
+		PROT A 0 A_ThrowGrenade("QCProtecFX")
+		PROT A -1 BRIGHT
+		Stop
+	DMSpawn:	//Super ammo pack
+		AMAL A 0 A_SetScale(1.15)
+		AMAL A -1 Bright
+		Wait
+	Pickup:
+		TNT1 A 9 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMGiveSuperAmmo")
+		TNT1 A 0 A_SpawnItemEx("ProtecFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Items/PowerupPick",CHAN_ITEM)
+		TNT1 A 0 A_ThrowGrenade("ProtecIndicator")
+		TNT1 A 0 A_JumpIfInventory("LongerPowerupToken",1,"Longer")
+		TNT1 A 0 A_GiveInventory("ProtecFull",1)
+		Stop
+	Longer:
+		TNT1 A 0 A_GiveInventory("ProtecFuller",1)
+		Stop
+	DMGiveSuperAmmo:
+		TNT1 A 0 A_PlaySound("QC/Items/Backpack",CHAN_ITEM)
+		TNT1 A 0 A_GiveInventory("QCBulletAmmo",	100)
+		TNT1 A 0 A_GiveInventory("QCShellAmmo",		 18)
+		TNT1 A 0 A_GiveInventory("QCNailAmmo",		100)
+		TNT1 A 0 A_GiveInventory("QCRocketAmmo",	 10)
+		TNT1 A 0 A_GiveInventory("QCBoltAmmo",		 10)
+		TNT1 A 0 A_GiveInventory("QCSlugAmmo",		 10)
+		TNT1 A 0 A_GiveInventory("QCCoilAmmo",		100)
+		TNT1 A 0 A_GiveInventory("QCBFGAmmo",		  8)
+		Stop
+	}
+}
+
+
+
+//=======================================================================
+//=======================================================================
+// Invulnerability (SP/Coop)
+// In DM, it becomes a "super ammo pack": ~66% of ammo for all weps
+//=======================================================================
+//=======================================================================
+Actor PowerInvul : PowerProtection //made to be protection so it doesnt clash with inquisitor invul
+{
+	DamageFactor "Normal", .0001
+	+INVENTORY.ADDITIVETIME
+}
+
+Actor InvulnerabilityFull : PowerupGiver
+{
+	Inventory.PickupMessage ""
+	Inventory.UseSound "Nothing"
+	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
+	Powerup.Color Orange 0.25
+	Powerup.Type "Invul"
+	Powerup.Duration 1050 //30sec
+}
+
+Actor Invulnerability20Sec : PowerupGiver	//only for AeonQCDE map 13
+{
+	Inventory.PickupMessage ""
+	Inventory.UseSound "Nothing"
+	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
+	Powerup.Color Orange 0.25
+	Powerup.Type "Invul"
+	Powerup.Duration 700 //20sec
+}
+
+Actor InvulnerabilityFuller : InvulnerabilityFull
+{
+	Powerup.Duration 2100
+}
+
+Actor QCInvul : QCQuad replaces InvulnerabilitySphere 15513
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 9
+	//$Title "Invulnerability"
+	Tag "$TAG_QCInvul" // "Invulnerability"
+	Inventory.PickupMessage "$GOT_QCInvul" // "Picked up Invulnerability!"
+	Scale 0.95
+	States
+	{
+	Spawn:
+		PENT A 35 BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		PENT A 0 ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",2)
+		PENT A 0 A_ThrowGrenade("QCInvulFX")
+		PENT A -1 BRIGHT
+		Stop
+	DMSpawn:	//Super ammo pack
+		AMAL A 0 A_SetScale(1.15)
+		AMAL A -1 Bright
+		Wait
+	Pickup:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_CantPickPowerup"), "Failer")
+		TNT1 A 0 A_SpawnItemEx("InvulFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMGiveSuperAmmo")
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupTaken",0,2)
+		TNT1 A 0 A_PlaySound("QC/Items/PowerupPick",CHAN_ITEM)
+		TNT1 A 0 A_ThrowGrenade("InvulIndicator")
+		TNT1 A 0 A_JumpIfInventory("LongerPowerupToken",1,"Longer")
+		TNT1 A 0 A_GiveInventory("InvulnerabilityFull",1)
+		Stop
+	Longer:
+		TNT1 A 0 A_GiveInventory("InvulnerabilityFuller",1)
+		Stop
+	DMGiveSuperAmmo:
+		TNT1 A 0 A_PlaySound("QC/Items/Backpack",CHAN_ITEM)
+		TNT1 A 0 A_GiveInventory("QCBulletAmmo",	100)
+		TNT1 A 0 A_GiveInventory("QCShellAmmo",		 18)
+		TNT1 A 0 A_GiveInventory("QCNailAmmo",		100)
+		TNT1 A 0 A_GiveInventory("QCRocketAmmo",	 10)
+		TNT1 A 0 A_GiveInventory("QCBoltAmmo",		 10)
+		TNT1 A 0 A_GiveInventory("QCSlugAmmo",		 10)
+		TNT1 A 0 A_GiveInventory("QCCoilAmmo",		100)
+		TNT1 A 0 A_GiveInventory("QCBFGAmmo",		  8)
+		Stop
+	}
+}
+
+Actor InvulTimer : Inventory
+{
+	Inventory.MaxAmount 0x7FFFFFFF
+	Inventory.InterhubAmount 0
+}
+
+Actor QCInvulFX : GenericPowerupFXBackground
+{
+	Scale 0.95
+	States
+	{
+	Spawn:
+		PENT B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		Goto LooperIn
+	}
+}
+
+
+Actor InvulIndicator : QuadIndicator
+{
+	Scale 1
+	Translation "0:255=%[0,0,0]:[1.2,0.6,0]"
+	States
+	{
+	Spawn:
+		X123 A 0 NODELAY
+	Idle:
+		X123 XWVUTSRQPONM 1 Light("InvulLight") A_Warp(AAPTR_TARGET, -5 , 0, 30, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death1")
+		X123 LKJIHGFEDCBA 1 Light("InvulLight") A_Warp(AAPTR_TARGET, -5 , 0, 30, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death2")
+		Goto Idle
+	Death1:
+		X123 LKJIHGFEDCBA 1 A_FadeOut(0.09)
+		Stop
+	Death2:
+		X123 XWVUTSRQPONM 1 A_FadeOut(0.09)
+		Stop
+	}
+}
+
+
+
+//=======================================================================
+//=======================================================================
+// Infinite Ammo droppable powerup
+// marketing name pending
+//=======================================================================
+//=======================================================================
+
+Actor PowerInfin : PowerInfiniteAmmo
+{
+	+INVENTORY.ADDITIVETIME
+}
+
+Actor SecondOfInfin : PowerupGiver
+{
+	Inventory.PickupMessage ""
+	Inventory.UseSound "Nothing"
+	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
+	Powerup.Color Gold 0.125
+	Powerup.Type "Infin"
+	Powerup.Duration 35
+}
+
+Actor QCInfin : QCQuad 15519
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 9
+	//$Title "Infinite Ammo"
+	Tag "$TAG_QCInfin" // "Infinite Ammo"
+	Inventory.PickupMessage "$GOT_QCInfin" // "Picked up Infinite Ammo!"
+	Scale 0.95
+	States
+	{
+	Spawn:
+		INFN A 35 BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",3)
+		INFN A 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		INFN A 0 A_ThrowGrenade("QCInfinFX")
+		Goto Idle
+	Pickup:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_CantPickPowerup"), "Failer")
+		TNT1 A 0 A_SpawnItemEx("InfinFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ApplyPowerSecs",3)
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupTaken",0,3)
+		TNT1 A 0 A_ThrowGrenade("InfinIndicator")
+		Stop
+	}
+}
+
+
+Actor QCInfinFX : GenericPowerupFXBackground
+{
+	Scale 0.95
+	States
+	{
+	Spawn:
+		INFN B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		Goto LooperIn
+	}
+}
+
+Actor InfinTimer : Inventory
+{
+	Inventory.MaxAmount 0x7FFFFFFF
+	Inventory.InterhubAmount 0
+}
+
+Actor InfinIndicator : QuadIndicator
+{
+	Translation "0:255=%[0,0,0]:[2.0,1.5,0.5]"
+	States
+	{
+	Spawn:
+		X123 A 0 NODELAY
+	Idle:
+		X123 XVTRPN 1 Light("InfinLight") A_Warp(AAPTR_TARGET, -5, 0, 40, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death1")
+		X123 LJHFDB 1 Light("InfinLight") A_Warp(AAPTR_TARGET, -5, 0, 40, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death2")
+		Goto Idle
+	Death1:
+		X123 LJHFDB 1 A_FadeOut(0.09)
+		Stop
+	Death2:
+		X123 XVTRPN 1 A_FadeOut(0.09)
+		Stop
+	}
+}
+
+
+
+//=======================================================================
+//=======================================================================
+// Powerup factory
+//=======================================================================
+//=======================================================================
+
+// This must be met when deciding for a spot for a powerup
+Actor PowerupSpaceRequirement : SpiderMastermind
+{
+	Radius 64
+	Height 96
+	-IsMonster
+}
+
+Actor PowerupFactorySpot : PowerupSpaceRequirement 15517
+{
+	//$NotAngled
+	//$Category "QCDE DM"
+	//$Color 9
+	//$Title "DM Powerup Factory (unique)"
+	RenderStyle None
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		PROT A 0 NoDelay
+		PROT A 0 ACS_NamedExecuteWithResult("QCDE_DM_PowerupFactorySpot")
+		Stop
+	}
+}
+
+Actor PowerupFactory
+{
+	var int user_next_powerup;
+	-SOLID
+	+BRIGHT
+	Scale 0.95
+	RenderStyle Translucent
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		Goto Idle
+	Idle:
+		TNT1 A 2 A_SetTranslucent(0,0)	//resets
+		TNT1 A 5 A_JumpIf(!CallAcs("QCDE_IsPowerupCollected"), "Idle")
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfDuel")
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ItemTaken", 2)
+		TNT1 A 0 A_JumpIf(user_next_powerup == 0, "Quad")
+		//TNT1 A 0 A_JumpIf(user_next_powerup == 1, "Protec") // The first powerup is always Quad
+		TNT1 A 100
+
+	Quad:
+		QUAD BBBBBBBBBBBBBBBBBBBB 15 A_FadeIn (0.011) //300 tics
+		QUAD B 50 //to complete 350 tics of 10 seconds
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBB 35
+		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Quad_Incoming",CHAN_AUTO,1,0,ATTN_NONE)
+		QUAD BBBBB 35
+		QUAD BBBBBBBBBB 35
+		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Quad_Spawned",CHAN_AUTO,1,0,ATTN_NONE)
+		TNT1 A 0 A_SpawnItemEx("QCQuad", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
+		TNT1 A 0 A_SetUserVar(user_next_powerup, 1)
+		Goto Idle2
+
+	Idle2:
+		TNT1 A 2 A_SetTranslucent(0,0)	//resets
+		TNT1 A 5 A_JumpIf(!CallAcs("QCDE_IsPowerupCollected"), "Idle2")
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfDuel")
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ItemTaken", 2, 1050)
+		TNT1 A 0 A_JumpIf(user_next_powerup == 0, "Quad2")
+		TNT1 A 0 A_JumpIf(user_next_powerup == 1, "Protec2")
+		TNT1 A 100
+	Quad2:
+		QUAD BBBBBBBBBBBBBBBBBBBB 15 A_FadeIn (0.011) //300 tics
+		QUAD B 50 //to complete 350 tics of 10 seconds
+		QUAD B 1050
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBBBBBBB 35
+		QUAD BBBBB 35
+		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Quad_Incoming",CHAN_AUTO,1,0,ATTN_NONE)
+		QUAD BBBBB 35
+		QUAD BBBBBBBBBB 35
+		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Quad_Spawned",CHAN_AUTO,1,0,ATTN_NONE)
+		TNT1 A 0 A_SpawnItemEx("QCQuad", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
+		TNT1 A 0 A_SetUserVar(user_next_powerup, 1)
+		Goto Idle2
+	Protec2:
+		PROT BBBBBBBBBBBBBBBBBBBB 15 A_FadeIn (0.011) //300 tics
+		PROT B 50 //to complete 350 tics of 10 seconds
+		PROT B 1050
+		PROT BBBBBBBBBB 35	//350 tics=10 sec
+		PROT BBBBBBBBBB 35
+		PROT BBBBBBBBBB 35
+		PROT BBBBBBBBBB 35
+		PROT BBBBBBBBBB 35
+		PROT BBBBBBBBBB 35
+		PROT BBBBB 35
+		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Protec_Incoming",CHAN_AUTO,1,0,ATTN_NONE)
+		PROT BBBBB 35
+		PROT BBBBBBBBBB 35
+		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Protec_Spawned",CHAN_AUTO,1,0,ATTN_NONE)
+		TNT1 A 0 A_SpawnItemEx("QCProtec", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
+		TNT1 A 0 A_SetUserVar(user_next_powerup, 0)
+		Goto Idle2
+	}
+}
+
+//=================================================================================================
+//=================================================================================================
+//
+//		Terminator ball
+//		Ported by Ivory Duke from D4T
+//
+//=================================================================================================
+//=================================================================================================
+
+Actor QCEldersSoul : CustomInventory 15700
+{
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage "$GOT_QCEldersSoul" // "You picked up an Elder's Soul"
+	Inventory.PickupSound "NoSoundHax"
+	Scale 1.1
+	States
+	{
+	Spawn:
+		PWRB A 0 NODELAY A_SpawnItemEx("PowerupBotBait",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Looper
+	Looper:
+		// [Ms] Since there's only ever one in existence, in an obscure gamemode, it's fine
+		// to spawn clientside+nonetid particles without sight checks
+
+		// This repeats 17 times. Normally we'd use a user var, but...
+		// Thanks GZDoom, your heuristics about self pointer never disappoint.
+		TNT1 A 0 A_PlaySound("QC/UI/EldersSoul_Idle",CHAN_6,0.6,true,0.85)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		PWRB ABCDEFGHIJ 3 Bright A_SpawnItemEx("EldersSoulFlameParticle",random(6,-6),random(6,-6),25, 0,0,frandom(0.8,1.3), 0,SXF_NOCHECKPOSITION)
+		Goto Timeout
+	Timeout:
+		TNT1 A 0 A_ChangeFlag("NOINTERACTION", 1)
+		TNT1 A 35 A_Warp(AAPTR_DEFAULT, -20000,-20000,-20000, 0, WARPF_NOCHECKPOSITION)
+		TNT1 A 65 ACS_NamedExecuteWithResult("QCDE_SpawnEldersSoul")
+		Stop
+
+	Pickup:
+		TNT1 A 0 A_Explode(50,255,XF_NOTMISSILE,0,64)
+		TNT1 A 0 A_Blast(BF_NOIMPACTDAMAGE)
+		TNT1 A 0 A_GiveInventory("EldersSoulPowerGiver",1)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_EldersSoulPickup",0)
+		TNT1 A 0 A_ThrowGrenade("EldersSoulIndicator")
+		Stop
+	}
+}
+
+Actor PowerupBotBait : PowerupGiver
+{
+	+INVENTORY.QUIET
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NEVERRESPAWN
+	Inventory.MaxAmount 0
+	powerup.Type "PowerBotBaiter"
+	powerup.duration 35
+	Inventory.RespawnTics 210 // 6 seconds
+	Scale 0.4
+	RenderStyle Add
+	Alpha 0.01
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_StopSound(1)	//stops respawn sound
+		TNT1 A 0 A_StopSound(2)
+		TNT1 A 0 A_StopSound(3)
+		TNT1 A 0 A_StopSound(4)
+		TNT1 A 0 A_StopSound(5)
+		TNT1 A 0 A_StopSound(6)
+		TNT1 A 0 A_StopSound(7)
+		TNT1 A 0 A_StopSound(8)
+		TNT1 A -1
+		Loop
+	}
+}
+
+
+
+Actor EldersSoulFlameParticle
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY +NONETID
+	renderStyle Add
+	Scale 0.9
+	States
+	{
+	Spawn:
+		TNT1 A 0
+	Looper:
+		PRFL NOPQRSTUVWXYZ 1 BRIGHT
+		PRFL NOPQRSTUVWXYZ 1 BRIGHT A_FadeOut(0.15)
+		Loop
+	}
+}
+
+Actor PowerEldersSoul : PowerProtection
+{
+	DamageFactor "Normal", 1.0
+	Powerup.Color Red 0.075
+	Powerup.Duration 0x7FFFFFFF
+}
+
+Actor PowerEldersProtec90 : PowerProtection { DamageFactor "Normal", 0.909  Powerup.Duration 0x7FFFFFFF }
+Actor PowerEldersProtec80 : PowerProtection { DamageFactor "Normal", 0.809  Powerup.Duration 0x7FFFFFFF }
+Actor PowerEldersProtec70 : PowerProtection { DamageFactor "Normal", 0.709  Powerup.Duration 0x7FFFFFFF }
+Actor PowerEldersProtec60 : PowerProtection { DamageFactor "Normal", 0.609  Powerup.Duration 0x7FFFFFFF }
+Actor PowerEldersProtec50 : PowerProtection { DamageFactor "Normal", 0.509  Powerup.Duration 0x7FFFFFFF }
+Actor PowerEldersProtec40 : PowerProtection { DamageFactor "Normal", 0.409  Powerup.Duration 0x7FFFFFFF }
+
+Actor PowerTermToken : Token {}
+
+Actor EldersSoulPowerGiver : CustomInventory
+{	States	{ Pickup:
+		TNT1 A 0 A_GiveInventory("PowerEldersSoul",1)
+		TNT1 A 0 A_GiveInventory("PowerTerminatorArtifact",1)
+		TNT1 A 0 A_GiveInventory("PowerTermToken",1)
+		Stop
+}	}
+
+Actor EldersSoulPowerTaker : CustomInventory
+{	States	{ Pickup:
+		TNT1 A 0 A_TakeInventory("PowerQuad")        TNT1 A 0 A_TakeInventory("SecondOfQuad")
+		TNT1 A 0 A_TakeInventory("PowerProtec")      TNT1 A 0 A_TakeInventory("SecondOfProtec")
+		TNT1 A 0 A_TakeInventory("PowerInvul")     //TNT1 A 0 A_TakeInventory("SecondOfInvul")
+		TNT1 A 0 A_TakeInventory("PowerInfin")       TNT1 A 0 A_TakeInventory("SecondOfInfin")
+		Stop
+}	}
+
+Actor EldersSoulIndicator
+{
+	Radius 1
+	Height 1
+	+NOINTERACTION
+	+BRIGHT
+	Projectile
+	RenderStyle Add
+	Scale 0.71
+	//Translation "0:255=%[0,0,0]:[2.0,2.0,0.0]"
+	States
+	{
+	Spawn:
+		X143 A 0 NODELAY A_PlaySound("QC/UI/EldersSoul_Picked",CHAN_6,1.0,false,0.5)
+		X143 A 0  A_PlaySound("QC/UI/EldersSoul_Carrier",CHAN_5,0.3,true,0.5)
+	Idle:
+		X143 ABCDEFGHIJKL 1 Light("YellowBigFlicker2") A_Warp(AAPTR_TARGET, -7, 0, 56, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death1")
+		X143 MNOPQRSTUVWX 1 Light("YellowBigFlicker2") A_Warp(AAPTR_TARGET, -7, 0, 56, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_PowerupIndicatorMustDie"), "Death2")
+		Goto Idle
+	Death1:
+		X143 A 0 A_StopSound(5)
+		X143 MNOPQRSTUVWX 1 A_FadeOut(0.09)
+		Stop
+	Death2:
+		X143 A 0 A_StopSound(5)
+		X143 ABCDEFGHIJKL 1 A_FadeOut(0.09)
+		Stop
+	}
+}
+
+Actor EldersSoulTribute : Token { Inventory.MaxAmount 999 }

@@ -1,0 +1,806 @@
+#library "ASSISTAN"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+#import "RADAR.acs"
+
+
+//=============================================================================
+//=============================================================================
+//=============================================================================
+//
+//
+//		HUD AND SPECTATOR RELATED SCRIPTS
+//
+//
+//=============================================================================
+//=============================================================================
+//=============================================================================
+
+int name[64], frags[64]; // 64 pairs of: [0] = name, [1] = frags
+int o[64]; // 64 indices to name:frags. o for "ordering"
+//int flash; // bit-packed player numbers to highlight, 1 per tic. queues up to 5.
+//int flashes; // number of flashes queued
+
+#define ABSENT_FRAGS -999
+#define SCOREBOARD_REDRAW_RATE 5
+
+Script "QCDE_UpdateScores_CLIENTSIDE" (int called_by_victim) CLIENTSIDE
+{
+	int p;
+	for(p = 0; p < 64; p++)
+	{
+		if(!PlayerIsSpectator(p) && SetActivatorToPlayer(p))
+		{
+			name[p] = strparam(n:0);
+			frags[p] = PlayerFrags();
+		}
+		else
+		{
+			name[p] = "";
+			frags[p] = ABSENT_FRAGS;
+		}
+	}
+	sort();
+
+	if(!called_by_victim) terminate;
+	/*
+	// Now let's get killer number and flash his name in scoreboard
+
+	SetActivatorToTarget(0); // Activator: killer
+
+	if(PlayerNumber() == -1) terminate;
+	flash = (flash << 6) | PlayerNumber();
+	log(s:"Flash requesting for ", n:0, s:", flash value = ", d:flash);
+	flashes++;*/
+}
+
+function void update(void)
+{
+	int i;
+
+	frags[i] = PlayerFrags();
+	SetCvarString(strparam(s:"_frags", d:i), strparam(d:frags[i]));
+	SetCvarString(strparam(s:"_name" , d:i), strparam(s:name[i]));
+}
+
+function int updateTarget(void)
+{
+	int playerWas = PlayerNumber();
+	SetActivatorToTarget(0);
+
+	bool changed = PlayerNumber() != playerWas;
+	if(changed) update();
+
+	return changed;
+}
+
+function void sort(void)
+{
+	int i;
+	for(i = 0; i < 64; i++) add(i);
+}
+
+function void add(int x) {
+	int i;
+	while((frags[x] <= frags[o[i]]) && (i < x)) i++;
+
+	if(i < x)
+	{
+		// position before last -- shift the rest down
+		//log(s:"Inserting ", s:name[x], s:" to ", d:i, s:" bcuz ", d:frags[x], s:" <= ", d:frags[o[i]]);
+		int r = x;
+		while(r > i)
+		{
+			o[r] = o[r-1];
+			r--;
+		}
+	}
+	//else if(strlen(name[x])) log(s:"Appending ", s:name[x], s:" at ", d:i);
+	o[i] = x;
+}
+
+function int atoi(str s)
+{
+	int i;
+	int len = StrLen(s);
+	int result = 0;
+
+	for(i = 0; i < len; i++)
+	{
+		int d = GetChar(s, i) - '0';
+		result *= 10;
+		result += d;
+	}
+	return result;
+}
+
+function void swap(int a, int b)
+{
+	o[a] ^= o[b] ^= o[a] ^= o[b];
+}
+
+function int _o(int plr) // anti-o
+{
+	for(int i = 0; i < 64; i++)
+		if(o[i] == plr) return i;
+
+	return -1;
+}
+
+
+int maxScore;
+
+#define AVERAGE_WINDOW 10
+int averager[AVERAGE_WINDOW], index, lastSpeed;
+#define LINE_HEIGHT              22
+
+int watchdog;
+Script "QCDE_HudTracker_Watchdog" OPEN CLIENTSIDE
+{
+	while(true)
+	{
+		if(watchdog < Timer() - 1)
+			ACS("QCDE_HudTracker_CLIENTSIDE");
+
+		delay(1);
+	}
+}
+
+#define ITEM_TIMERS 3
+str itemNames[ITEM_TIMERS]  = {
+	"Health",
+	"Armor",
+	"Powerup"
+};
+str itemColors[ITEM_TIMERS]  = { // <- currently unused
+	"\c[cyan]",
+	"\c[green]",
+	"\c[purple]"
+};
+int itemRespawnTics[ITEM_TIMERS] = { 1050, 1050, 3150 };
+int itemPresent[ITEM_TIMERS] = { false, false, false };
+str itemPic[ITEM_TIMERS] = { "SHUDMEGA", "SHUDHEVY", "SHUDPWUP" };
+int itemTaken[ITEM_TIMERS];
+
+Script "timer" (void)
+{
+	while(1)
+	{
+		log(s:"It's ", d:timer());
+		delay(1);
+	}
+}
+
+Script "QCDE_ItemTaken" (int item, int when_offset)
+{
+	if(item < 0 || item >= ITEM_TIMERS) log(s:"\c[red]QCDE ERROR: wrong item index ", d:item, s:" taken");
+
+	int when = Timer() + when_offset;
+	//log(s:"Server: Item ", s:itemNames[item], s:" taken at ", d:when, s:" = ", d:Timer(), s:" + ", d:when_offset);
+	itemTaken[item] = when;
+
+	ACS_NamedExecuteAlways("QCDE_ItemTaken_CLIENTSIDE",0, item, when, when_offset);
+}
+
+Script "QCDE_ItemSpawned" (int item)
+{
+	if(item < 0 || item >= ITEM_TIMERS) log(s:"\c[red]QCDE ERROR: wrong item index ", d:item, s:" spawned");
+
+	//log(s:"Server: Item ", s:itemNames[item], s:" has spawned");
+	itemPresent[item] = true;
+
+	ACS_NamedExecuteAlways("QCDE_ItemSpawned_CLIENTSIDE",0, item);
+
+	//log(s:"Item ", d:item, s:" spawns successfully ", s:itemNames[item]);
+}
+
+Script "QCDE_ItemSpawned_CLIENTSIDE" (int item) CLIENTSIDE
+{
+	if(item < 0 || item >= ITEM_TIMERS) log(s:"\c[red]QCDE ERROR: wrong item index ", d:item, s:" taken");
+	//log(s:"Item ", s:itemNames[item], s:" has spawned");
+	itemPresent[item] = true;
+}
+
+Script "QCDE_ItemTaken_CLIENTSIDE" (int item, int when, int when_offset) CLIENTSIDE
+{
+	if(item < 0 || item >= ITEM_TIMERS) log(s:"\c[red]QCDE ERROR: wrong item index ", d:item, s:" taken");
+
+	// :thinking: Then why are we sending the "when" over?..
+	when = Timer() + when_offset;
+
+	//log(s:"Item ", s:itemNames[item], s:" taken at ", d:when, s:" = ", d:Timer(), s:" + ", d:when_offset);
+	itemTaken[item] = when;
+	itemPresent[item] = true;
+}
+
+Script "QCDE_ItemStatus_ENTER" ENTER NET
+{
+	int i;
+	for(i = 0; i < ITEM_TIMERS; i++)
+	{
+		ACS("QCDE_ItemStatus_ENTER_CLIENTSIDE",i,itemPresent[i],itemTaken[i],Timer());
+		//log(s:"Sending statuses of ", s:itemNames[i], s:" : ", d:itemPresent[i], s:", ", d:itemTaken[i]);
+	}
+}
+
+Script "QCDE_ItemStatus_ENTER_CLIENTSIDE" (int item, int present, int when, int theimer) CLIENTSIDE
+{
+	itemPresent[item] = present;
+	if(when) itemTaken[item] = when - theimer + Timer();
+	//log(s:"Receiving statuses of ", s:itemNames[item], s:" : ", d:itemPresent[item], s:", ", d:itemTaken[item]);
+}
+
+#define MIRROR_THINGS_COUNT 18
+str mirrorThings[MIRROR_THINGS_COUNT] = {
+	    "MaxHealthBar",        "MaxArmorBar",
+	"CurrentHealthBar",    "CurrentArmorBar",
+	  "SuperHealthBar",      "SuperArmorBar",
+	 "FlatHealthToken",     "FlatArmorToken",
+
+	"AbilityCooldownToken", "AbilityCooldownSeconds",
+
+	"QCHeavyMachinegunDM", "QCSuperShotgunDM", "QCSuperNailgunDM", "QCTriboltDM",
+	"QCRocketLauncherDM",  "QCLightningGunDM", "QCRailgunDM",      "QCBFGDM"
+};
+
+
+
+// map-scope, because gametype cannot change mid-map
+int duel          ;
+int teamplay      ;
+int teamlms       ;
+int teampossession;
+int ctf           ;
+int domination    ;
+int goddammitcarn ;
+int teamgame      ;
+int pointgame     ;
+int coop          ;
+int freezetag     ;
+
+Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
+{
+	ACS("QCDE_UpdateScores_CLIENTSIDE");
+	NamedRequestScriptPuke("QCDE_ItemStatus_ENTER");
+	ACS("QCDE_ProtocolFriendship_CLIENTSIDE");
+
+	duel           = getCvar("duel");
+	teamplay       = getCvar("teamplay");
+	teamlms        = getCvar("teamlms");
+	teampossession = getCvar("teampossession");
+	ctf            = getCvar("ctf");
+	domination     = getCvar("domination");
+	goddammitcarn  = getCvar("skulltag");
+	teamgame       = getCvar("teamgame") || teamplay || teamlms || teampossession || ctf || domination || goddammitcarn;
+	pointgame      = teampossession || domination || goddammitcarn;
+	freezetag      = getCvar("qc_freezetag") && teamlms;
+	coop           = GameType() < GAME_NET_DEATHMATCH;
+	int radarMode;
+	int me = ConsolePlayerNumber(); // actual immutable client
+
+	// initial setup for all spectated HUDs
+	int i;
+	for(i = 0; i < 64; i++)
+	{
+		if(duel)     GiveActorInventory(1000+i, "Duel", 1);
+		if(teamgame) GiveActorInventory(1000+i, "TeamDeathmatch", 1);
+
+		// Health & Armor
+		if(CheckActorClass(1000+i, "QCRanger"    )) { SetActorInventory(1000+i, "ClassID",  0); SetActorQcdeStack(1000+i, 125, 100); }
+		if(CheckActorClass(1000+i, "QCDoomslayer")) { SetActorInventory(1000+i, "ClassID",  1); SetActorQcdeStack(1000+i, 150,  75); }
+		if(CheckActorClass(1000+i, "QCCorvus"    )) { SetActorInventory(1000+i, "ClassID",  2); SetActorQcdeStack(1000+i, 125, 100); }
+		if(CheckActorClass(1000+i, "QCKane"      )) { SetActorInventory(1000+i, "ClassID",  3); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCCaleb"     )) { SetActorInventory(1000+i, "ClassID",  4); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCMenelkir"  )) { SetActorInventory(1000+i, "ClassID",  5); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCTerminator")) { SetActorInventory(1000+i, "ClassID",  6); SetActorQcdeStack(1000+i, 150, 150); }
+		if(CheckActorClass(1000+i, "QCZedek"     )) { SetActorInventory(1000+i, "ClassID",  7); SetActorQcdeStack(1000+i, 150, 150); }
+		if(CheckActorClass(1000+i, "QCInquisitor")) { SetActorInventory(1000+i, "ClassID",  8); SetActorQcdeStack(1000+i, 175, 125); }
+		if(CheckActorClass(1000+i, "QCBitterman" )) { SetActorInventory(1000+i, "ClassID",  9); SetActorQcdeStack(1000+i, 150, 150); }
+		if(CheckActorClass(1000+i, "QCGalen"     )) { SetActorInventory(1000+i, "ClassID", 10); SetActorQcdeStack(1000+i, 125, 100); }
+		if(CheckActorClass(1000+i, "QCNyx"       )) { SetActorInventory(1000+i, "ClassID", 11); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCSorgaul"   )) { SetActorInventory(1000+i, "ClassID", 12); SetActorQcdeStack(1000+i, 125, 175); }
+		if(CheckActorClass(1000+i, "QCDukeNukem" )) { SetActorInventory(1000+i, "ClassID", 13); SetActorQcdeStack(1000+i, 150,  75); }
+		if(CheckActorClass(1000+i, "QCDurandal"  )) { SetActorInventory(1000+i, "ClassID", 14); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCKeel"      )) { SetActorInventory(1000+i, "ClassID", 15); SetActorQcdeStack(1000+i, 175, 125); }
+		if(CheckActorClass(1000+i, "QCSarge"     )) { SetActorInventory(1000+i, "ClassID", 16); SetActorQcdeStack(1000+i, 100, 100); }
+		if(CheckActorClass(1000+i, "QCLoWang"    )) { SetActorInventory(1000+i, "ClassID", 17); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCGrayson"   )) { SetActorInventory(1000+i, "ClassID", 18); SetActorQcdeStack(1000+i, 125, 100); }
+		if(CheckActorClass(1000+i, "QCEradicator")) { SetActorInventory(1000+i, "ClassID", 19); SetActorQcdeStack(1000+i, 150, 150); }
+		if(CheckActorClass(1000+i, "QCBlazkowicz")) { SetActorInventory(1000+i, "ClassID", 20); SetActorQcdeStack(1000+i, 125, 100); }
+		if(CheckActorClass(1000+i, "QCFreeman"   )) { SetActorInventory(1000+i, "ClassID", 21); SetActorQcdeStack(1000+i, 100, 125); }
+		if(CheckActorClass(1000+i, "QCVorMatur"  )) { SetActorInventory(1000+i, "ClassID", 22); SetActorQcdeStack(1000+i, 300,   0); }
+		if(CheckActorClass(1000+i, "QCEleena"    )) { SetActorInventory(1000+i, "ClassID", 23); SetActorQcdeStack(1000+i, 125,  25); }
+		if(CheckActorClass(1000+i, "QCLucienne"  )) { SetActorInventory(1000+i, "ClassID", 24); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCMajor"     )) { SetActorInventory(1000+i, "ClassID", 25); SetActorQcdeStack(1000+i, 150, 150); }
+		if(CheckActorClass(1000+i, "QCHunter"    )) { SetActorInventory(1000+i, "ClassID", 26); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCSam"       )) { SetActorInventory(1000+i, "ClassID", 27); SetActorQcdeStack(1000+i, 175, 125); }
+		if(CheckActorClass(1000+i, "QCPostal"    )) { SetActorInventory(1000+i, "ClassID", 28); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCPainkiller")) { SetActorInventory(1000+i, "ClassID", 29); SetActorQcdeStack(1000+i, 100, 125); }
+		if(CheckActorClass(1000+i, "QCIntruder"  )) { SetActorInventory(1000+i, "ClassID", 30); SetActorQcdeStack(1000+i, 150,  75); }
+		// ^ insert more classes here
+	}
+
+	if(teamplay || teamlms || pointgame || ctf) {
+		if(teamlms)   { maxScore = getCvar(  "winlimit"); if(!maxScore) maxScore =  10; }
+		if(teamplay)  { maxScore = getCvar( "fraglimit"); if(!maxScore) maxScore = 100; }
+		if(pointgame) { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore = 100; }
+		if(ctf)       { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore =  10; }
+	}
+	else // ffa or duel
+	{
+		maxScore = getCvar("fraglimit");
+		if(!maxScore)
+			if(!duel)
+				maxScore = 100;
+			else
+				maxScore = 20;
+	}
+
+	while(true)
+	{
+		watchdog = Timer();
+		delay(1);
+
+		int plr = CheckPlayerCamera(me); // player being played, or spectated
+		if(!IsZandronum(true)) // GZDoom. Sigh.
+			plr = 1000;
+
+		// Periodically update maximums for bars and cvar display settings
+
+		if(!(Timer() % 36))
+		{
+			if(teamplay || teamlms || pointgame || ctf) {
+				if(teamlms)   { maxScore = getCvar(  "winlimit"); if(!maxScore) maxScore =  10; }
+				if(teamplay)  { maxScore = getCvar( "fraglimit"); if(!maxScore) maxScore = 100; }
+				if(pointgame) { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore = 100; }
+				if(ctf)       { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore =  10; }
+			}
+			else // ffa or duel
+			{
+				maxScore = getCvar("fraglimit");
+				if(!maxScore)
+					if(!duel)
+						maxScore = 100;
+					else
+						maxScore = 20;
+			}
+
+			radarMode = GetUserCvar(me, "cl_radarMode");
+		}
+
+
+		// Time display
+
+		int tics = Timer();
+		int seconds = tics    / 35;
+		int minutes = seconds / 60; 	seconds %= 60;
+		int hours   = minutes / 60; 	minutes %= 60;
+
+		str txtS = strparam(d:seconds); if(seconds < 10) txtS = strparam(s:"0", s:txtS);
+		str txtM = strparam(d:minutes); if(minutes < 10) txtM = strparam(s:"0", s:txtM);
+		str txtH = strparam(d:hours  );
+		timedisplay = strparam(s:txtH, s:":", s:txtM, s:":", s:txtS);
+
+		if(plr)
+		{
+			//---------------------------------
+			// Player's PoV
+			//---------------------------------
+
+			SetActivator(plr);
+			int plrtid = plr;
+			if(plrtid == -1) plrtid = 1000;
+			plr -= 1000; // convert tid to PlayerNumber()
+			bool notMe = plr != me;
+
+			//
+			// Radar
+			//
+
+			if(CheckInventory("Radar"))
+			{
+				if(radarMode)
+				{
+					RADAR_SCREENWIDTH  = 1600;
+					RADAR_SCREENHEIGHT = 1200;
+					RADAR_X_CENTER     =  800;
+					RADAR_Y_CENTER     =  855;
+					RADAR_SHRINK_ICONS =    1;
+				}
+				else
+				{
+					RADAR_SCREENWIDTH  = 600;
+					RADAR_SCREENHEIGHT = 450;
+					RADAR_X_CENTER     = 300;
+					RADAR_Y_CENTER     = 225;
+					RADAR_SHRINK_ICONS =   2;
+				}
+				DrawRadarBackground(RADAR_X_CENTER, RADAR_Y_CENTER, RADAR_SCREENWIDTH, RADAR_SCREENHEIGHT, RADAR_X_CENTER, RADAR_Y_CENTER, RADAR_SHRINK_ICONS);
+				DrawRadar(0,  10,   RADAR_X_CENTER, RADAR_Y_CENTER, teamplay || teamlms || teampossession || ctf, coop);
+			}
+
+			//
+			// Speedometer
+			//
+
+			int speed = VectorLength(GetActorVelX(plrtid), GetActorVelY(plrtid)) / 1872; // not 1827
+
+			// Average out with past N values, but immediately show 0 if stopped.
+			if(speed)
+			{
+				index = (index + 1) % AVERAGE_WINDOW;
+				averager[index] = speed;
+
+				speed = 0;
+				for(i = 0; i < AVERAGE_WINDOW; i++)
+					speed += averager[i] / AVERAGE_WINDOW;
+			}
+
+			int diff = (speed - lastSpeed);
+			if(diff < 0) diff *= -1;
+			int t = timer();
+			// precedence: inequalities are tighter than "and" which is tighter than "or"
+			if (!(t % 9)              ||
+				!(t % 7) && diff >  5 ||
+				!(t % 5) && diff > 15 ||
+				!(t % 2) && diff > 25 ||
+							diff > 40    )
+			{
+				lastSpeed = speed;
+				speedometer[me] = strparam(d:speed);
+			}
+
+
+			//
+			// Scoreboards
+			//
+
+			if(!duel && !teamgame && !coop)
+			{
+				// FFA
+
+				if(o[0] == plr)
+				{
+					// Leader
+					GiveInventory("CurrentLeader", 1);
+					pos1[me] = "1"; name1[me] = name[o[0]]; frags1[me] = strparam(d:frags[o[0]]);
+					pos2[me] = "2"; name2[me] = name[o[1]]; frags2[me] = strparam(d:frags[o[1]]);
+
+					// Erase absent frags
+					if(frags[o[1]] == -999) frags2[me] = "";
+				}
+				else
+				{
+					// Non-Leader
+					TakeInventory("CurrentLeader", 1);
+					int r = _o(plr); // rank
+					pos1[me] = "1"            ; name1[me] = name[o[0]]; frags1[me] = strparam(d:frags[o[0]]);
+					pos2[me] = strparam(d:-~r); name2[me] = name[o[r]]; frags2[me] = strparam(d:frags[o[r]]);
+				}
+			}
+			else if (duel)
+			{
+				// DUEL
+
+				int foe = o[1];
+				if(foe == plr) foe = o[0];
+
+				name1[me] = name[plr]; score1[me] = strparam(d:frags[plr]);
+				name2[me] = name[foe]; score2[me] = strparam(d:frags[foe]);
+
+				// Erase absent frags
+				if(frags[foe] == -999) score2[me] = "";
+
+				if(notMe)
+				{
+					GiveInventory("BeingSpectated", 1);
+
+					int enemyTid = getEnemyTid();
+
+					for(i = 0; i < MIRROR_THINGS_COUNT; i++)
+					{
+						str enemirrorThings = strparam(s:"Enemy", s:mirrorThings[i]);
+						TakeInventory(enemirrorThings, ALL_OF_IT);
+						GiveInventory(enemirrorThings, CheckActorInventory(enemyTid, mirrorThings[i]));
+					}
+
+					giveEnemyClassToken(enemyTid);
+
+					drawPowerupCounters();
+				}
+				else
+				{
+					TakeInventory("BeingSpectated", ALL_OF_IT);
+				}
+			}
+			else if (teamgame)
+			{
+				// TEAM
+
+				TakeActorInventory(plrtid, "Team1Score", ALL_OF_IT);
+				TakeActorInventory(plrtid, "Team2Score", ALL_OF_IT);
+				int tscore1 = GetTeamProperty(0,TPROP_Score);
+				int tscore2 = GetTeamProperty(1,TPROP_Score);
+				if(tscore1 > maxScore) maxScore = tscore1;
+				if(tscore2 > maxScore) maxScore = tscore2;
+				GiveActorInventory(plrtid, "Team1Score", tscore1 * 220 / maxScore);
+				GiveActorInventory(plrtid, "Team2Score", tscore2 * 220 / maxScore);
+				score1[me] = strparam(d:GetTeamProperty(0,TPROP_Score));
+				score2[me] = strparam(d:GetTeamProperty(1,TPROP_Score));
+
+				// Team LMS extension: symbols showing how many players are still up
+
+				if (teamlms && !(Timer() % 5))
+				{
+					// Getting team status
+					int r_players, r_alive, r_knocked, b_players, b_alive, b_knocked;
+					b_players = GetTeamProperty(0, TPROP_NumPlayers);
+					r_players = GetTeamProperty(1, TPROP_NumPlayers);
+					b_knocked = 0; b_alive = 0;
+					r_knocked = 0; r_alive = 0;
+					for(i = 0; i < 64; i++)
+					{
+						if(!PlayerInGame(i)) continue;
+						if(GetActorProperty(1000+i,APROP_Health) <= 0)
+						{
+							if(GetPlayerLivesLeft(i))
+								if(GetPlayerInfo (i, PLAYERINFO_TEAM) == TEAM_BLUE) b_knocked++; else r_knocked++;
+							continue;
+						}
+						if(freezetag && CheckActorInventory(1000+i, "Freezetagged")) continue;
+						if(GetPlayerInfo (i, PLAYERINFO_TEAM) == TEAM_BLUE) b_alive++; else r_alive++;
+					}
+
+					// Icon string construction
+					str ats = "@ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ ";
+					int r_dead = r_players - r_alive - r_knocked, b_dead = b_players - b_alive - b_knocked;
+
+					// TESTING
+					//r_alive   = timer() / 35 % 6;
+					//r_knocked = timer() / 39 % 6;
+					//r_dead    = timer() / 37 % 6;
+					//r_players = r_alive + r_knocked + r_dead;
+					//b_alive   = timer() / 38 % 6;
+					//b_knocked = timer() / 42 % 6;
+					//b_dead    = timer() / 40 % 6;
+					//b_players = b_alive + b_knocked + b_dead;
+
+					str ft_blus_alive   = strmid(ats, 0, clamp(b_alive   * 2, 0, 99));
+					str ft_blus_knocked = strmid(ats, 0, clamp(b_knocked * 2, 0, 99));
+					str ft_blus_dead    = strmid(ats, 0, clamp(b_dead    * 2, 0, 99));
+					str ft_reds_alive   = strmid(ats, 0, clamp(r_alive   * 2, 0, 99));
+					str ft_reds_knocked = strmid(ats, 0, clamp(r_knocked * 2, 0, 99));
+					str ft_reds_dead    = strmid(ats, 0, clamp(r_dead    * 2, 0, 99));
+
+					str ft_blus = " \c[graey]--- ";
+					if(b_alive)
+					{
+						ft_blus = strparam(
+							s:" \c[graey]",
+							s:ft_blus_dead,
+							s:"\c[greay]",
+							s:ft_blus_knocked,
+							s:"\c[BlueTeam]",
+							s:ft_blus_alive
+						);
+					}
+
+					str ft_reds = " \c[graey]--- ";
+					if(r_alive)
+					{
+						ft_reds = strparam(
+							s:" \c[RedTeam]",
+							s:ft_reds_alive,
+							s:"\c[greay]",
+							s:ft_reds_knocked,
+							s:"\c[graey]",
+							s:ft_reds_dead
+						);
+					}
+
+					// String drawing
+					SetFont("ESFONTAA");
+
+					int ftw = 400, gap = 31;
+					if(b_players > 5) { ftw += (b_players - 5) * 51; gap += (b_players - 5) * 4; }
+					SetHUDSize(ftw,295,1);
+					HudMessageBold(s:ft_blus; HUDMSG_FADEOUT,HMID_FT_TEAM_1,-1, (ftw/2 - gap) * 1.0 + 0.2,16.1, 1.0,1.0);
+
+					ftw = 400; gap = 31;
+					if(r_players > 5) { ftw += (r_players - 5) * 51; gap += (r_players - 5) * 4; }
+					SetHUDSize(ftw,295,1);
+					HudMessageBold(s:ft_reds; HUDMSG_FADEOUT,HMID_FT_TEAM_2,-1, (ftw/2 + gap) * 1.0 + 0.1,16.1, 1.0,1.0);
+
+					//log(s:"@ ", d:Timer(), s:"  -  "
+					//	, s:", r_players = ", d:r_players, s:" == ", d:r_alive, s:" + ", d:r_knocked, s:" + ", d:r_dead
+					//	, s:", b_players = ", d:b_players, s:" == ", d:b_alive, s:" + ", d:r_knocked, s:" + ", d:b_dead);
+
+					// Warning to last survivor
+					if (!(Timer() % 35))
+						if (GetActorProperty(plrtid,APROP_Health) > 1)
+							if ((PlayerTeam() == TEAM_BLUE && b_alive == 1 && b_knocked == 0 && b_players > 1) ||
+								(PlayerTeam() == TEAM_RED  && r_alive == 1 && r_knocked == 0 && r_players > 1))
+								ACS("QCDE_TeamLMS_HintLast");
+				}
+			}
+		}
+		else if(PlayerIsSpectator(me))
+		{
+			//---------------------------------
+			// Free flight
+			//---------------------------------
+
+			int specscores;
+			if(!(Timer() % SCOREBOARD_REDRAW_RATE)) specscores = getUserCvar(me, "cl_specScores");
+			if(specscores > 0)
+			{
+				if(!coop)
+				{
+					// Any PvP mode
+
+					drawPowerupCounters();
+				}
+
+				if(!teamgame && !coop)
+				{
+					// FFA & duel
+
+					i = specscores - 1;
+					if(duel) i = 1;
+
+					SetFont("BIGFONT");
+					int bottom = 480 + specscores*12;
+					SetHudSize(640 + specscores*16, bottom, true);
+					int y = bottom - LINE_HEIGHT;//, lines = 0;
+					str color = "";
+					//int now_flashing = flash % 64;
+					//flash /= 64;
+					for(; i >= 0; i--)
+					{
+						int p = o[i];
+						if(!strlen(name[p])) continue;
+
+						//lines++;
+						y -= LINE_HEIGHT;
+						if(i <= 2) color = "\c[brite]";
+						str text = strparam(s:color, d:-~i, s:". ", s:name[p], s:color, s:" -- ", d:frags[p]);
+						HudMessageBold(s:text;
+							HUDMSG_FADEOUT, ID_SCOREBOARD_1 + i, CR_UNTRANSLATED, 5.1, y * 1.0 + 0.1, 0.5, 0.5);
+							/*
+						// highlight frags
+						if(now_flashing == p && flashes > 0)
+						{
+							flashes--;
+							log(s:"Consuming flesh for ", n:now_flashing+1, s:", flash value = ", d:flash);
+							str text = strparam(s:"\c[bludi]", d:-~i, s:". ", s:name[p], s:"\c[bludi]", s:" -- ", d:frags[p]);
+							HudMessageBold(s:"\c[bludi]", s:text;
+								HUDMSG_FADEOUT, ID_SCOREBOARD_FLASH_1 + i, CR_UNTRANSLATED, 5.1, y * 1.0 + 0.1, 0.2, 0.8);
+						}*/
+					}
+
+				}
+			}
+		}
+	}
+}
+
+function int getEnemyTid(void)
+{
+	int tid = ActivatorTid();
+	int enemyTid;
+
+	for(enemyTid = 1000; enemyTid < 1064; enemyTid++)
+		if(PlayerInGame(enemyTid - 1000))
+			if(enemyTid != tid)
+				return enemyTid;
+
+	return -1;
+}
+
+function void giveEnemyClassToken(int enemyTid)
+{
+	if(CheckActorInventory(enemyTid,  "Class_Ranger"	))	GiveInventory("EnemyClass_Ranger"	    ,1); else TakeInventory("EnemyClass_Ranger"	   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Doomslayer"))	GiveInventory("EnemyClass_Doomslayer"   ,1); else TakeInventory("EnemyClass_Doomslayer",1);
+	if(CheckActorInventory(enemyTid,  "Class_Corvus"	))	GiveInventory("EnemyClass_Corvus"	    ,1); else TakeInventory("EnemyClass_Corvus"	   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Kane"		))	GiveInventory("EnemyClass_Kane"		    ,1); else TakeInventory("EnemyClass_Kane"	   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Caleb"		))	GiveInventory("EnemyClass_Caleb"	    ,1); else TakeInventory("EnemyClass_Caleb"	   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Menelkir"	))	GiveInventory("EnemyClass_Menelkir"	    ,1); else TakeInventory("EnemyClass_Menelkir"  ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Terminator"))	GiveInventory("EnemyClass_Terminator"   ,1); else TakeInventory("EnemyClass_Terminator",1);
+	if(CheckActorInventory(enemyTid,  "Class_Zedek"		))	GiveInventory("EnemyClass_Zedek"	    ,1); else TakeInventory("EnemyClass_Zedek"	   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Inquisitor"))	GiveInventory("EnemyClass_Inquisitor"   ,1); else TakeInventory("EnemyClass_Inquisitor",1);
+	if(CheckActorInventory(enemyTid,  "Class_Bitterman"	))	GiveInventory("EnemyClass_Bitterman"    ,1); else TakeInventory("EnemyClass_Bitterman" ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Galen"		))	GiveInventory("EnemyClass_Galen"	    ,1); else TakeInventory("EnemyClass_Galen"	   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Nyx"		))	GiveInventory("EnemyClass_Nyx"		    ,1); else TakeInventory("EnemyClass_Nyx"	   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Sorgaul"	))	GiveInventory("EnemyClass_Sorgaul"	    ,1); else TakeInventory("EnemyClass_Sorgaul"   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_DukeNukem"	))	GiveInventory("EnemyClass_DukeNukem"    ,1); else TakeInventory("EnemyClass_DukeNukem" ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Durandal"	))	GiveInventory("EnemyClass_Durandal"	    ,1); else TakeInventory("EnemyClass_Durandal"  ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Keel"		))	GiveInventory("EnemyClass_Keel"		    ,1); else TakeInventory("EnemyClass_Keel"      ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Sarge"		))	GiveInventory("EnemyClass_Sarge"	    ,1); else TakeInventory("EnemyClass_Sarge"     ,1);
+	if(CheckActorInventory(enemyTid,  "Class_LoWang"	))	GiveInventory("EnemyClass_LoWang"	    ,1); else TakeInventory("EnemyClass_LoWang"    ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Grayson"	))	GiveInventory("EnemyClass_Grayson"	    ,1); else TakeInventory("EnemyClass_Grayson"   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Eradicator"))	GiveInventory("EnemyClass_Eradicator"	,1); else TakeInventory("EnemyClass_Eradicator",1);
+	if(CheckActorInventory(enemyTid,  "Class_Blazkowicz"))	GiveInventory("EnemyClass_Blazkowicz"	,1); else TakeInventory("EnemyClass_Blazkowicz",1);
+	if(CheckActorInventory(enemyTid,  "Class_Freeman"	))	GiveInventory("EnemyClass_Freeman"      ,1); else TakeInventory("EnemyClass_Freeman"   ,1);
+	if(CheckActorInventory(enemyTid,  "Class_VorMatur"	))	GiveInventory("EnemyClass_VorMatur"     ,1); else TakeInventory("EnemyClass_VorMatur"  ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Eleena"	))	GiveInventory("EnemyClass_Eleena"       ,1); else TakeInventory("EnemyClass_Eleena"    ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Lucienne"	))	GiveInventory("EnemyClass_Lucienne"     ,1); else TakeInventory("EnemyClass_Lucienne"  ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Major"		))	GiveInventory("EnemyClass_Major"        ,1); else TakeInventory("EnemyClass_Major"     ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Hunter"	))	GiveInventory("EnemyClass_Hunter"       ,1); else TakeInventory("EnemyClass_Hunter"    ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Sam"		))	GiveInventory("EnemyClass_Sam"          ,1); else TakeInventory("EnemyClass_Sam"       ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Postal"	))	GiveInventory("EnemyClass_Postal"       ,1); else TakeInventory("EnemyClass_Postal"    ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Painkiller"))	GiveInventory("EnemyClass_Painkiller"   ,1); else TakeInventory("EnemyClass_Painkiller",1);
+	if(CheckActorInventory(enemyTid,  "Class_Intruder"		))	GiveInventory("EnemyClass_Intruder"         ,1); else TakeInventory("EnemyClass_Intruder"      ,1);
+	// ^ insert more classes here
+}
+
+
+#define HUD_EMBIGGENMENT 2
+function void drawPowerupCounters(void)
+{
+
+	int i;
+	for(i = 0; i < ITEM_TIMERS; i++)
+	{
+		int remaining = itemTaken[i] + itemRespawnTics[i] - Timer();
+		str text = "\c[brite]";
+		str itemName = itemNames[i];
+		int translate = CR_BLACK;
+
+		if(!itemTaken[i] && !itemPresent[i])
+		{
+			continue; // text = strparam(s:text, s:" soon...");
+		}
+		else if(remaining <= 0 || !itemTaken[i])
+		{
+			translate = CR_UNTRANSLATED;
+		}
+		else if(remaining > 5 *35)
+		{
+			text = strparam(s:text, d:remaining / 35);
+		}
+		else if(remaining > 0)
+		{
+			text = strparam(s:text, d:remaining / 35, s:".", d:(remaining % 35) * 1.0 / 3.5);
+		}
+
+		int y = 48.0 + 68.0 + i * 90.0;
+		SetHudSize(1400 / HUD_EMBIGGENMENT, 1050 / HUD_EMBIGGENMENT, true);
+		SetFont("BIGFONT");
+		HudMessageBold(s:text;
+				HUDMSG_FADEOUT, ID_POWERUP_TIMERS_1 + i, -1, 70.0 / HUD_EMBIGGENMENT, y / HUD_EMBIGGENMENT, 0.5, 0.5);
+		SetHudSize(1400, 1050, true);
+		SetFont(itemPic[i]);
+		HudMessageBold(s:"A";
+				HUDMSG_FADEOUT, ID_POWERUP_PICS_1   + i, translate, 70.0, y, 0.5, 0.5);
+	}
+}
+
+
+function void SetActorQcdeStack(int tid, int health, int armor)
+{
+	SetActorInventory(tid, "MaxHealthToken", health + CheckActorInventory(tid, "ExtraHealthToken"));
+	SetActorInventory(tid, "MaxArmorToken" , armor  + CheckActorInventory(tid, "ExtraArmorToken"));
+}
+
+Script "QCDE_CrownTheBest" (void)
+{
+	int max, best, tie;
+	int p;
+	for(p = 0; p < 64; p++)
+	{
+		SetActivator(1000+p);
+		if(PlayerFrags() == max) tie = true;
+		if(PlayerFrags() <= max) continue;
+
+		tie = false;
+		max = PlayerFrags();
+		best = p;
+	}
+
+	if(tie) terminate;
+
+	if(IsTidUsed(best + DOPPELGANG_TIDBASE)) terminate;
+
+	GiveActorInventory(1000 + best, "CrownProc", 1);
+}

@@ -1,0 +1,199 @@
+ClearBots //to remove skulltag bots
+
+// Eponymous Classes, same attributes all around: good at everything (18pts)
+{ name = "Ranger"		class = "Ranger" 		accuracy = 3	intellect = 3	evade = 3 	anticipation = 3	reactiontime = 3 	perception = 3	color = "DA A5 20"	script = "humanbot" }
+{ name = "DoomSlayer"	class = "DoomSlayer" 	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "9A CD 32"	script = "humanbot" }
+{ name = "Corvus"		class = "Corvus"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "00 00 8B"	script = "humanbot" }
+{ name = "Kane"			class = "Kane"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "99 66 CC"	script = "humanbot" }
+{ name = "Caleb"		class = "Caleb" 		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FF 8C 00"	script = "humanbot" }
+{ name = "Menelkir"		class = "Menelkir"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "B8 86 0B"	script = "humanbot" }
+{ name = "Terminator"	class = "Terminator"	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "4B 00 82"	script = "humanbot" }
+{ name = "Zedek"		class = "Zedek"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FF 69 B4"	script = "humanbot" }
+{ name = "Inquisitor"	class = "Inquisitor"	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "D2 69 1E"	script = "humanbot" }
+{ name = "Bitterman"	class = "Bitterman"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "94 00 D3"	script = "humanbot" }
+{ name = "Galen"		class = "Galen"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "D2 69 1E"	script = "humanbot" }
+{ name = "Nyx"			class = "Nyx"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FF F8 DC"	script = "humanbot" }
+{ name = "Sorgaul"		class = "Sorgaul"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FF A0 7A"	script = "humanbot" }
+{ name = "DukeNukem"	class = "Duke Nukem"	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "D8 BF D8"	script = "humanbot" }
+{ name = "Durandal"		class = "Durandal"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "7F FF 00"	script = "humanbot" }
+{ name = "Keel"			class = "Keel"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "22 8B 22"	script = "humanbot" }
+{ name = "Sarge"		class = "Sarge"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "F5 F5 DC"	script = "humanbot" }
+{ name = "LoWang"		class = "Lo Wang"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FF DA B9"	script = "humanbot" }
+{ name = "Grayson"		class = "Grayson"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FF FF E0"	script = "humanbot" }
+{ name = "Eradicator"	class = "Eradicator"	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "80 80 00"	script = "humanbot" }
+{ name = "Blazkowicz"	class = "Blazkowicz"	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "8B 45 13"	script = "humanbot" }
+{ name = "Freeman"		class = "Freeman"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FA EB D7"	script = "humanbot" }
+{ name = "VorMatur"		class = "VorMatur"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "80 80 80"	script = "humanbot" }
+{ name = "Eleena"		class = "Eleena"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FF 63 47"	script = "humanbot" }
+{ name = "Lucienne"		class = "Lucienne"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "80 00 80"	script = "humanbot" }
+{ name = "Major"		class = "Major"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "77 88 99"	script = "humanbot" }
+{ name = "Hunter"		class = "Hunter"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "B0 E0 E6"	script = "humanbot" }
+{ name = "Sam"			class = "Sam"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "E9 96 7A"	script = "humanbot" }
+{ name = "Postal"		class = "Postal"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "00 00 00"	script = "humanbot" }
+{ name = "Painkiller"	class = "Painkiller"	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "F5 F5 F5"	script = "humanbot" }
+{ name = "Intruder"		class = "Intruder"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "F5 F5 F5"	script = "humanbot" }
+
+// OW, spread attributes, all balanced around same points (12pts)
+{ name = "Sword"			class = "Zedek" 	 accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "B6 EF 13"	gender = "male"	railcolor = blue	script = "humanbot"	favoriteweapon = "QCHeavyMachinegunDM"	chatfrequency =  8	chatlump = "bots/chatfiles/sword.txt"		}
+{ name = "Western"			class = "Caleb"		 accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "C2 3F 46"	gender = "male"	railcolor = red		script = "humanbot"	favoriteweapon = "QCRailgunDM"			chatfrequency =  8	chatlump = "bots/chatfiles/quick.txt"		}
+{ name = "Aeria"			class = "Major"		 accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "1F 73 C3"	gender="female"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCRocketLauncherDM"	chatfrequency =  8	chatlump = "bots/chatfiles/flyer.txt"		}
+{ name = "Edgelord"			class = "Grayson"	 accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "33 33 33"	gender = "male"	railcolor = black	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/rebel.txt"		}
+{ name = "Soldier"			class = "Sarge"		 accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "52 5D 9B"	gender = "male"	railcolor = blue	script = "humanbot"	favoriteweapon = "QCHeavyMachinegunDM"	chatfrequency =  8	chatlump = "bots/chatfiles/fight.txt"		}
+{ name = "Shadow"			class = "VorMatur" 	 accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "A3 50 F9"	gender="female"	railcolor = purple	script = "humanbot"	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/shade.txt"		}
+{ name = "Timer"			class = "Nyx" 		 accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "FF CF 35"	gender="female"	railcolor = orange	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		chatfrequency = 10	chatlump = "bots/chatfiles/blink.txt"		}
+{ name = "Crabcore"			class = "Ranger"	 accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "EB D9 B3"	gender ="other"	railcolor = grey	script = "humanbot"	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  5	chatlump = "bots/chatfiles/robot.txt"		}
+{ name = "Sniper"			class = "Kane"		 accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "34 3A 3F"	gender = "male"	railcolor = blue	script = "humanbot"	favoriteweapon = "QCRailgunDM"			chatfrequency =  8	chatlump = "bots/chatfiles/arrow.txt"		}
+{ name = "Terrorist"		class = "Durandal" 	 accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "FF DC 44"	gender = "male"	railcolor = yellow	script = "fatbot" 	favoriteweapon = "QCRocketLauncherDM"	chatfrequency =  8	chatlump = "bots/chatfiles/balls.txt"		}
+{ name = ">_<"				class = "Corvus"	 accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "87 D7 F6"	gender="female"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCRailgunDM"			chatfrequency =  8	chatlump = "bots/chatfiles/blizz.txt"		}
+{ name = "Gnome"			class = "Ranger"	 accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "E9 D2 82"	gender = "male"	railcolor = white	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/dwarf.txt"		}
+{ name = "Superredvisor"	class = "Menelkir"	 accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "30 38 56"	gender="female"	railcolor = red		script = "humanbot"	favoriteweapon = "QCRailgunDM"			chatfrequency =  6	chatlump = "bots/chatfiles/bitch.txt"		}
+{ name = "Pr!ma Donna"		class = "Eleena"	 accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "7D A6 F2"	gender="female"	railcolor = violet	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/prima.txt"		}
+{ name = "Totem"			class = "Galen" 	 accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "94 9F A5"	gender ="other"	railcolor = green	script = "humanbot"	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/totem.txt"		}
+{ name = "Hammer"			class = "Duke Nukem" accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "4B 4C 51"	gender = "male"	railcolor = black	script = "humanbot"	favoriteweapon = "QCRocketLauncherDM"	chatfrequency =  8	chatlump = "bots/chatfiles/elder.txt"		}
+{ name = "Streetham"		class = "VorMatur"	 accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "EE DB B0"	gender = "male"	railcolor = tan		script = "fatbot" 	favoriteweapon = "QCSuperShotgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/piggy.txt"		}
+{ name = "Scientist"		class = "Sorgaul"	 accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "E1 DF D8"	gender = "male"	railcolor = white	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/chimp.txt"		}
+{ name = "Snowflake"		class = "Blazkowicz" accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "FF 73 C1"	gender="female"	railcolor = magenta	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/gravi.txt"		}
+{ name = "Shrike"			class = "Freeman"	 accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "92 7F 70"	gender="female"	railcolor = black	script = "humanbot"	favoriteweapon = "QCRailgunDM"			chatfrequency =  7	chatlump = "bots/chatfiles/snipe.txt"		}
+{ name = "Audio"			class = "Bitterman"	 accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "8C E8 2D"	gender = "male"	railcolor = green	script = "humanbot"	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/audio.txt"		}
+{ name = "Caducea"			class = "Lucienne"	 accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "FF FF FF"	gender="female"	railcolor = white	script = "humanbot"	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/medic.txt"		}
+{ name = "Architect"		class = "Inquisitor" accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "33 B9 F8"	gender="female"	railcolor = blue	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/order.txt"		}
+{ name = "Pinata"			class = "Duke Nukem" accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "B9 B4 9E"	gender ="other"	railcolor = gold	script = "fatbot" 	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/saint.txt"		}
+
+// QC, spread attributes, better than previous range (18pts)
+{ name = "Die Apotheke"		class = "Ranger" 		accuracy = 2	intellect = 3	evade = 4 	anticipation = 3	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "AbsolutePower"	class = "DoomSlayer" 	accuracy = 3	intellect = 4	evade = 3	anticipation = 2	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "NoMeGrites"		class = "Kane"			accuracy = 4	intellect = 2	evade = 2	anticipation = 4	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "guhguhghost"		class = "Menelkir"		accuracy = 2	intellect = 3	evade = 4 	anticipation = 3	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "ezPotat"			class = "Terminator"	accuracy = 3	intellect = 4	evade = 3	anticipation = 2	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "WeeBaby1776"		class = "Inquisitor"	accuracy = 4	intellect = 2	evade = 2	anticipation = 4	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "Slambert"			class = "Zedek"			accuracy = 2	intellect = 3	evade = 4 	anticipation = 3	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "ShootyMcRocketface"class= "Zedek"			accuracy = 3	intellect = 4	evade = 3	anticipation = 2	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "Urkulele"			class = "Galen"			accuracy = 4	intellect = 2	evade = 2	anticipation = 4	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "imgoingmid"		class = "Nyx"			accuracy = 2	intellect = 3	evade = 4 	anticipation = 3	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "CheeBeef"			class = "Durandal"		accuracy = 3	intellect = 4	evade = 3	anticipation = 2	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "sturgidmurgrid"	class = "Keel"			accuracy = 4	intellect = 2	evade = 2	anticipation = 4	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "Cringe Fiesta"	class = "Blazkowicz"	accuracy = 4	intellect = 2	evade = 2	anticipation = 4	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "CheeBeef"			class = "VorMatur"		accuracy = 2	intellect = 3	evade = 4 	anticipation = 3	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "WhistlinDixie"	class = "Major"			accuracy = 3	intellect = 4	evade = 3	anticipation = 2	reactiontime = 3 	perception = 3	script = "humanbot" }
+{ name = "spicy comments"	class = "Hunter"		accuracy = 4	intellect = 2	evade = 2	anticipation = 4	reactiontime = 3 	perception = 3	script = "humanbot" }
+
+// Meme / Reference Bots, imbalanced all around, no consistency on attributes
+{ name = "\chBrutal_Player"			class = "DoomSlayer"	accuracy = -2	intellect = -2	evade = -2	anticipation = -2	reactiontime = -2	perception = -2	color = "7D 76 F2"	gender = "male"	railcolor = blue	script = "crashbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Player"					class = "Ranger" 		accuracy = -2	intellect = -2	evade = -2	anticipation = -2	reactiontime = -2	perception = -2	color = "7D F2 76"	gender = "male"	railcolor = blue	script = "dfultbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "UnnamedPlayer"			class = "Sarge" 		accuracy = -2	intellect = -2	evade = -2	anticipation = -2	reactiontime = -2	perception = -2	color = "7D F2 76"	gender = "male"	railcolor = blue	script = "fatbot"  	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "MakeBonesGreatAgain"		class = "Terminator"	accuracy =  4	intellect = -2	evade = -2	anticipation = -2	reactiontime = -2	perception = -2	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "NotBones"					class = "Terminator"	accuracy =  1	intellect = -2	evade =  4	anticipation =  4	reactiontime = -2	perception = -2	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "sausgbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Bones?.."					class = "Terminator"	accuracy =  1	intellect = -2	evade =  1	anticipation =  1	reactiontime =  4	perception =  4	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "crashbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Player 8055"				class = "DoomSlayer"	accuracy = -2	intellect = -2	evade = -2	anticipation = -2	reactiontime = -2	perception = -2	color = "7D 76 F2"	gender = "male"	railcolor = blue	script = "dfultbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Player 5678"				class = "DoomSlayer"	accuracy = -2	intellect = -2	evade = -2	anticipation = -2	reactiontime = -2	perception = -2	color = "7D 76 F2"	gender = "male"	railcolor = blue	script = "fatbot"  	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Duki Nuki"				class = "Duke Nukem"	accuracy =  3	intellect =  3	evade =  2	anticipation =  2	reactiontime =  1	perception =  1	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "WatchWangWashWang"		class = "Lo Wang"		accuracy =  1	intellect =  2	evade =  2	anticipation =  3	reactiontime =  3	perception =  3	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "sausgbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "BJ"						class = "Blazkowicz"	accuracy =  2	intellect =  2	evade =  2	anticipation =  2	reactiontime =  4	perception =  4	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "crashbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "GORDN"					class = "Freeman"		accuracy =  2	intellect =  2	evade =  2	anticipation =  2	reactiontime =  4	perception =  4	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "dfultbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Hayden"					class = "Sam"			accuracy =  2	intellect =  2	evade =  2	anticipation =  2	reactiontime =  4	perception =  4	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "fatbot"  	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "L. Jackson"				class = "Sam"			accuracy =  2	intellect =  2	evade =  2	anticipation =  2	reactiontime =  4	perception =  4	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Jacob Singer"				class = "Postal"		accuracy =  2	intellect =  2	evade =  2	anticipation =  2	reactiontime =  4	perception =  4	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "sausgbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Hammond"					class = "Painkiller"	accuracy =  3	intellect =  0	evade =  3	anticipation =  3	reactiontime =  3	perception =  3	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "crashbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Electric Organ"			class = "Painkiller"	accuracy =  2	intellect =  3	evade =  2	anticipation =  3	reactiontime =  2	perception =  3	color = "4D 88 FF"	gender = "male"	railcolor = blue	script = "dfultbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Goldilocks"				class = "Kane" 			accuracy =  3	intellect =  3	evade =  2	anticipation =  1	reactiontime =  1	perception =  3	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "fatbot"  	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "lightningWpnIconSmall"	class = "Menelkir"		accuracy =  3	intellect =  4	evade =  3	anticipation =  1	reactiontime =  4	perception =  4	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Clickonator"				class = "Terminator"	accuracy =  3	intellect =  4	evade =  2	anticipation =  2	reactiontime =  2	perception =  2	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "NyanTotem"				class = "Intruder"		accuracy =  3	intellect =  4	evade =  2	anticipation =  2	reactiontime =  2	perception =  2	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "CrawlingDreams"			class = "Intruder"		accuracy =  3	intellect =  3	evade =  1	anticipation =  1	reactiontime =  1	perception =  1	color = "D2 69 1E"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
+
+
+// QC rando bots + My Original Character DNS, back to spread attributes (18pts)
+{ name = "LimpNoodle"			class = "Ranger" 		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "77 88 99"	script = "crashbot"		}
+{ name = "Z09936"				class = "DoomSlayer" 	gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "32 CD 32"	script = "dfultbot"		}
+{ name = "PlayREADY"			class = "Corvus"		gender = "male"		accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "00 FF FF"	script = "fatbot"  		}
+{ name = "ChootYou"				class = "Galen"			gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "3C B3 71"	script = "humanbot"		}
+{ name = "Ocrunch9957"			class = "Duke Nukem" 	gender = "male"		accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "32 CD 32"	script = "sausgbot"		}
+{ name = "RIProbbie"			class = "Sarge"			gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "80 00 00"	script = "crashbot"		}
+{ name = "Leontlady36"			class = "Grayson"		gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "EE E8 AA"	script = "dfultbot"		}
+{ name = "Jack Ball"			class = "Blazkowicz"	gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "FA 80 72"	script = "fatbot"  		}
+{ name = "Arturo Peppens"		class = "Freeman"		gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "DA A5 20"	script = "humanbot"		}
+{ name = "Borkenstein"			class = "Painkiller"	gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "F5 F5 DC"	script = "sausgbot"		}
+{ name = "3sheets"				class = "Kane"			gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "D2 69 1E"	script = "crashbot"		}
+{ name = "B1n4ryB4nsh33"		class = "Caleb"			gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "6A 5A CD"	script = "dfultbot"		}
+{ name = "FragemBagem"			class = "Menelkir"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "A5 2A 2A"	script = "fatbot"  		}
+{ name = "Jaycrates"			class = "Nyx" 			gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "41 69 E1"	script = "humanbot"		}
+{ name = "sturgidmurgrid"		class = "Durandal"		gender = "male"		accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "CD 85 3F"	script = "sausgbot"		}
+{ name = "Rockingr0b0T49"		class = "LoWang"		gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "80 00 80"	script = "crashbot"		}
+{ name = "Nailhead"				class = "Eleena"		gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "F5 F5 DC"	script = "dfultbot"		}
+{ name = "slow3v4"				class = "Lucienne" 		gender = "female"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "6B 8E 23"	script = "fatbot"  		}
+{ name = "BMarine__21"			class = "Hunter"		gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "FF FF F0"	script = "humanbot"		}
+{ name = "KMF"					class = "Postal"		gender = "male"		accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "FF E4 E1"	script = "sausgbot"		}
+{ name = "JustAddBullets"		class = "Terminator"	gender = "cyborg"	accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "E9 96 7A"	script = "crashbot"		}
+{ name = "tinyT55"				class = "Zedek"			gender = "cyborg"	accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "FF 7F 50"	script = "dfultbot"		}
+{ name = "RagingShadow"			class = "Inquisitor"	gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "70 80 90"	script = "fatbot"  		}
+{ name = "Torrent"				class = "Sorgaul"		gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "00 00 CD"	script = "humanbot"		}
+{ name = "Mr.N40"				class = "Bitterman"		gender = "cyborg"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "00 FF 00"	script = "sausgbot"		}
+{ name = "LH9965"				class = "Keel"			gender = "cyborg"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "9A CD 32"	script = "dfultbot"		}
+{ name = "ElevatorGator"		class = "Eradicator"	gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "7C FC 00"	script = "dfultbot"		}
+
+{ name = "Pokey Joe"			class = "VorMatur"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "F0 F8 FF"	script = "crashbot"		}
+{ name = "LukMaM37"				class = "Major"			gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "00 FF 00"	script = "dfultbot"		}
+{ name = "TRW8"					class = "Sam"			gender = "male"		accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "DD A0 DD"	script = "fatbot"  		}
+{ name = "Rocking9erRoller"		class = "Ranger" 		gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "00 00 CD"	script = "humanbot"		}
+{ name = "TotesTotem"			class = "DoomSlayer" 	gender = "cyborg"	accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "32 CD 32"	script = "sausgbot"		}
+{ name = "Coblestone"			class = "Corvus"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "FF 00 00"	script = "crashbot"		}
+{ name = "Arniegrape"			class = "Galen"			gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "FF 45 00"	script = "dfultbot"		}
+{ name = "FragHag"				class = "Duke Nukem" 	gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "AF EE EE"	script = "fatbot"  		}
+{ name = "MNUZ0"				class = "Sarge"			gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "F4 A4 60"	script = "humanbot"		}
+{ name = "Senior Rayo Verde"	class = "Grayson"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "64 95 ED"	script = "sausgbot"		}
+{ name = "Maria por que"		class = "Blazkowicz"	gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "F0 FF FF"	script = "crashbot"		}
+{ name = "J0nTracker"			class = "Freeman"		gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "00 00 FF"	script = "dfultbot"		}
+{ name = "IluvChoo"				class = "Painkiller"	gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "FA 80 72"	script = "fatbot"  		}
+{ name = "Bladder94"			class = "Kane"			gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "FF A5 00"	script = "humanbot"		}
+{ name = "Poopiemaine"			class = "Caleb"			gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "F0 E6 8C"	script = "sausgbot"		}
+{ name = "HugoPico11"			class = "Menelkir"		gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "00 FF FF"	script = "crashbot"		}
+{ name = "EZPZ"					class = "Nyx" 			gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "00 00 CD"	script = "dfultbot"		}
+{ name = "UwotM8"				class = "Durandal"		gender = "female"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "FF A5 00"	script = "fatbot"  		}
+{ name = "Gr8B8M8"				class = "LoWang"		gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "FD F5 E6"	script = "humanbot"		}
+{ name = "Linoleum"				class = "Eleena"		gender = "male"		accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "E9 96 7A"	script = "sausgbot"		}
+{ name = "FastVanGravity"		class = "Lucienne" 		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "DB 70 93"	script = "crashbot"		}
+{ name = "rEcLlEsSsOaK"			class = "Hunter"		gender = "cyborg"	accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "FF A5 00"	script = "dfultbot"		}
+{ name = "Leave_Battery"		class = "Postal"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "AD FF 2F"	script = "fatbot"  		}
+{ name = "convulsionwheat"		class = "Terminator"	gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "FA EB D7"	script = "humanbot"		}
+{ name = "LegReplacement"		class = "Zedek"			gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "19 19 70"	script = "sausgbot"		}
+{ name = "BulbBridge83"			class = "Inquisitor"	gender = "female"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "FF 63 47"	script = "dfultbot"		}
+{ name = "ElectionConspiracy"	class = "Sorgaul"		gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "FA 80 72"	script = "dfultbot"		}
+
+{ name = "blackmail41"			class = "Bitterman"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "FF C0 CB"	script = "crashbot"		}
+{ name = "CarBrother"			class = "Keel"			gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "F8 F8 FF"	script = "dfultbot"		}
+{ name = "testifYlibertY"		class = "Eradicator"	gender = "male"		accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "7F FF D4"	script = "fatbot"  		}
+{ name = "4DeerOpera"			class = "VorMatur"		gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "00 00 8B"	script = "humanbot"		}
+{ name = "BroccoliTradition"	class = "Major"		 	gender = "cyborg"	accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "CD 5C 5C"	script = "sausgbot"		}
+{ name = "Nuance.Ejection"		class = "Sam"			gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "77 88 99"	script = "crashbot"		}
+{ name = "UnaWareLegEnd"		class = "Ranger" 		gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "F0 FF F0"	script = "dfultbot"		}
+{ name = "_cupbo4rdvirus"		class = "DoomSlayer" 	gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "00 FF FF"	script = "fatbot"  		}
+{ name = "3fast5u"				class = "Corvus"		gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "DA A5 20"	script = "humanbot"		}
+{ name = "mildthinker"			class = "Galen"			gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "DA 70 D6"	script = "sausgbot"		}
+{ name = "ComplaintCylinder"	class = "Duke Nukem"	gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "FF E4 B5"	script = "crashbot"		}
+{ name = "PreggoSnake"			class = "Sarge"			gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "55 6B 2F"	script = "dfultbot"		}
+{ name = "iMMuNeNosE"			class = "Grayson"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "48 D1 CC"	script = "fatbot"  		}
+{ name = "Explorealways"		class = "Blazkowicz"	gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "40 E0 D0"	script = "humanbot"		}
+{ name = "fancymuch"			class = "Freeman"		gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "46 82 B4"	script = "sausgbot"		}
+{ name = "Rest-Inside"			class = "Painkiller"	gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "55 6B 2F"	script = "crashbot"		}
+{ name = "StytheGallicide"		class = "Kane"			gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "CD 85 3F"	script = "dfultbot"		}
+{ name = "SABOTMETHODOLOGY"		class = "Caleb"			gender = "female"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "FF 00 FF"	script = "fatbot"  		}
+{ name = "walmSophrosyne"		class = "Menelkir"		gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "DB 70 93"	script = "humanbot"		}
+{ name = "GlauCoUssabin"		class = "Nyx" 			gender = "male"		accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "87 CE FA"	script = "sausgbot"		}
+{ name = "4nt1l0gy882"			class = "Durandal"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "DA 70 D6"	script = "crashbot"		}
+{ name = "muculentPRAVITY"		class = "LoWang"		gender = "cyborg"	accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "FF EF D5"	script = "dfultbot"		}
+{ name = "OdalisqueThooid"		class = "Eleena"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "FF FA FA"	script = "fatbot"  		}
+{ name = "d1fflu3tm0ral1st"		class = "Lucienne" 		gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "7F FF 00"	script = "humanbot"		}
+{ name = "pteronophobia"		class = "Hunter"		gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "FD F5 E6"	script = "sausgbot"		}
+{ name = "-HELIAC-ESRAJ-"		class = "Postal"		gender = "female"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "99 66 CC"	script = "dfultbot"		}
+{ name = "PinkPiolet"			class = "Terminator"	gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "8F BC 8F"	script = "dfultbot"		}
+
+
+// Tribute to Champions, the "ouch they hurt" (29pts)
+//Excellent aim, not great dodger, excellent reaction time and OK at finding you (the Aimbot)
+{ name = "Toxjq"			class = "Terminator" accuracy = 6	intellect = 6	evade = 4	anticipation = 3	reactiontime = 6 	perception = 4	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		}
+//Dodge master, good aim, good reaction, great finding (the dodge master)
+{ name = "COOLLER"			class = "Nyx"		 accuracy = 4	intellect = 4	evade = 6	anticipation = 6	reactiontime = 4 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCRocketLauncherDM"	}
+//Good aim and dodge, excellent reaction and finding (the brains)
+{ name = "Rapha"			class = "Galen"		 accuracy = 5	intellect = 4	evade = 4	anticipation = 4	reactiontime = 6 	perception = 6	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCLightningGunDM"		}
+//Great aim, pretty good dodge, reaction and finding are very good (the all-rounder)
+{ name = "Cypher"			class = "Doomslayer" accuracy = 5	intellect = 5	evade = 5	anticipation = 4	reactiontime = 5 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCRailgunDM"			}

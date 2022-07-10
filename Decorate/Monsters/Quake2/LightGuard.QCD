@@ -1,0 +1,87 @@
+//===========================================================================
+//===========================================================================
+
+Actor Q2LightGuard : QCDE_MonsterSmall	15210	// zombie
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	Health 30
+	Radius 20
+	Height 56
+	Speed 9
+	PainChance 175
+	Scale 0.42
+	MONSTER
+	+FLOORCLIP
+	Tag "$TAG_Q2LightGuard" // "Light Guard"
+	SeeSound "q2soldier/sight"
+	PainSound "q2soldier/pain"
+	DeathSound "q2soldier/death"
+	ActiveSound "q2soldier/seeking"
+	AttackSound "q2soldier/shotgunattack"
+	+MissileMore //because of the half A_Chase thing, made attacks too rare
+	Obituary "$OB_Q2LightGuard" // "%o saw the light of a Light Guard." //ba dum tss!! // [Ms] XD
+	States
+	{
+	Idle:
+		Q2SI A 10 A_Look
+		Loop
+	See:
+		Q2SW A 2 A_Chase		Q2SW A 2 A_Chase("","")	//half of the A_Chase will not attack
+		Q2SW B 2 A_Chase		Q2SW B 2 A_Chase("","")
+		Q2SW C 2 A_Chase		Q2SW C 2 A_Chase("","")
+		Q2SW D 2 A_Chase		Q2SW D 2 A_Chase("","")
+		Q2SW E 2 A_Chase		Q2SW E 2 A_Chase("","")
+		Q2SW F 2 A_Chase		Q2SW F 2 A_Chase("","")
+		Q2SW G 2 A_Chase		Q2SW G 2 A_Chase("","")
+		Loop
+	Missile:
+		Q2SA ABC 4 A_FaceTarget
+		Q2SA D 4 Bright A_CustomMissile("Soldier1Beam",35,8,0)
+		Q2SA E 5
+		Goto See
+	Pain:
+		Q2SP A 1
+		Q2SP A 3 A_Pain
+		Goto See
+	DeathChecksDone:
+		Q2SD A 0 A_Scream
+		Q2SD A 4
+		Q2SD BCDEF 3
+		Q2SD A 0 A_SpawnItemEx("ZombieAmmoDropper",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		Q2SD G 4 A_Fall
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Small")
+		Q2SD HI 4
+	Death.Corpse:
+		Q2SD J -1
+		Stop
+
+	XDeathChecksDone:
+		TNT1 A 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto DeathChecksDone+1
+
+    Ice:
+		"####" "#" 0 A_GiveInventory("ImDead",1)
+		"####" "#" 0 A_SpawnItemEx("ZombieAmmoDropper",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		"####" "#" 5 A_GenericFreezeDeath
+		"####" "#" 1 A_FreezeDeathChunks
+		Wait
+
+	Raise:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
+		Q2SD JIHGFEDCBA 3
+		Goto See
+	}
+}
+
+Actor Soldier1Beam : HoverBeam
+{
+	Speed 20
+	DamageType "Plasma"
+	Damage (random(2,8)*2)
+	SeeSound "q2hover/blasterattack"
+	DeathSound "q2weapon/laserhit"
+}
+

@@ -1,0 +1,12 @@
+#include "GLDEFS/GenericLights.QCD"
+#include "GLDEFS/GenericLightsDLS.QCD"
+#include "GLDEFS/SpecificLights.QCD"
+
+flickerlight PlayerFiringLight
+{
+	color 1.0 0.8 0.0
+	size 32
+	secondarySize 40
+	chance 0.4
+	offset 0 40 0
+}

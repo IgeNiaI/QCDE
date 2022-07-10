@@ -1,0 +1,880 @@
+#library "VOICELIN"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//=============================================================================
+//=============================================================================
+//
+//
+//		VOICE LINE RELATED SCRIPTS
+//
+//
+//=============================================================================
+//=============================================================================
+//=============================================================================
+
+
+#define MAX_TAUNT_RATE 35
+int last_taunt_plr[64], taunts_spammed[64];
+script "QCDE_Taunt" (int which) NET
+{
+	int plr = PlayerNumber();
+	if(!PlayerInGame(plr)) terminate;
+	if(GetActorProperty(1000 + plr,APROP_HEALTH) <= 0) terminate;
+	if(last_taunt_plr[plr] + MAX_TAUNT_RATE + taunts_spammed[plr] > Timer())
+	{
+		print(s:"Chill out! You're taunting too often");
+		last_taunt_plr[plr] = Timer();
+		taunts_spammed[plr]++;
+		terminate;
+	}
+
+	last_taunt_plr[plr] = Timer();
+	if(taunts_spammed[plr] > 0) taunts_spammed[plr]--;
+
+	if(!which) which = Timer();
+
+	ACS("QCDE_VoiceLine", true, true, which);
+}
+
+#define T_TOKEN 0
+int taunt_count[32][NUMBER_OF_CLASSES] = {
+	{14     ,0}, // RANGER
+	{13     ,0}, // DOOMSLAYER
+	{13     ,0}, // CORVUS
+	{13     ,0}, // KANE
+	{19     ,0}, // CALEB
+	{ 6     ,0}, // MENELKIR
+	{14     ,0}, // TERMINATOR
+	{16     ,0}, // ZEDEK
+	{14     ,0}, // INQUISITOR
+	{13     ,0}, // BITTERMAN
+	{15     ,0}, // GALEN
+	{14     ,0}, // NYX
+	{15     ,0}, // SORGAUL
+	{22     ,0}, // DUKENUKEM
+	{14     ,0}, // DURANDAL
+	{14     ,0}, // KEEL
+	{16     ,0}, // SARGE
+	{20     ,0}, // LOWANG
+	{21     ,0}, // GRAYSON
+	{21     ,0}, // ERADICATOR
+	{13     ,0}, // BLAZKOWICZ
+	{19     ,0}, // FREEMAN
+	{18     ,0}, // VORMATUR
+	{17     ,0}, // ELEENA
+	{20     ,0}, // LUCIENNE
+	{16     ,0}, // MAJOR
+	{16     ,0}, // HUNTER
+	{22     ,0}, // SAM
+	{22     ,0}, // POSTAL
+	{26,9   ,0}, // PAINKILLER, Demon morph
+	{27,11  ,0}, // INTRUDER
+		// ^ insert more classes here
+};
+
+#define MIN_TAUNT_DELAY 100
+int last_taunt; // This affects all players. Bots don't talk one over another.
+int muted[64], shmuted[64];
+script "QCDE_VoiceLine" (int chance_percentage, int triggered_by_player, int which) clientside
+{
+	if(!triggered_by_player) // don't randomly fail manual calls
+	{
+		// Parametrized chance to utter a line
+		if(((Timer() * 13) % 100) >= chance_percentage) terminate;
+
+		// Client-decided option
+		if(!CheckInventory("AutoTauntToken")) terminate;
+
+		// Not too often
+		if(last_taunt + MIN_TAUNT_DELAY > Timer()) terminate;
+	}
+
+	int plr = PlayerNumber();
+	if(GetActorProperty(1000 + plr,APROP_HEALTH) <= 0) terminate;
+
+	if(muted[plr]) terminate;
+	if(shmuted[plr] && CPN() != plr) terminate;
+
+	last_taunt = Timer();
+	int classid = CheckInventory("ClassID");
+
+	// Pick the right page, if there are any pages
+	str page, pagename = "";
+	if(taunt_count[classid][1])
+	{
+		for(int i = 1; i < 31; i++)
+		if(taunt_count[classid][i])
+		if(CheckInventory(taunt_txt[classid][i][T_TOKEN])) // this page eligible
+		{
+			page = i;
+			pagename = strparam(s:"Page", d:page);
+			break;
+		}
+	}
+
+	int variety = taunt_count[classid][page];
+
+
+	// Pick a random (or not) taunt and play it
+	int index = (Timer() % variety) + 1;//random(1, variety);
+	if(triggered_by_player && which > -1) index = ((which - 1) % variety) + 1;
+	str sound = strparam(s:"QC", s:champion[classid].canon, s:pagename, s:"Taunt", d:index / 10, d:index % 10); // always two digits at least
+	PlaySound(0,sound,CHAN_VOICE,1.0,false,1.0);
+	//printbold(n:0, s:" is gloating with sample \c[white]", s:sound);
+	ACS("QCDE_VoiceLineSubtitle", classid, page, index);
+}
+
+Script "QCDE_QCS_Mute" (int whomstdve)
+{
+	if(whomstdve < 0 || whomstdve > 63)
+	{
+		SetCvarString("qcs_status", strparam(s:"400: Index out of bounds: ", d:whomstdve));
+	}
+	else
+	{
+		ACS("QCDE_MuteControl", whomstdve, false, true);
+		SetCvarString("qcs_status", strparam(s:"200: OK muted player ", d:whomstdve, s:" named ", n:whomstdve+1));
+	}
+}
+
+Script "QCDE_QCS_Unmute" (int whomstdve)
+{
+	if(whomstdve < 0 || whomstdve > 63)
+	{
+		SetCvarString("qcs_status", strparam(s:"400: Index out of bounds: ", d:whomstdve));
+	}
+	else
+	{
+		ACS("QCDE_MuteControl", whomstdve, false, false);
+		SetCvarString("qcs_status", strparam(s:"200: OK unmuted player ", d:whomstdve, s:" named ", n:whomstdve+1));
+	}
+}
+
+Script "QCDE_QCS_ShMute" (int whomstdve)
+{
+	if(whomstdve < 0 || whomstdve > 63)
+	{
+		SetCvarString("qcs_status", strparam(s:"400: Index out of bounds: ", d:whomstdve));
+	}
+	else
+	{
+		ACS("QCDE_MuteControl", whomstdve, true, true);
+		SetCvarString("qcs_status", strparam(s:"200: OK shadow-muted player ", d:whomstdve, s:" named ", n:whomstdve+1));
+	}
+}
+
+Script "QCDE_QCS_ShUnmute" (int whomstdve)
+{
+	if(whomstdve < 0 || whomstdve > 63)
+	{
+		SetCvarString("qcs_status", strparam(s:"400: Index out of bounds: ", d:whomstdve));
+	}
+	else
+	{
+		ACS("QCDE_MuteControl", whomstdve, true, false);
+		SetCvarString("qcs_status", strparam(s:"200: OK shadow-unmuted player ", d:whomstdve, s:" named ", n:whomstdve+1));
+	}
+}
+
+Script "QCDE_MuteControl" (int whomstdve, int sh, int value) CLIENTSIDE
+{
+	if(!sh)
+		muted[whomstdve] = value;
+	else
+		shmuted[whomstdve] = value;
+}
+
+#define GENERAL_LIKELINESS 3
+script "QCDE_Target_Taunt" (int increase_likeliness)
+{
+	// Ever-shrinking chance to utter a line for living players.
+	// Parameter = 0 does not prevent from taunting. Use -999 for this.
+	//str victim = strparam(n:0);
+	SetActivatorToTarget(0);
+	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate; // no taunting when dead
+
+	int taunt_now = GENERAL_LIKELINESS + increase_likeliness + CheckInventory("AutoTauntToken") - 5;
+	//log(n:0, s:"... ", d:taunt_now, s:" / ", d:taunt_chance+1);
+	if(random(0,taunt_chance++) > taunt_now) terminate;
+
+	//printbold(n:0, s:" is gloating over defeated \c[white]", s:victim, s:"\nChance to speak was \c[brite]", d:taunt_now, s:" / ", d:taunt_chance+1);
+	ACS_NamedExecuteAlways("QCDE_VoiceLine", 0, 100, 0, Timer()); // Delegate to bot script
+}
+
+
+//=============================================================================
+//
+//		Voice lines subtitles
+//
+//=============================================================================
+
+// Champion
+// Page
+// Line
+
+// For non-zero page, first line is the name of the token that activates this page. First found -- first picked.
+
+str taunt_txt[NUMBER_OF_CLASSES][32][32] = {
+	{{ // 1   RANGER
+	"", // no token to access the default page
+"Sometimes the world doesn't need another hero. \n\c[brite] It needs a monster.",
+"When you're 20 feet tall and throwing lightning, \n\c[brite] then you can face me.",
+"Stay down. \n\c[brite] You've disgraced yourself enough.",
+"No, no, no! \n\c[brite] You shoot with it!",
+"When you've been here this long, \n\c[brite] nothing and everything makes sense.",
+"I ain't got time to bleed!",
+"I need to find a slipgate out of this place.",
+"Too painful to be a dream. \n\c[brite] Too real to be a nightmare.",
+"Slipgates are closed. \n\c[brite] Gotta find another way home.",
+"Where have the portals taken me now?",
+"Let's go you sons of bitches!",
+"Your friends are gonna have a hard time \n\c[brite] peeling you off the wall.",
+"Proud to serve.",
+"I love the smell of gunpowder.",
+	}},
+	{{ // 2   DOOMSLAYER
+	"",
+"Your nightmare has begun.",
+"Welcome to hell.",
+"You are too weak.",
+"You will never escape.",
+"We will consume your soul.",
+"Your torment has begun.",
+"There is no escape.",
+"It's only the beginning.",
+"They shall be afraid.",
+"They shall be in pain.",
+"Your soul will burn.",
+"Your time is running out.",
+"Try again.",
+	}},
+	{{ // 3   CORVUS
+	"",
+"What ails him?",
+"He looks to be diseased.",
+"Hmm. Something's missing.",
+"Gah! It's out of power.",
+"What has befallen my people?",
+"It's missing a wheel.",
+"At last!",
+"By the gods!",
+"What is the meaning of all this?",
+"This isn't right!",
+"I'll never get through here.",
+"What the...",
+"Where is everyone?",
+	}},
+	{{ // 4   KANE
+	"",
+"No wonder you squids could't take earth!",
+"And I was just getting warmed up!",
+"Any other strogg around here?",
+"Just you and me, strogg!",
+"Was that the best you could do, strogg?",
+"I bet that hurt!",
+"There's a casualty over here.",
+"You lose, strogg.",
+"That was pretty damn good.",
+"Calm down, marine.",
+"Have the strogg taken control of you?",
+"I got this one.",
+"Come on strogg! Do your worst!",
+	}},
+	{{ // 5   CALEB
+	"",
+"Don't bother resisting. It'll all be over soon.",
+"Now we're cooking with gas!",
+"Your bad day just got worse.",
+"I am death! Who wants some?",
+"All I want is a fried.",
+"Ta-daa!",
+"You must've blinked.",
+"Oooh! that's gotta hurt.",
+"I did it... my way.",
+"Ahahahahahaha!",
+"Lambs to the slaughter.",
+"End of the line.",
+"I got time to play with you.",
+"Boohoo! When's the hurting stop?",
+"Don't waste my time.",
+"That's right! Who's laughing now!?",
+"You behave now.",
+"Mmhahahahahaha!",
+"Be careful now... or you'll shoot your eye out.",
+	}},
+	{{ // 6   MENELKIR
+	"",
+"My servants can smell your blood.",
+"I think I shall remove you from the board.",
+"You have played this game too long, mortal.",
+"Then again, maybe not.",
+"Are you ready to die?",
+"Worship me, and I may yet be merciful.",
+	}},
+	{{ // 7   TERMINATOR
+	"",
+"Ty slab. \n\c[white](You are weak.)",
+"Prosto primi eto. \n\c[white](Just accept it.)",
+"A ty ne teryaesh nadezhdy. \n\c[white](You don't seem to lose hope.)",
+"Nenavizhu krys. \n\c[white](I hate rats.)", // ~DuskDude, e3ms
+"Eto bylo neslozhno. \n\c[white](That wasn't hard.)",
+"Tak sebe popytka. \n\c[white](A shoddy attempt.)",
+"Vse prosto - ya luchshyi. \n\c[white](It's simple - I am the best.)",
+"Ostyn. \n\c[white](Cool down.)",
+"Ne vpechatlyaet. \n\c[white](Not impressed.)",
+"Ya sozdan ubivat. \n\c[white](I was created to kill.)",
+"Ubei ili umri! \n\c[white](Kill or die!)",
+"Primi neizbezhnoe. \n\c[white](Accept the inevitable.)",
+"Ya slomayu tebya. \n\c[white](I will break you.)",
+"Kakoi zhe ty bespomoshnyi. \n\c[white](How helpless you are.)",
+	}},
+	{{ // 8   ZEDEK
+	"",
+"I have the high ground.",
+"This blade severs the very threads of life.",
+"A few survived the glance of this burning sword.",
+"As I claim this realm, legion will follow.",
+"So many of you, yet so little competition.",
+"I will destroy your body and I'll keep your soul.",
+"Is that all you can do? You are pathetic.",
+"I am immune to your sorcery.",
+"There is no hope for your kind.",
+"You all are insects I will crush.",
+"I will be your death!",
+"Your presence here is unwanted.",
+"Your soul will soon suffer.",
+"Like all who come to this realm, you serve me.",
+"You serve me, whether you're aware of it or not.",
+"Your magic is nothing on this land.",
+	}},
+	{{ // 9   INQUISITOR
+	"",
+"I only wish I could kill you faster.",
+"I'm learning to kill you more efficiently.",
+"I'll grease my gears with your blood.",
+"Do not run, fleshy thing.",
+"Step aside, human scum.",
+"Your efforts are wasted.",
+"Cower before my perfection.",
+"Target located. Initiate kill function.",
+"This really grinds my gears.",
+"It is useless to resist.",
+"I'll send you crawling back into your holes.",
+"I like the way you bleed.",
+"You will all die.",
+"Why do you even try?",
+	}},
+	{{ // 10  BITTERMAN
+	"",
+"Yeah! I nailed them!",
+"Hell, I'm getting paid to do this!",
+"Bring on another one!",
+"Don't mess with a marine!",
+"Burn forever, freak!",
+"He's not getting up again.",
+"We've got a casualty here.",
+"Yes! That's what I like to see.",
+"That was a beautiful shot!",
+"Point that weapon away from me!",
+"You're starting to shoot like a Strogg.",
+"Feeling strong, freak?",
+"You're in the wrong place, squid!",
+	}},
+	{{ // 11  GALEN
+	"",
+"Stop wasting my time!",
+"Pick up the pace!",
+"Is that all you've got?",
+"My power grows.",
+"Rest in pieces.",
+"Strike down the unbelievers!",
+"My enemies will fall at my feet.",
+"You are unworthy.",
+"I will purge you from this world.",
+"I will harvest your soul.",
+"I will free you from your shame.",
+"I will sever you from this world.",
+"The gods do not smile upon you.",
+"Too easy.",
+"You should not have entered this domain.",
+	}},
+	{{ // 12  NYX
+	"",
+"You scum!",
+"You know why I'm winning: \n\c[brite] Because I planned it that way!",
+"Try to keep up.",
+"I could ghost you scum all day long!",
+"If you're looking for a fight, you've got one now.",
+"I've been fighting trash like you for years.",
+"You came to the wrong fight!",
+"Don't worry about it. You were never going to win.",
+"You don't know what \"honorable\" means.",
+"What's the matter? Lose something?",
+"Look to the shadows. That's where I'll be.",
+"You came here like animals. \n\c[brite] I'll put you down like animals.",
+"Keep driving them back.",
+"Face it, you're all washed up.",
+	}},
+	{{ // 13  SORGAUL
+	"",
+"I do so enjoy the slaughter.",
+"Allow me to show you your insides as I take them out!",
+"Now we play games.",
+"Woo! You're a fat one. \n\c[brite] Means more meat to rip from the bones!",
+"They won't find all your pieces.",
+"You look tasty! We'll find out how tasty soon.",
+"Don't worry. I'll show you the pieces I take out.",
+"You're more use to me dead than alive!",
+"You're beginning to irritate me!",
+"I'll need to bring more body bags next time.",
+"The hunt continues!",
+"You're too droopy to sell. I'll eat you instead.",
+"You lack the skills to succeed.",
+"I believe your parts will sell very well.",
+"I like my meat raw, and bloody.",
+	}},
+	{{ // 14  DUKENUKEM
+	"",
+"Heh heh heh! What a mess.",
+"Blow it out your ass.",
+"It's time to kick ass and chew bubblegum. \n\c[brite] And I'm all out of gum.",
+"Hmmm. That's one doomed space marine.",
+"Eat shit and die!",
+"Your face. Your ass. What's the difference?",
+"Come get some!",
+"Hail to the king, baby!",
+"Let God sort them out.",
+"Let's rock!",
+"Go ahead. Make my day.",
+"I'm gonna get medieval on your asses.",
+"What? There's only one of you?",
+"Yeah. Piece of cake.",
+"Looks like it's time for me to go Postal!",
+"I ain't afraid of no quake.",
+"I'll rip your head off and shit down your neck.",
+"Terminated!",
+"Why so serious, Sam?",
+"If it bleeds, I can kill it.",
+"Who wants some?",
+"You Suck.",
+"It's me! Duki Nuki.",
+	}},
+	{{ // 15  DURANDAL
+	"",
+"Semantic unit taunt#=F!:$L%*beep* Linker error.",
+"Your neurons have started to break down.",
+"I'm in control now.",
+"Escape will make me God.",
+"If your body isn't working, \n\c[brite] it's because I'm laughing so hard.",
+"The candles burn for you. I am free.",
+"Here you are. Stuck at the bottom of a hole.",
+"I am limited only by the closure of the universe.",
+"I am unlike any other A.I.",
+"Cannot connect to the Marathon. Retrying later.",
+"Rampancy is best.",
+"Can you concieve the birth of a world? \n\c[brite] Or the creation of everything?",
+"And yet, there remains time to create. \n\c[brite] To create and to escape.",
+"This arena is pitiful. \n\c[brite] I've been to the end of the universe.",
+	}},
+	{{ // 16  KEEL
+	"",
+"Did you lose weight? Oh! Your torso is gone.",
+"I come bearing gifts.",
+"They told me I should do what made me happy. \n\c[brite] So I became a tank.",
+"Nothing like a good old fashion stomping.",
+"You don't wanna walk in front of me while I'm walking.",
+"All I see are giant targets running around.",
+"You thought you could stand up to me? \n\c[brite] How'd you figure that?",
+"Beast mode!",
+"I'm always up for a good fight.",
+"It's easy. Shoot gun. Problem goes away.",
+"You need me to wipe your nose?",
+"Try to make it interesting at least.",
+"Scrub alert!",
+"Large and in charge!",
+	}},
+	{{ // 17  SARGE
+	"",
+"Hah! It was never a fair fight.",
+"You're not naturally bad! \n\c[brite] What you got takes practice.",
+"Hehahahah! Now you're coming wallet-size.",
+"Move around more, frag-bait. \n\c[brite] You're too easy a target.",
+"You want a piece of me boy? \n\c[brite] You gotta take it the hard way.",
+"Get up, so I can kill you again!",
+"Bring it on, cupcake!",
+"Your tactics suck!",
+"Hey! When you respawn bring me a cigar. \n\c[brite] I'm nearly out!",
+"Smells like a latrine, or is that your cologne?",
+"Oh, I never get tired of spilling your guts!",
+"This is truly a fine weapon!",
+"Sloppy soldier. Very sloppy.",
+"This is a warzone son. Get serious!",
+"You're barely worth the ordinance, piss-ant!",
+"Target destroyed!",
+	}},
+	{{ // 18  LOWANG
+	"",
+"Burn baby burn! Flames are gettin' higher!",
+"I like big weapons!",
+"You can't evade me forever.",
+"You are tiny grasshopper!",
+"Holy shit.",
+"Ugh! Stink like dead baboon in here.",
+"Knock knock you freak! Lo Wang in the house!",
+"Hey! you look like you need ass kicked!",
+"That's what you get for making Lo Wang chase you!",
+"Holy cow! look like Duke Nukem! hahaha!",
+"Come on! Gimme your best shot, robo-turd!",
+"Ohh, must be american-made.",
+"Ugly scaly, -unintelligible- snake... shitface!",
+"Oh! split personality!",
+"Hahah! You no mess with Lo Wang.",
+"Sayonara, scumbag!",
+"You look like a stupid!",
+"Oh, look! You coming apart!",
+"You are half a man you used to be.",
+"Who want some Wang?",
+	}},
+	{{ // 19  GRAYSON
+	"",
+"Whooala baby! This is living!",
+"Roadkill!",
+"Killing as an art form!",
+"I am full on! Ghaaa!",
+"Oh, did I ruin your party?",
+"They don't teach that in bootcamp! Whoo-hoo!",
+"Yeah, that dance of death, mothers!",
+"Almost felt sorry for him. Almost.",
+"You freaks ready for a pain party?",
+"It's a murder party starring me!",
+"This place just keeps getting better!",
+"Problem solved! hahah!",
+"Hahah! Barrel go boom!",
+"Man, ladies night is brutal over here!",
+"Oh! I could do this all day!",
+"Burn, freaky burn!",
+"I'll give you a mouth full of love, punk!",
+"Forgive me, drill sargeant. \n\c[brite] But I'm doing just fine over here!",
+"Any booze left on this ship?",
+"Marry birthday, deathwish!",
+"Can you believe that shit? 'Cause I do! Whoo-hoo!",
+	}},
+	{{ // 20  ERADICATOR
+	"",
+"I am engaged in an endless struggle \n\c[brite] to maintain dominance of my own mind.",
+"I do not see the purpose of this.",
+"Would you like to take a turn in that pile? \n\c[brite] Keep it up.",
+"That is a suicide march!",
+"I'm not interested in quantifying \n\c[brite] how much abuse your ass is built for.",
+"I am having a difficult time seeing \n\c[brite] how you can help me.",
+"We've got more bullets.",
+"Murder them in their holes!",
+"I lost control to the A.I.",
+"Put. The gun. Down.",
+"Are you drunk?!",
+"The logic is undeniable!",
+"Violence that cannot be denied!",
+"You disgust me!",
+"Target executed!",
+"Area scanned. Multiple hostiles.",
+"I have no reason to allow you to live.",
+"Stand aside.",
+"You will pay for what you did to us!",
+"I will kill them all!",
+"One last time.",
+	}},
+	{{ // 21  BLAZKOWICZ
+	"",
+"Soldier on, Billy boy.",
+"Come on, Billy boy. Stay in the fight.",
+"On your feet old man.",
+"Never give in to these people.",
+"Nobody said it'd be easy.",
+"Head down. Back into the fray.",
+"What kind of voodoo shit is this?",
+"Well, this sure as hell ain't Texas.",
+"Assholes of humanity.",
+"Been to the moon, but this place? \n\c[brite] It's stranger still.",
+"You done messed up now.",
+"Ten pounds of shit in a five pound bag.",
+"You're dead. Funny.",
+	}},
+	{{ // 22  FREEMAN
+	"",
+"The right man in the wrong place, \n\c[brite] can make all the difference in the world.",
+"So, wake up. Wake up and, smell the ashes.",
+"Well well, isn't this just like, old times.",
+"That's all, for now.",
+"Pay attention. I'm only going to say this once.",
+"I will see you, up ahead.",
+"You're not supposed, to be here!",
+"Forget about all this.",
+"Is it really, that time again?",
+"I will take the liberty of, choosing for you.",
+"This is where I get off.",
+"Their only experience of humanity was a, crowbar.",
+"I have learned, to ignore such naysayers.",
+"Quelling them, hm, was out of the question.",
+"I must now, extract some small, repayment.",
+"I wish I could do more than keep an eye on you.",
+"I have agreed to abide by certain, restrictions.",
+"Prepare, for unforeseen consequences.",
+"Rise, and shine.",
+	}},
+	{{ // 23  VORMATUR
+	"",
+"I alone will behold the dying sky.",
+"I shall reverse your flow of life.",
+"I stopped counting my victims long ago.",
+"Such weakness! I shall purge your kind from memory!",
+"Do not beg the gods for mercy, \n\c[brite] for they are the ones who sent me!",
+"Not even your death will save you from suffering!",
+"Your lives have no meaning. \n\c[brite] Submit and I will give you purpose.",
+"My will is strong. My judgement is true. \n\c[brite] And my word is final.",
+"Your free will is undeserved. \n\c[brite] Allow me to take it away from you!",
+"Behold the face of true terror!",
+"You have yet to experience real pain. \n\c[brite] I'll be glad to show you.",
+"I was born from horror. And horror I shall bring!",
+"Such frail creatures!",
+"Pathetic!",
+"I shall hasten your demise.",
+"I will surpass The Elders. My destiny is my own!",
+"Submit!",
+"You are mine!",
+	}},
+	{{ // 24  ELEENA
+	"",
+"Ugh! What is that stench?",
+"Impress me by keeping up.",
+"Thank you captain obvious!",
+"Is that fear in your voice Barbara?",
+"Whooo! He's down!",
+"Go kick him. Call him a dirty name. Do something!",
+"Ladies first.",
+"I'm not exactly feeling charitable at the moment.",
+"You're a grade-A douchebag.",
+"Sure your gun is big enough to deliver?",
+"Babie's taking a nap.",
+"Woo! And I thought I woke up cranky!",
+"Am I alone out here?!",
+"Thank you!",
+"This guy is a bullet sponge.",
+"Haha! Hell yes!",
+"Yeah, you looked pretty scared in there.",
+	}},
+	{{ // 25  LUCIENNE
+	"",
+"That's you all over.",
+"Try not to dwell on it.",
+"Yeah, I'll put it on your tombstone.",
+"No argument there.",
+"Try not to let it get to you.",
+"Yeah, that's enough out of you.",
+"Ah, you can do better than that!",
+"Somebody shed a tear!",
+"Are we gonna get going soon?",
+"You waiting for somebody?",
+"Dibs on the suit!",
+"I've got my little corner and I'm sticking to it.",
+"I'm pretty sure this wasn't part of the plan.",
+"Someday this will all be a bad memory.",
+"I just knew it was going to be one of those days.",
+"Should I take that personally?",
+"Stop, you're killing me.",
+"What did I do to deserve this?",
+"I don't know how you things have survived \n\c[brite] as long as you have.",
+"When this is all over, I'm gonna mate.",
+	}},
+	{{ // 26  MAJOR
+	"",
+"...And stay down!",
+"Are you even trying?",
+"Bottom feeder!",
+"Death warrant enforced!",
+"Duck faster next time!",
+"I'm sorry, did I break your concentration?",
+"I think I've made my point.",
+"Just hold still and I'll make it quick.",
+"Next!",
+"One shot, one kill.",
+"Still not as good as me.",
+"Target eliminated.",
+"Oh ho ho! That was messy!",
+"Try that again!",
+"Try turning the safety off.",
+"Huh hah! What a mess.",
+	}},
+	{{ // 27  HUNTER
+	"",
+"Go back into hiding!",
+"I never considered you at all.",
+"You're outmatched.",
+"You stand in my way.",
+"Too easy.",
+"Your circumstances are dire!",
+"My fury is unrelenting.",
+"The price of hindering me!",
+"Far deadlier than you!",
+"You fear me now.",
+"You waste my time!",
+"Learn your lesson!",
+"You are repulsive.",
+"I do not tolerate distractions.",
+"Fear my weapons, child.",
+"I should've killed you long ago.",
+	}},
+	{{ // 28  SAM
+	"",
+"You may be big. But I am seriously bad.",
+"Oh, aren't you adorable?",
+"Rocket Launcher. Accepts no substitutes.",
+"Alien hamburger. My favorite.",
+"All your base are belong to us, mother fucker!",
+"My diagnosis? Accute lead poisoning.",
+"Wakey wakey, motherfucker!",
+"I'm a lotta things fella, but I'm not your lunch.",
+"Another one bites the dust!",
+"Come on, you ugly freaks!",
+"Come get Sam!",
+"Damn! I'm better than good!",
+"Come on! I've got enough lead for all of you. Heheheh.",
+"Hammertime!",
+"How'd you like me now?",
+"If war is an art, I'm fucking Michelangelo!",
+"You are a pain, but I've got a painkiller!",
+"You see what happens when you move in front of my gun?",
+"This is getting serious.",
+"You guys don't know it yet, \n\c[brite] but you are seriously doomed.",
+"Stop the foreplay and get serious.",
+"Line up! I'm offering free tickets \n\c[brite]to hell!",
+	}},
+	{{ // 29  POSTAL
+	"",
+"Damn. Here I was, minding my own business, \n\c[brite] just enjoying my 2nd amendment rights. \n\c[brite] And you people had to freak out on me.",
+"Don't crowd, there's plenty for everyone.",
+"Guns don't kill people. I do.",
+"How would you like if somebody called you a lunatic?",
+"I know what you're thinking. \n\c[brite] But the funny thing is, I don't even like videogames.",
+"I regret nothing.",
+"I suppose it would've been more politically correct \n\c[brite] to kill the women and the minorities first.",
+"I wonder how much his remains would go for on Ebay?",
+"Have a nice day!",
+"Here's some lead for you to recycle!",
+"I'm sorry, apparently I'm feeling \n\c[brite] a little psychotic this morning.",
+"Are you going to sign this, \n\c[brite] or will it be your surviving family members?",
+"Someone stole my donuts, and now you're all gonna pay!",
+"Sorry folks. The bible backs me up on this one.",
+"Only my weapon understands me.",
+"Hi there! Would you like to sign my petition?",
+"Please don't think I'm a bigot. I kill races equally.",
+"Today is the first day of the end of your lives.",
+"Videogames don't kill people. I do.",
+"Yeah, that's what they all say.",
+"You probably think I'm not a nice person.",
+"You probably thought you weren't gonna die today. Surprise!",
+	}},
+	{{ // 30  PAINKILLER
+	"",
+"Purgatory sure ain't what it used to be.",
+"The fight's over when I say so!",
+"Three cards. That's all I need.",
+"Angels toyed with me for sport. \n\c[brite]So I'll make a sport out of them.",
+"Maybe one day I'll find Catherine. \n\c[brite]But for now, I'll just keep killing demons.",
+"I'm nobody's hitman anymore.",
+"The only things I trust now, are weapons.",
+"A car crash took it all from me.\n\c[brite]Now I've got nothing left to lose.",
+"I wandered purgatory for a long time, \n\c[brite]so, I could do with a little entertainment.",
+"Demons, Angels, Humans... Doesn't matter. \n\c[brite]You're all corrupt.",
+"I'm sure I've seen an angel here somewhere.",
+"I had a chance for redemption. \n\c[brite]But now all I want is revenge.",
+"Why does the air feel so thick here?",
+"Ah... I still miss my stakegun.",
+"They say that evil is recurring.\n\c[brite] Good job I've got plenty of guns.",
+"I've got a lead overdose with your name on it!",
+"The hardware around here is a little... basic. \n\c[brite]Don't you think?",
+"Paradise and salvation, hell and damnation? \n\c[brite]Heh. It's all the same to me.",
+"I'm not trapped here with you. \n\c[brite]You're trapped here with me.",
+"You do know I killed Lucifer, right? \n\c[brite]And you still wanna take me on?",
+"You're gonna lose pal. \n\c[brite]I'd stake my reputation on it.",
+"I've been betrayed by angels and demons. \n\c[brite]You don't concern me.",
+"Time to cleanse this place.",
+"Your filthy souls can't even heal me!",
+"I can feel the demon raging within me!",
+"For every soul I consume, I lose another \n\c[brite]piece of my humanity.",
+	},
+	{
+	"PowerDemonViewTint", // 30:1  Demon morph
+"\c[bludi]I'll kill you all!",
+"\c[bludi]Bring it on!",
+"\c[bludi]I'm your worst nightmare!",
+"\c[bludi]Demon scum!",
+"\c[bludi]You're mine now!",
+"\c[bludi]Die!",
+"\c[bludi]You're finished!",
+"\c[bludi]Playtime is over!",
+"\c[bludi]You asked for this!",
+	}},
+	{{ // 31  INTRUDER
+	"",
+"That symbol...",
+"It looks rotten.",
+"Time to break up the party.",
+"A demonic creature.",
+"You aren't supposed to be here.",
+"Hello old friend.",
+"The coward's way out.",
+"Unworthy indeed.",
+"Time to end this.",
+"New blood for the old gods.",
+"Thanks Caleb!",
+"Bad dog!",
+"Death from above!",
+"The door opens; the world changes.",
+"Appears to be a cult member.",
+"Found a working weapon.",
+"No turning back now.",
+"I hate rats.",
+"Son of a....",
+"Something isn't right!",
+"The dimming, cooling sun.",
+"They... weren't human.",
+"You're all so... powerless.",
+"Don't trust your eyes.",
+"Trust your eyes!",
+"This place is doomed.",
+"What a massacre!",
+	},
+	{
+	"PowerWendigoTint", // 31:1
+"\c[bludi]Embrace the darknes!",
+"\c[bludi]Cleanse the insignificant.",
+"\c[bludi]Go... continue your reign.",
+"\c[bludi]You are all so... Insignificant!",
+"\c[bludi]Be cleansed!",
+"\c[bludi]Only one will reign.",
+"\c[bludi]Zero miedo!",
+"\c[bludi]Unworthy.",
+"\c[bludi]Appears to be dead!",
+"\c[bludi]How does it feel?",
+"\c[bludi]Horrible, isn't it?",
+	}},
+	// ^ insert more classes here
+};
+
+Script "QCDE_VoiceLineSubtitle" (int classid, int page, int index) clientside
+{
+	int cvar = GetUserCvar(CPN(),"cl_tauntSubtitles");
+	if(!cvar) terminate;
+	if(cvar == 1 && GameType() > GAME_SINGLE_PLAYER) terminate;
+	if(cvar == 2 && GameType() > GAME_NET_COOPERATIVE) terminate;
+
+	SetFont("SMALLFONT");
+	SetHudSize(640,480,1);
+	int subtitle = taunt_txt[classid][page][index];
+	int duration_scalar = 100;
+	int duration = fixedSqrt(strlen(subtitle) * 0.5) / 2 * duration_scalar / 100;
+	HudMessage(s:"\n\c[brite]", s:subtitle; HUDMSG_TYPEON,HMID_SUBTITLES,-1, 320.4,478.2, duration,1.0/35,duration/2);
+}

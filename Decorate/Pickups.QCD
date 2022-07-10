@@ -1,0 +1,161 @@
+//=======================================================================
+//=======================================================================
+// Hourglass bonus
+//=======================================================================
+//=======================================================================
+
+Actor UndroppedProc : CustomInventory { States { Pickup: TNT1 A 0 A_ChangeFlag("DROPPED", false) Stop } }
+
+Actor Hourglass : CustomInventory 15508
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 3
+	//$Title "Hourglass (-10%)"
+	Radius 20
+	Height 48
+	-COUNTITEM
+	Tag "$TAG_Hourglass" // "Hourglass"
+	Inventory.PickupMessage "$GOT_Hourglass" // "Picked up an equipment bonus."
+	Inventory.PickUpSound "QC/Items/HourglassPick"
+	Scale 0.7
+	Inventory.RespawnTics 525 // 15sec
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_UndropDuringInit")
+		SAND A -1 Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned", true)
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("Class_Sarge", 1, "GiveArmor")
+		TNT1 A 0 A_JumpIfInventory("Class_Sam", 1, "GiveBullets")
+		TNT1 A 0 A_JumpIfInventory("ActiveInProgress", 1, "Death")
+		TNT1 A 0 A_JumpIfInventory("AbilityCooldownToken", 1, "OK")
+	Death:
+		TNT1 A 0
+		Fail
+	OK:
+		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"VeryOK")
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_Hourglass",0,10)
+		Stop
+	VeryOK:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_Hourglass",0,20)
+		Stop
+	GiveArmor:
+		TNT1 A 0 A_JumpIfInventory("DMToken", 1, "GiveArmor2")
+		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck") == 0, "GiveArmor2")
+		Goto Death // not in coop
+	GiveArmor2:
+		TNT1 A 0 A_PlaySound("QC/Items/ArmorShardPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("QCSargeArmorGain",1)
+		Stop
+	GiveBullets:
+		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarBullets")
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("SeriousBullets",15)
+		Stop
+	GiveMoarBullets:
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("SeriousBullets",30)
+		Stop
+	}
+}
+
+Actor HourglassNoGrav : Hourglass 15518
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 3
+	//$Title "Hourglass Floaty (-10%)"
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_UndropDuringInit")
+		SAND A -1 Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned", false) // don't force remonstration
+		Loop
+	}
+}
+
+Actor BigHourglass : Hourglass 15509
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 3
+	//$Title "Big Hourglass (-30%)"
+	Tag "$TAG_BigHourglass" // "Big Hourglass"
+	Inventory.PickupMessage "$GOT_BigHourglass" // "Picked up a big equipment bonus."
+	Inventory.PickUpSound "QC/Items/HourglassPick"
+	Scale 0.83
+	Inventory.RespawnTics 1050 // 30sec
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_UndropDuringInit")
+		SAND B -1 Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Loop
+	OK:
+		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"VeryOK")
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_Hourglass",0,33)
+		Stop
+	VeryOK:
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_Hourglass",0,50)
+		Stop
+	GiveArmor:
+		TNT1 A 0 A_PlaySound("QC/Items/ArmorSmallPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("QCSmallArmorGiver",1)
+		Stop
+	GiveBullets:
+		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarBullets")
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("SeriousBullets",75)
+		Stop
+	GiveMoarBullets:
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("SeriousBullets",150)
+		Stop
+	}
+}
+
+
+//=======================================================================
+//
+// Backpacks (replaced in DM)
+//
+//=======================================================================
+
+Actor QCBackPack : CustomInventory replaces Backpack 15510
+{
+	//$NotAngled
+	//$Category "QCDE Pickups"
+	//$Color 3
+	//$Title "Backpack"
+	Scale 0.6
+	Tag "$TAG_QCBackPack" // "Backpack"
+	Inventory.PickupMessage "$GOT_QCBackPack" // "Picked up a backpack."
+	Height 32
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickUpSound "QC/Items/Backpack"
+	States
+	{
+	Spawn:
+		BPAK B -1 NoDelay //ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		Stop
+	Pickup:
+		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck",0,0,0,0) >= 2, "DMPickup")
+		Goto CoopPickup
+	DMPickup:
+		TNT1 A 0 A_GiveInventory("QCBulletAmmo",20)
+		TNT1 A 0 A_GiveInventory("QCShellAmmo",	 4)
+		TNT1 A 0 A_GiveInventory("QCNailAmmo",	20)
+		TNT1 A 0 A_GiveInventory("QCBoltAmmo", 	 4)
+		TNT1 A 0 A_GiveInventory("QCRocketAmmo", 2)
+		TNT1 A 0 A_GiveInventory("QCCoilAmmo", 	20)
+		TNT1 A 0 A_GiveInventory("QCSlugAmmo", 	 4)
+		TNT1 A 0 A_GiveInventory("QCBFGAmmo",	 4)
+		Stop
+	CoopPickup:
+		TNT1 A 0 A_GiveInventory("BackpackItem",1) // native ammo capacitor
+		Stop
+	}
+}

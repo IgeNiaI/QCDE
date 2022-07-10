@@ -1,0 +1,782 @@
+//================================================================================================================
+//================================================================================================================
+//
+//
+//================================================================================================================
+//================================================================================================================
+Actor D4SpiderMastermind : QCDE_MonsterBoss 15461
+{
+	//$Angled
+	//$Category "QCDE Monsters: Doom 4"
+	//$Color 12
+	const int CBAFlags = CBAF_AIMFACING|CBAF_NORANDOMPUFFZ|CBAF_NORANDOM|CBAF_EXPLICITANGLE;
+	var int user_attmainangle;
+	var int user_attsweepangle;
+	var int user_count;
+	Health 5000
+	Radius 80
+	Height 100
+	Mass 12000 //it's huge and heavy!
+	Speed 12
+	PainChance 4
+	Monster
+	MinMissileChance 500
+	+BOSS
+	+MISSILEMORE
+	+FLOORCLIP
+	+NORADIUSDMG
+	+DONTMORPH
+	+BOSSDEATH
+	+NOICEDEATH
+	SeeSound 	"Doom4/Monsters/Mastermind/Sight"
+	PainSound 	"Doom4/Monsters/Mastermind/Pain"
+	DeathSound 	"Doom4/Monsters/Mastermind/Death"
+	ActiveSound "Doom4/Monsters/Mastermind/Idle"
+	Obituary "$OB_SPIDER"
+	DamageFactor "CyberdemonFireWave", 0.2	//for if there's infight, otherwise cyberdemons rape this guy so easily
+	MeleeRange 200
+	Tag "$TAG_D4SpiderMastermind" // "Spider Mastermind"
+	DropItem "BigHourglass"
+	States
+	{
+	Idle:
+		SPID A 0 A_StopSound(6)
+		SPID AB 10 A_Look
+		Goto Idle+1
+	See:
+		SPID A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.88)
+		SPID A 3   A_Chase
+		SPID ABB 3 A_Chase
+		SPID A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.89)
+		SPID C 3   A_Chase
+		SPID CDD 3 A_Chase
+		SPID A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.90)
+		SPID E 3   A_Chase
+		SPID EFF 3 A_Chase
+		Loop
+
+
+
+
+	Missile:
+		SPID A 0 A_JumpIfCloser(500,"ChooseShortRange")
+		Goto ChooseLongRange
+
+	ChooseShortRange:
+		SPID A 0 A_Jump(160,"GrenadeThrow","MultiLaser","FloorGas")
+		Goto ChooseLongRange
+
+	ChooseLongRange:
+		SPID A 0 A_Jump(256,"PlasmaBurst","LaserShot","TelekineticRock")
+		Goto PlasmaBurst
+
+	Melee:
+		SPID A 0 A_Jump(200,"FloorGas")
+		Goto ChooseShortRange
+
+	//---------------------------------------------------
+	// Rock throw
+	TelekineticRock:
+		SPID A 0 A_ThrowGrenade("SMMRockDummy")
+		SPID A 0 A_PlaySound("Doom4/Monsters/SpiderMMKineticRock")
+		SPID AAAAAAAAAAAA 5 A_FaceTarget
+		SPID A 0 A_CustomMissile("SMMRockTrown",95,0)
+		SPID A 30
+		Goto See
+
+	//---------------------------------------------------
+	// MultiLaser
+	MultiLaser:
+		TNT1 A 0 A_SetUserVar("user_attsweepangle",60)
+		TNT1 A 0 A_PlaySound("Doom4/Monsters/SpiderMMGrenadePrepare",5)
+		TNT1 A 0 A_SetUserVar("user_attmainangle",30)
+		SPID GGGG 6 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Doom4/Monsters/SpiderMMLaserShot",7,0.7,0,0.3)
+		Goto DMBeamLoop1
+
+		DMBeamLoop1:
+			TNT1 A 0 A_PlaySound("Doom4/Monsters/SpiderMMLaserSmall",6,1,1,0.4)
+			TNT1 A 0 A_JumpIf(user_attsweepangle<=-60,"DMBeamLoop2")
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
+			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle-2)
+			SPID H 2 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLQ",55,0,user_attmainangle)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
+			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle-3)
+			SPID H 2 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
+			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle-2)
+			SPID H 2 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLQ",55,0,user_attmainangle)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
+			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle-3)
+			SPID H 2 A_FaceTarget
+			Goto DMBeamLoop1+1
+		DMBeamLoop2:		//main shot from right to left
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",60)
+			TNT1 A 0 A_PlaySound("Doom4/Monsters/SpiderMMLaserSmall",6,1,1,0.4)
+			TNT1 A 0 A_JumpIf(user_attsweepangle<=-60,"DMBeamEnd")
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLQ",55,0,user_attmainangle)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
+			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle+2)
+			SPID H 2 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
+			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle+3)
+			SPID H 2 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLQ",55,0,user_attmainangle)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
+			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle+2)
+			SPID H 2 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
+			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
+			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle+3)
+			SPID H 2 A_FaceTarget
+			Goto DMBeamLoop2+2
+	DMBeamEnd:
+		TNT1 A 0 A_StopSound(6)
+		SPID A 15
+		Goto See
+
+	//---------------------------------------------------
+	// Plasma burst attack (10 plasma balls, slightly random angle)
+	PlasmaBurst:
+		TNT1 A 0 A_JumpIfCloser(800,"PlasmaSpread")
+		Goto PlasmaStraight
+
+	PlasmaSpread:
+		SPID A 20 Light("OrangeBigFlicker3DLS") A_FaceTarget
+		SPID A 0 A_SetUserVar(user_count,0) //resets
+		Goto SpreadLooper
+
+		SpreadLooper:
+			SPID G 0 A_FaceTarget
+			SPID G 1 BRIGHT Light("OrangeBigFlicker2DLS") A_CustomMissile("SMMPlasmaBurst",40,0,random(15,-15))
+			SPID H 1 BRIGHT Light("OrangeBigFlicker2DLS") A_SetUserVar(user_count,user_count+1)
+			SPID A 0 A_JumpIf(user_count>=20,"EndStraight")
+			Loop
+
+	PlasmaStraight:
+		SPID A 20 Light("OrangeBigFlicker3DLS") A_FaceTarget
+		SPID A 0 A_SetUserVar(user_count,0) //resets
+		Goto StraightLooper
+
+		StraightLooper:
+			SPID G 0 A_FaceTarget
+			SPID G 1 BRIGHT Light("OrangeBigFlicker2DLS") A_CustomMissile("SMMPlasmaBurstFast",40,0,0)
+			SPID H 1 BRIGHT Light("OrangeBigFlicker2DLS") A_SetUserVar(user_count,user_count+1)
+			SPID A 0 A_JumpIf(user_count>=35,"EndStraight")
+			Loop
+
+	EndStraight:
+		SPID A 10
+		Goto See
+	//---------------------------------------------------
+	// Laser attack
+	LaserShot:
+		SPID A 0 A_PlaySound("Doom4/Monsters/MastermindLaserCharge",5,1.0,false,0.7)
+		SPID AAAA 5 Light("RedBigFlicker2DLS") A_FaceTarget
+		SPID A 0 A_SpawnItemEx("LaserChargeIndicator",0,0,30,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION)
+		SPID GGGGG 2 Light("RedBigFlicker2DLS") A_FaceTarget
+		SPID G 0 A_PlaySound("Doom4/Monsters/SpiderMMLaserShot",5,1.0,false,0.8)
+		SPID G 0 A_PlaySound("Doom4/Monsters/ElectricDischarge",6,0.3,false,0.6)
+		SPID GGG 3 Light("RedBigFlicker2DLS") A_FaceTarget //gives you a tiny bit of chance to run away
+		SPID H 10 Bright A_CustomMissile("SMMLaser",40,0,0)
+		SPID G 10
+		Goto See
+
+	//---------------------------------------------------
+	// Grenades
+	GrenadeThrow:
+		SPID GG 10 A_FaceTarget
+		SPID G 10 A_PlaySound("Doom4/Monsters/SpiderMMGrenadePrepare",5,1.0,false,1.1)
+		SPID GGGGGGGGGGGGGG 3 A_CustomMissile("SMMGrenade",60,0,random(30,-30))
+		SPID G 30
+		Goto See
+	//---------------------------------------------------
+	// Gas attack (short range)
+	FloorGas:
+		SPID G 10
+		SPID G 15 A_PlaySound("Doom4/Monsters/SpiderMMGroundElectro")
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,   0)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,  30)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,  60)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,  90)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0, 120)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0, 150)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0, 180)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,- 30)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,- 60)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,- 90)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,-120)
+		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,-150)
+		SPID G 100
+		Goto See
+
+
+
+
+	Pain.StunBomb:
+	Pain:
+		SPID I 3 A_StopSound(6)
+		SPID I 3 A_Pain
+		Goto See
+	DeathChecksDone:
+	XDeathChecksDone:
+		CYBR H 0 A_Explode(50,64,XF_NOTMISSILE,0,64)
+		SPID J 0 A_StopSound(6)
+		SPID J 10 A_Scream
+		SPID K 0 A_NoBlocking
+		SPID K 6 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SPID L 6
+		SPID M 6 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("Doom4/Gore/Big")
+		TNT1 A 0 A_SpawnItemEx("GibDropperBig",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		SPID NOPQR 5 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION,70)
+		SPID S 30
+	Death.Corpse:
+		SPID S -1
+		Stop
+
+
+	//------------------------------------------------------------------------
+	}
+}
+
+//-----------------------------------
+Actor SMMRockDummy
+{
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		X142 A 0
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,10,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,20,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,-10, 0,0,0, 0,SXF_NOCHECKPOSITION, 180)
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,30,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,40,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,-10, 0,0,0, 0,SXF_NOCHECKPOSITION, 180)
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,50,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,60,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,-10, 0,0,0, 0,SXF_NOCHECKPOSITION, 180)
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,70,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,80,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,-10, 0,0,0, 0,SXF_NOCHECKPOSITION, 180)
+		X142 A 2 Bright A_Warp(AAPTR_TARGET,50,0,90,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		X142 AAAAAAAAAAAAAAAAAAAAA 2 A_SpawnItemEx("SMMLightningSparkles",0,0,-10, 0,0,0, 0,SXF_NOCHECKPOSITION, 180)
+	Death:
+		TNT1 A 1
+		Stop
+	}
+}
+
+
+Actor SMMRockTrown
+{
+	Projectile
+	Speed 37
+	Radius 6
+	Height 8
+	Damage 30 //this hurts!
+	SeeSound "Doom4/Monsters/ArchvileShootFX"
+	DeathSound "Doom4/Monsters/SpiderMMRockCrash"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		X142 ABCDEFGHIJKLMNOP 1
+		Loop
+	Death:
+		TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("RockBit",random(10,-10),random(10,-10),0,frandom(6.0,-6.0),frandom(6.0,-6.0),frandom(6.0,0),random(0,359),SXF_NOCHECKPOSITION)
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor RockBit
+{
+    Projectile
+    Speed 0
+    Radius 1
+    Height 1
+    Damage 0
+    +THRUACTORS
+    -NOGRAVITY
+    +DOOMBOUNCE
+    Scale 0.6
+    BounceFactor 0.35
+    States
+    {
+    Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255,"T1","T2","T3")
+    T1:
+		RECK A 3
+		Loop
+    T2:
+		RECK B 3
+		Loop
+    T3:
+		RECK C 3
+		Loop
+    T4:
+		RECK D 3
+		Loop
+    Death:
+		TNT1 A 1
+		Stop
+    }
+}
+
+
+
+
+
+
+
+
+
+//-----------------------------------
+Actor SMMGrenade
+{
+	Projectile
+	-NOGRAVITY
+	Gravity 0.6
+	BounceType Doom
+	BounceFactor 0.2
+	Scale 0.4
+	Speed 25
+	Radius 4
+	Height 8
+	Damage 2
+	+FORCERADIUSDMG
+	+FORCEXYBILLBOARD
+	SeeSound "Doom4/Monsters/SpiderMMGrenadeThrow"
+	States
+	{
+	Spawn:
+		STIB A 0 NODELAY ThrustThingZ(0,random(10,30),0,1)
+	Looper:
+		STIB AB 3 Bright Light("RedSmallPoint1")
+		Loop
+	Death:
+		STIB A 20 Light("RedSmallPoint1")
+		STIB A 0 A_PlaySound("Doom4/Monsters/SpiderMMGrenadeExplo",CHAN_AUTO,1.0,false,1.2)
+		STIB A 0 A_Explode(32,128,0)
+		TNT1 A 10 A_SpawnItemEx("SMMGrenExplo", 0,0,0, 0,0,0,0, SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+Actor SMMGrenExplo
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	Scale 0.7
+	Translation "0:255=%[0,0,0]:[1,0,0]"
+	RenderStyle Add
+	States
+	{
+	Spawn:
+		DB54 ABCDEFGHIJKLMNOPQR 1
+		Stop
+	}
+}
+
+
+
+
+//------------------------------------------------------------------
+// Red big laser static
+Actor SMMLaser : FastProjectile	//main beam aimed at you, fires a few weak ones
+{
+	Speed 100
+	MissileType "SMMLaserTrail"
+	MissileHeight 8
+	Radius 3
+	Height 6
+	Damage (random(1,2)*30)
+	Decal "RedElectricDecalBig"
+	States
+	{
+	Spawn:
+		TNT1 A 4
+		Loop
+	Death:
+		TNT1 A 3
+		Stop
+	}
+}
+
+
+Actor SMMLaserTrail
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Scale 0.4
+	States
+	{
+	Spawn:
+		TNT1 a 0  NoDelay A_Jump(256,"Type1","Type2","Type3","Type4")
+	Type1:
+		HSPL ABCDEG 1 Bright
+	T1Looper:
+		HSPL ABCDEG 1 Bright A_FadeOut(0.06)
+		Loop
+
+	Type2:
+		HSPL DEGHBD 1 Bright
+	T2Looper:
+		HSPL DEGHBD 1 Bright A_FadeOut(0.06)
+		Loop
+
+	Type3:
+		HSPL HBDCGE 1 Bright
+	T3Looper:
+		HSPL HBDCGE 1 Bright A_FadeOut(0.06)
+		Loop
+
+	Type4:
+		HSPL CGEABC 1 Bright
+	T4Looper:
+		HSPL CGEABC 1 Bright A_FadeOut(0.06)
+		Loop
+
+	}
+}
+
+Actor LaserChargeIndicator
+{
+	Renderstyle Add
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Translation "0:255=%[0,0,0]:[2.0,0.2,0.2]"
+	Scale 1.5
+	Alpha 1
+	ReactionTime 10
+	States
+	{
+	Spawn:
+		X060 A 1 Bright A_SetScale(scalex-0.15)
+		X060 A 0 A_Countdown
+		Loop
+	Death:
+		TNT1 A 1
+		Stop
+	}
+}
+
+
+//------------------------------------------------------------------
+Actor SMMPlasmaBurst : FastProjectile
+{
+	Projectile
+	Radius 7
+	Height 12
+	Scale 0.2
+	RenderStyle Add
+	Alpha 0.99
+	Speed 25
+	FastSpeed 35
+	Damage 5
+	SeeSound "Doom4/Monsters/SpiderMMMinigun"
+	Translation "0:255=%[0,0,0]:[1.5,0.3,0.08]"
+	+FORCEXYBILLBOARD
+	+STRIFEDAMAGE
+	Decal "D4PlasmaMonsterBig"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY
+		Goto Looper
+	Looper:
+		SPIR P 2 Bright Light("OrangeSmallPoint2")
+		Loop
+	Death:
+		TNT1 a 0 A_Explode(5,32,0)
+		TNT1 A 0 A_SpawnItemEx("SMMPlasmaBallPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		TNT1 A 3 Light("OrangeSmallPoint1")
+		TNT1 A 3 Light("OrangeSmallPoint2")
+		TNT1 A 3 Light("OrangeSmallPoint3")
+		Stop
+	}
+}
+
+Actor SMMPlasmaBurstFast : SMMPlasmaBurst
+{
+	Speed 35
+	FastSpeed 45
+}
+
+Actor SMMPlasmaBallPuff : D4PistolPuffBig1
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+PUFFONACTORS
+	Scale 0.25
+	RenderStyle Add
+	Alpha 0.99
+	Translation "0:255=%[0,0,0]:[1.3,0.7,0.3]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Goto Continue
+	}
+}
+
+
+
+
+//------------------------------------------------------------------
+
+Actor SmallLaserBeam : FastProjectile
+{
+	Speed 280
+	MissileType "DMBeamTrail"
+	Radius 3
+	Height 6
+	Damage 2
+	States
+	{
+	Spawn:
+		TNT1 A 4
+		Stop
+	Death:
+		TNT1 A 3
+		Stop
+	}
+}
+Actor SmallLaserBeamLongTrail : FastProjectile
+{
+	Speed 280
+	MissileType "DMBeamTrailLonger"
+	Radius 3
+	Height 6
+	Damage 2
+	States
+	{
+	Spawn:
+		TNT1 A 4
+		stop
+	Death:
+		TNT1 A 3
+		Stop
+	}
+}
+
+Actor SmallLaserBeamLQ : SmallLaserBeam
+{
+	MissileType ""
+}
+
+Actor DMBeamTrailLonger
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	RenderStyle Add
+	Scale 0.23
+	Translation "0:255=%[0,0,0]:[1.5,0.3,0.08]"
+	States
+	{
+	Spawn:
+		TNT1 a 0
+		TNT1 A 0 A_Jump(256,"Type1","Type2","Type3","Type4")
+	Type1:
+		ZAP6 ABC 1 Bright
+		ZAP6 A 1 Bright
+		Stop
+	Type2:
+		ZAP6 ACB 1 Bright
+		ZAP6 A 1 Bright
+		Stop
+	Type3:
+		ZAP6 BAC 1 Bright
+		ZAP6 B 1 Bright
+		Stop
+	Type4:
+		ZAP6 CBA 1 Bright
+		ZAP6 C 1 Bright
+		Stop
+
+	}
+}
+
+
+
+//------------------------------------------------------------------
+
+
+Actor SMMGasSpawner
+{
+	Projectile
+	Radius 2
+	Height 3
+	+FLOORHUGGER
+	+THRUACTORS
+	Scale 0.2
+	Speed 10
+	RenderStyle None
+	States
+	{
+	Spawn:
+		TNT1 AAAAAAAAAA 5 NODELAY A_SpawnItemEx("SMMGas", random(70,-70),random(70,-70),0, 0,0,0, 0,SXF_TRANSFERPOINTERS)
+		Stop
+	Death:
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor SMMGas
+{
+	+NOCLIP
+	+FloorHugger
+	-NOGRAVITY
+	Height 20
+	RenderStyle Add
+	Translation "0:255=%[0,0,0]:[0.2,0.2,2.0]"
+	XScale 1.6
+	YScale 0.6
+	Alpha 0.0
+	DamageType "SMMGas"
+	Obituary "$OB_SMMGas" // "%o fell to the stench of great evil."
+	+DONTSPLASH
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		X110 A 0 NODELAY A_Explode(5,60,0,0,30)
+		X110 A 0 A_Jump(256,1,2,3,4,5,6,7)
+		X110 ABCDEFGH 2 Bright A_Fadeto(0.8,0.06)
+		X110 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,10, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200)
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 IJKLMNOP 2 Bright A_Fadeto(0.8,0.06)
+		X110 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,10, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200)
+
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 QRSTUVWX 2 Bright
+		X110 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,10, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200)
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 YABCDEFG 2 Bright
+		X110 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,10, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200)
+
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 HIJKLMNO 2 Bright
+		X110 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,10, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200)
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 PQRSTUVW 2 Bright
+		X110 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,10, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200)
+
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 YABCDEFG 2 Bright
+		X110 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,10, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200)
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 HIJKLMNO 2 Bright
+		X110 A 0 A_SpawnItemEx("SMMLightningSparkles",0,0,10, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200)
+
+
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 PQRSTUVW 2 Bright Bright A_FadeOut(0.076)
+		X110 A 0 A_Explode(5,60,0,0,30)
+		X110 XYABCDEF 2 Bright Bright A_FadeOut(0.076)
+		sTOP
+
+	}
+}
+Actor LGAltPuff
+{
+	+NOINTERACTION
+	+PUFFGETSOWNER
+	+PUFFONACTORS
+	+ALWAYSPUFF
+	+FORCEXYBILLBOARD
+	+MTHRUSPECIES
+	RenderStyle Add
+	Alpha 0.99
+	Translation "0:255=%[0,0,0]:[0.9,0.74,1.5]"
+	Scale 0.4
+	DamageType "LGChain"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Explode(20,92,0)
+		TNT1 A 0 A_Jump(256,"Type1a","Type1b","Type2a","Type2b","Type3a","Type3b","Type4a","Type4b","Type5a","Type5b")
+	Type1a:
+		DLI1 A 0
+		Goto Perform1
+	Type1b:
+		DLI1 L 0
+		Goto Perform2
+	Type2a:
+		DLI2 A 0
+		Goto Perform1
+	Type2b:
+		DLI2 L 0
+		Goto Perform2
+	Type3a:
+		DLI3 A 0
+		Goto Perform1
+	Type3b:
+		DLI3 L 0
+		Goto Perform2
+	Type4a:
+		DLI4 A 0
+		Goto Perform1
+	Type4b:
+		DLI4 L 0
+		Goto Perform2
+	Type5a:
+		DLI5 A 0
+		Goto Perform1
+	Type5b:
+		DLI5 L 0
+		Goto Perform2
+
+	Perform1:
+		"####" BDHI 1 Bright
+		Stop
+	Perform2:
+		"####" MOST 1 Bright
+		Stop
+	}
+}
+
+Actor TeslaRays : LGAltPuff
+{
+	Translation "0:255=%[0.0,0.0,0.0]:[5.0,0,0]"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256,"Type1a","Type1b","Type2a","Type2b","Type3a","Type3b","Type4a","Type4b","Type5a","Type5b")
+		Goto Type1a
+	}
+}
+
+Actor SMMLightningSparkles : TeslaRays
+{	Translation "0:255=%[0,0,0]:[0.2,0.2,2.0]" }

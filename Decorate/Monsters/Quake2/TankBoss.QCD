@@ -1,0 +1,138 @@
+//===========================================================================
+//===========================================================================
+
+Actor Q2TankBoss : QCDE_MonsterBoss	15220	// spider mastermind
+{
+	//$Angled
+	//$Category "QCDE Monsters: Quake 2"
+	//$Color 12
+	Health 3000
+	Radius 72
+	Height 95
+	Scale 0.6
+	Speed 12
+	PainChance 15
+	Mass 9000
+	MONSTER
+	+BOSSDEATH
+	+FLOORCLIP
+	+MISSILEEVENMORE
+	+BOSS
+	+NORADIUSDMG
+	+NOBLOOD
+	+NOFEAR
+	Tag "$TAG_Q2TankBoss" // "Tank Boss"
+	BloodColor "68 89 04"	//used for the giblets
+	SeeSound "q2bosstank/sight"
+	PainSound "q2bosstank/pain"
+	DeathSound "q2bosstank/death"
+	ActiveSound "q2bosstank/search"
+	AttackSound "q2weapon/machinegun"
+	Obituary "$OB_Q2TankBoss" // "%o was smeared over the ground by a tank-boss."
+	DropItem "BigHourglass"
+	States
+	{
+	Idle:
+		BS1W A 5 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_PlaySound("q2bosstank/walk",6)
+		BS1W AABB 3 A_Chase
+		BS1W CCDD 3 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(200,"Rocket","Minigun")
+	Rocket:
+		TNT1 A 0 A_StopSound(6)
+		BS1A FG 10 A_FaceTarget
+		BS1A Z 0 A_FaceTarget
+		BS1A H 12 Bright A_CustomMissile("Q2BossRocket",108,-25,0)
+		BS1A Z 0 A_FaceTarget
+		BS1A I 12 Bright A_CustomMissile("Q2BossRocket",102,-34,0)
+		BS1A Z 0 A_FaceTarget
+		BS1A J 12 Bright A_CustomMissile("Q2BossRocket",97,-42,0)
+		BS1A KLMN 14
+		Goto See
+	Minigun:
+		TNT1 A 0 A_StopSound(6)
+		BS1A ABCD 5 A_FaceTarget
+		BS1A ABCD 4 A_FaceTarget
+	MinigunLooper:
+		BS1A ABCD 3 Bright A_GiveInventory("Q2TankMinigunProc")
+		BS1A E 0 A_CPosRefire
+		BS1A A 0
+		Goto MinigunLooper
+	Pain:
+		BS1P A 2
+		BS1P A 5 A_Pain
+		Goto See
+	XDeathChecksDone:
+	DeathChecksDone:
+		TNT1 A 0 A_StopSound(6)
+		BS1D A 6 A_Scream
+		BS1D B 6
+		BS1D C 6
+		BS1D D 6 A_Fall
+		TNT1 A 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(30,85),0,0,0,random(0,359),32)
+		TNT1 A 0 A_TossGib
+		TNT1 A 0 A_TossGib
+		BS1D EFG 6
+		TNT1 A 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(30,85),0,0,0,random(0,359),32)
+		BS1D HIJ 6
+		TNT1 AA 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(30,85),0,0,0,random(0,359),32)
+		TNT1 A 0 A_TossGib
+		TNT1 A 0 A_TossGib
+		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal")
+		BS1D K 20
+		XTRA C 0 A_PlaySound("quake2/Misc/GibExplosion")
+		TNT1 A 0 A_SpawnItemEx("GibDropperBig",0,0,50,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 AAAAAAAAAAAAAAAAAAAAA 0 A_TossGib
+		TNT1 AAA 0 A_SpawnItemEx("BossDeathExplosion",random(0,35),0,random(30,85),0,0,0,random(0,359),32)
+	Death.Corpse:
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor BossDeathExplosion
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Scale 1.2
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_PlaySound("q2weapon/rocketexplo")
+		TNT1 A 0 A_Jump(256,"Type1","Type2")
+	Type1:
+		X003 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 Bright
+		Stop
+	Type2:
+		X004 A 0 A_SetScale(1.35)
+		X004 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 Bright
+		Stop
+	}
+}
+
+Actor Q2BossRocket : TankCommanderRocket
+{
+	Speed 24
+}
+
+Actor Q2TankMinigunProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_PlaySound("Quake1/Weapons/SuperNailgunFire",6,0.75,0,0.6)
+		TNT1 A 0 A_SpawnItemEx("MonMuzzleFlash",24,39,90,0,0,0,0,32)
+		TNT1 A 0 A_CustomMissile("MonsterTracer",90,28,frandom(5,-5))
+		TNT1 A 0 A_CustomBulletAttack(22.5, 0, 2, random(1,5)*2, "BulletPuff", 0, CBAF_NORANDOM)
+		TNT1 A 0 A_FaceTarget
+		Stop
+	}
+}
+
+

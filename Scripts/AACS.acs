@@ -1,0 +1,19 @@
+///////////////////////////////////////////////////////////////////////////////
+// Abbreviated ACS ////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+// If I wanted to type "In the Realms of the Unreal" every time I need to    //
+// call a function, I could just go work day Java job, comprende vous?       //
+///////////////////////////////////////////////////////////////////////////////
+
+special -   9 : getXS           (1) ; // GetActorVelX
+special -  10 : getYS           (1) ; // GetActorVelY
+special -  11 : getZS           (1) ; // GetActorVelZ
+special -  44 : ACS           (1,5) ; // ACS_NamedExecuteWithResult
+special -  44 : ANEWR         (1,5) ; // ACS_NamedExecuteWithResult
+special -  45 : ANEA          (2,5) ; // ACS_NamedExecuteAlways
+special -  50 : Dist            (2) ; // VectorLength
+special    72 : TTXY            (4) ; // ThrustThing
+special -  73 : CheckQcdeModule (1) ; // ancient Chinese secret
+special - 102 : CPN             (0) ; // ConsolePlayerNumber
+special   128 : TTZ             (4) ; // ThrustThingZ
+special - 114 : IsZandronum     (1) ; // GetPlayerAccountName

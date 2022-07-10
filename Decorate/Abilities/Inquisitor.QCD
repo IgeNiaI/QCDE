@@ -1,0 +1,385 @@
+// --------------------------------------------------------------------------
+//
+// Inquisitor's abilities
+//
+// Active:	Damage Resistance
+//			Absorbs 50% of incoming damage for a short period of time
+//
+// Passive:	Still Defense
+//			When not moving, receive 20% less damage.
+//
+// --------------------------------------------------------------------------
+
+//--------------------------------------------------------
+// Active
+// Stage 1: Full invul
+//--------------------------------------------------------
+
+Actor ReflectiveInProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_ChangeFlag("PLAYERPAWN.NOTHRUSTWHENINVUL",1)
+		TNT1 A 0 A_JumpIfInventory("DMToken",1,"PvPEffect")
+	PvEEffect:
+		TNT1 A 0 A_GiveInventory("ClutchInvulnerabilityPvE",1)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Inquisitor/ShieldStart",7,1)
+		TNT1 A 35
+		Stop
+	PvPEffect:
+		TNT1 A 0 A_GiveInventory("ClutchInvulnerability",1)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Inquisitor/ShieldStart",7,1)
+		TNT1 A 35
+		Stop
+	}
+}
+
+Actor ReflectiveOutProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_ChangeFlag("PLAYERPAWN.NOTHRUSTWHENINVUL",0)
+		TNT1 A 0 A_TakeInventory("PowerClutchInvul",1)
+		TNT1 A 0 A_TakeInventory("PowerClutchInvulPvE",1)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Inquisitor/ShieldStop",7,1)
+		TNT1 A 0 A_TakeInventory("ActiveInProgress")
+		TNT1 A 0 A_TakeInventory("InquisitorStageToken",2)
+		TNT1 A 35
+		Stop
+	}
+}
+
+Actor ReflectiveCleanerProc : CustomInventory //same as "ReflectiveOutProc" but without effects
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_ChangeFlag("PLAYERPAWN.NOTHRUSTWHENINVUL",0)
+		TNT1 A 0 A_TakeInventory("PowerClutchInvul",1)
+		TNT1 A 0 A_TakeInventory("PowerClutchInvulPvE",1)
+		TNT1 A 0 A_TakeInventory("ActiveInProgress")
+		TNT1 A 35
+		Stop
+	}
+}
+
+
+Actor PowerClutchInvul : PowerProtection
+{
+	DamageFactor "Normal", 0.5099
+}
+Actor ClutchInvulnerability : InvulnerabilitySphere
+{
+   +INVENTORY.AUTOACTIVATE
+   +INVENTORY.ALWAYSPICKUP
+	powerup.duration -100
+	Powerup.Type "ClutchInvul"
+	Powerup.Colormap 0.0,0.1,0.1, 0.0,1.0,0.85
+}
+
+
+Actor PowerClutchInvulPvE : PowerProtection
+{
+	DamageFactor "Normal", 0.1
+}
+Actor ClutchInvulnerabilityPvE : InvulnerabilitySphere
+{
+   +INVENTORY.AUTOACTIVATE
+   +INVENTORY.ALWAYSPICKUP
+	powerup.duration -100
+	Powerup.Colormap 0.0,0.1,0.1, 0.0,1.0,0.85
+	Powerup.Type "ClutchInvulPvE"
+}
+
+
+
+
+/*//Stains the screen, but also makes weapon only deal 66% damage. Being able to shoot and be
+//invulnerable is too much. So it's been nerfed
+Actor PowerReflectiveNerf : PowerDamage
+{
+	//Inventory.Icon "IcnInvul"
+	DamageFactor "Normal", 0.667
+}
+Actor ReflectiveDamageNerf : InvulnerabilitySphere
+{
+	Powerup.Colormap 0,0,0, .75,.75,.75
+	powerup.duration -100
+	Powerup.Type "ReflectiveNerf"
+}
+
+Actor PowerReflectiveNerfPvE : PowerDamage
+{
+	//Inventory.Icon "IcnInvul"
+	DamageFactor "Normal", 0.9
+}
+Actor ReflectiveDamageNerfPvE : InvulnerabilitySphere
+{
+	Powerup.Colormap 0,0,0, .75,.75,.75
+	powerup.duration -100
+	Powerup.Type "ReflectiveNerfPvE"
+}
+*/
+
+
+Actor InquisitorStageToken : Inventory { Inventory.MaxAmount 2	Inventory.InterHubAmount 0 }
+
+//--------------------------------------------------------
+// Active
+// Stage 2: Shield wall
+//--------------------------------------------------------
+
+Actor BecomeShieldProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("DeactivateShieldToken",32767)
+		TNT1 A 0 A_GiveInventory("Shieldquisitor")
+		TNT1 A 0 A_GiveInventory("ShieldProtecBuff")
+		TNT1 A 0 A_GiveInventory("ActiveInProgress")
+		TNT1 A 0 A_SelectWeapon("Shieldquisitor")
+		Stop
+	}
+}
+
+Actor BecomeShieldCleanerProc : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("Shieldquisitor")
+		TNT1 A 0 A_TakeInventory("PowerShieldProtec")
+		TNT1 A 0 A_TakeInventory("ActiveInProgress")
+		TNT1 A 0 A_GiveInventory("DeactivateShieldToken")
+		Stop
+	}
+}
+
+
+
+Actor PowerShieldProtec : PowerProtection
+{
+	Powerup.Color "Orange", 0.2
+	DamageFactor "Normal", 0.2599	//like the old protec powerup, since you cant attack at all
+}
+
+Actor ShieldProtecBuff  : PowerupGiver
+{
+   +INVENTORY.AUTOACTIVATE
+   +INVENTORY.ALWAYSPICKUP
+	powerup.duration -100
+	Powerup.Type "ShieldProtec"
+}
+
+//-------------
+// The "weapon"
+Actor Shieldquisitor : QCWeapon
+{
+	Weapon.Kickback 0
+	Weapon.SelectionOrder 2000
+	Obituary "$OB_Shieldquisitor" // "%o got killed by %k's shield? LOLWUT"
+	Tag "$TAG_Shieldquisitor" // "Shield"
+	+INVENTORY.UNDROPPABLE
+	+WEAPON.MELEEWEAPON
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	//-----------------------
+	// Ready Seq
+	//-----------------------
+	Ready:
+		TNT1 A 0 ACS_NamedExecuteAlways("CheckIfCorrectPlayer",0,4) // 4 = inquisitor
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceFront", 0, true, 3, 2)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceLeft1", 0, true, 3, 2)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceLeft2", 0, true, 3, 2)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceRight1", 0, true, 3, 2)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceRight2", 0, true, 3, 2)
+		TNT1 A 3 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
+		Wait
+	//-----------------------
+	// Select/Deselect Seq
+	//-----------------------
+	Select:
+		TNT1 A 0 A_ZoomFactor(1)
+		TNT1 A 0 A_TakeInventory("DeactivateShieldToken")
+		TNT1 A 1 A_Raise
+		"####" "########" 0 A_Raise
+		Loop
+
+	Deselect:
+		TNT1 A 0 A_ZoomFactor(1.0)
+		TNT1 A 0 A_GiveInventory("DeactivateShieldToken")
+		TNT1 A 1 A_Lower
+		Loop
+	Fire:
+		TNT1 A 13
+		Goto Ready
+	}
+}
+
+Actor ShieldPieceFront
+{
+	var int user_angle;
+	var int user_frontdist;
+	var int user_sidedist;
+	+NOGRAVITY
+	+NEVERTARGET
+	-SHOOTABLE
+	+NOTONAUTOMAP
+	-SOLID
+	+QUICKTORETALIATE
+	+REFLECTIVE
+	-COUNTKILL
+	+NOTARGETSWITCH
+	+NOCLIP
+	Health 5000
+	Radius 35
+	Height 72
+	RenderStyle Add
+	Alpha 0.7
+	XScale 1.5
+	YScale 1.4
+	Mass 0x7FFFFFFF
+	PainChance 255
+	+NOBLOOD
+	+NODAMAGE
+	Species "Players" +THRUSPECIES
+	States
+	{
+	Spawn:
+		//setup stage, puts target (monster that spawned it) as master, and as tracer to keep resetting it
+		QP09 X 0 NODELAY A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
+		"####" "#" 0 A_PlaySound("QC/Abilities/Inquisitor/ShieldLoop",5,0.6,1,4)
+		"####" "#" 0 A_SetUserVar(user_angle,0)
+		"####" "#" 0 A_SetUserVar(user_frontdist,40)
+		"####" "#" 0 A_SetUserVar(user_sidedist,0)
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) >= 2,"NoThruSpecies")
+		"####" "#" 0 A_Jump(256,"Looper")	//for safety
+		Goto Looper
+	NoThruSpecies:
+		"####" "#" 0 A_ChangeFlag("THRUSPECIES", false)
+		"####" "#" 0 A_Jump(256,"Looper")	//for safety
+		Goto Looper
+	Looper:
+		//one tic not being shootable to prevent weird situations of "ownership" that left the piece floating without owner
+		"####" "#" 1 A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",1)
+		"####" "#" 0 A_Jump(256,"Looper4Realz")	//for safety
+	Looper4Realz:
+		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		"####" "#" 0 A_JumpIfInTargetInventory("DeactivateShieldToken",1,"Death.Removed") //failsafe to remove this shield
+		"####" "#" 1 BRIGHT A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		"####" "#" 1 BRIGHT A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		"####" "#" 1 BRIGHT A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_JumpIfInTargetInventory("Class_Inquisitor",1,"Looper4Realz")
+		"####" "#" 2 //reaches this if owner disappeared (spectate, disconnect)
+		Stop
+
+	Pain:
+		"####" "#" 0 A_JumpIfInTargetInventory("DeactivateShieldToken",1,"Death.Removed") //failsafe to remove this shield
+		"####" "#" 0 A_SetTranslucent(0.999,1)
+		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		"####" "#" 1 BRIGHT Light("BlueMediumFlicker3") A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		"####" "#" 1 BRIGHT Light("BlueMediumFlicker3") A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		"####" "#" 0 A_PlaySound("QC/Abilities/Inquisitor/ShieldHit",7,0.7,false,1.2)
+		"####" "#" 1 BRIGHT Light("BlueMediumFlicker3") A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		"####" "#" 1 BRIGHT Light("BlueMediumFlicker3") A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
+		"####" "#" 0 A_SetTranslucent(0.7,1)
+		Goto Looper4Realz
+
+	Death:
+	Death.Removed:	//when it was deactivated by stun, stagger, or whatever else
+		TNT1 A 0 A_ChangeFlag("Shootable",0)
+		TNT1 A 10 A_PlaySound("QC/Abilities/Inquisitor/ShieldStop",6,1,0)
+		Stop
+	}
+}
+
+Actor ShieldPieceLeft1 : ShieldPieceFront
+{
+	States
+	{
+	Spawn:
+		QP09 X 0 NODELAY A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
+		"####" "#" 0 A_SetUserVar(user_angle,0)
+		"####" "#" 0 A_SetUserVar(user_frontdist,40)
+		"####" "#" 0 A_SetUserVar(user_sidedist,-50)
+		"####" "#" 0 A_Jump(256,"Looper")	//for safety
+		Goto Looper
+	Death.Removed:	//when it was deactivated by stun, stagger, or whatever else
+		TNT1 A 10
+		Stop
+	}
+}
+Actor ShieldPieceLeft2 : ShieldPieceLeft1
+{
+	States
+	{
+	Spawn:
+		QP09 Z 0 NODELAY A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
+		"####" "#" 0 A_SetUserVar(user_angle,0)
+		"####" "#" 0 A_SetUserVar(user_frontdist,35)
+		"####" "#" 0 A_SetUserVar(user_sidedist,-100)
+		"####" "#" 0 A_Jump(256,"Looper")	//for safety
+		Goto Looper
+	}
+}
+
+Actor ShieldPieceRight1 : ShieldPieceLeft1
+{
+	States
+	{
+	Spawn:
+		QP09 X 0 NODELAY A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
+		"####" "#" 0 A_SetUserVar(user_angle,0)
+		"####" "#" 0 A_SetUserVar(user_frontdist,40)
+		"####" "#" 0 A_SetUserVar(user_sidedist,50)
+		"####" "#" 0 A_Jump(256,"Looper")	//for safety
+		Goto Looper
+	}
+}
+Actor ShieldPieceRight2 : ShieldPieceLeft1
+{
+	States
+	{
+	Spawn:
+		QP09 Y 0 NODELAY A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
+		"####" "#" 0 A_SetUserVar(user_angle,0)
+		"####" "#" 0 A_SetUserVar(user_frontdist,35)
+		"####" "#" 0 A_SetUserVar(user_sidedist,100)
+		"####" "#" 0 A_Jump(256,"Looper")	//for safety
+		Goto Looper
+	}
+}
+
+Actor DeactivateShieldToken : Inventory
+{
+	Inventory.MaxAmount 1
+	Inventory.InterhubAmount 0
+}
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+Actor PowerClutchProtec : PowerProtection	{	DamageFactor "Normal", 0.909	}
+
+Actor ClutchPassiveProtec : PowerupGiver
+{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	powerup.Type "ClutchProtec"
+	powerup.duration -100
+}
