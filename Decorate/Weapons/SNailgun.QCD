@@ -364,11 +364,11 @@ Actor QCNailStrong : FastProjectile
 
 
 	XDeath:
-		TNT1 A 10 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 10 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		Stop
 
 	Death:
-		DB09 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact",CHAN_AUTO,0.7,0,1.5)
+		DB09 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
 		DB09 A 0 A_Explode(7,32,XF_HURTSOURCE,0,32)
 		DB09 A 0 A_SetScale(0.55)
 		DB09 A 0 A_Jump(256,"T1","T2","T3","T4")
@@ -442,7 +442,7 @@ Actor QCNailStrongLava : QCNailStrong
 		NAIL B 1 Bright A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
 		Wait
 	XDeath:
-		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		Goto EndDeath
 	EndDeath:
 		"####" A 0 A_Jump(170,2) //chance to NOT spawn the flame, 66%
@@ -499,7 +499,7 @@ Actor LavaNailFlameBurner
 			Goto Looper
 
 	Sounder:
-		VTFB A 0 A_GiveToTarget("HitBeepLow",1)
+		VTFB A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		VTFB A 0 A_Jump(255,"ContinueLooper")
 		Goto ContinueLooper
 
@@ -582,6 +582,7 @@ Actor NailFlameFX
 {
 	+NOINTERACTION +NOTONAUTOMAP
 	+CLIENTSIDEONLY
+	+NONETID
 	+FORCEXYBILLBOARD
 	+DONTBLAST
 	RenderStyle Add

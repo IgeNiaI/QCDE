@@ -22,8 +22,8 @@ Actor DukeFreezerProc : CustomInventory
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_GiveInventory("DukeFreezeThrower")
-		TNT1 A 0 A_GiveInventory("ActiveInProgress")
+		TNT1 A 0 A_GiveInventory("DukeFreezeThrower", 1, 0, GIF_SKIPOWNER)
+		TNT1 A 0 A_GiveInventory("ActiveInProgress", 1, 0, GIF_SKIPOWNER)
 		TNT1 A 0 A_SelectWeapon("DukeFreezeThrower")
 		Stop
 	}
@@ -34,9 +34,9 @@ Actor DukeFreezerCleanerProc : CustomInventory
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_TakeInventory("DukeFreezeThrower")
-		TNT1 A 0 A_TakeInventory("ThirdPersonPunch")
-		TNT1 A 0 A_TakeInventory("ActiveInProgress")
+		TNT1 A 0 A_TakeInventory("DukeFreezeThrower", 0, TIF_SKIPOWNER)
+		TNT1 A 0 A_TakeInventory("ThirdPersonPunch", 0, TIF_SKIPOWNER)
+		TNT1 A 0 A_TakeInventory("ActiveInProgress", 0, TIF_SKIPOWNER)
 		//TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN)
 		Stop
 	}
@@ -109,18 +109,18 @@ Actor DukeFreezeThrower : QCWeapon
 	//-------------------------------------------------------
 	AltFire:
 		QW14 B 0 A_GunFlash("AltFlash",GFF_NOEXTCHANGE)
-		QW14 A 0 A_GiveInventory("ThirdPersonPunch",1)
-		QW14 B 2 A_GiveInventory("DukeBootProc") //every 2 tics, not every 1 tic.
-		QW14 C 2 A_GiveInventory("DukeBootProc")
-		QW14 C 2 A_GiveInventory("DukeBootProc")
-		QW14 C 2 A_GiveInventory("DukeBootProc")
-		QW14 B 2 A_GiveInventory("DukeBootProc")
-		TNT1 A 0 A_TakeInventory("ThirdPersonPunch")
+		QW14 A 0 A_GiveInventory("ThirdPersonPunch", 1, 0, GIF_SKIPOWNER)
+		QW14 B 2 A_GiveInventory("DukeBootProc", 1, 0, GIF_SKIPOWNER) //every 2 tics, not every 1 tic.
+		QW14 C 2 A_GiveInventory("DukeBootProc", 1, 0, GIF_SKIPOWNER)
+		QW14 C 2 A_GiveInventory("DukeBootProc", 1, 0, GIF_SKIPOWNER)
+		QW14 C 2 A_GiveInventory("DukeBootProc", 1, 0, GIF_SKIPOWNER)
+		QW14 B 2 A_GiveInventory("DukeBootProc", 1, 0, GIF_SKIPOWNER)
+		TNT1 A 0 A_TakeInventory("ThirdPersonPunch", 0, TIF_SKIPOWNER)
 		QW14 A 5
-		TNT1 A 0 A_TakeInventory("PunchedAlready")
+		TNT1 A 0 A_TakeInventory("PunchedAlready", 0, TIF_SKIPOWNER)
 		Goto Readier
 	AltFlash:
-			TNT1 A 0 A_GiveInventory("ThirdPersonPunch")
+			TNT1 A 0 A_GiveInventory("ThirdPersonPunch", 0, TIF_SKIPOWNER)
 			TNT1 A 0 A_PlaySound("QC/Abilities/Sorgaul/Whoosh",CHAN_WEAPON)
 			TNT1 A 0 A_SetAngle(angle-0.6)	TNT1 A 1 A_SetPitch(pitch-0.3)
 			TNT1 A 0 A_SetAngle(angle-0.6) 	TNT1 A 1 A_SetPitch(pitch-0.3)
@@ -186,12 +186,12 @@ Actor DukeBootPuff
 	{
 	Spawn:	//hit non bleeding actor
 		TNT1 A 0 NODELAY A_GiveToTarget("PunchedAlready",1)
-		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 10
 		Stop
 	Xdeath:	//hit bleeding actor
 		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
-		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 10
 		Stop
 	Crash:	//Hit everything else
@@ -209,12 +209,12 @@ Actor DukeBootPuff_NoKickback : DukeBootPuff
 	{
 	Spawn:	//hit non bleeding actor
 		TNT1 A 0 NODELAY A_GiveToTarget("PunchedAlready",1)
-		TNT1 A 0 A_GiveToTarget("HitBeepBig",1) //gives "big" beep because it deals more damage than regular kick
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE) //gives "big" beep because it deals more damage than regular kick
 		TNT1 A 10
 		Stop
 	Xdeath:	//hit bleeding actor
 		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
-		TNT1 A 0 A_GiveToTarget("HitBeepBig",1) //gives "big" beep because it deals more damage than regular kick
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE) //gives "big" beep because it deals more damage than regular kick
 		TNT1 A 10
 		Stop
 	}
@@ -247,16 +247,16 @@ Actor DukeFreezeShot
 		QW14 GHI 3 Bright A_CountDown
 		Loop
 	XDeath:
-		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"Death")
 		Goto DeathEnd
 	Crash:
-		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"Death")
 		Goto DeathEnd
 	Death:
 		TNT1 A 0 A_Explode(random(2,4)*10,40,0)
-		TNT1 A 10 A_SpawnItemEx("FreezeShotExplo", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		TNT1 A 10 A_SpawnItemEx("FreezeShotExplo", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 	DeathEnd:
 		TNT1 A 1
 		Stop
@@ -266,6 +266,7 @@ Actor FreezeShotExplo
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+	+NONETID
 	Radius 2
 	Height 2
 	Scale 0.4
@@ -294,11 +295,11 @@ Actor DukeFreezeShot_DM : DukeFreezeShot
 		QW14 GHI 3 Bright A_CountDown
 		Loop
 	XDeath:
-		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"Death")
 		Goto DeathEnd
 	Crash:
-		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"Death")
 		Goto DeathEnd
 	Death:
@@ -317,6 +318,7 @@ Actor FreezeSlowerer : PowerupGiver
 	powerup.duration 35
 	powerup.type "PowerFreezeSlow"
 	-COUNTITEM
+	+SERVERNETID
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ADDITIVETIME
 }
@@ -324,6 +326,7 @@ Actor FreezeSlowerer : PowerupGiver
 //Where the magic happens, starts the script for freezing the player
 Actor FreezeCounterProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
@@ -335,6 +338,7 @@ Actor FreezeCounterProc : CustomInventory
 //Tints the screen when players take damage from the ice balls
 Actor IceDamageTintProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
@@ -346,23 +350,25 @@ Actor IceDamageTintProc : CustomInventory
 //Spawns the ice cube thingy on players
 Actor IceCubeProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
 		//TNT1 A 0 A_SetBlend("AA AA FF",0.7,180)					//sets screen as frozen
 		TNT1 A 0 A_GiveInventory("IceProtectioner",1)			//makes player resist ice damage
-		TNT1 A 0 A_FireCustomMissile("FrozenBlockLong",0,false)	//displays 3rd person iceblock
+		TNT1 A 0 A_FireCustomMissile("FrozenBlockLong",0,false, 0, 0, FPF_NOUNLAGGED)	//displays 3rd person iceblock
 		Stop
 	}
 }
 Actor IceCubePlayerProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
 		//TNT1 A 0 A_SetBlend("AA AA FF",0.7,180)						//sets screen as frozen
 		TNT1 A 0 A_GiveInventory("IceProtectioner",1)				//makes player resist ice damage
-		TNT1 A 0 A_FireCustomMissile("FrozenBlockPlayer",0,false)	//3rd person iceblock, for player, lasts less time
+		TNT1 A 0 A_FireCustomMissile("FrozenBlockPlayer",0,false, 0, 0, FPF_NOUNLAGGED)	//3rd person iceblock, for player, lasts less time
 		Stop
 	}
 }
@@ -376,6 +382,7 @@ Actor IceProtectioner : PowerupGiver
 {
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	powerup.duration -100
 	Powerup.Type "PowerIceProtection"
 	Powerup.Color "AA AA FF" 0.5
@@ -402,6 +409,7 @@ Actor FrozenBlockShort
 	-NONETID
 	+BRIGHT
 	+DONTBLAST
+	+SERVERNETID
 	Scale 0.3
 	States
 	{
@@ -462,11 +470,13 @@ Actor FrozenBlockPlayer : FrozenBlockShort
 
 Actor ImFrozen : Inventory
 {
+	+SERVERNETID
 	Inventory.MaxAmount 10
 	Inventory.InterhubAmount 0
 }
 Actor ImFullyFrozen : Inventory
 {
+	+SERVERNETID
 	Inventory.MaxAmount 1
 }
 

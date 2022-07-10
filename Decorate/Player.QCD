@@ -27,6 +27,8 @@ Actor QCPlayer : PlayerPawn
 	Player.SecondJumpZ 7.45
 	+BRIGHT
 
+	Player.ActionScript "user1" "QCDE_ActiveAbility"
+
 	Player.CrouchScale 0.75
 	Player.CrouchChangeSpeed 0.08
 
@@ -244,7 +246,7 @@ Actor QCRanger : QCPlayerMedium
 	Death:
 		QP01 H 0 A_ChangeFlag("BRIGHT",0)
 		QP01 H 0 A_StopSound(5) //stops looping sounds
-		QP01 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP01 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP01 H 6
 		QP01 I 6 A_PlayerScream
 		QP01 J 6 A_NoBlocking
@@ -257,8 +259,8 @@ Actor QCRanger : QCPlayerMedium
 		QP01 O 0 A_SetScale(1.0)
 		QP01 O 0 A_XScream
 		QP01 O 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP01 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP01 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP01 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP01 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP01 P 5
 		QP01 Q 5 A_NoBlocking
 		QP01 RSTUV 5
@@ -411,7 +413,7 @@ Actor QCDoomSlayer : QCPlayerMedium
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP02 H 10
 		QP02 I 10 A_PlayerScream
 		QP02 J 10 A_NoBlocking
@@ -423,8 +425,8 @@ Actor QCDoomSlayer : QCPlayerMedium
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
 		QP02 O 0 A_XScream
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.4,false,1.2)
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP02 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP02 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP02 P 5
 		QP02 Q 5 A_NoBlocking
 		QP02 RSTUV 5
@@ -572,7 +574,7 @@ Actor QCCorvus : QCPlayerMedium
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP03 H 5
 		QP03 I 5 A_PlayerScream
 		QP03 J 5 A_NoBlocking
@@ -582,8 +584,8 @@ Actor QCCorvus : QCPlayerMedium
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP03 Q 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP03 Q 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.4,false,1.2)
 		QP03 R 5 A_XScream
 		QP03 S 5 A_NoBlocking
@@ -734,7 +736,7 @@ Actor QCKane : QCPlayerLight
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP04 H 4
 		QP04 I 4 A_PlayerScream
 		QP04 J 4 A_NoBlocking
@@ -746,8 +748,8 @@ Actor QCKane : QCPlayerLight
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP04 H 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP04 H 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
 		QP04 I 4 A_XScream
 		QP04 J 4 A_NoBlocking
@@ -893,7 +895,7 @@ Actor QCCaleb : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP05 J 6
 		QP05 K 6 A_PlayerScream
 		QP05 L 6 A_NoBlocking
@@ -903,8 +905,8 @@ Actor QCCaleb : QCPlayerLight
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP05 J 6 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP05 J 6 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
 		QP05 K 6 //A_XScream
 		QP05 L 6 A_NoBlocking
@@ -1055,7 +1057,7 @@ Actor QCMenelkir : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP06 H 5
 		QP06 I 5 A_PlayerScream
 		QP06 J 5 A_NoBlocking
@@ -1065,8 +1067,8 @@ Actor QCMenelkir : QCPlayerLight
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP06 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP06 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
 		QP06 P 5 //A_XScream
 		QP06 Q 5 A_NoBlocking
@@ -1212,12 +1214,12 @@ Actor QCTerminator : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP07 H 3
 		QP07 I 3 A_PlayerScream
 		QP07 J 3 A_NoBlocking
 		QP07 KL 3 Bright
-		QP07 A 0 A_SpawnItemEx("TerminatorArm", 0,0,40, frandom(4,-4),frandom(4,-4),frandom(1,3), random(0,359),SXF_NOCHECKPOSITION)
+		QP07 A 0 A_SpawnItemEx("TerminatorArm", 0,0,40, frandom(4,-4),frandom(4,-4),frandom(1,3), random(0,359),SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP07 MNOPQ 3 Bright
 		QP07 RSTU 3
 		QP07 V 1050 A_StopSound(5)
@@ -1227,13 +1229,13 @@ Actor QCTerminator : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP07 H 3 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP07 H 3 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
 		QP07 I 3 //A_XScream
 		QP07 J 3 A_NoBlocking
 		QP07 KL 3 Bright
-		QP07 A 0 A_SpawnItemEx("TerminatorArm", 0,0,40, frandom(4,-4),frandom(4,-4),frandom(1,3), random(0,359),SXF_NOCHECKPOSITION)
+		QP07 A 0 A_SpawnItemEx("TerminatorArm", 0,0,40, frandom(4,-4),frandom(4,-4),frandom(1,3), random(0,359),SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP07 MNOPQ 3 Bright
 		QP07 RSTU 3
 		QP07 V 1050 A_StopSound(5)
@@ -1246,6 +1248,7 @@ Actor QCTerminator : QCPlayerHeavy
 Actor TerminatorArm
 {
 	+CLIENTSIDEONLY
+	+SERVERNETID
 	-NOLIFTDROP
 	-SOLID
 	+DROPOFF
@@ -1408,7 +1411,7 @@ Actor QCZedek : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP08 H 5
 		QP08 I 5 A_PlayerScream
 		QP08 J 5 A_NoBlocking
@@ -1418,8 +1421,8 @@ Actor QCZedek : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP08 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP08 O 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
 		QP08 P 5 A_XScream
 		QP08 Q 5 A_NoBlocking
@@ -1575,7 +1578,7 @@ Actor QCInquisitor : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_GiveInventory("DeactivateShieldToken")	//failsafe to remove the shields
 		QP09 I 5
 		QP09 J 5 Bright A_PlayerScream
@@ -1587,9 +1590,9 @@ Actor QCInquisitor : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_GiveInventory("DeactivateShieldToken")	//failsafe to remove the shields
-		QP09 I 5 A_SpawnItemEx("GibDropperMediumOlive",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP09 I 5 A_SpawnItemEx("GibDropperMediumOlive",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
 		QP09 J 5 Bright //A_XScream
 		QP09 K 5 Bright A_NoBlocking
@@ -1739,7 +1742,7 @@ Actor QCBitterman : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP10 J 5
 		QP10 K 5 A_PlayerScream
 		QP10 L 5 A_NoBlocking
@@ -1749,10 +1752,10 @@ Actor QCBitterman : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
 		QP10 O 0 A_XScream
-		QP10 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP10 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP10 K 5
 		QP10 L 5 A_NoBlocking
 		QP10 MNO 5
@@ -1900,7 +1903,7 @@ Actor QCGalen : QCPlayerMedium
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP11 I 4 A_PlayerScream
 		QP11 J 4 A_NoBlocking
 		QP11 KLMNOP 4
@@ -1909,8 +1912,8 @@ Actor QCGalen : QCPlayerMedium
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP11 R 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP11 R 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
 		QP11 S 4 //A_XScream
 		QP11 T 4 A_NoBlocking
@@ -2062,7 +2065,7 @@ Actor QCNyx : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP12 H 4
 		QP12 I 4 A_PlayerScream
 		QP12 J 4 A_NoBlocking
@@ -2072,8 +2075,8 @@ Actor QCNyx : QCPlayerLight
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP12 H 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP12 H 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
 		QP12 I 4 //A_XScream
 		QP12 J 4 A_NoBlocking
@@ -2237,7 +2240,7 @@ Actor QCSorgaul : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP13 M 4
 		QP13 N 4 A_PlayerScream
 		QP13 O 4 A_NoBlocking
@@ -2247,8 +2250,8 @@ Actor QCSorgaul : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP13 M 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP13 M 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
 		QP13 N 4 //A_XScream
 		QP13 O 4 A_NoBlocking
@@ -2404,7 +2407,7 @@ Actor QCDukeNukem : QCPlayerMedium
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP14 I 5 A_PlayerScream
 		QP14 J 5 A_NoBlocking
 		QP14 KLM 5
@@ -2413,10 +2416,10 @@ Actor QCDukeNukem : QCPlayerMedium
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP14 O 0 A_XScream
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP14 I 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP14 I 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP14 J 5 A_NoBlocking
 		QP14 KLM 5
 		QP14 N -1 A_StopSound(5)
@@ -2565,7 +2568,7 @@ Actor QCDurandal : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP15 H 5 A_PlayerScream
 		QP15 I 5 A_NoBlocking
 		QP15 JKLM 5
@@ -2574,10 +2577,10 @@ Actor QCDurandal : QCPlayerLight
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP15 O 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP15 O 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP15 P 4 A_NoBlocking
 		QP15 QR 4
 		QP15 S -1 A_StopSound(5)
@@ -2720,7 +2723,7 @@ Actor QCKeel : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP16 J 5 A_PlayerScream
 		QP16 K 5 A_NoBlocking
 		QP16 LMNOP 5
@@ -2729,10 +2732,10 @@ Actor QCKeel : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP16 J 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP16 J 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP16 K 5 A_NoBlocking
 		QP16 LMNOP 5
 		QP16 Q -1 A_StopSound(5)
@@ -2873,7 +2876,7 @@ Actor QCSarge : QCPlayerMedium
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP17 I 5 A_PlayerScream
 		QP17 J 5 A_NoBlocking
 		QP17 KLMN 5
@@ -2882,10 +2885,10 @@ Actor QCSarge : QCPlayerMedium
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP17 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP17 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP17 J 5 A_NoBlocking
 		QP17 KLMN 5
 		QP17 O -1 A_StopSound(5)
@@ -3040,7 +3043,7 @@ Actor QCLoWang : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP18 J 5 A_PlayerScream
 		QP18 K 5 A_NoBlocking
 		QP18 LMNOPQ 5
@@ -3049,10 +3052,10 @@ Actor QCLoWang : QCPlayerLight
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP18 J 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP18 J 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP18 K 5 A_NoBlocking
 		QP18 LMNOPQ 5
 		QP18 R -1 A_StopSound(5)
@@ -3196,7 +3199,7 @@ Actor QCGrayson : QCPlayerMedium
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP19 H 5
 		QP19 I 5 A_PlayerScream
 		QP19 J 5 A_NoBlocking
@@ -3208,8 +3211,8 @@ Actor QCGrayson : QCPlayerMedium
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
 		TNT1 a 0 A_XScream
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP19 Q 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP19 Q 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP19 R 5
 		QP19 S 5 A_NoBlocking
 		QP19 TUVWXY 5
@@ -3361,7 +3364,7 @@ Actor QCEradicator : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP20 N 5
 		QP20 O 5 A_PlayerScream
 		QP20 P 5 A_NoBlocking
@@ -3372,8 +3375,8 @@ Actor QCEradicator : QCPlayerHeavy
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sound
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP20 N 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP20 N 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP20 O 5 A_XScream
 		QP20 P 5 A_NoBlocking
@@ -3522,7 +3525,7 @@ Actor QCBlazkowicz : QCPlayerMedium
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP21 H 6
 		QP21 I 6 A_PlayerScream
 		QP21 J 6 A_NoBlocking
@@ -3532,8 +3535,8 @@ Actor QCBlazkowicz : QCPlayerMedium
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP21 N 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP21 N 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP21 O 5 A_XScream
 		QP21 P 5 A_NoBlocking
@@ -3682,7 +3685,7 @@ Actor QCFreeman : QCPlayerMedium
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP22 J 6
 		QP22 K 6 A_PlayerScream
 		QP22 L 6 A_NoBlocking
@@ -3692,8 +3695,8 @@ Actor QCFreeman : QCPlayerMedium
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP22 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP22 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP22 K 5 A_XScream
 		QP22 L 5 A_NoBlocking
@@ -3845,7 +3848,7 @@ Actor QCVorMatur : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP23 I 4
 		QP23 J 4 A_PlayerScream
 		QP23 K 4 A_NoBlocking
@@ -3855,8 +3858,8 @@ Actor QCVorMatur : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP23 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP23 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP23 J 4 A_XScream
 		QP23 K 4 A_NoBlocking
@@ -4009,7 +4012,7 @@ Actor QCEleena : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP24 M 5
 		QP24 N 5 A_PlayerScream
 		QP24 O 5 A_NoBlocking
@@ -4019,8 +4022,8 @@ Actor QCEleena : QCPlayerLight
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP24 M 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP24 M 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP24 N 5 A_XScream
 		QP24 O 5 A_NoBlocking
@@ -4165,23 +4168,23 @@ Actor QCLucienne : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP25 H 5
 		QP25 I 5 A_PlayerScream
 		QP25 J 5 A_NoBlocking
-		QP25 A 0 A_SpawnItemEx("LucienneWeapon", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QP25 A 0 A_SpawnItemEx("LucienneWeapon", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP25 KLMN 5
 		QP25 o -1 A_StopSound(5)
 		Stop
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP25 H 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP25 H 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP25 I 5 A_XScream
 		QP25 J 5 A_NoBlocking
-		QP25 A 0 A_SpawnItemEx("LucienneWeapon", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QP25 A 0 A_SpawnItemEx("LucienneWeapon", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP25 KLMN 5
 		QP25 O -1 A_StopSound(5)
 		Stop
@@ -4192,6 +4195,7 @@ Actor QCLucienne : QCPlayerLight
 Actor LucienneWeapon
 {
 	+CLIENTSIDEONLY
+	+SERVERNETID
 	-NOLIFTDROP
 	-SOLID
 	+DROPOFF
@@ -4356,7 +4360,7 @@ Actor QCMajor : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP26 I 5
 		QP26 J 5 A_PlayerScream
 		QP26 K 5 A_NoBlocking
@@ -4366,8 +4370,8 @@ Actor QCMajor : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP26 I 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP26 I 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP26 J 5 A_XScream
 		QP26 K 5 A_NoBlocking
@@ -4511,7 +4515,7 @@ Actor QCHunter : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP27 I 4
 		QP27 J 4 A_PlayerScream
 		QP27 K 4 A_NoBlocking
@@ -4521,8 +4525,8 @@ Actor QCHunter : QCPlayerLight
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP27 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP27 I 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP27 J 4 A_XScream
 		QP27 K 4 A_NoBlocking
@@ -4671,7 +4675,7 @@ Actor QCSam : QCPlayerHeavy
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP28 J 5
 		QP28 K 5 A_PlayerScream
 		QP28 L 5 A_NoBlocking
@@ -4681,8 +4685,8 @@ Actor QCSam : QCPlayerHeavy
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP28 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP28 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.6,false,1.2)
 		QP28 K 5 A_XScream
 		QP28 L 5 A_NoBlocking
@@ -4831,7 +4835,7 @@ Actor QCPostal : QCPlayerLight
 	Death:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP29 G 5
 		QP29 H 5 A_PlayerScream
 		QP29 I 5 A_NoBlocking
@@ -4841,8 +4845,8 @@ Actor QCPostal : QCPlayerLight
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(5) //stops looping sounds
-		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP29 G 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP29 G 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
 		QP29 H 5 //A_XScream
 		QP29 I 5 A_NoBlocking
@@ -4989,7 +4993,7 @@ Actor QCPainkiller : QCPlayerMedium
 	Death:
 		QP30 I 0 A_ChangeFlag("BRIGHT",0)
 		QP30 I 0 A_StopSound(5) //stops looping sounds
-		QP30 I 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP30 I 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP30 I 0 A_SetScale(0.74)
 		QP30 I 6
 		QP30 I 0 A_SetScale(0.73)
@@ -5007,9 +5011,9 @@ Actor QCPainkiller : QCPlayerMedium
 		QP30 I 0 A_StopSound(5) //stops looping sounds
 		QP30 I 0 A_XScream
 		QP30 I 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP30 I 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP30 I 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP30 I 0 A_SetScale(0.74)
-		QP30 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP30 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP30 I 0 A_SetScale(0.73)
 		QP30 K 5
 		QP30 I 0 A_SetScale(0.72)
@@ -5167,7 +5171,7 @@ Actor QCIntruder : QCPlayerMedium
 		QP31 H 0 A_GiveInventory("ImDead",1)
 		QP31 H 0 A_ChangeFlag("BRIGHT",0)
 		QP31 H 0 A_StopSound(5) //stops looping sounds
-		QP31 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		QP31 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		QP31 H 4
 		QP31 I 4 A_PlayerScream
 		QP31 J 4 A_NoBlocking
@@ -5180,8 +5184,8 @@ Actor QCIntruder : QCPlayerMedium
 		QP31 O 0 A_StopSound(5) //stops looping sounds
 		QP31 O 0 A_XScream
 		QP31 O 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP31 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		QP31 O 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP31 H 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP31 O 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		QP31 P 4
 		QP31 Q 4 A_NoBlocking
 		QP31 RSTUVW 4

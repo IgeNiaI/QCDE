@@ -7,6 +7,7 @@
 Actor QCFog replaces TeleportFog
 {
 	+CLIENTSIDEONLY
+	+SERVERNETID
 	+FORCEXYBILLBOARD
 	+BRIGHT
 	Radius 3
@@ -63,6 +64,7 @@ Actor BulletSmallTracer : FastProjectile
 	+DONTSPLASH
 	+NOEXTREMEDEATH
 	+DONTBLAST
+	+NONETID
 	damage 0
 	radius 2
 	height 2
@@ -74,7 +76,7 @@ Actor BulletSmallTracer : FastProjectile
 	{
 	Spawn:
 		TRAC A 1
-		TRAC A 70 BRIGHT A_PlaySound("QCDE/Other/BulletWhoosh",5,1.0,false,3.0)
+		TRAC A 70 BRIGHT A_PlaySound("QCDE/Other/BulletWhoosh", 5, 1.0, false, 3.0, AAPTR_TARGET)
 		Stop
 	Death:
 		TNT1 A 1
@@ -174,6 +176,8 @@ const int TRANSLATION_BFGCOLOR  = 9213;
 Actor AllyMarker : GenericPowerupFXBackground
 {
 	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	+NONETID
 	Renderstyle Stencil
 	Scale .02
 	Alpha 1
@@ -251,6 +255,7 @@ Actor BestMarker : GenericPowerupFXBackground
 Actor QuadFlash
 {
 	+NOINTERACTION
+	+NONETID
 	States
 	{
 	Spawn:
@@ -269,6 +274,7 @@ Actor QuadFlash
 Actor ProtecFlash
 {
 	+NOINTERACTION
+	+NONETID
 	States
 	{
 	Spawn:
@@ -288,6 +294,7 @@ Actor ProtecFlash
 Actor InvulFlash
 {
 	+NOINTERACTION
+	+NONETID
 	States
 	{
 	Spawn:
@@ -307,6 +314,7 @@ Actor InvulFlash
 Actor InfinFlash
 {
 	+NOINTERACTION
+	+NONETID
 	States
 	{
 	Spawn:
@@ -326,6 +334,7 @@ Actor InfinFlash
 Actor BigArmorGiverFlash
 {
 	+NOINTERACTION
+	+NONETID
 	States
 	{
 	Spawn:
@@ -345,6 +354,7 @@ Actor BigArmorGiverFlash
 Actor MegaHealthFlash
 {
 	+NOINTERACTION
+	+NONETID
 	States
 	{
 	Spawn:

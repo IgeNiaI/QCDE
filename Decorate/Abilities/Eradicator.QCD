@@ -25,7 +25,7 @@ Actor MurderToken : Token { Inventory.MaxAmount 99999 Inventory.InterHubAmount 0
 Actor MurderLevel : Token { Inventory.MaxAmount    99 Inventory.InterHubAmount 0 }
 Actor TooFewMonst : Token {                           Inventory.InterHubAmount 0 }
 
-Actor PowerMurderBase : PowerDamage { Powerup.Duration 0x7FFFFFFF }
+Actor PowerMurderBase : PowerDamage { +SERVERNETID Powerup.Duration 0x7FFFFFFF }
 Actor PowerMurder1  : PowerMurderBase { DamageFactor "Normal", 1.109 }
 Actor PowerMurder2  : PowerMurderBase { DamageFactor "Normal", 1.209 }
 Actor PowerMurder3  : PowerMurderBase { DamageFactor "Normal", 1.309 }

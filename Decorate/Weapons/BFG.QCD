@@ -430,7 +430,7 @@ Actor QCBFGShot
 		Goto Spawn+1
 
 	Xdeath:	//Direct hit
-		TNT1 A 0 A_GiveToTarget("HitBeepMax",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMax",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
@@ -443,7 +443,7 @@ Actor QCBFGShot
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
@@ -460,10 +460,10 @@ Actor QCBFGShot
 	EndDeath:
 		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,1,0,0.75)
 		TNT1 A 0 A_Quake(4,20,0,1500)
-		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 2
-		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		Stop
 	}
 }
@@ -638,7 +638,7 @@ Actor QCBFGShot_DM	//No AOE while flying
 		Goto Spawn+1
 
 	Xdeath:	//Direct hit
-		TNT1 A 0 A_GiveToTarget("HitBeepMax",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMax",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
@@ -651,19 +651,19 @@ Actor QCBFGShot_DM	//No AOE while flying
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
 	DeathCont:
 		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,0.85,0,0.75)
 		TNT1 A 0 A_Quake(3,15,0,768)
-		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Explode(70,128,0,0,32)
 		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE,0,20)	//self damage. Beware
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 2
-		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		Stop
 	}
 }
@@ -683,6 +683,7 @@ Actor BFG_UG_Charge  : Token {}
 
 Actor BFG_Charges : Inventory
 {
+	+SERVERNETID
 	Inventory.MaxAmount 15
 	Inventory.InterHubAmount 0
 }
@@ -735,7 +736,7 @@ Actor QCBFGChargeShot
 		Goto Spawn+1
 
 	Xdeath:	//Direct hit
-		TNT1 A 0 A_GiveToTarget("HitBeepMax",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMax",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
@@ -748,7 +749,7 @@ Actor QCBFGChargeShot
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
@@ -765,10 +766,10 @@ Actor QCBFGChargeShot
 	EndDeath:
 		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,1,0,0.75)
 		TNT1 A 0 A_Quake(4,20,0,1500)
-		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 2
-		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		Stop
 	}
 }
@@ -863,12 +864,12 @@ Actor QCBFGChargeShot6 : QCBFGChargeShot
 	EndDeath:
 		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,1,0,0.75)
 		TNT1 A 0 A_Quake(4,20,0,1500)
-		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 2
-		TNT1 AAA 2 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,32)
-		TNT1 A 6 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 6 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 AAA 2 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 6 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 6 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		Stop
 	}
 }

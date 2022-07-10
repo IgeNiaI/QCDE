@@ -203,16 +203,16 @@ Actor QCMachinegun : QCWeapon
 	//-----------------------
 	SP_Flash:
 		TNT1 A 0 A_FireBullets(1.75,1.75,1,random(3,5),"QCBulletPuff",FBF_NORANDOM|FBF_USEAMMO)
-		TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,8,0,0,frandom(1.75,-1.75))
+		TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,8,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(1.75,-1.75))
 		Goto EndFlash
 	SP_FlashNA:  //this one is "No (use of) Ammo"
 		TNT1 A 0 A_FireBullets(1.75,1.75,1,random(3,5),"QCBulletPuff",FBF_NORANDOM)
-		TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,8,0,0,frandom(1.75,-1.75))
+		TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,8,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(1.75,-1.75))
 		Goto EndFlash
 
 	DM_Flash:
 		TNT1 A 0 A_FireBullets(1.75,1.75,1,9,"QCBulletPuff_DM",FBF_NORANDOM|FBF_USEAMMO)
-		TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,7,0,0,frandom(1.75,-1.75))
+		TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,7,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(1.75,-1.75))
 		Goto EndFlash
 
 		EndFlash:

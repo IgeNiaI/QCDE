@@ -167,7 +167,7 @@ Actor QCRocketLauncher : QCWeapon
 				TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"FireControlledRocket")
 				Goto PerformSP+1
 			FireControlledRocket:
-				TNT1 A 0 A_FireCustomMissile("RocketControlled", 0, true, 1, 5)
+				TNT1 A 0 A_FireCustomMissile("RocketControlled", 0, true, 1, 5, FPF_NOUNLAGGED|FPF_SKIPOWNER)
 				TNT1 A 0 SetPlayerProperty(0,1,PROP_TOTALLYFROZEN) // to remove possibility of refire and such
 				TNT1 A 0 A_GiveInventory("PowerControllerProtection") // because player is otherwise defenseless
 				TNT1 A 0 A_ZoomFactor(1.0) 	//immediately unzooms and removes zoom token
@@ -277,7 +277,7 @@ Actor QCRocketPlayer
 		Loop
 
 	Xdeath:	//Direct hit
-		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
@@ -290,7 +290,7 @@ Actor QCRocketPlayer
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
@@ -715,6 +715,7 @@ Actor RocketControlled
 	+MTHRUSPECIES
 	+FORCERADIUSDMG
 	+DONTBLAST
+	+SERVERNETID
 	Obituary "$OB_RocketControlled" // "%o rode %k's rocket."
 	radius 3
 	height 6
@@ -880,7 +881,7 @@ Actor RLClusterRocket
 		QROK A 0 A_CountDown
 		Loop
 	Xdeath:	//Direct hit
-		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 	Death: //crashed somewhere and checks for splash
@@ -892,7 +893,7 @@ Actor RLClusterRocket
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 

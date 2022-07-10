@@ -111,13 +111,14 @@ Actor QCGauntlet : QCWeapon
 			OmniLooper1:
 				QCG1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 				QCG1 C 0 A_CustomPunch(1,1,0,"GauntletPuff",56)
-				QCG1 C 1 A_FireCustomMissile("OmnislashProjectile",0,0)
+				QCG1 C 0 A_FireCustomMissile("OmnislashProjectileFX",0,0)
+				QCG1 C 1 A_FireCustomMissile("OmnislashProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
 				QCG1 DC 1
 				QCG1 C 0 A_ReFire("OmniLooper2")
 				Goto EndFire
 			OmniLooper2:
 				QCG1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-				QCG1 D 1 A_FireCustomMissile("OmnislashProjectileFake",0,0)
+				QCG1 D 1 A_FireCustomMissile("OmnislashProjectileFX",0,0)
 				QCG1 CD 1
 				QCG1 B 0 A_ReFire("OmniLooper1")
 				Goto EndFire
@@ -147,14 +148,15 @@ Actor QCGauntlet : QCWeapon
 			BurnOmniLooper1:
 				QCG1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 				QCG1 C 0 A_CustomPunch(1,1,0,"GauntletPuff",56)
-				QCG1 C 0 A_FireCustomMissile("OmnislashFireProjectile",0,0)
+				QCG1 C 0 A_FireCustomMissile("OmnislashFireProjectileFX",0,0)
+				QCG1 C 0 A_FireCustomMissile("OmnislashFireProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
 				QCG1 C 1
 				QCG1 DC 1
 				QCG1 C 0 A_ReFire("BurnOmniLooper2")
 				Goto EndFire
 			BurnOmniLooper2:
 				QCG1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-				QCG1 D 0 A_FireCustomMissile("OmnislashFireProjectileFake",0,0)
+				QCG1 D 0 A_FireCustomMissile("OmnislashFireProjectileFX",0,0)
 				QCG1 D 1
 				QCG1 CD 1
 				QCG1 B 0 A_ReFire("BurnOmniLooper1")
@@ -257,7 +259,7 @@ Actor QCGauntlet : QCWeapon
 	PKReady:
 		WP30 A 0
 		WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
-		WP30 A 0 A_JumpIfInventory("PKTipDetached",1,"PKCallTipBack")
+		WP30 A 0 A_JumpIfInventory("PKTipDetached",1,"PKPlayIsBackSound")
 		WP30 A 3 A_WeaponReady
 		Goto PKReady+1
 
@@ -271,7 +273,7 @@ Actor QCGauntlet : QCWeapon
 			WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKRCFLooper")
 			Goto Ready
 	PKFire:
-		TNT1 A 0 A_JumpIfInventory("PKTipDetached",1,"PKCallTipBack")
+		TNT1 A 0 A_JumpIfInventory("PKTipDetached",1,"PKPlayIsBackSound")
 		WP30 A 0 A_PlaySound("QC/Abilities/Painkiller/Weapon/SpinStartLoop",5,1,1)
 		Goto PKFirePostSoundCheck
 
@@ -316,26 +318,28 @@ Actor QCGauntlet : QCWeapon
 			PKOmniLooper1:
 				WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
 				WP30 C 0 A_CustomPunch(1,1,0,"PKGauntletPuff",56)
-				WP30 F 1 A_FireCustomMissile("OmnislashProjectile",0,0)
+				WP30 F 0 A_FireCustomMissile("OmnislashProjectileFX",0,0)
+				WP30 F 1 A_FireCustomMissile("OmnislashProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
 				WP30 GH 1
 				WP30 C 0 A_ReFire("PKOmniLooper2")
 				Goto PKEndFire
 			PKOmniLooper2:
 				WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
-				WP30 I 1 A_FireCustomMissile("OmnislashProjectileFake",0,0)
+				WP30 I 1 A_FireCustomMissile("OmnislashProjectileFX",0,0)
 				WP30 FG 1
 				WP30 B 0 A_ReFire("PKOmniLooper3")
 				Goto PKEndFire
 			PKOmniLooper3:
 				WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
 				WP30 C 0 A_CustomPunch(1,1,0,"PKGauntletPuff",56)
-				WP30 H 1 A_FireCustomMissile("OmnislashProjectile",0,0)
+				WP30 H 0 A_FireCustomMissile("OmnislashProjectileFX",0,0)
+				WP30 H 1 A_FireCustomMissile("OmnislashProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
 				WP30 IF 1
 				WP30 C 0 A_ReFire("PKOmniLooper4")
 				Goto PKEndFire
 			PKOmniLooper4:
 				WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
-				WP30 G 1 A_FireCustomMissile("OmnislashProjectileFake",0,0)
+				WP30 G 1 A_FireCustomMissile("OmnislashProjectileFX",0,0)
 				WP30 HI 1
 				WP30 B 0 A_ReFire("PKOmniLooper1")
 				Goto PKEndFire
@@ -383,14 +387,15 @@ Actor QCGauntlet : QCWeapon
 			PKBurnOmniLooper1:
 				WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
 				WP30 C 0 A_CustomPunch(1,1,0,"PKGauntletPuff",56)
-				WP30 C 0 A_FireCustomMissile("OmnislashFireProjectile",0,0)
+				WP30 C 0 A_FireCustomMissile("OmnislashFireProjectileFX",0,0)
+				WP30 C 0 A_FireCustomMissile("OmnislashFireProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
 				WP30 F 1
 				WP30 GH 1
 				WP30 C 0 A_ReFire("PKBurnOmniLooper2")
 				Goto PKEndFire
 			PKBurnOmniLooper2:
 				WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
-				WP30 D 0 A_FireCustomMissile("OmnislashFireProjectileFake",0,0)
+				WP30 D 0 A_FireCustomMissile("OmnislashFireProjectileFX",0,0)
 				WP30 I 1
 				WP30 FG 1
 				WP30 B 0 A_ReFire("PKBurnOmniLooper3")
@@ -398,14 +403,15 @@ Actor QCGauntlet : QCWeapon
 			PKBurnOmniLooper3:
 				WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
 				WP30 C 0 A_CustomPunch(1,1,0,"PKGauntletPuff",56)
-				WP30 C 0 A_FireCustomMissile("OmnislashFireProjectile",0,0)
+				WP30 C 0 A_FireCustomMissile("OmnislashFireProjectileFX",0,0)
+				WP30 C 0 A_FireCustomMissile("OmnislashFireProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
 				WP30 H 1
 				WP30 IF 1
 				WP30 C 0 A_ReFire("PKBurnOmniLooper4")
 				Goto PKEndFire
 			PKBurnOmniLooper4:
 				WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKReadyCantFire")
-				WP30 D 0 A_FireCustomMissile("OmnislashFireProjectileFake",0,0)
+				WP30 D 0 A_FireCustomMissile("OmnislashFireProjectileFX",0,0)
 				WP30 G 1
 				WP30 HI 1
 				WP30 B 0 A_ReFire("PKBurnOmniLooper1")
@@ -462,48 +468,40 @@ Actor QCGauntlet : QCWeapon
 	// Fire Seq / Zoom
 	//-----------------------
 	PKAltFire:
-		TNT1 A 0 A_JumpIfInventory("PKTipDetached",1,"PKCallTipBack")
+		TNT1 A 0 A_JumpIfInventory("PKTipDetached",1,"PKPlayIsBackSound")
 		TNT1 A 0 A_PlaySound("QC/Abilities/Painkiller/Weapon/ShootTip",CHAN_WEAPON,1.0)
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"PKFireBlade_DM")
 
 		PKFireBlade:
-			WP30 N 1 Bright
+			WP30 N 1 Bright A_GiveInventory("PKTipDetached",1,0, GIF_SKIPOWNER)
 			WP30 B 1 A_FireCustomMissile("PKProjectile", 0, false, 0, 5)
 			Goto PKResumeFireBlade
 		PKFireBlade_DM:
-			WP30 N 1 Bright
+			WP30 N 1 Bright A_GiveInventory("PKTipDetached",1,0, GIF_SKIPOWNER)
 			WP30 B 1 A_FireCustomMissile("PKProjectileDM", 0, false, 0, 5)
 			Goto PKResumeFireBlade
 
 	PKResumeFireBlade:
 		WP30 B 0 A_AlertMonsters
-		WP30 B 0 A_GiveInventory("PKTipDetached",1)
 		//detach animation
-		WP30 C 0 A_JumpIfInventory("PKisBack",1,"PKPlayIsBackSound")
+		WP30 C 0 A_JumpIfInventory("PKTipDetached",-1,"PKPlayIsBackSound")
 		WP30 C 2
-		WP30 C 0 A_JumpIfInventory("PKisBack",1,"PKPlayIsBackSound")
+		WP30 C 0 A_JumpIfInventory("PKTipDetached",-1,"PKPlayIsBackSound")
 		WP30 C 2
 	PKWaiterLoopIfHoldingAltFire:
-		WP30 C 2 A_JumpIfInventory("PKisBack",1,"PKPlayIsBackSound")
+		WP30 C 2 A_JumpIfInventory("PKTipDetached",-1,"PKPlayIsBackSound")
 		WP30 C 0 A_Refire("PKWaiterLoopIfHoldingAltFire") //if player holds altfire after shooting the tip, it loops to do nothing
 		goto WaitingForTip
 
 		//Reached after tip was shot, player releases alt fire, and weapons goes here
 		WaitingForTip:
-			WP30 C 0 A_JumpIfInventory("PKisBack",1,"PKPlayIsBackSound")
-			WP30 C 2 A_WeaponReady(WRF_NOBOB) //if player presses fire or alt fire, it will go to "PKCallTipBack"
+			WP30 C 0 A_JumpIfInventory("PKTipDetached",-1,"PKPlayIsBackSound")
+			WP30 C 2 A_WeaponReady(WRF_NOBOB)
 			Loop
-
-		PKCallTipBack:
-			WP30 C 0 A_GiveInventory("IWantMyPKBack",1)
-			WP30 C 2 A_JumpIfInventory("PKisBack",1,"PKPlayIsBackSound")
-			Wait
 
 
 	PKPlayIsBackSound:
-		TNT1 A 0 A_TakeInventory("PKisBack",1)
-		TNT1 A 0 A_TakeInventory("IWantMyPKBack",1)
-		TNT1 A 0 A_TakeInventory("PKTipDetached",1)
+		TNT1 A 0 A_TakeInventory("PKTipDetached",32767,TIF_SKIPOWNER)
 		WP30 N 0 A_PlaySound("QC/Abilities/Painkiller/Weapon/TipReturn",CHAN_WEAPON,1.0)
 		WP30 N 1 Bright Offset(10,42)
 		WP30 N 1 Bright Offset(20,52)
@@ -565,10 +563,10 @@ Actor GauntletPuff
 	States
 	{
 	Spawn:	//Hit non bleeder
-		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		Goto Crash
 	XDeath:	//hit bleeder
-		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 10 A_PlaySound("QC/Weapons/Gauntlet/Hit",7,1,0,9)
 		Stop
 	Crash:	//hit everything else
@@ -604,11 +602,11 @@ Actor GauntletPuff_DM
 	States
 	{
 	Spawn:	//Hit non bleeder
-		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		Goto Crash
 	XDeath: //hit bleeder
 		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
-		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 10 A_PlaySound("QC/Weapons/Gauntlet/Hit",7,1,0,9)
 		Stop
 	Crash:	//hit everything else
@@ -641,7 +639,7 @@ Actor GauntletPuff_DM_NoFX
 		Stop
 	XDeath:
 		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
-		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
 		Stop
 	}
@@ -726,7 +724,7 @@ Actor OmnislashProjectile
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
@@ -735,26 +733,37 @@ Actor OmnislashProjectile
 		QCG1 XXXXXXXXXX 1 A_FadeOut
 		Stop
 	XDeath:
-		QCG1 X 0 A_GiveToTarget("HitBeepMid",1)
+		QCG1 X 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"DeathCont")
 		Goto DeathCont
 	}
 }
 
-Actor OmnislashProjectileFake : OmnislashProjectile
+Actor OmnislashProjectileFX
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
 	+NONETID
-	-SEEKERMISSILE
+	Projectile
+	Speed 30
+	Radius 2
+	Height 2
+	ReactionTime 1
+	RenderStyle Add
+	Translation "0:255=%[0,0,0]:[0.8,0,1.5]"
+	Scale 0.7
+	Alpha 0.4
+	+BRIGHT
+	ProjectileKickBack 0
 	States
 	{
+	Spawn:
+		QCG1 X 1
+		QCG1 X 0 A_CountDown
+		Loop
 	Death:
-		TNT1 A 0
-		Goto DeathCont+1	//skips the damage
-	XDeath:					//Shouldnt be reached, but just in case
-		TNT1 A 0
-		Goto DeathCont+1
+		QCG1 XXXXXXXXXX 1 A_FadeOut
+		Stop
 	}
 }
 
@@ -792,6 +801,7 @@ Actor GauntletPuffBurn
 	+PUFFONACTORS
 	+FORCEXYBILLBOARD
 	+MTHRUSPECIES
+	+SERVERNETID
 	Renderstyle Add
 	Decal "GauntletDecal"
 	DamageType "ZombieGibber"
@@ -800,12 +810,12 @@ Actor GauntletPuffBurn
 	States
 	{
 	Spawn:	//Hit non bleeder
-		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepMid",1)
-		TNT1 A 0 A_SpawnItemEx("GauntletFlameBurner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS,128)
+		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_SpawnItemEx("GauntletFlameBurner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_FORCESERVERSIDE,128)
 		Goto Crash
 	XDeath:	//hit bleeder
-		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
-		TNT1 A 0 A_SpawnItemEx("GauntletFlameBurner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS,128)	//if modified, change in Painkiller.QCD too
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_SpawnItemEx("GauntletFlameBurner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_FORCESERVERSIDE,128)	//if modified, change in Painkiller.QCD too
 		TNT1 A 10 A_PlaySound("QC/Weapons/Gauntlet/Hit",7,1,0,9)
 		Stop
 	Crash:	//hit everything else
@@ -832,6 +842,7 @@ Actor GauntletFlameBurner
 	+BLOODLESSIMPACT
 	+SEEKERMISSILE
 	+FORCERADIUSDMG
+	+SERVERNETID
 	RenderStyle None
 	Radius 1
 	Height 1
@@ -861,7 +872,7 @@ Actor GauntletFlameBurner
 			Goto Looper
 
 	Sounder:
-		VTFB A 0 A_GiveToTarget("HitBeepLow",1)
+		VTFB A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		VTFB A 0 A_Jump(255,"ContinueLooper")
 		Goto ContinueLooper
 
@@ -907,7 +918,7 @@ Actor OmnislashFireProjectile
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
@@ -916,26 +927,36 @@ Actor OmnislashFireProjectile
 		QCG1 XXXXXXXXXX 1 A_FadeOut(0.13)
 		Stop
 	XDeath:
-		QCG1 X 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_SpawnItemEx("GauntletFlameBurner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS,128)
 		TNT1 A 0 A_Jump(255,"DeathCont")
 		Goto DeathCont
 	}
 }
 
-Actor OmnislashFireProjectileFake : OmnislashFireProjectile
+Actor OmnislashFireProjectileFX
 {
+	Projectile
 	+NOINTERACTION
 	+CLIENTSIDEONLY
 	+NONETID
-	-SEEKERMISSILE
+	Speed 30
+	Radius 2
+	Height 2
+	ReactionTime 1
+	RenderStyle Add
+	Translation "0:255=%[0,0,0]:[1.5,0.5,0]"
+	Scale 0.9
+	Alpha 0.5
+	+BRIGHT
 	States
 	{
+	Spawn:
+		QCG1 X 1 NODELAY A_SpawnItemEx("BurnerFlamelet",random(0,-20),random(7,-7),random(-3,3), 0,0,0, 0,SXF_NOCHECKPOSITION,128)
+		QCG1 X 0 A_CountDown
+		Loop
 	Death:
-		TNT1 A 0
-		Goto DeathCont+1	//skips the damage
-	XDeath:					//Shouldnt be reached, but just in case
-		TNT1 A 0
-		Goto DeathCont+1
+		QCG1 XXXXXXXXXX 1 A_FadeOut(0.13)
+		Stop
 	}
 }

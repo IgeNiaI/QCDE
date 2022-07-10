@@ -158,6 +158,9 @@ function int weaponMaxedInParty(int weapon)
 
 Script "QCDE_Upgrade" (int weapon, int upgrade)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
+
 	// Argument validation
 	if (weapon < 0 || weapon >= NUMBER_OF_WEAPONS ||
 		upgrade <= 0 || upgrade > NUMBER_OF_UPGRADES)
@@ -191,9 +194,14 @@ Script "QCDE_Upgrade" (int weapon, int upgrade)
 	GiveInventory(token, 1);
 	ACS("QCDE_UpgradeAcquired", weapon, upgrade);
 	Thing_Remove(0);
+	ACS_NamedExecuteAlways("QCDE_Upgrade_Flash", 0);
+	LocalAmbientSound("QC/Weapons/Upgrade", 127);
+}
+
+Script "QCDE_Upgrade_Flash" clientside
+{
 	Fadeto (255, 255, 200, 0.2, 0);
 	Fadeto (255, 255, 200, 0  , 0.2);
-	LocalAmbientSound("QC/Weapons/Upgrade", 127);
 }
 
 // Activator: upgrade frame

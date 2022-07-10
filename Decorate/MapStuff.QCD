@@ -506,6 +506,7 @@ Actor QCDEBloodPoolHealer160 16515
 Actor BloodPoolHealth : CustomInventory
 {
 	+INVENTORY.QUIET
+	+SERVERNETID
 	States
 	{
 	Pickup:
@@ -523,6 +524,7 @@ Actor BloodPoolHealthGiven : Health
 {
 	Inventory.Amount 5
 	+INVENTORY.QUIET
+	+NONETID
 	States
 	{
 		Spawn:

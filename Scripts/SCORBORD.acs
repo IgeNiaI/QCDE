@@ -392,7 +392,7 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 			int plrtid = plr;
 			if(plrtid == -1) plrtid = 1000;
 			plr -= 1000; // convert tid to PlayerNumber()
-			bool notMe = plr != me;
+			bool notMe = plr != me || InDemoMode();
 
 			//
 			// Radar

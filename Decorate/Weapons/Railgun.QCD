@@ -338,8 +338,8 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_SetBlend("Green",0.14,15)
 		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_RailAttack(0,2,0,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"DummyPuff",0,0,0,0,70.0,1.0,"RailgunSmoke")
-		TNT1 A 0 A_FireCustomMissile("RailgunWhoosher",0,false,1,0,0,0)				//to play "whoosh" sound when passes by
-		TNT1 A 0 A_FireCustomMissile("RailgunImpactSoundPuffoid",0,false,1,0,0,0)	//to play impact sound on floors and ceilings
+		TNT1 A 0 A_FireCustomMissile("RailgunWhoosher",0,false,1,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,0)				//to play "whoosh" sound when passes by
+		TNT1 A 0 A_FireCustomMissile("RailgunImpactSoundPuffoid",0,false,1,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,0)	//to play impact sound on floors and ceilings
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"FlashEnderNoRecoil")
 		TNT1 A 2 A_SetPitch(pitch-5.0)
 		TNT1 AAAAA 1 A_SetPitch(pitch+1)
@@ -568,8 +568,8 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_SetBlend("Green",0.14,15)
 		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_RailAttack(0,0,0,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"DummyPuff",0,0,0,0,70.0,1.0,"RailgunSmoke")
-		TNT1 A 0 A_FireCustomMissile("RailgunWhoosher",0,false,1,0,0,0)
-		TNT1 A 0 A_FireCustomMissile("RailgunImpactSoundPuffoid",0,false,1,0,0,0)
+		TNT1 A 0 A_FireCustomMissile("RailgunWhoosher",0,false,1,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,0)
+		TNT1 A 0 A_FireCustomMissile("RailgunImpactSoundPuffoid",0,false,1,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,0)
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"FlashEnderNoRecoil")
 		TNT1 A 2 A_SetPitch(pitch-2.5)
 		TNT1 AAAAA 1 A_SetPitch(pitch+0.5)
@@ -807,6 +807,7 @@ Actor QCRailGun : QCWeapon
 
 Actor RailgunCharges : Inventory
 {
+	+SERVERNETID
 	Inventory.MaxAmount 52
 	Inventory.InterHubAmount 0
 }
@@ -835,6 +836,7 @@ Actor RailgunWhoosher : FastProjectile
 	Projectile
 	+DONTSPLASH
 	+NOEXTREMEDEATH
+	+SERVERNETID
 	damage 0
 	radius 2
 	height 2
@@ -886,11 +888,11 @@ Actor RailgunPuff
 	{
 	Spawn:	//hit non bleeding actor
 		TNT1 A 0
-		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		Goto Crash
 	Xdeath:	//hit bleeding actor
 		TNT1 A 0
-		TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 1
 		Stop
 	Crash:
@@ -906,6 +908,7 @@ Actor RailgunPuffFx
 	+NOINTERACTION
 	+FORCEXYBILLBOARD
 	+CLIENTSIDEONLY
+	+NONETID
 	RenderStyle Add
 	Translation "0:255=%[0,0,0]:[0.0,1.5,0.0]"
 	Scale 0.9
@@ -940,6 +943,7 @@ Actor RailgunPuffFxSmoke
 	+NOINTERACTION
 	+FORCEXYBILLBOARD
 	+CLIENTSIDEONLY
+	+NONETID
 	RenderStyle Add
 	Translation "0:255=%[0,0,0]:[0.0,1.5,0.0]"
 	Scale 0.35
@@ -995,7 +999,7 @@ Actor RailgunSmoke
 
 
 
-Actor RailgunTicCounter : Inventory { inventory.maxamount 52  inventory.interhubamount 0 }
+Actor RailgunTicCounter : Inventory { +SERVERNETID inventory.maxamount 52  inventory.interhubamount 0 }
 Actor RailgunFired : Inventory { inventory.interhubamount 0 }
 
 
@@ -1012,6 +1016,7 @@ Actor RailgunImpactSoundPuffoid : FastProjectile
 	+BLOODLESSIMPACT
 	+RIPPER
 	+THRUACTORS 	//so that it doesnt crash on torches or trees
+	+SERVERNETID
 	States
 	{
 	Spawn:
@@ -1080,7 +1085,7 @@ Actor RailgunExplosivePuffoidWeak : FastProjectile
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
@@ -1140,7 +1145,7 @@ Actor RailgunExplosivePuffoidStrong : FastProjectile
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 

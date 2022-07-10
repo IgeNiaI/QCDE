@@ -84,6 +84,7 @@ Actor PowerQuad : PowerDamage
 
 Actor SecondOfQuad : PowerupGiver
 {
+	+SERVERNETID
 	Inventory.PickupMessage ""
 	Inventory.UseSound "Nothing"
 	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
@@ -205,6 +206,7 @@ Actor QuadIndicator
 
 Actor QuadFull : PowerupGiver
 {
+	+SERVERNETID
 	Inventory.PickupMessage ""
 	Inventory.UseSound "Nothing"
 	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
@@ -283,6 +285,7 @@ Actor PowerProtec : PowerProtection
 
 Actor SecondOfProtec : PowerupGiver
 {
+	+SERVERNETID
 	Inventory.PickupMessage ""
 	Inventory.UseSound "Nothing"
 	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
@@ -370,6 +373,7 @@ Actor ProtecIndicator : QuadIndicator
 
 Actor ProtecFull : PowerupGiver
 {
+	+SERVERNETID
 	Inventory.PickupMessage ""
 	Inventory.UseSound "Nothing"
 	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
@@ -446,6 +450,7 @@ Actor PowerInvul : PowerProtection //made to be protection so it doesnt clash wi
 
 Actor InvulnerabilityFull : PowerupGiver
 {
+	+SERVERNETID
 	Inventory.PickupMessage ""
 	Inventory.UseSound "Nothing"
 	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
@@ -456,6 +461,7 @@ Actor InvulnerabilityFull : PowerupGiver
 
 Actor Invulnerability20Sec : PowerupGiver	//only for AeonQCDE map 13
 {
+	+SERVERNETID
 	Inventory.PickupMessage ""
 	Inventory.UseSound "Nothing"
 	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
@@ -577,6 +583,7 @@ Actor PowerInfin : PowerInfiniteAmmo
 
 Actor SecondOfInfin : PowerupGiver
 {
+	+SERVERNETID
 	Inventory.PickupMessage ""
 	Inventory.UseSound "Nothing"
 	Inventory.MaxAmount 0 +INVENTORY.AUTOACTIVATE
@@ -841,6 +848,7 @@ Actor PowerupBotBait : PowerupGiver
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.NEVERRESPAWN
+	+SERVERNETID
 	Inventory.MaxAmount 0
 	powerup.Type "PowerBotBaiter"
 	powerup.duration 35

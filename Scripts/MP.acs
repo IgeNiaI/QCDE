@@ -150,6 +150,9 @@ Script "QCDE_RegiveKeys" (void)
 }
 Script "QCDE_GiveKey" (int which)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
+
 	if(which < 0 || which --> NUMBER_OF_KEYS)
 		log(s:"\c[yellow]QCDE warning: attempt to give key number ", d:-~which);
 

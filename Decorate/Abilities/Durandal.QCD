@@ -18,19 +18,21 @@
 
 Actor SingleBOBSPProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_FireCustomMissile("TeleportBeaconSP",random(0,359),false,0,0)
+		TNT1 A 0 A_FireCustomMissile("TeleportBeaconSP",random(0,359),false,0,0,FPF_FORCESERVERSIDE)
 		Stop
 	}
 }
 Actor SingleBOBDMProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_FireCustomMissile("TeleportBeaconDM",random(0,359),false,0,0)
+		TNT1 A 0 A_FireCustomMissile("TeleportBeaconDM",random(0,359),false,0,0,FPF_FORCESERVERSIDE)
 		Stop
 	}
 }
@@ -47,6 +49,7 @@ Actor TeleportBeaconSP
 	-NOGRAVITY
 	+FORCEXYBILLBOARD
 	+SEEKERMISSILE
+	+SERVERNETID
 	RenderStyle None
 	States
 	{
@@ -73,7 +76,7 @@ Actor TeleportBeaconDM : TeleportBeaconSP
 	}
 }
 
-Actor BobSimMain
+Actor BobSimMain : UnlaggedActor
 {
 	var int user_counter;
 	Health 50
@@ -92,6 +95,7 @@ Actor BobSimMain
 	-CANUSEWALLS
 	-COUNTKILL
 	+EXTREMEDEATH
+	+SERVERNETID
 	MaxDropOffHeight 128
 	MaxStepHeight 80 //they climb :3
 	SeeSound ""
@@ -208,6 +212,7 @@ Actor ProtestSign
 {
 	var int user_counter;
 	+NOINTERACTION
+	+SERVERNETID
 	Radius 2
 	Height 2
 	Scale 0.62
@@ -227,10 +232,10 @@ Actor ProtestSign
 	Looper:
 		SIGN "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
 		SIGN "#" 0 A_JumpIfInTargetInventory("LOLImDead",1,"Death.Removed") //failsafe to remove this shield
-		SIGN "##" 1 BRIGHT A_Warp(AAPTR_TARGET,6,5,37,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		SIGN "##" 1 BRIGHT A_Warp(AAPTR_TARGET,6,5,37,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_SKIPOWNER)
 		SIGN "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
 		SIGN "#" 0 A_JumpIfInTargetInventory("LOLImDead",1,"Death.Removed") //failsafe to remove this shield
-		SIGN "###" 1 BRIGHT A_Warp(AAPTR_TARGET,6,5,37,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		SIGN "###" 1 BRIGHT A_Warp(AAPTR_TARGET,6,5,37,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_SKIPOWNER)
 		//in 10 seconds it will disappear no matter what
 		SIGN "#" 0 A_SetUserVar(user_counter,user_counter+5)
 		SIGN "#" 0 A_JumpIf(user_counter>=350,"Death") //350 tics, 10 seconds
@@ -325,6 +330,7 @@ Actor BobExploHackSP
 	Height 3
 	DamageType "BobExploSP"
 	+FORCERADIUSDMG
+	+SERVERNETID
 	States
 	{
 	Spawn:
@@ -344,6 +350,7 @@ Actor BobExploHackDM
 	Height 3
 	DamageType "BobExploDM"
 	+FORCERADIUSDMG
+	+SERVERNETID
 	States
 	{
 	Spawn:

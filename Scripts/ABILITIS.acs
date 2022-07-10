@@ -104,6 +104,19 @@ Script "PVE CD" (int class) clientside { SetResultValue(AbilityData[class * AD_C
 
 Script "QCDE_CleanUpAbilities" (void)
 {
+	ACS("QCDE_DoCleanUpAbilities");
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS("QCDE_CleanUpAbilities_CLIENTSIDE");
+}
+
+Script "QCDE_CleanUpAbilities_CLIENTSIDE" (void) clientside
+{
+	ACS("QCDE_DoCleanUpAbilities");
+}
+
+Script "QCDE_DoCleanUpAbilities" (void)
+{
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		 if(CheckInventory("Class_Doomslayer"	))	GiveInventory("SlayerBFGCleanerProc",1); // removes possible residual BFG
 	else if(CheckInventory("Class_Kane"			))	GiveInventory("InjectionCleanerProc",1); // removes the NoFire token
 	else if(CheckInventory("Class_Caleb"		))	GiveInventory("DollCleanerProc",1); //removes the doll
@@ -123,8 +136,12 @@ Script "QCDE_CleanUpAbilities" (void)
 	SetInventory("PowerShieldCharge", false);
 	SetInventory("MultiuseCharge"   , false);
 
+	ACS_NamedExecuteWithResult("QCDE_UpdateMultiusePeriod", 0, 0);
+
 	// It's generic, so it makes sense for everyone
 	GiveInventory("GenericActiveCleanerProc",1);
+	extraAbilityData[PlayerNumber()] = 0;
+	SetNetworkReplicationFlags( 0 );
 }
 
 //=============================================================================
@@ -140,6 +157,9 @@ Script "QCDE_CleanUpAbilities" (void)
 Script "QCDE_PassiveAbility" (void)
 {
 	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
+
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS("QCDE_PassiveAbility_CLIENTSIDE");
 
 		 if(CheckInventory("Class_Corvus"		))	ACS("QCDE_Passive_Corvus"    );
 	else if(CheckInventory("Class_Terminator"	))	ACS("QCDE_Passive_Terminator");
@@ -164,93 +184,100 @@ Script "QCDE_PassiveAbility" (void)
 	// ^ insert more classes here
 }
 
-// Trigger script
+Script "QCDE_PassiveAbility_CLIENTSIDE" (void) clientside
+{
+	if (PlayerNumber() != ConsolePlayerNumber())
+		terminate;
+
+		 if(CheckInventory("Class_Zedek"		))	ACS("QCDE_Passive_Zedek"     );
+	else if(CheckInventory("Class_Inquisitor"	))	ACS("QCDE_Passive_Inquisitor");
+	else if(CheckInventory("Class_Hunter"		))	ACS("QCDE_Passive_Hunter"    );
+}
 
 int tics[64];
-Script "QCDE_ActiveAbility" (void) net
+
+// Ranger - tells whether the orb was used on client to ignore timeout message from server
+// Menelkir - tracks Dave duration
+// Keel - tells how many grenades were thrown compared to ability cooldown messages from server. Needs to ignore messages that tell wrong cooldown
+int extraAbilityData[64];
+
+// Trigger script
+Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, int buttons)
 {
-	//log(s:"Active ability impulse from ", n:0, s:":");
-	// Forbidden?
-	if(CheckInventory("NoAbilitiesToken")) terminate;
+	if (justPressed) {
+		int plr = PlayerNumber();
 
-	// CTF special case
-	if(hasFlags())
-	{
-		ACS("QCDE_Ability_Flag", hasFlags());
-		terminate;
-	}
+		if(CheckInventory("NoAbilitiesToken"))			terminate; // Forbidden?
+		if(GetActorProperty(0,APROP_HEALTH) <= 0)		terminate; // Dead players can't activate ability
+		if(CheckInventory("PowerTerminatorArtifact"))	terminate; // qc_elderssoul special case
 
-	// qc_elderssoul special case
-	if(CheckInventory("PowerTerminatorArtifact"))
-		terminate;
-
-	// Don't do ability if not ready yet
-	// NOTE: There's an identical block after delay(1)
-	int plr = PlayerNumber();
-	int multiuse = GetMultiuse();
-	{
-		if(GetActorProperty(0,APROP_HEALTH) <= 0) 	terminate;
-		if(!CheckInventory("AbilityChecksItself") && !multiuse)
+		// CTF special case
+		if(hasFlags())
 		{
-			if(CheckInventory("ActiveInProgress")) 	terminate;
-			if(tics[plr] == -1) tics[plr] = 0; // :thinking:
-			if(tics[plr]) 							terminate;
+			ACS("QCDE_Ability_Flag", hasFlags());
+			terminate;
+		}
+
+		if(GetLastUse() + GetMultiuseDelay() > Timer()) terminate; // Prevent spam
+		SetLastUse(Timer());
+
+		if (predicting) {
+			//log(s:"Predicting ability!");
+			if(CheckInventory("Class_Ranger")) {
+				if (GetPredictableValue(0, 0))
+					ACS_NamedExecuteWithResult("QCDE_DireOrbPredictedUse", 0, 0);
+			} else if(CheckInventory("Class_Eleena")) {
+				if (GetPredictableValue(0, 0))
+					ACS_NamedExecuteWithResult("QCDE_EleenaSwapPredictedUse", 0, 0);
+			}
+		} else if (!tics[plr]) { // abilities that activate only once
+			//log(s:"Activated single use ability");
+			ACS_NamedExecuteWithResult("QCDE_UpdateMultiusePeriod", 0, 0);
+
+				 if(CheckInventory("Class_Ranger"	))	ACS("QCDE_Ability_Ranger"    );
+			else if(CheckInventory("Class_Doomslayer"))	ACS("QCDE_Ability_Doomslayer");
+			else if(CheckInventory("Class_Corvus"	))	ACS("QCDE_Ability_Corvus"    );
+			else if(CheckInventory("Class_Kane"		))	ACS("QCDE_Ability_Kane"      );
+			else if(CheckInventory("Class_Caleb"	))	ACS("QCDE_Ability_Caleb"     );
+			else if(CheckInventory("Class_Menelkir"	))	ACS("QCDE_Ability_Menelkir"  );
+			else if(CheckInventory("Class_Terminator"))	ACS("QCDE_Ability_Terminator");
+			else if(CheckInventory("Class_Zedek"	))	ACS("QCDE_Ability_Zedek"     );
+			else if(CheckInventory("Class_Inquisitor"))	ACS("QCDE_Ability_Inquisitor");
+			else if(CheckInventory("Class_Bitterman"))	ACS("QCDE_Ability_Bitterman" );
+			else if(CheckInventory("Class_Galen" 	))	ACS("QCDE_Ability_Galen"     );
+			else if(CheckInventory("Class_Nyx"		))	ACS("QCDE_Ability_Nyx"       );
+			else if(CheckInventory("Class_Sorgaul"	))	ACS("QCDE_Ability_Sorgaul"   );
+			else if(CheckInventory("Class_DukeNukem"))	ACS("QCDE_Ability_DukeNukem" );
+			else if(CheckInventory("Class_Durandal"	))	ACS("QCDE_Ability_Durandal"  );
+			else if(CheckInventory("Class_Keel"		))	ACS("QCDE_Ability_Keel"      );
+			else if(CheckInventory("Class_LoWang"	))	ACS("QCDE_Ability_LoWang"    );
+			else if(CheckInventory("Class_Grayson"	))	ACS("QCDE_Ability_Grayson"   );
+			else if(CheckInventory("Class_Eradicator"))	ACS("QCDE_Ability_Eradicator");
+			else if(CheckInventory("Class_Blazkowicz"))	ACS("QCDE_Ability_Blazkowicz");
+			else if(CheckInventory("Class_Freeman"	))	ACS("QCDE_Ability_Freeman"   );
+			else if(CheckInventory("Class_VorMatur"	))	ACS("QCDE_Ability_VorMatur"  );
+			else if(CheckInventory("Class_Eleena"	))	ACS("QCDE_Ability_Eleena"    );
+			else if(CheckInventory("Class_Lucienne"	))	ACS("QCDE_Ability_Lucienne"  );
+			else if(CheckInventory("Class_Major"	))	ACS("QCDE_Ability_Major"     );
+			else if(CheckInventory("Class_Hunter"	))	ACS("QCDE_Ability_Hunter"    );
+			else if(CheckInventory("Class_Sam"		))	ACS("QCDE_Ability_Sam"       );
+			else if(CheckInventory("Class_Postal"	))	ACS("QCDE_Ability_Postal"    );
+			else if(CheckInventory("Class_Painkiller"))	ACS("QCDE_Ability_Painkiller");
+			else if(CheckInventory("Class_Intruder"	))	ACS("QCDE_Ability_Intruder"  );
+			else if(CheckInventory("Class_Orbb"		))	ACS("QCDE_Ability_Orbb"      );
+			// ^ insert more classes here
+		} else {
+			//log(s:"Activated multi use ability");
+			ACS_NamedExecuteWithResult("QCDE_UpdateMultiusePeriod", 0, 0);
+
+				 if(CheckInventory("Class_Keel"		))	ACS("QCDE_Ability_Keel"      );
+			else if(CheckInventory("Class_Freeman"	))	ACS("QCDE_Ability_Freeman"   );
+			else if(CheckInventory("Class_Eleena"	))	ACS("QCDE_Ability_Eleena"    );
+			else if(CheckInventory("Class_Lucienne"	))	ACS("QCDE_Ability_Lucienne"  );
+			else if(CheckInventory("Class_Orbb"		))	ACS("QCDE_Ability_Orbb"      );
+			// ^ insert more classes here if needed
 		}
 	}
-
-	// Prevent immediate retriggering
-	tics[plr]++;
-	delay(1);
-	tics[plr]--;
-
-	{
-		if(GetActorProperty(0,APROP_HEALTH) <= 0) 	terminate;
-		if(!CheckInventory("AbilityChecksItself") && !multiuse)
-		{
-			if(CheckInventory("ActiveInProgress")) 	terminate;
-			if(tics[plr]) 				terminate;
-		}
-	}
-	//log(s:"Not retriggered immediately");
-
-	// Multi-use
-	if(GetLastUse() + GetMultiuseDelay() > Timer()) terminate; // Prevent spam
-	SetLastUse(Timer());
-	ACS("QCDE_UpdateMultiusePeriod");
-	//log(s:"Not overspammed (multiuse). Period = ", d:MultiusePeriod[plr]);
-
-	//log(s:"Impulse passed on into class handler!");
-		 if(CheckInventory("Class_Ranger"	))	ACS("QCDE_Ability_Ranger"    );
-	else if(CheckInventory("Class_Doomslayer"))	ACS("QCDE_Ability_Doomslayer");
-	else if(CheckInventory("Class_Corvus"	))	ACS("QCDE_Ability_Corvus"    );
-	else if(CheckInventory("Class_Kane"		))	ACS("QCDE_Ability_Kane"      );
-	else if(CheckInventory("Class_Caleb"	))	ACS("QCDE_Ability_Caleb"     );
-	else if(CheckInventory("Class_Menelkir"	))	ACS("QCDE_Ability_Menelkir"  );
-	else if(CheckInventory("Class_Terminator"))	ACS("QCDE_Ability_Terminator");
-	else if(CheckInventory("Class_Zedek"	))	ACS("QCDE_Ability_Zedek"     );
-	else if(CheckInventory("Class_Inquisitor"))	ACS("QCDE_Ability_Inquisitor");
-	else if(CheckInventory("Class_Bitterman"))	ACS("QCDE_Ability_Bitterman" );
-	else if(CheckInventory("Class_Galen" 	))	ACS("QCDE_Ability_Galen"     );
-	else if(CheckInventory("Class_Nyx"		))	ACS("QCDE_Ability_Nyx"       );
-	else if(CheckInventory("Class_Sorgaul"	))	ACS("QCDE_Ability_Sorgaul"   );
-	else if(CheckInventory("Class_DukeNukem"))	ACS("QCDE_Ability_DukeNukem" );
-	else if(CheckInventory("Class_Durandal"	))	ACS("QCDE_Ability_Durandal"  );
-	else if(CheckInventory("Class_Keel"		))	ACS("QCDE_Ability_Keel"      );
-	else if(CheckInventory("Class_LoWang"	))	ACS("QCDE_Ability_LoWang"    );
-	else if(CheckInventory("Class_Grayson"	))	ACS("QCDE_Ability_Grayson"   );
-	else if(CheckInventory("Class_Eradicator"))	ACS("QCDE_Ability_Eradicator");
-	else if(CheckInventory("Class_Blazkowicz"))	ACS("QCDE_Ability_Blazkowicz");
-	else if(CheckInventory("Class_Freeman"	))	ACS("QCDE_Ability_Freeman"   );
-	else if(CheckInventory("Class_VorMatur"	))	ACS("QCDE_Ability_VorMatur"  );
-	else if(CheckInventory("Class_Eleena"	))	ACS("QCDE_Ability_Eleena"    );
-	else if(CheckInventory("Class_Lucienne"	))	ACS("QCDE_Ability_Lucienne"  );
-	else if(CheckInventory("Class_Major"	))	ACS("QCDE_Ability_Major"     );
-	else if(CheckInventory("Class_Hunter"	))	ACS("QCDE_Ability_Hunter"    );
-	else if(CheckInventory("Class_Sam"		))	ACS("QCDE_Ability_Sam"       );
-	else if(CheckInventory("Class_Postal"	))	ACS("QCDE_Ability_Postal"    );
-	else if(CheckInventory("Class_Painkiller"))	ACS("QCDE_Ability_Painkiller");
-	else if(CheckInventory("Class_Intruder"	))	ACS("QCDE_Ability_Intruder"  );
-	// ^ insert more classes here
 }
 
 // Shared counters
@@ -264,12 +291,16 @@ Script "QCDE_UpdateMultiusePeriod" (void)
 				* GetCvar("sv_cooldownPercentage") / 100
 				* (100 - CheckInventory("CooldownRewardToken") - CheckInventory("CooldownRewardToken2")) / 100;
 		int charges = multiuse - ((PlayerNumber() + (MultiusePeriod[PlayerNumber()] - 1)) / MultiusePeriod[PlayerNumber()]);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("MultiuseCharge", charges);
+		SetNetworkReplicationFlags( 0 );
 	}
 	else
 	{
 		MultiusePeriod[PlayerNumber()] = 1;
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("MultiuseCharge", no);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
@@ -290,22 +321,44 @@ Script "QCDE_ShowActiveInProgress" (int duration, int now)
 
 	if(concurrent) terminate;
 
+	ACS_NamedExecuteAlways("QCDE_DoActiveInProgressCooldown", 0);
+}
+
+Script "QCDE_DoActiveInProgressCooldown" ()
+{
+	int plr = PlayerNumber();
+	if (activeProgress[plr][AP_TOTAL] <= 0) terminate;
 	int amount = 256 * activeProgress[plr][AP_NOW] / activeProgress[plr][AP_TOTAL];
 	while(activeProgress[plr][AP_NOW] --> 0 && GetActorProperty(0, APROP_HEALTH) > 0)
 	{
 		if(CheckInventory("ActiveProgressToken") > amount) terminate; // allows preempting previously launched ability
 
 		amount = 256 * activeProgress[plr][AP_NOW] / activeProgress[plr][AP_TOTAL];
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("ActiveProgressToken",amount);
+		SetNetworkReplicationFlags( 0 );
 		delay(1);
 	}
 	activeProgress[plr][AP_NOW] = 0;
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	SetInventory("ActiveProgressToken",0);
+	SetNetworkReplicationFlags( 0 );
 	//log(n:0, s:" completes progress: ", d:activeProgress[plr][AP_NOW], s:" / ", d:activeProgress[plr][AP_TOTAL]);
 }
 
 Script "QCDE_AbilityCooldown" (int in_tics, int dontPlayAlert)
 {
+	//log(s:"QCDE_AbilityCooldown - ", d:in_tics);
+
+	// reconciling just to know how many tics to offset the cooldown
+	// we add 2 to also compensate for a 1 to 2 tics delay for executing the script on clientside
+	if (in_tics > -1 && GetNetworkState() == NETSTATE_SERVER) {
+		in_tics -= UnlaggedReconcile(0) + 2;
+		UnlaggedRestore(0);
+		if (in_tics < 0)
+			in_tics = 0;
+	}
+
 	int multiuse = GetMultiuse();
 	int plr = PlayerNumber();
 	int cooldownId = timer() * 100 + plr;
@@ -316,7 +369,12 @@ Script "QCDE_AbilityCooldown" (int in_tics, int dontPlayAlert)
 		// Not starting a cooldown if either:
 		// - Already in cooldown
 		// - Ability is multiuse
-		if(tics[plr] && !multiuse) terminate;
+		if(tics[plr] && !multiuse)
+		{
+			if (GetNetworkState() == NETSTATE_SERVER)
+				ACS("QCDE_AbilityCooldown_CLIENTSIDE", tics[plr], false);
+			terminate;
+		}
 
 		// For abilities that have multiple charges
 		if(multiuse)
@@ -328,14 +386,19 @@ Script "QCDE_AbilityCooldown" (int in_tics, int dontPlayAlert)
 			else if(tics[plr] <= MultiusePeriod[plr] * (multiuse - 1)) // Up to last grenade
 			{
 				tics[plr] += MultiusePeriod[plr];
-				//log(s:"Added period ", d:MultiusePeriod[plr], s:", is now ", d:tics[plr]);
+				//log(s:"Added period ", d:MultiusePeriod[plr], s:", is now ", d:GetCooldown(plr)));
+				if (GetNetworkState() == NETSTATE_SERVER)
+					ACS("QCDE_AbilityCooldown_CLIENTSIDE", tics[plr], false);
 				terminate;
 			}
 			else // Out of charges
 			{
-				LocalAmbientSound(GetMultiUseFailSound(), 127);
-				//log(s:"Out of charges: ", d:tics[plr], s:" > ", d:MultiusePeriod[plr], s:" * ", d:(multiuse - 1));
+				if (GetNetworkState() != NETSTATE_SERVER)
+					LocalAmbientSound(GetMultiUseFailSound(), 127);
+				//log(s:"Out of charges: ", d:tics[plr]), s:" > ", d:MultiusePeriod[plr], s:" * ", d:(multiuse - 1));
 				SetResultValue(false); // signal to ability code that this sort of spam ain't gonna fly
+				if (GetNetworkState() == NETSTATE_SERVER)
+					ACS("QCDE_AbilityCooldown_CLIENTSIDE", tics[plr], false);
 				terminate;
 			}
 		}
@@ -359,11 +422,57 @@ Script "QCDE_AbilityCooldown" (int in_tics, int dontPlayAlert)
 		}
 	}
 
-	GiveInventory("AbilityCooldownToken", 1);
-
 	CapCooldown();
 
-	if(playAlert && !dontPlayAlert) ACS("QCDE_AbilityIconFlash", no);
+	while(CheckInventory("ActiveInProgress"))
+		delay(1);
+
+	//log(s:"QCDE_AbilityCooldown - Sending ", d:tics[plr]);
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS("QCDE_AbilityCooldown_CLIENTSIDE", tics[plr], playAlert && !dontPlayAlert);
+	if (!CheckInventory("AbilityCooldownToken"))
+		ACS_NamedExecuteWithResult("QCDE_AbilityCooldown_DoCooldown", playAlert && !dontPlayAlert);
+}
+
+Script "QCDE_AbilityCooldown_CLIENTSIDE" (int in_tics, int playAlert) clientside
+{
+	if (PlayerNumber() != ConsolePlayerNumber())
+		terminate;
+
+	//log(s:"QCDE_AbilityCooldown_CLIENTSIDE - new: ", d:in_tics, s:", old: ", d:tics[PlayerNumber()]);
+
+	if (in_tics == 0)
+		SetInventory("AbilityCooldownToken",0);
+
+	if (CheckInventory("Class_Keel") || CheckInventory("Class_Freeman") || CheckInventory("Class_Lucienne")) {
+		if (extraAbilityData[PlayerNumber()] > 0)
+			extraAbilityData[PlayerNumber()]--;
+		if (extraAbilityData[PlayerNumber()] > 0) {
+			//log(s:"QCDE_AbilityCooldown_CLIENTSIDE - ignored");
+			terminate;
+		}
+	}
+
+	tics[PlayerNumber()] = in_tics;
+	SetInventory("AbilityCooldownSeconds", in_tics / 35);
+	if (!CheckInventory("AbilityCooldownToken"))
+		ACS_NamedExecuteWithResult("QCDE_AbilityCooldown_DoCooldown", playAlert);
+}
+
+Script "QCDE_AbilityCooldown_DoCooldown" (int playAlert)
+{
+	int plr = PlayerNumber();
+	//log(s:"QCDE_AbilityCooldown_DoCooldown - ", d:tics[plr]);
+
+	if (tics[plr] > 0)
+	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		GiveInventory("AbilityCooldownToken", 1);
+		SetNetworkReplicationFlags( 0 );
+	}
+
+	if(playAlert && GetNetworkState() != NETSTATE_SERVER)
+		ACS("QCDE_AbilityIconFlash", no);
 	// Actual countdown
 	while(tics[plr] > 0)
 	{
@@ -377,9 +486,12 @@ Script "QCDE_AbilityCooldown" (int in_tics, int dontPlayAlert)
 
 		if(CheckInventory("ActiveInProgress")) continue;
 
-		tics[plr]--;
+		tics[plr] -= 1;
+
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 
 		// Update charges count if ability is multi-usable
+		int multiuse = GetMultiuse();
 		if(multiuse)
 		{
 			int charges = multiuse - ((tics[plr] + (MultiusePeriod[plr] - 1)) / MultiusePeriod[plr]);
@@ -392,14 +504,21 @@ Script "QCDE_AbilityCooldown" (int in_tics, int dontPlayAlert)
 		// Update decisecond count if it's relevant
 		if(tics[plr] < 5 *35)
 			SetInventory("AbilityCooldownDeciseconds", (tics[plr] % 35) * 10 / 35);
+
+		SetNetworkReplicationFlags( 0 );
 	}
 
 	//log(s:"Cooldown ", d:cooldownId, s:" is done by ", d:Timer());
 	tics[plr] = 0;
-	SetInventory("AbilityCooldownToken",       0);
-	SetInventory("AbilityCooldownSeconds",     0);
-	SetInventory("AbilityCooldownDeciseconds", 0);
-	if(playAlert && !dontPlayAlert) ACS("QCDE_AbilityIconFlash", yes);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	SetInventory("AbilityCooldownToken",		0);
+	SetInventory("AbilityCooldownSeconds",		0);
+	SetInventory("AbilityCooldownDeciseconds",	0);
+	SetInventory("TeleporterThrownToken",		0); // Reset Ranger orb
+	SetNetworkReplicationFlags( 0 );
+
+	if(playAlert && GetNetworkState() != NETSTATE_SERVER)
+		ACS("QCDE_AbilityIconFlash", yes);
 }
 
 script "QCDE_AbilityIconFlash" (int sound) clientside
@@ -421,11 +540,11 @@ Function void CapCooldown(void)
 {
 	if(CheckInventory("Class_Sarge")) return; // MAP31: DBThanatos says no cheating
 
-	int p = PlayerNumber();
+	int plr = PlayerNumber();
 	int perc = GetCvar("sv_cooldownPercentage");
 	int baseCooldown = GetCooldown();
-	if (tics[p] > baseCooldown * perc / 100)
-		tics[p] = baseCooldown * perc / 100;
+	if (tics[plr] > baseCooldown * perc / 100)
+		tics[plr] = baseCooldown * perc / 100;
 }
 
 Script "nocd" (void) // cheat for debugging
@@ -494,26 +613,37 @@ Script "QCDE_Ability_Flag" (void)
 
 Script "QCDE_Ability_Ranger" (void)
 {
-	if(tics[PlayerNumber()]) terminate;
+	if (tics[PlayerNumber()]) terminate;
 
 	if(!CheckInventory("TeleporterThrownToken"))
 	{
+		extraAbilityData[PlayerNumber()] = false;
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("DireOrbFireProc",1);
 		ACS("QCDE_RangerHandAnimation");
+		SetNetworkReplicationFlags( 0 );
 		delay(3);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("GenericActiveCleanerProc",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 	else
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("DireOrbTeleProc",1);
-		ACS("QCDE_AbilityCooldown", GetCooldown());
+		ACS_NamedExecuteWithResult("QCDE_DireOrbUsed", 0, 0);
+		SetNetworkReplicationFlags( 0 );
 		delay(3);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("GenericActiveCleanerProc",1);
 
 		GiveInventory("NoWeaponFireToken",1);
-		ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+		SetNetworkReplicationFlags( 0 );
+		ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
 		delay(GetDuration()); //duration of active ability
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		TakeInventory("NoWeaponFireToken",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 Script "QCDE_RangerHandAnimation" (void) clientside
@@ -545,22 +675,22 @@ Script "QCDE_Ability_Doomslayer" (void)
 		if(!stricmp(getWeapon(), weaponList[w]))
 			break;
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("SlayerBFGProc",1);
-	ACS("QCDE_SetWeapon", "SlayerBFG", 80);
 	PlaySound(0,"QC/Abilities/Doomslayer/BFGWeaponRaise",CHAN_7,0.75,false,0.5);
+	SetNetworkReplicationFlags( 0 );
+	ACS("QCDE_SetWeapon", "SlayerBFG", 80);
 
-	ACS("QCDE_AbilityCooldown", GetCooldown());
 	while(CheckInventory("BFGstarted")<1)	//token is given by the weapon. This is to ensure the meter starts when the weapon is out
 		delay(1);							//because if you fire a RG, RG animation has to end before the weapon is switched
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	//total duration is 83
 	//firing delay is 34
 	//remaining time is 83-34=49
 
 	Delay(34);
-
-	GiveInventory("SlayerBFGFireProc",1);
 
 	int t = 35;
 
@@ -570,6 +700,7 @@ Script "QCDE_Ability_Doomslayer" (void)
 		delay(1);
 	}
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Give and select fake weapon
 	GiveInventory("FakeruWeapun",1);
 	SetWeapon("FakeruWeapun");
@@ -577,10 +708,13 @@ Script "QCDE_Ability_Doomslayer" (void)
 	TakeInventory("SlayerBFG",1);
 	TakeInventory("BFGstarted",1);
 	GiveInventory("SlayerBFGCleanerProc",1);
-	//
+	SetNetworkReplicationFlags( 0 );
+
 	delay(5);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	SetWeapon(weaponList[w]);
 	TakeInventory("FakeruWeapun",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -589,11 +723,17 @@ Script "QCDE_Ability_Doomslayer" (void)
 
 Script "QCDE_Ability_Corvus" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("CorvusFlightProc",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	SetNetworkReplicationFlags( 0 );
+
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 	delay(GetDuration()); //duration of active ability
+
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -602,16 +742,21 @@ Script "QCDE_Ability_Corvus" (void)
 
 Script "QCDE_Ability_Kane" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("InjectionProc",1);
+	SetNetworkReplicationFlags( 0 );
 
 	// Disable remaining damage over time from possible Postal's cow head or Quietus
 	cowgassing_for[PlayerNumber()] = 0;
 	quieting_for[PlayerNumber()] = 0;
 
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 	delay(GetDuration()); //duration of active ability
+
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -621,9 +766,15 @@ Script "QCDE_Ability_Kane" (void)
 
 Script "QCDE_Ability_Caleb" (void)
 {
-	//PlaySound(0,"QC/Abilities/Caleb/ActivateDrain",CHAN_5,0.75,false,1.0);
-	SetPlayerProperty(0,1,PROP_INSTANTWEAPONSWITCH);
+	int w;
+	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
+		if(!stricmp(getWeapon(), weaponList[w]))
+			break;
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	//PlaySound(0,"QC/Abilities/Caleb/ActivateDrain",CHAN_5,0.75,false,1.0,false,true);
+	SetPlayerProperty(0,1,PROP_INSTANTWEAPONSWITCH);
+	SetNetworkReplicationFlags( 0 );
 
 	if(PlayerIsBot(PlayerNumber()))
 	{
@@ -632,19 +783,14 @@ Script "QCDE_Ability_Caleb" (void)
 	}
 	else
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("DollProc",1);
+		SetNetworkReplicationFlags( 0 );
 		ACS("QCDE_SetWeapon", "CalebDoll", GetDuration());
 	}
 
-
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
-
-	int w;
-	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
-		if(!stricmp(getWeapon(), weaponList[w]))
-			break;
-
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	int t = GetDuration();
 	while(t --> 0)
@@ -657,20 +803,22 @@ Script "QCDE_Ability_Caleb" (void)
 	// Break progress meter: 1 total duration, 1 remaining tic
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
 
-	//Give and select fake weapon
-	GiveInventory("FakeruWeapun",1);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	GiveInventory("FakeruWeapun",1); //Give and select fake weapon
 	SetWeapon("FakeruWeapun");
-	//Remove ability weapon
-	GiveInventory("DollCleanerProc",1);
 	TakeInventory("CalebDoll",1);
 	TakeInventory("CalebDollBot",1);
+	GiveInventory("DollCleanerProc",1); //Remove ability weapon
+	SetNetworkReplicationFlags( 0 );
 
 	if(!++t) // survived entire duration
 	{
 		delay(5);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetWeapon(weaponList[w]);
 		TakeInventory("FakeruWeapun",1);
 		TakeInventory("DollSpent",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
@@ -741,11 +889,17 @@ Script "QCDE_Ability_Menelkir" (void)
 		terminate;
 	}
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	PlaySound(0,"QC/Abilities/Menelkir/Activate",CHAN_7,1.0,false,0.5);
 	GiveInventory("SummonProc",1);
-	//ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+
 	delay(GetDuration()); // duration before rethrow is allowed
+
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 function int CheckDaveRoom(void)
@@ -776,21 +930,28 @@ script "MyBoyIsDed" (void)	//played on menelkir's head when dave dies
 Script "QCDE_Ability_Terminator" (void)
 {
 	int counterer;
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("TerminatorMainProc",1); //plays voice line and stop weapons
 	ACS("QCDE_AbilityCooldown", GetCooldown());
 
 	GiveInventory("ActiveProgressToken",256);
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 	Delay(25);	//waits a bit before using them, chance to escape
 	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, TERMINATOR_ROCKET_COUNT * TERMINATOR_ROCKET_DELAY);
 
 	while(counterer++ <= TERMINATOR_ROCKET_COUNT)
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("TermRocketProc",1);
+		SetNetworkReplicationFlags( 0 );
 		delay(TERMINATOR_ROCKET_DELAY);
 	}
 
 	Delay(10);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("TerminatorCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -799,13 +960,16 @@ Script "QCDE_Ability_Terminator" (void)
 
 Script "QCDE_Ability_Zedek" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("QuietusAttackProc",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
 	ACS("QCDE_ZedekSwordAnimation");
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	Delay(GetDuration());
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
-
+	SetNetworkReplicationFlags( 0 );
 }
 
 Script "QCDE_ZedekSwordAnimation" (void) clientside
@@ -878,19 +1042,24 @@ Script "QCDE_QuietusVictim" (void)
 #define SHIELD_PROLONGATION 1.5
 Script "QCDE_Ability_Inquisitor" (void)
 {
-	if(tics[PlayerNumber()]) terminate;
+	int plr = PlayerNumber();
+	if(tics[plr]) terminate;
 	int stage = CheckInventory("InquisitorStageToken");
 
 	// bots only activate second stage 5% of the clicks, about every 3rd ability use, at random
 	if(stage == 1 && PlayerIsBot(PlayerNumber()) && random(0,20)) terminate;
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("InquisitorStageToken",1); // post-incrementing token count
+	SetNetworkReplicationFlags( 0 );
 
 	if(stage) terminate;
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("ReflectiveInProc",1);
+	SetNetworkReplicationFlags( 0 );
 	int baseDuration = GetDuration();
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, baseDuration);
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", baseDuration);
 	int t = baseDuration;
 	while(t --> 0)
 	{
@@ -900,15 +1069,16 @@ Script "QCDE_Ability_Inquisitor" (void)
 		if(stage > 1)
 		{
 			// stage 2: literally become shield and protec
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("ReflectiveCleanerProc",1);
 			GiveInventory("BecomeShieldProc",1);
+			SetNetworkReplicationFlags( 0 );
 			ACS_NamedExecuteAlways("QCDE_Display_Shield_Message", 0, 0);
 
 			int maxTics = baseDuration * SHIELD_PROLONGATION / 1.0;
 			int moreTics = t * SHIELD_PROLONGATION / 1.0;
 			ACS("QCDE_SetWeapon", "Shieldquisitor", moreTics);
-			ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, maxTics, moreTics);
-			SetWeapon("Shieldquisitor");
+			ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", maxTics, moreTics);
 
 			int w;
 			for(w = 0; w < NUMBER_OF_WEAPONS; w++)
@@ -920,28 +1090,36 @@ Script "QCDE_Ability_Inquisitor" (void)
 				if(GetActorProperty(0, APROP_Health) > 0) delay(1);
 				else break;
 
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("BecomeShieldCleanerProc",1);
+			SetNetworkReplicationFlags( 0 );
 			ACS_NamedExecuteAlways("QCDE_Clean_Shield_Message", 0, 0);
 
 			//Give and select fake weapon
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("FakeruWeapun",1);
 			SetWeapon("FakeruWeapun");
 			//Remove ability weapon
 			TakeInventory("Shieldquisitor",1);
-			tics[PlayerNumber()] = true; // prevent from retriggering before cooldown starts
+			SetNetworkReplicationFlags( 0 );
+			tics[plr] = 1;
 			//Select proper weapon and remove fake one
 			delay(5);
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			SetWeapon(weaponList[w]);
 			TakeInventory("FakeruWeapun",1);
+			SetNetworkReplicationFlags( 0 );
 
 			break; // exit outer loop
 		}
 
 		if(GetActorProperty(0, APROP_Health) <= 0) break;
 	}
-	tics[PlayerNumber()] = false; // required to start cooldown
-	ACS("QCDE_AbilityCooldown", GetCooldown());
+	tics[plr] = 0;
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("ReflectiveOutProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 script "QCDE_Display_Shield_Message" (void)
@@ -970,8 +1148,12 @@ Script "QCDE_Ability_Bitterman" (void)
 	int max = CheckInventory("MaxArmorToken") + 25 - CheckInventory("BasicArmor");
 	if(howmuch > max) howmuch = max;
 
-	GiveInventory("QCArmorPoint", howmuch);
+	if (GetNetworkState() != NETSTATE_CLIENT && !InDemoMode())
+		GiveInventory("QCArmorPoint", howmuch);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	TakeInventory("PowerShieldCharge", howmuch);
+	PlaySound(0,"QC/Abilities/Bitterman/ShieldRestore",CHAN_7,1.0,false,0.9);
+	SetNetworkReplicationFlags( 0 );
 
 	//The "Michaelis' Magic Code" that figures if it's coop, FFA or TDM!
 	if(GameType() < GAME_NET_DEATHMATCH || CheckInventory("TeamDeathmatch"))
@@ -983,8 +1165,6 @@ Script "QCDE_Ability_Bitterman" (void)
 		gameidentifierhere=3; //FFA
 	}
 
-	PlaySound(0,"QC/Abilities/Bitterman/ShieldRestore",CHAN_7,1.0,false,0.9);
-
 	// GetActorPitch is -0.25 at highest and +0.25 at lowest
 	// Extra height goes from +26.0 at highest to -26.0 at lowest
 	int extraheight = GetActorPitch(0) * 26 * -4;
@@ -994,9 +1174,9 @@ Script "QCDE_Ability_Bitterman" (void)
 	int z = GetActorZ(0) + 30.0 + extraheight;
 	int count = CheckInventory("PowerShieldCharge");
 	SetInventory("PowerShieldCharge", 0);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
-	if(gameidentifierhere!=3) //Not FFA
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+	if(GetNetworkState() != NETSTATE_CLIENT && !InDemoMode() && gameidentifierhere != 3) //Not FFA
 	{
 		if(IsPVE()) count = count * FixedSqrt(PlayerCount() * 2.0) / 5.0;
 		while(count --> 0)
@@ -1012,7 +1192,9 @@ Script "QCDE_Ability_Bitterman" (void)
 	}
 
 	delay(GetDuration());
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -1021,12 +1203,18 @@ Script "QCDE_Ability_Bitterman" (void)
 
 Script "QCDE_Ability_Galen" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("TotemProc",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ACS("QCDE_GalenHandAnimation");
+	SetNetworkReplicationFlags( 0 );
 	delay(GetDuration()); //duration of active ability
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -1063,19 +1251,29 @@ Script "QCDE_Ability_Nyx" (void)
 	int oz = GetActorZ(0);
 
 	// Begin
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GhostWalkInProc",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration() + NYX_TRAIL_LENGTH);
-	quieting_for[PlayerNumber()] = 0; // Disable remaining damage over time from possible Quietus hit
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration() + NYX_TRAIL_LENGTH);
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+
+	// Disable remaining damage over time from possible Quietus hit or Postal's cow head
+	quieting_for[PlayerNumber()] = 0;
+	cowgassing_for[PlayerNumber()] = 0;
+
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	LocalAmbientSound("QC/Abilities/Nyx/GhostWalkStart",127);
+	SetNetworkReplicationFlags( 0 );
 
 	// First loop: leaving slight trail
 	int counter;
 	while(counter++ < NYX_TRAIL_LENGTH) //for first N tics, it will spawn a trail every tic
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		if(counter==5||counter==10)
 			GiveInventory("GhostWalkFullTrailProc",1);
 		GiveInventory("GhostWalkTrailProc",1);
+		SetNetworkReplicationFlags( 0 );
 		delay(1);
 	}
 
@@ -1085,13 +1283,19 @@ Script "QCDE_Ability_Nyx" (void)
 	{
 		delay(5);
 		counter += 5;
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("GhostWalkFullTrailProc",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 
 	// Exit at destination
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GhostWalkOutProc",1);
+	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteAlways("QCDE_RestoreIndicator",0);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	LocalAmbientSound("QC/Abilities/Nyx/GhostWalkEnd",127);
+	SetNetworkReplicationFlags( 0 );
 
 	// Stuck check (not in PVP)
 	if(IsPVP()) terminate;
@@ -1108,7 +1312,9 @@ Script "QCDE_Ability_Nyx" (void)
 
 	// Got stuck, activate Ghost Recall
 	SetActorPosition(0, ox,oy,oz, 0);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GhostWalkOutProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -1118,21 +1324,27 @@ Script "QCDE_Ability_Nyx" (void)
 
 Script "QCDE_Ability_Sorgaul" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	PlaySound(0,"QC/Abilities/Sorgaul/RageStart",CHAN_7,1.0,false,0.8);
 	//PlaySound(0,"QC/Abilities/Sorgaul/RageLoop",CHAN_5,1.0,true,1.0); //has to be played through weapon itself
+	SetNetworkReplicationFlags( 0 );
 
 	if(PlayerIsBot(PlayerNumber()))
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("PrimalRageBotProc",1);
+		SetNetworkReplicationFlags( 0 );
 		ACS("QCDE_SetWeapon", "SorgaulFistsBot", GetDuration());
 	}
 	else
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("PrimalRageProc",1);
+		SetNetworkReplicationFlags( 0 );
 		ACS("QCDE_SetWeapon", "SorgaulFists", GetDuration());
 	}
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	int w;
 	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
@@ -1147,6 +1359,7 @@ Script "QCDE_Ability_Sorgaul" (void)
 		delay(1);
 	}
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Give and select fake weapon
 	GiveInventory("FakeruWeapun",1);
 	SetWeapon("FakeruWeapun");
@@ -1154,14 +1367,19 @@ Script "QCDE_Ability_Sorgaul" (void)
 	GiveInventory("PrimalRageCleanerProc",1);
 	TakeInventory("SorgaulFists",1);
 	TakeInventory("SorgaulFistsBot",1);
+	SetNetworkReplicationFlags( 0 );
 
 	if(!++t) // survived entire duration
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		PlaySound(0,"QC/Abilities/Sorgaul/RageEnd",CHAN_7,1.0,false,1.0);
 		StopSound(5);
+		SetNetworkReplicationFlags( 0 );
 		delay(5);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetWeapon(weaponList[w]);
 		TakeInventory("FakeruWeapun",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
@@ -1171,12 +1389,14 @@ Script "QCDE_Ability_Sorgaul" (void)
 
 Script "QCDE_Ability_DukeNukem" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	PlaySound(0,"QC/Abilities/DukeNukem/PullWeapon",CHAN_7,1.0,false,0.5);
 	GiveInventory("DukeFreezerProc",1);
+	SetNetworkReplicationFlags( 0 );
 	ACS("QCDE_SetWeapon", "DukeFreezeThrower", GetDuration());
 
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	int w;
 	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
@@ -1191,24 +1411,31 @@ Script "QCDE_Ability_DukeNukem" (void)
 		delay(1);
 	}
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Give and select fake weapon
 	GiveInventory("FakeruWeapun",1);
 	SetWeapon("FakeruWeapun");
 	//Remove ability weapon
 	GiveInventory("DukeFreezerCleanerProc",1);
 	TakeInventory("DukeFreezeThrower",1);
+	SetNetworkReplicationFlags( 0 );
 
 	if(!++t) // survived entire duration
 	{
 		delay(5);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetWeapon(weaponList[w]);
 		TakeInventory("FakeruWeapun",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
 #define BALLS_TIL_FREEZE 5
 Script "QCDE_StartFreezeCounter" (void)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
+
 	int t = 35*3;	//window to connect freezeballs to freeze solid
 	int tokensnow, tokensbefore;
 
@@ -1229,6 +1456,7 @@ Script "QCDE_StartFreezeCounter" (void)
 			//Freeze for ~2.5sec
 			delay(88);
 
+			SyncPlayerNetwork( PlayerNumber() );
 			SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
 			TakeInventory("PowerIceProtection",1);
 			delay(35);			//tiny window in which player cant be frozen again
@@ -1276,6 +1504,9 @@ script "QCDE_FreezeShotHits" (void)
 // Activator: frostbitten victim
 script "QCDE_HitByFreezeShot" (void)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
+
 	// This distance goes from center of freeze shot to center of player,
 	// so should have quite some wiggle room
 	int radius = 50;
@@ -1313,10 +1544,15 @@ Script "QCDE_Ability_Durandal" (void)
 	if(gametype()>=2)
 		BobType="SingleBOBDMProc";
 
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	PlaySound(0,"QC/Abilities/Durandal/Summon",CHAN_7,0.7,false,0.5);
 	PlaySound(0,"QC/Abilities/Durandal/FBTVCrandom",CHAN_VOICE,1.0,false,0.7);
+	SetNetworkReplicationFlags( 0 );
+
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
 
 	while(counter++ < How_Many_Bobs_PvX) //Spawn N bobs
 	{
@@ -1341,8 +1577,13 @@ Script "QCDE_Ability_Durandal" (void)
 
 Script "QCDE_Ability_Keel" (void)
 {
-	if(ACS("QCDE_AbilityCooldown", GetCooldown()))
+	if(ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
+	{
+		extraAbilityData[PlayerNumber()]++;
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("KeelFireGrenProc",1); //Fire grenade
+		SetNetworkReplicationFlags( 0 );
+	}
 }
 
 
@@ -1353,21 +1594,25 @@ Script "QCDE_Ability_Keel" (void)
 Script "QCDE_Ability_LoWang" (void)
 {
 	int counter;
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("NobitsuraProc1",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
 	ACS("QCDE_NobitsuraAnimation");
-
 	GiveInventory("ThirdPersonPunch",1);
-
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	delay(12);
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("NobitsuraProc2",1);
+	SetNetworkReplicationFlags( 0 );
 
 	delay(7);
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	TakeInventory("ThirdPersonPunch",32767);
+	SetNetworkReplicationFlags( 0 );
 }
 
 Script "QCDE_NobitsuraAnimation" (void) clientside
@@ -1381,7 +1626,6 @@ Script "QCDE_NobitsuraAnimation" (void) clientside
 
 	delay(8);
 
-	GiveInventory("NobitsuraProc2",1);
 	DrawWeapon("QP18X0",  300.1, 180.1);	delay(1);
 	DrawWeapon("QP18X0",  250.1, 187.1);	delay(1);
 	DrawWeapon("QP18X0",  175.1, 194.1);	delay(1);
@@ -1411,29 +1655,37 @@ Script "QCDE_Ability_Grayson" (void)
 	if(CheckInventory("ThumperReadyToken"))
 	{
 		// Second press on ability key signalling to fire
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		TakeInventory("ThumperReadyToken",1);
+		SetNetworkReplicationFlags( 0 );
 		terminate;
 	}
 
 	//Stop regular weapons and show ability used
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("DisableWeaponProc",1);
 	GiveInventory("ThumpSoundAndHaloProc",1);
 	GiveInventory("ThumperArmingToken",1);
+	SetNetworkReplicationFlags( 0 );
 
 	//Spawn player sparks
 	while(i < TICS_BEFORE_THUMPER)
 	{
 		if(GetActorProperty(0, APROP_HEALTH) <= 0) break;
 
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("PlayerThumpSparkerProc",1);
 		GiveInventory("ActiveProgressToken",256 * TICS_BETWEEN_SPARKS / TICS_BEFORE_THUMPER);
+		SetNetworkReplicationFlags( 0 );
 		Delay(TICS_BETWEEN_SPARKS);
 		i += TICS_BETWEEN_SPARKS;
 	}
 
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration() - TICS_BEFORE_THUMPER);
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration() - TICS_BEFORE_THUMPER);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	TakeInventory("ThumperArmingToken",1);
 	GiveInventory("ThumperReadyToken",1);
+	SetNetworkReplicationFlags( 0 );
 
 	//Continue spawning sparks, and fire when ready
 	while(i < GetDuration())
@@ -1442,19 +1694,25 @@ Script "QCDE_Ability_Grayson" (void)
 		if(GetActorProperty(0, APROP_HEALTH) <= 0) break;
 		if(!CheckInventory("ThumperReadyToken")) break; // means other instance sends signal to fire
 
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("PlayerThumpSparkerProc",1);
+		SetNetworkReplicationFlags( 0 );
 		Delay(TICS_BETWEEN_SPARKS);
 		i += TICS_BETWEEN_SPARKS;
 	}
 
 	//Fire projectile
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("ThumperShootProc",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	Delay(5);	//slight delay before he can shoot again
 
 	//Clean the rest
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -1508,6 +1766,7 @@ Script "QCDE_ThumperAffected" (void)
 		}
 		velz = GetActorVelZ(0);
 		if(velz < 0) velz = 0;
+		SetActorVelocity(0, 0,0,0.05, true,false); // QZan only! Ensure some upward momentum for the ceiling check to work
 		delay(1);
 	}
 
@@ -1548,22 +1807,33 @@ function int HostileCheck (int friendOrFoe, int blockable)
 
 Script "QCDE_Ability_Eradicator" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	LocalAmbientSound("QC/Abilities/Eradicator/Radar",127);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	for(int t = GetDuration(); t; t--)
 	{
 		// ensures radar persists regardless of possible death
-		if(!CheckInventory("Radar") && CheckInventory("Class_Eradicator")) GiveInventory("Radar",1);
+		if(!CheckInventory("Radar") && CheckInventory("Class_Eradicator"))
+		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+			GiveInventory("Radar",1);
+			SetNetworkReplicationFlags( 0 );
+		}
 		if(!CheckInventory("ActiveInProgress"))
 		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("ActiveInProgress",1);
-			ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, t);
+			SetNetworkReplicationFlags( 0 );
+			ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", t);
 		}
 		delay(1);
 	}
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 //---------------------------------
@@ -1571,8 +1841,10 @@ Script "QCDE_Ability_Eradicator" (void)
 
 Script "QCDE_Ability_Blazkowicz" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	PlaySound(0,"QC/Abilities/Blazkowicz/AbilityVoice",CHAN_VOICE,0.75,false,1.0);
 	SetPlayerProperty(0,1,PROP_INSTANTWEAPONSWITCH);
+	SetNetworkReplicationFlags( 0 );
 
 	if(PlayerIsBot(PlayerNumber()))
 	{
@@ -1581,12 +1853,14 @@ Script "QCDE_Ability_Blazkowicz" (void)
 	}
 	else
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("AkimboProc",1);
+		SetNetworkReplicationFlags( 0 );
 		ACS("QCDE_SetWeapon", "BlazkoAkimbo", GetDuration());
 	}
 
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	int w;
 	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
@@ -1601,6 +1875,7 @@ Script "QCDE_Ability_Blazkowicz" (void)
 		delay(1);
 	}
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Give and select fake weapon
 	GiveInventory("FakeruWeapun",1);
 	SetWeapon("FakeruWeapun");
@@ -1608,24 +1883,31 @@ Script "QCDE_Ability_Blazkowicz" (void)
 	GiveInventory("AkimboCleanerProc",1);
 	TakeInventory("BlazkoAkimbo",1);
 	TakeInventory("BlazkoAkimboBot",1);
+	SetNetworkReplicationFlags( 0 );
 
 	if(!++t) // survived entire duration
 	{
 		delay(5);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetWeapon(weaponList[w]);
 		TakeInventory("FakeruWeapun",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
 script "BJTimerLeft" (void)
 {
 	delay(28);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	TakeInventory("BJLeft",1);
+	SetNetworkReplicationFlags( 0 );
 }
 script "BJTimerRight" (void)
 {
 	delay(28);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	TakeInventory("BJRight",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -1634,25 +1916,38 @@ script "BJTimerRight" (void)
 
 Script "QCDE_Ability_Freeman" (void)
 {
-	if(ACS("QCDE_AbilityCooldown", GetCooldown()))
+	if(ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
 	{
+		extraAbilityData[PlayerNumber()]++;
 		if(checkInventory("DMToken"))	//DM version does 3 blasts to deflect projectiles
 		{
-			ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+			ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("PvPBlastInitialProc",1); //spawns FX, deals 10dmg of explosion, and A_Blast
+			SetNetworkReplicationFlags( 0 );
 			Delay(6);
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("PvPBlastExtraProc",1); //does only A_Blast
+			SetNetworkReplicationFlags( 0 );
 			Delay(6);
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("PvPBlastExtraProc",1); //does only A_Blast
+			SetNetworkReplicationFlags( 0 );
 			delay(GetDuration()-12); //duration of ability, minus x tics due to those 2 "delay(y)"
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("GenericActiveCleanerProc",1);
+			SetNetworkReplicationFlags( 0 );
 		}
 		else		//PvE version does a single a_blast that pushes enemies and deals damage to them
 		{
-			ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+			ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("PvEBlastProc",1); //spawns FX and A_Blast
+			SetNetworkReplicationFlags( 0 );
 			delay(GetDuration()); //duration of active ability
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("GenericActiveCleanerProc",1);
+			SetNetworkReplicationFlags( 0 );
 		}
 	}
 }
@@ -1663,11 +1958,15 @@ Script "QCDE_Ability_Freeman" (void)
 
 Script "QCDE_Ability_VorMatur" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("DarkeningProc",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 	Delay(GetDuration());
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 int darkener_now;
@@ -1689,7 +1988,9 @@ Script "QCDE_DarkenedVictim" (void)
 
 	if(PlayerIsBot(PlayerNumber())) GiveInventory("NoWeaponFireToken",1);
 
+	SetNetworkReplicationFlags( NETREP_NOUNLAGGED );
 	SpawnProjectile(0, "BlindVisualizer", 0,0,0,0,0);
+	SetNetworkReplicationFlags( 0 );
 
 	int t = (DARKEN_DURATION + DARKEN_FADEIN + DARKEN_FADEOUT) * 35 / 1.0;
 	while(t --> 0)
@@ -1727,62 +2028,99 @@ Script "QCDE_Ability_Eleena" (void)
 	{
 		SetActorState(doptid, "Vanish"); // Vanish other possible doppelgangers
 
-		SpawnForced("Doppelganger", px,py,pz, doptid, pan >> 8);
-		SetInventory("PowerShieldCharge", 3);
-		SetActorVelocity(doptid, pxs,pys,pzs, false, true);
-		GiveActorInventory(doptid, "TeamColor", CheckInventory("TeamColor"));
-		ACS("QCDE_ColorDoppelganger_CLIENTSIDE");
-		GiveInventory("ActiveInProgress",1);
-		ACS("QCDE_AbilityCooldown", GetCooldown());
-		ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
-		PlaySound(0,"QC/Abilities/Eleena/Activate",CHAN_AUTO,1.0,0,1.5);
+		if (GetNetworkState() != NETSTATE_CLIENT && !InDemoMode())
+		{
+			SpawnForced("Doppelganger", px,py,pz, doptid, pan >> 8);
+			SetActorVelocity(doptid, pxs,pys,pzs, false, true);
+			GiveActorInventory(doptid, "TeamColor", CheckInventory("TeamColor"));
 
-		SetActivator(doptid);
-		SetPointer(AAPTR_MASTER,plrtid);
-		SetActivator(plrtid);
+			ACS("QCDE_ColorDoppelganger_CLIENTSIDE");
+		}
+
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		SetInventory("PowerShieldCharge", 3);
+		SetNetworkReplicationFlags( 0 );
+
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		GiveInventory("ActiveInProgress",1);
+		SetNetworkReplicationFlags( 0 );
+		ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+		ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		PlaySound(0,"QC/Abilities/Eleena/Activate",CHAN_AUTO,1.0,0,1.5);
+		SetNetworkReplicationFlags( 0 );
+
+		if (GetNetworkState() != NETSTATE_CLIENT && !InDemoMode())
+		{
+			SetActivator(doptid);
+			SetPointer(AAPTR_MASTER,plrtid);
+			SetActivator(plrtid);
+		}
 
 		int t = GetDuration();
 		while(t --> 0) delay(1);
 
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("PowerShieldCharge", 0);
 		GiveInventory("GenericActiveCleanerProc", 1);
+		SetNetworkReplicationFlags( 0 );
 		terminate;
 	}
 
 	if(!CheckInventory("ActiveProgressToken")) terminate;
 
 	if(!CheckInventory("PowerShieldCharge")) terminate;
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	TakeInventory("PowerShieldCharge", 1);
+	SetNetworkReplicationFlags( 0 );
 
-	// pxs, pys, pzs, dxs, dys, dzs
-	int dxs = GetActorVelX(doptid);
-	int dys = GetActorVelY(doptid);
-	int dzs = GetActorVelZ(doptid);
-	int dan = GetActorAngle(doptid);
-	int dpi = GetActorPitch(doptid);
+	// dx, dy, dz, pxs, pys, pzs, dxs, dys, dzs
+	int dx = GetActorX(doptid); int dxs = GetActorVelX(doptid);
+	int dy = GetActorY(doptid); int dys = GetActorVelY(doptid);
+	int dz = GetActorZ(doptid); int dzs = GetActorVelZ(doptid);
+	//int dan = GetActorAngle(doptid);
+	//int dpi = GetActorPitch(doptid);
+
+	SetPredictableValue(0, 0, 1);
+	SetPredictableValue(0, 1, dx);
+	SetPredictableValue(0, 2, dy);
+	SetPredictableValue(0, 3, dz);
+	SetPredictableValue(0, 4, dxs);
+	SetPredictableValue(0, 5, dys);
+	SetPredictableValue(0, 6, dzs);
+	//SetPredictableValue(0, 7, dan);
+	//SetPredictableValue(0, 8, dpi);
 
 	// warp p to d; thrust p like d; turn p like d
 	int recalltid = UniqueTid();
-	SpawnForced("MapSpot", px,py,pz, recalltid);
+	if (GetNetworkState() != NETSTATE_CLIENT && !InDemoMode())
+	{
+		SpawnForced("MapSpot", px,py,pz, recalltid);
+	}
 
-	Thing_Move(plrtid, doptid, true);
+	Warp(0, dx, dy, dz, 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION);
 	SetActorVelocity(plrtid, dxs,dys,dzs, false, true);
 	//SetActorAngle(plrtid, dan);
 	//SetActorPitch(plrtid, dpi);
 
 	// warp d to p; thrust d like p; turn d like p
-	GiveActorInventory(doptid, "DrawAttentionProc", 1);
-	Thing_Move(doptid, recalltid, true);
-	GiveActorInventory(doptid, "DrawAttentionProc", 1);
-	SetActorVelocity(doptid, pxs,pys,pzs, false, true);
-	SetActorAngle(doptid, pan);
-	SetActorPitch(doptid, ppi);
+	if (GetNetworkState() != NETSTATE_CLIENT && !InDemoMode())
+	{
+		GiveActorInventory(doptid, "DrawAttentionProc", 1);
+		Thing_Move(doptid, recalltid, true);
+		GiveActorInventory(doptid, "DrawAttentionProc", 1);
+		SetActorVelocity(doptid, pxs,pys,pzs, false, true);
+		SetActorAngle(doptid, pan);
+		SetActorPitch(doptid, ppi);
 
-	Thing_Remove(recalltid);
+		Thing_Remove(recalltid);
+	}
 
 	// FX
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	PlaySound(doptid,"QC/Abilities/Eleena/SwapFake",CHAN_AUTO,1.0,false,1.5); // fake Eleena sound
 	GiveInventory("EleenaSwapProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 Script "QCDE_ColorDoppelganger_CLIENTSIDE" (void) CLIENTSIDE
@@ -1832,6 +2170,23 @@ Script "QCDE_DoppelgangerSpawned" (void)
 	SetActorState(0, "Vanish");
 }
 
+// Activator: Player
+script "QCDE_EleenaSwapPredictedUse" (void)
+{
+	int posX = GetPredictableValue(0, 1);
+	int posY = GetPredictableValue(0, 2);
+	int posZ = GetPredictableValue(0, 3);
+	int velX = GetPredictableValue(0, 4);
+	int velY = GetPredictableValue(0, 5);
+	int velZ = GetPredictableValue(0, 6);
+	//int angle = GetPredictableValue(0, 7); // pitch and angle are commented out in activation script
+	//int pitch = GetPredictableValue(0, 8);
+	Warp(0, posX, posY, posZ, 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION);
+	SetActorVelocity(0, velX,velY,velZ, false, true);
+	//SetActorAngle(0, angle);
+	//SetActorPitch(0, pitch);
+}
+
 
 //---------------------------------
 //		Lucienne's Active
@@ -1843,10 +2198,13 @@ Script "QCDE_DoppelgangerSpawned" (void)
 
 Script "QCDE_Ability_Lucienne" (void)
 {
-	if(ACS("QCDE_AbilityCooldown", GetCooldown()))
+	if(ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
 	{
+		extraAbilityData[PlayerNumber()]++;
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("LucienneFireBallProc",1); //Fire ball
 		ACS("QCDE_LucienneHandAnimation");
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
@@ -1942,8 +2300,9 @@ Script "QCDE_Ability_Major" (void)
 	int rocketsfired=0;
 	int duration;
 	int imabot;
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("ActiveInProgress",1);
 	GiveInventory("NoWeaponFireToken",1);
 
@@ -1951,6 +2310,7 @@ Script "QCDE_Ability_Major" (void)
 
 	//PlaySound(0, "QC/Abilities/Major/IncomingVO", CHAN_VOICE, 1.0, false, 1.0);
 	PlaySound(0, "QC/Abilities/Major/Activate", 7, 0.8, false, 0.3);
+	SetNetworkReplicationFlags( 0 );
 
 	if(PlayerIsBot(PlayerNumber()))
 		imabot=1;
@@ -1961,10 +2321,12 @@ Script "QCDE_Ability_Major" (void)
 	{
 		if (GetPlayerInput(-1, INPUT_BUTTONS) & BT_ATTACK || imabot>=1 )
 		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			GiveInventory("MajorAirStrikeProc",1);
 			AmbientSound("QC/Abilities/Major/Launch",64);	//everyone hears it low
 			rocketsfired++;
 			TakeInventory("StrikesCounter",1);
+			SetNetworkReplicationFlags( 0 );
 			ACS("QCDE_MajorCharges", CheckInventory("StrikesCounter"), true);
 			delay(10);
 			duration=duration+10;
@@ -1975,9 +2337,11 @@ Script "QCDE_Ability_Major" (void)
 		{
 			while(rocketsfired<MAJOR_ROCKETS)
 			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 				GiveInventory("MajorAirStrikeShortProc",1);
 				rocketsfired++;
 				TakeInventory("StrikesCounter",1);
+				SetNetworkReplicationFlags( 0 );
 				ACS("QCDE_MajorCharges", CheckInventory("StrikesCounter"), true);
 				delay(10);
 			}
@@ -1986,10 +2350,14 @@ Script "QCDE_Ability_Major" (void)
 
 	while(CheckInventory("StrikesCounter"))
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		TakeInventory("StrikesCounter",1);
+		SetNetworkReplicationFlags( 0 );
 		ACS("QCDE_MajorCharges", CheckInventory("StrikesCounter"), true);
 	}
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 
@@ -2022,11 +2390,15 @@ Script "QCDE_BombIncoming" (void)
 
 Script "QCDE_Ability_Hunter" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("HunterSkullProc",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 	delay(GetDuration()); //duration of active ability
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("HunterCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 Script "QCDE_SkullSpawned" (void)
@@ -2074,12 +2446,14 @@ Script "QCDE_HasLivingTarget" (void)
 
 Script "QCDE_Ability_Sam" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	PlaySound(0,"QC/Abilities/Sam/Activate",CHAN_7,0.85,false,0.5);
 	GiveInventory("SamMinigunProc",1);
+	SetNetworkReplicationFlags( 0 );
 	ACS("QCDE_SetWeapon", "SamMinigun", GetDuration());
 
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	// Rocket arena special case: disable infinite ammo for duration
 	if(CheckInventory("RocketArena")) TakeInventory("PowerInfiniteAmmo",1);
@@ -2104,6 +2478,7 @@ Script "QCDE_Ability_Sam" (void)
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
 
 	//Give and select fake weapon
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("FakeruWeapun",1);
 	SetWeapon("FakeruWeapun");
 	//Remove ability weapon
@@ -2113,15 +2488,23 @@ Script "QCDE_Ability_Sam" (void)
 		GiveInventory("SeriousBullets",80);
 	else
 		GiveInventory("SeriousBullets",120);
+	SetNetworkReplicationFlags( 0 );
 
 	// Rocket arena special case: reenable infinite ammo for duration
-	if(CheckInventory("RocketArena")) GiveInventory("EndlessInfiniteAmmo",1);
+	if(CheckInventory("RocketArena"))
+	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		GiveInventory("EndlessInfiniteAmmo",1);
+		SetNetworkReplicationFlags( 0 );
+	}
 
 	if(!++t) // survived entire duration
 	{
 		delay(5);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetWeapon(weaponList[w]);
 		TakeInventory("FakeruWeapun",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
@@ -2131,11 +2514,13 @@ Script "QCDE_Ability_Sam" (void)
 
 Script "QCDE_Ability_Postal" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("PostalCowProc",1);
+	SetNetworkReplicationFlags( 0 );
 	ACS("QCDE_SetWeapon", "PostalCowHead", GetDuration());
 
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	int w;
 	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
@@ -2156,22 +2541,28 @@ Script "QCDE_Ability_Postal" (void)
 
 	if(checkinventory("CowHeadToken"))
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("PostalCowDropProc",1);
 		TakeInventory("CowHeadToken",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 
 	//Give and select fake weapon
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("FakeruWeapun",1);
 	SetWeapon("FakeruWeapun");
 	//Remove ability weapon
 	GiveInventory("PostalCowCleanerProc",1);
 	TakeInventory("PostalCowHead",1);
+	SetNetworkReplicationFlags( 0 );
 
 	if(!++t) // survived entire duration
 	{
 		delay(5);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetWeapon(weaponList[w]);
 		TakeInventory("FakeruWeapun",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
@@ -2263,17 +2654,23 @@ Script "QCDE_Ability_Painkiller" (void)
 	if(ad_axis < 0) buttons |= BT_MOVELEFT;
 	if(ad_axis > 0) buttons |= BT_MOVERIGHT;
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	// Sound cue
 	PlaySound(0,"QC/Abilities/Painkiller/Choose",CHAN_7,1.0,false,0.9);
 
 	// Input stage
 	GiveInventory("ActiveInProgress",1);
+	SetNetworkReplicationFlags( 0 );
 	if(!PlayerIsBot(PlayerNumber()))
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
 		// "Make your selection" visuals
 		if(time % 35 == 0)
+		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			ACS("QCDE_Tarot_Hint");
+			SetNetworkReplicationFlags( 0 );
+		}
 
 		oldbuttons = buttons;
 		buttons = 0;
@@ -2286,21 +2683,27 @@ Script "QCDE_Ability_Painkiller" (void)
 
 		if (triggers & CARD_BUTTONS && !oldbuttons)
 		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			if(triggers & BT_MOVELEFT)  { ACS("QCDE_Tarot_Hint_Success", 1, ++card1, ++cards); lastTapValue = 1; }
 			if(triggers & BT_FORWARD)   { ACS("QCDE_Tarot_Hint_Success", 2, ++card2, ++cards); lastTapValue = 2; }
 			if(triggers & BT_MOVERIGHT) { ACS("QCDE_Tarot_Hint_Success", 3, ++card3, ++cards); lastTapValue = 3; }
+			SetNetworkReplicationFlags( 0 );
 		}
 
 		if(cards >= CARDS_TO_PICK) break;
 		if(time++ > CARD_SELECT_TIME) break;
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("ActiveProgressToken",256 * time / CARD_SELECT_TIME);
+		SetNetworkReplicationFlags( 0 );
 
 		// Oops! Turned into a demon
 		if(CheckInventory("PowerDemonMorph"))
 		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			SetInventory("ActiveProgressToken",no);
 			SetInventory("ActiveInProgress",no);
 			ACS("QCDE_Tarot_Hint_End");
+			SetNetworkReplicationFlags( 0 );
 			terminate;
 		}
 
@@ -2312,28 +2715,36 @@ Script "QCDE_Ability_Painkiller" (void)
 	case 2: card2 = 3; cards = 3; break;
 	case 3: card3 = 3; cards = 3; break;
 	}
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	TakeInventory("ActiveInProgress",1);
+	SetNetworkReplicationFlags( 0 );
 
 	// Selection not started, punish
 	if(cards == 0)
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("ActiveProgressToken",no);
 		ACS("QCDE_Tarot_Hint_Failure");
-		ACS("QCDE_AbilityCooldown", GetCooldown() / CARD_CD_PENALTY_DIVISOR);
+		SetNetworkReplicationFlags( 0 );
+		ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown() / CARD_CD_PENALTY_DIVISOR);
 		terminate;
 	}
 
 	// Selection unfinished, auto complete
 	while(cards < CARDS_TO_PICK && lastTapValue)
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("ActiveProgressToken",no);
+		SetNetworkReplicationFlags( 0 );
 		//log(n:0, s:" hasn't selected all cards. Autofill: ", d:card1, s:", ", d:card2, s:", ", d:card3);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		switch(lastTapValue)
 		{
 		case 1: ACS("QCDE_Tarot_Hint_Success", 1, ++card1, ++cards); break;
 		case 2: ACS("QCDE_Tarot_Hint_Success", 2, ++card2, ++cards); break;
 		case 3: ACS("QCDE_Tarot_Hint_Success", 3, ++card3, ++cards); break;
 		}
+		SetNetworkReplicationFlags( 0 );
 	}
 
 	// Sanity checks
@@ -2343,22 +2754,27 @@ Script "QCDE_Ability_Painkiller" (void)
 	}
 
 	// Selection complete, apply effects
-	ACS("QCDE_Tarot_Hint_Apply");
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	PlaySound(0,"QC/Abilities/Painkiller/Apply",CHAN_7,1.0,false,0.9);
+	ACS("QCDE_Tarot_Hint_Apply");
 	GiveInventory("ActiveInProgress",1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 	if(IsPvP())
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory(strparam(s:"PainkillerCard1Level", d:card1), 1);
 		GiveInventory(strparam(s:"PainkillerCard2Level", d:card2), 1);
 		GiveInventory(strparam(s:"PainkillerCard3Level", d:card3), 1);
+		SetNetworkReplicationFlags( 0 );
 	}
 	else
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory(strparam(s:"PvEPainkillerCard1Level", d:card1), 1);
 		GiveInventory(strparam(s:"PvEPainkillerCard2Level", d:card2), 1);
 		GiveInventory(strparam(s:"PvEPainkillerCard3Level", d:card3), 1);
+		SetNetworkReplicationFlags( 0 );
 	}
 	str class = strparam(s:"TarotOverhead", d:(!!card1 << 0) | (!!card2 << 1) | (!!card3 << 2));
 	SpawnProjectile(0,class,0,0,0,0,0);
@@ -2368,11 +2784,11 @@ Script "QCDE_Ability_Painkiller" (void)
 	while(t --> 0) if(GetActorProperty(0, APROP_Health) > 0  &&  !CheckInventory("NoAbilitiesToken")) delay(1);
 
 	// End of effects
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ACS("QCDE_Tarot_Hint_End");
 	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
 }
-
-
 
 //---------------------------------
 //		Intruder's Active
@@ -2381,18 +2797,23 @@ Script "QCDE_Ability_Intruder" (void)
 {
 	int counter;
 	// Begin
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("WendigoInProc",1);
 	TakeInventory("PowerIntruderSpeed",1);	//cancels passive buffs
 	TakeInventory("PowerIntruderProtect",1); //cancels passive buffs
 
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, GetDuration());
+	SetNetworkReplicationFlags( 0 );
+
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
 	// Disable remaining damage over time from possible Quietus hit or Postal's cow head
 	quieting_for[PlayerNumber()] = 0;
 	cowgassing_for[PlayerNumber()] = 0;
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ACS("QCDE_IntruderLoop");
+	SetNetworkReplicationFlags( 0 );
 
 	// Main loop: Battles between visible and fadeout
 	counter=0;
@@ -2400,7 +2821,9 @@ Script "QCDE_Ability_Intruder" (void)
 	{
 		if(CheckInventory("IntruderFadeBreakToken"))	//if token (given by fire and pain states in player def)
 		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			ACS_NamedExecuteAlways("IntruderRestoreVisibility",0);  //makes visible
+			SetNetworkReplicationFlags( 0 );
 			delay(10);                                              //and waits a bit before trying to fadeout again
 			counter += 10;
 		}
@@ -2408,10 +2831,12 @@ Script "QCDE_Ability_Intruder" (void)
 		{
 			if(GetActorProperty(0,APROP_Alpha)>0)
 			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 				ACS_NamedExecuteAlways("IntruderFadeOut",0);
+				SetNetworkReplicationFlags( 0 );
 			}
 
-			If(random(1,10)==1)	//small % of the time it will deal damage to enemies
+			If(random(1,10)==1 && GetNetworkState() != NETSTATE_CLIENT && !InDemoMode())	//small % of the time it will deal damage to enemies
 				GiveInventory("WendigoAuraDmgProc",1);
 
 			delay(1);
@@ -2420,8 +2845,10 @@ Script "QCDE_Ability_Intruder" (void)
 	}
 
 	// Exit at destination
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ACS_NamedExecuteAlways("IntruderRestoreVisibility",0);  //makes visible again
 	GiveInventory("WendigoOutProc",1);
+	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteAlways("QCDE_RestoreIndicator",0);
 	//LocalAmbientSound("QC/Abilities/Nyx/GhostWalkEnd",127);
 }
@@ -2431,10 +2858,14 @@ Script "IntruderFadeOut" (void)
 {
 	int counter=10;
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	SetActorProperty(0,APROP_RenderStyle,STYLE_Translucent);
+	SetNetworkReplicationFlags( 0 );
 	while(counter>0)
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetActorProperty(0,APROP_Alpha,counter*0.1);
+		SetNetworkReplicationFlags( 0 );
 		//printbold(f:counter*0.1);
 		counter--;
 		delay(1);
@@ -2447,24 +2878,32 @@ Script "IntruderFadeOut" (void)
 
 	if(!CheckInventory("IntruderFadeBreakToken"))	//if the loop wasnt interrupted, then fully invis
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetActorProperty(0,APROP_Alpha,0);
 		GiveInventory("WendiInvisPowerUpProc",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 	else	//if it was interrupted, then go full visible
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetActorProperty(0,APROP_RenderStyle,STYLE_Normal);
 		SetActorProperty(0,APROP_Alpha,1.0);
 		GiveInventory("WendiInvisPowerDownProc",1);
+		SetNetworkReplicationFlags( 0 );
 	}
 }
 
 Script "IntruderRestoreVisibility" (void)
 {
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	SetActorProperty(0,APROP_RenderStyle,STYLE_Normal);
 	SetActorProperty(0,APROP_Alpha,1.0);
 	GiveInventory("WendiInvisPowerDownProc",1);
+	SetNetworkReplicationFlags( 0 );
 	delay(2);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	TakeInventory("IntruderFadeBreakToken",1);
+	SetNetworkReplicationFlags( 0 );
 }
 
 #define WENDIGO_ALERT_COOLDOWN   60
@@ -2516,8 +2955,6 @@ Script "QCDE_IntruderLoop" (void) CLIENTSIDE
 // Activator: Player
 script "QCDE_DireOrbThrown" (void)
 {
-	if(tics[PlayerNumber()]) terminate;
-
 	int tid = GetActorProperty(0, APROP_TargetTID) + 64;
 	Thing_Remove(tid);
 	Thing_ChangeTID(0, tid);
@@ -2526,12 +2963,43 @@ script "QCDE_DireOrbThrown" (void)
 // Activator: Player
 script "QCDE_DireOrbUsed" (void)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT && PlayerNumber() != ConsolePlayerNumber())
+		terminate;
+
+	if (GetNetworkState() != NETSTATE_SERVER)
+		extraAbilityData[PlayerNumber()] = true;
 	int tid = 1000+64 + PlayerNumber();
+
+	int posX = GetActorX(tid);
+	int posY = GetActorY(tid);
+	int posZ = GetActorZ(tid);
+
+	SetPredictableValue(0, 0, 1);
+	SetPredictableValue(0, 1, posX);
+	SetPredictableValue(0, 2, posY);
+	SetPredictableValue(0, 3, posZ);
 	Teleport_NoFog(tid, 0, 0, FALSE);
+
 	Thing_Remove(tid);
+	SetNetworkReplicationFlags( NETREP_NOUNLAGGED );
 	SpawnProjectile(0, "DireOrbExploder", 0, 0, 0, 0, 0);
+	SetNetworkReplicationFlags( 0 );
+
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+
 	delay(1); //waits a bit
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("DireOrbTeleFogOutProc",1); //then spawns dire orb fog, which also plays sound
+	SetNetworkReplicationFlags( 0 );
+}
+
+// Activator: Player
+script "QCDE_DireOrbPredictedUse" (void)
+{
+	int posX = GetPredictableValue(0, 1);
+	int posY = GetPredictableValue(0, 2);
+	int posZ = GetPredictableValue(0, 3);
+	SetActorPosition(0, posX, posY, posZ, false);
 }
 
 // Activator: Dire Orb
@@ -2539,9 +3007,20 @@ script "QCDE_DireOrbTimedOut" (void)
 {
 	SetActivatorToTarget(0);
 	// Activator: Player
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-	delay(3);
-	TakeInventory("TeleporterThrownToken",1);
+	if (extraAbilityData[PlayerNumber()] == false) {
+		if (GetNetworkState() != NETSTATE_SERVER)
+			extraAbilityData[PlayerNumber()] = true;
+		ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+		if (GetNetworkState() == NETSTATE_SERVER)
+			ACS("QCDE_DireOrbTimedOutClientside");
+		delay(3);
+		TakeInventory("TeleporterThrownToken",1);
+	}
+}
+
+script "QCDE_DireOrbTimedOutClientside" (void) clientside
+{
+	ACS("QCDE_DireOrbTimedOut");
 }
 
 Script "QCDE_SetWeapon" (int weapon, int tics)
@@ -2549,7 +3028,9 @@ Script "QCDE_SetWeapon" (int weapon, int tics)
 	while(tics --> 0)
 	{
 		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetWeapon(weapon);
+		SetNetworkReplicationFlags( 0 );
 		delay(1);
 	}
 }
@@ -2907,18 +3388,32 @@ script "QCDE_MaulotaurSpawned" (void)
 	// Activator: Player
 	SetActivator(plrtid);
 	delay(1);
-	ACS("QCDE_AbilityCooldown", GetCooldown());
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
+
+
+	if (extraAbilityData[plr])
+	{
+		// previous maulotaur's clock is still ticking
+		// just update the timer and leave
+		extraAbilityData[plr] = MAULOTAUR_DURATION;
+		terminate;
+	}
+
 	GiveInventory("MaulotaurAliveToken", 1);
 
 	// Keep track of current Maulotaur, and kill it in 25 seconds.
-	int ttl = MAULOTAUR_DURATION;
-	while(ttl --> 0)
+	extraAbilityData[plr] = MAULOTAUR_DURATION;
+	while(extraAbilityData[plr] --> 0)
 	{
 		if(GetActorProperty(tid, APROP_HEALTH) <= 0) break;
 		SetInventory("MaulotaurAliveToken", true);
 		delay(35);
 	}
 
+	extraAbilityData[plr] = 0;
 	SetInventory("MaulotaurAliveToken", false);
 
 	Thing_Destroy(tid);
@@ -2957,6 +3452,9 @@ Script "QCDE_DavieDontHurtMeDontHurtMeNoMore" (void)
 // Activator: Player
 script "QCDE_Hourglass" (int percentage, int nosandswirl)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
+
 	if(!percentage) terminate;
 
 	int take = GetCooldown() * percentage / 100;
@@ -2978,8 +3476,20 @@ script "QCDE_Hourglass" (int percentage, int nosandswirl)
 	SetFont("BLINKGLD");
 	//HudMessage(s:"A"; HUDMSG_FADEOUT, 3245, CR_UNTRANSLATED, 700.0, 911.0, 0.08, 0.005 * percentage);
 	if(!nosandswirl) ACS("QCDE_BlinkSandwatch");
-	tics[PlayerNumber()] -= take;
-    if(tics[PlayerNumber()] < 0) tics[PlayerNumber()] = 0;
+	int plr = PlayerNumber();
+	tics[plr] -= take;
+    if(tics[plr] < 0)
+    	tics[plr] = 0;
+
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS("QCDE_Hourglass_Replicate", tics[plr]);
+}
+
+script "QCDE_Hourglass_Replicate" (int tics)
+{
+	delay(1);
+	//log(s:"QCDE_Hourglass: Sending ", d:tics[plr]);
+	ACS("QCDE_AbilityCooldown_CLIENTSIDE", tics > 0 ? tics - 1 : 0, true);
 }
 
 script "QCDE_BlinkSandwatch" (void) clientside
@@ -3247,7 +3757,9 @@ Script "QCDE_Passive_Zedek" (void)
 		if(zs0 < -ZEDEK_MIN_FALL_SPEED && !zs1)
 		{
 			landSpeed = -zs0;
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER | NETREP_NOUNLAGGED );
 			SpawnProjectile(0, "ZedekCannonball", 0, 0,landSpeed*8, 0,0);
+			SetNetworkReplicationFlags( 0 );
 			delay(ZEDEK_POST_FALL_DELAY);
 		}
 
@@ -3268,11 +3780,13 @@ Script "QCDE_Passive_Inquisitor" (void)
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
 		// Still defense
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		bool stillDefense = !CheckInventory("InquisitorStageToken") && !(GetPlayerInput(-1, INPUT_BUTTONS) & MOVEMENT_BUTTONS);
 		if (!stillDefense)
 			TakeInventory("PowerClutchProtec",1);
 		else if(!CheckInventory("PowerClutchProtec"))
 			GiveInventory("ClutchPassiveProtec",1);
+		SetNetworkReplicationFlags( 0 );
 
 		delay(1);
 	}
@@ -3442,7 +3956,7 @@ Script "QCDE_Passive_LoWang" (void)
 	{
 		// Player input information
 		oldbuttons = buttons;
-		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+		buttons = GetPlayerInput(-1, INPUT_BUTTONS) & ~BT_SPEED;
 		ws_axis = GetPlayerInput(-1, INPUT_FORWARDMOVE);
 		ad_axis = GetPlayerInput(-1, INPUT_SIDEMOVE);
 		if(ws_axis < 0) buttons |= BT_BACK;
@@ -4067,37 +4581,46 @@ Script "QCDE_Passive_Lucienne" (void)
 // Activator: hunter
 Script "QCDE_Passive_Hunter" (void)
 {
-	// Reset previous life's lessons
-	if(GameType() <= GAME_NET_COOPERATIVE)
-	{
-		SetInventory("HunterQCBulletAmmo" ,0);
-		SetInventory("HunterQCShellAmmo"  ,0);
-		SetInventory("HunterQCNailAmmo"   ,0);
-		SetInventory("HunterQCBoltAmmo"   ,0);
-		SetInventory("HunterQCRocketAmmo" ,0);
-		SetInventory("HunterQCCoilAmmo"   ,0);
-		SetInventory("HunterQCSlugAmmo"   ,0);
-		SetInventory("HunterQCBFGAmmo"    ,0);
-		ACS("QCDE_UpdateBackpackStack");
-	}
-
 	int plrtid = ActivatorTid();
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	if (GetNetworkState() != NETSTATE_CLIENT && !InDemoMode())
 	{
-		if(GameType() >= GAME_NET_DEATHMATCH) // PVP-only
+		// Reset previous life's lessons
+		if(GameType() <= GAME_NET_COOPERATIVE)
 		{
-			SetActivator(plrtid, AAPTR_PLAYER_GETTARGET);
-			if(ActivatorTid() && ActivatorTid() != plrtid)
-			{
-				// Activator: victim
-				GiveInventory("HunterProjectionProc",1);
-			}
-			SetActivator(plrtid);
-			// Activator: hunter
+			SetInventory("HunterQCBulletAmmo" ,0);
+			SetInventory("HunterQCShellAmmo"  ,0);
+			SetInventory("HunterQCNailAmmo"   ,0);
+			SetInventory("HunterQCBoltAmmo"   ,0);
+			SetInventory("HunterQCRocketAmmo" ,0);
+			SetInventory("HunterQCCoilAmmo"   ,0);
+			SetInventory("HunterQCSlugAmmo"   ,0);
+			SetInventory("HunterQCBFGAmmo"    ,0);
+			ACS("QCDE_UpdateBackpackStack");
 		}
-		delay(1);
+
+		while(GetActorProperty(0,APROP_HEALTH) > 0)
+		{
+			if(GameType() >= GAME_NET_DEATHMATCH) // PVP-only
+			{
+				SetActivator(plrtid, AAPTR_PLAYER_GETTARGET);
+				if(ActivatorTid() && ActivatorTid() != plrtid)
+				{
+					// Activator: victim
+					GiveInventory("HunterProjectionProc",1);
+				}
+				SetActivator(plrtid);
+				// Activator: hunter
+			}
+			delay(1);
+		}
+		Thing_Remove(plrtid - 1000 + SKULL_TIDBASE);
 	}
-	Thing_Remove(plrtid - 1000 + SKULL_TIDBASE);
+	else
+	{
+		while(GetActorProperty(0,APROP_HEALTH) > 0)
+			delay(1);
+		Thing_Remove(plrtid - 1000 + SKULL_TIDBASE);
+	}
 }
 
 // Activator: dying enemy
@@ -4430,6 +4953,8 @@ Script "QCDE_Passive_Postal_Mega" (void)
 Script "QCDE_Passive_Painkiller" (int activate)
 {
 	if(!activate) terminate;
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
 
 	int hp = GetActorProperty(0, APROP_Health);
 	int ap = CheckInventory("BasicArmor");

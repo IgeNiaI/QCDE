@@ -47,16 +47,16 @@ Actor Hourglass : CustomInventory 15508
 		Goto Death // not in coop
 	GiveArmor2:
 		TNT1 A 0 A_PlaySound("QC/Items/ArmorShardPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("QCSargeArmorGain",1)
+		TNT1 A 0 A_GiveInventory("QCSargeArmorGain", 1, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveBullets:
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarBullets")
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("SeriousBullets",15)
+		TNT1 A 0 A_GiveInventory("SeriousBullets", 15, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveMoarBullets:
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("SeriousBullets",30)
+		TNT1 A 0 A_GiveInventory("SeriousBullets", 30, 0, GIF_FORCESERVERSIDE)
 		Stop
 	}
 }
@@ -103,16 +103,16 @@ Actor BigHourglass : Hourglass 15509
 		Stop
 	GiveArmor:
 		TNT1 A 0 A_PlaySound("QC/Items/ArmorSmallPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("QCSmallArmorGiver",1)
+		TNT1 A 0 A_GiveInventory("QCSmallArmorGiver", 1, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveBullets:
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarBullets")
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("SeriousBullets",75)
+		TNT1 A 0 A_GiveInventory("SeriousBullets",75, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveMoarBullets:
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("SeriousBullets",150)
+		TNT1 A 0 A_GiveInventory("SeriousBullets",150, 0, GIF_FORCESERVERSIDE)
 		Stop
 	}
 }
@@ -135,6 +135,7 @@ Actor QCBackPack : CustomInventory replaces Backpack 15510
 	Inventory.PickupMessage "$GOT_QCBackPack" // "Picked up a backpack."
 	Height 32
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	Inventory.PickUpSound "QC/Items/Backpack"
 	States
 	{
@@ -145,17 +146,22 @@ Actor QCBackPack : CustomInventory replaces Backpack 15510
 		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck",0,0,0,0) >= 2, "DMPickup")
 		Goto CoopPickup
 	DMPickup:
-		TNT1 A 0 A_GiveInventory("QCBulletAmmo",20)
-		TNT1 A 0 A_GiveInventory("QCShellAmmo",	 4)
-		TNT1 A 0 A_GiveInventory("QCNailAmmo",	20)
-		TNT1 A 0 A_GiveInventory("QCBoltAmmo", 	 4)
-		TNT1 A 0 A_GiveInventory("QCRocketAmmo", 2)
-		TNT1 A 0 A_GiveInventory("QCCoilAmmo", 	20)
-		TNT1 A 0 A_GiveInventory("QCSlugAmmo", 	 4)
-		TNT1 A 0 A_GiveInventory("QCBFGAmmo",	 4)
+		TNT1 A 0 A_GiveInventory("QCBulletAmmo",20, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("QCShellAmmo",	 4, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("QCNailAmmo",	20, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("QCBoltAmmo", 	 4, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("QCRocketAmmo", 2, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("QCCoilAmmo", 	20, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("QCSlugAmmo", 	 4, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("QCBFGAmmo",	 4, 0, GIF_FORCESERVERSIDE)
 		Stop
 	CoopPickup:
-		TNT1 A 0 A_GiveInventory("BackpackItem",1) // native ammo capacitor
+		TNT1 A 0 A_GiveInventory("QCBackpackItem", 1, 0, GIF_FORCESERVERSIDE) // native ammo capacitor
 		Stop
 	}
+}
+
+Actor QCBackpackItem : BackpackItem
+{
+	+SERVERNETID
 }

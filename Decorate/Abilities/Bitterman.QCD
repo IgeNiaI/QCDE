@@ -23,6 +23,7 @@ Actor QCArmorBitterman : InventoryClassChecker
 	Inventory.Icon "BON2A0"
 	+FLOATBOB
 	+NOBLOCKMONST
+	+SERVERNETID
 	Scale 0.48
 	Inventory.PickupSound "QC/Items/ArmorShardPick"
 	States

@@ -17,12 +17,11 @@ Actor PostalCowProc : CustomInventory
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_GiveInventory("PostalCowHead")
-		TNT1 A 0 A_GiveInventory("ActiveInProgress")
-		TNT1 A 0 A_GiveInventory("CowHeadToken")
-		TNT1 A 0 A_GiveInventory("CowHeadToken")
+		TNT1 A 0 A_GiveInventory("PostalCowHead", 1, 0, GIF_SKIPOWNER)
+		TNT1 A 0 A_GiveInventory("ActiveInProgress", 1, 0, GIF_SKIPOWNER)
+		TNT1 A 0 A_GiveInventory("CowHeadToken", 1, 0, GIF_SKIPOWNER)
 		TNT1 A 0 A_SelectWeapon("PostalCowHead")
-		TNT1 A 35 A_FireCustomMissile("PostalSFXplayerHax",0, false)
+		TNT1 A 35 A_FireCustomMissile("PostalSFXplayerHax",0, false, 0, 0, FPF_NOUNLAGGED)
 		Stop
 	}
 }
@@ -32,8 +31,8 @@ Actor PostalCowCleanerProc : CustomInventory
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_TakeInventory("PostalCowHead")
-		TNT1 A 0 A_TakeInventory("ActiveInProgress")
+		TNT1 A 0 A_TakeInventory("PostalCowHead", 0, TIF_SKIPOWNER)
+		TNT1 A 0 A_TakeInventory("ActiveInProgress", 0, TIF_SKIPOWNER)
 		//TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN)
 		Stop
 	}
@@ -120,7 +119,7 @@ Actor PostalCowHead : QCWeapon
 		QP29 Y 1 Bright Offset(0,100)
 		Goto Ready2
 	Primary:
-		TNT1 A 0 A_TakeInventory("CowHeadToken",1)
+		TNT1 A 0 A_TakeInventory("CowHeadToken", 1, TIF_SKIPOWNER)
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"PrimaryDM")
 		TNT1 A 0 A_FireCustomMissile("CowHeadProjectile")
 		Stop
@@ -140,7 +139,7 @@ Actor PostalCowHead : QCWeapon
 		QP29 W 1 Bright Offset(0,88)
 		QP29 W 1 Bright Offset(0,96)
 		TNT1 A 5 A_GunFlash("Secondary")
-		TNT1 A 0 A_TakeInventory("CowHeadToken",1)
+		TNT1 A 0 A_TakeInventory("CowHeadToken", 1, TIF_SKIPOWNER)
 		Goto Ready2
 
 	Secondary:
@@ -186,11 +185,11 @@ Actor CowHeadProjectile
 
 	Idle:
 		TNT1 A 0 A_Explode(random(2,8)*10,128,0,0,128)
-		QP29 Z 5 A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		QP29 Z 5 A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP29 Z 5 A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
+		QP29 Z 5 A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		Loop
 	Death:
-		TNT1 A 10 A_SpawnItemEx("CowHeadGasSpawner",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		TNT1 A 10 A_SpawnItemEx("CowHeadGasSpawner",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_NOUNLAGGED)
 		Stop
 	}
 }
@@ -211,6 +210,7 @@ Actor CowHeadGasSpawner
 	+FORCEXYBILLBOARD
 	+BRIGHT
 	+FORCERADIUSDMG
+	+SERVERNETID
 	Radius 4
 	Height 2
 	Damage 0
@@ -239,7 +239,7 @@ Actor CowHeadGasSpawner
 			Goto Looper
 
 	Sounder:
-		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"ContinueLooper")
 		Goto ContinueLooper
 
@@ -282,15 +282,15 @@ Actor CowHeadProjectileDM
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_CowGasHit")
 		TNT1 A 0 A_RadiusGive("CowHeadVictimProc", 192, RGF_PLAYERS)
 		QP29 Z 1 A_JumpIfInTargetInventory("TeamDeathmatch",1,"ColorsIdle")
-		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		Goto Idle
 	ColorsIdle:
 		TNT1 A 1 A_JumpIfInTargetInventory("TeamColor",2,"RedIdle")
 	BlueIdle:
-		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrailBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrailBlue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		Goto Idle
 	RedIdle:
-		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrailRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		QP29 ZZZZ 5 Bright A_SpawnItemEx("CowHeadGasTrailRed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		Goto Idle
 
 	Death:
@@ -366,6 +366,7 @@ Actor CowHeadGasBigBlue : CowHeadGasBig { Translation "0:255=%[0,0,0]:[0,0,2]" }
 
 Actor CowHeadVictimProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
@@ -376,6 +377,7 @@ Actor CowHeadVictimProc : CustomInventory
 
 Actor VomitBloodProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
@@ -400,9 +402,9 @@ Actor PostalSFXplayerHax
 	{
 	Spawn:
 		TNT1 A 0 NODELAY A_PlaySound("QC/Abilities/Postal/ActivateSFX",CHAN_5,1.0,0,0.4)
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION|WARPF_SKIPOWNER)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION|WARPF_SKIPOWNER)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Warp(AAPTR_TARGET, 0,-7, 30, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_COPYINTERPOLATION|WARPF_SKIPOWNER)
 		Stop
 	}
 }

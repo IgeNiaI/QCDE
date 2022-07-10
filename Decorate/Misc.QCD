@@ -1,6 +1,6 @@
 //$GZDB_SKIP
 
-Actor Token : Inventory { +INVENTORY.UNDROPPABLE }
+Actor Token : Inventory { +INVENTORY.UNDROPPABLE +SERVERNETID }
 Actor Status : Token { Inventory.MaxAmount 999 }
 
 Actor PunchedAlready 	: Token { Inventory.InterHubAmount 0 }	//for gauntlet
@@ -236,6 +236,7 @@ Actor PlayerSpeed100 : PowerupGiver
 	Inventory.InterHubAmount 0
 	-COUNTITEM
 	+INVENTORY.AUTOACTIVATE
+	+SERVERNETID
 }
 
 Actor PlayerSpeed130 : PlayerSpeed100 { Powerup.Type "PlayerSpeed130" }
@@ -302,6 +303,7 @@ Actor GenericActiveCleanerProc : CustomInventory
 
 Actor EnablePlayerCollisionProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
@@ -312,6 +314,7 @@ Actor EnablePlayerCollisionProc : CustomInventory
 
 Actor DisablePlayerCollisionProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
@@ -340,10 +343,14 @@ Actor NoTrailing : Token {}
 // HUGE SHOUTOUT!!! To Alphaent / Blorc.
 // Using powerups as tokens that time themselves out is his idea.
 
-Actor Timer : Powerup {}
+Actor Timer : Powerup {	+SERVERNETID }
 Actor Twitchless3sec : Timer { Powerup.Duration 111 } // given by Thumper
 
-Actor Motionless3sec : PowerSpeed { Speed 0 Powerup.Duration 111 } // given by cheat
+Actor Motionless3sec : PowerSpeed {
+	+SERVERNETID
+	Speed 0
+	Powerup.Duration 111
+} // given by cheat
 
 Actor FX
 {
@@ -359,6 +366,6 @@ Actor FX
 
 // PvE damage adjustment
 
-Actor PowerPve1BodyProtection : PowerProtection { DamageFactor "Normal", 0.80 Powerup.Duration 0x7FFFFFFF } // Light
-Actor PowerPve2BodyProtection : PowerProtection { DamageFactor "Normal", 1.10 Powerup.Duration 0x7FFFFFFF } // Medium
-Actor PowerPve3BodyProtection : PowerProtection { DamageFactor "Normal", 1.25 Powerup.Duration 0x7FFFFFFF } // Heavy
+Actor PowerPve1BodyProtection : PowerProtection { +SERVERNETID DamageFactor "Normal", 0.80 Powerup.Duration 0x7FFFFFFF } // Light
+Actor PowerPve2BodyProtection : PowerProtection { +SERVERNETID DamageFactor "Normal", 1.10 Powerup.Duration 0x7FFFFFFF } // Medium
+Actor PowerPve3BodyProtection : PowerProtection { +SERVERNETID DamageFactor "Normal", 1.25 Powerup.Duration 0x7FFFFFFF } // Heavy

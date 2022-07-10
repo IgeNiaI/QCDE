@@ -17,6 +17,7 @@ Actor LBBackpack : CustomInventory 15514
 	+INVENTORY.UNDROPPABLE
 	+INVENTORY.INVBAR
 	+INVENTORY.NEVERRESPAWN
+	+SERVERNETID
 	Inventory.Icon "LOOTBOX1"
 	Inventory.DefMaxAmount
 	Inventory.InterhubAmount 25
@@ -99,3 +100,5 @@ Actor RngState_Chest     : Token { Inventory.MaxAmount 65536 Inventory.InterhubA
 Actor RngState_Reliquary : Token { Inventory.MaxAmount 65536 Inventory.InterhubAmount 65536 }
 Actor RngState_Lootbox   : Token { Inventory.MaxAmount 65536 Inventory.InterhubAmount 65536 }
 Actor RngState_Loadout   : Token { Inventory.MaxAmount 65536 Inventory.InterhubAmount 65536 }
+
+Actor QCDEMapRevealer : MapRevealer { +SERVERNETID }

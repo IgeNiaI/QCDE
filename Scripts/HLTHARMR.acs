@@ -9,6 +9,9 @@ Script "MaxArmor"  (void) { SetResultValue(CheckInventory("MaxArmorToken" )); }
 
 Script "ArmorGiver" (int ClassArmorMax, int ArmorToGive, int overcharge)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
+
 	if(CheckInventory("ImprovedArmor"))
 		ArmorToGive = ArmorToGive * 3 / 2;
 
@@ -28,6 +31,9 @@ Script "ArmorGiver" (int ClassArmorMax, int ArmorToGive, int overcharge)
 
 Script "HealthGiver" (int ClassHealthMax, int HealingAmount, int Overheal)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
+		terminate;
+
 	if(CheckInventory("ImprovedHealing"))
 		HealingAmount = HealingAmount * 3 / 2;
 

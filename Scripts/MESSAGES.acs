@@ -27,8 +27,8 @@ script "QCDE_BindAbilityKey_Hint" (void) clientside
 	delay(80);
 	SetHUDSize(512,384,1);
 	SetFont("BIGFONT");
-	str k = strparam(k: "+QCDE_ActiveAbility");
-	if(!stricmp(k, "??? (+QCDE_ActiveAbility)"))
+	str k = strparam(k: "+user1");
+	if(!stricmp(k, "??? (+user1)"))
 	{
 		HudMessage(s:"\c[white]Bind \c[brite]\"Use Active Ability\" \c[white]key.";
 				HUDMSG_FADEINOUT,ID_CHANGEWEAPON_BACK ,CR_WHITE,  256.0,260.0, 0.4,0.4,1.0);
@@ -2560,6 +2560,27 @@ script "QCDE_GraysonText" (int amount, int mode, int ammoicon)
 			HudMessage(s:"-"; HUDMSG_FADEOUT,ID_GRAYSON_FLASH2,CR_GREEN ,138.2,84.0, 0,1.0);
 			break;
 	}
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS("QCDE_GraysonSound_CLIENTSIDE", mode);
+}
+
+script "QCDE_GraysonSound_CLIENTSIDE" (int mode) clientside
+{
+	switch(mode)
+	{
+		case 0:
+			PlaySound (0, "QC/Abilities/Grayson/PreBuy", 7, 1.0, false, 4.0);
+			break;
+		case 1:
+			PlaySound (0, "QC/Abilities/Grayson/Buy", 7, 1.0, false, 4.0);
+			break;
+		case -1:
+			PlaySound (0, "QC/Abilities/Grayson/CantBuy", 7, 1.0, false, 4.0);
+			break;
+		case -2:
+			PlaySound (0, "QC/Abilities/Grayson/CantBuy", 7, 1.0, false, 4.0);
+			break;
+	}
 }
 
 //=============================================================================
@@ -2735,7 +2756,9 @@ Script "QCDE_MajorCharges" (int charges, int consume)
 	int row, col;
 	while(charges --> 0)
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		HudMessage(s:"A";HUDMSG_PLAIN,hmid,-1, MAJOR_START_X + MAJOR_BOMB_X_GAP * col, MAJOR_START_Y + MAJOR_BOMB_Y_GAP * row, 4.0);
+		SetNetworkReplicationFlags( 0 );
 
 		col++;
 		if(col >= MAJOR_BOMBS_IN_ROW) { col = 0; row++; }
@@ -2746,7 +2769,9 @@ Script "QCDE_MajorCharges" (int charges, int consume)
 	SetFont("GONEBOMB");
 	if(consume)
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		HudMessage(s:"A";HUDMSG_FADEOUT,hmid,-1, MAJOR_START_X + MAJOR_BOMB_X_GAP * col, MAJOR_START_Y + MAJOR_BOMB_Y_GAP * row, 0, 0.2);
+		SetNetworkReplicationFlags( 0 );
 	}
 
 }

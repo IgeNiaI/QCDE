@@ -20,10 +20,10 @@ Actor CorvusFlightProc : CustomInventory
 	{
 	Pickup:
 		TNT1 A 0 A_AlertMonsters(96)
-		TNT1 A 0 A_GiveInventory("ActiveSpeeder",1)
-		TNT1 A 0 A_GiveInventory("ActiveFlight",1)
+		TNT1 A 0 A_GiveInventory("ActiveSpeeder", 1, 0, GIF_SKIPOWNER)
+		TNT1 A 0 A_GiveInventory("ActiveFlight", 1, 0, GIF_SKIPOWNER)
 		TNT1 A 0 A_PlaySound("QC/Abilities/Corvus/UseFlight",7,1)
-		TNT1 A 35 A_GiveInventory("ActiveInProgress",1)
+		TNT1 A 35 A_GiveInventory("ActiveInProgress", 1, 0, GIF_SKIPOWNER)
 		Stop
 	}
 }
@@ -72,6 +72,7 @@ Actor CorvusRegenerationDM : PowerupGiver	//2 hp per second
 {
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	Inventory.MaxAmount 0
 	powerup.Type "CorvusRegen"
 	Powerup.Strength 2
@@ -81,6 +82,7 @@ Actor CorvusRegenerationCoop : PowerupGiver	//2hp per second, separate from DM t
 {
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	Inventory.MaxAmount 0
 	powerup.Type "CorvusRegen"
 	Powerup.Strength 4

@@ -250,6 +250,7 @@ int LOOTBOX_SUBRARITY[3][16] =
 
 script "QCDE_OpenLootbox" (int grade)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT) terminate;
 	if(GameType() >= GAME_NET_DEATHMATCH) terminate;
 	if(CheckInventory("OpeningLootbox")) terminate;
 	GiveInventory("OpeningLootbox",1);

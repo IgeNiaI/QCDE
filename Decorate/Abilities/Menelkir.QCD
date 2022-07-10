@@ -16,11 +16,12 @@ Actor SummonProc : CustomInventory
 	{
 	Pickup:
 		TNT1 A 0 Thing_Destroy(tid-1000+1960)
+		TNT1 A 0 A_SpawnItemEx("TeleportFog", 60+abs(momx)+abs(momy),0,32, 0,0,0,0, SXF_NOUNLAGGED|SXF_SKIPOWNER)
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"SpawnDM")
-		TNT1 A 0 A_SpawnItemEx("QCDEMaulotaurPvE", 60+abs(momx)+abs(momy),0,32, 0,0,0,0, SXF_SETMASTER,0,tid-1000+1960)
+		TNT1 A 0 A_SpawnItemEx("QCDEMaulotaurPvE", 60+abs(momx)+abs(momy),0,32, 0,0,0,0, SXF_SETMASTER|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE,0,tid-1000+1960)
 		Stop
 	SpawnDM:
-		TNT1 A 0 A_SpawnItemEx("QCDEMaulotaur", 60+abs(momx)+abs(momy),0,32, 0,0,0,0, SXF_SETMASTER,0,tid-1000+1960)
+		TNT1 A 0 A_SpawnItemEx("QCDEMaulotaur", 60+abs(momx)+abs(momy),0,32, 0,0,0,0, SXF_SETMASTER|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE,0,tid-1000+1960)
 		Stop
 	}
 }
@@ -31,7 +32,10 @@ Actor DaveRoomTest
 	Height 64
 }
 
-Actor MaulotaurAliveToken : Inventory { Inventory.InterHubAmount 0 }
+Actor MaulotaurAliveToken : Inventory {
+	+SERVERNETID
+	Inventory.InterHubAmount 0
+}
 
 Actor "ThruSpeciesProc" : CustomInventory { States { Pickup: TNT1 A 0 A_ChangeFlag("THRUSPECIES", true) Stop } }
 
@@ -56,6 +60,7 @@ Actor QCDEMaulotaur : MinotaurFriend replaces Minotaurfriend
 	-NORADIUSDMG
 	+NOICEDEATH	//to prevent possibly weird behaviour of scripts
 	+CANBLAST
+	+SERVERNETID
 	MinMissileChance 1
 	PainChance 0
 	Health 700
@@ -74,7 +79,6 @@ Actor QCDEMaulotaur : MinotaurFriend replaces Minotaurfriend
 		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_MaulotaurSpawned")
 		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
 		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_BobRecolor_CLIENTSIDE",0,tid)
-		TNT1 A 0 A_SpawnItemEx("TeleportFog")
 		TNT1 A 0 A_PlaySound("minotaur/sight",CHAN_BODY,1.0,0,0.8)
 		MNTR AAAAAAA 4 A_FadeIn(0.1)
 		TNT1 A 0 A_ChangeFlag("INVULNERABLE",0)
@@ -281,12 +285,17 @@ Actor QCDEMaulotaurPvE : QCDEMaulotaur
 
 
 //teleport fx
-Actor MinotaurFog1 : QCFog replaces MinotaurSmoke {}
-Actor MinotaurFog2 : QCFog replaces MinotaurSmokeExit {}
+Actor MinotaurFog1 : QCFog replaces MinotaurSmoke {
+	+NONETID
+}
+Actor MinotaurFog2 : QCFog replaces MinotaurSmokeExit {
+	+NONETID
+}
 
 // Projectiles
 Actor QCDEMinotaurFX1 : MinotaurFX1 replaces MinotaurFX1
 {
+	+SERVERNETID
 	Speed 26
 	Damage (10)
 	Species "Players"
@@ -304,7 +313,7 @@ Actor QCDEMinotaurFX1 : MinotaurFX1 replaces MinotaurFX1
 		TNT1 A 0 A_ChangeFlag("MTHRUSPECIES", true)
 		Goto Super::Spawn
 	XDeath:
-		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		Goto Death
 	}
 }
@@ -318,6 +327,7 @@ Actor QCDEMinotaurFX1PvE : QCDEMinotaurFX1	//Only stronger
 
 Actor QCDEMinotaurFX2 : MinotaurFX2 replaces MinotaurFX2
 {
+	+SERVERNETID
 	Damage (20)
 	Speed 20
 	States
@@ -334,7 +344,7 @@ Actor QCDEMinotaurFX2 : MinotaurFX2 replaces MinotaurFX2
 		TNT1 A 0 A_ChangeFlag("MTHRUSPECIES", true)
 		Goto Super::Spawn
 	XDeath:
-		TNT1 A 0 A_GiveToTarget("HitBeepMid",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"Death")
 		Goto Death
 	Death:
@@ -361,6 +371,7 @@ Actor QCDEMinotaurFX2PvE : QCDEMinotaurFX2
 
 Actor QCDEMinotaurFX3 : MinotaurFX3 replaces MinotaurFX3
 {
+	+SERVERNETID
 	States
 	{
 	Death:
@@ -373,6 +384,7 @@ Actor QCDEMinotaurFX3 : MinotaurFX3 replaces MinotaurFX3
 Actor DaveisDedProc : CustomInventory
 {
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	RenderStyle None
 	States
 	{

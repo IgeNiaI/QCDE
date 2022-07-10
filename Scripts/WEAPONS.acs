@@ -81,7 +81,9 @@ Script "QCDE_RocketControl" (void)
 
 	delay(1);
 
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ChangeCamera(tid, false, false);
+	SetNetworkReplicationFlags( 0 );
 	SetActivator(tid);
 	// Activator: controlled rocket
 
@@ -90,6 +92,8 @@ Script "QCDE_RocketControl" (void)
 	int origp = GetActorPitch(plrtid), p = origp;
 	while(!CheckInventory("ImDead"))
 	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+
 		Thing_Stop(tid);
 
 		int ip = -GetPlayerInput(plr, INPUT_PITCH);
@@ -112,6 +116,8 @@ Script "QCDE_RocketControl" (void)
 		SetActorAngle(tid, a);
 		SetActorPitch(tid, p);
 
+		SetNetworkReplicationFlags( 0 );
+
 		delay(1);
 
 		int triggers = GetPlayerInput(plr, INPUT_BUTTONS) & ~GetPlayerInput(plr, INPUT_OLDBUTTONS);
@@ -123,8 +129,10 @@ Script "QCDE_RocketControl" (void)
 	{
 		delay(1);
 	}
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	SetActorAngle(plrtid, origa);
 	SetActorPitch(plrtid, origP);
+	SetNetworkReplicationFlags( 0 );
 
 	SetActivator(plrtid);
 	SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
@@ -134,9 +142,14 @@ Script "QCDE_RocketControl" (void)
 //this is the dark screen effect, will loop until the projectile terminates it manually
 Script "QCDE_TunnelVision" (void)
 {
+	if (GetNetworkState() == NETSTATE_SERVER)
+		terminate;
+
 	delay(2); // time for rocket to initialize
+	int plrtid = GetActorProperty(0, APROP_TargetTID);
+	int plr = plrtid - 1000;
+	SetActivator(plrtid);
 	SetHudSize(320,240,1);
-	int plr = GetActorProperty(0, APROP_TargetTID) - 1000;
 	int hmid = HMID_TUNNEL_VISION;
 	SetFont("GREYMASK");
 	while(greymask[plr])

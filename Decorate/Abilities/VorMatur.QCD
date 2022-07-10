@@ -20,8 +20,8 @@ Actor DarkeningProc : CustomInventory
 	{
 	Pickup:
 		TNT1 A 0 A_PlaySound("QC/Abilities/VorMatur/DarkenShot",CHAN_AUTO,1.0,0,0.7)
-		TNT1 A 0 A_GiveInventory("NoWeaponFireToken",1)
-		TNT1 A 0 A_GiveInventory("Darkless3sec")
+		TNT1 A 0 A_GiveInventory("NoWeaponFireToken", 1, 0, GIF_SKIPOWNER)
+		TNT1 A 0 A_GiveInventory("Darkless3sec", 1, 0, GIF_SKIPOWNER)
 		TNT1 A 0 A_FireCustomMissile("DarkeningShot", 0, false)
 		Stop
 	}
@@ -41,13 +41,13 @@ Actor DarkeningShot
 	Spawn:
 		X201 E 1 Light("BlackBigPoint3") A_ScaleVelocity(0.8)
 		X201 E 0 A_Weave(4, 4, 1.0, 1.0)
-		X201 E 0 A_SpawnItemEx("DarkeningShotTrail", 0,0,-13, 0,0,0,0, SXF_CLIENTSIDE)
+		X201 E 0 A_SpawnItemEx("DarkeningShotTrail", 0,0,-13, 0,0,0,0, SXF_CLIENTSIDE|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		X201 E 0 A_CountDown
 		Loop
 	Death:
 		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DarkeningShotHits")
-		TNT1 A 0 A_SpawnItemEx("DarkeningFX", 0,0,0, 0,0,0,0, SXF_CLIENTSIDE)
+		TNT1 A 0 A_SpawnItemEx("DarkeningFX", 0,0,0, 0,0,0,0, SXF_CLIENTSIDE|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 0 A_RadiusGive("GitSpookedProc",1024,RGF_MONSTERS)
 		TNT1 A 0 A_RadiusGive("DarkenedProc", DarkeningRadius, RGF_PLAYERS)
 		TNT1 A 0 A_PlaySound("QC/Abilities/VorMatur/Darkening",5,1.0,false,0.7) // cast sound
@@ -140,6 +140,7 @@ Actor PowerDarkTint : PowerSpeed
 }
 Actor DarkTintGiver : InvulnerabilitySphere
 {
+	+SERVERNETID
 	Powerup.Color 0, 0, 0, 0.96
 	powerup.duration -10
 	Powerup.Type "DarkTint"
@@ -148,6 +149,7 @@ Actor DarkTintGiver : InvulnerabilitySphere
 
 Actor DarkenedProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
@@ -164,11 +166,12 @@ Actor DarkenedProc : CustomInventory
 
 Actor GitSpookedProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
 		TNT1 A 0 A_ChangeFlag("FRIGHTENED", true)
-		TNT1 A 0 A_ThrowGrenade("BlindVisualizerShort")
+		TNT1 A 0 A_ThrowGrenade("BlindVisualizerShort", 0, 0, 0, false, TGR_NOUNLAGGED)
 		Stop
 	}
 }
@@ -180,7 +183,7 @@ Actor BlindVisualizer	// [DBT] See what i did there?
 	Height 1
 	+NOINTERACTION
 	+BRIGHT
-	Projectile
+	+SERVERNETID
 	RenderStyle Add
 	Scale 0.75
 	Alpha 0.99
@@ -237,6 +240,7 @@ Actor CorrosiveBlood
 	+BRIGHT
 	+NODAMAGETHRUST
 	+DONTSPLASH
+	+SERVERNETID
 	Damage 2
 	Obituary "$OB_CorrosiveBlood" // "%o bathed in the blood of %k."
 	Gravity 0.3
@@ -261,31 +265,31 @@ Actor CorrosiveBlood
 	TypeC8:		WC58 A 0 A_Jump(256,"See") Goto See
 
 	See:
-		"####" ABC 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" DEF 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" GHI 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
+		"####" ABC 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" DEF 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" GHI 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
 		"####" "#" 0 A_JumpIf(waterlevel==3,"Remove")
-		"####" JKL 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" MNO 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" PQR 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
+		"####" JKL 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" MNO 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" PQR 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.01,0.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
 		Stop
 	Death:
 		"####" "#" 0 A_JumpIf(waterlevel==3,"Remove")
 		"####" "#" 0 A_Explode(user_explodamage, 64, 0, false, 64)
-		"####" ABC 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" DEF 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" GHI 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" JKL 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" MNO 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" PQR 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
+		"####" ABC 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" DEF 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" GHI 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" JKL 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" MNO 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" PQR 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
 		"####" "#" 0 A_JumpIf(waterlevel==3,"Remove")
 		"####" "#" 0 A_Explode(user_explodamage, 64, 0, false, 64)
-		"####" ABC 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" DEF 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" GHI 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" JKL 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" MNO 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
-		"####" PQR 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE, 245)
+		"####" ABC 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" DEF 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" GHI 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" JKL 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" MNO 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
+		"####" PQR 2 A_SpawnItemEx("CorrosiveBloodTrail", 0,0,0, 0,0,frandom(0.2,1.5),0, SXF_ABSOLUTEVELOCITY|SXF_CLIENTSIDE|SXF_NOUNLAGGED, 245)
 		Stop
 	Remove:
 		"####" "#" 2 A_FadeOut(0.2)
@@ -338,11 +342,12 @@ Actor CorrosiveBloodTrail
 
 Actor CorrosiveBloodProc : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Pickup:
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DMBlood")
-		TNT1 A 0 A_ThrowGrenade("CorrosiveBlood", -15, random(-accuracy*3,accuracy*3),frandom(0,accuracy),0)	//in coop sprays farther
+		TNT1 A 0 A_ThrowGrenade("CorrosiveBlood", -15, random(-accuracy*3,accuracy*3),frandom(0,accuracy),0,TGR_NOUNLAGGED)	//in coop sprays farther
 		Stop
 	DMBlood:
 		TNT1 A 0 A_ThrowGrenade("CorrosiveBloodDM", -15, random(-accuracy*2,accuracy*2),frandom(0,accuracy),0)

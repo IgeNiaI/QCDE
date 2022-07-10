@@ -233,8 +233,8 @@ Actor QCHeavyMachinegun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 			TNT1 A 0 A_SetBlend("Yellow",0.03,3)
 			TNT1 A 0 A_AlertMonsters
-			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,8,0,0,frandom(1.75,-1.75))
-			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,7,2)
+			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(1.75,-1.75),false,8,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(1.75,-1.75))
+			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,7,2,FPF_NOUNLAGGED|FPF_SKIPOWNER)
 			TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil")
 			TNT1 A 1 A_SetPitch(Pitch-0.8)
 			TNT1 AA 1 A_SetPitch(Pitch+0.4)
@@ -345,8 +345,8 @@ Actor QCHeavyMachinegun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 			TNT1 A 0 A_SetBlend("Yellow",0.06,3)
 			TNT1 A 0 A_AlertMonsters
-			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(0.5,-0.5),false,1,0,0,frandom(0.5,-0.5))
-			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,0,2)
+			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(0.5,-0.5),false,1,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(0.5,-0.5))
+			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,0,2,FPF_NOUNLAGGED|FPF_SKIPOWNER)
 			TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil") //same as unzoomed, because it does nothing
 			TNT1 A 1 A_SetPitch(Pitch-0.4)
 			TNT1 AA 1 A_SetPitch(Pitch+0.2)
@@ -392,16 +392,16 @@ Actor QCBulletPuffRicochet
 	States
 	{
 	Spawn: //hit non bleeding actor
-		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 NODELAY A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		Goto Crash
 	XDeath: //hit bleeding actor
-		TNT1 A 0 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
 		Goto Ricochet
 	Crash: //hit everything else
 		TNT1 A 0 A_PlaySound("BulletHitConcreteRandom",7,0.6,0,9)
 	Ricochet:
-		TNT1 A 0 A_SpawnItemEx("RicochetProjectile", 0,0,0, 12,0,frandom(0,4), random(0,359), SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS,128)
+		TNT1 A 0 A_SpawnItemEx("RicochetProjectile", 0,0,0, 12,0,afrandom(0,4), arandom(0,359), SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS,128)
 		Goto Choose
 
 	Choose:
@@ -422,7 +422,7 @@ Actor QCBulletPuffRicochet_ZombieGibber : QCBulletPuffRicochet
 	States
 	{
 	Ricochet:
-		TNT1 A 0 A_SpawnItemEx("RicochetProjectile", 0,0,0, 12,0,frandom(0,4), random(0,359), SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+		TNT1 A 0 A_SpawnItemEx("RicochetProjectile", 0,0,0, 12,0,afrandom(0,4), arandom(0,359), SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
 		Goto Choose
 	}
 }

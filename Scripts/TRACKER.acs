@@ -76,11 +76,7 @@ Script "QCDE_Enter" Enter
 	// Spectators: Please don't
 	if(PlayerIsSpectator(PlayerNumber())) terminate;
 
-	//Fade in applied when player enters map, not called through any other script.
-	Fadeto (0, 0, 0, 1.0, 0);
-	SetFont("BIGFONT");
-	HudMessage(s:"\c[brite]Loading..."; HUDMSG_PLAIN, HMID_LOADING, -1, 0.5,0.4, 0.02);
-	Fadeto (0, 0, 0, 0  , 0.3);
+	ACS_NamedExecuteAlways("QCDE_Enter_Flash", 0);
 
 	// Any setup separate from a living player should be performed here.
 	if(GameType() >= GAME_NET_DEATHMATCH) DMgame = true;
@@ -97,6 +93,15 @@ Script "QCDE_Enter" Enter
 	// And then, as last step, setup for an existing player actor is called.
 	ACS_NamedExecuteAlways("QCDE_NewLife",0,true);
 	ACS_NamedExecuteAlways("QCDE_NewLife_BOT",0);
+}
+
+Script "QCDE_Enter_Flash" clientside
+{
+	//Fade in applied when player enters map, not called through any other script.
+	Fadeto (0, 0, 0, 1.0, 0);
+	SetFont("BIGFONT");
+	HudMessage(s:"\c[brite]Loading..."; HUDMSG_PLAIN, HMID_LOADING, -1, 0.5,0.4, 0.02);
+	Fadeto (0, 0, 0, 0  , 0.3);
 	delay(1);
 	HudMessage(s:""; HUDMSG_PLAIN, HMID_LOADING, -1, 0.5,0.4, 0.01); // done loading
 }

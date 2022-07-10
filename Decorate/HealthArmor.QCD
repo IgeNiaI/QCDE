@@ -6,6 +6,7 @@
 
 Actor InventoryClassChecker : CustomInventory
 {
+	+SERVERNETID
 	States
 	{
 	Spawn:
@@ -92,6 +93,7 @@ Actor QCHealthBonus : Health replaces HealthBonus
 	+COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
 	+FORCEXYBILLBOARD
+	+SERVERNETID
 	RenderStyle Add
 	Height 48
 	Inventory.Amount 3
@@ -318,6 +320,7 @@ Actor QCMegaHealthFX : GenericPowerupFXBackground
 
 Actor QCMegaMega : CustomInventory replaces MegaSphere
 {
+	+SERVERNETID
 	Height 48
 	Radius 20
 	Scale 1.0
@@ -375,6 +378,7 @@ Actor QCArmorBonus : BasicArmorBonus replaces ArmorBonus
 	Inventory.RespawnTics 525 //15 sec
 	+COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	Scale 0.9
 	Inventory.PickupSound "QC/Items/ArmorShardPick"
 	States
@@ -395,6 +399,7 @@ Actor QCArmorBonus : BasicArmorBonus replaces ArmorBonus
 Actor QCPlayerArmorDrop
 {
 	+NOINTERACTION
+	+SERVERNETID
 	RenderStyle None
 	States
 	{
@@ -421,6 +426,7 @@ Actor QCArmorShardNoHourGlass : BasicArmorBonus
 	Inventory.RespawnTics 525 //15 sec
 	+COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	Scale 0.9
 	Inventory.PickupSound "QC/Items/ArmorShardPick"
 	States
@@ -443,6 +449,7 @@ Actor QCSargeArmorGain : BasicArmorBonus
 	Inventory.RespawnTics 525 //15 sec
 	+COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	Scale 0.9
 	Inventory.PickupSound "QC/Items/ArmorShardPick"
 	States
@@ -459,6 +466,7 @@ Actor QCArmorPoint : BasicArmorBonus //used for the ACS script that gives armor
 	Armor.Saveamount 1
 	Armor.Maxsaveamount 65534
 	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
 	States
 	{
 	Spawn:
@@ -520,7 +528,7 @@ Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
 			Goto ArmorDoneSuccess																		// arg 2 = armor given, arg 3= bool "does it overcharge?"
 		DoBitterman:
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
-			TNT1 A 0 A_GiveInventory("PowerShieldCharge",50)
+			TNT1 A 0 A_GiveInventory("PowerShieldCharge",50,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),	MediumArmorAmount,0)
 			Goto ArmorDoneSuccess
 		DoSorgaul:
@@ -624,7 +632,7 @@ Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
 			Goto ArmorDoneSuccess																	//arg 4= bool "does it overcharge?"
 		DoBitterman:
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")
-			TNT1 A 0 A_GiveInventory("PowerShieldCharge",100)
+			TNT1 A 0 A_GiveInventory("PowerShieldCharge",100,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),BigArmorAmount,1)
 			Goto ArmorDoneSuccess
 		DoSorgaul:

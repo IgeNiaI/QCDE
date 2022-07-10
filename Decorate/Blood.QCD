@@ -12,6 +12,7 @@ Actor D4TBlood replaces Blood
 	+NOTONAUTOMAP
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+	+NONETID
 	Scale 0.75
 	States
 	{
@@ -63,6 +64,7 @@ Actor D4TBloodSplatter : D4TBlood replaces BloodSplatter
 
 Actor GibDropperMedium
 {
+	+NONETID
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	+NOTONAUTOMAP
@@ -84,6 +86,7 @@ Actor GibDropperMedium
 
 Actor GibDropperMediumBig
 {
+	+NONETID
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	+NOTONAUTOMAP
@@ -104,6 +107,7 @@ Actor GibDropperMediumBig
 
 Actor GibDropperBig
 {
+	+NONETID
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	+NOTONAUTOMAP
@@ -124,6 +128,7 @@ Actor GibDropperBig
 
 Actor GibDropperSmall
 {
+	+NONETID
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	+NOTONAUTOMAP
@@ -146,6 +151,7 @@ Actor GibDropperSmall
 
 Actor ExtraGibbletsDropper
 {
+	+NONETID
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	RenderStyle None
@@ -161,6 +167,7 @@ Actor ExtraGibbletsDropper
 //--------------------------------
 Actor BloodCloud
 {
+	+NONETID
 	+NOINTERACTION
 	+CLIENTSIDEONLY
 	+NOTONAUTOMAP
@@ -209,6 +216,7 @@ Actor BloodCloudBig : BloodCloud
 //===========================================================
 Actor NewMeat replaces Meat
 {
+	+NONETID
 	+CLIENTSIDEONLY
 	var int user_time;
 	var int user_t;
@@ -267,6 +275,7 @@ Actor BloodParticle
 	Scale 0.75
 	+NOTONAUTOMAP
 	+CLIENTSIDEONLY
+	+NONETID
 	States
 	{
 	Spawn:
@@ -344,6 +353,7 @@ Actor NoBloodPuff
 
 Actor GibDropperMediumOlive
 {
+	+NONETID
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	+NOTONAUTOMAP

@@ -152,7 +152,7 @@ script "QCDE_AbilityTracker_BOT" (void)
 			if(!(timer()%7))
 			if(ACS("QCDE_HasTarget",0))
 			{
-				ACS_NamedExecuteAlways("QCDE_ActiveAbility",0);
+				ACS_NamedExecuteAlways("QCDE_ActiveAbility",0, 0, 1);
 			}
 		}
 		if(CheckInventory("ActiveDefensive"))
@@ -162,7 +162,7 @@ script "QCDE_AbilityTracker_BOT" (void)
 
 			if(health < HEALTH_FOR_DEFENSIVE && !random(0,3))
 			{
-				ACS_NamedExecuteAlways("QCDE_ActiveAbility",0);
+				ACS_NamedExecuteAlways("QCDE_ActiveAbility",0, 0, 1);
 			}
 		}
 

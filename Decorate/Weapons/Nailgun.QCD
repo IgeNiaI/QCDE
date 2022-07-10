@@ -286,11 +286,11 @@ Actor QCNailWeak : FastProjectile
 		Wait
 
 	XDeath:
-		TNT1 A 10 A_GiveToTarget("HitBeepLow",1)
+		TNT1 A 10 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		Stop
 
 	Death:
-		DB09 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact",CHAN_AUTO,0.6,0,1.7)
+		DB09 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact",CHAN_AUTO,0.6,0,1.7,AAPTR_TARGET)
 		//DB09 A 0 A_Explode(3,32,XF_HURTSOURCE,0,32)
 		DB09 A 0 A_Explode(7,32,XF_HURTSOURCE,0,32)		//7dmg *0.43 = ~3
 		DB09 A 0 A_SetScale(0.45)

@@ -128,7 +128,7 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 		//	You have really outdone yourself this time."
 		// OK, actually, user_counter is raised to the power of 5/4, to honor an eponymous Rammstein instrumental of same measure.
 		// Counter is also passed down as angle measure to make upper smokes disappear faster.
-		PLAY A 0 A_SpawnItemEx("StrikeTrail",  0,0,user_counter*sqrt(sqrt(user_counter))*50, 0,0,0, user_counter*1.1,SXF_NOCHECKPOSITION|SXF_ABSOLUTEANGLE)
+		PLAY A 0 A_SpawnItemEx("StrikeTrail",  0,0,user_counter*sqrt(sqrt(user_counter))*50, 0,0,0, user_counter*1.1,SXF_NOCHECKPOSITION|SXF_ABSOLUTEANGLE|SXF_NOUNLAGGED)
 		QP26 X 0 A_SetUserVar(user_counter,user_counter-1)
 		TNT1 A 0 A_JumpIf(user_counter>0,"Looper")
 		Goto Continuer
@@ -136,7 +136,7 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 	Continuer:
 		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 		TNT1 A 0 A_Quake(5,17,0,512,"")
-		TNT1 A 0 A_SpawnItemEx("AirStrikeExplosionSpawner", 0,0,20, 0,0,0,0,SXF_NOCHECKPOSITION)	//hack to make it spawn in net games
+		TNT1 A 0 A_SpawnItemEx("AirStrikeExplosionSpawner", 0,0,20, 0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)	//hack to make it spawn in net games
 		TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
 		TNT1 A 0 A_JumpIfInTargetInventory("DMToken",1,"DM")
 	PvE:
@@ -147,7 +147,7 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 		Goto ContinuePvE
 
 		RadiusHit:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"ContinuePvE") //for virtual jump to inherited versions
 			Goto ContinuePvE
 	ContinuePvE:
@@ -164,7 +164,7 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 		Goto ContinuePvE
 
 		RadiusHitDM:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepBig",1)
+			TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"ContinueDM") //for virtual jump to inherited versions
 			Goto ContinueDM
 	ContinueDM:
@@ -190,12 +190,13 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 Actor AirStrikeExplosionSpawner
 {
 	+NOINTERACTION
+	+SERVERNETID
 	Radius 1
 	Height 1
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SpawnItemEx("AirStrikeExplosion",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 NODELAY A_SpawnItemEx("AirStrikeExplosion",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("quake4/Misc/Explo",CHAN_5,1.0,0,0.5)
 		TNT1 A 10 A_PlaySound("quake4/Misc/GrenadeExplo",CHAN_6,0.8,0,0.5)
 		Stop
@@ -233,11 +234,12 @@ Actor StrikeTrail	//that spawns fire and smoke for trail
 	Height 2
 	RenderStyle None
 	+NOINTERACTION
+	+NONETID
 	States
 	{
 	Spawn:
-		PLAY A 0 NODELAY A_SpawnItemEx("AirStrikeFireTrail",  0,0,0, 0,0,0, angle,SXF_NOCHECKPOSITION|SXF_ABSOLUTEANGLE)
-		PLAY A 0 A_SpawnItemEx("AirStrikeSmokeTrail", 0,0,0, 0,0,0, angle,SXF_NOCHECKPOSITION|SXF_ABSOLUTEANGLE)
+		PLAY A 0 NODELAY A_SpawnItemEx("AirStrikeFireTrail",  0,0,0, 0,0,0, angle,SXF_NOCHECKPOSITION|SXF_ABSOLUTEANGLE|SXF_NOUNLAGGED)
+		PLAY A 0 A_SpawnItemEx("AirStrikeSmokeTrail", 0,0,0, 0,0,0, angle,SXF_NOCHECKPOSITION|SXF_ABSOLUTEANGLE|SXF_NOUNLAGGED)
 		PLAY A 3
 		Stop
 	}

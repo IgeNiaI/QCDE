@@ -17,7 +17,6 @@
 
 Actor DireOrb : TeleportDest3
 {
-	var int user_x;
 	var int user_ceilingz;
 	var int user_z;
 	var int user_limit;
@@ -47,15 +46,16 @@ Actor DireOrb : TeleportDest3
 		TNT1 A 0 A_SetUserVar(user_timer,7)
 		Goto LoopFlying
 	LoopFlying:
-		DIRE ABCDEFGH 2 Bright Light("BlueMediumFlicker3") A_SpawnItemEx("DireOrbTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		DIRE ABCDEFGH 2 Bright Light("BlueMediumFlicker3") A_SpawnItemEx("DireOrbTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER)
 		Loop
 	Death:
-		TNT1 A 0 A_GiveToTarget("DireOrbWallSoundProc",1)
-		TNT1 A 0 A_PlaySound("QC/Abilities/Ranger/BallExplode",CHAN_AUTO,1,0,0.6)
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveToTarget("DireOrbWallSoundProc",1,AAPTR_DEFAULT,GIF_SKIPOWNER)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Ranger/BallExplode",CHAN_AUTO,1,0,0.6,AAPTR_TARGET)
 		DIRE ABCDEFGHABCDEFG 2 Bright Light("BlueMediumFlicker3")
 	RemoveMe:
-		TNT1 A 0 A_SpawnItemEx("DireOrbTeleFog",0,0,8, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_CustomMissile("DireOrbExploder",0,0,0,CMF_TRACKOWNER)
+		TNT1 A 0 A_SpawnItemEx("DireOrbTeleFog",0,0,8, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_SKIPOWNER)
+		TNT1 A 0 A_CustomMissile("DireOrbExploder",0,0,0,CMF_TRACKOWNER|CMF_NOUNLAGGED|CMF_FORCESERVERSIDE)
 		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DireOrbTimedOut")
 		TNT1 A 2 Light("BlueMediumPoint2")
 		TNT1 A 2 Light("BlueMediumPoint1")
@@ -64,7 +64,7 @@ Actor DireOrb : TeleportDest3
 		TNT1 A 2 Light("BlueSmallPoint1")
 		TNT1 A 2 Light("BlueSmallPoint2")
 		TNT1 A 2 Light("BlueSmallPoint3")
-		TNT1 A 21
+		TNT1 A 99
 		Stop
 	}
 }
@@ -79,6 +79,7 @@ Actor DireOrbTrail
 {
 	+NOINTERACTION +NOTONAUTOMAP
 	+FORCEXYBILLBOARD
+	+NONETID
 	RenderStyle Add
 	Translation "0:255=%[0,0,0]:[0.5,0.5,1.5]"
 	Scale 0.35
@@ -99,13 +100,13 @@ Actor DireOrbFireProc : CustomInventory
 	{
 	Pickup:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Ranger/BallThrow",CHAN_BODY)
-		TNT1 A 0 A_GiveInventory("TeleporterThrownToken")
-		TNT1 A 0 A_GiveInventory("ActiveInProgress")
+		TNT1 A 0 A_GiveInventory("TeleporterThrownToken", 1, 0, GIF_SKIPOWNER)
+		TNT1 A 0 A_GiveInventory("ActiveInProgress", 1, 0, GIF_SKIPOWNER)
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"FireDMOrb")
-		TNT1 A 0 A_FireCustomMissile ("DireOrb",0, false)
+		TNT1 A 0 A_FireCustomMissile ("DireOrb",0, false, 0, 0, FPF_NOUNLAGGED|FPF_SKIPOWNER)
 		Stop
 	FireDMOrb:
-		TNT1 A 0 A_FireCustomMissile ("DireOrbDM",0, false)
+		TNT1 A 0 A_FireCustomMissile ("DireOrbDM",0, false, 0, 0, FPF_NOUNLAGGED|FPF_SKIPOWNER)
 		Stop
 	}
 }
@@ -128,7 +129,9 @@ Actor DireOrbWallSoundProc : CustomInventory
 }
 
 
-Actor TeleporterThrownToken : Token {}
+Actor TeleporterThrownToken : Token {
+	+SERVERNETID
+}
 
 
 Actor DireOrbTeleProc : CustomInventory
@@ -138,9 +141,8 @@ Actor DireOrbTeleProc : CustomInventory
 	Pickup:
 		TNT1 A 0 A_SetBlend("White", 1.0, 5)
 		TNT1 A 0 A_SetBlend("Black", 0.7, 30)
-		TNT1 A 0 A_GiveInventory("ActiveInProgress")
-		TNT1 A 0 A_SpawnItemEx("DireOrbTeleFog",0,0,30, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DireOrbUsed")
+		TNT1 A 0 A_GiveInventory("ActiveInProgress", 1, 0, GIF_SKIPOWNER)
+		TNT1 A 0 A_SpawnItemEx("DireOrbTeleFog",0,0,30, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_SKIPOWNER)
 		TNT1 A 35 A_TakeInventory("TeleporterThrownToken")
 		Stop
 	}
@@ -163,10 +165,11 @@ Actor TeleporterSounder
 // Fog spawner for destination, also explodes
 Actor DireOrbTeleFogOutProc : CustomInventory
 {
+	+NONETID
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_SpawnItemEx("DireOrbTeleFogOut",0,0,28,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("DireOrbTeleFogOut",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_SKIPOWNER)
 		TNT1 A 0 A_AlertMonsters(512)
 		Stop
 	}
@@ -178,6 +181,7 @@ Actor DireOrbExploder
 	Projectile
 	RenderStyle NONE
 	+THRUACTORS
+	+NONETID
 	Speed 0
 	scale 0.2
 	Obituary "$OB_DireOrbExploder" // "%o was too close to %k's dire orb."
@@ -198,10 +202,11 @@ Actor DireOrbTeleFog
 {
 	RenderStyle NONE
 	+NOINTERACTION
+	+SERVERNETID
 	States
 	{
 	Spawn:
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("DireOrbTeleParticle",0,0,0, frandom(0.4,2),frandom(0.4,2),frandom(-2,2), random(0,359),SXF_NOCHECKPOSITION)
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("DireOrbTeleParticle",0,0,0, frandom(0.4,2),frandom(0.4,2),frandom(-2,2), random(0,359),SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_SKIPOWNER)
 		TNT1 A 10
 		Stop
 	}
@@ -212,6 +217,7 @@ Actor DireOrbTeleParticle
 {
 	+NOINTERACTION +NOTONAUTOMAP
 	+FORCEXYBILLBOARD
+	+SERVERNETID
 	RenderStyle Add
 	Translation "0:255=%[0,0,0]:[0.5,0.5,1.5]"
 	Scale 0.2
