@@ -1373,7 +1373,7 @@ Script "QCDE_Ability_Sorgaul" (void)
 	{
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		PlaySound(0,"QC/Abilities/Sorgaul/RageEnd",CHAN_7,1.0,false,1.0);
-		StopSound(5);
+		StopSound(0, CHAN_5);
 		SetNetworkReplicationFlags( 0 );
 		delay(5);
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );

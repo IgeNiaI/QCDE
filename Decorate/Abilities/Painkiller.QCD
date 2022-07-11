@@ -61,7 +61,7 @@ Actor DemonMorphProc : CustomInventory
 	{
 	Pickup:
 		TNT1 A 0 A_AlertMonsters(96)
-		TNT1 A 0 A_StopSound(5)
+		TNT1 A 0 A_StopSound(CHAN_WEAPON)
 		TNT1 A 0 A_StopSound(CHAN_VOICE)
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DMDemon")
 		TNT1 A 0 A_GiveInventory("DemonMorpher",1)

@@ -75,7 +75,7 @@ Actor SamMinigun : QCWeapon
 		Wait
 
 	Deselect:
-		QP28 U 0 A_StopSound(5)
+		QP28 U 0 A_StopSound(CHAN_WEAPON)
 		QP28 U 0 A_ZoomFactor(1.0)
 		QP28 U 1 A_Lower
 		QP28 "#######" 0 A_Lower
@@ -86,14 +86,14 @@ Actor SamMinigun : QCWeapon
 	//-------------------------------------------------------
 	Fire:
 	SpinUp:
-		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinUp",CHAN_5,1.0)
+		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinUp",CHAN_WEAPON,1.0)
 		QP28 UUVVW 1
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"Holder1DM")
 		QP28 A 0 A_Refire("Holder1")
 		Goto SpinDown
 
 		Holder1:
-			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_5,0.8,true)
+			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_WEAPON,0.8,true)
 			QP28 X 0 A_AlertMonsters
 			//Fires every other tic
 			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(2.5,-2.5),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(2.5,-2.5))
@@ -111,7 +111,7 @@ Actor SamMinigun : QCWeapon
 			Goto SpinDown
 
 		Holder1DM:
-			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_5,0.8,true)
+			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_WEAPON,0.8,true)
 			QP28 X 0 A_AlertMonsters
 			QP28 X 1 Bright A_GunFlash("FlashDM")
 			QP28 Y 1 Bright
@@ -126,7 +126,7 @@ Actor SamMinigun : QCWeapon
 			Goto SpinDown
 
 	SpinDown:
-		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinDown",CHAN_5,1.0,false)
+		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinDown",CHAN_WEAPON,1.0,false)
 		QP28 UVW 1
 		QP28 UVW 2 A_WeaponReady(WRF_NOBOB|WRF_DISABLESWITCH)
 		QP28 UVW 3 A_WeaponReady(WRF_NOBOB|WRF_DISABLESWITCH)
@@ -144,7 +144,7 @@ Actor SamMinigun : QCWeapon
 	// alt fire: Very spread and more damage, good for close range only
 	AltFire:
 	AltSpinUp:
-		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinUp",CHAN_5,1.0)
+		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinUp",CHAN_WEAPON,1.0)
 		QP28 UVW 3
 		QP28 UVW 2
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"AltHolder1DM")
@@ -152,7 +152,7 @@ Actor SamMinigun : QCWeapon
 		Goto AltSpinDown
 
 		AltHolder1:
-			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_5,0.8,true)
+			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_WEAPON,0.8,true)
 			QP28 X 0 A_AlertMonsters
 			//Fires every other tic
 			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(2.5,-2.5),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(8,-8))
@@ -170,7 +170,7 @@ Actor SamMinigun : QCWeapon
 			Goto AltSpinDown
 
 		AltHolder1DM:
-			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_5,0.8,true)
+			QP28 X 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_WEAPON,0.8,true)
 			QP28 X 0 A_AlertMonsters
 			QP28 X 1 Bright A_GunFlash("AltFlashDM")
 			QP28 Y 1 Bright
@@ -185,7 +185,7 @@ Actor SamMinigun : QCWeapon
 			Goto AltSpinDown
 
 	AltSpinDown:
-		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinDown",CHAN_5,1.0,false)
+		QP28 A 0 A_PlaySound("QC/Abilities/Sam/SpinDown",CHAN_WEAPON,1.0,false)
 		QP28 UVW 1
 		QP28 UVW 2 A_WeaponReady(WRF_NOBOB|WRF_DISABLESWITCH)
 		QP28 UVW 3 A_WeaponReady(WRF_NOBOB|WRF_DISABLESWITCH)
