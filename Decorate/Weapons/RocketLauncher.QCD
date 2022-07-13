@@ -204,44 +204,6 @@ Actor QCRocketLauncher : QCWeapon
 	FlashEnderNoRecoil:
 		TNT1 A 1
 		Stop
-
-	//-----------------------
-	// Fire Seq / Zoom
-	//-----------------------
-	AltFire:
-		QCG5 A 0 A_JumpIfInventory("DMToken",1,"StartZoomChecks")	//in Deathmatch, allow zoom checks by Default
-		"####" A 0 A_JumpIfInventory("RL_UG_Control", 1, "StartZoomChecks")	//also if upgrade present, allow checks
-	NoZoom:
-		"####" A 2 A_WeaponReady(WRF_NOSECONDARY)	//dummy state in case player is holding "alt fire" all along
-		"####" A 0 A_Refire("NoZoom")
-		Goto Ready
-	StartZoomChecks:
-		"####" A 0 A_JumpIfInventory("WeaponZoomedToken", 1, "ZoomOut")
-	ZoomIn:
-		"####" AAA 1
-		"####" A 0 A_JumpIfInventory("DMToken",1,"ZoomDM")
-		"####" "#" 0 A_PlaySound("QC/Weapons/Upgrade/RLBeep",CHAN_WEAPON)
-		"####" "#" 0 ACS_NamedExecuteAlways("QCDE_ModSelectedText",0,15)
-		"####" "#" 0 A_ZoomFactor(1.1)
-		Goto ContinueZoom
-	ZoomDM:
-		"####" "#" 0 A_ZoomFactor(1.8)
-	ContinueZoom:
-		"####" "#" 0 A_GiveInventory("WeaponZoomedToken",1)
-	ZoomInHeld:
-		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		"####" A 1
-		"####" "#" 1 A_Refire("ZoomInHeld")
-		Goto Ready
-
-		ZoomOut:
-			"####" "#" 0 A_ZoomFactor(1.0)
-			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
-		ZoomOutHeld:
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-			"####" A 1
-			"####" "#" 1 A_Refire("ZoomOutHeld")
-			Goto Ready
 	}
 }
 

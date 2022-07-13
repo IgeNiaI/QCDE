@@ -95,8 +95,15 @@ Actor QCHeavyMachinegun : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
+		QCGB A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
 		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		QCGB A 3 A_WeaponReady
+		Loop
+
+	ReadyZoomed:
+		R016 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Ready")
+		R016 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		R016 N 3 Bright A_WeaponReady(WRF_NOBOB)
 		Loop
 
 		ReadyCantFire:
@@ -159,6 +166,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		QCGB B 1 Offset(4,35) Bright
 		QCGB A 1 Offset(2,33)
 		QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
 		QCGB A 1 Offset(1,32) A_ReFire("FireLooper2")
 		Goto EndFireLooper
 	FireLooper2:
@@ -168,6 +176,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		QCGB C 1 Offset(4,35) Bright
 		QCGB A 1 Offset(2,33)
 		//QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
 		QCGB A 1 Offset(1,32) A_ReFire("FireLooper3")
 		Goto EndFireLooper
 	FireLooper3:
@@ -177,6 +186,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		QCGB D 1 Offset(4,35) Bright
 		QCGB A 1 Offset(2,33)
 		QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
 		QCGB A 1 Offset(1,32) A_ReFire("FireLooper")
 		Goto EndFireLooper
 
@@ -187,6 +197,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		QCGB B 1 Offset(4,35) Bright
 		QCGB A 1 Offset(2,33)
 		QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
 		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper2")
 		Goto EndFireLooper
 	DM_FireLooper2:
@@ -196,6 +207,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		QCGB C 1 Offset(4,35) Bright
 		QCGB A 1 Offset(2,33)
 		//QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
 		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper3")
 		Goto EndFireLooper
 	DM_FireLooper3:
@@ -205,6 +217,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		QCGB D 1 Offset(4,35) Bright
 		QCGB A 1 Offset(2,33)
 		QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
 		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper")
 		Goto EndFireLooper
 
@@ -243,49 +256,6 @@ Actor QCHeavyMachinegun : QCWeapon
 			TNT1 A 1
 			Stop
 
-	//-----------------------
-	// Fire Seq / Zoom
-	//-----------------------
-	AltFire:
-		QCGB A 0 A_JumpIfInventory("WeaponZoomedToken", 1, "ZoomOut")
-	ZoomIn:
-		R016 NN 1 Bright
-		"####" "#" 0 A_ZoomFactor(1.8)
-		"####" "#" 0 A_PlaySound("QC/Weapons/HeavyMachinegun/ZoomIn", CHAN_WEAPON, 1.0, 0)
-		"####" "#" 0 A_GiveInventory("WeaponZoomedToken",1)
-		"####" "#" 0 A_JumpIfInventory("HMG_UG_Pierce",1,"PlayUpgradeBeep")
-		Goto ZoomInHeld
-
-		PlayUpgradeBeep:
-			"####" "#" 0 A_PlaySound("QC/Weapons/Upgrade/HMGBeep",CHAN_AUTO)
-			"####" "#" 0 ACS_NamedExecuteAlways("QCDE_ModSelectedText",0,7)
-			Goto ZoomInHeld
-
-	ZoomInHeld:
-		"####" N 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		"####" N 1 Bright
-		"####" "#" 1 Bright A_Refire("ZoomInHeld")
-		Goto ReadyZoomed
-
-		ZoomOut:
-			"####" "#" 0 A_ZoomFactor(1.0)
-			"####" "#" 0 A_PlaySound("QC/Weapons/HeavyMachinegun/ZoomOut", CHAN_WEAPON, 1.0, 0)
-			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
-		ZoomOutHeld:
-			"####" N 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-			"####" A 1
-			"####" "#" 1 A_Refire("ZoomOutHeld")
-			Goto Ready
-
-	ReadyZoomed:
-		R016 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		R016 N 3 Bright A_WeaponReady(WRF_NOBOB)
-		Loop
-
-
-
-
-
 	ZoomedFire:
 		TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"ZoomedFireQuadSound")
 		Goto ZoomedFireNormalSound
@@ -305,6 +275,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		R016 N 1 Bright
 		R016 N 1 Bright
 		R016 N 3 Bright
+		R016 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Fire")
 		R016 N 0 A_ReFire("ZoomedFireLooper2")
 		R016 N 3 Bright A_PlaySound("QC/Weapons/HeavyMachinegun/FireZoomedEnd",5,1) //but plays the end so that it keeps ringing
 		Goto ReadyZoomed
@@ -315,6 +286,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		R016 N 1 Bright
 		R016 N 1 Bright
 		R016 N 2 Bright
+		R016 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Fire")
 		R016 N 0 A_ReFire("ZoomedFireLooper")
 		R016 N 3 Bright A_PlaySound("QC/Weapons/HeavyMachinegun/FireZoomedEnd",5,1) //but plays the end so that it keeps ringing
 		Goto ReadyZoomed

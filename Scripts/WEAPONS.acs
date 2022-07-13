@@ -226,3 +226,142 @@ Script "QCDE_FreeTribolt" (void)
 
 	SpawnForced("QCTribolt", GetActorX(0),GetActorY(0),GetActorZ(0));
 }
+
+Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, int buttons)
+{
+	if (!predicting)
+	{
+		bool shouldZoomIn = !CheckInventory("WeaponZoomedToken") && justPressed;
+		bool shouldZoomOut = CheckInventory("WeaponZoomedToken") && GetCVar("cl_holdZoom") ? justReleased : justPressed;
+
+		if (shouldZoomIn)
+		{
+			int zoom = 1.0;
+			if (CheckWeapon("QCGauntlet"))
+			{
+				// gauntlet zooms only in DM, but not for Painkiller
+				if (GameType() == GAME_NET_DEATHMATCH && !CheckInventory("Class_Painkiller"))
+					zoom = 1.8;
+			}
+			else if (CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCHeavyMachinegunDM"))
+			{
+				// both heavy machineguns zoom to 1.8
+				PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn",CHAN_WEAPON,1.0,false,0.5);
+				zoom = GetCVar("cl_hmgZoom");
+				if (zoom < 1.1)
+					zoom = 1.1;
+			}
+			else if (CheckWeapon("QCShotgun"))
+			{
+				// coop shotgun zoom if second upgrade was picked up
+				if (CheckInventory("SG_UG_Explosive"))
+				{
+					PlaySound(0,"QC/Weapons/Upgrade/SGBeep",CHAN_WEAPON);
+					zoom = 1.1;
+				}
+			}
+			else if (CheckWeapon("QCSuperShotgun"))
+			{
+				// coop super shotgun zoom if second upgrade was picked up
+				if (CheckInventory("SSG_UG_Flame"))
+				{
+					PlaySound(0,"QC/Weapons/Upgrade/SSGBeep",CHAN_WEAPON);
+					zoom = 1.1;
+				}
+			}
+			else if (CheckWeapon("QCSuperNailgun"))
+			{
+				// coop super nailgun zoom if second upgrade was picked up
+				if (CheckInventory("SNG_UG_Seeker"))
+				{
+					PlaySound(0,"QC/Weapons/Upgrade/SNGBeep",CHAN_WEAPON);
+					zoom = 1.1;
+				}
+			}
+			else if (CheckWeapon("QCTribolt"))
+			{
+				// coop tribolt zoom if second upgrade was picked up
+				if (CheckInventory("TB_UG_Grenade"))
+				{
+					PlaySound(0,"QC/Weapons/Upgrade/TBBeep",CHAN_WEAPON);
+					zoom = 1.1;
+				}
+			}
+			else if (CheckWeapon("QCRocketLauncher"))
+			{
+				// coop rocket launcher zoom if second upgrade was picked up
+				if (CheckInventory("RL_UG_Control"))
+				{
+					PlaySound(0,"QC/Weapons/Upgrade/RLBeep",CHAN_WEAPON);
+					zoom = 1.1;
+				}
+			}
+			else if (CheckWeapon("QCLightningGun"))
+			{
+				// coop lightning gun zoom if second upgrade was picked up
+				if (CheckInventory("LG_UG_Static"))
+				{
+					PlaySound(0,"QC/Weapons/Upgrade/LGBeep",CHAN_WEAPON);
+					zoom = 1.1;
+				}
+			}
+			else if (CheckWeapon("QCLightningGunDM"))
+			{
+				zoom = GetCVar("cl_lgZoom");
+				if (zoom < 1.1)
+					zoom = 1.1;
+			}
+			else if (CheckWeapon("QCRailgun") || CheckWeapon("QCRailgunDM"))
+			{
+				// both railguns zoom to 2.5
+				PlaySound(0,"QC/Weapons/Railgun/ZoomIn",6,1.0,false); // not in CHAN_WEAPON because it interrupts recharge sound
+				zoom = GetCVar("cl_railgunZoom");
+				if (zoom < 1.1)
+					zoom = 1.1;
+			}
+			else if (CheckWeapon("QCBFG"))
+			{
+				// coop BFG zoom if second upgrade was picked up
+				if (CheckInventory("BFG_UG_Charge"))
+				{
+					PlaySound(0,"QC/Weapons/Upgrade/BFGBeep",CHAN_WEAPON);
+					zoom = 1.1;
+				}
+			}
+			else if (CheckWeapon("QCMachinegunDM") || CheckWeapon("QCBFGDM")
+					|| CheckWeapon("QCShotgunDM") || CheckWeapon("QCSuperShotgunDM")
+					|| CheckWeapon("QCNailgunDM") || CheckWeapon("QCSuperNailgunDM")
+					|| CheckWeapon("QCTriboltDM") || CheckWeapon("QCRocketLauncherDM"))
+            {
+				// all other weapons zoom to 1.8
+				zoom = GetCVar("cl_otherZoom");
+				if (zoom < 1.1)
+					zoom = 1.1;
+            }
+
+			if (zoom != 1.0)
+			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+				SetInventory("WeaponZoomedToken", 1);
+				SetPlayerWeaponZoomFactor(PlayerNumber(), zoom);
+				SetNetworkReplicationFlags( 0 );
+			}
+		}
+		else if (shouldZoomOut)
+		{
+			if (CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCHeavyMachinegunDM"))
+			{
+				PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomOut",CHAN_WEAPON,1.0,false,0.5);
+			}
+			else if (CheckWeapon("QCRailgun") || CheckWeapon("QCRailgunDM"))
+			{
+				PlaySound(0,"QC/Weapons/Railgun/ZoomOut",6,1.0,false); // not in CHAN_WEAPON because it interrupts recharge sound
+			}
+
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+			SetInventory("WeaponZoomedToken", 0);
+			SetPlayerWeaponZoomFactor(PlayerNumber(), 1.0);
+			SetNetworkReplicationFlags( 0 );
+		}
+	}
+}

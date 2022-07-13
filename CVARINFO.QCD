@@ -62,6 +62,13 @@ user int snd_randommus         =   1; // play QCDE OST in random order. Desyncs 
 user int snd_songnames         =   0; // log names of songs being played
 user int _previousSong         =  -1; // used internally for snd_randommus
 
+// Client zoom settings
+
+user bool  cl_holdZoom   	=  true; // hold or toggle zoom
+user float cl_railgunZoom	=  2.5; // how much to zoom the railgun
+user float cl_hmgZoom		=  1.8; // how much to zoom the heavy machinegun
+user float cl_lgZoom		=  1.8; // how much to zoom lightning gun
+user float cl_otherZoom		=  1.8; // how much to zoom all other weapons
 
 // Theme settings
 

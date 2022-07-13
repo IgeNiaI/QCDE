@@ -178,83 +178,47 @@ Actor QCLightningGun : QCWeapon
 		LGSet100Purp:
 			QCGF A 0	//sets purple, visible
 			"####" A 0 A_AlertMonsters
-			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==1,"CoopHoldPurple")
-			Goto SPHoldPurple
+			Goto HoldPurple
 
 
 	CheckSPDM:
-		"####" A 0 A_AlertMonsters
-		"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==1,"CoopHold")
+		QCG6 A 0 A_AlertMonsters
 		"####" A 0 A_JumpIfInventory("DMToken",1,"DMCheckTransparency")
-		Goto SPHold
-
-		//*******************************
-		// Single player: no 3rd person beam
-		SPHold:
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-			"####" A 0 A_GunFlash
-			"####" G 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" H 1 Bright
-			"####" A 0 A_ReFire("SPHold2")
-			Goto FireEnd
-		SPHold2:
-			"####" A 0 A_GunFlash
-			"####" I 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" J 1 Bright
-			"####" A 0 A_ReFire("SPHold3")
-			Goto FireEnd
-		SPHold3:
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-			"####" A 0 A_GiveInventory("LGcharge",1)
-			"####" A 0 A_GunFlash
-			"####" K 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" L 1 Bright
-			"####" A 0 A_ReFire("SPHold")
-			Goto FireEnd
+		Goto Hold
 
 		//*******************************
 		// Coop: with 3rd person beam
-		CoopHold:
+		Hold:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash
 			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
 			"####" G 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 			"####" H 1 Bright
-			"####" A 0 A_ReFire("CoopHold2")
+			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
+			"####" A 0 A_ReFire("Hold2")
 			Goto FireEnd
-		CoopHold2:
+		Hold2:
+			"####" A 0 Offset(0,32)
 			"####" A 0 A_GunFlash
 			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
 			"####" I 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 			"####" J 1 Bright
-			"####" A 0 A_ReFire("CoopHold3")
+			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
+			"####" A 0 A_ReFire("Hold3")
 			Goto FireEnd
-		CoopHold3:
+		Hold3:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GiveInventory("LGcharge",1,0,GIF_SKIPOWNER)
 			"####" A 0 A_GunFlash
 			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
 			"####" K 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 			"####" L 1 Bright
-			"####" A 0 A_ReFire("CoopHold")
+			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
+			"####" A 0 A_ReFire("Hold")
 			Goto FireEnd
 
 			//*******************************
-			// Single player: Purple no 3rd person beam
-			SPHoldPurple:
-				"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-				"####" A 0 A_GunFlash
-				"####" G 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)	//deals Deathmatch damage? yes, deals less than regular shot, because of explosion on puff
-				"####" H 1 Bright
-				"####" A 0 A_ReFire("SPHoldPurple2")
-				Goto FireEnd
-			SPHoldPurple2:
-				"####" A 0 A_GunFlash
-				"####" I 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-				"####" J 1 Bright
-				"####" A 0 A_ReFire("SPHoldPurple3")
-				Goto FireEnd
-			SPHoldPurple3:
+			HoldPurple:
 				"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 				"####" A 0 A_GiveInventory("LGcharge",1)
 				"####" A 0 A_GunFlash
@@ -271,23 +235,27 @@ Actor QCLightningGun : QCWeapon
 				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
 				"####" G 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 				"####" H 1 Bright
-				"####" A 0 A_ReFire("CoopHoldPurple2")
+				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckSPDM")
+				"####" A 0 A_ReFire("HoldPurple2")
 				Goto FireEnd
-			CoopHoldPurple2:
+			HoldPurple2:
+				"####" A 0 Offset(0,32)
 				"####" A 0 A_GunFlash
 				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
 				"####" I 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 				"####" J 1 Bright
-				"####" A 0 A_ReFire("CoopHoldPurple3")
+				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckSPDM")
+				"####" A 0 A_ReFire("HoldPurple3")
 				Goto FireEnd
-			CoopHoldPurple3:
+			HoldPurple3:
 				"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 				"####" A 0 A_GiveInventory("LGcharge",1,0,GIF_SKIPOWNER)
 				"####" A 0 A_GunFlash
 				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
 				"####" K 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 				"####" L 1 Bright
-				"####" A 0 A_ReFire("CoopHoldPurple")
+				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckSPDM")
+				"####" A 0 A_ReFire("HoldPurple")
 				Goto FireEnd
 
 
@@ -352,46 +320,6 @@ Actor QCLightningGun : QCWeapon
 		TNT1 C 1 A_Light2
 		TNT1 C 0 A_Light0
 		Stop
-
-	//-----------------------
-	// Fire Seq / Zoom
-	//-----------------------
-	AltFire:	//who uses zoom with LG? oh well, was like this in QC too
-		QCG6 A 0 A_JumpIfInventory("WeaponZoomedToken", 1, "ZoomOut")
-	ZoomIn:
-		"####" ABC 1
-		"####" A 0 A_JumpIfInventory("DMToken",1,"ZoomDM")
-		"####" "#" 0 A_PlaySound("QC/Weapons/Upgrade/LGBeep",CHAN_WEAPON)
-		"####" "#" 0 ACS_NamedExecuteAlways("QCDE_ModSelectedText",0,17)
-		"####" "#" 0 A_ZoomFactor(1.1)
-		Goto ContinueZoom
-	ZoomDM:
-		"####" "#" 0 A_ZoomFactor(1.8)
-	ContinueZoom:
-		"####" "#" 0 A_GiveInventory("WeaponZoomedToken",1)
-	ZoomInHeld1:
-		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		"####" AB 1
-		"####" "#" 1 A_Refire("ZoomInHeld2")
-		Goto Ready+1
-	ZoomInHeld2:
-		"####" CB 1
-		"####" "#" 1 A_Refire("ZoomInHeld1")
-		Goto Ready+1
-
-		ZoomOut:
-			"####" "#" 0 A_ZoomFactor(1.0)
-			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
-		ZoomOutHeld1:
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-			"####" AB 1
-			"####" "#" 1 A_Refire("ZoomOutHeld1")
-			Goto Ready+1
-		ZoomOutHeld2:
-			"####" CB 1
-			"####" "#" 1 A_Refire("ZoomOutHeld2")
-			Goto Ready+1
-
 	}
 }
 
