@@ -261,16 +261,16 @@ Actor CalebDoll : QCWeapon
 		Goto Readier
 
 		PvPFlash:	//PvP 60dmg
-			TNT1 A 0 A_FireBullets(sin(  0)*2.1  ,cos(  0)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_USEAMMO|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin( 36)*2.1  ,cos( 36)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin( 72)*2.1  ,cos( 72)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin(108)*2.1  ,cos(108)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin(144)*2.1  ,cos(144)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin(180)*2.1  ,cos(180)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin(216)*2.1  ,cos(216)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin(252)*2.1  ,cos(252)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin(288)*2.1  ,cos(288)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
-			TNT1 A 0 A_FireBullets(sin(324)*2.1  ,cos(324)*2.1   ,-1,2 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(  0)*2.1  ,cos(  0)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_USEAMMO|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin( 36)*2.1  ,cos( 36)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin( 72)*2.1  ,cos( 72)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(108)*2.1  ,cos(108)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(144)*2.1  ,cos(144)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(180)*2.1  ,cos(180)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(216)*2.1  ,cos(216)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(252)*2.1  ,cos(252)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(288)*2.1  ,cos(288)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(324)*2.1  ,cos(324)*2.1   ,-1,3 ,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
 			TNT1 A 2 A_FireBullets(0             ,0              ,-1,20,"QCVoodooPuff_DM",FBF_NOFLASH|FBF_NORANDOM|FBF_EXPLICITANGLE)
 			TNT1 A 0 A_PlaySound("QC/Abilities/Caleb/DollFire",CHAN_WEAPON,0.9)
 			Stop
@@ -281,7 +281,7 @@ Actor CalebDoll : QCWeapon
 		DamageMePvP:
 			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 			TNT1 A 0 A_SetBlend("880000",0.3,7)
-			TNT1 A 0 DamageThing(10,0)
+			TNT1 A 0 DamageThing(5,0)
 			Goto CommonEndFlash
 		HealMePvP:
 			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
