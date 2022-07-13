@@ -89,16 +89,16 @@ Actor QCPlayerLight : QCPlayer
 {
 	Radius 13
 	Height 52
-	Player.AttackZOffset 13
-	Player.ViewHeight 41
+	Player.AttackZOffset 20
+	Player.ViewHeight 48
 }
 
 Actor QCPlayerMedium : QCPlayer
 {
 	Radius 16
 	Height 56
-	Player.AttackZOffset 11 //13 is perfect, but makes projectiles hit below. so a middle point	to fix the hitscan attacks not hitting where they should
-	Player.ViewHeight 41
+	Player.AttackZOffset 20
+	Player.ViewHeight 50
 }
 
 
@@ -106,8 +106,8 @@ Actor QCPlayerHeavy : QCPlayer
 {
 	Radius 18
 	Height 60
-	Player.AttackZOffset 18
-	Player.ViewHeight 50
+	Player.AttackZOffset 23
+	Player.ViewHeight 55
 }
 
 
