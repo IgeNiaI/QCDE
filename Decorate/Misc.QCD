@@ -297,22 +297,6 @@ Actor GenericActiveCleanerProc : CustomInventory
 }
 
 
-// Used every tic when players are crouching
-Actor SpeedNerf : CustomInventory
-{
-	States
-	{
-	Pickup:
-		// Scalar --> Crouch speed factor (approximately)
-		//  0.85  -->  40%
-		//  0.75  -->  25%
-		//  0.50  -->  10%
-		TNT1 A 0 A_ScaleVelocity(0.85)
-		Stop
-	}
-}
-
-
 // Used at each respawn in DM to enable body and projectile collisions --
 // disabled by default for solo and coop.
 

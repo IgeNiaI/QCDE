@@ -192,8 +192,6 @@ Script "QCDE_NewLife" (int firsttime)
 	if(instagib)  GiveInventory("Instagib",1);
 	if(rockarena) GiveInventory("RocketArena",1);
 
-	ACS_NamedExecuteAlways("Footstep_Initialize",0,0,0,0);
-
 	// After all setup is done, we can launch the loops.
 	ACS_NamedExecuteAlways("QCDE_Tracker"				,0);
 	ACS_NamedExecuteAlways("QCDE_Tracker_CLIENTSIDE"	,0);
@@ -257,12 +255,6 @@ Script "QCDE_Tracker" (void)
 		if(ad_axis < 0) buttons |= BT_MOVELEFT;
 		if(ad_axis > 0) buttons |= BT_MOVERIGHT;
 		triggers = buttons & ~oldbuttons;
-
-		// Nerf crouching
-		if((buttons & BT_CROUCH) && !(GetActorZ(0) - GetActorFloorZ(0)) && !CheckInventory("Class_Kane"))
-		{
-			GiveInventory("SpeedNerf", 1);
-		}
 
 		// Health/armor and multiplayer score display
 		updateHealthArmorDisplay();
@@ -711,178 +703,6 @@ script "QCDE_TrackLowHealth_CLIENT" (void) CLIENTSIDE
 		//* debug */ log(s:"Warning state = ", d:warned);
 	}
 }
-
-//=============================================================================
-//
-//		Footsteps
-//
-//=============================================================================
-str FootstepType[NUMBER_OF_CLASSES + 1] = {
-		"",						//0  Empty
-		"QC/UI/MediumStep",		//1  Ranger
-		"QC/UI/DoomStep",		//2  Doomslayer
-		"QC/UI/ClothStep",		//3  Corvus
-		"QC/UI/KaneStep",		//4  Kanerki
-		"QC/UI/BootStep",		//5  Caleb
-		"QC/UI/ClothStep",		//6  Menelkir
-		"QC/UI/VisorStep",		//7  Terminator
-		"QC/UI/HeavyStep",		//8  Zedek
-		"QC/UI/RobotStep",		//9  Inquisitor
-		"QC/UI/Q2Step",			//10 Bitterman
-		"QC/UI/GalenStep",		//11 Galen
-		"QC/UI/NyxStep",		//12 Nyx
-		"QC/UI/SorgaulStep",	//13 Sorgaul
-		"QC/UI/DukeNukemStep",	//14 DukeNukem
-		"QC/UI/DurandalStep",	//15 Durandal
-		"QC/UI/KeelStep",		//16 Keel
-		"QC/UI/BootStep",		//17 Sarge
-		"QC/UI/LoWangStep",		//18 LoWang
-		"QC/UI/GraysonStep",	//19 Grayson
-		"QC/UI/EradicatorStep",	//20 Eradicator
-		"QC/UI/DukeNukemStep",	//21 Blazkowicz
-		"QC/UI/FreemanStep",	//22 Freeman
-		"QC/UI/VorMaturStep",	//23 VorMatur
-		"QC/UI/EleenaStep",		//24 Eleena
-		"QC/UI/NyxStep",		//25 Lucienne
-		"QC/UI/MediumStep",		//26 Major
-		"QC/UI/HunterStep",		//27 Hunter
-		"QC/UI/DukeNukemStep",	//28 Sam
-		"QC/UI/PostalStep",		//29 Postal
-		"QC/UI/BootStep", 		//30 Painkiller
-		"QC/UI/IntruderStep",   //31 Intruder
-		// ^ insert more classes here
-		};
-int FootstepVol[NUMBER_OF_CLASSES + 1][2] = {
-		{0,			},		//0  Empty
-		{72,	10	},		//1  Ranger
-		{72,	10	},		//2  Doomslayer
-		{72,	10	},		//3  Corvus
-		{72,	10	},		//4  Kanerki
-		{60,	10	},		//5  Caleb
-		{72,	10	},		//6  Menelkir
-		{96,	13	},		//7  Terminator
-		{96,	13	},		//8  Zedek
-		{96,	13	},		//9  Inquisitor
-		{72,	12	},		//10 Bitterman
-		{72,	10	},		//11 Galen
-		{72,	 9	},		//12 Nyx
-		{96,	11	},		//13 Sorgaul
-		{80,	10	},		//14 DukeNukem
-		{72,	10	},		//15 Durandal
-		{88,	13	},		//16 Keel
-		{70,	10	},		//17 Sarge
-		{70,	10	},		//18 LoWang
-		{50,	10	},		//19 Grayson, they're damn loud
-		{96,	13	},		//20 Eradicator
-		{80,	10	},		//21 Blazkowicz
-		{80,	10	},		//22 Freeman
-		{50,	13	},		//23 VorMatur
-		{60,	10	},		//24 Eleena
-		{72,	10	},		//25 Lucienne
-		{72,	11	},		//26 Major
-		{72,	10	},		//27 Hunter
-		{72,	12	},		//28 Sam
-		{72,	10	},		//29 Postal
-		{72,	10	},		//30 Painkiller
-		{84,	10	},		//31 Intruder
-		// ^ insert more classes here
-		};
-
-function int floorcheck (void)	// function to check if player is in the floor
-{								// which is later used for the footsteps
-	int temp;
-	temp = GetActorZ(0) - GetActorFloorZ(0);
-	return temp;
-}
-
-function int speedcheck (void)	// to determine the speed, later used to
-{								// verify if footsteps should be played
-	int x, y, speed, roundedspeed, maintimer;
-	x = GetActorVelX(0);
-	y = GetActorVelY(0);
-	speed = FixedMul(x, x) + FixedMul(y, y);
-	roundedspeed = sqrt(speed);
-	return roundedspeed;
-}
-
-int playerSpeed;
-script "Footstep_Initialize" (void)	// this one with the fuctions above determines if player
-{									// is in the ground AND going fast enough to play footsteps
-	int type;
-	if(     CheckInventory("Class_Ranger"    ))		type =  1;
-	else if(CheckInventory("Class_Doomslayer"))		type =  2;
-	else if(CheckInventory("Class_Corvus"    ))		type =  3;
-	else if(CheckInventory("Class_Kane"      ))		type =  4;
-	else if(CheckInventory("Class_Caleb"     ))		type =  5;
-	else if(CheckInventory("Class_Menelkir"  ))		type =  6;
-	else if(CheckInventory("Class_Terminator"))		type =  7;
-	else if(CheckInventory("Class_Zedek"     ))		type =  8;
-	else if(CheckInventory("Class_Inquisitor"))		type =  9;
-	else if(CheckInventory("Class_Bitterman" ))		type = 10;
-	else if(CheckInventory("Class_Galen"     ))		type = 11;
-	else if(CheckInventory("Class_Nyx"       ))		type = 12;
-	else if(CheckInventory("Class_Sorgaul"   ))		type = 13;
-	else if(CheckInventory("Class_DukeNukem" ))		type = 14;
-	else if(CheckInventory("Class_Durandal"  ))		type = 15;
-	else if(CheckInventory("Class_Keel"      ))		type = 16;
-	else if(CheckInventory("Class_Sarge"     ))		type = 17;
-	else if(CheckInventory("Class_LoWang"    ))		type = 18;
-	else if(CheckInventory("Class_Grayson"   ))		type = 19;
-	else if(CheckInventory("Class_Eradicator"))		type = 20;
-	else if(CheckInventory("Class_Blazkowicz"))		type = 21;
-	else if(CheckInventory("Class_Freeman"   ))		type = 22;
-	else if(CheckInventory("Class_VorMatur"  ))		type = 23;
-	else if(CheckInventory("Class_Eleena"    ))		type = 24;
-	else if(CheckInventory("Class_Lucienne"  ))		type = 25;
-	else if(CheckInventory("Class_Major"     ))		type = 26;
-	else if(CheckInventory("Class_Hunter"    ))		type = 27;
-	else if(CheckInventory("Class_Sam"       ))		type = 28;
-	else if(CheckInventory("Class_Postal"    ))		type = 29;
-	else if(CheckInventory("Class_Painkiller"))		type = 30;
-	else if(CheckInventory("Class_Intruder"      ))		type = 31;
-	// ^ insert more classes here
-
-	int SpeedThreshold = 2050; //max diagonal speed while walking is 2009 for a regular speed doom marine
-	if(!playerSpeed)
-	{
-		playerSpeed = GetCvar("sv_PlayerSpeed");
-		//Sets the var to the limit in case someone tries sv_PlayerSpeed=1000
-		if(PlayerSpeed < 70)
-			PlayerSpeed = 70;
-		else if(PlayerSpeed > 130)
-			PlayerSpeed = 130;
-	}
-
-	int SpeedThresholdScaled = (SpeedThreshold*PlayerSpeed)/100;
-
-	// Load values
-	str footstep;
-	int volume, period;
-	{
-		footstep = FootstepType[type];
-		volume = FootstepVol[type][0];
-		period = FootstepVol[type][1];
-	}
-
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
-	{
-		if(speedcheck() >= SpeedThresholdScaled)	// if current speed is bigger than the threshold
-		{
-			if(floorcheck() == 0 && !checkinventory("NoFootstepsToken"))	// and if is on the floor...
-			{					//arg1, type of step, arg2 volume
-				ActivatorSound(footstep,volume);
-			}
-		}
-
-		int i = period;
-		while(i --> 0)
-		{
-			if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
-			delay(1);
-		}
-	}
-}
-
 
 //=============================================================================
 //

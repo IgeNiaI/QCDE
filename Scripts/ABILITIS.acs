@@ -141,14 +141,11 @@ Script "QCDE_PassiveAbility" (void)
 {
 	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
 
-		 if(CheckInventory("Class_Doomslayer"	))	ACS("QCDE_Passive_Doomslayer");
-	else if(CheckInventory("Class_Corvus"		))	ACS("QCDE_Passive_Corvus"    );
-	else if(CheckInventory("Class_Kane"			))	ACS("QCDE_Passive_Kane"      );
+		 if(CheckInventory("Class_Corvus"		))	ACS("QCDE_Passive_Corvus"    );
 	else if(CheckInventory("Class_Terminator"	))	ACS("QCDE_Passive_Terminator");
 	else if(CheckInventory("Class_Zedek"		))	ACS("QCDE_Passive_Zedek"     );
 	else if(CheckInventory("Class_Inquisitor"	))	ACS("QCDE_Passive_Inquisitor");
 	else if(CheckInventory("Class_Bitterman"	))	ACS("QCDE_Passive_Bitterman" );
-	else if(CheckInventory("Class_Nyx"			))	ACS("QCDE_Passive_Nyx"       );
 	else if(CheckInventory("Class_Keel"			))	ACS("QCDE_Passive_Keel"      );
 	else if(CheckInventory("Class_Sarge"		))	ACS("QCDE_Passive_Sarge"     );
 	else if(CheckInventory("Class_LoWang"		))	ACS("QCDE_Passive_LoWang"    );
@@ -159,7 +156,6 @@ Script "QCDE_PassiveAbility" (void)
 	else if(CheckInventory("Class_VorMatur"		))	ACS("QCDE_Passive_VorMatur"  );
 	else if(CheckInventory("Class_Eleena"		))	ACS("QCDE_Passive_Eleena"    );
 	else if(CheckInventory("Class_Lucienne"		))	ACS("QCDE_Passive_Lucienne"  );
-	else if(CheckInventory("Class_Major"		))	ACS("QCDE_Passive_Major"     );
 	else if(CheckInventory("Class_Hunter"		))	ACS("QCDE_Passive_Hunter"    );
 	else if(CheckInventory("Class_Sam"			))	ACS("QCDE_Passive_Sam"       );
 	else if(CheckInventory("Class_Postal"		))	ACS("QCDE_Passive_Postal"    );
@@ -3069,54 +3065,6 @@ Script "QCDE_BobExplosionAttribution" (void)
 //=============================================================================
 
 //---------------------------------
-//		Doomslayer's Passive
-
-Script "QCDE_Passive_Doomslayer" (void)
-{
-	int jumped;
-	int zs0,zs1,zs2;
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
-	{
-		// Speed history -- you're grounded if not flying for 3 tics.
-		// Multiplied to reduce loss of precision on truncation.
-		zs0 = zs1;
-		zs1 = zs2;
-		zs2 = GetActorVelZ(0) * 10 >> 16;
-
-		int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
-		int buttons    = GetPlayerInput(-1, INPUT_BUTTONS);
-		int triggers   = buttons & ~oldbuttons; // Current AND NOT past -- means "started just now"
-
-		if((zs0 != 0) && (zs1 != 0) && (zs2 != 0))
-		if(triggers & BT_JUMP)
-		{
-
-			if((zs0 != 0) && (zs1 != 0) && (zs2 != 0))
-			if(jumped < 2)
-			{
-				GiveInventory("ChangeVelocityDoerProc",1);
-			}
-			else {} // jumped all you could
-			else {} // not in flight
-
-			jumped++;
-		}
-		else {} // don't wanna jump
-		else // wasn't in flight for last 3 tics
-		{
-			if((zs0 == 0) && (zs1 == 0) && (zs2 == 0)) // grounded
-				jumped = 0;
-			else // transient state between jumping and landing
-				if(!jumped) // when airborne, it's always like jumped once
-					jumped = 1;
-		}
-
-		delay(1);
-	}
-}
-
-
-//---------------------------------
 //		Corvus's Passive
 
 Script "QCDE_Passive_Corvus" (void)
@@ -3127,176 +3075,6 @@ Script "QCDE_Passive_Corvus" (void)
 		GiveInventory("CorvusRegenerationCoop",1);
 }
 
-
-//---------------------------------
-//		Kane's Passive
-
-#define PRE_LAND_THRESHOLD  10
-#define POST_LAND_THRESHOLD  3
-#define TIME_BETWEEN_SLIDES 10
-#define MIN_SLIDE_DURATION  26 //0.75 sec
-#define MAX_SLIDE_ADDITION  7 //0.2 sec
-#define CROUCH_UPDATE_RATE   4
-#define TURN_MIN             0.00 // fixed point angle per CROUCH_UPDATE_RATE tics
-#define TURN_MAX             0.33 // 1.0 = 360 deg, 0.25 = 90 deg, 0.05 = 18 deg
-//#define TURN_GOLDILOCKS_PUSH 2
-#define BASE_SLIDE_STRENGTH  1
-int PlayerSpeed;
-Script "QCDE_Passive_Kane" (void)
-{
-	// Crouch-slide for Kanerki-sh
-	int buttons, oldbuttons, triggers;
-	int lastTimeCrouched = -PRE_LAND_THRESHOLD - 1;
-	int lastTimeGrounded, diff;
-	int zs0, zs1, last_angle, angle, landSpeed;
-	int ws_axis, ad_axis;
-	int power, duration;
-
-	if(!playerSpeed)
-	{
-		playerSpeed = GetCvar("sv_PlayerSpeed");
-		//Sets the var to the limit in case someone tries sv_PlayerSpeed=1000
-		if(PlayerSpeed < 70)
-			PlayerSpeed = 70;
-		else if(PlayerSpeed > 130)
-			PlayerSpeed = 130;
-	}
-
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
-	{
-		// Player input information
-		oldbuttons = buttons;
-		buttons = GetPlayerInput(PlayerNumber(), INPUT_BUTTONS);
-		triggers = buttons & ~oldbuttons;
-		if(triggers & BT_CROUCH) lastTimeCrouched = Timer();
-
-		// Speed history -- you're grounded if were flying but aren't anymore.
-		zs0 = zs1;
-		zs1 = GetActorVelZ(0) >> 16;
-		if(zs0 < 0 && !zs1)
-		{
-			lastTimeGrounded = Timer();
-			landSpeed = -zs0;
-		}
-
-		diff = lastTimeCrouched - lastTimeGrounded;
-		if(-PRE_LAND_THRESHOLD < diff && diff < POST_LAND_THRESHOLD && (buttons & BT_CROUCH) && !CheckInventory("Freezetagged"))
-		{
-			power = (BASE_SLIDE_STRENGTH*PlayerSpeed)/100; //kinda very rounded, but it does increase/decrease
-			if(diff < 0) duration = MIN_SLIDE_DURATION - MAX_SLIDE_ADDITION * sqrt(landSpeed) * PlayerSpeed / 100 /  PRE_LAND_THRESHOLD / diff;
-			if(diff >=0) duration = MIN_SLIDE_DURATION + MAX_SLIDE_ADDITION * sqrt(landSpeed) * PlayerSpeed / 100 / POST_LAND_THRESHOLD / (diff + 1);
-			//Print(s:"\c[brite]slide! \n speed of fall = ", d:landSpeed, s:" \n timing imprecision = ", d:diff, s:"\n\n power of slide = ", d:power, s:"\n duration of slide = ", d:duration);
-			lastTimeCrouched = 0; // prevent further slides
-			GiveInventory("CrouchSlideProc",1); // decreases speed when slide starts
-			PlaySound (0, "QC/Abilities/Kane/SlideStartLoop", CHAN_BODY, 0.5, true, 1.8);
-
-			GiveInventory("NoFootstepsToken",1);
-			angle = GetActorAngle(0);
-			// and adds intentional speed over duration
-			for(; duration > 0; duration -= CROUCH_UPDATE_RATE)
-			{
-				if(CheckInventory("KickedAlready")!=0) duration=0;
-
-				// Read inputs
-				buttons = GetPlayerInput(PlayerNumber(), INPUT_BUTTONS);
-				ws_axis = GetPlayerInput(PlayerNumber(), INPUT_FORWARDMOVE);
-				ad_axis = GetPlayerInput(PlayerNumber(), INPUT_SIDEMOVE);
-				if(ws_axis < 0) buttons |= BT_BACK;
-				if(ws_axis > 0) buttons |= BT_FORWARD;
-				if(ad_axis < 0) buttons |= BT_MOVELEFT;
-				if(ad_axis > 0) buttons |= BT_MOVERIGHT;
-
-				// Goldilocks push
-				last_angle = angle;
-				angle = GetActorAngle(0);
-				int x = GetActorX(0);
-				int y = GetActorY(0);
-				int z = GetActorZ(0) + 8.0;
-				str color = "";
-
-				// 65536ths of a full turn per CROUCH_UPDATE_RATE tics
-				// 65536 = 360 deg, 16384 = 90 deg, 182 = 1 deg
-				// Or use fixed points: 1.0 = 360 deg, 0.25 = 90 deg, 0.00278 = 1 deg
-				int turn = abs(angle - last_angle);
-				if(turn > 0.8) turn = 1.0 - turn;
-				int goldipush = turn / 0.012;
-
-				if(turn > TURN_MAX) {
-					//SpawnForced("DebugBadTurn2", x,y,z + goldipush*1.0);
-					color = "\c[cyan]";
-				}
-				else
-				{
-					//SpawnForced("DebugGoodTurn", x,y,z + goldipush*1.0);
-					if(buttons & BT_BACK) goldipush = -goldipush;
-					ThrustThing(angle >> 8, goldipush, 0, 0);
-					if(IsPvE()) GiveInventory("SlideKickForwProc",1);
-					color = "\c[brite]";
-				}
-				//PrintBold(n:0, s:color, s:" turning at rate ", f:abs(angle - last_angle), s:" < " , f:TURN_MAX, s:" \n pushed ", d:goldipush);
-
-				// Static push
-				if(buttons & BT_MOVELEFT)	{ ThrustThing(angle>>8+ 64, power, 0, 0); if(IsPvE()) GiveInventory("SlideKickForwProc",1); }
-				if(buttons & BT_BACK)		{ ThrustThing(angle>>8+128, power, 0, 0); /*if(IsPvE()) GiveInventory("SlideKickBackProc",1);*/ }
-				if(buttons & BT_MOVERIGHT)	{ ThrustThing(angle>>8+192, power, 0, 0); if(IsPvE()) GiveInventory("SlideKickForwProc",1); }
-				if(!(buttons & BT_BACK))	{ ThrustThing(angle>>8    , power, 0, 0); if(IsPvE()) GiveInventory("SlideKickForwProc",1); }
-				delay(CROUCH_UPDATE_RATE);
-
-				if(!(buttons & BT_CROUCH)) break;
-				if(buttons & BT_JUMP)      break;
-			}
-			TakeInventory("NoFootstepsToken",1);
-			TakeInventory("KickedAlready",1);
-			//Print(s:"\c[bludi]slide is over.");
-			PlaySound (0, "NoSoundHax", CHAN_BODY, 0.01, false, 2018.0210);
-			delay(TIME_BETWEEN_SLIDES);
-		}
-
-		delay(1);
-	}
-}
-
-
-
-// Activator: dying monster
-Script "QCDE_MonsterKill_QCKane" (int xdeath)
-{
-	int hb, hn, hd;
-	if(CheckInventory("SlideKicked")) //if he wasn't slidekick'd, dont worry about this at all
-	{
-		hb = GetUserVariable(0,"user_healthbefore");
-		hn = GetActorProperty(0,APROP_Health);
-		hd = hb+(hn*-1);
-
-		//if health now is neg spawnhealth -1, means forced xdeath, useless value, random shards
-		if((hn*-1)-1==GetActorProperty(0,APROP_SpawnHealth))
-			{ GiveInventory("KaneShardDropProc",random(1,5)); /*Printbold(s:"FML");*/ }
-		//if health now makes some sense, then...
-		else if(hd>=250)
-			{ GiveInventory("KaneShardDropProc",7); /*Printbold(s:"7");*/ }
-		else if(hd>=150)
-			{ GiveInventory("KaneShardDropProc",6); /*Printbold(s:"6");*/ }
-		else if(hd>=120)
-			{ GiveInventory("KaneShardDropProc",5); /*Printbold(s:"5");*/ }
-		else if(hd>=90)
-			{ GiveInventory("KaneShardDropProc",4); /*Printbold(s:"4");*/ }
-		else if(hd>=60)
-			{ GiveInventory("KaneShardDropProc",3); /*Printbold(s:"3");*/ }
-		else if(hd>=30)
-			{ GiveInventory("KaneShardDropProc",2); /*Printbold(s:"2");*/ }
-		else
-			{ GiveInventory("KaneShardDropProc",1); /*Printbold(s:"1");*/ }
-
-		/*Printbold(s:"Spawn Health: ",d:GetActorProperty(0,APROP_SpawnHealth),
-		s:"\nHealth Before: ",d:hb,
-		s:"\nHealth now: ",d:hn);*/
-	}
-}
-Script "QCDE_PlayerKill_QCKane" (void) {} //does nothing when killing a player
-
-
-//---------------------------------
-//		Caleb's Passive
 
 // Activator: dying monster
 Script "QCDE_MonsterKill_QCCaleb" (int xdeath)
@@ -3481,95 +3259,20 @@ Script "QCDE_Passive_Zedek" (void)
 //---------------------------------
 //		Inquisitor's Passive
 
-//#define INQUISITOR_TAP_DELAY    5
-//#define MAXIMUM_TAP_DELAY      15
-int INQUISITOR_TAP_DELAY   =  2;
-int MAXIMUM_TAP_DELAY      = 15;
-int INQUISITOR_TAP_COOLDOWN= 35;
-#define INQUISITOR_THRUST      10
-#define INQUISITOR_THRUSTSIDE  13
 #define MOVEMENT_BUTTONS (BT_MOVELEFT|BT_FORWARD|BT_MOVERIGHT|BT_BACK)
 Script "QCDE_Passive_Inquisitor" (void)
 {
-	// Mid-air tap movement for ~~Clutch~~ Inquisitor
-	int buttons, oldbuttons, triggers;
-	int lastTapTime, lastTapValue, angle, ableToJump;
-	int ws_axis, ad_axis;
-	int plr = PlayerNumber();
-
 	// This passive is human-scum-only.
-	if(PlayerIsBot(plr)) terminate;
-
-	if(!playerSpeed)
-	{
-		playerSpeed = GetCvar("sv_PlayerSpeed");
-		//Sets the var to the limit in case someone tries sv_PlayerSpeed=1000
-		if(PlayerSpeed < 70)
-			PlayerSpeed = 70;
-		else if(PlayerSpeed > 130)
-			PlayerSpeed = 130;
-	}
-
-	// Thrust that is scaled by the sv_PlayerSpeed var
-	int ThrustScaled = (INQUISITOR_THRUST*PlayerSpeed)/100;
-	int ThrustSideScaled = (INQUISITOR_THRUSTSIDE*PlayerSpeed)/100;
+	if(PlayerIsBot(PlayerNumber())) terminate;
 
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
-		// Player input information
-		oldbuttons = buttons;
-		buttons = 0;
-		ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
-		ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
-		if(ws_axis < 0) buttons |= BT_BACK;
-		if(ws_axis > 0) buttons |= BT_FORWARD;
-		if(ad_axis < 0) buttons |= BT_MOVELEFT;
-		if(ad_axis > 0) buttons |= BT_MOVERIGHT;
-		triggers = buttons & ~oldbuttons;
-
 		// Still defense
-		bool stillDefense = !CheckInventory("InquisitorStageToken") && !(buttons & MOVEMENT_BUTTONS);
+		bool stillDefense = !CheckInventory("InquisitorStageToken") && !(GetPlayerInput(-1, INPUT_BUTTONS) & MOVEMENT_BUTTONS);
 		if (!stillDefense)
 			TakeInventory("PowerClutchProtec",1);
 		else if(!CheckInventory("PowerClutchProtec"))
 			GiveInventory("ClutchPassiveProtec",1);
-
-		// Tap movement
-		if (triggers & MOVEMENT_BUTTONS)                         // Player taps a movement key,
-		if (!CheckInventory("Freezetagged"))                     // while not being frozen in freezetag
-		{
-			MAXIMUM_TAP_DELAY = GetCvar("cl_clutchTapMax");
-			if (lastTapTime + (INQUISITOR_TAP_DELAY) <= Timer() && // at sane rate,
-				lastTapTime +     MAXIMUM_TAP_DELAY  >  Timer()){// but not too rarely,
-				if (lastTapValue == triggers)                    // the same movement key is hit second time,
-				{	if (ableToJump && GetActorVelZ(0))           // they haven't yet spent the in-air lunge,
-					{                                            // -- they can has dash
-						ableToJump = false;
-						lastTapValue = 0;
-						angle = GetActorAngle(0) >> 8;
-						ThrustThingZ(0,15,0,1);		//first, throws player a bit up
-						if(triggers & BT_FORWARD)	ThrustThing(angle    , ThrustScaled,     0, 0);
-						if(triggers & BT_MOVELEFT)	ThrustThing(angle+ 64, ThrustSideScaled, 0, 0);
-						if(triggers & BT_BACK)		ThrustThing(angle+128, ThrustScaled,     0, 0);
-						if(triggers & BT_MOVERIGHT)	ThrustThing(angle+192, ThrustSideScaled, 0, 0);
-						PlaySound (0, "QC/Abilities/Inquisitor/Dodge", 6, 0.75, false, 1.8);
-						//PrintBold(s:"Scaled forward push: ",d:ThrustScaled,s:"\n Scaled side push: ",d:ThrustSideScaled);
-						//Log      (s:"Scaled forward push: ",d:ThrustScaled,s:"\n Scaled side push: ",d:ThrustSideScaled);
-
-						int t = INQUISITOR_TAP_COOLDOWN;
-						while(t --> 0) {
-							if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
-							delay(1);
-						}
-					}
-				}
-			}
-			lastTapValue = triggers;
-			lastTapTime = Timer();
-		}
-
-		// Grounded? Reset ability to lunge in mid-air.
-		if(!GetActorVelZ(0)) ableToJump = true;
 
 		delay(1);
 	}
@@ -3618,120 +3321,6 @@ Script "QCDE_Passive_Bitterman" (void)
 //Passive 2 "Armor Efficient", where armor degenerates MUCH slower,
 //the effect takes place in the script "QCDE_Degeneration" in "HLTHARMR.acs"
 
-
-
-//---------------------------------
-//		Nyx's Passive
-
-#define NYX_THRUST		3
-#define NYX_THRUST_Z	4
-
-Script "QCDE_Passive_Nyx" (void)
-{
-	int jumped;
-	int zs0,zs1,zs2, angle;
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
-	{
-		// Speed history -- you're grounded if not flying for 3 tics.
-		// Multiplied to reduce loss of precision on truncation.
-		zs0 = zs1;
-		zs1 = zs2;
-		zs2 = GetActorVelZ(0) * 10 >> 16;
-
-		int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
-		int buttons    = GetPlayerInput(-1, INPUT_BUTTONS);
-		int ws_axis = GetPlayerInput(PlayerNumber(), INPUT_FORWARDMOVE);
-		int ad_axis = GetPlayerInput(PlayerNumber(), INPUT_SIDEMOVE);
-		if(ws_axis < 0) buttons |= BT_BACK;
-		if(ws_axis > 0) buttons |= BT_FORWARD;
-		if(ad_axis < 0) buttons |= BT_MOVELEFT;
-		if(ad_axis > 0) buttons |= BT_MOVERIGHT;
-		int triggers   = buttons & ~oldbuttons; // Current AND NOT past -- means "started just now"
-
-		if((zs0 != 0) && (zs1 != 0) && (zs2 != 0))
-		{
-			if(triggers & BT_JUMP)
-			if(!CheckInventory("Freezetagged"))
-			{
-				if((zs0 != 0) && (zs1 != 0) && (zs2 != 0))
-				if(jumped < 2)
-				{
-					// Attempt to spawn an actor with radius larger than hers.
-					// If it succeeds and coordinates are exactly as it should be, there's no wall.
-					int tid = UniqueTid();
-
-					int x = GetActorX(0);
-					int y = GetActorY(0);
-					int z = GetActorZ(0) - 4.0; // under her feet
-
-					// Check for one-sided walls
-					if(!Spawn("NyxWallTest", x,y,z, tid)) wallJump(buttons);
-					else
-					{
-						ThrustThing(234,20,true,tid); // enforce position change
-						delay(1);
-
-						// After speed is added to object, check for position.
-						// If it's the same, then wall test is stuck --
-						// thus detecting the wall.
-						int cond = x == GetActorX(tid) &&
-						           y == GetActorY(tid) &&
-						           z == GetActorZ(tid);
-
-						if (cond) wallJump(buttons);
-
-						Thing_Remove(tid);
-					}
-				}
-				else {} //print(s:"Jumped too much"); // jumped all you could
-				else {} // not in flight
-
-				jumped++;
-			}
-			else {} // freezetagged
-			else {} // don't wanna jump
-		}
-		else // wasn't in flight for last 3 tics
-		{
-			if((zs0 == 0) && (zs1 == 0) && (zs2 == 0)) // grounded
-			{
-				jumped = 0;
-			}
-			else // transient state between jumping and landing
-				if(!jumped) // when airborne, it's always like jumped once
-					jumped = 1;
-
-			if(zs1 < 0  &&  zs2 == 0)                    // landed
-				if(!CheckInventory("NoFootstepsToken")) // in material world
-					if(zs1 < -90)                      // from quite a height
-					{
-						PlaySound(0,"NyxGrunt",CHAN_VOICE);
-						PlaySound(0,"NyxStomp",CHAN_BODY);	//"*land" sound plays in CHANNEL_AUTO, so it can't be overwritten
-					}
-					else if(zs1 < -50)                            // from a step or something
-						PlaySound(0,"NyxStomp",CHAN_BODY);
-
-			if((buttons & BT_JUMP) && !zs1 && (zs2 > 0)) // if trying to jump and getting push up
-				if(!CheckInventory("NoFootstepsToken")) // and if not in ¢§Ոth dimension
-					PlaySound(0,"NyxJump",CHAN_BODY);  // manual jump grunt
-		}
-		delay(1);
-	}
-}
-
-function void wallJump(int buttons)
-{
-	GiveInventory("ChangeVelocityDoerNyxProc",1);
-	ThrustThingZ(0,NYX_THRUST_Z*4,0,1);		// Extra jump height
-
-	// and a noticeable nudge in preferred direction
-	// (diagonal is 1.414 times greater, that's a feature)
-	int angle = GetActorAngle(0) >> 8;
-	if(buttons & BT_FORWARD)	ThrustThing(angle    , NYX_THRUST, 0, 0);
-	if(buttons & BT_MOVELEFT)	ThrustThing(angle+ 64, NYX_THRUST, 0, 0);
-	if(buttons & BT_BACK)		ThrustThing(angle+128, NYX_THRUST, 0, 0);
-	if(buttons & BT_MOVERIGHT)	ThrustThing(angle+192, NYX_THRUST, 0, 0);
-}
 
 
 //---------------------------------
@@ -4426,25 +4015,26 @@ Script "QCDE_SetTarget" (int tid)
 #define ARCADEFALL_PUSH          5
 Script "QCDE_Passive_Eleena" (void)
 {
-	int cond;
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
 		// Training Weights
 		SetInventory("PowerEleenaSpeed", !CheckInventory("BasicArmor"));
 
-		// Cat Leap
-		if (GetActorVelZ(0) > 1.0)
-			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_JUMP)
-				ThrustThingZ(0,ARCADEJUMP_PUSH,0,1);
-
-		// Lands on All Fours
-		if (GetActorVelZ(0))
-			if (GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_CROUCH)
-				if(!CheckInventory("PowerGrayThumpFlight"))
-					ThrustThingZ(0,ARCADEFALL_PUSH,1,1);
-
 		delay(1);
 	}
+}
+
+Script "QCDE_Eleena_Jump" (int predicting, int justPressed, int justReleased, int buttons)
+{
+	if (!justReleased && GetActorVelZ(0) > 1.0)
+    	ThrustThingZ(0,ARCADEJUMP_PUSH,0,1);
+}
+
+Script "QCDE_Eleena_Crouch" (int predicting, int justPressed, int justReleased, int buttons)
+{
+	if (!justReleased && GetActorVelZ(0))
+		if(!CheckInventory("PowerGrayThumpFlight"))
+			ThrustThingZ(0,ARCADEFALL_PUSH,1,1);
 }
 
 //---------------------------------
@@ -4468,151 +4058,6 @@ Script "QCDE_Passive_Lucienne" (void)
 	// Activator: Immolation
 	SetPointer(AAPTR_TARGET, plrtid);
 }
-
-
-//---------------------------------
-//		Major's Passive
-
-#define CLIMBING_TICS      105
-#define CLIMBING_COOLDOWN  69
-Script "QCDE_Passive_Major" (void)
-{
-	ACS("QCDE_Passive_Major_CLIENTSIDE");
-}
-
-#define WALL_TOUCH_RANGE 18
-#define DELAY_AFTER_JUMP 5
-int jumpheld[64], climbing[64], climbtime[64];
-Script "QCDE_Passive_Major_CLIENTSIDE" (void) CLIENTSIDE
-{
-	int plr = PlayerNumber();
-	if(PlayerNumber() != CPN()) terminate;
-
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
-	{
-		// Scale the Bastion
-		if(GetPlayerInput(-1,MODINPUT_BUTTONS) == BT_JUMP)
-		{
-			jumpheld[plr]++;
-
-			if(jumpheld[plr] > DELAY_AFTER_JUMP)
-				if(isTouchingWall())
-					setClimbing(true);
-				else
-					setClimbing(false);
-			else
-				setClimbing(false);
-		}
-		else
-		{
-			jumpheld[plr] = 0;
-			setClimbing(false);
-		}
-
-		delay(1);
-	}
-}
-
-function int abs(int a)
-{
-	if(a < 0) return -a;
-	return a;
-}
-
-function int isTouchingWall(void)
-{
-	int a = GetActorAngle(0);
-	int dista = WALL_TOUCH_RANGE * (abs(cos(a)) + abs(sin(a))) / 1.0;
-	int x = GetActorX(0), x1 = x + cos(a) * dista;
-	int y = GetActorY(0), y1 = y + sin(a) * dista;
-	int z = GetActorZ(0), z1 = z;
-
-	int succ = SetActorPosition(0, x1,y1,z1, false);
-
-	if(!succ) return true;
-
-	SetActorPosition(0, x,y,z, false);
-	return false;
-}
-
-function void setClimbing(int value)
-{
-	int plr = PlayerNumber();
-
-	// Starting climbing
-	if(!climbing[plr] && value)
-		if(isZandronum(true))
-			NamedRequestScriptPuke("QCDE_MajorClimb",plr);
-		else
-			ACS("QCDE_MajorClimb",0);
-	// Still climbing but shouldn't be
-	else if(CheckInventory("PowerMajorFlight") && !value)
-		if(isZandronum(true))
-			NamedRequestScriptPuke("QCDE_MajorDrop",plr);
-		else
-			ACS("QCDE_MajorDrop",0);
-
-	climbing[plr] = value;
-}
-
-Script "QCDE_MajorClimb" (int plr) NET
-{
-	if(plr < 0 || plr > 63) terminate;
-	SetActivator(1000 + plr);
-	if(!CheckInventory("Class_Major")) terminate;
-	if(climbtime[plr] > 0) terminate;
-
-	int buttons = GetPlayerInput(-1,MODINPUT_BUTTONS);
-	int ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
-	int ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
-	if(ws_axis < 0) buttons |= BT_BACK;
-	if(ws_axis > 0) buttons |= BT_FORWARD;
-	if(ad_axis < 0) buttons |= BT_MOVELEFT;
-	if(ad_axis > 0) buttons |= BT_MOVERIGHT;
-
-	int a = GetActorAngle(0) >> 8;
-
-	if(!buttons == BT_JUMP) terminate;
-	if(!isTouchingWall()) terminate;
-
-	GiveInventory("MajorClimbProc",1);
-
-	PlaySound(0, "QC/Abilities/Major/Climb", CHAN_7, 1.0, false, 1.5);
-	while(CheckInventory("MajorClimbing"))
-	{
-		climbtime[plr]++;
-		if(climbtime[plr] >= CLIMBING_TICS) ACS("QCDE_MajorDrop", plr);
-		if(climbtime[plr] == 25) PlaySound(0, "QC/Abilities/Major/Climb", CHAN_7, 0.5, false, 1.5);
-
-		ThrustThingZ(0,2,0,1);
-		ThrustThing(a,1,0,0); // Extra friction with the wall to prevent climbing through 3d floors. Awesome ZDoom collision code!
-		delay(1);
-	}
-	PlaySound(0, "QC/Abilities/Major/Climb", CHAN_7, 1.0, false, 1.5);
-	ThrustThingZ(0,25,0,1);
-
-	while(climbtime[plr] --> 0) delay(1);
-}
-
-Script "QCDE_MajorDrop" (int plr) NET
-{
-	if(plr < 0 || plr > 63) terminate;
-	SetActivator(1000 + plr);
-	if(!CheckInventory("Class_Major")) terminate;
-
-	int buttons = GetPlayerInput(-1,MODINPUT_BUTTONS);
-	int ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
-	int ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
-	if(ws_axis < 0) buttons |= BT_BACK;
-	if(ws_axis > 0) buttons |= BT_FORWARD;
-	if(ad_axis < 0) buttons |= BT_MOVELEFT;
-	if(ad_axis > 0) buttons |= BT_MOVERIGHT;
-
-	if(buttons == BT_JUMP && isTouchingWall() && climbtime[plr] < CLIMBING_TICS) terminate;
-
-	GiveInventory("MajorDropProc",1);
-}
-
 
 
 //---------------------------------
@@ -4882,22 +4327,24 @@ Script "QCDE_Passive_Postal" (void)
 	if(!CheckInventory("NoArmorDegenerationToken") && // Having no armor degen means there was a reliq
 	    CheckInventory("NoHealthDegenerationToken"))
 		TakeInventory("NoHealthDegenerationToken",1);
+}
 
+// Pressing jump automatically unpresses crouch.
+// Luckily, jump script is always executed before crouch script, so we can add more velocity on crouch script release
+bool postalJustJumped[64];
 
-	// Crouch while jumping to get higher
-	int ready;
+Script "QCDE_Postal_Jump" (int predicting, int justPressed, int justReleased, int buttons)
+{
+	if (justPressed && (CheckSolidFooting(0, 0) != CSF_INAIR))
+		postalJustJumped[PlayerNumber()] = true;
+}
 
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
+Script "QCDE_Postal_Crouch" (int predicting, int justPressed, int justReleased, int buttons)
+{
+	if (justReleased && postalJustJumped[PlayerNumber()])
 	{
-		if(GetActorVelZ(0) <= 0)
-			ready = true;
-		else if(ready) if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_CROUCH)
-		{
-			ThrustThingZ(0, POSTAL_UPWARD_PUSH * 4, 0, 1);
-			ready = false;
-		}
-
-		delay(1);
+		ThrustThingZ(0, POSTAL_UPWARD_PUSH * 4, 0, 1);
+		postalJustJumped[PlayerNumber()] = false;
 	}
 }
 

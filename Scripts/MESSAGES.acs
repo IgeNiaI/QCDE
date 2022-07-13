@@ -717,7 +717,7 @@ str classPix[NUMBER_OF_CLASSES][4] = {
 // Multi-lines should have no indent. :(
 str classDoc[NUMBER_OF_CLASSES][12] = {
 
-	{	"Ranger", "Medium", "125", "100",
+	{	"Ranger", "Medium \c[white]: \c[orange]Quake Movt", "125", "100",
 "Lone marine traveling between dimensions\n\
 through slipgates, surviving using the power\n\
 of the Dire Orb seized from within the hot\n\
@@ -763,7 +763,7 @@ that keeps him pushing forward.
 },
 
 
-	{	"Doomslayer", "Medium", "150", "75",
+	{	"Doomslayer", "Medium \c[white]: \c[brick]Doom Movt", "150", "75",
 "Silent time-travelling warrior from time\n\
 immemorial equipped with a futuristic armored\n\
 suit. Naturally fitted with an affinity\n\
@@ -807,7 +807,7 @@ destroy anyone who tries to obstruct him."
 },
 
 
-	{	"Corvus", "Medium", "125", "100",
+	{	"Corvus", "Medium \c[white]: \c[brick]Doom Movt", "125", "100",
 "Descendant of a dying Elven race, fighting\n\
 an impossible war against the Serpent Riders.",
 		"Wings of Wrath",
@@ -858,7 +858,7 @@ waiting for his arrival."
 },
 
 
-	{	"Kane", "Light", "100", "50",
+	{	"Kane", "Light \c[white]: \c[orange]Quake Movt", "100", "50",
 "War veteran of the Operation Alien Overlord,\n\
 he was taken away from the Stroggos,\n\
 but the Stroggos never left him ever since.",
@@ -868,10 +868,8 @@ gives a MegaHealth worth of stack.",
 		"Crouchslide",
 "Hold \c[gold]crouch\c[green] when landing on the floor to gain\n\
 a big speed boost.",
-		"Slidekick \c[orange]-PvE Only",
-"Enemies hit with a crouchslide will be stunned\n\
-and float for a small amout of time. If damaged\n\
-while floating, they drop armor shards.",
+		"",
+		"",
 // Lore /////////////////////////////////////////
 "Matthew Kane's life is partly shrouded in mystery.\n\
 \n\
@@ -920,7 +918,7 @@ horizon.
 },
 
 
-	{	"Caleb", "Light", "100", "50",
+	{	"Caleb", "Light \c[white]: \c[orange]Quake Movt", "100", "50",
 "Extremely skilled gunslinger who rose so high\n\
 through the ranks of his cult that Tchernobog,\n\
 whom he worshipped, betrayed him.",
@@ -981,7 +979,7 @@ resurrect his beloved Ophelia.
 },
 
 
-	{	"Menelkir", "Light", "100", "50",
+	{	"Menelkir", "Light \c[white]: \c[brick]Doom Movt", "100", "50",
 "Arch-Mage of the Arcanum, together with Zedek\n\
 and Traductus, sold his world to Korax the\n\
 Serpent Rider to retain his life as a pawn.",
@@ -1040,7 +1038,7 @@ with the blood of its martyrs.
 },
 
 
-	{	"Terminator", "Heavy", "150", "150",
+	{	"Terminator", "Heavy \c[white]: \c[orange]Quake Movt", "150", "150",
 "Walking arsenal developed by contractors working\n\
 for UAC for the sole purpose of liquidating\n\
 everything that gets out of the labs.",
@@ -1098,7 +1096,7 @@ popping up from the dark circuitry of the machine.\n\
 },
 
 
-	{	"Zedek", "Heavy", "150", "150",
+	{	"Zedek", "Heavy \c[white]: \c[brick]Doom Movt", "150", "150",
 "Leader of the Legion, who together with Menelkir\n\
 and Traductus gave his world to Korax the Serpent\n\
 Rider without a fight to stay alive as a servant.",
@@ -1129,7 +1127,7 @@ and downstairs into the kitchen of his humble cabin.\n\
 },
 
 
-	{	"Inquisitor", "Heavy", "175", "125",
+	{	"Inquisitor", "Heavy \c[white]: \c[orange]Quake Movt", "175", "125",
 "Formidable war machine designed to instill fear\n\
 in unbelievers resisting the Order and quell\n\
 civil unrest.",
@@ -1193,7 +1191,7 @@ turn the warriors he comes across into paste.
 },
 
 
-	{	"Bitterman", "Heavy", "150", "150",
+	{	"Bitterman", "Heavy \c[white]: \c[orange]Quake Movt", "150", "150",
 "A trooper from the Terran Coalition of Man who has\n\
 managed to single-handedly disable the Big Gun and\n\
 assassinate Makron.",
@@ -1204,8 +1202,9 @@ excess armor is dropped on the floor.",
 		"Bandoliers",
 "Naturally carries more ammo than any other\n\
 champion.",
-		"Stabilized Homeostasis",
-"Any overstack will degenerate very slowly.",
+		"Edge Jump",
+"Jumping while taking ramps, stairs or ledges\n\
+will cause a higher jump for added mobility.",
 // Lore /////////////////////////////////////
 "The Operation Alien Overlord plan was simple: \n\
 deploy a massive platoon of soldiers on the \n\
@@ -1241,7 +1240,7 @@ rescue."
 },
 
 
-	{	"Galen", "Medium", "125", "100",
+	{	"Galen", "Medium \c[white]: \c[brick]Doom Movt", "125", "100",
 "An unholy paladin that followed Traductus when he\n\
 sold their world to Korax. Galen is now driven by\n\
 the gloaming will of He Who Walks In Blood",
@@ -1293,7 +1292,7 @@ Gods from their universe.
 },
 
 
-	{	"Nyx", "Light", "100", "50",
+	{	"Nyx", "Light \c[white]: \c[orange]Quake Movt", "100", "50",
 "Phase-shifting between dimensions, this Fathom\n\
 agent is out to avenge her peaceful kin of Melem.",
 		"Ghostwalk",
@@ -1344,7 +1343,7 @@ for the Melem's top killer and she will not fail again.
 },
 
 
-	{	"Sorgaul", "Heavy", "125", "175",
+	{	"Sorgaul", "Heavy \c[white]: \c[orange]Quake Movt", "125", "175",
 "A vicious reptilian huntress from the Sorg tribe,\n\
 honing her vivisection skill in the ''wild''.",
 		"Primal Rage",
@@ -1408,7 +1407,7 @@ the case if she was capable of compassion.
 },
 
 
-	{	"Duke Nukem", "Medium", "150", "75",
+	{	"Duke Nukem", "Medium \c[white]: \c[orange]Quake Movt", "150", "75",
 "Always ready to save the earth from invading\n\
 aliens, more so if they keep kidnapping the babes.",
 		"Freeze Thrower",
@@ -1467,7 +1466,7 @@ took off and headed toward the alien motherland. \n\
 },
 
 
-	{	"Durandal", "Light", "100", "50",
+	{	"Durandal", "Light \c[white]: \c[green]CPM Movt", "100", "50",
 "The Marathon's rampant AI, occupying a Mjolnir\n\
 battleroid synthetic body to acquire further\n\
 knowledge and achieve Godhood.",
@@ -1530,7 +1529,7 @@ successes.\n\
 },
 
 
-	{	"Keel", "Heavy", "175", "125",
+	{	"Keel", "Heavy \c[white]: \c[orange]Quake Movt", "175", "125",
 "Much more than power-armor, but substantially\n\
 less than human, this man-machine is programmed to\n\
 overcome the enemy no matter what the odds.",
@@ -1583,7 +1582,7 @@ felt a surge of power through his chest.\n\
 },
 
 
-	{	"Sarge", "Medium", "100", "100",
+	{	"Sarge", "Medium \c[white]: \c[orange]Quake Movt", "100", "100",
 "Grizzled and scarred by a lifetime of combat,\n\
 he's all the war-hero sargents you can think of\n\
 rolled into one and has the arrogance to prove it.",
@@ -1647,7 +1646,7 @@ because neither do I.''
 },
 
 
-	{	"Lo Wang", "Light", "100", "50",
+	{	"Lo Wang", "Light \c[white]: \c[orange]Quake Movt", "100", "50",
 "Zilla's former body-guard, bearing the legendary\n\
 katana Nobitsura Kage, Lo Wang continues learning\n\
 techniques from any and all who would fight him.",
@@ -1695,7 +1694,7 @@ I come prepared.\n\
 },
 
 
-	{	"Grayson", "Medium", "125", "100",
+	{	"Grayson", "Medium \c[white]: \c[orange]Quake Movt", "125", "100",
 "Former member of the elite group \"Dead Echo\",\n\
 Grayson Hunt travels space in an endless search\n\
 for redemption of his past sins.",
@@ -1749,7 +1748,7 @@ Grayson Hunt.\n\
 },
 
 
-	{	"Eradicator", "Heavy", "150", "150",
+	{	"Eradicator", "Heavy \c[white]: \c[green]CPM Movt", "150", "150",
 "A cyber-augmented soldier with no memories and\n\
 an unrelenting thirst for killing. He has one\n\
 purpose only: Eradicate those who stand in his way.",
@@ -1778,7 +1777,7 @@ mutant cortexes just like yesterday...''\n\
 },
 
 
-	{	"Blazkowicz", "Medium", "125", "100",
+	{	"Blazkowicz", "Medium \c[white]: \c[orange]Quake Movt", "125", "100",
 "A man with a will so strong, he cheated death\n\
 and tore apart the fabric of reality. He no longer\n\
 has to fight Nazis, but war is still his life",
@@ -1820,22 +1819,21 @@ specimen!\" \n\
 },
 
 
-	{	"Gordon Freeman", "Medium", "100", "125",
+	{	"Gordon Freeman", "Medium \c[white]: \c[orange]Quake Movt", "100", "125",
 "MIT graduate in Theoretical Physics, currently\n\
 \"contracted\" by a mysterious individual known as\n\
 the Gman, Freeman fights for his own survival.",
 		"Antigravity Discharge",
 "Pushes nearby monsters and projectiles away\n\
 from you.",
-		"HEV Suit",
-"Immune to environmental damage. \n\
-Gains armor when picking LG coils. \n\
-Reduces cooldown with BFG cells.",
 		"Extraction",
 "When near death, Freeman is forcibly extracted\n\
 and placed into a random location by his overseer.\n\
 This has an unmodifiable internal cooldown of\n\
 60 seconds.",
+		"Crouchslide",
+"Hold \c[gold]crouch\c[green] when landing on the floor to gain\n\
+a moderate bug long speed boost.",
 // Lore /////////////////////////////////////
 "\"Rise and shine, Mr Freeman. Rise and shine.\" \n\
 \n\
@@ -1863,7 +1861,7 @@ for such an abrupt intermission.\"\n\
 },
 
 
-	{	"Vor-Matur", "Heavy", "300", "0",
+	{	"Vor-Matur", "Heavy \c[white]: \c[orange]Quake Movt", "300", "0",
 "Materialized from Azatoth's dreams, an ungodly\n\
 entity bent on conquering or destroying worlds,\n\
 for either of them will serve as amusement.",
@@ -1914,7 +1912,7 @@ all of creation. \n\
 },
 
 
-	{	"Eleena", "Light", "125", "25",
+	{	"Eleena", "Light \c[white]: \c[orange]Quake Movt", "125", "25",
 "Mercenary in attitude and profession, agile and\n\
 extremely fast, Eleena seeks collecting bounties\n\
 on highly wanted subjects.",
@@ -1961,7 +1959,7 @@ ruins. \n\
 },
 
 
-	{	"Lucienne", "Light", "100", "50",
+	{	"Lucienne", "Light \c[white]: \c[orange]Quake Movt", "100", "50",
 "From a now-extinct race of magic-wielding beings,\n\
 Lucienne still pursues the one responsible for\n\
 the wiping of her kind: VorMatur.",
@@ -2022,7 +2020,7 @@ a better look...at...thooooo\"
 \c[gold](Read more in the QCDE Manual!)"
 },
 
-	{	"Major", "Heavy", "150", "150",
+	{	"Major", "Heavy \c[white]: \c[orange]Quake Movt", "150", "150",
 "Wearing battlescars that ravage her face like\n\
 the medals of conflict, a veteran that keeps on\n\
 fighting the long-concluded war on stroggos.",
@@ -2030,8 +2028,8 @@ fighting the long-concluded war on stroggos.",
 "When using ability, pressing \c[gold]+fire \c[green]will drop a\n\
 bomb target on the floor. ",
 		"Wall climb",
-"Holding \c[gold]+jump \c[green]in front of a wall without pressing\n\
-any other button, starts a brief wall climb.",
+"Holding \c[gold]+jump\c[green] and \c[gold]+forward\c[green] in front of a wall,\n\
+starts a brief wall climb.",
 		"Tall, Lean and Mean",
 "Hitbox is slimmer than all the other heavy champs;\n\
 She is able to climb higher stair steps.",
@@ -2044,7 +2042,7 @@ WON'T\" \n\
 \c[brite](Read more in the QCDE Manual!)"
 },
 
-	{	"Hunter", "Light", "100", "50",
+	{	"Hunter", "Light \c[white]: \c[orange]Quake Movt", "100", "50",
 "Her head gear is made from a sorg skull and\n\
 beautiful feathers, regal ornament for the\n\
 leader of the Oruk clan.",
@@ -2088,7 +2086,7 @@ her.\n\
 \c[brite](Read more in the QCDE Manual!!)"
 },
 
-	{	"Serious Sam", "Heavy", "175", "125",
+	{	"Serious Sam", "Heavy \c[white]: \c[orange]Quake Movt", "175", "125",
 "An ex-captain of Earth Defense Force, Sam \"Serious\"\n\
 Stone is the living legend who saved Earth from\n\
 multiple invasions across space and time.",
@@ -2134,7 +2132,7 @@ weapon when picking up Light and Heavy armors.",
 },
 
 
-{	"Postal Dude", "Light", "100", "50",
+{	"Postal Dude", "Light \c[white]: \c[orange]Quake Movt", "100", "50",
 "Seemingly calm and easy going, the Postal Dude\n\
 goes full psycopathic in a moment's notice. Make\n\
 sure you don't get in his way to his daily chores\n\
@@ -2172,7 +2170,7 @@ a higher jump.",
 },
 
 
-{	"Painkiller", "Medium", "100", "125",
+{	"Painkiller", "Medium \c[white]: \c[orange]Quake Movt", "100", "125",
 "Daniel was promised to be reunited with his dead\n\
 wife if he was to kill Lucifer's minions. He was\n\
 ultimately betrayed by angels, devils and death.\n\
@@ -2223,7 +2221,7 @@ and has an \c[gold]Alt Fire\c[green].",
 "
 },
 
-{	"Intruder", "Medium", "150", "75",
+{	"Intruder", "Medium \c[white]: \c[green]CPM Movt", "150", "75",
 "He searched for treasures, but in Dusk, he found\n\
 himself fighting for his life. He found secrets he\n\
 could've never imagined, and acquired eldritch\n\
@@ -2232,11 +2230,10 @@ powers he never asked for.",
 "Turns invisible if not shooting nor taking damage,\n\
 leaving trails behind you. \c[yellow]While fully invisible\c[green], take\n\
 and deal less damage with weapons, along with a \n\
-low-dmg AoE aura.",
-		"\"His sparks\"",
-"Killing an enemy imbues you with additional speed\n\
-for a short period of time. \c[red]Does not apply when\n\
-\c[red]using active ability.",
+low-dmg AoE aura. Impedes air control while active.",
+		"Air Control",
+"Allows this champion to change direction while\n\
+mid-air, CPMA style, except when using active ability.",
 		"Treasure Hunter \c[orange]-PvE-",
 "Finding a secret will reward with +50 armor. This\n\
 bonus also applies when found by other players.",
