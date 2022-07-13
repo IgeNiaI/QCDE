@@ -28,7 +28,9 @@ Actor Hourglass : CustomInventory 15508
 		Loop
 	Pickup:
 		TNT1 A 0 A_JumpIfInventory("Class_Sarge", 1, "GiveArmor")
+		TNT1 A 0 A_JumpIfInventory("Class_Terminator", 1, "GiveRockets")
 		TNT1 A 0 A_JumpIfInventory("Class_Sam", 1, "GiveBullets")
+	CooldownPickup:
 		TNT1 A 0 A_JumpIfInventory("ActiveInProgress", 1, "Death")
 		TNT1 A 0 A_JumpIfInventory("AbilityCooldownToken", 1, "OK")
 	Death:
@@ -48,6 +50,16 @@ Actor Hourglass : CustomInventory 15508
 	GiveArmor2:
 		TNT1 A 0 A_PlaySound("QC/Items/ArmorShardPick",CHAN_AUTO)
 		TNT1 A 0 A_GiveInventory("QCSargeArmorGain", 1, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveRockets:
+		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck",0,0,0,0) < 2, "CooldownPickup")
+		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarRockets")
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("TerminatorRockets", 2, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveMoarRockets:
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("TerminatorRockets", 4, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveBullets:
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarBullets")
@@ -104,6 +116,16 @@ Actor BigHourglass : Hourglass 15509
 	GiveArmor:
 		TNT1 A 0 A_PlaySound("QC/Items/ArmorSmallPick",CHAN_AUTO)
 		TNT1 A 0 A_GiveInventory("QCSmallArmorGiver", 1, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveRockets:
+		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck",0,0,0,0) < 2, "CooldownPickup")
+		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarRockets")
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("TerminatorRockets", 5, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveMoarRockets:
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("TerminatorRockets", 10, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveBullets:
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarBullets")

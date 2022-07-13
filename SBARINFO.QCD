@@ -702,6 +702,18 @@ statusbar Normal, forcescaled
 	inInventory MultiuseCharge {
 		drawNumber 2, QCFNT060, brite, MultiuseCharge, alignment(center),700,950;
 	}
+	// Terminator's rockets
+	inInventory Class_Terminator {
+		inInventory not AbilityCooldownToken {
+			InInventory TerminatorRockets, 1  { drawNumber 3, QCFNT050, brite, TerminatorRockets, alignment(center), 700,950; }
+		} else {
+			inInventory ActiveProgressToken {
+				InInventory TerminatorRockets, 1  { drawNumber 3, QCFNT050, brite, TerminatorRockets, alignment(center), 700,950; }
+			} else {
+				InInventory TerminatorRockets, 1  { drawNumber 3, QCFNT050, graey, TerminatorRockets, alignment(center), 700,950; }
+			}
+		}
+	}
 	// Sam's ammo
 	inInventory Class_Sam {
 		inInventory not AbilityCooldownToken {
@@ -1641,6 +1653,18 @@ statusbar Fullscreen, forcescaled
 	// Multiuse charges (Keel, Lucienne, Freeman, etc)
 	inInventory MultiuseCharge {
 		drawNumber 2, QCFNT060, brite, MultiuseCharge, alignment(center),700,950;
+	}
+	// Terminator's rockets
+	inInventory Class_Terminator {
+		inInventory not AbilityCooldownToken {
+			drawNumber 3, QCFNT050, brite, TerminatorRockets, alignment(center), 700,950;
+		} else {
+			inInventory ActiveProgressToken {
+				drawNumber 3, QCFNT050, brite, TerminatorRockets, alignment(center), 700,950;
+			} else {
+				drawNumber 3, QCFNT050, graey, TerminatorRockets, alignment(center), 700,950;
+			}
+		}
 	}
 	// Sam's ammo
 	inInventory Class_Sam {

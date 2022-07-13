@@ -925,25 +925,24 @@ script "MyBoyIsDed" (void)	//played on menelkir's head when dave dies
 //---------------------------------
 //		Terminator's Active
 
-#define TERMINATOR_ROCKET_COUNT 18
 #define TERMINATOR_ROCKET_DELAY  3
 Script "QCDE_Ability_Terminator" (void)
 {
 	int counterer;
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("TerminatorMainProc",1); //plays voice line and stop weapons
-	ACS("QCDE_AbilityCooldown", GetCooldown());
-
 	GiveInventory("ActiveProgressToken",256);
 	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 	Delay(25);	//waits a bit before using them, chance to escape
-	ACS_NamedExecuteAlways("QCDE_ShowActiveInProgress", 0, TERMINATOR_ROCKET_COUNT * TERMINATOR_ROCKET_DELAY);
+	int rocketCount = CheckInventory("TerminatorRockets");
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", rocketCount * TERMINATOR_ROCKET_DELAY);
 
-	while(counterer++ <= TERMINATOR_ROCKET_COUNT)
+	while(counterer++ < rocketCount)
 	{
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("TermRocketProc",1);
+		TakeInventory("TerminatorRockets",1);
 		SetNetworkReplicationFlags( 0 );
 		delay(TERMINATOR_ROCKET_DELAY);
 	}
@@ -951,6 +950,10 @@ Script "QCDE_Ability_Terminator" (void)
 	Delay(10);
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("TerminatorCleanerProc",1);
+	if (GameType() >= GAME_NET_DEATHMATCH)
+		SetInventory("TerminatorRockets",10);
+	else
+		SetInventory("TerminatorRockets",20);
 	SetNetworkReplicationFlags( 0 );
 }
 
@@ -3715,6 +3718,10 @@ Script "QCDE_Passive_Terminator" (void)
 {
 	//if(GetActorProperty(0,APROP_HEALTH) > 0) terminate;
 	int TenTics, CurrentAmmo, PreviousAmmo;
+	if (GameType() >= GAME_NET_DEATHMATCH)
+		SetInventory("TerminatorRockets",10);
+	else
+		SetInventory("TerminatorRockets",20);
 
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{

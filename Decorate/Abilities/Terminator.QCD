@@ -240,6 +240,13 @@ Actor MissileBarrageIndicator
 	}
 }
 
+// Rockets counter for Terminator's active
+Actor TerminatorRockets : Inventory
+{
+	+SERVERNETID
+	Inventory.MaxAmount 20
+}
+
 //--------------------------------------------------------
 // Passive
 //--------------------------------------------------------
