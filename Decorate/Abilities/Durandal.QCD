@@ -295,7 +295,7 @@ Actor BOBSim_SP : BobSimMain
 
 Actor BOBSim_DM : BobSimMain
 {
-	Health 35
+	Health 30
 	Mass 40		//less mass than SP
 	MaxDropOffHeight 256
 	DamageFactor "BobExploDM", 0.1	//almost no damage from other bobs
@@ -354,7 +354,7 @@ Actor BobExploHackDM
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_Explode(60,128,0,0,128)
+		TNT1 A 0 NODELAY A_Explode(40,128,0,0,128)
 		TNT1 A 10
 		Stop
 	Death:
