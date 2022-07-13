@@ -104,35 +104,17 @@ Script "PVE CD" (int class) clientside { SetResultValue(AbilityData[class * AD_C
 
 Script "QCDE_CleanUpAbilities" (void)
 {
-		 if(CheckInventory("Class_Ranger"		))	{} // do nothing
-	else if(CheckInventory("Class_Doomslayer"	))	GiveInventory("SlayerBFGCleanerProc",1); // removes possible residual BFG
-	else if(CheckInventory("Class_Corvus"		))	{} // do nothing
+		 if(CheckInventory("Class_Doomslayer"	))	GiveInventory("SlayerBFGCleanerProc",1); // removes possible residual BFG
 	else if(CheckInventory("Class_Kane"			))	GiveInventory("InjectionCleanerProc",1); // removes the NoFire token
 	else if(CheckInventory("Class_Caleb"		))	GiveInventory("DollCleanerProc",1); //removes the doll
-	else if(CheckInventory("Class_Menelkir"		))	{} // do nothing
 	else if(CheckInventory("Class_Terminator"	))	GiveInventory("TerminatorCleanerProc",1);
-	else if(CheckInventory("Class_Zedek"		))	{} // do nothing
 	else if(CheckInventory("Class_Inquisitor"	))	{GiveInventory("ReflectiveCleanerProc",1);GiveInventory("BecomeShieldCleanerProc",1);}
-	else if(CheckInventory("Class_Bitterman"	))	{} // do nothing
 	else if(CheckInventory("Class_Galen"		))	GiveInventory("TotemCleanerProc",1);	// removes the NoFire token
 	else if(CheckInventory("Class_Nyx"			))	GiveInventory("GhostWalkCleanerProc",1);
 	else if(CheckInventory("Class_Sorgaul"		))	GiveInventory("PrimalRageCleanerProc",1);
 	else if(CheckInventory("Class_DukeNukem"	))	GiveInventory("DukeFreezerCleanerProc",1);
-	else if(CheckInventory("Class_Durandal"		))	{} // do nothing
-	else if(CheckInventory("Class_Keel"			))	{} // do nothing
-	else if(CheckInventory("Class_Sarge"		))	{} // do nothing
-	else if(CheckInventory("Class_LoWang"		))	{} // do nothing
-	else if(CheckInventory("Class_Grayson"		))	{} // do nothing
-	else if(CheckInventory("Class_Eradicator"	))	{} // do nothing
 	else if(CheckInventory("Class_Blazkowicz"	))	GiveInventory("AkimboCleanerProc",1);
-	else if(CheckInventory("Class_Freeman"		))	{} // do nothing
-	else if(CheckInventory("Class_VorMatur"		))	{} // do nothing
-	else if(CheckInventory("Class_Eleena"		))	{} // do nothing
-	else if(CheckInventory("Class_Lucienne"		))	{} // do nothing
-	else if(CheckInventory("Class_Major"		))	{} // do nothing
 	else if(CheckInventory("Class_Hunter"		))	GiveInventory("HunterCleanerProc",1); // remove the cubes
-	else if(CheckInventory("Class_Sam"			))	{} // do nothing
-	else if(CheckInventory("Class_Postal"		))	{} // do nothing
 	else if(CheckInventory("Class_Painkiller"	))	GiveInventory("PainkillerCleanerProc",1); // restore HUD elements
 	else if(CheckInventory("Class_Intruder"		))	GiveInventory("WendigoOutProc",1); // Back to normal
 	// ^ insert more classes here
@@ -159,21 +141,14 @@ Script "QCDE_PassiveAbility" (void)
 {
 	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
 
-		 if(CheckInventory("Class_Ranger"		))	ACS("QCDE_Passive_Ranger"    );
-	else if(CheckInventory("Class_Doomslayer"	))	ACS("QCDE_Passive_Doomslayer");
+		 if(CheckInventory("Class_Doomslayer"	))	ACS("QCDE_Passive_Doomslayer");
 	else if(CheckInventory("Class_Corvus"		))	ACS("QCDE_Passive_Corvus"    );
 	else if(CheckInventory("Class_Kane"			))	ACS("QCDE_Passive_Kane"      );
-	else if(CheckInventory("Class_Caleb"		))	ACS("QCDE_Passive_Caleb"     );
-	else if(CheckInventory("Class_Menelkir"		))	ACS("QCDE_Passive_Menelkir"  );
 	else if(CheckInventory("Class_Terminator"	))	ACS("QCDE_Passive_Terminator");
 	else if(CheckInventory("Class_Zedek"		))	ACS("QCDE_Passive_Zedek"     );
 	else if(CheckInventory("Class_Inquisitor"	))	ACS("QCDE_Passive_Inquisitor");
 	else if(CheckInventory("Class_Bitterman"	))	ACS("QCDE_Passive_Bitterman" );
-	else if(CheckInventory("Class_Galen"		))	ACS("QCDE_Passive_Galen"     );
 	else if(CheckInventory("Class_Nyx"			))	ACS("QCDE_Passive_Nyx"       );
-	else if(CheckInventory("Class_Sorgaul"		))	ACS("QCDE_Passive_Sorgaul"   );
-	else if(CheckInventory("Class_DukeNukem"	))	ACS("QCDE_Passive_DukeNukem" );
-	else if(CheckInventory("Class_Durandal"		))	ACS("QCDE_Passive_Durandal"  );
 	else if(CheckInventory("Class_Keel"			))	ACS("QCDE_Passive_Keel"      );
 	else if(CheckInventory("Class_Sarge"		))	ACS("QCDE_Passive_Sarge"     );
 	else if(CheckInventory("Class_LoWang"		))	ACS("QCDE_Passive_LoWang"    );
@@ -265,7 +240,6 @@ Script "QCDE_ActiveAbility" (void) net
 	else if(CheckInventory("Class_DukeNukem"))	ACS("QCDE_Ability_DukeNukem" );
 	else if(CheckInventory("Class_Durandal"	))	ACS("QCDE_Ability_Durandal"  );
 	else if(CheckInventory("Class_Keel"		))	ACS("QCDE_Ability_Keel"      );
-	else if(CheckInventory("Class_Sarge"	))	ACS("QCDE_Ability_Sarge"     );
 	else if(CheckInventory("Class_LoWang"	))	ACS("QCDE_Ability_LoWang"    );
 	else if(CheckInventory("Class_Grayson"	))	ACS("QCDE_Ability_Grayson"   );
 	else if(CheckInventory("Class_Eradicator"))	ACS("QCDE_Ability_Eradicator");
@@ -1373,14 +1347,6 @@ Script "QCDE_Ability_Keel" (void)
 {
 	if(ACS("QCDE_AbilityCooldown", GetCooldown()))
 		GiveInventory("KeelFireGrenProc",1); //Fire grenade
-}
-
-//---------------------------------
-//		Sarge's Active
-
-Script "QCDE_Ability_Sarge" (void)
-{
-	//Does nothing.
 }
 
 
@@ -3103,15 +3069,6 @@ Script "QCDE_BobExplosionAttribution" (void)
 //=============================================================================
 
 //---------------------------------
-//		Ranger's Passive
-
-Script "QCDE_Passive_Ranger" (void)
-{
-	//Passive is done through player properties, kept this for maybe future use.
-}
-
-
-//---------------------------------
 //		Doomslayer's Passive
 
 Script "QCDE_Passive_Doomslayer" (void)
@@ -3341,9 +3298,6 @@ Script "QCDE_PlayerKill_QCKane" (void) {} //does nothing when killing a player
 //---------------------------------
 //		Caleb's Passive
 
-Script "QCDE_Passive_Caleb" (void)
-{}
-
 // Activator: dying monster
 Script "QCDE_MonsterKill_QCCaleb" (int xdeath)
 {
@@ -3379,9 +3333,6 @@ Script "QCDE_PlayerKill_QCCaleb" (void)
 
 //---------------------------------
 //		Menelkir's Passive
-
-Script "QCDE_Passive_Menelkir" (void)
-{}
 
 // Activator: dying monster
 Script "QCDE_MonsterKill_QCMenelkir" (void)
@@ -3670,17 +3621,6 @@ Script "QCDE_Passive_Bitterman" (void)
 
 
 //---------------------------------
-//		Galen's Passive
-
-Script "QCDE_Passive_Galen" (void)
-{
-	// Implemented in health pickup code
-}
-
-
-
-
-//---------------------------------
 //		Nyx's Passive
 
 #define NYX_THRUST		3
@@ -3794,28 +3734,8 @@ function void wallJump(int buttons)
 }
 
 
-
-//---------------------------------
-//		Sorgaul's Passive
-Script "QCDE_Passive_Sorgaul" (void)
-{
-	// Implemented in pickups
-}
-
-
-//---------------------------------
-//		Duke's Passive
-Script "QCDE_Passive_DukeNukem" (void)
-{
-	// Implemented in pickups
-}
-
 //---------------------------------
 //		Durandal's Passive
-Script "QCDE_Passive_Durandal" (void)
-{
-	// Implemented in armor pickups, calls script below
-}
 
 //This is derived of the script "ArmorGiver" from HLTHARMR.acs
 //Edited to work for Durandal's rules

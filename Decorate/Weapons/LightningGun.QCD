@@ -640,15 +640,6 @@ Actor LGResiduePuff
 		Stop
 	}
 }
-Actor LGworldactorFullView : LGworldactor
-{
-	States
-	{
-	Spawn:
-		LGWR Y 4 Bright
-		Stop
-	}
-}
 
 
 //-----------------------

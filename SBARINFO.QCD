@@ -697,12 +697,12 @@ statusbar Normal, forcescaled
 	// Sam's ammo
 	inInventory Class_Sam {
 		inInventory not AbilityCooldownToken {
-			InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950; }
+			drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950;
 		} else {
 			inInventory ActiveProgressToken {
-				InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950; }
+				drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950;
 			} else {
-				InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, graey, SeriousBullets, alignment(center), 700,950; }
+				drawNumber 3, QCFNT050, graey, SeriousBullets, alignment(center), 700,950;
 			}
 		}
 	}
@@ -1629,12 +1629,12 @@ statusbar Fullscreen, forcescaled
 	// Sam's ammo
 	inInventory Class_Sam {
 		inInventory not AbilityCooldownToken {
-			InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950; }
+			drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950;
 		} else {
 			inInventory ActiveProgressToken {
-				InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950; }
+				drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950;
 			} else {
-				InInventory SeriousBullets, 1  { drawNumber 3, QCFNT050, graey, SeriousBullets, alignment(center), 700,950; }
+				drawNumber 3, QCFNT050, graey, SeriousBullets, alignment(center), 700,950;
 			}
 		}
 	}
