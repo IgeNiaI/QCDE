@@ -290,32 +290,32 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 		if(CheckActorClass(1000+i, "QCRanger"    )) { SetActorInventory(1000+i, "ClassID",  0); SetActorQcdeStack(1000+i, 125, 100); }
 		if(CheckActorClass(1000+i, "QCDoomslayer")) { SetActorInventory(1000+i, "ClassID",  1); SetActorQcdeStack(1000+i, 150,  75); }
 		if(CheckActorClass(1000+i, "QCCorvus"    )) { SetActorInventory(1000+i, "ClassID",  2); SetActorQcdeStack(1000+i, 125, 100); }
-		if(CheckActorClass(1000+i, "QCKane"      )) { SetActorInventory(1000+i, "ClassID",  3); SetActorQcdeStack(1000+i, 100,  50); }
-		if(CheckActorClass(1000+i, "QCCaleb"     )) { SetActorInventory(1000+i, "ClassID",  4); SetActorQcdeStack(1000+i, 100,  50); }
-		if(CheckActorClass(1000+i, "QCMenelkir"  )) { SetActorInventory(1000+i, "ClassID",  5); SetActorQcdeStack(1000+i, 100,  50); }
-		if(CheckActorClass(1000+i, "QCTerminator")) { SetActorInventory(1000+i, "ClassID",  6); SetActorQcdeStack(1000+i, 150, 150); }
-		if(CheckActorClass(1000+i, "QCZedek"     )) { SetActorInventory(1000+i, "ClassID",  7); SetActorQcdeStack(1000+i, 150, 150); }
-		if(CheckActorClass(1000+i, "QCInquisitor")) { SetActorInventory(1000+i, "ClassID",  8); SetActorQcdeStack(1000+i, 175, 125); }
-		if(CheckActorClass(1000+i, "QCBitterman" )) { SetActorInventory(1000+i, "ClassID",  9); SetActorQcdeStack(1000+i, 150, 150); }
+		if(CheckActorClass(1000+i, "QCKane"      )) { SetActorInventory(1000+i, "ClassID",  3); SetActorQcdeStack(1000+i, 100,  75); }
+		if(CheckActorClass(1000+i, "QCCaleb"     )) { SetActorInventory(1000+i, "ClassID",  4); SetActorQcdeStack(1000+i, 100,  75); }
+		if(CheckActorClass(1000+i, "QCMenelkir"  )) { SetActorInventory(1000+i, "ClassID",  5); SetActorQcdeStack(1000+i, 100,  75); }
+		if(CheckActorClass(1000+i, "QCTerminator")) { SetActorInventory(1000+i, "ClassID",  6); SetActorQcdeStack(1000+i, 150, 125); }
+		if(CheckActorClass(1000+i, "QCZedek"     )) { SetActorInventory(1000+i, "ClassID",  7); SetActorQcdeStack(1000+i, 150, 125); }
+		if(CheckActorClass(1000+i, "QCInquisitor")) { SetActorInventory(1000+i, "ClassID",  8); SetActorQcdeStack(1000+i, 175, 100); }
+		if(CheckActorClass(1000+i, "QCBitterman" )) { SetActorInventory(1000+i, "ClassID",  9); SetActorQcdeStack(1000+i, 150, 125); }
 		if(CheckActorClass(1000+i, "QCGalen"     )) { SetActorInventory(1000+i, "ClassID", 10); SetActorQcdeStack(1000+i, 125, 100); }
-		if(CheckActorClass(1000+i, "QCNyx"       )) { SetActorInventory(1000+i, "ClassID", 11); SetActorQcdeStack(1000+i, 100,  50); }
-		if(CheckActorClass(1000+i, "QCSorgaul"   )) { SetActorInventory(1000+i, "ClassID", 12); SetActorQcdeStack(1000+i, 125, 175); }
+		if(CheckActorClass(1000+i, "QCNyx"       )) { SetActorInventory(1000+i, "ClassID", 11); SetActorQcdeStack(1000+i, 100,  75); }
+		if(CheckActorClass(1000+i, "QCSorgaul"   )) { SetActorInventory(1000+i, "ClassID", 12); SetActorQcdeStack(1000+i, 125, 150); }
 		if(CheckActorClass(1000+i, "QCDukeNukem" )) { SetActorInventory(1000+i, "ClassID", 13); SetActorQcdeStack(1000+i, 150,  75); }
-		if(CheckActorClass(1000+i, "QCDurandal"  )) { SetActorInventory(1000+i, "ClassID", 14); SetActorQcdeStack(1000+i, 100,  50); }
-		if(CheckActorClass(1000+i, "QCKeel"      )) { SetActorInventory(1000+i, "ClassID", 15); SetActorQcdeStack(1000+i, 175, 125); }
+		if(CheckActorClass(1000+i, "QCDurandal"  )) { SetActorInventory(1000+i, "ClassID", 14); SetActorQcdeStack(1000+i, 100,  75); }
+		if(CheckActorClass(1000+i, "QCKeel"      )) { SetActorInventory(1000+i, "ClassID", 15); SetActorQcdeStack(1000+i, 175, 100); }
 		if(CheckActorClass(1000+i, "QCSarge"     )) { SetActorInventory(1000+i, "ClassID", 16); SetActorQcdeStack(1000+i, 100, 100); }
-		if(CheckActorClass(1000+i, "QCLoWang"    )) { SetActorInventory(1000+i, "ClassID", 17); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCLoWang"    )) { SetActorInventory(1000+i, "ClassID", 17); SetActorQcdeStack(1000+i, 100,  75); }
 		if(CheckActorClass(1000+i, "QCGrayson"   )) { SetActorInventory(1000+i, "ClassID", 18); SetActorQcdeStack(1000+i, 125, 100); }
-		if(CheckActorClass(1000+i, "QCEradicator")) { SetActorInventory(1000+i, "ClassID", 19); SetActorQcdeStack(1000+i, 150, 150); }
+		if(CheckActorClass(1000+i, "QCEradicator")) { SetActorInventory(1000+i, "ClassID", 19); SetActorQcdeStack(1000+i, 150, 125); }
 		if(CheckActorClass(1000+i, "QCBlazkowicz")) { SetActorInventory(1000+i, "ClassID", 20); SetActorQcdeStack(1000+i, 125, 100); }
 		if(CheckActorClass(1000+i, "QCFreeman"   )) { SetActorInventory(1000+i, "ClassID", 21); SetActorQcdeStack(1000+i, 100, 125); }
 		if(CheckActorClass(1000+i, "QCVorMatur"  )) { SetActorInventory(1000+i, "ClassID", 22); SetActorQcdeStack(1000+i, 300,   0); }
-		if(CheckActorClass(1000+i, "QCEleena"    )) { SetActorInventory(1000+i, "ClassID", 23); SetActorQcdeStack(1000+i, 125,  25); }
-		if(CheckActorClass(1000+i, "QCLucienne"  )) { SetActorInventory(1000+i, "ClassID", 24); SetActorQcdeStack(1000+i, 100,  50); }
-		if(CheckActorClass(1000+i, "QCMajor"     )) { SetActorInventory(1000+i, "ClassID", 25); SetActorQcdeStack(1000+i, 150, 150); }
-		if(CheckActorClass(1000+i, "QCHunter"    )) { SetActorInventory(1000+i, "ClassID", 26); SetActorQcdeStack(1000+i, 100,  50); }
-		if(CheckActorClass(1000+i, "QCSam"       )) { SetActorInventory(1000+i, "ClassID", 27); SetActorQcdeStack(1000+i, 175, 125); }
-		if(CheckActorClass(1000+i, "QCPostal"    )) { SetActorInventory(1000+i, "ClassID", 28); SetActorQcdeStack(1000+i, 100,  50); }
+		if(CheckActorClass(1000+i, "QCEleena"    )) { SetActorInventory(1000+i, "ClassID", 23); SetActorQcdeStack(1000+i, 125,  50); }
+		if(CheckActorClass(1000+i, "QCLucienne"  )) { SetActorInventory(1000+i, "ClassID", 24); SetActorQcdeStack(1000+i, 100,  75); }
+		if(CheckActorClass(1000+i, "QCMajor"     )) { SetActorInventory(1000+i, "ClassID", 25); SetActorQcdeStack(1000+i, 150, 125); }
+		if(CheckActorClass(1000+i, "QCHunter"    )) { SetActorInventory(1000+i, "ClassID", 26); SetActorQcdeStack(1000+i, 100,  75); }
+		if(CheckActorClass(1000+i, "QCSam"       )) { SetActorInventory(1000+i, "ClassID", 27); SetActorQcdeStack(1000+i, 175, 100); }
+		if(CheckActorClass(1000+i, "QCPostal"    )) { SetActorInventory(1000+i, "ClassID", 28); SetActorQcdeStack(1000+i, 100,  75); }
 		if(CheckActorClass(1000+i, "QCPainkiller")) { SetActorInventory(1000+i, "ClassID", 29); SetActorQcdeStack(1000+i, 100, 125); }
 		if(CheckActorClass(1000+i, "QCIntruder"  )) { SetActorInventory(1000+i, "ClassID", 30); SetActorQcdeStack(1000+i, 150,  75); }
 		// ^ insert more classes here
