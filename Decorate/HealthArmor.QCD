@@ -162,6 +162,7 @@ Actor QCStimpack : InventoryClassChecker replaces Stimpack
 		DoPostal:
 		DoPainkiller:
 		DoIntruder:
+		DoEradicator:
 		Default:
 			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
 			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
@@ -172,10 +173,6 @@ Actor QCStimpack : InventoryClassChecker replaces Stimpack
 		DoDukeNukem:
 			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
 			TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"), 40,  0) Stop
-		DoEradicator:
-			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
-			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),15,1)
-			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
 		// ^ insert more classes here
 
 	HealDoneSuccess:
@@ -209,10 +206,6 @@ Actor QCMedikit : QCStimpack replaces Medikit
 		DoDukeNukem:
 			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
 			TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"), 70,  0) Stop
-		DoEradicator:
-			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
-			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),20,1)
-			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
 
 	HealDoneSuccess:
 		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"), 50,  0)
@@ -267,6 +260,7 @@ Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
 	DoSam:
 	DoPainkiller:
 	DoIntruder:
+	DoEradicator:
 	Default:
 		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100, 75)
 		Goto HealthDoneSuccess
@@ -279,10 +273,6 @@ Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
 		Goto HealthDoneSuccess
 	DoSarge: //extra cap for passive
 		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100,100)
-		Goto HealthDoneSuccess
-	DoEradicator:
-		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100, 75)
-		TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),35,1)
 		Goto HealthDoneSuccess
 	DoPostal:
 		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100,100)
@@ -521,6 +511,7 @@ Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
 		DoHunter:
 		DoPostal:
 		DoPainkiller:
+		DoDurandal:
 		DoIntruder:
 		Default:
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer") //If already at max armor for this class, fails
@@ -535,12 +526,6 @@ Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
 			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),	MediumArmorAmount+20,0) //+20 because of passive
 			Goto ArmorDoneSuccess
-		DoDurandal:
-			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),"ActuallyDoDurandal")//1. if health low, do activate
-			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")	//2. if armor max, fail
-			ActuallyDoDurandal:			//3. Armor wasnt max, activate
-				TNT1 A 0 ACS_NamedExecuteWithResult("DurandalArmor",	CallACS("MaxArmor"),CallACS("MaxHealth"),MediumArmorAmount)
-				Goto ArmorDoneSuccess
 		DoSarge:
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+100,"Failer")
 			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor")+100,	MediumArmorAmount,0)
@@ -626,6 +611,7 @@ Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
 		DoPostal:
 		DoPainkiller:
 		DoIntruder:
+		DoDurandal:
 		Default:
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer") //If already at max armor for this class, fails
 			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),BigArmorAmount,1) //arg 2 = max class armor, arg 3 = armor given
@@ -639,12 +625,6 @@ Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")
 			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),BigArmorAmount+50,1) //+50 because of passive
 			Goto ArmorDoneSuccess
-		DoDurandal:
-			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),"ActuallyDoDurandal")		//1. if health low, do activate
-			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")	//2. if armor max, fail
-			ActuallyDoDurandal:			//3. Armor wasnt max, activate
-				TNT1 A 0 ACS_NamedExecuteAlways("DurandalArmor",0,	CallACS("MaxArmor"),CallACS("MaxHealth"),BigArmorAmount)
-				Goto ArmorDoneSuccess
 		DoLucienne:
 		DoSarge:
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+100,"Failer")	//allows overstack of 100
