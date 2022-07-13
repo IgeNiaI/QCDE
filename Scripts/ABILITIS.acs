@@ -37,7 +37,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (35 *35) +XYZ, ( 35 *35) +XYZ, (28)         +XYZ, (28)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GALEN
 	  (35 *35) +XYZ, ( 15 *35) +XYZ,(( 3 *35)-10) +XYZ,(( 3 *35)-10) +XYZ, no       +XYZ, no       +XYZ, no                                  , // NYX
 	  (45 *35) +XYZ, ( 90 *35) +XYZ, ( 8 *35)     +XYZ, ( 8 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SORGAUL
-	  (40 *35) +XYZ, ( 80 *35) +XYZ,(( 7 *35)+17) +XYZ, (14 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // DUKENUKEM
+	  (45 *35) +XYZ, ( 80 *35) +XYZ,(( 4 *35)+17) +XYZ, (14 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // DUKENUKEM
 	  (40 *35) +XYZ, (120 *35) +XYZ, (53)         +XYZ, (53)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DURANDAL
 	  (50 *35) +XYZ, ( 30 *35) +XYZ, ( 9)         +XYZ, ( 9)         +XYZ,   5      +XYZ,   9      +XYZ, "QC/UI/PlayerSounds/LowAmmoWarning" , // KEEL
 	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // SARGE
@@ -1430,7 +1430,7 @@ Script "QCDE_Ability_DukeNukem" (void)
 	}
 }
 
-#define BALLS_TIL_FREEZE 5
+#define BALLS_TIL_FREEZE 6
 Script "QCDE_StartFreezeCounter" (void)
 {
 	if (GetNetworkState() == NETSTATE_CLIENT || InDemoMode())
@@ -1742,7 +1742,7 @@ Script "QCDE_ThumperAffected" (void)
 	GiveInventory("Twitchless3sec",1);
 	ThrustThingZ(0,THUMPER_THRUSTZ * 4,0,0);
 
-	int t = 35*3, velz, hit;
+	int t = 35, velz, hit; //only lasts 1 sec
 	while(t --> 0)
 	{
 		if(GetActorVelZ(0) == 0 && !hit)
