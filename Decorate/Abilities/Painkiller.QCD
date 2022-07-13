@@ -30,9 +30,9 @@ Actor PainkillerCard2Level2 : PowerDamage     { Powerup.Duration -10 Powerup.Col
 Actor PainkillerCard2Level3 : PowerDamage     { Powerup.Duration -10 Powerup.Color "FF 00 FF", 0.10 DamageFactor "Normal", 1.301 }
 
 Actor PainkillerCard3Level0 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.00 Speed 1.00 }
-Actor PainkillerCard3Level1 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.03 Speed 1.15 }
-Actor PainkillerCard3Level2 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.06 Speed 1.30 }
-Actor PainkillerCard3Level3 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.10 Speed 1.45 }
+Actor PainkillerCard3Level1 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.03 Speed 1.00 } //first level just gives CPM
+Actor PainkillerCard3Level2 : PowerSpeed      { Powerup.Duration -10 Powerup.Color "FF FF 00", 0.06 Speed 1.10 } //second level gives extra speed
+Actor PainkillerCard3Level3 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.10 Speed 1.10 } //third level gives extra duration
 
 // PvE version
 Actor PvEPainkillerCard1Level0 : PowerProtection { Powerup.Duration -20 Powerup.Color "00 FF 99", 0.00 DamageFactor "Normal", 1.000 }
@@ -46,9 +46,9 @@ Actor PvEPainkillerCard2Level2 : PowerDamage     { Powerup.Duration -20 Powerup.
 Actor PvEPainkillerCard2Level3 : PowerDamage     { Powerup.Duration -20 Powerup.Color "FF 00 FF", 0.10 DamageFactor "Normal", 2.001 }
 
 Actor PvEPainkillerCard3Level0 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.00 Speed 1.00 }
-Actor PvEPainkillerCard3Level1 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.03 Speed 1.15 }
-Actor PvEPainkillerCard3Level2 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.06 Speed 1.30 }
-Actor PvEPainkillerCard3Level3 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.10 Speed 1.45 }
+Actor PvEPainkillerCard3Level1 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.03 Speed 1.00 } //first level just gives CPM
+Actor PvEPainkillerCard3Level2 : PowerSpeed      { Powerup.Duration -20 Powerup.Color "FF FF 00", 0.06 Speed 1.20 } //second level gives extra speed
+Actor PvEPainkillerCard3Level3 : PowerSpeed      { Powerup.Duration -40 Powerup.Color "FF FF 00", 0.10 Speed 1.20 } //third level gives extra duration
 
 
 //--------------------------------------------------------
