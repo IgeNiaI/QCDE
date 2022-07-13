@@ -673,11 +673,19 @@ statusbar Normal, forcescaled
 		drawNumber 3, QCFNT050, brite, PowerShieldCharge, alignment(center),700,950;
 	}
 	// Galen totem count
-	inInventory TotemToken {
-		inInventory TotemToken, 5 {
-			drawBar "GTOTEMS5", "GTOTEMS0", TotemToken, horizontal, 604, 800;
+	inInventory Class_Galen {
+		gameMode deathmatch {
+			inInventory TotemTokenPvP, 3 {
+				drawBar "GTOTEMZ3", "GTOTEMZ0", TotemTokenPvP, horizontal, 636, 800;
+			} else {
+				drawBar "GTOTEMZ2", "GTOTEMZ0", TotemTokenPvP, horizontal, 636, 800;
+			}
 		} else {
-			drawBar "GTOTEMS4", "GTOTEMS0", TotemToken, horizontal, 604, 800;
+			inInventory TotemTokenPvE, 5 {
+				drawBar "GTOTEMS5", "GTOTEMS0", TotemTokenPvE, horizontal, 604, 800;
+			} else {
+				drawBar "GTOTEMS4", "GTOTEMS0", TotemTokenPvE, horizontal, 604, 800;
+			}
 		}
 	}
 	// Eradicator murder boner
@@ -1605,11 +1613,19 @@ statusbar Fullscreen, forcescaled
 		drawNumber 3, QCFNT050, brite, PowerShieldCharge, alignment(center),700,950;
 	}
 	// Galen totem count
-	inInventory TotemToken {
-		inInventory TotemToken, 5 {
-			drawBar "GTOTEMS5", "GTOTEMS0", TotemToken, horizontal, 604, 800;
+	inInventory Class_Galen {
+		gameMode deathmatch {
+			inInventory TotemTokenPvP, 3 {
+				drawBar "GTOTEMZ3", "GTOTEMZ0", TotemTokenPvP, horizontal, 636, 800;
+			} else {
+				drawBar "GTOTEMZ2", "GTOTEMZ0", TotemTokenPvP, horizontal, 636, 800;
+			}
 		} else {
-			drawBar "GTOTEMS4", "GTOTEMS0", TotemToken, horizontal, 604, 800;
+			inInventory TotemTokenPvE, 5 {
+				drawBar "GTOTEMS5", "GTOTEMS0", TotemTokenPvE, horizontal, 604, 800;
+			} else {
+				drawBar "GTOTEMS4", "GTOTEMS0", TotemTokenPvE, horizontal, 604, 800;
+			}
 		}
 	}
 	// Eradicator murder boner

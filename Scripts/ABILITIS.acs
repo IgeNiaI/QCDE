@@ -3111,8 +3111,17 @@ function int HostileRadiusCheck (int projectileTidBase, int radius, int blockabl
 	return false;
 }
 
-#define MAX_TOTEMS     5
-int totemsUp[64][MAX_TOTEMS];
+#define MAX_TOTEMS_PVE     5
+#define MAX_TOTEMS_PVP     3
+int totemsUp[64][MAX_TOTEMS_PVE];
+
+function int getMaxTotems()
+{
+	if(GameType() < GAME_NET_DEATHMATCH)
+		return MAX_TOTEMS_PVE;
+	else
+		return MAX_TOTEMS_PVP;
+}
 
 // Activator: Totem
 script "QCDE_TotemSpawned" (void)
@@ -3214,7 +3223,7 @@ script "QCDE_HitboxSpawned" (void)
 function int getLastTotem(int plr)
 {
 	int i, min = totemsUp[plr][0], res = 0;
-	for(i = 1; i < MAX_TOTEMS; i++)
+	for(i = 1; i < getMaxTotems(); i++)
 	{
 		if(totemsUp[plr][i] < min)
 		{
@@ -3228,7 +3237,7 @@ function int getLastTotem(int plr)
 function int getRecentTotem(int plr)
 {
 	int i, max = totemsUp[plr][0], res = 0;
-	for(i = 1; i < MAX_TOTEMS; i++)
+	for(i = 1; i < getMaxTotems(); i++)
 	{
 		if(totemsUp[plr][i] > max)
 		{
@@ -3337,7 +3346,8 @@ script "QCDE_UpdateTotemCount" (void)
 	count += IsTidUsed(TOTEM_TIDBASE + plr + 384);
 	count += IsTidUsed(TOTEM_TIDBASE + plr + 512);
 
-	SetInventory("TotemToken", count);
+	SetInventory("TotemTokenPvE", count);
+	SetInventory("TotemTokenPvP", count);
 }
 
 
