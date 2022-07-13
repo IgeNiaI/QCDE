@@ -178,6 +178,7 @@ Actor AllyMarker : GenericPowerupFXBackground
 	+FORCEXYBILLBOARD
 	+CLIENTSIDEONLY
 	+NONETID
+	+INVISIBLE_TO_TARGET
 	Renderstyle Stencil
 	Scale .02
 	Alpha 1
@@ -215,6 +216,7 @@ Actor BestMarker : GenericPowerupFXBackground
 	+CLIENTSIDEONLY
 	+NONETID
 	+BRIGHT
+	+INVISIBLE_TO_TARGET
 	Radius 1
 	Height 2
 	Gravity 0.0
