@@ -21,8 +21,8 @@ Actor PvPBlastInitialProc : CustomInventory
 	{
 	Pickup:
 		TNT1 A 0 A_GiveInventory("NoWeaponFireToken", 1, 0, GIF_SKIPOWNER)
-		TNT1 A 0 A_Explode(15,160,XF_NOTMISSILE,0,160)
-		TNT1 A 0 A_Blast(BF_NOIMPACTDAMAGE|BF_AFFECTBOSSES)
+		TNT1 A 0 A_RadiusThrust (25,160,RTF_NOIMPACTDAMAGE)
+		TNT1 A 0 A_Blast(BF_NOIMPACTDAMAGE|BF_AFFECTBOSSES,255,192)
 		//FX spawning
 		TNT1 A 0 A_PlaySound("QC/Abilities/Freeman/Exhaust", 7, 1.0)
 		TNT1 A 0 A_SpawnItemEx("FreemanElectroDustSpawner2",0,0,0, 0,0,0,  0, SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
