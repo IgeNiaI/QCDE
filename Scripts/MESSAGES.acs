@@ -2751,6 +2751,41 @@ Script "QCDE_MajorCharges" (int charges, int consume)
 
 //=============================================================================
 //
+// Indicate Zedek fire level
+//
+//=============================================================================
+
+#define ZEDEK_FIRE_X_GAP 48.0
+#define ZEDEK_FIRE_MAX   6
+#define ZEDEK_START_X  850.1
+#define ZEDEK_START_Y 1100.0
+Script "QCDE_ZedekFireLevel" (int level, int victimtid) clientside
+{
+	if(level < 0) terminate;
+	if(level > ZEDEK_FIRE_MAX) level = ZEDEK_FIRE_MAX;
+	if(victimtid != CheckPlayerCamera(CPN())) terminate;
+	level *= 2;
+
+	SetHudSize(1800,1400,0);
+
+	int hmid = HMID_COW_GAS;
+	int flags = HUDMSG_FADEOUT|HUDMSG_ADDBLEND|HUDMSG_ALPHA;
+	SetActivator(victimtid);
+	while(level --> 0)
+	{
+		str sprite = "ZEDKFIRE";
+		SetFont(sprite);
+		HudMessageBold(s:"A";flags,hmid,-1, ZEDEK_START_X + ((ZEDEK_FIRE_X_GAP * (level / 2 * 2 + 1)) * ((level % 2 * 2) - 1)), ZEDEK_START_Y, 1.1, 0.5);
+
+		hmid++;
+	}
+}
+
+
+
+
+//=============================================================================
+//
 // Indicate Postal cow gas level
 //
 //=============================================================================

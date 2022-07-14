@@ -1030,6 +1030,7 @@ Script "QCDE_QuietusVictim" (void)
 		SetActivator(quieter_of[plr]);
 		Thing_Damage(plr+1000, QUIETING_DAMAGE, MOD_LAVA);
 		GiveInventory("HitBeepLow",1);
+		ACS("QCDE_ZedekFireLevel", quieting_for[plr], plr+1000);
 		if(GetActorProperty(plr+1000,APROP_HEALTH) <= 0) break;
 		//log(n:plr+1, s:" gets quieted by ", d:quieter_of[plr], s:" -- ", n:quieter_of[plr] -999, s:" for ", d:quieting_for[plr]);
 	}
