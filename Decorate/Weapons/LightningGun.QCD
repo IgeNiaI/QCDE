@@ -75,7 +75,7 @@ Actor QCLightningGun : QCWeapon
 	Weapon.AmmoGive1 50
 	Weapon.AmmoUse1 1
 	Weapon.SelectionOrder 1300
-	Weapon.KickBack 100
+	Weapon.KickBack 200
 	Obituary "$OB_QCLightningGun" // "%o was electrocuted by %k."
 	Inventory.PickupMessage "$GOT_QCLightningGun" // "Picked up a Lightning Gun."
 	Tag "$TAG_QCLightningGun" // "Lightning Gun"
