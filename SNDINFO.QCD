@@ -691,6 +691,17 @@ QC/Weapons/Tribolt/Quad/Fire			"Sounds/Weapons/Quad/Tribolt_FireFast.ogg"
 $limit "QC/Weapons/Tribolt/Explo" 9
 $attenuation QC/Weapons/Tribolt/Explo 0.8
 
+$random QC/Weapons/Tribolt/Impact { QC/Weapons/Tribolt/Impact1 QC/Weapons/Tribolt/Impact2 QC/Weapons/Tribolt/Impact3
+		QC/Weapons/Tribolt/Impact4 QC/Weapons/Tribolt/Impact5 QC/Weapons/Tribolt/Impact6 QC/Weapons/Tribolt/Impact7 }
+
+QC/Weapons/Tribolt/Impact1			"Sounds/Weapons/BoltImpact1.ogg"
+QC/Weapons/Tribolt/Impact2			"Sounds/Weapons/BoltImpact2.ogg"
+QC/Weapons/Tribolt/Impact3			"Sounds/Weapons/BoltImpact3.ogg"
+QC/Weapons/Tribolt/Impact4			"Sounds/Weapons/BoltImpact4.ogg"
+QC/Weapons/Tribolt/Impact5			"Sounds/Weapons/BoltImpact5.ogg"
+QC/Weapons/Tribolt/Impact6			"Sounds/Weapons/BoltImpact6.ogg"
+QC/Weapons/Tribolt/Impact7			"Sounds/Weapons/BoltImpact7.ogg"
+
 //bounce sounds from Hard Reset
 $random QC/Weapons/Tribolt/Bounce { QC/Weapons/Tribolt/Bounce1 QC/Weapons/Tribolt/Bounce2 QC/Weapons/Tribolt/Bounce3 }
 QC/Weapons/Tribolt/Bounce1		"Sounds/Weapons/BoltBounce1.ogg"
