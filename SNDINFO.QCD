@@ -563,6 +563,17 @@ QC/Weapons/SuperNailgun/FireSeeker		"Sounds/Weapons/SNG_Single.ogg"
 QC/Weapons/SuperNailgun/Quad/FireSeeker		"Sounds/Weapons/Quad/SNG_Single.ogg"
 QC/Weapons/SuperNailgun/Quad/FireStartLoop		"Sounds/Weapons/Quad/SNG_Start_Loop.ogg"
 
+$random QC/Weapons/SuperNailgun/Impact { QC/Weapons/SuperNailgun/Impact1 QC/Weapons/SuperNailgun/Impact2 QC/Weapons/SuperNailgun/Impact3
+		QC/Weapons/SuperNailgun/Impact4 QC/Weapons/SuperNailgun/Impact5 QC/Weapons/SuperNailgun/Impact6 QC/Weapons/SuperNailgun/Impact7 }
+
+QC/Weapons/SuperNailgun/Impact1			"Sounds/Weapons/SuperNailImpact1.ogg"
+QC/Weapons/SuperNailgun/Impact2			"Sounds/Weapons/SuperNailImpact2.ogg"
+QC/Weapons/SuperNailgun/Impact3			"Sounds/Weapons/SuperNailImpact3.ogg"
+QC/Weapons/SuperNailgun/Impact4			"Sounds/Weapons/SuperNailImpact4.ogg"
+QC/Weapons/SuperNailgun/Impact5			"Sounds/Weapons/SuperNailImpact5.ogg"
+QC/Weapons/SuperNailgun/Impact6			"Sounds/Weapons/SuperNailImpact6.ogg"
+QC/Weapons/SuperNailgun/Impact7			"Sounds/Weapons/SuperNailImpact7.ogg"
+
 
 //********************
 // Railgun
