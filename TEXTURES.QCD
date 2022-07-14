@@ -819,12 +819,26 @@ Sprite WC59M0, 64, 64 { Offset 32, 32	Patch W059M0, 0, 0	{ Rotate 270 } }
 
 // Damage on HUD
 
-Graphic bldmist2, 512, 512 { 						Patch bldmist1, 0,0 { Rotate  90 } }
-Graphic bldmist3, 512, 512 { 						Patch bldmist1, 0,0 { Rotate 180 } }
-Graphic bldmist4, 512, 512 { 						Patch bldmist1, 0,0 { Rotate 270 } }
-Graphic blddroq2,  64,  64 { XScale 2.0	YScale 2.0	Patch blddroq1, 0,0 { Rotate  90 } }
-Graphic blddroq3,  64,  64 { XScale 2.0	YScale 2.0	Patch blddroq1, 0,0 { Rotate 180 } }
-Graphic blddroq4,  64,  64 { XScale 2.0	YScale 2.0	Patch blddroq1, 0,0 { Rotate 270 } }
+Graphic bld4red2, 512, 512 { 						Patch bld4red1, 0,0 { Rotate  90 } }
+Graphic bld4red3, 512, 512 { 						Patch bld4red1, 0,0 { Rotate 180 } }
+Graphic bld4red4, 512, 512 { 						Patch bld4red1, 0,0 { Rotate 270 } }
+Graphic bld5red2,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5red1, 0,0 { Rotate  90 } }
+Graphic bld5red3,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5red1, 0,0 { Rotate 180 } }
+Graphic bld5red4,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5red1, 0,0 { Rotate 270 } }
+
+Graphic bld4grn2, 512, 512 { 						Patch bld4grn1, 0,0 { Rotate  90 } }
+Graphic bld4grn3, 512, 512 { 						Patch bld4grn1, 0,0 { Rotate 180 } }
+Graphic bld4grn4, 512, 512 { 						Patch bld4grn1, 0,0 { Rotate 270 } }
+Graphic bld5grn2,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5grn1, 0,0 { Rotate  90 } }
+Graphic bld5grn3,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5grn1, 0,0 { Rotate 180 } }
+Graphic bld5grn4,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5grn1, 0,0 { Rotate 270 } }
+
+Graphic bld4prp2, 512, 512 { 						Patch bld4prp1, 0,0 { Rotate  90 } }
+Graphic bld4prp3, 512, 512 { 						Patch bld4prp1, 0,0 { Rotate 180 } }
+Graphic bld4prp4, 512, 512 { 						Patch bld4prp1, 0,0 { Rotate 270 } }
+Graphic bld5prp2,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5prp1, 0,0 { Rotate  90 } }
+Graphic bld5prp3,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5prp1, 0,0 { Rotate 180 } }
+Graphic bld5prp4,  64,  64 { XScale 2.0	YScale 2.0	Patch bld5prp1, 0,0 { Rotate 270 } }
 
 
 

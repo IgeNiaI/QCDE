@@ -1472,6 +1472,7 @@ Actor QCInquisitor : QCPlayerHeavy
 	Player.StartItem "ActiveDefensive"
 	Player.StartItem "NotSpectator"
 
+	Player.DamageScreenColor "olive drab"
 	BloodColor "olive drab"
 
 	States
@@ -3740,6 +3741,7 @@ Actor QCVorMatur : QCPlayerHeavy
 	Player.StartItem "ActiveOffensive"
 	Player.StartItem "NotSpectator"
 
+	Player.DamageScreenColor "63 1F 7C"	//dark purpleish
 	BloodColor "63 1F 7C"	//dark purpleish
 
 	DamageFactor "VormaturBlood", 0.0	//all VorMaturs are immune to blood of their kin

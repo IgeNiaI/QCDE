@@ -9,22 +9,22 @@
 
 // Graphic name, fade in time, fade out time
 str BloodProg[16][3]={
-		{"blddroq", 0.02, 1.5}, //  1
-		{"blddrob", 0.04, 1.0}, //  2
-		{"speckle", 0.06, 2.0}, //  3
-		{"blddroq", 0.08, 1.0}, //  4
-		{"blddrop", 0.10, 1.5}, //  5
-		{"bldspry", 0.16, 1.0}, //  6
-		{"blddrob", 0.14, 1.0}, //  7
-		{"speckle", 0.08, 1.5}, //  8
-		{"blddrob", 0.06, 2.0}, //  9
-		{"blddroq", 0.08, 2.0}, // 10
-		{"blddrop", 0.19, 1.0}, // 11
-		{"blddrop", 0.15, 1.0}, // 12
-		{"bldspry", 0.28, 1.5}, // 13
-		{"blddrop", 0.16, 1.5}, // 14
-		{"bldmist", 0.14, 3.0}, // 15
-		{"speckle", 0.12, 3.0}, // 16
+		{"bld4", 0.02, 1.5}, //  1
+		{"bld0", 0.04, 1.0}, //  2
+		{"bld3", 0.06, 2.0}, //  3
+		{"bld4", 0.08, 1.0}, //  4
+		{"bld1", 0.10, 1.5}, //  5
+		{"bld2", 0.16, 1.0}, //  6
+		{"bld0", 0.14, 1.0}, //  7
+		{"bld3", 0.08, 1.5}, //  8
+		{"bld0", 0.06, 2.0}, //  9
+		{"bld4", 0.08, 2.0}, // 10
+		{"bld1", 0.19, 1.0}, // 11
+		{"bld1", 0.15, 1.0}, // 12
+		{"bld2", 0.28, 1.5}, // 13
+		{"bld1", 0.16, 1.5}, // 14
+		{"bld5", 0.14, 3.0}, // 15
+		{"bld3", 0.12, 3.0}, // 16
 		};
 
 int bloodspot = ID_BLOOD_BELOW;
@@ -53,7 +53,12 @@ script "QCDE_Blood_CLIENTSIDE" (int degree, int tid, int armortoo) clientside
 	}
 
 	//stroke over health and armor
-	ACS("QCDE_StrokeFlash", tid, 'R', degree, 2 + !!armortoo);
+	if (CheckActorInventory(tid, "Class_Inquisitor"))
+		ACS("QCDE_StrokeFlash", tid, 'G', degree, 2 + !!armortoo);
+	else if (CheckActorInventory(tid, "Class_VorMatur"))
+		ACS("QCDE_StrokeFlash", tid, 'P', degree, 2 + !!armortoo);
+	else
+		ACS("QCDE_StrokeFlash", tid, 'R', degree, 2 + !!armortoo);
 
 	//actual blood
 	if(!GetCvar("cl_ShowHUDBloodSmears")) terminate;
@@ -85,7 +90,13 @@ script "QCDE_Blood_CLIENTSIDE" (int degree, int tid, int armortoo) clientside
 
 	for(int i=0; i < degree; i++)
 	{
-		str filename = strparam(s:BloodProg[i][0], d:random(1,4));
+		str filename;
+		if (CheckActorInventory(tid, "Class_Inquisitor"))
+			filename = strparam(s:BloodProg[i][0], s:"grn", d:random(1,4));
+		else if (CheckActorInventory(tid, "Class_VorMatur"))
+			filename = strparam(s:BloodProg[i][0], s:"prp", d:random(1,4));
+		else
+			filename = strparam(s:BloodProg[i][0], s:"red", d:random(1,4));
 		SetFont(filename);
 		HudMessageBold(s:"A"; HUDMSG_FADEINOUT|HUDMSG_ALPHA , ++bloodspot, -1,
 				x+random(random(-0.2,0.04),random(-0.04, 0.2)),
