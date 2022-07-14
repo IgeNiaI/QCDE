@@ -18,7 +18,7 @@ Actor ShotgunPickup : CustomInventory 15601
 	Inventory.PickupSound "QC/Items/WeaponPick"
 	Inventory.PickupMessage "$GOT_QCShotgun" // "Picked up a Shotgun."
 	Tag "$TAG_QCShotgun" // "Shotgun"
-	Inventory.RespawnTics 175
+	Inventory.RespawnTics 35
 	States
 	{
 	Spawn:
@@ -69,6 +69,9 @@ Actor ShotgunPickup : CustomInventory 15601
 	Stay:
 		TNT1 A 0
 		Fail
+	HideIndefinitely:
+		TNT1 A 1 A_SetTics(CallACS("QCDE_SetWeaponRespawnTics"))
+		Goto HideDoomish+1
 	}
 }
 

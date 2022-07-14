@@ -20,7 +20,7 @@ Actor RailgunPickup : CustomInventory 15607
 	Inventory.PickupSound "QC/Items/WeaponPick"
 	Inventory.PickupMessage "$GOT_QCRailgun" // "Picked up a Railgun."
 	Tag "$TAG_QCRailgun" // "Railgun"
-	Inventory.RespawnTics 175
+	Inventory.RespawnTics 35
 	States
 	{
 	Spawn:
@@ -35,7 +35,7 @@ Actor RailgunPickup : CustomInventory 15607
 		Wait
 	Pickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMPickup")
-		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"WeaponStay")
+		//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"WeaponStay")
 		TNT1 A 0 A_GiveInventory("QCRailgun")
 		TNT1 A 0
 		Stop
@@ -58,6 +58,9 @@ Actor RailgunPickup : CustomInventory 15607
 	Stay:
 		TNT1 A 0
 		Fail
+	HideIndefinitely:
+		TNT1 A 1 A_SetTics(CallACS("QCDE_SetWeaponRespawnTics"))
+		Goto HideDoomish+1
 	}
 }
 

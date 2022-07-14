@@ -19,7 +19,7 @@ Actor RocketLauncherPickup : CustomInventory 15605
 	Inventory.PickupSound "QC/Items/WeaponPick"
 	Inventory.PickupMessage "$GOT_QCRocketLauncher" // "Picked up a Rocket Launcher."
 	Tag "$TAG_QCRocketLauncher" // "RocketLauncher"
-	Inventory.RespawnTics 175
+	Inventory.RespawnTics 35
 	States
 	{
 	Spawn:
@@ -57,6 +57,9 @@ Actor RocketLauncherPickup : CustomInventory 15605
 	Stay:
 		TNT1 A 0
 		Fail
+	HideIndefinitely:
+		TNT1 A 1 A_SetTics(CallACS("QCDE_SetWeaponRespawnTics"))
+		Goto HideDoomish+1
 	}
 }
 

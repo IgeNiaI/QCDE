@@ -18,7 +18,7 @@ Actor SuperShotgunPickup : CustomInventory 15602
 	Inventory.PickupSound "QC/Items/WeaponPick"
 	Inventory.PickupMessage "$GOT_QCSuperShotgun" // "Picked up a Super Shotgun."
 	Tag "$TAG_QCSuperShotgun" // "Super Shotgun"
-	Inventory.RespawnTics 175
+	Inventory.RespawnTics 35
 	States
 	{
 	Spawn:
@@ -56,6 +56,9 @@ Actor SuperShotgunPickup : CustomInventory 15602
 	Stay:
 		TNT1 A 0
 		Fail
+	HideIndefinitely:
+		TNT1 A 1 A_SetTics(CallACS("QCDE_SetWeaponRespawnTics"))
+		Goto HideDoomish+1
 	}
 }
 
@@ -70,7 +73,7 @@ Actor SuperShotgunPickupDMvar: CustomInventory 	//this one is for SSGs spawned i
 	Inventory.PickupSound "QC/Items/WeaponPick"
 	Inventory.PickupMessage "$GOT_QCSuperShotgun" // "Picked up a Super Shotgun."
 	Tag "$TAG_QCSuperShotgun" // "Super Shotgun"
-	Inventory.RespawnTics 175
+	Inventory.RespawnTics 35
 	States
 	{
 	Spawn:
@@ -125,6 +128,9 @@ Actor SuperShotgunPickupDMvar: CustomInventory 	//this one is for SSGs spawned i
 	Stay:
 		TNT1 A 0
 		Fail
+	HideIndefinitely:
+		TNT1 A 1 A_SetTics(CallACS("QCDE_SetWeaponRespawnTics"))
+		Goto HideDoomish+1
 	}
 }
 

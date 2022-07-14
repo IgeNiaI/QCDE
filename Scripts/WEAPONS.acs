@@ -55,6 +55,20 @@ Script "QCDE_IsWeaponOnMap" (int type)
 		log(s:"QCDE WARNING: Weapon ", d:type, s:" is queried. Timer: ", d:Timer());
 }
 
+// Activator: weapon pickup
+Script "QCDE_SetWeaponRespawnTics" (void)
+{
+	int result;
+	if(GetCvar("duel"))
+		result = 5 * 35;
+	else if(!GetCvar("sv_itemrespawn"))
+		result = 0x7FFFFFFF;
+	else // all non-duel games with items set to respawn
+		result = 1 * 35;
+	//PrintBold(n:0, s:" result: ", d:result);
+	SetResultValue(result);
+}
+
 
 
 

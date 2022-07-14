@@ -17,7 +17,7 @@ Actor HeavyMachinegunPickup : CustomInventory 15600
 	Scale 0.64
 	Inventory.PickupMessage "$GOT_QCHeavyMachinegun" // "Picked up a Heavy Machinegun."
 	Inventory.PickupSound "QC/Items/WeaponPick"
-	Inventory.RespawnTics 175
+	Inventory.RespawnTics 35
 	Tag "$TAG_QCHeavyMachinegun" // "Heavy Machinegun"
 	States
 	{
@@ -64,6 +64,9 @@ Actor HeavyMachinegunPickup : CustomInventory 15600
 	Stay:
 		TNT1 A 0
 		Fail
+	HideIndefinitely:
+		TNT1 A 1 A_SetTics(CallACS("QCDE_SetWeaponRespawnTics"))
+		Goto HideDoomish+1
 	}
 }
 
