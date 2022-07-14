@@ -2,6 +2,7 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
+#import "WEAPCNST.bcs"
 
 
 //=======================================================================================
@@ -387,26 +388,26 @@ Script "QCDE_DM_AmmoCapacity" (void)
 {
 	if (GameType() == GAME_NET_DEATHMATCH)
 	{
-		SetAmmoCapacity("QCBulletAmmo",	150);
-		SetAmmoCapacity("QCShellAmmo",	 25);
-		SetAmmoCapacity("QCNailAmmo",	150);
-		SetAmmoCapacity("QCBoltAmmo", 	 15);
-		SetAmmoCapacity("QCRocketAmmo",	 15);
-		SetAmmoCapacity("QCCoilAmmo", 	150);
-		SetAmmoCapacity("QCSlugAmmo", 	 15);
-		SetAmmoCapacity("QCBFGAmmo",	 20);
+		SetAmmoCapacity("QCBulletAmmo",	getGenericDMAmmoCapacity(0));
+		SetAmmoCapacity("QCShellAmmo",	getGenericDMAmmoCapacity(1));
+		SetAmmoCapacity("QCNailAmmo",	getGenericDMAmmoCapacity(2));
+		SetAmmoCapacity("QCBoltAmmo", 	getGenericDMAmmoCapacity(3));
+		SetAmmoCapacity("QCRocketAmmo",	getGenericDMAmmoCapacity(4));
+		SetAmmoCapacity("QCCoilAmmo", 	getGenericDMAmmoCapacity(5));
+		SetAmmoCapacity("QCSlugAmmo", 	getGenericDMAmmoCapacity(6));
+		SetAmmoCapacity("QCBFGAmmo",	getGenericDMAmmoCapacity(7));
 	}
 
 	if(GetCvar("qc_freezetag"))
 	{
-		SetAmmoCapacity("QCBulletAmmo",	200); SetInventory("QCBulletAmmo",	200);
-		SetAmmoCapacity("QCShellAmmo",	 25); SetInventory("QCShellAmmo",	 25);
-		SetAmmoCapacity("QCNailAmmo",	150); SetInventory("QCNailAmmo",	150);
-		SetAmmoCapacity("QCBoltAmmo", 	 25); SetInventory("QCBoltAmmo", 	 25);
-		SetAmmoCapacity("QCRocketAmmo",	 25); SetInventory("QCRocketAmmo",	 25);
-		SetAmmoCapacity("QCCoilAmmo", 	200); SetInventory("QCCoilAmmo", 	200);
-		SetAmmoCapacity("QCSlugAmmo", 	 25); SetInventory("QCSlugAmmo", 	 25);
-		SetAmmoCapacity("QCBFGAmmo",	 20); SetInventory("QCBFGAmmo", 	 20);
+		SetAmmoCapacity("QCBulletAmmo",	getGenericDMAmmoCapacity(0)); SetInventory("QCBulletAmmo",	getGenericDMAmmoCapacity(0));
+		SetAmmoCapacity("QCShellAmmo",	getGenericDMAmmoCapacity(1)); SetInventory("QCShellAmmo",	getGenericDMAmmoCapacity(1));
+		SetAmmoCapacity("QCNailAmmo",	getGenericDMAmmoCapacity(2)); SetInventory("QCNailAmmo",	getGenericDMAmmoCapacity(2));
+		SetAmmoCapacity("QCBoltAmmo",	getGenericDMAmmoCapacity(3)); SetInventory("QCBoltAmmo",	getGenericDMAmmoCapacity(3));
+		SetAmmoCapacity("QCRocketAmmo",	getGenericDMAmmoCapacity(4)); SetInventory("QCRocketAmmo",	getGenericDMAmmoCapacity(4));
+		SetAmmoCapacity("QCCoilAmmo",	getGenericDMAmmoCapacity(5)); SetInventory("QCCoilAmmo",	getGenericDMAmmoCapacity(5));
+		SetAmmoCapacity("QCSlugAmmo",	getGenericDMAmmoCapacity(6)); SetInventory("QCSlugAmmo",	getGenericDMAmmoCapacity(6));
+		SetAmmoCapacity("QCBFGAmmo",	getGenericDMAmmoCapacity(7)); SetInventory("QCBFGAmmo",		getGenericDMAmmoCapacity(7));
 	}
 
 	// Reduce ammo cap to have nicely filled icons in weapon bar

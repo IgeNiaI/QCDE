@@ -1,0 +1,171 @@
+#library "WEAPCNST"
+#include "zcommon.acs"
+
+int GenericDMAmmoCapacity[8] = {
+		150,	//0  bullet
+		25,		//1  shell
+		150,	//2  nail
+		15,		//3  bolt
+		15,		//4  rocket
+		150,	//5  coil
+		15,		//6  slug
+		20		//7  bfg
+	};
+
+int BittermanDMAmmoCapacity[8] = {
+		220,	//0  bullet
+		35,		//1  shell
+		220,	//2  nail
+		25,		//3  bolt
+		25,		//4  rocket
+		220,	//5  coil
+		25,		//6  slug
+		25		//7  bfg
+	};
+
+int LowAmmoWarningThreshold[8] = {
+		50,		//0  bullet
+		5,		//1  shell
+		50,		//2  nail
+		5,		//3  bolt
+		5,		//4  rocket
+		50,		//5  coil
+		5,		//6  slug
+		8		//7  bfg
+	};
+
+int TerminatorAmmoRegen[8][2] = {
+		//Amount	interval(10tic)
+		{	3,		4,		},	//0  bullet
+		{	1,		4,		},	//1  shell
+		{	3,		4,		},	//2  nail
+		{	1,		7,		},	//3  bolt
+		{	1,		7,		},	//4  rocket
+		{	3,		4,		},	//5  coil
+		{	1,		10,		},	//6  slug
+		{	1,		28,		}	//7  bfg
+	};
+
+int GraysonAmmoPackSize[8] = {
+		100,	//0  bullet
+		30,		//1  shell
+		100,	//2  nail
+		15,		//3  bolt
+		10,		//4  rocket
+		100,	//5  coil
+		10,		//6  slug
+		5		//7  bfg
+	};
+
+str GraysonAmmoIcons[8] = {
+		"AmmBullt", //0  bullet
+		"AmmShell", //1  shell
+		"AmmNails", //2  nail
+		"AmmBolts", //3  bolt
+		"AmmRockt", //4  rocket
+		"AmmCoils", //5  coil
+		"AmmSlugs", //6  slug
+		"AmmBfugs", //7  bfg
+	};
+
+int SamAmmoBonus[8] = {
+		15,	//0  bullet
+		3,	//1  shell
+		15,	//2  nail
+		3,	//3  bolt
+		2,	//4  rocket
+		15,	//5  coil
+		2,	//6  slug
+		1,	//7  bfg
+	};
+
+int LootboxBonusAmmo[9][2] = {
+		//Base		Level bonus
+		{	300,	20,		},	//0  bullet
+		{	60,		5,		},	//1  shell
+		{	200,	20,		},	//2  nail
+		{	50,		5,		},	//3  bolt
+		{	80,		5,		},	//4  rocket
+		{	300,	15,		},	//5  coil
+		{	40,		5,		},	//6  slug
+		{	30,		2,		},	//7  bfg
+		{	175,	15,		}	//8  Sam
+	};
+
+// These have had offsets removed.
+str LootboxWeaponVisuals[8] = {
+		"QCGBZ",	//0  bullet
+		"QCGCZ",	//1  shell
+		"QCGDZ",	//2  nail
+		"QCGEZ",	//3  bolt
+		"QCG5Z",	//4  rocket
+		"QCG6Z",	//5  coil
+		"QCG7Z",	//6  slug
+		"QCG8Z"		//7  bfg
+	};
+
+str LootboxWeaponNamings[8] = {
+		"H. Machinegun",
+		"S. Shotgun",
+		"S. Nailgun",
+		"Tribolt",
+		"R. Launcher",
+		"Lightning Gun",
+		"Railgun",
+		"BFG10K"
+	};
+
+function int getGenericDMAmmoCapacity(int type)
+{
+	return GenericDMAmmoCapacity[type];
+}
+
+function int getBittermanDMAmmoCapacity(int type)
+{
+	return BittermanDMAmmoCapacity[type];
+}
+
+function int getLowAmmoWarningThreshold(int type)
+{
+	return LowAmmoWarningThreshold[type];
+}
+
+function int getTerminatorAmmoRegenAmount(int type)
+{
+	return TerminatorAmmoRegen[type][0];
+}
+
+function int getTerminatorAmmoRegenInterval(int type)
+{
+	return TerminatorAmmoRegen[type][1];
+}
+
+function str getGraysonAmmoPackSize(int type)
+{
+	return GraysonAmmoPackSize[type];
+}
+
+function str getGraysonAmmoIcons(int type)
+{
+	return GraysonAmmoIcons[type];
+}
+
+function int getSamAmmoBonus(int type)
+{
+	return SamAmmoBonus[type];
+}
+
+function int getLootboxBonusAmmo(int type, int level)
+{
+	return LootboxBonusAmmo[type][0] + LootboxBonusAmmo[type][1] * level;
+}
+
+function str getLootboxWeaponVisuals(int type)
+{
+	return LootboxWeaponVisuals[type];
+}
+
+function str getLootboxWeaponNamings(int type)
+{
+	return LootboxWeaponNamings[type];
+}

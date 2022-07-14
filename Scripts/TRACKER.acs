@@ -2,6 +2,7 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
+#import "WEAPCNST.bcs"
 
 //=============================================================================
 //=============================================================================
@@ -598,14 +599,14 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 
 		noammo = false;
 		// Ammo count
-		if (((CheckWeapon("QCMachinegun") || CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCMachinegunDM") || CheckWeapon("QCHeavyMachinegunDM")) && (CheckInventory("QCBulletAmmo") <= 50) && (warned != 2)) ||
-			((CheckWeapon("QCShotgun")    || CheckWeapon("QCSuperShotgun")    || CheckWeapon("QCShotgunDM")    || CheckWeapon("QCSuperShotgunDM")   ) && (CheckInventory("QCShellAmmo")  <=  5) && (warned != 3)) ||
-			((CheckWeapon("QCNailgun")    || CheckWeapon("QCSuperNailgun")    || CheckWeapon("QCNailgunDM")    || CheckWeapon("QCSuperNailgunDM")   ) && (CheckInventory("QCNailAmmo")   <= 50) && (warned != 4)) ||
-			((CheckWeapon("QCTribolt")                                        || CheckWeapon("QCTriboltDM")                                         ) && (CheckInventory("QCBoltAmmo")   <=  5) && (warned != 1)) ||
-			((CheckWeapon("QCRocketLauncher")                                 || CheckWeapon("QCRocketLauncherDM")                                  ) && (CheckInventory("QCRocketAmmo") <=  5) && (warned != 5)) ||
-			((CheckWeapon("QCLightningGun")                                   || CheckWeapon("QCLightningGunDM")                                    ) && (CheckInventory("QCCoilAmmo")   <= 50) && (warned != 6)) ||
-			((CheckWeapon("QCRailgun")                                        || CheckWeapon("QCRailgunDM")                                         ) && (CheckInventory("QCSlugAmmo")   <=  5) && (warned != 7)) ||
-			((CheckWeapon("QCBFG")                                            || CheckWeapon("QCBFGDM")                                             ) && (CheckInventory("QCBFGAmmo")    <=  8) && (warned != 8)))
+		if (((CheckWeapon("QCMachinegun") || CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCMachinegunDM") || CheckWeapon("QCHeavyMachinegunDM")) && (CheckInventory("QCBulletAmmo") <= getLowAmmoWarningThreshold(0)) && (warned != 2)) ||
+			((CheckWeapon("QCShotgun")    || CheckWeapon("QCSuperShotgun")    || CheckWeapon("QCShotgunDM")    || CheckWeapon("QCSuperShotgunDM")   ) && (CheckInventory("QCShellAmmo")  <= getLowAmmoWarningThreshold(1)) && (warned != 3)) ||
+			((CheckWeapon("QCNailgun")    || CheckWeapon("QCSuperNailgun")    || CheckWeapon("QCNailgunDM")    || CheckWeapon("QCSuperNailgunDM")   ) && (CheckInventory("QCNailAmmo")   <= getLowAmmoWarningThreshold(2)) && (warned != 4)) ||
+			((CheckWeapon("QCTribolt")                                        || CheckWeapon("QCTriboltDM")                                         ) && (CheckInventory("QCBoltAmmo")   <= getLowAmmoWarningThreshold(3)) && (warned != 1)) ||
+			((CheckWeapon("QCRocketLauncher")                                 || CheckWeapon("QCRocketLauncherDM")                                  ) && (CheckInventory("QCRocketAmmo") <= getLowAmmoWarningThreshold(4)) && (warned != 5)) ||
+			((CheckWeapon("QCLightningGun")                                   || CheckWeapon("QCLightningGunDM")                                    ) && (CheckInventory("QCCoilAmmo")   <= getLowAmmoWarningThreshold(5)) && (warned != 6)) ||
+			((CheckWeapon("QCRailgun")                                        || CheckWeapon("QCRailgunDM")                                         ) && (CheckInventory("QCSlugAmmo")   <= getLowAmmoWarningThreshold(6)) && (warned != 7)) ||
+			((CheckWeapon("QCBFG")                                            || CheckWeapon("QCBFGDM")                                             ) && (CheckInventory("QCBFGAmmo")    <= getLowAmmoWarningThreshold(7)) && (warned != 8)))
 		{
 			if((CheckWeapon("QCMachinegun") || CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCMachinegunDM") || CheckWeapon("QCHeavyMachinegunDM")) && (!CheckInventory("QCBulletAmmo"))) noammo = true;
 			if((CheckWeapon("QCShotgun")    || CheckWeapon("QCSuperShotgun")    || CheckWeapon("QCShotgunDM")    || CheckWeapon("QCSuperShotgunDM")   ) && (!CheckInventory("QCShellAmmo") )) noammo = true;
@@ -633,14 +634,14 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 			{
 				delay(3);
 				ACS_NamedExecuteAlways("QCDE_LowAmmoAlert_CLIENT",0, false, true, noammo);
-				if((!stricmp(weapon,"QCMachinegun") || !stricmp(weapon,"QCHeavyMachinegun") || !stricmp(weapon,"QCMachinegunDM") || !stricmp(weapon,"QCHeavyMachinegunDM")) && (CheckInventory("QCBulletAmmo") > 50)) break;
-				if((!stricmp(weapon,"QCShotgun")    || !stricmp(weapon,"QCSuperShotgun")    || !stricmp(weapon,"QCShotgunDM")    || !stricmp(weapon,"QCSuperShotgunDM")   ) && (CheckInventory("QCShellAmmo")  >  5)) break;
-				if((!stricmp(weapon,"QCNailgun")    || !stricmp(weapon,"QCSuperNailgun")    || !stricmp(weapon,"QCNailgunDM")    || !stricmp(weapon,"QCSuperNailgunDM")   ) && (CheckInventory("QCNailAmmo")   > 50)) break;
-				if((!stricmp(weapon,"QCTribolt")                                            || !stricmp(weapon,"QCTriboltDM")                                             ) && (CheckInventory("QCBoltAmmo")   >  5)) break;
-				if((!stricmp(weapon,"QCRocketLauncher")                                     || !stricmp(weapon,"QCRocketLauncherDM")                                      ) && (CheckInventory("QCRocketAmmo") >  5)) break;
-				if((!stricmp(weapon,"QCLightningGun")                                       || !stricmp(weapon,"QCLightningGunDM")                                        ) && (CheckInventory("QCCoilAmmo")   > 50)) break;
-				if((!stricmp(weapon,"QCRailgun")                                            || !stricmp(weapon,"QCRailgunDM")                                             ) && (CheckInventory("QCSlugAmmo")   >  5)) break;
-				if((!stricmp(weapon,"QCBFG")                                                || !stricmp(weapon,"QCBFGDM")                                                 ) && (CheckInventory("QCBFGAmmo")    >  8)) break;
+				if((!stricmp(weapon,"QCMachinegun") || !stricmp(weapon,"QCHeavyMachinegun") || !stricmp(weapon,"QCMachinegunDM") || !stricmp(weapon,"QCHeavyMachinegunDM")) && (CheckInventory("QCBulletAmmo") > getLowAmmoWarningThreshold(0))) break;
+				if((!stricmp(weapon,"QCShotgun")    || !stricmp(weapon,"QCSuperShotgun")    || !stricmp(weapon,"QCShotgunDM")    || !stricmp(weapon,"QCSuperShotgunDM")   ) && (CheckInventory("QCShellAmmo")  > getLowAmmoWarningThreshold(1))) break;
+				if((!stricmp(weapon,"QCNailgun")    || !stricmp(weapon,"QCSuperNailgun")    || !stricmp(weapon,"QCNailgunDM")    || !stricmp(weapon,"QCSuperNailgunDM")   ) && (CheckInventory("QCNailAmmo")   > getLowAmmoWarningThreshold(2))) break;
+				if((!stricmp(weapon,"QCTribolt")                                            || !stricmp(weapon,"QCTriboltDM")                                             ) && (CheckInventory("QCBoltAmmo")   > getLowAmmoWarningThreshold(3))) break;
+				if((!stricmp(weapon,"QCRocketLauncher")                                     || !stricmp(weapon,"QCRocketLauncherDM")                                      ) && (CheckInventory("QCRocketAmmo") > getLowAmmoWarningThreshold(4))) break;
+				if((!stricmp(weapon,"QCLightningGun")                                       || !stricmp(weapon,"QCLightningGunDM")                                        ) && (CheckInventory("QCCoilAmmo")   > getLowAmmoWarningThreshold(5))) break;
+				if((!stricmp(weapon,"QCRailgun")                                            || !stricmp(weapon,"QCRailgunDM")                                             ) && (CheckInventory("QCSlugAmmo")   > getLowAmmoWarningThreshold(6))) break;
+				if((!stricmp(weapon,"QCBFG")                                                || !stricmp(weapon,"QCBFGDM")                                                 ) && (CheckInventory("QCBFGAmmo")    > getLowAmmoWarningThreshold(7))) break;
 
 				if((!stricmp(weapon,"QCMachinegun") || !stricmp(weapon,"QCHeavyMachinegun") || !stricmp(weapon,"QCMachinegunDM") || !stricmp(weapon,"QCHeavyMachinegunDM"))) if(CheckInventory("QCBulletAmmo")) noammo = false; else noammo = true;
 				if((!stricmp(weapon,"QCShotgun")    || !stricmp(weapon,"QCSuperShotgun")    || !stricmp(weapon,"QCShotgunDM")    || !stricmp(weapon,"QCSuperShotgunDM")   )) if(CheckInventory("QCShellAmmo") ) noammo = false; else noammo = true;
@@ -655,14 +656,14 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 			///* debug */ log(s:"\c[bludi]Changed from ", s:weapon, s:" to ", s:GetWeapon());
 		}
 		else if
-			(((CheckWeapon("QCMachinegun") || CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCMachinegunDM") || CheckWeapon("QCHeavyMachinegunDM")) && (CheckInventory("QCBulletAmmo") > 50)) ||
-			 ((CheckWeapon("QCShotgun")    || CheckWeapon("QCSuperShotgun")    || CheckWeapon("QCShotgunDM")    || CheckWeapon("QCSuperShotgunDM")   ) && (CheckInventory("QCShellAmmo")  >  5)) ||
-			 ((CheckWeapon("QCNailgun")    || CheckWeapon("QCSuperNailgun")    || CheckWeapon("QCNailgunDM")    || CheckWeapon("QCSuperNailgunDM")   ) && (CheckInventory("QCNailAmmo")   > 50)) ||
-			 ((CheckWeapon("QCTribolt")                                        || CheckWeapon("QCTriboltDM")                                         ) && (CheckInventory("QCBoltAmmo")   >  5)) ||
-			 ((CheckWeapon("QCRocketLauncher")                                 || CheckWeapon("QCRocketLauncherDM")                                  ) && (CheckInventory("QCRocketAmmo") >  5)) ||
-			 ((CheckWeapon("QCLightningGun")                                   || CheckWeapon("QCLightningGunDM")                                    ) && (CheckInventory("QCCoilAmmo")   > 50)) ||
-			 ((CheckWeapon("QCRailgun")                                        || CheckWeapon("QCRailgunDM")                                         ) && (CheckInventory("QCSlugAmmo")   >  5)) ||
-			 ((CheckWeapon("QCBFG")                                            || CheckWeapon("QCBFGDM")                                             ) && (CheckInventory("QCBFGAmmo")    >  8)) ||
+			(((CheckWeapon("QCMachinegun") || CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCMachinegunDM") || CheckWeapon("QCHeavyMachinegunDM")) && (CheckInventory("QCBulletAmmo") > getLowAmmoWarningThreshold(0))) ||
+			 ((CheckWeapon("QCShotgun")    || CheckWeapon("QCSuperShotgun")    || CheckWeapon("QCShotgunDM")    || CheckWeapon("QCSuperShotgunDM")   ) && (CheckInventory("QCShellAmmo")  > getLowAmmoWarningThreshold(1))) ||
+			 ((CheckWeapon("QCNailgun")    || CheckWeapon("QCSuperNailgun")    || CheckWeapon("QCNailgunDM")    || CheckWeapon("QCSuperNailgunDM")   ) && (CheckInventory("QCNailAmmo")   > getLowAmmoWarningThreshold(2))) ||
+			 ((CheckWeapon("QCTribolt")                                        || CheckWeapon("QCTriboltDM")                                         ) && (CheckInventory("QCBoltAmmo")   > getLowAmmoWarningThreshold(3))) ||
+			 ((CheckWeapon("QCRocketLauncher")                                 || CheckWeapon("QCRocketLauncherDM")                                  ) && (CheckInventory("QCRocketAmmo") > getLowAmmoWarningThreshold(4))) ||
+			 ((CheckWeapon("QCLightningGun")                                   || CheckWeapon("QCLightningGunDM")                                    ) && (CheckInventory("QCCoilAmmo")   > getLowAmmoWarningThreshold(5))) ||
+			 ((CheckWeapon("QCRailgun")                                        || CheckWeapon("QCRailgunDM")                                         ) && (CheckInventory("QCSlugAmmo")   > getLowAmmoWarningThreshold(6))) ||
+			 ((CheckWeapon("QCBFG")                                            || CheckWeapon("QCBFGDM")                                             ) && (CheckInventory("QCBFGAmmo")    > getLowAmmoWarningThreshold(7))) ||
 			 ((CheckWeapon("QCGauntlet")                                       || CheckWeapon("QCGauntletDM")                                        )))
 			warned = 0;
 

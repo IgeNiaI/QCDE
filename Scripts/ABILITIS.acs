@@ -2,6 +2,7 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
+#import "WEAPCNST.bcs"
 
 
 //=============================================================================
@@ -3690,28 +3691,15 @@ Script "QCDE_PlayerKill_QCMenelkir" (void)
 //---------------------------------
 //		Terminator's Passive
 
-str AmmoType[9] = {
-		"",		//0  Empty
-		"QCBulletAmmo",		//1  bullet
-		"QCShellAmmo",		//2  shell
-		"QCNailAmmo",		//3  nail
-		"QCBoltAmmo",		//4  bolt
-		"QCRocketAmmo",		//5  rocket
-		"QCCoilAmmo",		//6  coil
-		"QCSlugAmmo",		//7  slug
-		"QCBFGAmmo"			//8  bfg
-		};
-int AmmoValues[9][2] = {
-		//Amount	interval(10tic)
-		{	0,		1000,	},	//0  Empty
-		{	3,		   4,	},	//1  bullet	a bit more than a second
-		{	1,		   4,	},	//2  shell	a bit more than a second
-		{	3,		   4,	},	//3  nail	a bit more than a second
-		{	1,		   7,	},	//4  bolt	2 sec
-		{	1,		   7,	},	//5  rocket	2 sec
-		{	3,		   4,	},	//6  coil	a bit more than a second
-		{	1,		  10,	},	//7  slug	a bit less than 3 seconds
-		{	1,		  28,	}	//8  bfg	8 sec
+str AmmoType[8] = {
+		"QCBulletAmmo",		//0  bullet
+		"QCShellAmmo",		//1  shell
+		"QCNailAmmo",		//2  nail
+		"QCBoltAmmo",		//3  bolt
+		"QCRocketAmmo",		//4  rocket
+		"QCCoilAmmo",		//5  coil
+		"QCSlugAmmo",		//6  slug
+		"QCBFGAmmo"			//7  bfg
 		};
 
 Script "QCDE_Passive_Terminator" (void)
@@ -3731,23 +3719,23 @@ Script "QCDE_Passive_Terminator" (void)
 			continue;
 		}
 
-		if		(qcContains("Mac"))	CurrentAmmo=1;
-		else if (qcContains("Sho"))	CurrentAmmo=2;
-		else if (qcContains("Nai"))	CurrentAmmo=3;
-		else if (qcContains("Tri"))	CurrentAmmo=4;
-		else if (qcContains("Roc"))	CurrentAmmo=5;
-		else if (qcContains("Lig"))	CurrentAmmo=6;
-		else if (qcContains("Rai"))	CurrentAmmo=7;
-		else if (qcContains("BFG"))	CurrentAmmo=8;
+		if		(qcContains("Mac"))	CurrentAmmo=0;
+		else if (qcContains("Sho"))	CurrentAmmo=1;
+		else if (qcContains("Nai"))	CurrentAmmo=2;
+		else if (qcContains("Tri"))	CurrentAmmo=3;
+		else if (qcContains("Roc"))	CurrentAmmo=4;
+		else if (qcContains("Lig"))	CurrentAmmo=5;
+		else if (qcContains("Rai"))	CurrentAmmo=6;
+		else if (qcContains("BFG"))	CurrentAmmo=7;
 		else	//if any other weapon
-			CurrentAmmo=0;	//nothing at all
+			CurrentAmmo=-1;	//nothing at all
 
 		TenTics++;			//Increase counter of tics
 
-		if(TenTics >= AmmoValues[CurrentAmmo][1])
+		if(CurrentAmmo != -1 && TenTics >= getTerminatorAmmoRegenInterval(CurrentAmmo))
 		{
 			if(CheckInventory(AmmoType[CurrentAmmo]) < GetAmmoCapacity(AmmoType[CurrentAmmo]))
-				GiveInventory(AmmoType[CurrentAmmo] , AmmoValues[CurrentAmmo][0]);
+				GiveInventory(AmmoType[CurrentAmmo] , getTerminatorAmmoRegenAmount(CurrentAmmo));
 			else if(GameType() == GAME_NET_COOPERATIVE || // in cooperative
 					CheckInventory("TeamDeathmatch"))  // or team deathmatch
 			{
@@ -3757,7 +3745,7 @@ Script "QCDE_Passive_Terminator" (void)
 				int z = GetActorZ(0) + 64.0;
 				SpawnForced(strparam(s:AmmoType[CurrentAmmo], s:"Terminator"), x,y,z);
 				//Log(s:strparam(s:AmmoType[CurrentAmmo], s:"Terminator"), s:" shared");
-				Delay(AmmoValues[CurrentAmmo][1]);
+				Delay(getTerminatorAmmoRegenInterval(CurrentAmmo));
 			}
 			TenTics=0;
 		}
@@ -3857,14 +3845,14 @@ Script "QCDE_Passive_Bitterman" (void)
 	else
 	{
 		delay(1);
-		SetAmmoCapacity("QCBulletAmmo",	220);
-		SetAmmoCapacity("QCShellAmmo",	 35);
-		SetAmmoCapacity("QCNailAmmo",	220);
-		SetAmmoCapacity("QCBoltAmmo", 	 25);
-		SetAmmoCapacity("QCRocketAmmo",	 25);
-		SetAmmoCapacity("QCCoilAmmo", 	220);
-		SetAmmoCapacity("QCSlugAmmo", 	 25);
-		SetAmmoCapacity("QCBFGAmmo",	 25);
+		SetAmmoCapacity("QCBulletAmmo",	getBittermanDMAmmoCapacity(0));
+		SetAmmoCapacity("QCShellAmmo",	getBittermanDMAmmoCapacity(1));
+		SetAmmoCapacity("QCNailAmmo",	getBittermanDMAmmoCapacity(2));
+		SetAmmoCapacity("QCBoltAmmo", 	getBittermanDMAmmoCapacity(3));
+		SetAmmoCapacity("QCRocketAmmo",	getBittermanDMAmmoCapacity(4));
+		SetAmmoCapacity("QCCoilAmmo", 	getBittermanDMAmmoCapacity(5));
+		SetAmmoCapacity("QCSlugAmmo", 	getBittermanDMAmmoCapacity(6));
+		SetAmmoCapacity("QCBFGAmmo",	getBittermanDMAmmoCapacity(7));
 	}
 
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
@@ -4073,18 +4061,6 @@ Script "QCDE_Passive_LoWang" (void)
 #define GRAYSON_HOLD_DELAY    28
 #define GRAYSON_ARMOR_TAKE    25
 
-int AmmoPackSize[9] = {
-		  0, //0  noth
-		100, //1  bullet
-		 30, //2  shell
-		100, //3  nail
-		 15, //4  bolt
-		 10, //5  rocket
-		100, //6  coil
-		 10, //7  slug
-		  5  //8  bfg
-		};
-
 Script "QCDE_Passive_Grayson" (void)
 {
 	// Hold +use to buy ammo packs for armor blocks
@@ -4110,16 +4086,16 @@ Script "QCDE_Passive_Grayson" (void)
 		if (!(GetPlayerInput(-1, INPUT_OLDBUTTONS) & BT_USE))
 			lastHoldStartTime = Timer();
 
-		if		(qcContains("Mac"))	CurrentAmmo = 1;
-		else if (qcContains("Sho"))	CurrentAmmo = 2;
-		else if (qcContains("Nai"))	CurrentAmmo = 3;
-		else if (qcContains("Tri"))	CurrentAmmo = 4;
-		else if (qcContains("Roc"))	CurrentAmmo = 5;
-		else if (qcContains("Lig"))	CurrentAmmo = 6;
-		else if (qcContains("Rai"))	CurrentAmmo = 7;
-		else if (qcContains("BFG"))	CurrentAmmo = 8;
+		if		(qcContains("Mac"))	CurrentAmmo = 0;
+		else if (qcContains("Sho"))	CurrentAmmo = 1;
+		else if (qcContains("Nai"))	CurrentAmmo = 2;
+		else if (qcContains("Tri"))	CurrentAmmo = 3;
+		else if (qcContains("Roc"))	CurrentAmmo = 4;
+		else if (qcContains("Lig"))	CurrentAmmo = 5;
+		else if (qcContains("Rai"))	CurrentAmmo = 6;
+		else if (qcContains("BFG"))	CurrentAmmo = 7;
 		else continue;
-		int amount = AmmoPackSize[CurrentAmmo];
+		int amount = getGraysonAmmoPackSize(CurrentAmmo);
 
 		lastHoldPulses = holdPulses;
 		int duration = Timer() - lastHoldStartTime;
@@ -4865,14 +4841,14 @@ Script "QCDE_Passive_Sam" (int ammo)
 	else // Giving ammo
 	{
 		int type, amount;
-		if      (qcContains("Mac"))	{ type = AmmoType[1]; amount = 15 * ammo; }
-		else if (qcContains("Sho"))	{ type = AmmoType[2]; amount =  3 * ammo; }
-		else if (qcContains("Nai"))	{ type = AmmoType[3]; amount = 15 * ammo; }
-		else if (qcContains("Tri"))	{ type = AmmoType[4]; amount =  3 * ammo; }
-		else if (qcContains("Roc"))	{ type = AmmoType[5]; amount =  2 * ammo; }
-		else if (qcContains("Lig"))	{ type = AmmoType[6]; amount = 15 * ammo; }
-		else if (qcContains("Rai"))	{ type = AmmoType[7]; amount =  2 * ammo; }
-		else if (qcContains("BFG"))	{ type = AmmoType[8]; amount =  1 * ammo; }
+		if      (qcContains("Mac"))	{ type = AmmoType[0]; amount = getSamAmmoBonus(0) * ammo; }
+		else if (qcContains("Sho"))	{ type = AmmoType[1]; amount = getSamAmmoBonus(1) * ammo; }
+		else if (qcContains("Nai"))	{ type = AmmoType[2]; amount = getSamAmmoBonus(2) * ammo; }
+		else if (qcContains("Tri"))	{ type = AmmoType[3]; amount = getSamAmmoBonus(3) * ammo; }
+		else if (qcContains("Roc"))	{ type = AmmoType[4]; amount = getSamAmmoBonus(4) * ammo; }
+		else if (qcContains("Lig"))	{ type = AmmoType[5]; amount = getSamAmmoBonus(5) * ammo; }
+		else if (qcContains("Rai"))	{ type = AmmoType[6]; amount = getSamAmmoBonus(6) * ammo; }
+		else if (qcContains("BFG"))	{ type = AmmoType[7]; amount = getSamAmmoBonus(7) * ammo; }
 		else if (qcContains("mMi"))	{ type = "SeriousBullets"; amount = 10 * ammo; }
 		else terminate;
 

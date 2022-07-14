@@ -2,6 +2,7 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
+#import "WEAPCNST.bcs"
 
 //=============================================================================
 //=============================================================================
@@ -614,26 +615,6 @@ script "QCDE_Playerclass" (int to) CLIENTSIDE
 //=============================================================================
 
 // These have had offsets removed.
-str loadoutVisuals[8] = {
-	"QCGBZ",
-	"QCGCZ",
-	"QCGDZ",
-	"QCGEZ",
-	"QCG5Z",
-	"QCG6Z",
-	"QCG7Z",
-	"QCG8Z"
-};
-str loadoutNamings[8] = {
-	"H. Machinegun",
-	"S. Shotgun",
-	"S. Nailgun",
-	"Tribolt",
-	"R. Launcher",
-	"Lightning Gun",
-	"Railgun",
-	"BFG10K"
-};
 script "QCDE_ShowWeapon" (int weapon, int position, int totalNumber)
 {
 	int fadeIn  = 0.1 * position;
@@ -653,7 +634,7 @@ script "QCDE_ShowWeapon" (int weapon, int position, int totalNumber)
 
 	// Picture
 	SetHudSize(400,300,true);
-	SetFont(loadoutVisuals[weapon]);
+	SetFont(getLootboxWeaponVisuals(weapon));
 	HudMessage(s:"A"; HUDMSG_FADEINOUT, ID_WEAPON_FACE_BASE + position, CR_UNTRANSLATED, x, y, stayOn, fadeIn, fadeOut);
 
 	// Label
@@ -661,7 +642,7 @@ script "QCDE_ShowWeapon" (int weapon, int position, int totalNumber)
 	x *= 2;
 	y = (y >>16<< 16) * 2 + 8.1;
 	SetFont("BIGFONT");
-	HudMessage(s:loadoutNamings[weapon]; HUDMSG_TYPEON, ID_WEAPON_TEXT_BASE + position, CR_WHITE, x, y, stayOn, 0.04, fadeOut);
+	HudMessage(s:getLootboxWeaponNamings(weapon); HUDMSG_TYPEON, ID_WEAPON_TEXT_BASE + position, CR_WHITE, x, y, stayOn, 0.04, fadeOut);
 
 	// Back
 	SetHudSize(1600,1200,true);
@@ -2496,18 +2477,6 @@ script "QCDE_LowHealthAlert_CLIENT" (int sound, int text) CLIENTSIDE
 //
 //=============================================================================
 
-str AmmoIcons[9] = {
-		"",		//0  Empty
-		"AmmBullt", //1  bullet
-		"AmmShell", //2  shell
-		"AmmNails", //3  nail
-		"AmmBolts", //4  bolt
-		"AmmRockt", //5  rocket
-		"AmmCoils", //6  coil
-		"AmmSlugs", //7  slug
-		"AmmBfugs", //8  bfg
-		};
-
 script "QCDE_GraysonText" (int amount, int mode, int ammoicon)
 {
 	str message = strparam(s:"+", d:amount);
@@ -2520,7 +2489,7 @@ script "QCDE_GraysonText" (int amount, int mode, int ammoicon)
 	if(ammoicon)
 	{
 		SetHUDSize(2800,2100,1);
-		SetFont(AmmoIcons[ammoicon]);
+		SetFont(getGraysonAmmoIcons(ammoicon));
 		HudMessage(s:"A";
 				HUDMSG_FADEOUT,ID_GRAYSON_ICON,CR_UNTRANSLATED, 2370.1, 1706.0, 1.0,1.0);
 	}
