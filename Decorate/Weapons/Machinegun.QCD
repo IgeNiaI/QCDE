@@ -295,4 +295,7 @@ Actor QCMachinegunDM : QCMachinegun
 	+WEAPON.NOAUTOAIM
 	+CHEATNOTWEAPON
 	Tag "$TAG_QCMachinegun" // "Machinegun (DM)"
+	Weapon.AmmoGive 100
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 10
 }

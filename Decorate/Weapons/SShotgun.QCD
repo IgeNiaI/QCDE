@@ -481,6 +481,9 @@ Actor QCSuperShotgunDM : QCSuperShotgun
 	+WEAPON.NOAUTOAIM
 	+CHEATNOTWEAPON
 	Tag "$TAG_QCSuperShotgun" // "Super Shotgun (DM)"
+	Weapon.AmmoGive 10
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 1
 }
 
 

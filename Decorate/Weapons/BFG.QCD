@@ -580,6 +580,9 @@ Actor QCBFGDM : QCBFG
 	+CHEATNOTWEAPON
 	Tag "$TAG_QCBFG" // "BFG 10k (DM)"
 	Weapon.SelectionOrder 666 // highest
+	Weapon.AmmoGive 10
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 5
 }
 
 

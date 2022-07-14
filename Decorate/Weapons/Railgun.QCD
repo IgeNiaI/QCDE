@@ -1527,4 +1527,7 @@ Actor QCRailGunDM : QCRailGun
 	+WEAPON.NOAUTOAIM
 	+CHEATNOTWEAPON
 	Tag "$TAG_QCRailGun" // "Railgun (DM)"
+	Weapon.AmmoGive1 10
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 1
 }

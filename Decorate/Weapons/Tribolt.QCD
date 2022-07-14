@@ -517,6 +517,9 @@ Actor QCTriboltDM : QCTribolt
 	+WEAPON.NOAUTOAIM
 	+CHEATNOTWEAPON
 	Tag "$TAG_QCTribolt" // "Tribolt (DM)"
+	Weapon.AmmoGive 10
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 1
 }
 
 

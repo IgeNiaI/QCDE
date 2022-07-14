@@ -371,6 +371,9 @@ Actor QCSuperNailgunDM : QCSuperNailgun
 	+WEAPON.NOAUTOAIM
 	+CHEATNOTWEAPON
 	Tag "$TAG_QCSuperNailgun" // "Super Nailgun (DM)"
+	Weapon.AmmoGive 100
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 10
 }
 
 

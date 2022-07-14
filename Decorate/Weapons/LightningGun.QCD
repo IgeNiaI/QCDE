@@ -423,6 +423,9 @@ Actor QCLightningGunDM : QCLightningGun
 	+WEAPON.NOAUTOAIM
 	+CHEATNOTWEAPON
 	Tag "$TAG_QCLightningGun" // "Lightning Gun (DM)"
+	Weapon.AmmoGive1 100
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 10
 }
 
 
