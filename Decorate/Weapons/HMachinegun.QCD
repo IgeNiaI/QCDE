@@ -152,10 +152,10 @@ Actor QCHeavyMachinegun : QCWeapon
 		Goto FireNormalSound
 
 		FireNormalSound:
-			TNT1 A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop",CHAN_WEAPON,1,1)
+			TNT1 A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound:
-			TNT1 A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop",CHAN_WEAPON,1,1)
+			TNT1 A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 
 	FirePostSoundCheck:
@@ -163,70 +163,70 @@ Actor QCHeavyMachinegun : QCWeapon
 		Goto FireLooper
 
 	FireLooper:
-		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCGB B 0 A_GunFlash("SP_Flash")
+		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		TNT1 A 0 A_GunFlash("SP_Flash")
 		QCGB B 1 Offset(2,33) Bright
-		QCGB B 1 Offset(4,35) Bright
-		QCGB A 1 Offset(2,33)
-		QCGB A 1 Offset(1,32)
+		QCGB C 1 Offset(4,35) Bright
+		QCGB D 1 Offset(2,33)
+		QCGB E 1 Offset(1,32)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
-		QCGB A 1 Offset(1,32) A_ReFire("FireLooper2")
+		QCGB F 1 Offset(1,32) A_ReFire("FireLooper2")
 		Goto EndFireLooper
 	FireLooper2:
-		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCGB B 0 A_GunFlash("SP_Flash")
-		QCGB C 1 Offset(2,33) Bright
-		QCGB C 1 Offset(4,35) Bright
-		QCGB A 1 Offset(2,33)
-		//QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		TNT1 A 0 A_GunFlash("SP_Flash")
+		QCGB G 1 Offset(2,33) Bright
+		QCGB H 1 Offset(4,35) Bright
+		QCGB I 1 Offset(2,33)
+		//QCGB J 1 Offset(1,32)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
-		QCGB A 1 Offset(1,32) A_ReFire("FireLooper3")
+		QCGB K 1 Offset(1,32) A_ReFire("FireLooper3")
 		Goto EndFireLooper
 	FireLooper3:
-		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCGB B 0 A_GunFlash("SP_Flash")
-		QCGB D 1 Offset(2,33) Bright
-		QCGB D 1 Offset(4,35) Bright
-		QCGB A 1 Offset(2,33)
-		QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		TNT1 A 0 A_GunFlash("SP_Flash")
+		QCGB L 1 Offset(2,33) Bright
+		QCGB M 1 Offset(4,35) Bright
+		QCGB N 1 Offset(2,33)
+		QCGB O 1 Offset(1,32)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
-		QCGB A 1 Offset(1,32) A_ReFire("FireLooper")
+		QCGB P 1 Offset(1,32) A_ReFire("FireLooper")
 		Goto EndFireLooper
 
 	DM_FireLooper:
-		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCGB B 0 A_GunFlash("DM_Flash")
+		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		TNT1 A 0 A_GunFlash("DM_Flash")
 		QCGB B 1 Offset(2,33) Bright
-		QCGB B 1 Offset(4,35) Bright
-		QCGB A 1 Offset(2,33)
-		QCGB A 1 Offset(1,32)
+		QCGB C 1 Offset(4,35) Bright
+		QCGB D 1 Offset(2,33)
+		QCGB E 1 Offset(1,32)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
-		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper2")
+		QCGB F 1 Offset(1,32) A_ReFire("DM_FireLooper2")
 		Goto EndFireLooper
 	DM_FireLooper2:
-		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCGB B 0 A_GunFlash("DM_Flash")
-		QCGB C 1 Offset(2,33) Bright
-		QCGB C 1 Offset(4,35) Bright
-		QCGB A 1 Offset(2,33)
-		//QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		TNT1 A 0 A_GunFlash("DM_Flash")
+		QCGB G 1 Offset(2,33) Bright
+		QCGB H 1 Offset(4,35) Bright
+		QCGB I 1 Offset(2,33)
+		//QCGB J 1 Offset(1,32)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
-		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper3")
+		QCGB K 1 Offset(1,32) A_ReFire("DM_FireLooper3")
 		Goto EndFireLooper
 	DM_FireLooper3:
-		QCGB A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCGB B 0 A_GunFlash("DM_Flash")
-		QCGB D 1 Offset(2,33) Bright
-		QCGB D 1 Offset(4,35) Bright
-		QCGB A 1 Offset(2,33)
-		QCGB A 1 Offset(1,32)
+		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		TNT1 A 0 A_GunFlash("DM_Flash")
+		QCGB L 1 Offset(2,33) Bright
+		QCGB M 1 Offset(4,35) Bright
+		QCGB N 1 Offset(2,33)
+		QCGB O 1 Offset(1,32)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ZoomedFire")
-		QCGB A 1 Offset(1,32) A_ReFire("DM_FireLooper")
+		QCGB P 1 Offset(1,32) A_ReFire("DM_FireLooper")
 		Goto EndFireLooper
 
 	EndFireLooper:
-		QCGB A 1 A_PlaySound("QC/Weapons/Machinegun/FireEnd",CHAN_WEAPON,1,0)
-		QCGB AAAA 1 A_WeaponReady(WRF_NOBOB)
+		QCGB A 1 A_PlaySound("QC/Weapons/HeavyMachinegun/FireEnd",CHAN_WEAPON,1,0)
+		QCGB QQRRSSSTTTTUUUU 1 A_WeaponReady(WRF_NOBOB)
 		Goto Ready
 
 	//-----------------------
