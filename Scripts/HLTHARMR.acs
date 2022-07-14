@@ -68,10 +68,7 @@ Script "QCDE_Degeneration" (void)
 	GiveInventory("DegenerationSingleton",1);
 	int DegenerateTics;
 
-	//Special case for bitterman's passive
-	if(CheckInventory("Class_Bitterman"	))	DegenerateTics = 35*3; 		//~3 sec
-
-	else if(CheckInventory("Body_Medium"))	DegenerateTics = 35; 	//1 sec
+	     if(CheckInventory("Body_Medium"))	DegenerateTics = 35; 	//1 sec
 	else if(CheckInventory("Body_Big"	))	DegenerateTics = 70; 	//2 sec
 	else if(CheckInventory("Body_Small"	))	DegenerateTics = 25; 	//~0.7 sec
 

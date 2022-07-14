@@ -33,7 +33,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (45 *35) +XYZ, (135 *35) +XYZ, ( 3 *35)     +XYZ, ( 3 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // TERMINATOR
 	  (35 *35) +XYZ, ( 35 *35) +XYZ, ( 1 *35)     +XYZ, ( 1 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ZEDEK
 	  (40 *35) +XYZ, ( 90 *35) +XYZ, ( 5 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INQUISITOR
-	  (35 *35) +XYZ, ( 35 *35) +XYZ, ( 1 *35)     +XYZ, ( 1 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // BITTERMAN
+	  (35 *45) +XYZ, ( 35 *35) +XYZ, ( 1 *35)     +XYZ, ( 1 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // BITTERMAN
 	  (35 *35) +XYZ, ( 35 *35) +XYZ, (28)         +XYZ, (28)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GALEN
 	  (35 *35) +XYZ, ( 15 *35) +XYZ,(( 3 *35)-10) +XYZ,(( 3 *35)-10) +XYZ, no       +XYZ, no       +XYZ, no                                  , // NYX
 	  (45 *35) +XYZ, ( 90 *35) +XYZ, ( 8 *35)     +XYZ, ( 8 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SORGAUL
@@ -3839,7 +3839,7 @@ Script "QCDE_Passive_Inquisitor" (void)
 //---------------------------------
 //		Bitterman's Passive
 
-#define BITTERMAN_REGEN_PERIOD 20
+#define BITTERMAN_REGEN_PERIOD 30 //tics to gain 1 armor charge
 
 Script "QCDE_Passive_Bitterman" (void)
 {
