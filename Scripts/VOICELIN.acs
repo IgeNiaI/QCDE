@@ -46,7 +46,7 @@ int taunt_count[32][NUMBER_OF_CLASSES] = {
 	{13     ,0}, // CORVUS
 	{13     ,0}, // KANE
 	{19     ,0}, // CALEB
-	{ 6     ,0}, // MENELKIR
+	{11     ,0}, // MENELKIR
 	{14     ,0}, // TERMINATOR
 	{16     ,0}, // ZEDEK
 	{14     ,0}, // INQUISITOR
@@ -307,12 +307,17 @@ str taunt_txt[NUMBER_OF_CLASSES][32][32] = {
 	}},
 	{{ // 6   MENELKIR
 	"",
-"My servants can smell your blood.",
-"I think I shall remove you from the board.",
-"You have played this game too long, mortal.",
-"Then again, maybe not.",
-"Are you ready to die?",
-"Worship me, and I may yet be merciful.",
+"Your life is but a moment.",
+"Your cries only feed my bloodlust.",
+"Till we meet again.",
+"My strength grows.",
+"I trully have the blessings of the old ones.",
+"Don't run, we've only began.",
+"Suffering is only the beginning.",
+"You are but a nuisance.",
+"I'll purge you from existence.",
+"Turn, an look upon your death.",
+"Look upon my face, and know thy death.",
 	}},
 	{{ // 7   TERMINATOR
 	"",

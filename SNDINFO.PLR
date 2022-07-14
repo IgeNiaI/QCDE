@@ -627,10 +627,37 @@ $playeralias	Caleb	other	*footstep	BootStep
 
 //================================================================
 //================================================================
-// Menelkir, from Hexen, using pitch edited Korax vo for taunts
+// Menelkir, from Hexen, using DeathKnight from QC
 //================================================================
 //================================================================
 
+$random MenelkirDeath { MenelkirDeath1 MenelkirDeath2 MenelkirDeath3 }
+MenelkirDeath1 "Sounds/Players/Menelkir/Death1.ogg"
+MenelkirDeath2 "Sounds/Players/Menelkir/Death2.ogg"
+MenelkirDeath3 "Sounds/Players/Menelkir/Death3.ogg"
+
+$random MenelkirGrunt { MenelkirGrunt1 MenelkirGrunt2 }
+MenelkirGrunt1 "Sounds/Players/Menelkir/Grunt1.ogg"
+MenelkirGrunt2 "Sounds/Players/Menelkir/Grunt2.ogg"
+
+$random MenelkirJump { MenelkirJump1 MenelkirJump2 MenelkirJump3 MenelkirJump4 }
+MenelkirJump1 "Sounds/Players/Menelkir/Jump1.ogg"
+MenelkirJump2 "Sounds/Players/Menelkir/Jump2.ogg"
+MenelkirJump3 "Sounds/Players/Menelkir/Jump3.ogg"
+MenelkirJump4 "Sounds/Players/Menelkir/Jump4.ogg"
+
+$volume MenelkirJump1 0.8
+$volume MenelkirJump2 0.8
+$volume MenelkirJump3 0.8
+$volume MenelkirJump4 0.8
+$attenuation MenelkirJump1 2.0
+$attenuation MenelkirJump2 2.0
+$attenuation MenelkirJump3 2.0
+$attenuation MenelkirJump4 2.0
+
+$random QC/Abilities/Menelkir/Activate {QC/Abilities/Menelkir/Activate1 QC/Abilities/Menelkir/Activate2}
+QC/Abilities/Menelkir/Activate1 		"Sounds/UI/Abilities/Menelkir_Activate1.ogg"
+QC/Abilities/Menelkir/Activate2 		"Sounds/UI/Abilities/Menelkir_Activate2.ogg"
 
 QCMenelkirTaunt01 "Sounds/Players/Menelkir/MenelkirTaunt1.ogg"
 QCMenelkirTaunt02 "Sounds/Players/Menelkir/MenelkirTaunt2.ogg"
@@ -638,45 +665,50 @@ QCMenelkirTaunt03 "Sounds/Players/Menelkir/MenelkirTaunt3.ogg"
 QCMenelkirTaunt04 "Sounds/Players/Menelkir/MenelkirTaunt4.ogg"
 QCMenelkirTaunt05 "Sounds/Players/Menelkir/MenelkirTaunt5.ogg"
 QCMenelkirTaunt06 "Sounds/Players/Menelkir/MenelkirTaunt6.ogg"
+QCMenelkirTaunt07 "Sounds/Players/Menelkir/MenelkirTaunt7.ogg"
+QCMenelkirTaunt08 "Sounds/Players/Menelkir/MenelkirTaunt8.ogg"
+QCMenelkirTaunt09 "Sounds/Players/Menelkir/MenelkirTaunt9.ogg"
+QCMenelkirTaunt10 "Sounds/Players/Menelkir/MenelkirTaunt10.ogg"
+QCMenelkirTaunt11 "Sounds/Players/Menelkir/MenelkirTaunt11.ogg"
 
-$playersound	Menelkir	male	*death		"Sounds/Players/Menelkir/Death.ogg"
+$playeralias	Menelkir	male	*death		MenelkirDeath
 $playersound	Menelkir	male	*xdeath		"Sounds/Players/Menelkir/Xdeath.ogg"
 $playersound	Menelkir	male	*gibbed		"Sounds/Players/Menelkir/Xdeath.ogg"
-$playersound	Menelkir	male	*pain100	"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	male	*pain75		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	male	*pain50		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	male	*pain25		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	male	*grunt		"Sounds/Players/Menelkir/Oof.ogg"
+$playersound	Menelkir	male	*pain100	"Sounds/Players/Menelkir/Pain100.ogg"
+$playersound	Menelkir	male	*pain75		"Sounds/Players/Menelkir/Pain75.ogg"
+$playersound	Menelkir	male	*pain50		"Sounds/Players/Menelkir/Pain50.ogg"
+$playersound	Menelkir	male	*pain25		"Sounds/Players/Menelkir/Pain25.ogg"
+$playeralias	Menelkir	male	*grunt		MenelkirGrunt
 $playersound	Menelkir	male	*land		"Sounds/Players/Footsteps/LiteStep3.ogg"
-$playeralias	Menelkir	male	*jump		NoSoundHax
+$playeralias	Menelkir	male	*jump		MenelkirJump
 $playersound	Menelkir	male	*usefail	"Sounds/Players/Menelkir/Oof.ogg"
 $playeralias	Menelkir	male	*taunt		NoSoundHax
 $playeralias	Menelkir	male	*footstep	LiteStep
 
-$playersound	Menelkir	female	*death		"Sounds/Players/Menelkir/Death.ogg"
+$playeralias	Menelkir	female	*death		MenelkirDeath
 $playersound	Menelkir	female	*xdeath		"Sounds/Players/Menelkir/Xdeath.ogg"
-$playeralias	Menelkir	female	*gibbed		NoSoundHax
-$playersound	Menelkir	female	*pain100	"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	female	*pain75		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	female	*pain50		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	female	*pain25		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	female	*grunt		"Sounds/Players/Menelkir/Oof.ogg"
+$playeralias	Menelkir	female	*gibbed		"Sounds/Players/Menelkir/Xdeath.ogg"
+$playersound	Menelkir	female	*pain100	"Sounds/Players/Menelkir/Pain100.ogg"
+$playersound	Menelkir	female	*pain75		"Sounds/Players/Menelkir/Pain75.ogg"
+$playersound	Menelkir	female	*pain50		"Sounds/Players/Menelkir/Pain50.ogg"
+$playersound	Menelkir	female	*pain25		"Sounds/Players/Menelkir/Pain25.ogg"
+$playeralias	Menelkir	female	*grunt		MenelkirGrunt
 $playersound	Menelkir	female	*land		"Sounds/Players/Footsteps/LiteStep3.ogg"
-$playeralias	Menelkir	female	*jump		NoSoundHax
+$playeralias	Menelkir	female	*jump		MenelkirJump
 $playersound	Menelkir	female	*usefail	"Sounds/Players/Menelkir/Oof.ogg"
 $playeralias	Menelkir	female	*taunt		NoSoundHax
 $playeralias	Menelkir	female	*footstep	LiteStep
 
-$playersound	Menelkir	other	*death		"Sounds/Players/Menelkir/Death.ogg"
+$playeralias	Menelkir	other	*death		MenelkirDeath
 $playersound	Menelkir	other	*xdeath		"Sounds/Players/Menelkir/Xdeath.ogg"
-$playeralias	Menelkir	other	*gibbed		NoSoundHax
-$playersound	Menelkir	other	*pain100	"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	other	*pain75		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	other	*pain50		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	other	*pain25		"Sounds/Players/Menelkir/Pain.ogg"
-$playersound	Menelkir	other	*grunt		"Sounds/Players/Menelkir/Oof.ogg"
+$playeralias	Menelkir	other	*gibbed		"Sounds/Players/Menelkir/Xdeath.ogg"
+$playersound	Menelkir	other	*pain100	"Sounds/Players/Menelkir/Pain100.ogg"
+$playersound	Menelkir	other	*pain75		"Sounds/Players/Menelkir/Pain75.ogg"
+$playersound	Menelkir	other	*pain50		"Sounds/Players/Menelkir/Pain50.ogg"
+$playersound	Menelkir	other	*pain25		"Sounds/Players/Menelkir/Pain25.ogg"
+$playeralias	Menelkir	other	*grunt		MenelkirGrunt
 $playersound	Menelkir	other	*land		"Sounds/Players/Footsteps/LiteStep3.ogg"
-$playeralias	Menelkir	other	*jump		NoSoundHax
+$playeralias	Menelkir	other	*jump		MenelkirJump
 $playersound	Menelkir	other	*usefail	"Sounds/Players/Menelkir/Oof.ogg"
 $playeralias	Menelkir	other	*taunt		NoSoundHax
 $playeralias	Menelkir	other	*footstep	LiteStep
