@@ -4308,7 +4308,7 @@ Script "QCDE_Passive_Blazkowicz" (void)
 
 #define COILS_TO_1_ARMOR    3
 #define PERCENT_PER_BFGCELL 2
-#define REZ_COOLDOWN_SECS  60
+#define REZ_COOLDOWN_SECS  120
 #define FREEMAN_SPOTS       8
 int rezCharge[64];
 int freem[FREEMAN_SPOTS][3];
@@ -4318,26 +4318,11 @@ Script "QCDE_Passive_Freeman" (void)
 	int bfg0, bfg1 = CheckInventory("QCBFGAmmo"), bfgdiff;
 	int plr = PlayerNumber();
 	rezCharge[plr] = 0; // reset extra-half-life
-	GiveInventory("PowerHEVFeet",1);
 	InitFreemanSpots();
 	InitGman();
 
 	while(GetActorProperty(0,APROP_Health) > 0)
 	{
-		// Energetic Armor charge
-		if(lgdiff > 0)
-		{
-			LocalAmbientSound("QC/Abilities/Freeman/Battery", 127);
-			ACS("QCDE_AwardArmorOverTime", lgdiff / COILS_TO_1_ARMOR);
-		}
-
-		lg0 = lg1; lg1 = CheckInventory("QCCoilAmmo");
-		lgdiff = lg1 - lg0;
-
-		if(bfgdiff > 0) ACS("QCDE_Hourglass", bfgdiff * PERCENT_PER_BFGCELL);
-		bfg0 = bfg1; bfg1 = CheckInventory("QCBFGAmmo");
-		bfgdiff = bfg1 - bfg0;
-
 		// Puppet / Extraction / Extra-half-life
 		// Prevent death.
 		rezCharge[plr]++;
@@ -4364,11 +4349,58 @@ Script "QCDE_Passive_Freeman" (void)
 				rezCharge[plr] = -99999999; // don't restore in this level
 				SpawnForced("GmanRezSound", GetActorX(0),GetActorY(0),GetActorZ(0));
 				GiveInventory("GmanRezProc", 1);
+				if(checkinventory("DMToken"))
+				{
+					SetInventory("QCHeavyMachinegunDM",0);	//take all the DM weapons except the machinegun
+					SetInventory("QCShotgunDM",0);
+					SetInventory("QCSuperShotgunDM",0);
+					SetInventory("QCNailgunDM",0);
+					SetInventory("QCSuperNailgunDM",0);
+					SetInventory("QCTriboltDM",0);
+					SetInventory("QCRocketLauncherDM",0);
+					SetInventory("QCLightningGunDM",0);
+					SetInventory("QCRailgunDM",0);
+					SetInventory("QCBFGDM",0);
+					SetInventory("QCHeavyMachinegun",0);	//also removes the non DM version
+					SetInventory("QCShotgun",0);			//just in case there's some oddities with pickups
+					SetInventory("QCSuperShotgun",0);
+					SetInventory("QCNailgun",0);
+					SetInventory("QCSuperNailgun",0);
+					SetInventory("QCTribolt",0);
+					SetInventory("QCRocketLauncher",0);
+					SetInventory("QCLightningGun",0);
+					SetInventory("QCRailgun",0);
+					SetInventory("QCBFG",0);
+					SetInventory("QCShellAmmo",0);		//set all ammo to zero except bullets
+					SetInventory("QCNailAmmo",0);
+					SetInventory("QCRocketAmmo",0);
+					SetInventory("QCCoilAmmo",0);
+					SetInventory("QCSlugAmmo",0);
+					SetInventory("QCBoltAmmo",0);
+					SetInventory("QCBFGAmmo",0);
+
+					SetInventory("BasicArmor",0); //remove armor too
+
+					int startingWeapon = GetCvar("cl_startingWeapon");
+					if (startingWeapon == 1) {
+						SetInventory("Starter_Machinegun"   ,1);
+					} else if (startingWeapon == 2) {
+						SetInventory("Starter_Shotgun"   ,1);
+					} else if (startingWeapon == 3) {
+						SetInventory("Starter_Nailgun"   ,1);
+                    }
+					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Apply",0);
+				}
+
+				// Disable remaining damage over time from possible Quietus hit or Postal's cow head
+				quieting_for[PlayerNumber()] = 0;
+				cowgassing_for[PlayerNumber()] = 0;
 
 				int spot = PickFreemanSpot();
 				//log(s:"Used spot ", d:spot);
 				SetActorPosition(0, freem[spot][0],freem[spot][1],freem[spot][2], true);
-				HealThing(24);
+				SetActorProperty(0, APROP_Health, 25);
+				StopSound(0, CHAN_WEAPON);
 				LocalAmbientSound("QC/Abilities/Freeman/Extract", 90);
 				if(random(1,10)==1)	LocalAmbientSound("GmanInvestments", 127);
 			}
