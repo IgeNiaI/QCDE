@@ -685,8 +685,6 @@ Actor OmnislashProjectile
 	Scale 0.7
 	Alpha 0.4
 	+BRIGHT
-	+SEEKERMISSILE
-	DamageType "ZombieGibber"
 	ProjectileKickBack 0
 	States
 	{
@@ -885,8 +883,7 @@ Actor OmnislashFireProjectile
 	States
 	{
 	Spawn:
-		QCG1 X 1 NODELAY A_SpawnItemEx("BurnerFlamelet",random(0,-20),random(7,-7),random(-3,3), 0,0,0, 0,SXF_NOCHECKPOSITION,128)
-		QCG1 X 0 A_CountDown
+		TNT1 A 0 A_CountDown
 		Loop
 	Death:
 		TNT1 A 0 A_Stop
@@ -901,8 +898,7 @@ Actor OmnislashFireProjectile
 			Goto DeathCont
 
 	DeathCont:
-		QCG1 X 0 A_Explode(random(4,6)*10,48,0,0,32)
-		QCG1 XXXXXXXXXX 1 A_FadeOut(0.13)
+		TNT1 A 0 A_Explode(random(4,6)*10,48,0,0,32)
 		Stop
 	XDeath:
 		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
