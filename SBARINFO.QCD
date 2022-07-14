@@ -86,9 +86,9 @@ statusbar Normal, forcescaled
 	// Number of lives
 	inInventory LifeToken
 	{
-		inInventory LifeToken, 2 {
+		IfProperty lives 2 {
 			drawString QCFNT100, brite, "x", 127,935, 0, alignment(right);
-			drawnumber 2, QCFNT100, brite, LifeToken,   alignment( left), 127,925;
+			drawnumber 2, QCFNT100, brite, lives,   alignment( left), 127,925;
 		}
 		else
 		{
@@ -1042,9 +1042,9 @@ statusbar Fullscreen, forcescaled
 	// Number of lives
 	inInventory LifeToken
 	{
-		inInventory LifeToken, 2 {
+		IfProperty lives 2 {
 			drawString QCFNT100, brite, "x", 127,935, 0, alignment(right);
-			drawnumber 2, QCFNT100, brite, LifeToken,   alignment( left), 127,925;
+			drawnumber 2, QCFNT100, brite, lives,   alignment( left), 127,925;
 		}
 		else
 		{
