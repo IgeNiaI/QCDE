@@ -29,6 +29,10 @@ server noarchive int rocketarena            = 0; // 1: RL, 2: SSG, 3: Unholy Tri
 server noarchive int qc_elderssoul          = 0; // QCDE's own "terminator" gameplay mode, allowing team play
 server noarchive int qc_freezetag           = 0; // Freeze enemies instead of kill, thaw allies with body heat
 
+// Mutators
+
+server bool sv_railrecoil					=  false; // Adds recoil to RailGun, allowing to do rail jumps
+
 // QCS
 
 server noarchive string qcs        = "";

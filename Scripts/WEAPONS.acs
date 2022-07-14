@@ -69,6 +69,15 @@ Script "QCDE_SetWeaponRespawnTics" (void)
 	SetResultValue(result);
 }
 
+// Activator: player
+Script "QCDE_RailRecoil" (void)
+{
+	if (GetCvar("sv_railrecoil"))
+		SetResultValue(12);
+	else
+		SetResultValue(0);
+}
+
 
 
 
