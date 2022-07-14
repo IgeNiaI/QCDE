@@ -1,0 +1,243 @@
+//-------------------------------------------------------------------------------------------
+//
+// Setting flag defaults and locking some of them
+//
+//-------------------------------------------------------------------------------------------
+
+DefaultGameSettings
+{
+	sv_weaponstay = false
+	sv_weapondrop = true
+	sv_itemrespawn = true
+	sv_nocrouch = false
+	sv_allowjump = true
+	sv_allowcrouch = true
+	sv_awarddamageinsteadkills = true
+	sv_unblockallies = true
+	sv_accuratecrosshair = true
+	sv_disablewallfriction = true
+	sv_enableprojectilehitboxfix = true
+	sv_quakethrust = true
+	sv_headbob = 0.0
+}
+
+DefaultLockedGameSettings
+{
+	compat_predictfunctions = true
+}
+
+
+
+// Coop gamemodes
+
+Cooperative
+{
+	GameSettings
+	{
+		sv_sharekeys = true
+		sv_coop_damagefactor = true
+	}
+}
+
+Survival
+{
+	GameSettings
+	{
+		sv_sharekeys = true
+		sv_coop_damagefactor = true
+	}
+}
+
+Invasion
+{
+	GameSettings
+	{
+		sv_sharekeys = true
+		sv_coop_damagefactor = true
+	}
+}
+
+
+
+// PvP gamemodes
+
+Deathmatch
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+Teamplay
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+Duel
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_nodrop = true
+		sv_ringouttics = 105
+	}
+}
+
+Terminator
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+LastManStanding
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+TeamLMS
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+Possession
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+TeamGame
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+CTF
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+OneFlagCTF
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+Skulltag
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
+
+Domination
+{
+	GameSettings
+	{
+		sv_respawntime = 1
+		sv_forcerespawn = true
+		sv_forcerespawntime = 10
+		sv_spawnfarthest = true
+		sv_elevatedspecialfix = true
+		sv_maprotation = true
+		sv_randommaprotation = true
+		sv_ringouttics = 105
+	}
+}
