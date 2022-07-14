@@ -93,7 +93,7 @@ Actor CurrentLeader  : Token {}
 Actor NoWeaponBar    : Token {}
 Actor PlayHitBeep    : Token {}
 Actor PlayHitMark    : Token {}
-Actor Speedometer    : Token {}
+Actor Speedometer    : Token { Inventory.MaxAmount 2 }
 Actor NotSpectator   : Token {}
 Actor BeingSpectated : Token {}
 Actor FlatHealthPref : Token {}

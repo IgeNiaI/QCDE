@@ -42,12 +42,12 @@ server noarchive string qcs_status = "";
 // Client settings
 
 user bool cl_showWeaponBar   =  true; // vertical list of items on the right
-user bool cl_speedometer     = false; // small counter showing current speed in mu/sec under crosshair
 user bool cl_hitbeep         =  true; // audial feedback about hitting targets
 user bool cl_hitmarker       =  true; // visual feedback about hitting targets
 user bool cl_allyMarkers     =  true; // player-colored triangle shown above players in cooperative
 user bool cl_weaponrecoil    =  true; // do weapons have visual recoil when firing?
 user bool cl_weaponfireflash =  true; // do weapons create a HUD flash effect when firing
+user int  cl_speedometer       =   0; // small counter showing current speed in mu/sec under crosshair or under champion avatar
 user int  cl_lgtransparency    =   2; // 0: beam invisible, 1: beam 50%, 2: beam 100%
 user int  cl_lowAmmoWarning    =   2; // 1: sound only, 2: sound and text, 3: sound and text stays
 user int  cl_lowHealthWarning  =   1; // 1: sound only, 2: sound and text, 3: sound and text stays

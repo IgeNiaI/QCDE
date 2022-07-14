@@ -377,10 +377,14 @@ statusbar Normal, forcescaled
 	}
 
 	// Speedometer
-	inInventory Speedometer {
-		drawImage "SPEEDOM", 684, 600;
-		drawString QCFNT030, yellow, GlobalArray 10, 700,646, 0, alignment(center);// frags 2nd
+	inInventory Speedometer, 2 {
+		drawImage "SPEEDOM", 80, 980;
+		drawString QCFNT030, yellow, GlobalArray 10, 136,990, 0, alignment(center);// frags 2nd
 	}
+	else inInventory Speedometer {
+        drawImage "SPEEDOM", 684, 600;
+        drawString QCFNT030, yellow, GlobalArray 10, 700,646, 0, alignment(center);// frags 2nd
+    }
 
 	// Keybag
 	gameMode cooperative, singlePlayer
@@ -1329,10 +1333,14 @@ statusbar Fullscreen, forcescaled
 	}
 
 	// Speedometer
-	inInventory Speedometer {
-		drawImage "SPEEDOM", 684, 600;
-		drawString QCFNT030, yellow, GlobalArray 10, 700,646, 0, alignment(center);// frags 2nd
+	inInventory Speedometer, 2 {
+		drawImage "SPEEDOM", 80, 980;
+		drawString QCFNT030, yellow, GlobalArray 10, 136,990, 0, alignment(center);// frags 2nd
 	}
+	else inInventory Speedometer {
+        drawImage "SPEEDOM", 684, 600;
+        drawString QCFNT030, yellow, GlobalArray 10, 700,646, 0, alignment(center);// frags 2nd
+    }
 
 	// Keybag
 	gameMode cooperative, singlePlayer

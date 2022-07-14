@@ -132,7 +132,7 @@ function int _o(int plr) // anti-o
 int maxScore;
 
 #define AVERAGE_WINDOW 10
-int averager[AVERAGE_WINDOW], index, lastSpeed;
+int averager[AVERAGE_WINDOW], index;
 #define LINE_HEIGHT              22
 
 int watchdog;
@@ -425,32 +425,7 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 			//
 
 			int speed = VectorLength(GetActorVelX(plrtid), GetActorVelY(plrtid)) / 1872; // not 1827
-
-			// Average out with past N values, but immediately show 0 if stopped.
-			if(speed)
-			{
-				index = (index + 1) % AVERAGE_WINDOW;
-				averager[index] = speed;
-
-				speed = 0;
-				for(i = 0; i < AVERAGE_WINDOW; i++)
-					speed += averager[i] / AVERAGE_WINDOW;
-			}
-
-			int diff = (speed - lastSpeed);
-			if(diff < 0) diff *= -1;
-			int t = timer();
-			// precedence: inequalities are tighter than "and" which is tighter than "or"
-			if (!(t % 9)              ||
-				!(t % 7) && diff >  5 ||
-				!(t % 5) && diff > 15 ||
-				!(t % 2) && diff > 25 ||
-							diff > 40    )
-			{
-				lastSpeed = speed;
-				speedometer[me] = strparam(d:speed);
-			}
-
+			speedometer[me] = strparam(d:speed);
 
 			//
 			// Scoreboards
