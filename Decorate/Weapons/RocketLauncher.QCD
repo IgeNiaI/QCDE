@@ -822,7 +822,7 @@ Actor RLClusterRocket
 	States
 	{
 	Spawn:
-		TNT1 A 0 A_SpawnItemEx("NetGuardRocketTrailFire",-4,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("ClusterRocketTrailFire",-4,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		QROK A 1 A_SeekerMissile(15,16,SMF_LOOK|SMF_PRECISE ,0,0)
 		QROK A 1
 		QROK A 0 A_CountDown
@@ -848,6 +848,31 @@ Actor RLClusterRocket
 		TNT1 A 0 A_Explode(64,80,0,0,40)
 		TNT1 A 0 A_PlaySound("quake4/Misc/RocketExplo",CHAN_5,0.4,0,1.5)
 		TNT1 A 3 A_SpawnItemEx("Q4GBSwarmExplo",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+Actor ClusterRocketTrailFire
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION +NOTONAUTOMAP
+	+FORCEXYBILLBOARD
+	+NONETID
+	RenderStyle Add
+	Alpha 0.7
+	Scale 0.13
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255,"One","Two")
+	One:
+		X007 ACE 1 Bright
+		X007 GI 1 Bright A_FadeOut
+		Stop
+	Two:
+		X007 KMO 1 Bright
+		X007 QS 1 Bright A_FadeOut
 		Stop
 	}
 }
