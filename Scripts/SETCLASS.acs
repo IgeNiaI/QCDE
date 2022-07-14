@@ -190,20 +190,37 @@ Script "QCDE_PistolStart" (void)
 	}
 }
 
+int classConversion[NUMBER_OF_CLASSES] = {	//Class conversion chart from "canonical" to MAPINFO as QCDE_Playerclass takes MAPINFO index
+	0, 1, 2, 11, 12, 13, 21, 22, 23, 25, 3, 14, 24, 4, 15, 26,
+	5, 16, 6, 27, 7, 8, 28, 17, 18, 29, 19, 30, 20, 9, 10
+};
+// ^ insert more classes here, format: classConversion[canonicalIndex] = MAPINFOindex
+
+int allowedClasses[NUMBER_OF_CLASSES - 1];	//because at least 1 is disabled
+
 Script "QCDE_ClassDisabled" (void)
 {
 	int tid = UniqueTid();
-	int classwas = CheckInventory("ClassID");
 	SpawnProjectile(0,"DeliverDeath",0,0,0,0,0);
 	GiveInventory("DisableColor",1);
 	delay(1);
 	ACS("QCDE_CleanBlood");
 	Thing_Remove(tid);
 
-	// Try next class
-	// (if it's banned too, the process is repeated over lives until a non-banned class is found)
-	int to = classwas + 1;
-	if(to >= NUMBER_OF_CLASSES) to = 0;
+	// Find a random class not banned by the server
+
+	int arrayLength = 0;
+
+	for(int i = 0; i < NUMBER_OF_CLASSES; i++) {
+		if(!GetCVar(StrParam(s:"_bc_", d:i))) {
+			allowedClasses[arrayLength] = i;
+			arrayLength++;
+		}
+	}
+
+	int randomAllowedClass = allowedClasses[random(0, arrayLength - 1)];
+	int to = classConversion[randomAllowedClass];
+
 	ACS("QCDE_KMP", to);
 	ACS("QCDE_Playerclass", to);
 }
