@@ -303,7 +303,7 @@ Actor CorrosiveBloodDM : CorrosiveBlood
 	States
 	{
 	Spawn:
-		X057 A 0 NoDelay A_SetUserVar(user_explodamage,4)	//sets up explosion damage<damage for this actor
+		X057 A 0 NoDelay A_SetUserVar(user_explodamage,2)	//sets up explosion damage<damage for this actor
 		X057 A 0 A_Jump(256,"Type07","Type08","TypeA7","TypeA8","TypeB7","TypeB8","TypeC7","TypeC8")
 		Goto Type07
 	}
@@ -350,7 +350,11 @@ Actor CorrosiveBloodProc : CustomInventory
 		TNT1 A 0 A_ThrowGrenade("CorrosiveBlood", -15, random(-accuracy*3,accuracy*3),frandom(0,accuracy),0,TGR_NOUNLAGGED)	//in coop sprays farther
 		Stop
 	DMBlood:
-		TNT1 A 0 A_ThrowGrenade("CorrosiveBloodDM", -15, random(-accuracy*2,accuracy*2),frandom(0,accuracy),0)
+		TNT1 A 0 A_Jump(128,"Nope")
+		TNT1 A 0 A_ThrowGrenade("CorrosiveBloodDM", -15, random(-accuracy*2,accuracy*2),frandom(0,accuracy),0,TGR_NOUNLAGGED)
+		Stop
+	Nope:
+		TNT1 A 0
 		Stop
 	}
 }
