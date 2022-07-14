@@ -627,29 +627,6 @@ Actor QCRocketExploParticle
 
 
 
-// --------------------------------------------------------------------------
-//	For competitive DM, weapons dont autoaim
-// --------------------------------------------------------------------------
-Actor QCRocketLauncherDM : QCRocketLauncher
-{
-	+WEAPON.NOAUTOAIM
-	+CHEATNOTWEAPON
-	Tag "$TAG_QCRocketLauncher" // "Rocket Launcher (DM)"
-	Weapon.AmmoGive 10
-	Weapon.AmmoDmScale 1.0
-	Weapon.AmmoDmRefill 1
-}
-
-
-
-
-
-
-
-
-
-
-
 
 
 // ==========================================================================
@@ -901,3 +878,19 @@ Actor ControlledRocketTrail
 		Stop
 	}
 }
+
+
+
+// --------------------------------------------------------------------------
+//	For competitive DM, weapons dont autoaim
+// --------------------------------------------------------------------------
+Actor QCRocketLauncherDM : QCRocketLauncher
+{
+	+WEAPON.NOAUTOAIM
+	+CHEATNOTWEAPON
+	Tag "$TAG_QCRocketLauncher" // "Rocket Launcher (DM)"
+	Weapon.AmmoGive 10
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 1
+}
+

@@ -415,20 +415,6 @@ Actor LGworldactor
 }
 
 
-// --------------------------------------------------------------------------
-//	For competitive DM, weapons dont autoaim
-// --------------------------------------------------------------------------
-Actor QCLightningGunDM : QCLightningGun
-{
-	+WEAPON.NOAUTOAIM
-	+CHEATNOTWEAPON
-	Tag "$TAG_QCLightningGun" // "Lightning Gun (DM)"
-	Weapon.AmmoGive1 100
-	Weapon.AmmoDmScale 1.0
-	Weapon.AmmoDmRefill 10
-}
-
-
 
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
@@ -647,4 +633,18 @@ Actor LGPuffStatic
 Actor LGworldactorPurple : LGworldactor
 {
 	Translation "0:255=%[0,0,0]:[1.2,0.84,1.8]"
+}
+
+
+// --------------------------------------------------------------------------
+//	For competitive DM, weapons dont autoaim
+// --------------------------------------------------------------------------
+Actor QCLightningGunDM : QCLightningGun
+{
+	+WEAPON.NOAUTOAIM
+	+CHEATNOTWEAPON
+	Tag "$TAG_QCLightningGun" // "Lightning Gun (DM)"
+	Weapon.AmmoGive1 100
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 10
 }

@@ -471,23 +471,6 @@ Actor SSGSmoke2
 }
 
 
-
-// --------------------------------------------------------------------------
-//	For competitive DM, weapons dont autoaim
-// --------------------------------------------------------------------------
-Actor QCSuperShotgunDM : QCSuperShotgun
-{
-	Weapon.AmmoUse 1
-	+WEAPON.NOAUTOAIM
-	+CHEATNOTWEAPON
-	Tag "$TAG_QCSuperShotgun" // "Super Shotgun (DM)"
-	Weapon.AmmoGive 10
-	Weapon.AmmoDmScale 1.0
-	Weapon.AmmoDmRefill 1
-}
-
-
-
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 //	Weapon tokens
@@ -588,3 +571,20 @@ Actor FlameFlamelet 	//:)
 		Stop
 	}
 }
+
+
+
+// --------------------------------------------------------------------------
+//	For competitive DM, weapons dont autoaim
+// --------------------------------------------------------------------------
+Actor QCSuperShotgunDM : QCSuperShotgun
+{
+	Weapon.AmmoUse 1
+	+WEAPON.NOAUTOAIM
+	+CHEATNOTWEAPON
+	Tag "$TAG_QCSuperShotgun" // "Super Shotgun (DM)"
+	Weapon.AmmoGive 10
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 1
+}
+

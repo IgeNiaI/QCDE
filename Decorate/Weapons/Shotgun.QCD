@@ -314,18 +314,6 @@ Actor SGSmoke
 	}
 }
 
-// --------------------------------------------------------------------------
-//	For competitive DM, weapons dont autoaim
-// --------------------------------------------------------------------------
-Actor QCShotgunDM : QCShotgun
-{
-	+WEAPON.NOAUTOAIM
-	+CHEATNOTWEAPON
-	Tag "$TAG_QCShotgun" // "Shotgun (DM)"
-	Weapon.AmmoGive 10
-	Weapon.AmmoDmScale 1.0
-	Weapon.AmmoDmRefill 1
-}
 
 
 
@@ -393,4 +381,20 @@ Actor SGExplosiveBullet : FastProjectile
 		X006 ABCDEFGHIJKLMNOP 1 Bright
 		Stop
 	}
+}
+
+
+
+
+// --------------------------------------------------------------------------
+//	For competitive DM, weapons dont autoaim
+// --------------------------------------------------------------------------
+Actor QCShotgunDM : QCShotgun
+{
+	+WEAPON.NOAUTOAIM
+	+CHEATNOTWEAPON
+	Tag "$TAG_QCShotgun" // "Shotgun (DM)"
+	Weapon.AmmoGive 10
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 1
 }

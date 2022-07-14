@@ -363,23 +363,6 @@ Actor QCNailStrongDM : QCNailStrong
 	Obituary "$OB_QCSuperNailgun" // "%o was perforated by %k."
 }
 
-// --------------------------------------------------------------------------
-//	For competitive DM, weapons dont autoaim
-// --------------------------------------------------------------------------
-Actor QCSuperNailgunDM : QCSuperNailgun
-{
-	+WEAPON.NOAUTOAIM
-	+CHEATNOTWEAPON
-	Tag "$TAG_QCSuperNailgun" // "Super Nailgun (DM)"
-	Weapon.AmmoGive 100
-	Weapon.AmmoDmScale 1.0
-	Weapon.AmmoDmRefill 10
-}
-
-
-
-
-
 
 
 // ==========================================================================
@@ -590,3 +573,19 @@ Actor NailSeekerLavaNSmoke : NailSeekerSmoke
 {
 	Translation "0:255=%[0,0,0]:[1.3,0.4,0]"
 }
+
+
+// --------------------------------------------------------------------------
+//	For competitive DM, weapons dont autoaim
+// --------------------------------------------------------------------------
+Actor QCSuperNailgunDM : QCSuperNailgun
+{
+	+WEAPON.NOAUTOAIM
+	+CHEATNOTWEAPON
+	Tag "$TAG_QCSuperNailgun" // "Super Nailgun (DM)"
+	Weapon.AmmoGive 100
+	Weapon.AmmoDmScale 1.0
+	Weapon.AmmoDmRefill 10
+}
+
+
