@@ -53,6 +53,7 @@ Script "QCDE_ResetClass" (int firsttime)
 	if(CheckActorClass(0, "QCPostal"    )) SetInventory("Class_Postal"    ,1); else SetInventory("Class_Postal"    ,0);
 	if(CheckActorClass(0, "QCPainkiller")) SetInventory("Class_Painkiller",1); else SetInventory("Class_Painkiller",0);
 	if(CheckActorClass(0, "QCIntruder"  )) SetInventory("Class_Intruder"  ,1); else SetInventory("Class_Intruder"  ,0);
+	if(CheckActorClass(0, "QCOrbb"		)) SetInventory("Class_Orbb"      ,1); else SetInventory("Class_Orbb"      ,0);
 	// ^ insert more classes here
 
 	// Health & Armor
@@ -87,6 +88,7 @@ Script "QCDE_ResetClass" (int firsttime)
 	if(CheckActorClass(0, "QCPostal"    )) { SetQcdeStack(100,  75); SetInventory("ClassID", 28); }
 	if(CheckActorClass(0, "QCPainkiller")) { SetQcdeStack(100, 125); SetInventory("ClassID", 29); }
 	if(CheckActorClass(0, "QCIntruder"  )) { SetQcdeStack(150,  75); SetInventory("ClassID", 30); }
+	if(CheckActorClass(0, "QCOrbb"		)) { SetQcdeStack(100,  75); SetInventory("ClassID", 31); }
 	// ^ insert more classes here
 
 	// Disabled class? Git kekd nao (when ClassID is already set)
@@ -190,9 +192,9 @@ Script "QCDE_PistolStart" (void)
 	}
 }
 
-int classConversion[NUMBER_OF_CLASSES] = {	//Class conversion chart from "canonical" to MAPINFO as QCDE_Playerclass takes MAPINFO index
-	0, 1, 2, 11, 12, 13, 21, 22, 23, 25, 3, 14, 24, 4, 15, 26,
-	5, 16, 6, 27, 7, 8, 28, 17, 18, 29, 19, 30, 20, 9, 10
+int classConversion[NUMBER_OF_CLASSES] = {    //Class conversion chart from "canonical" to MAPINFO as QCDE_Playerclass takes MAPINFO index
+    0, 1, 2, 11, 12, 13, 22, 23, 24, 26, 3, 14, 25, 4, 15, 27,
+    5, 16, 6, 28, 7, 8, 29, 17, 18, 30, 19, 31, 20, 9, 10, 21
 };
 // ^ insert more classes here, format: classConversion[canonicalIndex] = MAPINFOindex
 

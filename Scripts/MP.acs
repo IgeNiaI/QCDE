@@ -234,7 +234,8 @@ Script "QCDE_ClassCheck_ENTER" ENTER CLIENTSIDE
 		CheckInventory("Class_Sam"			) +
 		CheckInventory("Class_Postal"		) +
 		CheckInventory("Class_Painkiller"	) +
-		CheckInventory("Class_Intruder"	);
+		CheckInventory("Class_Intruder"		) +
+		CheckInventory("Class_Orbb"			);
 	// ^ insert more classes here
 
 	if(mustbe1 > 1)

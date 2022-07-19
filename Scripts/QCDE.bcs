@@ -87,9 +87,10 @@ function int clamp(int x, int min, int max)
 #libdefine    POWERUP_TIDLAST 7463
 #libdefine IMMOLATION_TIDBASE 7464
 #libdefine      SKULL_TIDBASE 7528
-#libdefine   MONSTER3_TIDBASE 7592 // 2048 items
-#libdefine   MONSTER4_TIDBASE 9640 // 2048 items
-#libdefine   RESPSPOT_TIDBASE 11688
+#libdefine   ORBBDRON_TIDBASE 7592
+#libdefine   MONSTER3_TIDBASE 7656 // 2048 items
+#libdefine   MONSTER4_TIDBASE 9704 // 2048 items
+#libdefine   RESPSPOT_TIDBASE 11752
 
 int fails[256];
 str failnames[256] = {
@@ -340,7 +341,8 @@ function int SetTidIfHadNone(int firsttid, int lasttid)
 ///////////////////////////////////////////////////////////////////////////////
 
 #libdefine ALL_OF_IT  0x7FFFFFFF
-#libdefine NUMBER_OF_CLASSES  31
+#libdefine NUMBER_OF_CLASSES  32
+	// ^ insert more classes here
 #libdefine NUMBER_OF_MONSTERS 18
 #libdefine NUMBER_OF_WEAPONS  23
 #libdefine NUMBER_OF_UPGRADES  3 // per weapon
@@ -886,6 +888,7 @@ class_T champion[100] =
 {"Postal"    ,},
 {"Painkiller",},
 {"Intruder"  ,},
+{"Orbb"      ,},
 };
 
 
@@ -896,18 +899,20 @@ class_T champion[100] =
 int CLASS_COUNT = NUMBER_OF_CLASSES;
 str cpnames[100] = {
 	"", // zero-length string serves as line break
-	"Kane"      ,"Caleb"     ,"Menelkir"  ,"Nyx"    ,"Durandal"  ,"Lo Wang","Eleena"    ,"Lucienne"  ,"Hunter" ,"Postal",                 "",
+	"Kane"      ,"Caleb"     ,"Menelkir"  ,"Nyx"    ,"Durandal"  ,"Lo Wang","Eleena"    ,"Lucienne"  ,"Hunter" ,"Postal", "Orbb",         "",
 	"Ranger"    ,"Doomslayer","Corvus"    ,"Galen"  ,"Duke Nukem","Sarge"  ,"Grayson"   ,"Blazkowicz","Freeman","Painkiller", "Intruder", "",
 	"Terminator","Zedek"     ,"Inquisitor","Sorgaul","Bitterman" ,"Keel"   ,"Eradicator","VorMatur"  ,"Major"  ,"Sam",                    "",
 	"",
+	// ^ insert more classes here
 	// array should end with a zero-length string
 };
 str cpfaces[100] = {
 	"", // zero-length string serves as line break
-	"PortrC04","PortrC05","PortrC06","PortrC12","PortrC15","PortrC18","PortrC24","PortrC25","PortrC27","PortrC29",            "",
+	"PortrC04","PortrC05","PortrC06","PortrC12","PortrC15","PortrC18","PortrC24","PortrC25","PortrC27","PortrC29","PortrC32", "",
 	"PortrC01","PortrC02","PortrC03","PortrC11","PortrC14","PortrC17","PortrC19","PortrC21","PortrC22","PortrC30","PortrC31", "",
 	"PortrC07","PortrC08","PortrC09","PortrC13","PortrC10","PortrC16","PortrC20","PortrC23","PortrC26","PortrC28",            "",
 	"",
+	// ^ insert more classes here
 	// array should end with a zero-length string
 };
 

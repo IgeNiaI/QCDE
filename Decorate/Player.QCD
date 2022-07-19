@@ -5200,3 +5200,171 @@ Actor QCIntruder : QCPlayerMedium
 	}
 }
 
+
+//======================================================================================
+//
+//		32. Orbb, from Quake 3 Arena
+//
+//======================================================================================
+
+Actor QCOrbb : QCPlayerLight
+{
+	Player.DisplayName "Orbb"
+	Player.SoundClass "Orbb"
+
+	Height 39
+	Player.AttackZOffset 15
+	Player.ViewHeight 36
+
+	Player.CrouchScale 1.0
+
+	Player.ForwardMove 0.75,1,0.5,2
+	Player.SideMove 0.78,1.25,0.54,1.04
+	Player.FootstepsEnabled 0,1,0,1
+
+	Speed 1.02
+	Scale 0.46
+
+	Player.ActionScript "crouch" "QCDE_Orbb_Bounce"
+
+	Player.FootstepInterval 10
+	Player.FootstepVolume 0.5625
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor25"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 75
+
+	Player.StartItem "Class_Orbb"
+	Player.StartItem "Body_Small"
+	Player.StartItem "ActiveOffensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP32 G 0 NoDelay
+		QP32 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
+		QP32 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP32 G 0 A_JumpIf(true,                   "DefSpawn")
+		QP32 G 100
+		Loop
+
+		RedSpawn:
+			RP32 A 0 A_JumpIf(momx||momy,"RedSee")
+			RP32 G 4
+			Loop
+		BlueSpawn:
+			BP32 A 0 A_JumpIf(momx||momy,"BlueSee")
+			BP32 G 4
+			Loop
+		DefSpawn:
+			QP32 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP32 G 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		RedSee:
+			RP32 ABCDEF 3
+			RP32 A 0 A_JumpIf(true,"RedSpawn")
+			Loop
+		BlueSee:
+			BP32 ABCDEF 3
+			BP32 A 0 A_JumpIf(true,"BlueSpawn")
+			Loop
+		DefSee:
+			QP32 ABCDEF 3
+			QP32 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" G 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		RedMissile:
+			RP32 G 12
+			RP32 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		BlueMissile:
+			BP32 G 12
+			BP32 G 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP32 G 12
+			QP32 G 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		RedMelee:
+			RP32 H 6 BRIGHT Light("PlayerFiringLight")
+			RP32 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		BlueMelee:
+			BP32 H 6 BRIGHT Light("PlayerFiringLight")
+			BP32 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP32 H 6 BRIGHT Light("PlayerFiringLight")
+			QP32 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" C 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		RedPain:
+			RP32 C 4
+			RP32 C 4 A_Pain
+			RP32 C 4 A_JumpIf(true, "Spawn")
+			Loop
+		BluePain:
+			BP32 C 4
+			BP32 C 4 A_Pain
+			BP32 C 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP32 C 4
+			QP32 C 4 A_Pain
+			QP32 C 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(CHAN_WEAPON) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP32 J 6
+		QP32 K 6 A_PlayerScream
+		QP32 L 6 A_NoBlocking
+		QP32 MNO 6
+		QP32 P -1 A_StopSound(CHAN_WEAPON)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(CHAN_WEAPON) //stops looping sounds
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP32 J 6 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
+		QP32 K 6 A_XScream
+		QP32 L 6 A_NoBlocking
+		QP32 MNO 6
+		QP32 P -1 A_StopSound(CHAN_WEAPON)
+		Stop
+	}
+}
+

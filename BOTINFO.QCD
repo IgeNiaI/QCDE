@@ -32,6 +32,7 @@ ClearBots //to remove skulltag bots
 { name = "Postal"		class = "Postal"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "00 00 00"	script = "humanbot" }
 { name = "Painkiller"	class = "Painkiller"	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "F5 F5 F5"	script = "humanbot" }
 { name = "Intruder"		class = "Intruder"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "F5 F5 F5"	script = "humanbot" }
+{ name = "Orbb"			class = "Orbb"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "F5 F5 F5"	script = "humanbot" }
 
 // OW, spread attributes, all balanced around same points (12pts)
 { name = "Sword"			class = "Zedek" 	 accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "B6 EF 13"	gender = "male"	railcolor = blue	script = "humanbot"	favoriteweapon = "QCHeavyMachinegunDM"	chatfrequency =  8	chatlump = "bots/chatfiles/sword.txt"		}
@@ -130,6 +131,7 @@ ClearBots //to remove skulltag bots
 { name = "Mr.N40"				class = "Bitterman"		gender = "cyborg"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "00 FF 00"	script = "sausgbot"		}
 { name = "LH9965"				class = "Keel"			gender = "cyborg"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "9A CD 32"	script = "dfultbot"		}
 { name = "ElevatorGator"		class = "Eradicator"	gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "7C FC 00"	script = "dfultbot"		}
+{ name = "Cyberclops"			class = "Orbb"			gender = "other"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "7C FC 00"	script = "sausgbot"		}
 
 { name = "Pokey Joe"			class = "VorMatur"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "F0 F8 FF"	script = "crashbot"		}
 { name = "LukMaM37"				class = "Major"			gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "00 FF 00"	script = "dfultbot"		}
@@ -158,6 +160,7 @@ ClearBots //to remove skulltag bots
 { name = "LegReplacement"		class = "Zedek"			gender = "female"	accuracy = 3	intellect = 1	evade = 2	anticipation = 2	reactiontime = 3	perception = 1	color = "19 19 70"	script = "sausgbot"		}
 { name = "BulbBridge83"			class = "Inquisitor"	gender = "female"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "FF 63 47"	script = "dfultbot"		}
 { name = "ElectionConspiracy"	class = "Sorgaul"		gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "FA 80 72"	script = "dfultbot"		}
+{ name = "One-eyed Freak"		class = "Orbb"			gender = "other"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "7C FC 00"	script = "sausgbot"		}
 
 { name = "blackmail41"			class = "Bitterman"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "FF C0 CB"	script = "crashbot"		}
 { name = "CarBrother"			class = "Keel"			gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "F8 F8 FF"	script = "dfultbot"		}

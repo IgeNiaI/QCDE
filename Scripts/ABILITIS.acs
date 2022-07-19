@@ -56,6 +56,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (45 *35) +XYZ, ( 60 *35) +XYZ, (5 *35 )     +XYZ, ( 5 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // POSTAL
 	  (40 *35) +XYZ, (120 *35) +XYZ, (10*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // PAINKILLER
 	  (45 *35) +XYZ, ( 90 *35) +XYZ, (12*35 )     +XYZ, (24 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INTRUDER
+	  (45 *35) +XYZ, ( 45 *35) +XYZ, (25*35 )     +XYZ, (25 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ORBB
 // ^ insert more classes here
 };
 
@@ -276,7 +277,6 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 			else if(CheckInventory("Class_Freeman"	))	ACS("QCDE_Ability_Freeman"   );
 			else if(CheckInventory("Class_Eleena"	))	ACS("QCDE_Ability_Eleena"    );
 			else if(CheckInventory("Class_Lucienne"	))	ACS("QCDE_Ability_Lucienne"  );
-			else if(CheckInventory("Class_Orbb"		))	ACS("QCDE_Ability_Orbb"      );
 			// ^ insert more classes here if needed
 		}
 	}
@@ -2995,6 +2995,437 @@ Script "QCDE_IntruderLoop" (void) CLIENTSIDE
 	}
 }
 
+//---------------------------------
+//		Orbb's Active
+
+#define DRON_SPEED 4.0
+#define DRON_FRICTION 0.8 // lower is more friction
+#define DRON_DURATION 25
+
+Script "QCDE_Ability_Orbb" (void)
+{
+	int plr = PlayerNumber();
+	int plrtid = plr + 1000;
+	int tid = ORBBDRON_TIDBASE + plr;
+
+	if (IsTidUsed(tid))
+	{
+		if (GetNetworkState() != NETSTATE_SERVER)
+		{
+			SetActivator(tid);
+			if (Timer() - extraAbilityData[plr] > 2 && !CheckInventory("ImDead"))
+			{
+				SetActivator(plrtid);
+				extraAbilityData[plr] = Timer();
+				if(GameType() < GAME_NET_DEATHMATCH)
+					ACS_NamedExecuteWithResult("ORBB_DroneViewEnterCoop", 0);
+				else
+					ACS_NamedExecuteWithResult("ORBB_DroneViewEnterDM", 0);
+				if (GetNetworkState() == NETSTATE_CLIENT)
+				{
+					NamedRequestScriptPuke("ORBB_DroneViewEnterServer", 0);
+				}
+			}
+			SetActivator(plrtid);
+		}
+		terminate;
+	}
+	else
+	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		GiveInventory("OrbbDroneProc",1);
+		SetNetworkReplicationFlags( 0 );
+	}
+
+	if(CheckInventory("ActiveProgressToken")) terminate;
+
+	int cooldown = DRON_DURATION * 35;
+	bool droneSpawned = false;
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", cooldown);
+	while (cooldown --> 0)
+	{
+		SetActivator(plrtid);
+		if (GetActorProperty(0, APROP_HEALTH) <= 0)
+			break;
+		if (droneSpawned)
+		{
+			SetActivator(tid);
+			if (GetActorProperty(0, APROP_HEALTH) <= 0)
+				break;
+		}
+		else
+		{
+			droneSpawned = IsTidUsed(tid);
+		}
+		SetActivator(-1);
+		Delay(1);
+	}
+
+	SetActivator(plrtid);
+	TakeInventory("UsingDrone", 1);
+
+	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", DRON_DURATION * 35, 1);
+    ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
+
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	GiveInventory("GenericActiveCleanerProc",1);
+	SetNetworkReplicationFlags( 0 );
+
+	SetActivator(tid);
+	GiveInventory("ImDead",1);
+}
+
+// Activator: controlled drone
+Script "ORBB_DroneSpawned" (void)
+{
+	int tid = ORBBDRON_TIDBASE + GetActorProperty(0, APROP_MasterTID) - 1000;
+	Thing_ChangeTID(0, tid);
+	SetPointer(AAPTR_TARGET, GetActorProperty(0, APROP_MasterTID));
+}
+
+// Activator: player
+Script "ORBB_DroneViewEnterCoop" (void)
+{
+	int plr = PlayerNumber();
+	int plrtid = plr + 1000;
+	int tid = ORBBDRON_TIDBASE + plr;
+
+	GiveInventory("OrbbDroneEnter", 1);
+
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+	ChangeCamera(tid, false, false);
+	GiveInventory("UsingDrone", 1); // giving the item to player, used for tunnel vision
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("ORBB_TunnelVision", tid);
+
+	SetActivator(tid);
+	GiveInventory("OrbbDroneEnterDrone", 1);
+	GiveInventory("UsingDrone", 1); // giving the item to drone, used to switch drone sprites
+	// Activator: controlled drone
+
+	int origa = GetActorAngle(plrtid), a = GetActorAngle(tid);
+	int origp = GetActorPitch(plrtid), p = GetActorPitch(tid);
+	int oldbuttons = GetPlayerInput(plr, INPUT_BUTTONS);
+	int buttons = oldbuttons;
+	int velx = 0, spd_for = 0, spd_tmp = 0;
+	int vely = 0, spd_sid = 0;
+	int velz = 0, spd_ver = 0;
+
+	while(true)
+	{
+		if (CheckInventory("ImDead") || !IsTidUsed(tid))
+			break;
+
+		oldbuttons = buttons;
+		buttons = GetPlayerInput(plr, INPUT_BUTTONS);
+
+		if ((buttons & BT_USER1) && !(oldbuttons & BT_USER1))
+		{
+			extraAbilityData[plr] = Timer();
+			break;
+		}
+
+		if ((GetNetworkState() != NETSTATE_SERVER) && (buttons & BT_ATTACK) && !(oldbuttons & BT_ATTACK))
+		{
+			NamedRequestScriptPuke("ORBB_NotifyDroneChargeUp", tid);
+		}
+
+		if (GetNetworkState() != NETSTATE_SERVER)
+		{
+			a += GetPlayerInput(plr, INPUT_YAW);
+			p -= GetPlayerInput(plr, INPUT_PITCH);
+			if(p >  0.25) p =  0.25;
+			if(p < -0.25) p = -0.25;
+
+			velx = FixedMul(GetActorVelX(tid), DRON_FRICTION);
+			vely = FixedMul(GetActorVelY(tid), DRON_FRICTION);
+			velz = FixedMul(GetActorVelZ(tid), DRON_FRICTION);
+
+			spd_for = 0;
+			spd_sid = 0;
+			spd_ver = 0;
+
+			// Turn pressed buttons into speed
+			if (buttons & BT_FORWARD)
+				spd_for += DRON_SPEED;
+			if (buttons & BT_BACK)
+				spd_for -= DRON_SPEED;
+			if (buttons & BT_MOVERIGHT)
+				spd_sid += DRON_SPEED;
+			if (buttons & BT_MOVELEFT)
+				spd_sid -= DRON_SPEED;
+			if (buttons & BT_MOVEUP)
+				spd_ver += DRON_SPEED;
+			if (buttons & BT_MOVEDOWN)
+				spd_ver -= DRON_SPEED;
+
+			// Calculate proper vector when multiple buttons are pressed
+			if (spd_for != 0 && spd_sid != 0 && spd_ver != 0)
+			{
+				spd_for = FixedMul(spd_for, 0.5);
+				spd_sid = FixedMul(spd_sid, 0.5);
+				spd_ver = FixedMul(spd_ver, 0.5);
+			}
+			else if (spd_for != 0 && spd_sid != 0)
+			{
+				spd_for = FixedMul(spd_for, 0.71);
+				spd_sid = FixedMul(spd_sid, 0.71);
+			}
+			else if (spd_for != 0 && spd_ver != 0)
+			{
+				spd_for = FixedMul(spd_for, 0.71);
+				spd_ver = FixedMul(spd_ver, 0.71);
+			}
+			else if (spd_sid != 0 && spd_ver != 0)
+			{
+				spd_sid = FixedMul(spd_sid, 0.71);
+				spd_ver = FixedMul(spd_ver, 0.71);
+			}
+
+			// Calculate forward and vertical movement based on pitch
+			spd_tmp = spd_for;
+			spd_for = FixedMul(spd_for, cos(p)) + FixedMul(spd_ver, sin(p));
+			spd_ver = FixedMul(spd_tmp, -sin(p)) + FixedMul(spd_ver, cos(p));
+
+			// Calculate forward and side movement based on angle
+			spd_tmp = spd_for;
+			spd_for = FixedMul(spd_for, cos(a)) + FixedMul(spd_sid, sin(a));
+			spd_sid = FixedMul(spd_tmp, sin(a)) + FixedMul(spd_sid, -cos(a));
+
+			SetActorVelocity(tid, velx + spd_for, vely + spd_sid, velz + spd_ver, 0, 0);
+			SetActorAngle(tid, a);
+			SetActorPitch(tid, p);
+
+			if (GetNetworkState() == NETSTATE_CLIENT)
+			{
+				NamedRequestScriptPuke("ORBB_ReplicateDronePos", GetActorX(tid), GetActorY(tid), GetActorZ(tid));
+				NamedRequestScriptPuke("ORBB_ReplicateDroneAngle", a, p);
+			}
+		}
+
+		delay(1);
+	}
+
+	if (GetNetworkState() == NETSTATE_CLIENT)
+	{
+		NamedRequestScriptPuke("ORBB_ReplicateDronePos", GetActorX(tid), GetActorY(tid), GetActorZ(tid));
+		SetActorVelocity(tid, 0, 0, 0, 0, 0);
+	}
+
+	SetActivator(plrtid);
+
+	SetActorAngle(plrtid, origa);
+	SetActorPitch(plrtid, origP);
+
+	ACS_NamedExecuteWithResult("ORBB_DroneViewExit", 0);
+	if (GetNetworkState() == NETSTATE_CLIENT)
+	{
+		NamedRequestScriptPuke("ORBB_DroneViewExitServer");
+	}
+}
+
+// Activator: player
+Script "ORBB_DroneViewEnterDM" (void)
+{
+	int plr = PlayerNumber();
+	int plrtid = plr + 1000;
+	int tid = ORBBDRON_TIDBASE + plr;
+
+	GiveInventory("OrbbDroneEnter", 1);
+
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+	ChangeCamera(tid, false, false);
+	GiveInventory("UsingDrone", 1); // giving the item to player, used for tunnel vision
+	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("ORBB_TunnelVision", tid);
+
+	SetActivator(tid);
+	GiveInventory("OrbbDroneEnterDrone", 1);
+	GiveInventory("UsingDrone", 1); // giving the item to drone, used to switch drone sprites
+	// Activator: controlled drone
+
+	int origa = GetActorAngle(plrtid), a = GetActorAngle(tid);
+	int origp = GetActorPitch(plrtid), p = GetActorPitch(tid);
+	int oldbuttons = GetPlayerInput(plr, INPUT_BUTTONS);
+	int buttons = oldbuttons;
+
+	while(true)
+	{
+		if (CheckInventory("ImDead") || !IsTidUsed(tid))
+			break;
+
+		oldbuttons = buttons;
+		buttons = GetPlayerInput(plr, INPUT_BUTTONS);
+
+		if ((buttons & BT_USER1) && !(oldbuttons & BT_USER1))
+		{
+			extraAbilityData[plr] = Timer();
+			break;
+		}
+
+		if ((GetNetworkState() != NETSTATE_SERVER) && (buttons & BT_ATTACK) && !(oldbuttons & BT_ATTACK))
+		{
+			NamedRequestScriptPuke("ORBB_NotifyDroneChargeUp", tid);
+		}
+
+		if (GetNetworkState() != NETSTATE_SERVER)
+		{
+			a += GetPlayerInput(plr, INPUT_YAW);
+			p -= GetPlayerInput(plr, INPUT_PITCH);
+			if(p >  0.25) p =  0.25;
+			if(p < -0.25) p = -0.25;
+
+			SetActorAngle(tid, a);
+			SetActorPitch(tid, p);
+
+			if (GetNetworkState() == NETSTATE_CLIENT)
+			{
+				NamedRequestScriptPuke("ORBB_ReplicateDroneAngle", a, p);
+			}
+		}
+
+		delay(1);
+	}
+
+	SetActivator(plrtid);
+
+	SetActorAngle(plrtid, origa);
+	SetActorPitch(plrtid, origP);
+
+	ACS_NamedExecuteWithResult("ORBB_DroneViewExit", 0);
+	if (GetNetworkState() == NETSTATE_CLIENT)
+	{
+		NamedRequestScriptPuke("ORBB_DroneViewExitServer");
+	}
+}
+
+Script "ORBB_DroneViewExit" (void)
+{
+	int plr = PlayerNumber();
+	int plrtid = plr + 1000;
+	int tid = ORBBDRON_TIDBASE + plr;
+
+	SetActivator(tid);
+
+	GiveInventory("OrbbDroneExitDrone", 1);
+	TakeInventory("UsingDrone", 1); // Take the item from drone
+
+	SetActivator(plrtid);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	GiveInventory("OrbbDroneExit", 1);
+	ChangeCamera(plrtid, false, false);
+	SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+	SetNetworkReplicationFlags( 0 );
+
+	TakeInventory("UsingDrone", 1); // Take the item from player
+}
+
+Script "ORBB_DroneViewEnterServer" (void) NET
+{
+	if(GameType() < GAME_NET_DEATHMATCH)
+		ACS_NamedExecuteWithResult("ORBB_DroneViewEnterCoop", 0);
+	else
+		ACS_NamedExecuteWithResult("ORBB_DroneViewEnterDM", 0);
+}
+
+Script "ORBB_DroneViewExitServer" (void) NET
+{
+	ACS_NamedExecuteWithResult("ORBB_DroneViewExit", 0);
+}
+
+Script "ORBB_ReplicateDronePos" (int x, int y, int z) NET
+{
+	if (PlayerNumber() != ConsolePlayerNumber())
+	{
+		int tid = ORBBDRON_TIDBASE + PlayerNumber();
+		SetActivator(tid);
+		Warp(0, x, y, z, 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+	}
+}
+
+Script "ORBB_ReplicateDroneAngle" (int angle, int pitch) NET
+{
+	int tid = ORBBDRON_TIDBASE + PlayerNumber();
+	SetActorAngle(tid, angle);
+	SetActorPitch(tid, pitch);
+}
+
+// Activator: player
+bool tunnelVisionAlreadyOn = false;
+Script "ORBB_TunnelVision" (int tid) clientside
+{
+	if (GetNetworkState() == NETSTATE_SERVER || tunnelVisionAlreadyOn)
+		terminate;
+
+	tunnelVisionAlreadyOn = true;
+
+	int plr = PlayerNumber();
+	bool isMe = plr == ConsolePlayerNumber();
+
+	SetHudSize(320,240,1);
+	int hmid = HMID_TUNNEL_VISION;
+	SetFont("GREYMASK");
+	while(CheckInventory("UsingDrone"))
+	{
+		if (!isMe)
+		{
+			if (CheckPlayerCamera(CPN()) == 1000 + plr)
+			{
+				SetActivator(0);
+			}
+			else
+			{
+				Delay(1);
+				continue;
+			}
+		}
+
+		HudMessage(s:"A";HUDMSG_FADEINOUT,hmid++,-1, 160.0,120.0, 0.4,0.2,0.4);
+		if(hmid >= HMID_TUNNEL_VISION + 64) hmid = HMID_TUNNEL_VISION;
+		Delay(random(20,25));
+
+		if (!isMe)
+			SetActivator(plr + 1000);
+	}
+
+	tunnelVisionAlreadyOn = false;
+}
+
+Script "ORBB_NotifyDroneChargeUp" (int tid) NET
+{
+	SetActivator(tid);
+	if(GameType() < GAME_NET_DEATHMATCH)
+		GiveInventory("DroneExplodeCoop", 1);
+	else
+		GiveInventory("DroneExplodeDM", 1);
+	ACS_NamedExecuteAlways("ORBB_DroneChargeUp", 0, tid);
+}
+
+Script "ORBB_DroneChargeUp" (int tid) CLIENTSIDE
+{
+	SetActivator(tid);
+	int time = 5;
+	while (GetActorProperty(tid, APROP_HEALTH) > 0)
+	{
+		SetActorProperty(tid, APROP_RenderStyle, Style_Stencil);
+		delay(time);
+		SetActorProperty(tid, APROP_RenderStyle, Style_Translucent);
+		delay(time);
+		SetActorProperty(tid, APROP_RenderStyle, Style_Stencil);
+		delay(time);
+		SetActorProperty(tid, APROP_RenderStyle, Style_Translucent);
+		delay(time);
+		SetActorProperty(tid, APROP_RenderStyle, Style_Stencil);
+		delay(time);
+		SetActorProperty(tid, APROP_RenderStyle, Style_Translucent);
+		delay(time);
+		if (time > 1)
+			time--;
+	}
+}
+
 //=============================================================================
 //
 //		Active Ability: individual effects
@@ -3587,6 +4018,7 @@ Script "QCDE_BobRecolor_CLIENTSIDE" (int tid) CLIENTSIDE
 
 	int plr = tid - BOB_TIDBASE;
 	if(CheckActorClass(0, "QCDEMaulotaur")) plr = tid - MAULOTAUR_TIDBASE;
+	if(CheckActorClass(0, "OrbbDrone")) plr = tid - ORBBDRON_TIDBASE;
 
 	int me = ConsolePlayerNumber();
 
@@ -4873,6 +5305,7 @@ function void SetStateByClass(int tid)
 	if(CheckActorClass(0,"QCPostal"    )) { SetActorState(tid, "Postal"    ); return; }
 	if(CheckActorClass(0,"QCPainkiller")) { SetActorState(tid, "Painkiller"); return; }
 	if(CheckActorClass(0,"QCIntruder"  )) { SetActorState(tid, "Intruder"  ); return; }
+	if(CheckActorClass(0,"QCOrbb"      )) { SetActorState(tid, "Orbb"      ); return; }
 	// ^ insert more classes here
 }
 
@@ -5161,5 +5594,36 @@ Script "QCDE_PlayerKill_QCIntruder" (void)
 	{
 		PlaySound(0, "QC/Abilities/Intruder/BonusPick", CHAN_7|CHAN_UI, 0.86, false, ATTN_NONE, true);
 		GiveInventory("IntruderSpeeder",1);
+	}
+}
+
+
+//---------------------------------
+//		Orbb's Passive
+
+#define ORBB_BOUNCE_THRESHOLD	-11.0
+
+bool orbbVelocityZ[64];
+
+Script "QCDE_Orbb_Bounce" (int predicting, int justPressed, int justReleased, int buttons)
+{
+	if (predicting)
+	{
+		if (GetPredictableValue(0, 0))
+		{
+			SetActorVelocity(0, GetActorVelX(0), GetActorVelY(0), GetPredictableValue(0, 1), 0, 0);
+		}
+	}
+	else
+	{
+		if ( ( CheckSolidFooting(0, 0) != CSF_INAIR ) && ( orbbVelocityZ[PlayerNumber()] < ORBB_BOUNCE_THRESHOLD ) )
+		{
+			SetActorVelocity(0, GetActorVelX(0), GetActorVelY(0), -orbbVelocityZ[PlayerNumber()], 0, 0);
+			SetPredictableValue(0, 0, 1);
+			SetPredictableValue(0, 1, -orbbVelocityZ[PlayerNumber()]);
+			PlaySound(0, "OrbbJump", CHAN_BODY);
+		}
+
+		orbbVelocityZ[PlayerNumber()] = GetActorVelZ(0) * 82 / 100;
 	}
 }

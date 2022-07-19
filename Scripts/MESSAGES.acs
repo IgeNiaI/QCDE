@@ -563,11 +563,12 @@ str classes[NUMBER_OF_CLASSES] = {
 	"Menelkir"  , //
 	"Nyx"       , //
 	"Durandal"  , //
-	"Lo Wang"    , //
+	"Lo Wang"   , //
 	"Eleena"    , //
 	"Lucienne"  , //
 	"Hunter"    , //
 	"Postal"    , //
+	"Orbb"		, //
 	"Terminator", //
 	"Zedek"     , //
 	"Inquisitor", //
@@ -692,6 +693,7 @@ str classPix[NUMBER_OF_CLASSES][4] = {
 	{"QP29A","PORTRX29","COWHEAD1","PORTRC29"},
 	{"QP30A","PORTRX30","TAROT001","PORTRC30"},
 	{"QP31A","PORTRX31","WENDIG01","PORTRC31"},
+	{"QP32A","PORTRX32","ORBBEYE1","PORTRC32"},
 	// ^ insert more classes here
 };
 
@@ -2225,6 +2227,28 @@ bonus also applies when found by other players.",
 },
 
 
+{	"Orbb", "Light \c[white]: \c[orange]Quake Movt", "100", "75",
+"Orbb first entered the battleground as an\n\
+uninvolved observer, constructed to record\n\
+the battles. Soon, it surprised its masters\n\
+by taking up a weapon and joining the fray.",
+		"Observer",
+"Orbb deploys an Eye Drone to spectate the arena.\n\
+Use the ability again to switch to drone's\n\
+camera and back. Press fire to detonate.\n\
+The Eye cannot move in PVP.",
+		"Bipedal Eyeball",
+"Orbb is short, only 75% height of a normal\n\
+champion, but he cannot crouch.",
+		"Bouncy",
+"Holding \c[gold]Crouch\c[CR_UNTRANSLATED] when falling makes Orbb\n\
+bounce back at almost the same vertical velocity.",
+
+// Lore /////////////////////////////////////
+"Something about him"
+},
+
+
 	// ^ insert more classes here
 };
 //"
@@ -2278,6 +2302,7 @@ script "QCDE_ClassInfo" (int class, int page) net clientside
 		if(CheckActorInventory(tid, "Class_Postal"		))	class = 29;
 		if(CheckActorInventory(tid, "Class_Painkiller"	))	class = 30;
 		if(CheckActorInventory(tid, "Class_Intruder"	))	class = 31;
+		If(CheckActorInventory(tid, "Class_Orbb"		))	class = 32;
 		// ^ insert more classes here
 	}
 
@@ -2992,7 +3017,7 @@ script "QCDE_ClassPicker_Clear" (void) clientside
 #define CP_STAY_TIME 300.0
 
 int cpcards[CP_CARDS_COL][CP_CARDS_ROW] = {
-	{ 3,  4,  5, 11, 14, 17, 23, 24, 26, 28, -1, },
+	{ 3,  4,  5, 11, 14, 17, 23, 24, 26, 28, 31, },
 	{ 0,  1,  2, 10, 13, 16, 18, 20, 21, 29, 30, },
 	{ 6,  7,  8, 12,  9, 15, 19, 22, 25, 27, -1, },
 };
@@ -3002,7 +3027,7 @@ int cpcardsxoffset[CP_CARDS_COL] = { 0,-CP_CARD_W / 3 & 0xFFFF0000,0 };
 // Convert from playerclass cvar return into canonical ID
 int cpcards_serialized[NUMBER_OF_CLASSES] = {
 	 0,  1,  2, 10, 13, 16, 18, 20, 21, 29, 30,
-	 3,  4,  5, 11, 14, 17, 23, 24, 26, 28,
+	 3,  4,  5, 11, 14, 17, 23, 24, 26, 28, 31,
 	 6,  7,  8, 12,  9, 15, 19, 22, 25, 27,
 };
 // ^ insert more classes here (actually, just file [Ms] a ticket)

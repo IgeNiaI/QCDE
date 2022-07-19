@@ -203,6 +203,12 @@ VorMaturStep4 "Sounds/Players/Footsteps/VorMaturStep4.ogg"
 VorMaturStep5 "Sounds/Players/Footsteps/VorMaturStep5.ogg"
 VorMaturStep6 "Sounds/Players/Footsteps/VorMaturStep6.ogg"
 
+$random OrbbStep { OrbbStep1 OrbbStep2 OrbbStep3 OrbbStep4 }
+OrbbStep1 "Sounds/Players/Footsteps/OrbbStep1.ogg"
+OrbbStep2 "Sounds/Players/Footsteps/OrbbStep2.ogg"
+OrbbStep3 "Sounds/Players/Footsteps/OrbbStep3.ogg"
+OrbbStep4 "Sounds/Players/Footsteps/OrbbStep4.ogg"
+
 
 //================================================================
 //================================================================
@@ -2947,3 +2953,71 @@ $playeralias	Intruder	other	*jump		IntruderJump
 $playeralias	Intruder	other	*usefail	IntruderOof
 $playeralias	Intruder	other	*taunt		NoSoundHax
 $playeralias	Intruder	other	*footstep	IntruderStep
+
+
+
+//================================================================
+//================================================================
+// Orbb
+// Uses original sounds from Quake 3 Arena
+//================================================================
+//================================================================
+
+QCOrbbTaunt01 "Sounds/Players/Orbb/OrbbTaunt1.ogg"
+QCOrbbTaunt02 "Sounds/Players/Orbb/OrbbTaunt2.ogg"
+QCOrbbTaunt03 "Sounds/Players/Orbb/OrbbTaunt3.ogg"
+
+
+OrbbDeath1 "Sounds/Players/Orbb/OrbbDeath1.ogg"
+OrbbDeath2 "Sounds/Players/Orbb/OrbbDeath2.ogg"
+OrbbDeath3 "Sounds/Players/Orbb/OrbbDeath3.ogg"
+
+$random OrbbDeath { OrbbDeath1 OrbbDeath2 OrbbDeath3 }
+
+
+OrbbJump "Sounds/Players/Orbb/OrbbJump.ogg"
+$volume OrbbJump1 0.9
+$attenuation OrbbJump1 2.0
+
+$playeralias	Orbb	male	*death		OrbbDeath
+$playeralias	Orbb	male	*xdeath		OrbbDeath
+$playeralias	Orbb	male	*gibbed		OrbbDeath
+$playersound	Orbb	male	*pain100	"Sounds/Players/Orbb/OrbbPain100.ogg"
+$playersound	Orbb	male	*pain75		"Sounds/Players/Orbb/OrbbPain075.ogg"
+$playersound	Orbb	male	*pain50		"Sounds/Players/Orbb/OrbbPain050.ogg"
+$playersound	Orbb	male	*pain25		"Sounds/Players/Orbb/OrbbPain025.ogg"
+$playersound	Orbb	male	*grunt		"Sounds/Players/Orbb/OrbbGrunt.ogg"
+$playersound	Orbb	male	*land		"Sounds/Players/Footsteps/LoWangStomp.ogg"
+$playeralias	Orbb	male	*jump		OrbbJump
+$playersound	Orbb	male	*usefail	"Sounds/Players/Orbb/OrbbOof.ogg"
+$playeralias	Orbb	male	*taunt		NoSoundHax
+$playeralias	Orbb	male	*footstep	OrbbStep
+
+$playeralias	Orbb	female	*death		OrbbDeath
+$playeralias	Orbb	female	*xdeath		OrbbDeath
+$playeralias	Orbb	female	*gibbed		OrbbDeath
+$playersound	Orbb	female	*pain100	"Sounds/Players/Orbb/OrbbPain100.ogg"
+$playersound	Orbb	female	*pain75		"Sounds/Players/Orbb/OrbbPain075.ogg"
+$playersound	Orbb	female	*pain50		"Sounds/Players/Orbb/OrbbPain050.ogg"
+$playersound	Orbb	female	*pain25		"Sounds/Players/Orbb/OrbbPain025.ogg"
+$playersound	Orbb	female	*grunt		"Sounds/Players/Orbb/OrbbGrunt.ogg"
+$playersound	Orbb	female	*land		"Sounds/Players/Footsteps/LoWangStomp.ogg"
+$playeralias	Orbb	female	*jump		OrbbJump
+$playersound	Orbb	female	*usefail	"Sounds/Players/Orbb/OrbbOof.ogg"
+$playeralias	Orbb	female	*taunt		NoSoundHax
+$playeralias	Orbb	female	*footstep	OrbbStep
+
+$playeralias	Orbb	other	*death		OrbbDeath
+$playeralias	Orbb	other	*xdeath		OrbbDeath
+$playeralias	Orbb	other	*gibbed		OrbbDeath
+$playersound	Orbb	other	*pain100	"Sounds/Players/Orbb/OrbbPain100.ogg"
+$playersound	Orbb	other	*pain75		"Sounds/Players/Orbb/OrbbPain075.ogg"
+$playersound	Orbb	other	*pain50		"Sounds/Players/Orbb/OrbbPain050.ogg"
+$playersound	Orbb	other	*pain25		"Sounds/Players/Orbb/OrbbPain025.ogg"
+$playersound	Orbb	other	*grunt		"Sounds/Players/Orbb/OrbbGrunt.ogg"
+$playersound	Orbb	other	*land		"Sounds/Players/Footsteps/LoWangStomp.ogg"
+$playeralias	Orbb	other	*jump		OrbbJump
+$playersound	Orbb	other	*usefail	"Sounds/Players/Orbb/OrbbOof.ogg"
+$playeralias	Orbb	other	*taunt		NoSoundHax
+$playeralias	Orbb	other	*footstep	OrbbStep
+

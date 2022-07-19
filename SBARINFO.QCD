@@ -80,7 +80,8 @@ statusbar Normal, forcescaled
 	inInventory Class_Sam			{ drawImage "PORTRX28", 	10,795; }
 	inInventory Class_Postal		{ drawImage "PORTRX29", 	10,795; }
 	inInventory Class_Painkiller	{ drawImage "PORTRX30", 	10,795; }
-	inInventory Class_Intruder			{ drawImage "PORTRX31", 	10,795; }
+	inInventory Class_Intruder		{ drawImage "PORTRX31", 	10,795; }
+	inInventory Class_Orbb			{ drawImage "PORTRX32",		10,795; }
 	// ^ insert more classes here
 
 	// Number of lives
@@ -641,6 +642,7 @@ statusbar Normal, forcescaled
 	inInventory Class_Postal		{ drawSwitchableImage AbilityCooldownToken, 	"COWHEAD1", "COWHEAD0", 	636,850; }
 	inInventory Class_Painkiller	{ drawSwitchableImage AbilityCooldownToken, 	"TAROT001", "TAROT000", 	636,850; }
 	inInventory Class_Intruder		{ drawSwitchableImage AbilityCooldownToken, 	"WENDIG01", "WENDIG00", 	636,850; }
+	inInventory Class_Orbb			{ drawSwitchableImage AbilityCooldownToken,		"ORBBEYE1", "ORBBEYE0",		636,850; }
 	// ^ insert more classes here
 
 	// Counter
@@ -847,7 +849,8 @@ statusbar Normal, forcescaled
 				inInventory Class_Sam				{ drawImage "PORTRY28", 	250,6; }
 				inInventory Class_Postal			{ drawImage "PORTRY29", 	250,6; }
 				inInventory Class_Painkiller		{ drawImage "PORTRY30", 	250,6; }
-				inInventory Class_Intruder				{ drawImage "PORTRY31", 	250,6; }
+				inInventory Class_Intruder			{ drawImage "PORTRY31", 	250,6; }
+				inInventory Class_Orbb				{ drawImage "PORTRY32",		250,6; }
 				// ^ insert more classes here
 
 				inInventory QCHeavyMachinegunDM		{ drawImage "LedBullt", 	360,145; }
@@ -912,7 +915,8 @@ statusbar Normal, forcescaled
 				inInventory EnemyClass_Sam			{ drawImage "PORTRY28", 	1010,6; }
 				inInventory EnemyClass_Postal		{ drawImage "PORTRY29", 	1010,6; }
 				inInventory EnemyClass_Painkiller	{ drawImage "PORTRY30", 	1010,6; }
-				inInventory EnemyClass_Intruder			{ drawImage "PORTRY31", 	1010,6; }
+				inInventory EnemyClass_Intruder		{ drawImage "PORTRY31", 	1010,6; }
+				inInventory EnemyClass_Orbb			{ drawImage "PORTRY32",		1010,6; }
 				// ^ insert more classes here
 
 				inInventory EnemyQCHeavyMachinegunDM	{ drawImage "LedBullt", 	 990,145; }
@@ -1036,7 +1040,8 @@ statusbar Fullscreen, forcescaled
 	inInventory Class_Sam			{ drawImage "PORTRX28", 	10,795; }
 	inInventory Class_Postal		{ drawImage "PORTRX29", 	10,795; }
 	inInventory Class_Painkiller	{ drawImage "PORTRX30", 	10,795; }
-	inInventory Class_Intruder			{ drawImage "PORTRX31", 	10,795; }
+	inInventory Class_Intruder		{ drawImage "PORTRX31", 	10,795; }
+	inInventory Class_Orbb			{ drawImage "PORTRX32",		10,795; }
 	// ^ insert more classes here
 
 	// Number of lives
@@ -1597,6 +1602,7 @@ statusbar Fullscreen, forcescaled
 	inInventory Class_Postal		{ drawSwitchableImage AbilityCooldownToken, 	"COWHEAD1", "COWHEAD0", 	636,850; }
 	inInventory Class_Painkiller	{ drawSwitchableImage AbilityCooldownToken, 	"TAROT001", "TAROT000", 	636,850; }
 	inInventory Class_Intruder		{ drawSwitchableImage AbilityCooldownToken, 	"WENDIG01", "WENDIG00", 	636,850; }
+	inInventory Class_Orbb			{ drawSwitchableImage AbilityCooldownToken,		"ORBBEYE1", "ORBBEYE0",		636,850; }
 	// ^ insert more classes here
 
 	// Counter
@@ -1803,7 +1809,8 @@ statusbar Fullscreen, forcescaled
 				inInventory Class_Sam				{ drawImage "PORTRY28", 	250,6; }
 				inInventory Class_Postal			{ drawImage "PORTRY29", 	250,6; }
 				inInventory Class_Painkiller		{ drawImage "PORTRY30", 	250,6; }
-				inInventory Class_Intruder				{ drawImage "PORTRY31", 	250,6; }
+				inInventory Class_Intruder			{ drawImage "PORTRY31", 	250,6; }
+				inInventory Class_Orbb				{ drawImage "PORTRY32",		250,6; }
 				// ^ insert more classes here
 
 				inInventory QCHeavyMachinegunDM		{ drawImage "LedBullt", 	360,145; }
@@ -1868,7 +1875,8 @@ statusbar Fullscreen, forcescaled
 				inInventory EnemyClass_Sam			{ drawImage "PORTRY28", 	1010,6; }
 				inInventory EnemyClass_Postal		{ drawImage "PORTRY29", 	1010,6; }
 				inInventory EnemyClass_Painkiller	{ drawImage "PORTRY30", 	1010,6; }
-				inInventory EnemyClass_Intruder			{ drawImage "PORTRY31", 	1010,6; }
+				inInventory EnemyClass_Intruder		{ drawImage "PORTRY31", 	1010,6; }
+				inInventory EnemyClass_Orbb			{ drawImage "PORTRY32",		1010,6; }
 				// ^ insert more classes here
 
 				inInventory EnemyQCHeavyMachinegunDM	{ drawImage "LedBullt", 	 990,145; }

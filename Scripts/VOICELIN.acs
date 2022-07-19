@@ -72,6 +72,7 @@ int taunt_count[32][NUMBER_OF_CLASSES] = {
 	{22     ,0}, // POSTAL
 	{26,9   ,0}, // PAINKILLER, Demon morph
 	{27,11  ,0}, // INTRUDER
+	{3      ,0}, // Orbb
 		// ^ insert more classes here
 };
 
@@ -865,6 +866,12 @@ str taunt_txt[NUMBER_OF_CLASSES][32][32] = {
 "\c[bludi]Appears to be dead!",
 "\c[bludi]How does it feel?",
 "\c[bludi]Horrible, isn't it?",
+	}},
+	{{ // 32  ORBB
+	"",
+"**Disgusting!**",
+"**LoL!**",
+"**I've been watching you!**",
 	}},
 	// ^ insert more classes here
 };
