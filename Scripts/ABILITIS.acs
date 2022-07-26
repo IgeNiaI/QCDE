@@ -196,6 +196,7 @@ Script "QCDE_PassiveAbility_CLIENTSIDE" (void) clientside
 }
 
 int tics[64];
+bool cooldownActive[64];
 
 // Ranger - tells whether the orb was used on client to ignore timeout message from server
 // Menelkir - tracks Dave duration
@@ -431,8 +432,7 @@ Script "QCDE_AbilityCooldown" (int in_tics, int dontPlayAlert)
 	//log(s:"QCDE_AbilityCooldown - Sending ", d:tics[plr]);
 	if (GetNetworkState() == NETSTATE_SERVER)
 		ACS("QCDE_AbilityCooldown_CLIENTSIDE", tics[plr], playAlert && !dontPlayAlert);
-	if (!CheckInventory("AbilityCooldownToken"))
-		ACS_NamedExecuteWithResult("QCDE_AbilityCooldown_DoCooldown", playAlert && !dontPlayAlert);
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown_DoCooldown", playAlert && !dontPlayAlert);
 }
 
 Script "QCDE_AbilityCooldown_CLIENTSIDE" (int in_tics, int playAlert) clientside
@@ -456,8 +456,7 @@ Script "QCDE_AbilityCooldown_CLIENTSIDE" (int in_tics, int playAlert) clientside
 
 	tics[PlayerNumber()] = in_tics;
 	SetInventory("AbilityCooldownSeconds", in_tics / 35);
-	if (!CheckInventory("AbilityCooldownToken"))
-		ACS_NamedExecuteWithResult("QCDE_AbilityCooldown_DoCooldown", playAlert);
+	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown_DoCooldown", playAlert);
 }
 
 Script "QCDE_AbilityCooldown_DoCooldown" (int playAlert)
@@ -468,22 +467,30 @@ Script "QCDE_AbilityCooldown_DoCooldown" (int playAlert)
 	if (tics[plr] > 0)
 	{
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		GiveInventory("AbilityCooldownToken", 1);
+		SetInventory("AbilityCooldownToken", 1);
 		SetNetworkReplicationFlags( 0 );
 	}
+
+	if (cooldownActive[plr])
+		terminate;
+
+	cooldownActive[plr] = tics[plr] > 0;
 
 	if(playAlert && GetNetworkState() != NETSTATE_SERVER)
 		ACS("QCDE_AbilityIconFlash", no);
 	// Actual countdown
 	while(tics[plr] > 0)
 	{
+		SetActivator(-1);
+
 		delay(1);
 
-		if(GetActorProperty(0,APROP_HEALTH) <= 0)
-		{
-			//log(s:"Cooldown ", d:cooldownId, s:" is interrupted by death at ", d:Timer());
+		if(!PlayerInGame(plr)) {
+			cooldownActive[plr] = false;
 			terminate;
 		}
+
+		SetActivator(plr + 1000);
 
 		if(CheckInventory("ActiveInProgress")) continue;
 
@@ -511,6 +518,7 @@ Script "QCDE_AbilityCooldown_DoCooldown" (int playAlert)
 
 	//log(s:"Cooldown ", d:cooldownId, s:" is done by ", d:Timer());
 	tics[plr] = 0;
+	cooldownActive[plr] = false;
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	SetInventory("AbilityCooldownToken",		0);
 	SetInventory("AbilityCooldownSeconds",		0);
