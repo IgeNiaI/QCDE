@@ -505,10 +505,10 @@ Actor QCInvul : QCQuad replaces InvulnerabilitySphere 15513
 		TNT1 A 0 A_PlaySound("QC/Items/PowerupPick",CHAN_ITEM)
 		TNT1 A 0 A_ThrowGrenade("InvulIndicator")
 		TNT1 A 0 A_JumpIfInventory("LongerPowerupToken",1,"Longer")
-		TNT1 A 0 A_GiveInventory("InvulnerabilityFull",1)
+		TNT1 A 0 A_GiveInventory("InvulnerabilityFull",1,0,GIF_FORCESERVERSIDE)
 		Stop
 	Longer:
-		TNT1 A 0 A_GiveInventory("InvulnerabilityFuller",1)
+		TNT1 A 0 A_GiveInventory("InvulnerabilityFuller",1,0,GIF_FORCESERVERSIDE)
 		Stop
 	DMGiveSuperAmmo:
 		TNT1 A 0 A_PlaySound("QC/Items/Backpack",CHAN_ITEM)

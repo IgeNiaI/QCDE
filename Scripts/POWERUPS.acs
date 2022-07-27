@@ -113,6 +113,9 @@ Script 234 (int secs)
 int makeMore = true;
 Script "QCDE_ApplyPowerSecs" (int powerType)
 {
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
 	delay(1); // wait for value from script 234 to arrive
 	//PrintBold(s:"Seconds applied from the pickup = ", d:powersecs);
 	//log(s:"Seconds applied from the pickup = ", d:powersecs);
