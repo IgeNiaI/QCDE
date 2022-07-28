@@ -35,7 +35,8 @@ Actor BFGPickup : CustomInventory 15608
 	States
 	{
 	Spawn:
-		QCG8 Y 0 NoDelay ACS_NamedExecuteWithResult("QCDE_RemoveIfDuel")
+		TNT1 A 1
+		QCG8 Y 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfDuel")
 		QCG8 Y 35 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
 		Goto Idle
 	DMSpawn:

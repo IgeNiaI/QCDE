@@ -77,7 +77,8 @@ Actor SuperShotgunPickupDMvar: CustomInventory 	//this one is for SSGs spawned i
 	States
 	{
 	Spawn:
-		QCGC Y 35 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		TNT1 A 1
+		QCGC Y 35 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
 		Goto Idle
 
 	DMSpawn:

@@ -85,7 +85,8 @@ Actor QCRailGun : QCWeapon
 	States
 	{
 	Spawn:
-		QCG7 Y 35 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		TNT1 A 1
+		QCG7 Y 35 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
 		Goto Idle
 	DMSpawn:
 		QCG7 ZZZZZZZZZZZZZZZ 35 Bright
