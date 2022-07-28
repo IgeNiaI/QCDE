@@ -52,6 +52,7 @@ script "QCDE_StartingWeapon_Apply" (void)
 	if (rocketarena) GiveRocketArena(rocketarena);
 	else if(GetCvar("instagib"))                  { GiveInventory("QCRailgunDM",        1); GiveInventory("EndlessInfiniteAmmo",1);}
 	else if(GetCvar("buckshot"))                  { GiveInventory("QCSuperShotgunDM",   1); }
+	else if (CheckInventory("Class_Sam"))         { ACS("QCDE_Passive_Sam"); }
 	else if(CheckInventory("Starter_Machinegun")) { if(!CheckInventory("QCHeavyMachinegun")) GiveInventory(weapon1, 1); }
 	else if(CheckInventory("Starter_Shotgun"   )) { GiveInventory(weapon2,            1); }
 	else if(CheckInventory("Starter_Nailgun"   )) { if(!CheckInventory("QCSuperNailgun")) GiveInventory(weapon3, 1); }

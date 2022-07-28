@@ -4866,9 +4866,9 @@ Script "QCDE_Passive_Sam" (int ammo)
 		SetInventory("SeriousBullets",80);
 		if(GameType() <= GAME_NET_COOPERATIVE)
 		{
-			SetInventory("QCMachineGun",1);
+			if(!CheckInventory("QCHeavyMachinegun")) GiveInventory("QCMachineGun", 1);
 			SetInventory("QCShotgun"   ,1);
-			SetInventory("QCNailgun"   ,1);
+         	if(!CheckInventory("QCSuperNailgun")) GiveInventory("QCNailgun", 1);
 			SetInventory("SamMinigun"  ,0);
 			SetInventory("SeriousBullets",80);
 		}
