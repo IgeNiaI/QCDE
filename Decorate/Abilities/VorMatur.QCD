@@ -193,14 +193,14 @@ Actor BlindVisualizer	// [DBT] See what i did there?
 	Spawn:
 		TNT1 A 0 NODELAY A_JumpIf(user_counter>=8,"Ender")
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_AbilityFXMustDie"),"Ender")
-		X105 OOOOOOOOOO 1 A_Warp(AAPTR_TARGET, -5 , 0, 70, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		X105 OOOOOOOOOO 1 A_Warp(AAPTR_TARGET, -5 , 0, 70, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP)
 		TNT1 A 0 A_SetUserVar(user_counter,user_counter+1)
 		Loop
 	Ender:
 		TNT1 A 0 A_JumpIf(user_counter == 0, "JustDieAlready")
 	EnderLoop:
 		TNT1 A 0 A_FadeOut(0.1)
-		X105 S 1 A_Warp(AAPTR_TARGET, -5 , 0, 70, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		X105 S 1 A_Warp(AAPTR_TARGET, -5 , 0, 70, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP)
 		Loop
 	JustDieAlready:
 		TNT1 A 0

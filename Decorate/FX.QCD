@@ -126,7 +126,7 @@ Actor GenericPowerupFXBackground
 		"####" "#" 1 BRIGHT A_SetTranslucent(user_t / 100.0, 1-user_rendermode)
 		"####" "#" 0 A_SetUserVar(user_t, user_t + 5)
 		"####" "#" 0 A_JumpIf(user_t >= user_maxalpha, "PreLooperOut")
-		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE,"LooperIn")
+		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP,"LooperIn")
 		Goto EndOfLife
 	PreLooperOut:
 		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_EffectMustDie"), "EndOfLife")
@@ -135,7 +135,7 @@ Actor GenericPowerupFXBackground
 		"####" "#" 1 BRIGHT A_SetTranslucent(user_t / 100.0, 1-user_rendermode)
 		"####" "#" 0 A_SetUserVar(user_t, user_t - 2)
 		"####" "#" 0 A_JumpIf(user_t <= user_minalpha, "PreLooperIn")
-		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE,"LooperOut")
+		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP,"LooperOut")
 		Goto EndOfLife
 	EndOfLife:
 	Death:
@@ -191,7 +191,7 @@ Actor AllyMarker : GenericPowerupFXBackground
 	Looper:
 		"####" "#" 1 BRIGHT
 		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_AbilityFXMustDie"), "Death")
-		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE,"Looper")
+		"####" "#" 10 BRIGHT A_Warp(AAPTR_TARGET, user_x,user_y,user_z,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP,"Looper")
 		Goto Death
 	}
 }
@@ -224,19 +224,19 @@ Actor BestMarker : GenericPowerupFXBackground
 	States
 	{
 	Spawn:
-		TNT1 A 1 NoDelay A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 1 NoDelay A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP)
 		TNT1 A 0 A_JumpIfInTargetInventory("PowerGhostTint",1,"Disappear")
 		TNT1 A 0 A_JumpIfInTargetInventory("PowerWendigoTint",1,"Disappear") // This is a bad way of doing this, needs a refactor before 3.0
-		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP)
 		TNT1 A 0 A_JumpIfInTargetInventory("PowerGhostTint",1,"Disappear")
 		TNT1 A 0 A_JumpIfInTargetInventory("PowerWendigoTint",1,"Disappear")
-		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP)
 		TNT1 A 0 A_JumpIfInTargetInventory("PowerGhostTint",1,"Disappear")
 		TNT1 A 0 A_JumpIfInTargetInventory("PowerWendigoTint",1,"Disappear")
-		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP)
 		TNT1 A 0 A_JumpIfInTargetInventory("PowerGhostTint",1,"Disappear")
 		TNT1 A 0 A_JumpIfInTargetInventory("PowerWendigoTint",1,"Disappear")
-		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		BEST BBBBBBBBBB 1 A_Warp(AAPTR_TARGET, 0,0,77,0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_STOP)
 		Stop
 	Disappear:
 		TNT1 A 10
