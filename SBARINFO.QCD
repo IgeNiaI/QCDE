@@ -678,7 +678,7 @@ statusbar Normal, forcescaled
 	}
 	// Galen totem count
 	inInventory Class_Galen {
-		gameMode deathmatch {
+		gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame {
 			inInventory TotemTokenPvP, 3 {
 				drawBar "GTOTEMZ3", "GTOTEMZ0", TotemTokenPvP, horizontal, 636, 800;
 			} else {
@@ -732,7 +732,7 @@ statusbar Normal, forcescaled
 	}
 	// Painkiller's souls counter
 	inInventory PainsKilled {
-		gameMode deathmatch {
+		gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame {
 			inInventory PainsKilled, 55 {
 				drawNumber 3, QCFNT070, bludi, PainsKilled, alignment(right), 1170,970;
 			} else {
@@ -1634,7 +1634,7 @@ statusbar Fullscreen, forcescaled
 	}
 	// Galen totem count
 	inInventory Class_Galen {
-		gameMode deathmatch {
+		gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame {
 			inInventory TotemTokenPvP, 3 {
 				drawBar "GTOTEMZ3", "GTOTEMZ0", TotemTokenPvP, horizontal, 636, 800;
 			} else {
@@ -1688,7 +1688,7 @@ statusbar Fullscreen, forcescaled
 	}
 	// Painkiller's souls counter
 	inInventory PainsKilled {
-		gameMode deathmatch {
+		gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame {
 			inInventory PainsKilled, 55 {
 				drawNumber 3, QCFNT070, bludi, PainsKilled, alignment(right), 1170,970;
 			} else {
