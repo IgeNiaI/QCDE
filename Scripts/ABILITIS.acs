@@ -526,8 +526,19 @@ Script "QCDE_AbilityCooldown_DoCooldown" (int playAlert)
 	SetInventory("TeleporterThrownToken",		0); // Reset Ranger orb
 	SetNetworkReplicationFlags( 0 );
 
-	if(playAlert && GetNetworkState() != NETSTATE_SERVER)
-		ACS("QCDE_AbilityIconFlash", yes);
+	if(playAlert)
+	{
+		if (GetNetworkState() != NETSTATE_SERVER)
+		{
+			ACS("QCDE_AbilityIconFlash", yes);
+		}
+		else
+		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+			PlaySound(0, "QC/Abilities/General/AbilityCharged", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
+			SetNetworkReplicationFlags( 0 );
+		}
+	}
 }
 
 script "QCDE_AbilityIconFlash" (int sound) clientside
@@ -894,7 +905,7 @@ Script "QCDE_Ability_Menelkir" (void)
 
 	if(!CheckDaveRoom())
 	{
-		LocalAmbientSound("Menelkir/fail",80);
+		PlaySound(0, "Menelkir/fail", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 		terminate;
 	}
 
@@ -927,7 +938,7 @@ function int CheckDaveRoom(void)
 
 script "MyBoyIsDed" (void)	//played on menelkir's head when dave dies
 {
-	LocalAmbientSound("minotaur/death",90);
+	PlaySound(0, "minotaur/death", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 }
 
 
@@ -1275,7 +1286,7 @@ Script "QCDE_Ability_Nyx" (void)
 	cowgassing_for[PlayerNumber()] = 0;
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	LocalAmbientSound("QC/Abilities/Nyx/GhostWalkStart",127);
+	PlaySound(0, "QC/Abilities/Nyx/GhostWalkStart", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 	SetNetworkReplicationFlags( 0 );
 
 	// First loop: leaving slight trail
@@ -1307,7 +1318,7 @@ Script "QCDE_Ability_Nyx" (void)
 	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteAlways("QCDE_RestoreIndicator",0);
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	LocalAmbientSound("QC/Abilities/Nyx/GhostWalkEnd",127);
+	PlaySound(0, "QC/Abilities/Nyx/GhostWalkEnd", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 	SetNetworkReplicationFlags( 0 );
 
 	// Stuck check (not in PVP)
@@ -1821,7 +1832,7 @@ function int HostileCheck (int friendOrFoe, int blockable)
 Script "QCDE_Ability_Eradicator" (void)
 {
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	LocalAmbientSound("QC/Abilities/Eradicator/Radar",127);
+	PlaySound(0, "QC/Abilities/Eradicator/Radar", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
@@ -2889,7 +2900,6 @@ Script "QCDE_Ability_Intruder" (void)
 	GiveInventory("WendigoOutProc",1);
 	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteAlways("QCDE_RestoreIndicator",0);
-	//LocalAmbientSound("QC/Abilities/Nyx/GhostWalkEnd",127);
 }
 
 
@@ -4163,7 +4173,7 @@ Script "QCDE_MonsterKill_QCGrayson" (void)
 
 	if(!CheckInventory("Class_Grayson")) terminate;
 
-	LocalAmbientSound("QC/Abilities/Grayson/Earn", 127);
+	PlaySound(0, "QC/Abilities/Grayson/Earn", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 	ACS("QCDE_AwardArmorOverTime", bounty);
 }
 
@@ -4178,7 +4188,7 @@ Script "QCDE_PlayerKill_QCGrayson" (void)
 	if(!CheckInventory("Class_Grayson")) terminate;
 	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
 
-	LocalAmbientSound("QC/Abilities/Grayson/Earn", 127);
+	PlaySound(0, "QC/Abilities/Grayson/Earn", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 	ACS("QCDE_AwardArmorOverTime", GRAYSON_REWARD_DM);
 }
 
@@ -4294,9 +4304,9 @@ Script "QCDE_Passive_Blazkowicz" (void)
 			// play notif
 			if(wasntDamagedFor == TICS_BEFORE_HEAL)
 				if(hp % 25 < 17)
-					LocalAmbientSound("QC/Abilities/Blazkowicz/Regen", 72);
+					PlaySound(0, "QC/Abilities/Blazkowicz/Regen", CHAN_7|CHAN_UI, 0.56, false, ATTN_NONE, true);
 				else
-					LocalAmbientSound("QC/Abilities/Blazkowicz/RegenShort", 72);
+					PlaySound(0, "QC/Abilities/Blazkowicz/RegenShort", CHAN_7|CHAN_UI, 0.56, false, ATTN_NONE, true);
 
 			// heal
 			if(!(Timer() % TICS_HEALING_RATE))
@@ -4352,7 +4362,7 @@ Script "QCDE_Passive_Freeman" (void)
 
 		if(ready)
 		{
-			if(readyRN) LocalAmbientSound("QC/Abilities/Freeman/HalfLife", 127);
+			if(readyRN) PlaySound(0, "QC/Abilities/Freeman/HalfLife", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 			if(needRez)
 			{
 				rezCharge[plr] = -99999999; // don't restore in this level
@@ -4410,8 +4420,8 @@ Script "QCDE_Passive_Freeman" (void)
 				SetActorPosition(0, freem[spot][0],freem[spot][1],freem[spot][2], true);
 				SetActorProperty(0, APROP_Health, 25);
 				StopSound(0, CHAN_WEAPON);
-				LocalAmbientSound("QC/Abilities/Freeman/Extract", 90);
-				if(random(1,10)==1)	LocalAmbientSound("GmanInvestments", 127);
+				PlaySound(0, "QC/Abilities/Freeman/Extract", CHAN_7|CHAN_UI, 0.7, false, ATTN_NONE, true);
+				if(random(1,10)==1)	PlaySound(0, "GmanInvestments", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 			}
 		}
 
@@ -4726,7 +4736,7 @@ Script "QCDE_MonsterKill_QCHunter" (void)
 	else if(lessonrn < MAX_LESSONS_PER_TIC)
 		lessonrn++;
 
-	if(!lessonrn) LocalAmbientSound("QC/Abilities/Hunter/Learn", 110);
+	if(!lessonrn) PlaySound(0, "QC/Abilities/Hunter/Learn", CHAN_7|CHAN_UI, 0.86, false, ATTN_NONE, true);
 
 	int type = random(1, HUNTER_LESSONS) - 1;
 	//log(n:0, s:" taking the ", s:HunterLessons[type], s:" lesson.");
@@ -4753,7 +4763,7 @@ Script "QCDE_PlayerKill_QCHunter" (void)
 	else if(lessonrn < MAX_LESSONS_PER_TIC)
 		lessonrn++;
 
-	if(!lessonrn) LocalAmbientSound("QC/Abilities/Hunter/Learn", 127);
+	if(!lessonrn) PlaySound(0, "QC/Abilities/Hunter/Learn", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 
 	int type = (random(1, HUNTER_LESSONS) - 1) % 2;
 	//log(n:0, s:" taking the ", s:HunterLessons[type], s:" lesson.");
@@ -4958,12 +4968,12 @@ Script "QCDE_Passive_Postal_Mega" (void)
 
 	delay(16);
 	if(!random(0,3))
-		LocalAmbientSound("QC/Abilities/Postal/Postal_Smoke",127);
+		PlaySound(0, "QC/Abilities/Postal/Postal_Smoke", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 
 	while(CheckInventory("HighOnCrack"))
 	{
 		if(GetActorProperty(0, APROP_Health) <= 0) terminate; // keep an eye on staying alive
-		if(CheckInventory("HighOnCrack") == POSTAL_CRACKPIPE_WARNING) LocalAmbientSound("QC/Abilities/Postal/Postal_Warning",127);
+		if(CheckInventory("HighOnCrack") == POSTAL_CRACKPIPE_WARNING) PlaySound(0, "QC/Abilities/Postal/Postal_Warning", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 		if(POSTAL_LOGGING) print(s:"\c[brite]Seconds before withdrawal: ", d:CheckInventory("HighOnCrack"));
 		TakeInventory("HighOnCrack", 1);
 		delay(35);
@@ -4973,7 +4983,7 @@ Script "QCDE_Passive_Postal_Mega" (void)
 	TakeInventory("NoHealthDegenerationToken",1);
 
 	// Withdrawal
-	LocalAmbientSound("QC/Abilities/Postal/Postal_Withdraw",127);
+	PlaySound(0, "QC/Abilities/Postal/Postal_Withdraw", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
 	t = POSTAL_EXTRA_DEGEN_MAX;
 	int hp = GetActorProperty(0, APROP_Health);
 	if(hp <= CheckInventory("MaxHealthToken")) // has no overstack, so instant pain of withdrawal
@@ -5112,7 +5122,7 @@ Script "QCDE_MonsterKill_QCIntruder" (void)
 
 	if(!CheckInventory("PowerWendigoTint"))
 	{
-		LocalAmbientSound("QC/Abilities/Intruder/BonusPick", 110);
+		PlaySound(0, "QC/Abilities/Intruder/BonusPick", CHAN_7|CHAN_UI, 0.86, false, ATTN_NONE, true);
 		GiveInventory("IntruderSpeeder",1);
 	}
 }
@@ -5126,7 +5136,7 @@ Script "QCDE_PlayerKill_QCIntruder" (void)
 
 	if(!CheckInventory("PowerWendigoTint"))
 	{
-		LocalAmbientSound("QC/Abilities/Intruder/BonusPick", 110);
+		PlaySound(0, "QC/Abilities/Intruder/BonusPick", CHAN_7|CHAN_UI, 0.86, false, ATTN_NONE, true);
 		GiveInventory("IntruderSpeeder",1);
 	}
 }
