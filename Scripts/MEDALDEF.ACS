@@ -1,0 +1,113 @@
+#define MEDALS_TOTAL	40
+
+#define GRAPHIC			0
+#define SOUND			1
+
+#define DAMAGE			0
+#define GOT_DDEALER		1
+
+#define TIC				0
+#define EXCELLENT		1
+
+#define FRAGS			0
+#define MEDAL			1
+#define DREAM_ON		9999
+
+//////////////////////
+//		General		//
+//////////////////////
+#define MEDAL_FTGRAVE			0
+#define MEDAL_CKILL				1
+#define MEDAL_HUMIL				2
+#define MEDAL_SSTOPPER			3
+#define MEDAL_PBREAKER			4
+#define MEDAL_PERFORATED		5
+#define MEDAL_RINGOUT			6
+#define MEDAL_FIRSTBLOOD		7
+#define MEDAL_DIEHARD			8
+#define MEDAL_DENIED			9
+#define MEDAL_PBLANK			10
+#define MEDAL_MIDAIR			11
+#define MEDAL_PRECISE			12
+#define MEDAL_DWHAMMY			13
+#define MEDAL_IMPRESSIVE		14
+#define MEDAL_NETMASTER			15
+#define MEDAL_DDEALER			16
+#define MEDAL_EXCELLENT			17
+#define MEDAL_TRIPLEKILL		18
+#define MEDAL_FIGHTER			19
+#define MEDAL_AVATAR			20
+#define MEDAL_TANK				21
+#define MEDAL_KILLSPREE			22
+#define MEDAL_RAGE				23
+#define MEDAL_FRENZY			24
+#define MEDAL_RAMPAGE			25
+#define MEDAL_PMASSACRE			26
+#define MEDAL_SWATCH			27
+#define MEDAL_COLLATERAL		28
+// ^ insert more medals here
+
+//////////////////////
+//		Ability		//
+//////////////////////
+#define MEDAL_ABIL_PSYCHED		29
+#define MEDAL_ABIL_SEER			30
+#define MEDAL_ABIL_CURSED		31
+#define MEDAL_ABIL_JUNKIE		32
+#define MEDAL_ABIL_PINEAPPLE	33
+#define MEDAL_ABIL_INSIDEOUT	34
+#define MEDAL_ABIL_FTSHADOWS	35
+#define MEDAL_ABIL_SLAYER		36
+#define MEDAL_ABIL_STOMPER		37
+#define MEDAL_ABIL_SHOCKER		38
+#define MEDAL_ABIL_SHUB			39
+// ^ insert more medals here
+
+//////////////////////////////////////
+//		Graphic - Sound pairs		//
+//////////////////////////////////////
+str medalPool[MEDALS_TOTAL][2] = {
+
+	{	"FTGMEDAL", "FTGrave"		},
+	{	"COMMEDAL", "CKILL"			},
+	{	"HUMMEDAL", "Humiliation"	},
+	{	"SHOMEDAL", "SStopper"		},
+	{	"PBRMEDAL", "PBreaker"		},
+	{	"PERMEDAL", "Perforated"	},
+	{	"RINMEDAL", "ROut"			},
+	{	"BLMEDAL" , "FBlood"		},
+	{	"DHMEDAL" ,	"DHard"			},
+	{	"DENMEDAL", "Denied"		},
+	{	"POIMEDAL", "Pblank"		},
+	{	"MIDMEDAL", "Midair"		},
+	{	"DHRMEDAL", "Precise"		},
+	{	"WHAMEDAL", "DWhammy"		},
+	{	"IMPMEDAL", "Impressive"	},
+	{	"NETMEDAL", "NMaster"		},
+	{	"DAMMEDAL", "DDealer"		},
+	{	"EXMEDAL" ,	"Excellent"		},
+	{	"TRIMEDAL", "TKill"			},
+	{	"FIGMEDAL", "Fighter"		},
+	{	"AVAMEDAL", "Avatar"		},
+	{	"TANMEDAL", "Tank"			},
+	{	"SPRMEDAL", "KSpree"		},
+	{	"RAGMEDAL", "Rage"			},
+	{	"FREMEDAL", "Frenzy"		},
+	{	"RAMMEDAL", "Rampage"		},
+	{	"MASMEDAL", "PMassacre"		},
+	{	"SWAMEDAL", "SWatch"		},
+	{	"COLMEDAL",	"Collateral"	},
+
+	{	"PSYMEDAL", "GPsyched"		},
+	{	"SEEMEDAL", "Seer"			},
+	{	"CURMEDAL", "Cursed"		},
+	{	"JUNMEDAL", "Junkie"		},
+	{	"PINMEDAL", "Pineapple"		},
+	{	"IOMEDAL" , "InsideOut"		},
+	{	"SHAMEDAL",	"FTShadows"		},
+	{	"SLAMEDAL", "Slayer"		},
+	{	"STOMEDAL", "Stomper"		},
+	{	"SHKMEDAL", "Shocker"		},
+	{	"SHUMEDAL",	"ShubSlayer"	}
+// ^ insert more medals here
+};

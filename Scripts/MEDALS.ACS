@@ -1,0 +1,622 @@
+#library "MEDALS"
+#include "zcommon.acs"
+#include "medaldef.acs"
+
+bool firstBloodGiven = false;
+
+int matchDmg[64][2];
+
+int lastFrag[64][2];
+int excellentLevels[5][2] = {{2, MEDAL_EXCELLENT}, {3, MEDAL_TRIPLEKILL}, {5, MEDAL_FIGHTER}, {10, MEDAL_AVATAR}, {9999, DREAM_ON}};
+
+int killingSpree[64];
+int spreeLevels[4][2] = {{5, MEDAL_KILLSPREE}, {10, MEDAL_RAGE}, {20, MEDAL_FRENZY}, {30, MEDAL_RAMPAGE}};
+
+int megaSpawnTics;
+int heavySpawnTics;
+
+//////////////////////////////////////////////////////////////////
+//																//
+//	Scripts to start the routines and clear things up on death	//
+//																//
+//////////////////////////////////////////////////////////////////
+script "MapInitiator" OPEN {
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+		terminate;
+
+	firstBloodGiven = false;	//reset this here, so it starts with default value after warm-up ends
+}
+
+script "MedalsInitiator" ENTER {
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+		terminate;
+
+	if(!GetCVar("cl_qcmedals"))
+		terminate;
+
+	ACS_NamedExecuteAlways("NetMasterStarter", 0);
+
+	if(!GetCVar("lastmanstanding") && !GetCVar("teamlms")) //don't give a Tank at every round start
+		ACS_NamedExecuteAlways("QCDE_Tank", 0);
+}
+
+script "ResetMedalCounters" DEATH {
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+		terminate;
+
+	if(!GetCVar("cl_qcmedals"))
+		terminate;
+
+	Delay(2);
+
+	TakeInventory("TwoHitsToken", 2);
+	TakeInventory("AimWellToken", 2);
+	TakeInventory("SpreeToken", 1);
+
+	TakeInventory("GDamageToken", 500);
+	TakeInventory("MGDamageToken", 500);
+	TakeInventory("SGDamageToken", 500);
+	TakeInventory("NGDamageToken", 500);
+	TakeInventory("SNGDamageToken", 500);
+	TakeInventory("TBDirectDamageToken", 500);
+	TakeInventory("TBSplashDamageToken", 500);
+	TakeInventory("RLDirectDamageToken", 500);
+	TakeInventory("RLSplashDamageToken", 500);
+	TakeInventory("LGDamageToken", 500);
+	TakeInventory("RGDamageToken", 500);
+	TakeInventory("BFGDirectDamageToken", 500);
+	TakeInventory("BFGSplashDamageToken", 500);
+	TakeInventory("PKDamageToken", 500);
+	TakeInventory("DemonDirectDamageToken", 500);
+	TakeInventory("DemonSplashDamageToken", 500);
+
+	//Tokens to end scripts that need to stop on player's death and may not stop on their own
+	GiveInventory("NetMasterEnd", 1);
+
+	//Reset excellent and killing spree counters
+	int plr = PlayerNumber();
+
+	lastFrag[plr][EXCELLENT] = 0;
+	killingSpree[plr] = 0;
+}
+
+//////////////////////////////////////////////////////////////////
+//																//
+//	Medal Scripts												//
+//																//
+//////////////////////////////////////////////////////////////////
+
+//All Medals that are activated on death merged into one to save resources
+
+script "QCDE_WhatsYourPoison" DEATH {
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+		terminate;
+
+	//Get info about killed
+	int a = ActivatorTID();
+
+	SetActivatorToTarget(0);
+
+	//this check needs to live down here as getCVar checks the activator
+	if(!GetCVar("cl_qcmedals"))
+		terminate;
+
+	//To avoid getting medals for your own death check if TID of activator is different from target
+	int b = ActivatorTID();
+
+	if(a == b)
+		terminate;
+
+	//Get coordinate differences for Perforated
+	int xDiff = GetActorX(a) - GetActorX(b);
+	int yDiff = GetActorY(a) - GetActorY(b);
+	int zDiff = GetActorZ(a) - GetActorZ(b);
+
+	//From The Grave, if killer and victim are dead killer gets medal
+	if((0 >= GetActorProperty(a,APROP_HEALTH)) && (0 >= GetActorProperty(b,APROP_HEALTH)))
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_FTGRAVE);
+
+	//This delay is essential for the DEATH script to have time to detect necessary item in killer
+	Delay(3);
+
+	//Combo Kill
+	if(CheckInventory("PowerSickShot"))
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_CKILL);
+
+	//Humiliation
+	if(CheckWeapon("QCGauntlet") && CheckInventory("PunchedAlready"))
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_HUMIL);
+
+	//Show Stopper
+	SetActivator(a);
+	if(CheckInventory("SpreeToken")) {
+		SetActivator(b);
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SSTOPPER);
+	}
+
+	//Party Breaker
+	SetActivator(a);
+	if(CheckInventory("QuadTimer") || CheckInventory("ProtecTimer")) {
+		SetActivator(b);
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PBREAKER);
+	}
+
+	//Perforated
+	SetActivator(a);
+	if(-2000 >= GetActorProperty(0,APROP_HEALTH)) {
+
+		int len = VectorLength(xDiff, yDiff);
+		len = VectorLength(zDiff, len);
+
+		if((len >> 16) < 64) { //if we are close enough, this was a telefrag
+
+			SetActivator(b);
+
+			if(CheckInventory("PowerRGFired")) //no-no if Instagib point blank range with Quad Damage - just in case
+				terminate;
+
+			//Check for Shub Slaying
+			if(CheckInventory("Class_Ranger") && CheckInventory("ActiveProgressToken")) {
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SHUB);
+				terminate;
+			}
+
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PERFORATED);
+			//I have to terminate here otherwise a Perforated player would always also give Ring Out medal
+			//Ringed out player cannot have less than -2000 health (Telefrag damage -1000000, Instadeath Floor -999)
+			//
+			//Actually can by recieving damage through DamageThing when passed 0 as damage amount, deals the same as telefrag
+			//to bypass god and buddha [kultasakaali]
+			terminate;
+		}
+	}
+
+	//Ring Out - not when instagib
+	SetActivator(a);
+	if(-500 > GetActorProperty(0,APROP_HEALTH))	{
+
+		SetActivator(b);
+		//also don't for Nyx ghostwalk kill, instead yield ability medal
+		if(CheckInventory("Class_Nyx") && CheckInventory("AbilityToken")) {
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_INSIDEOUT);
+			terminate;
+		} else if(!GetCVar("instagib")) {
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_RINGOUT);
+			terminate;
+		}
+	}
+}
+
+//Handles various medals that should activate on frag events
+script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+		terminate;
+
+	//GAMEEVENT_PLAYERFRAGS
+	if(evtTyp == 0) {
+
+		if(!GetCVar("cl_qcmedals")) {
+			if(!firstBloodGiven)			//still have to flip the switch even if the fist killer has turned medals off
+				firstBloodGiven = true;
+			terminate;
+		}
+
+		int victimTID = 1000 + victimNo;
+		int killerHP = GetActorProperty(0, APROP_Health);
+
+		if(victimTID == ActivatorTID())		//redundant check? PLAYERFRAGS doesn't seem to trigger on suicide
+			terminate;
+
+		ACS_NamedExecuteAlways("QCDE_Excellent", 0, Timer());
+		ACS_NamedExecuteAlways("QCDE_KillingSpree", 0);
+
+		Delay(5);	//Delay these checks slightly to prevent two medals showing at the same time
+
+		//////////////////////
+		//	Ability medals	//
+		//////////////////////
+
+		//Abilities where we can check for progress
+		if(CheckInventory("ActiveProgressToken")) {
+
+			//Blazko
+			if(CheckInventory("Class_Blazkowicz"))
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PSYCHED);
+
+			//Eradicator
+			if(CheckInventory("Class_Eradicator"))
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SEER);
+
+			//Inquisitor
+			if(CheckInventory("Class_Inquisitor"))
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SHOCKER);
+		}
+
+		//Abilities where we can't
+		//Galen
+		if(CheckInventory("TotemExploded"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_CURSED);
+
+		//Kane
+		if(CheckInventory("PowerInjectionSpeed"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_JUNKIE);
+
+		//Nyx
+		if(CheckInventory("FromTheShadowsToken"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_FTSHADOWS);
+
+		//Projectile or puff based abilities
+		if(CheckInventory("AbilityToken")) {
+
+			//Keel
+			if(CheckInventory("Class_Keel"))
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PINEAPPLE);
+
+			//Doomslayer
+			if(CheckInventory("Class_Doomslayer"))
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SLAYER);
+
+			//Zedek
+			if(CheckInventory("Class_Zedek"))
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_STOMPER);
+		}
+
+		//Nyx's INSIDE OUT @ Ring Out because of the damage dealt by the ability
+
+		//////////////////////
+		//	Other medals	//
+		//////////////////////
+
+		//First blood
+		if(!firstBloodGiven) {
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_FIRSTBLOOD);
+			firstBloodGiven = true;
+		}
+
+		//Die Hard
+		if(killerHP <= 15 && killerHP > 0) {
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DIEHARD);
+		}
+
+		//Denied
+		if(CheckActorInventory(victimTID, "ActiveProgressToken") > 0) {
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DENIED);
+		}
+
+		//Point Blank
+		if(CheckInventory("PointBlankToken")) {
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PBLANK);
+			terminate; //wielding a shotgun, don't check for rocket medals
+		}
+
+		//Midair
+		if(CheckInventory("DirectRocketToken")) {
+			if(!CheckSolidFooting(victimTID, 64 << 16) && GetActorProperty(0, APROP_WATERLEVEL) == 0) {
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_MIDAIR);
+				terminate; //if midair was given don't give precise
+			}
+			//Precise
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PRECISE);
+			TakeInventory("DirectRocketToken", 256);
+		}
+	}
+}
+
+//Medal drawer
+script "DrawMedal" (int medal) CLIENTSIDE {
+
+	while(CheckInventory("MedalInExecutionToken"))
+		Delay(1);
+
+	GiveInventory("MedalInExecutionToken", 1);
+
+	SetFont(medalPool[medal][GRAPHIC]);
+	SetHudSize(1280, 952, 1);
+	if(GetCVar("cl_qcmedals") < 2)
+		HudMessage(s:"A"; HUDMSG_FADEOUT, 1234, CR_UNTRANSLATED, 640.0, 220.0, 2.0, 0.2);
+	LocalAmbientSound(medalPool[medal][SOUND], 127 * GetCVar("snd_announcervolume") >> 16);
+
+	Delay(48);
+	TakeInventory("MedalInExecutionToken", 1);
+}
+
+//this one checks if player fired RL or LG, then switched to RG and fired rail in less than 1 second from switch
+script "ComboKillTokenGiver" ENTER {
+
+	if(CheckInventory("PowerRLFired") && CheckInventory("PowerComboSwitchRL") && CheckInventory("PowerRLHit") && CheckInventory("PowerRGFired")) {
+
+		GiveInventory("SickShotGiver", 1);
+
+		TakeInventory("PowerRLFired", 1);
+		TakeInventory("PowerComboSwitchRL", 1);
+		TakeInventory("PowerRGFired", 1);
+
+		Delay(48);
+		TakeInventory("PowerSickShot", 1);
+	}
+
+	if(CheckInventory("PowerLGFired") && CheckInventory("PowerComboSwitchLG") && CheckInventory("PowerLGHit") && CheckInventory("PowerRGFired")) {
+		GiveInventory("SickShotGiver", 1);
+
+		TakeInventory("PowerLGFired", 1);
+		TakeInventory("PowerComboSwitchLG", 1);
+		TakeInventory("PowerRGFired", 1);
+
+		Delay(48);
+		TakeInventory("PowerSickShot", 1);
+	}
+}
+
+//Then weapon specific medals, otherwise it's awkward if they are delayed
+//No need to establish ierarchy between these three since they cannot happen at the same time
+//These two always come first
+
+script "QCDE_Impressive" (void) {
+
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	if(!GetCVar("cl_qcmedals"))
+		terminate;
+
+	if((CheckInventory("AimWellToken") == 1) && (CheckInventory("TwoHitsToken") == 0)) {
+		TakeInventory("AimWellToken", 2);
+		terminate;
+	}
+
+	if((CheckInventory("AimWellToken") == 2) && (CheckInventory("TwoHitsToken") == 1)) {
+		TakeInventory("AimWellToken", 2);
+		TakeInventory("TwoHitsToken", 2);
+		terminate;
+	}
+
+	if((CheckInventory("DWhammyToken") == 2)) {
+		//Double Whammy
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DWHAMMY);
+
+		TakeInventory("TwoHitsToken", 2);
+        TakeInventory("AimWellToken", 2);
+		terminate;
+	}
+
+    if((CheckInventory("AimWellToken") > 1) && (CheckInventory("TwoHitsToken") > 1)) {
+        ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_IMPRESSIVE);
+
+		TakeInventory("TwoHitsToken", 2);
+        TakeInventory("AimWellToken", 2);
+		terminate;
+    }
+}
+
+//Net Master
+script "NetMasterStarter" (void) {
+
+	if(CheckInventory("NetMasterEnd")) {
+		TakeInventory("NetMasterEnd", 1);
+		terminate;
+	}
+
+	ACS_NamedExecuteAlways("QCDE_NetMaster", 0);
+}
+
+//Net Master - Damage Dealer
+script "QCDE_NetMaster" (void) {
+
+	if(CheckInventory("NetMasterEnd")) {
+		TakeInventory("NetMasterEnd", 1);
+		ACS_NamedExecuteAlways("NetMasterStarter",0);
+		terminate;
+	}
+
+	int g = CheckInventory("GDamageToken") * 75;
+
+	int hmg = CheckInventory("MGDamageToken") * 10;
+
+	int sg = CheckInventory("SGDamageToken") * 4;
+
+	int ng = CheckInventory("NGDamageToken") * 12;
+
+	int sng = CheckInventory("SNGDamageToken") * 20;
+
+	int tb1 = CheckInventory("TBDirectDamageToken") * 45;
+	int tb2 = CheckInventory("TBSplashDamageToken") * 25;
+
+	int rl1 = CheckInventory("RLDirectDamageToken") * 100;
+	int rl2 = CheckInventory("RLSplashDamageToken") * 60;
+
+	int lg = CheckInventory("LGDamageToken") * 7;
+
+	int rg = CheckInventory("RGDamageToken") * 80;
+
+	int bfg1 = CheckInventory("BFGDirectDamageToken") * 110;
+	int bfg2 = CheckInventory("BFGSplashDamageToken") * 70;
+
+	int pk = CheckInventory("PKDamageToken") * 90;
+	int pkd1 = CheckInventory("DemonDirectDamageToken") * 100;
+	int pkd2 = CheckInventory("DemonSplashDamageToken") * 40;
+
+	int plr = PlayerNumber();
+	int oldDmg;
+	int dmg = g + hmg + sg + sng + tb1 + tb2 + rl1 + rl2 + lg + rg + bfg1 + bfg2 + pk + pkd1 + pkd2;
+
+	if(dmg - oldDmg > 0)
+		matchDmg[plr][DAMAGE] += dmg - oldDmg;
+
+	oldDmg = dmg;
+
+	if(!matchDmg[plr][GOT_DDEALER] && matchDmg[plr][DAMAGE] >= 5000) {
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DDEALER);
+		matchDmg[plr][GOT_DDEALER] = 1;
+	}
+
+	if(dmg >= 1000) {
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_NETMASTER);
+
+		TakeInventory("GDamageToken", 500);
+		TakeInventory("MGDamageToken", 500);
+		TakeInventory("SGDamageToken", 500);
+		TakeInventory("NGDamageToken", 500);
+		TakeInventory("SNGDamageToken", 500);
+		TakeInventory("TBDirectDamageToken", 500);
+		TakeInventory("TBSplashDamageToken", 500);
+		TakeInventory("RLDirectDamageToken", 500);
+		TakeInventory("RLSplashDamageToken", 500);
+		TakeInventory("LGDamageToken", 500);
+		TakeInventory("RGDamageToken", 500);
+		TakeInventory("BFGDirectDamageToken", 500);
+		TakeInventory("BFGSplashDamageToken", 500);
+		TakeInventory("PKDamageToken", 500);
+		TakeInventory("DemonDirectDamageToken", 500);
+		TakeInventory("DemonSplashDamageToken", 500);
+
+		Delay(105);
+
+		ACS_NamedExecuteAlways("NetMasterStarter", 0);
+
+		terminate;
+	}
+
+	Delay(70);
+	restart;
+}
+
+//Excellent stuff
+script "QCDE_Excellent" (int currentTic) {
+
+	int plr = PlayerNumber();
+	int dTic = currentTic - lastFrag[plr][TIC];
+
+	//be quick or be dead
+	if(dTic >= 105)
+		lastFrag[plr][EXCELLENT] = 0;
+
+	lastFrag[plr][EXCELLENT]++;
+	lastFrag[plr][TIC] = currentTic;
+
+	for(int i = 0; i < 4; i++) {
+		if(lastFrag[plr][EXCELLENT] == excellentLevels[i][FRAGS]) {
+
+			Delay(1);
+
+			//special case for simultaneous kills - only show the highest rank medal
+			if(lastFrag[plr][EXCELLENT] >= excellentLevels[i + 1][FRAGS]) {
+				terminate;
+			}
+
+			ACS_NamedExecuteAlways("DrawMedal", 0, excellentLevels[i][MEDAL]);
+
+			//check for COLLATERAL DAMAGE
+			if(CheckInventory("CollateralToken") && dTic == 0)
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_COLLATERAL);
+
+			break;
+		}
+	}
+}
+
+//If you really are a tank why don't you shoot from your cannon then smh
+script "QCDE_Tank" (void) {
+
+	Delay(5);	//need a slight delay here so that we get the proper values already on the first time
+
+	int h = GetActorProperty(0,APROP_HEALTH);
+	Int a = Checkinventory("BasicArmor");
+
+	int maxH = CheckInventory("MaxHealthToken");
+	int maxA = Checkinventory("MaxArmorToken");
+
+	int trigH = maxH + 25;
+	int trigA = maxA + 25;
+
+	while(((trigH >= h) && (trigA >= a)) || ((h > trigH) && (trigA >= a)) || ((trigH >= h) && (a > trigA)))	{
+
+		h = GetActorProperty(0,APROP_HEALTH);
+		a = Checkinventory("BasicArmor");
+
+		Delay(15);
+	}
+
+	ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_TANK);
+
+	//otherwise Tank Medal stays until you have no overstack -- lose both overstacks
+	until((maxH >= GetActorProperty(0,APROP_HEALTH)) && (maxA >= Checkinventory("BasicArmor")))
+		Delay(15);
+
+	restart;
+}
+
+script "QCDE_KillingSpree" (void) {
+
+	int plr = PlayerNumber();
+
+	killingSpree[plr]++;
+
+	for(int i = 0; i < 4; i++) {
+		if(killingSpree[plr] == spreeLevels[i][FRAGS]) {
+
+			ACS_NamedExecuteAlways("DrawMedal", 0, spreeLevels[i][MEDAL]);
+
+			//A player on a spree gets a special token, so that its killer can then get the Show Stopper medal
+			GiveInventory("SpreeToken",1);
+		}
+	}
+}
+
+//Paint the Town red
+script "QCDE_PowerUpMassacre" (void) {
+
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+		terminate;
+
+	if(!GetCVar("cl_qcmedals"))
+		terminate;
+
+	int f = PlayerFrags() + 5;
+
+	//So that engine has time to calculate f
+	Delay(2);
+
+	while((CheckInventory("PowerQuad")) && (PlayerFrags() != f))
+		Delay(10);
+
+	while((CheckInventory("PowerProtecc")) && (PlayerFrags() != f))
+		Delay(10);
+
+	if(PlayerFrags() == f)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PMASSACRE);
+}
+
+Script "QCDE_MajorItemSpawned" (int itemType) { // 0 for Mega, 1 for Heavy <-- from SCORBORD.acs QCDE_ItemSpawned
+
+	if(itemType == 0)
+		megaSpawnTics = Timer();
+
+	if(itemType == 1)
+		heavySpawnTics = Timer();
+}
+
+Script "QCDE_StopWatch" (int itemType) {
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+		terminate;
+
+	if(!GetCVar("cl_qcmedals"))
+		terminate;
+
+	if(GetCVar("lastmanstanding") || GetCVar("teamlms"))
+		terminate;
+
+	if(itemType == 1 && Timer() - megaSpawnTics <= 10)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SWATCH);
+
+	if(itemType == 2 && Timer() - heavySpawnTics <= 10)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SWATCH);
+}

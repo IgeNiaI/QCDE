@@ -1,0 +1,158 @@
+//General Token to queue medals whose drawing is pending
+Actor MedalInExecutionToken: Token {Inventory.MaxAmount 1}
+Actor MedalToken : Token
+{
+	+SERVERNETID
+}
+Actor MedalPowerup : PowerupGiver
+{
+	+SERVERNETID
+	Inventory.PickupMessage ""
+	Inventory.UseSound "Nothing"
+	Inventory.MaxAmount 1
+	+INVENTORY.AUTOACTIVATE
+}
+
+//////////////////////////////////////////////////
+//
+//	Combo Kill
+//
+//////////////////////////////////////////////////
+
+//LG things
+Actor PowerLGFired: Powerup {Powerup.Duration 35}
+
+Actor LGFiredGiver: MedalPowerup
+{
+	Powerup.Type "LGFired"
+	Powerup.Duration 35
+}
+
+Actor PowerLGHit: Powerup {Powerup.Duration 35}
+
+Actor LGHitGiver: MedalPowerup
+{
+	Powerup.Type "LGHit"
+	Powerup.Duration 35
+}
+
+Actor PowerComboSwitchLG: Powerup {Powerup.Duration 35}
+
+Actor ComboSwitchLGGiver: MedalPowerup
+{
+	Powerup.Type "ComboSwitchLG"
+	Powerup.Duration 35
+}
+
+//RL Things
+Actor PowerRLFired: Powerup {Powerup.Duration 70}
+
+Actor RLFiredGiver: MedalPowerup
+{
+	Powerup.Type "RLFired"
+	Powerup.Duration 70
+}
+
+Actor PowerRLHit: Powerup {Powerup.Duration 70}
+
+Actor RLHitGiver: MedalPowerup
+{
+	Powerup.Type "RLHit"
+	Powerup.Duration 70
+}
+
+Actor PowerComboSwitchRL: Powerup {Powerup.Duration 35}
+
+Actor ComboSwitchRLGiver: MedalPowerup
+{
+	Powerup.Type "ComboSwitchRL"
+	Powerup.Duration 35
+}
+
+//RG Things
+
+Actor PowerRGFired: Powerup {Powerup.Duration 35}
+
+Actor RGFiredGiver: MedalPowerup
+{
+	Powerup.Type "RGFired"
+	Powerup.Duration 35
+}
+
+//Final Combo Kill Check
+
+Actor PowerSickShot: Powerup {Powerup.Duration 35}
+Actor SickShotGiver: MedalPowerup
+{
+	Powerup.Type "SickShot"
+	Powerup.Duration 48
+}
+
+//////////////////////////////////////////////////
+//
+//	Other Medal Checks
+//
+//////////////////////////////////////////////////
+
+//Double Whammy and Impressive
+Actor AimWellToken: MedalToken {Inventory.MaxAmount 2}
+Actor TwoHitsToken: MedalToken {Inventory.MaxAmount 2}
+Actor DWhammyToken: MedalToken {Inventory.MaxAmount 2}
+
+//Point Blank
+//Actor PelletHitToken: MedalToken {Inventory.MaxAmount 30} //unused
+Actor PointBlankToken: MedalToken {Inventory.MaxAmount 1}
+
+//For ShowStopper
+Actor SpreeToken: MedalToken {Inventory.MaxAmount 1}
+
+//To activate Direct Hit Rocket Medals
+Actor DirectRocketToken: MedalToken {Inventory.MaxAmount 1}
+Actor PreciseCounter: MedalToken {Inventory.MaxAmount 10}
+
+Actor CollateralToken: MedalToken {Inventory.MaxAmount 1}
+
+//Net Master death stop
+Actor NetMasterEnd: MedalToken {Inventory.MaxAmount 1}
+
+//Galen totem explosion token - move to QCDE_TotemExploded if possible in the future
+Actor TotemExploded: MedalToken {Inventory.MaxAmount 5}
+
+//Nyx ability token
+Actor FromTheShadowsToken: MedalToken {Inventory.MaxAmount 1}
+
+//Projectile abilities for now check for this token
+Actor AbilityToken: MedalToken {Inventory.MaxAmount 10}
+
+//////////////////////////////////////////////////
+//
+//	Net Master items for damage calculation
+//
+//////////////////////////////////////////////////
+
+Actor GDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor MGDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor SGDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor NGDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor SNGDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor TBDirectDamageToken: MedalToken {Inventory.MaxAmount 500}
+Actor TBSplashDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor RLDirectDamageToken: MedalToken {Inventory.MaxAmount 500}
+Actor RLSplashDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor LGDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor RGDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor BFGDirectDamageToken: MedalToken {Inventory.MaxAmount 500}
+Actor BFGSplashDamageToken: MedalToken {Inventory.MaxAmount 500}
+
+Actor PKDamageToken: MedalToken {Inventory.MaxAmount 500}
+Actor DemonDirectDamageToken: MedalToken {Inventory.MaxAmount 500}
+Actor DemonSplashDamageToken: MedalToken {Inventory.MaxAmount 500}

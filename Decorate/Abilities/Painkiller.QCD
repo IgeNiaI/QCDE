@@ -442,6 +442,9 @@ Actor PKDemonProjectile_DM
 		Loop
 	Xdeath:	//Direct hit
 		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		//Medals start
+		TNT1 A 0 A_GiveToTarget("DemonDirectDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		//Medals end
 		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
@@ -455,6 +458,9 @@ Actor PKDemonProjectile_DM
 
 		RadiusHit:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+			//Medals start
+			TNT1 A 0 A_GiveToTarget("DemonSplashDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+			//Medals end
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
@@ -739,6 +745,9 @@ Actor PKGauntletPuff_DM : GauntletPuff_DM
 	XDeath: //hit bleeder
 		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
 		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		//Medals start
+		TNT1 A 0 A_GiveToTarget("PKDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		//Medals end
 		TNT1 A 10 A_PlaySound("QC/Abilities/Painkiller/Weapon/HitMeat",7,1,0,5)
 		Stop
 	Crash:	//hit everything else

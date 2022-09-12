@@ -259,6 +259,9 @@ Actor QCNailWeak : FastProjectile
 
 	XDeath:
 		TNT1 A 10 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		//Medals start
+		TNT1 A 5 A_GiveToTarget("NGDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		//Medals end
 		Stop
 
 	Death:

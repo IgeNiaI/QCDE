@@ -206,8 +206,41 @@ Actor QCShotgunPuff : QCBulletPuff
 	}
 }
 
-Actor QCBulletPuff_DM  : QCBulletPuff  { -MTHRUSPECIES }
-Actor QCShotgunPuff_DM : QCShotgunPuff { -MTHRUSPECIES }
+//HMG and MG
+Actor QCBulletPuff_DM : QCBulletPuff
+{
+	-MTHRUSPECIES
+	States
+	{
+	XDeath: //hit bleeding actor
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveToTarget("MGDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		Stop
+	}
+}
+
+//SG and SSG
+Actor QCShotgunPuff_DM : QCShotgunPuff
+{
+	-MTHRUSPECIES
+	States
+	{
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveToTarget("SGDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		//TNT1 A 0 A_GiveToTarget("PelletHitToken",1)  //unused
+		TNT1 A 0 A_JumpIfCloser(96, "XDeath_PBlank")
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		Stop
+
+	XDeath_PBlank:
+		TNT1 A 0 A_GiveToTarget("PointBlankToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		TNT1 A 0 A_TakeFromTarget("PointBlankToken",1)
+		Stop
+	}
+}
 
 
 //Bullet puff for monsters, same as player's, except no hit beep sound

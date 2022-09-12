@@ -283,6 +283,9 @@ Actor TriboltBolt
 
 	Xdeath:	//Direct hit
 		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		//Medals start
+		TNT1 A 0 A_GiveToTarget("TBDirectDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		//Medals end
 		TNT1 A 0 A_Jump(256,"DeathCont")
 		Goto DeathCont
 
@@ -304,6 +307,9 @@ Actor TriboltBolt
 
 		RadiusHit:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+			//Medals start
+			TNT1 A 0 A_GiveToTarget("TBSplashDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+			//Medals end
 			TNT1 A 0 A_Jump(256,"DeathCont")
 			Goto DeathCont
 

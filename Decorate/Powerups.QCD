@@ -138,6 +138,9 @@ Actor QCQuad : CustomInventory 15511
 		TNT1 A 0 A_SpawnItemEx("QuadFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ApplyPowerSecs",0)
 		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupTaken",0,0)
+		//Medals start
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupMassacre",0)
+		//Medals end
 		TNT1 A 0 A_ThrowGrenade("QuadIndicator")
 		Stop
 	Failer:
@@ -316,6 +319,9 @@ Actor QCProtec : QCQuad 15512
 		TNT1 A 0 A_SpawnItemEx("ProtecFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ApplyPowerSecs",1)
 		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupTaken",0,1)
+		//Medals start
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupMassacre",0)
+		//Medals end
 		TNT1 A 0 A_ThrowGrenade("ProtecIndicator")
 		Stop
 	}
@@ -838,6 +844,9 @@ Actor QCEldersSoul : CustomInventory 15700
 		TNT1 A 0 A_Blast(BF_NOIMPACTDAMAGE)
 		TNT1 A 0 A_GiveInventory("EldersSoulPowerGiver",1)
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_EldersSoulPickup",0)
+		//Medals start
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupMassacre",0)
+		//Medals end
 		TNT1 A 0 A_ThrowGrenade("EldersSoulIndicator")
 		Stop
 	}

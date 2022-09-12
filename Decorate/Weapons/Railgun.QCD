@@ -380,6 +380,10 @@ Actor QCRailGun : QCWeapon
 		PerformDM:
 			TNT1 A 0 A_RailAttack(80,2,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail")
 			TNT1 A 0 A_ChangeVelocity(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * -cos(pitch), 0, ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * sin(pitch), CVF_RELATIVE)
+			//Medals start
+			TNT1 A 1
+			TNT1 A 0 A_GiveInventory("AimWellToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+			//Medals end
 			Goto FlashCheckSound
 
 		FlashCheckSound:
@@ -394,6 +398,11 @@ Actor QCRailGun : QCWeapon
 				Goto FlashEnder
 
 	FlashEnder:
+		//Medals start
+		TNT1 A 0 A_GiveInventory("RGFiredGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 0 ACS_NamedExecuteAlways("ComboKillTokenGiver",0)
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_Impressive",0)
+		//Medals end
 		TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 		TNT1 A 0 A_SetBlend("Green",0.14,15)
 		TNT1 A 0 A_AlertMonsters
@@ -735,6 +744,10 @@ Actor QCRailGun : QCWeapon
 		PerformDMZoomed:
 			TNT1 A 0 A_RailAttack(80,0,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail")
 			TNT1 A 0 A_ChangeVelocity(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * -cos(pitch), 0, ACS_NamedExecuteWithResult("QCDE_railRecoil",0,0,0,0) * sin(pitch), CVF_RELATIVE)
+			//Medals start
+			TNT1 A 1
+			TNT1 A 0 A_GiveInventory("AimWellToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+			//Medals end
 			Goto FlashZoomedCheckSound
 
 		FlashZoomedCheckSound:
@@ -750,6 +763,11 @@ Actor QCRailGun : QCWeapon
 
 	FlashEnderZoomed:
 		TNT1 A 0 A_TakeInventory("RailgunCharges",32767)
+		//Medals start
+		TNT1 A 0 A_GiveInventory("RGFiredGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 0 ACS_NamedExecuteAlways("ComboKillTokenGiver",0)
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_Impressive",0)
+		//Medals end
 		TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 		TNT1 A 0 A_SetBlend("Green",0.14,15)
 		TNT1 A 0 A_AlertMonsters
@@ -1189,7 +1207,30 @@ Actor RailgunPuff
 		Stop
 	}
 }
-Actor RailgunPuff_DM : RailgunPuff { -MTHRUSPECIES DamageType "Railgun" }
+
+Actor RailgunPuff_DM : RailgunPuff
+{
+	-MTHRUSPECIES
+	DamageType "Railgun"
+
+	//Medals start
+	States
+	{
+	Xdeath:
+		TNT1 A 0
+		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		TNT1 A 1
+		TNT1 A 0 A_GiveToTarget("DWhammyToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 1
+		TNT1 A 0 A_GiveToTarget("TwoHitsToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 1
+		TNT1 A 0 A_GiveToTarget("RGDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 10
+		TNT1 A 0 A_TakeFromTarget("DWhammyToken",1)
+		Stop
+	}
+	//Medals end
+}
 
 Actor RailgunPuffFx
 {

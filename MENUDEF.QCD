@@ -200,6 +200,13 @@ OptionValue "QCSpeedometer"
 	2, "Bottom Left"
 }
 
+OptionValue "QCMedals"
+{
+	0, "Off"
+	1, "Full"
+	2, "Sound Only"
+}
+
 OptionMenu "QZDEHUDOptions"
 {
 	Title "HUD & Display Options"
@@ -214,6 +221,7 @@ OptionMenu "QZDEHUDOptions"
 	StaticText " "
 	StaticText "Information",1
 	Option 		"Speedometer",					"cl_speedometer",     	"QCSpeedometer"
+	Option		"QC Medals",					"cl_qcmedals",			"QCMedals"
 	Option 		"Weapon bar (16:9)",			"cl_showWeaponBar",    	"OnOff"
 	Option 		"Health bar style",				"cl_barStyle",         	"BarStyle"
 	Option 		"Low ammo warning",				"cl_lowAmmoWarning",   	"LowWarning"

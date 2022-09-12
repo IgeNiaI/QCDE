@@ -234,6 +234,12 @@ Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
 		MEGR A -1 BRIGHT
 		Stop
 
+	//Medals start
+	Pickup:
+		TNT1 A 0 ACS_NamedExecute("QCDE_StopWatch", 0, 1)
+		Goto Super::Pickup
+	//Medals end
+
 	DoRanger:
 	DoDoomSlayer:
 	DoCorvus:
@@ -642,6 +648,9 @@ Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
 		// ^ insert more classes here
 
 	ArmorDoneSuccess:
+		//Medals start
+		TNT1 A 0 ACS_NamedExecute("QCDE_StopWatch", 0, 2)
+		//Medals end
 		TNT1 A 0 A_SpawnItemEx("BigArmorGiverFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ItemTaken", 1)
 		TNT1 A 0

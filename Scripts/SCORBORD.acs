@@ -185,6 +185,10 @@ Script "QCDE_ItemTaken" (int item, int when_offset)
 
 Script "QCDE_ItemSpawned" (int item)
 {
+	//Medals start
+	ACS_NamedExecuteAlways("QCDE_MajorItemSpawned", 0, item);
+	//Medals end
+
 	if(item < 0 || item >= ITEM_TIMERS) log(s:"\c[red]QCDE ERROR: wrong item index ", d:item, s:" spawned");
 
 	//log(s:"Server: Item ", s:itemNames[item], s:" has spawned");

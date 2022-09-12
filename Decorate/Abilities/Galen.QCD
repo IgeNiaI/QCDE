@@ -147,14 +147,23 @@ Actor TotemProjectile
 		Stop
 	DMExplo:
 		TNT1 A 0 A_GiveToTarget("HitBeepTotem",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		//Medals start
+		TNT1 A 0 A_GiveToTarget("TotemExploded",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		//Medals end
 		TNT1 A 0 Thing_ChangeTID(0,0)
 		TNT1 A 0 A_JumpIfInTargetInventory("TotemTokenPvE", 5, "SuperDMExplo")
 		TNT1 A 0 A_JumpIfInTargetInventory("TotemTokenPvP", 5, "SuperDMExplo")
-		TNT1 A 100 A_Explode(75,116,0,0,116)
+		TNT1 A 10 A_Explode(75,116,0,0,116)
+		//Medals start
+		TNT1 A 90 A_TakeFromTarget("TotemExploded",1)
+		//Medals end
 		Stop
 	SuperDMExplo:
 		TNT1 A 0 A_SpawnItemEx("TotemExplosion",0,0,60, frandom(1,-1),frandom(1,-1),frandom(1,-1), 0,SXF_NOCHECKPOSITION)
-		TNT1 A 100 A_Explode(125,128,0,0,128)
+		TNT1 A 10 A_Explode(125,128,0,0,128)
+		//Medals start
+		TNT1 A 90 A_TakeFromTarget("TotemExploded",1)
+		//Medals end
 		Stop
 	}
 }

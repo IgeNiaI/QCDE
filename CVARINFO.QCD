@@ -61,6 +61,7 @@ user int  cl_specScores        =   3; // how many scores to show when spectating
 user int  cl_autoSpecDelay     =   0; // if non-zero: seconds to spectate each player automatically
 user int  cl_radarMode         =   0; // 0 = center, 1 = lower
 user int  cl_barStyle          =   0; // 0 = blocks of 25, 1 = continuous
+user int  cl_qcmedals          =   2; // 0 = off, 1 = full, 2 = sound only
 user int snd_qcdemus           =   1; // play QCDE songs by Michael Markie when available
 user int snd_randommus         =   1; // play QCDE OST in random order. Desyncs in MP.
 user int snd_songnames         =   0; // log names of songs being played

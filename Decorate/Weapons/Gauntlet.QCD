@@ -585,6 +585,9 @@ Actor GauntletPuff_DM
 	XDeath: //hit bleeder
 		TNT1 A 0 A_GiveToTarget("PunchedAlready",1)
 		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		//Medals start
+		TNT1 A 0 A_GiveToTarget("GDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		//Medals end
 		TNT1 A 10 A_PlaySound("QC/Weapons/Gauntlet/Hit",7,1,0,9)
 		Stop
 	Crash:	//hit everything else
