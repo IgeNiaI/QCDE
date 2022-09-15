@@ -43,11 +43,13 @@ Actor SuperNailgunPickup : CustomInventory 15603
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMPickup")
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"WeaponStay")
 		TNT1 A 0 A_GiveInventory("QCSuperNailgun")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_SelectUpgradedWeapon",3,0,0,0), "Stay") // never jumps, but had to wrap CallACS or else the weapon will be always picked up
 		TNT1 A 0 A_TakeInventory("QCNailgun")
 		Stop
 	DMPickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"DMWeaponStay")
 		TNT1 A 0 A_GiveInventory("QCSuperNailgunDM")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_SelectUpgradedWeapon",3,0,0,0), "Stay") // never jumps, but had to wrap CallACS or else the weapon will be always picked up
 		TNT1 A 0 A_TakeInventory("QCNailgunDM")
 		TNT1 A 0 A_TakeInventory("QCSuperNailgun")
 		TNT1 A 0 A_TakeInventory("QCNailgun")
@@ -57,6 +59,7 @@ Actor SuperNailgunPickup : CustomInventory 15603
 		TNT1 A 0 A_SpawnItemEx("QCSuperNailgun", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
 		Fail
 	DMWeaponStay:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_SelectUpgradedWeapon",3,0,0,0), "Stay") // never jumps, but had to wrap CallACS or else the weapon will be always picked up
 		TNT1 A 0 A_TakeInventory("QCSuperNailgun")
 		TNT1 A 0 A_JumpIfInventory("QCSuperNailgunDM",1,"Stay")
 		TNT1 A 0 A_SpawnItemEx("QCSuperNailgunDM", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)

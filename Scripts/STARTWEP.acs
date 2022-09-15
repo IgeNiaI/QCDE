@@ -82,6 +82,18 @@ script "QCDE_StartingWeapon_Apply" (void)
 	if(CheckInventory("QCSuperNailgun"   )) TakeInventory(weapon3,1);
 }
 
+script "QCDE_SelectUpgradedWeapon" (int weap)
+{
+	if (weap == 1 && StrCmp(GetWeapon(), "QCMachinegun") == 0)		SetWeapon("QCHeavyMachinegun");
+	if (weap == 1 && StrCmp(GetWeapon(), "QCMachinegunDM") == 0)	SetWeapon("QCHeavyMachinegunDM");
+	if (weap == 2 && StrCmp(GetWeapon(), "QCShotgun") == 0)			SetWeapon("QCSuperShotgun");
+	if (weap == 2 && StrCmp(GetWeapon(), "QCShotgunDM") == 0)		SetWeapon("QCSuperShotgunDM");
+	if (weap == 3 && StrCmp(GetWeapon(), "QCNailgun") == 0)			SetWeapon("QCSuperNailgun");
+	if (weap == 3 && StrCmp(GetWeapon(), "QCNailgunDM") == 0)		SetWeapon("QCSuperNailgunDM");
+
+	SetResultValue(0);
+}
+
 int map_random_weapons;
 function void GiveRocketArena(int ra)
 {

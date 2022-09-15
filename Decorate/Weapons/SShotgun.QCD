@@ -40,6 +40,7 @@ Actor SuperShotgunPickup : CustomInventory 15602
 	DMPickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"DMWeaponStay")
 		TNT1 A 0 A_GiveInventory("QCSuperShotgunDM")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_SelectUpgradedWeapon",2,0,0,0), "Stay") // never jumps, but had to wrap CallACS or else the weapon will be always picked up
 		TNT1 A 0 A_TakeInventory("QCShotgunDM")
 		TNT1 A 0 A_TakeInventory("QCSuperShotgun")
 		TNT1 A 0 A_TakeInventory("QCShotgun")
@@ -49,6 +50,7 @@ Actor SuperShotgunPickup : CustomInventory 15602
 		TNT1 A 0 A_SpawnItemEx("QCSuperShotgun", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
 		Fail
 	DMWeaponStay:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_SelectUpgradedWeapon",2,0,0,0), "Stay") // never jumps, but had to wrap CallACS or else the weapon will be always picked up
 		TNT1 A 0 A_TakeInventory("QCSuperShotgun")
 		TNT1 A 0 A_JumpIfInventory("QCSuperShotgunDM",1,"Stay")
 		TNT1 A 0 A_SpawnItemEx("QCSuperShotgunDM", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
@@ -113,6 +115,7 @@ Actor SuperShotgunPickupDMvar: CustomInventory 	//this one is for SSGs spawned i
 	DMPickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"DMWeaponStay")
 		TNT1 A 0 A_GiveInventory("QCSuperShotgunDM")
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_SelectUpgradedWeapon",2,0,0,0), "Stay") // never jumps, but had to wrap CallACS or else the weapon will be always picked up
 		TNT1 A 0 A_TakeInventory("QCShotgunDM")
 		TNT1 A 0 A_TakeInventory("QCSuperShotgun")
 		TNT1 A 0 A_TakeInventory("QCShotgun")
@@ -122,6 +125,7 @@ Actor SuperShotgunPickupDMvar: CustomInventory 	//this one is for SSGs spawned i
 		TNT1 A 0 A_SpawnItemEx("QCSuperShotgun", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
 		Fail
 	DMWeaponStay:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_SelectUpgradedWeapon",2,0,0,0), "Stay") // never jumps, but had to wrap CallACS or else the weapon will be always picked up
 		TNT1 A 0 A_TakeInventory("QCSuperShotgun")
 		TNT1 A 0 A_JumpIfInventory("QCSuperShotgunDM",1,"Stay")
 		TNT1 A 0 A_SpawnItemEx("QCSuperShotgunDM", velx,vely,velz, velx,vely,velz, 0, SXF_NOCHECKPOSITION|SXF_ABSOLUTEPOSITION)
