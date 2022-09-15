@@ -50,12 +50,13 @@ script "QCDE_StartingWeapon_Apply" (void)
 
 	int rocketarena = GetCvar("rocketarena");
 	if (rocketarena) GiveRocketArena(rocketarena);
-	else if(GetCvar("instagib"))                  { GiveInventory("QCRailgunDM",        1); GiveInventory("EndlessInfiniteAmmo",1);}
-	else if(GetCvar("buckshot"))                  { GiveInventory("QCSuperShotgunDM",   1); }
-	else if (CheckInventory("Class_Sam"))         { ACS("QCDE_Passive_Sam"); }
-	else if(CheckInventory("Starter_Machinegun")) { if(!CheckInventory("QCHeavyMachinegun")) GiveInventory(weapon1, 1); }
-	else if(CheckInventory("Starter_Shotgun"   )) { GiveInventory(weapon2,            1); }
-	else if(CheckInventory("Starter_Nailgun"   )) { if(!CheckInventory("QCSuperNailgun")) GiveInventory(weapon3, 1); }
+	else if (GetCvar("instagib"))                  { GiveInventory("QCRailgunDM",        1); GiveInventory("EndlessInfiniteAmmo",1);}
+	else if (GetCvar("buckshot"))                  { GiveInventory("QCSuperShotgunDM",   1); }
+	else if (GetCvar("lastmanstanding") || GetCvar("teamlms")) { GiveLMS(); }
+	else if (CheckInventory("Class_Sam"))          { ACS("QCDE_Passive_Sam"); }
+	else if (CheckInventory("Starter_Machinegun")) { if(!CheckInventory("QCHeavyMachinegun")) GiveInventory(weapon1, 1); }
+	else if (CheckInventory("Starter_Shotgun"   )) { GiveInventory(weapon2,            1); }
+	else if (CheckInventory("Starter_Nailgun"   )) { if(!CheckInventory("QCSuperNailgun")) GiveInventory(weapon3, 1); }
 	else
 	{
 		int cvar = GetCvar("cl_startingWeapon");
@@ -139,7 +140,49 @@ function void GiveRocketArena(int ra)
 		// Impossible to have more flags with this system, can be redone later to allow.
 	}
 
+	int cvar = GetCvar("cl_startingWeapon");
+	switch(cvar)
+	{
+	default: // go to case 1
+	case 1: if (CheckInventory("QCHeavyMachinegunDM")) SetWeapon("QCHeavyMachinegunDM");	break;
+	case 2: if (CheckInventory("QCSuperShotgunDM")) SetWeapon("QCSuperShotgunDM");		break;
+	case 3: if (CheckInventory("QCSuperNailgunDM")) SetWeapon("QCSuperNailgunDM");		break;
+	}
+
 	GiveInventory("EndlessInfiniteAmmo",1);
+}
+
+function void GiveLMS()
+{
+	if(!PlayerIsBot(PlayerNumber()))
+		GiveInventory("QCGauntlet",1);
+	else
+		GiveInventory("QCGauntlet_Bot"	,1);
+
+	GiveInventory("QCHeavyMachinegunDM", 1);
+	GiveInventory("QCSuperShotgunDM",    1);
+	GiveInventory("QCSuperNailgunDM",    1);
+	GiveInventory("QCTriboltDM",         1);
+	GiveInventory("QCRocketLauncherDM",  1);
+	GiveInventory("QCLightningGunDM",    1);
+	GiveInventory("QCRailgunDM",         1);
+
+	GiveInventory("QCBulletAmmo", GetAmmoCapacity("QCBulletAmmo"));
+	GiveInventory("QCShellAmmo", GetAmmoCapacity("QCShellAmmo"));
+	GiveInventory("QCNailAmmo", GetAmmoCapacity("QCNailAmmo"));
+	GiveInventory("QCBoltAmmo", GetAmmoCapacity("QCBoltAmmo"));
+	GiveInventory("QCRocketAmmo", GetAmmoCapacity("QCRocketAmmo"));
+	GiveInventory("QCCoilAmmo", GetAmmoCapacity("QCCoilAmmo"));
+	GiveInventory("QCSlugAmmo", GetAmmoCapacity("QCSlugAmmo"));
+
+	int cvar = GetCvar("cl_startingWeapon");
+	switch(cvar)
+	{
+	default: // go to case 1
+	case 1: SetWeapon("QCHeavyMachinegunDM");	break;
+	case 2: SetWeapon("QCSuperShotgunDM");		break;
+	case 3: SetWeapon("QCSuperNailgunDM");		break;
+	}
 }
 
 function int power(int a, int b)

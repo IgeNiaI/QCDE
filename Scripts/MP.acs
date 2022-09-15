@@ -262,14 +262,6 @@ script "QCDE_InitLMS" (void)
 
 	GiveInventory("QCMegaMega", 1);
 	GiveInventory("QCMegaMega", 1);
-
-	GiveInventory("QCHeavyMachinegunDM", 1);
-	GiveInventory("QCSuperShotgunDM",    1);
-	GiveInventory("QCSuperNailgunDM",    1);
-	GiveInventory("QCTriboltDM",         1);
-	GiveInventory("QCRocketLauncherDM",  1);
-	GiveInventory("QCLightningGunDM",    1);
-	GiveInventory("QCRailgunDM",         1);
 }
 
 
