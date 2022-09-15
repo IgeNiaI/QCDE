@@ -2511,7 +2511,7 @@ Script "QCDE_Ability_Sam" (void)
 	If(CheckInventory("DMToken"))	//this if is no longer needed, kept "just in case" in the future
 		GiveInventory("SeriousBullets",80);
 	else
-		GiveInventory("SeriousBullets",120);
+		GiveInventory("SeriousBullets",GetAmmoCapacity("SeriousBullets"));
 	SetNetworkReplicationFlags( 0 );
 
 	// Rocket arena special case: reenable infinite ammo for duration
@@ -3773,6 +3773,14 @@ Script "QCDE_Passive_Terminator" (void)
 	}
 }
 
+Script "QCDE_Terminator_Rockets_Full"
+{
+	if (CheckInventory("TerminatorRockets") >= 20)
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+}
+
 function int qcContains(str subst)
 {
 	// If 3-letter substring starting at second ("qcBFGdm") or at seventh ("qcheavyMAChinegun")
@@ -3982,6 +3990,14 @@ Script "QCDE_Passive_Sarge" (void)
 		GiveInventory("NoHealthDegenerationToken", 1);
 		GiveInventory("NoArmorDegenerationToken" , 1);
 	}
+}
+
+Script "QCDE_Sarge_Armor_Full"
+{
+	if (CheckInventory("BasicArmor") >= CheckInventory("MaxArmorToken") + 100)
+		SetResultValue(1);
+	else
+		SetResultValue(0);
 }
 
 
@@ -4880,7 +4896,7 @@ Script "QCDE_Passive_Sam" (int ammo)
 			SetInventory("QCShotgun"   ,1);
          	if(!CheckInventory("QCSuperNailgun")) GiveInventory("QCNailgun", 1);
 			SetInventory("SamMinigun"  ,0);
-			SetInventory("SeriousBullets",80);
+			SetInventory("SeriousBullets",GetAmmoCapacity("SeriousBullets"));
 		}
 		else if(!GetCvar("instagib") && !GetCvar("rocketarena"))
 		{
@@ -4907,6 +4923,13 @@ Script "QCDE_Passive_Sam" (int ammo)
 	}
 }
 
+Script "QCDE_Sam_Bullets_Full"
+{
+	if (CheckInventory("SeriousBullets") >= GetAmmoCapacity("SeriousBullets"))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+}
 
 
 
