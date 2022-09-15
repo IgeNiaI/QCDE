@@ -958,7 +958,7 @@ Script "QCDE_Ability_Terminator" (void)
 	int rocketCount = CheckInventory("TerminatorRockets");
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", rocketCount * TERMINATOR_ROCKET_DELAY);
 
-	while(counterer++ < rocketCount)
+	while(counterer++ < rocketCount && GetActorProperty(0, APROP_HEALTH) > 0)
 	{
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("TermRocketProc",1);
