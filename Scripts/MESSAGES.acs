@@ -2406,7 +2406,7 @@ script "QCDE_ClassInfo" (int class, int page) net clientside
 		break;
 	}
 
-	HudMessage(s:"QC:DE v2.7";HUDMSG_FADEINOUT,ID_CLASSINFO_VERS,col,320.0,480.2,10.0,1.00,8.0);
+	HudMessage(s:"QC:DE v3.0";HUDMSG_FADEINOUT,ID_CLASSINFO_VERS,col,320.0,480.2,10.0,1.00,8.0);
 	LocalAmbientSound("QC/UI/InfoScreen",115);
 
 	holding = true;
@@ -2620,7 +2620,7 @@ script "QCDE_FreezeIndicator_CLIENT" (int percentage) CLIENTSIDE
 Script "QCDE_ShowVersionNumber" (void)
 {
 	SetHudSize(960,720,0);
-	HudMessageBold(s:"v2.7";HUDMSG_PLAIN,ID_TITLEMAP_VERSION,CR_WHITE, 955.0, 710.0, 0);
+	HudMessageBold(s:"v3.0";HUDMSG_PLAIN,ID_TITLEMAP_VERSION,CR_WHITE, 955.0, 710.0, 0);
 }
 
 
