@@ -42,10 +42,8 @@ str song_names[NUMBER_OF_SONGS * 2] = {
 int servers_suggestion = -1;
 Script "QCDE_Music" OPEN CLIENTSIDE
 {
-	if(CheckQcdeModule("QCDE-OST") == false) terminate;
 	if(!GetUserCvar(CPN(), "snd_qcdemus")) terminate;
 	if(GameType() == GAME_TITLE_MAP) terminate;
-	delay(1);
 
 	if((GetGameModeState() == 0 && (GetCvar("survival") || GetCvar("invasion") || GetCvar("duel") || GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("possession") || GetCvar("teampossession"))) ||
 		GetGameModeState() == 1) // GAMESTATE_WAITFORPLAYERS in countdown modes or just GAMESTATE_COUNTDOWN
@@ -58,6 +56,9 @@ Script "QCDE_Music" OPEN CLIENTSIDE
 	{
 		//log(s:"\c[cyan]Music plays! \c[RG]", d:GetGameModeState(), s:".", d:GetCvar("survival"),  d:GetCvar("invasion"), d:GetCvar("duel"), d:GetCvar("lastmanstanding"), d:GetCvar("teamlms"), d:GetCvar("possession"), d:GetCvar("teampossession"));
 	}
+
+	if(CheckQcdeModule("QCDE-OST") == false) terminate;
+	delay(1);
 
 	int sel = -1;
 	int randomness = GetUserCvar(CPN(), "snd_randommus");
@@ -174,7 +175,7 @@ function int GetDesc(int x)
 
 function void PlaySong(int x)
 {
-	SetMusic(GetTune(x),0,0);
+	SetMusic(GetTune(x),0,1);
 	if(GetUserCvar(CPN(), "snd_songnames")) log(s:"Now playing: \c[green]", s:GetName(x), s:" \c[graey]", s:GetDesc(x));
 	SetUserCvar(CPN(), "_previousSong", x);
 }
