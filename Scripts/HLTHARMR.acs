@@ -228,3 +228,11 @@ Script "QCDE_KeySpawned" (void)
 
 	//log(s:"Key ", n:0, s:" spawns successfully");
 }
+
+Script "QCDE_ShowItemRespawnTimers" (void)
+{
+	if (GetCvar("sv_itemRespawn") && GetCvar("sv_showItemTimers"))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+}

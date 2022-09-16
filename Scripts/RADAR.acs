@@ -294,6 +294,7 @@ function int GetRadarGraphic(int me, int tid, int mode)
 		if(CheckActorClass(tid, "QCMegaHealthFX")) return "RDRMEGAH";
 		if(CheckActorClass(tid, "QCMegaMegaFX"  )) return "RDRMMEGA";
 		if(CheckActorClass(tid, "QCHeavyArmorFX")) return "RDRHEAVY";
+		if(CheckActorClass(tid, "QCLightArmorFX")) return "RDREMPTY"; // we don't want to show light armor on radar
 		//log(s:"QCDE warning: Item without radar graphics: ", s:GetActorClass(tid), s:", tid = ", d:tid);
 		return "RDRMONST";//"PWUPFRAM";
 

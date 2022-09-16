@@ -104,8 +104,6 @@ Actor GenericPowerupFXBackground
 	var int user_maxalpha;
 	var int user_rendermode;
 	+NOINTERACTION
-	+CLIENTSIDEONLY
-	+NONETID
 	Radius 1
 	Height 2
 	Gravity 1.0

@@ -228,8 +228,8 @@ Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
 	States
 	{
 	Spawn:
-		MEGR A 35 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 0)
-		MEGR A 0 A_ThrowGrenade("QCMegaHealthFX")
+		MEGR A 0 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 0)
+		MEGR A 0 A_ThrowGrenade("QCMegaHealthFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		MEGR A 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		MEGR A -1 BRIGHT
 		Stop
@@ -309,6 +309,30 @@ Actor QCMegaHealthFX : GenericPowerupFXBackground
 		"####" "#" 0 A_SetUserVar(user_z,0)
 		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
 		Goto LooperIn
+
+	Death:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_ShowItemRespawnTimers") == 1, "DoTimer")
+		TNT1 A 35
+		Goto EndOfLife
+
+	Remove:
+        TNT1 A 0 Thing_ChangeTID(0,0)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_ShowItemRespawnTimers") == 1, "DoTimer")
+		TNT1 A 35
+		Goto EndOfLife
+
+	DoTimer:
+        TNT1 A 0 A_SetTranslucent(0.9,0)
+		TNT1 A 0 A_SetScale(0.2,0)
+        TNT1 A 0 A_ChangeFlag("FORCEXYBILLBOARD",TRUE)
+        MEGR C 175
+        MEGR D 175
+        MEGR E 175
+        MEGR F 175
+        MEGR G 175
+        MEGR H 155
+		MEGR HHHHHHHHHH 2 A_FadeOut(0.1)
+        Stop
 	}
 }
 
@@ -324,12 +348,11 @@ Actor QCMegaMega : CustomInventory replaces MegaSphere
 	Inventory.PickupSound "QC/Items/PowerupPick"
 	Inventory.RespawnTics 2100 //60 sec
 	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.BIGPOWERUP
 	States
 	{
 	Spawn:
-		MEGB A 35 NODELAY BRIGHT A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		MEGB A 0 A_ThrowGrenade("QCMegamegaFX")
+		MEGB A 0 NODELAY BRIGHT A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		MEGB A 0 A_ThrowGrenade("QCMegamegaFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		MEGB A -1 BRIGHT
 		Stop
 	Pickup:
@@ -351,6 +374,36 @@ Actor QCMegamegaFX : GenericPowerupFXBackground
 		"####" "#" 0 A_SetUserVar(user_z,0)
 		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
 		Goto LooperIn
+
+	Death:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_ShowItemRespawnTimers") == 1, "DoTimer")
+		TNT1 A 35
+		Goto EndOfLife
+
+	Remove:
+        TNT1 A 0 Thing_ChangeTID(0,0)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_ShowItemRespawnTimers") == 1, "DoTimer")
+		TNT1 A 35
+		Goto EndOfLife
+
+	DoTimer:
+        TNT1 A 0 A_SetTranslucent(0.9,0)
+		TNT1 A 0 A_SetScale(0.2,0)
+        TNT1 A 0 A_ChangeFlag("FORCEXYBILLBOARD",TRUE)
+        MEGB C 175
+        MEGB D 175
+        MEGB E 175
+        MEGB F 175
+        MEGB G 175
+        MEGB H 155
+        MEGB I 175
+        MEGB J 175
+        MEGB K 175
+        MEGB L 175
+        MEGB M 175
+		MEGB N 175
+		MEGB NNNNNNNNNN 2 A_FadeOut(0.1)
+        Stop
 	}
 }
 
@@ -490,6 +543,7 @@ Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
 	{
 	Spawn:
 		QCAR B 0 NODELAY A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QCAR B 0 A_ThrowGrenade("QCLightArmorFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		QCAR B -1 BRIGHT ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
 		Stop
 
@@ -558,6 +612,47 @@ Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
 	}
 }
 
+Actor QCLightArmorFX : GenericPowerupFXBackground
+{
+	Scale 1.5
+	Alpha 0.01
+
+	States
+	{
+	Spawn:
+		NULL A 0 NoDelay A_SetUserVar(user_maxalpha,100)	//it's actually invisible
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
+		Goto LooperIn
+
+	Death:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_ShowItemRespawnTimers") == 1, "DoTimer")
+		TNT1 A 35
+		Goto EndOfLife
+
+	Remove:
+        TNT1 A 0 Thing_ChangeTID(0,0)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_ShowItemRespawnTimers") == 1, "DoTimer")
+		TNT1 A 35
+		Goto EndOfLife
+
+	DoTimer:
+		TNT1 A 0 A_SetTranslucent(0.9,0)
+		TNT1 A 0 A_SetScale(0.2,0)
+        TNT1 A 0 A_ChangeFlag("FORCEXYBILLBOARD",TRUE)
+		LIGH A 175
+		LIGH B 175
+		LIGH C 175
+		LIGH D 175
+		LIGH E 175
+		LIGH F 155
+		LIGH FFFFFFFFFF 2 A_FadeOut(0.1)
+        Stop
+	}
+}
+
 
 Actor QCSmallArmorDoubleGiver : QCSmallArmorGiver
 {
@@ -587,8 +682,8 @@ Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
 	States
 	{
 	Spawn:
-		QCAR C 35 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 1)
-		QCAR C 0 A_ThrowGrenade("QCHeavyArmorFX")
+		QCAR C 0 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 1)
+		QCAR C 0 A_ThrowGrenade("QCHeavyArmorFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		QCAR C 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		QCAR C -1 BRIGHT
 		Stop
@@ -674,6 +769,30 @@ Actor QCHeavyArmorFX : GenericPowerupFXBackground
 		"####" "#" 0 A_SetUserVar(user_z,0)
 		"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
 		Goto LooperIn
+
+	Death:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_ShowItemRespawnTimers") == 1, "DoTimer")
+		TNT1 A 35
+		Goto EndOfLife
+
+	Remove:
+        TNT1 A 0 Thing_ChangeTID(0,0)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_ShowItemRespawnTimers") == 1, "DoTimer")
+		TNT1 A 35
+		Goto EndOfLife
+
+	DoTimer:
+        TNT1 A 0 A_SetTranslucent(0.9,0)
+		TNT1 A 0 A_SetScale(0.2,0)
+        TNT1 A 0 A_ChangeFlag("FORCEXYBILLBOARD",TRUE)
+        HEAV A 175
+        HEAV B 175
+        HEAV C 175
+        HEAV D 175
+        HEAV E 175
+        HEAV F 155
+		HEAV FFFFFFFFFF 2 A_FadeOut(0.1)
+        Stop
 	}
 }
 
