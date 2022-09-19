@@ -2813,7 +2813,7 @@ Script "QCDE_Ability_Painkiller" (void)
 	   checkinventory("PvEPainkillerCard3Level1")||checkinventory("PvEPainkillerCard3Level2")||checkinventory("PvEPainkillerCard3Level3"))
 	{
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		SetActorProperty(0,APROP_MvType,MVTYPE_CPM); //set to CPM
+		SetActorProperty(0,APROP_CpmAirControl,true); //set to CPM
 		SetNetworkReplicationFlags( 0 );
 	}
 
@@ -2833,7 +2833,7 @@ Script "QCDE_Ability_Painkiller" (void)
 	// End of effects
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ACS("QCDE_Tarot_Hint_End");
-	SetActorProperty(0,APROP_MvType,MVTYPE_VQ3); //reset movement to quake
+	SetActorProperty(0,APROP_CpmAirControl,false); //reset movement to quake
 	GiveInventory("GenericActiveCleanerProc",1);
 	SetNetworkReplicationFlags( 0 );
 }
@@ -2850,7 +2850,7 @@ Script "QCDE_Ability_Intruder" (void)
 	TakeInventory("PowerIntruderSpeed",1);	//cancels passive buffs
 	TakeInventory("PowerIntruderProtect",1); //cancels passive buffs
 
-	SetActorProperty(0,APROP_MvType,MVTYPE_VQ3); //movement type becomes standard quake for the duration
+	SetActorProperty(0,APROP_CpmAirControl,false); //movement type becomes standard quake for the duration
 	SetNetworkReplicationFlags( 0 );
 
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
@@ -2896,7 +2896,7 @@ Script "QCDE_Ability_Intruder" (void)
 	// Exit at destination
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ACS_NamedExecuteAlways("IntruderRestoreVisibility",0);  //makes visible again
-	SetActorProperty(0,APROP_MvType,MVTYPE_CPM); //movement back to CPM
+	SetActorProperty(0,APROP_CpmAirControl,true); //movement back to CPM
 	GiveInventory("WendigoOutProc",1);
 	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteAlways("QCDE_RestoreIndicator",0);

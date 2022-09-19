@@ -2437,6 +2437,8 @@ Actor QCDukeNukem : QCPlayerMedium
 //======================================================================================
 Actor QCDurandal : QCPlayerLight
 {
+	+CPMAIRCONTROL
+
 	Player.DisplayName "Durandal"
 	Player.SoundClass "Durandal"
 
@@ -2444,7 +2446,6 @@ Actor QCDurandal : QCPlayerLight
 	XScale 0.7
 	YScale 0.65
 
-	Player.MvType 2 // quake cpm
 	Player.VelocityCap 20
 	Player.CpmMaxForwardAngleRad 0.0872665
 	Player.CpmAirAcceleration 10
@@ -3233,6 +3234,8 @@ Actor QCGrayson : QCPlayerMedium
 
 Actor QCEradicator : QCPlayerHeavy
 {
+	+CPMAIRCONTROL
+
 	Player.DisplayName "Eradicator"
 	Player.SoundClass "Eradicator"
 
@@ -3240,7 +3243,6 @@ Actor QCEradicator : QCPlayerHeavy
 	XScale 0.76
 	YScale 0.75
 
-	Player.MvType 2 // quake cpm
 	Player.VelocityCap 20
 	Player.CpmMaxForwardAngleRad 0.0872665
 	Player.CpmAirAcceleration 10
@@ -5038,6 +5040,8 @@ Actor QCPainkiller : QCPlayerMedium
 
 Actor QCIntruder : QCPlayerMedium
 {
+	+CPMAIRCONTROL
+
 	Player.DisplayName "Intruder"
 	Player.SoundClass "Intruder"
 
@@ -5045,7 +5049,6 @@ Actor QCIntruder : QCPlayerMedium
 	XScale 0.68
 	YScale 0.75
 
-	Player.MvType 2 // quake cpm
 	Player.VelocityCap 20
 	Player.CpmAirAcceleration 10
 
