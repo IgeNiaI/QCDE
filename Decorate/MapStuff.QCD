@@ -733,6 +733,41 @@ Actor "QCDE OST" : Inventory 23492
 // Created by DBThanatos
 //=======================================================
 //=======================================================
+Actor NyancodemonActivator 16561
+{
+	//$NotAngled
+	//$Category "QCDE Map Decoration"
+	//$Color 16
+	//$Title "Nyancodemon Activator"
+	+NOGRAVITY
+	+THRUACTORS
+	+NOTARGET
+	+SHOOTABLE
+	-COUNTKILL
+	-SOLID
+	-CANPUSHWALLS
+	-CANUSEWALLS
+	-ACTIVATEMCROSS
+	Height 32
+	Radius 16
+	Health 1
+	states
+	{
+	Spawn:
+		TNT1 A 1
+		Wait
+	Death:
+		TNT1 A 0 Thing_Activate(666)
+		Stop
+	}
+}
+
+Actor NyancodemonActivatorFlat : NyancodemonActivator 16562
+{
+	//$Title "Nyancodemon Activator Flat"
+	Height 1
+}
+
 Actor Nyancodemon : SwitchableDecoration 16571
 {
 	//$NotAngled
