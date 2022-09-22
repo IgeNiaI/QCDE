@@ -72,7 +72,7 @@ Script "QCDE_SetWeaponRespawnTics" (void)
 // Activator: player
 Script "QCDE_RailRecoil" (void)
 {
-	if (GetCvar("sv_railrecoil"))
+	if (GetCvar("sv_railrecoil") && (CheckSolidFooting(0, 0) == CSF_INAIR))
 		SetResultValue(12);
 	else
 		SetResultValue(0);

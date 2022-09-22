@@ -375,6 +375,7 @@ Actor QCRailGun : QCWeapon
 
 		PerformSP:
 			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) == 0, 2) // don't change velocity at all if 0
 			TNT1 A 0 A_ChangeVelocity(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * -cos(pitch), 0, ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * sin(pitch), CVF_RELATIVE)
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeam")
 			Goto FlashCheckSound
@@ -385,6 +386,7 @@ Actor QCRailGun : QCWeapon
 
 		PerformDM:
 			TNT1 A 0 A_RailAttack(80,2,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) == 0, 2) // don't change velocity at all if 0
 			TNT1 A 0 A_ChangeVelocity(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * -cos(pitch), 0, ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * sin(pitch), CVF_RELATIVE)
 			//Medals start
 			TNT1 A 1
@@ -749,6 +751,7 @@ Actor QCRailGun : QCWeapon
 
 		PerformDMZoomed:
 			TNT1 A 0 A_RailAttack(80,0,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) == 0, 2) // don't change velocity at all if 0
 			TNT1 A 0 A_ChangeVelocity(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * -cos(pitch), 0, ACS_NamedExecuteWithResult("QCDE_railRecoil",0,0,0,0) * sin(pitch), CVF_RELATIVE)
 			//Medals start
 			TNT1 A 1
