@@ -269,7 +269,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 			else if (CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCHeavyMachinegunDM"))
 			{
 				// both heavy machineguns zoom to 1.8
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 				PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn",CHAN_WEAPON,1.0,false,0.5);
+				SetNetworkReplicationFlags( 0 );
 				zoom = GetCVar("cl_hmgZoom");
 				if (zoom < 1.1)
 					zoom = 1.1;
@@ -279,7 +281,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 				// coop shotgun zoom if second upgrade was picked up
 				if (CheckInventory("SG_UG_Explosive"))
 				{
+					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 					PlaySound(0,"QC/Weapons/Upgrade/SGBeep",CHAN_WEAPON);
+					SetNetworkReplicationFlags( 0 );
 					zoom = 1.1;
 				}
 			}
@@ -288,7 +292,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 				// coop super shotgun zoom if second upgrade was picked up
 				if (CheckInventory("SSG_UG_Flame"))
 				{
+					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 					PlaySound(0,"QC/Weapons/Upgrade/SSGBeep",CHAN_WEAPON);
+					SetNetworkReplicationFlags( 0 );
 					zoom = 1.1;
 				}
 			}
@@ -297,7 +303,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 				// coop super nailgun zoom if second upgrade was picked up
 				if (CheckInventory("SNG_UG_Seeker"))
 				{
+					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 					PlaySound(0,"QC/Weapons/Upgrade/SNGBeep",CHAN_WEAPON);
+					SetNetworkReplicationFlags( 0 );
 					zoom = 1.1;
 				}
 			}
@@ -306,7 +314,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 				// coop tribolt zoom if second upgrade was picked up
 				if (CheckInventory("TB_UG_Grenade"))
 				{
+					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 					PlaySound(0,"QC/Weapons/Upgrade/TBBeep",CHAN_WEAPON);
+					SetNetworkReplicationFlags( 0 );
 					zoom = 1.1;
 				}
 			}
@@ -315,7 +325,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 				// coop rocket launcher zoom if second upgrade was picked up
 				if (CheckInventory("RL_UG_Control"))
 				{
+					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 					PlaySound(0,"QC/Weapons/Upgrade/RLBeep",CHAN_WEAPON);
+					SetNetworkReplicationFlags( 0 );
 					zoom = 1.1;
 				}
 			}
@@ -324,7 +336,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 				// coop lightning gun zoom if second upgrade was picked up
 				if (CheckInventory("LG_UG_Static"))
 				{
+					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 					PlaySound(0,"QC/Weapons/Upgrade/LGBeep",CHAN_WEAPON);
+					SetNetworkReplicationFlags( 0 );
 					zoom = 1.1;
 				}
 			}
@@ -337,7 +351,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 			else if (CheckWeapon("QCRailgun") || CheckWeapon("QCRailgunDM"))
 			{
 				// both railguns zoom to 2.5
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 				PlaySound(0,"QC/Weapons/Railgun/ZoomIn",6,1.0,false); // not in CHAN_WEAPON because it interrupts recharge sound
+				SetNetworkReplicationFlags( 0 );
 				zoom = GetCVar("cl_railgunZoom");
 				if (zoom < 1.1)
 					zoom = 1.1;
@@ -347,7 +363,9 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 				// coop BFG zoom if second upgrade was picked up
 				if (CheckInventory("BFG_UG_Charge"))
 				{
+					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 					PlaySound(0,"QC/Weapons/Upgrade/BFGBeep",CHAN_WEAPON);
+					SetNetworkReplicationFlags( 0 );
 					zoom = 1.1;
 				}
 			}
@@ -374,11 +392,15 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 		{
 			if (CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCHeavyMachinegunDM"))
 			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 				PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomOut",CHAN_WEAPON,1.0,false,0.5);
+				SetNetworkReplicationFlags( 0 );
 			}
 			else if (CheckWeapon("QCRailgun") || CheckWeapon("QCRailgunDM"))
 			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 				PlaySound(0,"QC/Weapons/Railgun/ZoomOut",6,1.0,false); // not in CHAN_WEAPON because it interrupts recharge sound
+				SetNetworkReplicationFlags( 0 );
 			}
 
 			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
