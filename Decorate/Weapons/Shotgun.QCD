@@ -75,6 +75,12 @@ Actor ShotgunPickup : CustomInventory 15601
 	}
 }
 
+Actor ShotgunPickupFloat : ShotgunPickup 15611
+{
+	//$Title "Float Shotgun"
+	+NOGRAVITY
+}
+
 
 Actor QCShotgun : QCWeapon
 {

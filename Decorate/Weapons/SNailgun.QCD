@@ -73,6 +73,12 @@ Actor SuperNailgunPickup : CustomInventory 15603
 	}
 }
 
+Actor SuperNailgunPickupFloat : SuperNailgunPickup 15613
+{
+	//$Title "Float Super Nailgun"
+	+NOGRAVITY
+}
+
 
 Actor QCSuperNailgun : QCWeapon
 {

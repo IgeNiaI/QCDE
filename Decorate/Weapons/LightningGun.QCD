@@ -67,6 +67,12 @@ Actor LightningGunPickup : CustomInventory 15606
 	}
 }
 
+Actor LightningGunPickupFloat : LightningGunPickup 15616
+{
+	//$Title "Float Lightning Gun"
+	+NOGRAVITY
+}
+
 Actor QCLightningGun : QCWeapon
 {
 	Height 48

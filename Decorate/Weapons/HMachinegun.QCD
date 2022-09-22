@@ -73,6 +73,12 @@ Actor HeavyMachinegunPickup : CustomInventory 15600
 	}
 }
 
+Actor HeavyMachinegunPickupFloat : HeavyMachinegunPickup 15610
+{
+	//$Title "Float Heavy Machinegun"
+	+NOGRAVITY
+}
+
 
 Actor QCHeavyMachinegun : QCWeapon
 {

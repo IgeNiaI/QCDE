@@ -64,6 +64,12 @@ Actor SuperShotgunPickup : CustomInventory 15602
 	}
 }
 
+Actor SuperShotgunPickupFloat : SuperShotgunPickup 15612
+{
+	//$Title "Float Super Shotgun"
+	+NOGRAVITY
+}
+
 Actor SuperShotgunPickupDMvar: CustomInventory 	//this one is for SSGs spawned in DM maps that have 200
 {												//SSG spawns in the map. Most of the time, it'll be something else
 	//$NotAngled

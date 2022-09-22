@@ -65,6 +65,12 @@ Actor TriboltPickup : CustomInventory 15604
 	}
 }
 
+Actor TriboltPickupFloat : TriboltPickup 15614
+{
+	//$Title "Float Tribolt"
+	+NOGRAVITY
+}
+
 
 Actor QCTribolt : QCWeapon
 {

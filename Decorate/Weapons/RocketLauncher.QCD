@@ -63,6 +63,12 @@ Actor RocketLauncherPickup : CustomInventory 15605
 	}
 }
 
+Actor RocketLauncherPickupFloat : RocketLauncherPickup 15615
+{
+	//$Title "Float Rocket Launcher"
+	+NOGRAVITY
+}
+
 
 Actor QCRocketLauncher : QCWeapon
 {

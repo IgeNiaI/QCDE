@@ -72,6 +72,12 @@ Actor BFGPickup : CustomInventory 15608
 	}
 }
 
+Actor BFGPickupFloat : BFGPickup 15618
+{
+	//$Title "Float BFG 10k"
+	+NOGRAVITY
+}
+
 Actor QCBFG : QCWeapon
 {
 	Height 48
