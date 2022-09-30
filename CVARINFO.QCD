@@ -14,7 +14,7 @@ server noarchive int bot_buff               =   1; // give health randomly, [0..
 server noarchive int bot_twitch             = 100; // twitchiness percentage, [0..200]
 server           int sv_playerSpeed         =  85; // percentage, [70..130] in steps of 5
 server           int sv_showDamageNumbers   =   1; // visual representation of damage
-server           int sv_QCDEPowerups        =   2; // spawn BFG and powerup factory? 0 = no, 1 = yes, 2 = auto
+server           int sv_QCDEPowerups        =   1; // spawn BFG and powerup factory?
 server noarchive int sv_cooldownPercentage  = 100; // multiplies active ability cooldown
 server           int sv_minPlayers          =   4; // fills slots with bots if there are fewer players
 server           int sv_shuffleBots         =   2; // replace bots on map transition, 0: none, 1: all, 2: one

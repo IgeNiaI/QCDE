@@ -504,10 +504,6 @@ Script "QCDE_RemoveIfDuel" (int noRestore)
 	//log(n:0, s:" elder's?");
 	if(GetCvar("qc_elderssoul")) terminate; // sic!
 
-	// auto: remove if fewer than 4 players intended
-	//log(n:0, s:" no players?");
-	if((GetCvar("sv_QCDEPowerups") == 2) && (PlayerCount() < 4) && (GetCvar("sv_minPlayers") < 4)) Thing_Remove(0);
-
 	if(GetCvar("duel")) Thing_Remove(0);
 
 	// off: remov
