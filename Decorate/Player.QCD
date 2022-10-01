@@ -415,10 +415,10 @@ Actor QCDoomSlayer : QCPlayerMedium
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
 		TNT1 A 0 A_StopSound(CHAN_WEAPON) //stops looping sounds
 		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
-		QP02 H 10
-		QP02 I 10 A_PlayerScream
-		QP02 J 10 A_NoBlocking
-		QP02 KLM 10
+		QP02 H 7
+		QP02 I 7 A_PlayerScream
+		QP02 J 7 A_NoBlocking
+		QP02 KLM 7
 		QP02 N -1 A_StopSound(CHAN_WEAPON)
 		Stop
 	XDeath:
