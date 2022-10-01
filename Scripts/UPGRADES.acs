@@ -2,6 +2,7 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
+#import "WEAPCNST.bcs"
 
 // .   . ..... ..... ..... .....  ..... ..... .... .....  .....
 // :   : :   : :   : :   : :   :  :   : :   : :    :   :  :   :
@@ -273,7 +274,7 @@ Script "drop_upgrade" (int weapon, int upgrade) NET
 		if(weapon == 0)
 			print(s:"\c[red] Specify weapon and upgrade. \n Valid weapons: 0, 3, 7, 9, 11, 13, 15, 17, 19, 21. \n Valid upgrades: 1, 2.");
 		else
-			print(s:"\c[red] Specify upgrade for \c[brite]", s:strmid(weaponList[weapon],2,99), s:". \n Valid numbers: 1, 2.");
+			print(s:"\c[red] Specify upgrade for \c[brite]", s:weaponNames[weapon], s:". \n Valid numbers: 1, 2.");
 		terminate;
 	}
 
@@ -281,12 +282,12 @@ Script "drop_upgrade" (int weapon, int upgrade) NET
 	int upgr = upgrade - 1;
 	if (WeaponUpgrades[weapon][upgr][WU_TOKEN] == bad)
 	{
-		print(s:"\c[red] Weapon ", s:strmid(weaponList[weapon],2,99), s:" doesn't have upgrade ", d:upgrade, s:".");
+		print(s:"\c[red] Weapon ", s:weaponNames[weapon], s:" doesn't have upgrade ", d:upgrade, s:".");
 		terminate;
 	}
 	if (!CheckInventory(WeaponUpgrades[weapon][upgr][WU_TOKEN]))
 	{
-		print(s:"\c[yellow] You don't have ", s:WeaponUpgrades[weapon][upgr][WU_PROPERNAME], s:" for ", s:strmid(weaponList[weapon],2,99), s:".");
+		print(s:"\c[yellow] You don't have ", s:WeaponUpgrades[weapon][upgr][WU_PROPERNAME], s:" for ", s:weaponNames[weapon], s:".");
 		terminate;
 	}
 
@@ -296,7 +297,7 @@ Script "drop_upgrade" (int weapon, int upgrade) NET
 	int y = GetActorY(0) + sin(a) * UPGRADE_DROP_DIST;
 	int z = GetActorZ(0);
 	SpawnForced(WeaponUpgrades[weapon][upgr][WU_GIVER], x,y,z);
-	print(s:"\c[brite] You have dropped ", s:WeaponUpgrades[weapon][upgr][WU_PROPERNAME], s:" for ", s:strmid(weaponList[weapon],2,99), s:".");
+	print(s:"\c[brite] You have dropped ", s:WeaponUpgrades[weapon][upgr][WU_PROPERNAME], s:" for ", s:weaponNames[weapon], s:".");
 
 	delay(1);
 }
