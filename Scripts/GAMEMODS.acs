@@ -30,11 +30,14 @@ str gamemode[NUMBER_OF_GAMEMODES] = {
 	"ONEFLAGCTF",       // 13
 	"SKULLTAG",         // 14
 	"DOMINATION",       // 15
+	"INSTAGIB",			// 16
+	"BUCKSHOT",			// 17
+	"ROCKETARENA",		// 18
 
 	// QCDE
-	"qc_EldersSoul",    // 16
-	"qc_FreezeTag",     // 17
-	"qc_SkirmishRogue", // 18
+	"qc_EldersSoul",    // 19
+	"qc_FreezeTag",     // 20
+	"qc_SkirmishRogue", // 21
 };
 
 Script "QCDE_Gamemode" (void)
@@ -49,6 +52,13 @@ Script "QCDE_Gamemode_SURVIVAL"        (void) {}
 
 int wave_was = -1;
 Script "QCDE_Gamemode_INVASION"        (void)
+{
+	ConsoleCommand("sv_itemrespawn true");
+
+	ACS("QCDE_Gamemode_INVASION_loop");
+}
+
+Script "QCDE_Gamemode_INVASION_loop"        (void)
 {
 	int wave = GetInvasionWave() - 1;
 
@@ -75,7 +85,10 @@ Script "QCDE_Gamemode_INVASION"        (void)
 	restart;
 }
 
-Script "QCDE_Gamemode_DEATHMATCH"      (void) {}
+Script "QCDE_Gamemode_DEATHMATCH"      (void)
+{
+	ConsoleCommand("sv_itemrespawn true");
+}
 Script "QCDE_Gamemode_TEAMPLAY"        (void) {}
 Script "QCDE_Gamemode_DUEL"            (void) {}
 
@@ -92,10 +105,31 @@ Script "QCDE_Gamemode_TEAMLMS"         (void) {}
 Script "QCDE_Gamemode_POSSESSION"      (void) {}
 Script "QCDE_Gamemode_TEAMPOSSESSION"  (void) {}
 Script "QCDE_Gamemode_TEAMGAME"        (void) {}
-Script "QCDE_Gamemode_CTF"             (void) {}
-Script "QCDE_Gamemode_ONEFLAGCTF"      (void) {}
-Script "QCDE_Gamemode_SKULLTAG"        (void) {}
+Script "QCDE_Gamemode_CTF"             (void)
+{
+	ConsoleCommand("sv_itemrespawn true");
+}
+Script "QCDE_Gamemode_ONEFLAGCTF"      (void)
+{
+	ConsoleCommand("sv_itemrespawn true");
+}
+Script "QCDE_Gamemode_SKULLTAG"        (void)
+{
+	ConsoleCommand("sv_itemrespawn true");
+}
 Script "QCDE_Gamemode_DOMINATION"      (void) {}
+Script "QCDE_Gamemode_INSTAGIB"        (void)
+{
+	ConsoleCommand("sv_weapondrop 0");
+}
+Script "QCDE_Gamemode_BUCKSHOT"        (void)
+{
+	ConsoleCommand("sv_weapondrop 0");
+}
+Script "QCDE_Gamemode_ROCKETARENA"     (void)
+{
+	ConsoleCommand("sv_weapondrop 0");
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //
