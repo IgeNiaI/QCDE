@@ -66,7 +66,6 @@ user int  cl_barStyle          =   0; // 0 = blocks of 25, 1 = continuous
 user int  cl_qcmedals          =   2; // 0 = off, 1 = full, 2 = sound only
 user int snd_qcdemus           =   1; // play QCDE songs by Michael Markie when available
 user int snd_randommus         =   1; // play QCDE OST in random order. Desyncs in MP.
-user int snd_songnames         =   0; // log names of songs being played
 user int _previousSong         =  -1; // used internally for snd_randommus
 
 // Client zoom settings

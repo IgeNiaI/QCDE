@@ -2,42 +2,9 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
+#import "MUZAKCST.acs"
 
 #define NUMBER_OF_SONGS 30
-
-str song_names[NUMBER_OF_SONGS * 2] = {
-//
-"Slipgate",                "(Quake cover)",
-"Augmented",               "",
-"Inferno",                 "",
-"Dune",                    "",
-"Phobos",                  "(Doom cover)",
-"Conflagration",           "",
-"The Abyss",               "",
-"Geist",                   "",
-"Quad Machine",            "(Quake 2 cover)",
-"Infuscomus",              "(Blood cover)",
-"Xenomorph",               "",
-"Shodan",                  "",
-"Devil",                   "",
-"Descent into Cerberon",   "(Quake 2 cover)",
-"Deimos",                  "",
-"Grabbag",                 "(Duke Nukem cover)",
-"Durandal",                "(Marathon 2 cover)",
-"G.M.G.",                  "(The Spud Hunter theme)",
-"Wraith",                  "",
-"Vyper",                   "",
-"Get Psyched!",            "(Wolfenstein 3D cover)",
-"Doomed",                  "",
-"Crusade",                 "(Galena theme)",
-"For The Makron",          "(Strogg & Peeker theme)",
-"Nightmare",               "(Ranger theme)",
-"Ballet",                  "(Slash theme)",
-"Eternal",                 "(Visor theme)",
-"Bull Rush",               "(Scalebearer theme)",
-"Incendimus",              "(Death Knight theme)",
-"Punk's Not Dead",         "(Anarki theme)",
-};
 
 int servers_suggestion = -1;
 Script "QCDE_Music" OPEN CLIENTSIDE
@@ -96,6 +63,8 @@ Script "QCDE_Music" OPEN CLIENTSIDE
 		sel = GetLevelInfo(LEVELINFO_LEVELNUM) % NUMBER_OF_SONGS;
 
 	PlaySong(sel);
+	delay(145);
+	PrintSongName(sel);
 }
 
 
@@ -106,6 +75,8 @@ Script "QCDE_Jukebox" (int x) NET CLIENTSIDE
 
 	//log(s:"Jukes: Playing map-defined ", d:x);
 	PlaySong(x);
+	delay(145);
+	PrintSongName(x);
 }
 
 Script "QCDE_PickRandomSong" (int asker, int repeated) NET
@@ -114,7 +85,6 @@ Script "QCDE_PickRandomSong" (int asker, int repeated) NET
 	if(servers_suggestion == -1)
 	{
 		servers_suggestion = makeSuggestion();
-		//log(s:TimeNow(), s:": deciding ", d:servers_suggestion, s:" -- \c[green]", s:GetName(servers_suggestion), s:" \c[graey]", s:GetDesc(servers_suggestion));
 	}
 	ACS("QCDE_RandomSongPicked", servers_suggestion);
 }
@@ -154,8 +124,14 @@ function int makeSuggestion(void)
 
 Script "QCDE_RandomSongPicked" (int which) CLIENTSIDE
 {
-	//log(s:TimeNow(), s:": receiving suggestion of ", d:which, s:" -- \c[green]", s:GetName(which), s:" \c[graey]", s:GetDesc(which));
 	servers_suggestion = which;
+}
+
+Script "QCDE_SetMusicNumber" (int musicNumber)
+{
+	int ostTid = UniqueTID();
+	if (SpawnForced("QCDE OST", 0, 0, 0, ostTid))
+		SetThingSpecial(ostTid, 0, musicNumber);
 }
 
 function int GetTune(int x)
@@ -163,19 +139,16 @@ function int GetTune(int x)
 	return strparam(s:"a", d:x/1000000%10, d:x/100000%10, d:x/10000%10, d:x/1000%10, d:x/100%10, d:x/10%10, d:x%10);
 }
 
-function int GetName(int x)
-{
-	return song_names[x * 2];
-}
-
-function int GetDesc(int x)
-{
-	return song_names[x * 2 + 1];
-}
-
 function void PlaySong(int x)
 {
 	SetMusic(GetTune(x),0,1);
-	if(GetUserCvar(CPN(), "snd_songnames")) log(s:"Now playing: \c[green]", s:GetName(x), s:" \c[graey]", s:GetDesc(x));
 	SetUserCvar(CPN(), "_previousSong", x);
+	SetActivator(1000 + ConsolePlayerNumber());
+}
+
+function void PrintSongName(int x)
+{
+	SetFont("CONFONT");
+	HudMessage(s:"Music: ", s:getMusicName(x), s:"\nAuthor: ", s:getMusicAuthor(x);
+		HUDMSG_FADEINOUT, 0, CR_RED, 0.05, 0.65, 2.3, 0.9, 1.0);
 }
