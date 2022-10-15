@@ -5,6 +5,7 @@
 #import "MUZAKCST.acs"
 
 #define NUMBER_OF_SONGS 31
+#define JUKEBOX_TID 46290
 
 int servers_suggestion = -1;
 Script "QCDE_Music" OPEN CLIENTSIDE
@@ -30,9 +31,9 @@ Script "QCDE_Music" OPEN CLIENTSIDE
 	int sel = -1;
 	int randomness = GetUserCvar(CPN(), "snd_randommus");
 	// Play song through QCDE jukebox if it's present, but not if RANDOM mode is enabled
-	if(IsTidUsed(46290) && (randomness < 2))
+	if(IsTidUsed(JUKEBOX_TID) && (randomness < 2))
 	{
-		SetActorState(46290, "Play");
+		SetActorState(JUKEBOX_TID, "Play");
 		terminate;
 	}
 
@@ -129,9 +130,8 @@ Script "QCDE_RandomSongPicked" (int which) CLIENTSIDE
 
 Script "QCDE_SetMusicNumber" (int musicNumber)
 {
-	int ostTid = UniqueTID();
-	if (SpawnForced("QCDE OST", 0, 0, 0, ostTid))
-		SetThingSpecial(ostTid, 0, musicNumber);
+	if (SpawnForced("QCDE OST", 0, 0, 0, JUKEBOX_TID))
+		SetThingSpecial(JUKEBOX_TID, 0, musicNumber);
 }
 
 function int GetTune(int x)

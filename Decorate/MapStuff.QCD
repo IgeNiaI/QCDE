@@ -702,7 +702,7 @@ Actor "QCDE OST" : Inventory 23492
 	States
 	{
 	Spawn:
-		TNT1 A 0 NoDelay Thing_ChangeTID(0,46290)
+		TNT1 A 0
 	Hibernate:
 		TNT1 A -1
 		Stop
