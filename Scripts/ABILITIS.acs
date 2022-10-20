@@ -2436,6 +2436,9 @@ Script "QCDE_SkullSpawned" (void)
 
 	if(GameType() <= GAME_NET_COOPERATIVE) GiveInventory("FriendlyProc",1);
 
+	while(GetActorProperty(plrtid, APROP_HEALTH) > 0)
+		delay(1);
+	Thing_Remove(tid);
 	//ACS("iamamiwhoami");
 }
 
@@ -5131,13 +5134,6 @@ Script "QCDE_Passive_Hunter" (void)
 			}
 			delay(1);
 		}
-		Thing_Remove(plrtid - 1000 + SKULL_TIDBASE);
-	}
-	else
-	{
-		while(GetActorProperty(0,APROP_HEALTH) > 0)
-			delay(1);
-		Thing_Remove(plrtid - 1000 + SKULL_TIDBASE);
 	}
 }
 
