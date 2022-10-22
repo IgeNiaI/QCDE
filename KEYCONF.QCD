@@ -6,10 +6,12 @@
 alias +QCDE_StartingWeapon "pukename QCDE_StartingWeapon always"
 alias -QCDE_StartingWeapon ""
 
+defaultbind j "+QCDE_StartingWeapon"
+
 alias +QCDE_ActiveAbility "pukename QCDE_ActiveAbility always"
 alias -QCDE_ActiveAbility ""
 
-defaultbind f "+QCDE_ActiveAbility"
+defaultbind f "+user1"
 
 alias +QCDE_ClassInfo "pukename QCDE_ClassInfo always"
 alias -QCDE_ClassInfo "pukename QCDE_ClassInfo_Stop always"
@@ -18,7 +20,7 @@ defaultbind f1 "+QCDE_ClassInfo"
 
 alias voice        "pukename qcde_taunt %1"
 
-defaultbind y "voice"
+defaultbind v "voice"
 
 alias mpclassmenu  "pukename qcde_classpicker"
 
@@ -121,7 +123,7 @@ alias qcde_UnholyTrinity  "qcde_ut"
 // =========================================================
 
 addkeysection "$KEY_QcdeSection" "QCDE"                 // "QCDE bindings"
-addmenukey "$KEY_ActiveAbility"  "+QCDE_ActiveAbility"  // "Use Active Ability"
+addmenukey "$KEY_ActiveAbility"  "+user1"  // "Use Active Ability"
 addmenukey "$KEY_ClassInfo"      "+QCDE_ClassInfo"      // "Show Class Information"
 addmenukey "$KEY_StartingWeapon" "+QCDE_StartingWeapon" // "Change Starting Weapon"
 addmenukey "$KEY_Voice"          "voice"                // "Voice Line"
