@@ -72,7 +72,7 @@ Script "QCDE_Degeneration" (void)
 	else if(CheckInventory("Body_Big"	))	DegenerateTics = 70; 	//2 sec
 	else if(CheckInventory("Body_Small"	))	DegenerateTics = 25; 	//~0.7 sec
 
-	int t;
+	int t = DegenerateTics;
 	while(GetActorProperty(0,APROP_Health) > 0)
 	{
 		if(t --> 0) {} else
