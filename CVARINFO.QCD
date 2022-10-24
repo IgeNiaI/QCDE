@@ -83,10 +83,10 @@ server int qc_shuffleMode = 1;   // 0 = full shuffle, 1 = one theme per map
 server noarchive int qc_skirmishRogue = 0; // 1 = also randomize monster classes and item pickups
 
 server int theme0  = 1; // Quake 1
-server int theme1  = 0; // Quake 2
-server int theme2  = 0; // Quake 4
+server int theme1  = 1; // Quake 2
+server int theme2  = 1; // Quake 4
 server int theme3  = 0; // Doom
-server int theme4  = 0; // Doom 4 (Death Foretold)
+server int theme4  = 1; // Doom 4 (Death Foretold)
 
 // User-supplied
 
