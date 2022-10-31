@@ -91,6 +91,7 @@ Actor QuietusFireProjectile //: FSwordMissile
 		TNT1 A 0 A_AlertMonsters(384)
 		FSFX D 0 A_SpawnItemEx("QuietusFireSpot",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		FSFX D 0 A_Explode(64,128,0)
+		FSFX D 0 A_RadiusThrust(70,48,RTF_NOIMPACTDAMAGE|RTF_THRUSTZ)
 		FSFX DEFGHIJKLM 3 Bright
 		Stop
 	}
@@ -105,7 +106,7 @@ Actor QuietusFireProjectile_DM : QuietusFireProjectile
 	{
 	Death:
 	DeathCont:
-		FSFX D 0 A_RadiusThrust(300,48,RTF_NOIMPACTDAMAGE)
+		FSFX D 0 A_RadiusThrust(100,48,RTF_NOIMPACTDAMAGE|RTF_THRUSTZ)
 		FSFX D 0 ACS_NamedExecuteWithResult("QCDE_QuietusHit")
 		FSFX D 0 A_RadiusGive("QuietusVictimProc", 48, RGF_PLAYERS|RGF_FORCESERVERSIDE)
 		FSFX D 0 A_SpawnItemEx("QuietusFireSpot_DM",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)

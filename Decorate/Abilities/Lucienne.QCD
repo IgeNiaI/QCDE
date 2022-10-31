@@ -311,6 +311,7 @@ Actor LucienneImmolation
 		Goto Finisher
 	DMExplo:
 		TNT1 A 0 A_Explode(75,448,0,0,64)
+		TNT1 A 0 A_RadiusThrust(150,128,RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		Goto Finisher
 	Finisher:
 		DB57 A 0 A_PlaySound("QC/Abilities/Lucienne/BigExplo",CHAN_WEAPON,1.0,0,0.7)

@@ -421,10 +421,11 @@ Actor QCBFGShot
 			Goto DeathCont
 
 	DeathCont:
+		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage. Beware
+		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(180,192,0,0,64)
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
-		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage. Beware
 		TNT1 A 0 A_JumpIfInTargetInventory("BFG_UG_Rays",1,"DoRays")
 		TNT1 A 0 A_Jump(255,"EndDeath")
 		Goto EndDeath
@@ -663,8 +664,11 @@ Actor QCBFGChargeShot
 			Goto DeathCont
 
 	DeathCont:
-		TNT1 A 0 A_Explode(180,192,0,0,64)
 		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage. Beware
+		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(180,192,0,0,64)
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_JumpIfInTargetInventory("BFG_UG_Rays",1,"DoRays")
 		TNT1 A 0 A_Jump(255,"EndDeath")
 		Goto EndDeath
@@ -691,8 +695,11 @@ Actor QCBFGChargeShot2 : QCBFGChargeShot
 	States
 	{
 	DeathCont:
+		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage. Beware
+		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(360,256,0,0,64)
-		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_JumpIfInTargetInventory("BFG_UG_Rays",1,"DoRays")
 		TNT1 A 0 A_Jump(255,"EndDeath")
 		Goto EndDeath
@@ -709,8 +716,11 @@ Actor QCBFGChargeShot3 : QCBFGChargeShot
 	States
 	{
 	DeathCont:
+		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage. Beware
+		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(540,320,0,0,64)
-		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_JumpIfInTargetInventory("BFG_UG_Rays",1,"DoRays")
 		TNT1 A 0 A_Jump(255,"EndDeath")
 		Goto EndDeath
@@ -726,8 +736,11 @@ Actor QCBFGChargeShot4 : QCBFGChargeShot
 	States
 	{
 	DeathCont:
+		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage. Beware
+		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(720,384,0,0,64)
-		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_JumpIfInTargetInventory("BFG_UG_Rays",1,"DoRays")
 		TNT1 A 0 A_Jump(255,"EndDeath")
 		Goto EndDeath
@@ -743,8 +756,11 @@ Actor QCBFGChargeShot5 : QCBFGChargeShot
 	States
 	{
 	DeathCont:
+		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage. Beware
+		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(900,448,0,0,64)
-		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_JumpIfInTargetInventory("BFG_UG_Rays",1,"DoRays")
 		TNT1 A 0 A_Jump(255,"EndDeath")
 		Goto EndDeath
@@ -761,8 +777,11 @@ Actor QCBFGChargeShot6 : QCBFGChargeShot
 	States
 	{
 	DeathCont:
-		TNT1 A 0 A_Explode(1080,512,0,0,64)	//some really nice explosion damage
-		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage
+		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE)	//self damage. Beware
+		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(1080,512,0,0,64)
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_JumpIfInTargetInventory("BFG_UG_Rays",1,"DoRays")
 		TNT1 A 0 A_Jump(255,"EndDeath")
 		Goto EndDeath
@@ -850,10 +869,11 @@ Actor QCBFGShot_DM	//No AOE while flying
 	DeathCont:
 		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,0.85,0,0.75)
 		TNT1 A 0 A_Quake(3,15,0,768)
+		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE,0,20)	//self damage. Beware
+		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(70,128,0,0,32)
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
-		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE,0,20)	//self damage. Beware
 		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 2

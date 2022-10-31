@@ -109,7 +109,7 @@ Actor TerminatorRocketMain
 
 	DeathCont:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Terminator/MissileExplo",CHAN_AUTO,1,0,0.8)
-		TNT1 A 0 A_Explode(5,64,1,1,16)		//self damage
+		TNT1 A 0 A_Explode(5,64,XF_HURTSOURCE,1,16)		//self damage
  		TNT1 A 0 A_Explode(15,128,0,1,96)
 		TNT1 A 0 A_SpawnItemEx("TerminatorMissileExplo",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 10
@@ -127,7 +127,7 @@ Actor TerminatorRocket : TerminatorRocketMain
 	{
 	DeathCont:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Terminator/MissileExplo",CHAN_AUTO,1,0,0.8)
-		TNT1 A 0 A_Explode(10,128,1,1,96)	//self damage
+		TNT1 A 0 A_Explode(10,128,XF_HURTSOURCE,1,96)	//self damage
  		TNT1 A 0 A_Explode(54,128,0,1,72)
 		TNT1 A 0 A_SpawnItemEx("TerminatorMissileExplo",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 10
@@ -161,7 +161,7 @@ Actor TerminatorRocketDM : TerminatorRocketMain
 
 	DeathCont:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Terminator/MissileExplo",CHAN_AUTO,1,0,0.8)
-		TNT1 A 0 A_Explode(6,128,1,1,96)	//self damage
+		TNT1 A 0 A_Explode(6,128,XF_HURTSOURCE,1,96)	//self damage
  		TNT1 A 0 A_Explode(9,128,0,1,128)	//Then the rest to do 15dmg
 		TNT1 A 0 A_SpawnItemEx("TerminatorMissileExplo",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 10

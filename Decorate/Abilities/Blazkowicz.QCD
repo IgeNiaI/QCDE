@@ -239,8 +239,11 @@ Actor DieselBall
 			Goto DeathCont
 
 	DeathCont:
+		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE)
+		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(random(100,200),128,0)
-		TNT1 A 0 A_Explode(50,128,1)
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_SpawnItemEx("DieselExplo",0,0,0,0,0,0,random(0,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_NOUNLAGGED)
 		TNT1 A 2 Light("YellowMediumFlicker1")
 		TNT1 A 2 Light("YellowMediumFlicker2")
@@ -260,8 +263,11 @@ Actor DieselBallDM : DieselBall
 	States
 	{
 	DeathCont:
-		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE,1,20)	//takes 50 self damage
+		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE)
+		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(30,160,0,1,64)	//30 damage he doesnt take, but other do at bigger radius
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_SpawnItemEx("DieselExplo",0,0,0,0,0,0,random(0,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_NOUNLAGGED)
 		TNT1 A 2 Light("YellowMediumFlicker1")
 		TNT1 A 2 Light("YellowMediumFlicker2")
@@ -283,7 +289,7 @@ Actor DieselBallBot : DieselBallDM
 		X029 ABCDEFGHIJK 1 Bright Light("YellowMediumFlicker2") A_SpawnItemEx("DieselFlamelet", random(6,-6),random(6,-6),random(6,-6), 0,0,frandom(0,1.5), 0,SXF_NOCHECKPOSITION,128)
 		Goto Spawn+2
 	DeathCont:
-		TNT1 A 0 A_Explode(60,128,0,1,20)	//no self damage for bots
+		TNT1 A 0 A_Explode(80,128,0,1,20)	//no self damage for bots
 		Goto Super::DeathCont+1
 	}
 }
