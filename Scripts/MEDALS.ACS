@@ -184,10 +184,10 @@ script "QCDE_WhatsYourPoison" DEATH {
 		if(CheckInventory("Class_Nyx") && CheckInventory("AbilityToken")) {
 			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_INSIDEOUT);
 			terminate;
-		} else if(!GetCVar("instagib")) {
+		}/* else if(!GetCVar("instagib")) {
 			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_RINGOUT);
 			terminate;
-		}
+		}*/
 	}
 }
 
