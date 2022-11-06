@@ -20,6 +20,50 @@ remap M_DOOM 	H_DOOM // No, not that one.
 
 //=============================================================================
 //
+// Intermission graphics
+//
+//=============================================================================
+
+remap M_PAUSE 	Q_PAUSE
+remap WIBP1 	QIBP1
+remap WIBP2 	QIBP2
+remap WIBP3 	QIBP3
+remap WIBP4 	QIBP4
+remap WICOLON 	QICOLON
+remap WIENTER 	QIENTER
+remap WIF 		QIF
+remap WIKILRS 	QIKILRS
+remap WIMINUS 	QIMINUS
+remap WIMSTAR 	QIMSTAR
+remap WIMSTT 	QIMSTT
+remap WINUM0 	QINUM0
+remap WINUM1 	QINUM1
+remap WINUM2 	QINUM2
+remap WINUM3 	QINUM3
+remap WINUM4 	QINUM4
+remap WINUM5 	QINUM5
+remap WINUM6 	QINUM6
+remap WINUM7 	QINUM7
+remap WINUM8 	QINUM8
+remap WINUM9 	QINUM9
+remap WIOSTF 	QIOSTF
+remap WIOSTI 	QIOSTI
+remap WIOSTK 	QIOSTK
+remap WIOSTS 	QIOSTS
+remap WIP1		QIP1
+remap WIP2		QIP2
+remap WIP3		QIP3
+remap WIP4		QIP4
+remap WIPAR 	QIPAR
+remap WIPCNT 	QIPCNT
+remap WISCRT2 	QISCRT2
+remap WISLASH 	QISLASH
+remap WISUCKS 	QISUCKS
+remap WITIME 	QITIME
+remap WIVCTMS 	QIVCTMS
+
+//=============================================================================
+//
 // Explosion debris variation
 //
 //=============================================================================
@@ -1421,3 +1465,651 @@ Graphic GPG_15_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG
 Graphic GPG_17_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_17_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
 Graphic GPG_19_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_19_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
 Graphic GPG_21_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_21_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+
+
+
+
+//=============================================================================
+//
+// Fonts
+//
+//=============================================================================
+
+Graphic "STCFN033", 14, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -4, -8}
+Graphic "STCFN034", 23, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -25, -8}
+Graphic "STCFN035", 39, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -53, -8}
+Graphic "STCFN036", 37, 61	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -98, -8}
+Graphic "STCFN037", 54, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -140, -8}
+Graphic "STCFN038", 50, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -200, -8}
+Graphic "STCFN039", 12, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -255, -8}
+Graphic "STCFN040", 26, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -275, -8}
+Graphic "STCFN041", 26, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -302, -8}
+Graphic "STCFN042", 30, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -335, -12}
+Graphic "STCFN043", 35, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -372, -7}
+Graphic "STCFN044", 13, 64	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -413, -9}
+Graphic "STCFN045", 24, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -433, -9}
+Graphic "STCFN046", 13, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -464, -9}
+Graphic "STCFN047", 33, 64	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -483, -4}
+Graphic "STCFN048", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -5, -86}
+Graphic "STCFN049", 24, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -51, -86}
+Graphic "STCFN050", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -83, -86}
+Graphic "STCFN051", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -131, -86}
+Graphic "STCFN052", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -179, -86}
+Graphic "STCFN053", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -228, -86}
+Graphic "STCFN054", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -278, -86}
+Graphic "STCFN055", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -323, -86}
+Graphic "STCFN056", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -371, -86}
+Graphic "STCFN057", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -421, -86}
+Graphic "STCFN058", 13, 55	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -4, -165}
+Graphic "STCFN059", 13, 62	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -24, -165}
+Graphic "STCFN060", 24, 52	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -47, -166}
+Graphic "STCFN061", 34, 44	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -82, -164}
+Graphic "STCFN062", 24, 52	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -127, -166}
+Graphic "STCFN063", 34, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -160, -164}
+Graphic "STCFN064", 52, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -200, -171}
+Graphic "STCFN065", 44, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -3, -242}
+Graphic "STCFN066", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -53, -242}
+Graphic "STCFN067", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -101, -242}
+Graphic "STCFN068", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -150, -242}
+Graphic "STCFN069", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -199, -242}
+Graphic "STCFN070", 35, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -240, -242}
+Graphic "STCFN071", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -281, -242}
+Graphic "STCFN072", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -4, -320}
+Graphic "STCFN073", 16, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -54, -320}
+Graphic "STCFN074", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -77, -320}
+Graphic "STCFN075", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -121, -320}
+Graphic "STCFN076", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -167, -320}
+Graphic "STCFN077", 58, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -207, -320}
+Graphic "STCFN078", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -272, -320}
+Graphic "STCFN079", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -324, -320}
+Graphic "STCFN080", 40, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -374, -320}
+Graphic "STCFN081", 42, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -421, -320}
+Graphic "STCFN082", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -4, -398}
+Graphic "STCFN083", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -52, -398}
+Graphic "STCFN084", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -98, -398}
+Graphic "STCFN085", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -144, -398}
+Graphic "STCFN086", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -192, -398}
+Graphic "STCFN087", 66, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -241, -398}
+Graphic "STCFN088", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -312, -398}
+Graphic "STCFN089", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -358, -398}
+Graphic "STCFN090", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -403, -398}
+Graphic "STCFN091", 25, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -6, -472}
+Graphic "STCFN092", 32, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -35, -472}
+Graphic "STCFN093", 25, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -72, -473}
+Graphic "STCFN094", 32, 29	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -105, -479}
+Graphic "STCFN095", 33, 61	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -140, -479}
+Graphic "STCFN096", 20, 19	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -181, -472}
+Graphic "STCFN097", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -4, -554}
+Graphic "STCFN098", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -49, -554}
+Graphic "STCFN099", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -94, -554}
+Graphic "STCFN100", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -137, -554}
+Graphic "STCFN101", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -182, -554}
+Graphic "STCFN102", 28, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -224, -554}
+Graphic "STCFN103", 39, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -254, -554}
+Graphic "STCFN104", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -299, -554}
+Graphic "STCFN105", 16, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -343, -554}
+Graphic "STCFN106", 22, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -361, -554}
+Graphic "STCFN107", 37, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -393, -554}
+Graphic "STCFN108", 16, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -4, -632}
+Graphic "STCFN109", 58, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -27, -632}
+Graphic "STCFN110", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -92, -632}
+Graphic "STCFN111", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -137, -632}
+Graphic "STCFN112", 36, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -182, -632}
+Graphic "STCFN113", 36, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -227, -632}
+Graphic "STCFN114", 28, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -272, -632}
+Graphic "STCFN115", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -304, -632}
+Graphic "STCFN116", 28, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -345, -632}
+Graphic "STCFN117", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -378, -632}
+Graphic "STCFN118", 38, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -421, -632}
+Graphic "STCFN119", 57, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -3, -710}
+Graphic "STCFN120", 38, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -64, -710}
+Graphic "STCFN121", 39, 72	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -106, -710}
+Graphic "STCFN122", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRSFNT", -150, -710}
+
+// Russian characters
+Graphic "STCFN168", 35, 66	{	XScale 8.000	YScale 8.000	Offset 0, 10	Patch "KAIRCFNT", -275, -6}
+Graphic "STCFN184", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -258, -248}
+Graphic "STCFN192", 44, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -3, -14}
+Graphic "STCFN193", 37, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -54, -14}
+Graphic "STCFN194", 38, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -100, -14}
+Graphic "STCFN195", 33, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -147, -14}
+Graphic "STCFN196", 45, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -182, -14}
+Graphic "STCFN197", 35, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -234, -14}
+Graphic "STCFN198", 67, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -312, -14}
+Graphic "STCFN199", 43, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -383, -14}
+Graphic "STCFN200", 43, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -433, -14}
+Graphic "STCFN201", 43, 66	{	XScale 8.000	YScale 8.000	Offset 0, 10	Patch "KAIRCFNT", -484, -6}
+Graphic "STCFN202", 43, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -535, -14}
+Graphic "STCFN203", 44, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -2, -92}
+Graphic "STCFN204", 56, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -54, -92}
+Graphic "STCFN205", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -118, -92}
+Graphic "STCFN206", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -167, -92}
+Graphic "STCFN207", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -216, -92}
+Graphic "STCFN208", 39, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -265, -92}
+Graphic "STCFN209", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -311, -92}
+Graphic "STCFN210", 40, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -356, -92}
+Graphic "STCFN211", 42, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -398, -92}
+Graphic "STCFN212", 50, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -446, -92}
+Graphic "STCFN213", 44, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -502, -92}
+Graphic "STCFN214", 42, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -6, -170}
+Graphic "STCFN215", 38, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -55, -170}
+Graphic "STCFN216", 60, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -103, -170}
+Graphic "STCFN217", 63, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -170, -170}
+Graphic "STCFN218", 52, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -235, -170}
+Graphic "STCFN219", 54, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -295, -170}
+Graphic "STCFN220", 38, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -359, -170}
+Graphic "STCFN221", 40, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -404, -170}
+Graphic "STCFN222", 60, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -453, -170}
+Graphic "STCFN223", 38, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -522, -170}
+Graphic "STCFN224", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -4, -248}
+Graphic "STCFN225", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -49, -248}
+Graphic "STCFN226", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -94, -248}
+Graphic "STCFN227", 27, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -137, -248}
+Graphic "STCFN228", 44, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -165, -248}
+Graphic "STCFN229", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -213, -248}
+Graphic "STCFN230", 57, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -300, -248}
+Graphic "STCFN231", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -362, -248}
+Graphic "STCFN232", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -406, -248}
+Graphic "STCFN233", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -450, -248}
+Graphic "STCFN234", 38, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -494, -248}
+Graphic "STCFN235", 39, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -1, -326}
+Graphic "STCFN236", 50, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -48, -326}
+Graphic "STCFN237", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -106, -326}
+Graphic "STCFN238", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -150, -326}
+Graphic "STCFN239", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -195, -326}
+Graphic "STCFN240", 36, 67	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -239, -326}
+Graphic "STCFN241", 34, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -284, -326}
+Graphic "STCFN242", 34, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -323, -326}
+Graphic "STCFN243", 39, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -360, -326}
+Graphic "STCFN244", 54, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -405, -326}
+Graphic "STCFN245", 38, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -465, -326}
+Graphic "STCFN246", 39, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -5, -404}
+Graphic "STCFN247", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -50, -404}
+Graphic "STCFN248", 53, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -94, -404}
+Graphic "STCFN249", 57, 66	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -156, -404}
+Graphic "STCFN250", 44, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -215, -404}
+Graphic "STCFN251", 50, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -265, -404}
+Graphic "STCFN252", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -322, -404}
+Graphic "STCFN253", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -364, -404}
+Graphic "STCFN254", 52, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -408, -404}
+Graphic "STCFN255", 36, 56	{	XScale 8.000	YScale 8.000	Patch "KAIRCFNT", -468, -404}
+
+
+Graphic "BIGFN033", 14, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -4, -8}
+Graphic "BIGFN034", 23, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -25, -8}
+Graphic "BIGFN035", 39, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -53, -8}
+Graphic "BIGFN036", 37, 61	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -98, -8}
+Graphic "BIGFN037", 54, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -140, -8}
+Graphic "BIGFN038", 50, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -200, -8}
+Graphic "BIGFN039", 12, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -255, -8}
+Graphic "BIGFN040", 26, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -275, -8}
+Graphic "BIGFN041", 26, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -302, -8}
+Graphic "BIGFN042", 30, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -335, -12}
+Graphic "BIGFN043", 35, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -372, -7}
+Graphic "BIGFN044", 13, 64	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -413, -9}
+Graphic "BIGFN045", 24, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -433, -9}
+Graphic "BIGFN046", 13, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -464, -9}
+Graphic "BIGFN047", 33, 64	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -483, -4}
+Graphic "BIGFN048", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -5, -86}
+Graphic "BIGFN049", 24, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -51, -86}
+Graphic "BIGFN050", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -83, -86}
+Graphic "BIGFN051", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -131, -86}
+Graphic "BIGFN052", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -179, -86}
+Graphic "BIGFN053", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -228, -86}
+Graphic "BIGFN054", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -278, -86}
+Graphic "BIGFN055", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -323, -86}
+Graphic "BIGFN056", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -371, -86}
+Graphic "BIGFN057", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -421, -86}
+Graphic "BIGFN058", 13, 55	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -4, -165}
+Graphic "BIGFN059", 13, 62	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -24, -165}
+Graphic "BIGFN060", 24, 52	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -47, -166}
+Graphic "BIGFN061", 34, 44	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -82, -164}
+Graphic "BIGFN062", 24, 52	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -127, -166}
+Graphic "BIGFN063", 34, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -160, -164}
+Graphic "BIGFN064", 52, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -200, -171}
+Graphic "BIGFN065", 44, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -3, -242}
+Graphic "BIGFN066", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -53, -242}
+Graphic "BIGFN067", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -101, -242}
+Graphic "BIGFN068", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -150, -242}
+Graphic "BIGFN069", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -199, -242}
+Graphic "BIGFN070", 35, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -240, -242}
+Graphic "BIGFN071", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -281, -242}
+Graphic "BIGFN072", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -4, -320}
+Graphic "BIGFN073", 16, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -54, -320}
+Graphic "BIGFN074", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -77, -320}
+Graphic "BIGFN075", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -121, -320}
+Graphic "BIGFN076", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -167, -320}
+Graphic "BIGFN077", 58, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -207, -320}
+Graphic "BIGFN078", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -272, -320}
+Graphic "BIGFN079", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -324, -320}
+Graphic "BIGFN080", 40, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -374, -320}
+Graphic "BIGFN081", 42, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -421, -320}
+Graphic "BIGFN082", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -4, -398}
+Graphic "BIGFN083", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -52, -398}
+Graphic "BIGFN084", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -98, -398}
+Graphic "BIGFN085", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -144, -398}
+Graphic "BIGFN086", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -192, -398}
+Graphic "BIGFN087", 66, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -241, -398}
+Graphic "BIGFN088", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -312, -398}
+Graphic "BIGFN089", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -358, -398}
+Graphic "BIGFN090", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -403, -398}
+Graphic "BIGFN091", 25, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -6, -472}
+Graphic "BIGFN092", 32, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -35, -472}
+Graphic "BIGFN093", 25, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -72, -473}
+Graphic "BIGFN094", 32, 29	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -105, -479}
+Graphic "BIGFN095", 33, 61	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -140, -479}
+Graphic "BIGFN096", 20, 19	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -181, -472}
+Graphic "BIGFN097", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -4, -554}
+Graphic "BIGFN098", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -49, -554}
+Graphic "BIGFN099", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -94, -554}
+Graphic "BIGFN100", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -137, -554}
+Graphic "BIGFN101", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -182, -554}
+Graphic "BIGFN102", 28, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -224, -554}
+Graphic "BIGFN103", 39, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -254, -554}
+Graphic "BIGFN104", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -299, -554}
+Graphic "BIGFN105", 16, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -343, -554}
+Graphic "BIGFN106", 22, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -361, -554}
+Graphic "BIGFN107", 37, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -393, -554}
+Graphic "BIGFN108", 16, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -4, -632}
+Graphic "BIGFN109", 58, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -27, -632}
+Graphic "BIGFN110", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -92, -632}
+Graphic "BIGFN111", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -137, -632}
+Graphic "BIGFN112", 36, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -182, -632}
+Graphic "BIGFN113", 36, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -227, -632}
+Graphic "BIGFN114", 28, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -272, -632}
+Graphic "BIGFN115", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -304, -632}
+Graphic "BIGFN116", 28, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -345, -632}
+Graphic "BIGFN117", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -378, -632}
+Graphic "BIGFN118", 38, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -421, -632}
+Graphic "BIGFN119", 57, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -3, -710}
+Graphic "BIGFN120", 38, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -64, -710}
+Graphic "BIGFN121", 39, 72	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -106, -710}
+Graphic "BIGFN122", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRSFNT", -150, -710}
+
+// Russian characters
+Graphic "BIGFN168", 35, 66	{	XScale 4.000	YScale 4.000	Offset 0, 10	Patch "KAIRCFNT", -275, -6}
+Graphic "BIGFN184", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -258, -248}
+Graphic "BIGFN192", 44, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -3, -14}
+Graphic "BIGFN193", 37, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -54, -14}
+Graphic "BIGFN194", 38, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -100, -14}
+Graphic "BIGFN195", 33, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -147, -14}
+Graphic "BIGFN196", 45, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -182, -14}
+Graphic "BIGFN197", 35, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -234, -14}
+Graphic "BIGFN198", 67, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -312, -14}
+Graphic "BIGFN199", 43, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -383, -14}
+Graphic "BIGFN200", 43, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -433, -14}
+Graphic "BIGFN201", 43, 66	{	XScale 4.000	YScale 4.000	Offset 0, 10	Patch "KAIRCFNT", -484, -6}
+Graphic "BIGFN202", 43, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -535, -14}
+Graphic "BIGFN203", 44, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -2, -92}
+Graphic "BIGFN204", 56, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -54, -92}
+Graphic "BIGFN205", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -118, -92}
+Graphic "BIGFN206", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -167, -92}
+Graphic "BIGFN207", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -216, -92}
+Graphic "BIGFN208", 39, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -265, -92}
+Graphic "BIGFN209", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -311, -92}
+Graphic "BIGFN210", 40, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -356, -92}
+Graphic "BIGFN211", 42, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -398, -92}
+Graphic "BIGFN212", 50, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -446, -92}
+Graphic "BIGFN213", 44, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -502, -92}
+Graphic "BIGFN214", 42, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -6, -170}
+Graphic "BIGFN215", 38, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -55, -170}
+Graphic "BIGFN216", 60, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -103, -170}
+Graphic "BIGFN217", 63, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -170, -170}
+Graphic "BIGFN218", 52, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -235, -170}
+Graphic "BIGFN219", 54, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -295, -170}
+Graphic "BIGFN220", 38, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -359, -170}
+Graphic "BIGFN221", 40, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -404, -170}
+Graphic "BIGFN222", 60, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -453, -170}
+Graphic "BIGFN223", 38, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -522, -170}
+Graphic "BIGFN224", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -4, -248}
+Graphic "BIGFN225", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -49, -248}
+Graphic "BIGFN226", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -94, -248}
+Graphic "BIGFN227", 27, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -137, -248}
+Graphic "BIGFN228", 44, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -165, -248}
+Graphic "BIGFN229", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -213, -248}
+Graphic "BIGFN230", 57, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -300, -248}
+Graphic "BIGFN231", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -362, -248}
+Graphic "BIGFN232", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -406, -248}
+Graphic "BIGFN233", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -450, -248}
+Graphic "BIGFN234", 38, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -494, -248}
+Graphic "BIGFN235", 39, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -1, -326}
+Graphic "BIGFN236", 50, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -48, -326}
+Graphic "BIGFN237", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -106, -326}
+Graphic "BIGFN238", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -150, -326}
+Graphic "BIGFN239", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -195, -326}
+Graphic "BIGFN240", 36, 67	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -239, -326}
+Graphic "BIGFN241", 34, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -284, -326}
+Graphic "BIGFN242", 34, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -323, -326}
+Graphic "BIGFN243", 39, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -360, -326}
+Graphic "BIGFN244", 54, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -405, -326}
+Graphic "BIGFN245", 38, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -465, -326}
+Graphic "BIGFN246", 39, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -5, -404}
+Graphic "BIGFN247", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -50, -404}
+Graphic "BIGFN248", 53, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -94, -404}
+Graphic "BIGFN249", 57, 66	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -156, -404}
+Graphic "BIGFN250", 44, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -215, -404}
+Graphic "BIGFN251", 50, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -265, -404}
+Graphic "BIGFN252", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -322, -404}
+Graphic "BIGFN253", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -364, -404}
+Graphic "BIGFN254", 52, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -408, -404}
+Graphic "BIGFN255", 36, 56	{	XScale 4.000	YScale 4.000	Patch "KAIRCFNT", -468, -404}
+
+
+Graphic "QBGFN033", 14, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -4, -8}
+Graphic "QBGFN034", 23, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -25, -8}
+Graphic "QBGFN035", 39, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -53, -8}
+Graphic "QBGFN036", 37, 61	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -98, -8}
+Graphic "QBGFN037", 54, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -140, -8}
+Graphic "QBGFN038", 50, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -200, -8}
+Graphic "QBGFN039", 12, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -255, -8}
+Graphic "QBGFN040", 26, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -275, -8}
+Graphic "QBGFN041", 26, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -302, -8}
+Graphic "QBGFN042", 30, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -335, -12}
+Graphic "QBGFN043", 35, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -372, -7}
+Graphic "QBGFN044", 13, 64	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -413, -9}
+Graphic "QBGFN045", 24, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -433, -9}
+Graphic "QBGFN046", 13, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -464, -9}
+Graphic "QBGFN047", 33, 64	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -483, -4}
+Graphic "QBGFN048", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -5, -86}
+Graphic "QBGFN049", 24, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -51, -86}
+Graphic "QBGFN050", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -83, -86}
+Graphic "QBGFN051", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -131, -86}
+Graphic "QBGFN052", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -179, -86}
+Graphic "QBGFN053", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -228, -86}
+Graphic "QBGFN054", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -278, -86}
+Graphic "QBGFN055", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -323, -86}
+Graphic "QBGFN056", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -371, -86}
+Graphic "QBGFN057", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -421, -86}
+Graphic "QBGFN058", 13, 55	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -4, -165}
+Graphic "QBGFN059", 13, 62	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -24, -165}
+Graphic "QBGFN060", 24, 52	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -47, -166}
+Graphic "QBGFN061", 34, 44	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -82, -164}
+Graphic "QBGFN062", 24, 52	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -127, -166}
+Graphic "QBGFN063", 34, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -160, -164}
+Graphic "QBGFN064", 52, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -200, -171}
+Graphic "QBGFN065", 44, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -3, -242}
+Graphic "QBGFN066", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -53, -242}
+Graphic "QBGFN067", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -101, -242}
+Graphic "QBGFN068", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -150, -242}
+Graphic "QBGFN069", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -199, -242}
+Graphic "QBGFN070", 35, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -240, -242}
+Graphic "QBGFN071", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -281, -242}
+Graphic "QBGFN072", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -4, -320}
+Graphic "QBGFN073", 16, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -54, -320}
+Graphic "QBGFN074", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -77, -320}
+Graphic "QBGFN075", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -121, -320}
+Graphic "QBGFN076", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -167, -320}
+Graphic "QBGFN077", 58, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -207, -320}
+Graphic "QBGFN078", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -272, -320}
+Graphic "QBGFN079", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -324, -320}
+Graphic "QBGFN080", 40, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -374, -320}
+Graphic "QBGFN081", 42, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -421, -320}
+Graphic "QBGFN082", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -4, -398}
+Graphic "QBGFN083", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -52, -398}
+Graphic "QBGFN084", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -98, -398}
+Graphic "QBGFN085", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -144, -398}
+Graphic "QBGFN086", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -192, -398}
+Graphic "QBGFN087", 66, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -241, -398}
+Graphic "QBGFN088", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -312, -398}
+Graphic "QBGFN089", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -358, -398}
+Graphic "QBGFN090", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -403, -398}
+Graphic "QBGFN091", 25, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -6, -472}
+Graphic "QBGFN092", 32, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -35, -472}
+Graphic "QBGFN093", 25, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -72, -473}
+Graphic "QBGFN094", 32, 29	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -105, -479}
+Graphic "QBGFN095", 33, 61	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -140, -479}
+Graphic "QBGFN096", 20, 19	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -181, -472}
+Graphic "QBGFN097", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -4, -554}
+Graphic "QBGFN098", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -49, -554}
+Graphic "QBGFN099", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -94, -554}
+Graphic "QBGFN100", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -137, -554}
+Graphic "QBGFN101", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -182, -554}
+Graphic "QBGFN102", 28, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -224, -554}
+Graphic "QBGFN103", 39, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -254, -554}
+Graphic "QBGFN104", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -299, -554}
+Graphic "QBGFN105", 16, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -343, -554}
+Graphic "QBGFN106", 22, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -361, -554}
+Graphic "QBGFN107", 37, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -393, -554}
+Graphic "QBGFN108", 16, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -4, -632}
+Graphic "QBGFN109", 58, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -27, -632}
+Graphic "QBGFN110", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -92, -632}
+Graphic "QBGFN111", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -137, -632}
+Graphic "QBGFN112", 36, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -182, -632}
+Graphic "QBGFN113", 36, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -227, -632}
+Graphic "QBGFN114", 28, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -272, -632}
+Graphic "QBGFN115", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -304, -632}
+Graphic "QBGFN116", 28, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -345, -632}
+Graphic "QBGFN117", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -378, -632}
+Graphic "QBGFN118", 38, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -421, -632}
+Graphic "QBGFN119", 57, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -3, -710}
+Graphic "QBGFN120", 38, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -64, -710}
+Graphic "QBGFN121", 39, 72	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -106, -710}
+Graphic "QBGFN122", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRSFNT", -150, -710}
+
+// Russian characters
+Graphic "QBGFN168", 35, 66	{	XScale 3.000	YScale 3.000	Offset 0, 10	Patch "KAIRCFNT", -275, -6}
+Graphic "QBGFN184", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -258, -248}
+Graphic "QBGFN192", 44, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -3, -14}
+Graphic "QBGFN193", 37, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -54, -14}
+Graphic "QBGFN194", 38, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -100, -14}
+Graphic "QBGFN195", 33, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -147, -14}
+Graphic "QBGFN196", 45, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -182, -14}
+Graphic "QBGFN197", 35, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -234, -14}
+Graphic "QBGFN198", 67, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -312, -14}
+Graphic "QBGFN199", 43, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -383, -14}
+Graphic "QBGFN200", 43, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -433, -14}
+Graphic "QBGFN201", 43, 66	{	XScale 3.000	YScale 3.000	Offset 0, 10	Patch "KAIRCFNT", -484, -6}
+Graphic "QBGFN202", 43, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -535, -14}
+Graphic "QBGFN203", 44, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -2, -92}
+Graphic "QBGFN204", 56, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -54, -92}
+Graphic "QBGFN205", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -118, -92}
+Graphic "QBGFN206", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -167, -92}
+Graphic "QBGFN207", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -216, -92}
+Graphic "QBGFN208", 39, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -265, -92}
+Graphic "QBGFN209", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -311, -92}
+Graphic "QBGFN210", 40, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -356, -92}
+Graphic "QBGFN211", 42, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -398, -92}
+Graphic "QBGFN212", 50, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -446, -92}
+Graphic "QBGFN213", 44, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -502, -92}
+Graphic "QBGFN214", 42, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -6, -170}
+Graphic "QBGFN215", 38, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -55, -170}
+Graphic "QBGFN216", 60, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -103, -170}
+Graphic "QBGFN217", 63, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -170, -170}
+Graphic "QBGFN218", 52, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -235, -170}
+Graphic "QBGFN219", 54, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -295, -170}
+Graphic "QBGFN220", 38, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -359, -170}
+Graphic "QBGFN221", 40, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -404, -170}
+Graphic "QBGFN222", 60, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -453, -170}
+Graphic "QBGFN223", 38, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -522, -170}
+Graphic "QBGFN224", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -4, -248}
+Graphic "QBGFN225", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -49, -248}
+Graphic "QBGFN226", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -94, -248}
+Graphic "QBGFN227", 27, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -137, -248}
+Graphic "QBGFN228", 44, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -165, -248}
+Graphic "QBGFN229", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -213, -248}
+Graphic "QBGFN230", 57, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -300, -248}
+Graphic "QBGFN231", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -362, -248}
+Graphic "QBGFN232", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -406, -248}
+Graphic "QBGFN233", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -450, -248}
+Graphic "QBGFN234", 38, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -494, -248}
+Graphic "QBGFN235", 39, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -1, -326}
+Graphic "QBGFN236", 50, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -48, -326}
+Graphic "QBGFN237", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -106, -326}
+Graphic "QBGFN238", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -150, -326}
+Graphic "QBGFN239", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -195, -326}
+Graphic "QBGFN240", 36, 67	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -239, -326}
+Graphic "QBGFN241", 34, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -284, -326}
+Graphic "QBGFN242", 34, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -323, -326}
+Graphic "QBGFN243", 39, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -360, -326}
+Graphic "QBGFN244", 54, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -405, -326}
+Graphic "QBGFN245", 38, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -465, -326}
+Graphic "QBGFN246", 39, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -5, -404}
+Graphic "QBGFN247", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -50, -404}
+Graphic "QBGFN248", 53, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -94, -404}
+Graphic "QBGFN249", 57, 66	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -156, -404}
+Graphic "QBGFN250", 44, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -215, -404}
+Graphic "QBGFN251", 50, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -265, -404}
+Graphic "QBGFN252", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -322, -404}
+Graphic "QBGFN253", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -364, -404}
+Graphic "QBGFN254", 52, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -408, -404}
+Graphic "QBGFN255", 36, 56	{	XScale 3.000	YScale 3.000	Patch "KAIRCFNT", -468, -404}
+
+
+Graphic "QSMFN033", 14, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -4, -8}
+Graphic "QSMFN034", 23, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -25, -8}
+Graphic "QSMFN035", 39, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -53, -8}
+Graphic "QSMFN036", 37, 61	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -98, -8}
+Graphic "QSMFN037", 54, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -140, -8}
+Graphic "QSMFN038", 50, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -200, -8}
+Graphic "QSMFN039", 12, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -255, -8}
+Graphic "QSMFN040", 26, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -275, -8}
+Graphic "QSMFN041", 26, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -302, -8}
+Graphic "QSMFN042", 30, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -335, -12}
+Graphic "QSMFN043", 35, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -372, -7}
+Graphic "QSMFN044", 13, 64	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -413, -9}
+Graphic "QSMFN045", 24, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -433, -9}
+Graphic "QSMFN046", 13, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -464, -9}
+Graphic "QSMFN047", 33, 64	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -483, -4}
+Graphic "QSMFN048", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -5, -86}
+Graphic "QSMFN049", 24, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -51, -86}
+Graphic "QSMFN050", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -83, -86}
+Graphic "QSMFN051", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -131, -86}
+Graphic "QSMFN052", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -179, -86}
+Graphic "QSMFN053", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -228, -86}
+Graphic "QSMFN054", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -278, -86}
+Graphic "QSMFN055", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -323, -86}
+Graphic "QSMFN056", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -371, -86}
+Graphic "QSMFN057", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -421, -86}
+Graphic "QSMFN058", 13, 55	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -4, -165}
+Graphic "QSMFN059", 13, 62	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -24, -165}
+Graphic "QSMFN060", 24, 52	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -47, -166}
+Graphic "QSMFN061", 34, 44	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -82, -164}
+Graphic "QSMFN062", 24, 52	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -127, -166}
+Graphic "QSMFN063", 34, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -160, -164}
+Graphic "QSMFN064", 52, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -200, -171}
+Graphic "QSMFN065", 44, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -3, -242}
+Graphic "QSMFN066", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -53, -242}
+Graphic "QSMFN067", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -101, -242}
+Graphic "QSMFN068", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -150, -242}
+Graphic "QSMFN069", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -199, -242}
+Graphic "QSMFN070", 35, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -240, -242}
+Graphic "QSMFN071", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -281, -242}
+Graphic "QSMFN072", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -4, -320}
+Graphic "QSMFN073", 16, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -54, -320}
+Graphic "QSMFN074", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -77, -320}
+Graphic "QSMFN075", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -121, -320}
+Graphic "QSMFN076", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -167, -320}
+Graphic "QSMFN077", 58, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -207, -320}
+Graphic "QSMFN078", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -272, -320}
+Graphic "QSMFN079", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -324, -320}
+Graphic "QSMFN080", 40, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -374, -320}
+Graphic "QSMFN081", 42, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -421, -320}
+Graphic "QSMFN082", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -4, -398}
+Graphic "QSMFN083", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -52, -398}
+Graphic "QSMFN084", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -98, -398}
+Graphic "QSMFN085", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -144, -398}
+Graphic "QSMFN086", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -192, -398}
+Graphic "QSMFN087", 66, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -241, -398}
+Graphic "QSMFN088", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -312, -398}
+Graphic "QSMFN089", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -358, -398}
+Graphic "QSMFN090", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -403, -398}
+Graphic "QSMFN091", 25, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -6, -472}
+Graphic "QSMFN092", 32, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -35, -472}
+Graphic "QSMFN093", 25, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -72, -473}
+Graphic "QSMFN094", 32, 29	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -105, -479}
+Graphic "QSMFN095", 33, 61	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -140, -479}
+Graphic "QSMFN096", 20, 19	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -181, -472}
+Graphic "QSMFN097", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -4, -554}
+Graphic "QSMFN098", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -49, -554}
+Graphic "QSMFN099", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -94, -554}
+Graphic "QSMFN100", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -137, -554}
+Graphic "QSMFN101", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -182, -554}
+Graphic "QSMFN102", 28, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -224, -554}
+Graphic "QSMFN103", 39, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -254, -554}
+Graphic "QSMFN104", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -299, -554}
+Graphic "QSMFN105", 16, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -343, -554}
+Graphic "QSMFN106", 22, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -361, -554}
+Graphic "QSMFN107", 37, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -393, -554}
+Graphic "QSMFN108", 16, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -4, -632}
+Graphic "QSMFN109", 58, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -27, -632}
+Graphic "QSMFN110", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -92, -632}
+Graphic "QSMFN111", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -137, -632}
+Graphic "QSMFN112", 36, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -182, -632}
+Graphic "QSMFN113", 36, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -227, -632}
+Graphic "QSMFN114", 28, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -272, -632}
+Graphic "QSMFN115", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -304, -632}
+Graphic "QSMFN116", 28, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -345, -632}
+Graphic "QSMFN117", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -378, -632}
+Graphic "QSMFN118", 38, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -421, -632}
+Graphic "QSMFN119", 57, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -3, -710}
+Graphic "QSMFN120", 38, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -64, -710}
+Graphic "QSMFN121", 39, 72	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -106, -710}
+Graphic "QSMFN122", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRSFNT", -150, -710}
+
+// Russian characters
+Graphic "QSMFN168", 35, 66	{	XScale 6.000	YScale 6.000	Offset 0, 10	Patch "KAIRCFNT", -275, -6}
+Graphic "QSMFN184", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -258, -248}
+Graphic "QSMFN192", 44, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -3, -14}
+Graphic "QSMFN193", 37, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -54, -14}
+Graphic "QSMFN194", 38, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -100, -14}
+Graphic "QSMFN195", 33, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -147, -14}
+Graphic "QSMFN196", 45, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -182, -14}
+Graphic "QSMFN197", 35, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -234, -14}
+Graphic "QSMFN198", 67, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -312, -14}
+Graphic "QSMFN199", 43, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -383, -14}
+Graphic "QSMFN200", 43, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -433, -14}
+Graphic "QSMFN201", 43, 66	{	XScale 6.000	YScale 6.000	Offset 0, 10	Patch "KAIRCFNT", -484, -6}
+Graphic "QSMFN202", 43, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -535, -14}
+Graphic "QSMFN203", 44, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -2, -92}
+Graphic "QSMFN204", 56, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -54, -92}
+Graphic "QSMFN205", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -118, -92}
+Graphic "QSMFN206", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -167, -92}
+Graphic "QSMFN207", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -216, -92}
+Graphic "QSMFN208", 39, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -265, -92}
+Graphic "QSMFN209", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -311, -92}
+Graphic "QSMFN210", 40, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -356, -92}
+Graphic "QSMFN211", 42, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -398, -92}
+Graphic "QSMFN212", 50, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -446, -92}
+Graphic "QSMFN213", 44, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -502, -92}
+Graphic "QSMFN214", 42, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -6, -170}
+Graphic "QSMFN215", 38, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -55, -170}
+Graphic "QSMFN216", 60, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -103, -170}
+Graphic "QSMFN217", 63, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -170, -170}
+Graphic "QSMFN218", 52, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -235, -170}
+Graphic "QSMFN219", 54, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -295, -170}
+Graphic "QSMFN220", 38, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -359, -170}
+Graphic "QSMFN221", 40, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -404, -170}
+Graphic "QSMFN222", 60, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -453, -170}
+Graphic "QSMFN223", 38, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -522, -170}
+Graphic "QSMFN224", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -4, -248}
+Graphic "QSMFN225", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -49, -248}
+Graphic "QSMFN226", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -94, -248}
+Graphic "QSMFN227", 27, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -137, -248}
+Graphic "QSMFN228", 44, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -165, -248}
+Graphic "QSMFN229", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -213, -248}
+Graphic "QSMFN230", 57, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -300, -248}
+Graphic "QSMFN231", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -362, -248}
+Graphic "QSMFN232", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -406, -248}
+Graphic "QSMFN233", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -450, -248}
+Graphic "QSMFN234", 38, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -494, -248}
+Graphic "QSMFN235", 39, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -1, -326}
+Graphic "QSMFN236", 50, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -48, -326}
+Graphic "QSMFN237", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -106, -326}
+Graphic "QSMFN238", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -150, -326}
+Graphic "QSMFN239", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -195, -326}
+Graphic "QSMFN240", 36, 67	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -239, -326}
+Graphic "QSMFN241", 34, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -284, -326}
+Graphic "QSMFN242", 34, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -323, -326}
+Graphic "QSMFN243", 39, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -360, -326}
+Graphic "QSMFN244", 54, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -405, -326}
+Graphic "QSMFN245", 38, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -465, -326}
+Graphic "QSMFN246", 39, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -5, -404}
+Graphic "QSMFN247", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -50, -404}
+Graphic "QSMFN248", 53, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -94, -404}
+Graphic "QSMFN249", 57, 66	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -156, -404}
+Graphic "QSMFN250", 44, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -215, -404}
+Graphic "QSMFN251", 50, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -265, -404}
+Graphic "QSMFN252", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -322, -404}
+Graphic "QSMFN253", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -364, -404}
+Graphic "QSMFN254", 52, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -408, -404}
+Graphic "QSMFN255", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -468, -404}

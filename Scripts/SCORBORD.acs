@@ -631,7 +631,7 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 					i = specscores - 1;
 					if(duel) i = 1;
 
-					SetFont("BIGFONT");
+					SetFont("QCBGFONT");
 					int bottom = 480 + specscores*12;
 					SetHudSize(640 + specscores*16, bottom, true);
 					int y = bottom - LINE_HEIGHT;//, lines = 0;
@@ -749,7 +749,7 @@ function void drawPowerupCounters(void)
 
 		int y = 48.0 + 68.0 + i * 90.0;
 		SetHudSize(1400 / HUD_EMBIGGENMENT, 1050 / HUD_EMBIGGENMENT, true);
-		SetFont("BIGFONT");
+		SetFont("QCBGFONT");
 		HudMessageBold(s:text;
 				HUDMSG_FADEOUT, ID_POWERUP_TIMERS_1 + i, -1, 70.0 / HUD_EMBIGGENMENT, y / HUD_EMBIGGENMENT, 0.5, 0.5);
 		SetHudSize(1400, 1050, true);

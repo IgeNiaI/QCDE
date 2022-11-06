@@ -100,11 +100,12 @@ Script "QCDE_Enter_Flash" clientside
 {
 	//Fade in applied when player enters map, not called through any other script.
 	Fadeto (0, 0, 0, 1.0, 0);
-	SetFont("BIGFONT");
-	HudMessage(s:"\c[brite]Loading..."; HUDMSG_PLAIN, HMID_LOADING, -1, 0.5,0.4, 0.02);
+	SetHudSize(640, 480, 1);
+	SetFont("QCBGFONT");
+	HudMessage(s:"\c[brite]Loading..."; HUDMSG_PLAIN, HMID_LOADING, -1, 320.0,192.0, 0.02);
 	Fadeto (0, 0, 0, 0  , 0.3);
 	delay(1);
-	HudMessage(s:""; HUDMSG_PLAIN, HMID_LOADING, -1, 0.5,0.4, 0.01); // done loading
+	HudMessage(s:""; HUDMSG_PLAIN, HMID_LOADING, -1, 320.0,192.0, 0.01); // done loading
 }
 
 Script "QCDE_Respawn" Respawn

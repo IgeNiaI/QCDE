@@ -148,7 +148,10 @@ function void PlaySong(int x)
 
 function void PrintSongName(int x)
 {
-	SetFont("CONFONT");
-	HudMessage(s:"Music: ", s:getMusicName(x), s:"\nAuthor: ", s:getMusicAuthor(x);
-		HUDMSG_FADEINOUT, 0, CR_RED, 0.05, 0.65, 2.3, 0.9, 1.0);
+	SetHudSize(640, 480, 1);
+	SetFont("QCSMFONT");
+	HudMessage(s:" \c[yellow]Music: \c[brite]", s:getMusicName(x), s:"\n \c[yellow]Author: \c[brite]", s:getMusicAuthor(x),
+		s:"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+		s:"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"; // this helps placing the text box properly
+		HUDMSG_FADEINOUT, 0, CR_RED, 272.0, 296.0, 2.3, 0.9, 1.0);
 }

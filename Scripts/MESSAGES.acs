@@ -27,7 +27,7 @@ script "QCDE_BindAbilityKey_Hint" (void) clientside
 {
 	delay(80);
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	str k = strparam(k: "+user1");
 	if(!stricmp(k, "??? (+user1)"))
 	{
@@ -45,7 +45,7 @@ script "QCDE_StartingWeapon_Hint" (void)
 {
 	//SetHUDSize(1024,768,1);
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	str k = strparam(k:"+QCDE_StartingWeapon");
 	if(stricmp(k, "??? (+QCDE_StartingWeapon)"))
 		HudMessage(s:"Press ", s:k, s:" to change starting weapon.";
@@ -186,12 +186,12 @@ script "QCDE_EldersSoul_Hint" (void) CLIENTSIDE
 	last_hint_time = Timer();
 
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessageBold(s:"\c[brite]The enemy has the Soul.";
 		HUDMSG_FADEINOUT,ID_CHANGEWEAPON_1,-1,  256.4, 80.0, 1.4,0.1,5.0);
 
 	SetHUDSize(1024,768,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessageBold(s:"\c[white]Kill the carrier for 10 frags.";
 		HUDMSG_FADEINOUT,ID_CHANGEWEAPON_2,-1,  512.4,195.0, 1.4,1.0,5.0);
 
@@ -211,7 +211,7 @@ script "QCDE_Freezetag_Hint" (void) CLIENTSIDE
 	if(CPN() != CheckPlayerCamera(PlayerNumber()) - 1000) terminate;
 
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	str hint = "";
 	str k1 = strparam(k:"spynext");
 	str k2 = strparam(k:"spyprev");
@@ -232,7 +232,7 @@ script "QCDE_Freezetag_HintThaw" (void) CLIENTSIDE
 	if(CPN() == CheckPlayerCamera(PlayerNumber()) - 1000) terminate;
 
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 
 	HudMessage(s:"\c[HMG]You were thawed!";
 		HUDMSG_FADEINOUT,ID_CHANGEWEAPON_BACK,-1,  256.4,280.0, 0.4,0.1,1.0);
@@ -251,7 +251,7 @@ script "QCDE_TeamLMS_HintLast" (void) CLIENTSIDE
 	if(Timer() % 2) id = ID_CHANGEWEAPON_BACK;
 
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessage(s:"Last survivor!";
 		HUDMSG_FADEINOUT,id,-1,  256.4,100.0, 0.4,0.4,0.4);
 }
@@ -260,7 +260,7 @@ script "QCDE_EldersSoul_HintKill" (int self)
 {
 	if(!self) SetActivatorToTarget(0);
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	str s = "You killed the Soul Bearer! \c[RG]+10 frags!";
 	if(self) s = "You died with Soul! \c[bludi]-10 frags!";
 	HudMessage(s:s; HUDMSG_FADEINOUT,ID_CHANGEWEAPON_BACK ,CR_WHITE,  256.0,280.0, 1.4,0.1,2.0);
@@ -269,7 +269,7 @@ script "QCDE_EldersSoul_HintKill" (int self)
 script "QCDE_EldersSoul_HintDegeneration" (void)
 {
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	str s = "Your life burns faster!";
 	HudMessage(s:s; HUDMSG_FADEINOUT,ID_CHANGEWEAPON_BACK ,CR_WHITE,  256.0,280.0, 1.4,0.1,2.0);
 }
@@ -292,7 +292,7 @@ script "QCDE_EldersSoul_HintDegeneration" (void)
 script "QCDE_CoopTankWarning" (void)
 {
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessage(s:"You've picked a big champion!";
 				HUDMSG_FADEINOUT,ID_COOPTANK_1,CR_YELLOW, 256.0,100.0, 1.6,0.3,3.0);
 	SetFont("SMALLFONT");
@@ -310,7 +310,7 @@ script "QCDE_SkirmishDoom1Warning" (void)
 	delay(3);
 
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessage(s:"\c[bludi]Warning!";
 				HUDMSG_FADEINOUT|HUDMSG_LOG,ID_COOPTANK_1,-1, 256.0,100.0, 5.6,0.1,3.0);
 	SetFont("SMALLFONT");
@@ -376,7 +376,7 @@ script "QCDE_DamageScalarWarning" (void)
 	// Message to players -- waits a bit for everyone to connect
 	delay(70);
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessageBold(s:title; HUDMSG_FADEINOUT,ID_COOPTANK_1,CR_UNTRANSLATED, 256.0,100.0, 1.6,0.3,3.0);
 	SetFont("SMALLFONT");
 	HudMessageBold(s:desc1; HUDMSG_FADEINOUT,ID_COOPTANK_2,CR_UNTRANSLATED, 256.0,120.0, 1.8,0.4,3.8);
@@ -396,8 +396,9 @@ script "QCDE_MonstersKilled_Hint" (int secretsfound)
 	if(secretsfound)
 		message = "...::: Congratulations! :::...\n:::: Map completed ::::\n";
 
-	SetFont("BIGFONT");
-	HudMessageBold(s:message; HUDMSG_TYPEON,ID_LOOTBOX_TEXT,CR_GRAY, 1.5,0.82, 3.0,0.005,1.0);
+	SetHudSize(640, 480, 1);
+	SetFont("QCBGFONT");
+	HudMessageBold(s:message; HUDMSG_TYPEON,ID_LOOTBOX_TEXT,CR_GRAY, 320.0,393.6, 3.0,0.005,1.0);
 
 	if(secretsfound)
 		LocalAmbientSound("Map/MonstersKilled",100);
@@ -409,8 +410,9 @@ script "QCDE_SecretsKilled_Hint" (void) // Yes, secrets are also killed. Absolut
 {
 	str message = "..:: All Secrets Found ::..\n";
 
-	SetFont("BIGFONT");
-	HudMessageBold(s:message; HUDMSG_TYPEON,ID_LOOTBOX_TEXT,CR_GRAY, 1.5,0.82, 3.0,0.005,1.0);
+	SetHudSize(640, 480, 1);
+	SetFont("QCBGFONT");
+	HudMessageBold(s:message; HUDMSG_TYPEON,ID_LOOTBOX_TEXT,CR_GRAY, 320.0,393.6, 3.0,0.005,1.0);
 
 	AmbientSound("Map/SecretsFound",100);
 }
@@ -450,7 +452,7 @@ script "QCDE_Lootbox_Hint" (int level, int grade) clientside
 
 	SetHUDSize(640,480,1);
 	SetFont("SMALLFONT");	HudMessage(s:hint                ;HUDMSG_FADEOUT,ID_LOOTBOX_DESC,CR_WHITE,320.0, 87.0,2.5,3.0);
-	SetFont("BIGFONT");		HudMessage(s:LOOTBOX_NAMES[grade];HUDMSG_FADEOUT,ID_LOOTBOX_TEXT,CR_GREY ,320.0,106.0,3.0,3.0);
+	SetFont("QCBGFONT");		HudMessage(s:LOOTBOX_NAMES[grade];HUDMSG_FADEOUT,ID_LOOTBOX_TEXT,CR_GREY ,320.0,106.0,3.0,3.0);
 
 	SetHUDSize(1280,960,1);
 	SetFont(lootboxVisuals[grade]);
@@ -474,7 +476,7 @@ script "QCDE_Lootbox_PreShow" (int level, int grade)
 
 	SetHUDSize(640,480,1);
 	SetFont("SMALLFONT");	HudMessage(s:"opening"           ;HUDMSG_FADEOUT,ID_LOOTBOX_DESC,CR_WHITE,320.0, 87.0,0.1,2.0);
-	SetFont("BIGFONT");		HudMessage(s:LOOTBOX_NAMES[grade];HUDMSG_FADEOUT,ID_LOOTBOX_TEXT,CR_GREY ,320.0,106.0,1.0,3.0);
+	SetFont("QCBGFONT");		HudMessage(s:LOOTBOX_NAMES[grade];HUDMSG_FADEOUT,ID_LOOTBOX_TEXT,CR_GREY ,320.0,106.0,1.0,3.0);
 
 	int ratio;
 	int base = 320; int now = 320.0; int step = 8.0;
@@ -516,7 +518,7 @@ script "QCDE_Lootbox_Show" (int level, int grade, int title, int icon)
 
 	SetHUDSize(640,480,1);
 	SetFont("SMALLFONT");	HudMessage(s:hint;HUDMSG_FADEOUT,ID_LOOTBOX_DESC,CR_WHITE, 320.0, 87.0, 2.5,3.0 + grade * 0.1);
-	SetFont("BIGFONT");		HudMessage(s:title;HUDMSG_FADEOUT,ID_LOOTBOX_TEXT,CR_GREY, 320.0,106.0, 3.0,2.5 + grade * 0.4);
+	SetFont("QCBGFONT");		HudMessage(s:title;HUDMSG_FADEOUT,ID_LOOTBOX_TEXT,CR_GREY, 320.0,106.0, 3.0,2.5 + grade * 0.4);
 
 	SetFont("BLINKGLD");
 	SetHudSize(640,480,1);
@@ -593,7 +595,7 @@ script "QCDE_ChangeClass_Hint" (int toindex)
 	str to   = classes[toindex];
 
 	SetHUDSize(640,480,1);
-	SetFont("BIGFONT");		HudMessage(s:"CHANGING CLASS"            ;HUDMSG_FADEOUT,ID_CHCLASS_TEXT,CR_GREY ,320.0,107.0,1.0,1.0);
+	SetFont("QCBGFONT");		HudMessage(s:"CHANGING CLASS"            ;HUDMSG_FADEOUT,ID_CHCLASS_TEXT,CR_GREY ,320.0,107.0,1.0,1.0);
 	SetFont("SMALLFONT");	HudMessage(s:"from ",s:from,s:" to ",s:to;HUDMSG_FADEOUT,ID_CHCLASS_DESC,CR_WHITE,320.0,136.0,0.1,2.0);
 }
 
@@ -642,7 +644,7 @@ script "QCDE_ShowWeapon" (int weapon, int position, int totalNumber)
 	SetHudSize(800,600,true);
 	x *= 2;
 	y = (y >>16<< 16) * 2 + 8.1;
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessage(s:getLootboxWeaponNamings(weapon); HUDMSG_TYPEON, ID_WEAPON_TEXT_BASE + position, CR_WHITE, x, y, stayOn, 0.04, fadeOut);
 
 	// Back
@@ -2346,7 +2348,7 @@ script "QCDE_ClassInfo" (int class, int page) net clientside
 	x =                 284.0;	SetFont(classPix[class][2]);
 	y =                 565.0;	HudMessage(s:"A";HUDMSG_FADEINOUT,ID_CLASSINFO_ACTIMG,col,x+0.1,y    ,58.0,0.25,3.0);
 
-	str fontpvp = "BIGFONT"  ; str colpvp = "\c[brite]";
+	str fontpvp = "QCBGFONT"  ; str colpvp = "\c[brite]";
 	str fontpve = "SMALLFONT"; str colpve = "\c[graey]";
 	if(IsPVE()) { fontpvp ^= fontpve ^= fontpvp ^= fontpve; colpvp ^= colpve ^= colpvp ^= colpve; } // xor swaps
 
@@ -2362,7 +2364,7 @@ script "QCDE_ClassInfo" (int class, int page) net clientside
 	{
 	case PAGE_CLASSINFO:
 		// titles
-		SetFont("BIGFONT");
+		SetFont("QCBGFONT");
 		x = 320.0;						y = top + margin;
 		HudMessage(s:"\c[bludi]", s:classDoc[class][0];HUDMSG_FADEINOUT,ID_CLASSINFO_TITLE,col,x    ,y+0.1,58.0,0.05,3.0);
 		x = left + imagrin;				y = top + margin + line + margin + line*2 + margin;
@@ -2385,7 +2387,7 @@ script "QCDE_ClassInfo" (int class, int page) net clientside
 		SetFont("SMALLFONT");
 		x = left + imagrin;				y = top + margin + margin;
 		HudMessage(s:classDoc[class][4];HUDMSG_FADEINOUT,ID_CLASSINFO_DESC ,col,x+0.1,y+0.1,58.0,0.05,3.0);
-		SetFont("BIGFONT");
+		SetFont("QCBGFONT");
 		x = left + valgrind;			y += line*3 + margin;
 		HudMessage(s:classDoc[class][1];HUDMSG_FADEINOUT,ID_CLASSINFO_TYPEV,col,x+0.1,y+0.2,58.0,0.15,3.0);
 										y = top + margin + line + margin + line*2 + margin + line + margin;
@@ -2397,13 +2399,13 @@ script "QCDE_ClassInfo" (int class, int page) net clientside
 		SetFont("SMALLFONT");
 		x = left + imagrin;				y += hair;
 		HudMessage(s:classDoc[class][6];HUDMSG_FADEINOUT,ID_CLASSINFO_ACTID,col,x+0.1,y+0.1,58.0,0.35,3.0);
-		SetFont("BIGFONT");
+		SetFont("QCBGFONT");
 		x = left + valgrind;			y += line * 4;
 		HudMessage(s:classDoc[class][7];HUDMSG_FADEINOUT,ID_CLASSINFO_PASSV,col,x+0.1,y+0.2,58.0,0.30,3.0);
 		SetFont("SMALLFONT");
 		x = left + imagrin;				y += hair;
 		HudMessage(s:classDoc[class][8];HUDMSG_FADEINOUT,ID_CLASSINFO_PASSD,col,x+0.1,y+0.1,58.0,0.40,3.0);
-		SetFont("BIGFONT");
+		SetFont("QCBGFONT");
 		x = left + valgrind;			y += line * 4;
 		HudMessage(s:classDoc[class][9];HUDMSG_FADEINOUT,ID_CLASSINFO_PAS2V,col,x+0.1,y+0.2,58.0,0.30,3.0);
 		SetFont("SMALLFONT");
@@ -2412,7 +2414,7 @@ script "QCDE_ClassInfo" (int class, int page) net clientside
 		break;
 	case PAGE_IVORYDESC:
 		// titles
-		SetFont("BIGFONT");
+		SetFont("QCBGFONT");
 		x = 320.0;						y = top / 2 - margin;
 		HudMessage(s:"\c[bludi]", s:classDoc[class][0];HUDMSG_FADEINOUT,ID_CLASSINFO_TITLE,col,x    ,y+0.1,58.0,0.05,3.0);
 
@@ -2471,7 +2473,7 @@ script "QCDE_LowAmmoAlert_CLIENT" (int sound, int text, int noammo) CLIENTSIDE
 	if(!text) terminate;
 
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	str message = "\c[bludi]LOW AMMO";
 	if(noammo) message = "\c[red]NO AMMO";
 
@@ -2486,7 +2488,7 @@ script "QCDE_LowHealthAlert_CLIENT" (int sound, int text) CLIENTSIDE
 	if(!text) terminate;
 
 	SetHUDSize(512,384,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	str message = "\c[bludi]LOW HEALTH";
 
 	HudMessage(s:message;
@@ -2571,7 +2573,7 @@ script "QCDE_EradicatorHint" (int percentage, int kills_more)
 {
 
 	SetHUDSize(1400,1050,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 
 	if(percentage > 0)
 	{
@@ -2625,6 +2627,7 @@ script "QCDE_FreezeIndicator_CLIENT" (int percentage) CLIENTSIDE
 Script "QCDE_ShowVersionNumber" (void)
 {
 	SetHudSize(960,720,0);
+	SetFont("SMALLFNT");
 	HudMessageBold(s:"v3.0";HUDMSG_PLAIN,ID_TITLEMAP_VERSION,CR_WHITE, 955.0, 710.0, 0);
 }
 
@@ -2642,7 +2645,7 @@ Script "QCDE_ShowMonsterPack" (int packname)
 	int packWas = currentPack++;
 
 	SetHudSize(800,600,0);
-	SetFont("CONFONT");
+	SetFont("SMALLFNT");
 	HudMessageBold(s:"\c[brite]Registered custom monsters sets:";HUDMSG_FADEOUT,ID_TITLEMAP_THEMES,          -1, 0.1, 480.0,        0, 20.0);
 
 	delay(packWas * 3);
@@ -3035,7 +3038,7 @@ int cpcards_serialized[NUMBER_OF_CLASSES] = {
 script "QCDE_ClassPicker_Main" (int team) clientside
 {
 	SetHUDSize(600,450,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessage(s:"\c[brite]SELECT YOUR CHAMPION";HUDMSG_FADEOUT,HMID_CP_TITLE,-1, CP_TITLE_X * 3/4 >>16<< 16, (CP_TITLE_Y * 3/4 >>16<< 16) ,  CP_STAY_TIME,1.0);
 
 	SetHUDSize(2400,1800,1);
@@ -3061,7 +3064,7 @@ script "QCDE_ClassPicker_Main" (int team) clientside
 		HudMessage(s:"A"; HUDMSG_FADEOUT, HMID_CP_BACK_CARDS + iy*CP_CARDS_ROW + ix, -1, x,y, CP_STAY_TIME,1.0);
 	}
 
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessage(s:"\c[graey]LIGHT" ; HUDMSG_FADEOUT, HMID_CP_BODY_TYPE1, -1, CP_X + CP_CARDS_X + CP_TYPE_X + cpcardsxoffset[0], CP_Y + CP_CARDS_Y + CP_TYPE_Y + 0 * (CP_CARD_H + CP_CARD_Y), CP_STAY_TIME, 1.0);
 	HudMessage(s:"\c[graey]MEDIUM"; HUDMSG_FADEOUT, HMID_CP_BODY_TYPE2, -1, CP_X + CP_CARDS_X + CP_TYPE_X + cpcardsxoffset[1], CP_Y + CP_CARDS_Y + CP_TYPE_Y + 1 * (CP_CARD_H + CP_CARD_Y), CP_STAY_TIME, 1.0);
 	HudMessage(s:"\c[graey]HEAVY" ; HUDMSG_FADEOUT, HMID_CP_BODY_TYPE3, -1, CP_X + CP_CARDS_X + CP_TYPE_X + cpcardsxoffset[2], CP_Y + CP_CARDS_Y + CP_TYPE_Y + 2 * (CP_CARD_H + CP_CARD_Y), CP_STAY_TIME, 1.0);
@@ -3100,7 +3103,7 @@ script "QCDE_ClassPicker_Soon" (int ix, int iy) clientside
 	if(ix < 0 || iy < 0) terminate;
 	if(ix >= CP_CARDS_ROW || iy >= CP_CARDS_COL) terminate;
 	SetHUDSize(800,600,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	int x = CP_X  +  CP_CARDS_X  +  CP_SOON_X  +  ix * (CP_CARD_W + CP_CARD_X) + cpcardsxoffset[iy],
 		y = CP_Y  +  CP_CARDS_Y  +  CP_SOON_Y  +  iy * (CP_CARD_H + CP_CARD_Y);
 	str excuse;
@@ -3124,7 +3127,7 @@ script "QCDE_ClassPicker_Cant" (int ix, int iy) clientside
 	if(ix < 0 || iy < 0) terminate;
 	if(ix >= CP_CARDS_ROW || iy >= CP_CARDS_COL) terminate;
 	SetHUDSize(800,600,1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	int x = CP_X  +  CP_CARDS_X  +  CP_SOON_X  +  ix * (CP_CARD_W + CP_CARD_X) + cpcardsxoffset[iy],
 		y = CP_Y  +  CP_CARDS_Y  +  CP_SOON_Y  +  iy * (CP_CARD_H + CP_CARD_Y);
 	str apology = "\c[orange]forbidden by\n \c[orange]the server.";
@@ -3151,7 +3154,7 @@ script "QCDE_ClassPicker_Desc" (int which) clientside
 	SetFont(classPix[which][0]);
 		HudMessage(s:"A";HUDMSG_FADEOUT,HMID_CP_DESC_FIGURINE,-1, xoffs + CP_FIGUR_X, yoffs + CP_FIGUR_Y, CP_STAY_TIME,1.0);
 
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessage(s:"\c[brite]", s:classDoc[which][5];HUDMSG_FADEOUT,HMID_CP_DESC_ABIL1,-1, xoffs + CP_ABIL1_X, yoffs + CP_ABIL1_Y, CP_STAY_TIME,1.0);
 	HudMessage(s:"\c[graey]", s:classDoc[which][7];HUDMSG_FADEOUT,HMID_CP_DESC_ABIL2,-1, xoffs + CP_ABIL2_X, yoffs + CP_ABIL2_Y, CP_STAY_TIME,1.0);
 	HudMessage(s:"\c[graey]", s:classDoc[which][9];HUDMSG_FADEOUT,HMID_CP_DESC_ABIL3,-1, xoffs + CP_ABIL3_X, yoffs + CP_ABIL3_Y, CP_STAY_TIME,1.0);
@@ -3234,7 +3237,7 @@ script "QCDE_Tarot_Hint" (void) clientside
 	SetFont("CARDATTA"); HudMessageBold(s:"A"; HUDMSG_FADEINOUT,HMID_TAROT_CARD_U , -1, 1440.0/2            ,TAROT_Y, 1.1,0,0.1);
 	SetFont("CARDSPEE"); HudMessageBold(s:"A"; HUDMSG_FADEINOUT,HMID_TAROT_CARD_R , -1, 1440.0/2+TAROT_XOFFS,943.0,   1.1,0,0.1);
 
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessageBold(s:moveleft;	HUDMSG_FADEOUT,HMID_TAROT_TEXT_L,-1, 1440.0/2-TAROT_XOFFS,TAROT_TEXT_YOFFS+943.0,   1.1,0,0.1);
 	HudMessageBold(s:forward;	HUDMSG_FADEOUT,HMID_TAROT_TEXT_U,-1, 1440.0/2            ,TAROT_TEXT_YOFFS+TAROT_Y, 1.1,0,0.1);
 	HudMessageBold(s:moveright;	HUDMSG_FADEOUT,HMID_TAROT_TEXT_R,-1, 1440.0/2+TAROT_XOFFS,TAROT_TEXT_YOFFS+943.0,   1.1,0,0.1);
@@ -3326,7 +3329,7 @@ Script "QCDE_IntruderMoraleBoost" (void) clientside
 
 	//AmbientSound("QC/Abilities/VorMatur/Darkened",1.0);
 	SetHudSize(1024, 768, 1);
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 	HudMessageBold(s:"\c[RG]Morale Boost!"; HUDMSG_FADEOUT,0,-1, 222.0,737.0, 1.0,2.0);
 }
 
@@ -3339,16 +3342,21 @@ Script "QCDE_IntruderMoraleBoost" (void) clientside
 
 Script "QCDE_ShowMapIntroduction" (int mapName, int mapTitle, int mapAuthor, int mapSource)
 {
-	SetFont("BIGFONT");
-	HudMessage(s:mapName, s:" \c[brite]", s:mapTitle;
-		HUDMSG_FADEINOUT, 0, CR_RED, 0.05, 0.55, 2.5, 0.7, 1.0);
+	SetHudSize(640, 480, 1);
+	SetFont("QCBGFONT");
+	HudMessage(s:mapName, s:" \c[brite]", s:mapTitle,
+		s:"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"; // this helps placing the text box properly
+		HUDMSG_FADEINOUT, 0, CR_RED, 245.0, 272.0, 2.5, 0.7, 1.0);
 
-	str originalString = "\nOriginal: ";
+	str originalString = "\n \c[yellow]Original: \c[brite]";
 
 	if (!strcmp(mapSource, ""))
 		originalString = "";
 
-	SetFont("CONFONT");
-	HudMessage(s:"Mapped by: ", s:mapAuthor, s:originalString, s:mapSource;
-		HUDMSG_FADEINOUT, 0, CR_RED, 0.05, 0.65, 2.3, 0.9, 1.0);
+	SetHudSize(640, 480, 1);
+	SetFont("QCSMFONT");
+	HudMessage(s:" \c[yellow]Mapped by: \c[brite]", s:mapAuthor, s:originalString, s:mapSource,
+		s:"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+		s:"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"; // this helps placing the text box properly
+		HUDMSG_FADEINOUT, 0, CR_RED, 272.0, 296.0, 2.3, 0.9, 1.0);
 }

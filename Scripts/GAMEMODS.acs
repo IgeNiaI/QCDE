@@ -248,7 +248,7 @@ Script "QCDE_Gamemode_qc_FreezeTag" (void)
 	if (!GetCvar("teamlms"))
 	{
 		delay(100);
-		SetFont("BIGFONT");
+		SetFont("QCBGFONT");
 		Log(s:"\c[bludi]QCDE Error: \nFreezetag can only be enabled on top of Team Last Man Standing game mode\n(cvar: teamlms)");
 		terminate;
 	}

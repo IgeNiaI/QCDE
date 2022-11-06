@@ -1013,7 +1013,7 @@ Script "themes" (void) net
 		s = strparam(s:s, s:"\n\nRogue-like Skirmish mode:\nMonsters of all classes spawn in unexpected places.");
 
 	s = strparam(s:s, s:"\n\nLoaded themes\n*  *  *");
-	SetFont("BIGFONT");
+	SetFont("QCBGFONT");
 
 	int i;
 	for(i = 0; i < NUMBER_OF_THEMES; i++)
