@@ -69,7 +69,11 @@ Actor SuperNailgunPickup : CustomInventory 15603
 		Fail
 	HideIndefinitely:
 		TNT1 A 1 A_SetTics(CallACS("QCDE_SetWeaponRespawnTics"))
-		Goto HideDoomish+1
+		Goto Super::HideDoomish+1
+	HideDoomish:
+		TNT1 A 1
+		TNT1 A 1 A_SetTics(CallACS("QCDE_SetWeaponRespawnTics"))
+		Goto Super::HideDoomish+1
 	}
 }
 

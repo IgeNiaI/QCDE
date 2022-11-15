@@ -60,12 +60,14 @@ Script "QCDE_IsWeaponOnMap" (int type)
 Script "QCDE_SetWeaponRespawnTics" (void)
 {
 	int result;
-	if(GetCvar("duel"))
-		result = 5 * 35;
-	else if(!GetCvar("sv_itemrespawn"))
+	if (!GetCvar("sv_itemrespawn"))
 		result = 0x7FFFFFFF;
+	else if (GetCvar("sv_weaponrespawn"))
+		result = (GetCvar("sv_weaponrespawn") - 1) * 35; // + 1 second from Decorate
+	else if(GetCvar("duel"))
+		result = 4 * 35; // + 1 second from Decorate
 	else // all non-duel games with items set to respawn
-		result = 1 * 35;
+		result = 0 * 35; // + 1 second from Decorate
 	//PrintBold(n:0, s:" result: ", d:result);
 	SetResultValue(result);
 }
