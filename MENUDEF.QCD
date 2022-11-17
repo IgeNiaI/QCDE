@@ -93,6 +93,26 @@ ListMenu "EpisodeMenu"
 	// items will be filled in by MAPINFO
 }
 
+OptionMenu ZA_SkirmishMenu
+{
+	Title		"SKIRMISH"
+	Option		"Level",				"menu_skirmishlevel",			"ZA_Levels"
+	Option		"Game Mode",			"menu_skirmishgamemode",		"ZA_Gamemode"
+	//Option		"Modifier",				"menu_skirmishmodifier",		"ZA_Modifier"
+	StaticText	" "
+	NumberField	"Timelimit",			"menu_skirmishtimelimit"
+	NumberField	"Fraglimit",			"menu_skirmishfraglimit"
+	NumberField	"Pointlimit",			"menu_skirmishpointlimit"
+	NumberField	"Duellimit",			"menu_skirmishduellimit"
+	NumberField	"Winlimit",				"menu_skirmishwinlimit"
+	NumberField	"Wavelimit",			"menu_skirmishwavelimit", 0, 10
+	StaticText	" "
+	Option		"Bot Skill",			"menu_skirmishbotskill",		ZA_Skill
+	SubMenu		"Bot Setup",			"ZA_BotSetup"
+	StaticText	" "
+	Command		"Start Game!",			"menu_startskirmish"
+}
+
 OptionMenu "QCDEOptions"
 {
 	Title 		"QCDE OPTIONS"
