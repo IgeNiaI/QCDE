@@ -191,3 +191,25 @@ Actor QCBackpackItem : BackpackItem
 {
 	+SERVERNETID
 }
+
+// Used to prevent the vanilla Terminator orb from spawning
+ACTOR NoTerminator replaces Terminator
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	}
+}
+
+// Used to prevent the vanilla Possession stone from spawning
+ACTOR NoPossession replaces PossessionStone
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		Stop
+	}
+}
