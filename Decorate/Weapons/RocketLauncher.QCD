@@ -304,11 +304,26 @@ Actor QCRocketPlayer
 	DeathCont:
 		TNT1 A 0 A_JumpIfInTargetInventory("RL_UG_Cluster",1,"PerformCluster")
 		TNT1 A 0 A_StopSound(7)
+		TNT1 A 0 A_JumpIfInTargetInventory("Class_Ranger",1,"DoRanger")
+		Goto DoElse
+
+	DoRanger:
+		TNT1 A 0 A_Explode(40,128,XF_HURTSOURCE)	//max damage taken by self rocket (rocket jump) to Ranger is 40
+		TNT1 A 0 A_RadiusThrust(130,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(88,128,0)	//The rest doesnt deal damage to player, adds to 128
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+		Goto DamageFX
+
+	DoElse:
 		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE)	//max damage taken by self rocket (rocket jump) is 50
 		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(78,128,0)	//The rest doesnt deal damage to player, adds to 128
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+		Goto DamageFX
+
+	DamageFX:
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebris",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,0,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
 		TNT1 A 10 A_SpawnItemEx("QCRocketExplosion",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -343,11 +358,26 @@ Actor QCRocketPlayerDM : QCRocketPlayer
 	{
 	DeathCont:
 		TNT1 A 0 A_StopSound(7)
+		TNT1 A 0 A_JumpIfInTargetInventory("Class_Ranger",1,"DoRanger")
+		Goto DoElse
+
+	DoRanger:
+		TNT1 A 0 A_Explode(40,128,XF_HURTSOURCE,0,18)	//max damage taken by self rocket (rocket jump) to Ranger is 40
+		TNT1 A 0 A_RadiusThrust(130,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(44,128,0,0,18)	//then another 44 extra damage for impacting a player + (16)dmg on the projectile =100dmg
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+		Goto DamageFX
+
+	DoElse:
 		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE,0,18)	//max damage taken by self rocket (rocket jump) is 50
 		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(34,128,0,0,18)	//then another 34 extra damage for impacting a player + (16)dmg on the projectile =100dmg
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+		Goto DamageFX
+
+	DamageFX:
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebrisDM",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,0,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
 		TNT1 A 10 A_SpawnItemEx("QCRocketExplosionDM",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -812,11 +842,26 @@ Actor RocketControlled
 		TNT1 A 0 A_Stop
 		TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/RocketExplo",CHAN_5|CHAN_NOPAUSE)
 		TNT1 A 0 ACS_NamedExecuteWithResult ("QCDE_ResetRocketFov", 0, 0, 0, 0)	//fov back to 90 in the camera
+		TNT1 A 0 A_JumpIfInTargetInventory("Class_Ranger",1,"DoRanger")
+		Goto DoElse
+
+	DoRanger:
+		TNT1 A 0 A_Explode(40,160,XF_HURTSOURCE,0,64)
+		TNT1 A 0 A_RadiusThrust(130,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(130,160,0,0,64)
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+		Goto DeathFX
+
+	DoElse:
 		TNT1 A 0 A_Explode(50,160,XF_HURTSOURCE,0,64)
 		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(130,160,0,0,64)
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+		Goto DeathFX
+
+	DeathFX:
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebris",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,0,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("QCRocketExplosion",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -899,11 +944,26 @@ Actor RLClusterRocket
 			Goto DeathCont
 
 	DeathCont:
+		TNT1 A 0 A_JumpIfInTargetInventory("Class_Ranger",1,"DoRanger")
+		Goto DoElse
+
+	DoRanger:
+		TNT1 A 0 A_Explode(19,80,0,0,40)
+		TNT1 A 0 A_RadiusThrust(63,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(45,80,0,0,40)
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		Goto DeathFX
+
+	DoElse:
 		TNT1 A 0 A_Explode(24,80,0,0,40)
 		TNT1 A 0 A_RadiusThrust(58,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(40,80,0,0,40)
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		Goto DeathFX
+
+	DeathFX:
 		TNT1 A 0 A_PlaySound("quake4/Misc/RocketExplo",CHAN_5,0.4,0,1.5)
 		TNT1 A 3 A_SpawnItemEx("Q4GBSwarmExplo",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		Stop

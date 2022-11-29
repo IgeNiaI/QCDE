@@ -140,8 +140,6 @@ Actor QCRanger : QCPlayerMedium
 	Player.StartItem "ActiveOffensive"
 	Player.StartItem "NotSpectator"
 
-	DamageFactor "RocketDamage", 0.8181
-
 	States
 	{
 	Spawn:
