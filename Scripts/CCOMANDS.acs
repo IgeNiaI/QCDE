@@ -50,24 +50,19 @@ function void qcde_mutators(int instagib, int buckshot, int rocketarena)
 	ConsoleCommand(strparam(s:"rocketarena ", d:  rocketarena)); // bitfield, not converted to boolean
 }
 
-function void qcde_speed(int speed)
-{
-	ConsoleCommand(strparam(s:"sv_playerSpeed ", d:speed));
-}
-
 // Mutatable PVP modes
-Script "qcde_dm"   (int ig, int bs, int ra) { qcde_pvp_mode(0                ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
-Script "qcde_duel" (int ig, int bs, int ra) { qcde_pvp_mode("duel"           ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
-Script "qcde_lms"  (int ig, int bs, int ra) { qcde_pvp_mode("lastmanstanding"); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
-Script "qcde_tdm"  (int ig, int bs, int ra) { qcde_pvp_mode("teamplay"       ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
-Script "qcde_tlms" (int ig, int bs, int ra) { qcde_pvp_mode("teamlms"        ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
-Script "qcde_dom"  (int ig, int bs, int ra) { qcde_pvp_mode("domination"     ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
-Script "qcde_st"   (int ig, int bs, int ra) { qcde_pvp_mode("skulltag"       ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
-Script "qcde_ctf"  (int ig, int bs, int ra) { qcde_pvp_mode("ctf"            ); qcde_speed(85); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_dm"   (int ig, int bs, int ra) { qcde_pvp_mode(0                ); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_duel" (int ig, int bs, int ra) { qcde_pvp_mode("duel"           ); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_lms"  (int ig, int bs, int ra) { qcde_pvp_mode("lastmanstanding"); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_tdm"  (int ig, int bs, int ra) { qcde_pvp_mode("teamplay"       ); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_tlms" (int ig, int bs, int ra) { qcde_pvp_mode("teamlms"        ); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_dom"  (int ig, int bs, int ra) { qcde_pvp_mode("domination"     ); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_st"   (int ig, int bs, int ra) { qcde_pvp_mode("skulltag"       ); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
+Script "qcde_ctf"  (int ig, int bs, int ra) { qcde_pvp_mode("ctf"            ); qcde_mutators(ig,bs,ra); qcde_common_sense(); }
 
 // PVE modes
-Script "qcde_coop" (void) { qcde_pve_mode(0         ); qcde_speed(100); qcde_mutators(0,0,0); qcde_common_sense(); }
-Script "qcde_surv" (void) { qcde_pve_mode("survival"); qcde_speed(100); qcde_mutators(0,0,0); qcde_common_sense(); }
+Script "qcde_coop" (void) { qcde_pve_mode(0         ); qcde_mutators(0,0,0); qcde_common_sense(); }
+Script "qcde_surv" (void) { qcde_pve_mode("survival"); qcde_mutators(0,0,0); qcde_common_sense(); }
 
 
 // Shortcuts
