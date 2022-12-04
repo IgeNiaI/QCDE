@@ -423,7 +423,12 @@ Script "QCDE_DM_AmmoCapacity" (void)
 
 Script "QCDE_PlayerSpeed" (void)
 {
-	int sv_PlayerSpeed = GetCvar("sv_PlayerSpeed");
+	int sv_PlayerSpeed;
+
+	if (GetCvar("deathmatch") || GetCvar("ctf") || GetCvar("oneflagctf") || GetCvar("skulltag") || GetCvar("domination") || GetCvar("customteamgame"))
+		sv_PlayerSpeed = 85;
+	else
+		sv_PlayerSpeed = 100;
 
 	sv_PlayerSpeed = sv_PlayerSpeed / 5 * 5; // floor to multiple of 5
 	if(sv_PlayerSpeed <  70) sv_PlayerSpeed =  70;
