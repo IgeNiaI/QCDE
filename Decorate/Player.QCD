@@ -40,10 +40,11 @@ Actor QCPlayer : PlayerPawn
 	Player.WeaponSlot 2, QCMachinegun, QCHeavyMachinegun,		QCMachinegunDM, QCHeavyMachinegunDM
 	Player.WeaponSlot 3, QCShotgun, QCSuperShotgun,				QCShotgunDM, QCSuperShotgunDM
 	Player.WeaponSlot 4, QCNailgun, QCSuperNailgun,				QCNailgunDM, QCSuperNailgunDM
-	Player.WeaponSlot 5, QCTribolt, QCRocketLauncher,			QCTriboltDM, QCRocketLauncherDM
-	Player.WeaponSlot 6, QCLightningGun,						QCLightningGunDM
-	Player.WeaponSlot 7, QCRailgun,								QCRailgunDM
-	Player.WeaponSlot 8, QCBFG,									QCBFGDM
+	Player.WeaponSlot 5, QCTribolt,								QCTriboltDM
+	Player.WeaponSlot 6, QCRocketLauncher,						QCRocketLauncherDM
+	Player.WeaponSlot 7, QCLightningGun,						QCLightningGunDM
+	Player.WeaponSlot 8, QCRailgun,								QCRailgunDM
+	Player.WeaponSlot 9, QCBFG,									QCBFGDM
 
 	Player.ForwardMove 0.75,1,0.5,0.5
 	Player.SideMove 0.78,1.25,0.54,0.52
