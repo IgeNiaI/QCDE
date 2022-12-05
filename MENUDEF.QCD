@@ -43,17 +43,15 @@ LISTMENU "MainMenu"
 			PatchItem "Q_LOADG", "l", "LoadGameMenu"
 			PatchItem "Q_SAVEG", "s", "SaveGameMenu"
 			PatchItem "Q_CHAMP", "p", "QCDEPlayerMenu"
-			PatchItem "Q_QCDEOP","c", "QCDEOptions"
+			PatchItem "Q_OPTION","c", "QCDEOptions"
 			PatchItem "Q_OPTION","o", "OptionsMenu"
-			PatchItem "Q_RDTHIS","r", "ReadThisMenu"
 		}
 		else
 		{
 			PatchItem "Q_CHAMP", "p", "QCDEPlayerMenu"
-			PatchItem "Q_QCDEOP", "c", "QCDEOptions"
+			PatchItem "Q_OPTION", "c", "QCDEOptions"
 			PatchItem "Q_LOADG", "l", "LoadGameMenu"
 			PatchItem "Q_SAVEG", "s", "SaveGameMenu"
-			PatchItem "Q_RDTHIS","r", "ReadThisMenu"
 		}
 		PatchItem "Q_QUITG", "q", "QuitMenu"
 	}
@@ -63,7 +61,6 @@ LISTMENU "MainMenu"
 		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
 		TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
 		TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
-		TextItem "$MNU_INFO", "i", "ReadThisMenu"
 		TextItem "$MNU_QUITGAME", "q", "QuitMenu"
 	}
 }
@@ -129,8 +126,8 @@ OptionMenu "QCDEZoom"
 
 OptionValue "QCSwitch"
 {
-	0, "Never"
-	2, "Always"
+	0, "Off"
+	1, "On"
 }
 
 OptionMenu "QZDEMisc"	//had to overwrite, because redefine broke the list of resolutions
@@ -177,10 +174,10 @@ OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of 
 	Slider 		"Game Screen size",				"screenblocks", 3.0, 12.0, 1.0, 0
 	Option 		"Vertical Sync",				"vid_vsync",	"OnOff"
 	Option		"Display FPS",					"vid_fps",		"OnOff"
+	Option		"True horizontal fov",			"gl_true_fov",	"YesNo"
 	Slider		"Max FPS",						"vid_maxfps",	0, 1000, 5
 
-	Option "Aspect ratio",			"menu_screenratios", "Ratios"
-	Option "True horizontal fov",	"gl_true_fov", "YesNo"
+	Option		"Aspect ratio",					"menu_screenratios",	"Ratios"
 	StaticText " "
 	ScreenResolution "res_0"
 	ScreenResolution "res_1"
@@ -221,6 +218,8 @@ OptionMenu "QZDEHUDOptions"
 	Slider 		"Field of View",				"fov",					5.0, 179.0, 1.0, 2
 	Slider 		"Move bobbing intensity",		"movebob", 			  	0,  0.75, 0.02, 2
 	Slider 		"Weapon sway",					"movesway", 			0,   2.0, 0.01, 2
+	Option		"Show weapon",					"r_drawplayersprites",	"OnOff"
+	Option		"Sprite billboard",				"gl_billboard_mode",	"BillboardModes"
 	Option 		"Crosshair type",				"crosshair",           	"Crosshairs"
 	Option 		"Crosshair shows health",		"crosshairhealth",		"OnOff"
 	ColorPicker "Crosshair color", 				"crosshaircolor"
@@ -282,7 +281,7 @@ OptionMenu "QZDEMouseOptions"
 	Option "Invert Mouse",				"invertmouse", "OnOff"
 	IfOption(Windows)
 	{
-		Option "Mouse input",				"in_mouse", "InMouse"
+		Option "Mouse input type",		"in_mouse", "InMouse"
 	}
 	Option "Prescale mouse movement",	"m_noprescale", "NoYes"
 	Option "Smooth mouse movement",		"smooth_mouse", "YesNo"
@@ -291,29 +290,28 @@ OptionMenu "QZDEMouseOptions"
 
 ListMenu "QCDEPlayerMenu"
 {
-	StaticTextCentered 160, 0, "PLAYER CLASS SETUP"
-	Font "SmallFont"
-	StaticTextCentered 160, 30, "Changes apply after respawn"
+	StaticTextCentered 160, 0, "PLAYER SETUP"
 
 	Linespacing 14
-	Position 32, 56
-
-	Linespacing 28
-	Font "BigFont"
-	ValueText "Champion : ", "Class"
+	Position 16, 56
 
 	Linespacing 14
 	Font "SmallFont"
 	PlayerNameBox "Name", 0, "Playerbox"
 	Selector "-", -16, -1
 	MouseWindow 0, 220
-	PlayerDisplay 220, 100, "20 00 00", "80 00 40", 1, "PlayerDisplay"
+	PlayerDisplay 220, 80, "20 00 00", "80 00 40", 1, "PlayerDisplay"
 
-	ValueText "Team", "Team"
-	ValueText "Gender", "Gender", "Gender"
-	ValueText "Autoaim", "Autoaim", "Autoaim"
-	ValueText "Switch on pickup", "Switch", "OffOn"
-	ValueText "Always Run", "AlwaysRun", "OnOff"
+	Linespacing 14
+	Font "BigFont"
+	ValueText "Champion : ", "Class"
+
+	Font "SmallFont"
+	StaticText 16, 90, "Champion changes apply after respawn"
+
+	// Can't delete Skin option or else class preview won't update
+	// Using a font with no letters instead
+	Font "QCFNT100"
 	ValueText "Skin (ignore)", "Skin"
 	Class "PlayerMenu"
 }
@@ -363,22 +361,29 @@ OptionMenu "QZDEBinds"
 	StaticText 	""
 
 	StaticText 	"Chat", 1
-	Control 	"Say",					"messagemode"
-	Control 	"Team say",				"messagemode2"
+	Control 	"Say",				"messagemode"
+	Control 	"Team say",			"messagemode2"
+	Control		"Vote yes",			"vote_yes"
+	Control		"Vote no",			"vote_no"
 
 	StaticText ""
 
 	StaticText 	"Other", 1
 	Control    	"Open Console",				"toggleconsole"
-	Control		"Vote yes",					"vote_yes"
-	Control		"Vote no",					"vote_no"
 	Control 	"Toggle automap",			"togglemap"
 	Control 	"Show Scoreboard",			"+showscores"
-	Control		"Join spectators",			"spectate"
-	Control 	"Spectate next player",		"spynext"
 	Control 	"Screenshot",				"screenshot"
 	Option		"Join the game",			"joinmenukey", "JoinMenuKeys"
 	Control		"Join the game (custom)", 	"menu_join"
+	Control  	"Ready to play",			"ready"
+
+	StaticText 	""
+
+	StaticText 	"Spectating", 1
+	Control		"Join spectators",			"spectate"
+	Control 	"Spectate previous player",	"spyprev"
+	Control 	"Spectate next player",		"spynext"
+	Control 	"Toggle Spectate killer",	"spykiller"
 }
 
 OptionMenu "QCDECustomThemes"
@@ -561,7 +566,6 @@ OptionMenu ZA_JoinMenu
 	StaticText	" "
 	StaticText	" "
 	Command		"Join game",			"pukename QCDE_ClassPicker"
-	Command		"How to play",			"menu_help"
 }
 
 
@@ -579,7 +583,6 @@ OptionMenu ZA_JoinTeamMenu
 	Command		"Join game",			"pukename QCDE_ClassPicker 0"
 	Command		"Join blue",			"pukename QCDE_ClassPicker 1"
 	Command		"Join red" ,			"pukename QCDE_ClassPicker 2"
-	Command		"How to play",			"menu_help"
 }
 
 // Now unreachable, but still provided if anyone has old bindings
