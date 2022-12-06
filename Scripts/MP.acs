@@ -576,10 +576,16 @@ Script "QCDE_Players=0" OPEN
 	int max =~- GetCvar("sv_maxplayers");
 	int min = clamp(GetCvar("sv_minplayers"), 0, max);
 
-	if(GetCvar("sv_minPlayers"))
+	if(GetCvar("sv_minPlayers") && GetGameModeState() <= 2)
 	{
-		if(GetCvar("sv_shuffleBots") == 1) ConsoleCommand("removebots");
-		if(GetCvar("sv_shuffleBots") == 2) ConsoleCommand("removebot");
+		if(GetCvar("sv_shuffleBots") == 1)
+		{
+			ConsoleCommand("removebots");
+		}
+		if(GetCvar("sv_shuffleBots") == 2)
+		{
+			ConsoleCommand("removebot");
+		}
 	}
 
 	while(true)
@@ -604,6 +610,8 @@ Script "QCDE_Players++" ENTER
 	int plr = PlayerNumber();
 	if(PlayerIsBot(plr)) terminate; // allow overprovising bots
 
+	delay(1);
+
 	addOrRemoveBot(plr);
 }
 Script "QCDE_Players--" (int plr) DISCONNECT
@@ -612,6 +620,8 @@ Script "QCDE_Players--" (int plr) DISCONNECT
 	if(GameType() == GAME_TITLE_MAP) terminate;
 	if(!GetCvar("sv_minplayers")) terminate;
 	if(GetCvar("duel")) terminate; // not in duels
+
+	delay(1);
 
 	addOrRemoveBot(plr);
 }
@@ -648,7 +658,7 @@ function void addOrRemoveBot(int plr)
 	else if(now < min)
 	{
 		if(GetCvar("lastmanstanding") || GetCvar("teamlms"))
-			if(GetGameModeState() >= 2) // GAMESTATE_INPROGRESS
+			if(GetGameModeState() >= 3) // GAMESTATE_INPROGRESS
 				return; // not in LMS in progress
 		//log(n:plr + 1, s:" ++ There are ", d:now, s:" players, and minimum is set at ", d:min, s:", so one bot is added.");
 		ConsoleCommand("addbot");
