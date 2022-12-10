@@ -1,0 +1,500 @@
+
+//********************
+// Gauntlet
+QC/Weapons/Gauntlet/FireEnd_Default				"Sounds/Weapons/Gauntlet/Default/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Idle_Default				"Sounds/Weapons/Gauntlet/Default/Gaunt_Idle.ogg"
+QC/Weapons/Gauntlet/FireStartLoop_Default		"Sounds/Weapons/Gauntlet/Default/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Select_Default				"Sounds/Weapons/Gauntlet/Default/Gaunt_Select.ogg"
+QC/Weapons/Gauntlet/Quad/FireStartLoop_Default	"Sounds/Weapons/Gauntlet/Default/Quad/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Hit1_Default				"Sounds/Weapons/Gauntlet/Default/Gaunt_Hit1.ogg"
+QC/Weapons/Gauntlet/Hit2_Default				"Sounds/Weapons/Gauntlet/Default/Gaunt_Hit2.ogg"
+QC/Weapons/Gauntlet/Hit3_Default				"Sounds/Weapons/Gauntlet/Default/Gaunt_Hit3.ogg"
+$random QC/Weapons/Gauntlet/Hit_Default				{ QC/Weapons/Gauntlet/Hit1_Default QC/Weapons/Gauntlet/Hit2_Default QC/Weapons/Gauntlet/Hit3_Default }
+
+QC/Weapons/Gauntlet/FireEnd_Quake3				"Sounds/Weapons/Gauntlet/Quake3/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Idle_Quake3					"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Idle.ogg"
+QC/Weapons/Gauntlet/FireStartLoop_Quake3		"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Select_Quake3				"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Select.ogg"
+QC/Weapons/Gauntlet/Quad/FireStartLoop_Quake3	"Sounds/Weapons/Gauntlet/Quake3/Quad/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Hit1_Quake3					"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Hit1.ogg"
+QC/Weapons/Gauntlet/Hit2_Quake3					"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Hit2.ogg"
+QC/Weapons/Gauntlet/Hit3_Quake3					"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Hit3.ogg"
+$random QC/Weapons/Gauntlet/Hit_Quake3				{ QC/Weapons/Gauntlet/Hit1_Quake3 QC/Weapons/Gauntlet/Hit2_Quake3 QC/Weapons/Gauntlet/Hit3_Quake3 }
+
+QC/Weapons/Gauntlet/FireEnd_Quake4				"Sounds/Weapons/Gauntlet/Quake4/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Idle_Quake4					"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Idle.ogg"
+QC/Weapons/Gauntlet/FireStartLoop_Quake4		"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Select_Quake4				"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Select.ogg"
+QC/Weapons/Gauntlet/Quad/FireStartLoop_Quake4	"Sounds/Weapons/Gauntlet/Quake4/Quad/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Hit_Quake4					"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Hit1.ogg"
+
+
+//********************
+// Machinegun
+QC/Weapons/Machinegun/FireEnd_Default				"Sounds/Weapons/Machinegun/Default/MG_End.ogg"
+QC/Weapons/Machinegun/FireStartLoop_Default			"Sounds/Weapons/Machinegun/Default/MG_Fire_Looper.ogg"
+QC/Weapons/Machinegun/Quad/FireStartLoop_Default	"Sounds/Weapons/Machinegun/Default/Quad/MG_Fire_Looper.ogg"
+
+QC/Weapons/Machinegun/FireEnd_Quake2				"Sounds/Weapons/Machinegun/Quake2/MG_End.ogg"
+QC/Weapons/Machinegun/FireStartLoop_Quake2			"Sounds/Weapons/Machinegun/Quake2/MG_Fire_Looper.ogg"
+QC/Weapons/Machinegun/Quad/FireStartLoop_Quake2		"Sounds/Weapons/Machinegun/Quake2/Quad/MG_Fire_Looper.ogg"
+
+QC/Weapons/Machinegun/FireEnd_Quake3				"Sounds/Weapons/Machinegun/Quake3/MG_End.ogg"
+QC/Weapons/Machinegun/FireStartLoop_Quake3			"Sounds/Weapons/Machinegun/Quake3/MG_Fire_Looper.ogg"
+QC/Weapons/Machinegun/Quad/FireStartLoop_Quake3		"Sounds/Weapons/Machinegun/Quake3/Quad/MG_Fire_Looper.ogg"
+
+QC/Weapons/Machinegun/FireEnd_Quake4				"Sounds/Weapons/Machinegun/Quake4/MG_End.ogg"
+QC/Weapons/Machinegun/FireStartLoop_Quake4			"Sounds/Weapons/Machinegun/Quake4/MG_Fire_Looper.ogg"
+QC/Weapons/Machinegun/Quad/FireStartLoop_Quake4		"Sounds/Weapons/Machinegun/Quake4/Quad/MG_Fire_Looper.ogg"
+
+QC/Weapons/Machinegun/FireEnd_ETQW					"Sounds/Weapons/Machinegun/ETQW/MG_End.ogg"
+QC/Weapons/Machinegun/FireStartLoop_ETQW			"Sounds/Weapons/Machinegun/ETQW/MG_Fire_Looper.ogg"
+QC/Weapons/Machinegun/Quad/FireStartLoop_ETQW		"Sounds/Weapons/Machinegun/ETQW/Quad/MG_Fire_Looper.ogg"
+
+
+//********************
+// Heavy Manchinegun
+QC/Weapons/HeavyMachinegun/FireEnd_Default				"Sounds/Weapons/HeavyMachineGun/Default/HMG_End.ogg"
+QC/Weapons/HeavyMachinegun/FireStartLoop_Default		"Sounds/Weapons/HeavyMachineGun/Default/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedStart_Default		"Sounds/Weapons/HeavyMachineGun/Default/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedEnd_Default		"Sounds/Weapons/HeavyMachineGun/Default/HMG_Zoomed_End.ogg"
+QC/Weapons/HeavyMachinegun/ZoomIn_Default				"Sounds/Weapons/HeavyMachineGun/Default/HMG_ZoomIn.ogg"
+QC/Weapons/HeavyMachinegun/ZoomOut_Default				"Sounds/Weapons/HeavyMachineGun/Default/HMG_ZoomOut.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Default	"Sounds/Weapons/HeavyMachineGun/Default/Quad/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_Default	"Sounds/Weapons/HeavyMachineGun/Default/Quad/HMG_Zoomed_Start.ogg"
+
+QC/Weapons/HeavyMachinegun/FireEnd_Quake2				"Sounds/Weapons/HeavyMachineGun/Quake2/HMG_End.ogg"
+QC/Weapons/HeavyMachinegun/FireStartLoop_Quake2			"Sounds/Weapons/HeavyMachineGun/Quake2/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedStart_Quake2		"Sounds/Weapons/HeavyMachineGun/Quake2/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake2	"Sounds/Weapons/HeavyMachineGun/Quake2/Quad/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_Quake2	"Sounds/Weapons/HeavyMachineGun/Quake2/Quad/HMG_Zoomed_Start.ogg"
+
+QC/Weapons/HeavyMachinegun/FireEnd_Quake3				"Sounds/Weapons/HeavyMachineGun/Quake3/HMG_End.ogg"
+QC/Weapons/HeavyMachinegun/FireStartLoop_Quake3			"Sounds/Weapons/HeavyMachineGun/Quake3/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedStart_Quake3		"Sounds/Weapons/HeavyMachineGun/Quake3/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake3	"Sounds/Weapons/HeavyMachineGun/Quake3/Quad/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_Quake3	"Sounds/Weapons/HeavyMachineGun/Quake3/Quad/HMG_Zoomed_Start.ogg"
+
+QC/Weapons/HeavyMachinegun/FireEnd_Quake4				"Sounds/Weapons/HeavyMachineGun/Quake4/HMG_End.ogg"
+QC/Weapons/HeavyMachinegun/FireStartLoop_Quake4			"Sounds/Weapons/HeavyMachineGun/Quake4/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedStart_Quake4		"Sounds/Weapons/HeavyMachineGun/Quake4/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedEnd_Quake4			"Sounds/Weapons/HeavyMachineGun/Quake4/HMG_Zoomed_End.ogg"
+QC/Weapons/HeavyMachinegun/ZoomIn_Quake4				"Sounds/Weapons/HeavyMachineGun/Quake4/HMG_ZoomIn.ogg"
+QC/Weapons/HeavyMachinegun/ZoomOut_Quake4				"Sounds/Weapons/HeavyMachineGun/Quake4/HMG_ZoomOut.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake4	"Sounds/Weapons/HeavyMachineGun/Quake4/Quad/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_Quake4	"Sounds/Weapons/HeavyMachineGun/Quake4/Quad/HMG_Zoomed_Start.ogg"
+
+QC/Weapons/HeavyMachinegun/FireEnd_ETQW					"Sounds/Weapons/HeavyMachineGun/ETQW/HMG_End.ogg"
+QC/Weapons/HeavyMachinegun/FireStartLoop_ETQW			"Sounds/Weapons/HeavyMachineGun/ETQW/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedStart_ETQW			"Sounds/Weapons/HeavyMachineGun/ETQW/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedEnd_ETQW			"Sounds/Weapons/HeavyMachineGun/ETQW/HMG_Zoomed_End.ogg"
+QC/Weapons/HeavyMachinegun/ZoomIn_ETQW					"Sounds/Weapons/HeavyMachineGun/ETQW/HMG_ZoomIn.ogg"
+QC/Weapons/HeavyMachinegun/ZoomOut_ETQW					"Sounds/Weapons/HeavyMachineGun/ETQW/HMG_ZoomOut.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_ETQW		"Sounds/Weapons/HeavyMachineGun/ETQW/Quad/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_ETQW	"Sounds/Weapons/HeavyMachineGun/ETQW/Quad/HMG_Zoomed_Start.ogg"
+
+
+//********************
+// Shotgun
+QC/Weapons/Shotgun/Fire1_Default			"Sounds/Weapons/Shotgun/Default/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Fire2_Default			"Sounds/Weapons/Shotgun/Default/SG_Fire2.ogg"
+QC/Weapons/Shotgun/Fire3_Default			"Sounds/Weapons/Shotgun/Default/SG_Fire3.ogg"
+$random QC/Weapons/Shotgun/Fire_Default 	{ QC/Weapons/Shotgun/Fire1_Default QC/Weapons/Shotgun/Fire2_Default QC/Weapons/Shotgun/Fire3_Default }
+QC/Weapons/Shotgun/Quad/Fire1_Default			"Sounds/Weapons/Shotgun/Default/Quad/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Quad/Fire2_Default			"Sounds/Weapons/Shotgun/Default/Quad/SG_Fire2.ogg"
+QC/Weapons/Shotgun/Quad/Fire3_Default			"Sounds/Weapons/Shotgun/Default/Quad/SG_Fire3.ogg"
+$random QC/Weapons/Shotgun/Quad/Fire_Default 	{ QC/Weapons/Shotgun/Quad/Fire1_Default QC/Weapons/Shotgun/Quad/Fire2_Default QC/Weapons/Shotgun/Quad/Fire3_Default }
+
+QC/Weapons/Shotgun/Fire_Quake1				"Sounds/Weapons/Shotgun/Quake1/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Quad/Fire_Quake1			"Sounds/Weapons/Shotgun/Quake1/Quad/SG_Fire1.ogg"
+
+QC/Weapons/Shotgun/Fire_Quake2				"Sounds/Weapons/Shotgun/Quake2/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Quad/Fire_Quake2			"Sounds/Weapons/Shotgun/Quake2/Quad/SG_Fire1.ogg"
+
+
+//********************
+// Super Shotgun
+QC/Weapons/SuperShotgun/Fire1_Default			"Sounds/Weapons/SuperShotgun/Default/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Fire2_Default			"Sounds/Weapons/SuperShotgun/Default/SSG_Fire2.ogg"
+QC/Weapons/SuperShotgun/Fire3_Default			"Sounds/Weapons/SuperShotgun/Default/SSG_Fire3.ogg"
+QC/Weapons/SuperShotgun/Fire4_Default			"Sounds/Weapons/SuperShotgun/Default/SSG_Fire4.ogg"
+QC/Weapons/SuperShotgun/Fire5_Default			"Sounds/Weapons/SuperShotgun/Default/SSG_Fire5.ogg"
+$random QC/Weapons/SuperShotgun/Fire_Default 		{ QC/Weapons/SuperShotgun/Fire1_Default QC/Weapons/SuperShotgun/Fire2_Default QC/Weapons/SuperShotgun/Fire3_Default QC/Weapons/SuperShotgun/Fire4_Default QC/Weapons/SuperShotgun/Fire5_Default }
+QC/Weapons/SuperShotgun/Quad/Fire1_Default		"Sounds/Weapons/SuperShotgun/Default/Quad/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire2_Default		"Sounds/Weapons/SuperShotgun/Default/Quad/SSG_Fire2.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire3_Default		"Sounds/Weapons/SuperShotgun/Default/Quad/SSG_Fire3.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire4_Default		"Sounds/Weapons/SuperShotgun/Default/Quad/SSG_Fire4.ogg"
+$random QC/Weapons/SuperShotgun/Quad/Fire_Default 	{ QC/Weapons/SuperShotgun/Quad/Fire1_Default QC/Weapons/SuperShotgun/Quad/Fire2_Default QC/Weapons/SuperShotgun/Quad/Fire3_Default QC/Weapons/SuperShotgun/Quad/Fire4_Default }
+
+QC/Weapons/SuperShotgun/Fire_Quake1				"Sounds/Weapons/SuperShotgun/Quake1/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire_Quake1		"Sounds/Weapons/SuperShotgun/Quake1/Quad/SSG_Fire1.ogg"
+
+QC/Weapons/SuperShotgun/Fire_Quake2				"Sounds/Weapons/SuperShotgun/Quake2/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire_Quake2		"Sounds/Weapons/SuperShotgun/Quake2/Quad/SSG_Fire1.ogg"
+
+QC/Weapons/SuperShotgun/Fire_Quake3				"Sounds/Weapons/SuperShotgun/Quake3/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire_Quake3		"Sounds/Weapons/SuperShotgun/Quake3/Quad/SSG_Fire1.ogg"
+
+QC/Weapons/SuperShotgun/Fire_Quake4				"Sounds/Weapons/SuperShotgun/Quake4/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire_Quake4		"Sounds/Weapons/SuperShotgun/Quake4/Quad/SSG_Fire1.ogg"
+
+QC/Weapons/SuperShotgun/Fire_ETQW				"Sounds/Weapons/SuperShotgun/ETQW/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire_ETQW			"Sounds/Weapons/SuperShotgun/ETQW/Quad/SSG_Fire1.ogg"
+
+
+//********************
+// Nailgun
+QC/Weapons/Nailgun/FireEnd_Default				"Sounds/Weapons/Nailgun/Default/NG_End.ogg"
+QC/Weapons/Nailgun/FireStartLoop_Default		"Sounds/Weapons/Nailgun/Default/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/Quad/FireStartLoop_Default	"Sounds/Weapons/Nailgun/Default/Quad/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/Impact1_Default				"Sounds/Weapons/Nailgun/Default/NailImpact1.ogg"
+QC/Weapons/Nailgun/Impact2_Default				"Sounds/Weapons/Nailgun/Default/NailImpact2.ogg"
+QC/Weapons/Nailgun/Impact3_Default				"Sounds/Weapons/Nailgun/Default/NailImpact3.ogg"
+QC/Weapons/Nailgun/Impact4_Default				"Sounds/Weapons/Nailgun/Default/NailImpact4.ogg"
+QC/Weapons/Nailgun/Impact5_Default				"Sounds/Weapons/Nailgun/Default/NailImpact5.ogg"
+QC/Weapons/Nailgun/Impact6_Default				"Sounds/Weapons/Nailgun/Default/NailImpact6.ogg"
+QC/Weapons/Nailgun/Impact7_Default				"Sounds/Weapons/Nailgun/Default/NailImpact7.ogg"
+$random QC/Weapons/Nailgun/Impact_Default { QC/Weapons/Nailgun/Impact1_Default QC/Weapons/Nailgun/Impact2_Default QC/Weapons/Nailgun/Impact3_Default
+		QC/Weapons/Nailgun/Impact4_Default QC/Weapons/Nailgun/Impact5_Default QC/Weapons/Nailgun/Impact6_Default QC/Weapons/Nailgun/Impact7_Default }
+
+QC/Weapons/Nailgun/FireEnd_Quake1				"Sounds/Weapons/Nailgun/Quake1/NG_End.ogg"
+QC/Weapons/Nailgun/FireStartLoop_Quake1			"Sounds/Weapons/Nailgun/Quake1/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/Quad/FireStartLoop_Quake1	"Sounds/Weapons/Nailgun/Quake1/Quad/NG_Start_Loop.ogg"
+
+QC/Weapons/Nailgun/FireEnd_Quake2				"Sounds/Weapons/Nailgun/Quake2/NG_End.ogg"
+QC/Weapons/Nailgun/FireStartLoop_Quake2			"Sounds/Weapons/Nailgun/Quake2/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/Quad/FireStartLoop_Quake2	"Sounds/Weapons/Nailgun/Quake2/Quad/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/Impact1_Quake2				"Sounds/Weapons/Nailgun/Quake2/NailImpact1.ogg"
+QC/Weapons/Nailgun/Impact2_Quake2				"Sounds/Weapons/Nailgun/Quake2/NailImpact2.ogg"
+QC/Weapons/Nailgun/Impact3_Quake2				"Sounds/Weapons/Nailgun/Quake2/NailImpact3.ogg"
+QC/Weapons/Nailgun/Impact4_Quake2				"Sounds/Weapons/Nailgun/Quake2/NailImpact4.ogg"
+QC/Weapons/Nailgun/Impact5_Quake2				"Sounds/Weapons/Nailgun/Quake2/NailImpact5.ogg"
+QC/Weapons/Nailgun/Impact6_Quake2				"Sounds/Weapons/Nailgun/Quake2/NailImpact6.ogg"
+QC/Weapons/Nailgun/Impact7_Quake2				"Sounds/Weapons/Nailgun/Quake2/NailImpact7.ogg"
+$random QC/Weapons/Nailgun/Impact_Quake2 { QC/Weapons/Nailgun/Impact1_Quake2 QC/Weapons/Nailgun/Impact2_Quake2 QC/Weapons/Nailgun/Impact3_Quake2
+		QC/Weapons/Nailgun/Impact4_Quake2 QC/Weapons/Nailgun/Impact5_Quake2 QC/Weapons/Nailgun/Impact6_Quake2 QC/Weapons/Nailgun/Impact7_Quake2 }
+
+QC/Weapons/Nailgun/FireEnd_Quake4				"Sounds/Weapons/Nailgun/Quake4/NG_End.ogg"
+QC/Weapons/Nailgun/FireStartLoop_Quake4			"Sounds/Weapons/Nailgun/Quake4/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/Quad/FireStartLoop_Quake4	"Sounds/Weapons/Nailgun/Quake4/Quad/NG_Start_Loop.ogg"
+
+
+
+//********************
+// Super Nailgun
+QC/Weapons/SuperNailgun/FireStartLoop_Default		"Sounds/Weapons/SuperNailgun/Default/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireEnd_Default				"Sounds/Weapons/SuperNailgun/Default/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_Default			"Sounds/Weapons/SuperNailgun/Default/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_Default	"Sounds/Weapons/SuperNailgun/Default/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_Default		"Sounds/Weapons/SuperNailgun/Default/Quad/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Impact1_Default				"Sounds/Weapons/SuperNailgun/Default/SuperNailImpact1.ogg"
+QC/Weapons/SuperNailgun/Impact2_Default				"Sounds/Weapons/SuperNailgun/Default/SuperNailImpact2.ogg"
+QC/Weapons/SuperNailgun/Impact3_Default				"Sounds/Weapons/SuperNailgun/Default/SuperNailImpact3.ogg"
+QC/Weapons/SuperNailgun/Impact4_Default				"Sounds/Weapons/SuperNailgun/Default/SuperNailImpact4.ogg"
+QC/Weapons/SuperNailgun/Impact5_Default				"Sounds/Weapons/SuperNailgun/Default/SuperNailImpact5.ogg"
+QC/Weapons/SuperNailgun/Impact6_Default				"Sounds/Weapons/SuperNailgun/Default/SuperNailImpact6.ogg"
+QC/Weapons/SuperNailgun/Impact7_Default				"Sounds/Weapons/SuperNailgun/Default/SuperNailImpact7.ogg"
+$random QC/Weapons/SuperNailgun/Impact_Default 		{ QC/Weapons/SuperNailgun/Impact1_Default QC/Weapons/SuperNailgun/Impact2_Default QC/Weapons/SuperNailgun/Impact3_Default
+		QC/Weapons/SuperNailgun/Impact4_Default QC/Weapons/SuperNailgun/Impact5_Default QC/Weapons/SuperNailgun/Impact6_Default QC/Weapons/SuperNailgun/Impact7_Default }
+
+QC/Weapons/SuperNailgun/FireStartLoop_Quake1		"Sounds/Weapons/SuperNailgun/Quake1/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireEnd_Quake1				"Sounds/Weapons/SuperNailgun/Quake1/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_Quake1			"Sounds/Weapons/SuperNailgun/Quake1/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_Quake1	"Sounds/Weapons/SuperNailgun/Quake1/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_Quake1		"Sounds/Weapons/SuperNailgun/Quake1/Quad/SNG_Single.ogg"
+
+QC/Weapons/SuperNailgun/FireStartLoop_Quake2		"Sounds/Weapons/SuperNailgun/Quake2/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireEnd_Quake2				"Sounds/Weapons/SuperNailgun/Quake2/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_Quake2			"Sounds/Weapons/SuperNailgun/Quake2/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_Quake2	"Sounds/Weapons/SuperNailgun/Quake2/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_Quake2		"Sounds/Weapons/SuperNailgun/Quake2/Quad/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Impact1_Quake2				"Sounds/Weapons/SuperNailgun/Quake2/SuperNailImpact1.ogg"
+QC/Weapons/SuperNailgun/Impact2_Quake2				"Sounds/Weapons/SuperNailgun/Quake2/SuperNailImpact2.ogg"
+QC/Weapons/SuperNailgun/Impact3_Quake2				"Sounds/Weapons/SuperNailgun/Quake2/SuperNailImpact3.ogg"
+QC/Weapons/SuperNailgun/Impact4_Quake2				"Sounds/Weapons/SuperNailgun/Quake2/SuperNailImpact4.ogg"
+QC/Weapons/SuperNailgun/Impact5_Quake2				"Sounds/Weapons/SuperNailgun/Quake2/SuperNailImpact5.ogg"
+QC/Weapons/SuperNailgun/Impact6_Quake2				"Sounds/Weapons/SuperNailgun/Quake2/SuperNailImpact6.ogg"
+QC/Weapons/SuperNailgun/Impact7_Quake2				"Sounds/Weapons/SuperNailgun/Quake2/SuperNailImpact7.ogg"
+$random QC/Weapons/SuperNailgun/Impact_Quake2 		{ QC/Weapons/SuperNailgun/Impact1_Quake2 QC/Weapons/SuperNailgun/Impact2_Quake2 QC/Weapons/SuperNailgun/Impact3_Quake2
+		QC/Weapons/SuperNailgun/Impact4_Quake2 QC/Weapons/SuperNailgun/Impact5_Quake2 QC/Weapons/SuperNailgun/Impact6_Quake2 QC/Weapons/SuperNailgun/Impact7_Quake2 }
+
+QC/Weapons/SuperNailgun/FireStartLoop_Quake3		"Sounds/Weapons/SuperNailgun/Quake3/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireEnd_Quake3				"Sounds/Weapons/SuperNailgun/Quake3/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_Quake3			"Sounds/Weapons/SuperNailgun/Quake3/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_Quake3	"Sounds/Weapons/SuperNailgun/Quake3/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_Quake3		"Sounds/Weapons/SuperNailgun/Quake3/Quad/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Impact1_Quake3				"Sounds/Weapons/SuperNailgun/Quake3/SuperNailImpact1.ogg"
+QC/Weapons/SuperNailgun/Impact2_Quake3				"Sounds/Weapons/SuperNailgun/Quake3/SuperNailImpact2.ogg"
+QC/Weapons/SuperNailgun/Impact3_Quake3				"Sounds/Weapons/SuperNailgun/Quake3/SuperNailImpact3.ogg"
+QC/Weapons/SuperNailgun/Impact4_Quake3				"Sounds/Weapons/SuperNailgun/Quake3/SuperNailImpact4.ogg"
+QC/Weapons/SuperNailgun/Impact5_Quake3				"Sounds/Weapons/SuperNailgun/Quake3/SuperNailImpact5.ogg"
+QC/Weapons/SuperNailgun/Impact6_Quake3				"Sounds/Weapons/SuperNailgun/Quake3/SuperNailImpact6.ogg"
+QC/Weapons/SuperNailgun/Impact7_Quake3				"Sounds/Weapons/SuperNailgun/Quake3/SuperNailImpact7.ogg"
+$random QC/Weapons/SuperNailgun/Impact_Quake3 		{ QC/Weapons/SuperNailgun/Impact1_Quake3 QC/Weapons/SuperNailgun/Impact2_Quake3 QC/Weapons/SuperNailgun/Impact3_Quake3
+		QC/Weapons/SuperNailgun/Impact4_Quake3 QC/Weapons/SuperNailgun/Impact5_Quake3 QC/Weapons/SuperNailgun/Impact6_Quake3 QC/Weapons/SuperNailgun/Impact7_Quake3 }
+
+QC/Weapons/SuperNailgun/FireStartLoop_Quake4		"Sounds/Weapons/SuperNailgun/Quake4/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireEnd_Quake4				"Sounds/Weapons/SuperNailgun/Quake4/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_Quake4			"Sounds/Weapons/SuperNailgun/Quake4/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_Quake4	"Sounds/Weapons/SuperNailgun/Quake4/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_Quake4		"Sounds/Weapons/SuperNailgun/Quake4/Quad/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Impact1_Quake4				"Sounds/Weapons/SuperNailgun/Quake4/SuperNailImpact1.ogg"
+QC/Weapons/SuperNailgun/Impact2_Quake4				"Sounds/Weapons/SuperNailgun/Quake4/SuperNailImpact2.ogg"
+QC/Weapons/SuperNailgun/Impact3_Quake4				"Sounds/Weapons/SuperNailgun/Quake4/SuperNailImpact3.ogg"
+QC/Weapons/SuperNailgun/Impact4_Quake4				"Sounds/Weapons/SuperNailgun/Quake4/SuperNailImpact4.ogg"
+QC/Weapons/SuperNailgun/Impact5_Quake4				"Sounds/Weapons/SuperNailgun/Quake4/SuperNailImpact5.ogg"
+QC/Weapons/SuperNailgun/Impact6_Quake4				"Sounds/Weapons/SuperNailgun/Quake4/SuperNailImpact6.ogg"
+QC/Weapons/SuperNailgun/Impact7_Quake4				"Sounds/Weapons/SuperNailgun/Quake4/SuperNailImpact7.ogg"
+$random QC/Weapons/SuperNailgun/Impact_Quake4 		{ QC/Weapons/SuperNailgun/Impact1_Quake4 QC/Weapons/SuperNailgun/Impact2_Quake4 QC/Weapons/SuperNailgun/Impact3_Quake4
+		QC/Weapons/SuperNailgun/Impact4_Quake4 QC/Weapons/SuperNailgun/Impact5_Quake4 QC/Weapons/SuperNailgun/Impact6_Quake4 QC/Weapons/SuperNailgun/Impact7_Quake4 }
+
+QC/Weapons/SuperNailgun/FireStartLoop_ETQW			"Sounds/Weapons/SuperNailgun/ETQW/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireEnd_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_ETQW		"Sounds/Weapons/SuperNailgun/ETQW/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_ETQW		"Sounds/Weapons/SuperNailgun/ETQW/Quad/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Impact1_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperNailImpact1.ogg"
+QC/Weapons/SuperNailgun/Impact2_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperNailImpact2.ogg"
+QC/Weapons/SuperNailgun/Impact3_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperNailImpact3.ogg"
+QC/Weapons/SuperNailgun/Impact4_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperNailImpact4.ogg"
+QC/Weapons/SuperNailgun/Impact5_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperNailImpact5.ogg"
+QC/Weapons/SuperNailgun/Impact6_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperNailImpact6.ogg"
+QC/Weapons/SuperNailgun/Impact7_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperNailImpact7.ogg"
+$random QC/Weapons/SuperNailgun/Impact_ETQW 		{ QC/Weapons/SuperNailgun/Impact1_ETQW QC/Weapons/SuperNailgun/Impact2_ETQW QC/Weapons/SuperNailgun/Impact3_ETQW
+		QC/Weapons/SuperNailgun/Impact4_ETQW QC/Weapons/SuperNailgun/Impact5_ETQW QC/Weapons/SuperNailgun/Impact6_ETQW QC/Weapons/SuperNailgun/Impact7_ETQW }
+
+
+//********************
+// Tribolt
+QC/Weapons/Tribolt/Fire_Default			"Sounds/Weapons/Tribolt/Default/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Quad/Fire_Default	"Sounds/Weapons/Tribolt/Default/Quad/Tribolt_FireFast.ogg"
+
+QC/Weapons/Tribolt/Fire_Quake1			"Sounds/Weapons/Tribolt/Quake1/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Quad/Fire_Quake1		"Sounds/Weapons/Tribolt/Quake1/Quad/Tribolt_FireFast.ogg"
+
+QC/Weapons/Tribolt/Fire_Quake2			"Sounds/Weapons/Tribolt/Quake2/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Quad/Fire_Quake2		"Sounds/Weapons/Tribolt/Quake2/Quad/Tribolt_FireFast.ogg"
+
+QC/Weapons/Tribolt/Fire_Quake3			"Sounds/Weapons/Tribolt/Quake3/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Quad/Fire_Quake3		"Sounds/Weapons/Tribolt/Quake3/Quad/Tribolt_FireFast.ogg"
+
+QC/Weapons/Tribolt/Fire_Quake4			"Sounds/Weapons/Tribolt/Quake4/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Quad/Fire_Quake4		"Sounds/Weapons/Tribolt/Quake4/Quad/Tribolt_FireFast.ogg"
+
+QC/Weapons/Tribolt/Explo		"Sounds/Weapons/Tribolt/Tribolt_Explo.ogg"
+$limit "QC/Weapons/Tribolt/Explo" 9
+$attenuation QC/Weapons/Tribolt/Explo 0.8
+
+//bounce sounds from Hard Reset
+QC/Weapons/Tribolt/Bounce1		"Sounds/Weapons/Tribolt/BoltBounce1.ogg"
+QC/Weapons/Tribolt/Bounce2		"Sounds/Weapons/Tribolt/BoltBounce2.ogg"
+QC/Weapons/Tribolt/Bounce3		"Sounds/Weapons/Tribolt/BoltBounce3.ogg"
+$random QC/Weapons/Tribolt/Bounce { QC/Weapons/Tribolt/Bounce1 QC/Weapons/Tribolt/Bounce2 QC/Weapons/Tribolt/Bounce3 }
+
+QC/Weapons/Tribolt/Impact1		"Sounds/Weapons/Tribolt/BoltImpact1.ogg"
+QC/Weapons/Tribolt/Impact2		"Sounds/Weapons/Tribolt/BoltImpact2.ogg"
+QC/Weapons/Tribolt/Impact3		"Sounds/Weapons/Tribolt/BoltImpact3.ogg"
+QC/Weapons/Tribolt/Impact4		"Sounds/Weapons/Tribolt/BoltImpact4.ogg"
+QC/Weapons/Tribolt/Impact5		"Sounds/Weapons/Tribolt/BoltImpact5.ogg"
+QC/Weapons/Tribolt/Impact6		"Sounds/Weapons/Tribolt/BoltImpact6.ogg"
+QC/Weapons/Tribolt/Impact7		"Sounds/Weapons/Tribolt/BoltImpact7.ogg"
+
+$random QC/Weapons/Tribolt/Impact { QC/Weapons/Tribolt/Impact1 QC/Weapons/Tribolt/Impact2 QC/Weapons/Tribolt/Impact3
+		QC/Weapons/Tribolt/Impact4 QC/Weapons/Tribolt/Impact5 QC/Weapons/Tribolt/Impact6 QC/Weapons/Tribolt/Impact7 }
+
+
+//********************
+// Rocket Launcher
+QC/Weapons/RocketLauncher/Fire1_Default				"Sounds/Weapons/RocketLauncher/Default/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Fire2_Default				"Sounds/Weapons/RocketLauncher/Default/RL_Fire2.ogg"
+QC/Weapons/RocketLauncher/Fire3_Default				"Sounds/Weapons/RocketLauncher/Default/RL_Fire3.ogg"
+$random QC/Weapons/RocketLauncher/Fire_Default  		{ QC/Weapons/RocketLauncher/Fire1_Default QC/Weapons/RocketLauncher/Fire2_Default QC/Weapons/RocketLauncher/Fire3_Default }
+QC/Weapons/RocketLauncher/Quad/Fire1_Default		"Sounds/Weapons/RocketLauncher/Default/Quad/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire2_Default		"Sounds/Weapons/RocketLauncher/Default/Quad/RL_Fire2.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire3_Default		"Sounds/Weapons/RocketLauncher/Default/Quad/RL_Fire3.ogg"
+$random QC/Weapons/RocketLauncher/Quad/Fire_Default 	{ QC/Weapons/RocketLauncher/Quad/Fire1_Default QC/Weapons/RocketLauncher/Quad/Fire2_Default QC/Weapons/RocketLauncher/Quad/Fire3_Default }
+
+QC/Weapons/RocketLauncher/Fire_Quake1				"Sounds/Weapons/RocketLauncher/Quake1/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire_Quake1			"Sounds/Weapons/RocketLauncher/Quake1/Quad/RL_Fire1.ogg"
+
+QC/Weapons/RocketLauncher/Fire_Quake2				"Sounds/Weapons/RocketLauncher/Quake2/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire_Quake2			"Sounds/Weapons/RocketLauncher/Quake2/Quad/RL_Fire1.ogg"
+
+QC/Weapons/RocketLauncher/Fire_Quake3				"Sounds/Weapons/RocketLauncher/Quake3/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire_Quake3			"Sounds/Weapons/RocketLauncher/Quake3/Quad/RL_Fire1.ogg"
+
+QC/Weapons/RocketLauncher/Fire_Quake4				"Sounds/Weapons/RocketLauncher/Quake4/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire_Quake4			"Sounds/Weapons/RocketLauncher/Quake4/Quad/RL_Fire1.ogg"
+
+QC/Weapons/RocketLauncher/Fire_ETQW					"Sounds/Weapons/RocketLauncher/ETQW/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire_ETQW			"Sounds/Weapons/RocketLauncher/ETQW/Quad/RL_Fire1.ogg"
+
+
+QC/Weapons/RocketLauncher/RocketExplo1			"Sounds/Weapons/RocketLauncher/RL_explo1.ogg"
+QC/Weapons/RocketLauncher/RocketExplo2			"Sounds/Weapons/RocketLauncher/RL_explo2.ogg"
+QC/Weapons/RocketLauncher/RocketExplo3			"Sounds/Weapons/RocketLauncher/RL_explo3.ogg"
+$random QC/Weapons/RocketLauncher/RocketExplo 	{ QC/Weapons/RocketLauncher/RocketExplo1 QC/Weapons/RocketLauncher/RocketExplo2 QC/Weapons/RocketLauncher/RocketExplo3 }
+$attenuation "QC/Weapons/RocketLauncher/RocketExplo" 0.7
+$attenuation QC/Weapons/RocketLauncher/RocketExplo1 0.8
+$attenuation QC/Weapons/RocketLauncher/RocketExplo2 0.8
+$attenuation QC/Weapons/RocketLauncher/RocketExplo2 0.8
+$limit "QC/Weapons/RocketLauncher/RocketExplo1" 3
+$limit "QC/Weapons/RocketLauncher/RocketExplo2" 3
+$limit "QC/Weapons/RocketLauncher/RocketExplo3" 3
+
+QC/Weapons/RocketLauncher/Fly					"Sounds/Weapons/RocketLauncher/RL_Fly.ogg"
+$rolloff "QC/Weapons/RocketLauncher/Fly" 64 2048
+$limit "QC/Weapons/RocketLauncher/Fly" 5
+
+
+//********************
+// Lightning Gun
+QC/Weapons/LightningGun/ElectroLoop		"Sounds/Weapons/Add/ElectroLoop.ogg"
+QC/Weapons/LightningGun/ElectroStop		"Sounds/Weapons/Add/ElectroStop.ogg"
+
+QC/Weapons/LightningGun/FireEnd_Default				"Sounds/Weapons/LightningGun/Default/LG_End.ogg"
+QC/Weapons/LightningGun/FireStartLoop_Default		"Sounds/Weapons/LightningGun/Default/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Idle_Default				"Sounds/Weapons/LightningGun/Default/LG_Idle.ogg"
+QC/Weapons/LightningGun/Quad/FireStartLoop_Default	"Sounds/Weapons/LightningGun/Default/Quad/LG_Start_Loop.ogg"
+
+QC/Weapons/LightningGun/FireEnd_Quake1				"Sounds/Weapons/LightningGun/Quake1/LG_End.ogg"
+QC/Weapons/LightningGun/FireStartLoop_Quake1		"Sounds/Weapons/LightningGun/Quake1/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Quad/FireStartLoop_Quake1	"Sounds/Weapons/LightningGun/Quake1/Quad/LG_Start_Loop.ogg"
+
+QC/Weapons/LightningGun/FireEnd_Quake2				"Sounds/Weapons/LightningGun/Quake2/LG_End.ogg"
+QC/Weapons/LightningGun/FireStartLoop_Quake2		"Sounds/Weapons/LightningGun/Quake2/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Idle_Quake2					"Sounds/Weapons/LightningGun/Quake2/LG_Idle.ogg"
+QC/Weapons/LightningGun/Quad/FireStartLoop_Quake2	"Sounds/Weapons/LightningGun/Quake2/Quad/LG_Start_Loop.ogg"
+
+QC/Weapons/LightningGun/FireEnd_Quake3				"Sounds/Weapons/LightningGun/Quake3/LG_End.ogg"
+QC/Weapons/LightningGun/FireStartLoop_Quake3		"Sounds/Weapons/LightningGun/Quake3/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Idle_Quake3					"Sounds/Weapons/LightningGun/Quake3/LG_Idle.ogg"
+QC/Weapons/LightningGun/Quad/FireStartLoop_Quake3	"Sounds/Weapons/LightningGun/Quake3/Quad/LG_Start_Loop.ogg"
+
+QC/Weapons/LightningGun/FireEnd_Quake4				"Sounds/Weapons/LightningGun/Quake4/LG_End.ogg"
+QC/Weapons/LightningGun/FireStartLoop_Quake4		"Sounds/Weapons/LightningGun/Quake4/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Quad/FireStartLoop_Quake4	"Sounds/Weapons/LightningGun/Quake4/Quad/LG_Start_Loop.ogg"
+
+QC/Weapons/LightningGun/FireEnd_ETQW				"Sounds/Weapons/LightningGun/ETQW/LG_End.ogg"
+QC/Weapons/LightningGun/FireStartLoop_ETQW			"Sounds/Weapons/LightningGun/ETQW/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Quad/FireStartLoop_ETQW		"Sounds/Weapons/LightningGun/ETQW/Quad/LG_Start_Loop.ogg"
+
+
+//********************
+// Railgun
+QC/Weapons/Railgun/Fire1_Default			"Sounds/Weapons/Railgun/Default/RG_Fire1.ogg"
+QC/Weapons/Railgun/Fire2_Default			"Sounds/Weapons/Railgun/Default/RG_Fire2.ogg"
+QC/Weapons/Railgun/Fire3_Default			"Sounds/Weapons/Railgun/Default/RG_Fire3.ogg"
+QC/Weapons/Railgun/Idle_Default				"Sounds/Weapons/Railgun/Default/RG_idle.ogg"
+QC/Weapons/Railgun/ZoomIn_Default			"Sounds/Weapons/Railgun/Default/RG_ZoomIn.ogg"
+QC/Weapons/Railgun/ZoomOut_Default			"Sounds/Weapons/Railgun/Default/RG_ZoomOut.ogg"
+QC/Weapons/Railgun/Quad/Fire1_Default		"Sounds/Weapons/Railgun/Default/Quad/RG_Fire1.ogg"
+QC/Weapons/Railgun/Quad/Fire2_Default		"Sounds/Weapons/Railgun/Default/Quad/RG_Fire2.ogg"
+QC/Weapons/Railgun/Quad/Fire3_Default		"Sounds/Weapons/Railgun/Default/Quad/RG_Fire3.ogg"
+$random QC/Weapons/Railgun/Fire_Default			{ QC/Weapons/Railgun/Fire1_Default QC/Weapons/Railgun/Fire2_Default QC/Weapons/Railgun/Fire3_Default }
+$random QC/Weapons/Railgun/Quad/Fire_Default	{ QC/Weapons/Railgun/Quad/Fire1_Default QC/Weapons/Railgun/Quad/Fire2_Default QC/Weapons/Railgun/Quad/Fire3_Default }
+
+// Quake 1
+QC/Weapons/Railgun/Fire_Quake1				"Sounds/Weapons/Railgun/Quake1/RG_Fire1.ogg"
+QC/Weapons/Railgun/Quad/Fire_Quake1			"Sounds/Weapons/Railgun/Quake1/Quad/RG_Fire1.ogg"
+
+// Quake 2
+QC/Weapons/Railgun/Fire_Quake2				"Sounds/Weapons/Railgun/Quake2/RG_Fire1.ogg"
+QC/Weapons/Railgun/Idle_Quake2				"Sounds/Weapons/Railgun/Quake2/RG_idle.ogg"
+QC/Weapons/Railgun/Quad/Fire_Quake2			"Sounds/Weapons/Railgun/Quake2/Quad/RG_Fire1.ogg"
+
+// Quake 3
+QC/Weapons/Railgun/Fire_Quake3				"Sounds/Weapons/Railgun/Quake3/RG_Fire1.ogg"
+QC/Weapons/Railgun/Idle_Quake3				"Sounds/Weapons/Railgun/Quake3/RG_idle.ogg"
+QC/Weapons/Railgun/Quad/Fire_Quake3			"Sounds/Weapons/Railgun/Quake3/Quad/RG_Fire1.ogg"
+
+// Quake 4
+QC/Weapons/Railgun/Fire_Quake4				"Sounds/Weapons/Railgun/Quake4/RG_Fire1.ogg"
+QC/Weapons/Railgun/Idle_Quake4				"Sounds/Weapons/Railgun/Quake4/RG_idle.ogg"
+QC/Weapons/Railgun/ZoomIn_Quake4			"Sounds/Weapons/Railgun/Quake4/RG_ZoomIn.ogg"
+QC/Weapons/Railgun/ZoomOut_Quake4			"Sounds/Weapons/Railgun/Quake4/RG_ZoomOut.ogg"
+QC/Weapons/Railgun/Quad/Fire_Quake4			"Sounds/Weapons/Railgun/Quake4/Quad/RG_Fire1.ogg"
+
+// Quake Wars: Enemy Territory
+QC/Weapons/Railgun/Fire_ETQW				"Sounds/Weapons/Railgun/ETQW/RG_Fire1.ogg"
+QC/Weapons/Railgun/Idle_ETQW				"Sounds/Weapons/Railgun/ETQW/RG_idle.ogg"
+QC/Weapons/Railgun/ZoomIn_ETQW				"Sounds/Weapons/Railgun/ETQW/RG_ZoomIn.ogg"
+QC/Weapons/Railgun/ZoomOut_ETQW				"Sounds/Weapons/Railgun/ETQW/RG_ZoomOut.ogg"
+QC/Weapons/Railgun/Quad/Fire_ETQW			"Sounds/Weapons/Railgun/ETQW/Quad/RG_Fire1.ogg"
+
+// Common
+QC/Weapons/Railgun/Whoosh			"Sounds/Weapons/Railgun/RG_Whoosh.ogg"
+QC/Weapons/Railgun/ChargeFull		"Sounds/Weapons/Railgun/RG_ChargeFull.ogg"
+QC/Weapons/Railgun/Impact1			"Sounds/Weapons/Railgun/RG_Impact1.ogg"
+QC/Weapons/Railgun/Impact2			"Sounds/Weapons/Railgun/RG_Impact2.ogg"
+$random QC/Weapons/Railgun/Impact		{ QC/Weapons/Railgun/Impact1 QC/Weapons/Railgun/Impact2 }
+$rolloff QC/Weapons/Railgun/Impact1 300 768
+$rolloff QC/Weapons/Railgun/Impact2 300 768
+
+
+//********************
+// BFG19k (Sounds by Michael Markie)
+QC/Weapons/BFG/Idle_Default					"Sounds/Weapons/BFG/Default/NeoBFG_Idle.ogg"
+QC/Weapons/BFG/Raise_Default				"Sounds/Weapons/BFG/Default/NeoBFG_Raise.ogg"
+QC/Weapons/BFG/Fire_Default					"Sounds/Weapons/BFG/Default/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Charge_Default				"Sounds/Weapons/BFG/Default/BFGCharge.ogg"
+QC/Weapons/BFG/ChargeLoop_Default			"Sounds/Weapons/BFG/Default/BFGChargeLoop.ogg"
+QC/Weapons/BFG/ChargedShot_Default			"Sounds/Weapons/BFG/Default/BFGChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Default			"Sounds/Weapons/BFG/Default/Quad/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Default		"Sounds/Weapons/BFG/Default/Quad/BFGChargedShot.ogg"
+
+QC/Weapons/BFG/Idle_Quake2					"Sounds/Weapons/BFG/Quake2/NeoBFG_Idle.ogg"
+QC/Weapons/BFG/Fire_Quake2					"Sounds/Weapons/BFG/Quake2/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/ChargedShot_Quake2			"Sounds/Weapons/BFG/Quake2/BFGChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Quake2				"Sounds/Weapons/BFG/Quake2/Quad/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Quake2		"Sounds/Weapons/BFG/Quake2/Quad/BFGChargedShot.ogg"
+
+QC/Weapons/BFG/Idle_Quake3					"Sounds/Weapons/BFG/Quake3/NeoBFG_Idle.ogg"
+QC/Weapons/BFG/Fire_Quake3					"Sounds/Weapons/BFG/Quake3/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/ChargedShot_Quake3			"Sounds/Weapons/BFG/Quake3/BFGChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Quake3				"Sounds/Weapons/BFG/Quake3/Quad/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Quake3		"Sounds/Weapons/BFG/Quake3/Quad/BFGChargedShot.ogg"
+
+QC/Weapons/BFG/Idle_Quake4					"Sounds/Weapons/BFG/Quake4/NeoBFG_Idle.ogg"
+QC/Weapons/BFG/Fire_Quake4					"Sounds/Weapons/BFG/Quake4/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Charge_Quake4				"Sounds/Weapons/BFG/Quake4/BFGCharge.ogg"
+QC/Weapons/BFG/ChargedShot_Quake4			"Sounds/Weapons/BFG/Quake4/BFGChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Quake4				"Sounds/Weapons/BFG/Quake4/Quad/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Quake4		"Sounds/Weapons/BFG/Quake4/Quad/BFGChargedShot.ogg"
+
+
+QC/Weapons/BFG/BallFlying			"Sounds/Weapons/BFG/BFGFlying.ogg"
+QC/Weapons/BFG/NeoExplo1			"Sounds/Weapons/BFG/NeoBFG_Explo1.ogg"
+QC/Weapons/BFG/NeoExplo2			"Sounds/Weapons/BFG/NeoBFG_Explo2.ogg"
+QC/Weapons/BFG/NeoExplo3			"Sounds/Weapons/BFG/NeoBFG_Explo3.ogg"
+$random QC/Weapons/BFG/Explo { QC/Weapons/BFG/NeoExplo1 QC/Weapons/BFG/NeoExplo2 QC/Weapons/BFG/NeoExplo3 }
+$limit QC/Weapons/BFG/NeoExplo1 3
+$limit QC/Weapons/BFG/NeoExplo2 3
+$limit QC/Weapons/BFG/NeoExplo3 3
+$limit QC/Weapons/BFG/BallFlying 5
+
+
+//********************
+// Updgrades
+QC/Weapons/Upgrade				"Sounds/UI/WeaponUpgrade.ogg"
+
+QC/Weapons/Upgrade/HMGBeep		"Sounds/Weapons/Upgrade/UGHMG.ogg"
+QC/Weapons/Upgrade/SGBeep		"Sounds/Weapons/Upgrade/UGSG.ogg"
+QC/Weapons/Upgrade/SSGBeep		"Sounds/Weapons/Upgrade/UGSSG.ogg"
+QC/Weapons/Upgrade/SNGBeep		"Sounds/Weapons/Upgrade/UGSNG.ogg"
+QC/Weapons/Upgrade/RLBeep		"Sounds/Weapons/Upgrade/UGRL.ogg"
+QC/Weapons/Upgrade/TBBeep		"Sounds/Weapons/Upgrade/UGTB.ogg"
+QC/Weapons/Upgrade/LGBeep		"Sounds/Weapons/Upgrade/UGLG.ogg"
+QC/Weapons/Upgrade/RGBeep		"Sounds/Weapons/Upgrade/UGRG.ogg"
+QC/Weapons/Upgrade/BFGBeep		"Sounds/Weapons/Upgrade/UGBFG.ogg"
+
+
+//********************
+// Misc
+QC/Weapons/Switch			"Sounds/Weapons/WepSwitch.ogg"
+
+$random  QC/Weapons/Gore { QC/Weapons/Gore1 QC/Weapons/Gore2 QC/Weapons/Gore3 QC/Weapons/Gore4 }
+QC/Weapons/Gore1			"Sounds/Misc/QCGore1.ogg"
+QC/Weapons/Gore2			"Sounds/Misc/QCGore2.ogg"
+QC/Weapons/Gore3			"Sounds/Misc/QCGore3.ogg"
+QC/Weapons/Gore4			"Sounds/Misc/QCGore4.ogg"

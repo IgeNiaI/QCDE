@@ -1,5 +1,6 @@
 #library "WEAPCNST"
 #include "zcommon.acs"
+#import "QCDE.bcs"
 
 #libdefine NUMBER_OF_WEAPONS  23
 #libdefine NUMBER_OF_UPGRADES  3 // per weapon
@@ -290,6 +291,101 @@ str LootboxWeaponNamings[8] = {
 		"Railgun",
 		"BFG10K"
 	};
+
+///////////////////////////////////////////////////////////////////////////////
+// Weapon specific cvars //////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+function void reReadWeaponCvars(void)
+{
+	// Weapon skins
+	if(!PlayerIsBot(PlayerNumber()))
+	{
+		SetInventory("QCGauntletSkin",			GetCVar("cl_GNTLskin"	));
+		SetInventory("QCMachinegunSkin",		GetCVar("cl_MGskin"		));
+		SetInventory("QCHMachinegunSkin",		GetCVar("cl_HMGskin"	));
+		SetInventory("QCShotgunSkin",			GetCVar("cl_SGskin"		));
+		SetInventory("QCSShotgunSkin",			GetCVar("cl_SSGskin"	));
+		SetInventory("QCNailgunSkin",			GetCVar("cl_NGskin"		));
+		SetInventory("QCSNailgunSkin",			GetCVar("cl_SNGskin"	));
+		SetInventory("QCTriboltSkin",			GetCVar("cl_TBskin"		));
+		SetInventory("QCRocketLauncherSkin",	GetCVar("cl_RLskin"		));
+		SetInventory("QCLightningGunSkin",		GetCVar("cl_LGskin"		));
+		SetInventory("QCRailgunSkin",			GetCVar("cl_RGskin"		));
+		SetInventory("QCBFGSkin",				GetCVar("cl_BFGskin"	));
+	}
+	else
+	{
+		// Set weapon skins based on player class, based on their source game
+		// QC champions use default
+		// Ranger uses Quake 1
+		// Bitterman uses Quake 2
+		// Q3 characters use Quake 3
+		// Kane uses Quake 4
+		// Doom movement champions use QCDE v1.0
+		// Everyone else uses this formula : class index % 6
+		int skin = GetPlayerInfo(PlayerNumber(), PLAYERINFO_PLAYERCLASS);
+		switch (skin) {
+		case 7: // BJ
+		case 14: // Nyx
+		case 27: // Keel
+			skin = 0;
+			break;
+		case 0: // Ranger
+			skin = 1;
+			break;
+		case 26: // Bitterman
+			skin = 2;
+			break;
+		case 5: // Sarge
+		case 19: // Hunter
+		case 21: // Orbb
+		case 30: // Major
+			skin = 3;
+			break;
+		case 11: //Kane
+			skin = 4;
+			break;
+		case 1: // DoomSlayer
+		case 2: // Corvus
+		case 3: // Galen
+		case 13: // Menelkir
+		case 23: // Zedek
+			skin = 6;
+			break;
+		default:
+			skin = skin % 6;
+		}
+		// ^ insert more classes here, or update their indexes in MAPINFO order
+
+		SetInventory("QCGauntletSkin",			skin);
+		SetInventory("QCMachinegunSkin",		skin);
+		SetInventory("QCHMachinegunSkin",		skin);
+		SetInventory("QCShotgunSkin",			skin);
+		SetInventory("QCSShotgunSkin",			skin);
+		SetInventory("QCNailgunSkin",			skin);
+		SetInventory("QCSNailgunSkin",			skin);
+		SetInventory("QCTriboltSkin",			skin);
+		SetInventory("QCRocketLauncherSkin",	skin);
+		SetInventory("QCLightningGunSkin",		skin);
+		SetInventory("QCRailgunSkin",			skin);
+		SetInventory("QCBFGSkin",				skin);
+	}
+}
+
+function void giveEleenaCloneWeaponSkins(int doptid)
+{
+	GiveActorInventory(doptid, "QCHMachinegunSkin",		CheckInventory("QCHMachinegunSkin"));
+	GiveActorInventory(doptid, "QCSShotgunSkin",		CheckInventory("QCSShotgunSkin"));
+	GiveActorInventory(doptid, "QCSNailgunSkin",		CheckInventory("QCSNailgunSkin"));
+	GiveActorInventory(doptid, "QCRocketLauncherSkin",	CheckInventory("QCRocketLauncherSkin"));
+	GiveActorInventory(doptid, "QCRailgunSkin",			CheckInventory("QCRailgunSkin"));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Getter functions ///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 function int getGenericDMAmmoCapacity(int type)
 {

@@ -2057,6 +2057,7 @@ Script "QCDE_Ability_Eleena" (void)
 			SpawnForced("Doppelganger", px,py,pz, doptid, pan >> 8);
 			SetActorVelocity(doptid, pxs,pys,pzs, false, true);
 			GiveActorInventory(doptid, "TeamColor", CheckInventory("TeamColor"));
+			giveEleenaCloneWeaponSkins(doptid);
 
 			ACS("QCDE_ColorDoppelganger_CLIENTSIDE");
 		}

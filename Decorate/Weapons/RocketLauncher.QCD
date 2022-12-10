@@ -77,6 +77,7 @@ Actor RocketLauncherPickupFloat : RocketLauncherPickup 15615
 Actor QCRocketLauncher : QCWeapon
 {
 	Height 48
+	Weapon.SwaySpeed 2.6
 	Weapon.Kickback 0	//to allow rocket jumping that doesnt mess with your forward movement too much
 	Weapon.SelectionOrder 1900
 	Weapon.AmmoUse 1
@@ -103,71 +104,129 @@ Actor QCRocketLauncher : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
-		QCG5 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG5 A 4 A_WeaponReady
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 6, "Ready.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 5, "Ready.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 4, "Ready.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 3, "Ready.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 2, "Ready.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 1, "Ready.Quake1")
+	Ready.Default:
+		QCG5 A 0
+		Goto ReadyCont
+	Ready.Quake1:
+		QC15 A 0
+		Goto ReadyCont
+	Ready.Quake2:
+		QC25 A 0
+		Goto ReadyCont
+	Ready.Quake3:
+		QC35 A 0
+		Goto ReadyCont
+	Ready.Quake4:
+		QC45 A 0
+		Goto ReadyCont
+	Ready.ETQW:
+		QC55 A 0
+		Goto ReadyCont
+	Ready.QCDE1:
+		QC65 A 0
+		Goto ReadyCont
+
+	ReadyCont:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 4 A_WeaponReady
 		Loop
 
 		ReadyCantFire:
-			QCG5 A 0 A_StopSound(CHAN_WEAPON)
-			QCG5 A 0 A_StopSound(6)
-			"####" "#" 0 A_ZoomFactor(1.0)
-			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+			"####" A 0 A_StopSound(CHAN_WEAPON)
+			"####" A 0 A_StopSound(6)
+			"####" A 0 A_ZoomFactor(1.0)
+			"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 		RCFLooper:
-			QCG5 A 4 A_WeaponReady(WRF_NOFIRE)
-			QCG5 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
+			"####" A 4 A_WeaponReady(WRF_NOFIRE)
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
 			Goto Ready
 	//-----------------------
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
-		QCG5 A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
-		QCG5 A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3)
-		"####" "#" 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
-		"####" "#" 0 A_ZoomFactor(1.0)
-		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 6, "Select.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 5, "Select.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 4, "Select.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 3, "Select.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 2, "Select.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 1, "Select.Quake1")
+	Select.Default:
+		QCG5 A 0
+		Goto SelectCont
+	Select.Quake1:
+		QC15 A 0
+		Goto SelectCont
+	Select.Quake2:
+		QC25 A 0
+		Goto SelectCont
+	Select.Quake3:
+		QC35 A 0
+		Goto SelectCont
+	Select.Quake4:
+		QC45 A 0
+		Goto SelectCont
+	Select.ETQW:
+		QC55 A 0
+		Goto SelectCont
+	Select.QCDE1:
+		QC65 A 0
+		Goto SelectCont
+
+	SelectCont:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
+		"####" A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3)
+		"####" A 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
+		"####" A 0 A_ZoomFactor(1.0)
+		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 	SelectLooper:
-		QCG5 A 1 A_Raise
-		"####" "###" 0 A_Raise
+		"####" A 1 A_Raise
+		"####" AAA 0 A_Raise
 		Loop
 
 	Deselect:
 		//Medals start
-		"####" "#" 0 A_GiveInventory("ComboSwitchRLGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		"####" A 0 A_GiveInventory("ComboSwitchRLGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		//Medals end
-		"####" "#" 0 A_ZoomFactor(1.0)
-		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		"####" A 0 A_ZoomFactor(1.0)
+		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 	DeselectLooper:
-		QCG5 A 1 A_Lower
-		"####" "###" 0 A_Lower
+		"####" A 1 A_Lower
+		"####" AAA 0 A_Lower
 		Loop
 
 	//-----------------------
 	// Fire Seq
 	//-----------------------
 	Fire:	//28 tics, 0.8sec
-		QCG5 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_AlertMonsters
-		TNT1 A 0 A_GunFlash("PrimaryFlash")
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_AlertMonsters
+		"####" A 0 A_GunFlash("PrimaryFlash")
 
-		QCG5 B 1 Offset(20,29) Bright
-		QCG5 C 1 Offset(30,23) Bright
-		QCG5 A 1 Offset(33,17) Bright
+		"####" B 1 Offset(19,28) Bright
+		"####" C 1 Offset(29,22) Bright
+		"####" A 1 Offset(32,16) Bright
 
-		QCG5 ADEFG 1 Offset(37,14)
-		QCG5 HIJKKLLMM 1 Offset(37,14)
+		"####" ADEFG 1 Offset(36,15)
+		"####" HIJKKLLMM 1 Offset(36,15)
 
-		QCG5 M 1 Offset(37,14)
-		QCG5 N 1 Offset(37,14)
-		QCG5 N 1 Offset(31,16)
-		QCG5 O 1 Offset(23,18)
-		QCG5 P 1 Offset(17,20)
-		QCG5 A 1 Offset(12,22)
-		QCG5 A 1 Offset(10,24)
+		"####" M 1 Offset(36,15)
+		"####" N 1 Offset(36,15)
+		"####" N 1 Offset(30,17)
+		"####" O 1 Offset(22,19)
+		"####" P 1 Offset(16,21)
+		"####" A 1 Offset(11,23)
+		"####" A 1 Offset(9,25)
 
-		QCG5 A 1 Offset(7,26)
-		QCG5 A 1 Offset(4,28)
-		QCG5 A 1 Offset(2,30)
-		QCG5 A 1 Offset(1,31)
+		"####" A 1 Offset(6,27)
+		"####" A 1 Offset(3,29)
+		"####" A 1 Offset(1,31)
+		"####" A 1 Offset(0,32)
 		Goto Ready
 
 	PrimaryFlash:
@@ -206,10 +265,55 @@ Actor QCRocketLauncher : QCWeapon
 			Goto NormalSound
 
 			NormalSound:
-				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Fire", CHAN_WEAPON, 1.0, 0)
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 6, "NormalSound.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 5, "NormalSound.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 4, "NormalSound.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 3, "NormalSound.Quake3")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 2, "NormalSound.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 1, "NormalSound.Quake1")
+			NormalSound.Default:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Fire_Default", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnder
+			NormalSound.Quake1:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Fire_Quake1", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			NormalSound.Quake2:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Fire_Quake2", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			NormalSound.Quake3:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Fire_Quake3", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			NormalSound.Quake4:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Fire_Quake4", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			NormalSound.ETQW:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+
 			QuadSound:
-				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Quad/Fire", CHAN_WEAPON, 1.0, 0)
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 6, "QuadSound.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 5, "QuadSound.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 4, "QuadSound.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 3, "QuadSound.Quake3")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 2, "QuadSound.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRocketLauncherSkin", 1, "QuadSound.Quake1")
+			QuadSound.Default:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Quad/Fire_Default", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.Quake1:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Quad/Fire_Quake1", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.Quake2:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Quad/Fire_Quake2", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.Quake3:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Quad/Fire_Quake3", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.Quake4:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Quad/Fire_Quake4", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.ETQW:
+				TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/Quad/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnder
 
 	FlashEnder:
@@ -714,14 +818,13 @@ Actor QCRocketExploParticle
 
 // ==========================================================================
 // ==========================================================================
-
-//	Upgrades
-
+//	Weapon tokens
 // ==========================================================================
 // ==========================================================================
 
-Actor RL_UG_Cluster : Token {}
-Actor RL_UG_Control : Token {}
+Actor RL_UG_Cluster 		: Token {}
+Actor RL_UG_Control 		: Token {}
+Actor QCRocketLauncherSkin	: Token { Inventory.MaxAmount 20 }
 
 
 //--------------------------------------------------------------------------------

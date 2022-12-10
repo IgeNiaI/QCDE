@@ -144,6 +144,7 @@ OptionMenu "QCDEOptions"
 
 	StaticText	""
 
+	Submenu 	"Weapon Skins          ",		"QCDEWeaponSkins"
 	Submenu 	"Misc QCDE Options       ",		"QCDEMisc"
 
 	StaticText	""
@@ -468,6 +469,146 @@ OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of 
 	StaticTextSwitchable "T to test mode for 5 seconds", "Please wait 5 seconds...", "VMTestText"
 
 	class VideoModeMenu
+}
+
+OptionValue "GNTLskin"
+{
+	0, "Default"
+	3, "Quake 3"
+	4, "Quake 4"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "MGskin"
+{
+	0, "Default"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "HMGskin"
+{
+	0, "Default"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "SGskin"
+{
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "SSGskin"
+{
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "NGskin"
+{
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	4, "Quake 4"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "SNGskin"
+{
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "TBskin"
+{
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "RLskin"
+{
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "LGskin"
+{
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "RGskin"
+{
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "BFGskin"
+{
+	0, "Default"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	6, "QC:DE 1.0"
+}
+
+OptionMenu "QCDEWeaponSkins"
+{
+	Indent 153
+	Title "Weapons Skins"
+
+	StaticText " "
+
+	Option		"Gauntlet",			"cl_GNTLskin",	"GNTLskin"
+	Option		"Machinegun",		"cl_MGskin",	"MGskin"
+	Option		"Heavy Machinegun",	"cl_HMGskin",	"HMGskin"
+	Option		"Shotgun",			"cl_SGskin",	"SGskin"
+	Option		"Super Shotgun",	"cl_SSGskin",	"SSGskin"
+	Option		"Nailgun",			"cl_NGskin",	"NGskin"
+	Option		"Super Nailgun",	"cl_SNGskin",	"SNGskin"
+	Option		"Tribolt",			"cl_TBskin",	"TBskin"
+	Option		"Rocket Launcher",	"cl_RLskin",	"RLskin"
+	Option		"Lightning Gun",	"cl_LGskin",	"LGskin"
+	Option		"Railgun",			"cl_RGskin",	"RGskin"
+	Option		"BFG",				"cl_BFGskin",	"BFGskin"
 }
 
 OptionValue "QCSwitch"

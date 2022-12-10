@@ -82,6 +82,7 @@ Actor QCRailGun : QCWeapon
 	+INVENTORY.IGNORESKILL
 	+WEAPON.NOALERT
 	+WEAPON.NOAUTOAIM	//rails never autoaim, but this needed for effects and sound spawners
+	Weapon.SwaySpeed 2.7
 	Weapon.AmmoType1 "QCSlugAmmo"
 	Weapon.AmmoGive1 10
 	Weapon.AmmoUse1 1
@@ -108,108 +109,159 @@ Actor QCRailGun : QCWeapon
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
-		QCG7 A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
-		TNT1 A 0 A_ZoomFactor(1.0) //for when you exited the level zoomed, upon entering new level, resets zoom here
-		"####" "#" 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
-		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "Select.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "Select.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "Select.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "Select.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "Select.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "Select.Quake1")
+	Select.Default:
+		QCG7 A 0
+		Goto SelectCont
+	Select.Quake1:
+		QC17 A 0
+		Goto SelectCont
+	Select.Quake2:
+		QC27 A 0
+		Goto SelectCont
+	Select.Quake3:
+		QC37 A 0
+		Goto SelectCont
+	Select.Quake4:
+		QC47 A 0
+		Goto SelectCont
+	Select.ETQW:
+		QC57 A 0
+		Goto SelectCont
+	Select.QCDE1:
+		QC67 A 0
+		Goto SelectCont
+
+	SelectCont:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
+		"####" A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		"####" A 0 A_ZoomFactor(1.0) //for when you exited the level zoomed, upon entering new level, resets zoom here
+		"####" A 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
+		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 	SelectLooper:
-		QCG7 A 1 A_Raise
-		TNT1 AAA 0 A_Raise
+		"####" A 1 A_Raise
+		"####" AAA 0 A_Raise
 		Loop
 
 	Deselect:
-		TNT1 A 0 A_StopSound(CHAN_WEAPON) //idle sound
-		"####" "#" 0 A_ZoomFactor(1.0)
-		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
-		"####" "#" 0 A_TakeInventory("RailgunCharges",32767)
+		"####" A 0 A_StopSound(CHAN_WEAPON) //idle sound
+		"####" A 0 A_ZoomFactor(1.0)
+		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
+		"####" A 0 A_TakeInventory("RailgunCharges",32767)
 	DeselectLooper:
-		QCG7 A 1 A_Lower
-		TNT1 AAA 0 A_Lower
+		"####" A 1 A_Lower
+		"####" AAA 0 A_Lower
 		Loop
 
 	//-----------------------
 	// Ready Seq
 	//-----------------------
 	Ready:
-		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle", CHAN_WEAPON, 0.4, 1, 1.25)
 		TNT1 A 0 A_TakeInventory("RailgunCharges",52)
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG7 A 1 A_WeaponReady
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG7 A 1 A_WeaponReady
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG7 A 1 A_WeaponReady
 	ReadyAgain:
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 A 1 A_WeaponReady
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 A 1 A_WeaponReady
-		QCG7 B 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 B 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 B 1 A_WeaponReady
-		QCG7 B 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 B 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 B 1 A_WeaponReady
-		QCG7 C 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 C 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 C 1 A_WeaponReady
-		QCG7 C 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 C 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 C 1 A_WeaponReady
-		QCG7 D 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 D 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 D 1 A_WeaponReady
-		QCG7 D 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 D 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 D 1 A_WeaponReady
-		QCG7 E 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 E 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 E 1 A_WeaponReady
-		QCG7 E 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 E 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 E 1 A_WeaponReady
-		QCG7 F 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 F 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 F 1 A_WeaponReady
-		QCG7 F 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 F 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 F 1 A_WeaponReady
-		QCG7 G 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 G 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 G 1 A_WeaponReady
-		QCG7 G 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 G 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 G 1 A_WeaponReady
-		QCG7 H 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 H 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 H 1 A_WeaponReady
-		QCG7 H 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 H 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 H 1 A_WeaponReady
-		QCG7 I 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 I 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 I 1 A_WeaponReady
-		QCG7 I 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 I 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 I 1 A_WeaponReady
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 A 1 A_WeaponReady
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 A 1 A_WeaponReady
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 A 1 A_WeaponReady
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 A 1 A_WeaponReady
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
-		QCG7 A 1 A_WeaponReady
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "Ready.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "Ready.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "Ready.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "Ready.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "Ready.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "Ready.Quake1")
+	Ready.Default:
+		QCG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyCont
+	Ready.Quake1:
+		QC17 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyCont
+	Ready.Quake2:
+		QC27 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake2", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyCont
+	Ready.Quake3:
+		QC37 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake3", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyCont
+	Ready.Quake4:
+		QC47 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake4", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyCont
+	Ready.ETQW:
+		QC57 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_ETQW", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyCont
+	Ready.QCDE1:
+		QC67 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyCont
+
+	ReadyCont:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady
+		"####" B 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" B 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" B 1 A_WeaponReady
+		"####" B 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" B 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" B 1 A_WeaponReady
+		"####" C 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" C 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" C 1 A_WeaponReady
+		"####" C 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" C 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" C 1 A_WeaponReady
+		"####" D 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" D 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" D 1 A_WeaponReady
+		"####" D 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" D 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" D 1 A_WeaponReady
+		"####" E 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" E 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" E 1 A_WeaponReady
+		"####" E 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" E 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" E 1 A_WeaponReady
+		"####" F 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" F 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" F 1 A_WeaponReady
+		"####" F 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" F 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" F 1 A_WeaponReady
+		"####" G 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" G 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" G 1 A_WeaponReady
+		"####" G 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" G 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" G 1 A_WeaponReady
+		"####" H 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" H 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" H 1 A_WeaponReady
+		"####" H 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" H 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" H 1 A_WeaponReady
+		"####" I 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" I 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" I 1 A_WeaponReady
+		"####" I 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" I 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" I 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady
 		Loop
 
 	ReadyZoomed:
@@ -217,160 +269,160 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Ready")
 		TNT1 A 0 A_JumpIfInventory("RailgunCharges",52,"ReadyZoomedCharged")
-		R016 P 1 Bright A_WeaponReady(WRF_NOBOB)
+		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB)
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
 		Loop
 
 	ReadyZoomedCharged:
 		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/ChargeFull", 6, 1.0, 0, 15) //only you hear it
 	ReadyZoomedChargedLoop:
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Ready")
-		R016 P 1 Bright A_WeaponReady(WRF_NOBOB)
+		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB)
 		Loop
 
 	ReadyZoomedDM:
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Ready")
-		R016 P 1 Bright A_WeaponReady(WRF_NOBOB)
+		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB)
 		Loop
 
 
 		ReadyCantFire:
-			QCG7 A 0 A_StopSound(CHAN_WEAPON)
-			QCG7 A 0 A_StopSound(6)
-			QCGC A 0 A_TakeInventory("RailgunCharges",32767)
-			"####" "#" 0 A_ZoomFactor(1.0)
-			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+			"####" A 0 A_StopSound(CHAN_WEAPON)
+			"####" A 0 A_StopSound(6)
+			"####" A 0 A_TakeInventory("RailgunCharges",32767)
+			"####" A 0 A_ZoomFactor(1.0)
+			"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 		RCFLooper:
-			QCG7 A 4 A_WeaponReady(WRF_NOFIRE)
-			QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
+			"####" A 4 A_WeaponReady(WRF_NOFIRE)
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
 			Goto Ready
 
 	//-----------------------
 	// Fire Seq
 	//-----------------------
 	Fire:
-		QCG7 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		TNT1 A 0 A_AlertMonsters
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"FireZoomed")
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_AlertMonsters
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"FireZoomed")
 
 	RegularFireSequence:		//52 tics, ~1.5 sec (1.4857 sec)
-		TNT1 A 0 A_GunFlash("PrimaryFlash")
+		"####" A 0 A_GunFlash("PrimaryFlash")
 
 		/*QCG7 JK 1 Bright	//animation timing reference
-		QCG7 L 1
-		QCG7 M 2
-		QCG7 N 20
-		QCG7 OPQRSTUVW 3
+		"####" L 1
+		"####" M 2
+		"####" N 20
+		"####" OPQRSTUVW 3
 		Goto Ready*/
 
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 J 1 Offset(10,38) Bright A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 K 1 Offset(15,46) Bright A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 L 1 Offset(18,49) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 M 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 M 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 N 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 O 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 O 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 O 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 P 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 P 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 P 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 Q 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 Q 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 Q 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 R 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 R 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 R 1 Offset(20,52) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 S 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 S 1 Offset(18,50) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 S 1 Offset(17,49) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 T 1 Offset(15,47) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 T 1 Offset(13,45) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 T 1 Offset(11,43) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 U 1 Offset(9,41) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 U 1 Offset(8,40) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 U 1 Offset(7,39) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 V 1 Offset(6,38) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 V 1 Offset(5,37) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 V 1 Offset(4,36) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 W 1 Offset(3,35) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 W 1 Offset(2,34) A_GiveInventory("RailgunTicCounter",1)
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
-		QCG7 W 1 Offset(1,33) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" J 1 Offset(9,37) Bright A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" K 1 Offset(14,45) Bright A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" L 1 Offset(17,48) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" M 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" M 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" N 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" O 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" O 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" O 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" P 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" P 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" P 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" Q 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" Q 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" Q 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" R 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" R 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" R 1 Offset(19,51) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" S 1 Offset(18,50) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" S 1 Offset(17,49) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" S 1 Offset(16,48) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" T 1 Offset(14,46) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" T 1 Offset(12,44) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" T 1 Offset(10,42) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" U 1 Offset(8,40) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" U 1 Offset(7,39) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" U 1 Offset(6,38) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" V 1 Offset(5,37) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" V 1 Offset(4,36) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" V 1 Offset(3,35) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" W 1 Offset(2,34) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" W 1 Offset(1,33) A_GiveInventory("RailgunTicCounter",1)
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"DoTheMathToZoom")
+		"####" W 1 Offset(0,32) A_GiveInventory("RailgunTicCounter",1)
 
-		TNT1 A 0 A_TakeInventory("RailgunTicCounter",32767)
+		"####" A 0 A_TakeInventory("RailgunTicCounter",32767)
 		Goto ReadyAgain
 
 	PrimaryFlash: //Attacks doer
@@ -378,18 +430,87 @@ Actor QCRailGun : QCWeapon
 		Goto PerformSP
 
 		PerformSP:
-			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformSP.Default")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformSP.ETQW")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformSP.Quake4")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "PerformSP.Quake3")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "PerformSP.Quake2")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "PerformSP.Quake1")
+		PerformSP.Default:
+			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail")
+			Goto PerformSPCont
+		PerformSP.Quake1:
+			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake1",0,0,0,0,6.0,1.0,"RailgunTrail_Quake1")
+			Goto PerformSPCont
+		PerformSP.Quake2:
+			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"#4793a3","#cecfd1",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake2",0,0,0,0,1.0,1.0)
+			Goto PerformSPCont
+		PerformSP.Quake3:
+			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail_Quake3")
+			Goto PerformSPCont
+		PerformSP.Quake4:
+			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake4",0,0,0,0,6.0,1.0,"RailgunTrail_Quake4")
+			Goto PerformSPCont
+		PerformSP.ETQW:
+			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
+			Goto PerformSPCont
+
+		PerformSPCont:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) == 0, 2) // don't change velocity at all if 0
 			TNT1 A 0 A_ChangeVelocity(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * -cos(pitch), 0, ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * sin(pitch), CVF_RELATIVE)
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeam")
 			Goto FlashCheckSound
 
 			AddPierceBeam:
-				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile",0,false,8,0,0,0)
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddPierceBeam.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddPierceBeam.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddPierceBeam.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "AddPierceBeam.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "AddPierceBeam.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "AddPierceBeam.Quake1")
+			AddPierceBeam.Default:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile",0,false,1,0,0,0)
+				Goto FlashCheckSound
+			AddPierceBeam.Quake1:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_Quake1",0,false,1,0,0,0)
+				Goto FlashCheckSound
+			AddPierceBeam.Quake2:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_Quake2",0,false,1,0,0,0)
+				Goto FlashCheckSound
+			AddPierceBeam.Quake4:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_Quake4",0,false,1,0,0,0)
+				Goto FlashCheckSound
+			AddPierceBeam.ETQW:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_ETQW",0,false,1,0,0,0)
 				Goto FlashCheckSound
 
 		PerformDM:
-			TNT1 A 0 A_RailAttack(80,2,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformDM.Default")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformDM.ETQW")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformDM.Quake4")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "PerformDM.Quake3")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "PerformDM.Quake2")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "PerformDM.Quake1")
+		PerformDM.Default:
+			TNT1 A 0 A_RailAttack(80,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail")
+			Goto PerformDMCont
+		PerformDM.Quake1:
+			TNT1 A 0 A_RailAttack(80,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM_Quake1",0,0,0,0,6.0,1.0,"RailgunTrail_Quake1")
+			Goto PerformDMCont
+		PerformDM.Quake2:
+			TNT1 A 0 A_RailAttack(80,2,1,"#4793a3","#cecfd1",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM_Quake2",0,0,0,0,1.0,1.0)
+			Goto PerformDMCont
+		PerformDM.Quake3:
+			TNT1 A 0 A_RailAttack(80,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail_Quake3")
+			Goto PerformDMCont
+		PerformDM.Quake4:
+			TNT1 A 0 A_RailAttack(80,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM_Quake4",0,0,0,0,6.0,1.0,"RailgunTrail_Quake4")
+			Goto PerformDMCont
+		PerformDM.ETQW:
+			TNT1 A 0 A_RailAttack(80,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
+			Goto PerformDMCont
+
+		PerformDMCont:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) == 0, 2) // don't change velocity at all if 0
 			TNT1 A 0 A_ChangeVelocity(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * -cos(pitch), 0, ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * sin(pitch), CVF_RELATIVE)
 			//Medals start
@@ -403,10 +524,55 @@ Actor QCRailGun : QCWeapon
 			Goto NormalSound
 
 			NormalSound:
-				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire", CHAN_WEAPON, 1.0, 0)
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 6, "NormalSound.Default")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 5, "NormalSound.ETQW")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 4, "NormalSound.Quake4")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 3, "NormalSound.Quake3")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 2, "NormalSound.Quake2")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 1, "NormalSound.Quake1")
+			NormalSound.Default:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Default", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnder
+			NormalSound.Quake1:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Quake1", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			NormalSound.Quake2:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Quake2", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			NormalSound.Quake3:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Quake3", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			NormalSound.Quake4:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Quake4", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			NormalSound.ETQW:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+
 			QuadSound:
-				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire", CHAN_WEAPON, 1.0, 0)
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 6, "QuadSound.Default")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 5, "QuadSound.ETQW")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 4, "QuadSound.Quake4")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 3, "QuadSound.Quake3")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 2, "QuadSound.Quake2")
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 1, "QuadSound.Quake1")
+			QuadSound.Default:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Default", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.Quake1:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Quake1", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.Quake2:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Quake2", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.Quake3:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Quake3", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.Quake4:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Quake4", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.ETQW:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnder
 
 	FlashEnder:
@@ -418,7 +584,7 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 		TNT1 A 0 A_SetBlend("Green",0.14,15)
 		TNT1 A 0 A_AlertMonsters
-		TNT1 A 0 A_RailAttack(0,2,0,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"DummyPuff",0,0,1,0,70.0,1.0,"RailgunSmoke")
+		TNT1 A 0 A_RailAttack(0,2,0,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"DummyPuff",0,0,1,0,70.0,1.0,"RailgunSmoke")
 		TNT1 A 0 A_FireCustomMissile("RailgunWhoosher",0,false,1,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,0)				//to play "whoosh" sound when passes by
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"FlashEnderNoRecoil")
 		TNT1 A 2 A_SetPitch(pitch-5.0)
@@ -450,151 +616,151 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 
 		TNT1 A 0 A_TakeInventory("RailgunTicCounter",32767)
@@ -611,103 +777,103 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
-		R016 P 1 Bright A_GiveInventory("RailgunTicCounter",1)
+		TNT1 A 1 Bright A_GiveInventory("RailgunTicCounter",1)
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"DoTheMathFromZoom")
 
 		TNT1 A 0 A_TakeInventory("RailgunTicCounter",32767)
@@ -719,41 +885,196 @@ Actor QCRailGun : QCWeapon
 
 		PerformSPZoomed:
 			TNT1 A 0 A_JumpIfInventory("RailgunCharges",52,"PerformSPZoomedCharged")
-			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformSPZoomed.Default")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformSPZoomed.ETQW")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformSPZoomed.Quake4")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "PerformSPZoomed.Quake3")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "PerformSPZoomed.Quake2")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "PerformSPZoomed.Quake1")
+		PerformSPZoomed.Default:
+			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail")
+			Goto PerformSPZoomedCont
+		PerformSPZoomed.Quake1:
+			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake1",0,0,0,0,6.0,1.0,"RailgunTrail_Quake1")
+			Goto PerformSPZoomedCont
+		PerformSPZoomed.Quake2:
+			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"#4793a3","#cecfd1",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake2",0,0,0,0,1.0,1.0)
+			Goto PerformSPZoomedCont
+		PerformSPZoomed.Quake3:
+			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail_Quake3")
+			Goto PerformSPZoomedCont
+		PerformSPZoomed.Quake4:
+			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake4",0,0,0,0,6.0,1.0,"RailgunTrail_Quake4")
+			Goto PerformSPZoomedCont
+		PerformSPZoomed.ETQW:
+			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
+			Goto PerformSPZoomedCont
+
+		PerformSPZoomedCont:
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Explosive",1,"AddExplosiveWeak")
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeamZoomedWeak")
 			Goto FlashZoomedCheckSound
 
-			AddPierceBeamZoomedWeak:
-				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile",0,false,1,0,0,0)
-				Goto FlashZoomedCheckSound
-
 			AddExplosiveWeak:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddExplosiveWeak.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddExplosiveWeak.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddExplosiveWeak.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "AddExplosiveWeak.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "AddExplosiveWeak.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "AddExplosiveWeak.Quake1")
+			AddExplosiveWeak.Default:
 				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidWeak",0,false,0)
+				Goto AddExplosiveWeakCont
+			AddExplosiveWeak.Quake1:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidWeak_Quake1",0,false,0)
+				Goto AddExplosiveWeakCont
+			AddExplosiveWeak.Quake2:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidWeak_Quake2",0,false,0)
+				Goto AddExplosiveWeakCont
+			AddExplosiveWeak.Quake4:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidWeak_Quake4",0,false,0)
+				Goto AddExplosiveWeakCont
+			AddExplosiveWeak.ETQW:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidWeak_ETQW",0,false,0)
+				Goto AddExplosiveWeakCont
+			AddExplosiveWeakCont:
 				TNT1 A 0 A_RailAttack(random(10,15)*10,0,false,"none","none",RGF_SILENT|RGF_FULLBRIGHT)
 				TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeamZoomedWeak")
 				Goto FlashZoomedCheckSound
 
+			AddPierceBeamZoomedWeak:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddPierceBeamZoomedWeak.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddPierceBeamZoomedWeak.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddPierceBeamZoomedWeak.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "AddPierceBeamZoomedWeak.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "AddPierceBeamZoomedWeak.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "AddPierceBeamZoomedWeak.Quake1")
+			AddPierceBeamZoomedWeak.Default:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedWeak.Quake1:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_Quake1",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedWeak.Quake2:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_Quake2",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedWeak.Quake4:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_Quake4",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedWeak.ETQW:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_ETQW",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+
 
 		PerformSPZoomedCharged:
-			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformSPZoomedCharged.Default")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformSPZoomedCharged.ETQW")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformSPZoomedCharged.Quake4")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "PerformSPZoomedCharged.Quake3")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "PerformSPZoomedCharged.Quake2")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "PerformSPZoomedCharged.Quake1")
+		PerformSPZoomedCharged.Default:
+			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail")
+			Goto PerformSPZoomedChargedCont
+		PerformSPZoomedCharged.Quake1:
+			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake1",0,0,0,0,6.0,1.0,"RailgunTrail_Quake1")
+			Goto PerformSPZoomedChargedCont
+		PerformSPZoomedCharged.Quake2:
+			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"#4793a3","#cecfd1",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake2",0,0,0,0,1.0,1.0)
+			Goto PerformSPZoomedChargedCont
+		PerformSPZoomedCharged.Quake3:
+			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff",0,0,0,0,6.0,1.0,"RailgunTrail_Quake3")
+			Goto PerformSPZoomedChargedCont
+		PerformSPZoomedCharged.Quake4:
+			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_Quake4",0,0,0,0,6.0,1.0,"RailgunTrail_Quake4")
+			Goto PerformSPZoomedChargedCont
+		PerformSPZoomedCharged.ETQW:
+			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
+			Goto PerformSPZoomedChargedCont
+
+		PerformSPZoomedChargedCont:
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Explosive",1,"AddExplosiveStrong")
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeamZoomedStrong")
 			Goto FlashZoomedCheckSound
 
-			AddPierceBeamZoomedStrong:
-				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectileStrong",0,false,1,0,0,0)
-				Goto FlashZoomedCheckSound
-
 			AddExplosiveStrong:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddExplosiveStrong.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddExplosiveStrong.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddExplosiveStrong.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "AddExplosiveStrong.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "AddExplosiveStrong.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "AddExplosiveStrong.Quake1")
+			AddExplosiveStrong.Default:
 				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidStrong",0,false,0)
+				Goto AddExplosiveStrongCont
+			AddExplosiveStrong.Quake1:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidStrong_Quake1",0,false,0)
+				Goto AddExplosiveStrongCont
+			AddExplosiveStrong.Quake2:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidStrong_Quake2",0,false,0)
+				Goto AddExplosiveStrongCont
+			AddExplosiveStrong.Quake4:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidStrong_Quake4",0,false,0)
+				Goto AddExplosiveStrongCont
+			AddExplosiveStrong.ETQW:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidStrong_ETQW",0,false,0)
+				Goto AddExplosiveStrongCont
+			AddExplosiveStrongCont:
 				TNT1 A 0 A_RailAttack(random(20,25)*10,0,false,"none","none",RGF_SILENT|RGF_FULLBRIGHT)
 				TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeamZoomedStrong")
 				Goto FlashZoomedCheckSound
 
+			AddPierceBeamZoomedStrong:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddPierceBeamZoomedStrong.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddPierceBeamZoomedStrong.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddPierceBeamZoomedStrong.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "AddPierceBeamZoomedStrong.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "AddPierceBeamZoomedStrong.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "AddPierceBeamZoomedStrong.Quake1")
+			AddPierceBeamZoomedStrong.Default:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectileStrong",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedStrong.Quake1:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectileStrong_Quake1",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedStrong.Quake2:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectileStrong_Quake2",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedStrong.Quake4:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectileStrong_Quake4",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedStrong.ETQW:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectileStrong_ETQW",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
+
 
 		PerformDMZoomed:
-			TNT1 A 0 A_RailAttack(80,0,1,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformDMZoomed.Default")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformDMZoomed.ETQW")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformDMZoomed.Quake4")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "PerformDMZoomed.Quake3")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "PerformDMZoomed.Quake2")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "PerformDMZoomed.Quake1")
+		PerformDMZoomed.Default:
+			TNT1 A 0 A_RailAttack(80,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail")
+			Goto PerformDMZoomedCont
+		PerformDMZoomed.Quake1:
+			TNT1 A 0 A_RailAttack(80,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM_Quake1",0,0,0,0,6.0,1.0,"RailgunTrail_Quake1")
+			Goto PerformDMZoomedCont
+		PerformDMZoomed.Quake2:
+			TNT1 A 0 A_RailAttack(80,0,1,"#4793a3","#cecfd1",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM_Quake2",0,0,0,0,1.0,1.0)
+			Goto PerformDMZoomedCont
+		PerformDMZoomed.Quake3:
+			TNT1 A 0 A_RailAttack(80,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM",0,0,0,0,6.0,1.0,"RailgunTrail_Quake3")
+			Goto PerformDMZoomedCont
+		PerformDMZoomed.Quake4:
+			TNT1 A 0 A_RailAttack(80,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM_Quake4",0,0,0,0,6.0,1.0,"RailgunTrail_Quake4")
+			Goto PerformDMZoomedCont
+		PerformDMZoomed.ETQW:
+			TNT1 A 0 A_RailAttack(80,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_DM_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
+			Goto PerformDMZoomedCont
+
+		PerformDMZoomedCont:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) == 0, 2) // don't change velocity at all if 0
 			TNT1 A 0 A_ChangeVelocity(ACS_NamedExecuteWithResult("QCDE_RailRecoil",0,0,0,0) * -cos(pitch), 0, ACS_NamedExecuteWithResult("QCDE_railRecoil",0,0,0,0) * sin(pitch), CVF_RELATIVE)
 			//Medals start
@@ -767,10 +1088,55 @@ Actor QCRailGun : QCWeapon
 			Goto NormalSoundZoomed
 
 			NormalSoundZoomed:
-				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire", CHAN_WEAPON, 1.0, 0)
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "NormalSoundZoomed.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "NormalSoundZoomed.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "NormalSoundZoomed.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "NormalSoundZoomed.Quake3")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "NormalSoundZoomed.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "NormalSoundZoomed.Quake1")
+			NormalSoundZoomed.Default:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Default", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnderZoomed
+			NormalSoundZoomed.Quake1:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Quake1", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			NormalSoundZoomed.Quake2:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Quake2", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			NormalSoundZoomed.Quake3:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Quake3", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			NormalSoundZoomed.Quake4:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire_Quake4", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			NormalSoundZoomed.ETQW:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+
 			QuadSoundZoomed:
-				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire", CHAN_WEAPON, 1.0, 0)
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "QuadSoundZoomed.Default")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "QuadSoundZoomed.ETQW")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "QuadSoundZoomed.Quake4")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "QuadSoundZoomed.Quake3")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "QuadSoundZoomed.Quake2")
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "QuadSoundZoomed.Quake1")
+			QuadSoundZoomed.Default:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Default", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			QuadSoundZoomed.Quake1:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Quake1", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			QuadSoundZoomed.Quake2:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Quake2", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			QuadSoundZoomed.Quake3:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Quake3", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			QuadSoundZoomed.Quake4:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_Quake4", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
+			QuadSoundZoomed.ETQW:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnderZoomed
 
 	FlashEnderZoomed:
@@ -783,7 +1149,7 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 		TNT1 A 0 A_SetBlend("Green",0.14,15)
 		TNT1 A 0 A_AlertMonsters
-		TNT1 A 0 A_RailAttack(0,0,0,"Green","Green",RGF_SILENT|RGF_FULLBRIGHT,0,"DummyPuff",0,0,1,0,70.0,1.0,"RailgunSmoke")
+		TNT1 A 0 A_RailAttack(0,0,0,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"DummyPuff",0,0,1,0,70.0,1.0,"RailgunSmoke")
 		TNT1 A 0 A_FireCustomMissile("RailgunWhoosher",0,false,1,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,0)
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"FlashEnderNoRecoil")
 		TNT1 A 2 A_SetPitch(pitch-2.5)
@@ -791,334 +1157,361 @@ Actor QCRailGun : QCWeapon
 		Stop
 
 	DoTheMathFromZoom:
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",51,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",50,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",49,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",48,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",47,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",46,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",45,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",44,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",43,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",42,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",41,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",40,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",39,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",38,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",37,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",36,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",35,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",34,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",33,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",32,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",31,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",30,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",29,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",28,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",27,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",26,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",25,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",24,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",23,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",22,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",21,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",20,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",19,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",18,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",17,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",16,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",15,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",14,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",13,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",12,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",11,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",10,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",9,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",8,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",7,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",6,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",5,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",4,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",3,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",2,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",1,52)//from 1st jump, this is line 50
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "DoTheMathFromZoom.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "DoTheMathFromZoom.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "DoTheMathFromZoom.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "DoTheMathFromZoom.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "DoTheMathFromZoom.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "DoTheMathFromZoom.Quake1")
+	DoTheMathFromZoom.Default:
+		QCG7 A 0
+		Goto DoTheMathFromZoomCont
+	DoTheMathFromZoom.Quake1:
+		QC17 A 0
+		Goto DoTheMathFromZoomCont
+	DoTheMathFromZoom.Quake2:
+		QC27 A 0
+		Goto DoTheMathFromZoomCont
+	DoTheMathFromZoom.Quake3:
+		QC37 A 0
+		Goto DoTheMathFromZoomCont
+	DoTheMathFromZoom.Quake4:
+		QC47 A 0
+		Goto DoTheMathFromZoomCont
+	DoTheMathFromZoom.ETQW:
+		QC57 A 0
+		Goto DoTheMathFromZoomCont
+	DoTheMathFromZoom.QCDE1:
+		QC67 A 0
+		Goto DoTheMathFromZoomCont
 
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+106
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+104
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+102
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+100
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+98
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+96
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+94
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+92
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+90
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+88
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+86
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+84
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+82
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+80
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+78
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+76
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+74
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+72
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+70
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+68
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+66
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+64
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+62
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+60
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+58
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+56
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+54
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+52
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+50
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+48
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+46
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+44
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+42
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+40
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+38
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+36
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+34
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+32
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+30
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+28
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+26
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+24
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+22
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+20
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+18
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+16
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+14
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+12
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE) 		Goto RegularFireSequence+10
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+8
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+6
-		R016 P 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+4
+	DoTheMathFromZoomCont:
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",51,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",50,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",49,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",48,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",47,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",46,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",45,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",44,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",43,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",42,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",41,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",40,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",39,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",38,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",37,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",36,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",35,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",34,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",33,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",32,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",31,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",30,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",29,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",28,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",27,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",26,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",25,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",24,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",23,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",22,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",21,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",20,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",19,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",18,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",17,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",16,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",15,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",14,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",13,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",12,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",11,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",10,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",9,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",8,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",7,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",6,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",5,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",4,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",3,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",2,52)
+		"####" A 0 A_JumpIfInventory("RailgunTicCounter",1,52)//from 1st jump, this is line 50
+
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+106
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+104
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+102
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+100
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+98
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+96
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+94
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+92
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+90
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+88
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+86
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+84
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+82
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+80
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+78
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+76
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+74
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+72
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+70
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+68
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+66
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+64
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+62
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+60
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+58
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+56
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+54
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+52
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+50
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+48
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+46
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+44
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+42
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+40
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+38
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+36
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+34
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+32
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+30
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+28
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+26
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+24
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+22
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+20
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+18
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+16
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+14
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+12
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE) 		Goto RegularFireSequence+10
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+8
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+6
+		"####" A 0 A_GunFlash("ClearFromZoomed",GFF_NOEXTCHANGE)		Goto RegularFireSequence+4
 
 	ClearFromZoomed:
-			TNT1 A 0 A_TakeInventory("RailgunCharges",32767)
-			Stop
-
+		"####" A 0 A_TakeInventory("RailgunCharges",32767)
+		Stop
 
 	DoTheMathToZoom:
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DoTheMathToZoomDM")
 
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",51,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",50,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",49,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",48,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",47,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",46,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",45,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",44,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",43,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",42,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",41,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",40,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",39,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",38,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",37,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",36,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",35,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",34,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",33,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",32,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",31,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",30,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",29,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",28,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",27,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",26,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",25,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",24,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",23,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",22,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",21,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",20,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",19,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",18,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",17,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",16,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",15,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",14,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",13,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",12,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",11,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",10,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",9,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",8,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",7,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",6,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",5,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",4,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",3,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",2,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",1,52)//from 1st jump, this is line 50
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",51,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",50,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",49,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",48,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",47,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",46,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",45,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",44,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",43,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",42,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",41,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",40,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",39,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",38,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",37,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",36,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",35,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",34,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",33,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",32,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",31,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",30,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",29,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",28,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",27,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",26,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",25,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",24,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",23,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",22,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",21,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",20,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",19,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",18,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",17,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",16,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",15,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",14,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",13,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",12,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",11,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",10,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",9,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",8,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",7,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",6,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",5,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",4,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",3,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",2,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",1,52)//from 1st jump, this is line 50
 
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+157
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+154
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+151
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+148
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+145
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+142
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+139
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+136
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+133
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+130
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+127
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+124
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+121
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+118
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+115
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+112
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+109
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+106
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+103
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+100
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+97
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+94
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+91
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+88
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+85
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+82
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+79
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+76
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+73
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+70
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+67
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+64
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+61
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+58
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+55
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+52
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+49
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+46
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+43
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+40
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+37
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+34
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+31
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+28
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+25
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+22
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+29
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+16
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE) 		Goto ZoomedFireSequence+13
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+10
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+7
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+4
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+157
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+154
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+151
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+148
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+145
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+142
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+139
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+136
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+133
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+130
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+127
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+124
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+121
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+118
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+115
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+112
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+109
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+106
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+103
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+100
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+97
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+94
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+91
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+88
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+85
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+82
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+79
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+76
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+73
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+70
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+67
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+64
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+61
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+58
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+55
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+52
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+49
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+46
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+43
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+40
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+37
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+34
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+31
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+28
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+25
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+22
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+29
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+16
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE) 		Goto ZoomedFireSequence+13
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+10
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+7
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequence+4
 
 	DoTheMathToZoomDM:
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",51,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",50,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",49,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",48,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",47,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",46,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",45,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",44,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",43,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",42,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",41,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",40,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",39,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",38,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",37,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",36,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",35,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",34,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",33,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",32,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",31,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",30,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",29,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",28,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",27,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",26,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",25,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",24,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",23,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",22,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",21,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",20,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",19,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",18,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",17,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",16,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",15,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",14,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",13,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",12,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",11,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",10,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",9,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",8,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",7,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",6,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",5,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",4,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",3,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",2,52)
-		R016 P 0 A_JumpIfInventory("RailgunTicCounter",1,52)//from 1st jump, this is line 50
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",51,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",50,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",49,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",48,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",47,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",46,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",45,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",44,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",43,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",42,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",41,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",40,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",39,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",38,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",37,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",36,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",35,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",34,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",33,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",32,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",31,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",30,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",29,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",28,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",27,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",26,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",25,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",24,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",23,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",22,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",21,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",20,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",19,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",18,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",17,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",16,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",15,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",14,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",13,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",12,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",11,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",10,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",9,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",8,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",7,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",6,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",5,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",4,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",3,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",2,52)
+		TNT1 A 0 A_JumpIfInventory("RailgunTicCounter",1,52)//from 1st jump, this is line 50
 
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+106
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+104
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+102
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+100
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+98
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+96
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+94
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+92
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+90
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+88
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+86
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+84
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+82
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+80
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+78
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+76
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+74
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+72
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+70
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+68
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+66
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+64
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+62
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+60
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+58
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+56
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+54
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+52
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+50
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+48
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+46
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+44
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+42
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+40
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+38
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+36
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+34
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+32
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+30
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+28
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+26
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+24
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+22
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+20
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+18
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+16
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+14
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+12
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE) 		Goto ZoomedFireSequenceDM+10
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+8
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+6
-		R016 P 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+4
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+106
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+104
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+102
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+100
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+98
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+96
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+94
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+92
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+90
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+88
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+86
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+84
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+82
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+80
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+78
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+76
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+74
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+72
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+70
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+68
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+66
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+64
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+62
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+60
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+58
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+56
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+54
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+52
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+50
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+48
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+46
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+44
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+42
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+40
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+38
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+36
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+34
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+32
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+30
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+28
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+26
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+24
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+22
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+20
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+18
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+16
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+14
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+12
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE) 		Goto ZoomedFireSequenceDM+10
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+8
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+6
+		TNT1 A 0 A_GunFlash("ClearToZoomed",GFF_NOEXTCHANGE)		Goto ZoomedFireSequenceDM+4
 
 	ClearToZoomed:
-			TNT1 A 0
-			Stop
-
+		TNT1 A 0
+		Stop
 	}
 }
 
@@ -1145,6 +1538,26 @@ Actor RailgunTrail
 		FX01 A 1 Bright A_FadeOut(0.065)
 		Wait
 	}
+}
+
+Actor RailgunTrail_Quake1 : RailgunTrail
+{
+	Translation "0:255=%[0,0,0]:[1.5,0.0,0.0]"
+}
+
+Actor RailgunTrail_Quake3 : RailgunTrail
+{
+	Scale 0.04
+}
+
+Actor RailgunTrail_Quake4 : RailgunTrail
+{
+	Translation "0:255=%[0,0,0]:[0.24,0.99,1.0]"
+}
+
+Actor RailgunTrail_ETQW : RailgunTrail
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
 }
 
 
@@ -1206,6 +1619,7 @@ Actor RailgunPuff
 	Spawn:	//hit non bleeding actor
 		TNT1 A 0
 		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_Jump(256, "Crash")
 		Goto Crash
 	Xdeath:	//hit bleeding actor
 		TNT1 A 0
@@ -1214,8 +1628,48 @@ Actor RailgunPuff
 		Stop
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		TNT1 A 10 A_PlaySound("QC/Weapons/Railgun/Quad/Impact")
+		TNT1 A 10 A_PlaySound("QC/Weapons/Railgun/Impact")
 		Stop
+	}
+}
+
+Actor RailgunPuff_Quake1 : RailgunPuff
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake1", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+1
+	}
+}
+
+Actor RailgunPuff_Quake2 : RailgunPuff
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake2", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+1
+	}
+}
+
+Actor RailgunPuff_Quake4 : RailgunPuff
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake4", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+1
+	}
+}
+
+Actor RailgunPuff_ETQW : RailgunPuff
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_ETQW", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+1
 	}
 }
 
@@ -1243,6 +1697,46 @@ Actor RailgunPuff_DM : RailgunPuff
 	//Medals end
 }
 
+Actor RailgunPuff_DM_Quake1 : RailgunPuff_DM
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake1", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+1
+	}
+}
+
+Actor RailgunPuff_DM_Quake2 : RailgunPuff_DM
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake2", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+1
+	}
+}
+
+Actor RailgunPuff_DM_Quake4 : RailgunPuff_DM
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake4", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+1
+	}
+}
+
+Actor RailgunPuff_DM_ETQW : RailgunPuff_DM
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_ETQW", 5,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+1
+	}
+}
+
 Actor RailgunPuffFx
 {
 	+NOINTERACTION
@@ -1258,13 +1752,13 @@ Actor RailgunPuffFx
 	Spawn:
 		TNT1 A 0 NODELAY A_Jump(256,"Type1","Type2","Type3")
 	Type1:
-		DB63 A 0
+		DB63 A 0 A_Jump(255, "EndAnimation")
 		Goto EndAnimation
 	Type2:
-		DB64 A 0
+		DB64 A 0 A_Jump(255, "EndAnimation")
 		Goto EndAnimation
 	Type3:
-		DB65 A 0
+		DB65 A 0 A_Jump(255, "EndAnimation")
 		Goto EndAnimation
 
 	EndAnimation:
@@ -1278,6 +1772,55 @@ Actor RailgunPuffFx
 		Stop
 	}
 }
+
+Actor RailgunPuffFx_Quake1 : RailgunPuffFx
+{
+	Translation "0:255=%[0,0,0]:[1.5,0.0,0.0]"
+
+	States
+	{
+	EndAnimation:
+		"####" A 0 A_SpawnItemEx("RailgunPuffFxSmoke_Quake1",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::EndAnimation+1
+	}
+}
+
+Actor RailgunPuffFx_Quake2 : RailgunPuffFx
+{
+	Translation "0:255=%[0,0,0]:[0.27,0.57,0.63]"
+
+	States
+	{
+	EndAnimation:
+		"####" A 0 A_SpawnItemEx("RailgunPuffFxSmoke_Quake2",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::EndAnimation+1
+	}
+}
+
+Actor RailgunPuffFx_Quake4 : RailgunPuffFx
+{
+	Translation "0:255=%[0,0,0]:[0.24,0.99,1.0]"
+
+	States
+	{
+	EndAnimation:
+		"####" A 0 A_SpawnItemEx("RailgunPuffFxSmoke_Quake4",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::EndAnimation+1
+	}
+}
+
+Actor RailgunPuffFx_ETQW : RailgunPuffFx
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+
+	States
+	{
+	EndAnimation:
+		"####" A 0 A_SpawnItemEx("RailgunPuffFxSmoke_ETQW",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::EndAnimation+1
+	}
+}
+
 Actor RailgunPuffFxSmoke
 {
 	+NOINTERACTION
@@ -1300,6 +1843,26 @@ Actor RailgunPuffFxSmoke
 		"####" "#" 0 A_SetScale(scalex+0.075)
 		Loop
 	}
+}
+
+Actor RailgunPuffFxSmoke_Quake1 : RailgunPuffFxSmoke
+{
+	Translation "0:255=%[0,0,0]:[1.5,0.0,0.0]"
+}
+
+Actor RailgunPuffFxSmoke_Quake2 : RailgunPuffFxSmoke
+{
+	Translation "0:255=%[0,0,0]:[0.80,0.81,0.82]"
+}
+
+Actor RailgunPuffFxSmoke_Quake4 : RailgunPuffFxSmoke
+{
+	Translation "0:255=%[0,0,0]:[0.24,0.99,1.0]"
+}
+
+Actor RailgunPuffFxSmoke_ETQW : RailgunPuffFxSmoke
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
 }
 
 
@@ -1347,14 +1910,13 @@ Actor RailgunTicCounter : Inventory { +SERVERNETID inventory.maxamount 52  inven
 
 // ==========================================================================
 // ==========================================================================
-
-//	Upgrades
-
+//	Weapon tokens
 // ==========================================================================
 // ==========================================================================
 
-Actor RG_UG_Pierce    : Token {}
-Actor RG_UG_Explosive : Token {}
+Actor RG_UG_Pierce		: Token {}
+Actor RG_UG_Explosive	: Token {}
+Actor QCRailgunSkin		: Token { Inventory.MaxAmount 20 }
 
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
@@ -1420,6 +1982,26 @@ Actor RailgunExplosivePuffoidWeak : FastProjectile
 	}
 }
 
+Actor RailgunExplosivePuffoidWeak_Quake1 : RailgunExplosivePuffoidWeak
+{
+	Translation "0:255=%[0,0,0]:[1.5,0.0,0.0]"
+}
+
+Actor RailgunExplosivePuffoidWeak_Quake2 : RailgunExplosivePuffoidWeak
+{
+	Translation "0:255=%[0,0,0]:[0.80,0.81,0.82]"
+}
+
+Actor RailgunExplosivePuffoidWeak_Quake4 : RailgunExplosivePuffoidWeak
+{
+	Translation "0:255=%[0,0,0]:[0.24,0.99,1.0]"
+}
+
+Actor RailgunExplosivePuffoidWeak_ETQW : RailgunExplosivePuffoidWeak
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+}
+
 Actor RailgunExplosivePuffoidStrong : FastProjectile
 {
 	Speed 4000
@@ -1480,6 +2062,26 @@ Actor RailgunExplosivePuffoidStrong : FastProjectile
 	}
 }
 
+Actor RailgunExplosivePuffoidStrong_Quake1 : RailgunExplosivePuffoidStrong
+{
+	Translation "0:255=%[0,0,0]:[1.5,0.0,0.0]"
+}
+
+Actor RailgunExplosivePuffoidStrong_Quake2 : RailgunExplosivePuffoidStrong
+{
+	Translation "0:255=%[0,0,0]:[0.80,0.81,0.82]"
+}
+
+Actor RailgunExplosivePuffoidStrong_Quake4 : RailgunExplosivePuffoidStrong
+{
+	Translation "0:255=%[0,0,0]:[0.24,0.99,1.0]"
+}
+
+Actor RailgunExplosivePuffoidStrong_ETQW : RailgunExplosivePuffoidStrong
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+}
+
 
 
 Actor RGPierceBeamProjectile
@@ -1487,6 +2089,7 @@ Actor RGPierceBeamProjectile
 	Projectile
 	Radius 1
 	Height 1
+	ReactionTime 6
 	+NOINTERACTION
 	+EXTREMEDEATH
 	+NODAMAGETHRUST
@@ -1499,32 +2102,123 @@ Actor RGPierceBeamProjectile
 	States
 	{
 	Spawn:
-		PLAY A 0 NODELAY A_Explode(random(50,100),64,0,0,64)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(50,100),64,0,0,64)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(50,100),64,0,0,64)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(50,100),64,0,0,64)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(50,100),64,0,0,64)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(50,100),64,0,0,64)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Stop
+		PLAY A 0 NODELAY A_Jump(256, "DoExplode")
+		Goto DoExplode
+
+	DoExplode:
+		PLAY A 0 A_Explode(random(50,100),64,0,0,64)
+		PLAY A 0 A_Jump(256, "DoFX")
+		Goto DoFX
+
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+
+	DoCountdown:
+		PLAY A 0 A_Countdown
+		PLAY A 0 A_Jump(256, "DoExplode")
+		Goto DoExplode
+	}
+}
+
+Actor RGPierceBeamProjectile_Quake1: RGPierceBeamProjectile
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_Quake1",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
+Actor RGPierceBeamProjectile_Quake2: RGPierceBeamProjectile
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_Quake2",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
+Actor RGPierceBeamProjectile_Quake4: RGPierceBeamProjectile
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_Quake4",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
+Actor RGPierceBeamProjectile_ETQW: RGPierceBeamProjectile
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_ETQW",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
 	}
 }
 
 Actor RGPierceBeamProjectileStrong : RGPierceBeamProjectile
 {
 	Scale 0.6
-	DamageType "NoDamageToPlayers"
-	ProjectileKickBack 0
-	+DONTBLAST
 	States
 	{
-	Spawn:
-		PLAY A 0 NODELAY A_Explode(random(75,125),72,0,0,72)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(75,125),72,0,0,72)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(75,125),72,0,0,72)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(75,125),72,0,0,72)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(75,125),72,0,0,72)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		PLAY A 0		 A_Explode(random(75,125),72,0,0,72)		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Stop
+	DoExplode:
+		PLAY A 0 A_Explode(random(75,125),72,0,0,72)
+		PLAY A 0 A_Jump(256, "DoFX")
+		Goto DoFX
+	}
+}
+
+Actor RGPierceBeamProjectileStrong_Quake1: RGPierceBeamProjectileStrong
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_Quake1",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
+Actor RGPierceBeamProjectileStrong_Quake2: RGPierceBeamProjectileStrong
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_Quake2",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
+Actor RGPierceBeamProjectileStrong_Quake4: RGPierceBeamProjectileStrong
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_Quake4",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
+Actor RGPierceBeamProjectileStrong_ETQW: RGPierceBeamProjectileStrong
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_ETQW",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
 	}
 }
 
@@ -1539,10 +2233,49 @@ Actor RailgunPierceTrail
 	States
 	{
 	Spawn:
-		ACID D 1 A_FadeOut(0.04)
+		RGBM D 1 A_FadeOut(0.04)
 		Loop
 	}
+}
 
+Actor RailgunPierceTrail_Quake1 : RailgunPierceTrail
+{
+	States
+	{
+	Spawn:
+		RGB1 D 1 A_FadeOut(0.04)
+		Loop
+	}
+}
+
+Actor RailgunPierceTrail_Quake2 : RailgunPierceTrail
+{
+	States
+	{
+	Spawn:
+		RGB2 D 1 A_FadeOut(0.04)
+		Loop
+	}
+}
+
+Actor RailgunPierceTrail_Quake4 : RailgunPierceTrail
+{
+	States
+	{
+	Spawn:
+		RGB4 D 1 A_FadeOut(0.04)
+		Loop
+	}
+}
+
+Actor RailgunPierceTrail_ETQW : RailgunPierceTrail
+{
+	States
+	{
+	Spawn:
+		RGB5 D 1 A_FadeOut(0.04)
+		Loop
+	}
 }
 
 

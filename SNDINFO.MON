@@ -224,6 +224,7 @@ Quake1/Weapons/SuperNailgunFire			"Sounds/Quake1/Weapons/SuperNailgunFire.ogg"
 Quake1/Weapons/SuperShotgunFire			"Sounds/Quake1/Weapons/SuperShotgunFire.ogg"
 Quake1/Weapons/ThunderBoltSingle		"Sounds/Quake1/Weapons/ThunderBoltSingle.ogg"
 Quake1/Weapons/ThunderBoltStart			"Sounds/Quake1/Weapons/ThunderBoltStart.ogg"
+Quake1/Weapons/BeamLoop					"Sounds/Quake1/Weapons/LG_BeamLoop.ogg"
 
 Quake1/LostSpirit/Idle			"Sounds/Quake1/Extra/WISPACT.ogg"
 Quake1/LostSpirit/Attack		"Sounds/Quake1/Extra/WISPATTK.ogg"
@@ -2496,6 +2497,20 @@ Doom4/Monsters/Generic/ThrowFireball						"Sounds/Doom4/Monsters/ThrowFireball.o
 Doom4/Monsters/Generic/FireCrackleBig						"Sounds/Doom4/Monsters/SFX/FireCrackleBig.ogg"
 Doom4/Monsters/Generic/FireCrackleMed						"Sounds/Doom4/Monsters/SFX/FireCrackleMed.ogg"
 Doom4/Monsters/Generic/FireCrackleSmall						"Sounds/Doom4/Monsters/SFX/FireCrackleSmall.ogg"
+Doom4/Monsters/Generic/RocketLauncher/Fly					"Sounds/Doom4/Monsters/SFX/RL_Fly.ogg"
+Doom4/Monsters/Generic/RocketLauncher/RocketExplo1			"Sounds/Doom4/Monsters/SFX/RL_explo1.ogg"
+Doom4/Monsters/Generic/RocketLauncher/RocketExplo2			"Sounds/Doom4/Monsters/SFX/RL_explo2.ogg"
+Doom4/Monsters/Generic/RocketLauncher/RocketExplo3			"Sounds/Doom4/Monsters/SFX/RL_explo3.ogg"
+$random Doom4/Monsters/Generic/RocketLauncher/RocketExplo 	{ Doom4/Monsters/Generic/RocketLauncher/RocketExplo1 Doom4/Monsters/Generic/RocketLauncher/RocketExplo2 Doom4/Monsters/Generic/RocketLauncher/RocketExplo3 }
+Doom4/Monsters/Generic/Nailgun/Impact1						"Sounds/Doom4/Monsters/SFX/NailImpact1.ogg"
+Doom4/Monsters/Generic/Nailgun/Impact2						"Sounds/Doom4/Monsters/SFX/NailImpact2.ogg"
+Doom4/Monsters/Generic/Nailgun/Impact3						"Sounds/Doom4/Monsters/SFX/NailImpact3.ogg"
+Doom4/Monsters/Generic/Nailgun/Impact4						"Sounds/Doom4/Monsters/SFX/NailImpact4.ogg"
+Doom4/Monsters/Generic/Nailgun/Impact5						"Sounds/Doom4/Monsters/SFX/NailImpact5.ogg"
+Doom4/Monsters/Generic/Nailgun/Impact6						"Sounds/Doom4/Monsters/SFX/NailImpact6.ogg"
+Doom4/Monsters/Generic/Nailgun/Impact7						"Sounds/Doom4/Monsters/SFX/NailImpact7.ogg"
+$random Doom4/Monsters/Generic/Nailgun/Impact { Doom4/Monsters/Generic/Nailgun/Impact1 Doom4/Monsters/Generic/Nailgun/Impact2 Doom4/Monsters/Generic/Nailgun/Impact3
+ Doom4/Monsters/Generic/Nailgun/Impact4 Doom4/Monsters/Generic/Nailgun/Impact5 Doom4/Monsters/Generic/Nailgun/Impact6 Doom4/Monsters/Generic/Nailgun/Impact7 }
 "Airplane!"													"Sounds/Doom4/Monsters/SFX/Airplane.ogg"
 
 $random 	Doom4/Monsters/ArchvileProjectile 			{Doom4/Monsters/ArchvileProjectile1 Doom4/Monsters/ArchvileProjectile2 }

@@ -193,6 +193,21 @@ Actor QCBulletPuff
 	}
 }
 
+Actor QCBulletPuff_Quake4 : QCBulletPuff
+{
+	States
+	{
+	Type1:
+		FX59 ABCD 1 Bright
+		FX59 EFGHIJ 2 Bright
+		Stop
+	Type2:
+		FX59 KLMN 1 Bright
+		FX59 OPQRST 2 Bright
+		Stop
+	}
+}
+
 
 //How is this different than the regular puff? Different hit beep sound
 Actor QCShotgunPuff : QCBulletPuff
@@ -216,6 +231,21 @@ Actor QCBulletPuff_DM : QCBulletPuff
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_GiveToTarget("MGDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		Stop
+	}
+}
+
+Actor QCBulletPuff_DM_Quake4 : QCBulletPuff_DM
+{
+	States
+	{
+	Type1:
+		FX59 ABCD 1 Bright
+		FX59 EFGHIJ 2 Bright
+		Stop
+	Type2:
+		FX59 KLMN 1 Bright
+		FX59 OPQRST 2 Bright
 		Stop
 	}
 }

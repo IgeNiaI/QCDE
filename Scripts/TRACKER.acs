@@ -162,6 +162,7 @@ Script "QCDE_NewLife" (int firsttime)
 	}
 
 	rereadCvars();
+	reReadWeaponCvars();
 	//if(!CheckInventory("Starter_CantChoose")) {
 	//	ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint"	,0);
 	//}
@@ -329,6 +330,7 @@ Script "QCDE_Tracker" (void)
 		if(!(Timer() % 50))
 		{
 			rereadCvars();
+			reReadWeaponCvars();
 		}
 
 		delay(1);

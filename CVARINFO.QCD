@@ -77,6 +77,21 @@ user float cl_hmgZoom		=  1.8; // how much to zoom the heavy machinegun
 user float cl_lgZoom		=  1.8; // how much to zoom lightning gun
 user float cl_otherZoom		=  1.8; // how much to zoom all other weapons
 
+// Client weapon skins
+
+user int cl_GNTLskin	= 0;
+user int cl_MGskin		= 0;
+user int cl_HMGskin		= 0;
+user int cl_SGskin		= 0;
+user int cl_SSGskin		= 0;
+user int cl_NGskin		= 0;
+user int cl_SNGskin		= 0;
+user int cl_TBskin		= 0;
+user int cl_RLskin		= 0;
+user int cl_LGskin		= 0;
+user int cl_RGskin		= 0;
+user int cl_BFGskin		= 0;
+
 // Theme settings
 
 server int qc_themedebug = 0;    // show debugging messages when loading

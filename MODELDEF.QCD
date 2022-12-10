@@ -9,6 +9,16 @@ Model BulletSmallTracer
 	FrameIndex TRAC A 0 0
 }
 
+Model BulletSmallTracer_Quake4
+{
+	Path "MD3/Projectiles"
+	SKIN 0 "tracerB.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 4.5 4.5 1.5
+	PITCHFROMMOMENTUM
+	FrameIndex TRAC B 0 0
+}
+
 // For weapons
 Model SGExplosiveBullet
 {

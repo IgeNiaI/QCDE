@@ -82,6 +82,7 @@ Actor QCLightningGun : QCWeapon
 	Height 48
 	+FLOORCLIP
 	+INVENTORY.IGNORESKILL
+	Weapon.SwaySpeed 3.6
 	Weapon.AmmoType1 "QCCoilAmmo"
 	Weapon.AmmoGive1 50
 	Weapon.AmmoUse1 1
@@ -107,63 +108,148 @@ Actor QCLightningGun : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
-		TNT1 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle", CHAN_WEAPON, 0.45, 1, 1.25)
-		QCG8 A 0 A_JumpIfInventory("DMToken",1,"AltFireReady")
-		QCG8 A 0 A_JumpIfInventory("LG_UG_Static",1,"AltFireReady")
-		QCG6 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG6 AABB 1 A_WeaponReady
-		QCG6 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG6 CCDD 1 A_WeaponReady
-		QCG6 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG6 EEFF 1 A_WeaponReady
-		Goto Ready+1
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "Ready.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "Ready.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "Ready.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "Ready.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "Ready.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "Ready.Quake1")
+	Ready.Default:
+		QCG6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		Goto ReadyCont
+	Ready.Quake1:
+		QC16 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		Goto ReadyCont
+	Ready.Quake2:
+		QC26 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake2", CHAN_WEAPON, 0.45, 1, 1.25)
+		Goto ReadyCont
+	Ready.Quake3:
+		QC36 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake3", CHAN_WEAPON, 0.45, 1, 1.25)
+		Goto ReadyCont
+	Ready.Quake4:
+		QC46 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		Goto ReadyCont
+	Ready.ETQW:
+		QC56 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		Goto ReadyCont
+	Ready.QCDE1:
+		QC66 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		Goto ReadyCont
+
+	ReadyCont:
+		"####" A 0 A_JumpIfInventory("DMToken",1,"AltFireReady")
+		"####" A 0 A_JumpIfInventory("LG_UG_Static",1,"AltFireReady")
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" AABB 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" CCDD 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" EEFF 1 A_WeaponReady
+		Goto ReadyCont
 
 	AltFireReady:
-		TNT1 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle", CHAN_WEAPON, 0.65, 1)
-		QCG6 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG6 AABB 1 A_WeaponReady
-		QCG6 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG6 CCDD 1 A_WeaponReady
-		QCG6 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		QCG6 EEFF 1 A_WeaponReady
-		Goto AltFireReady+1
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "AltFireReady.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "AltFireReady.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "AltFireReady.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "AltFireReady.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "AltFireReady.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "AltFireReady.Quake1")
+	AltFireReady.Default:
+		QCG6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		Goto AltFireReadyCont
+	AltFireReady.Quake1:
+		QC16 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		Goto AltFireReadyCont
+	AltFireReady.Quake2:
+		QC26 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake2", CHAN_WEAPON, 0.65, 1, 1.25)
+		Goto AltFireReadyCont
+	AltFireReady.Quake3:
+		QC36 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake3", CHAN_WEAPON, 0.65, 1, 1.25)
+		Goto AltFireReadyCont
+	AltFireReady.Quake4:
+		QC46 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		Goto AltFireReadyCont
+	AltFireReady.ETQW:
+		QC56 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		Goto AltFireReadyCont
+	AltFireReady.QCDE1:
+		QC66 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		Goto AltFireReadyCont
+
+	AltFireReadyCont:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" AABB 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" CCDD 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" EEFF 1 A_WeaponReady
+		Goto AltFireReadyCont
 
 		ReadyCantFire:
-			QCG6 M 0 A_StopSound(CHAN_WEAPON)
-			QCG6 M 0 A_StopSound(6)
-			"####" "#" 0 A_ZoomFactor(1.0)
-			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+			"####" A 0 A_StopSound(CHAN_WEAPON)
+			"####" A 0 A_StopSound(6)
+			"####" A 0 A_ZoomFactor(1.0)
+			"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 		RCFLooper:
-			QCG6 M 4 A_WeaponReady(WRF_NOFIRE)
-			QCG6 M 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
+			"####" M 4 A_WeaponReady(WRF_NOFIRE)
+			"####" M 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
 			Goto Ready
 
 	//-----------------------
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
-		QCG6 A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
-		QCG6 A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
-		QCG6 A 0 A_StopSound(CHAN_WEAPON) // Looper
-		"####" "#" 0 A_ZoomFactor(1.0)
-		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "Select.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "Select.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "Select.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "Select.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "Select.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "Select.Quake1")
+	Select.Default:
+		QCG6 A 0
+		Goto SelectCont
+	Select.Quake1:
+		QC16 A 0
+		Goto SelectCont
+	Select.Quake2:
+		QC26 A 0
+		Goto SelectCont
+	Select.Quake3:
+		QC36 A 0
+		Goto SelectCont
+	Select.Quake4:
+		QC46 A 0
+		Goto SelectCont
+	Select.ETQW:
+		QC56 A 0
+		Goto SelectCont
+	Select.QCDE1:
+		QC66 A 0
+		Goto SelectCont
+
+	SelectCont:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
+		"####" A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		"####" A 0 A_StopSound(CHAN_WEAPON) // Looper
+		"####" A 0 A_ZoomFactor(1.0)
+		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 	SelectLooper:
-		QCG6 A 1 A_Raise
-		TNT1 AAA 0 A_Raise
+		"####" A 1 A_Raise
+		"####" AAA 0 A_Raise
 		Loop
 
 	Deselect:
-		TNT1 A 0 A_StopSound(CHAN_WEAPON)
-		TNT1 A 0 A_StopSound(6)
-		TNT1 A 0 A_StopSound(7)
+		"####" A 0 A_StopSound(CHAN_WEAPON)
+		"####" A 0 A_StopSound(6)
+		"####" A 0 A_StopSound(7)
 		//Medals start
-		"####" "#" 0 A_GiveInventory("ComboSwitchLGGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		"####" A 0 A_GiveInventory("ComboSwitchLGGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		//Medals end
-		"####" "#" 0 A_ZoomFactor(1.0)
-		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
+		"####" A 0 A_ZoomFactor(1.0)
+		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 	DeselectLooper:
-		QCG6 A 1 A_Lower
-		TNT1 AAA 0 A_Lower
+		"####" A 1 A_Lower
+		"####" AAA 0 A_Lower
 		Loop
 
 
@@ -171,70 +257,243 @@ Actor QCLightningGun : QCWeapon
 	// Fire Seq
 	//-----------------------
 	Fire:
-		TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"FireQuadSound")
+		"####" A 0 A_JumpIfInventory("PowerQuad",1,"FireQuadSound")
 		Goto FireNormalSound
 
 		FireNormalSound:
-			TNT1 A 0 A_PlaySound("QC/Weapons/LightningGun/FireStartLoop", CHAN_WEAPON, 1.0, 1)
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "FireNormalSound.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "FireNormalSound.ETQW")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "FireNormalSound.Quake4")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "FireNormalSound.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "FireNormalSound.Quake2")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "FireNormalSound.Quake1")
+		FireNormalSound.Default:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireStartLoop_Default", CHAN_WEAPON, 1.0, 1)
 			Goto FirePostSoundCheck
+		FireNormalSound.Quake1:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireStartLoop_Quake1", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireNormalSound.Quake2:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireStartLoop_Quake2", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireNormalSound.Quake3:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireStartLoop_Quake3", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireNormalSound.Quake4:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireStartLoop_Quake4", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireNormalSound.ETQW:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireStartLoop_ETQW", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+
 		FireQuadSound:
-			TNT1 A 0 A_PlaySound("QC/Weapons/LightningGun/Quad/FireStartLoop", CHAN_WEAPON, 1.0, 1)
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "FireQuadSound.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "FireQuadSound.ETQW")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "FireQuadSound.Quake4")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "FireQuadSound.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "FireQuadSound.Quake2")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "FireQuadSound.Quake1")
+		FireQuadSound.Default:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/Quad/FireStartLoop_Default", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireQuadSound.Quake1:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/Quad/FireStartLoop_Quake1", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireQuadSound.Quake2:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/Quad/FireStartLoop_Quake2", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireQuadSound.Quake3:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/Quad/FireStartLoop_Quake3", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireQuadSound.Quake4:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/Quad/FireStartLoop_Quake4", CHAN_WEAPON, 1.0, 1)
+			Goto FirePostSoundCheck
+		FireQuadSound.ETQW:
+			"####" A 0 A_PlaySound("QC/Weapons/LightningGun/Quad/FireStartLoop_ETQW", CHAN_WEAPON, 1.0, 1)
 			Goto FirePostSoundCheck
 
 	FirePostSoundCheck:
-		QCG6 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
-		QCG6 A 0 A_Jump(255,"CheckSPDM")		//sets regular lg, visible
-		Goto CheckSPDM
-
-		CheckIfUpgrade:
-			QCG6 A 0 A_JumpIfInventory("LG_UG_Static",1,"LGSet100Purp")
-			QCG6 A 0 A_Jump(255,"CheckSPDM")		//sets regular lg, visible
-			Goto CheckSPDM
-
-		LGSet100Purp:
-			QCGF A 0	//sets purple, visible
-			"####" A 0 A_AlertMonsters
-			Goto CoopHoldPurple
-
-
-	CheckSPDM:
-		QCG6 A 0 A_AlertMonsters
+		"####" A 0 A_AlertMonsters
 		"####" A 0 A_JumpIfInventory("DMToken",1,"DMCheckTransparency")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
 		Goto CoopHold
+
+		CheckIfUpgrade:		//sets regular lg, visible
+			"####" A 0 A_JumpIfInventory("LG_UG_Static",1,"LGSet100Purp")
+			Goto CheckCoopHold
+
+		CheckCoopHold:
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "CheckCoopHold.QCDE1")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "CheckCoopHold.ETQW")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CheckCoopHold.Quake4")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CheckCoopHold.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CheckCoopHold.Quake2")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "CheckCoopHold.Quake1")
+		CheckCoopHold.Default:
+			QCG6 A 0
+			Goto CoopHold
+		CheckCoopHold.Quake1:
+			QC16 A 0
+			Goto CoopHold
+		CheckCoopHold.Quake2:
+			QC26 A 0
+			Goto CoopHold
+		CheckCoopHold.Quake3:
+			QC36 A 0
+			Goto CoopHold
+		CheckCoopHold.Quake4:
+			QC46 A 0
+			Goto CoopHold
+		CheckCoopHold.ETQW:
+			QC56 A 0
+			Goto CoopHold
+		CheckCoopHold.QCDE1:
+			QC66 A 0
+			Goto CoopHold
+
+		LGSet100Purp:	//sets purple, visible
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "LGSet100Purp.QCDE1")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "LGSet100Purp.ETQW")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "LGSet100Purp.Quake4")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "LGSet100Purp.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "LGSet100Purp.Quake2")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "LGSet100Purp.Quake1")
+		LGSet100Purp.Default:
+			QCGF A 0
+			Goto CoopHoldPurple
+		LGSet100Purp.Quake1:
+			QC1F A 0
+			Goto CoopHoldPurple
+		LGSet100Purp.Quake2:
+			QC2F A 0
+			Goto CoopHoldPurple
+		LGSet100Purp.Quake3:
+			QC3F A 0
+			Goto CoopHoldPurple
+		LGSet100Purp.Quake4:
+			QC4F A 0
+			Goto CoopHoldPurple
+		LGSet100Purp.ETQW:
+			QC5F A 0
+			Goto CoopHoldPurple
+		LGSet100Purp.QCDE1:
+			QC6F A 0
+			Goto CoopHoldPurple
 
 		//*******************************
 		// Coop: with 3rd person beam
 		CoopHold:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHold.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHold.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHold.Quake2")
+		CoopHold.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor",-5)
+			Goto CoopHoldCont
+		CoopHold.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake2",-5)
+			Goto CoopHoldCont
+		CoopHold.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake3",-5)
+			Goto CoopHoldCont
+		CoopHoldCont:
 			"####" A 0 Offset(0,32)
 			"####" A 0 A_GunFlash
-			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
 			"####" G 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
+
+		CoopHold2:
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHold2.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHold2.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHold2.Quake2")
+		CoopHold2.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2",-5)
+			Goto CoopHold2Cont
+		CoopHold2.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake2",-5)
+			Goto CoopHold2Cont
+		CoopHold2.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake3",-5)
+			Goto CoopHold2Cont
+		CoopHold2Cont:
 			"####" A 0 Offset(0,32)
 			"####" H 1 Bright
 			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
-			"####" A 0 A_ReFire("CoopHold2")
+			"####" A 0 A_ReFire("CoopHold3")
 			Goto FireEnd
-		CoopHold2:
+
+		CoopHold3:
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHold3.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHold3.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHold3.Quake2")
+		CoopHold3.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor",-5)
+			Goto CoopHold3Cont
+		CoopHold3.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake2",-5)
+			Goto CoopHold3Cont
+		CoopHold3.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake3",-5)
+			Goto CoopHold3Cont
+		CoopHold3Cont:
 			"####" A 0 Offset(0,32)
 			"####" A 0 A_GunFlash
-			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
 			"####" I 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
+
+		CoopHold4:
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHold4.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHold4.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHold4.Quake2")
+		CoopHold4.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2",-5)
+			Goto CoopHold4Cont
+		CoopHold4.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake2",-5)
+			Goto CoopHold4Cont
+		CoopHold4.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake3",-5)
+			Goto CoopHold4Cont
+		CoopHold4Cont:
 			"####" A 0 Offset(0,32)
 			"####" J 1 Bright
 			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
-			"####" A 0 A_ReFire("CoopHold3")
+			"####" A 0 A_ReFire("CoopHold5")
 			Goto FireEnd
-		CoopHold3:
+
+		CoopHold5:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHold5.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHold5.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHold5.Quake2")
+		CoopHold5.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor",-5)
+			Goto CoopHold5Cont
+		CoopHold5.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake2",-5)
+			Goto CoopHold5Cont
+		CoopHold5.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake3",-5)
+			Goto CoopHold5Cont
+		CoopHold5Cont:
 			"####" A 0 Offset(0,32)
 			"####" A 0 A_GiveInventory("LGcharge",1,0,GIF_SKIPOWNER)
 			"####" A 0 A_GunFlash
-			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
 			"####" K 1 Bright A_FireBullets(0,0,1,random(LGDmgSPMin,LGDmgSPMax),"LGPuff",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactor",-4)
+
+		CoopHold6:
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHold6.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHold6.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHold6.Quake2")
+		CoopHold6.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2",-5)
+			Goto CoopHold6Cont
+		CoopHold6.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake2",-5)
+			Goto CoopHold6Cont
+		CoopHold6.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake3",-5)
+			Goto CoopHold6Cont
+		CoopHold6Cont:
 			"####" A 0 Offset(0,32)
 			"####" L 1 Bright
 			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
@@ -244,38 +503,119 @@ Actor QCLightningGun : QCWeapon
 			//*******************************
 			CoopHoldPurple:
 				"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHoldPurple.Default")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHoldPurple.Quake3")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHoldPurple.Quake2")
+			CoopHoldPurple.Default:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple",-5)
+				Goto CoopHoldPurpleCont
+			CoopHoldPurple.Quake2:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple_Quake2",-5)
+				Goto CoopHoldPurpleCont
+			CoopHoldPurple.Quake3:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple_Quake3",-5)
+				Goto CoopHoldPurpleCont
+			CoopHoldPurpleCont:
 				"####" A 0 Offset(0,32)
 				"####" A 0 A_GunFlash
-				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
 				"####" G 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
+
+			CoopHoldPurple2:
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHoldPurple2.Default")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHoldPurple2.Quake3")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHoldPurple2.Quake2")
+			CoopHoldPurple2.Default:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple",-5)
+				Goto CoopHoldPurple2Cont
+			CoopHoldPurple2.Quake2:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple_Quake2",-5)
+				Goto CoopHoldPurple2Cont
+			CoopHoldPurple2.Quake3:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple_Quake3",-5)
+				Goto CoopHoldPurple2Cont
+			CoopHoldPurple2Cont:
 				"####" A 0 Offset(0,32)
 				"####" H 1 Bright
-				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckSPDM")
-				"####" A 0 A_ReFire("CoopHoldPurple2")
-				Goto FireEnd
-			CoopHoldPurple2:
-				"####" A 0 Offset(0,32)
-				"####" A 0 A_GunFlash
-				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
-				"####" I 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
-				"####" A 0 Offset(0,32)
-				"####" J 1 Bright
-				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckSPDM")
+				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckCoopHold")
 				"####" A 0 A_ReFire("CoopHoldPurple3")
 				Goto FireEnd
+
 			CoopHoldPurple3:
 				"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHoldPurple3.Default")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHoldPurple3.Quake3")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHoldPurple3.Quake2")
+			CoopHoldPurple3.Default:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple",-5)
+				Goto CoopHoldPurple3Cont
+			CoopHoldPurple3.Quake2:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple_Quake2",-5)
+				Goto CoopHoldPurple3Cont
+			CoopHoldPurple3.Quake3:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple_Quake3",-5)
+				Goto CoopHoldPurple3Cont
+			CoopHoldPurple3Cont:
+				"####" A 0 Offset(0,32)
+				"####" A 0 A_GunFlash
+				"####" I 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
+
+			CoopHoldPurple4:
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHoldPurple4.Default")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHoldPurple4.Quake3")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHoldPurple4.Quake2")
+			CoopHoldPurple4.Default:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple",-5)
+				Goto CoopHoldPurple4Cont
+			CoopHoldPurple4.Quake2:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple_Quake2",-5)
+				Goto CoopHoldPurple4Cont
+			CoopHoldPurple4.Quake3:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple_Quake3",-5)
+				Goto CoopHoldPurple4Cont
+			CoopHoldPurple4Cont:
+				"####" A 0 Offset(0,32)
+				"####" J 1 Bright
+				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckCoopHold")
+				"####" A 0 A_ReFire("CoopHoldPurple5")
+				Goto FireEnd
+
+			CoopHoldPurple5:
+				"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHoldPurple5.Default")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHoldPurple5.Quake3")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHoldPurple5.Quake2")
+			CoopHoldPurple5.Default:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple",-5)
+				Goto CoopHoldPurple5Cont
+			CoopHoldPurple5.Quake2:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple_Quake2",-5)
+				Goto CoopHoldPurple5Cont
+			CoopHoldPurple5.Quake3:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactorPurple_Quake3",-5)
+				Goto CoopHoldPurple5Cont
+			CoopHoldPurple5Cont:
 				"####" A 0 Offset(0,32)
 				"####" A 0 A_GiveInventory("LGcharge",1,0,GIF_SKIPOWNER)
 				"####" A 0 A_GunFlash
-				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
 				"####" K 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,30,1.0,"LGworldactorPurple",-4)
+
+			CoopHoldPurple6:
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "CoopHoldPurple6.Default")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "CoopHoldPurple6.Quake3")
+				"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "CoopHoldPurple6.Quake2")
+			CoopHoldPurple6.Default:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple",-5)
+				Goto CoopHoldPurple6Cont
+			CoopHoldPurple6.Quake2:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple_Quake2",-5)
+				Goto CoopHoldPurple6Cont
+			CoopHoldPurple6.Quake3:
+				"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2Purple_Quake3",-5)
+				Goto CoopHoldPurple6Cont
+			CoopHoldPurple6Cont:
 				"####" A 0 Offset(0,32)
 				"####" L 1 Bright
-				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckSPDM")
+				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckCoopHold")
 				"####" A 0 A_ReFire("CoopHoldPurple")
 				Goto FireEnd
 
@@ -283,48 +623,179 @@ Actor QCLightningGun : QCWeapon
 		//*******************************
 		// Deathmatch: rebalance + 3rd person beam
 		DMCheckTransparency:
-			TNT1 A 0 A_JumpIfInventory("LGTransparency",1,"LGSet100DM")
-			QCA6 A 0 A_Jump(255,"DMHold")			//sets invisble beam
+			"####" A 0 A_JumpIfInventory("LGTransparency",1,"LGSet100DM")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "DMCheckTransparency.QCDE1")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "DMCheckTransparency.ETQW")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "DMCheckTransparency.Quake4")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "DMCheckTransparency.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "DMCheckTransparency.Quake2")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "DMCheckTransparency.Quake1")
+		DMCheckTransparency.Default:
+			QCGG A 0		//sets invisible beam
+			Goto DMHold
+		DMCheckTransparency.Quake1:
+			QC1G A 0		//sets invisible beam
+			Goto DMHold
+		DMCheckTransparency.Quake2:
+			QC2G A 0		//sets invisible beam
+			Goto DMHold
+		DMCheckTransparency.Quake3:
+			QC3G A 0		//sets invisible beam
+			Goto DMHold
+		DMCheckTransparency.Quake4:
+			QC4G A 0		//sets invisible beam
+			Goto DMHold
+		DMCheckTransparency.ETQW:
+			QC5G A 0		//sets invisible beam
+			Goto DMHold
+		DMCheckTransparency.QCDE1:
+			QC6G A 0		//sets invisible beam
 			Goto DMHold
 
-		LGSet100DM:	//same as the non-DM state, but leads to DMHold states
-			QCG6 A 0 A_Jump(255,"DMHold")		//sets regular lg, visible
+		LGSet100DM:
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "LGSet100DM.QCDE1")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "LGSet100DM.ETQW")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "LGSet100DM.Quake4")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "LGSet100DM.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "LGSet100DM.Quake2")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "LGSet100DM.Quake1")
+		LGSet100DM.Default:
+			QCG6 A 0		//sets regular lg, visible
+			Goto DMHold
+		LGSet100DM.Quake1:
+			QC16 A 0		//sets regular lg, visible
+			Goto DMHold
+		LGSet100DM.Quake2:
+			QC26 A 0		//sets regular lg, visible
+			Goto DMHold
+		LGSet100DM.Quake3:
+			QC36 A 0		//sets regular lg, visible
+			Goto DMHold
+		LGSet100DM.Quake4:
+			QC46 A 0		//sets regular lg, visible
+			Goto DMHold
+		LGSet100DM.ETQW:
+			QC56 A 0		//sets regular lg, visible
+			Goto DMHold
+		LGSet100DM.QCDE1:
+			QC66 A 0		//sets regular lg, visible
 			Goto DMHold
 
 		DMHold:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "DMHold.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "DMHold.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "DMHold.Quake2")
+		DMHold.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor",-5)
+			Goto DMHoldCont
+		DMHold.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake2",-5)
+			Goto DMHoldCont
+		DMHold.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake3",-5)
+			Goto DMHoldCont
+		DMHoldCont:
 			"####" A 0 Offset(0,32)
 			"####" A 0 A_GunFlash("DMFlash")
-			"####" A 0 A_RailAttack(0,0,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,25,1.0,"LGworldactor",-4)
 			"####" G 1 Bright A_FireBullets(0,0,1,LGDmgDM,"LGPuff_DM",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" A 0 A_RailAttack(0,0,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,25,1.0,"LGworldactor",-4)
+
+		DMHold2:
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "DMHold2.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "DMHold2.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "DMHold2.Quake2")
+		DMHold2.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2",-5)
+			Goto DMHold2Cont
+		DMHold2.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake2",-5)
+			Goto DMHold2Cont
+		DMHold2.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake3",-5)
+			Goto DMHold2Cont
+		DMHold2Cont:
 			"####" A 0 Offset(0,32)
 			"####" H 1 Bright
 			//Medals start
 			"####" A 0 A_GiveInventory("LGFiredGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 			//Medals end
-			"####" A 0 A_ReFire("DMHold2")
+			"####" A 0 A_ReFire("DMHold3")
 			Goto FireEnd
-		DMHold2:
+
+		DMHold3:
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "DMHold3.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "DMHold3.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "DMHold3.Quake2")
+		DMHold3.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor",-5)
+			Goto DMHold3Cont
+		DMHold3.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake2",-5)
+			Goto DMHold3Cont
+		DMHold3.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake3",-5)
+			Goto DMHold3Cont
+		DMHold3Cont:
 			"####" A 0 Offset(0,32)
 			"####" A 0 A_GunFlash("DMFlash")
-			"####" A 0 A_RailAttack(0,0,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,25,1.0,"LGworldactor",-4)
 			"####" I 1 Bright A_FireBullets(0,0,1,LGDmgDM,"LGPuff_DM",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" A 0 A_RailAttack(0,0,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,25,1.0,"LGworldactor",-4)
+
+		DMHold4:
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "DMHold4.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "DMHold4.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "DMHold4.Quake2")
+		DMHold4.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2",-5)
+			Goto DMHold4Cont
+		DMHold4.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake2",-5)
+			Goto DMHold4Cont
+		DMHold4.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake3",-5)
+			Goto DMHold4Cont
+		DMHold4Cont:
 			"####" A 0 Offset(0,32)
 			"####" J 1 Bright
 			//Medals start
 			"####" A 0 A_GiveInventory("LGFiredGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 			//Medals end
-			"####" A 0 A_ReFire("DMHold3")
+			"####" A 0 A_ReFire("DMHold5")
 			Goto FireEnd
-		DMHold3:
+
+		DMHold5:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "DMHold5.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "DMHold5.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "DMHold5.Quake2")
+		DMHold5.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor",-5)
+			Goto DMHold5Cont
+		DMHold5.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake2",-5)
+			Goto DMHold5Cont
+		DMHold5.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor_Quake3",-5)
+			Goto DMHold5Cont
+		DMHold5Cont:
 			"####" A 0 Offset(0,32)
 			"####" A 0 A_GunFlash("DMFlash")
-			"####" A 0 A_RailAttack(0,0,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,25,1.0,"LGworldactor",-4)
 			"####" K 1 Bright A_FireBullets(0,0,1,LGDmgDM,"LGPuff_DM",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
-			"####" A 0 A_RailAttack(0,0,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,25,1.0,"LGworldactor",-4)
+
+		DMHold6:
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "DMHold6.Default")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "DMHold6.Quake3")
+			"####" A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "DMHold6.Quake2")
+		DMHold6.Default:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2",-5)
+			Goto DMHold6Cont
+		DMHold6.Quake2:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake2",-5)
+			Goto DMHold6Cont
+		DMHold6.Quake3:
+			"####" A 0 A_RailAttack(0,5,0,None,"White",RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING,0,"None",0,0,768,1,20,1.0,"LGworldactor2_Quake3",-5)
+			Goto DMHold6Cont
+		DMHold6Cont:
 			"####" A 0 Offset(0,32)
 			"####" L 1 Bright
 			//Medals start
@@ -335,29 +806,54 @@ Actor QCLightningGun : QCWeapon
 
 
 	FireEnd:
-		TNT1 A 0 A_JumpIfInventory("LG_UG_Residue",1,"CheckExitCharges")
-		TNT1 A 0 A_TakeInventory("LGcharge",32767)	//resets any charge if the threshold wasnt reached (or no upgrade)
-		TNT1 A 0 A_PlaySound("QC/Weapons/LightningGun/FireEnd", CHAN_WEAPON, 1.0, 0)
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 6, "FireEnd.Default")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 5, "FireEnd.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 4, "FireEnd.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 3, "FireEnd.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "FireEnd.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "FireEnd.Quake1")
+	FireEnd.Default:
+		"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireEnd_Default", CHAN_WEAPON, 1.0, 0)
+		Goto FireEndCont
+	FireEnd.Quake1:
+		"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireEnd_Quake1", CHAN_WEAPON, 1.0, 0)
+		Goto FireEndCont
+	FireEnd.Quake2:
+		"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireEnd_Quake2", CHAN_WEAPON, 1.0, 0)
+		Goto FireEndCont
+	FireEnd.Quake3:
+		"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireEnd_Quake3", CHAN_WEAPON, 1.0, 0)
+		Goto FireEndCont
+	FireEnd.Quake4:
+		"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireEnd_Quake4", CHAN_WEAPON, 1.0, 0)
+		Goto FireEndCont
+	FireEnd.ETQW:
+		"####" A 0 A_PlaySound("QC/Weapons/LightningGun/FireEnd_ETQW", CHAN_WEAPON, 1.0, 0)
+		Goto FireEndCont
+
+	FireEndCont:
+		"####" A 0 A_JumpIfInventory("LG_UG_Residue",1,"CheckExitCharges")
+		"####" A 0 A_TakeInventory("LGcharge",32767)	//resets any charge if the threshold wasnt reached (or no upgrade)
 		Goto Ready
 
 		CheckExitCharges:
-			TNT1 A 0 A_JumpIfInventory("LGcharge",5,"DoExitLightning")
-			Goto FireEnd+1
+			"####" A 0 A_JumpIfInventory("LGcharge",5,"DoExitLightning")
+			Goto FireEndCont+1
 
 		DoExitLightning:
-			TNT1 A 0 A_FireCustomMissile("LightningResidue")
-			TNT1 A 0 A_TakeInventory("LGcharge",32767)
-			Goto FireEnd+1
+			"####" A 0 A_FireCustomMissile("LightningResidue")
+			"####" A 0 A_TakeInventory("LGcharge",32767)
+			Goto FireEndCont+1
 
 
 	Flash:
-		TNT1 C 1 A_Light2
-		TNT1 C 0 A_Light0
+		"####" C 1 A_Light2
+		"####" C 0 A_Light0
 		Stop
 
 	DMFlash:	//doesnt do any checks regarding upgrades
-		TNT1 C 1 A_Light2
-		TNT1 C 0 A_Light0
+		"####" C 1 A_Light2
+		"####" C 0 A_Light0
 		Stop
 	}
 }
@@ -465,9 +961,41 @@ Actor LGworldactor
 	States
 	{
 	Spawn:
-		LGWR Y 2 Bright
+		TNT1 A 1 // Have to do this or else the beam won't be visible in local multiplayer
+		LGWR Y 1 Bright
 		Stop
 	}
+}
+
+Actor LGworldactor2 : LGworldactor
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 // Have to do this or else the beam won't be visible in local multiplayer
+		LGWR Z 1 Bright
+		Stop
+	}
+}
+
+Actor LGworldactor_Quake2 : LGworldactor
+{
+	Translation "0:255=%[0,0,0]:[1.0,0.95,0.0]"
+}
+
+Actor LGworldactor2_Quake2 : LGworldactor2
+{
+	Translation "0:255=%[0,0,0]:[1.0,0.95,0.0]"
+}
+
+Actor LGworldactor_Quake3 : LGworldactor
+{
+	// has different model in voxels addon
+}
+
+Actor LGworldactor2_Quake3 : LGworldactor2
+{
+	// has different model in voxels addon
 }
 
 
@@ -477,8 +1005,9 @@ Actor LGworldactor
 //	Weapon tokens
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-Actor LG_UG_Static 		: Token {}
-Actor LG_UG_Residue		: Token {}
+Actor LG_UG_Static 			: Token {}
+Actor LG_UG_Residue			: Token {}
+Actor QCLightningGunSkin	: Token { Inventory.MaxAmount 20 }
 
 
 //-----------------------
@@ -689,6 +1218,31 @@ Actor LGPuffStatic
 Actor LGworldactorPurple : LGworldactor
 {
 	Translation "0:255=%[0,0,0]:[1.2,0.84,1.8]"
+}
+
+Actor LGworldactor2Purple : LGworldactor2
+{
+	Translation "0:255=%[0,0,0]:[1.2,0.84,1.8]"
+}
+
+Actor LGworldactorPurple_Quake2 : LGworldactorPurple
+{
+	// has different model in voxels addon
+}
+
+Actor LGworldactor2Purple_Quake2 : LGworldactor2Purple
+{
+	// has different model in voxels addon
+}
+
+Actor LGworldactorPurple_Quake3 : LGworldactorPurple
+{
+	// has different model in voxels addon
+}
+
+Actor LGworldactor2Purple_Quake3 : LGworldactor2Purple
+{
+	// has different model in voxels addon
 }
 
 

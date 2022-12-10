@@ -76,7 +76,7 @@ Actor BulletSmallTracer : FastProjectile
 	{
 	Spawn:
 		TRAC A 1
-		TRAC A 70 BRIGHT A_PlaySound("QCDE/Other/BulletWhoosh", 5, 1.0, false, 3.0, AAPTR_TARGET)
+		"####" "#" 70 BRIGHT A_PlaySound("QCDE/Other/BulletWhoosh", 5, 1.0, false, 3.0, AAPTR_TARGET)
 		Stop
 	Death:
 		TNT1 A 1
@@ -84,6 +84,16 @@ Actor BulletSmallTracer : FastProjectile
 	XDeath:
 		TNT1 A 1
 		Stop
+	}
+}
+
+Actor BulletSmallTracer_Quake4 : BulletSmallTracer
+{
+	states
+	{
+	Spawn:
+		TRAC B 1
+		Goto Super::Spawn+1
 	}
 }
 
