@@ -52,6 +52,19 @@ str weaponNames[NUMBER_OF_WEAPONS] = {
 #libdefine QCW_BFG             21
 
 
+#libdefine INSTAGIB_WEAPON		"QCRailgunDM"
+#libdefine INSTAGIB_AMMO		"QCSlugAmmo"
+#libdefine INSTAGIB_MAX_AMMO	15
+
+#libdefine ROCKETARENA_WEAPON	"QCRocketLauncherDM"
+#libdefine ROCKETARENA_AMMO		"QCRocketAmmo"
+#libdefine ROCKETARENA_MAX_AMMO	15
+
+#libdefine BUCKSHOT_WEAPON		"QCSuperShotgunDM"
+#libdefine BUCKSHOT_AMMO		"QCShellAmmo"
+#libdefine BUCKSHOT_MAX_AMMO	25
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Weapon upgrades ////////////////////////////////////////////////////////////
@@ -331,4 +344,49 @@ function str getLootboxWeaponVisuals(int type)
 function str getLootboxWeaponNamings(int type)
 {
 	return LootboxWeaponNamings[type];
+}
+
+function str getInstagibWeaponName()
+{
+	return INSTAGIB_WEAPON;
+}
+
+function str getInstagibAmmoType()
+{
+	return INSTAGIB_AMMO;
+}
+
+function int getInstagibMaxAmmo()
+{
+	return INSTAGIB_MAX_AMMO;
+}
+
+function str getRocketArenaWeaponName()
+{
+	return ROCKETARENA_WEAPON;
+}
+
+function str getRocketArenaAmmoType()
+{
+	return ROCKETARENA_AMMO;
+}
+
+function int getRocketArenaMaxAmmo()
+{
+	return ROCKETARENA_MAX_AMMO;
+}
+
+function str getBuckshotWeaponName()
+{
+	return BUCKSHOT_WEAPON;
+}
+
+function str getBuckshotAmmoType()
+{
+	return BUCKSHOT_AMMO;
+}
+
+function int getBuckshotMaxAmmo()
+{
+	return BUCKSHOT_MAX_AMMO;
 }

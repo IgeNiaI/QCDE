@@ -2,6 +2,7 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
+#import "WEAPCNST.bcs"
 
 //=============================================================================
 //=============================================================================
@@ -31,8 +32,8 @@ script "QCDE_Bot_Weaponize" (void)
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // bots only matter in DM
 
 	// Very special cases for special modes
-	if(GetCVar("instagib"))	{ GiveInventory("QCRailgunDM",      1); terminate; }
-	if(GetCVar("buckshot"))	{ GiveInventory("QCSuperShotgunDM", 1); terminate; }
+	if(GetCVar("instagib"))	{ GiveInventory(getInstagibWeaponName(), 1); terminate; }
+	if(GetCVar("buckshot"))	{ GiveInventory(getBuckshotWeaponName(), 1); terminate; }
 
 	if(GetCVar("teamlms")) terminate;
 	if(!GetCVar("bot_weaponize")) terminate;

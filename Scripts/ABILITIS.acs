@@ -2187,8 +2187,8 @@ Script "QCDE_DoppelgangerSpawned" (void)
 	if(CheckInventory("NotSpectator")) terminate;
 	GiveInventory("NotSpectator",true);
 
-	if(GetCvar("rocketarena")) GiveInventory("QCRocketLauncherDM",1); // needs rework
-	if(GetCvar("instagib"   )) GiveInventory("QCRailgunDM"       ,1);
+	if(GetCvar("rocketarena")) GiveInventory(getRocketArenaWeaponName(), 1); // needs rework
+	if(GetCvar("instagib"   )) GiveInventory(getInstagibWeaponName(), 1);
 
 	delay(DURATION_DOPPELGANGER * 35);
 	SetActorState(0, "Vanish");
