@@ -96,217 +96,60 @@ ListMenu "EpisodeMenu"
 OptionMenu ZA_SkirmishMenu
 {
 	Title		"SKIRMISH"
+
+	StaticText ""
+
 	Option		"Level",				"menu_skirmishlevel",			"ZA_Levels"
 	Option		"Game Mode",			"menu_skirmishgamemode",		"ZA_Gamemode"
 	//Option		"Modifier",				"menu_skirmishmodifier",		"ZA_Modifier"
+
 	StaticText	" "
+
 	NumberField	"Timelimit",			"menu_skirmishtimelimit"
 	NumberField	"Fraglimit",			"menu_skirmishfraglimit"
 	NumberField	"Pointlimit",			"menu_skirmishpointlimit"
 	NumberField	"Duellimit",			"menu_skirmishduellimit"
 	NumberField	"Winlimit",				"menu_skirmishwinlimit"
 	NumberField	"Wavelimit",			"menu_skirmishwavelimit", 0, 10
+
 	StaticText	" "
-	Option		"Bot Skill",			"menu_skirmishbotskill",		ZA_Skill
+
+	Option		"Bot Skill",			"menu_skirmishbotskill",	ZA_Skill
+	Option		"Bots can talk",		"bot_allowchat",			"YesNo"
 	SubMenu		"Bot Setup",			"ZA_BotSetup"
+
 	StaticText	" "
+
 	Command		"Start Game!",			"menu_startskirmish"
 }
 
 OptionMenu "QCDEOptions"
 {
 	Title 		"QCDE OPTIONS"
+
 	StaticText	""
+
 	Submenu		"Player Setup",				"QCDEPlayerMenu"
-	Submenu 	"Keyboard/Mouse binds", 	"QZDEBinds"
-	Submenu 	"Mouse Options",			"QZDEMouseOptions"
+	Submenu 	"Keyboard/Mouse binds", 	"QCDEBinds"
+	Submenu 	"Mouse Options",			"QCDEMouseOptions"
 	Submenu 	"Zoom Options",				"QCDEZoom"
+
 	StaticText	""
-	Submenu 	"HUD & Display Options",	"QZDEHUDOptions"
-	Submenu 	"Sound Options",			"QZDESoundOptions"
+
+	Submenu 	"HUD & Display Options",	"QCDEHUDOptions"
+	Submenu 	"Sound Options",			"QCDESoundOptions"
 	Submenu 	"Video Options",			"VideoModeMenu"
+
 	StaticText	""
-	Submenu 	"Misc QCDE Options",			"QZDEMisc"
+
+	Submenu 	"Misc QCDE Options",		"QCDEMisc"
+
 	StaticText	""
 	StaticText	""
 	StaticText	""
+
 	Submenu 	"All Engine options (old menu)",			"OptionsMenu"
 }
-
-OptionMenu "QCDEZoom"
-{
-	Title 		"QCDE ZOOM OPTIONS"
-	Option		"Hold to zoom",				"cl_holdZoom",	"OnOff"
-	Slider		"FoV change speed",			"cl_fovchangespeed", 1.0, 100, 0.1
-	Slider 		"Railgun Zoom",				"cl_railgunZoom",	1.1, 5.0, 1.0, 2
-	Slider 		"Heavy Machinegun Zoom",	"cl_hmgZoom",		1.1, 5.0, 1.0, 2
-	Slider 		"Lightning Gun Zoom",		"cl_lgZoom",		1.1, 5.0, 1.0, 2
-	Slider 		"Other weapons Zoom",		"cl_otherZoom",		1.1, 5.0, 1.0, 2
-}
-
-OptionValue "QCSwitch"
-{
-	0, "Off"
-	1, "On"
-}
-
-OptionMenu "QZDEMisc"	//had to overwrite, because redefine broke the list of resolutions
-{
-	Title 		"QCDE MISC OPTIONS"
-	StaticText	"Starting Weapon",1
-	Option 		"Starting weapon",			"cl_startingWeapon",	"StartingWeapon"
-	Option		"Switch on pickup",			"switchonpickup",		"QCSwitch"
-	StaticText 	""
-	StaticText	"QCDE PvE Options",1
-	Option 		"Auto-open lootboxes",     "cl_autoOpenLootboxes",	"OnOff"
-	StaticText 	""
-	StaticText 	"PvE Enemy Theme Selection",1
-	Option    	"Quake 1",		"theme0",	"YesNo"
-	Option    	"Quake 2",		"theme1",	"YesNo"
-	Option    	"Quake 4",		"theme2",	"YesNo"
-	Option      "Doom",			"theme3",	"YesNo"
-	Option  	"Doom 2016",	"theme4",	"YesNo"
-	StaticText 	""
-	Option  	"Shuffle mode"  , "qc_shuffleMode",   "ShuffleMode"
-	Option  	"Skirmish Rogue", "qc_skirmishRogue", "YesNo"
-	Submenu 	"Custom themes (if loaded)", "QCDECustomThemes"
-
-	StaticText	" "
-	StaticText	"--- WARNING ---"
-	StaticText	"Sending duplicate commands helps mitigate packet loss", 1
-	StaticText	"but increases outbound net traffic!", 1
-	StaticText	" "
-	StaticText	"You should only enable them if you're actually", 1
-	StaticText	"suffering from severe packet loss!", 1
-	StaticText	" "
-
-	Option		"Send duplicate commands",	"cl_packetdup",		"ZA_PacketDupRate"
-}
-
-
-OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of resolutions
-{
-	Title "VIDEO MODE"
-
-	Option "Fullscreen",						"fullscreen", "YesNo"
-	Slider 		"Field of View",				"fov", 5.0, 179.0, 1.0, 2
-	Slider 		"Brightness",					"Gamma", 0.75, 3.0, 0.05, 2
-	Slider 		"Game Screen size",				"screenblocks", 3.0, 12.0, 1.0, 0
-	Option 		"Vertical Sync",				"vid_vsync",	"OnOff"
-	Option		"Display FPS",					"vid_fps",		"OnOff"
-	Option		"True horizontal fov",			"gl_true_fov",	"YesNo"
-	Slider		"Max FPS",						"vid_maxfps",	0, 1000, 5
-
-	Option		"Aspect ratio",					"menu_screenratios",	"Ratios"
-	StaticText " "
-	ScreenResolution "res_0"
-	ScreenResolution "res_1"
-	ScreenResolution "res_2"
-	ScreenResolution "res_3"
-	ScreenResolution "res_4"
-	ScreenResolution "res_5"
-	ScreenResolution "res_6"
-	ScreenResolution "res_7"
-	ScreenResolution "res_8"
-	ScreenResolution "res_9"
-	StaticTextSwitchable "Press ENTER to set mode", "", "VMEnterText"
-	StaticText " "
-	StaticTextSwitchable "T to test mode for 5 seconds", "Please wait 5 seconds...", "VMTestText"
-	class VideoModeMenu
-}
-
-
-OptionValue "QCSpeedometer"
-{
-	0, "Off"
-	1, "Center"
-	2, "Bottom Left"
-}
-
-OptionValue "QCMedals"
-{
-	0, "Off"
-	1, "Full"
-	2, "Sound Only"
-}
-
-OptionMenu "QZDEHUDOptions"
-{
-	Title "HUD & DISPLAY OPTIONS"
-
-	StaticText 	"Visual",1
-	Slider 		"Field of View",				"fov",					5.0, 179.0, 1.0, 2
-	Slider 		"Move bobbing intensity",		"movebob", 			  	0,  0.75, 0.02, 2
-	Slider 		"Weapon sway",					"movesway", 			0,   2.0, 0.01, 2
-	Option		"Show weapon",					"r_drawplayersprites",	"OnOff"
-	Option		"Sprite billboard",				"gl_billboard_mode",	"BillboardModes"
-	Option 		"Crosshair type",				"crosshair",           	"Crosshairs"
-	Option 		"Crosshair shows health",		"crosshairhealth",		"OnOff"
-	Slider		"Crosshair scale",				"crosshairscalef",		0, 10, 0.1
-	ColorPicker "Crosshair color", 				"crosshaircolor"
-
-	StaticText " "
-	StaticText "Information",1
-	Option 		"Speedometer",					"cl_speedometer",     	"QCSpeedometer"
-	Option		"QC Medals",					"cl_qcmedals",			"QCMedals"
-	Option 		"Weapon bar (16:9)",			"cl_showWeaponBar",    	"OnOff"
-	Option 		"Health bar style",				"cl_barStyle",         	"BarStyle"
-	Option 		"Low ammo warning",				"cl_lowAmmoWarning",   	"LowWarning"
-	Option 		"Low health warning",			"cl_lowHealthWarning", 	"LowWarning"
-	Option 		"Weapon hit-markers",			"cl_hitmarker",			"OnOff"
-	Option 		"Damage numbers",               "sv_ShowDamageNumbers", "OnOff"
-	Option		"Show obituaries",				"show_obituaries",		"OnOff"
-
-	StaticText " "
-	StaticText "Effects",1
-	Option 		"Weapon firing recoil", 		"cl_weaponrecoil",       	"OnOff"
-	Option 		"Weapon firing flash",  		"cl_weaponfireflash",    	"OnOff"
-	Option 		"HUD Blood smears",         	"cl_ShowHUDBloodSmears", 	"OnOff"
-	Option 		"LG beam transparency (DM)", 	"cl_lgtransparency",     	"LGTransp"
-	Slider 		"Pickup flash intensity",		"pickup_blend_scalar", 0, 1, 0.05, 2
-	Slider 		"Screen blood intensity",		"blood_fade_scalar",   0, 1, 0.05, 2
-
-	StaticText " "
-	StaticText 	"Champion specific settings",1
-	Option 		"Eradicator Radar mode",       "cl_radarMode",    "RadarMode"
-}
-
-OptionMenu "QZDESoundOptions"
-{
-	Title "SOUND OPTIONS"
-	Slider "Sounds volume",		"snd_sfxvolume", 0, 1, 0.05
-	Slider "Menu volume",		"snd_menuvolume", 0, 1, 0.05
-	Slider "Music volume",		"snd_musicvolume", 0, 1, 0.05
-	Slider "Announcer volume",	"snd_announcervolume", 0, 1, 0.05 // [TP]
-	Option "Announcer",			"cl_announcer", "ZA_Announcers" // [TP]
-	StaticText " "
-	Option 		"QCDE Weapon hit-beeps",			"cl_hitbeep",				"OnOff"
-	Slider 		"QCDE Auto Taunt chance",				"cl_autoTaunt", 			0, 50, 1
-	Option 		"QCDE Taunt subtitles",			"cl_tauntSubtitles",		"TauntSubtitles"
-	Option 		"QCDE OST enabled (if loaded)",	"snd_qcdemus",				"OnOff"
-	Option 		"QCDE OST playback order",		"snd_randommus",			"OSTorder"
-}
-
-OptionMenu "QZDEMouseOptions"
-{
-	Title "MOUSE OPTIONS"
-	Slider "Overall sensitivity",		"mouse_sensitivity", 0.1, 2.5, 0.1, 4
-
-	StaticText 	""
-	Slider "Horizontal mouse speed",	"mouse_yaw", 0.1, 2.5, 0.1, 4
-	Slider "Vertical mouse speed",		"mouse_pitch", 0.1, 2.5, 0.1, 4
-	StaticText 	""
-	Slider "Zoomed mouse speed scale",	"mouse_zoomedscale", 0.1, 2.5, 0.1, 4
-	StaticText 	""
-	Option "Invert Mouse",				"invertmouse", "OnOff"
-	IfOption(Windows)
-	{
-		Option "Mouse input type",		"in_mouse", "InMouse"
-	}
-	Option "Prescale mouse movement",	"m_noprescale", "NoYes"
-	Option "Smooth mouse movement",		"smooth_mouse", "YesNo"
-}
-
 
 ListMenu "QCDEPlayerMenu"
 {
@@ -336,38 +179,49 @@ ListMenu "QCDEPlayerMenu"
 	Class "PlayerMenu"
 }
 
-OptionMenu "QZDEBinds"
+OptionMenu "QCDEBindsActions"
 {
-	Title "CUSTOMIZE BINDS"
+	Title "ACTIONS BINDS"
 
 	StaticText ""
 
-	StaticText 	"Actions", 1
 	Control   	"Forward",			"+forward"
 	Control    	"Backward",			"+back"
 	Control    	"Strafe Left",		"+moveleft"
 	Control    	"Strafe Right",		"+moveright"
-	Control    	"Fire",				"+attack"
-	Control    	"Alt Fire",			"+altattack"
 	Control    	"Jump",				"+jump"
 	Control    	"Crouch",			"+crouch"
 	Control    	"Walk/Run",			"+speed"
-	Control    	"Use/Open",			"+use"
 
 	StaticText ""
 
-	Control 	"Use active ability",     "+user1"
-	Control 	"Champion information",   "+QCDE_ClassInfo"
-	Control 	"Voice line",             "voice"
-	Control 	"Drop weapon",            "weapdrop"
-	Control 	"Drop weapon upgrade",    "drop_upgrade"
-	Control 	"Change class",			  "mpclassmenu"
-	Control 	"Select starting weapon", "+QCDE_StartingWeapon"
-	Control 	"Open lootbox",           "invuse"
+	Control    	"Fire",						"+attack"
+	Control    	"Alt Fire",					"+altattack"
+	Control    	"Use/Open",					"+use"
+	Control 	"Use active ability",		"+user1"
+	Control 	"Change class",				"mpclassmenu"
+	Control 	"Champion information",		"+QCDE_ClassInfo"
+	Control 	"Open lootbox",				"invuse"
 
 	StaticText ""
 
-	StaticText 	"Weapons", 1
+	Option		"Join the game",			"joinmenukey", "JoinMenuKeys"
+	Control		"Join the game (custom)", 	"menu_join"
+	Control  	"Ready to play",			"ready"
+}
+
+OptionMenu "QCDEBindsWeapons"
+{
+	Title "WEAPONS BINDS"
+
+	StaticText ""
+
+	Control 	"Select starting weapon",	"+QCDE_StartingWeapon"
+	Control 	"Drop weapon",				"weapdrop"
+	Control 	"Drop weapon upgrade",		"drop_upgrade"
+
+	StaticText ""
+
 	Control		"Gauntlet",			"slot 1"
 	Control		"Machinegun",		"slot 2"
 	Control		"Shotgun",			"slot 3"
@@ -377,39 +231,287 @@ OptionMenu "QZDEBinds"
 	Control		"Lightning Gun",	"slot 7"
 	Control		"Railgun",			"slot 8"
 	Control		"BFG",				"slot 9"
+}
 
-	StaticText 	""
-
-	StaticText 	"Chat", 1
-	Control 	"Say",				"messagemode"
-	Control 	"Team say",			"messagemode2"
-	Control		"Vote yes",			"vote_yes"
-	Control		"Vote no",			"vote_no"
+OptionMenu "QCDEBindsChat"
+{
+	Title "CHAT BINDS"
 
 	StaticText ""
 
-	StaticText 	"Other", 1
-	Control    	"Open Console",				"toggleconsole"
-	Control 	"Toggle automap",			"togglemap"
-	Control 	"Show Scoreboard",			"+showscores"
-	Control 	"Screenshot",				"screenshot"
-	Option		"Join the game",			"joinmenukey", "JoinMenuKeys"
-	Control		"Join the game (custom)", 	"menu_join"
-	Control  	"Ready to play",			"ready"
+	Control 	"Taunt",		"voice"
+	Control 	"Say",			"messagemode"
+	Control 	"Team say",		"messagemode2"
+	Control		"Vote yes",		"vote_yes"
+	Control		"Vote no",		"vote_no"
+}
+
+OptionMenu "QCDEBindsSpectating"
+{
+	Title "SPECTATING BINDS"
+
+	StaticText ""
+
+	Control		"Join spectators",				"spectate"
+	Control 	"Spectate previous player",		"spyprev"
+	Control 	"Spectate next player",			"spynext"
+	Control 	"Toggle Spectate killer",		"spykiller"
+}
+
+OptionMenu "QCDEBindsOther"
+{
+	Title "OTHER BINDS"
+
+	StaticText ""
+
+	Control    	"Open Console",			"toggleconsole"
+	Control 	"Toggle automap",		"togglemap"
+	Control 	"Show Scoreboard",		"+showscores"
+	Control 	"Screenshot",			"screenshot"
+}
+
+OptionMenu "QCDEBinds"
+{
+	Title "KEYBOARD/MOUSE BINDS"
+
+	StaticText ""
+
+	Submenu 	"Actions", 		"QCDEBindsActions"
+	Submenu 	"Weapons", 		"QCDEBindsWeapons"
+	Submenu 	"Chat",		 	"QCDEBindsChat"
+	Submenu 	"Spectating",	"QCDEBindsSpectating"
+	Submenu 	"Other",		"QCDEBindsOther"
+}
+
+OptionMenu "QCDEMouseOptions"
+{
+	Title "MOUSE OPTIONS"
+
+	StaticText ""
+
+	Slider "Overall sensitivity",		"mouse_sensitivity", 0.1, 2.5, 0.1, 4
 
 	StaticText 	""
 
-	StaticText 	"Spectating", 1
-	Control		"Join spectators",			"spectate"
-	Control 	"Spectate previous player",	"spyprev"
-	Control 	"Spectate next player",		"spynext"
-	Control 	"Toggle Spectate killer",	"spykiller"
+	Slider "Horizontal mouse speed",	"mouse_yaw", 0.1, 2.5, 0.1, 4
+	Slider "Vertical mouse speed",		"mouse_pitch", 0.1, 2.5, 0.1, 4
+
+	StaticText 	""
+
+	Slider "Zoomed mouse speed scale",	"mouse_zoomedscale", 0.1, 2.5, 0.1, 4
+
+	StaticText 	""
+
+	Option "Invert Mouse",				"invertmouse", "OnOff"
+	IfOption(Windows)
+	{
+		Option "Mouse input type",		"in_mouse", "InMouse"
+	}
+	Option "Prescale mouse movement",	"m_noprescale", "NoYes"
+	Option "Smooth mouse movement",		"smooth_mouse", "YesNo"
+}
+
+OptionMenu "QCDEZoom"
+{
+	Title 		"ZOOM OPTIONS"
+
+	StaticText ""
+
+	Option		"Hold to zoom",				"cl_holdZoom",			"OnOff"
+	Slider		"FoV change speed",			"cl_fovchangespeed",	1.0, 100, 0.1
+	Slider 		"Railgun Zoom",				"cl_railgunZoom",		1.1, 5.0, 1.0, 2
+	Slider 		"Heavy Machinegun Zoom",	"cl_hmgZoom",			1.1, 5.0, 1.0, 2
+	Slider 		"Lightning Gun Zoom",		"cl_lgZoom",			1.1, 5.0, 1.0, 2
+	Slider 		"Other weapons Zoom",		"cl_otherZoom",			1.1, 5.0, 1.0, 2
+}
+
+OptionValue "QCSpeedometer"
+{
+	0, "Off"
+	1, "Center"
+	2, "Bottom Left"
+}
+
+OptionValue "QCMedals"
+{
+	0, "Off"
+	1, "Full"
+	2, "Sound Only"
+}
+
+OptionValue "LowWarning"
+{
+	0, "Off"
+	1, "Sound"
+	2, "Sound & Text"
+	3, "Sound & Text stays"
+}
+
+OptionValue "BarStyle"
+{
+	0, "Blocks of 25 points"
+	1, "Continuous"
+}
+
+OptionMenu "QCDEHUDOptions"
+{
+	Title "HUD & DISPLAY OPTIONS"
+
+	StaticText	"Visual",1
+	Slider		"Field of View",				"fov",					5.0, 179.0, 1.0, 2
+	Slider		"Move bobbing intensity",		"movebob", 			  	0,  0.75, 0.02, 2
+	Slider		"Weapon sway intensity",		"movesway", 			0,   2.0, 0.01, 2
+	Option		"Show weapon",					"r_drawplayersprites",	"OnOff"
+	Option		"Sprite billboard",				"gl_billboard_mode",	"BillboardModes"
+	Option		"Crosshair type",				"crosshair",           	"Crosshairs"
+	Option		"Crosshair shows health",		"crosshairhealth",		"OnOff"
+	Slider		"Crosshair scale",				"crosshairscalef",		0, 10, 0.1
+	ColorPicker	"Crosshair color",				"crosshaircolor"
+
+	StaticText " "
+
+	StaticText	"Information",1
+	Option		"Speedometer",					"cl_speedometer",			"QCSpeedometer"
+	Option		"QC Medals",					"cl_qcmedals",				"QCMedals"
+	Option		"Weapon bar (16:9)",			"cl_showWeaponBar",			"OnOff"
+	Option		"Health bar style",				"cl_barStyle",				"BarStyle"
+	Option		"Low ammo warning",				"cl_lowAmmoWarning",		"LowWarning"
+	Option		"Low health warning",			"cl_lowHealthWarning",		"LowWarning"
+	Option		"Weapon hit-markers",			"cl_hitmarker",				"OnOff"
+	Option		"Damage numbers",               "sv_ShowDamageNumbers",		"OnOff"
+	Option		"Show obituaries",				"show_obituaries",			"YesNo"
+	Option		"Show large frag messages",		"cl_showlargefragmessages",	"YesNo"
+
+	StaticText " "
+
+	StaticText	"Effects",1
+	Option		"Weapon firing recoil",			"cl_weaponrecoil",			"OnOff"
+	Option		"Weapon firing flash",			"cl_weaponfireflash",		"OnOff"
+	Option		"HUD Blood smears",				"cl_ShowHUDBloodSmears",	"OnOff"
+	Option		"LG beam transparency (DM)",	"cl_lgtransparency",		"LGTransp"
+	Slider		"Pickup flash intensity",		"pickup_blend_scalar", 0, 1, 0.05, 2
+	Slider		"Screen blood intensity",		"blood_fade_scalar",   0, 1, 0.05, 2
+
+	StaticText " "
+
+	StaticText	"Champion specific settings",1
+	Option		"Eradicator Radar mode",		"cl_radarMode",				"RadarMode"
+}
+
+OptionMenu "QCDESoundOptions"
+{
+	Title "SOUND OPTIONS"
+
+	StaticText ""
+
+	Slider "Sounds volume",			"snd_sfxvolume", 0, 1, 0.05
+	Slider "Menu volume",			"snd_menuvolume", 0, 1, 0.05
+	Slider "Music volume",			"snd_musicvolume", 0, 1, 0.05
+	Slider "Announcer volume",		"snd_announcervolume", 0, 1, 0.05 // [TP]
+	Option "Announcer",				"cl_announcer",		"ZA_Announcers" // [TP]
+	StaticText " "
+	Option		"QCDE Weapon hit-beeps",			"cl_hitbeep",				"OnOff"
+	Slider		"QCDE Auto Taunt chance",			"cl_autoTaunt",				0, 50, 1
+	Option		"QCDE Taunt subtitles",				"cl_tauntSubtitles",		"TauntSubtitles"
+	Option		"QCDE OST enabled (if loaded)",		"snd_qcdemus",				"OnOff"
+	Option		"QCDE OST playback order",			"snd_randommus",			"OSTorder"
+}
+
+OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of resolutions
+{
+	Title "VIDEO MODE"
+
+	StaticText ""
+
+	Option "Fullscreen",						"fullscreen", "YesNo"
+	Slider 		"Field of View",				"fov", 5.0, 179.0, 1.0, 2
+	Slider 		"Brightness",					"Gamma", 0.75, 3.0, 0.05, 2
+	Slider		"Max FPS",						"vid_maxfps",	0, 1000, 5
+	Option		"Display FPS",					"vid_fps",		"OnOff"
+	Option 		"Vertical Sync",				"vid_vsync",	"OnOff"
+	Option		"True horizontal fov",			"gl_true_fov",	"YesNo"
+	Option		"Dynamic Lights",				"gl_lights",	"OnOff"
+	Option		"Use models",					"gl_use_models","OnOff"
+
+	StaticText " "
+	StaticText " "
+
+	Option		"Aspect ratio",					"menu_screenratios",	"Ratios"
+
+	StaticText " "
+
+	ScreenResolution "res_0"
+	ScreenResolution "res_1"
+	ScreenResolution "res_2"
+	ScreenResolution "res_3"
+	ScreenResolution "res_4"
+	ScreenResolution "res_5"
+	ScreenResolution "res_6"
+	ScreenResolution "res_7"
+	ScreenResolution "res_8"
+	ScreenResolution "res_9"
+	StaticTextSwitchable "Press ENTER to set mode", "", "VMEnterText"
+	StaticText " "
+	StaticTextSwitchable "T to test mode for 5 seconds", "Please wait 5 seconds...", "VMTestText"
+
+	class VideoModeMenu
+}
+
+OptionValue "QCSwitch"
+{
+	0, "Off"
+	1, "On"
+}
+
+OptionMenu "QCDEMisc"	//had to overwrite, because redefine broke the list of resolutions
+{
+	Title 		"QCDE MISC OPTIONS"
+
+	StaticText " "
+
+	StaticText	"Starting Weapon",1
+	Option 		"Starting weapon",			"cl_startingWeapon",	"StartingWeapon"
+	Option		"Switch on pickup",			"switchonpickup",		"QCSwitch"
+
+	StaticText 	""
+
+	StaticText	"QCDE PvE Options",1
+	Option 		"Auto-open lootboxes",     "cl_autoOpenLootboxes",	"OnOff"
+
+	StaticText 	""
+
+	StaticText 	"PvE Enemy Theme Selection",1
+	Option    	"Quake 1",		"theme0",	"YesNo"
+	Option    	"Quake 2",		"theme1",	"YesNo"
+	Option    	"Quake 4",		"theme2",	"YesNo"
+	Option      "Doom",			"theme3",	"YesNo"
+	Option  	"Doom 2016",	"theme4",	"YesNo"
+
+	StaticText 	""
+
+	Option  	"Shuffle mode"  , "qc_shuffleMode",   "ShuffleMode"
+	Option  	"Skirmish Rogue", "qc_skirmishRogue", "YesNo"
+	Submenu 	"Custom themes (if loaded)", "QCDECustomThemes"
+
+	StaticText	" "
+
+	StaticText	"--- WARNING ---"
+	StaticText	"Sending duplicate commands helps mitigate packet loss", 1
+	StaticText	"but increases outbound net traffic!", 1
+	StaticText	" "
+	StaticText	"You should only enable them if you're actually", 1
+	StaticText	"suffering from severe packet loss!", 1
+	StaticText	" "
+
+	Option		"Send duplicate commands",	"cl_packetdup",		"ZA_PacketDupRate"
 }
 
 OptionMenu "QCDECustomThemes"
 {
 	StaticText 	"Custom Monster Set Selection",1
+
 	StaticText ""
+
 	TextField " ", "themename5"    Option " ", "theme5","OI"    StaticText ""
 	TextField " ", "themename6"    Option " ", "theme6","OI"    StaticText ""
 	TextField " ", "themename7"    Option " ", "theme7","OI"    StaticText ""
@@ -508,20 +610,6 @@ OptionMenu "QCDECustomThemes"
 }
 
 
-OptionValue "LowWarning"
-{
-	0, "Off"
-	1, "Sound"
-	2, "Sound & Text"
-	3, "Sound & Text stays"
-}
-
-OptionValue "BarStyle"
-{
-	0, "Blocks of 25 points"
-	1, "Continuous"
-}
-
 OptionValue "OI"
 {
 	0, "\c[red]Off"
@@ -542,7 +630,7 @@ OptionValue "LGTransp"
 OptionValue "StartingWeapon"
 {
 	1, "Machinegun"
-	2, "Shotgun (DM-only)"
+	2, "Shotgun (DM only)"
 	3, "Nailgun"
 }
 
