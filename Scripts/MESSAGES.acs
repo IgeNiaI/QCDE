@@ -663,39 +663,39 @@ script "QCDE_ShowWeapon" (int weapon, int position, int totalNumber)
 //
 //=============================================================================
 
-str classPix[NUMBER_OF_CLASSES][4] = {
-	{"QP01A","PORTRX01","DIREORB1","PORTRC01"},
-	{"QP02A","PORTRX02","BIGFGUN1","PORTRC02"},
-	{"QP03A","PORTRX03","FLIGHT_1","PORTRC03"},
-	{"QP04A","PORTRX04","STROYEN1","PORTRC04"},
-	{"QP05A","PORTRX05","LIFDRAN1","PORTRC05"},
-	{"QP06A","PORTRX06","MAULOTR1","PORTRC06"},
-	{"QP07A","PORTRX07","BARRAGE1","PORTRC07"},
-	{"QP08A","PORTRX08","ACIDSWR1","PORTRC08"},
-	{"QP09A","PORTRX09","REFLECT1","PORTRC09"},
-	{"QP10A","PORTRX10","PWRSHLD1","PORTRC10"},
-	{"QP11A","PORTRX11","TOTEM001","PORTRC11"},
-	{"QP12A","PORTRX12","GHSTWLK1","PORTRC12"},
-	{"QP13A","PORTRX13","RAGE0001","PORTRC13"},
-	{"QP14E","PORTRX14","FREEZE01","PORTRC14"},
-	{"QP15A","PORTRX15","BOBBQ001","PORTRC15"},
-	{"QP16A","PORTRX16","GRENADE1","PORTRC16"},
-	{"QP17A","PORTRX17","OLDSCHOL","PORTRC17"},
-	{"QP18A","PORTRX18","NOBITSU1","PORTRC18"},
-	{"QP19A","PORTRX19","THUMPER1","PORTRC19"},
-	{"QP20A","PORTRX20","RADAR001","PORTRC20"},
-	{"QP21A","PORTRX21","AKIMBO01","PORTRC21"},
-	{"QP22A","PORTRX22","EXHAUST1","PORTRC22"},
-	{"QP23A","PORTRX23","TERROR01","PORTRC23"},
-	{"QP24A","PORTRX24","HOLOTP01","PORTRC24"},
-	{"QP25A","PORTRX25","CLNFIRE1","PORTRC25"},
-	{"QP26A","PORTRX26","AIRSTRK1","PORTRC26"},
-	{"QP27A","PORTRX27","HUNTSKL1","PORTRC27"},
-	{"QP28A","PORTRX28","MINIGUN1","PORTRC28"},
-	{"QP29A","PORTRX29","COWHEAD1","PORTRC29"},
-	{"QP30A","PORTRX30","TAROT001","PORTRC30"},
-	{"QP31A","PORTRX31","WENDIG01","PORTRC31"},
-	{"QP32A","PORTRX32","ORBBEYE1","PORTRC32"},
+str classPix[NUMBER_OF_CLASSES][3] = {
+	{"QP01A","PORTRX01","DIREORB1"},
+	{"QP02A","PORTRX02","BIGFGUN1"},
+	{"QP03A","PORTRX03","FLIGHT_1"},
+	{"QP04A","PORTRX04","STROYEN1"},
+	{"QP05A","PORTRX05","LIFDRAN1"},
+	{"QP06A","PORTRX06","MAULOTR1"},
+	{"QP07A","PORTRX07","BARRAGE1"},
+	{"QP08A","PORTRX08","ACIDSWR1"},
+	{"QP09A","PORTRX09","REFLECT1"},
+	{"QP10A","PORTRX10","PWRSHLD1"},
+	{"QP11A","PORTRX11","TOTEM001"},
+	{"QP12A","PORTRX12","GHSTWLK1"},
+	{"QP13A","PORTRX13","RAGE0001"},
+	{"QP14E","PORTRX14","FREEZE01"},
+	{"QP15A","PORTRX15","BOBBQ001"},
+	{"QP16A","PORTRX16","GRENADE1"},
+	{"QP17A","PORTRX17","OLDSCHOL"},
+	{"QP18A","PORTRX18","NOBITSU1"},
+	{"QP19A","PORTRX19","THUMPER1"},
+	{"QP20A","PORTRX20","RADAR001"},
+	{"QP21A","PORTRX21","AKIMBO01"},
+	{"QP22A","PORTRX22","EXHAUST1"},
+	{"QP23A","PORTRX23","TERROR01"},
+	{"QP24A","PORTRX24","HOLOTP01"},
+	{"QP25A","PORTRX25","CLNFIRE1"},
+	{"QP26A","PORTRX26","AIRSTRK1"},
+	{"QP27A","PORTRX27","HUNTSKL1"},
+	{"QP28A","PORTRX28","MINIGUN1"},
+	{"QP29A","PORTRX29","COWHEAD1"},
+	{"QP30A","PORTRX30","TAROT001"},
+	{"QP31A","PORTRX31","WENDIG01"},
+	{"QP32A","PORTRX32","ORBBEYE1"},
 	// ^ insert more classes here
 };
 
@@ -2857,8 +2857,11 @@ script "QCDE_ClassPicker" (int team) net clientside
 
 
 	ACS("QCDE_ClassPicker_Main", team);
-	ACS("QCDE_ClassPicker_Desc", clid);
 	ACS("QCDE_ClassPicker_Highlight", ix, iy);
+	if (clid == -2) // random
+		ACS("QCDE_RandomClass_Desc");
+	else
+		ACS("QCDE_ClassPicker_Desc", clid);
 
 	int oldbuttons, buttons, triggers, ws_axis, ad_axis;
 	cp_tics = CP_STAY_TIME / 1.0 * 35;
@@ -2909,12 +2912,29 @@ script "QCDE_ClassPicker" (int team) net clientside
 
 			clid = cpcards[iy][ix];
 			ACS("QCDE_ClassPicker_Highlight", ix, iy);
-			ACS("QCDE_ClassPicker_Desc", clid);
+			if (clid == -2) // random
+				ACS("QCDE_RandomClass_Desc");
+			else
+				ACS("QCDE_ClassPicker_Desc", clid);
 		}
 
 		// Can I have uhhhhhh, can I have uhhhhhhhhhhhhhhhhhhhh, can I uhhhh have uhhhhhhhhhhhhhhhhhhhhhhhhhhhh (*this)
 		if(triggers & (BT_ATTACK | BT_USE))
 		{
+			if (clid == -2) // random class
+			{
+				ix = Random(0, CP_CARDS_ROW-1);
+				iy = Random(0, CP_CARDS_COL-1);
+				clid = cpcards[iy][ix];
+
+				while (clid == -2 || GetCvar(strparam(s:"_bc_", d:clid)))
+				{
+					ix = Random(0, CP_CARDS_ROW-1);
+					iy = Random(0, CP_CARDS_COL-1);
+					clid = cpcards[iy][ix];
+				}
+			}
+
 			// Not banned BTW?
 			if(!GetCvar(strparam(s:"_bc_", d:clid)))
 			{
@@ -3022,10 +3042,10 @@ script "QCDE_ClassPicker_Clear" (void) clientside
 int cpcards[CP_CARDS_COL][CP_CARDS_ROW] = {
 	{ 3,  4,  5, 11, 14, 17, 23, 24, 26, 28, 31, },
 	{ 0,  1,  2, 10, 13, 16, 18, 20, 21, 29, 30, },
-	{ 6,  7,  8, 12,  9, 15, 19, 22, 25, 27, -1, },
+	{ 6,  7,  8, 12,  9, 15, 19, 22, 25, 27, -2, }, // -2 means Random class
 };
 
-int cpcardsxoffset[CP_CARDS_COL] = { 0,-CP_CARD_W / 3 & 0xFFFF0000,0 };
+int cpcardsxoffset[CP_CARDS_COL] = { CP_CARD_W / 3 & 0xFFFF0000, 0, -CP_CARD_W / 3 & 0xFFFF0000 };
 
 // Convert from playerclass cvar return into canonical ID
 int cpcards_serialized[NUMBER_OF_CLASSES] = {
@@ -3055,13 +3075,15 @@ script "QCDE_ClassPicker_Main" (int team) clientside
 	SetHUDSize(800,600,1);
 	int ix, iy;
 	for(iy = 0; iy < CP_CARDS_COL; iy++)
-	for(ix = 0; ix < CP_CARDS_ROW; ix++)
 	{
-		if(cpcards[iy][ix] < 0) continue;
-		SetFont(getcpdata(1,iy+1,ix));
-		int x = CP_X  +  CP_CARDS_X  +  CP_CARD_PX  +  ix * (CP_CARD_W + CP_CARD_X) + cpcardsxoffset[iy],
-		    y = CP_Y  +  CP_CARDS_Y  +  CP_CARD_PY  +  iy * (CP_CARD_H + CP_CARD_Y);
-		HudMessage(s:"A"; HUDMSG_FADEOUT, HMID_CP_BACK_CARDS + iy*CP_CARDS_ROW + ix, -1, x,y, CP_STAY_TIME,1.0);
+		for(ix = 0; ix < CP_CARDS_ROW; ix++)
+		{
+			if(cpcards[iy][ix] == -1) continue;
+			SetFont(getcpdata(1,iy+1,ix));
+			int x = CP_X  +  CP_CARDS_X  +  CP_CARD_PX  +  ix * (CP_CARD_W + CP_CARD_X) + cpcardsxoffset[iy],
+				y = CP_Y  +  CP_CARDS_Y  +  CP_CARD_PY  +  iy * (CP_CARD_H + CP_CARD_Y);
+			HudMessage(s:"A"; HUDMSG_FADEOUT, HMID_CP_BACK_CARDS + iy*CP_CARDS_ROW + ix, -1, x,y, CP_STAY_TIME,1.0);
+		}
 	}
 
 	SetFont("QCBGFONT");
@@ -3152,7 +3174,7 @@ script "QCDE_ClassPicker_Desc" (int which) clientside
 	SetHUDSize(800,600,1);
 
 	SetFont(classPix[which][0]);
-		HudMessage(s:"A";HUDMSG_FADEOUT,HMID_CP_DESC_FIGURINE,-1, xoffs + CP_FIGUR_X, yoffs + CP_FIGUR_Y, CP_STAY_TIME,1.0);
+	HudMessage(s:"A";HUDMSG_FADEOUT,HMID_CP_DESC_FIGURINE,-1, xoffs + CP_FIGUR_X, yoffs + CP_FIGUR_Y, CP_STAY_TIME,1.0);
 
 	SetFont("QCBGFONT");
 	HudMessage(s:"\c[brite]", s:classDoc[which][5];HUDMSG_FADEOUT,HMID_CP_DESC_ABIL1,-1, xoffs + CP_ABIL1_X, yoffs + CP_ABIL1_Y, CP_STAY_TIME,1.0);
@@ -3166,10 +3188,38 @@ script "QCDE_ClassPicker_Desc" (int which) clientside
 	SetHUDSize(1200,900,1);
 
 	SetFont(classPix[which][2]);
-		HudMessage(s:"A";HUDMSG_FADEOUT,HMID_CP_DESC_ABILICON,-1, (xoffs + CP_ABICO_X) * 3/2 >>16<< 16, (yoffs + CP_ABICO_Y) * 3/2 >>16<< 16, CP_STAY_TIME,1.0);
+	HudMessage(s:"A";HUDMSG_FADEOUT,HMID_CP_DESC_ABILICON,-1, (xoffs + CP_ABICO_X) * 3/2 >>16<< 16, (yoffs + CP_ABICO_Y) * 3/2 >>16<< 16, CP_STAY_TIME,1.0);
 
 	SetFont(classPix[which][1]);
-		HudMessage(s:"A";HUDMSG_FADEOUT,HMID_CP_DESC_PORTRAIT,-1, (xoffs + CP_PORTR_X) * 3/2 >>16<< 16,((yoffs + CP_PORTR_Y) * 3/2 >>16<< 16) + 0.1, CP_STAY_TIME,1.0);
+	HudMessage(s:"A";HUDMSG_FADEOUT,HMID_CP_DESC_PORTRAIT,-1, (xoffs + CP_PORTR_X) * 3/2 >>16<< 16,((yoffs + CP_PORTR_Y) * 3/2 >>16<< 16) + 0.1, CP_STAY_TIME,1.0);
+}
+
+script "QCDE_RandomClass_Desc" (int which) clientside
+{
+	int xoffs = CP_X + CP_DESC_X + CP_CARDS_ROW * (CP_CARD_X + CP_CARD_W);
+	int yoffs = CP_Y + CP_DESC_Y;
+
+	SetHUDSize(800,600,1);
+
+	//SetFont("PORTRXRN");
+	HudMessage(s:"";HUDMSG_FADEOUT,HMID_CP_DESC_FIGURINE,-1, xoffs + CP_FIGUR_X, yoffs + CP_FIGUR_Y, CP_STAY_TIME,1.0);
+
+	SetFont("QCBGFONT");
+	HudMessage(s:"\c[brite]", s:"RANDOM";HUDMSG_FADEOUT,HMID_CP_DESC_ABIL1,-1, xoffs + CP_ABIL1_X, yoffs + CP_ABIL1_Y, CP_STAY_TIME,1.0);
+	HudMessage(s:"\c[graey]", s:"CLASS";HUDMSG_FADEOUT,HMID_CP_DESC_ABIL2,-1, xoffs + CP_ABIL2_X, yoffs + CP_ABIL2_Y, CP_STAY_TIME,1.0);
+	HudMessage(s:"\c[graey]", s:"";HUDMSG_FADEOUT,HMID_CP_DESC_ABIL3,-1, xoffs + CP_ABIL3_X, yoffs + CP_ABIL3_Y, CP_STAY_TIME,1.0);
+
+	SetHUDSize(600,450,1);
+
+	HudMessage(s:"\c[brite]", s:"";HUDMSG_FADEOUT,HMID_CP_DESC_NAME, -1, (xoffs + CP_NAME_X) * 3/4 >>16<< 16, ((yoffs + CP_NAME_Y) * 3/4 >>16<< 16) + 0.1,  CP_STAY_TIME,1.0);
+
+	SetHUDSize(1200,900,1);
+
+	//SetFont("PORTRXRN");
+	HudMessage(s:"";HUDMSG_FADEOUT,HMID_CP_DESC_ABILICON,-1, (xoffs + CP_ABICO_X) * 3/2 >>16<< 16, (yoffs + CP_ABICO_Y) * 3/2 >>16<< 16, CP_STAY_TIME,1.0);
+
+	SetFont("PORTRXRN");
+	HudMessage(s:"A";HUDMSG_FADEOUT,HMID_CP_DESC_PORTRAIT,-1, (xoffs + CP_PORTR_X) * 3/2 >>16<< 16,((yoffs + CP_PORTR_Y) * 3/2 >>16<< 16) + 0.1, CP_STAY_TIME,1.0);
 }
 
 
