@@ -95,6 +95,7 @@ ListMenu "EpisodeMenu"
 
 OptionMenu ZA_SkirmishMenu
 {
+	Indent 153
 	Title		"SKIRMISH"
 
 	StaticText ""
@@ -125,24 +126,25 @@ OptionMenu ZA_SkirmishMenu
 
 OptionMenu "QCDEOptions"
 {
+	Indent 220
 	Title 		"QCDE OPTIONS"
 
 	StaticText	""
 
-	Submenu		"Player Setup",				"QCDEPlayerMenu"
-	Submenu 	"Keyboard/Mouse binds", 	"QCDEBinds"
-	Submenu 	"Mouse Options",			"QCDEMouseOptions"
-	Submenu 	"Zoom Options",				"QCDEZoom"
+	Submenu		"Player Setup          ",		"QCDEPlayerMenu"
+	Submenu 	"Keyboard/Mouse binds    ", 	"QCDEBinds"
+	Submenu 	"Mouse Options         ",		"QCDEMouseOptions"
+	Submenu 	"Zoom Options          ",		"QCDEZoom"
 
 	StaticText	""
 
-	Submenu 	"HUD & Display Options",	"QCDEHUDOptions"
-	Submenu 	"Sound Options",			"QCDESoundOptions"
-	Submenu 	"Video Options",			"VideoModeMenu"
+	Submenu 	"HUD & Display Options     ",	"QCDEHUDOptions"
+	Submenu 	"Sound Options          ",		"QCDESoundOptions"
+	Submenu 	"Video Options          ",		"VideoModeMenu"
 
 	StaticText	""
 
-	Submenu 	"Misc QCDE Options",		"QCDEMisc"
+	Submenu 	"Misc QCDE Options       ",		"QCDEMisc"
 
 	StaticText	""
 	StaticText	""
@@ -181,6 +183,7 @@ ListMenu "QCDEPlayerMenu"
 
 OptionMenu "QCDEBindsActions"
 {
+	Indent 153
 	Title "ACTIONS BINDS"
 
 	StaticText ""
@@ -212,6 +215,7 @@ OptionMenu "QCDEBindsActions"
 
 OptionMenu "QCDEBindsWeapons"
 {
+	Indent 153
 	Title "WEAPONS BINDS"
 
 	StaticText ""
@@ -235,6 +239,7 @@ OptionMenu "QCDEBindsWeapons"
 
 OptionMenu "QCDEBindsChat"
 {
+	Indent 153
 	Title "CHAT BINDS"
 
 	StaticText ""
@@ -248,6 +253,7 @@ OptionMenu "QCDEBindsChat"
 
 OptionMenu "QCDEBindsSpectating"
 {
+	Indent 153
 	Title "SPECTATING BINDS"
 
 	StaticText ""
@@ -260,6 +266,7 @@ OptionMenu "QCDEBindsSpectating"
 
 OptionMenu "QCDEBindsOther"
 {
+	Indent 153
 	Title "OTHER BINDS"
 
 	StaticText ""
@@ -272,19 +279,21 @@ OptionMenu "QCDEBindsOther"
 
 OptionMenu "QCDEBinds"
 {
+	Indent 180
 	Title "KEYBOARD/MOUSE BINDS"
 
 	StaticText ""
 
-	Submenu 	"Actions", 		"QCDEBindsActions"
-	Submenu 	"Weapons", 		"QCDEBindsWeapons"
-	Submenu 	"Chat",		 	"QCDEBindsChat"
-	Submenu 	"Spectating",	"QCDEBindsSpectating"
-	Submenu 	"Other",		"QCDEBindsOther"
+	Submenu 	"Actions  ", 		"QCDEBindsActions"
+	Submenu 	"Weapons ", 		"QCDEBindsWeapons"
+	Submenu 	"Spectating",		"QCDEBindsSpectating"
+	Submenu 	"Chat    ",			"QCDEBindsChat"
+	Submenu 	"Other   ",			"QCDEBindsOther"
 }
 
 OptionMenu "QCDEMouseOptions"
 {
+	Indent 153
 	Title "MOUSE OPTIONS"
 
 	StaticText ""
@@ -313,6 +322,7 @@ OptionMenu "QCDEMouseOptions"
 
 OptionMenu "QCDEZoom"
 {
+	Indent 153
 	Title 		"ZOOM OPTIONS"
 
 	StaticText ""
@@ -355,6 +365,7 @@ OptionValue "BarStyle"
 
 OptionMenu "QCDEHUDOptions"
 {
+	Indent 153
 	Title "HUD & DISPLAY OPTIONS"
 
 	StaticText	"Visual",1
@@ -400,6 +411,7 @@ OptionMenu "QCDEHUDOptions"
 
 OptionMenu "QCDESoundOptions"
 {
+	Indent 153
 	Title "SOUND OPTIONS"
 
 	StaticText ""
@@ -419,6 +431,7 @@ OptionMenu "QCDESoundOptions"
 
 OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of resolutions
 {
+	Indent 153
 	Title "VIDEO MODE"
 
 	StaticText ""
@@ -465,6 +478,7 @@ OptionValue "QCSwitch"
 
 OptionMenu "QCDEMisc"	//had to overwrite, because redefine broke the list of resolutions
 {
+	Indent 153
 	Title 		"QCDE MISC OPTIONS"
 
 	StaticText " "
@@ -508,6 +522,7 @@ OptionMenu "QCDEMisc"	//had to overwrite, because redefine broke the list of res
 
 OptionMenu "QCDECustomThemes"
 {
+	Indent 80
 	StaticText 	"Custom Monster Set Selection",1
 
 	StaticText ""
@@ -664,6 +679,7 @@ OptionValue "TauntSubtitles"
 
 OptionMenu ZA_JoinMenu
 {
+	Indent 182
 	Title		"JOIN GAME"
 
 	StaticText	"You are spectating."
@@ -679,6 +695,7 @@ OptionMenu ZA_JoinMenu
 
 OptionMenu ZA_JoinTeamMenu
 {
+	Indent 182
 	Title		"JOIN GAME"
 
 	StaticText	"You are spectating."
@@ -689,13 +706,14 @@ OptionMenu ZA_JoinTeamMenu
 	StaticText	" "
 	StaticText	" "
 	Command		"Join game",			"pukename QCDE_ClassPicker 0"
-	Command		"Join blue",			"pukename QCDE_ClassPicker 1"
-	Command		"Join red" ,			"pukename QCDE_ClassPicker 2"
+	Command		"Join blue ",			"pukename QCDE_ClassPicker 1"
+	Command		"Join red  " ,			"pukename QCDE_ClassPicker 2"
 }
 
 // Now unreachable, but still provided if anyone has old bindings
 OptionMenu ZA_SelectClassMenu
 {
+	Indent 153
 	Title		"SELECT CHAMPION"
 
 	StaticText	"Medium"
