@@ -177,8 +177,6 @@ Actor EnemyClass_Intruder	: Token {}
 Actor EnemyClass_Orbb		: Token {}
 // ^ insert more classes here
 
-Actor TankAlreadyWarned : Token {}
-
 
 // Identifiers for the player ability classes
 // (for bot assistance script to know when to use)
@@ -371,3 +369,18 @@ Actor FX
 Actor PowerPve1BodyProtection : PowerProtection { +SERVERNETID DamageFactor "Normal", 0.80 Powerup.Duration 0x7FFFFFFF } // Light
 Actor PowerPve2BodyProtection : PowerProtection { +SERVERNETID DamageFactor "Normal", 1.10 Powerup.Duration 0x7FFFFFFF } // Medium
 Actor PowerPve3BodyProtection : PowerProtection { +SERVERNETID DamageFactor "Normal", 1.25 Powerup.Duration 0x7FFFFFFF } // Heavy
+
+Actor PvESizeFix : CustomInventory
+{
+	+SERVERNETID
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("Class_Orbb", 1, "DoOrbb")
+		TNT1 A 0 A_SetSize(16, 56)
+		Stop
+	DoOrbb:
+		TNT1 A 0 A_SetSize(16, 39)
+		Stop
+	}
+}

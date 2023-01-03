@@ -23,7 +23,6 @@
 //
 //=============================================================================
 
-bool DMgame = false;
 int maxScore;
 
 Script "QCDE_Open" Open
@@ -78,15 +77,6 @@ Script "QCDE_Enter" Enter
 	if(PlayerIsSpectator(PlayerNumber())) terminate;
 
 	ACS_NamedExecuteAlways("QCDE_Enter_Flash", 0);
-
-	// Any setup separate from a living player should be performed here.
-	if(GameType() >= GAME_NET_DEATHMATCH) DMgame = true;
-
-	if(!DMgame && CheckInventory("Body_Big") && !CheckInventory("TankAlreadyWarned"))
-	{
-		GiveInventory("TankAlreadyWarned",1);
-		ACS_NamedExecuteAlways("QCDE_CoopTankWarning",0);
-	}
 
 	// If started opening lootbox on last map, restore ability to open
 	TakeInventory("OpeningLootbox",1);
@@ -165,6 +155,11 @@ Script "QCDE_NewLife" (int firsttime)
 	ACS_NamedExecuteAlways("QCDE_BindAbilityKey_Hint"	,0);
 
 	if(firsttime) ACS_NamedExecuteAlways("QCDE_FreeTribolt",0);
+
+	if(GameType() < GAME_NET_DEATHMATCH)
+	{
+		GiveInventory("PvESizeFix", 1);
+	}
 
 	rereadCvars();
 	//if(!CheckInventory("Starter_CantChoose")) {
@@ -298,7 +293,7 @@ Script "QCDE_Tracker" (void)
 					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint_Success",0,1);
 					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Apply",0);
 				}
-				if (DMgame && (buttons & BT_FORWARD)) {
+				if ((GameType() >= GAME_NET_DEATHMATCH) && (buttons & BT_FORWARD)) {
 					TakeInventory("Starter_Machinegun",1);
 					GiveInventory("Starter_Shotgun"   ,1);
 					TakeInventory("Starter_Nailgun"   ,1);

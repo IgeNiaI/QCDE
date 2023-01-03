@@ -279,8 +279,6 @@ script "QCDE_EldersSoul_HintDegeneration" (void)
 
 //=============================================================================
 //
-//		Larger collision box warning
-//		OR
 //		Skirmish in Doom1
 //		OR
 //		PVP damage scalar warning
@@ -288,19 +286,6 @@ script "QCDE_EldersSoul_HintDegeneration" (void)
 //	Use same ids because coop and pvp are mutually exclusive modes.
 //
 //=============================================================================
-
-script "QCDE_CoopTankWarning" (void)
-{
-	SetHUDSize(512,384,1);
-	SetFont("QCBGFONT");
-	HudMessage(s:"You've picked a big champion!";
-				HUDMSG_FADEINOUT,ID_COOPTANK_1,CR_YELLOW, 256.0,100.0, 1.6,0.3,3.0);
-	SetFont("SMALLFONT");
-	HudMessage(s:"Caution: It is not guaranteed that you will fit where you should.";
-				HUDMSG_FADEINOUT,ID_COOPTANK_2,CR_YELLOW, 256.0,120.0, 1.8,0.4,3.8);
-	HudMessage(s:"Use this at the risk of getting stuck in very tight spots.";
-				HUDMSG_FADEINOUT,ID_COOPTANK_3,CR_YELLOW, 256.0,130.0, 1.8,0.4,3.8);
-}
 
 script "QCDE_SkirmishDoom1Warning" (void)
 {
