@@ -201,7 +201,6 @@ Actor EnemyAbilityCooldownSeconds: Token { Inventory.MaxAmount 997 }
 
 Actor NoHealthDegenerationToken  : Token {} //Reliquary lootbox reward
 Actor NoArmorDegenerationToken  : Token {} //Reliquary lootbox reward
-Actor NoFootstepsToken         : Token {} //For ghostwalk, or any other thing that should silence steps
 Actor NoWeaponFireToken       : Token {} //For ghostwalk, or any other thing that should prevent firing
 Actor NoAbilitiesToken       : Token {} //For freeze thrower, or any other thing that should prevent ability use
 Actor ActiveInProgress      : Token {} //For abilities that have "progress bar", disallows using the button again

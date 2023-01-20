@@ -124,7 +124,6 @@ Actor PainkillerCleanerProc : CustomInventory
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_TakeInventory("NoFootstepsToken", 1)
 		TNT1 A 0 A_TakeInventory("NoAbilitiesToken", 1)
 		TNT1 A 0 A_TakeInventory("NoReticle", 1)
 		TNT1 A 0 A_TakeInventory("NoAmmoCount", 1)
@@ -355,7 +354,6 @@ Actor PKDemonWeapon : DoomWeapon
 	Ready:
 		TNT1 A 1 A_SetCrosshair(66)
 		"####" "#" 0 ACS_NamedExecuteAlways("RemoveModText",0,0)
-		TNT1 A 0 A_GiveInventory("NoFootstepsToken",1)
 		TNT1 A 0 A_GiveInventory("DemonTintItem",1)
 		TNT1 A 1 A_PlaySound("QC/Abilities/Painkiller/DemonStart",CHAN_6,1.0,0,0.3)
 		TNT1 A 1 A_PlaySound("QC/Abilities/Painkiller/DemonLoop",CHAN_5,0.8,1,0.7)

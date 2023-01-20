@@ -785,5 +785,6 @@ Script "QCDE_CrownTheBest" (void)
 
 	if(IsTidUsed(best + DOPPELGANG_TIDBASE)) terminate;
 
-	GiveActorInventory(1000 + best, "CrownProc", 1);
+	if (!CheckActorInventory(1000 + best, "PowerGhostTint") && !CheckActorInventory(1000 + best, "PowerWendigoTint"))
+		GiveActorInventory(1000 + best, "CrownProc", 1);
 }

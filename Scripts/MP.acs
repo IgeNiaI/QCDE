@@ -478,7 +478,7 @@ Script "QCDE_AbilityFXMustDie" (void)
 	bool result = false;
 	result |= GetActorProperty(0,APROP_HEALTH) <= 0;
 	result |= GetActorProperty(0,APROP_HEALTH) > 0 && GetActorProperty(0,APROP_HEIGHT) == 0;
-	result |= CheckInventory("NoFootstepsToken") && !CheckActorClass(0,"QCKane");
+	result |= CheckInventory("PowerGhostTint") || CheckInventory("PowerWendigoTint");
 	SetResultValue(result);
 }
 
@@ -486,7 +486,6 @@ Script "QCDE_AbilityFXMustDie" (void)
 // animation.
 // For indicator XyzIndicator, powerup is expected to be named PowerXyz.
 // Affected player is expected to be target.
-// Special case: if target has NoFootstepsToken, it must be sneaky, so this
 // removes powerup indicator as well. Used by Nyx's Ghostwalk.
 Script "QCDE_PowerupIndicatorMustDie" (void)
 {
@@ -496,9 +495,18 @@ Script "QCDE_PowerupIndicatorMustDie" (void)
 
 	SetActivatorToTarget(0);
 	bool expired = !GetActorPowerupTics(0,powerName);
-	bool sneaky = CheckInventory("NoFootstepsToken") && !CheckActorClass(0,"QCKane");
 
-	SetResultValue(expired || sneaky);
+	SetResultValue(expired);
+}
+
+// For effects that follow players affected by powerup, condition to hide
+// animation.
+Script "QCDE_PowerupIndicatorMustDisappear" (void)
+{
+	SetActivatorToTarget(0);
+	bool sneaky = CheckInventory("PowerGhostTint") || CheckInventory("PowerWendigoTint");
+
+	SetResultValue(sneaky);
 }
 
 // For items that would be wildly unbalanced if used in a duel.

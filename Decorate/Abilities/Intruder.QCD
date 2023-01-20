@@ -28,7 +28,6 @@ Actor WendigoInProc : CustomInventory
 	Pickup:
 		TNT1 A 0 A_GiveInventory("WendigoHUDTint",1,0,GIF_SKIPOWNER)
 		TNT1 A 0 A_GiveInventory("GhostTerror",1,0,GIF_SKIPOWNER)
-		TNT1 A 0 A_GiveInventory("NoFootstepsToken",1,0,GIF_SKIPOWNER)
 		//removes effects of thumper
 		TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
 		TNT1 A 0 A_TakeInventory("PowerGrayThumpFlight",1,TIF_SKIPOWNER)
@@ -52,7 +51,6 @@ Actor WendigoOutProc : CustomInventory
 		TNT1 A 0 A_TakeInventory("PowerGhostTerror",1,TIF_SKIPOWNER)
 		TNT1 A 0 A_TakeInventory("PowerWendigoDMGNerf",1,TIF_SKIPOWNER)
 		TNT1 A 0 A_TakeInventory("PowerWendigoProtect",1,TIF_SKIPOWNER)
-		TNT1 A 0 A_TakeInventory("NoFootstepsToken",1,TIF_SKIPOWNER)
 		TNT1 A 0 A_TakeInventory("ActiveInProgress",0,TIF_SKIPOWNER)
 		TNT1 A 35
 		Stop
