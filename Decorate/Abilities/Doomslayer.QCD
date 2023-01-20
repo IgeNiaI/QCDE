@@ -62,7 +62,7 @@ Actor SlayerBFG : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
-		W07I A 10 A_WeaponReady(WRF_DISABLESWITCH|WRF_NOFIRE)
+		W07I A 10 A_WeaponReady(WRF_DISABLESWITCH|WRF_NOFIRE|WRF_NOBOB)
 		TNT1 A 0 ACS_NamedExecuteAlways("CheckIfCorrectPlayer",0,2) // 2 = doom
 		Goto Fire
 	//-----------------------
