@@ -2437,7 +2437,7 @@ Script "QCDE_SkullSpawned" (void)
 
 	if(GameType() <= GAME_NET_COOPERATIVE) GiveInventory("FriendlyProc",1);
 
-	while(GetActorProperty(plrtid, APROP_HEALTH) > 0)
+	while(GetActorProperty(plrtid, APROP_HEALTH) > 0 && !CheckActorInventory(plrtid, "Freezetagged"))
 		delay(1);
 	Thing_Remove(tid);
 	//ACS("iamamiwhoami");
