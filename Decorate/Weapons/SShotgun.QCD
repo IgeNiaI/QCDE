@@ -178,6 +178,7 @@ Actor QCSuperShotgun : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
+		TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 7, "Ready.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 5, "Ready.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 4, "Ready.Quake4")
@@ -205,6 +206,9 @@ Actor QCSuperShotgun : QCWeapon
 	Ready.QCDE1:
 		Q0GC A 0
 		Goto ReadyCont
+	Ready.HalfLife:
+		HLGC A 0
+		Goto ReadyCont
 
 	ReadyCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
@@ -224,6 +228,7 @@ Actor QCSuperShotgun : QCWeapon
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
+		TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 6, "Select.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 5, "Select.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 4, "Select.Quake4")
@@ -250,6 +255,9 @@ Actor QCSuperShotgun : QCWeapon
 		Goto SelectCont
 	Select.QCDE1:
 		Q0GC A 0
+		Goto SelectCont
+	Select.HalfLife:
+		HLGC A 0
 		Goto SelectCont
 
 	SelectCont:
@@ -427,6 +435,7 @@ Actor QCSuperShotgun : QCWeapon
 			Goto NormalSound
 
 			NormalSound:
+				TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 7, "NormalSound.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 6, "NormalSound.Default")
 				TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 5, "NormalSound.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 4, "NormalSound.Quake4")
@@ -451,8 +460,12 @@ Actor QCSuperShotgun : QCWeapon
 			NormalSound.ETQW:
 				TNT1 A 0 A_PlaySound("QC/Weapons/SuperShotgun/Fire_ETQW",CHAN_WEAPON)
 				Goto FlashEnder
+			NormalSound.HalfLife:
+				TNT1 A 0 A_PlaySound("QC/Weapons/SuperShotgun/Fire_HalfLife",CHAN_WEAPON)
+				Goto FlashEnder
 
 			QuadSound:
+				TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 7, "QuadSound.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 6, "QuadSound.Default")
 				TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 5, "QuadSound.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCSShotgunSkin", 4, "QuadSound.Quake4")
@@ -476,6 +489,9 @@ Actor QCSuperShotgun : QCWeapon
 				Goto FlashEnder
 			QuadSound.ETQW:
 				TNT1 A 0 A_PlaySound("QC/Weapons/SuperShotgun/Quad/Fire_ETQW",CHAN_WEAPON)
+				Goto FlashEnder
+			QuadSound.HalfLife:
+				TNT1 A 0 A_PlaySound("QC/Weapons/SuperShotgun/Quad/Fire_HalfLife",CHAN_WEAPON)
 				Goto FlashEnder
 
 	FlashEnder:
