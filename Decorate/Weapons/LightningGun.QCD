@@ -118,22 +118,22 @@ Actor QCLightningGun : QCWeapon
 		QCG6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
 		Goto ReadyCont
 	Ready.Quake1:
-		QC16 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		Q1G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
 		Goto ReadyCont
 	Ready.Quake2:
-		QC26 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake2", CHAN_WEAPON, 0.45, 1, 1.25)
+		Q2G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake2", CHAN_WEAPON, 0.45, 1, 1.25)
 		Goto ReadyCont
 	Ready.Quake3:
-		QC36 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake3", CHAN_WEAPON, 0.45, 1, 1.25)
+		Q3G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake3", CHAN_WEAPON, 0.45, 1, 1.25)
 		Goto ReadyCont
 	Ready.Quake4:
-		QC46 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		Q4G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
 		Goto ReadyCont
 	Ready.ETQW:
-		QC56 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		QWG6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC66 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
+		Q0G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
 		Goto ReadyCont
 
 	ReadyCont:
@@ -158,22 +158,22 @@ Actor QCLightningGun : QCWeapon
 		QCG6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
 		Goto AltFireReadyCont
 	AltFireReady.Quake1:
-		QC16 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		Q1G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
 		Goto AltFireReadyCont
 	AltFireReady.Quake2:
-		QC26 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake2", CHAN_WEAPON, 0.65, 1, 1.25)
+		Q2G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake2", CHAN_WEAPON, 0.65, 1, 1.25)
 		Goto AltFireReadyCont
 	AltFireReady.Quake3:
-		QC36 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake3", CHAN_WEAPON, 0.65, 1, 1.25)
+		Q3G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Quake3", CHAN_WEAPON, 0.65, 1, 1.25)
 		Goto AltFireReadyCont
 	AltFireReady.Quake4:
-		QC46 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		Q4G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
 		Goto AltFireReadyCont
 	AltFireReady.ETQW:
-		QC56 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		QWG6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
 		Goto AltFireReadyCont
 	AltFireReady.QCDE1:
-		QC66 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
+		Q0G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.65, 1, 1.25)
 		Goto AltFireReadyCont
 
 	AltFireReadyCont:
@@ -209,22 +209,22 @@ Actor QCLightningGun : QCWeapon
 		QCG6 A 0
 		Goto SelectCont
 	Select.Quake1:
-		QC16 A 0
+		Q1G6 A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC26 A 0
+		Q2G6 A 0
 		Goto SelectCont
 	Select.Quake3:
-		QC36 A 0
+		Q3G6 A 0
 		Goto SelectCont
 	Select.Quake4:
-		QC46 A 0
+		Q4G6 A 0
 		Goto SelectCont
 	Select.ETQW:
-		QC56 A 0
+		QWG6 A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC66 A 0
+		Q0G6 A 0
 		Goto SelectCont
 
 	SelectCont:
@@ -333,22 +333,22 @@ Actor QCLightningGun : QCWeapon
 			QCG6 A 0
 			Goto CoopHold
 		CheckCoopHold.Quake1:
-			QC16 A 0
+			Q1G6 A 0
 			Goto CoopHold
 		CheckCoopHold.Quake2:
-			QC26 A 0
+			Q2G6 A 0
 			Goto CoopHold
 		CheckCoopHold.Quake3:
-			QC36 A 0
+			Q3G6 A 0
 			Goto CoopHold
 		CheckCoopHold.Quake4:
-			QC46 A 0
+			Q4G6 A 0
 			Goto CoopHold
 		CheckCoopHold.ETQW:
-			QC56 A 0
+			QWG6 A 0
 			Goto CoopHold
 		CheckCoopHold.QCDE1:
-			QC66 A 0
+			Q0G6 A 0
 			Goto CoopHold
 
 		LGSet100Purp:	//sets purple, visible
@@ -362,22 +362,22 @@ Actor QCLightningGun : QCWeapon
 			QCGF A 0
 			Goto CoopHoldPurple
 		LGSet100Purp.Quake1:
-			QC1F A 0
+			Q1GF A 0
 			Goto CoopHoldPurple
 		LGSet100Purp.Quake2:
-			QC2F A 0
+			Q2GF A 0
 			Goto CoopHoldPurple
 		LGSet100Purp.Quake3:
-			QC3F A 0
+			Q3GF A 0
 			Goto CoopHoldPurple
 		LGSet100Purp.Quake4:
-			QC4F A 0
+			Q4GF A 0
 			Goto CoopHoldPurple
 		LGSet100Purp.ETQW:
-			QC5F A 0
+			QWGF A 0
 			Goto CoopHoldPurple
 		LGSet100Purp.QCDE1:
-			QC6F A 0
+			Q0GF A 0
 			Goto CoopHoldPurple
 
 		//*******************************
@@ -634,22 +634,22 @@ Actor QCLightningGun : QCWeapon
 			QCGG A 0		//sets invisible beam
 			Goto DMHold
 		DMCheckTransparency.Quake1:
-			QC1G A 0		//sets invisible beam
+			Q1GG A 0		//sets invisible beam
 			Goto DMHold
 		DMCheckTransparency.Quake2:
-			QC2G A 0		//sets invisible beam
+			Q2GG A 0		//sets invisible beam
 			Goto DMHold
 		DMCheckTransparency.Quake3:
-			QC3G A 0		//sets invisible beam
+			Q3GG A 0		//sets invisible beam
 			Goto DMHold
 		DMCheckTransparency.Quake4:
-			QC4G A 0		//sets invisible beam
+			Q4GG A 0		//sets invisible beam
 			Goto DMHold
 		DMCheckTransparency.ETQW:
-			QC5G A 0		//sets invisible beam
+			QWGG A 0		//sets invisible beam
 			Goto DMHold
 		DMCheckTransparency.QCDE1:
-			QC6G A 0		//sets invisible beam
+			Q0GG A 0		//sets invisible beam
 			Goto DMHold
 
 		LGSet100DM:
@@ -663,22 +663,22 @@ Actor QCLightningGun : QCWeapon
 			QCG6 A 0		//sets regular lg, visible
 			Goto DMHold
 		LGSet100DM.Quake1:
-			QC16 A 0		//sets regular lg, visible
+			Q1G6 A 0		//sets regular lg, visible
 			Goto DMHold
 		LGSet100DM.Quake2:
-			QC26 A 0		//sets regular lg, visible
+			Q2G6 A 0		//sets regular lg, visible
 			Goto DMHold
 		LGSet100DM.Quake3:
-			QC36 A 0		//sets regular lg, visible
+			Q3G6 A 0		//sets regular lg, visible
 			Goto DMHold
 		LGSet100DM.Quake4:
-			QC46 A 0		//sets regular lg, visible
+			Q4G6 A 0		//sets regular lg, visible
 			Goto DMHold
 		LGSet100DM.ETQW:
-			QC56 A 0		//sets regular lg, visible
+			QWG6 A 0		//sets regular lg, visible
 			Goto DMHold
 		LGSet100DM.QCDE1:
-			QC66 A 0		//sets regular lg, visible
+			Q0G6 A 0		//sets regular lg, visible
 			Goto DMHold
 
 		DMHold:

@@ -122,19 +122,19 @@ Actor QCHeavyMachinegun : QCWeapon
 		QCGB A 0
 		Goto ReadyCont
 	Ready.Quake2:
-		QC2B A 0
+		Q2GB A 0
 		Goto ReadyCont
 	Ready.Quake3:
-		QC3B A 0
+		Q3GB A 0
 		Goto ReadyCont
 	Ready.Quake4:
-		QC4B A 0
+		Q4GB A 0
 		Goto ReadyCont
 	Ready.ETQW:
-		QC5B A 0
+		QWGB A 0
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC6B A 0
+		Q0GB A 0
 		Goto ReadyCont
 
 	ReadyCont:
@@ -171,19 +171,19 @@ Actor QCHeavyMachinegun : QCWeapon
 		QCGB A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC2B A 0
+		Q2GB A 0
 		Goto SelectCont
 	Select.Quake3:
-		QC3B A 0
+		Q3GB A 0
 		Goto SelectCont
 	Select.Quake4:
-		QC4B A 0
+		Q4GB A 0
 		Goto SelectCont
 	Select.ETQW:
-		QC5B A 0
+		QWGB A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC6B A 0
+		Q0GB A 0
 		Goto SelectCont
 
 	SelectCont:
@@ -226,19 +226,19 @@ Actor QCHeavyMachinegun : QCWeapon
 			QCGB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.Quake2:
-			QC2B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
+			Q2GB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.Quake3:
-			QC3B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Quake3",CHAN_WEAPON,1,1)
+			Q3GB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Quake3",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.Quake4:
-			QC4B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
+			Q4GB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.ETQW:
-			QC5B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_ETQW",CHAN_WEAPON,1,1)
+			QWGB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_ETQW",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.QCDE1:
-			QC6B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Default",CHAN_WEAPON,1,1)
+			Q0GB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 
 		FireQuadSound:
@@ -251,19 +251,19 @@ Actor QCHeavyMachinegun : QCWeapon
 			QCGB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.Quake2:
-			QC2B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
+			Q2GB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.Quake3:
-			QC3B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake3",CHAN_WEAPON,1,1)
+			Q3GB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake3",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.Quake4:
-			QC4B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
+			Q4GB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.ETQW:
-			QC5B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_ETQW",CHAN_WEAPON,1,1)
+			QWGB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_ETQW",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.QCDE1:
-			QC6B A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
+			Q0GB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 
 		FireSoundCont:

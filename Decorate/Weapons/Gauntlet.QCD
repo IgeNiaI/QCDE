@@ -33,13 +33,13 @@ Actor QCGauntlet : QCWeapon
 		QCG1 A 0 A_PlaySound("QC/Weapons/Gauntlet/Idle_Default",CHAN_WEAPON,1,1)
 		Goto ReadyCont
 	Ready.Quake3:
-		QC31 A 0 A_PlaySound("QC/Weapons/Gauntlet/Idle_Quake3",CHAN_WEAPON,1,1)
+		Q3G1 A 0 A_PlaySound("QC/Weapons/Gauntlet/Idle_Quake3",CHAN_WEAPON,1,1)
 		Goto ReadyCont
 	Ready.Quake4:
-		QC41 A 0 A_PlaySound("QC/Weapons/Gauntlet/Idle_Quake4",CHAN_WEAPON,1,1)
+		Q4G1 A 0 A_PlaySound("QC/Weapons/Gauntlet/Idle_Quake4",CHAN_WEAPON,1,1)
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC61 A 0 A_PlaySound("QC/Weapons/Gauntlet/Idle_Default",CHAN_WEAPON,1,1)
+		Q0G1 A 0 A_PlaySound("QC/Weapons/Gauntlet/Idle_Default",CHAN_WEAPON,1,1)
 		Goto ReadyCont
 
 	ReadyCont:
@@ -68,13 +68,13 @@ Actor QCGauntlet : QCWeapon
 		QCG1 A 0 A_PlaySound("QC/Weapons/Gauntlet/Select_Default",CHAN_6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
 		Goto SelectCont
 	Select.Quake3:
-		QC31 A 0 A_PlaySound("QC/Weapons/Switch",CHAN_6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		Q3G1 A 0 A_PlaySound("QC/Weapons/Switch",CHAN_6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
 		Goto SelectCont
 	Select.Quake4:
-		QC41 A 0 A_PlaySound("QC/Weapons/Switch",CHAN_6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		Q4G1 A 0 A_PlaySound("QC/Weapons/Switch",CHAN_6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
 		Goto SelectCont
 	Select.QCDE1:
-		QC61 A 0 A_PlaySound("QC/Weapons/Switch",CHAN_6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		Q0G1 A 0 A_PlaySound("QC/Weapons/Switch",CHAN_6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
 		Goto SelectCont
 
 	SelectCont:
@@ -971,7 +971,7 @@ Actor OmnislashProjectile_Quake3 : OmnislashProjectile
 	States
 	{
 	Spawn:
-		QC31 X 1
+		Q3G1 X 1
 		Goto Super::Spawn+1
 	}
 }
@@ -981,7 +981,7 @@ Actor OmnislashProjectile_Quake4 : OmnislashProjectile
 	States
 	{
 	Spawn:
-		QC41 X 1
+		Q4G1 X 1
 		Goto Super::Spawn+1
 	}
 }
@@ -1020,7 +1020,7 @@ Actor OmnislashProjectileFX_Quake3 : OmnislashProjectileFX
 	States
 	{
 	Spawn:
-		QC31 X 0
+		Q3G1 X 0
 		Goto Super::Spawn+1
 	}
 }
@@ -1030,7 +1030,7 @@ Actor OmnislashProjectileFX_Quake4 : OmnislashProjectileFX
 	States
 	{
 	Spawn:
-		QC41 X 0
+		Q4G1 X 0
 		Goto Super::Spawn+1
 	}
 }
@@ -1248,7 +1248,7 @@ Actor OmnislashFireProjectileFX_Quake3 : OmnislashFireProjectileFX
 	States
 	{
 	Spawn:
-		QC31 X 0
+		Q3G1 X 0
 		Goto Super::Spawn+1
 	}
 }
@@ -1258,7 +1258,7 @@ Actor OmnislashFireProjectileFX_Quake4 : OmnislashFireProjectileFX
 	States
 	{
 	Spawn:
-		QC41 X 0
+		Q4G1 X 0
 		Goto Super::Spawn+1
 	}
 }

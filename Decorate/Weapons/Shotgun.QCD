@@ -123,13 +123,13 @@ Actor QCShotgun : QCWeapon
 		QCG3 A 0
 		Goto ReadyCont
 	Ready.Quake1:
-		QC13 A 0
+		Q1G3 A 0
 		Goto ReadyCont
 	Ready.Quake2:
-		QC23 A 0
+		Q2G3 A 0
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC63 A 0
+		Q0G3 A 0
 		Goto ReadyCont
 
 	ReadyCont:
@@ -157,13 +157,13 @@ Actor QCShotgun : QCWeapon
 		QCG3 A 0
 		Goto SelectCont
 	Select.Quake1:
-		QC13 A 0
+		Q1G3 A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC23 A 0
+		Q2G3 A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC63 A 0
+		Q0G3 A 0
 		Goto SelectCont
 
 	SelectCont:

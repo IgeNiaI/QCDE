@@ -188,22 +188,22 @@ Actor QCSuperShotgun : QCWeapon
 		QCGC A 0
 		Goto ReadyCont
 	Ready.Quake1:
-		QC1C A 0
+		Q1GC A 0
 		Goto ReadyCont
 	Ready.Quake2:
-		QC2C A 0
+		Q2GC A 0
 		Goto ReadyCont
 	Ready.Quake3:
-		QC3C A 0
+		Q3GC A 0
 		Goto ReadyCont
 	Ready.Quake4:
-		QC4C A 0
+		Q4GC A 0
 		Goto ReadyCont
 	Ready.ETQW:
-		QC5C A 0
+		QWGC A 0
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC6C A 0
+		Q0GC A 0
 		Goto ReadyCont
 
 	ReadyCont:
@@ -234,22 +234,22 @@ Actor QCSuperShotgun : QCWeapon
 		QCGC A 0
 		Goto SelectCont
 	Select.Quake1:
-		QC1C A 0
+		Q1GC A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC2C A 0
+		Q2GC A 0
 		Goto SelectCont
 	Select.Quake3:
-		QC3C A 0
+		Q3GC A 0
 		Goto SelectCont
 	Select.Quake4:
-		QC4C A 0
+		Q4GC A 0
 		Goto SelectCont
 	Select.ETQW:
-		QC5C A 0
+		QWGC A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC6C A 0
+		Q0GC A 0
 		Goto SelectCont
 
 	SelectCont:

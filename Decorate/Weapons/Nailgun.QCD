@@ -91,16 +91,16 @@ Actor QCNailgun : QCWeapon
 		QCG4 A 0
 		Goto ReadyCont
 	Ready.Quake1:
-		QC14 A 0
+		Q1G4 A 0
 		Goto ReadyCont
 	Ready.Quake2:
-		QC24 A 0
+		Q2G4 A 0
 		Goto ReadyCont
 	Ready.Quake4:
-		QC44 A 0
+		Q4G4 A 0
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC64 A 0
+		Q0G4 A 0
 		Goto ReadyCont
 
 	ReadyCont:
@@ -129,16 +129,16 @@ Actor QCNailgun : QCWeapon
 		QCG4 A 0
 		Goto SelectCont
 	Select.Quake1:
-		QC14 A 0
+		Q1G4 A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC24 A 0
+		Q2G4 A 0
 		Goto SelectCont
 	Select.Quake4:
-		QC44 A 0
+		Q4G4 A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC64 A 0
+		Q0G4 A 0
 		Goto SelectCont
 
 	SelectCont:

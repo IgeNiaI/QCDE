@@ -116,16 +116,16 @@ Actor QCBFG : QCWeapon
 		QCG8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto ReadyCont
 	Ready.Quake2:
-		QC28 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
+		Q2G8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto ReadyCont
 	Ready.Quake3:
-		QC38 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
+		Q3G8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto ReadyCont
 	Ready.Quake4:
-		QC48 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Quake4",	CHAN_WEAPON,0.7,1)
+		Q4G8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Quake4",	CHAN_WEAPON,0.7,1)
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC68 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
+		Q0G8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto ReadyCont
 
 	ReadyCont:
@@ -169,16 +169,16 @@ Actor QCBFG : QCWeapon
 		QCG8 A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC28 A 0
+		Q2G8 A 0
 		Goto SelectCont
 	Select.Quake3:
-		QC38 A 0
+		Q3G8 A 0
 		Goto SelectCont
 	Select.Quake4:
-		QC48 A 0
+		Q4G8 A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC68 A 0
+		Q0G8 A 0
 		Goto SelectCont
 
 	SelectCont:

@@ -119,22 +119,22 @@ Actor QCRailGun : QCWeapon
 		QCG7 A 0
 		Goto SelectCont
 	Select.Quake1:
-		QC17 A 0
+		Q1G7 A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC27 A 0
+		Q2G7 A 0
 		Goto SelectCont
 	Select.Quake3:
-		QC37 A 0
+		Q3G7 A 0
 		Goto SelectCont
 	Select.Quake4:
-		QC47 A 0
+		Q4G7 A 0
 		Goto SelectCont
 	Select.ETQW:
-		QC57 A 0
+		QWG7 A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC67 A 0
+		Q0G7 A 0
 		Goto SelectCont
 
 	SelectCont:
@@ -174,22 +174,22 @@ Actor QCRailGun : QCWeapon
 		QCG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 	Ready.Quake1:
-		QC17 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Q1G7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 	Ready.Quake2:
-		QC27 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake2", CHAN_WEAPON, 0.4, 1, 1.25)
+		Q2G7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake2", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 	Ready.Quake3:
-		QC37 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake3", CHAN_WEAPON, 0.4, 1, 1.25)
+		Q3G7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake3", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 	Ready.Quake4:
-		QC47 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake4", CHAN_WEAPON, 0.4, 1, 1.25)
+		Q4G7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake4", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 	Ready.ETQW:
-		QC57 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_ETQW", CHAN_WEAPON, 0.4, 1, 1.25)
+		QWG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_ETQW", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC67 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Q0G7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 
 	ReadyCont:
@@ -1167,22 +1167,22 @@ Actor QCRailGun : QCWeapon
 		QCG7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.Quake1:
-		QC17 A 0
+		Q1G7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.Quake2:
-		QC27 A 0
+		Q2G7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.Quake3:
-		QC37 A 0
+		Q3G7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.Quake4:
-		QC47 A 0
+		Q4G7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.ETQW:
-		QC57 A 0
+		QWG7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.QCDE1:
-		QC67 A 0
+		Q0G7 A 0
 		Goto DoTheMathFromZoomCont
 
 	DoTheMathFromZoomCont:

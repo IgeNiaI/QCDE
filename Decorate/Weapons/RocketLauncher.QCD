@@ -114,22 +114,22 @@ Actor QCRocketLauncher : QCWeapon
 		QCG5 A 0
 		Goto ReadyCont
 	Ready.Quake1:
-		QC15 A 0
+		Q1G5 A 0
 		Goto ReadyCont
 	Ready.Quake2:
-		QC25 A 0
+		Q2G5 A 0
 		Goto ReadyCont
 	Ready.Quake3:
-		QC35 A 0
+		Q3G5 A 0
 		Goto ReadyCont
 	Ready.Quake4:
-		QC45 A 0
+		Q4G5 A 0
 		Goto ReadyCont
 	Ready.ETQW:
-		QC55 A 0
+		QWG5 A 0
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC65 A 0
+		Q0G5 A 0
 		Goto ReadyCont
 
 	ReadyCont:
@@ -160,22 +160,22 @@ Actor QCRocketLauncher : QCWeapon
 		QCG5 A 0
 		Goto SelectCont
 	Select.Quake1:
-		QC15 A 0
+		Q1G5 A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC25 A 0
+		Q2G5 A 0
 		Goto SelectCont
 	Select.Quake3:
-		QC35 A 0
+		Q3G5 A 0
 		Goto SelectCont
 	Select.Quake4:
-		QC45 A 0
+		Q4G5 A 0
 		Goto SelectCont
 	Select.ETQW:
-		QC55 A 0
+		QWG5 A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC65 A 0
+		Q0G5 A 0
 		Goto SelectCont
 
 	SelectCont:

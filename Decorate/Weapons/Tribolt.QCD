@@ -115,19 +115,19 @@ Actor QCTribolt : QCWeapon
 		QCGE A 0
 		Goto ReadyCont
 	Ready.Quake1:
-		QC1E A 0
+		Q1GE A 0
 		Goto ReadyCont
 	Ready.Quake2:
-		QC2E A 0
+		Q2GE A 0
 		Goto ReadyCont
 	Ready.Quake3:
-		QC3E A 0
+		Q3GE A 0
 		Goto ReadyCont
 	Ready.Quake4:
-		QC4E A 0
+		Q4GE A 0
 		Goto ReadyCont
 	Ready.QCDE1:
-		QC6E A 0
+		Q0GE A 0
 		Goto ReadyCont
 
 	ReadyCont:
@@ -158,19 +158,19 @@ Actor QCTribolt : QCWeapon
 		QCGE A 0
 		Goto SelectCont
 	Select.Quake1:
-		QC1E A 0
+		Q1GE A 0
 		Goto SelectCont
 	Select.Quake2:
-		QC2E A 0
+		Q2GE A 0
 		Goto SelectCont
 	Select.Quake3:
-		QC3E A 0
+		Q3GE A 0
 		Goto SelectCont
 	Select.Quake4:
-		QC4E A 0
+		Q4GE A 0
 		Goto SelectCont
 	Select.QCDE1:
-		QC6E A 0
+		Q0GE A 0
 		Goto SelectCont
 
 	SelectCont:
