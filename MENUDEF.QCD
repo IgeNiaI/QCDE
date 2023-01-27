@@ -148,10 +148,12 @@ OptionMenu "QCDEOptions"
 	Submenu 	"Misc QCDE Options       ",		"QCDEMisc"
 
 	StaticText	""
-	StaticText	""
+
+	SubMenu		"Call a vote            ",		"ZA_CallVote"
+
 	StaticText	""
 
-	Submenu 	"All Engine options (old menu)",			"OptionsMenu"
+	Submenu 	"All Engine options (old menu)",	"OptionsMenu"
 }
 
 ListMenu "QCDEPlayerMenu"
