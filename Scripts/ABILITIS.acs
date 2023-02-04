@@ -3345,7 +3345,9 @@ Script "ORBB_ReplicateDronePos" (int x, int y, int z) NET
 	{
 		int tid = ORBBDRON_TIDBASE + PlayerNumber();
 		SetActivator(tid);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		Warp(0, x, y, z, 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	}
 }
 
