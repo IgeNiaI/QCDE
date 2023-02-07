@@ -247,12 +247,6 @@ Actor IntruderBodyTrailInstagib
 	}
 }
 
-// For durandal to see the body of the intruder while mid-ability
-Actor IntruderBodyTrail : IntruderBodyTrailInstagib
-{
-	VisibleToPlayerClass QCDurandal
-}
-
 //--------------------------------------------------------
 // Passive
 //--------------------------------------------------------

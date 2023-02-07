@@ -1294,8 +1294,6 @@ Script "QCDE_Ability_Nyx" (void)
 	while(counter++ < NYX_TRAIL_LENGTH) //for first N tics, it will spawn a trail every tic
 	{
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		if(counter==5||counter==10)
-			GiveInventory("GhostWalkFullTrailProc",1);
 		GiveInventory("GhostWalkTrailProc",1);
 		SetNetworkReplicationFlags( 0 );
 		delay(1);
@@ -1307,9 +1305,6 @@ Script "QCDE_Ability_Nyx" (void)
 	{
 		delay(5);
 		counter += 5;
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		GiveInventory("GhostWalkFullTrailProc",1);
-		SetNetworkReplicationFlags( 0 );
 	}
 
 	// Exit at destination
@@ -2990,7 +2985,6 @@ Script "QCDE_IntruderLoop" (void) CLIENTSIDE
 			int z0 = GetActorFloorZ(0);
 			int z1 = GetActorZ(0);
 			if(CheckInventory("Instagib")) SpawnForced("IntruderBodyTrailInstagib",x,y,z1, 0, random(0, 255));
-			SpawnForced("IntruderBodyTrail",x,y,z1, 0, random(0, 255));
 			SpawnForced("D4TBlood",         x,y,z0, 0, random(0, 255));
 			SpawnForced("WendigoFootprint", x,y,z0, 0, random(0, 255));
 		}
