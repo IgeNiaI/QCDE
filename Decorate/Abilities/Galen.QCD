@@ -65,6 +65,7 @@ Actor TotemProjectile
 		Loop
 	Death:
 	BecomingTotem:
+		TNT1 A 0 A_Stop
 		TNT1 A 0 A_ChangeFlag("DONTBLAST",true) //but once it's become a totem, it cant be blasted even in PvP
 		TNT1 A 0 A_PlaySound("QC/Abilities/Galen/TotemArm",CHAN_AUTO)
 		TNT1 A 0 A_PlaySound("QC/Abilities/Galen/TotemLoop",5,1,4)
@@ -93,31 +94,43 @@ Actor TotemProjectile
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_TotemSpawned")
 		TNT1 A 0 A_SpawnItemEx("TotemHitbox", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck") >= 2,"DMTotem")
-		Goto IamTotem
+		Goto SPLoopHealing
 	DMTotem:
 		TNT1 A 0 A_ChangeFlag("FRIENDLY", false)
-		Goto IamTotem
-	IamTotem:
-		TNT1 A 0 A_JumpIf(user_counter>=28,"NoMoreHealing")	//8sec
+		Goto WaitingForHeal
+	WaitingForHeal:
+		TOTM BBBBB 1 A_LookEx(LOF_NOSOUNDCHECK, 1, 92, 1, 360, "Attack")
+		TOTM BBBBB 1 A_LookEx(LOF_NOSOUNDCHECK, 1, 92, 1, 360, "Attack")
+		TOTM B 0 A_SpawnItemEx("TotemAura",0,0,25, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Loop
+	SPLoopHealing:
 		TNT1 A 0 A_SetUserVar(user_counter,user_counter+1)
-		TNT1 A 0 A_JumpIfInTargetInventory("TotemTokenPvE", 5, "SuperHealing")
-		TNT1 A 0 A_JumpIfInTargetInventory("TotemTokenPvP", 3, "SuperHealing")
+		TNT1 A 0 A_JumpIfInTargetInventory("TotemTokenPvE", 5, "SuperSPLoopHealing")
 		TOTM A 0 A_RadiusGive("TotemHealth",92,RGF_PLAYERS|RGF_FORCESERVERSIDE,1)
 		TOTM BBBBB 1 A_LookEx(LOF_NOSOUNDCHECK, 1, 92, 1, 360, "Attack")
 		TOTM A 0 A_RadiusGive("TotemHealth",92,RGF_PLAYERS|RGF_FORCESERVERSIDE,1)
-		TOTM A 0 A_RadiusGive("TotemHealthPvE",192,RGF_PLAYERS|RGF_FORCESERVERSIDE,1)
 		TOTM BBBBB 1 A_LookEx(LOF_NOSOUNDCHECK, 1, 92, 1, 360, "Attack")
 		TNT1 A 0 A_SpawnItemEx("TotemAura",0,0,25, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		Loop
-	SuperHealing:
+	SuperSPLoopHealing:
+		TOTM A 0 A_RadiusGive("TotemSuperHealth",92,RGF_PLAYERS,1)
+		TOTM BBBBB 1 A_LookEx(LOF_NOSOUNDCHECK, 1, 92, 1, 360, "Attack")
 		TOTM A 0 A_RadiusGive("TotemSuperHealth",92,RGF_PLAYERS,1)
 		TOTM BBBBB 1 A_LookEx(LOF_NOSOUNDCHECK, 1, 92, 1, 360, "Attack")
 		TOTM A 0 A_SpawnItemEx("TotemAuraLong",0,0,25, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		TOTM A 0 A_RadiusGive("TotemSuperHealth",92,RGF_PLAYERS,1)
-		TOTM A 0 A_RadiusGive("TotemSuperHealthPvE",192,RGF_PLAYERS,1)
-		TOTM BBBBB 1 A_LookEx(LOF_NOSOUNDCHECK, 1, 92, 1, 360, "Attack")
-		TOTM A 0 A_SpawnItemEx("TotemAura",0,0,25, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto IamTotem
+		Goto SPLoopHealing
+	DMSingleHeal:
+		"####" "#" 1
+		TOTM B 0 A_JumpIf(user_counter>=1,"NoMoreHealing")
+		TOTM B 0 A_SetUserVar(user_counter,1)
+		TOTM B 0 A_GiveToTarget("TotemHealthPvP", 1)
+		Goto NoMoreHealing
+	SuperDMSingleHeal:
+		"####" "#" 1
+		TOTM B 0 A_JumpIf(user_counter>=1,"NoMoreHealing")
+		TOTM B 0 A_SetUserVar(user_counter,1)
+		TOTM B 0 A_GiveToTarget("TotemSuperHealthPvP", 1)
+		Goto NoMoreHealing
 	NoMoreHealing:
 		TOTM AAAAA 1 A_LookEx(LOF_NOSOUNDCHECK, 1, 92, 1, 360, "Attack")
 		Loop
@@ -126,7 +139,9 @@ Actor TotemProjectile
 		"####" "#" 0 A_Jump(256,"Explode") // so in truth, it explodes
 	NoAttack:
 		"####" "#" 10
-		Goto IamTotem // but dumb prediction goes the harmless way
+		TOTM A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck") < 2,"SPLoopHealing")
+		TOTM A 0 A_JumpIf(user_counter<1,"WaitingForHeal")
+		Goto NoMoreHealing // but dumb prediction goes the harmless way
 	Explode:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Galen/TotemExplosion",5)
 		TNT1 A 0 A_SpawnItemEx("TotemExplosion",0,0,20, 0,0,0, 0,SXF_NOCHECKPOSITION)
@@ -209,15 +224,11 @@ Actor TotemHealth : InventoryClassChecker
 		DoOrbb:
 		Default:
 			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
-			TNT1 A 0 A_JumpIfInventory("DMToken",1,"HealDoneSuccessPVP")
 			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
 		// ^ insert more classes here
 
 	HealDoneSuccess:
-		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 5, 0)
-		Stop
-	HealDoneSuccessPVP:
-		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 8, 0)
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 1, 0)
 		Stop
 	Failer:
 		TNT1 A 0
@@ -225,15 +236,12 @@ Actor TotemHealth : InventoryClassChecker
 	}
 }
 
-Actor TotemHealthPvE : TotemHealth
+Actor TotemHealthPvP : TotemHealth
 {
 	States
 	{
 	HealDoneSuccess:
-		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 5, 0)
-		Stop
-	HealDoneSuccessPVP:
-		TNT1 A 0 // do nothing
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 50, 0)
 		Stop
 	}
 }
@@ -243,24 +251,58 @@ Actor TotemSuperHealth : TotemHealth
 	States
 	{
 	HealDoneSuccess:
-		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 10, 0)
-		Stop
-	HealDoneSuccessPVP:
-		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 14, 0)
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 2, 0)
 		Stop
 	}
 }
 
-Actor TotemSuperHealthPvE : TotemHealth
+Actor TotemSuperHealthPvP : TotemHealth
 {
 	States
 	{
+		DoRanger:
+		DoDoomSlayer:
+		DoCorvus:
+		DoKane:
+		DoCaleb:
+		DoMenelkir:
+		DoTerminator:
+		DoZedek:
+		DoInquisitor:
+		DoGalen:
+		DoBitterman:
+		DoNyx:
+		DoSorgaul:
+		DoDurandal:
+		DoDukeNukem:
+		DoKeel:
+		DoSarge:
+		DoLoWang:
+		DoGrayson:
+		DoBlazkowicz:
+		DoFreeman:
+		DoEradicator:
+		DoVorMatur:
+		DoEleena:
+		DoLucienne:
+		DoMajor:
+		DoHunter:
+		DoSam:
+		DoPostal:
+		DoPainkiller:
+		DoIntruder:
+		DoOrbb:
+		Default:
+			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth") + 50,1)	Goto Failer
+			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
+		// ^ insert more classes here
+
 	HealDoneSuccess:
-		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 10, 0)
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver", CallACS("MaxHealth"), 100, 50)
 		Stop
-	HealDoneSuccessPVP:
-		TNT1 A 0 // do nothing
-		Stop
+	Failer:
+		TNT1 A 0
+		Fail
 	}
 }
 

@@ -3618,6 +3618,7 @@ script "QCDE_TotemSpawned" (void)
 
 	Thing_ChangeTID(0,tid);
 	totemsUp[plr][lastTotem] = Timer();
+	Warp(0, GetActorX(0), GetActorY(0), GetActorZ(0), 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION);
 	ACS_NamedExecuteAlways("QCDE_TotemSpawned_Client",0);
 	//log(s:"Totem[", d:plr, s:"][", d:lastTotem, s:"] spawned at ", d:totemsUp[plr][lastTotem], s:", tidded ", d:tid);
 }
@@ -3758,15 +3759,44 @@ script "QCDE_TotemAttacks" (void)
 	else
 		friendly = plrtid == target;
 
-	if(friendly)
+	bool targetOutsideRange = GetActorZ(target) > GetActorZ(0) + 40.0 || GetActorZ(target) < GetActorZ(0) - 20.0;
+	if (targetOutsideRange)
 	{
+		//log(s:"Totem avoids attack");
 		SetActorState(0,"NoAttack");
-		//log(s:"\c[green]Totem attack averted, target is friendly: ", d:plrtid, s:" <3 ", d:target, s:",   teams: ", d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" == ", d:GetPlayerInfo(targetplr, PLAYERINFO_TEAM));
+	}
+	else if(friendly)
+	{
+		bool friendHealed = false;
+		if (CheckActorInventory(plrtid, "TotemTokenPvP") >= 3)
+		{
+			if (GetActorProperty(target,APROP_HEALTH) < CheckActorInventory(target,"MaxHealthToken") + 50)
+			{
+				//log(s:"Totem super heals friend");
+				SetActorState(0,"SuperDMSingleHeal");
+				friendHealed = true;
+			}
+		}
+		else
+		{
+			if (GetActorProperty(target,APROP_HEALTH) < CheckActorInventory(target,"MaxHealthToken"))
+			{
+				//log(s:"Totem heals friend");
+				SetActorState(0,"DMSingleHeal");
+				friendHealed = true;
+			}
+		}
+
+		if (!friendHealed)
+		{
+			//log(s:"Totem doesn't heal friend");
+			SetActorState(0,"NoAttack");
+		}
 	}
 	else
 	{
+		//log(s:"Avoid attacks enemy");
 		SetActorState(0,"Explode");
-		//log(s:"\c[gold]Totem from ", n:plr, s:" tid ", d:plrtid, s:" explodes tid ", d:target, s:",   teams: ", d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" != ", d:GetPlayerInfo(targetplr, PLAYERINFO_TEAM));
 	}
 
 	delay(20);
