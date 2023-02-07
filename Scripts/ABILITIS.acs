@@ -49,7 +49,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (50 *35) +XYZ, ( 35 *35) +XYZ, (14)         +XYZ, (14)         +XYZ,   5      +XYZ, 18       +XYZ, "NoSoundHax"                        , // FREEMAN
 	  (25 *35) +XYZ, ( 25 *35) +XYZ, (20)         +XYZ, (20)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // VORMATUR
 	  (30 *35) +XYZ, ( 20 *35) +XYZ, ( 7 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ELEENA
-	  (50 *35) +XYZ, ( 25 *35) +XYZ, ( 5)         +XYZ, ( 5)         +XYZ,   4      +XYZ,  16      +XYZ, "NoSoundHax"                        , // LUCIENNE
+	  (50 *35) +XYZ, ( 25 *35) +XYZ, ( 3 *35)     +XYZ, ( 3 *35)     +XYZ,   4      +XYZ,  3*35    +XYZ, "NoSoundHax"                        , // LUCIENNE
 	  (45 *35) +XYZ, (135 *35) +XYZ, ( 4 *35)     +XYZ, ( 4 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // MAJOR
 	  (40 *35) +XYZ, ( 60 *35) +XYZ, ( 7 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // HUNTER
 	  (35 *35) +XYZ, ( 80 *35) +XYZ, ((11 *35)+8) +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SAM
@@ -118,6 +118,8 @@ Script "QCDE_CleanUpAbilities_CLIENTSIDE" (void) clientside
 
 Script "QCDE_DoCleanUpAbilities" (void)
 {
+	SetLastUse(-GetMultiuseDelay());
+
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		 if(CheckInventory("Class_Doomslayer"	))	GiveInventory("SlayerBFGCleanerProc",1); // removes possible residual BFG
 	else if(CheckInventory("Class_Kane"			))	GiveInventory("InjectionCleanerProc",1); // removes the NoFire token
@@ -2220,6 +2222,7 @@ Script "QCDE_Ability_Lucienne" (void)
 {
 	if(ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
 	{
+		ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
 		extraAbilityData[PlayerNumber()]++;
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("LucienneFireBallProc",1); //Fire ball
