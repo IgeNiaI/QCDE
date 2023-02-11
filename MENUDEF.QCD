@@ -419,10 +419,10 @@ OptionMenu "QCDESoundOptions"
 
 	StaticText ""
 
-	Slider "Sounds volume",			"snd_sfxvolume", 0, 1, 0.05
-	Slider "Menu volume",			"snd_menuvolume", 0, 1, 0.05
-	Slider "Music volume",			"snd_musicvolume", 0, 1, 0.05
-	Slider "Announcer volume",		"snd_announcervolume", 0, 1, 0.05 // [TP]
+	Slider "Sounds volume",			"snd_sfxvolume", 0, 1, 0.05, 2
+	Slider "Menu volume",			"snd_menuvolume", 0, 1, 0.05, 2
+	Slider "Music volume",			"snd_musicvolume", 0, 1, 0.05, 2
+	Slider "Announcer volume",		"snd_announcervolume", 0, 1, 0.05, 2 // [TP]
 	Option "Announcer",				"cl_announcer",		"ZA_Announcers" // [TP]
 	StaticText " "
 	Option		"QCDE Weapon hit-beeps",			"cl_hitbeep",				"OnOff"
