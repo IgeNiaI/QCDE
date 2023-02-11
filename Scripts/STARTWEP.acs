@@ -29,6 +29,13 @@ script "QCDE_StartingWeapon_Apply" (void)
 	str weapon2 = "QCMachinegun"; 	if(GameType() >= 2) weapon2 = strparam(s:"QCShotgunDM"  );
 	str weapon3 = "QCNailgun"; 		if(GameType() >= 2) weapon3 = strparam(s:weapon3, s:"DM");
 
+	if(PlayerIsBot(PlayerNumber()))
+	{
+		TakeInventory("QCGauntlet",1);
+		delay(1);
+		GiveInventory("QCGauntlet_Bot"	,1);
+	}
+
 	// Stop if can't choose and already have a weapon
 	// Continue if can, or if have no weapons because from poor contry (poland)
 	if(CheckInventory("Starter_CantChoose") &&
@@ -37,13 +44,13 @@ script "QCDE_StartingWeapon_Apply" (void)
 	    CheckInventory(weapon3) )) terminate;
 
 	// Don't remove ammo for weak weapon if stronger one is present
-	if(!CheckInventory("QCHeavyMachinegun"))
+	if(!CheckInventory("QCHeavyMachinegun") && !CheckInventory("QCHeavyMachinegun"))
 	{
 		TakeInventory(weapon1, 1);
 		TakeInventory("QCBulletAmmo", 125);
 	}
 	TakeInventory("QCShotgunDM", 1);
-	if(!CheckInventory("QCSuperNailgun"))
+	if(!CheckInventory("QCSuperNailgun") && !CheckInventory("QCSuperNailgunDM"))
 	{
 		TakeInventory(weapon3, 1);
 		TakeInventory("QCNailAmmo", 125);
@@ -81,6 +88,12 @@ script "QCDE_StartingWeapon_Apply" (void)
 	// Don't re-give weak weapons if stronger ones are present in coop
 	if(CheckInventory("QCHeavyMachinegun")) TakeInventory(weapon1,1);
 	if(CheckInventory("QCSuperNailgun"   )) TakeInventory(weapon3,1);
+
+	if(PlayerIsBot(PlayerNumber()))
+	{
+		// Don't include scripts that apply to both live players and bots.
+		ACS_NamedExecuteAlways("QCDE_Bot_Weaponize",0);
+	}
 }
 
 script "QCDE_SelectUpgradedWeapon" (int weap)

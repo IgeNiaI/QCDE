@@ -533,9 +533,6 @@ Script "QCDE_NewLife_BOT" (void)
 	if(!PlayerIsBot(PlayerNumber())) terminate;
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // bots only matter in DM
 
-	// Don't include scripts that apply to both live players and bots.
-	ACS_NamedExecuteAlways("QCDE_Bot_Weaponize",0);
-
 	// Initial thrust, to prevent them from camping spawn
 	ThrustThing(GetActorAngle(0) >> 8, BOT_INITIAL_THRUST, 0, 0);
 	ThrustThingZ(0, BOT_INITIAL_THRUST, 0, 1);

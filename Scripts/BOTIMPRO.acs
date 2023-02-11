@@ -41,9 +41,9 @@ script "QCDE_Bot_Weaponize" (void)
 	int skill = GetCVar("bot_weaponize") + GetCVar("botskill");
 
 	// Skill-based chance to get weapons
-	if( random(1,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap", 8) )	GiveInventory("QCHeavyMachinegunDM"	,1);
-	if( random(2,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap",10) )	GiveInventory("QCSuperShotgunDM"	,1);
-	if( random(3,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap",12) )	GiveInventory("QCSuperNailgunDM"	,1);
+	if( random(1,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap", 8) )	{ GiveInventory("QCHeavyMachinegunDM"	,1); TakeInventory("QCMachinegunDM",1); }
+	if( random(2,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap",10) )	{ GiveInventory("QCSuperShotgunDM"		,1); TakeInventory("QCShotgunDM",1); }
+	if( random(3,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap",12) )	{ GiveInventory("QCSuperNailgunDM"		,1); TakeInventory("QCNailgunDM",1); }
 	if( random(4,20) <= skill ) if( ACS("QCDE_IsWeaponOnMap",14) )	GiveInventory("QCTriboltDM"			,1);
 	if( random(5,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap",16) )	GiveInventory("QCRocketLauncherDM"	,1);
 	if( random(6,20) <= skill ) if( ACS("QCDE_IsWeaponOnMap",18) )	GiveInventory("QCLightningGunDM"	,1);
