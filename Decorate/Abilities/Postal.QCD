@@ -45,10 +45,10 @@ Actor PostalCowDropProc : CustomInventory
 	{
 	Pickup:
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DM")
-		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlace",0,0,0,-10)
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlace",0,0,0,-10, FPF_UNLAGDEATH)
 		Stop
 	DM:
-		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10)
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10, FPF_UNLAGDEATH)
 		Stop
 	}
 }
@@ -121,10 +121,10 @@ Actor PostalCowHead : QCWeapon
 	Primary:
 		TNT1 A 0 A_TakeInventory("CowHeadToken", 1, TIF_SKIPOWNER)
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"PrimaryDM")
-		TNT1 A 0 A_FireCustomMissile("CowHeadProjectile")
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectile", FPF_UNLAGDEATH)
 		Stop
 	PrimaryDM:
-		TNT1 A 0 A_FireCustomMissile("CowHeadProjectileDM")
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectileDM", FPF_UNLAGDEATH)
 		Stop
 
 	//-------------------------------------------------------
@@ -144,10 +144,10 @@ Actor PostalCowHead : QCWeapon
 
 	Secondary:
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"SecondaryDM")
-		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlace",0,0,0,-10)
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlace",0,0,0,-10, FPF_UNLAGDEATH)
 		Stop
 	SecondaryDM:
-		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10)
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10, FPF_UNLAGDEATH)
 		Stop
 	}
 }
