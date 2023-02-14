@@ -206,7 +206,7 @@ Actor EradicatorDummy : PlHeavyDummy 23420
 {	XScale 0.76	YScale 0.75		States	{	Spawn: 	QP20 ABCDEFGHM 12 A_SetUserVar(user_test,1)	Loop	}	}
 
 Actor BlazkowiczDummy : PlMediumDummy 23421
-{	XScale 0.82 YScale 1.02		States	{	Spawn: 	QP21 ABCDEFG 12 A_SetUserVar(user_test,1)	Loop	}	}
+{	Scale 0.58					States	{	Spawn: 	QP21 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
 
 Actor FreemanDummy : PlMediumDummy 23422
 {	Scale 0.55					States	{	Spawn: 	QP22 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
