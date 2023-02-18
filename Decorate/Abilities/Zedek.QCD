@@ -270,13 +270,11 @@ Actor ZedekCannonball
 		//TNT1 A 0 A_LogInt(velz*14)
 		TNT1 A 0 A_AlertMonsters(velz * 16)
 		//Medals start
-		TNT1 A 0 A_GiveToTarget("AbilityToken", 1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 0 A_GiveToTarget("AbilityTokenGiver", 1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		//Medals end
 		TNT1 A 0 A_Explode(64 + velz * 1.5, velz * 11, 0, 0, velz * 7)
 		TNT1 A 0 A_SpawnItemEx("GroundDust", 0,0,5, 0,0,frandom(0,1.4),0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_SKIPOWNER|SXF_TRANSFERPOINTERS)
-		TNT1 A 10 A_PlaySound("QC/Abilities/Zedek/FloorPound", CHAN_AUTO, velz/24, false, 1.6 - sqrt(velz)/12)
-		TNT1 A 60 A_TakeFromTarget("AbilityToken", 1)
-		//Medals end
-
+		TNT1 A 70 A_PlaySound("QC/Abilities/Zedek/FloorPound", CHAN_AUTO, velz/24, false, 1.6 - sqrt(velz)/12)
 		Stop
 	}
 }

@@ -98,13 +98,10 @@ Actor GhostwalkKillerDM
 	States
 	{
 	Spawn:
+		TNT1 A 0 NoDelay A_Explode(1200,13,0)
 		//Medals start
-		TNT1 A 0 NoDelay A_GiveToTarget("AbilityToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		TNT1 A 10 A_Explode(1200,13,0)
-		TNT1 A 0 A_TakeFromTarget("AbilityToken",1)
-		TNT1 A 0 A_GiveToTarget("FromTheShadowsToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
-		TNT1 A 35
-		TNT1 A 0 A_TakeFromTarget("FromTheShadowsToken",1)
+		TNT1 A 0 A_GiveToTarget("AbilityTokenGiver", 1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
+		TNT1 A 0 A_GiveToTarget("FromTheShadowsGiver", 1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		//Medals end
 		Stop
 	}

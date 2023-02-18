@@ -119,10 +119,22 @@ Actor NetMasterEnd: MedalToken {Inventory.MaxAmount 1}
 Actor TotemExploded: MedalToken {Inventory.MaxAmount 5}
 
 //Nyx ability token
-Actor FromTheShadowsToken: MedalToken {Inventory.MaxAmount 1}
+Actor PowerFromTheShadows: Powerup {Powerup.Duration 35}
+
+Actor FromTheShadowsGiver: MedalPowerup
+{
+	Powerup.Type "FromTheShadows"
+	Powerup.Duration 35
+}
 
 //Projectile abilities for now check for this token
-Actor AbilityToken: MedalToken {Inventory.MaxAmount 10}
+Actor PowerAbilityToken: Powerup {Powerup.Duration 3}
+
+Actor AbilityTokenGiver: MedalPowerup
+{
+	Powerup.Type "AbilityToken"
+	Powerup.Duration 3
+}
 
 //////////////////////////////////////////////////
 //

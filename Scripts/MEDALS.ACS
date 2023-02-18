@@ -40,6 +40,8 @@ script "MedalsInitiator" ENTER {
 
 	if(!GetCVar("lastmanstanding") && !GetCVar("teamlms")) //don't give a Tank at every round start
 		ACS_NamedExecuteAlways("QCDE_Tank", 0);
+
+	killingSpree[PlayerNumber()] = 0;
 }
 
 script "ResetMedalCounters" DEATH {
@@ -83,113 +85,23 @@ script "ResetMedalCounters" DEATH {
 	killingSpree[plr] = 0;
 }
 
+function int QCDE_ProximityCheck(int victimTID, int killerTID) {
+
+	int xDiff = GetActorX(victimTID) - GetActorX(killerTID);
+	int yDiff = GetActorY(victimTID) - GetActorY(killerTID);
+	int zDiff = GetActorZ(victimTID) - GetActorZ(killerTID);
+
+	int len = VectorLength(xDiff, yDiff);
+		len = VectorLength(zDiff, len);
+
+	return len >> 16;
+}
+
 //////////////////////////////////////////////////////////////////
 //																//
 //	Medal Scripts												//
 //																//
 //////////////////////////////////////////////////////////////////
-
-//All Medals that are activated on death merged into one to save resources
-
-script "QCDE_WhatsYourPoison" DEATH {
-
-	if(GameType() < GAME_NET_DEATHMATCH)
-		terminate;
-
-	//Get info about killed
-	int a = ActivatorTID();
-
-	SetActivatorToTarget(0);
-
-	//this check needs to live down here as getCVar checks the activator
-	if(!GetCVar("cl_qcmedals"))
-		terminate;
-
-	//To avoid getting medals for your own death check if TID of activator is different from target
-	int b = ActivatorTID();
-
-	if(a == b)
-		terminate;
-
-	//Get coordinate differences for Perforated
-	int xDiff = GetActorX(a) - GetActorX(b);
-	int yDiff = GetActorY(a) - GetActorY(b);
-	int zDiff = GetActorZ(a) - GetActorZ(b);
-
-	//From The Grave, if killer and victim are dead killer gets medal
-	if((0 >= GetActorProperty(a,APROP_HEALTH)) && (0 >= GetActorProperty(b,APROP_HEALTH)))
-		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_FTGRAVE);
-
-	//This delay is essential for the DEATH script to have time to detect necessary item in killer
-	Delay(3);
-
-	//Combo Kill
-	if(CheckInventory("PowerSickShot"))
-		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_CKILL);
-
-	//Humiliation
-	if(CheckWeapon("QCGauntlet") && CheckInventory("PunchedAlready"))
-		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_HUMIL);
-
-	//Show Stopper
-	SetActivator(a);
-	if(CheckInventory("SpreeToken")) {
-		SetActivator(b);
-		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SSTOPPER);
-	}
-
-	//Party Breaker
-	SetActivator(a);
-	if(CheckInventory("QuadTimer") || CheckInventory("ProtecTimer")) {
-		SetActivator(b);
-		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PBREAKER);
-	}
-
-	//Perforated
-	SetActivator(a);
-	if(-2000 >= GetActorProperty(0,APROP_HEALTH)) {
-
-		int len = VectorLength(xDiff, yDiff);
-		len = VectorLength(zDiff, len);
-
-		if((len >> 16) < 64) { //if we are close enough, this was a telefrag
-
-			SetActivator(b);
-
-			if(CheckInventory("PowerRGFired")) //no-no if Instagib point blank range with Quad Damage - just in case
-				terminate;
-
-			//Check for Shub Slaying
-			if(CheckInventory("Class_Ranger") && CheckInventory("ActiveProgressToken")) {
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SHUB);
-				terminate;
-			}
-
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PERFORATED);
-			//I have to terminate here otherwise a Perforated player would always also give Ring Out medal
-			//Ringed out player cannot have less than -2000 health (Telefrag damage -1000000, Instadeath Floor -999)
-			//
-			//Actually can by recieving damage through DamageThing when passed 0 as damage amount, deals the same as telefrag
-			//to bypass god and buddha [kultasakaali]
-			terminate;
-		}
-	}
-
-	//Ring Out - not when instagib
-	SetActivator(a);
-	if(-500 > GetActorProperty(0,APROP_HEALTH))	{
-
-		SetActivator(b);
-		//also don't for Nyx ghostwalk kill, instead yield ability medal
-		if(CheckInventory("Class_Nyx") && CheckInventory("AbilityToken")) {
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_INSIDEOUT);
-			terminate;
-		}/* else if(!GetCVar("instagib")) {
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_RINGOUT);
-			terminate;
-		}*/
-	}
-}
 
 //Handles various medals that should activate on frag events
 script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
@@ -199,6 +111,13 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 
 	//GAMEEVENT_PLAYERFRAGS
 	if(evtTyp == 0) {
+		int victimTID = 1000 + victimNo;
+		int victimActiveTokens = CheckActorInventory(victimNo+1000, "ActiveProgressToken");
+		int victimSpreeToken = CheckActorInventory(victimTID, "SpreeToken");
+		int killerAbilityToken = CheckInventory("PowerAbilityToken");
+		int killerHP = GetActorProperty(0, APROP_Health);
+		int victimHP = GetActorProperty(victimTID, APROP_Health);
+		int distance = QCDE_ProximityCheck(victimTID, ActivatorTID());
 
 		if(!GetCVar("cl_qcmedals")) {
 			if(!firstBloodGiven)			//still have to flip the switch even if the fist killer has turned medals off
@@ -206,16 +125,10 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 			terminate;
 		}
 
-		int victimTID = 1000 + victimNo;
-		int killerHP = GetActorProperty(0, APROP_Health);
-
-		if(victimTID == ActivatorTID())		//redundant check? PLAYERFRAGS doesn't seem to trigger on suicide
-			terminate;
-
 		ACS_NamedExecuteAlways("QCDE_Excellent", 0, Timer());
 		ACS_NamedExecuteAlways("QCDE_KillingSpree", 0);
 
-		Delay(5);	//Delay these checks slightly to prevent two medals showing at the same time
+		Delay(3);	//Delay these checks slightly to leave time for other scripts to run
 
 		//////////////////////
 		//	Ability medals	//
@@ -246,12 +159,8 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 		if(CheckInventory("PowerInjectionSpeed"))
 			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_JUNKIE);
 
-		//Nyx
-		if(CheckInventory("FromTheShadowsToken"))
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_FTSHADOWS);
-
 		//Projectile or puff based abilities
-		if(CheckInventory("AbilityToken")) {
+		if(killerAbilityToken) {
 
 			//Keel
 			if(CheckInventory("Class_Keel"))
@@ -264,9 +173,17 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 			//Zedek
 			if(CheckInventory("Class_Zedek"))
 				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_STOMPER);
+
+			//Nyx
+			if(CheckInventory("Class_Nyx")) {
+				bool insidedOut = true;
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_INSIDEOUT);
+			}
 		}
 
-		//Nyx's INSIDE OUT @ Ring Out because of the damage dealt by the ability
+		//Nyx
+		if(CheckInventory("PowerFromTheShadows") && !insidedOut && distance > 32)
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_FTSHADOWS);
 
 		//////////////////////
 		//	Other medals	//
@@ -278,14 +195,60 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 			firstBloodGiven = true;
 		}
 
+		//Humiliation
+		if(CheckWeapon("QCGauntlet") && CheckInventory("PunchedAlready"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_HUMIL);
+
+		//From the Grave
+		if(killerHP <= 0 && victimHP <= 0)
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_FTGRAVE);
+
+		//Combo Kill
+		if(CheckInventory("PowerSickShot"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_CKILL);
+
+		//Show Stopper
+		if(victimSpreeToken)
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SSTOPPER);
+
+		//Party Breaker
+		if(CheckActorInventory(victimTID, "QuadTimer") || CheckActorInventory(victimTID, "ProtecTimer"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PBREAKER);
+
 		//Die Hard
-		if(killerHP <= 15 && killerHP > 0) {
+		if(killerHP <= 15 && killerHP > 0)
 			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DIEHARD);
-		}
 
 		//Denied
-		if(CheckActorInventory(victimTID, "ActiveProgressToken") > 0) {
+		if(victimActiveTokens > 0)
 			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DENIED);
+
+		//Perforated
+		if(GetActorProperty(victimTID, APROP_HEALTH) < -2000) {
+			if(distance < 64) { //if we are close enough, this was a telefrag
+
+				if(CheckInventory("PowerRGFired")) //no-no if Instagib point blank range with Quad Damage - just in case
+					terminate;
+
+				//Check for Shub Slaying
+				if(CheckInventory("Class_Ranger") && CheckInventory("ActiveProgressToken")) {
+					ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SHUB);
+					terminate;
+				}
+
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PERFORATED);
+				//I have to terminate here otherwise a Perforated player would always also give Ring Out medal
+				//Ringed out player cannot have less than -2000 health (Telefrag damage -1000000, Instadeath Floor -999)
+				//
+				//Actually can by recieving damage through DamageThing when passed 0 as damage amount, deals the same as telefrag
+				//to bypass god and buddha [kultasakaali]
+				terminate;
+			}
+		}
+
+		//Ring Out
+		if(GetActorProperty(victimTID, APROP_HEALTH) < -500 && !GetCVar("instagib") && !insidedOut) {
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_RINGOUT);
 		}
 
 		//Point Blank
@@ -587,7 +550,7 @@ script "QCDE_PowerUpMassacre" (void) {
 	while((CheckInventory("PowerQuad")) && (PlayerFrags() != f))
 		Delay(10);
 
-	while((CheckInventory("PowerProtecc")) && (PlayerFrags() != f))
+	while((CheckInventory("PowerProtec")) && (PlayerFrags() != f))
 		Delay(10);
 
 	if(PlayerFrags() == f)
