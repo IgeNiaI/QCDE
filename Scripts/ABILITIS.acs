@@ -775,6 +775,7 @@ Script "QCDE_Ability_Kane" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("InjectionProc",1);
 	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_KaneAbilityMovement", 1);
 
 	// Disable remaining damage over time from possible Postal's cow head or Quietus
 	cowgassing_for[PlayerNumber()] = 0;
@@ -787,6 +788,7 @@ Script "QCDE_Ability_Kane" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
 	SetNetworkReplicationFlags( 0 );
+	ACS_NamedExecuteWithResult("QCDE_KaneAbilityMovement", 0);
 }
 
 
@@ -2822,13 +2824,19 @@ Script "QCDE_Ability_Painkiller" (void)
 		SetNetworkReplicationFlags( 0 );
 	}
 
-	//if any of the speed cards were used, get some CPM
-	if(checkinventory("PainkillerCard3Level1")||checkinventory("PainkillerCard3Level2")||checkinventory("PainkillerCard3Level3")||
-	   checkinventory("PvEPainkillerCard3Level1")||checkinventory("PvEPainkillerCard3Level2")||checkinventory("PvEPainkillerCard3Level3"))
+	if(CheckInventory("PainkillerCard3Level1") || CheckInventory("PvEPainkillerCard3Level1"))
 	{
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		SetActorProperty(0,APROP_CpmAirControl,true); //set to CPM
-		SetNetworkReplicationFlags( 0 );
+		ACS_NamedExecuteWithResult("QCDE_PainkillerAbilityMovement", 1);
+	}
+
+	else if(CheckInventory("PainkillerCard3Level2") || CheckInventory("PvEPainkillerCard3Level2"))
+	{
+		ACS_NamedExecuteWithResult("QCDE_PainkillerAbilityMovement", 2);
+	}
+
+	else if(CheckInventory("PainkillerCard3Level3") || CheckInventory("PvEPainkillerCard3Level3"))
+	{
+		ACS_NamedExecuteWithResult("QCDE_PainkillerAbilityMovement", 3);
 	}
 
 	// Wait for duration
@@ -2845,9 +2853,9 @@ Script "QCDE_Ability_Painkiller" (void)
 	while(t --> 0) if(GetActorProperty(0, APROP_Health) > 0  &&  !CheckInventory("NoAbilitiesToken")) delay(1);
 
 	// End of effects
+	ACS_NamedExecuteWithResult("QCDE_PainkillerAbilityMovement", 0);
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ACS("QCDE_Tarot_Hint_End");
-	SetActorProperty(0,APROP_CpmAirControl,false); //reset movement to quake
 	GiveInventory("GenericActiveCleanerProc",1);
 	SetNetworkReplicationFlags( 0 );
 }
@@ -2864,7 +2872,7 @@ Script "QCDE_Ability_Intruder" (void)
 	TakeInventory("PowerIntruderSpeed",1);	//cancels passive buffs
 	TakeInventory("PowerIntruderProtect",1); //cancels passive buffs
 
-	SetActorProperty(0,APROP_CpmAirControl,false); //movement type becomes standard quake for the duration
+	ACS_NamedExecuteWithResult("QCDE_IntruderAbilityMovement", 1);
 	SetNetworkReplicationFlags( 0 );
 
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
@@ -2908,9 +2916,9 @@ Script "QCDE_Ability_Intruder" (void)
 	}
 
 	// Exit at destination
+	ACS_NamedExecuteWithResult("QCDE_IntruderAbilityMovement", 0);
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	ACS_NamedExecuteAlways("IntruderRestoreVisibility",0);  //makes visible again
-	SetActorProperty(0,APROP_CpmAirControl,true); //movement back to CPM
 	GiveInventory("WendigoOutProc",1);
 	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteAlways("QCDE_RestoreIndicator",0);
@@ -5095,7 +5103,11 @@ Script "QCDE_Passive_Eleena" (void)
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
 		// Training Weights
-		SetInventory("PowerEleenaSpeed", !CheckInventory("BasicArmor"));
+		if (CheckInventory("BasicArmor")) {
+			ACS_NamedExecuteWithResult("QCDE_EleenaAbilityMovement", 1);
+		} else {
+			ACS_NamedExecuteWithResult("QCDE_EleenaAbilityMovement", 0);
+		}
 
 		delay(1);
 	}
@@ -5525,7 +5537,7 @@ Script "QCDE_Passive_Painkiller" (int activate)
 
 	delay(1); // Necessary not to crash GZDoom on morph
 
-	SetActorProperty(0,APROP_MvType,MVTYPE_VQ3); //reset movement to quake
+	ACS_NamedExecuteWithResult("QCDE_PainkillerAbilityMovement", 0);
 	GiveInventory("DemonMorphProc",1);
 	// Break tarot if active
 	GiveInventory("NoAbilitiesToken",1);

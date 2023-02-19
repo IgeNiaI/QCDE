@@ -18,13 +18,11 @@
 
 Actor QCPlayer : PlayerPawn
 {
-	Speed 1.0
+	// Speed 1.0 // all movement properties are set in MOVEMENT.acs now
 	Health 100
 	Mass 58
 	PainChance 255
 	Gravity 0.75
-	Player.JumpZ 7.45
-	Player.SecondJumpZ 7.45
 	+BRIGHT
 
 	Player.ActionScript "altattack" "QCDE_ZoomControl"
@@ -32,9 +30,6 @@ Actor QCPlayer : PlayerPawn
 
 	Player.CrouchScale 0.75
 	Player.CrouchChangeSpeed 0.08
-
-	Player.MvType 1 // quake
-	Player.JumpDelay 0
 
 	Player.WeaponSlot 1, QCGauntlet
 	Player.WeaponSlot 2, QCMachinegun, QCHeavyMachinegun,		QCMachinegunDM, QCHeavyMachinegunDM
@@ -123,7 +118,6 @@ Actor QCRanger : QCPlayerMedium
 	Player.DisplayName "Ranger"
 	Player.SoundClass "Ranger"
 
-	Speed 1.0
 	Scale 0.88
 
 	Player.FootstepInterval 10
@@ -283,16 +277,8 @@ Actor QCDoomSlayer : QCPlayerMedium
 	Player.DisplayName "DoomSlayer"
 	Player.SoundClass "DoomSlayer"
 
-	Speed 0.89
 	XScale 0.98
 	YScale 1.02
-
-	Player.EffectActor "secondjump" "MultiJumpFX"
-
-	Player.MvType 0 // doom
-	Player.AirAcceleration 0.2
-	Player.SecondJumpDelay 0
-	Player.SecondJumpAmount 1
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -450,11 +436,7 @@ Actor QCCorvus : QCPlayerMedium
 	Player.DisplayName "Corvus"
 	Player.SoundClass "Corvus"
 
-	Speed 0.9
 	Scale 1.1
-
-	Player.MvType 0 // doom
-	Player.AirAcceleration 0.2
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -608,16 +590,10 @@ Actor QCCorvus : QCPlayerMedium
 
 Actor QCKane : QCPlayerLight
 {
-	+CROUCHSLIDE
-
 	Player.DisplayName "Kane"
 	Player.SoundClass "Kane"
 
-	Speed 1.02
 	Scale 0.537
-
-	Player.CrouchSlideMaxTics 35
-	Player.CrouchSlideAcceleration 8.0
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -780,7 +756,6 @@ Actor QCCaleb : QCPlayerLight
 	Player.DisplayName "Caleb"
 	Player.SoundClass "Caleb"
 
-	Speed 1.02
 	Scale 0.46
 
 	Player.FootstepInterval 10
@@ -940,12 +915,8 @@ Actor QCMenelkir : QCPlayerLight
 	Player.DisplayName "Menelkir"
 	Player.SoundClass "Menelkir"
 
-	Speed 0.9
 	XScale 0.79
 	YScale 0.9
-
-	Player.MvType 0 // doom
-	Player.AirAcceleration 0.2
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -1102,7 +1073,6 @@ Actor QCTerminator : QCPlayerHeavy
 	Player.DisplayName "Terminator"
 	Player.SoundClass "Terminator"
 
-	Speed 0.97
 	XScale 0.87
 	YScale 0.9
 
@@ -1296,12 +1266,8 @@ Actor QCZedek : QCPlayerHeavy
 	Player.DisplayName "Zedek"
 	Player.SoundClass "Zedek"
 
-	Speed 0.89
 	XScale 0.93
 	YScale 0.98
-
-	Player.MvType 0 // doom
-	Player.AirAcceleration 0.2
 
 	Player.FootstepInterval 13
 	Player.FootstepVolume 0.75
@@ -1458,16 +1424,8 @@ Actor QCZedek : QCPlayerHeavy
 
 Actor QCInquisitor : QCPlayerHeavy
 {
-	+DOUBLETAPJUMP
-
-	Speed 0.97
 	XScale 0.41
 	YScale 0.525
-
-	Player.SecondJumpXY 10.0
-	Player.SecondJumpZ 1
-	Player.SecondJumpDelay 17
-	Player.SecondJumpAmount 1
 
 	Player.FootstepInterval 13
 	Player.FootstepVolume 0.75
@@ -1631,12 +1589,9 @@ Actor QCInquisitor : QCPlayerHeavy
 //======================================================================================
 Actor QCBitterman : QCPlayerHeavy
 {
-	+EDGEJUMP
-
 	Player.DisplayName "Bitterman"
 	Player.SoundClass "Bitterman"
 
-	Speed 0.97
 	Scale 0.74
 
 	Player.FootstepInterval 12
@@ -1798,11 +1753,7 @@ Actor QCGalen : QCPlayerMedium
 	Player.DisplayName "Galen"
 	Player.SoundClass "Galen"
 
-	Speed 0.9
 	Scale 0.885
-
-	Player.MvType 0 // doom
-	Player.AirAcceleration 0.2
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -1956,17 +1907,11 @@ Actor QCGalen : QCPlayerMedium
 
 Actor QCNyx : QCPlayerLight
 {
-	+WALLJUMP
-
 	Player.DisplayName "Nyx"
 	Player.SoundClass "Nyx"
 
-	Speed 1.02
 	XScale 0.82
 	YScale 0.925
-
-	Player.SecondJumpDelay 0
-	Player.SecondJumpAmount 1
 
 	Player.FootstepInterval 9
 	Player.FootstepVolume 0.5625
@@ -2125,11 +2070,8 @@ Actor QCSorgaul : QCPlayerHeavy
 	Player.DisplayName "Sorgaul"
 	Player.SoundClass "Sorgaul"
 
-	Speed 0.97
 	XScale 0.54
 	YScale 0.74
-
-	Player.AirAcceleration 0.165
 
 	Player.FootstepInterval 11
 	Player.FootstepVolume 0.75
@@ -2299,7 +2241,6 @@ Actor QCDukeNukem : QCPlayerMedium
 	Player.DisplayName "Duke Nukem" //Needed to have that space
 	Player.SoundClass "DukeNukem"
 
-	Speed 1.0
 	Scale 0.692
 
 	Player.FootstepInterval 10
@@ -2464,18 +2405,11 @@ Actor QCDukeNukem : QCPlayerMedium
 //======================================================================================
 Actor QCDurandal : QCPlayerLight
 {
-	+CPMAIRCONTROL
-
 	Player.DisplayName "Durandal"
 	Player.SoundClass "Durandal"
 
-	Speed 0.975
 	XScale 0.7
 	YScale 0.65
-
-	Player.VelocityCap 20
-	Player.CpmMaxForwardAngleRad 0.0872665
-	Player.CpmAirAcceleration 10
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -2631,7 +2565,6 @@ Actor QCKeel : QCPlayerHeavy
 	Player.DisplayName "Keel"
 	Player.SoundClass "Keel"
 
-	Speed 0.97
 	XScale 0.52
 	YScale 0.645
 
@@ -2788,7 +2721,6 @@ Actor QCSarge : QCPlayerMedium
 	Player.DisplayName "Sarge"
 	Player.SoundClass "Sarge"
 
-	Speed 1.02
 	Scale 0.71
 
 	Player.FootstepInterval 10
@@ -2943,7 +2875,6 @@ Actor QCLoWang : QCPlayerLight
 	Player.DisplayName "Lo Wang"
 	Player.SoundClass "LoWang"
 
-	Speed 1.02
 	Scale 0.53
 
 	Player.FootstepInterval 10
@@ -3114,7 +3045,6 @@ Actor QCGrayson : QCPlayerMedium
 	Player.DisplayName "Grayson"
 	Player.SoundClass "Grayson"
 
-	Speed 1.0
 	Scale 0.745
 
 	Player.FootstepInterval 10
@@ -3271,18 +3201,11 @@ Actor QCGrayson : QCPlayerMedium
 
 Actor QCEradicator : QCPlayerHeavy
 {
-	+CPMAIRCONTROL
-
 	Player.DisplayName "Eradicator"
 	Player.SoundClass "Eradicator"
 
-	Speed 0.95
 	XScale 0.76
 	YScale 0.75
-
-	Player.VelocityCap 20
-	Player.CpmMaxForwardAngleRad 0.0872665
-	Player.CpmAirAcceleration 10
 
 	Player.FootstepInterval 13
 	Player.FootstepVolume 0.75
@@ -3443,7 +3366,6 @@ Actor QCBlazkowicz : QCPlayerMedium
 	Player.DisplayName "Blazkowicz"
 	Player.SoundClass "Blazkowicz"
 
-	Speed 1.0
 	Scale 0.58
 
 	Player.FootstepInterval 10
@@ -3602,12 +3524,8 @@ Actor QCFreeman : QCPlayerMedium
 	Player.DisplayName "Freeman"
 	Player.SoundClass "Freeman"
 
-	Speed 1.0
 	Scale 0.55
 
-	+CROUCHSLIDE
-	Player.CrouchSlideMaxTics 70
-	Player.CrouchSlideAcceleration 5.5
 	Player.FootstepInterval 13
 	Player.FootstepVolume 0.675
 
@@ -3765,7 +3683,6 @@ Actor QCVorMatur : QCPlayerHeavy
 	Player.DisplayName "VorMatur"
 	Player.SoundClass "VorMatur"
 
-	Speed 0.97
 	XScale 0.58
 	YScale 0.76
 
@@ -3930,16 +3847,10 @@ Actor QCEleena : QCPlayerLight
 	Player.DisplayName "Eleena"
 	Player.SoundClass "Eleena"
 
-	Speed 1.02
 	Scale 0.595
-
-	Player.ActionScript "jump" "QCDE_Eleena_Jump"
-	Player.ActionScript "crouch" "QCDE_Eleena_Crouch"
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.46875
-
-	Player.JumpZ 7.8
 
 	Player.MaxHealth 125
 	Health 125
@@ -4096,7 +4007,6 @@ Actor QCLucienne : QCPlayerLight
 	Player.DisplayName "Lucienne"
 	Player.SoundClass "Lucienne"
 
-	Speed 1.02
 	Scale 0.551
 
 	Player.FootstepInterval 10
@@ -4278,8 +4188,6 @@ Actor LucienneWeapon
 
 Actor QCMajor : QCPlayerHeavy
 {
-	+WALLCLIMB
-
 	Player.DisplayName "Major"
 	Player.SoundClass "Major"
 
@@ -4287,10 +4195,7 @@ Actor QCMajor : QCPlayerHeavy
 	Radius 16	// Same as a medium
 	MaxStepHeight 36
 
-	Speed 0.97
 	Scale 0.88
-
-	Player.WallClimbFriction 4
 
 	Player.FootstepInterval 11
 	Player.FootstepVolume 0.5625
@@ -4447,7 +4352,6 @@ Actor QCHunter : QCPlayerLight
 	Player.DisplayName "Hunter"
 	Player.SoundClass "Hunter"
 
-	Speed 1.02
 	Scale 0.715
 
 	Player.FootstepInterval 10
@@ -4607,7 +4511,6 @@ Actor QCSam : QCPlayerHeavy
 	Player.DisplayName "Sam"
 	Player.SoundClass "Sam"
 
-	Speed 0.97
 	XScale 0.69
 	YScale 0.57
 
@@ -4767,12 +4670,8 @@ Actor QCPostal : QCPlayerLight
 	Player.DisplayName "Postal"
 	Player.SoundClass "Postal"
 
-	Speed 1.02
 	XScale 0.5
 	YScale 0.58
-
-	Player.ActionScript "jump" "QCDE_Postal_Jump"
-	Player.ActionScript "crouch" "QCDE_Postal_Crouch"
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -4931,7 +4830,6 @@ Actor QCPainkiller : QCPlayerMedium
 	Player.DisplayName "Painkiller"
 	Player.SoundClass "Painkiller"
 
-	Speed 1.0
 	Scale 0.75
 
 	Player.FootstepInterval 10
@@ -5098,17 +4996,11 @@ Actor QCPainkiller : QCPlayerMedium
 
 Actor QCIntruder : QCPlayerMedium
 {
-	+CPMAIRCONTROL
-
 	Player.DisplayName "Intruder"
 	Player.SoundClass "Intruder"
 
-	Speed 0.96
 	XScale 0.68
 	YScale 0.75
-
-	Player.VelocityCap 20
-	Player.CpmAirAcceleration 10
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.65625
@@ -5282,10 +5174,7 @@ Actor QCOrbb : QCPlayerLight
 	Player.SideMove 0.78,1.25,0.54,1.04
 	Player.FootstepsEnabled 0,1,0,1
 
-	Speed 1.02
 	Scale 0.46
-
-	Player.ActionScript "crouch" "QCDE_Orbb_Bounce"
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625

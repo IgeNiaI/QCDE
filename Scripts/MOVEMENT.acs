@@ -1,0 +1,243 @@
+#library "MOVEMENT"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+Script "QCDE_ConfigureMovement" (void)
+{
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS("QCDE_ConfigureMovement_CLIENTSIDE");
+
+	// Common
+	SetActorProperty(0, APROP_MvType, 1);
+	SetActorProperty(0, APROP_JumpDelay, 0);
+	SetActorProperty(0, APROP_JumpZ, 7.45);
+	SetActorProperty(0, APROP_AirAcceleration, 0.25);
+
+	if ( // Most Medium champs
+		CheckInventory("Body_Medium")
+	) {
+		SetActorProperty(0, APROP_Speed, 1.0);
+	}
+
+	else if ( // Most Light champs
+		CheckInventory("Body_Small")
+	) {
+		SetActorProperty(0, APROP_Speed, 1.02);
+	}
+
+	else if ( // Most Heavy champs
+		CheckInventory("Body_Big")
+	) {
+		SetActorProperty(0, APROP_Speed, 0.97);
+	}
+
+	// Champion specific values
+	if (
+		CheckInventory("Class_Doomslayer")
+	) {
+		SetActorProperty(0, APROP_MvType, 0);
+		SetActorProperty(0, APROP_Speed, 0.89);
+		SetActorProperty(0, APROP_AirAcceleration, 0.2);
+		SetActorProperty(0, APROP_SecondJumpAmount, 1);
+		SetActorProperty(0, APROP_SecondJumpZ, 7.45);
+		SetActorProperty(0, APROP_SecondJumpDelay, 0);
+		SetEffectActor(0, EA_SECOND_JUMP, "MultiJumpFX");
+	}
+
+	else if (
+		CheckInventory("Class_Corvus") ||
+		CheckInventory("Class_Menelkir") ||
+		CheckInventory("Class_Galen")
+	) {
+		SetActorProperty(0, APROP_MvType, 0);
+		SetActorProperty(0, APROP_Speed, 0.9);
+		SetActorProperty(0, APROP_AirAcceleration, 0.2);
+	}
+
+	else if (
+		CheckInventory("Class_Kane")
+	) {
+		SetActorProperty(0, APROP_CrouchSlide, true);
+		SetActorProperty(0, APROP_CrouchSlideAcceleration, 8.0);
+		SetActorProperty(0, APROP_CrouchSlideFriction, 1.0);
+		SetActorProperty(0, APROP_CrouchSlideMaxTics, 35.0);
+		SetActorProperty(0, APROP_CrouchSlideRegen, 2.0);
+	}
+
+	else if (
+		CheckInventory("Class_Zedek")
+	) {
+		SetActorProperty(0, APROP_MvType, 0);
+		SetActorProperty(0, APROP_Speed, 0.89);
+		SetActorProperty(0, APROP_AirAcceleration, 0.2);
+	}
+
+	else if (
+		CheckInventory("Class_Inquisitor")
+	) {
+		SetActorProperty(0, APROP_DoubleTapJump, true);
+		SetActorProperty(0, APROP_SecondJumpXY, 10.0);
+		SetActorProperty(0, APROP_SecondJumpZ, 1);
+		SetActorProperty(0, APROP_SecondJumpDelay, 17);
+		SetActorProperty(0, APROP_SecondJumpAmount, 1);
+	}
+
+	else if (
+		CheckInventory("Class_Bitterman")
+	) {
+		SetActorProperty(0, APROP_EdgeJump, true);
+	}
+
+	else if (
+		CheckInventory("Class_Nyx")
+	) {
+		SetActorProperty(0, APROP_WallJump, true);
+		SetActorProperty(0, APROP_SecondJumpAmount, 1);
+		SetActorProperty(0, APROP_SecondJumpZ, 7.45);
+		SetActorProperty(0, APROP_SecondJumpDelay, 0);
+	}
+
+	else if (
+		CheckInventory("Class_Sorgaul")
+	) {
+		SetActorProperty(0, APROP_AirAcceleration, 0.165);
+	}
+
+	else if (
+		CheckInventory("Class_Durandal")
+	) {
+		SetActorProperty(0, APROP_CpmAirControl, true);
+		SetActorProperty(0, APROP_Speed, 0.975);
+		SetActorProperty(0, APROP_VelocityCap, 20.0);
+		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0872665);
+		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
+	}
+
+	else if (
+		CheckInventory("Class_Sarge")
+	) {
+		SetActorProperty(0, APROP_Speed, 1.02);
+	}
+
+	else if (
+		CheckInventory("Class_Eradicator")
+	) {
+		SetActorProperty(0, APROP_CpmAirControl, true);
+		SetActorProperty(0, APROP_Speed, 0.95);
+		SetActorProperty(0, APROP_VelocityCap, 20.0);
+		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0872665);
+		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
+	}
+
+	else if (
+		CheckInventory("Class_Freeman")
+	) {
+		SetActorProperty(0, APROP_CrouchSlide, true);
+		SetActorProperty(0, APROP_CrouchSlideAcceleration, 5.5);
+		SetActorProperty(0, APROP_CrouchSlideFriction, 1.0);
+		SetActorProperty(0, APROP_CrouchSlideMaxTics, 70.0);
+		SetActorProperty(0, APROP_CrouchSlideRegen, 2.0);
+	}
+
+	else if (
+		CheckInventory("Class_Eleena")
+	) {
+		SetActorProperty(0, APROP_JumpZ, 7.8);
+		SetActionScript(0, BT_JUMP, "QCDE_Eleena_Jump");
+		SetActionScript(0, BT_CROUCH, "QCDE_Eleena_Crouch");
+	}
+
+	else if (
+		CheckInventory("Class_Major")
+	) {
+		SetActorProperty(0, APROP_WallClimb, true);
+		SetActorProperty(0, APROP_WallClimbSpeed, 5.0);
+		SetActorProperty(0, APROP_WallClimbFriction, 4.0);
+		SetActorProperty(0, APROP_WallClimbMaxTics, 70.0);
+		SetActorProperty(0, APROP_WallClimbRegen, 2.0);
+	}
+
+	else if (
+		CheckInventory("Class_Postal")
+	) {
+		SetActionScript(0, BT_JUMP, "QCDE_Postal_Jump");
+		SetActionScript(0, BT_CROUCH, "QCDE_Postal_Crouch");
+	}
+
+	else if (
+		CheckInventory("Class_Intruder")
+	) {
+		SetActorProperty(0, APROP_CpmAirControl, true);
+		SetActorProperty(0, APROP_Speed, 0.96);
+		SetActorProperty(0, APROP_VelocityCap, 20.0);
+		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.122173);
+		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
+	}
+
+	else if (
+		CheckInventory("Class_Orbb")
+	) {
+		SetActionScript(0, BT_CROUCH, "QCDE_Orbb_Bounce");
+	}
+	// ^ insert more classes here if needed
+}
+
+Script "QCDE_ConfigureMovement_CLIENTSIDE" (void) clientside
+{
+	ACS("QCDE_ConfigureMovement");
+}
+
+Script "QCDE_KaneAbilityMovement" (int active)
+{
+	// do nothing
+}
+
+Script "QCDE_EleenaAbilityMovement" (int hasArmor)
+{
+	if (hasArmor)
+	{
+		SetInventory("PowerEleenaSpeed", 0);
+	}
+	else
+	{
+		SetInventory("PowerEleenaSpeed", 1);
+	}
+}
+
+Script "QCDE_PainkillerAbilityMovement" (int movementCardLevel)
+{
+	switch (movementCardLevel) {
+	case 0:
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		SetActorProperty(0, APROP_CpmAirControl, false);
+		SetActorProperty(0, APROP_Speed, 1.0);
+		SetNetworkReplicationFlags( 0 );
+		break;
+	case 1:
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		SetActorProperty(0, APROP_CpmAirControl, true);
+		SetActorProperty(0, APROP_Speed, 1.0);
+		SetNetworkReplicationFlags( 0 );
+		break;
+	case 2:
+	case 3:
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		SetActorProperty(0, APROP_CpmAirControl, true);
+		SetActorProperty(0, APROP_Speed, 1.05);
+		SetNetworkReplicationFlags( 0 );
+		break;
+	}
+}
+
+Script "QCDE_IntruderAbilityMovement" (int active)
+{
+	if (active)
+	{
+		SetActorProperty(0,APROP_CpmAirControl,false); //movement type becomes standard quake for the duration
+	}
+	else
+	{
+		SetActorProperty(0,APROP_CpmAirControl,true); //movement back to CPM
+	}
+}
