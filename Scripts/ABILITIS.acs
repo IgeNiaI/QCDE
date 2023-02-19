@@ -5103,7 +5103,7 @@ Script "QCDE_Passive_Eleena" (void)
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
 		// Training Weights
-		if (CheckInventory("BasicArmor")) {
+		if (CheckInventory("BasicArmor") > 15) {
 			ACS_NamedExecuteWithResult("QCDE_EleenaAbilityMovement", 1);
 		} else {
 			ACS_NamedExecuteWithResult("QCDE_EleenaAbilityMovement", 0);
