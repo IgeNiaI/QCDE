@@ -47,7 +47,7 @@ Actor ActiveSpeeder : PowerupGiver
 	+INVENTORY.ALWAYSPICKUP
 	Inventory.MaxAmount 0
 	powerup.Type "CorvusSpeed"
-	powerup.duration -7
+	powerup.duration -5
 }
 
 Actor ActiveSpeederDM : PowerupGiver
@@ -56,7 +56,7 @@ Actor ActiveSpeederDM : PowerupGiver
 	+INVENTORY.ALWAYSPICKUP
 	Inventory.MaxAmount 0
 	powerup.Type "CorvusSpeed"
-	powerup.duration -3
+	powerup.duration -2
 }
 
 
@@ -71,7 +71,7 @@ Actor ActiveFlight : PowerupGiver
 	+INVENTORY.ALWAYSPICKUP
 	Inventory.MaxAmount 0
 	powerup.Type "CorvusFlight"
-	powerup.duration -7
+	powerup.duration -5
 }
 
 Actor ActiveFlightDM : PowerupGiver
@@ -80,7 +80,7 @@ Actor ActiveFlightDM : PowerupGiver
 	+INVENTORY.ALWAYSPICKUP
 	Inventory.MaxAmount 0
 	powerup.Type "CorvusFlight"
-	powerup.duration -3
+	powerup.duration -2
 }
 
 
@@ -93,7 +93,7 @@ Actor PowerCorvusRegen : PowerRegeneration
 	//Inventory.Icon "IcnRegen"
 }
 
-Actor CorvusRegenerationDM : PowerupGiver	//2 hp per second
+Actor CorvusRegenerationDM : PowerupGiver	// 2 hp per second
 {
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
@@ -103,7 +103,7 @@ Actor CorvusRegenerationDM : PowerupGiver	//2 hp per second
 	Powerup.Strength 2
 	powerup.duration 0x7FFFFFFF
 }
-Actor CorvusRegenerationCoop : PowerupGiver	//2hp per second, separate from DM to balance further if needed
+Actor CorvusRegenerationCoop : PowerupGiver	// 4 hp per second, separate from DM to balance further if needed
 {
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP

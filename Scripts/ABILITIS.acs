@@ -27,7 +27,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	//             ,               ,                  ,                  ,              , COOLDOWN     , FAIL SND
 	  (25 *35) +XYZ, ( 60 *35) +XYZ, (17)         +XYZ, (17)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // RANGER
 	  (60 *35) +XYZ, (150 *35) +XYZ, (83)         +XYZ, (83)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DOOMSLAYER
-	  (30 *35) +XYZ, ( 30 *35) +XYZ, ( 3 *35)     +XYZ, ( 7 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // CORVUS
+	  (60 *35) +XYZ, ( 60 *35) +XYZ, ( 2 *35)     +XYZ, ( 5 *35)     +XYZ,   3      +XYZ,   2*35   +XYZ, "NoSoundHax"                        , // CORVUS
 	  (40 *35) +XYZ, ( 35 *35) +XYZ, (30)         +XYZ, (30)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // KANE
 	  (30 *35) +XYZ, ( 30 *35) +XYZ, ( 8 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // CALEB
 	  (50 *35) +XYZ, (120 *35) +XYZ, (17)         +XYZ, (17)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // MENELKIR
@@ -46,10 +46,10 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (35 *35) +XYZ, (110 *35) +XYZ, (75)         +XYZ, (75)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GRAYSON
 	  (30 *35) +XYZ, ( 30 *35) +XYZ, (10 *35)     +XYZ, (10 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ERADICATOR
 	  (40 *35) +XYZ, (120 *35) +XYZ, (10 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // BLAZKOWICZ
-	  (50 *35) +XYZ, ( 35 *35) +XYZ, (14)         +XYZ, (14)         +XYZ,   5      +XYZ, 18       +XYZ, "NoSoundHax"                        , // FREEMAN
+	  (50 *35) +XYZ, ( 35 *35) +XYZ, (14)         +XYZ, (14)         +XYZ,   5      +XYZ,   18     +XYZ, "NoSoundHax"                        , // FREEMAN
 	  (25 *35) +XYZ, ( 25 *35) +XYZ, (20)         +XYZ, (20)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // VORMATUR
 	  (30 *35) +XYZ, ( 20 *35) +XYZ, ( 7 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ELEENA
-	  (50 *35) +XYZ, ( 25 *35) +XYZ, ( 3 *35)     +XYZ, ( 3 *35)     +XYZ,   4      +XYZ,  3*35    +XYZ, "NoSoundHax"                        , // LUCIENNE
+	  (50 *35) +XYZ, ( 25 *35) +XYZ, ( 3 *35)     +XYZ, ( 3 *35)     +XYZ,   4      +XYZ,   3*35   +XYZ, "NoSoundHax"                        , // LUCIENNE
 	  (45 *35) +XYZ, (135 *35) +XYZ, ( 4 *35)     +XYZ, ( 4 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // MAJOR
 	  (40 *35) +XYZ, ( 60 *35) +XYZ, ( 7 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // HUNTER
 	  (35 *35) +XYZ, ( 80 *35) +XYZ, ((11 *35)+8) +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SAM
@@ -224,7 +224,6 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 		}
 
 		if(GetLastUse() + GetMultiuseDelay() > Timer()) terminate; // Prevent spam
-		SetLastUse(Timer());
 
 		if (predicting) {
 			//log(s:"Predicting ability!");
@@ -237,6 +236,7 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 			}
 		} else if (!tics[plr]) { // abilities that activate only once
 			//log(s:"Activated single use ability");
+			SetLastUse(Timer());
 			ACS_NamedExecuteWithResult("QCDE_UpdateMultiusePeriod", 0, 0);
 
 				 if(CheckInventory("Class_Ranger"	))	ACS("QCDE_Ability_Ranger"    );
@@ -275,7 +275,8 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 			//log(s:"Activated multi use ability");
 			ACS_NamedExecuteWithResult("QCDE_UpdateMultiusePeriod", 0, 0);
 
-				 if(CheckInventory("Class_Keel"		))	ACS("QCDE_Ability_Keel"      );
+				 if(CheckInventory("Class_Corvus"	))	ACS("QCDE_Ability_Corvus"    );
+			else if(CheckInventory("Class_Keel"		))	ACS("QCDE_Ability_Keel"      );
 			else if(CheckInventory("Class_Freeman"	))	ACS("QCDE_Ability_Freeman"   );
 			else if(CheckInventory("Class_Eleena"	))	ACS("QCDE_Ability_Eleena"    );
 			else if(CheckInventory("Class_Lucienne"	))	ACS("QCDE_Ability_Lucienne"  );
@@ -294,7 +295,8 @@ Script "QCDE_UpdateMultiusePeriod" (void)
 		MultiusePeriod[PlayerNumber()] = (GetCooldown() / GetMultiuse())
 				* GetCvar("sv_cooldownPercentage") / 100
 				* (100 - CheckInventory("CooldownRewardToken") - CheckInventory("CooldownRewardToken2")) / 100;
-		int charges = multiuse - ((PlayerNumber() + (MultiusePeriod[PlayerNumber()] - 1)) / MultiusePeriod[PlayerNumber()]);
+		int plr = PlayerNumber();
+		int charges = multiuse - ((tics[plr] + (MultiusePeriod[plr] - 1)) / MultiusePeriod[plr]);
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("MultiuseCharge", charges);
 		SetNetworkReplicationFlags( 0 );
@@ -447,7 +449,8 @@ Script "QCDE_AbilityCooldown_CLIENTSIDE" (int in_tics, int playAlert) clientside
 	if (in_tics == 0)
 		SetInventory("AbilityCooldownToken",0);
 
-	if (CheckInventory("Class_Keel") || CheckInventory("Class_Freeman") || CheckInventory("Class_Lucienne")) {
+	if (CheckInventory("Class_Corvus") || CheckInventory("Class_Keel")
+		|| CheckInventory("Class_Freeman") || CheckInventory("Class_Lucienne")) {
 		if (extraAbilityData[PlayerNumber()] > 0)
 			extraAbilityData[PlayerNumber()]--;
 		if (extraAbilityData[PlayerNumber()] > 0) {
@@ -745,17 +748,22 @@ Script "QCDE_Ability_Doomslayer" (void)
 
 Script "QCDE_Ability_Corvus" (void)
 {
-	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	GiveInventory("CorvusFlightProc",1);
-	SetNetworkReplicationFlags( 0 );
+	if(!CheckInventory("ActiveProgressToken") && ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
+	{
+		SetLastUse(Timer());
+		extraAbilityData[PlayerNumber()]++;
+		ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
 
-	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
-	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
-	delay(GetDuration()); //duration of active ability
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		GiveInventory("CorvusFlightProc",1);
+		SetNetworkReplicationFlags( 0 );
 
-	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	GiveInventory("GenericActiveCleanerProc",1);
-	SetNetworkReplicationFlags( 0 );
+		delay(GetDuration()); //duration of active ability
+
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		GiveInventory("GenericActiveCleanerProc",1);
+		SetNetworkReplicationFlags( 0 );
+	}
 }
 
 
@@ -1601,6 +1609,7 @@ Script "QCDE_Ability_Keel" (void)
 	if(ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
 	{
 		extraAbilityData[PlayerNumber()]++;
+		SetLastUse(Timer());
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("KeelFireGrenProc",1); //Fire grenade
 		SetNetworkReplicationFlags( 0 );
@@ -1940,6 +1949,7 @@ Script "QCDE_Ability_Freeman" (void)
 	if(ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
 	{
 		extraAbilityData[PlayerNumber()]++;
+		SetLastUse(Timer());
 		if(checkInventory("DMToken"))	//DM version does 3 blasts to deflect projectiles
 		{
 			ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
@@ -2222,8 +2232,10 @@ Script "QCDE_Ability_Lucienne" (void)
 {
 	if(ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
 	{
-		ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
 		extraAbilityData[PlayerNumber()]++;
+		SetLastUse(Timer());
+		ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("LucienneFireBallProc",1); //Fire ball
 		ACS("QCDE_LucienneHandAnimation");

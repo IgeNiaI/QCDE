@@ -726,7 +726,7 @@ statusbar Normal, forcescaled
 		drawNumber 3, QCFNT040, bludi, MurderToken, alignment(right), 1014,991;
 		drawString     BIGFONT, brite, " kills to buff"             , 1014,996, 0, alignment(left);
 	}}
-	// Multiuse charges (Keel, Lucienne, Freeman, etc)
+	// Multiuse charges (Corvus, Keel, Lucienne, Freeman)
 	inInventory MultiuseCharge {
 		drawNumber 2, QCFNT060, brite, MultiuseCharge, alignment(center),700,950;
 	}
@@ -1708,7 +1708,7 @@ statusbar Fullscreen, forcescaled
 		drawNumber 3, QCFNT040, bludi, MurderToken, alignment(right), 1014,991;
 		drawString     BIGFONT, brite, " kills to buff"             , 1014,996, 0, alignment(left);
 	}}
-	// Multiuse charges (Keel, Lucienne, Freeman, etc)
+	// Multiuse charges (Corvus, Keel, Lucienne, Freeman)
 	inInventory MultiuseCharge {
 		drawNumber 2, QCFNT060, brite, MultiuseCharge, alignment(center),700,950;
 	}
