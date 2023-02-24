@@ -351,7 +351,10 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 		if(!IsZandronum(true)) // GZDoom. Sigh.
 			plr = 1000;
 		if (plr >= ORBBDRON_TIDBASE)
+		{
 			plr -= ORBBDRON_TIDBASE;
+			plr += 1000;
+		}
 
 		// Periodically update maximums for bars and cvar display settings
 
