@@ -3419,16 +3419,22 @@ Script "ORBB_TunnelVision" (int tid) clientside
 Script "ORBB_NotifyDroneChargeUp" (int tid) NET
 {
 	SetActivator(tid);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	if(GameType() < GAME_NET_DEATHMATCH)
 		GiveInventory("DroneExplodeCoop", 1);
 	else
 		GiveInventory("DroneExplodeDM", 1);
+	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteAlways("ORBB_DroneChargeUp", 0, tid);
 }
 
 Script "ORBB_DroneChargeUp" (int tid) CLIENTSIDE
 {
 	SetActivator(tid);
+	if(GameType() < GAME_NET_DEATHMATCH)
+		GiveInventory("DroneExplodeCoop", 1);
+	else
+		GiveInventory("DroneExplodeDM", 1);
 	int time = 5;
 	while (GetActorProperty(tid, APROP_HEALTH) > 0)
 	{
