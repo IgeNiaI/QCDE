@@ -7,6 +7,8 @@
 //
 // --------------------------------------------------------------------------
 
+Actor CompatVer30_RocketLauncher {} // for compatibility checks
+
 Actor RocketLauncherPickup : CustomInventory 15605
 {
 	//$NotAngled

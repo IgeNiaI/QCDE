@@ -11,6 +11,8 @@
 //
 // --------------------------------------------------------------------------
 
+Actor CompatVer30_Machinegun {} // for compatibility checks
+
 // This pickup is only for consistency -- it never gives weapon.
 Actor MachinegunPickup : CustomInventory
 {

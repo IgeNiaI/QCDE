@@ -6,6 +6,8 @@
 //
 // --------------------------------------------------------------------------
 
+Actor CompatVer30_Nailgun {} // for compatibility checks
+
 // This pickup is only for consistency -- it never gives weapon.
 Actor NailgunPickup : CustomInventory
 {

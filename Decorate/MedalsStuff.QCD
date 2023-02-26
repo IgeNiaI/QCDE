@@ -1,3 +1,6 @@
+
+Actor CompatVer30_MedalsStuff {} // for compatibility checks
+
 //General Token to queue medals whose drawing is pending
 Actor MedalInExecutionToken: Token {Inventory.MaxAmount 1}
 Actor MedalToken : Token

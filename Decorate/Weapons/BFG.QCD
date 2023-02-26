@@ -6,6 +6,8 @@
 //
 // --------------------------------------------------------------------------
 
+Actor CompatVer30_BFG {} // for compatibility checks
+
 Actor BFGPickup : CustomInventory 15608
 {
 	//$NotAngled

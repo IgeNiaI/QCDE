@@ -1,0 +1,82 @@
+//=======================================================================
+//=======================================================================
+// None of below actors are used by mod itself
+// They are here to ensure that folks don't load incompatible Decorate mods
+// It's done by inheriting actor classes from other decorate files
+//
+// When a new QC:DE version is released, make sure to increase the version number
+// in changed Decorate files, and reflect the change here too
+//=======================================================================
+//=======================================================================
+
+// Champions
+
+Actor CompatCheckFailed_Bitterman 		: CompatVer30_Bitterman {}
+Actor CompatCheckFailed_Blazkowicz 		: CompatVer30_Blazkowicz {}
+Actor CompatCheckFailed_Caleb 			: CompatVer30_Caleb {}
+Actor CompatCheckFailed_Corvus			: CompatVer30_Corvus {}
+Actor CompatCheckFailed_Doomslayer 		: CompatVer30_Doomslayer {}
+Actor CompatCheckFailed_DukeNukem 		: CompatVer30_DukeNukem {}
+Actor CompatCheckFailed_Durandal 		: CompatVer30_Durandal {}
+Actor CompatCheckFailed_Eleena			: CompatVer30_Eleena {}
+Actor CompatCheckFailed_Eradicator 		: CompatVer30_Eradicator {}
+Actor CompatCheckFailed_Freeman 		: CompatVer30_Freeman {}
+Actor CompatCheckFailed_Galen 			: CompatVer30_Galen {}
+Actor CompatCheckFailed_Grayson 		: CompatVer30_Grayson {}
+Actor CompatCheckFailed_Hunter 			: CompatVer30_Hunter {}
+Actor CompatCheckFailed_Inquisitor 		: CompatVer30_Inquisitor {}
+Actor CompatCheckFailed_Intruder 		: CompatVer30_Intruder {}
+Actor CompatCheckFailed_Kane 			: CompatVer30_Kane {}
+Actor CompatCheckFailed_Keel 			: CompatVer30_Keel {}
+Actor CompatCheckFailed_LoWang 			: CompatVer30_LoWang {}
+Actor CompatCheckFailed_Lucienne 		: CompatVer30_Lucienne {}
+Actor CompatCheckFailed_Major 			: CompatVer30_Major {}
+Actor CompatCheckFailed_Menelkir 		: CompatVer30_Menelkir {}
+Actor CompatCheckFailed_Nyx 			: CompatVer30_Nyx {}
+Actor CompatCheckFailed_Orbb 			: CompatVer30_Orbb {}
+Actor CompatCheckFailed_Painkiller 		: CompatVer30_Painkiller {}
+Actor CompatCheckFailed_Postal 			: CompatVer30_Postal {}
+Actor CompatCheckFailed_Ranger 			: CompatVer30_Ranger {}
+Actor CompatCheckFailed_Sam 			: CompatVer30_Sam {}
+Actor CompatCheckFailed_Sorgaul 		: CompatVer30_Sorgaul {}
+Actor CompatCheckFailed_Terminator 		: CompatVer30_Terminator {}
+Actor CompatCheckFailed_VorMatur 		: CompatVer30_VorMatur {}
+Actor CompatCheckFailed_Zedek 			: CompatVer30_Zedek {}
+// ^ insert more classes here
+
+// Weapons
+
+Actor CompatCheckFailed_BaseWeapon 		: CompatVer30_BaseWeapon {}
+Actor CompatCheckFailed_BFG 			: CompatVer30_BFG {}
+Actor CompatCheckFailed_Gauntlet 		: CompatVer30_Gauntlet {}
+Actor CompatCheckFailed_HMachinegun		: CompatVer30_HMachinegun {}
+Actor CompatCheckFailed_LightningGun 	: CompatVer30_LightningGun {}
+Actor CompatCheckFailed_Machinegun 		: CompatVer30_Machinegun {}
+Actor CompatCheckFailed_Nailgun 		: CompatVer30_Nailgun {}
+Actor CompatCheckFailed_Railgun 		: CompatVer30_Railgun {}
+Actor CompatCheckFailed_RocketLauncher 	: CompatVer30_RocketLauncher {}
+Actor CompatCheckFailed_Shotgun 		: CompatVer30_Shotgun {}
+Actor CompatCheckFailed_SNailgun 		: CompatVer30_SNailgun {}
+Actor CompatCheckFailed_SShotgun 		: CompatVer30_SShotgun {}
+Actor CompatCheckFailed_Tribolt 		: CompatVer30_Tribolt {}
+
+// Other classes
+
+Actor CompatCheckFailed_Ammo 			: CompatVer30_Ammo {}
+Actor CompatCheckFailed_Blood 			: CompatVer30_Blood {}
+Actor CompatCheckFailed_DamageNumbers 	: CompatVer30_DamageNumbers {}
+Actor CompatCheckFailed_Debug 			: CompatVer30_Debug {}
+Actor CompatCheckFailed_Decorations 	: CompatVer30_Decorations {}
+Actor CompatCheckFailed_FX 				: CompatVer30_FX {}
+Actor CompatCheckFailed_GameModes 		: CompatVer30_GameModes {}
+Actor CompatCheckFailed_HealthArmor 	: CompatVer30_HealthArmor {}
+Actor CompatCheckFailed_Keys 			: CompatVer30_Keys {}
+Actor CompatCheckFailed_Lootboxes 		: CompatVer30_Lootboxes {}
+Actor CompatCheckFailed_MapStuff 		: CompatVer30_MapStuff {}
+Actor CompatCheckFailed_MedalsStuff 	: CompatVer30_MedalsStuff {}
+Actor CompatCheckFailed_Misc 			: CompatVer30_Misc {}
+Actor CompatCheckFailed_Pickups 		: CompatVer30_Pickups {}
+Actor CompatCheckFailed_Player 			: CompatVer30_Player {}
+Actor CompatCheckFailed_Powerups 		: CompatVer30_Powerups {}
+Actor CompatCheckFailed_WepSpawn 		: CompatVer30_WepSpawn {}
+Actor CompatCheckFailed_WepUpgrades 	: CompatVer30_WepUpgrades {}

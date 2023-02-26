@@ -6,6 +6,8 @@
 //
 // --------------------------------------------------------------------------
 
+Actor CompatVer30_HMachinegun {} // for compatibility checks
+
 Actor HeavyMachinegunPickup : CustomInventory 15600
 {
 	//$NotAngled

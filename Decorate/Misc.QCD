@@ -1,3 +1,6 @@
+
+Actor CompatVer30_Misc {} // for compatibility checks
+
 //$GZDB_SKIP
 
 Actor Token : Inventory { +INVENTORY.UNDROPPABLE +SERVERNETID }

@@ -6,6 +6,8 @@
 //
 // --------------------------------------------------------------------------
 
+Actor CompatVer30_Gauntlet {} // for compatibility checks
+
 Actor QCGauntlet : QCWeapon
 {
 	Weapon.SwaySpeed 3.0

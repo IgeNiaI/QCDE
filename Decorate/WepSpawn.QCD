@@ -1,3 +1,6 @@
+
+Actor CompatVer30_WepSpawn {} // for compatibility checks
+
 Actor ShotgunReplacer : RandomSpawner replaces Shotgun
 {
 	Dropitem "ShotgunPickup"
