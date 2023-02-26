@@ -1,5 +1,40 @@
 
 // =========================================================
+// Customize Controls
+// =========================================================
+
+// this should be called before other commands, or else the game will first default bind actions, and only then create a section for them
+addkeysection "$KEY_QcdeSection" "QCDE"                 // "QCDE bindings"
+addmenukey "$KEY_ActiveAbility"  "+user1"  				// "Use Active Ability"
+addmenukey "$KEY_ClassInfo"      "+QCDE_ClassInfo"      // "Show Class Information"
+addmenukey "$KEY_StartingWeapon" "+QCDE_StartingWeapon" // "Change Starting Weapon"
+addmenukey "$KEY_Voice"          "voice"                // "Voice Line"
+addmenukey "$KEY_MPClassMenu"    "mpclassmenu"          // "MP: Change Class Menu"
+// These are commented because it's a lot of spam
+//addmenukey "Voice Line #1"        "voice  1"
+//addmenukey "Voice Line #2"        "voice  2"
+//addmenukey "Voice Line #3"        "voice  3"
+//addmenukey "Voice Line #4"        "voice  4"
+//addmenukey "Voice Line #5"        "voice  5"
+//addmenukey "Voice Line #6"        "voice  6"
+//addmenukey "Voice Line #7"        "voice  7"
+//addmenukey "Voice Line #8"        "voice  8"
+//addmenukey "Voice Line #9"        "voice  9"
+//addmenukey "Voice Line #10"       "voice 10"
+//addmenukey "Voice Line #11"       "voice 11"
+//addmenukey "Voice Line #12"       "voice 12"
+//addmenukey "Voice Line #13"       "voice 13"
+//addmenukey "Voice Line #14"       "voice 14"
+//addmenukey "Voice Line #15"       "voice 15"
+//addmenukey "Voice Line #16"       "voice 16"
+//addmenukey "Voice Line #17"       "voice 17"
+//addmenukey "Voice Line #18"       "voice 18"
+//addmenukey "Voice Line #19"       "voice 19"
+//addmenukey "Voice Line #20"       "voice 20"
+//addmenukey "Voice Line #21"       "voice 21"
+//addmenukey "Voice Line #22"       "voice 22"
+
+// =========================================================
 // Extra binds
 // =========================================================
 
@@ -118,37 +153,3 @@ alias qcde_TeamDeathmatch "qcde_tdm"
 alias qcde_TeamEldersSoul "qcde_tes"
 alias qcde_TeamLMS        "qcde_tlms"
 alias qcde_UnholyTrinity  "qcde_ut"
-
-// =========================================================
-// Customize Controls
-// =========================================================
-
-addkeysection "$KEY_QcdeSection" "QCDE"                 // "QCDE bindings"
-addmenukey "$KEY_ActiveAbility"  "+user1"  				// "Use Active Ability"
-addmenukey "$KEY_ClassInfo"      "+QCDE_ClassInfo"      // "Show Class Information"
-addmenukey "$KEY_StartingWeapon" "+QCDE_StartingWeapon" // "Change Starting Weapon"
-addmenukey "$KEY_Voice"          "voice"                // "Voice Line"
-addmenukey "$KEY_MPClassMenu"    "mpclassmenu"          // "MP: Change Class Menu"
-// These are commented because it's a lot of spam
-//addmenukey "Voice Line #1"        "voice  1"
-//addmenukey "Voice Line #2"        "voice  2"
-//addmenukey "Voice Line #3"        "voice  3"
-//addmenukey "Voice Line #4"        "voice  4"
-//addmenukey "Voice Line #5"        "voice  5"
-//addmenukey "Voice Line #6"        "voice  6"
-//addmenukey "Voice Line #7"        "voice  7"
-//addmenukey "Voice Line #8"        "voice  8"
-//addmenukey "Voice Line #9"        "voice  9"
-//addmenukey "Voice Line #10"       "voice 10"
-//addmenukey "Voice Line #11"       "voice 11"
-//addmenukey "Voice Line #12"       "voice 12"
-//addmenukey "Voice Line #13"       "voice 13"
-//addmenukey "Voice Line #14"       "voice 14"
-//addmenukey "Voice Line #15"       "voice 15"
-//addmenukey "Voice Line #16"       "voice 16"
-//addmenukey "Voice Line #17"       "voice 17"
-//addmenukey "Voice Line #18"       "voice 18"
-//addmenukey "Voice Line #19"       "voice 19"
-//addmenukey "Voice Line #20"       "voice 20"
-//addmenukey "Voice Line #21"       "voice 21"
-//addmenukey "Voice Line #22"       "voice 22"
