@@ -8,10 +8,7 @@ alias -QCDE_StartingWeapon ""
 
 defaultbind j "+QCDE_StartingWeapon"
 
-alias +QCDE_ActiveAbility "pukename QCDE_ActiveAbility always"
-alias -QCDE_ActiveAbility ""
-
-defaultbind f "+user1"
+defaultbind f "+user1" // Active ability
 
 alias +QCDE_ClassInfo "pukename QCDE_ClassInfo always"
 alias -QCDE_ClassInfo "pukename QCDE_ClassInfo_Stop always"
@@ -127,7 +124,7 @@ alias qcde_UnholyTrinity  "qcde_ut"
 // =========================================================
 
 addkeysection "$KEY_QcdeSection" "QCDE"                 // "QCDE bindings"
-addmenukey "$KEY_ActiveAbility"  "+user1"  // "Use Active Ability"
+addmenukey "$KEY_ActiveAbility"  "+user1"  				// "Use Active Ability"
 addmenukey "$KEY_ClassInfo"      "+QCDE_ClassInfo"      // "Show Class Information"
 addmenukey "$KEY_StartingWeapon" "+QCDE_StartingWeapon" // "Change Starting Weapon"
 addmenukey "$KEY_Voice"          "voice"                // "Voice Line"
