@@ -36,7 +36,7 @@ Actor BFGPickup : CustomInventory 15608
 	{
 	Spawn:
 		QCG8 A 1
-		QCG8 Y 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfDuel")
+		QCG8 Y 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfNoBfg")
 		QCG8 Y 35 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
 		Goto Idle
 	DMSpawn:
@@ -97,7 +97,7 @@ Actor QCBFG : QCWeapon
 		QCG8 Y 35 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
 		Goto Idle
 	DMSpawn:
-		QCG8 Z 0 ACS_NamedExecuteAlways("QCDE_RemoveIfDuel")
+		QCG8 Z 0 ACS_NamedExecuteAlways("QCDE_RemoveIfNoBfg")
 		QCG8 ZZZZZZZZZZZZZZZ 35 Bright
 		Stop
 	Idle:

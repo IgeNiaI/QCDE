@@ -509,25 +509,20 @@ Script "QCDE_PowerupIndicatorMustDisappear" (void)
 	SetResultValue(sneaky);
 }
 
-// For items that would be wildly unbalanced if used in a duel.
-// Technically name should be QCDE_RemoveIfDuelOrTriel, but that's a mouthful.
-// A 1v1v1 is thus also considered a duel.
-Script "QCDE_RemoveIfDuel" (int noRestore)
+Script "QCDE_RemoveIfNoPowerups" (int noRestore)
 {
-	//log(n:0, s:" pve?");
-	if(GameType() < GAME_NET_DEATHMATCH) terminate; // [Ms] Shouldn't this be Thing_Remove(0);?
-
-	//log(n:0, s:" elder's?");
+	if(GameType() < GAME_NET_DEATHMATCH) terminate;
 	if(GetCvar("qc_elderssoul")) terminate; // sic!
-
 	if(GetCvar("duel")) Thing_Remove(0);
-
-	// off: remov
-	//log(n:0, s:" no powers?");
 	if(!GetCvar("sv_QCDEPowerups")) Thing_Remove(0);
+}
 
-	// on: do nothing
-	//log(n:0, s:" \c[green]good to go!");
+Script "QCDE_RemoveIfNoBfg" (int noRestore)
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate;
+	if(GetCvar("qc_elderssoul")) terminate; // sic!
+	if(GetCvar("duel")) Thing_Remove(0);
+	if(!GetCvar("sv_QCDEBFG")) Thing_Remove(0);
 }
 
 // Prevent Dave & Merlin from farming too many frags on bots.
