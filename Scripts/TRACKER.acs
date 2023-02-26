@@ -164,9 +164,6 @@ Script "QCDE_NewLife" (int firsttime)
 
 	rereadCvars();
 	reReadWeaponCvars();
-	//if(!CheckInventory("Starter_CantChoose")) {
-	//	ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint"	,0);
-	//}
 
 	bool teamplay  = getCvar("teamplay");
 	bool teamlms   = getCvar("teamlms");

@@ -14,7 +14,7 @@
 
 script "QCDE_StartingWeapon" (void) net
 {
-	if(CheckInventory("Starter_CantChoose")) terminate;
+	if(!PlayerInGame(PlayerNumber())) terminate;
 
 	ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint_InProgress",0);
 	GiveInventory("Starter_ChooseNow", 1); // Actual choice is made in tracker
