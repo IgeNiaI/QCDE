@@ -428,7 +428,7 @@ Script "QCDE_PlayerSpeed" (void)
 	if (sv_PlayerSpeed == 0)
 	{
 		if (GetCvar("deathmatch") || GetCvar("ctf") || GetCvar("oneflagctf") || GetCvar("skulltag") || GetCvar("domination") || GetCvar("customteamgame"))
-			sv_PlayerSpeed = 85;
+			sv_PlayerSpeed = 80;
 		else
 			sv_PlayerSpeed = 100;
 	}
