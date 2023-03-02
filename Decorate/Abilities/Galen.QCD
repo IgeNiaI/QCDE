@@ -69,7 +69,6 @@ Actor TotemProjectile
 Actor TotemTotem
 {
 	var int user_counter;
-	Projectile
 	Radius 11
 	Height 1
 	Speed 20
@@ -114,7 +113,7 @@ Actor TotemTotem
 		TNT1 A 100 A_Jump(256,1)
 		// ^ delay for client to catch up to server deciding if the ting goed bum or it settled and activated biotic field
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_TotemSpawned")
-		TNT1 A 0 A_SpawnItemEx("TotemHitbox", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_FORCESERVERSIDE)
+		TNT1 A 0 A_SpawnItemEx("TotemHitbox", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck") >= 2,"DMTotem")
 		Goto SPLoopHealing
 	DMTotem:
