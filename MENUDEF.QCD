@@ -191,20 +191,23 @@ OptionMenu "QCDEBindsActions"
 
 	StaticText ""
 
-	Control   	"Forward",			"+forward"
-	Control    	"Backward",			"+back"
-	Control    	"Strafe Left",		"+moveleft"
-	Control    	"Strafe Right",		"+moveright"
-	Control    	"Jump",				"+jump"
-	Control    	"Crouch",			"+crouch"
-	Control    	"Walk/Run",			"+speed"
+	Control   	"Forward",				"+forward"
+	Control    	"Backward",				"+back"
+	Control    	"Strafe Left",			"+moveleft"
+	Control    	"Strafe Right",			"+moveright"
+	Control    	"Jump",					"+jump"
+	Control    	"Crouch",				"+crouch"
+	Control    	"Walk/Run",				"+speed"
 
 	StaticText ""
 
-	Control    	"Fire",						"+attack"
-	Control    	"Alt Fire",					"+altattack"
-	Control    	"Use/Open",					"+use"
-	Control 	"Use active ability",		"+user1"
+	Control    	"Fire",					"+attack"
+	Control    	"Zoom / Alt Fire",		"+altattack"
+	Control 	"Use active ability",	"+user1"
+	Control    	"Use / Open",			"+use"
+
+	StaticText ""
+
 	Control 	"Change class",				"mpclassmenu"
 	Control 	"Champion information",		"+QCDE_ClassInfo"
 	Control 	"Open lootbox",				"invuse"
@@ -223,12 +226,6 @@ OptionMenu "QCDEBindsWeapons"
 
 	StaticText ""
 
-	Control 	"Select starting weapon",	"+QCDE_StartingWeapon"
-	Control 	"Drop weapon",				"weapdrop"
-	Control 	"Drop weapon upgrade",		"drop_upgrade"
-
-	StaticText ""
-
 	Control		"Gauntlet",			"slot 1"
 	Control		"Machinegun",		"slot 2"
 	Control		"Shotgun",			"slot 3"
@@ -238,6 +235,12 @@ OptionMenu "QCDEBindsWeapons"
 	Control		"Lightning Gun",	"slot 7"
 	Control		"Railgun",			"slot 8"
 	Control		"BFG",				"slot 9"
+
+	StaticText ""
+
+	Control 	"Select starting weapon",	"+QCDE_StartingWeapon"
+	Control 	"Drop weapon",				"weapdrop"
+	Control 	"Drop weapon upgrade",		"drop_upgrade"
 }
 
 OptionMenu "QCDEBindsChat"
