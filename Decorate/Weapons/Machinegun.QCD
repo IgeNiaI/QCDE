@@ -363,8 +363,8 @@ Actor QCMachinegun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 			TNT1 A 0 A_SetBlend("Yellow",0.03,3)
 			TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil")
-			TNT1 A 1 A_SetPitch(Pitch-0.6)
-			TNT1 AA 1 A_SetPitch(Pitch+0.3)
+			TNT1 A 1 A_SetPitch(Pitch-0.4)
+			TNT1 AA 1 A_SetPitch(Pitch+0.2)
 			Stop
 		EndFlashNoRecoil:
 			TNT1 A 1
