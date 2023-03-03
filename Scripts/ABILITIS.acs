@@ -1051,6 +1051,7 @@ Script "QCDE_QuietusVictim" (void)
 	// New quietance
 	//log(n:plr+1, s:" gets quieted by ", d:quieter_of[plr], s:" -- ", n:quieter_of[plr] -999, s:" for ", d:quieting_for[plr]);
 	quieting_for[plr] = QUIETING_AMOUNT;
+	ACS("QCDE_ZedekFireLevel", quieting_for[plr], plr+1000);
 	while(quieting_for[plr] --> 0)
 	{
 		int t = QUIETING_PERIOD;
@@ -2638,6 +2639,7 @@ Script "QCDE_CowGasVictim" (void)
 	// New gassing
 	//log(n:plr+1, s:" gets gassed by cow of ", d:cowgasser_of[plr], s:" -- ", n:cowgasser_of[plr] -999, s:" for ", d:cowgassing_for[plr]);
 	cowgassing_for[plr] = COWGASSING_AMOUNT;
+	ACS("QCDE_CowGasLevel", cowgassing_for[plr], victid);
 	while(cowgassing_for[plr] --> 0)
 	{
 		if(CheckActorInventory(victid, "PowerGhostTint")) break;
