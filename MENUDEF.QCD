@@ -825,6 +825,33 @@ OptionValue "TauntSubtitles"
 	3, "Always on"
 }
 
+OptionMenu ZA_CallVote
+{
+	Indent 192
+	Title "CALL VOTE"
+	NetGameOnly
+
+	SubMenu		"Kick a player  ",		"ZA_CallKickVote"
+	SubMenu		"Change the map",		"ZA_CallMapVote"
+	SubMenu		"Change a limit ",		"ZA_CallLimitVote"
+}
+
+OptionMenu ZA_CallMapVote
+{
+	Indent 153
+	Title		"CHANGE MAP"
+
+	Option		"Map",					"menu_callvotemap",				"ZA_Levels"
+	StaticText	" "
+	StaticText	"Some servers don't allow changing maps without intermission"
+	Option		"Intermission",			"menu_callvoteintermission",	"YesNo"
+	StaticText	" "
+	TextField	"Reason for change",	"menu_callvotereason"
+	Command		"Vote!",				"menu_callmapvote"
+	StaticText	" "
+	Command		"Vote next map!",		"menu_callnextmapvote"
+}
+
 
 OptionMenu ZA_JoinMenu
 {
