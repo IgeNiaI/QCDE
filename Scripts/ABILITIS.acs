@@ -4008,6 +4008,10 @@ script "QCDE_Hourglass" (int percentage, int nosandswirl)
 
 	if(!percentage) terminate;
 
+	int plr = PlayerNumber();
+
+    if(tics[plr] == 0) terminate;
+
 	int take = GetCooldown() * percentage / 100;
 
 	// Scale bonus according to percentage server cvar
@@ -4027,7 +4031,6 @@ script "QCDE_Hourglass" (int percentage, int nosandswirl)
 	SetFont("BLINKGLD");
 	//HudMessage(s:"A"; HUDMSG_FADEOUT, 3245, CR_UNTRANSLATED, 700.0, 911.0, 0.08, 0.005 * percentage);
 	if(!nosandswirl) ACS("QCDE_BlinkSandwatch");
-	int plr = PlayerNumber();
 	tics[plr] -= take;
     if(tics[plr] < 0)
     	tics[plr] = 0;
