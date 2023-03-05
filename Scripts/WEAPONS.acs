@@ -73,12 +73,9 @@ Script "QCDE_SetWeaponRespawnTics" (void)
 }
 
 // Activator: player
-Script "QCDE_RailRecoil" (void)
+Script "QCDE_RailJumpEnabled" (void)
 {
-	if (GetCvar("sv_railrecoil") && (CheckSolidFooting(0, 0) == CSF_INAIR))
-		SetResultValue(12);
-	else
-		SetResultValue(0);
+	SetResultValue(GetCvar("sv_railjump"));
 }
 
 
@@ -255,7 +252,7 @@ Script "QCDE_FreeTribolt" (void)
 
 Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, int buttons)
 {
-	if (!predicting)
+	if (!predicting && !ACS_NamedExecuteWithResult("QCDE_RailJumpEnabled", 0))
 	{
 		bool shouldZoomIn = !CheckInventory("WeaponZoomedToken") && justPressed;
 		bool shouldZoomOut = CheckInventory("WeaponZoomedToken") && GetCVar("cl_holdZoom") ? justReleased : justPressed;

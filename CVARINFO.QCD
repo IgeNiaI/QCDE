@@ -35,7 +35,7 @@ server noarchive int qc_freezetag           = 0; // Freeze enemies instead of ki
 
 // Mutators
 
-server bool sv_railrecoil					=  false; // Adds recoil to RailGun, allowing to do rail jumps
+server noarchive bool sv_railjump			=  false; // Replaces Railgun zoom with an attack that pushes the player backwards
 
 // QCS
 
