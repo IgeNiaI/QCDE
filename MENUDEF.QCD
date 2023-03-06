@@ -444,7 +444,6 @@ OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of 
 
 	Option "Fullscreen",						"fullscreen", "YesNo"
 	Slider 		"Field of View",				"fov", 5.0, 179.0, 1.0, 2
-	Slider 		"Brightness",					"Gamma", 0.75, 3.0, 0.05, 2
 	Slider		"Max FPS",						"vid_maxfps",	0, 1000, 5
 	Option		"Display FPS",					"vid_fps",		"OnOff"
 	Option 		"Vertical Sync",				"vid_vsync",	"OnOff"
