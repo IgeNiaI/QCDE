@@ -727,18 +727,11 @@ Script "QCDE_Ability_Doomslayer" (void)
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Give and select fake weapon
-	GiveInventory("FakeruWeapun",1);
-	SetWeapon("FakeruWeapun");
+	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	TakeInventory("SlayerBFG",1);
 	TakeInventory("BFGstarted",1);
 	GiveInventory("SlayerBFGCleanerProc",1);
-	SetNetworkReplicationFlags( 0 );
-
-	delay(5);
-	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	SetWeapon(weaponList[w]);
-	TakeInventory("FakeruWeapun",1);
 	SetNetworkReplicationFlags( 0 );
 }
 
@@ -836,22 +829,12 @@ Script "QCDE_Ability_Caleb" (void)
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	GiveInventory("FakeruWeapun",1); //Give and select fake weapon
-	SetWeapon("FakeruWeapun");
+	SetWeapon(weaponList[w]);
 	TakeInventory("CalebDoll",1);
 	TakeInventory("CalebDollBot",1);
 	GiveInventory("DollCleanerProc",1); //Remove ability weapon
+	TakeInventory("DollSpent",1);
 	SetNetworkReplicationFlags( 0 );
-
-	if(!++t) // survived entire duration
-	{
-		delay(5);
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		SetWeapon(weaponList[w]);
-		TakeInventory("FakeruWeapun",1);
-		TakeInventory("DollSpent",1);
-		SetNetworkReplicationFlags( 0 );
-	}
 }
 
 Script "VoodooHealer" (int deathmatcher)
@@ -1134,18 +1117,11 @@ Script "QCDE_Ability_Inquisitor" (void)
 
 			//Give and select fake weapon
 			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-			GiveInventory("FakeruWeapun",1);
-			SetWeapon("FakeruWeapun");
+			SetWeapon(weaponList[w]);
 			//Remove ability weapon
 			TakeInventory("Shieldquisitor",1);
 			SetNetworkReplicationFlags( 0 );
 			tics[plr] = 1;
-			//Select proper weapon and remove fake one
-			delay(5);
-			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-			SetWeapon(weaponList[w]);
-			TakeInventory("FakeruWeapun",1);
-			SetNetworkReplicationFlags( 0 );
 
 			break; // exit outer loop
 		}
@@ -1393,26 +1369,14 @@ Script "QCDE_Ability_Sorgaul" (void)
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Give and select fake weapon
-	GiveInventory("FakeruWeapun",1);
-	SetWeapon("FakeruWeapun");
+	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("PrimalRageCleanerProc",1);
 	TakeInventory("SorgaulFists",1);
 	TakeInventory("SorgaulFistsBot",1);
+	PlaySound(0,"QC/Abilities/Sorgaul/RageEnd",CHAN_7,1.0,false,1.0);
+	StopSound(0, CHAN_5);
 	SetNetworkReplicationFlags( 0 );
-
-	if(!++t) // survived entire duration
-	{
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		PlaySound(0,"QC/Abilities/Sorgaul/RageEnd",CHAN_7,1.0,false,1.0);
-		StopSound(0, CHAN_5);
-		SetNetworkReplicationFlags( 0 );
-		delay(5);
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		SetWeapon(weaponList[w]);
-		TakeInventory("FakeruWeapun",1);
-		SetNetworkReplicationFlags( 0 );
-	}
 }
 
 
@@ -1445,21 +1409,11 @@ Script "QCDE_Ability_DukeNukem" (void)
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Give and select fake weapon
-	GiveInventory("FakeruWeapun",1);
-	SetWeapon("FakeruWeapun");
+	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("DukeFreezerCleanerProc",1);
 	TakeInventory("DukeFreezeThrower",1);
 	SetNetworkReplicationFlags( 0 );
-
-	if(!++t) // survived entire duration
-	{
-		delay(5);
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		SetWeapon(weaponList[w]);
-		TakeInventory("FakeruWeapun",1);
-		SetNetworkReplicationFlags( 0 );
-	}
 }
 
 #define BALLS_TIL_FREEZE 6
@@ -1910,22 +1864,12 @@ Script "QCDE_Ability_Blazkowicz" (void)
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Give and select fake weapon
-	GiveInventory("FakeruWeapun",1);
-	SetWeapon("FakeruWeapun");
+	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("AkimboCleanerProc",1);
 	TakeInventory("BlazkoAkimbo",1);
 	TakeInventory("BlazkoAkimboBot",1);
 	SetNetworkReplicationFlags( 0 );
-
-	if(!++t) // survived entire duration
-	{
-		delay(5);
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		SetWeapon(weaponList[w]);
-		TakeInventory("FakeruWeapun",1);
-		SetNetworkReplicationFlags( 0 );
-	}
 }
 
 script "BJTimerLeft" (void)
@@ -2520,8 +2464,7 @@ Script "QCDE_Ability_Sam" (void)
 
 	//Give and select fake weapon
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	GiveInventory("FakeruWeapun",1);
-	SetWeapon("FakeruWeapun");
+	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("SamMinigunCleanerProc",1);
 	TakeInventory("SamMinigun",1);
@@ -2536,15 +2479,6 @@ Script "QCDE_Ability_Sam" (void)
 	{
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("EndlessInfiniteAmmo",1);
-		SetNetworkReplicationFlags( 0 );
-	}
-
-	if(!++t) // survived entire duration
-	{
-		delay(5);
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		SetWeapon(weaponList[w]);
-		TakeInventory("FakeruWeapun",1);
 		SetNetworkReplicationFlags( 0 );
 	}
 }
@@ -2590,21 +2524,11 @@ Script "QCDE_Ability_Postal" (void)
 
 	//Give and select fake weapon
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	GiveInventory("FakeruWeapun",1);
-	SetWeapon("FakeruWeapun");
+	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("PostalCowCleanerProc",1);
 	TakeInventory("PostalCowHead",1);
 	SetNetworkReplicationFlags( 0 );
-
-	if(!++t) // survived entire duration
-	{
-		delay(5);
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		SetWeapon(weaponList[w]);
-		TakeInventory("FakeruWeapun",1);
-		SetNetworkReplicationFlags( 0 );
-	}
 }
 
 
