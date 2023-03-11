@@ -10,6 +10,7 @@ Actor CompatVer30_Powerups {} // for compatibility checks
 
 Actor ArmorProtecQuadSpawner : RandomSpawner replaces BlurSphere
 {
+	+SERVERNETID
 	DropItem "QCSmallArmorDoubleGiver"
 	DropItem "QCProtec"
 	DropItem "QCQuad"
@@ -49,6 +50,7 @@ Actor QCRadSuit : RadSuit replaces RadSuit
 //=======================================================================
 Actor QCAllmap : CustomInventory replaces Allmap
 {
+	+SERVERNETID
 	Inventory.PickupSound "QC/Items/AutomapPick"
 	Inventory.RespawnTics 2100 //60 secs
 	Inventory.PickupMessage "$GOT_QCAllmap" // "Picked up the computer area map."
@@ -79,6 +81,7 @@ Actor ExtendedScanner : Scanner
 
 Actor PowerQuad : PowerDamage
 {
+	+SERVERNETID
 	DamageFactor "Normal", 4
 	//Inventory.Icon "IcnDamag"
 	+INVENTORY.ADDITIVETIME
@@ -97,6 +100,7 @@ Actor SecondOfQuad : PowerupGiver
 
 Actor QCQuad : CustomInventory 15511
 {
+	+SERVERNETID
 	//$NotAngled
 	//$Category "QCDE Pickups"
 	//$Color 9
@@ -153,6 +157,7 @@ Actor QCQuad : CustomInventory 15511
 
 Actor QCQuadFX : GenericPowerupFXBackground
 {
+	+SERVERNETID
 	Scale 0.95
 	States
 	{
@@ -166,6 +171,7 @@ Actor QCQuadFX : GenericPowerupFXBackground
 
 Actor QuadTimer : Inventory
 {
+	+SERVERNETID
 	Inventory.MaxAmount 0x7FFFFFFF
 	Inventory.InterhubAmount 0
 }
@@ -178,6 +184,7 @@ Actor QuadIndicator
 	+BRIGHT
 	+INVISIBLE_TO_TARGET
 	+CLIENTSIDEONLY
+	+NONETID
 	Projectile
 	RenderStyle Add
 	Scale 0.5
