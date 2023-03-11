@@ -262,7 +262,6 @@ Actor CowHeadProjectilePlace : CowHeadProjectile
 
 Actor CowHeadProjectileDM
 {
-	var int user_counter;
 	Projectile
 	-NOGRAVITY
 	Speed 14
@@ -296,26 +295,45 @@ Actor CowHeadProjectileDM
 		Goto Idle
 
 	Death:
-		QP29 Z 1 A_JumpIfInTargetInventory("TeamDeathmatch",1,"ColorsDeath")
+		TNT1 A 10 A_SpawnItemEx("CowHeadGasSpawnerDM",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_NOUNLAGGED)
+		Stop
+	}
+}
+
+Actor CowHeadGasSpawnerDM
+{
+	var int user_counter;
+	-NOGRAVITY
+	Radius 8
+	Height 4
+	Gravity 0.8
+	Scale 0.3
+	+SERVERNETID
+	+FORCEXYBILLBOARD
+	+BRIGHT
+	States
+	{
+	Spawn:
+		QP29 Z 1 NODELAY A_JumpIfInTargetInventory("TeamDeathmatch",1,"ColorsDeath")
 		QP29 ZZZ 0 A_SpawnItemEx("CowHeadGasBig",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION)
-		Goto Deathloop
+		Goto GasLoop
 	ColorsDeath:
 		TNT1 A 1 A_JumpIfInTargetInventory("TeamColor",2,"RedDeath")
 	BlueDeath: TNT1 AAA 0 Bright A_SpawnItemEx("CowHeadGasBigBlue",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
 	RedDeath:  TNT1 AAA 0 Bright A_SpawnItemEx("CowHeadGasBigRed" ,random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
 
-	DeathLoop:
+	GasLoop:
 		TNT1 A 0 A_SetUserVar(user_counter,user_counter+1)
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_CowGasHit")
 		TNT1 A 0 A_RadiusGive("CowHeadVictimProc", 192, RGF_PLAYERS)
 		TNT1 A 0 A_JumpIf(user_counter>=28,"End")
-		QP29 Z 1 A_JumpIfInTargetInventory("TeamDeathmatch",1,"ColorsDeathLoop")
+		QP29 Z 1 A_JumpIfInTargetInventory("TeamDeathmatch",1,"ColorsGasLoop")
 		QP29 Z 9 A_SpawnItemEx("CowHeadGasBig",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION)
-		Goto DeathLoop
-	ColorsDeathLoop:
-		TNT1 A 1 A_JumpIfInTargetInventory("TeamColor",2,"RedDeathLoop")
-	BlueDeathLoop: QP29 Z 10 Bright A_SpawnItemEx("CowHeadGasBigBlue",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
-	RedDeathLoop:  QP29 Z 10 Bright A_SpawnItemEx("CowHeadGasBigRed" ,random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
+		Goto GasLoop
+	ColorsGasLoop:
+		TNT1 A 1 A_JumpIfInTargetInventory("TeamColor",2,"RedGasLoop")
+	BlueGasLoop: QP29 Z 10 Bright A_SpawnItemEx("CowHeadGasBigBlue",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
+	RedGasLoop:  QP29 Z 10 Bright A_SpawnItemEx("CowHeadGasBigRed" ,random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION) Goto DeathLoop
 	End:
 		QP29 Z 1 A_FadeOut
 		Wait
