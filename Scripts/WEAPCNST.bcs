@@ -298,78 +298,81 @@ str LootboxWeaponNamings[8] = {
 
 function void reReadWeaponCvars(void)
 {
+	// Set weapon skins based on player class, based on their source game
+	// QC champions use default
+	// Ranger uses Quake 1
+	// Bitterman uses Quake 2
+	// Q3 characters use Quake 3
+	// Kane uses Quake 4
+	// Doom movement champions use QCDE v1.0
+	// Everyone else uses this formula : class index % 6
+	int classSkin = GetPlayerInfo(PlayerNumber(), PLAYERINFO_PLAYERCLASS);
+	switch (classSkin) {
+	case 7: // BJ
+	case 14: // Nyx
+	case 27: // Keel
+		classSkin = 0;
+		break;
+	case 0: // Ranger
+		classSkin = 1;
+		break;
+	case 26: // Bitterman
+		classSkin = 2;
+		break;
+	case 5: // Sarge
+	case 19: // Hunter
+	case 21: // Orbb
+	case 30: // Major
+		classSkin = 3;
+		break;
+	case 11: //Kane
+		classSkin = 4;
+		break;
+	case 1: // DoomSlayer
+	case 2: // Corvus
+	case 3: // Galen
+	case 13: // Menelkir
+	case 23: // Zedek
+		classSkin = 6;
+		break;
+	case 22: // Freeman
+		classSkin = 7;
+		break;
+	default:
+		classSkin = classSkin % 6;
+	}
+	// ^ insert more classes here, or update their indexes in MAPINFO order
+
 	// Weapon skins
 	if(!PlayerIsBot(PlayerNumber()))
 	{
-		SetInventory("QCGauntletSkin",			GetCVar("cl_GNTLskin"	));
-		SetInventory("QCMachinegunSkin",		GetCVar("cl_MGskin"		));
-		SetInventory("QCHMachinegunSkin",		GetCVar("cl_HMGskin"	));
-		SetInventory("QCShotgunSkin",			GetCVar("cl_SGskin"		));
-		SetInventory("QCSShotgunSkin",			GetCVar("cl_SSGskin"	));
-		SetInventory("QCNailgunSkin",			GetCVar("cl_NGskin"		));
-		SetInventory("QCSNailgunSkin",			GetCVar("cl_SNGskin"	));
-		SetInventory("QCTriboltSkin",			GetCVar("cl_TBskin"		));
-		SetInventory("QCRocketLauncherSkin",	GetCVar("cl_RLskin"		));
-		SetInventory("QCLightningGunSkin",		GetCVar("cl_LGskin"		));
-		SetInventory("QCRailgunSkin",			GetCVar("cl_RGskin"		));
-		SetInventory("QCBFGSkin",				GetCVar("cl_BFGskin"	));
+		SetInventory("QCGauntletSkin",			GetCVar("cl_GNTLskin"	) >= 0 ? GetCVar("cl_GNTLskin"	) : classSkin);
+		SetInventory("QCMachinegunSkin",		GetCVar("cl_MGskin"		) >= 0 ? GetCVar("cl_MGskin"	) : classSkin);
+		SetInventory("QCHMachinegunSkin",		GetCVar("cl_HMGskin"	) >= 0 ? GetCVar("cl_HMGskin"	) : classSkin);
+		SetInventory("QCShotgunSkin",			GetCVar("cl_SGskin"		) >= 0 ? GetCVar("cl_SGskin"	) : classSkin);
+		SetInventory("QCSShotgunSkin",			GetCVar("cl_SSGskin"	) >= 0 ? GetCVar("cl_SSGskin"	) : classSkin);
+		SetInventory("QCNailgunSkin",			GetCVar("cl_NGskin"		) >= 0 ? GetCVar("cl_NGskin"	) : classSkin);
+		SetInventory("QCSNailgunSkin",			GetCVar("cl_SNGskin"	) >= 0 ? GetCVar("cl_SNGskin"	) : classSkin);
+		SetInventory("QCTriboltSkin",			GetCVar("cl_TBskin"		) >= 0 ? GetCVar("cl_TBskin"	) : classSkin);
+		SetInventory("QCRocketLauncherSkin",	GetCVar("cl_RLskin"		) >= 0 ? GetCVar("cl_RLskin"	) : classSkin);
+		SetInventory("QCLightningGunSkin",		GetCVar("cl_LGskin"		) >= 0 ? GetCVar("cl_LGskin"	) : classSkin);
+		SetInventory("QCRailgunSkin",			GetCVar("cl_RGskin"		) >= 0 ? GetCVar("cl_RGskin"	) : classSkin);
+		SetInventory("QCBFGSkin",				GetCVar("cl_BFGskin"	) >= 0 ? GetCVar("cl_BFGskin"	) : classSkin);
 	}
 	else
 	{
-		// Set weapon skins based on player class, based on their source game
-		// QC champions use default
-		// Ranger uses Quake 1
-		// Bitterman uses Quake 2
-		// Q3 characters use Quake 3
-		// Kane uses Quake 4
-		// Doom movement champions use QCDE v1.0
-		// Everyone else uses this formula : class index % 6
-		int skin = GetPlayerInfo(PlayerNumber(), PLAYERINFO_PLAYERCLASS);
-		switch (skin) {
-		case 7: // BJ
-		case 14: // Nyx
-		case 27: // Keel
-			skin = 0;
-			break;
-		case 0: // Ranger
-			skin = 1;
-			break;
-		case 26: // Bitterman
-			skin = 2;
-			break;
-		case 5: // Sarge
-		case 19: // Hunter
-		case 21: // Orbb
-		case 30: // Major
-			skin = 3;
-			break;
-		case 11: //Kane
-			skin = 4;
-			break;
-		case 1: // DoomSlayer
-		case 2: // Corvus
-		case 3: // Galen
-		case 13: // Menelkir
-		case 23: // Zedek
-			skin = 6;
-			break;
-		default:
-			skin = skin % 6;
-		}
-		// ^ insert more classes here, or update their indexes in MAPINFO order
-
-		SetInventory("QCGauntletSkin",			skin);
-		SetInventory("QCMachinegunSkin",		skin);
-		SetInventory("QCHMachinegunSkin",		skin);
-		SetInventory("QCShotgunSkin",			skin);
-		SetInventory("QCSShotgunSkin",			skin);
-		SetInventory("QCNailgunSkin",			skin);
-		SetInventory("QCSNailgunSkin",			skin);
-		SetInventory("QCTriboltSkin",			skin);
-		SetInventory("QCRocketLauncherSkin",	skin);
-		SetInventory("QCLightningGunSkin",		skin);
-		SetInventory("QCRailgunSkin",			skin);
-		SetInventory("QCBFGSkin",				skin);
+		SetInventory("QCGauntletSkin",			classSkin);
+		SetInventory("QCMachinegunSkin",		classSkin);
+		SetInventory("QCHMachinegunSkin",		classSkin);
+		SetInventory("QCShotgunSkin",			classSkin);
+		SetInventory("QCSShotgunSkin",			classSkin);
+		SetInventory("QCNailgunSkin",			classSkin);
+		SetInventory("QCSNailgunSkin",			classSkin);
+		SetInventory("QCTriboltSkin",			classSkin);
+		SetInventory("QCRocketLauncherSkin",	classSkin);
+		SetInventory("QCLightningGunSkin",		classSkin);
+		SetInventory("QCRailgunSkin",			classSkin);
+		SetInventory("QCBFGSkin",				classSkin);
 	}
 }
 
