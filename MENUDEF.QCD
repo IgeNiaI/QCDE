@@ -628,6 +628,18 @@ OptionMenu "QCDEWeaponSkins"
 	Option		"Lightning Gun",	"cl_LGskin",	"LGskin"
 	Option		"Railgun",			"cl_RGskin",	"RGskin"
 	Option		"BFG",				"cl_BFGskin",	"BFGskin"
+
+	StaticText " "
+
+	Command		"Default Preset",		"qcde_WeapSkins_Default"
+	Command		"QC:DE 1.0 Preset",		"qcde_WeapSkins_QCDE10"
+	Command		"Quake 1 Preset",		"qcde_WeapSkins_Quake1"
+	Command		"Quake 2 Preset",		"qcde_WeapSkins_Quake2"
+	Command		"Quake 3 Preset",		"qcde_WeapSkins_Quake3"
+	Command		"Quake 4 Preset",		"qcde_WeapSkins_Quake4"
+	Command		"ET:QW Preset",			"qcde_WeapSkins_ETQW"
+	Command		"Half-Life Preset",		"qcde_WeapSkins_HalfLife"
+	Command		"Class Based Preset",	"qcde_WeapSkins_Class"
 }
 
 OptionValue "QCSwitch"
