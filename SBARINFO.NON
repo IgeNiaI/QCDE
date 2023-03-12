@@ -1,0 +1,95 @@
+// For QCDE.
+// By Michaelis, the Official DBTeam Sbarinfo Guy.
+
+height 0;
+CompleteBorder True;
+
+// Center is at 700,525
+Resolution 1400,1050; // actually 1680x1050, reduce screenshot X by 140
+InterpolateHealth false, 20;
+InterpolateArmor false, 20;
+
+//================================================================================================
+//================================================================================================
+// This HUD is designed for recording the gameplay for frag movies
+// Unlike the CUT variant, it doesn't show any HUD elements, except for weapon zoom reticles
+//================================================================================================
+//================================================================================================
+
+statusbar None, forcescaled
+{ inInventory NotSpectator {  // You only lack it when you don't exist.
+	inInventory DemonMorpher || DemonMorpherDM { // Demon HUD for online
+		drawImage "PCORN001",-234,   0;
+		drawImage "PCORN002",1634,   0;
+		drawImage "PCORN003",1634,1050;
+		drawImage "PCORN004",-234,1050;
+	} else { inInventory PowerDemonMorph { // Demon HUD for offline
+		drawImage "PCORN001",-234,   0;
+		drawImage "PCORN002",1634,   0;
+		drawImage "PCORN003",1634,1050;
+		drawImage "PCORN004",-234,1050;
+	} else {
+	inInventory not NoReticle {
+	// Altfire reticle
+	isSelected QCGauntlet		 { inInventory                                 GNT_UG_Omni      { drawImage "RET_00_2", 654,479; }
+								   inInventory                                 GNT_UG_Burn      { drawImage "RET_00_1", 654,479; } }
+	isSelected QCShotgun		 { inInventory WeaponZoomedToken { inInventory  SG_UG_Explosive { drawImage "RET_03_2", 654,479; } } }
+	isSelected QCHeavyMachinegun { inInventory WeaponZoomedToken { inInventory HMG_UG_Pierce    { drawImage "RET_07_2", 654,479; } } }
+	isSelected QCSuperShotgun	 { inInventory WeaponZoomedToken { inInventory SSG_UG_Flame     { drawImage "RET_09_2", 654,479; } } }
+	isSelected QCSuperNailgun	 { inInventory WeaponZoomedToken { inInventory SNG_UG_Seeker    { drawImage "RET_11_2", 654,479; } } }
+	isSelected QCTribolt	 	 { inInventory WeaponZoomedToken { inInventory  TB_UG_Grenade   { drawImage "RET_13_2", 654,479; } } }
+	isSelected QCRocketLauncher	 { inInventory WeaponZoomedToken { inInventory  RL_UG_Control   { drawImage "RET_15_2", 654,479; } } }
+	isSelected QCLightningGun	 { inInventory WeaponZoomedToken { inInventory  LG_UG_Static    { drawImage "RET_17_2", 654,479; } } }
+	isSelected QCRailgun 		 { inInventory WeaponZoomedToken { inInventory  RG_UG_Explosive { drawImage "RET_19_2", 654,479; } } }
+	isSelected QCBFG 			 { inInventory WeaponZoomedToken { inInventory BFG_UG_Charge    { drawImage "RET_21_2", 654,479; } } }
+
+	// Remote control reticle
+	isSelected QCRocketLauncher	 { inInventory PowerControllerProtection                        { drawImage "RET_15_2", 654,479; } }
+
+	// Railgun charge
+	inInventory RailgunCharges {
+		drawImage "RGCHAR00", 668, 493;
+		drawBar "RGCHARG1", "RGCHAR01", RailgunCharges, vertical  ,          667,363;
+		drawBar "RGCHARG2", "RGCHAR02", RailgunCharges, horizontal,          654,493;
+		drawBar "RGCHARG4", "RGCHAR04", RailgunCharges, vertical  , reverse, 668,433;
+		drawBar "RGCHARG6", "RGCHAR06", RailgunCharges, horizontal, reverse, 654,493;
+		drawBar "RGCHARG8", "RGCHAR08", RailgunCharges, vertical  ,          667,527;
+
+		inInventory RailgunCharges, 52 { drawImage "RGCHARG0", 668, 493; }
+	}
+
+	// Railgun and HMG reticles when zoomed
+	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM
+	{	inInventory WeaponZoomedToken	{ drawImage "HMGRETCL", 	184,172; }		}
+	isSelected QCRailgun 			, QCRailgunDM
+	{	inInventory WeaponZoomedToken	{ drawImage "RGNRETCL", 	184,172; }		}
+	}
+
+	// Damage
+	DrawMugShot 1, disableouch, disablerampage, disablegrin, 628, 812;
+
+	//Flag on top of ability, and everything else
+	inInventory RedFlag			{ drawImage "FLAGCARY", 	623,848; }
+	inInventory WhiteFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory BlueFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory GoldFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory GreenFlag		{ drawImage "FLAGCARY", 	623,848; }
+	inInventory PowerEldersSoul	{ drawImage "DEMNCARY", 	603,819; }
+
+	inInventory QCEverything
+	{ drawString BIGFONT, bludi, "warranty void", 240,810, 0, alignment(left); }
+	}
+	}
+}}
+
+//================================================================================================
+
+mugshot "Normal"{ tnt1a 35; }
+mugshot "Death"	{ tnt1a 35; }
+mugshot "God" 	{ tnt1a 35; }
+
+mugshot "Pain", directional
+{
+	{wrig, wfor, wlef} 1;
+}
+

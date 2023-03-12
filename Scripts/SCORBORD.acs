@@ -463,6 +463,17 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 					pos1[me] = "1"            ; name1[me] = name[o[0]]; frags1[me] = strparam(d:frags[o[0]]);
 					pos2[me] = strparam(d:-~r); name2[me] = name[o[r]]; frags2[me] = strparam(d:frags[o[r]]);
 				}
+
+				if(notMe)
+				{
+					GiveInventory("BeingSpectated", 1);
+
+					drawPowerupCounters();
+				}
+				else
+				{
+					TakeInventory("BeingSpectated", ALL_OF_IT);
+				}
 			}
 			else if (duel)
 			{
