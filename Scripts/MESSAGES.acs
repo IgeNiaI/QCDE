@@ -2453,6 +2453,13 @@ script "QCDE_ClassInfo_Stop" (void) net clientside
 
 script "QCDE_LowAmmoAlert_CLIENT" (int sound, int text, int noammo) CLIENTSIDE
 {
+	int cameraPlayer = CheckPlayerCamera(ConsolePlayerNumber());
+	if (cameraPlayer >= ORBBDRON_TIDBASE)
+		cameraPlayer -= ORBBDRON_TIDBASE;
+	else
+		cameraPlayer -= 1000;
+	if (cameraPlayer != PlayerNumber()) terminate;
+
 	if(sound) AmbientSound("QC/UI/PlayerSounds/LowAmmoWarning", 127);
 
 	if(!text) terminate;
@@ -2468,6 +2475,13 @@ script "QCDE_LowAmmoAlert_CLIENT" (int sound, int text, int noammo) CLIENTSIDE
 
 script "QCDE_LowHealthAlert_CLIENT" (int sound, int text) CLIENTSIDE
 {
+	int cameraPlayer = CheckPlayerCamera(ConsolePlayerNumber());
+	if (cameraPlayer >= ORBBDRON_TIDBASE)
+		cameraPlayer -= ORBBDRON_TIDBASE;
+	else
+		cameraPlayer -= 1000;
+	if (cameraPlayer != PlayerNumber()) terminate;
+
 	if(sound) AmbientSound("QC/UI/PlayerSounds/LowHealthWarning", 127);
 
 	if(!text) terminate;
