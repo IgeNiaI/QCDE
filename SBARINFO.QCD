@@ -388,8 +388,10 @@ statusbar Normal, forcescaled
     }
 
 	// Keybag
-	gameMode cooperative, singlePlayer
+	gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame
 	{
+		// workaround to not show keys in singleplayer deathmatch
+	} else {
 		drawSwitchableImage BlueCard, 	"nullimage", "KEYCB", 	1250,  994;
 		drawSwitchableImage YellowCard,	"nullimage", "KEYCY", 	1300,  994;
 		drawSwitchableImage RedCard, 	"nullimage", "KEYCR", 	1350,  994;
@@ -1370,8 +1372,10 @@ statusbar Fullscreen, forcescaled
     }
 
 	// Keybag
-	gameMode cooperative, singlePlayer
+	gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame
 	{
+		// workaround to not show keys in singleplayer deathmatch
+	} else {
 		drawSwitchableImage BlueCard, 	"nullimage", "KEYCB", 	1250,  994;
 		drawSwitchableImage YellowCard,	"nullimage", "KEYCY", 	1300,  994;
 		drawSwitchableImage RedCard, 	"nullimage", "KEYCR", 	1350,  994;
