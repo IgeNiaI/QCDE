@@ -120,6 +120,8 @@ Script "QCDE_CleanBlood" (void) CLIENTSIDE
 #define SFF_HEALTH (1 << 1)
 Script "QCDE_StrokeFlash" (int tid, int color, int degree, int flags) CLIENTSIDE
 {
+	if (GetCvar("screenblocks") >= 12) terminate;
+
 	if(IsZandronum(true))
 		if(tid != CheckPlayerCamera(ConsolePlayerNumber()))
 			terminate;

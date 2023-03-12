@@ -148,6 +148,8 @@ function void PlaySong(int x)
 
 function void PrintSongName(int x)
 {
+	if (GetCvar("screenblocks") >= 12) return;
+
 	SetHudSize(640, 480, 1);
 	SetFont("QCSMFONT");
 	HudMessage(s:" \c[yellow]Music: \c[brite]", s:getMusicName(x), s:"\n \c[yellow]Author: \c[brite]", s:getMusicAuthor(x),

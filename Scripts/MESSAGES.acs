@@ -2462,7 +2462,7 @@ script "QCDE_LowAmmoAlert_CLIENT" (int sound, int text, int noammo) CLIENTSIDE
 
 	if(sound) AmbientSound("QC/UI/PlayerSounds/LowAmmoWarning", 127);
 
-	if(!text) terminate;
+	if(!text || GetCvar("screenblocks") >= 12) terminate;
 
 	SetHUDSize(512,384,1);
 	SetFont("QCBGFONT");
@@ -2484,7 +2484,7 @@ script "QCDE_LowHealthAlert_CLIENT" (int sound, int text) CLIENTSIDE
 
 	if(sound) AmbientSound("QC/UI/PlayerSounds/LowHealthWarning", 127);
 
-	if(!text) terminate;
+	if(!text || GetCvar("screenblocks") >= 12) terminate;
 
 	SetHUDSize(512,384,1);
 	SetFont("QCBGFONT");
@@ -3391,6 +3391,8 @@ Script "QCDE_IntruderMoraleBoost" (void) clientside
 
 Script "QCDE_ShowMapIntroduction" (int mapName, int mapTitle, int mapAuthor, int mapSource)
 {
+	if(GetCvar("screenblocks") >= 12) terminate;
+
 	SetHudSize(640, 480, 1);
 	SetFont("QCBGFONT");
 	HudMessage(s:mapName, s:" \c[brite]", s:mapTitle,

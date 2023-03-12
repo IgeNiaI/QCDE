@@ -735,6 +735,8 @@ function void giveEnemyClassToken(int enemyTid)
 #define HUD_EMBIGGENMENT 2
 function void drawPowerupCounters(void)
 {
+	if (GetCvar("screenblocks") == 10 || GetCvar("screenblocks") >= 12)
+		return;
 
 	int i;
 	for(i = 0; i < ITEM_TIMERS; i++)
