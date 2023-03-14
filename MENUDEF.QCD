@@ -42,14 +42,13 @@ LISTMENU "MainMenu"
 		{
 			PatchItem "Q_LOADG", "l", "LoadGameMenu"
 			PatchItem "Q_SAVEG", "s", "SaveGameMenu"
-			PatchItem "Q_CHAMP", "p", "QCDEPlayerMenu"
-			PatchItem "Q_OPTION","c", "QCDEOptions"
-			PatchItem "Q_OPTION","o", "OptionsMenu"
+			PatchItem "Q_CHAMP", "c", "QCDEPlayerMenu"
+			PatchItem "Q_OPTION","o", "QCDEOptions"
 		}
 		else
 		{
-			PatchItem "Q_CHAMP", "p", "QCDEPlayerMenu"
-			PatchItem "Q_OPTION", "c", "QCDEOptions"
+			PatchItem "Q_CHAMP", "c", "QCDEPlayerMenu"
+			PatchItem "Q_OPTION","o", "QCDEOptions"
 			PatchItem "Q_LOADG", "l", "LoadGameMenu"
 			PatchItem "Q_SAVEG", "s", "SaveGameMenu"
 		}
