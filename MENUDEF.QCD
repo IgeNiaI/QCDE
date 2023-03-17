@@ -37,7 +37,7 @@ LISTMENU "MainMenu"
 	IfGame(Doom, Strife, Chex)
 	{
 		PatchItem "Q_NEWGAM", "n", "PlayerclassMenu"
-		PatchItem "Q_SKIRM",  "s", "ZA_SkirmishMenu"
+		PatchItem "Q_SKIRM",  "s", "QCDE_SkirmishMenu"
 		ifOption(SwapMenu)
 		{
 			PatchItem "Q_LOADG", "l", "LoadGameMenu"
@@ -90,6 +90,96 @@ ListMenu "EpisodeMenu"
 		Position 80, 50
 	}
 	// items will be filled in by MAPINFO
+}
+
+OptionMenu QCDE_SkirmishMenu
+{
+	Indent 153
+	Title		"SKIRMISH"
+
+	StaticText ""
+
+	Option		"Game Mode",			"qcde_skirmishgamemode",		"QCDE_Gamemode"
+	Option		"Modifier",				"qcde_skirmishmodifier",		"QCDE_Modifier"
+
+	StaticText	" "
+
+	NumberField	"Time Limit",			"menu_skirmishtimelimit"
+	NumberField	"Frag Limit",			"menu_skirmishfraglimit"
+	NumberField	"Point Limit",			"menu_skirmishpointlimit"
+	NumberField	"Duel Limit",			"menu_skirmishduellimit"
+	NumberField	"Win Limit",			"menu_skirmishwinlimit"
+	NumberField	"Wave Limit",			"menu_skirmishwavelimit", 0, 10
+
+	StaticText	" "
+
+	NumberField	"Bots count",			"qcde_skirmishbotscount", 0, 9
+	Option		"Bot Skill",			"menu_skirmishbotskill",	ZA_Skill
+	Option		"Bots can talk",		"bot_allowchat",			"YesNo"
+
+	StaticText	" "
+
+	SubMenu		"Select a map",			"QCDE_SkirmishMaps"
+}
+
+OptionValue QCDE_Gamemode
+{
+	0, "Cooperative"
+	1, "Survival"
+	2, "Invasion"
+	3, "Deathmatch"
+	4, "Team Deathmatch"
+	5, "Duel"
+	6, "Last Man Standing"
+	7, "Team Last Man Standing"
+	8, "Domination"
+	9, "Freeze Tag"
+	10, "Elder's Soul"
+	11, "Team Elder's Soul"
+	12, "Capture The Flag"
+}
+
+OptionValue QCDE_Modifier
+{
+	0, "None"
+	1, "Instagib"
+	2, "Rocket Arena"
+	3, "Buckshot"
+	4, "Unholy Trinity"
+	5, "Lightning Storm"
+	6, "Random Weapons (Per map)"
+	7, "Random Weapons (Per life)"
+}
+
+OptionMenu QCDE_SkirmishMaps
+{
+	Indent 192
+	Title		"Select a map"
+
+	SubMenu		"Official maps  ",		"QCDE_QCDEMaps"
+	SubMenu		"AEON maps   ",			"QCDE_AEONMaps"
+	SubMenu		"NEON maps   ",			"QCDE_NEONMaps"
+}
+
+OptionMenu QCDE_QCDEMaps
+{
+	Title		"Select a map"
+
+	StaticText	"QCDE mappack is not loaded or is not up to date"
+}
+
+OptionMenu QCDE_AEONMaps
+{
+	Title		"Select a map"
+
+	StaticText	"AEON mappack is not loaded or is not up to date"
+}
+
+OptionMenu QCDE_NEONMaps
+{
+	Title		"Select a map"
+
+	StaticText	"NEON mappack is not loaded or is not up to date"
 }
 
 OptionMenu ZA_SkirmishMenu
@@ -148,7 +238,7 @@ OptionMenu "QCDEOptions"
 
 	StaticText	""
 
-	SubMenu		"Call a vote            ",		"ZA_CallVote"
+	SubMenu		"Call a vote            ",		"QCDE_CallVote"
 
 	StaticText	""
 
@@ -847,15 +937,29 @@ OptionValue "TauntSubtitles"
 	3, "Always on"
 }
 
-OptionMenu ZA_CallVote
+OptionMenu QCDE_CallVote
 {
 	Indent 192
 	Title "CALL VOTE"
 	NetGameOnly
 
+	SubMenu		"Change the map",		"QCDE_CallMapVote"
 	SubMenu		"Kick a player  ",		"ZA_CallKickVote"
-	SubMenu		"Change the map",		"ZA_CallMapVote"
 	SubMenu		"Change a limit ",		"ZA_CallLimitVote"
+}
+
+OptionMenu QCDE_CallMapVote
+{
+	Indent 192
+	Title		"CHANGE MAP"
+
+	Command		"Vote next map",		"menu_callnextmapvote"
+
+	StaticText	" "
+
+	SubMenu		"Official maps  ",		"QCDE_QCDEMaps"
+	SubMenu		"AEON maps   ",			"QCDE_AEONMaps"
+	SubMenu		"NEON maps   ",			"QCDE_NEONMaps"
 }
 
 OptionMenu ZA_CallMapVote
@@ -864,13 +968,19 @@ OptionMenu ZA_CallMapVote
 	Title		"CHANGE MAP"
 
 	Option		"Map",					"menu_callvotemap",				"ZA_Levels"
+
 	StaticText	" "
+
 	StaticText	"Some servers don't allow changing maps without intermission"
 	Option		"Intermission",			"menu_callvoteintermission",	"YesNo"
+
 	StaticText	" "
+
 	TextField	"Reason for change",	"menu_callvotereason"
 	Command		"Vote!",				"menu_callmapvote"
+
 	StaticText	" "
+
 	Command		"Vote next map!",		"menu_callnextmapvote"
 }
 

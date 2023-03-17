@@ -577,9 +577,9 @@ Script "QCDE_Players=0" OPEN
 {
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
 	if(GameType() == GAME_TITLE_MAP) terminate;
-	if(GetCvar("duel")) terminate; // not in duels
 
 	int max =~- GetCvar("sv_maxplayers");
+	if(GetCvar("duel")) max = 2;
 	int min = clamp(GetCvar("sv_minplayers"), 0, max);
 
 	if(GetCvar("sv_minPlayers") && GetGameModeState() <= 2)
@@ -611,7 +611,6 @@ Script "QCDE_Players++" ENTER
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
 	if(GameType() == GAME_TITLE_MAP) terminate;
 	if(!GetCvar("sv_minplayers")) terminate;
-	if(GetCvar("duel")) terminate; // not in duels
 
 	int plr = PlayerNumber();
 	if(PlayerIsBot(plr)) terminate; // allow overprovising bots
@@ -625,7 +624,6 @@ Script "QCDE_Players--" (int plr) DISCONNECT
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
 	if(GameType() == GAME_TITLE_MAP) terminate;
 	if(!GetCvar("sv_minplayers")) terminate;
-	if(GetCvar("duel")) terminate; // not in duels
 
 	delay(1);
 
@@ -650,9 +648,8 @@ function int thereAreNoBots(void)
 
 function void addOrRemoveBot(int plr)
 {
-	if(GetCvar("duel")) return; // not in duels
-
 	int max =~- GetCvar("sv_maxplayers");
+	if(GetCvar("duel")) max = 2;
 	int min = clamp(GetCvar("sv_minplayers"), 0, max);
 	int now = PlayerCount();
 
@@ -673,6 +670,110 @@ function void addOrRemoveBot(int plr)
 
 
 
+
+
+//*****************************************************************************
+//*****************************************************************************
+// Maps
+//*****************************************************************************
+//*****************************************************************************
+
+Script "QCDE_ChangeMap" (int mapName) CLIENTSIDE
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+	{
+		ConsoleCommand(strparam(s:"callvote changemap ", s:mapName));
+	}
+	else
+	{
+		setupGamemode(GetCVar("qcde_skirmishgamemode"));
+		setupModifier(GetCVar("qcde_skirmishmodifier"));
+
+		ConsoleCommand(strparam(s:"timelimit ",		d:GetCVar("menu_skirmishtimelimit")));
+		ConsoleCommand(strparam(s:"fraglimit ",		d:GetCVar("menu_skirmishfraglimit")));
+		ConsoleCommand(strparam(s:"pointlimit ",	d:GetCVar("menu_skirmishpointlimit")));
+		ConsoleCommand(strparam(s:"duellimit ",		d:GetCVar("menu_skirmishduellimit")));
+		ConsoleCommand(strparam(s:"winlimit ",		d:GetCVar("menu_skirmishwinlimit")));
+		ConsoleCommand(strparam(s:"wavelimit ",		d:GetCVar("menu_skirmishwavelimit")));
+		ConsoleCommand(strparam(s:"sv_wavelimit ",	d:GetCVar("menu_skirmishwavelimit")));
+
+		int botsCount = GetCVar("qcde_skirmishbotscount") + 1;
+		ConsoleCommand(strparam(s:"sv_minplayers ",	d:botsCount));
+		ConsoleCommand(strparam(s:"botskill ",		d:GetCVar("menu_skirmishbotskill")));
+	
+		ConsoleCommand(strparam(s:"map ", s:mapName));
+	}
+}
+
+function void setupGamemode(int gamemode)
+{
+	int cooperative = 0;
+	int survival = 0;
+	int invasion = 0;
+	int deathmatch = 0;
+	int teamplay = 0;
+	int duel = 0;
+	int lastmanstanding = 0;
+	int teamlms = 0;
+	int domination = 0;
+	int qc_elderssoul = 0;
+	int qc_freezetag = 0;
+	int ctf = 0;
+
+	switch (gamemode) {
+	case 0:  cooperative = 1;									break;	// Cooperative
+	case 1:  cooperative = 1; survival = 1;						break;	// Survival
+	case 2:  invasion = 1;										break;	// Invasion
+	case 3:  deathmatch = 1;									break;	// Deathmatch
+	case 4:  deathmatch = 1; teamplay = 1;						break;	// Team Deathmatch
+	case 5:  deathmatch = 1; duel = 1;							break;	// Duel
+	case 6:  deathmatch = 1; lastmanstanding = 1;				break;	// Last Man Standing
+	case 7:  deathmatch = 1; teamlms = 1;						break;	// Team Last Man Standing
+	case 8:  deathmatch = 1; domination = 1;					break;	// Domination
+	case 9:  deathmatch = 1; teamlms = 1; qc_freezetag = 1;		break;	// Freeze Tag
+	case 10: deathmatch = 1; qc_elderssoul = 1;					break;	// Elder's Soul
+	case 11: deathmatch = 1; teamplay = 1; qc_elderssoul = 1;	break;	// Team Elder's Soul
+	case 12: ctf = 1;											break;	// Capture The Flag
+	}
+
+	if (gamemode == 1 || gamemode == 2) // Survival or Invasion
+	{
+		ConsoleCommand("sv_maxlives 3");
+	}
+
+	ConsoleCommand(strparam(s:"cooperative ",		d:cooperative));
+	ConsoleCommand(strparam(s:"survival ",			d:survival));
+	ConsoleCommand(strparam(s:"invasion ",			d:invasion));
+	ConsoleCommand(strparam(s:"deathmatch ",		d:deathmatch));
+	ConsoleCommand(strparam(s:"teamplay ",			d:teamplay));
+	ConsoleCommand(strparam(s:"duel ",				d:duel));
+	ConsoleCommand(strparam(s:"lastmanstanding ",	d:lastmanstanding));
+	ConsoleCommand(strparam(s:"teamlms ",			d:teamlms));
+	ConsoleCommand(strparam(s:"domination ",		d:domination));
+	ConsoleCommand(strparam(s:"qc_elderssoul ",		d:qc_elderssoul));
+	ConsoleCommand(strparam(s:"qc_freezetag ",		d:qc_freezetag));
+	ConsoleCommand(strparam(s:"ctf ",				d:ctf));
+}
+
+function void setupModifier(int modifier)
+{
+	int instagib = 0;
+	int rocketarena = 0;
+
+	switch (modifier)
+	{
+	case 1: instagib = 1;		break;	// Instagib
+	case 2: rocketarena = 1;	break;	// Rocket Arena
+	case 3: rocketarena = 2;	break;	// Buckshot
+	case 4: rocketarena = 3;	break;	// Unholy Trinity
+	case 5: rocketarena = 6;	break;	// Lightning Storm
+	case 6: rocketarena = 4;	break;	// Random Weapons (Per map)
+	case 7: rocketarena = 5;	break;	// Random Weapons (Per life)
+	}
+
+	ConsoleCommand(strparam(s:"instagib ",		d:instagib));
+	ConsoleCommand(strparam(s:"rocketarena ",	d:rocketarena));
+}
 
 
 //*****************************************************************************

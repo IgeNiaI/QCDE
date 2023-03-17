@@ -105,6 +105,11 @@ server int theme2  = 1; // Quake 4
 server int theme3  = 0; // Doom
 server int theme4  = 1; // Doom 4 (Death Foretold)
 
+// Skirmish settings
+server           int qcde_skirmishgamemode  =   3; // used in skirmish menu to setup gamemode
+server           int qcde_skirmishmodifier  =   0; // used in skirmish menu to setup modifier
+server           int qcde_skirmishbotscount =   5; // used in skirmish menu to setup bots count
+
 // User-supplied
 
 user noarchive string themename5  =  "  - No custom themes loaded! - ";
