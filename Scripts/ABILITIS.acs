@@ -5606,7 +5606,9 @@ Script "QCDE_Orbb_Bounce" (int predicting, int justPressed, int justReleased, in
 			SetActorVelocity(0, GetActorVelX(0), GetActorVelY(0), -orbbVelocityZ[PlayerNumber()], 0, 0);
 			SetPredictableValue(0, 0, 1);
 			SetPredictableValue(0, 1, -orbbVelocityZ[PlayerNumber()]);
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			PlaySound(0, "OrbbJump", CHAN_BODY);
+			SetNetworkReplicationFlags( 0 );
 		}
 
 		orbbVelocityZ[PlayerNumber()] = GetActorVelZ(0) * 82 / 100;
