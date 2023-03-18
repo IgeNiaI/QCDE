@@ -678,62 +678,48 @@ function void addOrRemoveBot(int plr)
 //*****************************************************************************
 //*****************************************************************************
 
-Script "QCDE_ChangeMap" (int mapName) CLIENTSIDE
+Script "QCDE_StartSkirmish" (void) NET CLIENTSIDE
 {
-	if (GetNetworkState() == NETSTATE_CLIENT)
+	if (GetNetworkState() == NETSTATE_CLIENT || GetNetworkState() == NETSTATE_SERVER)
 	{
-		ConsoleCommand(strparam(s:"callvote changemap ", s:mapName));
+		Log(s:"You can't start an offline skirmish while in online game");
 	}
 	else
 	{
-		setupGamemode(GetCVar("qcde_skirmishgamemode"));
-		setupModifier(GetCVar("qcde_skirmishmodifier"));
-
-		ConsoleCommand(strparam(s:"timelimit ",		d:GetCVar("menu_skirmishtimelimit")));
-		ConsoleCommand(strparam(s:"fraglimit ",		d:GetCVar("menu_skirmishfraglimit")));
-		ConsoleCommand(strparam(s:"pointlimit ",	d:GetCVar("menu_skirmishpointlimit")));
-		ConsoleCommand(strparam(s:"duellimit ",		d:GetCVar("menu_skirmishduellimit")));
-		ConsoleCommand(strparam(s:"winlimit ",		d:GetCVar("menu_skirmishwinlimit")));
-		ConsoleCommand(strparam(s:"wavelimit ",		d:GetCVar("menu_skirmishwavelimit")));
-		ConsoleCommand(strparam(s:"sv_wavelimit ",	d:GetCVar("menu_skirmishwavelimit")));
-
-		int botsCount = GetCVar("qcde_skirmishbotscount") + 1;
-		ConsoleCommand(strparam(s:"sv_minplayers ",	d:botsCount));
-		ConsoleCommand(strparam(s:"botskill ",		d:GetCVar("menu_skirmishbotskill")));
-	
-		ConsoleCommand(strparam(s:"map ", s:mapName));
+		setupSkirmish();
+		ConsoleCommand("menu_startskirmish customgamemode");
 	}
+}
+
+function void setupSkirmish()
+{
+	setupGamemode(GetCVar("qcde_skirmishgamemode"));
+	setupModifier(GetCVar("qcde_skirmishmodifier"));
+
+	int botsCount = GetCVar("qcde_skirmishbotscount") + 1;
+	ConsoleCommand(strparam(s:"sv_minplayers ",	d:botsCount));
 }
 
 function void setupGamemode(int gamemode)
 {
-	int cooperative = 0;
-	int survival = 0;
-	int invasion = 0;
-	int deathmatch = 0;
-	int teamplay = 0;
-	int duel = 0;
-	int lastmanstanding = 0;
-	int teamlms = 0;
-	int domination = 0;
+	int menu_skirmishgamemode = 3; // default to deathmatch
 	int qc_elderssoul = 0;
 	int qc_freezetag = 0;
-	int ctf = 0;
 
 	switch (gamemode) {
-	case 0:  cooperative = 1;									break;	// Cooperative
-	case 1:  cooperative = 1; survival = 1;						break;	// Survival
-	case 2:  invasion = 1;										break;	// Invasion
-	case 3:  deathmatch = 1;									break;	// Deathmatch
-	case 4:  deathmatch = 1; teamplay = 1;						break;	// Team Deathmatch
-	case 5:  deathmatch = 1; duel = 1;							break;	// Duel
-	case 6:  deathmatch = 1; lastmanstanding = 1;				break;	// Last Man Standing
-	case 7:  deathmatch = 1; teamlms = 1;						break;	// Team Last Man Standing
-	case 8:  deathmatch = 1; domination = 1;					break;	// Domination
-	case 9:  deathmatch = 1; teamlms = 1; qc_freezetag = 1;		break;	// Freeze Tag
-	case 10: deathmatch = 1; qc_elderssoul = 1;					break;	// Elder's Soul
-	case 11: deathmatch = 1; teamplay = 1; qc_elderssoul = 1;	break;	// Team Elder's Soul
-	case 12: ctf = 1;											break;	// Capture The Flag
+	case 0:  menu_skirmishgamemode = 0;							break;	// Cooperative
+	case 1:  menu_skirmishgamemode = 1;							break;	// Survival
+	case 2:  menu_skirmishgamemode = 2;							break;	// Invasion
+	case 3:  menu_skirmishgamemode = 3;							break;	// Deathmatch
+	case 4:  menu_skirmishgamemode = 4;							break;	// Team Deathmatch
+	case 5:  menu_skirmishgamemode = 5;							break;	// Duel
+	case 6:  menu_skirmishgamemode = 7;							break;	// Last Man Standing
+	case 7:  menu_skirmishgamemode = 8;							break;	// Team Last Man Standing
+	// case 8:  menu_skirmishgamemode = 15;						break;	// Domination
+	case 9:  menu_skirmishgamemode = 8; qc_freezetag = 1;		break;	// Freeze Tag
+	// case 10: menu_skirmishgamemode = 3; qc_elderssoul = 1;		break;	// Elder's Soul
+	// case 11: menu_skirmishgamemode = 4;	qc_elderssoul = 1;		break;	// Team Elder's Soul
+	case 12: menu_skirmishgamemode = 12;						break;	// Capture The Flag
 	}
 
 	if (gamemode == 1 || gamemode == 2) // Survival or Invasion
@@ -741,37 +727,28 @@ function void setupGamemode(int gamemode)
 		ConsoleCommand("sv_maxlives 3");
 	}
 
-	ConsoleCommand(strparam(s:"cooperative ",		d:cooperative));
-	ConsoleCommand(strparam(s:"survival ",			d:survival));
-	ConsoleCommand(strparam(s:"invasion ",			d:invasion));
-	ConsoleCommand(strparam(s:"deathmatch ",		d:deathmatch));
-	ConsoleCommand(strparam(s:"teamplay ",			d:teamplay));
-	ConsoleCommand(strparam(s:"duel ",				d:duel));
-	ConsoleCommand(strparam(s:"lastmanstanding ",	d:lastmanstanding));
-	ConsoleCommand(strparam(s:"teamlms ",			d:teamlms));
-	ConsoleCommand(strparam(s:"domination ",		d:domination));
-	ConsoleCommand(strparam(s:"qc_elderssoul ",		d:qc_elderssoul));
-	ConsoleCommand(strparam(s:"qc_freezetag ",		d:qc_freezetag));
-	ConsoleCommand(strparam(s:"ctf ",				d:ctf));
+	ConsoleCommand(strparam(s:"menu_skirmishgamemode ",		d:menu_skirmishgamemode));
+	ConsoleCommand(strparam(s:"qc_elderssoul ",				d:qc_elderssoul));
+	ConsoleCommand(strparam(s:"qc_freezetag ",				d:qc_freezetag));
 }
 
 function void setupModifier(int modifier)
 {
-	int instagib = 0;
+	int menu_skirmishmodifier = 0;
 	int rocketarena = 0;
 
 	switch (modifier)
 	{
-	case 1: instagib = 1;		break;	// Instagib
-	case 2: rocketarena = 1;	break;	// Rocket Arena
-	case 3: rocketarena = 2;	break;	// Buckshot
-	case 4: rocketarena = 3;	break;	// Unholy Trinity
-	case 5: rocketarena = 6;	break;	// Lightning Storm
-	case 6: rocketarena = 4;	break;	// Random Weapons (Per map)
-	case 7: rocketarena = 5;	break;	// Random Weapons (Per life)
+	case 1: menu_skirmishmodifier = 1;		break;	// Instagib
+	case 2: rocketarena = 1;				break;	// Rocket Arena
+	case 3: rocketarena = 2;				break;	// Buckshot
+	case 4: rocketarena = 3;				break;	// Unholy Trinity
+	case 5: rocketarena = 6;				break;	// Lightning Storm
+	case 6: rocketarena = 4;				break;	// Random Weapons (Per map)
+	case 7: rocketarena = 5;				break;	// Random Weapons (Per life)
 	}
 
-	ConsoleCommand(strparam(s:"instagib ",		d:instagib));
+	ConsoleCommand(strparam(s:"menu_skirmishmodifier ",		d:menu_skirmishmodifier));
 	ConsoleCommand(strparam(s:"rocketarena ",	d:rocketarena));
 }
 

@@ -99,10 +99,15 @@ OptionMenu QCDE_SkirmishMenu
 
 	StaticText ""
 
+	Option		"Map",					"menu_skirmishlevel",	"ZA_Levels"
+	Command		"Random Map",			"qcde_randommap"
+
+	StaticText ""
+
 	Option		"Game Mode",			"qcde_skirmishgamemode",		"QCDE_Gamemode"
 	Option		"Modifier",				"qcde_skirmishmodifier",		"QCDE_Modifier"
 
-	StaticText	" "
+	StaticText ""
 
 	NumberField	"Time Limit",			"menu_skirmishtimelimit"
 	NumberField	"Frag Limit",			"menu_skirmishfraglimit"
@@ -111,15 +116,15 @@ OptionMenu QCDE_SkirmishMenu
 	NumberField	"Win Limit",			"menu_skirmishwinlimit"
 	NumberField	"Wave Limit",			"menu_skirmishwavelimit", 0, 10
 
-	StaticText	" "
+	StaticText ""
 
 	NumberField	"Bots count",			"qcde_skirmishbotscount", 0, 9
 	Option		"Bot Skill",			"menu_skirmishbotskill",	ZA_Skill
 	Option		"Bots can talk",		"bot_allowchat",			"YesNo"
 
-	StaticText	" "
+	StaticText ""
 
-	SubMenu		"Select a map",			"QCDE_SkirmishMaps"
+	Command		"Start Game!",			"qcde_startskirmish"
 }
 
 OptionValue QCDE_Gamemode
@@ -132,10 +137,10 @@ OptionValue QCDE_Gamemode
 	5, "Duel"
 	6, "Last Man Standing"
 	7, "Team Last Man Standing"
-	8, "Domination"
+	// 8, "Domination" // requires teamgame starts
 	9, "Freeze Tag"
-	10, "Elder's Soul"
-	11, "Team Elder's Soul"
+	// 10, "Elder's Soul" // doesn't seem to work at all
+	// 11, "Team Elder's Soul" // doesn't seem to work at all
 	12, "Capture The Flag"
 }
 
@@ -161,27 +166,7 @@ OptionMenu QCDE_SkirmishMaps
 	SubMenu		"NEON maps   ",			"QCDE_NEONMaps"
 }
 
-OptionMenu QCDE_QCDEMaps
-{
-	Title		"Select a map"
-
-	StaticText	"QCDE mappack is not loaded or is not up to date"
-}
-
-OptionMenu QCDE_AEONMaps
-{
-	Title		"Select a map"
-
-	StaticText	"AEON mappack is not loaded or is not up to date"
-}
-
-OptionMenu QCDE_NEONMaps
-{
-	Title		"Select a map"
-
-	StaticText	"NEON mappack is not loaded or is not up to date"
-}
-
+// Overriding this in case someone gets here from all engine options
 OptionMenu ZA_SkirmishMenu
 {
 	Indent 153
@@ -190,10 +175,11 @@ OptionMenu ZA_SkirmishMenu
 	StaticText ""
 
 	Option		"Level",				"menu_skirmishlevel",			"ZA_Levels"
+	Command		"Random Level",			"setskirmishlevel random"
 	Option		"Game Mode",			"menu_skirmishgamemode",		"ZA_Gamemode"
 	//Option		"Modifier",				"menu_skirmishmodifier",		"ZA_Modifier"
 
-	StaticText	" "
+	StaticText ""
 
 	NumberField	"Timelimit",			"menu_skirmishtimelimit"
 	NumberField	"Fraglimit",			"menu_skirmishfraglimit"
@@ -202,13 +188,13 @@ OptionMenu ZA_SkirmishMenu
 	NumberField	"Winlimit",				"menu_skirmishwinlimit"
 	NumberField	"Wavelimit",			"menu_skirmishwavelimit", 0, 10
 
-	StaticText	" "
+	StaticText ""
 
 	Option		"Bot Skill",			"menu_skirmishbotskill",	ZA_Skill
 	Option		"Bots can talk",		"bot_allowchat",			"YesNo"
 	SubMenu		"Bot Setup",			"ZA_BotSetup"
 
-	StaticText	" "
+	StaticText ""
 
 	Command		"Start Game!",			"menu_startskirmish"
 }
@@ -240,6 +226,7 @@ OptionMenu "QCDEOptions"
 
 	SubMenu		"Call a vote            ",		"QCDE_CallVote"
 
+	StaticText	""
 	StaticText	""
 
 	Submenu 	"All Engine options (old menu)",	"OptionsMenu"
@@ -474,7 +461,7 @@ OptionMenu "QCDEHUDOptions"
 	Slider		"Crosshair scale",				"crosshairscalef",		0, 10, 0.1
 	ColorPicker	"Crosshair color",				"crosshaircolor"
 
-	StaticText " "
+	StaticText ""
 
 	StaticText	"Information",1
 	Option		"Speedometer",					"cl_speedometer",			"QCSpeedometer"
@@ -488,7 +475,7 @@ OptionMenu "QCDEHUDOptions"
 	Option		"Show obituaries",				"show_obituaries",			"YesNo"
 	Option		"Show large frag messages",		"cl_showlargefragmessages",	"YesNo"
 
-	StaticText " "
+	StaticText ""
 
 	StaticText	"Effects",1
 	Option		"Weapon firing recoil",			"cl_weaponrecoil",			"OnOff"
@@ -498,7 +485,7 @@ OptionMenu "QCDEHUDOptions"
 	Slider		"Pickup flash intensity",		"pickup_blend_scalar", 0, 1, 0.05, 2
 	Slider		"Screen blood intensity",		"blood_fade_scalar",   0, 1, 0.05, 2
 
-	StaticText " "
+	StaticText ""
 
 	StaticText	"Champion specific settings",1
 	Option		"Eradicator Radar mode",		"cl_radarMode",				"RadarMode"
@@ -516,7 +503,7 @@ OptionMenu "QCDESoundOptions"
 	Slider "Music volume",			"snd_musicvolume", 0, 1, 0.05, 2
 	Slider "Announcer volume",		"snd_announcervolume", 0, 1, 0.05, 2 // [TP]
 	Option "Announcer",				"cl_announcer",		"ZA_Announcers" // [TP]
-	StaticText " "
+	StaticText ""
 	Option		"QCDE Weapon hit-beeps",			"cl_hitbeep",				"OnOff"
 	Slider		"QCDE Auto Taunt chance",			"cl_autoTaunt",				0, 50, 1
 	Option		"QCDE Taunt subtitles",				"cl_tauntSubtitles",		"TauntSubtitles"
@@ -540,12 +527,12 @@ OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of 
 	Option		"Dynamic Lights",				"gl_lights",	"OnOff"
 	Option		"Use models",					"gl_use_models","OnOff"
 
-	StaticText " "
-	StaticText " "
+	StaticText ""
+	StaticText ""
 
 	Option		"Aspect ratio",					"menu_screenratios",	"Ratios"
 
-	StaticText " "
+	StaticText ""
 
 	ScreenResolution "res_0"
 	ScreenResolution "res_1"
@@ -558,7 +545,7 @@ OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of 
 	ScreenResolution "res_8"
 	ScreenResolution "res_9"
 	StaticTextSwitchable "Press ENTER to set mode", "", "VMEnterText"
-	StaticText " "
+	StaticText ""
 	StaticTextSwitchable "T to test mode for 5 seconds", "Please wait 5 seconds...", "VMTestText"
 
 	class VideoModeMenu
@@ -703,7 +690,7 @@ OptionMenu "QCDEWeaponSkins"
 	Indent 153
 	Title "Weapons Skins"
 
-	StaticText " "
+	StaticText ""
 
 	Option		"Gauntlet",			"cl_GNTLskin",	"GNTLskin"
 	Option		"Machinegun",		"cl_MGskin",	"MGskin"
@@ -718,7 +705,7 @@ OptionMenu "QCDEWeaponSkins"
 	Option		"Railgun",			"cl_RGskin",	"RGskin"
 	Option		"BFG",				"cl_BFGskin",	"BFGskin"
 
-	StaticText " "
+	StaticText ""
 
 	Command		"Default Preset",		"qcde_WeapSkins_Default"
 	Command		"QC:DE 1.0 Preset",		"qcde_WeapSkins_QCDE10"
@@ -742,7 +729,7 @@ OptionMenu "QCDEMisc"	//had to overwrite, because redefine broke the list of res
 	Indent 153
 	Title 		"QCDE MISC OPTIONS"
 
-	StaticText " "
+	StaticText ""
 
 	StaticText	"Starting Weapon",1
 	Option 		"Starting weapon",			"cl_startingWeapon",	"StartingWeapon"
@@ -768,15 +755,15 @@ OptionMenu "QCDEMisc"	//had to overwrite, because redefine broke the list of res
 	Option  	"Skirmish Rogue", "qc_skirmishRogue", "YesNo"
 	Submenu 	"Custom themes (if loaded)", "QCDECustomThemes"
 
-	StaticText	" "
+	StaticText ""
 
 	StaticText	"--- WARNING ---"
 	StaticText	"Sending duplicate commands helps mitigate packet loss", 1
 	StaticText	"but increases outbound net traffic!", 1
-	StaticText	" "
+	StaticText ""
 	StaticText	"You should only enable them if you're actually", 1
 	StaticText	"suffering from severe packet loss!", 1
-	StaticText	" "
+	StaticText ""
 
 	Option		"Send duplicate commands",	"cl_packetdup",		"ZA_PacketDupRate"
 }
@@ -950,36 +937,41 @@ OptionMenu QCDE_CallVote
 
 OptionMenu QCDE_CallMapVote
 {
-	Indent 192
+	Indent 153
 	Title		"CHANGE MAP"
 
 	Command		"Vote next map",		"menu_callnextmapvote"
 
-	StaticText	" "
+	StaticText ""
 
-	SubMenu		"Official maps  ",		"QCDE_QCDEMaps"
-	SubMenu		"AEON maps   ",			"QCDE_AEONMaps"
-	SubMenu		"NEON maps   ",			"QCDE_NEONMaps"
+	Option		"Map",					"menu_callvotemap",				"ZA_Levels"
+	Command		"Random Map",			"qcde_randommap"
+
+	StaticText ""
+
+	Command		"Vote map!",			"menu_callmapvote"
 }
 
+// Overriding this in case someone gets here from all engine options
 OptionMenu ZA_CallMapVote
 {
 	Indent 153
 	Title		"CHANGE MAP"
 
 	Option		"Map",					"menu_callvotemap",				"ZA_Levels"
+	Command		"Random Map",			"setcallvotemap random"
 
-	StaticText	" "
+	StaticText ""
 
 	StaticText	"Some servers don't allow changing maps without intermission"
 	Option		"Intermission",			"menu_callvoteintermission",	"YesNo"
 
-	StaticText	" "
+	StaticText ""
 
 	TextField	"Reason for change",	"menu_callvotereason"
 	Command		"Vote!",				"menu_callmapvote"
 
-	StaticText	" "
+	StaticText ""
 
 	Command		"Vote next map!",		"menu_callnextmapvote"
 }
@@ -991,12 +983,12 @@ OptionMenu ZA_JoinMenu
 	Title		"JOIN GAME"
 
 	StaticText	"You are spectating."
-	StaticText	" "
-	StaticText	" "
-	StaticText	" "
-	StaticText	" "
-	StaticText	" "
-	StaticText	" "
+	StaticText ""
+	StaticText ""
+	StaticText ""
+	StaticText ""
+	StaticText ""
+	StaticText ""
 	Command		"Join game",			"joingame0"
 }
 
@@ -1007,12 +999,12 @@ OptionMenu ZA_JoinTeamMenu
 	Title		"JOIN GAME"
 
 	StaticText	"You are spectating."
-	StaticText	" "
-	StaticText	" "
-	StaticText	" "
-	StaticText	" "
-	StaticText	" "
-	StaticText	" "
+	StaticText ""
+	StaticText ""
+	StaticText ""
+	StaticText ""
+	StaticText ""
+	StaticText ""
 	Command		"Join game",			"joingame0"
 	Command		"Join blue ",			"joingame1"
 	Command		"Join red  " ,			"joingame2"
@@ -1036,7 +1028,7 @@ OptionMenu ZA_SelectClassMenu
 	Command "Freeman"     ,"closemenu ; pukename QCDE_JoinClassIdx  2  8"
 	Command "Painkiller"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  9"
 	Command "Intruder"    ,"closemenu ; pukename QCDE_JoinClassIdx  2 10"
-	StaticText	" "
+	StaticText ""
 	StaticText	"Light"
 	Command "Kane"        ,"closemenu ; pukename QCDE_JoinClassIdx  1  0"
 	Command "Caleb"       ,"closemenu ; pukename QCDE_JoinClassIdx  1  1"
@@ -1049,7 +1041,7 @@ OptionMenu ZA_SelectClassMenu
 	Command "Hunter"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  8"
 	Command "Postal"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  9"
 	Command "Orbb"        ,"closemenu ; pukename QCDE_JoinClassIdx	1 10"
-	StaticText	" "
+	StaticText ""
 	StaticText	"Heavy"
 	Command "Terminator"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  0"
 	Command "Zedek"       ,"closemenu ; pukename QCDE_JoinClassIdx  3  1"
