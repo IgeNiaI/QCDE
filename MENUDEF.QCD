@@ -99,32 +99,32 @@ OptionMenu QCDE_SkirmishMenu
 
 	StaticText ""
 
-	Option		"Map",					"menu_skirmishlevel",	"ZA_Levels"
-	Command		"Random Map",			"qcde_randommap"
+	Option			"Map",					"menu_skirmishlevel",	"ZA_Levels"
+	CommandCentered	"Random Map",			"qcde_randommap"
 
 	StaticText ""
 
-	Option		"Game Mode",			"qcde_skirmishgamemode",		"QCDE_Gamemode"
-	Option		"Modifier",				"qcde_skirmishmodifier",		"QCDE_Modifier"
+	Option			"Game Mode",			"qcde_skirmishgamemode",		"QCDE_Gamemode"
+	Option			"Modifier",				"qcde_skirmishmodifier",		"QCDE_Modifier"
 
 	StaticText ""
 
-	NumberField	"Time Limit",			"menu_skirmishtimelimit"
-	NumberField	"Frag Limit",			"menu_skirmishfraglimit"
-	NumberField	"Point Limit",			"menu_skirmishpointlimit"
-	NumberField	"Duel Limit",			"menu_skirmishduellimit"
-	NumberField	"Win Limit",			"menu_skirmishwinlimit"
-	NumberField	"Wave Limit",			"menu_skirmishwavelimit", 0, 10
+	NumberField		"Time Limit",			"menu_skirmishtimelimit"
+	NumberField		"Frag Limit",			"menu_skirmishfraglimit"
+	NumberField		"Point Limit",			"menu_skirmishpointlimit"
+	NumberField		"Duel Limit",			"menu_skirmishduellimit"
+	NumberField		"Win Limit",			"menu_skirmishwinlimit"
+	NumberField		"Wave Limit",			"menu_skirmishwavelimit", 0, 10
 
 	StaticText ""
 
-	NumberField	"Bots count",			"qcde_skirmishbotscount", 0, 9
-	Option		"Bot Skill",			"menu_skirmishbotskill",	ZA_Skill
-	Option		"Bots can talk",		"bot_allowchat",			"YesNo"
+	NumberField		"Bots count",			"qcde_skirmishbotscount", 0, 9
+	Option			"Bot Skill",			"menu_skirmishbotskill",	ZA_Skill
+	Option			"Bots can talk",		"bot_allowchat",			"YesNo"
 
 	StaticText ""
 
-	Command		"Start Game!",			"qcde_startskirmish"
+	CommandCentered	"Start Game!",			"qcde_startskirmish"
 }
 
 OptionValue QCDE_Gamemode
@@ -161,9 +161,9 @@ OptionMenu QCDE_SkirmishMaps
 	Indent 192
 	Title		"Select a map"
 
-	SubMenu		"Official maps  ",		"QCDE_QCDEMaps"
-	SubMenu		"AEON maps   ",			"QCDE_AEONMaps"
-	SubMenu		"NEON maps   ",			"QCDE_NEONMaps"
+	SubMenuCentered		"Official maps",		"QCDE_QCDEMaps"
+	SubMenuCentered		"AEON maps",			"QCDE_AEONMaps"
+	SubMenuCentered		"NEON maps",			"QCDE_NEONMaps"
 }
 
 // Overriding this in case someone gets here from all engine options
@@ -206,30 +206,30 @@ OptionMenu "QCDEOptions"
 
 	StaticText	""
 
-	Submenu		"Player Setup          ",		"QCDEPlayerMenu"
-	Submenu 	"Keyboard/Mouse binds    ", 	"QCDEBinds"
-	Submenu 	"Mouse Options         ",		"QCDEMouseOptions"
-	Submenu 	"Zoom Options          ",		"QCDEZoom"
+	SubmenuCentered		"Player Setup",				"QCDEPlayerMenu"
+	SubmenuCentered 	"Keyboard/Mouse binds",		"QCDEBinds"
+	SubmenuCentered 	"Mouse Options",			"QCDEMouseOptions"
+	SubmenuCentered 	"Zoom Options",				"QCDEZoom"
 
 	StaticText	""
 
-	Submenu 	"HUD & Display Options     ",	"QCDEHUDOptions"
-	Submenu 	"Sound Options          ",		"QCDESoundOptions"
-	Submenu 	"Video Options          ",		"VideoModeMenu"
+	SubmenuCentered 	"HUD & Display Options",	"QCDEHUDOptions"
+	SubmenuCentered 	"Sound Options",			"QCDESoundOptions"
+	SubmenuCentered 	"Video Options",			"VideoModeMenu"
 
 	StaticText	""
 
-	Submenu 	"Weapon Skins          ",		"QCDEWeaponSkins"
-	Submenu 	"Misc QCDE Options       ",		"QCDEMisc"
+	SubmenuCentered 	"Weapon Skins",				"QCDEWeaponSkins"
+	SubmenuCentered 	"Misc QCDE Options",		"QCDEMisc"
 
 	StaticText	""
 
-	SubMenu		"Call a vote            ",		"QCDE_CallVote"
+	SubMenuCentered		"Call a vote",				"QCDE_CallVote"
 
 	StaticText	""
 	StaticText	""
 
-	Submenu 	"All Engine options (old menu)",	"OptionsMenu"
+	SubmenuCentered 	"All Engine options (old menu)",	"OptionsMenu"
 }
 
 ListMenu "QCDEPlayerMenu"
@@ -366,11 +366,11 @@ OptionMenu "QCDEBinds"
 
 	StaticText ""
 
-	Submenu 	"Actions  ", 		"QCDEBindsActions"
-	Submenu 	"Weapons ", 		"QCDEBindsWeapons"
-	Submenu 	"Spectating",		"QCDEBindsSpectating"
-	Submenu 	"Chat    ",			"QCDEBindsChat"
-	Submenu 	"Other   ",			"QCDEBindsOther"
+	SubmenuCentered 	"Actions", 		"QCDEBindsActions"
+	SubmenuCentered 	"Weapons", 		"QCDEBindsWeapons"
+	SubmenuCentered 	"Spectating",	"QCDEBindsSpectating"
+	SubmenuCentered 	"Chat",			"QCDEBindsChat"
+	SubmenuCentered 	"Other",		"QCDEBindsOther"
 }
 
 OptionMenu "QCDEMouseOptions"
@@ -707,15 +707,15 @@ OptionMenu "QCDEWeaponSkins"
 
 	StaticText ""
 
-	Command		"Default Preset",		"qcde_WeapSkins_Default"
-	Command		"QC:DE 1.0 Preset",		"qcde_WeapSkins_QCDE10"
-	Command		"Quake 1 Preset",		"qcde_WeapSkins_Quake1"
-	Command		"Quake 2 Preset",		"qcde_WeapSkins_Quake2"
-	Command		"Quake 3 Preset",		"qcde_WeapSkins_Quake3"
-	Command		"Quake 4 Preset",		"qcde_WeapSkins_Quake4"
-	Command		"ET:QW Preset",			"qcde_WeapSkins_ETQW"
-	Command		"Half-Life Preset",		"qcde_WeapSkins_HalfLife"
-	Command		"Class Based Preset",	"qcde_WeapSkins_Class"
+	CommandCentered		"Default Preset",		"qcde_WeapSkins_Default"
+	CommandCentered		"QC:DE 1.0 Preset",		"qcde_WeapSkins_QCDE10"
+	CommandCentered		"Quake 1 Preset",		"qcde_WeapSkins_Quake1"
+	CommandCentered		"Quake 2 Preset",		"qcde_WeapSkins_Quake2"
+	CommandCentered		"Quake 3 Preset",		"qcde_WeapSkins_Quake3"
+	CommandCentered		"Quake 4 Preset",		"qcde_WeapSkins_Quake4"
+	CommandCentered		"ET:QW Preset",			"qcde_WeapSkins_ETQW"
+	CommandCentered		"Half-Life Preset",		"qcde_WeapSkins_HalfLife"
+	CommandCentered		"Class Based Preset",	"qcde_WeapSkins_Class"
 }
 
 OptionValue "QCSwitch"
@@ -753,7 +753,7 @@ OptionMenu "QCDEMisc"	//had to overwrite, because redefine broke the list of res
 
 	Option  	"Shuffle mode"  , "qc_shuffleMode",   "ShuffleMode"
 	Option  	"Skirmish Rogue", "qc_skirmishRogue", "YesNo"
-	Submenu 	"Custom themes (if loaded)", "QCDECustomThemes"
+	SubmenuCentered 	"Custom themes (if loaded)", "QCDECustomThemes"
 
 	StaticText ""
 
@@ -930,9 +930,9 @@ OptionMenu QCDE_CallVote
 	Title "CALL VOTE"
 	NetGameOnly
 
-	SubMenu		"Change the map",		"QCDE_CallMapVote"
-	SubMenu		"Kick a player  ",		"ZA_CallKickVote"
-	SubMenu		"Change a limit ",		"ZA_CallLimitVote"
+	SubMenuCentered		"Change the map",		"QCDE_CallMapVote"
+	SubMenuCentered		"Kick a player",		"ZA_CallKickVote"
+	SubMenuCentered		"Change a limit",		"ZA_CallLimitVote"
 }
 
 OptionMenu QCDE_CallMapVote
@@ -940,16 +940,16 @@ OptionMenu QCDE_CallMapVote
 	Indent 153
 	Title		"CHANGE MAP"
 
-	Command		"Vote next map",		"menu_callnextmapvote"
+	CommandCentered		"Vote next map",		"menu_callnextmapvote"
 
 	StaticText ""
 
-	Option		"Map",					"menu_callvotemap",				"ZA_Levels"
-	Command		"Random Map",			"qcde_randommap"
+	Option				"Map",					"menu_callvotemap",				"ZA_Levels"
+	CommandCentered		"Random Map",			"qcde_randommap"
 
 	StaticText ""
 
-	Command		"Vote map!",			"menu_callmapvote"
+	CommandCentered		"Vote map!",			"menu_callmapvote"
 }
 
 // Overriding this in case someone gets here from all engine options
@@ -989,7 +989,7 @@ OptionMenu ZA_JoinMenu
 	StaticText ""
 	StaticText ""
 	StaticText ""
-	Command		"Join game",			"joingame0"
+	CommandCentered		"Join game",			"joingame0"
 }
 
 
@@ -1005,9 +1005,9 @@ OptionMenu ZA_JoinTeamMenu
 	StaticText ""
 	StaticText ""
 	StaticText ""
-	Command		"Join game",			"joingame0"
-	Command		"Join blue ",			"joingame1"
-	Command		"Join red  " ,			"joingame2"
+	CommandCentered		"Join game",			"joingame0"
+	CommandCentered		"Join blue",			"joingame1"
+	CommandCentered		"Join red" ,			"joingame2"
 }
 
 // Now unreachable, but still provided if anyone has old bindings
@@ -1017,41 +1017,41 @@ OptionMenu ZA_SelectClassMenu
 	Title		"SELECT CHAMPION"
 
 	StaticText	"Medium"
-	Command "Ranger"      ,"closemenu ; pukename QCDE_JoinClassIdx  2  0"
-	Command "DoomSlayer"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  1"
-	Command "Corvus"      ,"closemenu ; pukename QCDE_JoinClassIdx  2  2"
-	Command "Galen"       ,"closemenu ; pukename QCDE_JoinClassIdx  2  3"
-	Command "DukeNukem"   ,"closemenu ; pukename QCDE_JoinClassIdx  2  4"
-	Command "Sarge"       ,"closemenu ; pukename QCDE_JoinClassIdx  2  5"
-	Command "Grayson"     ,"closemenu ; pukename QCDE_JoinClassIdx  2  6"
-	Command "Blazkowicz"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  7"
-	Command "Freeman"     ,"closemenu ; pukename QCDE_JoinClassIdx  2  8"
-	Command "Painkiller"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  9"
-	Command "Intruder"    ,"closemenu ; pukename QCDE_JoinClassIdx  2 10"
+	CommandCentered "Ranger"      ,"closemenu ; pukename QCDE_JoinClassIdx  2  0"
+	CommandCentered "DoomSlayer"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  1"
+	CommandCentered "Corvus"      ,"closemenu ; pukename QCDE_JoinClassIdx  2  2"
+	CommandCentered "Galen"       ,"closemenu ; pukename QCDE_JoinClassIdx  2  3"
+	CommandCentered "DukeNukem"   ,"closemenu ; pukename QCDE_JoinClassIdx  2  4"
+	CommandCentered "Sarge"       ,"closemenu ; pukename QCDE_JoinClassIdx  2  5"
+	CommandCentered "Grayson"     ,"closemenu ; pukename QCDE_JoinClassIdx  2  6"
+	CommandCentered "Blazkowicz"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  7"
+	CommandCentered "Freeman"     ,"closemenu ; pukename QCDE_JoinClassIdx  2  8"
+	CommandCentered "Painkiller"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  9"
+	CommandCentered "Intruder"    ,"closemenu ; pukename QCDE_JoinClassIdx  2 10"
 	StaticText ""
 	StaticText	"Light"
-	Command "Kane"        ,"closemenu ; pukename QCDE_JoinClassIdx  1  0"
-	Command "Caleb"       ,"closemenu ; pukename QCDE_JoinClassIdx  1  1"
-	Command "Menelkir"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  2"
-	Command "Nyx"         ,"closemenu ; pukename QCDE_JoinClassIdx  1  3"
-	Command "Durandal"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  4"
-	Command "LoWang"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  5"
-	Command "Eleena"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  6"
-	Command "Lucienne"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  7"
-	Command "Hunter"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  8"
-	Command "Postal"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  9"
-	Command "Orbb"        ,"closemenu ; pukename QCDE_JoinClassIdx	1 10"
+	CommandCentered "Kane"        ,"closemenu ; pukename QCDE_JoinClassIdx  1  0"
+	CommandCentered "Caleb"       ,"closemenu ; pukename QCDE_JoinClassIdx  1  1"
+	CommandCentered "Menelkir"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  2"
+	CommandCentered "Nyx"         ,"closemenu ; pukename QCDE_JoinClassIdx  1  3"
+	CommandCentered "Durandal"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  4"
+	CommandCentered "LoWang"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  5"
+	CommandCentered "Eleena"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  6"
+	CommandCentered "Lucienne"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  7"
+	CommandCentered "Hunter"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  8"
+	CommandCentered "Postal"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  9"
+	CommandCentered "Orbb"        ,"closemenu ; pukename QCDE_JoinClassIdx	1 10"
 	StaticText ""
 	StaticText	"Heavy"
-	Command "Terminator"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  0"
-	Command "Zedek"       ,"closemenu ; pukename QCDE_JoinClassIdx  3  1"
-	Command "Inquisitor"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  2"
-	Command "Sorgaul"     ,"closemenu ; pukename QCDE_JoinClassIdx  3  3"
-	Command "Bitterman"   ,"closemenu ; pukename QCDE_JoinClassIdx  3  4"
-	Command "Keel"        ,"closemenu ; pukename QCDE_JoinClassIdx  3  5"
-	Command "Eradicator"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  6"
-	Command "VorMatur"    ,"closemenu ; pukename QCDE_JoinClassIdx  3  7"
-	Command "Major"       ,"closemenu ; pukename QCDE_JoinClassIdx  3  8"
-	Command "Sam"         ,"closemenu ; pukename QCDE_JoinClassIdx  3  9"
+	CommandCentered "Terminator"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  0"
+	CommandCentered "Zedek"       ,"closemenu ; pukename QCDE_JoinClassIdx  3  1"
+	CommandCentered "Inquisitor"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  2"
+	CommandCentered "Sorgaul"     ,"closemenu ; pukename QCDE_JoinClassIdx  3  3"
+	CommandCentered "Bitterman"   ,"closemenu ; pukename QCDE_JoinClassIdx  3  4"
+	CommandCentered "Keel"        ,"closemenu ; pukename QCDE_JoinClassIdx  3  5"
+	CommandCentered "Eradicator"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  6"
+	CommandCentered "VorMatur"    ,"closemenu ; pukename QCDE_JoinClassIdx  3  7"
+	CommandCentered "Major"       ,"closemenu ; pukename QCDE_JoinClassIdx  3  8"
+	CommandCentered "Sam"         ,"closemenu ; pukename QCDE_JoinClassIdx  3  9"
 	// ^ insert more classes here
 }
