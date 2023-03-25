@@ -535,6 +535,23 @@ Script "QCDE_Players=0" OPEN
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
 	if(GameType() == GAME_TITLE_MAP) terminate;
 
+	if (!GetCvar("sv_minplayers"))
+	{
+		int maxBots = GetCVar("qcde_botscount");
+		int botCount = 0;
+		int i;
+		ConsoleCommand("removebots");
+		for (i = 0; i < 64; i++)
+			if(PlayerIsBot(i))
+				botCount++;
+		for (i = botCount; i < maxBots; i++)
+		{
+			delay(35);
+			ConsoleCommand("addbot");
+		}
+		terminate;
+	}
+
 	int max =~- GetCvar("sv_maxplayers");
 	if(GetCvar("duel")) max = 2;
 	int min = clamp(GetCvar("sv_minplayers"), 0, max);
@@ -643,28 +660,31 @@ Script "QCDE_StartSkirmish" (void) NET CLIENTSIDE
 	}
 	else
 	{
-		setupSkirmish();
+		setupGamemode();
+		setupModifier();
+		ConsoleCommand("sv_minPlayers 0");
+		ConsoleCommand("skill 2");
 		clearBots();
 		ConsoleCommand("menu_startskirmish customgamemode");
 	}
 }
 
-function void setupSkirmish()
-{
-	setupGamemode(GetCVar("qcde_skirmishgamemode"));
-	setupModifier(GetCVar("qcde_skirmishmodifier"));
-}
-
 function void clearBots()
 {
-	for (int i = 0; i < 80; i++)
+	int i;
+	for (i = 0; i < 16; i++)
 	{
-		ConsoleCommand(strparam(s:"menu_teambotspawn",	d:i, s:" -1"));	
+		ConsoleCommand(strparam(s:"menu_botspawn",	d:i, s:" -1"));
+	}
+	for (i = 0; i < 80; i++)
+	{
+		ConsoleCommand(strparam(s:"menu_teambotspawn",	d:i, s:" -1"));
 	}
 }
 
-function void setupGamemode(int gamemode)
+function void setupGamemode()
 {
+	int gamemode = GetCVar("qcde_skirmishgamemode");
 	int menu_skirmishgamemode = 3; // default to deathmatch
 	int qc_elderssoul = 0;
 	int qc_freezetag = 0;
@@ -678,25 +698,22 @@ function void setupGamemode(int gamemode)
 	case 5:  menu_skirmishgamemode = 5;							break;	// Duel
 	case 6:  menu_skirmishgamemode = 7;							break;	// Last Man Standing
 	case 7:  menu_skirmishgamemode = 8;							break;	// Team Last Man Standing
-	// case 8:  menu_skirmishgamemode = 15;						break;	// Domination
-	case 9:  menu_skirmishgamemode = 8; qc_freezetag = 1;		break;	// Freeze Tag
-	// case 10: menu_skirmishgamemode = 3; qc_elderssoul = 1;		break;	// Elder's Soul
-	// case 11: menu_skirmishgamemode = 4;	qc_elderssoul = 1;		break;	// Team Elder's Soul
-	case 12: menu_skirmishgamemode = 12;						break;	// Capture The Flag
-	}
-
-	if (gamemode == 1 || gamemode == 2) // Survival or Invasion
-	{
-		ConsoleCommand("sv_maxlives 3");
+	case 8:  menu_skirmishgamemode = 8; qc_freezetag = 1;		break;	// Freeze Tag
+	case 9:  menu_skirmishgamemode = 3; qc_elderssoul = 1;		break;	// Elder's Soul
+	case 10: menu_skirmishgamemode = 4;	qc_elderssoul = 1;		break;	// Team Elder's Soul
+	case 11: menu_skirmishgamemode = 12;						break;	// Capture The Flag
+	case 12: menu_skirmishgamemode = 15;						break;	// Domination
 	}
 
 	ConsoleCommand(strparam(s:"menu_skirmishgamemode ",		d:menu_skirmishgamemode));
 	ConsoleCommand(strparam(s:"qc_elderssoul ",				d:qc_elderssoul));
 	ConsoleCommand(strparam(s:"qc_freezetag ",				d:qc_freezetag));
+	ConsoleCommand(strparam(s:"sv_maxlives ",				d:GetCVar("qcde_maxlives")));
 }
 
-function void setupModifier(int modifier)
+function void setupModifier()
 {
+	int modifier = GetCVar("qcde_skirmishmodifier");
 	int menu_skirmishmodifier = 0;
 	int rocketarena = 0;
 

@@ -1,0 +1,1085 @@
+
+// Placing this here because this file is parsed first
+DefaultFreeformMenu
+{
+	ScrollSpeed 16
+	TopPadding 0
+}
+
+
+//-------------------------------------------------------------------------------------------
+//
+// Menu file dedicated specifically to Champion selection screen and detailed info
+//
+//-------------------------------------------------------------------------------------------
+
+FreeformMenu "ChampionSelector"
+{
+	Label { Pos	-170,  20	Text "LIGHT"	Font QCSMFONT	FontColor Gray }
+	Label { Pos -179,  25	Size 25, 50		Background "portrC04"	Anchor center, top } // Kane
+	Label { Pos -152,  25	Size 25, 50		Background "portrC05"	Anchor center, top } // Caleb
+	Label { Pos -125,  25	Size 25, 50		Background "portrC06"	Anchor center, top } // Menelkir
+	Label { Pos  -98,  25	Size 25, 50		Background "portrC12"	Anchor center, top } // Nyx
+	Label { Pos  -71,  25	Size 25, 50		Background "portrC15"	Anchor center, top } // Durandal
+	Label { Pos  -44,  25	Size 25, 50		Background "portrC18"	Anchor center, top } // LoWang
+	Label { Pos  -17,  25	Size 25, 50		Background "portrC24"	Anchor center, top } // Eleena
+	Label { Pos   10,  25	Size 25, 50		Background "portrC25"	Anchor center, top } // Lucienne
+	Label { Pos   37,  25	Size 25, 50		Background "portrC27"	Anchor center, top } // Hunter
+	Label { Pos   64,  25	Size 25, 50		Background "portrC29"	Anchor center, top } // Postal
+	Label { Pos   91,  25	Size 25, 50		Background "portrC32"	Anchor center, top } // Orbb
+
+	Label { Pos	-170,  70	Text "MEDIUM"	Font QCSMFONT	FontColor Gray }
+	Label { Pos -184,  75	Size 25, 50		Background "portrC01"	Anchor center, top } // Ranger
+	Label { Pos -157,  75	Size 25, 50		Background "portrC02"	Anchor center, top } // DoomSlayer
+	Label { Pos -130,  75	Size 25, 50		Background "portrC03"	Anchor center, top } // Corvus
+	Label { Pos -103,  75	Size 25, 50		Background "portrC11"	Anchor center, top } // Galen
+	Label { Pos  -76,  75	Size 25, 50		Background "portrC14"	Anchor center, top } // DukeNukem
+	Label { Pos  -49,  75	Size 25, 50		Background "portrC17"	Anchor center, top } // Sarge
+	Label { Pos  -22,  75	Size 25, 50		Background "portrC19"	Anchor center, top } // Grayson
+	Label { Pos    5,  75	Size 25, 50		Background "portrC21"	Anchor center, top } // Blazkowicz
+	Label { Pos   32,  75	Size 25, 50		Background "portrC22"	Anchor center, top } // Freeman
+	Label { Pos   59,  75	Size 25, 50		Background "portrC30"	Anchor center, top } // Painkiller
+	Label { Pos   86,  75	Size 25, 50		Background "portrC31"	Anchor center, top } // Intruder
+
+	Label { Pos	-180, 120	Text "HEAVY"	Font QCSMFONT	FontColor Gray }
+	Label { Pos -189, 125	Size 25, 50		Background "portrC07"	Anchor center, top } // Terminator
+	Label { Pos -162, 125	Size 25, 50		Background "portrC08"	Anchor center, top } // Zedek
+	Label { Pos -135, 125	Size 25, 50		Background "portrC09"	Anchor center, top } // Inquisitor
+	Label { Pos -108, 125	Size 25, 50		Background "portrC10"	Anchor center, top } // Bitterman
+	Label { Pos  -81, 125	Size 25, 50		Background "portrC13"	Anchor center, top } // Sorgaul
+	Label { Pos  -54, 125	Size 25, 50		Background "portrC16"	Anchor center, top } // Keel
+	Label { Pos  -27, 125	Size 25, 50		Background "portrC20"	Anchor center, top } // Eradicat
+	Label { Pos    0, 125	Size 25, 50		Background "portrC23"	Anchor center, top } // VorMatur
+	Label { Pos   27, 125	Size 25, 50		Background "portrC26"	Anchor center, top } // Major
+	Label { Pos   54, 125	Size 25, 50		Background "portrC28"	Anchor center, top } // Sam
+	// ^ insert more classes here
+
+	Label { Pos   81, 125	Size 25, 50		Background "portrCRN"	Anchor center, top } // Random
+
+	// Light
+	Option { Pos -179,  45	Values QCDE_Champion_Kane		BackgroundValues QCDE_ChampionBG_Kane		EnableCVar _bc_3,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos -152,  45	Values QCDE_Champion_Caleb		BackgroundValues QCDE_ChampionBG_Caleb		EnableCVar _bc_4,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos -125,  45	Values QCDE_Champion_Menelkir	BackgroundValues QCDE_ChampionBG_Menelkir	EnableCVar _bc_5,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos  -98,  45	Values QCDE_Champion_Nyx		BackgroundValues QCDE_ChampionBG_Nyx		EnableCVar _bc_11, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos  -71,  45	Values QCDE_Champion_Durandal	BackgroundValues QCDE_ChampionBG_Durandal	EnableCVar _bc_14, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos  -44,  45	Values QCDE_Champion_LoWang		BackgroundValues QCDE_ChampionBG_LoWang		EnableCVar _bc_17, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos  -17,  45	Values QCDE_Champion_Eleena		BackgroundValues QCDE_ChampionBG_Eleena		EnableCVar _bc_23, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos   10,  45	Values QCDE_Champion_Lucienne	BackgroundValues QCDE_ChampionBG_Lucienne	EnableCVar _bc_24, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos   37,  45	Values QCDE_Champion_Hunter		BackgroundValues QCDE_ChampionBG_Hunter		EnableCVar _bc_26, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos   64,  45	Values QCDE_Champion_Postal		BackgroundValues QCDE_ChampionBG_Postal		EnableCVar _bc_28, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos   91,  45	Values QCDE_Champion_Orbb		BackgroundValues QCDE_ChampionBG_Orbb		EnableCVar _bc_31, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+
+	// Medium
+	Option { Pos -184,  95	Values QCDE_Champion_Ranger		BackgroundValues QCDE_ChampionBG_Ranger		EnableCVar _bc_0,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	Option { Pos -157,  95	Values QCDE_Champion_DoomSlayer	BackgroundValues QCDE_ChampionBG_DoomSlayer	EnableCVar _bc_1,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos -130,  95	Values QCDE_Champion_Corvus		BackgroundValues QCDE_ChampionBG_Corvus		EnableCVar _bc_2,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos -103,  95	Values QCDE_Champion_Galen		BackgroundValues QCDE_ChampionBG_Galen		EnableCVar _bc_10, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos  -76,  95	Values QCDE_Champion_DukeNukem	BackgroundValues QCDE_ChampionBG_DukeNukem	EnableCVar _bc_13, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos  -49,  95	Values QCDE_Champion_Sarge		BackgroundValues QCDE_ChampionBG_Sarge		EnableCVar _bc_16, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos  -22,  95	Values QCDE_Champion_Grayson	BackgroundValues QCDE_ChampionBG_Grayson	EnableCVar _bc_18, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos    5,  95	Values QCDE_Champion_Blazkowicz	BackgroundValues QCDE_ChampionBG_Blazkowicz	EnableCVar _bc_20, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos   32,  95	Values QCDE_Champion_Freeman	BackgroundValues QCDE_ChampionBG_Freeman	EnableCVar _bc_21, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos   59,  95	Values QCDE_Champion_Painkiller	BackgroundValues QCDE_ChampionBG_Painkiller	EnableCVar _bc_29, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos   86,  95	Values QCDE_Champion_Intruder	BackgroundValues QCDE_ChampionBG_Intruder	EnableCVar _bc_30, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+
+	// Heavy
+	Option { Pos -189, 145	Values QCDE_Champion_Terminator	BackgroundValues QCDE_ChampionBG_Terminator	EnableCVar _bc_6,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos -162, 145	Values QCDE_Champion_Zedek		BackgroundValues QCDE_ChampionBG_Zedek		EnableCVar _bc_7,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos -135, 145	Values QCDE_Champion_Inquisitor	BackgroundValues QCDE_ChampionBG_Inquisitor	EnableCVar _bc_8,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos -108, 145	Values QCDE_Champion_Bitterman	BackgroundValues QCDE_ChampionBG_Bitterman	EnableCVar _bc_9,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos  -81, 145	Values QCDE_Champion_Sorgaul	BackgroundValues QCDE_ChampionBG_Sorgaul	EnableCVar _bc_12, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos  -54, 145	Values QCDE_Champion_Keel		BackgroundValues QCDE_ChampionBG_Keel		EnableCVar _bc_15, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos  -27, 145	Values QCDE_Champion_Eradicator	BackgroundValues QCDE_ChampionBG_Eradicator	EnableCVar _bc_19, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos    0, 145	Values QCDE_Champion_VorMatur	BackgroundValues QCDE_ChampionBG_VorMatur	EnableCVar _bc_22, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos   27, 145	Values QCDE_Champion_Major		BackgroundValues QCDE_ChampionBG_Major		EnableCVar _bc_25, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos   54, 145	Values QCDE_Champion_Sam		BackgroundValues QCDE_ChampionBG_Sam		EnableCVar _bc_27, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+	// ^ insert more classes here
+
+	Command {Pos   81, 120	Size 25, 50		Command randomclasssilent		SelectedForeground Cpicker2, 35, 60		Anchor center, top	}
+
+
+	Label { Pos -179,  15	VisibilityCVar _bc_3,  1,1		Background Cpicker3		Size 35, 60		Anchor center, top 	}
+	Label { Pos -152,  15	VisibilityCVar _bc_4,  1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos -125,  15	VisibilityCVar _bc_5,  1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -98,  15	VisibilityCVar _bc_11, 1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -71,  15	VisibilityCVar _bc_14, 1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -44,  15	VisibilityCVar _bc_17, 1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -17,  15	VisibilityCVar _bc_23, 1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   10,  15	VisibilityCVar _bc_24, 1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   37,  15	VisibilityCVar _bc_26, 1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   64,  15	VisibilityCVar _bc_28, 1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   91,  15	VisibilityCVar _bc_31, 1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+
+	Label { Pos -184,  65	VisibilityCVar _bc_0,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top 	}
+	Label { Pos -157,  65	VisibilityCVar _bc_1,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos -130,  65	VisibilityCVar _bc_2,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos -103,  65	VisibilityCVar _bc_10,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -76,  65	VisibilityCVar _bc_13,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -49,  65	VisibilityCVar _bc_16,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -22,  65	VisibilityCVar _bc_18,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos    5,  65	VisibilityCVar _bc_20,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   32,  65	VisibilityCVar _bc_21,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   59,  65	VisibilityCVar _bc_29,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   86,  65	VisibilityCVar _bc_30,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+
+	Label { Pos -189, 115	VisibilityCVar _bc_6,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top 	}
+	Label { Pos -162, 115	VisibilityCVar _bc_7,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos -135, 115	VisibilityCVar _bc_8,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos -108, 115	VisibilityCVar _bc_9,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -81, 115	VisibilityCVar _bc_12,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -54, 115	VisibilityCVar _bc_15,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos  -27, 115	VisibilityCVar _bc_19,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos    0, 115	VisibilityCVar _bc_22,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   27, 115	VisibilityCVar _bc_25,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   54, 115	VisibilityCVar _bc_27,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	// ^ insert more classes here
+
+
+	Option { NotSelectable	Pos 170,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCSMFONT	FontColor Gold					}
+	Option { NotSelectable	Pos 170,  25	Values QCDE_Champions_FakeText	BackgroundValues QCDE_Champions_Images	Size -1, -1		CVar playerclass	}
+	Option { NotSelectable	Pos 170, 118	Values QCDE_Champions_Active	CVar playerclass	Font QCSMFONT	FontColor Gold					}
+	Option { NotSelectable	Pos 170, 133	Values QCDE_Champions_Movement	CVar playerclass	Font QCSMFONT	FontColor DarkGray				}
+	Option { NotSelectable	Pos 170, 148	Values QCDE_Champions_Passive1	CVar playerclass	Font QCSMFONT	FontColor DarkGray				}
+	Option { NotSelectable	Pos 170, 163	Values QCDE_Champions_Passive2	CVar playerclass	Font QCSMFONT	FontColor DarkGray				}
+
+	SubMenu {
+		Pos		170, 191				Text				"DETAILS"			Background			BT10028
+		Size	50, 14					Font				SmallFont			SelectedBackground	BT10028S
+		Anchor	center, center			FontColor			Tan					Menu	QCDE_ChampionDetails
+										SelectedFontColor	Yellow
+	}
+}
+
+FreeformMenu "WeaponSelectorCoop"
+{
+	Label 	{ Pos -147, 177		Text "Starting Weapon"	Font SmallFont	FontColor Gray }
+
+	Label 	{ Pos -175, 190		Size 56, 33		Background "WPSELECM"	Anchor center, top }
+	Option	{ Pos -175, 190		Values QCDE_StartingWeapon_MG		BackgroundValues QCDE_StartingWeaponBG_MG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
+	Label 	{ Pos -120, 190		Size 56, 33		Background "WPSELECN"	Anchor center, top }
+	Option	{ Pos -120, 190		Values QCDE_StartingWeapon_NG		BackgroundValues QCDE_StartingWeaponBG_NG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
+}
+
+FreeformMenu "WeaponSelectorDM"
+{
+	Label 	{ Pos -120, 177		Text "Starting Weapon"	Font SmallFont	FontColor Gray }
+
+	Label 	{ Pos -175, 190		Size 56, 33		Background "WPSELECM"	Anchor center, top }
+	Option	{ Pos -175, 190		Values QCDE_StartingWeapon_MG		BackgroundValues QCDE_StartingWeaponBG_MG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
+	Label 	{ Pos -120, 190		Size 56, 33		Background "WPSELECS"	Anchor center, top }
+	Option	{ Pos -120, 190		Values QCDE_StartingWeapon_SG		BackgroundValues QCDE_StartingWeaponBG_SG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
+	Label 	{ Pos  -65, 190		Size 56, 33		Background "WPSELECN"	Anchor center, top }
+	Option	{ Pos  -65, 190		Values QCDE_StartingWeapon_NG		BackgroundValues QCDE_StartingWeaponBG_NG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
+
+	Label 	{ Pos -120, 222		Text "(PvP only)"	Font SmallFont	FontColor DarkGray }
+}
+
+FreeformMenu QCDE_ChampionDetails
+{
+	ResetScroll
+	TopPadding 0
+	DefaultSelection -2
+	OverrideHeight 600
+
+	Label {
+		Static
+		Background	"BackCmp"
+		Pos			 0, 0
+		Size		 450, 600
+	}
+
+	Option { NotSelectable	Pos -105,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCBGFONT	FontColor Gold					}
+	Option { NotSelectable	Pos -135,  45	Values QCDE_Champions_FakeText	BackgroundValues 	QCDE_Champions_PortraitsFull	Size -1, -1		CVar playerclass	}
+	Option { NotSelectable	Pos -135,  80	Values QCDE_Champions_FakeText	BackgroundValues 	QCDE_Champions_Abilities		Size -1, -1		CVar playerclass	}
+	Option { NotSelectable	Pos  -75,  45	Values QCDE_Champions_FakeText	BackgroundValues 	QCDE_Champions_Images			Size -1, -1		CVar playerclass	}
+
+	Option { NotSelectable	Pos -200, 140	Values QCDE_Champions_Story		Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+
+	Label {					Pos	-200, 190	Text "Type:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -157, 190	Values QCDE_Champions_Type		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
+	Label {					Pos	-200, 210	Text "Health:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -157, 210	Values QCDE_Champions_Health	Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
+	Label {					Pos	-200, 230	Text "Armor:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -157, 230	Values QCDE_Champions_Armor		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
+
+	Option { NotSelectable	Pos -200, 260	Values QCDE_Champions_Movement		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -200, 275	Values QCDE_Champions_MovementDesc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+
+	Option { NotSelectable	Pos -200, 330	Values QCDE_Champions_Active		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
+	Label {					Pos	-200, 345	Text "Cooldown PvP / PvE:"			Anchor left, center							Font SmallFont	FontColor Gray		}
+	Option { NotSelectable	Pos -107, 345	Values QCDE_Champions_Cooldowns		Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+	Option { NotSelectable	Pos -200, 360	Values QCDE_Champions_ActiveDesc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+
+	Option { NotSelectable	Pos -200, 410	Values QCDE_Champions_Passive1		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -200, 425	Values QCDE_Champions_Passive1Desc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+
+	Option { NotSelectable	Pos -200, 480	Values QCDE_Champions_Passive2		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -200, 495	Values QCDE_Champions_Passive2Desc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+
+
+	Label { 				Pos  105,  20	Text "Backstory"	Font QCBGFONT	FontColor Gold	}
+	Option { NotSelectable	Pos   10,  50	Values QCDE_Champions_Lore		Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+}
+
+OptionValue QCDE_StartingWeapon_MG { 1,	"" }
+OptionValue QCDE_StartingWeapon_SG { 2,	"" }
+OptionValue QCDE_StartingWeapon_NG { 3,	"" }
+
+OptionValue QCDE_StartingWeaponBG_MG { 1,	"WPSELEKS" }
+OptionValue QCDE_StartingWeaponBG_SG { 2,	"WPSELEKS" }
+OptionValue QCDE_StartingWeaponBG_NG { 3,	"WPSELEKS" }
+
+
+// Light
+OptionString QCDE_Champion_Kane			{ "Kane",			"" }
+OptionString QCDE_Champion_Caleb		{ "Caleb",			"" }
+OptionString QCDE_Champion_Menelkir		{ "Menelkir",		"" }
+OptionString QCDE_Champion_Nyx			{ "Nyx",			"" }
+OptionString QCDE_Champion_Durandal		{ "Durandal",		"" }
+OptionString QCDE_Champion_LoWang		{ "Lo Wang",		"" }
+OptionString QCDE_Champion_Eleena		{ "Eleena",			"" }
+OptionString QCDE_Champion_Lucienne		{ "Lucienne",		"" }
+OptionString QCDE_Champion_Hunter		{ "Hunter",			"" }
+OptionString QCDE_Champion_Postal		{ "Postal",			"" }
+OptionString QCDE_Champion_Orbb			{ "Orbb",			"" }
+// Medium
+OptionString QCDE_Champion_Ranger		{ "Ranger",			"" }
+OptionString QCDE_Champion_DoomSlayer	{ "DoomSlayer",		"" }
+OptionString QCDE_Champion_Corvus		{ "Corvus",			"" }
+OptionString QCDE_Champion_Galen		{ "Galen",			"" }
+OptionString QCDE_Champion_DukeNukem	{ "Duke Nukem",		"" }
+OptionString QCDE_Champion_Sarge		{ "Sarge",			"" }
+OptionString QCDE_Champion_Grayson		{ "Grayson",		"" }
+OptionString QCDE_Champion_Blazkowicz	{ "Blazkowicz",		"" }
+OptionString QCDE_Champion_Freeman		{ "Freeman",		"" }
+OptionString QCDE_Champion_Painkiller	{ "Painkiller",		"" }
+OptionString QCDE_Champion_Intruder		{ "Intruder",		"" }
+// Heavy
+OptionString QCDE_Champion_Terminator	{ "Terminator",		"" }
+OptionString QCDE_Champion_Zedek		{ "Zedek",			"" }
+OptionString QCDE_Champion_Inquisitor	{ "Inquisitor",		"" }
+OptionString QCDE_Champion_Bitterman	{ "Bitterman",		"" }
+OptionString QCDE_Champion_Sorgaul		{ "Sorgaul",		"" }
+OptionString QCDE_Champion_Keel			{ "Keel",			"" }
+OptionString QCDE_Champion_Eradicator	{ "Eradicator",		"" }
+OptionString QCDE_Champion_VorMatur		{ "VorMatur",		"" }
+OptionString QCDE_Champion_Major		{ "Major",			"" }
+OptionString QCDE_Champion_Sam			{ "Sam",			"" }
+// ^ insert more classes here
+
+// Light
+OptionString QCDE_ChampionBG_Kane		{ "Kane",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Caleb		{ "Caleb",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Menelkir	{ "Menelkir",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Nyx		{ "Nyx",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Durandal	{ "Durandal",		"Cpicker1" }
+OptionString QCDE_ChampionBG_LoWang		{ "Lo Wang",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Eleena		{ "Eleena",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Lucienne	{ "Lucienne",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Hunter		{ "Hunter",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Postal		{ "Postal",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Orbb		{ "Orbb",			"Cpicker1" }
+// Medium
+OptionString QCDE_ChampionBG_Ranger		{ "Ranger",			"Cpicker1" }
+OptionString QCDE_ChampionBG_DoomSlayer	{ "DoomSlayer",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Corvus		{ "Corvus",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Galen		{ "Galen",			"Cpicker1" }
+OptionString QCDE_ChampionBG_DukeNukem	{ "Duke Nukem",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Sarge		{ "Sarge",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Grayson	{ "Grayson",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Blazkowicz	{ "Blazkowicz",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Freeman	{ "Freeman",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Painkiller	{ "Painkiller",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Intruder	{ "Intruder",		"Cpicker1" }
+// Heavy
+OptionString QCDE_ChampionBG_Terminator	{ "Terminator",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Zedek		{ "Zedek",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Inquisitor	{ "Inquisitor",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Bitterman	{ "Bitterman",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Sorgaul	{ "Sorgaul",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Keel		{ "Keel",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Eradicator	{ "Eradicator",		"Cpicker1" }
+OptionString QCDE_ChampionBG_VorMatur	{ "VorMatur",		"Cpicker1" }
+OptionString QCDE_ChampionBG_Major		{ "Major",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Sam		{ "Sam",			"Cpicker1" }
+// ^ insert more classes here
+
+OptionString QCDE_Champions_FakeText {
+	// light
+	"Kane",			""
+	"Caleb",		""
+	"Menelkir",		""
+	"Nyx",			""
+	"Durandal",		""
+	"Lo Wang",		""
+	"Eleena",		""
+	"Lucienne",		""
+	"Hunter",		""
+	"Postal",		""
+	"Orbb",			""
+	// medium
+	"Ranger",		""
+	"DoomSlayer",	""
+	"Corvus",		""
+	"Galen",		""
+	"Duke Nukem",	""
+	"Sarge",		""
+	"Grayson",		""
+	"Blazkowicz",	""
+	"Freeman",		""
+	"Painkiller",	""
+	"Intruder",		""
+	// heavy
+	"Terminator",	""
+	"Zedek",		""
+	"Inquisitor",	""
+	"Bitterman",	""
+	"Sorgaul",		""
+	"Keel",			""
+	"Eradicator",	""
+	"VorMatur",		""
+	"Major",		""
+	"Sam",			""
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Names {
+	// light
+	"Kane",			"Kane"
+	"Caleb",		"Caleb"
+	"Menelkir",		"Menelkir"
+	"Nyx",			"Nyx"
+	"Durandal",		"Durandal"
+	"Lo Wang",		"Lo Wang"
+	"Eleena",		"Eleena"
+	"Lucienne",		"Lucienne"
+	"Hunter",		"Hunter"
+	"Postal",		"Postal"
+	"Orbb",			"Orbb"
+	// medium
+	"Ranger",		"Ranger"
+	"DoomSlayer",	"DoomSlayer"
+	"Corvus",		"Corvus"
+	"Galen",		"Galen"
+	"Duke Nukem",	"Duke Nukem"
+	"Sarge",		"Sarge"
+	"Grayson",		"Grayson"
+	"Blazkowicz",	"Blazkowicz"
+	"Freeman",		"Freeman"
+	"Painkiller",	"Painkiller"
+	"Intruder",		"Intruder"
+	// heavy
+	"Terminator",	"Terminator"
+	"Zedek",		"Zedek"
+	"Inquisitor",	"Inquisitor"
+	"Bitterman",	"Bitterman"
+	"Sorgaul",		"Sorgaul"
+	"Keel",			"Keel"
+	"Eradicator",	"Eradicator"
+	"VorMatur",		"VorMatur"
+	"Major",		"Major"
+	"Sam",			"Sam"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Images {
+	// light
+	"Kane",			"QP04A"
+	"Caleb",		"QP05A"
+	"Menelkir",		"QP06A"
+	"Nyx",			"QP12A"
+	"Durandal",		"QP15A"
+	"Lo Wang",		"QP18A"
+	"Eleena",		"QP24A"
+	"Lucienne",		"QP25A"
+	"Hunter",		"QP27A"
+	"Postal",		"QP29A"
+	"Orbb",			"QP32A"
+	// medium
+	"Ranger",		"QP01A"
+	"DoomSlayer",	"QP02A"
+	"Corvus",		"QP03A"
+	"Galen",		"QP11A"
+	"Duke Nukem",	"QP14E"
+	"Sarge",		"QP17A"
+	"Grayson",		"QP19A"
+	"Blazkowicz",	"QP21A"
+	"Freeman",		"QP22A"
+	"Painkiller",	"QP30A"
+	"Intruder",		"QP31A"
+	// heavy
+	"Terminator",	"QP07A"
+	"Zedek",		"QP08A"
+	"Inquisitor",	"QP09A"
+	"Bitterman",	"QP10A"
+	"Sorgaul",		"QP13A"
+	"Keel",			"QP16A"
+	"Eradicator",	"QP20A"
+	"VorMatur",		"QP23A"
+	"Major",		"QP26A"
+	"Sam",			"QP28A"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Movement {
+	// light
+	"Kane",			"$MOVTQUAK"
+	"Caleb",		"$MOVTQUAK"
+	"Menelkir",		"$MOVTDOOM"
+	"Nyx",			"$MOVTQUAK"
+	"Durandal",		"$MOVTQCPM"
+	"Lo Wang",		"$MOVTQUAK"
+	"Eleena",		"$MOVTQUAK"
+	"Lucienne",		"$MOVTQUAK"
+	"Hunter",		"$MOVTQUAK"
+	"Postal",		"$MOVTQUAK"
+	"Orbb",			"$MOVTQUAK"
+	// medium
+	"Ranger",		"$MOVTQUAK"
+	"DoomSlayer",	"$MOVTDOOM"
+	"Corvus",		"$MOVTDOOM"
+	"Galen",		"$MOVTDOOM"
+	"Duke Nukem",	"$MOVTQUAK"
+	"Sarge",		"$MOVTQUAK"
+	"Grayson",		"$MOVTQUAK"
+	"Blazkowicz",	"$MOVTQUAK"
+	"Freeman",		"$MOVTQUAK"
+	"Painkiller",	"$MOVTQUAK"
+	"Intruder",		"$MOVTQCPM"
+	// heavy
+	"Terminator",	"$MOVTQUAK"
+	"Zedek",		"$MOVTDOOM"
+	"Inquisitor",	"$MOVTQUAK"
+	"Bitterman",	"$MOVTQUAK"
+	"Sorgaul",		"$MOVTQUAK"
+	"Keel",			"$MOVTQUAK"
+	"Eradicator",	"$MOVTQCPM"
+	"VorMatur",		"$MOVTQUAK"
+	"Major",		"$MOVTQUAK"
+	"Sam",			"$MOVTQUAK"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Active {
+	// light
+	"Kane",			"$ABILT104"
+	"Caleb",		"$ABILT105"
+	"Menelkir",		"$ABILT106"
+	"Nyx",			"$ABILT112"
+	"Durandal",		"$ABILT115"
+	"Lo Wang",		"$ABILT118"
+	"Eleena",		"$ABILT124"
+	"Lucienne",		"$ABILT125"
+	"Hunter",		"$ABILT127"
+	"Postal",		"$ABILT129"
+	"Orbb",			"$ABILT132"
+	// medium
+	"Ranger",		"$ABILT101"
+	"DoomSlayer",	"$ABILT102"
+	"Corvus",		"$ABILT103"
+	"Galen",		"$ABILT111"
+	"Duke Nukem",	"$ABILT114"
+	"Sarge",		"$ABILT117"
+	"Grayson",		"$ABILT119"
+	"Blazkowicz",	"$ABILT121"
+	"Freeman",		"$ABILT122"
+	"Painkiller",	"$ABILT130"
+	"Intruder",		"$ABILT131"
+	// heavy
+	"Terminator",	"$ABILT107"
+	"Zedek",		"$ABILT108"
+	"Inquisitor",	"$ABILT109"
+	"Bitterman",	"$ABILT110"
+	"Sorgaul",		"$ABILT113"
+	"Keel",			"$ABILT116"
+	"Eradicator",	"$ABILT120"
+	"VorMatur",		"$ABILT123"
+	"Major",		"$ABILT126"
+	"Sam",			"$ABILT128"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Passive1 {
+	// light
+	"Kane",			"$ABILT304"
+	"Caleb",		"$ABILT305"
+	"Menelkir",		"$ABILT306"
+	"Nyx",			"$ABILT312"
+	"Durandal",		"$ABILT315"
+	"Lo Wang",		"$ABILT318"
+	"Eleena",		"$ABILT324"
+	"Lucienne",		"$ABILT325"
+	"Hunter",		"$ABILT327"
+	"Postal",		"$ABILT329"
+	"Orbb",			"$ABILT332"
+	// medium
+	"Ranger",		"$ABILT301"
+	"DoomSlayer",	"$ABILT302"
+	"Corvus",		"$ABILT303"
+	"Galen",		"$ABILT311"
+	"Duke Nukem",	"$ABILT314"
+	"Sarge",		"$ABILT317"
+	"Grayson",		"$ABILT319"
+	"Blazkowicz",	"$ABILT321"
+	"Freeman",		"$ABILT322"
+	"Painkiller",	"$ABILT330"
+	"Intruder",		"$ABILT331"
+	// heavy
+	"Terminator",	"$ABILT307"
+	"Zedek",		"$ABILT308"
+	"Inquisitor",	"$ABILT309"
+	"Bitterman",	"$ABILT310"
+	"Sorgaul",		"$ABILT313"
+	"Keel",			"$ABILT316"
+	"Eradicator",	"$ABILT320"
+	"VorMatur",		"$ABILT323"
+	"Major",		"$ABILT326"
+	"Sam",			"$ABILT328"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Passive2 {
+	// light
+	"Kane",			"$ABILT504"
+	"Caleb",		"$ABILT505"
+	"Menelkir",		"$ABILT506"
+	"Nyx",			"$ABILT512"
+	"Durandal",		"$ABILT515"
+	"Lo Wang",		"$ABILT518"
+	"Eleena",		"$ABILT524"
+	"Lucienne",		"$ABILT525"
+	"Hunter",		"$ABILT527"
+	"Postal",		"$ABILT529"
+	"Orbb",			"$ABILT532"
+	// medium
+	"Ranger",		"$ABILT501"
+	"DoomSlayer",	"$ABILT502"
+	"Corvus",		"$ABILT503"
+	"Galen",		"$ABILT511"
+	"Duke Nukem",	"$ABILT514"
+	"Sarge",		"$ABILT517"
+	"Grayson",		"$ABILT519"
+	"Blazkowicz",	"$ABILT521"
+	"Freeman",		"$ABILT522"
+	"Painkiller",	"$ABILT530"
+	"Intruder",		"$ABILT531"
+	// heavy
+	"Terminator",	"$ABILT507"
+	"Zedek",		"$ABILT508"
+	"Inquisitor",	"$ABILT509"
+	"Bitterman",	"$ABILT510"
+	"Sorgaul",		"$ABILT513"
+	"Keel",			"$ABILT516"
+	"Eradicator",	"$ABILT520"
+	"VorMatur",		"$ABILT523"
+	"Major",		"$ABILT526"
+	"Sam",			"$ABILT528"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Portraits {
+	// light
+	"Kane",			"portrC04"
+	"Caleb",		"portrC05"
+	"Menelkir",		"portrC06"
+	"Nyx",			"portrC12"
+	"Durandal",		"portrC15"
+	"Lo Wang",		"portrC18"
+	"Eleena",		"portrC24"
+	"Lucienne",		"portrC25"
+	"Hunter",		"portrC27"
+	"Postal",		"portrC29"
+	"Orbb",			"portrC32"
+	// medium
+	"Ranger",		"portrC01"
+	"DoomSlayer",	"portrC02"
+	"Corvus",		"portrC03"
+	"Galen",		"portrC11"
+	"Duke Nukem",	"portrC14"
+	"Sarge",		"portrC17"
+	"Grayson",		"portrC19"
+	"Blazkowicz",	"portrC21"
+	"Freeman",		"portrC22"
+	"Painkiller",	"portrC30"
+	"Intruder",		"portrC31"
+	// heavy
+	"Terminator",	"portrC07"
+	"Zedek",		"portrC08"
+	"Inquisitor",	"portrC09"
+	"Bitterman",	"portrC10"
+	"Sorgaul",		"portrC13"
+	"Keel",			"portrC16"
+	"Eradicator",	"portrC20"
+	"VorMatur",		"portrC23"
+	"Major",		"portrC26"
+	"Sam",			"portrC28"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_PortraitsFull {
+	// light
+	"Kane",			"portrD04"
+	"Caleb",		"portrD05"
+	"Menelkir",		"portrD06"
+	"Nyx",			"portrD12"
+	"Durandal",		"portrD15"
+	"Lo Wang",		"portrD18"
+	"Eleena",		"portrD24"
+	"Lucienne",		"portrD25"
+	"Hunter",		"portrD27"
+	"Postal",		"portrD29"
+	"Orbb",			"portrD32"
+	// medium
+	"Ranger",		"portrD01"
+	"DoomSlayer",	"portrD02"
+	"Corvus",		"portrD03"
+	"Galen",		"portrD11"
+	"Duke Nukem",	"portrD14"
+	"Sarge",		"portrD17"
+	"Grayson",		"portrD19"
+	"Blazkowicz",	"portrD21"
+	"Freeman",		"portrD22"
+	"Painkiller",	"portrD30"
+	"Intruder",		"portrD31"
+	// heavy
+	"Terminator",	"portrD07"
+	"Zedek",		"portrD08"
+	"Inquisitor",	"portrD09"
+	"Bitterman",	"portrD10"
+	"Sorgaul",		"portrD13"
+	"Keel",			"portrD16"
+	"Eradicator",	"portrD20"
+	"VorMatur",		"portrD23"
+	"Major",		"portrD26"
+	"Sam",			"portrD28"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Abilities {
+	// light
+	"Kane",			"abilit04"
+	"Caleb",		"abilit05"
+	"Menelkir",		"abilit06"
+	"Nyx",			"abilit12"
+	"Durandal",		"abilit15"
+	"Lo Wang",		"abilit18"
+	"Eleena",		"abilit24"
+	"Lucienne",		"abilit25"
+	"Hunter",		"abilit27"
+	"Postal",		"abilit29"
+	"Orbb",			"abilit32"
+	// medium
+	"Ranger",		"abilit01"
+	"DoomSlayer",	"abilit02"
+	"Corvus",		"abilit03"
+	"Galen",		"abilit11"
+	"Duke Nukem",	"abilit14"
+	"Sarge",		"abilit17"
+	"Grayson",		"abilit19"
+	"Blazkowicz",	"abilit21"
+	"Freeman",		"abilit22"
+	"Painkiller",	"abilit30"
+	"Intruder",		"abilit31"
+	// heavy
+	"Terminator",	"abilit07"
+	"Zedek",		"abilit08"
+	"Inquisitor",	"abilit09"
+	"Bitterman",	"abilit10"
+	"Sorgaul",		"abilit13"
+	"Keel",			"abilit16"
+	"Eradicator",	"abilit20"
+	"VorMatur",		"abilit23"
+	"Major",		"abilit26"
+	"Sam",			"abilit28"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Type {
+	// light
+	"Kane",			"$CMPLIGHT"
+	"Caleb",		"$CMPLIGHT"
+	"Menelkir",		"$CMPLIGHT"
+	"Nyx",			"$CMPLIGHT"
+	"Durandal",		"$CMPLIGHT"
+	"Lo Wang",		"$CMPLIGHT"
+	"Eleena",		"$CMPLIGHT"
+	"Lucienne",		"$CMPLIGHT"
+	"Hunter",		"$CMPLIGHT"
+	"Postal",		"$CMPLIGHT"
+	"Orbb",			"$CMPLIGHT"
+	// medium
+	"Ranger",		"$CMPMEDIM"
+	"DoomSlayer",	"$CMPMEDIM"
+	"Corvus",		"$CMPMEDIM"
+	"Galen",		"$CMPMEDIM"
+	"Duke Nukem",	"$CMPMEDIM"
+	"Sarge",		"$CMPMEDIM"
+	"Grayson",		"$CMPMEDIM"
+	"Blazkowicz",	"$CMPMEDIM"
+	"Freeman",		"$CMPMEDIM"
+	"Painkiller",	"$CMPMEDIM"
+	"Intruder",		"$CMPMEDIM"
+	// heavy
+	"Terminator",	"$CMPHEAVY"
+	"Zedek",		"$CMPHEAVY"
+	"Inquisitor",	"$CMPHEAVY"
+	"Bitterman",	"$CMPHEAVY"
+	"Sorgaul",		"$CMPHEAVY"
+	"Keel",			"$CMPHEAVY"
+	"Eradicator",	"$CMPHEAVY"
+	"VorMatur",		"$CMPHEAVY"
+	"Major",		"$CMPHEAVY"
+	"Sam",			"$CMPHEAVY"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Health {
+	// light
+	"Kane",			"100 / 100 / 175"
+	"Caleb",		"100 / 100 / 175"
+	"Menelkir",		"100 / 100 / 175"
+	"Nyx",			"100 / 100 / 175"
+	"Durandal",		"100 / 100 / 175"
+	"Lo Wang",		"100 / 100 / 175"
+	"Eleena",		"125 / 125 / 200"
+	"Lucienne",		"100 / 100 / 175"
+	"Hunter",		"100 / 100 / 175"
+	"Postal",		"100 / 100 / 200"
+	"Orbb",			"100 / 100 / 175"
+	// medium
+	"Ranger",		"125 / 125 / 200"
+	"DoomSlayer",	"150 / 150 / 225"
+	"Corvus",		"125 / 125 / 200"
+	"Galen",		"125 / 125 / 200"
+	"Duke Nukem",	"150 / 150 / 225"
+	"Sarge",		"125 / 100 / 200"
+	"Grayson",		"125 / 125 / 200"
+	"Blazkowicz",	"125 / 125 / 200"
+	"Freeman",		"100 / 100 / 175"
+	"Painkiller",	"100 / 100 / 175"
+	"Intruder",		"150 / 150 / 225"
+	// heavy
+	"Terminator",	"150 / 150 / 225"
+	"Zedek",		"150 / 150 / 225"
+	"Inquisitor",	"175 / 175 / 250"
+	"Bitterman",	"150 / 150 / 225"
+	"Sorgaul",		"125 / 125 / 200"
+	"Keel",			"175 / 175 / 250"
+	"Eradicator",	"150 / 150 / 225"
+	"VorMatur",		"225 / 300 / 375"
+	"Major",		"150 / 150 / 225"
+	"Sam",			"175 / 175 / 250"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Armor {
+	// light
+	"Kane",			"25 / 75 / 150"
+	"Caleb",		"25 / 75 / 150"
+	"Menelkir",		"25 / 75 / 150"
+	"Nyx",			"25 / 75 / 150"
+	"Durandal",		"25 / 75 / 150"
+	"Lo Wang",		"25 / 75 / 150"
+	"Eleena",		"0 / 50 / 125"
+	"Lucienne",		"25 / 75 / 175"
+	"Hunter",		"25 / 75 / 150"
+	"Postal",		"25 / 75 / 150"
+	"Orbb",			"25 / 75 / 150"
+	// medium
+	"Ranger",		"25 / 100 / 175"
+	"DoomSlayer",	"0 / 75 / 150"
+	"Corvus",		"25 / 100 / 175"
+	"Galen",		"25 / 100 / 175"
+	"Duke Nukem",	"0 / 75 / 150"
+	"Sarge",		"0 / 100 / 200"
+	"Grayson",		"25 / 100 / 175"
+	"Blazkowicz",	"25 / 100 / 175"
+	"Freeman",		"50 / 125 / 200"
+	"Painkiller",	"50 / 125 / 200"
+	"Intruder",		"0 / 75 / 150"
+	// heavy
+	"Terminator",	"25 / 125 / 200"
+	"Zedek",		"25 / 125 / 200"
+	"Inquisitor",	"0 / 100 / 175"
+	"Bitterman",	"25 / 125 / 200"
+	"Sorgaul",		"50 / 150 / 225"
+	"Keel",			"0 / 100 / 175"
+	"Eradicator",	"25 / 125 / 200"
+	"VorMatur",		"0 / 0 / 75"
+	"Major",		"25 / 125 / 200"
+	"Sam",			"0 / 100 / 175"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_MovementDesc {
+	// light
+	"Kane",			"$MOVDQUAK"
+	"Caleb",		"$MOVDQUAK"
+	"Menelkir",		"$MOVDDOOM"
+	"Nyx",			"$MOVDQUAK"
+	"Durandal",		"$MOVDQCPM"
+	"Lo Wang",		"$MOVDQUAK"
+	"Eleena",		"$MOVDQUAK"
+	"Lucienne",		"$MOVDQUAK"
+	"Hunter",		"$MOVDQUAK"
+	"Postal",		"$MOVDQUAK"
+	"Orbb",			"$MOVDQUAK"
+	// medium
+	"Ranger",		"$MOVDQUAK"
+	"DoomSlayer",	"$MOVDDOOM"
+	"Corvus",		"$MOVDDOOM"
+	"Galen",		"$MOVDDOOM"
+	"Duke Nukem",	"$MOVDQUAK"
+	"Sarge",		"$MOVDQUAK"
+	"Grayson",		"$MOVDQUAK"
+	"Blazkowicz",	"$MOVDQUAK"
+	"Freeman",		"$MOVDQUAK"
+	"Painkiller",	"$MOVDQUAK"
+	"Intruder",		"$MOVDQCPM"
+	// heavy
+	"Terminator",	"$MOVDQUAK"
+	"Zedek",		"$MOVDDOOM"
+	"Inquisitor",	"$MOVDQUAK"
+	"Bitterman",	"$MOVDQUAK"
+	"Sorgaul",		"$MOVDQUAK"
+	"Keel",			"$MOVDQUAK"
+	"Eradicator",	"$MOVDQCPM"
+	"VorMatur",		"$MOVDQUAK"
+	"Major",		"$MOVDQUAK"
+	"Sam",			"$MOVDQUAK"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_ActiveDesc {
+	// light
+	"Kane",			"$ABILT204"
+	"Caleb",		"$ABILT205"
+	"Menelkir",		"$ABILT206"
+	"Nyx",			"$ABILT212"
+	"Durandal",		"$ABILT215"
+	"Lo Wang",		"$ABILT218"
+	"Eleena",		"$ABILT224"
+	"Lucienne",		"$ABILT225"
+	"Hunter",		"$ABILT227"
+	"Postal",		"$ABILT229"
+	"Orbb",			"$ABILT232"
+	// medium
+	"Ranger",		"$ABILT201"
+	"DoomSlayer",	"$ABILT202"
+	"Corvus",		"$ABILT203"
+	"Galen",		"$ABILT211"
+	"Duke Nukem",	"$ABILT214"
+	"Sarge",		"$ABILT217"
+	"Grayson",		"$ABILT219"
+	"Blazkowicz",	"$ABILT221"
+	"Freeman",		"$ABILT222"
+	"Painkiller",	"$ABILT230"
+	"Intruder",		"$ABILT231"
+	// heavy
+	"Terminator",	"$ABILT207"
+	"Zedek",		"$ABILT208"
+	"Inquisitor",	"$ABILT209"
+	"Bitterman",	"$ABILT210"
+	"Sorgaul",		"$ABILT213"
+	"Keel",			"$ABILT216"
+	"Eradicator",	"$ABILT220"
+	"VorMatur",		"$ABILT223"
+	"Major",		"$ABILT226"
+	"Sam",			"$ABILT228"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Cooldowns {
+	// light
+	"Kane",			"40 / 35"
+	"Caleb",		"30 / 35"
+	"Menelkir",		"50 / 120"
+	"Nyx",			"35 / 15"
+	"Durandal",		"40 / 120"
+	"Lo Wang",		"25 / 25"
+	"Eleena",		"30 / 20"
+	"Lucienne",		"50 / 25"
+	"Hunter",		"40 / 60"
+	"Postal",		"45 / 60"
+	"Orbb",			"45 / 45"
+	// medium
+	"Ranger",		"25 / 60"
+	"DoomSlayer",	"60 / 150"
+	"Corvus",		"60 / 60"
+	"Galen",		"35 / 35"
+	"Duke Nukem",	"45 / 80"
+	"Sarge",		"None"
+	"Grayson",		"35 / 110"
+	"Blazkowicz",	"40 / 120"
+	"Freeman",		"50 / 35"
+	"Painkiller",	"40 / 120"
+	"Intruder",		"45 / 90"
+	// heavy
+	"Terminator",	"45 / 135"
+	"Zedek",		"35 / 35"
+	"Inquisitor",	"40 / 90"
+	"Bitterman",	"35 / 35"
+	"Sorgaul",		"45 / 90"
+	"Keel",			"50 / 30"
+	"Eradicator",	"30 / 30"
+	"VorMatur",		"25 / 25"
+	"Major",		"45 / 135"
+	"Sam",			"35 / 80"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Passive1Desc {
+	// light
+	"Kane",			"$ABILT404"
+	"Caleb",		"$ABILT405"
+	"Menelkir",		"$ABILT406"
+	"Nyx",			"$ABILT412"
+	"Durandal",		"$ABILT415"
+	"Lo Wang",		"$ABILT418"
+	"Eleena",		"$ABILT424"
+	"Lucienne",		"$ABILT425"
+	"Hunter",		"$ABILT427"
+	"Postal",		"$ABILT429"
+	"Orbb",			"$ABILT432"
+	// medium
+	"Ranger",		"$ABILT401"
+	"DoomSlayer",	"$ABILT402"
+	"Corvus",		"$ABILT403"
+	"Galen",		"$ABILT411"
+	"Duke Nukem",	"$ABILT414"
+	"Sarge",		"$ABILT417"
+	"Grayson",		"$ABILT419"
+	"Blazkowicz",	"$ABILT421"
+	"Freeman",		"$ABILT422"
+	"Painkiller",	"$ABILT430"
+	"Intruder",		"$ABILT431"
+	// heavy
+	"Terminator",	"$ABILT407"
+	"Zedek",		"$ABILT408"
+	"Inquisitor",	"$ABILT409"
+	"Bitterman",	"$ABILT410"
+	"Sorgaul",		"$ABILT413"
+	"Keel",			"$ABILT416"
+	"Eradicator",	"$ABILT420"
+	"VorMatur",		"$ABILT423"
+	"Major",		"$ABILT426"
+	"Sam",			"$ABILT428"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Passive2Desc {
+	// light
+	"Kane",			"$ABILT604"
+	"Caleb",		"$ABILT605"
+	"Menelkir",		"$ABILT606"
+	"Nyx",			"$ABILT612"
+	"Durandal",		"$ABILT615"
+	"Lo Wang",		"$ABILT618"
+	"Eleena",		"$ABILT624"
+	"Lucienne",		"$ABILT625"
+	"Hunter",		"$ABILT627"
+	"Postal",		"$ABILT629"
+	"Orbb",			"$ABILT632"
+	// medium
+	"Ranger",		"$ABILT601"
+	"DoomSlayer",	"$ABILT602"
+	"Corvus",		"$ABILT603"
+	"Galen",		"$ABILT611"
+	"Duke Nukem",	"$ABILT614"
+	"Sarge",		"$ABILT617"
+	"Grayson",		"$ABILT619"
+	"Blazkowicz",	"$ABILT621"
+	"Freeman",		"$ABILT622"
+	"Painkiller",	"$ABILT630"
+	"Intruder",		"$ABILT631"
+	// heavy
+	"Terminator",	"$ABILT607"
+	"Zedek",		"$ABILT608"
+	"Inquisitor",	"$ABILT609"
+	"Bitterman",	"$ABILT610"
+	"Sorgaul",		"$ABILT613"
+	"Keel",			"$ABILT616"
+	"Eradicator",	"$ABILT620"
+	"VorMatur",		"$ABILT623"
+	"Major",		"$ABILT626"
+	"Sam",			"$ABILT628"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Story {
+	// light
+	"Kane",			"$LORCP104"
+	"Caleb",		"$LORCP105"
+	"Menelkir",		"$LORCP106"
+	"Nyx",			"$LORCP112"
+	"Durandal",		"$LORCP115"
+	"Lo Wang",		"$LORCP118"
+	"Eleena",		"$LORCP124"
+	"Lucienne",		"$LORCP125"
+	"Hunter",		"$LORCP127"
+	"Postal",		"$LORCP129"
+	"Orbb",			"$LORCP132"
+	// medium
+	"Ranger",		"$LORCP101"
+	"DoomSlayer",	"$LORCP102"
+	"Corvus",		"$LORCP103"
+	"Galen",		"$LORCP111"
+	"Duke Nukem",	"$LORCP114"
+	"Sarge",		"$LORCP117"
+	"Grayson",		"$LORCP119"
+	"Blazkowicz",	"$LORCP121"
+	"Freeman",		"$LORCP122"
+	"Painkiller",	"$LORCP130"
+	"Intruder",		"$LORCP131"
+	// heavy
+	"Terminator",	"$LORCP107"
+	"Zedek",		"$LORCP108"
+	"Inquisitor",	"$LORCP109"
+	"Bitterman",	"$LORCP110"
+	"Sorgaul",		"$LORCP113"
+	"Keel",			"$LORCP116"
+	"Eradicator",	"$LORCP120"
+	"VorMatur",		"$LORCP123"
+	"Major",		"$LORCP126"
+	"Sam",			"$LORCP128"
+}
+// ^ insert more classes here
+
+OptionString QCDE_Champions_Lore {
+	// light
+	"Kane",			"$LORCP204"
+	"Caleb",		"$LORCP205"
+	"Menelkir",		"$LORCP206"
+	"Nyx",			"$LORCP212"
+	"Durandal",		"$LORCP215"
+	"Lo Wang",		"$LORCP218"
+	"Eleena",		"$LORCP224"
+	"Lucienne",		"$LORCP225"
+	"Hunter",		"$LORCP227"
+	"Postal",		"$LORCP229"
+	"Orbb",			"$LORCP232"
+	// medium
+	"Ranger",		"$LORCP201"
+	"DoomSlayer",	"$LORCP202"
+	"Corvus",		"$LORCP203"
+	"Galen",		"$LORCP211"
+	"Duke Nukem",	"$LORCP214"
+	"Sarge",		"$LORCP217"
+	"Grayson",		"$LORCP219"
+	"Blazkowicz",	"$LORCP221"
+	"Freeman",		"$LORCP222"
+	"Painkiller",	"$LORCP230"
+	"Intruder",		"$LORCP231"
+	// heavy
+	"Terminator",	"$LORCP207"
+	"Zedek",		"$LORCP208"
+	"Inquisitor",	"$LORCP209"
+	"Bitterman",	"$LORCP210"
+	"Sorgaul",		"$LORCP213"
+	"Keel",			"$LORCP216"
+	"Eradicator",	"$LORCP220"
+	"VorMatur",		"$LORCP223"
+	"Major",		"$LORCP226"
+	"Sam",			"$LORCP228"
+}
+// ^ insert more classes here

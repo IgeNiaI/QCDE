@@ -57,6 +57,9 @@ Script "QCDE_ResetClass" (int firsttime)
 	if(CheckActorClass(0, "QCOrbb"		)) SetInventory("Class_Orbb"      ,1); else SetInventory("Class_Orbb"      ,0);
 	// ^ insert more classes here
 
+//
+//		WHEN CHANGING HEALH AND ARMOR VALUES, MAKE SURE TO UPDATE THEM IN MENUDEF
+//
 	// Health & Armor
 	if(CheckActorClass(0, "QCRanger"    )) { SetQcdeStack(125, 100); SetInventory("ClassID",  0); }
 	if(CheckActorClass(0, "QCDoomslayer")) { SetQcdeStack(150,  75); SetInventory("ClassID",  1); }
@@ -230,26 +233,3 @@ Script "QCDE_ClassDisabled" (void)
 // script "QCDE_Playerclass" (int to) CLIENTSIDE
 // is in Messages.acs
 
-
-// Menudef scripts
-
-script "QCDE_JoinClassIdx" (int row, int col, int team) NET CLIENTSIDE
-{
-	str class = getcpdata(0,row,col);
-	//printbold(s:"QCDE_JoinClassIdx ", d:row, s:" ", d:col);
-	str ccmd = strparam(s:"playerclass \"", s:class, s:"\" ");
-	//printbold(s:ccmd);
-	ConsoleCommand(ccmd);
-	if(!team)
-	{
-		ccmd = strparam(s:"join");
-		ConsoleCommand(ccmd);
-	}
-	else
-	{
-		ccmd = strparam(s:"team ", s:dtot[team - 1]);
-		ConsoleCommand(ccmd);
-	}
-	delay(15);
-	ConsoleCommand("closemenu");
-}

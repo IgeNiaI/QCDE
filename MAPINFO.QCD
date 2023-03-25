@@ -47,8 +47,13 @@ GameInfo
                     "$QUITMSG9" , "$QUITMSG19", "$QUITMSG29", "$QUITMSG39", "$QUITMSG49", "$QUITMSG59",
                     "$QUITMSG10", "$QUITMSG20", "$QUITMSG30", "$QUITMSG40", "$QUITMSG50", "$QUITMSG60"
 
-	dimcolor = "80 00 00"
-	dimamount = 0.2
+	dimcolor = "00 00 00"
+	dimamount = 0.75
+
+	menubackbutton = "M_BACK_D"
+	menubackbutton_selection = "M_BACK_S"
+	menuuparrow = "M_UPARRW"
+	menudownarrow = "M_DWARRW"
 
 	InfoPage = "QCDEHLP1", "QCDEHLP2"
 

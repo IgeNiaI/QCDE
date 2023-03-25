@@ -30,8 +30,6 @@ Actor MapsPlayed    : Token { Inventory.MaxAmount 9999 Inventory.InterhubAmount 
 Actor Starter_Machinegun 	: Token {}
 Actor Starter_Shotgun 		: Token {}
 Actor Starter_Nailgun 		: Token {}
-Actor Starter_ChooseNow		: Token {}
-Actor Starter_CantChoose	: Token {}
 
 
 // These define HUD elements shown to player
@@ -56,7 +54,7 @@ Actor Team2Score       : Token { Inventory.MaxAmount   220 Inventory.InterhubAmo
 Actor TeamColor        : Token { Inventory.MaxAmount   255 Inventory.InterhubAmount 0x7FFFFFFF }
 Actor WepNoFlashToken  : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
 Actor WepNoRecoilToken : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
-Actor LGTransparency   : Token { Inventory.MaxAmount     2 Inventory.InterhubAmount 0x7FFFFFFF }
+Actor LGTransparency   : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
 Actor MultiuseCharge   : Token { Inventory.MaxAmount   999 }
 Actor Radar            : Token {}
 Actor NoPortrait       : Status {}
@@ -94,8 +92,7 @@ Actor RocketArena    : Token {}
 // Client-side settings
 Actor CurrentLeader  : Token {}
 Actor NoWeaponBar    : Token {}
-Actor PlayHitBeep    : Token {}
-Actor PlayHitMark    : Token {}
+Actor PlayHitEffect  : Token { Inventory.MaxAmount 3 }
 Actor Speedometer    : Token { Inventory.MaxAmount 2 }
 Actor NotSpectator   : Token {}
 Actor BeingSpectated : Token {}

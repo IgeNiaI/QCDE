@@ -46,13 +46,12 @@ server noarchive string qcs_status = "";
 // Client settings
 
 user bool cl_showWeaponBar   =  true; // vertical list of items on the right
-user bool cl_hitbeep         =  true; // audial feedback about hitting targets
-user bool cl_hitmarker       =  true; // visual feedback about hitting targets
 user bool cl_allyMarkers     =  true; // player-colored triangle shown above players in cooperative
 user bool cl_weaponrecoil    =  true; // do weapons have visual recoil when firing?
 user bool cl_weaponfireflash =  true; // do weapons create a HUD flash effect when firing
+user bool cl_lgtransparency  = false; // false: beam visible, true: beam invisible
+user int  cl_hiteffect         =   2; // audial and visual feedback about hitting targets
 user int  cl_speedometer       =   0; // small counter showing current speed in mu/sec under crosshair or under champion avatar
-user int  cl_lgtransparency    =   1; // 0: beam invisible, 1: beam 50%, 2: beam 100%
 user int  cl_lowAmmoWarning    =   2; // 1: sound only, 2: sound and text, 3: sound and text stays
 user int  cl_lowHealthWarning  =   1; // 1: sound only, 2: sound and text, 3: sound and text stays
 user int  cl_autoTaunt         =   5; // chance to taunt on kill, [0..10]
@@ -65,7 +64,6 @@ user int  cl_autoSpecDelay     =   0; // if non-zero: seconds to spectate each p
 user int  cl_radarMode         =   0; // 0 = center, 1 = lower
 user int  cl_barStyle          =   0; // 0 = blocks of 25, 1 = continuous
 user int  cl_qcmedals          =   1; // 0 = off, 1 = full, 2 = sound only
-user int snd_qcdemus           =   1; // play QCDE songs by Michael Markie when available
 user int snd_randommus         =   1; // play QCDE OST in random order. Desyncs in MP.
 user int _previousSong         =  -1; // used internally for snd_randommus
 
@@ -104,9 +102,13 @@ server int theme2  = 1; // Quake 4
 server int theme3  = 0; // Doom
 server int theme4  = 1; // Doom 4 (Death Foretold)
 
-// Skirmish settings
-user           int qcde_skirmishgamemode  =   3; // used in skirmish menu to setup gamemode
-user           int qcde_skirmishmodifier  =   0; // used in skirmish menu to setup modifier
+// Menu settings
+server noarchive int qcde_selectedoptions  = 0; // which options menu is currently visible
+
+server int qcde_botscount        = 0; // fills slots with bots if there are fewer players
+server int qcde_skirmishgamemode = 3; // used in skirmish menu to setup gamemode
+server int qcde_skirmishmodifier = 0; // used in skirmish menu to setup modifier
+server int qcde_maxlives         = 3; // used in skirmish menu to setup lives limit
 
 // User-supplied
 
@@ -260,23 +262,23 @@ server int _cu_19 = 0;   server int _cu_39 = 0;   server int _cu_59 = 0;   serve
 
 server int _cu_log = 0;
 
-server noarchive int _bc_0  = 0;   server noarchive int _bc_20 = 0;   server noarchive int _bc_40 = 0;   server noarchive int _bc_60 = 0;   server noarchive int _bc_80 = 0;
-server noarchive int _bc_1  = 0;   server noarchive int _bc_21 = 0;   server noarchive int _bc_41 = 0;   server noarchive int _bc_61 = 0;   server noarchive int _bc_81 = 0;
-server noarchive int _bc_2  = 0;   server noarchive int _bc_22 = 0;   server noarchive int _bc_42 = 0;   server noarchive int _bc_62 = 0;   server noarchive int _bc_82 = 0;
-server noarchive int _bc_3  = 0;   server noarchive int _bc_23 = 0;   server noarchive int _bc_43 = 0;   server noarchive int _bc_63 = 0;   server noarchive int _bc_83 = 0;
-server noarchive int _bc_4  = 0;   server noarchive int _bc_24 = 0;   server noarchive int _bc_44 = 0;   server noarchive int _bc_64 = 0;   server noarchive int _bc_84 = 0;
-server noarchive int _bc_5  = 0;   server noarchive int _bc_25 = 0;   server noarchive int _bc_45 = 0;   server noarchive int _bc_65 = 0;   server noarchive int _bc_85 = 0;
-server noarchive int _bc_6  = 0;   server noarchive int _bc_26 = 0;   server noarchive int _bc_46 = 0;   server noarchive int _bc_66 = 0;   server noarchive int _bc_86 = 0;
-server noarchive int _bc_7  = 0;   server noarchive int _bc_27 = 0;   server noarchive int _bc_47 = 0;   server noarchive int _bc_67 = 0;   server noarchive int _bc_87 = 0;
-server noarchive int _bc_8  = 0;   server noarchive int _bc_28 = 0;   server noarchive int _bc_48 = 0;   server noarchive int _bc_68 = 0;   server noarchive int _bc_88 = 0;
-server noarchive int _bc_9  = 0;   server noarchive int _bc_29 = 0;   server noarchive int _bc_49 = 0;   server noarchive int _bc_69 = 0;   server noarchive int _bc_89 = 0;
-server noarchive int _bc_10 = 0;   server noarchive int _bc_30 = 0;   server noarchive int _bc_50 = 0;   server noarchive int _bc_70 = 0;   server noarchive int _bc_90 = 0;
-server noarchive int _bc_11 = 0;   server noarchive int _bc_31 = 0;   server noarchive int _bc_51 = 0;   server noarchive int _bc_71 = 0;   server noarchive int _bc_91 = 0;
-server noarchive int _bc_12 = 0;   server noarchive int _bc_32 = 0;   server noarchive int _bc_52 = 0;   server noarchive int _bc_72 = 0;   server noarchive int _bc_92 = 0;
-server noarchive int _bc_13 = 0;   server noarchive int _bc_33 = 0;   server noarchive int _bc_53 = 0;   server noarchive int _bc_73 = 0;   server noarchive int _bc_93 = 0;
-server noarchive int _bc_14 = 0;   server noarchive int _bc_34 = 0;   server noarchive int _bc_54 = 0;   server noarchive int _bc_74 = 0;   server noarchive int _bc_94 = 0;
-server noarchive int _bc_15 = 0;   server noarchive int _bc_35 = 0;   server noarchive int _bc_55 = 0;   server noarchive int _bc_75 = 0;   server noarchive int _bc_95 = 0;
-server noarchive int _bc_16 = 0;   server noarchive int _bc_36 = 0;   server noarchive int _bc_56 = 0;   server noarchive int _bc_76 = 0;   server noarchive int _bc_96 = 0;
-server noarchive int _bc_17 = 0;   server noarchive int _bc_37 = 0;   server noarchive int _bc_57 = 0;   server noarchive int _bc_77 = 0;   server noarchive int _bc_97 = 0;
-server noarchive int _bc_18 = 0;   server noarchive int _bc_38 = 0;   server noarchive int _bc_58 = 0;   server noarchive int _bc_78 = 0;   server noarchive int _bc_98 = 0;
-server noarchive int _bc_19 = 0;   server noarchive int _bc_39 = 0;   server noarchive int _bc_59 = 0;   server noarchive int _bc_79 = 0;   server noarchive int _bc_99 = 0;
+server noarchive bool _bc_0  = false;   server noarchive bool _bc_20 = false;   server noarchive bool _bc_40 = false;   server noarchive bool _bc_60 = false;   server noarchive bool _bc_80 = false;
+server noarchive bool _bc_1  = false;   server noarchive bool _bc_21 = false;   server noarchive bool _bc_41 = false;   server noarchive bool _bc_61 = false;   server noarchive bool _bc_81 = false;
+server noarchive bool _bc_2  = false;   server noarchive bool _bc_22 = false;   server noarchive bool _bc_42 = false;   server noarchive bool _bc_62 = false;   server noarchive bool _bc_82 = false;
+server noarchive bool _bc_3  = false;   server noarchive bool _bc_23 = false;   server noarchive bool _bc_43 = false;   server noarchive bool _bc_63 = false;   server noarchive bool _bc_83 = false;
+server noarchive bool _bc_4  = false;   server noarchive bool _bc_24 = false;   server noarchive bool _bc_44 = false;   server noarchive bool _bc_64 = false;   server noarchive bool _bc_84 = false;
+server noarchive bool _bc_5  = false;   server noarchive bool _bc_25 = false;   server noarchive bool _bc_45 = false;   server noarchive bool _bc_65 = false;   server noarchive bool _bc_85 = false;
+server noarchive bool _bc_6  = false;   server noarchive bool _bc_26 = false;   server noarchive bool _bc_46 = false;   server noarchive bool _bc_66 = false;   server noarchive bool _bc_86 = false;
+server noarchive bool _bc_7  = false;   server noarchive bool _bc_27 = false;   server noarchive bool _bc_47 = false;   server noarchive bool _bc_67 = false;   server noarchive bool _bc_87 = false;
+server noarchive bool _bc_8  = false;   server noarchive bool _bc_28 = false;   server noarchive bool _bc_48 = false;   server noarchive bool _bc_68 = false;   server noarchive bool _bc_88 = false;
+server noarchive bool _bc_9  = false;   server noarchive bool _bc_29 = false;   server noarchive bool _bc_49 = false;   server noarchive bool _bc_69 = false;   server noarchive bool _bc_89 = false;
+server noarchive bool _bc_10 = false;   server noarchive bool _bc_30 = false;   server noarchive bool _bc_50 = false;   server noarchive bool _bc_70 = false;   server noarchive bool _bc_90 = false;
+server noarchive bool _bc_11 = false;   server noarchive bool _bc_31 = false;   server noarchive bool _bc_51 = false;   server noarchive bool _bc_71 = false;   server noarchive bool _bc_91 = false;
+server noarchive bool _bc_12 = false;   server noarchive bool _bc_32 = false;   server noarchive bool _bc_52 = false;   server noarchive bool _bc_72 = false;   server noarchive bool _bc_92 = false;
+server noarchive bool _bc_13 = false;   server noarchive bool _bc_33 = false;   server noarchive bool _bc_53 = false;   server noarchive bool _bc_73 = false;   server noarchive bool _bc_93 = false;
+server noarchive bool _bc_14 = false;   server noarchive bool _bc_34 = false;   server noarchive bool _bc_54 = false;   server noarchive bool _bc_74 = false;   server noarchive bool _bc_94 = false;
+server noarchive bool _bc_15 = false;   server noarchive bool _bc_35 = false;   server noarchive bool _bc_55 = false;   server noarchive bool _bc_75 = false;   server noarchive bool _bc_95 = false;
+server noarchive bool _bc_16 = false;   server noarchive bool _bc_36 = false;   server noarchive bool _bc_56 = false;   server noarchive bool _bc_76 = false;   server noarchive bool _bc_96 = false;
+server noarchive bool _bc_17 = false;   server noarchive bool _bc_37 = false;   server noarchive bool _bc_57 = false;   server noarchive bool _bc_77 = false;   server noarchive bool _bc_97 = false;
+server noarchive bool _bc_18 = false;   server noarchive bool _bc_38 = false;   server noarchive bool _bc_58 = false;   server noarchive bool _bc_78 = false;   server noarchive bool _bc_98 = false;
+server noarchive bool _bc_19 = false;   server noarchive bool _bc_39 = false;   server noarchive bool _bc_59 = false;   server noarchive bool _bc_79 = false;   server noarchive bool _bc_99 = false;

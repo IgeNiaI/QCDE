@@ -278,44 +278,6 @@ Script "QCDE_Tracker" (void)
 			}
 		}
 
-		// Choose weapon
-		if(buttons & MOVEMENT_BUTTONS)
-		{
-			if(CheckInventory("Starter_ChooseNow"))
-			{
-				if (buttons & BT_MOVELEFT) {
-					GiveInventory("Starter_Machinegun",1);
-					TakeInventory("Starter_Shotgun"   ,1);
-					TakeInventory("Starter_Nailgun"   ,1);
-					SetCvar("cl_startingWeapon", 1);
-					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint_Success",0,1);
-					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Apply",0);
-				}
-				if ((GameType() >= GAME_NET_DEATHMATCH) && (buttons & BT_FORWARD)) {
-					TakeInventory("Starter_Machinegun",1);
-					GiveInventory("Starter_Shotgun"   ,1);
-					TakeInventory("Starter_Nailgun"   ,1);
-					SetCvar("cl_startingWeapon", 2);
-					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint_Success",0,2);
-					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Apply",0);
-				}
-				if (buttons & BT_MOVERIGHT) {
-					TakeInventory("Starter_Machinegun",1);
-					TakeInventory("Starter_Shotgun"   ,1);
-					GiveInventory("Starter_Nailgun"   ,1);
-					SetCvar("cl_startingWeapon", 3);
-					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint_Success",0,3);
-					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Apply",0);
-				}
-				delay(1);
-			}
-			// As soon as player moves, with menu or without, chance is gone.
-			SetInventory("Starter_ChooseNow", false);
-			if(!CheckInventory("Starter_CantChoose"))
-				ACS_NamedExecuteAlways("QCDE_StartingWeapon_Hint_Stop",0);
-			SetInventory("Starter_CantChoose", true);
-		}
-
 		if(!(Timer() % 19)) // once every 19 tics
 			ACS_NamedExecuteAlways("QCDE_MapProgressChecker",0);
 
@@ -409,12 +371,11 @@ function void rereadCvars(void)
 {
 	SetInventory("NoWeaponBar",      !GetCVar("cl_showWeaponBar"  ));
 	SetInventory("Speedometer",       GetCVar("cl_speedometer"    ));
-	SetInventory("PlayHitBeep",       GetCVar("cl_hitbeep"        ));
-	SetInventory("PlayHitMark",       GetCVar("cl_hitmarker"      ));
+	SetInventory("PlayHitEffect",     GetCVar("cl_hiteffect"      ));
 	SetInventory("WepNoRecoilToken", !GetCVar("cl_weaponrecoil"   ));
 	SetInventory("WepNoFlashToken",  !GetCVar("cl_weaponfireflash"));
 	SetInventory("AutoTauntToken",    GetCVar("cl_autoTaunt"      ));
-	SetInventory("LGTransparency",    GetCVar("cl_lgtransparency" ));
+	SetInventory("LGTransparency",   !GetCVar("cl_lgtransparency" ));
 	SetInventory("FlatHealthPref",    GetCVar("cl_barStyle"       ));
 	SetInventory("FlatArmorPref",     GetCVar("cl_barStyle"       ));
 }

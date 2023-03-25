@@ -129,7 +129,7 @@ DBG_HASam                       = "Sam debug message";
 DBG_HAPostal                    = "Postal debug message";
 DBG_HAPainkiller                = "Painkiller debug message";
 DBG_HAIntruder                  = "Intruder debug message";
-DBG_HAOrbb						= "Orbb debug message";
+DBG_HAOrbb			= "Orbb debug message";
 // ^ insert more classes here
 GOT_QCHealthBonus               = "Picked up an overstacking health bonus.";
 GOT_QCStimpack                  = "Picked up a health bubble.";
@@ -389,9 +389,18 @@ OB_ClassDisabled                = "%o picked a class currently disabled by serve
 KEY_QcdeSection    = "QCDE bindings"         ;
 KEY_ActiveAbility  = "Use Active Ability"    ;
 KEY_ClassInfo      = "Show Class Information";
-KEY_StartingWeapon = "Change Starting Weapon";
 KEY_Voice          = "Voice Line"            ;
-KEY_MPClassMenu    = "MP: Change Class Menu" ;
+KEY_MPClassMenu    = "Change Class Menu"     ;
+
+Control_Slot1	= "Gauntlet";
+Control_Slot2	= "Machinegun";
+Control_Slot3	= "Shotgun";
+Control_Slot4	= "Nailgun";
+Control_Slot5	= "Tribolt";
+Control_Slot6	= "Rocket Launcher";
+Control_Slot7	= "Lightning Gun";
+Control_Slot8	= "Railgun";
+Control_Slot9	= "BFG";
 
 QUITMSG1  = "Press Y to quit like a big loser in life,\npress N to stay proud and successful";           // Quake 1
 QUITMSG2  = "Man, I oughta smack you for trying to quit!\nPress Y to get smacked out.";                  // Quake 1
@@ -467,6 +476,12 @@ NIGHTMARE        = "Extreme difficulty. Only for those who want to see how far t
 SKILL_EASY_MIN   = "Mobile:   Few Monsters";
 SKILL_EASY_MED   = "Mobile: More Monsters";
 SKILL_EASY_MAX   = "Mobile:  Max Monsters";
+
+BOTSKILL_0  = "I Can Win";
+BOTSKILL_1  = "Bring It On";
+BOTSKILL_2  = "Hurt Me Plenty";
+BOTSKILL_3  = "Hardcore";
+BOTSKILL_4  = "\c[Red]NIGHTMARE!";
 
 STARTUP1 =                                                                                                  "\n"
 			"\cm   \ck$$$$\cm    \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "                             "\n"

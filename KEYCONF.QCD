@@ -6,10 +6,9 @@
 // this should be called before other commands, or else the game will first default bind actions, and only then create a section for them
 addkeysection "$KEY_QcdeSection" "QCDE"                 // "QCDE bindings"
 addmenukey "$KEY_ActiveAbility"  "+user1"  				// "Use Active Ability"
-addmenukey "$KEY_ClassInfo"      "+QCDE_ClassInfo"      // "Show Class Information"
-addmenukey "$KEY_StartingWeapon" "+QCDE_StartingWeapon" // "Change Starting Weapon"
+addmenukey "$KEY_ClassInfo"      "champdetails"         // "Show Class Information"
 addmenukey "$KEY_Voice"          "voice"                // "Voice Line"
-addmenukey "$KEY_MPClassMenu"    "mpclassmenu"          // "MP: Change Class Menu"
+addmenukey "$KEY_MPClassMenu"    "mpclassmenu"          // "Change Class Menu"
 // These are commented because it's a lot of spam
 //addmenukey "Voice Line #1"        "voice  1"
 //addmenukey "Voice Line #2"        "voice  2"
@@ -38,32 +37,23 @@ addmenukey "$KEY_MPClassMenu"    "mpclassmenu"          // "MP: Change Class Men
 // Extra binds
 // =========================================================
 
-alias +QCDE_StartingWeapon "pukename QCDE_StartingWeapon always"
-alias -QCDE_StartingWeapon ""
-
-defaultbind j "+QCDE_StartingWeapon"
-
 defaultbind f "+user1" // Active ability
 
-alias +QCDE_ClassInfo "pukename QCDE_ClassInfo always"
-alias -QCDE_ClassInfo "pukename QCDE_ClassInfo_Stop always"
+alias champdetails  "openmenu QCDE_ChampionDetails"
 
-defaultbind f1 "+QCDE_ClassInfo"
+defaultbind f1 "champdetails"
 
 alias voice        "pukename qcde_taunt %1"
 
 defaultbind v "voice"
 
-alias mpclassmenu  "pukename qcde_classpicker"
+alias mpclassmenu  "openmenu ZA_JoinMenu"
 
 defaultbind h "mpclassmenu"
 
-alias joingame0  "closemenu; pukename QCDE_ClassPicker 0"
-alias joingame1  "closemenu; pukename QCDE_ClassPicker 1"
-alias joingame2  "closemenu; pukename QCDE_ClassPicker 2"
-
-alias qcde_randommap		"setskirmishlevel random; setcallvotemap random"
-alias qcde_startskirmish	"closemenu; pukename QCDE_StartSkirmish"
+alias joingame0  "closemenu; join;		+use; wait; -use"
+alias joingame1  "closemenu; team 0;	+use; wait; -use"
+alias joingame2  "closemenu; team 1;	+use; wait; -use"
 
 // =========================================================
 // Special commands
@@ -80,6 +70,34 @@ alias themelist    "pukename themes"
 
 alias addlives     "pukename addlives %1"
 
+
+
+// =========================================================
+// Menu stuff
+// =========================================================
+
+alias qcde_openmainmenu		"closemenu; openmenu MainMenu"
+alias qcde_opencallvote		"closemenu; openmenu QCDE_CallVote"
+alias qcde_opencampaign		"closemenu; openmenu PlayerclassMenu"
+alias qcde_openskirmish		"closemenu; qcde_selectedoptions 0; openmenu QCDE_SkirmishMenu"
+
+alias qcde_optionsgeneral	"closemenu; qcde_selectedoptions 0; openmenu QCDE_OptionsGeneral"
+alias qcde_optionshud		"closemenu; qcde_selectedoptions 1; openmenu QCDE_OptionsHud"
+alias qcde_optionscontrols	"closemenu; qcde_selectedoptions 2; openmenu QCDE_OptionsControls"
+alias qcde_optionsbinds		"closemenu; qcde_selectedoptions 3; openmenu QCDE_OptionsBinds"
+alias qcde_optionsvideo		"closemenu; qcde_selectedoptions 4; openmenu QCDE_OptionsVideo"
+alias qcde_optionssound		"closemenu; qcde_selectedoptions 5; openmenu QCDE_OptionsSound"
+alias qcde_optionsskins		"closemenu; qcde_selectedoptions 6; openmenu QCDE_OptionsSkins"
+alias qcde_optionspve		"closemenu; qcde_selectedoptions 7; openmenu QCDE_OptionsPvE"
+
+alias qcde_randommap		"setskirmishlevel random; setcallvotemap random"
+alias qcde_startskirmish	"closemenu; pukename QCDE_StartSkirmish"
+
+alias qcde_callmapvote		"menu_callvotereason \"\";	menu_callmapvote"
+alias qcde_callnextmapvote	"menu_callvotereason \"\";	menu_callnextmapvote"
+alias qcde_callspecvote		"menu_callvoteban false;	menu_callkickvote"
+alias qcde_callkickvote		"menu_callvoteban true;		menu_callkickvote"
+alias qcde_calllimitvote	"menu_callvotereason \"\";	menu_calllimitvote"
 
 
 // =========================================================

@@ -5,18 +5,8 @@
 //
 //=============================================================================
 
-remap Q_NEWGAM 	H_NEWGAM
-remap Q_SKIRM 	H_SKIRM
-remap Q_OPTION 	H_OPTION
-remap Q_QUITG 	H_QUITG
-remap Q_LOADG 	H_LOADG
-remap Q_SAVEG 	H_SAVEG
-remap Q_CHAMP 	H_CHAMP
-remap M_EPI1 	H_EPI1
-remap M_EPI2 	H_EPI2
-remap M_EPI3 	H_EPI3
-remap M_EPI4 	H_EPI4
-remap M_DOOM 	H_DOOM // No, not that one.
+remap M_LOADG 	H_LOADG
+remap M_SAVEG 	H_SAVEG
 
 //=============================================================================
 //
@@ -1081,43 +1071,111 @@ Graphic portrY32,  70,  70 { XScale 0.5	YScale 0.5	Patch portra32, 0,0 {} }
 //	{ 3,  4,  5, 11, 14, 17, 23, 24, 26, 28, -1, },
 //	{ 0,  1,  2,  9, 10, 13, 16, 18, 20, 21, -1, },
 //	{ 6,  7,  8, 12, 15, 19, 22, 25, 27, -1, -1, },
-Graphic portrC01,  30,  60 { XScale 0.6	YScale 0.6	Patch portra01, -20, -6 {} } //  med
-Graphic portrC02,  30,  60 { XScale 0.6	YScale 0.6	Patch portra02, -20, -6 {} } //  med
-Graphic portrC03,  30,  60 { XScale 0.6	YScale 0.6	Patch portra03, -20, -6 {} } //  med
-Graphic portrC04,  35,  70 { XScale 0.7	YScale 0.7	Patch portra04, -20,  0 {} } // light
-Graphic portrC05,  35,  70 { XScale 0.7	YScale 0.7	Patch portra05, -20,  0 {} } // light
-Graphic portrC06,  35,  70 { XScale 0.7	YScale 0.7	Patch portra06, -20,  0 {} } // light
-Graphic portrC07,  25,  50 { XScale 0.5	YScale 0.5	Patch portra07, -25,-10 {} }
-Graphic portrC08,  25,  50 { XScale 0.5	YScale 0.5	Patch portra08, -25,-10 {} }
-Graphic portrC09,  25,  50 { XScale 0.5	YScale 0.5	Patch portra09, -25,-10 {} }
-Graphic portrC10,  30,  60 { XScale 0.6	YScale 0.6	Patch portra10, -20, -6 {} } //  med
-Graphic portrC11,  30,  60 { XScale 0.6	YScale 0.6	Patch portra11, -20, -6 {} } //  med
-Graphic portrC12,  35,  70 { XScale 0.7	YScale 0.7	Patch portra12, -20,  0 {} } // light
-Graphic portrC13,  25,  50 { XScale 0.5	YScale 0.5	Patch portra13, -25,-10 {} }
-Graphic portrC14,  30,  60 { XScale 0.6	YScale 0.6	Patch portra14, -20, -6 {} } //  med
-Graphic portrC15,  35,  70 { XScale 0.7	YScale 0.7	Patch portra15, -20,  0 {} } // light
-Graphic portrC16,  25,  50 { XScale 0.5	YScale 0.5	Patch portra16, -25,-10 {} }
-Graphic portrC17,  30,  60 { XScale 0.6	YScale 0.6	Patch portra17, -20, -6 {} } //  med
-Graphic portrC18,  35,  70 { XScale 0.7	YScale 0.7	Patch portra18, -20,  0 {} } // light
-Graphic portrC19,  30,  60 { XScale 0.6	YScale 0.6	Patch portra19, -20, -6 {} } //  med
-Graphic portrC20,  25,  50 { XScale 0.5	YScale 0.5	Patch portra20, -25,-10 {} }
-Graphic portrC21,  30,  60 { XScale 0.6	YScale 0.6	Patch portra21, -20, -6 {} } //  med
-Graphic portrC22,  30,  60 { XScale 0.6	YScale 0.6	Patch portra22, -20, -6 {} } //  med
-Graphic portrC23,  25,  50 { XScale 0.5	YScale 0.5	Patch portra23, -25,-10 {} }
-Graphic portrC24,  35,  70 { XScale 0.7	YScale 0.7	Patch portra24, -20,  0 {} } // light
-Graphic portrC25,  35,  70 { XScale 0.7	YScale 0.7	Patch portra25, -20,  0 {} } // light
-Graphic portrC26,  25,  50 { XScale 0.5	YScale 0.5	Patch portra26, -25,-10 {} }
-Graphic portrC27,  35,  70 { XScale 0.7	YScale 0.7	Patch portra27, -20,  0 {} } // light
-Graphic portrC28,  25,  50 { XScale 0.5	YScale 0.5	Patch portra28, -25,-10 {} }
-Graphic portrC29,  35,  70 { XScale 0.7	YScale 0.7	Patch portra29, -20,  0 {} } // light
-Graphic portrC30,  30,  60 { XScale 0.6	YScale 0.6	Patch portra30, -20, -6 {} } //  med
-Graphic portrC31,  30,  60 { XScale 0.6	YScale 0.6	Patch portra31, -20, -6 {} } //  med
-Graphic portrC32,  35,  70 { XScale 0.7	YScale 0.7	Patch portra32, -20,  0 {} } // light
+Graphic portrC01,  30,  60 { XScale 1.2	YScale 1.2	Patch portra01, -20, -6 {} } //  med
+Graphic portrC02,  30,  60 { XScale 1.2	YScale 1.2	Patch portra02, -20, -6 {} } //  med
+Graphic portrC03,  30,  60 { XScale 1.2	YScale 1.2	Patch portra03, -20, -6 {} } //  med
+Graphic portrC04,  35,  70 { XScale 1.4	YScale 1.4	Patch portra04, -20,  0 {} } // light
+Graphic portrC05,  35,  70 { XScale 1.4	YScale 1.4	Patch portra05, -20,  0 {} } // light
+Graphic portrC06,  35,  70 { XScale 1.4	YScale 1.4	Patch portra06, -20,  0 {} } // light
+Graphic portrC07,  25,  50 { XScale 1.0	YScale 1.0	Patch portra07, -25,-10 {} }
+Graphic portrC08,  25,  50 { XScale 1.0	YScale 1.0	Patch portra08, -25,-10 {} }
+Graphic portrC09,  25,  50 { XScale 1.0	YScale 1.0	Patch portra09, -25,-10 {} }
+Graphic portrC10,  30,  60 { XScale 1.2	YScale 1.2	Patch portra10, -20, -6 {} } //  med
+Graphic portrC11,  30,  60 { XScale 1.2	YScale 1.2	Patch portra11, -20, -6 {} } //  med
+Graphic portrC12,  35,  70 { XScale 1.4	YScale 1.4	Patch portra12, -20,  0 {} } // light
+Graphic portrC13,  25,  50 { XScale 1.0	YScale 1.0	Patch portra13, -25,-10 {} }
+Graphic portrC14,  30,  60 { XScale 1.2	YScale 1.2	Patch portra14, -20, -6 {} } //  med
+Graphic portrC15,  35,  70 { XScale 1.4	YScale 1.4	Patch portra15, -20,  0 {} } // light
+Graphic portrC16,  25,  50 { XScale 1.0	YScale 1.0	Patch portra16, -25,-10 {} }
+Graphic portrC17,  30,  60 { XScale 1.2	YScale 1.2	Patch portra17, -20, -6 {} } //  med
+Graphic portrC18,  35,  70 { XScale 1.4	YScale 1.4	Patch portra18, -20,  0 {} } // light
+Graphic portrC19,  30,  60 { XScale 1.2	YScale 1.2	Patch portra19, -20, -6 {} } //  med
+Graphic portrC20,  25,  50 { XScale 1.0	YScale 1.0	Patch portra20, -25,-10 {} }
+Graphic portrC21,  30,  60 { XScale 1.2	YScale 1.2	Patch portra21, -20, -6 {} } //  med
+Graphic portrC22,  30,  60 { XScale 1.2	YScale 1.2	Patch portra22, -20, -6 {} } //  med
+Graphic portrC23,  25,  50 { XScale 1.0	YScale 1.0	Patch portra23, -25,-10 {} }
+Graphic portrC24,  35,  70 { XScale 1.4	YScale 1.4	Patch portra24, -20,  0 {} } // light
+Graphic portrC25,  35,  70 { XScale 1.4	YScale 1.4	Patch portra25, -20,  0 {} } // light
+Graphic portrC26,  25,  50 { XScale 1.0	YScale 1.0	Patch portra26, -25,-10 {} }
+Graphic portrC27,  35,  70 { XScale 1.4	YScale 1.4	Patch portra27, -20,  0 {} } // light
+Graphic portrC28,  25,  50 { XScale 1.0	YScale 1.0	Patch portra28, -25,-10 {} }
+Graphic portrC29,  35,  70 { XScale 1.4	YScale 1.4	Patch portra29, -20,  0 {} } // light
+Graphic portrC30,  30,  60 { XScale 1.2	YScale 1.2	Patch portra30, -20, -6 {} } //  med
+Graphic portrC31,  30,  60 { XScale 1.2	YScale 1.2	Patch portra31, -20, -6 {} } //  med
+Graphic portrC32,  35,  70 { XScale 1.4	YScale 1.4	Patch portra32, -20,  0 {} } // light
 // ^ insert more classes here
 
-Graphic portrXRN,  70,  70 { XScale 0.3 YScale 0.3	Patch portraRN, 0,0 {} }
-Graphic portrCRN,  25,  50 { XScale 0.5	YScale 0.5	Patch portraRN, -25,-10 {} } // random class
+Graphic portrCRN,  25,  50 { XScale 1.0	YScale 1.0	Patch portraRN, -25,-10 {} } // random class
 
+// Full portraits for champion description window
+Graphic portrD01,  70,  70 { XScale 1.2	YScale 1.2	Patch portra01, 0,0 {} }
+Graphic portrD02,  70,  70 { XScale 1.2	YScale 1.2	Patch portra02, 0,0 {} }
+Graphic portrD03,  70,  70 { XScale 1.2	YScale 1.2	Patch portra03, 0,0 {} }
+Graphic portrD04,  70,  70 { XScale 1.2	YScale 1.2	Patch portra04, 0,0 {} }
+Graphic portrD05,  70,  70 { XScale 1.2	YScale 1.2	Patch portra05, 0,0 {} }
+Graphic portrD06,  70,  70 { XScale 1.2	YScale 1.2	Patch portra06, 0,0 {} }
+Graphic portrD07,  70,  70 { XScale 1.2	YScale 1.2	Patch portra07, 0,0 {} }
+Graphic portrD08,  70,  70 { XScale 1.2	YScale 1.2	Patch portra08, 0,0 {} }
+Graphic portrD09,  70,  70 { XScale 1.2	YScale 1.2	Patch portra09, 0,0 {} }
+Graphic portrD10,  70,  70 { XScale 1.2	YScale 1.2	Patch portra10, 0,0 {} }
+Graphic portrD11,  70,  70 { XScale 1.2	YScale 1.2	Patch portra11, 0,0 {} }
+Graphic portrD12,  70,  70 { XScale 1.2	YScale 1.2	Patch portra12, 0,0 {} }
+Graphic portrD13,  70,  70 { XScale 1.2	YScale 1.2	Patch portra13, 0,0 {} }
+Graphic portrD14,  70,  70 { XScale 1.2	YScale 1.2	Patch portra14, 0,0 {} }
+Graphic portrD15,  70,  70 { XScale 1.2	YScale 1.2	Patch portra15, 0,0 {} }
+Graphic portrD16,  70,  70 { XScale 1.2	YScale 1.2	Patch portra16, 0,0 {} }
+Graphic portrD17,  70,  70 { XScale 1.2	YScale 1.2	Patch portra17, 0,0 {} }
+Graphic portrD18,  70,  70 { XScale 1.2	YScale 1.2	Patch portra18, 0,0 {} }
+Graphic portrD19,  70,  70 { XScale 1.2	YScale 1.2	Patch portra19, 0,0 {} }
+Graphic portrD20,  70,  70 { XScale 1.2	YScale 1.2	Patch portra20, 0,0 {} }
+Graphic portrD21,  70,  70 { XScale 1.2	YScale 1.2	Patch portra21, 0,0 {} }
+Graphic portrD22,  70,  70 { XScale 1.2	YScale 1.2	Patch portra22, 0,0 {} }
+Graphic portrD23,  70,  70 { XScale 1.2	YScale 1.2	Patch portra23, 0,0 {} }
+Graphic portrD24,  70,  70 { XScale 1.2	YScale 1.2	Patch portra24, 0,0 {} }
+Graphic portrD25,  70,  70 { XScale 1.2	YScale 1.2	Patch portra25, 0,0 {} }
+Graphic portrD26,  70,  70 { XScale 1.2	YScale 1.2	Patch portra26, 0,0 {} }
+Graphic portrD27,  70,  70 { XScale 1.2	YScale 1.2	Patch portra27, 0,0 {} }
+Graphic portrD28,  70,  70 { XScale 1.2	YScale 1.2	Patch portra28, 0,0 {} }
+Graphic portrD29,  70,  70 { XScale 1.2	YScale 1.2	Patch portra29, 0,0 {} }
+Graphic portrD30,  70,  70 { XScale 1.2	YScale 1.2	Patch portra30, 0,0 {} }
+Graphic portrD31,  70,  70 { XScale 1.2	YScale 1.2	Patch portra31, 0,0 {} }
+Graphic portrD32,  70,  70 { XScale 1.2 YScale 1.2	Patch portra32, 0,0 {} }
+// ^ insert more classes here
+
+
+Graphic abilit01,  128,  128 { XScale 2.0	YScale 2.0	Patch DIREORB1, 0,0 {} }
+Graphic abilit02,  128,  128 { XScale 2.0	YScale 2.0	Patch BIGFGUN1, 0,0 {} }
+Graphic abilit03,  128,  128 { XScale 2.0	YScale 2.0	Patch FLIGHT_1, 0,0 {} }
+Graphic abilit04,  128,  128 { XScale 2.0	YScale 2.0	Patch STROYEN1, 0,0 {} }
+Graphic abilit05,  128,  128 { XScale 2.0	YScale 2.0	Patch LIFDRAN1, 0,0 {} }
+Graphic abilit06,  128,  128 { XScale 2.0	YScale 2.0	Patch MAULOTR1, 0,0 {} }
+Graphic abilit07,  128,  128 { XScale 2.0	YScale 2.0	Patch BARRAGE1, 0,0 {} }
+Graphic abilit08,  128,  128 { XScale 2.0	YScale 2.0	Patch ACIDSWR1, 0,0 {} }
+Graphic abilit09,  128,  128 { XScale 2.0	YScale 2.0	Patch REFLECT1, 0,0 {} }
+Graphic abilit10,  128,  128 { XScale 2.0	YScale 2.0	Patch PWRSHLD1, 0,0 {} }
+Graphic abilit11,  128,  128 { XScale 2.0	YScale 2.0	Patch TOTEM001, 0,0 {} }
+Graphic abilit12,  128,  128 { XScale 2.0	YScale 2.0	Patch GHSTWLK1, 0,0 {} }
+Graphic abilit13,  128,  128 { XScale 2.0	YScale 2.0	Patch RAGE0001, 0,0 {} }
+Graphic abilit14,  128,  128 { XScale 2.0	YScale 2.0	Patch FREEZE01, 0,0 {} }
+Graphic abilit15,  128,  128 { XScale 2.0	YScale 2.0	Patch BOBBQ001, 0,0 {} }
+Graphic abilit16,  128,  128 { XScale 2.0	YScale 2.0	Patch GRENADE1, 0,0 {} }
+Graphic abilit17,  128,  128 { XScale 2.0	YScale 2.0	Patch OLDSCHOL, 0,0 {} }
+Graphic abilit18,  128,  128 { XScale 2.0	YScale 2.0	Patch NOBITSU1, 0,0 {} }
+Graphic abilit19,  128,  128 { XScale 2.0	YScale 2.0	Patch THUMPER1, 0,0 {} }
+Graphic abilit20,  128,  128 { XScale 2.0	YScale 2.0	Patch RADAR001, 0,0 {} }
+Graphic abilit21,  128,  128 { XScale 2.0	YScale 2.0	Patch AKIMBO01, 0,0 {} }
+Graphic abilit22,  128,  128 { XScale 2.0	YScale 2.0	Patch EXHAUST1, 0,0 {} }
+Graphic abilit23,  128,  128 { XScale 2.0	YScale 2.0	Patch TERROR01, 0,0 {} }
+Graphic abilit24,  128,  128 { XScale 2.0	YScale 2.0	Patch HOLOTP01, 0,0 {} }
+Graphic abilit25,  128,  128 { XScale 2.0	YScale 2.0	Patch CLNFIRE1, 0,0 {} }
+Graphic abilit26,  128,  128 { XScale 2.0	YScale 2.0	Patch AIRSTRK1, 0,0 {} }
+Graphic abilit27,  128,  128 { XScale 2.0	YScale 2.0	Patch HUNTSKL1, 0,0 {} }
+Graphic abilit28,  128,  128 { XScale 2.0	YScale 2.0	Patch MINIGUN1, 0,0 {} }
+Graphic abilit29,  128,  128 { XScale 2.0	YScale 2.0	Patch COWHEAD1, 0,0 {} }
+Graphic abilit30,  128,  128 { XScale 2.0	YScale 2.0	Patch TAROT001, 0,0 {} }
+Graphic abilit31,  128,  128 { XScale 2.0	YScale 2.0	Patch WENDIG01, 0,0 {} }
+Graphic abilit32,  128,  128 { XScale 2.0	YScale 2.0	Patch ORBBEYE1, 0,0 {} }
+// ^ insert more classes here
 
 //=============================================================================
 //
@@ -1125,9 +1183,11 @@ Graphic portrCRN,  25,  50 { XScale 0.5	YScale 0.5	Patch portraRN, -25,-10 {} } 
 //
 //=============================================================================
 
-define CPicker0 4000 1200
-define CPickerB 4000 1200
-define CPickerR 4000 1200
+remap m_back_d H_back_d
+remap m_back_s H_back_s
+remap m_uparrw H_uparrw
+remap m_dwarrw H_dwarrw
+
 define ModBacc1 1600  149
 define ModBacc2 1600  149
 define ModBacc3 1600  149
@@ -1136,48 +1196,66 @@ define ModFront 1600  149
 define ModBack1 1600  180
 define ModBack2 1600  180
 define ModBack3 1600  180
-define ClassBck 1280 1600
-define ClassFrn 1280 1600
 define MenuBack  320  480
 define UpgrdGot 1600  149
 
-define Cursor1   320   17      define Cursor36  320   17
-define Cursor2   320   17      define Cursor37  320   17
-define Cursor3   320   17      define Cursor38  320   17
-define Cursor4   320   17      define Cursor39  320   17
-define Cursor5   320   17      define Cursor40  320   17
-define Cursor6   320   17      define Cursor41  320   17
-define Cursor7   320   17      define Cursor42  320   17
-define Cursor8   320   17      define Cursor43  320   17
-define Cursor9   320   17      define Cursor44  320   17
-define Cursor10  320   17      define Cursor45  320   17
-define Cursor11  320   17      define Cursor46  320   17
-define Cursor12  320   17      define Cursor47  320   17
-define Cursor13  320   17      define Cursor48  320   17
-define Cursor14  320   17      define Cursor49  320   17
-define Cursor15  320   17      define Cursor50  320   17
-define Cursor16  320   17      define Cursor51  320   17
-define Cursor17  320   17      define Cursor52  320   17
-define Cursor18  320   17      define Cursor53  320   17
-define Cursor19  320   17      define Cursor54  320   17
-define Cursor20  320   17      define Cursor55  320   17
-define Cursor21  320   17      define Cursor56  320   17
-define Cursor22  320   17      define Cursor57  320   17
-define Cursor23  320   17      define Cursor58  320   17
-define Cursor24  320   17      define Cursor59  320   17
-define Cursor25  320   17      define Cursor60  320   17
-define Cursor26  320   17      define Cursor61  320   17
-define Cursor27  320   17      define Cursor62  320   17
-define Cursor28  320   17      define Cursor63  320   17
-define Cursor29  320   17      define Cursor64  320   17
-define Cursor30  320   17      define Cursor65  320   17
-define Cursor31  320   17      define Cursor66  320   17
-define Cursor32  320   17      define Cursor67  320   17
-define Cursor33  320   17      define Cursor68  320   17
-define Cursor34  320   17      define Cursor69  320   17
-define Cursor35  320   17
 
 
+//=============================================================================
+//
+// Crosshair previews
+//
+//=============================================================================
+
+Graphic QHAIRB1,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB1,	16,16 { UseOffsets } }
+Graphic QHAIRB2,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB2,	16,16 { UseOffsets } }
+Graphic QHAIRB3,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB3,	16,16 { UseOffsets } }
+Graphic QHAIRB4,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB4,	16,16 { UseOffsets } }
+Graphic QHAIRB5,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB5,	16,16 { UseOffsets } }
+Graphic QHAIRB6,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB6,	16,16 { UseOffsets } }
+Graphic QHAIRB7,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB7,	16,16 { UseOffsets } }
+Graphic QHAIRB8,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB8,	16,16 { UseOffsets } }
+Graphic QHAIRB9,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB9,	16,16 { UseOffsets } }
+Graphic QHAIRB10,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB10,	16,16 { UseOffsets } }
+Graphic QHAIRB11,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB11,	16,16 { UseOffsets } }
+Graphic QHAIRB12,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB12,	16,16 { UseOffsets } }
+Graphic QHAIRB13,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB13,	16,16 { UseOffsets } }
+Graphic QHAIRB14,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB14,	16,16 { UseOffsets } }
+Graphic QHAIRB15,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB15,	16,16 { UseOffsets } }
+Graphic QHAIRB16,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB16,	16,16 { UseOffsets } }
+Graphic QHAIRB17,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB17,	16,16 { UseOffsets } }
+Graphic QHAIRB18,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB18,	16,16 { UseOffsets } }
+Graphic QHAIRB19,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB19,	16,16 { UseOffsets } }
+Graphic QHAIRB20,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB20,	16,16 { UseOffsets } }
+Graphic QHAIRB21,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB21,	16,16 { UseOffsets } }
+Graphic QHAIRB22,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB22,	16,16 { UseOffsets } }
+Graphic QHAIRB23,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB23,	16,16 { UseOffsets } }
+Graphic QHAIRB24,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB24,	16,16 { UseOffsets } }
+Graphic QHAIRB25,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB25,	16,16 { UseOffsets } }
+Graphic QHAIRB26,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB26,	16,16 { UseOffsets } }
+Graphic QHAIRB27,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB27,	16,16 { UseOffsets } }
+Graphic QHAIRB28,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB28,	16,16 { UseOffsets } }
+Graphic QHAIRB29,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB29,	16,16 { UseOffsets } }
+Graphic QHAIRB30,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB30,	16,16 { UseOffsets } }
+Graphic QHAIRB31,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB31,	16,16 { UseOffsets } }
+Graphic QHAIRB32,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB32,	16,16 { UseOffsets } }
+Graphic QHAIRB33,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB33,	16,16 { UseOffsets } }
+Graphic QHAIRB34,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB34,	16,16 { UseOffsets } }
+Graphic QHAIRB35,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB35,	16,16 { UseOffsets } }
+Graphic QHAIRB36,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB36,	16,16 { UseOffsets } }
+Graphic QHAIRB37,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB37,	16,16 { UseOffsets } }
+Graphic QHAIRB38,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB38,	16,16 { UseOffsets } }
+Graphic QHAIRB39,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB39,	16,16 { UseOffsets } }
+Graphic QHAIRB40,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB40,	16,16 { UseOffsets } }
+Graphic QHAIRB41,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB41,	16,16 { UseOffsets } }
+Graphic QHAIRB42,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB42,	16,16 { UseOffsets } }
+Graphic QHAIRB43,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB43,	16,16 { UseOffsets } }
+Graphic QHAIRB44,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB44,	16,16 { UseOffsets } }
+Graphic QHAIRB45,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB45,	16,16 { UseOffsets } }
+Graphic QHAIRB46,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB46,	16,16 { UseOffsets } }
+Graphic QHAIRB47,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB47,	16,16 { UseOffsets } }
+Graphic QHAIRB48,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB48,	16,16 { UseOffsets } }
+Graphic QHAIRB49,	32, 32 { XScale 2.0	YScale 2.0	Patch XHAIRB49,	16,16 { UseOffsets } }
 
 //=============================================================================
 //

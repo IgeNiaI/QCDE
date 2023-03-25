@@ -1,169 +1,573 @@
+
 //-------------------------------------------------------------------------------------------
 //
-// The main menu. There's a lot of differences here between the games
+// Menu file for everything that didn't go to other menu files
 //
 //-------------------------------------------------------------------------------------------
 
-LISTMENU "MainMenu"
+FreeformMenu "MainMenuTopBar"
 {
-	Selector "CURSOR1", -97, 0
-	StaticPatch 0, -1, "MENUBACK"
-
-	IfGame(Doom, Chex)
-	{
-		StaticPatch 94, 2, "M_DOOM"
-		Position 97, 72	//already positioned for "read this" being always there
-	}
-	IfGame(Strife)
-	{
-		StaticPatch 84, 2, "M_STRIFE"
-		Position 97, 45
-	}
-	IfGame(Heretic)
-	{
-		StaticPatch 88, 0, "M_HTIC"
-		StaticPatch 40, 10, "M_SKL01"
-		StaticPatch 232, 10, "M_SKL00"
-		Position 110, 56
-	}
-	IfGame(Hexen)
-	{
-		StaticPatch 88, 0, "M_HTIC"
-		StaticPatch 37, 80, "FBULB0"
-		StaticPatch 278, 80, "FBULA0"
-		Position 110, 56
+	Label {
+		Static
+		Background BackTop
+		Size 1000, 35
 	}
 
-	IfGame(Doom, Strife, Chex)
-	{
-		PatchItem "Q_NEWGAM", "n", "PlayerclassMenu"
-		PatchItem "Q_SKIRM",  "s", "QCDE_SkirmishMenu"
-		ifOption(SwapMenu)
-		{
-			PatchItem "Q_LOADG", "l", "LoadGameMenu"
-			PatchItem "Q_SAVEG", "s", "SaveGameMenu"
-			PatchItem "Q_CHAMP", "c", "QCDEPlayerMenu"
-			PatchItem "Q_OPTION","o", "QCDEOptions"
-		}
-		else
-		{
-			PatchItem "Q_CHAMP", "c", "QCDEPlayerMenu"
-			PatchItem "Q_OPTION","o", "QCDEOptions"
-			PatchItem "Q_LOADG", "l", "LoadGameMenu"
-			PatchItem "Q_SAVEG", "s", "SaveGameMenu"
-		}
-		PatchItem "Q_QUITG", "q", "QuitMenu"
+	Command {
+		Static
+		Pos		0, 0			Background			BT_HOME
+		Size	15, 20			SelectedBackground	BT_HOMES
+		Anchor	left, top
+		Gravity left, top		Command	qcde_openmainmenu
 	}
 
-	IfGame(Heretic, Hexen)
-	{
-		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
-		TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
-		TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
-		TextItem "$MNU_QUITGAME", "q", "QuitMenu"
+	Command {
+		Static	NotOnTitlemap	NotInSingleplayer	NotInBotplay
+		Pos		52, 10					Text				"Call Vote"			Background			BM14040
+		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
+		Anchor	center, center			FontColor			Tan
+		Gravity left, top				SelectedFontColor	Tan					Command	qcde_opencallvote
+		Padding	0, 1
+	}
+
+	Command {
+		Static	NotInMultiplayer
+		Pos		52, 10					Text				"New Game"			Background			BM14040
+		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
+		Anchor	center, center			FontColor			Tan
+		Gravity left, top				SelectedFontColor	Tan					Command	qcde_opencampaign
+		Padding	0, 1
+	}
+
+	Command {
+		Static	NotInMultiplayer
+		Pos		124, 10					Text				"Skirmish"			Background			BM14040
+		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
+		Anchor	center, center			FontColor			Tan
+		Gravity left, top				SelectedFontColor	Tan					Command	qcde_openskirmish
+		Padding	0, 1
+	}
+
+	SubMenu {
+		Static	NotInMultiplayer
+		Pos		196, 10					Text				"Load Game"			Background			BM14040
+		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
+		Anchor	center, center			FontColor			Tan
+		Gravity left, top				SelectedFontColor	Tan					Menu	LoadGameMenu
+		Padding	0, 1
+	}
+
+	SubMenu {
+		Static	NotOnTitlemap	NotInMultiplayer	NotInBotplay
+		Pos		268, 10					Text				"Save Game"			Background			BM14040
+		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
+		Anchor	center, center			FontColor			Tan
+		Gravity left, top				SelectedFontColor	Tan					Menu	SaveGameMenu
+		Padding	0, 1
+	}
+
+	Command {
+		Static
+		Pos		-22, 0			Background			BM_4040
+		Size	20, 20			SelectedBackground	BM_4040S
+		Anchor	right, top
+		Gravity right, top		Command	qcde_optionsgeneral
+	}
+
+	Label {
+		Static
+		Pos		-32, 10			Size 10, 10
+		Anchor	center, center	Gravity right, top
+		Background IC_STNGS
+	}
+
+	SubMenu {
+		Static
+		Pos		0, 0			Background			BM_4040
+		Size	20, 20			SelectedBackground	BM_4040R
+		Anchor	right, top
+		Gravity right, top		Menu	QuitMenu
+	}
+
+	Label {
+		Static
+		Pos		-10, 10			Size 10, 10
+		Anchor	center, center	Gravity right, top
+		Background IC_QUIT
 	}
 }
 
-ListMenu "EpisodeMenu"
+FreeformMenu "MainMenu"
 {
-	IfGame(Doom, Heretic, Hexen, Strife)
-	{
-		NetgameMessage "$NEWGAME"
-	}
-	IfGame(Chex)
-	{
-		NetgameMessage "$CNEWGAME"
+	NoBackButton
+	DontDim
+	OverrideHeight 1 // this menu should never scroll
+	DefaultSelection -2
+
+	Label {
+		Static	NotOnTitlemap
+		Background MenuDim
+		Size 1000, 1000
 	}
 
-	IfGame(Doom, Chex)
-	{
-		Position 48, 63
-		StaticText 54, 38, "CHOOSE EPISODE"
+	InsertFreeformMenu MainMenuTopBar
+
+	SubMenu {
+		Static	NotInSingleplayer
+		Pos		0, -15					Text				"CHAMPIONS"			Background			BTCHAMP
+		Size	154, 30					Font				QCSMFONT			SelectedBackground	BTCHAMPS
+		Anchor	center, center			FontColor			Tan
+		Gravity center, bottom			SelectedFontColor	Tan					Menu	ZA_JoinMenu
+		Padding	0, 1
 	}
-	IfGame(Strife)
-	{
-		Position 48, 63
-		StaticText 54, 38, "$MNU_EPISODE"
-	}
-	IfGame(Heretic, Hexen)
-	{
-		Position 80, 50
-	}
-	// items will be filled in by MAPINFO
 }
 
-OptionMenu QCDE_SkirmishMenu
+FreeformMenu "PlayerclassMenu"
 {
-	Indent 153
-	Title		"SKIRMISH"
+	NoBackButton
+	Centermenu
+	TopPadding 20
+	DefaultSelection -2
 
-	StaticText ""
+	Label {
+		Background	"CPicker0"
+		Size		1000, 250
+	}
 
-	Option			"Map",					"menu_skirmishlevel",	"ZA_Levels"
-	CommandCentered	"Random Map",			"qcde_randommap"
+	InsertFreeformMenu	ChampionSelector
+	InsertFreeformMenu	WeaponSelectorCoop
 
-	StaticText ""
+	SubMenu {
+		Pos		40, 207					Text				"NEXT"				Background			BT20060
+		Size	100, 30					Font				QCBGFONT			SelectedBackground	BT20060S
+		Anchor	center, center			FontColor			Tan					Menu				Episodemenu
+		Padding	0, 2					SelectedFontColor	Yellow				Param				-2
+	}
 
-	Option			"Game Mode",			"qcde_skirmishgamemode",		"QCDE_Gamemode"
-	Option			"Modifier",				"qcde_skirmishmodifier",		"QCDE_Modifier"
-
-	StaticText ""
-
-	NumberField		"Time Limit",			"menu_skirmishtimelimit"
-	NumberField		"Frag Limit",			"menu_skirmishfraglimit"
-	NumberField		"Point Limit",			"menu_skirmishpointlimit"
-	NumberField		"Duel Limit",			"menu_skirmishduellimit"
-	NumberField		"Win Limit",			"menu_skirmishwinlimit"
-	NumberField		"Wave Limit",			"menu_skirmishwavelimit", 0, 10
-
-	StaticText ""
-
-	NumberField		"Players count (including bots)",	"sv_minplayers", 0, 10
-	Option			"Bot Skill",			"menu_skirmishbotskill",	ZA_Skill
-	Option			"Bots can talk",		"bot_allowchat",			"YesNo"
-
-	StaticText ""
-
-	CommandCentered	"Start Game!",			"qcde_startskirmish"
+	InsertFreeformMenu MainMenuTopBar
 }
 
-OptionValue QCDE_Gamemode
+FreeformMenu "EpisodeMenu"
 {
-	0, "Cooperative"
-	1, "Survival"
-	2, "Invasion"
-	3, "Deathmatch"
-	4, "Team Deathmatch"
-	5, "Duel"
-	6, "Last Man Standing"
-	7, "Team Last Man Standing"
-	// 8, "Domination" // requires teamgame starts
-	9, "Freeze Tag"
-	// 10, "Elder's Soul" // doesn't seem to work at all
-	// 11, "Team Elder's Soul" // doesn't seem to work at all
-	12, "Capture The Flag"
+	Centermenu
+	TopPadding 0
+	DefaultSelection -2
+
+	Label {
+		Static
+		Background	"BackMenu"
+		Size		230, 500
+	}
+
+	Label {
+		Pos 0, 20				Font QCBGFONT
+		Text "SELECT EPISODE"	FontColor Gold
+	}
+
+	SubMenu {
+		Pos 0, 60				Font QCBGFONT
+		Size 200, 20			SelectedFontColor Red
+		Menu EpisodesTop
+		Text "TEST EPISODE"
+	}
 }
 
-OptionValue QCDE_Modifier
+FreeformMenu "SkillMenu"
 {
-	0, "None"
-	1, "Instagib"
-	2, "Rocket Arena"
-	3, "Buckshot"
-	4, "Unholy Trinity"
-	5, "Lightning Storm"
-	6, "Random Weapons (Per map)"
-	7, "Random Weapons (Per life)"
+	Centermenu
+	TopPadding 0
+	DefaultSelection -2
+	OverrideHeight 145
+
+	Label {
+		Static
+		Background	"BackMenu"
+		Size		230, 500
+	}
+
+	SubMenu {
+		Pos		0, 25					Text				"Easy"				Background			BT28060
+		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Menu	Startgame
+		Padding	0, 2					SelectedFontColor	Tan					Param	8
+	}
+
+	SubMenu {
+		Pos		0, 60					Text				"Normal"			Background			BT28060
+		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Menu	Startgame
+		Padding	0, 2					SelectedFontColor	Tan					Param	2
+	}
+
+	SubMenu {
+		Pos		0, 95					Text				"Hard"				Background			BT28060
+		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Menu	Startgame
+		Padding	0, 2					SelectedFontColor	Tan					Param	5
+	}
+
+	SubMenu {
+		Pos		0, 125					Text				"DEATHBOUND"
+		Size	140, 20					Font				QCBGFONT
+		Anchor	center, center			FontColor			Tan					Menu	StartgameConfirm
+										SelectedFontColor	Red					Param	6
+	}
 }
 
-OptionMenu QCDE_SkirmishMaps
+FreeformMenu QCDE_SkirmishMenu
 {
-	Indent 192
-	Title		"Select a map"
+	NoBackButton
+	Centermenu
+	TopPadding 20
+	DefaultSelection -2
+	OverrideHeight 250
 
-	SubMenuCentered		"Official maps",		"QCDE_QCDEMaps"
-	SubMenuCentered		"AEON maps",			"QCDE_AEONMaps"
-	SubMenuCentered		"NEON maps",			"QCDE_NEONMaps"
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Option {
+		Pos		-170, 35			CVar		menu_skirmishlevel		UnknownBackground	NOMAPPIC
+		Size	120, 67				Values		ZA_LevelNames			BackgroundValues	ZA_LevelPreviews
+		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
+		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+	}
+	Option {
+		NotSelectable
+		Size	120, 27				Values		ZA_LevelTitles
+		Pos		-110, 103			Font		QCSMFONT
+		MaxTextWidth 120			FontColor	Gold
+		Anchor	center, top			CVar		menu_skirmishlevel
+	}
+
+	Command {
+		Pos		-110, 138			Text				"Random Map"	Background			BV21028
+		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
+		Anchor	center, center		FontColor			Tan				Command				qcde_randommap
+		Padding	0, 0				SelectedFontColor	Tan
+	}
+
+
+
+	Label {
+		Pos		0, 30				Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"Game Mode"
+	}
+	Option {
+		Pos		0, 47				CVar				qcde_skirmishgamemode		UnknownBackground	OP21028
+		Size	105, 14				Values				QCDE_Gamemode				SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		0, 60				Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"Modifier"
+	}
+	Option {
+		Pos		0, 77				CVar				qcde_skirmishmodifier		UnknownBackground	OP21028
+		Size	105, 14				Values				QCDE_Modifier				SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		0, 90				Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"Bots count"
+	}
+	Option {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		0, 107				CVar				qcde_botscount				UnknownBackground	OP21028
+		Size	105, 14				Values				QCDE_BotsCount				SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos 0, 120					Font		SmallFont
+		Anchor left, top			FontColor	DarkRed
+		Text "Bot Skill"
+	}
+	Option {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		0, 137				CVar				menu_skirmishbotskill		UnknownBackground	OP21028
+		Size	105, 14				Values				QCDE_BotSkill				SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		0, 167				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Bots can talk"
+	}
+	Option {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		105, 166			CVar				bot_allowchat
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
+	// 0, "Cooperative"
+	// 1, "Survival"
+	// 2, "Invasion"
+	// 3, "Deathmatch"
+	// 4, "Team Deathmatch"
+	// 5, "Duel"
+	// 6, "Last Man Standing"
+	// 7, "Team LMS"
+	// 8, "Freeze Tag"
+	// 9, "Elder's Soul"
+	// 10, "Team Elder's Soul"
+	// 11, "Capture The Flag"
+	// 12, "Domination"
+
+	// Max Lives, for Survival and Invasion
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	1, 2
+		Pos		125, 30			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Max Lives"
+	}
+	TextField {
+		VisibilityCVar qcde_skirmishgamemode,	1, 2
+		Pos		137, 47			CVar				qcde_maxlives	Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Padding 0, 0			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	1, 2
+		Pos		153, 48		Anchor left, center
+		Text	"Lives"		Font SmallFont
+	}
+
+	// Wave Limit, for Invasion
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	2, 2
+		Pos		125, 60			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Wave Limit"
+	}
+	TextField {
+		VisibilityCVar qcde_skirmishgamemode,	2, 2
+		Pos		137, 77			CVar				menu_skirmishwavelimit	Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	2, 2
+		Pos		153, 78		Anchor left, center
+		Text	"Waves"		Font SmallFont
+	}
+
+	// Time limit, for all PvP modes
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		125, 30			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Time Limit"
+	}
+	TextField {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		137, 47			CVar				menu_skirmishtimelimit	Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		153, 48		Anchor left, center
+		Text	"Minutes"	Font SmallFont
+	}
+
+	// Win Limit, for all PvP gamemodes
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		125, 60			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Win Limit"
+	}
+	TextField {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		137, 77			CVar				menu_skirmishwinlimit	Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		153, 78		Anchor left, center
+		Text	"Wins"		Font SmallFont
+	}
+
+	// Frag Limit, for DM, TDM and Duel
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 5
+		Pos		125, 90			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Frag Limit"
+	}
+	TextField {
+		VisibilityCVar qcde_skirmishgamemode,	3, 5
+		Pos		137, 107		CVar				menu_skirmishfraglimit	Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 5
+		Pos		153, 108	Anchor left, center
+		Text	"Frags"		Font SmallFont
+	}
+
+	// Max Lives, for LMS
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	6, 7
+		Pos		125, 90			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Max Lives"
+	}
+	TextField {
+		VisibilityCVar qcde_skirmishgamemode,	6, 7
+		Pos		137, 107		CVar				qcde_maxlives	Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	6, 7
+		Pos		153, 108	Anchor left, center
+		Text	"Lives"		Font SmallFont
+	}
+
+	// Frag Limit again, for Elder's Soul
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		Pos		125, 90			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Frag Limit"
+	}
+	TextField {
+		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		Pos		137, 107		CVar				menu_skirmishfraglimit	Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		Pos		153, 108	Anchor left, center
+		Text	"Frags"		Font SmallFont
+	}
+
+	// Point Limit again, for CTF and Domination
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	11, 12
+		Pos		125, 90			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Point Limit"
+	}
+	TextField {
+		VisibilityCVar qcde_skirmishgamemode,	11, 12
+		Pos		137, 107		CVar				menu_skirmishpointlimit	Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	11, 12
+		Pos		153, 108	Anchor left, center
+		Text	"Points"	Font SmallFont
+	}
+
+
+	// Warmup Mode, for DM and TDM
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 4
+		Pos		125, 137			Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Warmup"
+	}
+	Option {
+		VisibilityCVar qcde_skirmishgamemode,	3, 4
+		Pos		195, 136			CVar				sv_deathmatchwarmup
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	70, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	// Warmup Mode again, for Elder's Soul
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		Pos		125, 137			Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Warmup"
+	}
+	Option {
+		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		Pos		195, 136			CVar				sv_deathmatchwarmup
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	70, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	// Warmup Mode, for Duel
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	5, 5
+		Pos		125, 137			Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Warmup"
+	}
+	Option {
+		VisibilityCVar qcde_skirmishgamemode,	5, 5
+		Pos		195, 136			CVar				sv_duelwarmup
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	70, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	// Warmup Mode, for LMS and FreezeTag
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	6, 8
+		Pos		125, 137			Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Warmup"
+	}
+	Option {
+		VisibilityCVar qcde_skirmishgamemode,	6, 8
+		Pos		195, 136			CVar				sv_lmswarmup
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	70, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Command {
+		Pos		100, 205			Text				"Start Game!"	Background			BT28060
+		Size	140, 30				Font				QCBGFONT		SelectedBackground	BT28060S
+		Anchor	center, center		FontColor			Tan				Command				qcde_startskirmish
+		Padding	0, 2				SelectedFontColor	Tan
+	}
+
+	InsertFreeformMenu MainMenuTopBar
 }
 
 // Overriding this in case someone gets here from all engine options
@@ -199,757 +603,137 @@ OptionMenu ZA_SkirmishMenu
 	Command		"Start Game!",			"menu_startskirmish"
 }
 
-OptionMenu "QCDEOptions"
+FreeformMenu QCDE_CallVote
 {
-	Indent 220
-	Title 		"QCDE OPTIONS"
-
-	StaticText	""
-
-	SubmenuCentered		"Player Setup",				"QCDEPlayerMenu"
-	SubmenuCentered 	"Keyboard/Mouse binds",		"QCDEBinds"
-	SubmenuCentered 	"Mouse Options",			"QCDEMouseOptions"
-	SubmenuCentered 	"Zoom Options",				"QCDEZoom"
-
-	StaticText	""
-
-	SubmenuCentered 	"HUD & Display Options",	"QCDEHUDOptions"
-	SubmenuCentered 	"Sound Options",			"QCDESoundOptions"
-	SubmenuCentered 	"Video Options",			"VideoModeMenu"
-
-	StaticText	""
-
-	SubmenuCentered 	"Weapon Skins",				"QCDEWeaponSkins"
-	SubmenuCentered 	"Misc QCDE Options",		"QCDEMisc"
-
-	StaticText	""
-
-	SubMenuCentered		"Call a vote",				"QCDE_CallVote"
-
-	StaticText	""
-	StaticText	""
-
-	SubmenuCentered 	"All Engine options (old menu)",	"OptionsMenu"
-}
-
-ListMenu "QCDEPlayerMenu"
-{
-	StaticTextCentered 160, 0, "PLAYER SETUP"
-
-	Linespacing 14
-	Position 16, 56
-
-	Linespacing 14
-	Font "SmallFont"
-	PlayerNameBox "Name", 0, "Playerbox"
-	Selector "-", -16, -1
-	MouseWindow 0, 220
-	PlayerDisplay 220, 80, "#09016f", "#8901ab", 1, "PlayerDisplay"
-
-	Linespacing 14
-	Font "BigFont"
-	ValueText "Champion : ", "Class"
-
-	Font "SmallFont"
-	StaticText 16, 90, "Champion changes apply after respawn"
-
-	// Can't delete Skin option or else class preview won't update
-	// Using a font with no letters instead
-	Font "QCFNT100"
-	ValueText "Skin (ignore)", "Skin"
-	Class "PlayerMenu"
-}
-
-OptionMenu "QCDEBindsActions"
-{
-	Indent 153
-	Title "ACTIONS BINDS"
-
-	StaticText ""
-
-	Control   	"Forward",				"+forward"
-	Control    	"Backward",				"+back"
-	Control    	"Strafe Left",			"+moveleft"
-	Control    	"Strafe Right",			"+moveright"
-	Control    	"Jump",					"+jump"
-	Control    	"Crouch",				"+crouch"
-	Control    	"Walk/Run",				"+speed"
-
-	StaticText ""
-
-	Control    	"Fire",					"+attack"
-	Control    	"Zoom / Alt Fire",		"+altattack"
-	Control 	"Use active ability",	"+user1"
-	Control    	"Use / Open",			"+use"
-
-	StaticText ""
-
-	Control 	"Change class",				"mpclassmenu"
-	Control 	"Champion information",		"+QCDE_ClassInfo"
-	Control 	"Open lootbox",				"invuse"
-
-	StaticText ""
-
-	Option		"Join the game",			"joinmenukey", "JoinMenuKeys"
-	Control		"Join the game (custom)", 	"menu_join"
-	Control  	"Ready to play",			"ready"
-}
-
-OptionMenu "QCDEBindsWeapons"
-{
-	Indent 153
-	Title "WEAPONS BINDS"
-
-	StaticText ""
-
-	Control		"Gauntlet",			"slot 1"
-	Control		"Machinegun",		"slot 2"
-	Control		"Shotgun",			"slot 3"
-	Control		"Nailgun",			"slot 4"
-	Control		"Tribolt",			"slot 5"
-	Control		"Rocket Launcher",	"slot 6"
-	Control		"Lightning Gun",	"slot 7"
-	Control		"Railgun",			"slot 8"
-	Control		"BFG",				"slot 9"
-
-	StaticText ""
-
-	Control 	"Select starting weapon",	"+QCDE_StartingWeapon"
-	Control 	"Drop weapon",				"weapdrop"
-	Control 	"Drop weapon upgrade",		"drop_upgrade"
-}
-
-OptionMenu "QCDEBindsChat"
-{
-	Indent 153
-	Title "CHAT BINDS"
-
-	StaticText ""
-
-	Control 	"Taunt",		"voice"
-	Control 	"Say",			"messagemode"
-	Control 	"Team say",		"messagemode2"
-	Control		"Vote yes",		"vote_yes"
-	Control		"Vote no",		"vote_no"
-}
-
-OptionMenu "QCDEBindsSpectating"
-{
-	Indent 153
-	Title "SPECTATING BINDS"
-
-	StaticText ""
-
-	Control		"Join spectators",				"spectate"
-	Control 	"Spectate previous player",		"spyprev"
-	Control 	"Spectate next player",			"spynext"
-	Control 	"Toggle Spectate killer",		"spykiller"
-}
-
-OptionMenu "QCDEBindsOther"
-{
-	Indent 153
-	Title "OTHER BINDS"
-
-	StaticText ""
-
-	Control    	"Open Console",			"toggleconsole"
-	Control 	"Toggle automap",		"togglemap"
-	Control 	"Show Scoreboard",		"+showscores"
-	Control 	"Screenshot",			"screenshot"
-}
-
-OptionMenu "QCDEBinds"
-{
-	Indent 180
-	Title "KEYBOARD/MOUSE BINDS"
-
-	StaticText ""
-
-	SubmenuCentered 	"Actions", 		"QCDEBindsActions"
-	SubmenuCentered 	"Weapons", 		"QCDEBindsWeapons"
-	SubmenuCentered 	"Spectating",	"QCDEBindsSpectating"
-	SubmenuCentered 	"Chat",			"QCDEBindsChat"
-	SubmenuCentered 	"Other",		"QCDEBindsOther"
-}
-
-OptionMenu "QCDEMouseOptions"
-{
-	Indent 153
-	Title "MOUSE OPTIONS"
-
-	StaticText ""
-
-	Slider "Overall sensitivity",		"mouse_sensitivity", 0.1, 2.5, 0.1, 4
-
-	StaticText 	""
-
-	Slider "Horizontal mouse speed",	"mouse_yaw", 0.1, 2.5, 0.1, 4
-	Slider "Vertical mouse speed",		"mouse_pitch", 0.1, 2.5, 0.1, 4
-
-	StaticText 	""
-
-	Slider "Zoomed mouse speed scale",	"mouse_zoomedscale", 0.1, 2.5, 0.1, 4
-
-	StaticText 	""
-
-	Option "Invert Mouse",				"invertmouse", "OnOff"
-	IfOption(Windows)
-	{
-		Option "Mouse input type",		"in_mouse", "InMouse"
-	}
-	Option "Prescale mouse movement",	"m_noprescale", "NoYes"
-	Option "Smooth mouse movement",		"smooth_mouse", "YesNo"
-}
-
-OptionMenu "QCDEZoom"
-{
-	Indent 153
-	Title 		"ZOOM OPTIONS"
-
-	StaticText ""
-
-	Option		"Hold to zoom",				"cl_holdZoom",			"OnOff"
-	Slider		"FoV change speed",			"cl_fovchangespeed",	1.0, 100, 0.1
-	Slider 		"Railgun Zoom",				"cl_railgunZoom",		1.1, 5.0, 1.0, 2
-	Slider 		"Heavy Machinegun Zoom",	"cl_hmgZoom",			1.1, 5.0, 1.0, 2
-	Slider 		"Lightning Gun Zoom",		"cl_lgZoom",			1.1, 5.0, 1.0, 2
-	Slider 		"Other weapons Zoom",		"cl_otherZoom",			1.1, 5.0, 1.0, 2
-}
-
-OptionValue "QCSpeedometer"
-{
-	0, "Off"
-	1, "Center"
-	2, "Bottom Left"
-}
-
-OptionValue "QCMedals"
-{
-	0, "Off"
-	1, "Full"
-	2, "Sound Only"
-}
-
-OptionValue "LowWarning"
-{
-	0, "Off"
-	1, "Sound"
-	2, "Sound & Text"
-	3, "Sound & Text stays"
-}
-
-OptionValue "BarStyle"
-{
-	0, "Blocks of 25 points"
-	1, "Continuous"
-}
-
-OptionMenu "QCDEHUDOptions"
-{
-	Indent 153
-	Title "HUD & DISPLAY OPTIONS"
-
-	StaticText	"Visual",1
-	Slider		"Field of View",				"fov",					5.0, 179.0, 1.0, 2
-	Slider		"Move bobbing intensity",		"movebob", 			  	0,  0.75, 0.02, 2
-	Slider		"Weapon sway intensity",		"movesway", 			0,   2.0, 0.01, 2
-	Option		"Show weapon",					"r_drawplayersprites",	"OnOff"
-	Option		"Sprite billboard",				"gl_billboard_mode",	"BillboardModes"
-	Option		"Crosshair type",				"crosshair",           	"Crosshairs"
-	Option		"Crosshair shows health",		"crosshairhealth",		"OnOff"
-	Slider		"Crosshair scale",				"crosshairscalef",		0, 10, 0.1
-	ColorPicker	"Crosshair color",				"crosshaircolor"
-
-	StaticText ""
-
-	StaticText	"Information",1
-	Option		"Speedometer",					"cl_speedometer",			"QCSpeedometer"
-	Option		"QC Medals",					"cl_qcmedals",				"QCMedals"
-	Option		"Weapon bar (16:9)",			"cl_showWeaponBar",			"OnOff"
-	Option		"Health bar style",				"cl_barStyle",				"BarStyle"
-	Option		"Low ammo warning",				"cl_lowAmmoWarning",		"LowWarning"
-	Option		"Low health warning",			"cl_lowHealthWarning",		"LowWarning"
-	Option		"Weapon hit-markers",			"cl_hitmarker",				"OnOff"
-	Option		"Damage numbers",               "sv_ShowDamageNumbers",		"OnOff"
-	Option		"Show obituaries",				"show_obituaries",			"YesNo"
-	Option		"Show large frag messages",		"cl_showlargefragmessages",	"YesNo"
-
-	StaticText ""
-
-	StaticText	"Effects",1
-	Option		"Weapon firing recoil",			"cl_weaponrecoil",			"OnOff"
-	Option		"Weapon firing flash",			"cl_weaponfireflash",		"OnOff"
-	Option		"HUD Blood smears",				"cl_ShowHUDBloodSmears",	"OnOff"
-	Option		"LG beam transparency (DM)",	"cl_lgtransparency",		"LGTransp"
-	Slider		"Pickup flash intensity",		"pickup_blend_scalar", 0, 1, 0.05, 2
-	Slider		"Screen blood intensity",		"blood_fade_scalar",   0, 1, 0.05, 2
-
-	StaticText ""
-
-	StaticText	"Champion specific settings",1
-	Option		"Eradicator Radar mode",		"cl_radarMode",				"RadarMode"
-}
-
-OptionMenu "QCDESoundOptions"
-{
-	Indent 153
-	Title "SOUND OPTIONS"
-
-	StaticText ""
-
-	Slider "Sounds volume",			"snd_sfxvolume", 0, 1, 0.05, 2
-	Slider "Menu volume",			"snd_menuvolume", 0, 1, 0.05, 2
-	Slider "Music volume",			"snd_musicvolume", 0, 1, 0.05, 2
-	Slider "Announcer volume",		"snd_announcervolume", 0, 1, 0.05, 2 // [TP]
-	Option "Announcer",				"cl_announcer",		"ZA_Announcers" // [TP]
-	StaticText ""
-	Option		"QCDE Weapon hit-beeps",			"cl_hitbeep",				"OnOff"
-	Slider		"QCDE Auto Taunt chance",			"cl_autoTaunt",				0, 50, 1
-	Option		"QCDE Taunt subtitles",				"cl_tauntSubtitles",		"TauntSubtitles"
-	Option		"QCDE OST enabled (if loaded)",		"snd_qcdemus",				"OnOff"
-	Option		"QCDE OST playback order",			"snd_randommus",			"OSTorder"
-}
-
-OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of resolutions
-{
-	Indent 153
-	Title "VIDEO MODE"
-
-	StaticText ""
-
-	Option "Fullscreen",						"fullscreen", "YesNo"
-	Slider 		"Field of View",				"fov", 5.0, 179.0, 1.0, 2
-	Slider		"Max FPS",						"vid_maxfps",	0, 1000, 5
-	Option		"Display FPS",					"vid_fps",		"OnOff"
-	Option 		"Vertical Sync",				"vid_vsync",	"OnOff"
-	Option		"True horizontal fov",			"gl_true_fov",	"YesNo"
-	Option		"Dynamic Lights",				"gl_lights",	"OnOff"
-	Option		"Use models",					"gl_use_models","OnOff"
-
-	StaticText ""
-	StaticText ""
-
-	Option		"Aspect ratio",					"menu_screenratios",	"Ratios"
-
-	StaticText ""
-
-	ScreenResolution "res_0"
-	ScreenResolution "res_1"
-	ScreenResolution "res_2"
-	ScreenResolution "res_3"
-	ScreenResolution "res_4"
-	ScreenResolution "res_5"
-	ScreenResolution "res_6"
-	ScreenResolution "res_7"
-	ScreenResolution "res_8"
-	ScreenResolution "res_9"
-	StaticTextSwitchable "Press ENTER to set mode", "", "VMEnterText"
-	StaticText ""
-	StaticTextSwitchable "T to test mode for 5 seconds", "Please wait 5 seconds...", "VMTestText"
-
-	class VideoModeMenu
-}
-
-OptionValue "GNTLskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	3, "Quake 3"
-	4, "Quake 4"
-	6, "QC:DE 1.0"
-}
-
-OptionValue "MGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	5, "ET: QW"
-	6, "QC:DE 1.0"
-}
-
-OptionValue "HMGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	5, "ET: QW"
-	6, "QC:DE 1.0"
-}
-
-OptionValue "SGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	1, "Quake 1"
-	2, "Quake 2"
-	6, "QC:DE 1.0"
-	7, "Half-Life"
-}
-
-OptionValue "SSGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	1, "Quake 1"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	5, "ET: QW"
-	6, "QC:DE 1.0"
-	7, "Half-Life"
-}
-
-OptionValue "NGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	1, "Quake 1"
-	2, "Quake 2"
-	4, "Quake 4"
-	6, "QC:DE 1.0"
-}
-
-OptionValue "SNGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	1, "Quake 1"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	5, "ET: QW"
-	6, "QC:DE 1.0"
-}
-
-OptionValue "TBskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	1, "Quake 1"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	6, "QC:DE 1.0"
-}
-
-OptionValue "RLskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	1, "Quake 1"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	5, "ET: QW"
-	6, "QC:DE 1.0"
-	7, "Half-Life"
-}
-
-OptionValue "LGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	1, "Quake 1"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	5, "ET: QW"
-	6, "QC:DE 1.0"
-}
-
-OptionValue "RGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	1, "Quake 1"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	5, "ET: QW"
-	6, "QC:DE 1.0"
-}
-
-OptionValue "BFGskin"
-{
-	-1, "Class Based"
-	0, "Default"
-	2, "Quake 2"
-	3, "Quake 3"
-	4, "Quake 4"
-	6, "QC:DE 1.0"
-}
-
-OptionMenu "QCDEWeaponSkins"
-{
-	Indent 153
-	Title "Weapons Skins"
-
-	StaticText ""
-
-	Option		"Gauntlet",			"cl_GNTLskin",	"GNTLskin"
-	Option		"Machinegun",		"cl_MGskin",	"MGskin"
-	Option		"Heavy Machinegun",	"cl_HMGskin",	"HMGskin"
-	Option		"Shotgun",			"cl_SGskin",	"SGskin"
-	Option		"Super Shotgun",	"cl_SSGskin",	"SSGskin"
-	Option		"Nailgun",			"cl_NGskin",	"NGskin"
-	Option		"Super Nailgun",	"cl_SNGskin",	"SNGskin"
-	Option		"Tribolt",			"cl_TBskin",	"TBskin"
-	Option		"Rocket Launcher",	"cl_RLskin",	"RLskin"
-	Option		"Lightning Gun",	"cl_LGskin",	"LGskin"
-	Option		"Railgun",			"cl_RGskin",	"RGskin"
-	Option		"BFG",				"cl_BFGskin",	"BFGskin"
-
-	StaticText ""
-
-	CommandCentered		"Default Preset",		"qcde_WeapSkins_Default"
-	CommandCentered		"QC:DE 1.0 Preset",		"qcde_WeapSkins_QCDE10"
-	CommandCentered		"Quake 1 Preset",		"qcde_WeapSkins_Quake1"
-	CommandCentered		"Quake 2 Preset",		"qcde_WeapSkins_Quake2"
-	CommandCentered		"Quake 3 Preset",		"qcde_WeapSkins_Quake3"
-	CommandCentered		"Quake 4 Preset",		"qcde_WeapSkins_Quake4"
-	CommandCentered		"ET:QW Preset",			"qcde_WeapSkins_ETQW"
-	CommandCentered		"Half-Life Preset",		"qcde_WeapSkins_HalfLife"
-	CommandCentered		"Class Based Preset",	"qcde_WeapSkins_Class"
-}
-
-OptionValue "QCSwitch"
-{
-	0, "Off"
-	1, "On"
-}
-
-OptionMenu "QCDEMisc"	//had to overwrite, because redefine broke the list of resolutions
-{
-	Indent 153
-	Title 		"QCDE MISC OPTIONS"
-
-	StaticText ""
-
-	StaticText	"Starting Weapon",1
-	Option 		"Starting weapon",			"cl_startingWeapon",	"StartingWeapon"
-	Option		"Switch on pickup",			"switchonpickup",		"QCSwitch"
-
-	StaticText 	""
-
-	StaticText	"QCDE PvE Options",1
-	Option 		"Auto-open lootboxes",     "cl_autoOpenLootboxes",	"OnOff"
-
-	StaticText 	""
-
-	StaticText 	"PvE Enemy Theme Selection",1
-	Option    	"Quake 1",		"theme0",	"YesNo"
-	Option    	"Quake 2",		"theme1",	"YesNo"
-	Option    	"Quake 4",		"theme2",	"YesNo"
-	Option      "Doom",			"theme3",	"YesNo"
-	Option  	"Doom 2016",	"theme4",	"YesNo"
-
-	StaticText 	""
-
-	Option  	"Shuffle mode"  , "qc_shuffleMode",   "ShuffleMode"
-	Option  	"Skirmish Rogue", "qc_skirmishRogue", "YesNo"
-	SubmenuCentered 	"Custom themes (if loaded)", "QCDECustomThemes"
-
-	StaticText ""
-
-	StaticText	"--- WARNING ---"
-	StaticText	"Sending duplicate commands helps mitigate packet loss", 1
-	StaticText	"but increases outbound net traffic!", 1
-	StaticText ""
-	StaticText	"You should only enable them if you're actually", 1
-	StaticText	"suffering from severe packet loss!", 1
-	StaticText ""
-
-	Option		"Send duplicate commands",	"cl_packetdup",		"ZA_PacketDupRate"
-}
-
-OptionMenu "QCDECustomThemes"
-{
-	Indent 80
-	StaticText 	"Custom Monster Set Selection",1
-
-	StaticText ""
-
-	TextField " ", "themename5"    Option " ", "theme5","OI"    StaticText ""
-	TextField " ", "themename6"    Option " ", "theme6","OI"    StaticText ""
-	TextField " ", "themename7"    Option " ", "theme7","OI"    StaticText ""
-	TextField " ", "themename8"    Option " ", "theme8","OI"    StaticText ""
-	TextField " ", "themename9"    Option " ", "theme9","OI"    StaticText ""
-	TextField " ","themename10"    Option " ","theme10","OI"    StaticText ""
-	TextField " ","themename11"    Option " ","theme11","OI"    StaticText ""
-	TextField " ","themename12"    Option " ","theme12","OI"    StaticText ""
-	TextField " ","themename13"    Option " ","theme13","OI"    StaticText ""
-	TextField " ","themename14"    Option " ","theme14","OI"    StaticText ""
-	TextField " ","themename15"    Option " ","theme15","OI"    StaticText ""
-	TextField " ","themename16"    Option " ","theme16","OI"    StaticText ""
-	TextField " ","themename17"    Option " ","theme17","OI"    StaticText ""
-	TextField " ","themename18"    Option " ","theme18","OI"    StaticText ""
-	TextField " ","themename19"    Option " ","theme19","OI"    StaticText ""
-	TextField " ","themename20"    Option " ","theme20","OI"    StaticText ""
-	TextField " ","themename21"    Option " ","theme21","OI"    StaticText ""
-	TextField " ","themename22"    Option " ","theme22","OI"    StaticText ""
-	TextField " ","themename23"    Option " ","theme23","OI"    StaticText ""
-	TextField " ","themename24"    Option " ","theme24","OI"    StaticText ""
-	TextField " ","themename25"    Option " ","theme25","OI"    StaticText ""
-	TextField " ","themename26"    Option " ","theme26","OI"    StaticText ""
-	TextField " ","themename27"    Option " ","theme27","OI"    StaticText ""
-	TextField " ","themename28"    Option " ","theme28","OI"    StaticText ""
-	TextField " ","themename29"    Option " ","theme29","OI"    StaticText ""
-	TextField " ","themename30"    Option " ","theme30","OI"    StaticText ""
-	TextField " ","themename31"    Option " ","theme31","OI"    StaticText ""
-	TextField " ","themename32"    Option " ","theme32","OI"    StaticText ""
-	TextField " ","themename33"    Option " ","theme33","OI"    StaticText ""
-	TextField " ","themename34"    Option " ","theme34","OI"    StaticText ""
-	TextField " ","themename35"    Option " ","theme35","OI"    StaticText ""
-	TextField " ","themename36"    Option " ","theme36","OI"    StaticText ""
-	TextField " ","themename37"    Option " ","theme37","OI"    StaticText ""
-	TextField " ","themename38"    Option " ","theme38","OI"    StaticText ""
-	TextField " ","themename39"    Option " ","theme39","OI"    StaticText ""
-	TextField " ","themename40"    Option " ","theme40","OI"    StaticText ""
-	TextField " ","themename41"    Option " ","theme41","OI"    StaticText ""
-	TextField " ","themename42"    Option " ","theme42","OI"    StaticText ""
-	TextField " ","themename43"    Option " ","theme43","OI"    StaticText ""
-	TextField " ","themename44"    Option " ","theme44","OI"    StaticText ""
-	TextField " ","themename45"    Option " ","theme45","OI"    StaticText ""
-	TextField " ","themename46"    Option " ","theme46","OI"    StaticText ""
-	TextField " ","themename47"    Option " ","theme47","OI"    StaticText ""
-	TextField " ","themename48"    Option " ","theme48","OI"    StaticText ""
-	TextField " ","themename49"    Option " ","theme49","OI"    StaticText ""
-	TextField " ","themename50"    Option " ","theme50","OI"    StaticText ""
-	TextField " ","themename51"    Option " ","theme51","OI"    StaticText ""
-	TextField " ","themename52"    Option " ","theme52","OI"    StaticText ""
-	TextField " ","themename53"    Option " ","theme53","OI"    StaticText ""
-	TextField " ","themename54"    Option " ","theme54","OI"    StaticText ""
-	TextField " ","themename55"    Option " ","theme55","OI"    StaticText ""
-	TextField " ","themename56"    Option " ","theme56","OI"    StaticText ""
-	TextField " ","themename57"    Option " ","theme57","OI"    StaticText ""
-	TextField " ","themename58"    Option " ","theme58","OI"    StaticText ""
-	TextField " ","themename59"    Option " ","theme59","OI"    StaticText ""
-	TextField " ","themename60"    Option " ","theme60","OI"    StaticText ""
-	TextField " ","themename61"    Option " ","theme61","OI"    StaticText ""
-	TextField " ","themename62"    Option " ","theme62","OI"    StaticText ""
-	TextField " ","themename63"    Option " ","theme63","OI"    StaticText ""
-	TextField " ","themename64"    Option " ","theme64","OI"    StaticText ""
-	TextField " ","themename65"    Option " ","theme65","OI"    StaticText ""
-	TextField " ","themename66"    Option " ","theme66","OI"    StaticText ""
-	TextField " ","themename67"    Option " ","theme67","OI"    StaticText ""
-	TextField " ","themename68"    Option " ","theme68","OI"    StaticText ""
-	TextField " ","themename69"    Option " ","theme69","OI"    StaticText ""
-	TextField " ","themename70"    Option " ","theme70","OI"    StaticText ""
-	TextField " ","themename71"    Option " ","theme71","OI"    StaticText ""
-	TextField " ","themename72"    Option " ","theme72","OI"    StaticText ""
-	TextField " ","themename73"    Option " ","theme73","OI"    StaticText ""
-	TextField " ","themename74"    Option " ","theme74","OI"    StaticText ""
-	TextField " ","themename75"    Option " ","theme75","OI"    StaticText ""
-	TextField " ","themename76"    Option " ","theme76","OI"    StaticText ""
-	TextField " ","themename77"    Option " ","theme77","OI"    StaticText ""
-	TextField " ","themename78"    Option " ","theme78","OI"    StaticText ""
-	TextField " ","themename79"    Option " ","theme79","OI"    StaticText ""
-	TextField " ","themename80"    Option " ","theme80","OI"    StaticText ""
-	TextField " ","themename81"    Option " ","theme81","OI"    StaticText ""
-	TextField " ","themename82"    Option " ","theme82","OI"    StaticText ""
-	TextField " ","themename83"    Option " ","theme83","OI"    StaticText ""
-	TextField " ","themename84"    Option " ","theme84","OI"    StaticText ""
-	TextField " ","themename85"    Option " ","theme85","OI"    StaticText ""
-	TextField " ","themename86"    Option " ","theme86","OI"    StaticText ""
-	TextField " ","themename87"    Option " ","theme87","OI"    StaticText ""
-	TextField " ","themename88"    Option " ","theme88","OI"    StaticText ""
-	TextField " ","themename89"    Option " ","theme89","OI"    StaticText ""
-	TextField " ","themename90"    Option " ","theme90","OI"    StaticText ""
-	TextField " ","themename91"    Option " ","theme91","OI"    StaticText ""
-	TextField " ","themename92"    Option " ","theme92","OI"    StaticText ""
-	TextField " ","themename93"    Option " ","theme93","OI"    StaticText ""
-	TextField " ","themename94"    Option " ","theme94","OI"    StaticText ""
-	TextField " ","themename95"    Option " ","theme95","OI"    StaticText ""
-	TextField " ","themename96"    Option " ","theme96","OI"    StaticText ""
-	TextField " ","themename97"    Option " ","theme97","OI"    StaticText ""
-	TextField " ","themename98"    Option " ","theme98","OI"    StaticText ""
-	TextField " ","themename99"    Option " ","theme99","OI"    StaticText ""
-}
-
-
-OptionValue "OI"
-{
-	0, "\c[red]Off"
-	1, "\c[green]On"
-	0, "\c[red]Off"
-	1, "\c[green]On"
-	-1, " " // !!==true, default, for unloaded themes
-	0, "\c[red]Off"
-	1, "\c[green]On"
-}
-
-OptionValue "LGTransp"
-{
-	0, "Invisible"
-	1, "Fully visible"
-}
-
-OptionValue "StartingWeapon"
-{
-	1, "Machinegun"
-	2, "Shotgun (DM only)"
-	3, "Nailgun"
-}
-
-OptionValue "ShuffleMode"
-{
-	0, "Per monster \c[black](AEoD-like)"
-	1, "One theme per map"
-}
-
-OptionValue "RadarMode"
-{
-	0, "Big centered"
-	1, "Small below crosshair"
-}
-
-OptionValue "OstOrder"
-{
-	0, "Strict"
-	1, "Shuffled"
-	2, "Randomized"
-}
-
-OptionValue "TauntSubtitles"
-{
-	0, "Off"
-	1, "Only in campaign"
-	2, "In all PvE modes"
-	3, "Always on"
-}
-
-OptionMenu QCDE_CallVote
-{
-	Indent 192
-	Title "CALL VOTE"
+	Centermenu
+	NoBackButton
+	TopPadding 20
+	DefaultSelection -2
+	OverrideHeight 230
 	NetGameOnly
 
-	SubMenuCentered		"Change the map",		"QCDE_CallMapVote"
-	SubMenuCentered		"Kick a player",		"ZA_CallKickVote"
-	SubMenuCentered		"Change a limit",		"ZA_CallLimitVote"
+	Label {
+		Static
+		Background	"BackVote"
+		Pos			0, 0
+		Size		415, 500
+	}
+
+	InsertFreeformMenu MainMenuTopBar
+
+	Label {	Pos	-130,  40	Text "Vote Limit"		Anchor center, top		Font QCBGFONT	FontColor Gold	}
+
+	Label {	Pos	-182,  80	Text "Limit"			Anchor left, top		Font SmallFont	FontColor DarkRed	}
+	Option {
+		Pos -182,  97		CVar menu_callvotelimit			UnknownBackground	OP21028
+		Size 105, 14		Values QCDE_VoteLimitTypes		SelectedBackground	OP21028S
+		Padding 3, 1		Font SmallFont					SelectedForeground	OP21028A, 119, 14
+		Anchor left, center	SelectedFontColor Gray
+	}
+
+	Label {	Pos	-182, 110	Text "Value"			Anchor left, top		Font SmallFont	FontColor DarkRed	}
+	TextField {
+		Pos		-170, 127		CVar				menu_callvotevalue		Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {	Pos	-154,  128	Text "Frags"	VisibilityCVar menu_callvotelimit, 0,0		Anchor left, center	Font SmallFont	}
+	Label {	Pos	-154,  128	Text "Minutes"	VisibilityCVar menu_callvotelimit, 1,1		Anchor left, center	Font SmallFont	}
+	Label {	Pos	-154,  128	Text "Wins"		VisibilityCVar menu_callvotelimit, 2,2		Anchor left, center	Font SmallFont	}
+	Label {	Pos	-154,  128	Text "Duels"	VisibilityCVar menu_callvotelimit, 3,3		Anchor left, center	Font SmallFont	}
+	Label {	Pos	-154,  128	Text "Points"	VisibilityCVar menu_callvotelimit, 4,4		Anchor left, center	Font SmallFont	}
+
+	Command {
+		Pos -130, 167			Text "Vote Limit!"				Background			BT21028
+		Size 105, 14			Font SmallFont					SelectedBackground	BT21028S
+		Padding 0, 0			FontColor Tan
+		Anchor center, center	SelectedFontColor Gray			Command qcde_calllimitvote
+	}
+
+
+	Label {	Pos	   0,   0	Text "Vote Map"			Anchor center, top		Font QCBGFONT	FontColor Gold	}
+
+	Option {
+		Pos		-49, 35				CVar		menu_callvotemap		UnknownBackground	NOMAPPIC
+		Size	 98, 54				Values		ZA_LevelNames			BackgroundValues	ZA_LevelPreviews
+		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEF, 110, 62
+		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+	}
+	Option {
+		NotSelectable
+		Size	120, 26				Values		ZA_LevelTitles
+		Pos		0, 90				Font		QCSMFONT
+		MaxTextWidth 120			FontColor	Gold
+		Anchor	center, top			CVar	menu_callvotemap
+	}
+
+	Command {
+		Pos    0, 128			Text "Random Map"			Background			BV21028
+		Size 105, 14			Font SmallFont				SelectedBackground	BV21028S
+		Anchor center, center	FontColor Tan				Command qcde_randommap
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos    0, 207			Text "Vote Map!"				Background			BT21028
+		Size 105, 14			Font SmallFont					SelectedBackground	BT21028S
+		Padding 0, 0			FontColor Tan
+		Anchor center, center	SelectedFontColor Tan			Command qcde_callmapvote
+	}
+
+	Command {
+		Pos    0, 227			Text "Vote Next Map!"			Background			BT21028
+		Size 105, 14			Font SmallFont					SelectedBackground	BT21028S
+		Padding 0, 0			FontColor Tan
+		Anchor center, center	SelectedFontColor Tan			Command qcde_callnextmapvote
+	}
+
+
+	Label {	Pos	 130,  40	Text "Vote Kick"		Anchor center, top		Font QCBGFONT	FontColor Gold	}
+
+	Label {	Pos	 78, 80		Text "Player"			Anchor left, top		Font SmallFont	FontColor DarkRed	}
+	PlayerField {
+		Pos		78, 97		CVar menu_callvoteplayer		Background			OP21028
+		Size	105, 14		Font SmallFont					SelectedBackground	OP21028S
+		Padding 3, 1		SelectedFontColor Gray			SelectedForeground	OP21028A, 119, 14
+		Anchor left, center
+	}
+
+	Label {	Pos	 78, 110	Text "Reason"			Anchor left, top		Font SmallFont	FontColor DarkRed	}
+	TextField {
+		Pos		78, 127			CVar				menu_callvotereason		Background			TX21028
+		Size	105, 14			Font				SmallFont				SelectedBackground	TX21028S
+		Padding 3, 1			SelectedFontColor	Gray
+		Anchor	left, center
+	}
+
+	Command {
+		Pos  130, 167			Text "Vote Force Spec!"			Background			BT21028
+		Size 105, 14			Font SmallFont					SelectedBackground	BT21028S
+		Padding 0, 0			FontColor Tan
+		Anchor center, center	SelectedFontColor Tan			Command qcde_callspecvote
+	}
+
+	Command {
+		Pos  130, 187			Text "Vote Kick!"				Background			BT21028
+		Size 105, 14			Font SmallFont					SelectedBackground	BT21028S
+		Padding 0, 0			FontColor Tan
+		Anchor center, center	SelectedFontColor Tan			Command qcde_callkickvote
+	}
 }
 
-OptionMenu QCDE_CallMapVote
+// Overriding this in case someone gets here from all engine options
+OptionMenu ZA_CallLimitVote
 {
 	Indent 153
-	Title		"CHANGE MAP"
+	Title		"CHANGE LIMIT"
 
-	CommandCentered		"Vote next map",		"menu_callnextmapvote"
-
-	StaticText ""
-
-	Option				"Map",					"menu_callvotemap",				"ZA_Levels"
-	CommandCentered		"Random Map",			"qcde_randommap"
-
-	StaticText ""
-
-	CommandCentered		"Vote map!",			"menu_callmapvote"
+	Option		"Limit",				"menu_callvotelimit",			"ZA_VoteLimitTypes"
+	TextField	"New value",			"menu_callvotevalue"
+	StaticText	" "
+	TextField	"Reason for change",	"menu_callvotereason"
+	Command		"Vote!",				"menu_calllimitvote"
 }
 
 // Overriding this in case someone gets here from all engine options
@@ -976,82 +760,185 @@ OptionMenu ZA_CallMapVote
 	Command		"Vote next map!",		"menu_callnextmapvote"
 }
 
-
-OptionMenu ZA_JoinMenu
+FreeformMenu ZA_JoinMenu
 {
-	Indent 182
-	Title		"JOIN GAME"
+	Centermenu
+	TopPadding 10
+	DefaultSelection -2
 
-	StaticText	"You are spectating."
-	StaticText ""
-	StaticText ""
-	StaticText ""
-	StaticText ""
-	StaticText ""
-	StaticText ""
-	CommandCentered		"Join game",			"joingame0"
+	Label {
+		Background	"CPicker0"
+		Size		1000, 250
+	}
+
+	InsertFreeformMenu	ChampionSelector
+	InsertFreeformMenu	WeaponSelectorDM
+
+	Command {
+		NotInSingleplayer	NotOnTitlemap
+		Pos		55, 207					Text				"RESPAWN"			Background			BT28060
+		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Command				joingame0
+		Padding	0, 2					SelectedFontColor	Yellow
+	}
+}
+
+FreeformMenu ZA_JoinTeamMenu
+{
+	Centermenu
+	TopPadding 0
+	DefaultSelection -2
+	OverrideHeight 110
+
+	Label {
+		Static
+		Background	"BackMenu"
+		Size		230, 500
+	}
+
+	SubMenu {
+		Size 140, 30			Text "JOIN ANY"		Background BT28060
+		Pos 0, 0				Font QCBGFONT		SelectedBackground BT28060S
+		Anchor center, center	FontColor Tan		Menu ZA_JoinMenu
+		Padding 0, 2			SelectedFontColor Tan
+	}
+
+	SubMenu {
+		Size 140, 30			Text "JOIN BLUE"	Background BB28060
+		Pos 0, 40				Font QCBGFONT		SelectedBackground BB28060S
+		Anchor center, center	FontColor Tan		Menu QCDE_JoinBlue
+		Padding 0, 2			SelectedFontColor Tan
+	}
+
+	SubMenu {
+		Size 140, 30			Text "JOIN RED"		Background BR28060
+		Pos 0, 80				Font QCBGFONT		SelectedBackground BR28060S
+		Anchor center, center	FontColor Tan		Menu QCDE_JoinRed
+		Padding 0, 2			SelectedFontColor Tan
+	}
+}
+
+FreeformMenu QCDE_JoinBlue
+{
+	Centermenu
+	TopPadding 10
+	DefaultSelection -2
+
+	Label {
+		Background	"CPickerB"
+		Size		1000, 250
+	}
+
+	InsertFreeformMenu	ChampionSelector
+	InsertFreeformMenu	WeaponSelectorDM
+
+	Command {
+		Pos		55, 207					Text				"JOIN BLUE"			Background			BB28060
+		Size	140, 30					Font				QCBGFONT			SelectedBackground	BB28060S
+		Anchor	center, center			FontColor			Tan					Command				joingame1
+		Padding	0, 2					SelectedFontColor	Yellow
+	}
+}
+
+FreeformMenu QCDE_JoinRed
+{
+	Centermenu
+	TopPadding 10
+	DefaultSelection -2
+
+	Label {
+		Background	"CPickerR"
+		Size		1000, 250
+	}
+
+	InsertFreeformMenu	ChampionSelector
+	InsertFreeformMenu	WeaponSelectorDM
+
+	Command {
+		Pos		55, 207					Text				"JOIN RED"			Background			BR28060
+		Size	140, 30					Font				QCBGFONT			SelectedBackground	BR28060S
+		Anchor	center, center			FontColor			Tan					Command				joingame2
+		Padding	0, 2					SelectedFontColor	Yellow
+	}
 }
 
 
-OptionMenu ZA_JoinTeamMenu
+OptionValue QCDE_Gamemode
 {
-	Indent 182
-	Title		"JOIN GAME"
-
-	StaticText	"You are spectating."
-	StaticText ""
-	StaticText ""
-	StaticText ""
-	StaticText ""
-	StaticText ""
-	StaticText ""
-	CommandCentered		"Join game",			"joingame0"
-	CommandCentered		"Join blue",			"joingame1"
-	CommandCentered		"Join red" ,			"joingame2"
+	0, "Cooperative"
+	1, "Survival"
+	2, "Invasion"
+	3, "Deathmatch"
+	4, "Team Deathmatch"
+	5, "Duel"
+	6, "Last Man Standing"
+	7, "Team LMS"
+	8, "Freeze Tag"
+	9, "Elder's Soul"
+	10, "Team Elder's Soul"
+	11, "Capture The Flag"
+	// 12, "Domination"
 }
 
-// Now unreachable, but still provided if anyone has old bindings
-OptionMenu ZA_SelectClassMenu
+OptionValue QCDE_Modifier
 {
-	Indent 153
-	Title		"SELECT CHAMPION"
+	0, "None"
+	1, "Instagib"
+	2, "Rocket Arena"
+	3, "Buckshot"
+	4, "Unholy Trinity"
+	5, "Lightning Storm"
+	//6, "Random Weapons (Per map)" // the text doesn't fit, so leaving only one Random Weapons variant
+	7, "Random Weapons"
+}
 
-	StaticText	"Medium"
-	CommandCentered "Ranger"      ,"closemenu ; pukename QCDE_JoinClassIdx  2  0"
-	CommandCentered "DoomSlayer"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  1"
-	CommandCentered "Corvus"      ,"closemenu ; pukename QCDE_JoinClassIdx  2  2"
-	CommandCentered "Galen"       ,"closemenu ; pukename QCDE_JoinClassIdx  2  3"
-	CommandCentered "DukeNukem"   ,"closemenu ; pukename QCDE_JoinClassIdx  2  4"
-	CommandCentered "Sarge"       ,"closemenu ; pukename QCDE_JoinClassIdx  2  5"
-	CommandCentered "Grayson"     ,"closemenu ; pukename QCDE_JoinClassIdx  2  6"
-	CommandCentered "Blazkowicz"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  7"
-	CommandCentered "Freeman"     ,"closemenu ; pukename QCDE_JoinClassIdx  2  8"
-	CommandCentered "Painkiller"  ,"closemenu ; pukename QCDE_JoinClassIdx  2  9"
-	CommandCentered "Intruder"    ,"closemenu ; pukename QCDE_JoinClassIdx  2 10"
-	StaticText ""
-	StaticText	"Light"
-	CommandCentered "Kane"        ,"closemenu ; pukename QCDE_JoinClassIdx  1  0"
-	CommandCentered "Caleb"       ,"closemenu ; pukename QCDE_JoinClassIdx  1  1"
-	CommandCentered "Menelkir"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  2"
-	CommandCentered "Nyx"         ,"closemenu ; pukename QCDE_JoinClassIdx  1  3"
-	CommandCentered "Durandal"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  4"
-	CommandCentered "LoWang"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  5"
-	CommandCentered "Eleena"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  6"
-	CommandCentered "Lucienne"    ,"closemenu ; pukename QCDE_JoinClassIdx  1  7"
-	CommandCentered "Hunter"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  8"
-	CommandCentered "Postal"      ,"closemenu ; pukename QCDE_JoinClassIdx  1  9"
-	CommandCentered "Orbb"        ,"closemenu ; pukename QCDE_JoinClassIdx	1 10"
-	StaticText ""
-	StaticText	"Heavy"
-	CommandCentered "Terminator"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  0"
-	CommandCentered "Zedek"       ,"closemenu ; pukename QCDE_JoinClassIdx  3  1"
-	CommandCentered "Inquisitor"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  2"
-	CommandCentered "Sorgaul"     ,"closemenu ; pukename QCDE_JoinClassIdx  3  3"
-	CommandCentered "Bitterman"   ,"closemenu ; pukename QCDE_JoinClassIdx  3  4"
-	CommandCentered "Keel"        ,"closemenu ; pukename QCDE_JoinClassIdx  3  5"
-	CommandCentered "Eradicator"  ,"closemenu ; pukename QCDE_JoinClassIdx  3  6"
-	CommandCentered "VorMatur"    ,"closemenu ; pukename QCDE_JoinClassIdx  3  7"
-	CommandCentered "Major"       ,"closemenu ; pukename QCDE_JoinClassIdx  3  8"
-	CommandCentered "Sam"         ,"closemenu ; pukename QCDE_JoinClassIdx  3  9"
-	// ^ insert more classes here
+OptionValue QCDE_BotsCount
+{
+	0, "0 Bots"
+	1, "1 Bot"
+	2, "2 Bots"
+	3, "3 Bots"
+	4, "4 Bots"
+	5, "5 Bots"
+	6, "6 Bots"
+	7, "7 Bots"
+	8, "8 Bots"
+	9, "9 Bots"
+	10, "10 Bots"
+}
+
+OptionValue QCDE_BotSkill
+{
+	0, "$BOTSKILL_0"
+	1, "$BOTSKILL_1"
+	2, "$BOTSKILL_2"
+	3, "$BOTSKILL_3"
+	4, "$BOTSKILL_4"
+}
+
+OptionValue QCDE_BotChat
+{
+	0, "No"
+	1, "Yes"
+}
+
+OptionValue QCDE_CheckText
+{
+	0, ""
+	1, ""
+}
+
+OptionValue QCDE_CheckBG
+{
+	0, "CHKBOX"
+	1, "CHKBOXC"
+}
+
+OptionValue QCDE_VoteLimitTypes
+{
+	0, "Frag Limit"
+	1, "Time Limit"
+	2, "Win Limit"
+	//3, "Duel Limit"
+	4, "Point Limit"
 }

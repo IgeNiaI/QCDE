@@ -902,19 +902,19 @@ Actor RocketControlled
 		// All these are the checks done in procs but since this is the rocket
 		// and not the player, the procs don't work. So it needs to do all checks
 		// manually in the actor itself
-			TNT1 A 0 A_JumpIfInTargetInventory("PlayHitBeep",1,"PlayBeep1")
-			TNT1 A 0 A_JumpIfInTargetInventory("PlayHitMark",1,"DoMark1")
+			TNT1 A 0 A_JumpIfInTargetInventory("PlayHitEffect",3,"DoMark1")
+			TNT1 A 0 A_JumpIfInTargetInventory("PlayHitEffect",1,"PlayBeep1")
 			TNT1 A 0 A_Jump(255,"DeathCont")
 			Goto DeathCont
 		PlayBeep1:
 			TNT1 A 0 A_JumpIfInTargetInventory("PowerQuad",1,"PlayStrong1")
 			TNT1 A 0 A_PlaySound("QC/UI/HitBeepBig",CHAN_7|CHAN_UI,0.85,0,140)
-			TNT1 A 0 A_JumpIfInTargetInventory("PlayHitMark",1,"DoMark1")
+			TNT1 A 0 A_JumpIfInTargetInventory("PlayHitEffect",2,"DoMark1")
 			TNT1 A 0 A_Jump(255,"DeathCont")
 			Goto DeathCont
 		PlayStrong1:
 			TNT1 A 0 A_PlaySound("QC/UI/HitBeepMax",CHAN_7|CHAN_UI,0.7,0,140)
-			TNT1 A 0 A_JumpIfInTargetInventory("PlayHitMark",1,"Mark")
+			TNT1 A 0 A_JumpIfInTargetInventory("PlayHitEffect",2,"DoMark1")
 			TNT1 A 0 A_Jump(255,"DeathCont")
 			Goto DeathCont
 		DoMark1:
@@ -933,19 +933,19 @@ Actor RocketControlled
 		RadiusHit:	//splash damage beep
 			// Same as above, only this version is for playing a weaker hitbeep
 			// when they're not hit by a direct, but just the explosion
-				TNT1 A 0 A_JumpIfInTargetInventory("PlayHitBeep",1,"PlayBeep2")
-				TNT1 A 0 A_JumpIfInTargetInventory("PlayHitMark",1,"DoMark2")
+				TNT1 A 0 A_JumpIfInTargetInventory("PlayHitEffect",3,"DoMark2")
+				TNT1 A 0 A_JumpIfInTargetInventory("PlayHitEffect",1,"PlayBeep2")
 				TNT1 A 0 A_Jump(255,"DeathCont")
 				Goto DeathCont
 			PlayBeep2:
 				TNT1 A 0 A_JumpIfInTargetInventory("PowerQuad",1,"PlayStrong2")
 				TNT1 A 0 A_PlaySound("QC/UI/HitBeepMid",CHAN_7|CHAN_UI,0.85,0,140)
-				TNT1 A 0 A_JumpIfInTargetInventory("PlayHitMark",1,"DoMark2")
+				TNT1 A 0 A_JumpIfInTargetInventory("PlayHitEffect",2,"DoMark2")
 				TNT1 A 0 A_Jump(255,"DeathCont")
 				Goto DeathCont
 			PlayStrong2:
 				TNT1 A 0 A_PlaySound("QC/UI/HitBeepBig",CHAN_7|CHAN_UI,0.7,0,140)
-				TNT1 A 0 A_JumpIfInTargetInventory("PlayHitMark",1,"DoMark2")
+				TNT1 A 0 A_JumpIfInTargetInventory("PlayHitEffect",2,"DoMark2")
 				TNT1 A 0 A_Jump(255,"DeathCont")
 				Goto DeathCont
 			DoMark2:

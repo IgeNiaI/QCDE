@@ -1,0 +1,2381 @@
+
+//-------------------------------------------------------------------------------------------
+//
+// Menu file dedicated specifically to settings menu
+//
+//-------------------------------------------------------------------------------------------
+
+FreeformMenu "QCDE_OptionsTabs"
+{
+	Label {
+		Static
+		Background BackTop
+		Pos 0, 20
+		Size 420, 35
+	}
+
+	Command {
+		Static
+		Pos		-140, 31				Text				"General"			Background			TB08040
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsgeneral
+		Padding	0, 1
+	}
+	Command {
+		Static		VisibilityCVar	qcde_selectedoptions, 0, 0
+		Pos		-140, 31				Text				"General"			Background			TB08040S
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsgeneral
+		Padding	0, 1
+	}
+
+	Command {
+		Static
+		Pos		-100, 31				Text				"HUD"				Background			TB08040
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionshud
+		Padding	0, 1
+	}
+	Command {
+		Static		VisibilityCVar	qcde_selectedoptions, 1, 1
+		Pos		-100, 31				Text				"HUD"				Background			TB08040S
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionshud
+		Padding	0, 1
+	}
+
+	Command {
+		Static
+		Pos		-60, 31					Text				"Controls"			Background			TB08040
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionscontrols
+		Padding	0, 1
+	}
+	Command {
+		Static		VisibilityCVar	qcde_selectedoptions, 2, 2
+		Pos		-60, 31					Text				"Controls"			Background			TB08040S
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionscontrols
+		Padding	0, 1
+	}
+
+	Command {
+		Static
+		Pos		-20, 31					Text				"Binds"				Background			TB08040
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsbinds
+		Padding	0, 1
+	}
+	Command {
+		Static		VisibilityCVar	qcde_selectedoptions, 3, 3
+		Pos		-20, 31					Text				"Binds"				Background			TB08040S
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsbinds
+		Padding	0, 1
+	}
+
+	Command {
+		Static
+		Pos		20, 31					Text				"Video"				Background			TB08040
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsvideo
+		Padding	0, 1
+	}
+	Command {
+		Static		VisibilityCVar	qcde_selectedoptions, 4, 4
+		Pos		20, 31					Text				"Video"				Background			TB08040S
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsvideo
+		Padding	0, 1
+	}
+
+	Command {
+		Static
+		Pos		60, 31					Text				"Sound"				Background			TB08040
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionssound
+		Padding	0, 1
+	}
+	Command {
+		Static		VisibilityCVar	qcde_selectedoptions, 5, 5
+		Pos		60, 31					Text				"Sound"				Background			TB08040S
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionssound
+		Padding	0, 1
+	}
+
+	Command {
+		Static
+		Pos		100, 31					Text				"Skins"				Background			TB08040
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsskins
+		Padding	0, 1
+	}
+	Command {
+		Static		VisibilityCVar	qcde_selectedoptions, 6, 6
+		Pos		100, 31					Text				"Skins"				Background			TB08040S
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsskins
+		Padding	0, 1
+	}
+
+	Command {
+		Static
+		Pos		140, 31					Text				"PvE"				Background			TB08040
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionspve
+		Padding	0, 1
+	}
+	Command {
+		Static		VisibilityCVar	qcde_selectedoptions, 7, 7
+		Pos		140, 31					Text				"PvE"				Background			TB08040S
+		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
+		Anchor	center, center			FontColor			Tan
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionspve
+		Padding	0, 1
+	}
+}
+
+FreeformMenu "QCDE_OptionsGeneral"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+	OverrideHeight 240
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+	Label {
+		Pos		-105, 20			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Player Name"
+	}
+	TextField {
+		Pos		-99, 20			CVar				name		Background			TX27028
+		Size	135, 14			Font				SmallFont	SelectedBackground	TX27028S
+		Padding 3, 0			SelectedFontColor	Gray
+		Anchor	left, center
+	}
+
+	Label {
+		Pos		-105, 51			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Field of View"
+	}
+	TextField {
+		Pos		-87, 50			CVar				fov			Background			TX05028
+		Size	25, 14			Font				SmallFont	SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-70, 50			CVar	fov
+		Size	105, 6			Range	50.0, 150.0, 1.0
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-105, 81			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Auto Taunt chance"
+	}
+	TextField {
+		Pos		-87, 80			CVar				cl_autoTaunt	Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-70, 80			CVar	cl_autoTaunt
+		Size	105, 6			Range	0.0, 50.0, 1.0
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+
+	Label {
+		Pos		80, 15				Font		SmallFont
+		Anchor	left, center		FontColor	DarkGray
+		Text	"Switch weapon"
+	}
+	Label {
+		Pos		80, 25				Font		SmallFont
+		Anchor	left, center		FontColor	DarkGray
+		Text	"on pickup"
+	}
+	Option {
+		Pos		185, 20				CVar				switchonpickup
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		80, 50				Font		SmallFont
+		Anchor	left, center		FontColor	DarkGray
+		Text	"True horizontal FoV"
+	}
+	Option {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		185, 50				CVar				gl_true_fov
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		80, 80				Font		SmallFont
+		Anchor	left, center		FontColor	DarkGray
+		Text	"Auto-open lootboxes"
+	}
+	Option {
+		Pos		185, 80				CVar				cl_autoOpenLootboxes
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
+	Label {
+		Pos		-190, 110			Font		QCSMFONT
+		Anchor	left, top			FontColor	Red
+		Text	"--- WARNING ---"
+	}
+	Label {
+		Pos		-190, 125			Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"Sending duplicate commands helps mitigate packet loss"
+	}
+	Label {
+		Pos		-190, 135			Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"but increases outbound net traffic!"
+	}
+	Label {
+		Pos		-190, 155			Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"You should only enable them if you're actually"
+	}
+	Label {
+		Pos		-190, 165			Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"suffering from severe packet loss!"
+	}
+
+	Label {
+		Pos		-190, 183			Font		SmallFont
+		Anchor	left, top			FontColor	DarkGray
+		Text	"Send duplicate commands"
+	}
+	Option {
+		Pos		-190, 200			CVar				cl_packetdup		UnknownBackground	OP21028
+		Size	105, 14				Values				ZA_PacketDupRate	SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+
+	Command {
+		SafeCommand
+		Pos		185, 160			Text				"Reset everything to defaults"
+		Size	130, 14				Font				SmallFont
+		Anchor	right, center		FontColor			Gray
+		Padding	0, 0				SelectedFontColor	Brick
+		Command	reset2defaults
+	}
+
+	Command {
+		SafeCommand
+		Pos		185, 180			Text				"Reset everything to last saved"
+		Size	130, 14				Font				SmallFont
+		Anchor	right, center		FontColor			Gray
+		Padding	0, 0				SelectedFontColor	Brick
+		Command	reset2saved
+	}
+
+	SubMenu {
+		Pos		185, 200			Text				"All Engine options (old menu)"
+		Size	130, 14				Font				SmallFont
+		Anchor	right, center		FontColor			Gray
+		Padding	0, 0				SelectedFontColor	Brick
+		Menu	OptionsMenu
+	}
+
+
+	InsertFreeformMenu MainMenuTopBar
+	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+FreeformMenu "QCDE_OptionsHud"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+	OverrideHeight 500
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Label {
+		Pos		0, 20				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Visual"
+	}
+
+
+	Label {
+		Pos		-72, 40				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Show weapon"
+	}
+	Option {
+		Pos		-55, 40				CVar				r_drawplayersprites
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	140, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-72, 60				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"LG beam transparency (DM)"
+	}
+	Option {
+		EnableCVar	r_drawplayersprites, 1, 1
+		Pos		-55, 60				CVar				cl_lgtransparency
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	140, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		45, 41				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Weapon bobbing"
+	}
+	TextField {
+		EnableCVar	r_drawplayersprites, 1, 1
+		Pos		63, 40			CVar				movebob			Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		EnableCVar	r_drawplayersprites, 1, 1
+		Pos		80, 40			CVar	movebob
+		Size	105, 6			Range	0, 0.20, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		45, 61				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Weapon sway"
+	}
+	TextField {
+		EnableCVar	r_drawplayersprites, 1, 1
+		Pos		63, 60			CVar				movesway		Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		EnableCVar	r_drawplayersprites, 1, 1
+		Pos		80, 60			CVar	movesway
+		Size	105, 6			Range	0, 2.0, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+
+	Label {
+		Pos		-90, 100			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Crosshair"
+	}
+	Label {
+		Pos		-71, 100			Background BlackDot
+		Size	32, 32				Anchor	center, center
+	}
+	Option {
+		Pos		-71, 100			CVar				crosshair
+		Size	32, 32				Values				Crosshairs
+		Anchor	center, center
+		Padding 64, 64				SelectedForeground	CROSSELC, 32, 32
+	}
+	Option {
+		NotSelectable
+		Pos		-71, 100			CVar				crosshair
+		Size	16, 16				Values				Crosshairs
+		Anchor	center, center		BackgroundValues	CrosshairsBG
+		Padding 32, 32
+	}
+
+	Label {
+		Pos		-72, 130			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Crosshair shows health"
+	}
+	Option {
+		EnableCVar	crosshair, 1, 100
+		Pos		-55, 130			CVar				crosshairhealth
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	140, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		45, 101				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Crosshair scale"
+	}
+	TextField {
+		EnableCVar	crosshair, 1, 100
+		Pos		63, 100			CVar				crosshairscalef	Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		EnableCVar	crosshair, 1, 100
+		Pos		80, 100			CVar	crosshairscalef
+		Size	105, 6			Range	0, 10.0, 0.1
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		45, 130				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Crosshair color"
+	}
+	ColorPicker {
+		EnableCVar	crosshair, 1, 100
+		Pos		67, 130				CVar				crosshaircolor
+		Size	32, 32				SelectedForeground	CROSSELC, 32, 32
+		Anchor	center, center
+	}
+
+
+	Label {
+		Pos		0, 170				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Information"
+	}
+
+	Label {
+		Pos		-72, 190			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Damage numbers"
+	}
+	Option {
+		Pos		-55, 190			CVar				sv_ShowDamageNumbers
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-72, 210			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Weapons bar (16:9)"
+	}
+	Option {
+		Pos		-55, 210			CVar				cl_showWeaponBar
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-72, 230			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Large frag messages"
+	}
+	Option {
+		Pos		-55, 230			CVar				cl_showlargefragmessages
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-72, 250			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Obituaries"
+	}
+	Option {
+		Pos		-55, 250			CVar				show_obituaries
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		75, 191				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Speedometer"
+	}
+	Option {
+		Pos		80, 190				CVar				cl_speedometer		UnknownBackground	OP21028
+		Size	105, 14				Values				QCSpeedometer		SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		75, 211				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Weapon hit effect"
+	}
+	Option {
+		Pos		80, 210				CVar				cl_hiteffect		UnknownBackground	OP21028
+		Size	105, 14				Values				QCSpeedometer		SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		75, 231				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"QC Medals"
+	}
+	Option {
+		Pos		80, 230				CVar				cl_qcmedals			UnknownBackground	OP21028
+		Size	105, 14				Values				QCMedals			SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		75, 251				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Health bar style"
+	}
+	Option {
+		Pos		80, 250				CVar				cl_barStyle			UnknownBackground	OP21028
+		Size	105, 14				Values				BarStyle			SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		75, 271				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Low ammo warning"
+	}
+	Option {
+		Pos		80, 270				CVar				cl_lowAmmoWarning	UnknownBackground	OP21028
+		Size	105, 14				Values				LowWarning			SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		75, 291				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Low health warning"
+	}
+	Option {
+		Pos		80, 290				CVar				cl_lowHealthWarning	UnknownBackground	OP21028
+		Size	105, 14				Values				LowWarning			SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		75, 311				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Taunt subtitles"
+	}
+	Option {
+		Pos		80, 310				CVar				cl_tauntSubtitles	UnknownBackground	OP21028
+		Size	105, 14				Values				TauntSubtitles		SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+
+	Label {
+		Pos		0, 350				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Effects"
+	}
+
+	Label {
+		Pos		-72, 370			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Weapon firing recoil"
+	}
+	Option {
+		Pos		-55, 370			CVar				cl_weaponrecoil
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-72, 390			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Weapon firing flash"
+	}
+	Option {
+		Pos		-55, 390			CVar				cl_weaponfireflash
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-72, 410			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"HUD Blood smears"
+	}
+	Option {
+		Pos		-55, 410			CVar				cl_ShowHUDBloodSmears
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		45, 371				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Pickup flash"
+	}
+	TextField {
+		EnableCVar	crosshair, 1, 100
+		Pos		63, 370			CVar				pickup_blend_scalar	Background			TX05028
+		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		EnableCVar	crosshair, 1, 100
+		Pos		80, 370			CVar	pickup_blend_scalar
+		Size	105, 6			Range	0, 1.0, 0.05
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		45, 391				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Screen blood"
+	}
+	TextField {
+		EnableCVar	crosshair, 1, 100
+		Pos		63, 390			CVar				blood_fade_scalar	Background			TX05028
+		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		EnableCVar	crosshair, 1, 100
+		Pos		80, 390			CVar	blood_fade_scalar
+		Size	105, 6			Range	0, 1.0, 0.05
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+
+	Label {
+		Pos		0, 440				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Champion specific settings"
+	}
+
+	Label {
+		Pos		75, 461				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Eradicator Radar mode"
+	}
+	Option {
+		Pos		80, 460				CVar				cl_radarMode		UnknownBackground	OP21028
+		Size	105, 14				Values				RadarMode			SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+
+	InsertFreeformMenu MainMenuTopBar
+	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+FreeformMenu "QCDE_OptionsZoom"
+{
+	Label { // empty label to increase menu height
+		Pos 0, 270
+	}
+
+	Label {
+		Pos		0, 130				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Zoom"
+	}
+
+	Label {
+		Pos		-85, 151			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Zooming Speed"
+	}
+	TextField {
+		Pos		-67, 150		CVar				cl_fovchangespeed		Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 150		CVar	cl_fovchangespeed
+		Size	105, 6			Range	1.0, 100.0, 1.0
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 171			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Heavy Machinegun Zoom"
+	}
+	TextField {
+		Pos		-67, 170		CVar				cl_hmgZoom				Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 170		CVar	cl_hmgZoom
+		Size	105, 6			Range	1.1, 5.0, 0.1
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 191			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Lightning Gun Zoom"
+	}
+	TextField {
+		Pos		-67, 190		CVar				cl_lgZoom				Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 190		CVar	cl_lgZoom
+		Size	105, 6			Range	1.1, 5.0, 0.1
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 211			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Railgun Zoom"
+	}
+	TextField {
+		Pos		-67, 210		CVar				cl_railgunZoom			Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 210		CVar	cl_railgunZoom
+		Size	105, 6			Range	1.1, 5.0, 0.1
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 231			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Other weapons Zoom"
+	}
+	TextField {
+		Pos		-67, 230		CVar				cl_otherZoom			Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 230		CVar	cl_otherZoom
+		Size	105, 6			Range	1.1, 5.0, 0.1
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		80, 150				Font		SmallFont
+		Anchor	left, center		FontColor	DarkGray
+		Text	"Hold to zoom"
+	}
+	Option {
+		Pos		185, 150			CVar				cl_holdZoom
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+}
+
+FreeformMenu "QCDE_OptionsControls"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Label {
+		Pos		0, 20				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Mouse"
+	}
+
+	Label {
+		Pos		-85, 41				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Overall sensitivity"
+	}
+	TextField {
+		Pos		-67, 40			CVar				mouse_sensitivity		Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 40			CVar	mouse_sensitivity
+		Size	105, 6			Range	0.1, 2.5, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 61				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Horizontal sensitivity"
+	}
+	TextField {
+		Pos		-67, 60			CVar				mouse_yaw		Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 60			CVar	mouse_yaw
+		Size	105, 6			Range	0.1, 2.5, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 81				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Vertical sensitivity"
+	}
+	TextField {
+		Pos		-67, 80			CVar				mouse_pitch		Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 80			CVar	mouse_pitch
+		Size	105, 6			Range	0.1, 2.5, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 101			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Zoomed sensitivity scale"
+	}
+	TextField {
+		Pos		-67, 100		CVar				mouse_zoomedscale	Background			TX05028
+		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 100		CVar	mouse_zoomedscale
+		Size	105, 6			Range	0.1, 2.5, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+
+	Label {
+		Pos		80, 40				Font		SmallFont
+		Anchor	left, center		FontColor	DarkGray
+		Text	"Invert Mouse"
+	}
+	Option {
+		Pos		185, 40				CVar				invertmouse
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	IfOption(Windows)
+	{
+		Label {
+			Pos		80, 63				Font		SmallFont
+			Anchor	left, top			FontColor	DarkGray
+			Text	"Mouse input type"
+		}
+		Option {
+			Pos		80, 80				CVar				in_mouse		UnknownBackground	OP21028
+			Size	105, 14				Values				InMouse			SelectedBackground	OP21028S
+			Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+			Padding	3, 1				SelectedFontColor	Gray
+		}
+	}
+
+
+	InsertFreeformMenu QCDE_OptionsZoom
+
+	InsertFreeformMenu MainMenuTopBar
+	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+FreeformMenu "QCDE_OptionsBinds"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Label {
+		Pos		0, 20				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Movement"
+	}
+
+	Label	{ Pos -128,  41		Text "Move Forward"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70,  40		Action "+forward"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74,  41		Text "Strafe Left"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132,  40		Action "+moveleft"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128,  61		Text "Move Backward"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70,  60		Action "+back"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74,  61		Text "Strafe Right"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132,  60		Action "+moveright"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128,  81		Text "Jump"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70,  80		Action "+jump"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74,  81		Text "Walk"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132,  80		Action "+speed"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 101		Text "Crouch"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 100		Action "+crouch"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+
+	Label {
+		Pos		0, 130				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Weapons"
+	}
+
+	Label	{ Pos -128, 151		Text "Fire"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 150		Action "+attack"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 151		Text "Drop weapon"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 150		Action "weapdrop"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 171		Text "Zoom / Alt Fire"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 170		Action "+altattack"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 171		Text "Drop upgrade"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 170		Action "drop_upgrade"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 191		Text "$Control_Slot1"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 190		Action "slot 1"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 191		Text "$Control_Slot2"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 190		Action "slot 2"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 211		Text "$Control_Slot3"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 210		Action "slot 3"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 211		Text "$Control_Slot4"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 210		Action "slot 4"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 231		Text "$Control_Slot5"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 230		Action "slot 5"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 231		Text "$Control_Slot6"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 230		Action "slot 6"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 251		Text "$Control_Slot7"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 250		Action "slot 7"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 251		Text "$Control_Slot8"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 250		Action "slot 8"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 271		Text "$Control_Slot9"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 270		Action "slot 9"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+
+	Label {
+		Pos		0, 300				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Actions"
+	}
+
+	Label	{ Pos -128, 321		Text "Use active ability"	Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 320		Action "+user1"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 321		Text "Show Scoreboard"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 320		Action "+showscores"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 341		Text "Use / Open"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 340		Action "+use"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 341		Text "Open lootbox"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 340		Action "invuse"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 361		Text "Taunt"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 360		Action "voice"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 361		Text "Automap"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 360		Action "togglemap"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+
+	Label {
+		Pos		0, 390				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Game"
+	}
+
+	Label	{ Pos -128, 411		Text "Change class"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 410		Action "mpclassmenu"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 411		Text "Join the game"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Option	{ Pos  132, 410		CVar joinmenukey			Values JoinMenuKeys		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	UnknownBackground OP21028	SelectedBackground	OP21028S	SelectedForeground	OP21028A, 119, 14 }
+
+	Label	{ Pos -128, 431		Text "Champion info"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 430		Action "champdetails"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 431		Text "Ready to play"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 430		Action "ready"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 451		Text "Chat"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 450		Action "messagemode"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 451		Text "Vote yes"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 450		Action "vote_yes"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 471		Text "Team Chat"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 470		Action "messagemode2"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 471		Text "Vote no"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 470		Action "vote_no"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 491		Text "Quick Save"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 490		Action "quicksave"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 491		Text "Quick Load"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 490		Action "quickload"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+
+	Label {
+		Pos		0, 520				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Spectating"
+	}
+
+	Label	{ Pos -128, 541		Text "Join spectators"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 540		Action "spectate"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 541		Text "Spectate next"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 540		Action "spynext"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 561		Text "Spectate killer"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 560		Action "spykiller"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 561		Text "Spectate prev"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 560		Action "spyprev"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+
+	Label {
+		Pos		0, 590				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Misc"
+	}
+
+	Label	{ Pos -128, 611		Text "Open Console"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 610		Action "toggleconsole"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 611		Text "Screenshot"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 610		Action "screenshot"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+
+	Label { // empty text to add extra scroll area
+		Pos 0, 650
+		Text ""
+	}
+
+
+	InsertFreeformMenu MainMenuTopBar
+	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+FreeformMenu "QCDE_OptionsVideo"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+	OverrideHeight 200
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Label {
+		Pos		-112, 20			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Fullscreen"
+	}
+	Option {
+		Pos		-95, 20				CVar				fullscreen
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-2, 20				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Vertical Sync"
+	}
+	Option {
+		Pos		15, 20				CVar				vid_vsync
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		90, 21				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Resolution"
+	}
+	SubMenu {
+		Pos		130, 20				Text				""
+		Size	70, 14				Background			OP14028
+		Anchor	center, center		SelectedBackground	OP14028S
+		Menu	VideoModeMenu
+	}
+	TextField	{ NotSelectable	Pos 125, 21		CVar vid_defwidth	Anchor right, center	Font SmallFont	FontColor Tan	}
+	Label		{				Pos 130, 21		Text "x"			Anchor center, center	Font SmallFont	FontColor Tan	}
+	TextField	{ NotSelectable	Pos 135, 21		CVar vid_defheight	Anchor left, center		Font SmallFont	FontColor Tan	}
+
+
+	Label {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-123, 41			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Max FPS"
+	}
+	TextField {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-107, 40		CVar				vid_maxfps		Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-90, 40			CVar	vid_maxfps
+		Size	105, 6			Range	0, 1000, 5
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		148, 40				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Display FPS"
+	}
+	Option {
+		Pos		165, 40				CVar				vid_fps
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
+	Label {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-112, 80			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Dynamic Lights"
+	}
+	Option {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-95, 80				CVar				gl_lights
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-2, 80				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"3D models"
+	}
+	Option {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		15, 80				CVar				gl_use_models
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		148, 80				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Map textures"
+	}
+	Option {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		165, 80				CVar				gl_texture
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-123, 101			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Particles limit"
+	}
+	TextField {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-107, 100		CVar				r_maxparticles	Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-90, 100		CVar	r_maxparticles
+		Size	105, 6			Range	500, 10000, 100
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		148, 100			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Rotate sprites vertically"
+	}
+	Option {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		165, 100			CVar				gl_billboard_mode
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
+	Label {
+		Pos		0, 133				Font		SmallFont
+		Anchor	center, top			FontColor	DarkGray
+		Text	"Renderer"
+	}
+	Option {
+		Pos		0, 150				CVar				vid_renderer	UnknownBackground	OP21028
+		Size	105, 14				Values				Renderers		SelectedBackground	OP21028S
+		Anchor	center, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+		Padding	0, 1				SelectedFontColor	Gray
+	}
+	Label {	Pos 0, 165		Text "Renderer changes apply after restart"		Anchor center, center		Font SmallFont	FontColor DarkGray }
+
+
+	InsertFreeformMenu MainMenuTopBar
+	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+FreeformMenu "QCDE_OptionsSound"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Label {
+		Pos		-85, 21				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Sounds volume"
+	}
+	TextField {
+		Pos		-67, 20			CVar				snd_sfxvolume		Background			TX05028
+		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 20			CVar	snd_sfxvolume
+		Size	105, 6			Range	0.0, 1.0, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 41				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Menu volume"
+	}
+	TextField {
+		Pos		-67, 40			CVar				snd_menuvolume		Background			TX05028
+		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 40			CVar	snd_menuvolume
+		Size	105, 6			Range	0.0, 1.0, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 61				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Music volume"
+	}
+	TextField {
+		Pos		-67, 60			CVar				snd_musicvolume		Background			TX05028
+		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 60			CVar	snd_musicvolume
+		Size	105, 6			Range	0.0, 1.0, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		-85, 81				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Announcer volume"
+	}
+	TextField {
+		Pos		-67, 80			CVar				snd_announcervolume	Background			TX05028
+		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-50, 80			CVar	snd_announcervolume
+		Size	105, 6			Range	0.0, 1.0, 0.01
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+
+	Label {
+		Pos		80, 23				Font		SmallFont
+		Anchor	left, top			FontColor	DarkGray
+		Text	"QC:DE OST playback order"
+	}
+	Option {
+		Pos		80, 40				CVar				snd_randommus	UnknownBackground	OP21028
+		Size	105, 14				Values				OSTorder		SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		80, 63				Font		SmallFont
+		Anchor	left, top			FontColor	DarkGray
+		Text	"Announcer"
+	}
+	Option {
+		Pos		80, 80				CVar				cl_announcer	UnknownBackground	OP21028
+		Size	105, 14				Values				ZA_Announcers	SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+
+	InsertFreeformMenu MainMenuTopBar
+	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+FreeformMenu "QCDE_OptionsSkins"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+	OverrideHeight 320
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Option {
+		Pos		-192, 20			CVar		cl_MGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		MGskin				BackgroundValues	MGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		-156, 92			Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Machinegun"
+	}
+
+	Option {
+		Pos		-114, 20			CVar		cl_SGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		SGskin				BackgroundValues	SGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		-78, 92				Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Shotgun"
+	}
+
+	Option {
+		Pos		-36, 20				CVar		cl_NGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		NGskin				BackgroundValues	NGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		0, 92				Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Nailgun"
+	}
+
+	Option {
+		Pos		42, 20				CVar		cl_TBskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		TBskin				BackgroundValues	TBskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		78, 92				Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Tribolt"
+	}
+
+	Option {
+		Pos		120, 20				CVar		cl_LGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		LGskin				BackgroundValues	LGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		156, 92				Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Lightning Gun"
+	}
+
+
+	Option {
+		Pos		-192, 110			CVar		cl_HMGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		HMGskin				BackgroundValues	HMGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		-156, 182			Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Heavy Machinegun"
+	}
+
+	Option {
+		Pos		-114, 110			CVar		cl_SSGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		SSGskin				BackgroundValues	SSGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		-78, 182			Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Super Shotgun"
+	}
+
+	Option {
+		Pos		-36, 110			CVar		cl_SNGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		SNGskin				BackgroundValues	SNGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		0, 182				Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Super Nailgun"
+	}
+
+	Option {
+		Pos		42, 110				CVar		cl_RLskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		RLskin				BackgroundValues	RLskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		78, 182				Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Rocket Launcher"
+	}
+
+	Option {
+		Pos		120, 110			CVar		cl_RGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		RGskin				BackgroundValues	RGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		156, 182			Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Railgun"
+	}
+
+
+	Option {
+		Pos		-192, 200			CVar		cl_GNTLskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		GNTLskin			BackgroundValues	GNTLskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		-156, 272			Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"Gauntet"
+	}
+
+	Option {
+		Pos		-114, 200			CVar		cl_BFGskin			UnknownBackground	SKINUNKN
+		Size	72, 72				Values		BFGskin				BackgroundValues	BFGskinBG
+		Anchor	left, top			Font		SmallFont			SelectedForeground	SKINSELC, 82, 77
+		Padding	2, 1				FontColor	DarkGray			SelectedFontColor	Gray
+	}
+	Label {
+		Pos		-78, 272			Font		SmallFont
+		Anchor	center, top			FontColor	Gray
+		Text	"BFG"
+	}
+
+
+	Label {
+		Pos		78, 200			Font		QCSMFONT
+		Anchor	center, top		FontColor	Gold
+		Text	"Presets"
+	}
+
+	Command {
+		Pos   0, 225			Text "Default"				Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Default
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos  78, 225			Text "QC:DE 1.0"			Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_QCDE10
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos  156, 225			Text "Class Based"			Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Class
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos   0, 245			Text "Quake 1"				Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Quake1
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos  78, 245			Text "Quake 2"				Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Quake2
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos  156, 245			Text "Quake 3"				Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Quake3
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos   0, 265			Text "Quake 4"				Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Quake4
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos  78, 265			Text "ET:QW"				Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_ETQW
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Command {
+		Pos  156, 265			Text "Half-Life"			Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_HalfLife
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+
+	InsertFreeformMenu MainMenuTopBar
+	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+FreeformMenu "QCDE_OptionsPvE"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Label {
+		Pos		0, 20				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Monster Themes"
+	}
+
+	Label {
+		Pos		-102, 40			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Quake 1"
+	}
+	Option {
+		Pos		-85, 40				CVar				theme0
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-2, 40				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Doom"
+	}
+	Option {
+		Pos		15, 40				CVar				theme3
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-102, 60			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Quake 2"
+	}
+	Option {
+		Pos		-85, 60				CVar				theme1
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-2, 60				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Doom 2016"
+	}
+	Option {
+		Pos		15, 60				CVar				theme4
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-102, 80			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Quake 4"
+	}
+	Option {
+		Pos		-85, 80				CVar				theme2
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	90, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
+	Label {
+		Pos		60, 33				Font		SmallFont
+		Anchor	left, top			FontColor	DarkGray
+		Text	"Shuffle mode"
+	}
+	Option {
+		Pos		60, 50				CVar				qc_shuffleMode	UnknownBackground	OP21028
+		Size	105, 14				Values				ShuffleMode		SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		60, 80				Font		SmallFont
+		Anchor	left, center		FontColor	DarkGray
+		Text	"Skirmish Rogue"
+	}
+	Option {
+		Pos		165, 80				CVar				qc_skirmishRogue
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
+	SubMenu {
+		Pos		-50, 100			Text				"Custom themes"	Background			BV21028
+		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
+		Anchor	center, center		FontColor			Tan				Menu				QCDE_CustomThemes
+		Padding	0, 0				SelectedFontColor	Tan
+	}
+
+
+	InsertFreeformMenu MainMenuTopBar
+	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of resolutions
+{
+	Indent 153
+	Title "CHOOSE RESOLUTION"
+
+	Option		"Aspect ratio",					"menu_screenratios",	"Ratios"
+
+	StaticText ""
+
+	ScreenResolution "res_0", 250
+	ScreenResolution "res_1", 250
+	ScreenResolution "res_2", 250
+	ScreenResolution "res_3", 250
+	ScreenResolution "res_4", 250
+	ScreenResolution "res_5", 250
+	ScreenResolution "res_6", 250
+	ScreenResolution "res_7", 250
+	ScreenResolution "res_8", 250
+	ScreenResolution "res_9", 250
+	StaticTextSwitchable "Press ENTER to set mode", "", "VMEnterText"
+	StaticText ""
+	StaticTextSwitchable "T to test mode for 5 seconds", "Please wait 5 seconds...", "VMTestText"
+
+	class VideoModeMenu
+}
+
+OptionMenu "QCDE_CustomThemes"
+{
+	Indent 80
+	StaticText 	"Custom Monster Set Selection",1
+
+	StaticText ""
+
+	TextField " ", "themename5"    Option " ", "theme5","OI"    StaticText ""
+	TextField " ", "themename6"    Option " ", "theme6","OI"    StaticText ""
+	TextField " ", "themename7"    Option " ", "theme7","OI"    StaticText ""
+	TextField " ", "themename8"    Option " ", "theme8","OI"    StaticText ""
+	TextField " ", "themename9"    Option " ", "theme9","OI"    StaticText ""
+	TextField " ","themename10"    Option " ","theme10","OI"    StaticText ""
+	TextField " ","themename11"    Option " ","theme11","OI"    StaticText ""
+	TextField " ","themename12"    Option " ","theme12","OI"    StaticText ""
+	TextField " ","themename13"    Option " ","theme13","OI"    StaticText ""
+	TextField " ","themename14"    Option " ","theme14","OI"    StaticText ""
+	TextField " ","themename15"    Option " ","theme15","OI"    StaticText ""
+	TextField " ","themename16"    Option " ","theme16","OI"    StaticText ""
+	TextField " ","themename17"    Option " ","theme17","OI"    StaticText ""
+	TextField " ","themename18"    Option " ","theme18","OI"    StaticText ""
+	TextField " ","themename19"    Option " ","theme19","OI"    StaticText ""
+	TextField " ","themename20"    Option " ","theme20","OI"    StaticText ""
+	TextField " ","themename21"    Option " ","theme21","OI"    StaticText ""
+	TextField " ","themename22"    Option " ","theme22","OI"    StaticText ""
+	TextField " ","themename23"    Option " ","theme23","OI"    StaticText ""
+	TextField " ","themename24"    Option " ","theme24","OI"    StaticText ""
+	TextField " ","themename25"    Option " ","theme25","OI"    StaticText ""
+	TextField " ","themename26"    Option " ","theme26","OI"    StaticText ""
+	TextField " ","themename27"    Option " ","theme27","OI"    StaticText ""
+	TextField " ","themename28"    Option " ","theme28","OI"    StaticText ""
+	TextField " ","themename29"    Option " ","theme29","OI"    StaticText ""
+	TextField " ","themename30"    Option " ","theme30","OI"    StaticText ""
+	TextField " ","themename31"    Option " ","theme31","OI"    StaticText ""
+	TextField " ","themename32"    Option " ","theme32","OI"    StaticText ""
+	TextField " ","themename33"    Option " ","theme33","OI"    StaticText ""
+	TextField " ","themename34"    Option " ","theme34","OI"    StaticText ""
+	TextField " ","themename35"    Option " ","theme35","OI"    StaticText ""
+	TextField " ","themename36"    Option " ","theme36","OI"    StaticText ""
+	TextField " ","themename37"    Option " ","theme37","OI"    StaticText ""
+	TextField " ","themename38"    Option " ","theme38","OI"    StaticText ""
+	TextField " ","themename39"    Option " ","theme39","OI"    StaticText ""
+	TextField " ","themename40"    Option " ","theme40","OI"    StaticText ""
+	TextField " ","themename41"    Option " ","theme41","OI"    StaticText ""
+	TextField " ","themename42"    Option " ","theme42","OI"    StaticText ""
+	TextField " ","themename43"    Option " ","theme43","OI"    StaticText ""
+	TextField " ","themename44"    Option " ","theme44","OI"    StaticText ""
+	TextField " ","themename45"    Option " ","theme45","OI"    StaticText ""
+	TextField " ","themename46"    Option " ","theme46","OI"    StaticText ""
+	TextField " ","themename47"    Option " ","theme47","OI"    StaticText ""
+	TextField " ","themename48"    Option " ","theme48","OI"    StaticText ""
+	TextField " ","themename49"    Option " ","theme49","OI"    StaticText ""
+	TextField " ","themename50"    Option " ","theme50","OI"    StaticText ""
+	TextField " ","themename51"    Option " ","theme51","OI"    StaticText ""
+	TextField " ","themename52"    Option " ","theme52","OI"    StaticText ""
+	TextField " ","themename53"    Option " ","theme53","OI"    StaticText ""
+	TextField " ","themename54"    Option " ","theme54","OI"    StaticText ""
+	TextField " ","themename55"    Option " ","theme55","OI"    StaticText ""
+	TextField " ","themename56"    Option " ","theme56","OI"    StaticText ""
+	TextField " ","themename57"    Option " ","theme57","OI"    StaticText ""
+	TextField " ","themename58"    Option " ","theme58","OI"    StaticText ""
+	TextField " ","themename59"    Option " ","theme59","OI"    StaticText ""
+	TextField " ","themename60"    Option " ","theme60","OI"    StaticText ""
+	TextField " ","themename61"    Option " ","theme61","OI"    StaticText ""
+	TextField " ","themename62"    Option " ","theme62","OI"    StaticText ""
+	TextField " ","themename63"    Option " ","theme63","OI"    StaticText ""
+	TextField " ","themename64"    Option " ","theme64","OI"    StaticText ""
+	TextField " ","themename65"    Option " ","theme65","OI"    StaticText ""
+	TextField " ","themename66"    Option " ","theme66","OI"    StaticText ""
+	TextField " ","themename67"    Option " ","theme67","OI"    StaticText ""
+	TextField " ","themename68"    Option " ","theme68","OI"    StaticText ""
+	TextField " ","themename69"    Option " ","theme69","OI"    StaticText ""
+	TextField " ","themename70"    Option " ","theme70","OI"    StaticText ""
+	TextField " ","themename71"    Option " ","theme71","OI"    StaticText ""
+	TextField " ","themename72"    Option " ","theme72","OI"    StaticText ""
+	TextField " ","themename73"    Option " ","theme73","OI"    StaticText ""
+	TextField " ","themename74"    Option " ","theme74","OI"    StaticText ""
+	TextField " ","themename75"    Option " ","theme75","OI"    StaticText ""
+	TextField " ","themename76"    Option " ","theme76","OI"    StaticText ""
+	TextField " ","themename77"    Option " ","theme77","OI"    StaticText ""
+	TextField " ","themename78"    Option " ","theme78","OI"    StaticText ""
+	TextField " ","themename79"    Option " ","theme79","OI"    StaticText ""
+	TextField " ","themename80"    Option " ","theme80","OI"    StaticText ""
+	TextField " ","themename81"    Option " ","theme81","OI"    StaticText ""
+	TextField " ","themename82"    Option " ","theme82","OI"    StaticText ""
+	TextField " ","themename83"    Option " ","theme83","OI"    StaticText ""
+	TextField " ","themename84"    Option " ","theme84","OI"    StaticText ""
+	TextField " ","themename85"    Option " ","theme85","OI"    StaticText ""
+	TextField " ","themename86"    Option " ","theme86","OI"    StaticText ""
+	TextField " ","themename87"    Option " ","theme87","OI"    StaticText ""
+	TextField " ","themename88"    Option " ","theme88","OI"    StaticText ""
+	TextField " ","themename89"    Option " ","theme89","OI"    StaticText ""
+	TextField " ","themename90"    Option " ","theme90","OI"    StaticText ""
+	TextField " ","themename91"    Option " ","theme91","OI"    StaticText ""
+	TextField " ","themename92"    Option " ","theme92","OI"    StaticText ""
+	TextField " ","themename93"    Option " ","theme93","OI"    StaticText ""
+	TextField " ","themename94"    Option " ","theme94","OI"    StaticText ""
+	TextField " ","themename95"    Option " ","theme95","OI"    StaticText ""
+	TextField " ","themename96"    Option " ","theme96","OI"    StaticText ""
+	TextField " ","themename97"    Option " ","theme97","OI"    StaticText ""
+	TextField " ","themename98"    Option " ","theme98","OI"    StaticText ""
+	TextField " ","themename99"    Option " ","theme99","OI"    StaticText ""
+}
+
+
+OptionValue "QCSpeedometer"
+{
+	0, "Off"
+	1, "Center"
+	2, "Bottom Left"
+}
+
+OptionValue "QCMedals"
+{
+	0, "Off"
+	1, "Full"
+	2, "Sound Only"
+}
+
+OptionValue "LowWarning"
+{
+	0, "Off"
+	1, "Sound"
+	2, "Sound & Text"
+	3, "Sound & Text stays"
+}
+
+OptionValue "HitEffect"
+{
+	0, "Off"
+	1, "Sound Only"
+	2, "Sound & Mark"
+	3, "Mark Only"
+}
+
+OptionValue "BarStyle"
+{
+	0, "Blocks of 25 points"
+	1, "Continuous"
+}
+
+OptionValue "GNTLskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	3, "Quake 3"
+	4, "Quake 4"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "GNTLskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKING1QC"
+	3, "SKING1Q3"
+	4, "SKING1Q4"
+	6, "SKING1Q0"
+}
+
+OptionValue "MGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "MGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKING2QC"
+	2, "SKING2Q2"
+	3, "SKING2Q3"
+	4, "SKING2Q4"
+	5, "SKING2QW"
+	6, "SKING2Q0"
+}
+
+OptionValue "HMGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	2, "Quake 2"
+	3, "Quake Live"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "HMGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKINGBQC"
+	2, "SKINGBQ2"
+	3, "SKINGBQ3"
+	4, "SKINGBQ4"
+	5, "SKINGBQW"
+	6, "SKINGBQ0"
+}
+
+OptionValue "SGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	6, "QC:DE 1.0"
+	7, "Half-Life"
+}
+
+OptionValue "SGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKING3QC"
+	1, "SKING3Q1"
+	2, "SKING3Q2"
+	6, "SKING3Q0"
+	7, "SKING3HL"
+}
+
+OptionValue "SSGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+	7, "Half-Life"
+}
+
+OptionValue "SSGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKINGCQC"
+	1, "SKINGCQ1"
+	2, "SKINGCQ2"
+	3, "SKINGCQ3"
+	4, "SKINGCQ4"
+	5, "SKINGCQW"
+	6, "SKINGCQ0"
+	7, "SKINGCHL"
+}
+
+OptionValue "NGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	4, "Quake 4"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "NGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKING4QC"
+	1, "SKING4Q1"
+	2, "SKING4Q2"
+	4, "SKING4Q4"
+	6, "SKING4Q0"
+}
+
+OptionValue "SNGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "SNGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKINGDQC"
+	1, "SKINGDQ1"
+	2, "SKINGDQ2"
+	3, "SKINGDQ3"
+	4, "SKINGDQ4"
+	5, "SKINGDQW"
+	6, "SKINGDQ0"
+}
+
+OptionValue "TBskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "TBskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKINGEQC"
+	1, "SKINGEQ1"
+	2, "SKINGEQ2"
+	3, "SKINGEQ3"
+	4, "SKINGEQ4"
+	6, "SKINGEQ0"
+}
+
+OptionValue "RLskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+	7, "Half-Life"
+}
+
+OptionValue "RLskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKING5QC"
+	1, "SKING5Q1"
+	2, "SKING5Q2"
+	3, "SKING5Q3"
+	4, "SKING5Q4"
+	5, "SKING5QW"
+	6, "SKING5Q0"
+	7, "SKING5HL"
+}
+
+OptionValue "LGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "LGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKING6QC"
+	1, "SKING6Q1"
+	2, "SKING6Q2"
+	3, "SKING6Q3"
+	4, "SKING6Q4"
+	5, "SKING6QW"
+	6, "SKING6Q0"
+}
+
+OptionValue "RGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	1, "Quake 1"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	5, "ET: QW"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "RGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKING7QC"
+	1, "SKING7Q1"
+	2, "SKING7Q2"
+	3, "SKING7Q3"
+	4, "SKING7Q4"
+	5, "SKING7QW"
+	6, "SKING7Q0"
+}
+
+OptionValue "BFGskin"
+{
+	-1, "Class Based"
+	0, "Default"
+	2, "Quake 2"
+	3, "Quake 3"
+	4, "Quake 4"
+	6, "QC:DE 1.0"
+}
+
+OptionValue "BFGskinBG"
+{
+	-1, "SKINUNKN"
+	0, "SKING8QC"
+	2, "SKING8Q2"
+	3, "SKING8Q3"
+	4, "SKING8Q4"
+	6, "SKING8Q0"
+}
+
+OptionValue "OI"
+{
+	0, "\c[red]Off"
+	1, "\c[green]On"
+	0, "\c[red]Off"
+	1, "\c[green]On"
+	-1, " " // !!==true, default, for unloaded themes
+	0, "\c[red]Off"
+	1, "\c[green]On"
+}
+
+OptionValue "LGTransp"
+{
+	0, "Invisible"
+	1, "Fully visible"
+}
+
+OptionValue "ShuffleMode"
+{
+	0, "Per monster \c[black](AEoD-like)"
+	1, "One theme per map"
+}
+
+OptionValue "RadarMode"
+{
+	0, "Big centered"
+	1, "Small below crosshair"
+}
+
+OptionValue "OstOrder"
+{
+	0, "Strict"
+	1, "Shuffled"
+	2, "Randomized"
+}
+
+OptionValue "TauntSubtitles"
+{
+	0, "Off"
+	1, "Only in campaign"
+	2, "In all PvE modes"
+	3, "Always on"
+}
+
+OptionValue "CrosshairsBG"
+{
+	0, ""
+	1, "QHAIRB1"
+	2, "QHAIRB2"
+	3, "QHAIRB3"
+	4, "QHAIRB4"
+	5, "QHAIRB5"
+	6, "QHAIRB6"
+	7, "QHAIRB7"
+	8, "QHAIRB8"
+	9, "QHAIRB9"
+	10, "QHAIRB10"
+	11, "QHAIRB11"
+	12, "QHAIRB12"
+	13, "QHAIRB13"
+	14, "QHAIRB14"
+	15, "QHAIRB15"
+	16, "QHAIRB16"
+	17, "QHAIRB17"
+	18, "QHAIRB18"
+	19, "QHAIRB19"
+	20, "QHAIRB20"
+	21, "QHAIRB21"
+	22, "QHAIRB22"
+	23, "QHAIRB23"
+	24, "QHAIRB24"
+	25, "QHAIRB25"
+	26, "QHAIRB26"
+	27, "QHAIRB27"
+	28, "QHAIRB28"
+	29, "QHAIRB29"
+	30, "QHAIRB30"
+	31, "QHAIRB31"
+	32, "QHAIRB32"
+	33, "QHAIRB33"
+	34, "QHAIRB34"
+	35, "QHAIRB35"
+	36, "QHAIRB36"
+	37, "QHAIRB37"
+	38, "QHAIRB38"
+	39, "QHAIRB39"
+	40, "QHAIRB40"
+	41, "QHAIRB41"
+	42, "QHAIRB42"
+	43, "QHAIRB43"
+	44, "QHAIRB44"
+	45, "QHAIRB45"
+	46, "QHAIRB46"
+	47, "QHAIRB47"
+	48, "QHAIRB48"
+	49, "QHAIRB49"
+}

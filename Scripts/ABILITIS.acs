@@ -22,6 +22,9 @@
 #define AD_COLUMNS       7
 #define XYZ              1000 // oh my fucking god
 
+//
+//		WHEN CHANGING COOLDOWN VALUES, MAKE SURE TO UPDATE COOLDOWNS IN MENUDEF
+//
 int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	// COOLDOWN PVP,  COOLDOWN PVE , DURATION         , DURATION PVE     , MULTIUSE     , MULTIUSE     , MULTIUSE
 	//             ,               ,                  ,                  ,              , COOLDOWN     , FAIL SND

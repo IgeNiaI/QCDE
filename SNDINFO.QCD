@@ -9,7 +9,8 @@ $pitchshiftrange 0
 menu/activate		"Sounds/UI/Menu/PlayNow.ogg"	// Activate a new menu
 menu/backup			"Sounds/UI/Menu/ClickBack.ogg"	// Backup to previous menu
 menu/prompt			dsswtchn	// Activate a prompt "menu"
-menu/cursor			"Sounds/UI/Menu/MouseHover.ogg"		// Move cursor up/down
+menu/cursor			"Sounds/UI/Menu/KeyboardSelect.ogg"	// Move keyboard cursor
+menu/hover			"Sounds/UI/Menu/MouseHover.ogg"		// Mouse hover
 menu/change			"Sounds/UI/Menu/TickSmallIn.ogg"	// Select new value for option
 menu/invalid		dsoof		// Menu not available
 menu/dismiss		"Sounds/UI/Menu/TickSmallOut.ogg"	// Dismiss a prompt message
