@@ -55,7 +55,6 @@ user int  cl_speedometer       =   0; // small counter showing current speed in 
 user int  cl_lgtransparency    =   1; // 0: beam invisible, 1: beam 50%, 2: beam 100%
 user int  cl_lowAmmoWarning    =   2; // 1: sound only, 2: sound and text, 3: sound and text stays
 user int  cl_lowHealthWarning  =   1; // 1: sound only, 2: sound and text, 3: sound and text stays
-user int  cl_clutchTapMax      =  15; // max delay between taps
 user int  cl_autoTaunt         =   5; // chance to taunt on kill, [0..10]
 user int  cl_tauntSubtitles    =   1; // 0: never, 1: solo, 2: PvE, 3: always
 user int  cl_autoOpenLootboxes =   0; // open lootboxes immediately
