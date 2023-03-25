@@ -306,36 +306,36 @@ function void reReadWeaponCvars(void)
 	// Kane uses Quake 4
 	// Doom movement champions use QCDE v1.0
 	// Everyone else uses this formula : class index % 6
-	int classSkin = GetPlayerInfo(PlayerNumber(), PLAYERINFO_PLAYERCLASS);
+	int classSkin = CheckInventory("ClassID");
 	switch (classSkin) {
-	case 7: // BJ
-	case 14: // Nyx
-	case 27: // Keel
+	case 11: // Nyx
+	case 15: // Keel
+	case 20: // BJ
 		classSkin = 0;
 		break;
 	case 0: // Ranger
 		classSkin = 1;
 		break;
-	case 26: // Bitterman
+	case 9: // Bitterman
 		classSkin = 2;
 		break;
-	case 5: // Sarge
-	case 19: // Hunter
-	case 21: // Orbb
-	case 30: // Major
+	case 16: // Sarge
+	case 25: // Major
+	case 26: // Hunter
+	case 31: // Orbb
 		classSkin = 3;
 		break;
-	case 11: //Kane
+	case 3: //Kane
 		classSkin = 4;
 		break;
 	case 1: // DoomSlayer
 	case 2: // Corvus
-	case 3: // Galen
-	case 13: // Menelkir
-	case 23: // Zedek
+	case 5: // Menelkir
+	case 7: // Zedek
+	case 10: // Galen
 		classSkin = 6;
 		break;
-	case 22: // Freeman
+	case 21: // Freeman
 		classSkin = 7;
 		break;
 	default:
