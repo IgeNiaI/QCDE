@@ -696,9 +696,6 @@ function void setupSkirmish()
 {
 	setupGamemode(GetCVar("qcde_skirmishgamemode"));
 	setupModifier(GetCVar("qcde_skirmishmodifier"));
-
-	int botsCount = GetCVar("qcde_skirmishbotscount") + 1;
-	ConsoleCommand(strparam(s:"sv_minplayers ",	d:botsCount));
 }
 
 function void clearBots()

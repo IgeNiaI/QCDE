@@ -118,7 +118,7 @@ OptionMenu QCDE_SkirmishMenu
 
 	StaticText ""
 
-	NumberField		"Bots count",			"qcde_skirmishbotscount", 0, 9
+	NumberField		"Players count (including bots)",	"sv_minplayers", 0, 10
 	Option			"Bot Skill",			"menu_skirmishbotskill",	ZA_Skill
 	Option			"Bots can talk",		"bot_allowchat",			"YesNo"
 
