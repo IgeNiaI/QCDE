@@ -687,6 +687,7 @@ Script "QCDE_StartSkirmish" (void) NET CLIENTSIDE
 	else
 	{
 		setupSkirmish();
+		clearBots();
 		ConsoleCommand("menu_startskirmish customgamemode");
 	}
 }
@@ -698,6 +699,14 @@ function void setupSkirmish()
 
 	int botsCount = GetCVar("qcde_skirmishbotscount") + 1;
 	ConsoleCommand(strparam(s:"sv_minplayers ",	d:botsCount));
+}
+
+function void clearBots()
+{
+	for (int i = 0; i < 80; i++)
+	{
+		ConsoleCommand(strparam(s:"menu_teambotspawn",	d:i, s:" -1"));	
+	}
 }
 
 function void setupGamemode(int gamemode)
