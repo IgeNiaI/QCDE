@@ -88,7 +88,9 @@ Actor OrbbDrone
 
 	ExplodeCoop:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Orbb/ChargeUp",CHAN_WEAPON,1.0,1,0.6)
-		ODRN A 75
+		ODRN A 25 A_AlertMonsters
+		ODRN A 25 A_AlertMonsters
+		ODRN A 25 A_AlertMonsters
 		TNT1 A 0 A_GiveInventory("ImDead", 1, 0, GIF_SKIPOWNER)
 		ODRN E 15
 		TNT1 A 0 A_ChangeFlag("MISSILE", true)
