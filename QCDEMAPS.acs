@@ -1,0 +1,223 @@
+#library "QCDEMAPS"
+#include "zcommon.acs"
+
+////////////////////////////////////
+//    MAP INTRODUCTION SCRIPTS    //
+////////////////////////////////////
+/*
+
+//Copy & paste these to the start of your map's SCRIPTS lump and edit map data according to your map
+
+#import "QCDEMAPS.ACS"
+
+str mapName = "QCDE01";
+str mapTitle = "Blood Covenant";
+str mapAuthor = "DBThanatos";
+str mapSource = "\"Blood Covenant\" from Quake Champions"; // leave this blank if this is a brand new map
+int musicNumber = 11;
+
+Script "Introduction" OPEN CLIENTSIDE
+{
+	ACS_NamedExecuteWithResult("QCDE_SetMusicNumber", musicNumber);
+	ACS_NamedExecuteWithResult("QCDE_ShowMapIntroduction", mapName, mapTitle, mapAuthor, mapSource);
+}
+
+*/
+
+////////////////////
+//    TELEPORT    //
+////////////////////
+
+//----------------------------------
+// Allows to use line-crossing teleporters
+// above or under 3d floors without relying on
+// "Actor hits floor" ordeals
+// Thanks Mich for the "<<16" part, which turns
+// the int variable into a float value
+//
+// _____ - - - max height, above this, won't teleport
+// TTTTT - - - teleport area
+// TTTTT - - - teleport area
+// TTTTT - - - teleport area
+// ----- - - - min height, below this, won't teleport
+
+script "3DTeleport" ( int minheight, int maxheight, int desttag, int minspeed )
+{
+	if( heightCheck( minheight, maxheight, GetActorZ(0) ))
+    {
+		int velocity;
+
+        if ( minspeed > 0 )
+        {
+			minspeed *= 1872;
+
+			//Get player's velocity
+			velocity = VectorLength( GetActorVelX(0), GetActorVelY(0) );
+
+			if( velocity < minspeed )
+				velocity = minspeed;
+        }
+
+		Teleport_NoStop( desttag, 0, 0 );    //you're good to go
+
+        if ( minspeed > 0 )
+        {
+			//Set velocity to have the same value as before teleporting
+			//but move player in the direction it has come out of the teleporter
+			int Angle = GetActorAngle(0);
+			SetActorVelocity( 0, FixedMul( Velocity, Cos(Angle) ), FixedMul( Velocity, sin(Angle) ), 0, 0, 0);
+        }
+    }
+}
+
+////////////////////
+//    JUMP PAD    //
+////////////////////
+
+script "GenericJumpPad" ( int z_for, int angle, int xy_for, int tidder )
+{
+	if( PlayerIsBot( PlayerNumber() ) )	//bots are movement-frozen
+	{
+		GiveInventory( "Twitchless3Sec", 1 );
+		SetPlayerProperty( 0, 1 ,PROP_TOTALLYFROZEN );
+	}
+	
+	if( GetActorProperty( 0, APROP_Health ) > 0 )
+	{
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		PlaySound( tidder, "QCDE/Other/QCJumpPad", CHAN_7, 0.8, 0, 0.9 );
+		SetNetworkReplicationFlags( 0 );
+		Thing_Stop(0);
+		if ( z_for != 0 )
+			ThrustThingZ( 0, z_for, 0, 0 );
+		if ( xy_for != 0 )
+			ThrustThing( angle, xy_for, 0 );
+	} else {
+		//If player is dead, pushes corpse away
+		ThrustThing( random(1,255), random(10,20), 1, 0 );
+	}
+	
+	if( PlayerIsBot(PlayerNumber() ) )	//unfreeze bots
+	{
+		//help bepis not get stuck on vertical jump pads
+		
+		if( xy_for < 8 )
+		{
+			int delayTics = z_for / 3;
+
+			Delay( delayTics );
+			ThrustThing( angle, xy_for / 2, 0 );
+
+			Delay( 30 - delayTics );
+			
+		} else
+			Delay(30);
+		
+		SetPlayerProperty( 0, 0, PROP_TOTALLYFROZEN );
+	}
+}
+
+////////////////////////
+//    DAMAGE FLOOR    //
+////////////////////////
+
+bool damagedPlayers[64];
+
+Script "DamageFloor" ( int damage, int timeout )
+{
+	int plr = PlayerNumber();
+	if( !damagedPlayers[plr] )
+	{
+		if( timeout < 1 )
+			timeout = 1;
+
+		Thing_Damage( 0, damage, 13 ); // 13 is Slime damage type
+		damagedPlayers[plr] = true;
+
+		delay( timeout );
+
+		damagedPlayers[plr] = false;
+	}
+}
+
+//////////////////////////
+//  BOT HELPER SCRIPTS  //
+//////////////////////////
+
+script "BotPusher" ( int angle, int xy_for, int max_height, int min_height )
+{
+
+    if( PlayerIsBot( PlayerNumber() ) )
+    {
+		if( max_height == 0 || max_height >= GetActorZ(0) >> 16 )
+		{
+			if( min_height == 0 || min_height <= GetActorZ(0) >> 16 )
+			{
+				int randomAngleMin = angle - 32;
+				int randomAngleMax = angle + 32;
+				int randomAngle;
+
+				if( randomAngleMin < 0 )
+					randomAngleMin = randomAngleMin + 256;
+
+				if( randomAngleMax > 255 )
+					randomAngleMax = randomAngleMax - 256;
+
+				if( randomAngleMin > randomAngleMax )
+				{
+					randomAngle = Random( randomAngleMin, randomAngleMax + 256 );
+					if( randomAngle > 255 )
+						randomAngle = randomAngle - 256;
+				}
+				else
+					randomAngle = Random( randomAngleMin, randomAngleMax );
+
+				Thing_Stop(0);
+				SetPlayerProperty( 0, 1, PROP_TOTALLYFROZEN );
+				ThrustThing( randomAngle, xy_for, 0 );
+				SetActorAngle( 0, randomAngle << 8 ); //turn them around so they notice you watching >)
+				Delay(5);
+				SetPlayerProperty( 0, 0, PROP_TOTALLYFROZEN );			
+			}
+		}
+    }
+}
+
+////////////////
+//    MISC    //
+////////////////
+
+script "NotARealDoor" ( int minheight, int maxheight )
+{
+	if( heightCheck( minheight, maxheight, GetActorZ(0) ))
+    {
+		HUDMessage( s:"This door doesn't work"; HUDMSG_FADEOUT ,181 ,CR_GRAY ,0.5 ,0.75 , 0.75, 0.5 );
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		PlaySound( 0, "*usefail" );
+		SetNetworkReplicationFlags( 0 );
+	}
+}
+
+function bool heightCheck( int min, int max, int actorZ )
+{
+	int mincheck, maxcheck;
+
+    if( min == 0 )
+        mincheck = 1;
+
+    else
+        if( actorZ >= ( min << 16 )) 
+            mincheck = 1;
+
+    if( max == 0 )
+        maxcheck = 1;
+
+    else
+        if( actorZ <= ( max << 16 ))
+            maxcheck = 1;
+
+    if( maxcheck == 1 && mincheck == 1 )
+        return true;
+
+	return false;
+}
