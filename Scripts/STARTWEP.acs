@@ -36,13 +36,6 @@ script "QCDE_StartingWeapon_Apply" (void)
 		GiveInventory("QCGauntlet_Bot"	,1);
 	}
 
-	// Stop if can't choose and already have a weapon
-	// Continue if can, or if have no weapons because from poor contry (poland)
-	if(CheckInventory("Starter_CantChoose") &&
-	   (CheckInventory(weapon1) ||
-	    CheckInventory(weapon2) ||
-	    CheckInventory(weapon3) )) terminate;
-
 	// Don't remove ammo for weak weapon if stronger one is present
 	if(!CheckInventory("QCHeavyMachinegun") && !CheckInventory("QCHeavyMachinegun"))
 	{
@@ -71,18 +64,18 @@ script "QCDE_StartingWeapon_Apply" (void)
 	else if (GetCvar("buckshot"))                  { GiveInventory(getBuckshotWeaponName(), 1);	GiveInventory(getBuckshotAmmoType(),getBuckshotMaxAmmo()); GiveInventory("EndlessInfiniteAmmo",1); }
 	else if (GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("qc_freezetag")) { GiveLMS(); }
 	else if (CheckInventory("Class_Sam"))          { ACS("QCDE_Passive_Sam"); }
-	else if (CheckInventory("Starter_Machinegun")) { if(!CheckInventory("QCHeavyMachinegun")) GiveInventory(weapon1, 1); }
-	else if (CheckInventory("Starter_Shotgun"   )) { GiveInventory(weapon2,            1); }
-	else if (CheckInventory("Starter_Nailgun"   )) { if(!CheckInventory("QCSuperNailgun")) GiveInventory(weapon3, 1); }
+	else if (CheckInventory("Starter_Machinegun")) { if(!CheckInventory("QCHeavyMachinegun")) { GiveInventory(weapon1, 1); SetWeapon(weapon1); } }
+	else if (CheckInventory("Starter_Shotgun"   )) { GiveInventory(weapon2,            1); SetWeapon(weapon2); }
+	else if (CheckInventory("Starter_Nailgun"   )) { if(!CheckInventory("QCSuperNailgun")) { GiveInventory(weapon3, 1); SetWeapon(weapon3); } }
 	else
 	{
 		int cvar = GetCvar("cl_startingWeapon");
 		switch(cvar)
 		{
 		default: // go to case 1
-		case 1: GiveInventory(weapon1, 1);	GiveInventory("Starter_Machinegun",1);	break;
-		case 2: GiveInventory(weapon2, 1);	GiveInventory("Starter_Shotgun",1);		break;
-		case 3: GiveInventory(weapon3, 1);	GiveInventory("Starter_Nailgun",1);		break;
+		case 1: GiveInventory(weapon1, 1);	GiveInventory("Starter_Machinegun",1);	SetWeapon(weapon1);	break;
+		case 2: GiveInventory(weapon2, 1);	GiveInventory("Starter_Shotgun",1);		SetWeapon(weapon2);	break;
+		case 3: GiveInventory(weapon3, 1);	GiveInventory("Starter_Nailgun",1);		SetWeapon(weapon3);	break;
 		}
 	}
 

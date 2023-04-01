@@ -342,7 +342,6 @@ Script "QCDE_Tracker" (void)
 	SetInventory("SuperHealthBar",     0);
 	SetInventory("SuperArmorToken",    0);
 	SetInventory("SuperArmorBar",      0);
-	SetInventory("Starter_CantChoose", 0);
 
 	// Remove ally marker
 	Thing_Remove(MARKER_TIDBASE + plr);

@@ -5308,6 +5308,7 @@ Script "QCDE_Passive_Sam" (int ammo)
 	if(!ammo) // Start of life
 	{
 		SetInventory("SeriousBullets",80);
+        int startingWeapon = GetCvar("cl_startingWeapon");
 		if(GameType() <= GAME_NET_COOPERATIVE)
 		{
 			if(!CheckInventory("QCHeavyMachinegun")) GiveInventory("QCMachineGun", 1);
@@ -5315,12 +5316,34 @@ Script "QCDE_Passive_Sam" (int ammo)
          	if(!CheckInventory("QCSuperNailgun")) GiveInventory("QCNailgun", 1);
 			SetInventory("SamMinigun"  ,0);
 			SetInventory("SeriousBullets",GetAmmoCapacity("SeriousBullets"));
+			
+            switch(startingWeapon)
+            {
+            default: // go to case 1
+            case 1: SetWeapon("QCMachineGun");	break;
+            case 2: SetWeapon("QCShotgun");		break;
+            case 3: SetWeapon("QCNailgun");		break;
+            }
 		}
 		else if(!GetCvar("instagib") && !GetCvar("rocketarena"))
 		{
 			SetInventory("QCMachineGunDM",1);
 			SetInventory("QCShotgunDM"   ,1);
 			SetInventory("QCNailgunDM"   ,1);
+			
+			if		(CheckInventory("Starter_Machinegun"))	SetWeapon("QCMachineGunDM");
+            else if	(CheckInventory("Starter_Shotgun"   ))	SetWeapon("QCShotgunDM");
+            else if	(CheckInventory("Starter_Nailgun"   ))	SetWeapon("QCNailgunDM");
+            else
+            {
+            	switch(startingWeapon)
+            	{
+            	default: // go to case 1
+            	case 1: SetWeapon("QCMachineGunDM");	break;
+            	case 2: SetWeapon("QCShotgunDM");		break;
+            	case 3: SetWeapon("QCNailgunDM");		break;
+            	}
+            }
 		}
 	}
 	else // Giving ammo
