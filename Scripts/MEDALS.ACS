@@ -22,7 +22,7 @@ int heavySpawnTics;
 //////////////////////////////////////////////////////////////////
 script "MapInitiator" OPEN {
 
-	if(GameType() < GAME_NET_DEATHMATCH)
+	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
 	firstBloodGiven = false;	//reset this here, so it starts with default value after warm-up ends
@@ -30,7 +30,7 @@ script "MapInitiator" OPEN {
 
 script "MedalsInitiator" ENTER {
 
-	if(GameType() < GAME_NET_DEATHMATCH)
+	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
 	if(!GetCVar("cl_qcmedals"))
@@ -46,7 +46,7 @@ script "MedalsInitiator" ENTER {
 
 script "ResetMedalCounters" DEATH {
 
-	if(GameType() < GAME_NET_DEATHMATCH)
+	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
 	if(!GetCVar("cl_qcmedals"))
@@ -106,11 +106,10 @@ function int QCDE_ProximityCheck(int victimTID, int killerTID) {
 //Handles various medals that should activate on frag events
 script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 
-	if(GameType() < GAME_NET_DEATHMATCH)
+	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
-	//GAMEEVENT_PLAYERFRAGS
-	if(evtTyp == 0) {
+	if(evtTyp == GAMEEVENT_PLAYERFRAGS) {
 		int victimTID = 1000 + victimNo;
 		int victimActiveTokens = CheckActorInventory(victimNo+1000, "ActiveProgressToken");
 		int victimSpreeToken = CheckActorInventory(victimTID, "SpreeToken");
@@ -536,7 +535,7 @@ script "QCDE_PowerUpMassacre" (void) {
 	if (GetNetworkState() == NETSTATE_CLIENT)
 		terminate;
 
-	if(GameType() < GAME_NET_DEATHMATCH)
+	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
 	if(!GetCVar("cl_qcmedals"))
@@ -568,7 +567,7 @@ Script "QCDE_MajorItemSpawned" (int itemType) { // 0 for Mega, 1 for Heavy <-- f
 
 Script "QCDE_StopWatch" (int itemType) {
 
-	if(GameType() < GAME_NET_DEATHMATCH)
+	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
 	if(!GetCVar("cl_qcmedals"))
