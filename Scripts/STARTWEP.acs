@@ -56,11 +56,20 @@ script "QCDE_StartingWeapon_Apply" (void)
 		TakeInventory("QCNailAmmo", 125);
 	}
 
+	SetAmmoCapacity("QCBulletAmmo",	getGenericDMAmmoCapacity(0));
+	SetAmmoCapacity("QCShellAmmo",	getGenericDMAmmoCapacity(1));
+	SetAmmoCapacity("QCNailAmmo",	getGenericDMAmmoCapacity(2));
+	SetAmmoCapacity("QCBoltAmmo", 	getGenericDMAmmoCapacity(3));
+	SetAmmoCapacity("QCRocketAmmo",	getGenericDMAmmoCapacity(4));
+	SetAmmoCapacity("QCCoilAmmo", 	getGenericDMAmmoCapacity(5));
+	SetAmmoCapacity("QCSlugAmmo", 	getGenericDMAmmoCapacity(6));
+	SetAmmoCapacity("QCBFGAmmo",	getGenericDMAmmoCapacity(7));
+
 	int rocketarena = GetCvar("rocketarena");
 	if (rocketarena) GiveRocketArena(rocketarena);
 	else if (GetCvar("instagib"))                  { GiveInventory(getInstagibWeaponName(), 1);	GiveInventory(getInstagibAmmoType(),getInstagibMaxAmmo()); GiveInventory("EndlessInfiniteAmmo",1); }
 	else if (GetCvar("buckshot"))                  { GiveInventory(getBuckshotWeaponName(), 1);	GiveInventory(getBuckshotAmmoType(),getBuckshotMaxAmmo()); GiveInventory("EndlessInfiniteAmmo",1); }
-	else if (GetCvar("lastmanstanding") || GetCvar("teamlms")) { GiveLMS(); }
+	else if (GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("qc_freezetag")) { GiveLMS(); }
 	else if (CheckInventory("Class_Sam"))          { ACS("QCDE_Passive_Sam"); }
 	else if (CheckInventory("Starter_Machinegun")) { if(!CheckInventory("QCHeavyMachinegun")) GiveInventory(weapon1, 1); }
 	else if (CheckInventory("Starter_Shotgun"   )) { GiveInventory(weapon2,            1); }
@@ -111,6 +120,16 @@ script "QCDE_SelectUpgradedWeapon" (int weap)
 int map_random_weapons;
 function void GiveRocketArena(int ra)
 {
+	// Reduce ammo cap to have nicely filled icons in weapon bar
+	SetAmmoCapacity("QCBulletAmmo", 5);
+	SetAmmoCapacity("QCShellAmmo" , 5);
+	SetAmmoCapacity("QCNailAmmo"  , 5);
+	SetAmmoCapacity("QCRocketAmmo", 5);
+	SetAmmoCapacity("QCBoltAmmo"  , 5);
+	SetAmmoCapacity("QCSlugAmmo"  , 5);
+	SetAmmoCapacity("QCCoilAmmo"  , 5);
+	SetAmmoCapacity("QCBFGAmmo"   , 5);
+
 	if(ra == 1) // ROCKET arena
 		{ GiveInventory(getRocketArenaWeaponName(), 1);	GiveInventory(getRocketArenaAmmoType(),getRocketArenaMaxAmmo()); GiveInventory("EndlessInfiniteAmmo",1); }
 	else if(ra == 2) // Buckshot
@@ -193,13 +212,13 @@ function void GiveLMS()
 	GiveInventory("QCLightningGunDM",    1);
 	GiveInventory("QCRailgunDM",         1);
 
-	GiveInventory("QCBulletAmmo", GetAmmoCapacity("QCBulletAmmo"));
-	GiveInventory("QCShellAmmo", GetAmmoCapacity("QCShellAmmo"));
-	GiveInventory("QCNailAmmo", GetAmmoCapacity("QCNailAmmo"));
-	GiveInventory("QCBoltAmmo", GetAmmoCapacity("QCBoltAmmo"));
-	GiveInventory("QCRocketAmmo", GetAmmoCapacity("QCRocketAmmo"));
-	GiveInventory("QCCoilAmmo", GetAmmoCapacity("QCCoilAmmo"));
-	GiveInventory("QCSlugAmmo", GetAmmoCapacity("QCSlugAmmo"));
+	SetInventory("QCBulletAmmo",   getGenericDMAmmoCapacity(0));
+	SetInventory("QCShellAmmo",    getGenericDMAmmoCapacity(1));
+	SetInventory("QCNailAmmo",     getGenericDMAmmoCapacity(2));
+	SetInventory("QCBoltAmmo",     getGenericDMAmmoCapacity(3));
+	SetInventory("QCRocketAmmo",   getGenericDMAmmoCapacity(4));
+	SetInventory("QCCoilAmmo",     getGenericDMAmmoCapacity(5));
+	SetInventory("QCSlugAmmo",     getGenericDMAmmoCapacity(6));
 
 	int cvar = GetCvar("cl_startingWeapon");
 	switch(cvar)

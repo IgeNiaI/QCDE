@@ -376,49 +376,6 @@ Script "QCDE_DM_FragBeep" (void) clientside
 }
 
 
-
-Script "QCDE_DM_AmmoCapacity" (void)
-{
-	if (GameType() == GAME_NET_DEATHMATCH)
-	{
-		SetAmmoCapacity("QCBulletAmmo",	getGenericDMAmmoCapacity(0));
-		SetAmmoCapacity("QCShellAmmo",	getGenericDMAmmoCapacity(1));
-		SetAmmoCapacity("QCNailAmmo",	getGenericDMAmmoCapacity(2));
-		SetAmmoCapacity("QCBoltAmmo", 	getGenericDMAmmoCapacity(3));
-		SetAmmoCapacity("QCRocketAmmo",	getGenericDMAmmoCapacity(4));
-		SetAmmoCapacity("QCCoilAmmo", 	getGenericDMAmmoCapacity(5));
-		SetAmmoCapacity("QCSlugAmmo", 	getGenericDMAmmoCapacity(6));
-		SetAmmoCapacity("QCBFGAmmo",	getGenericDMAmmoCapacity(7));
-	}
-
-	if(GetCvar("qc_freezetag"))
-	{
-		SetAmmoCapacity("QCBulletAmmo",	getGenericDMAmmoCapacity(0)); SetInventory("QCBulletAmmo",	getGenericDMAmmoCapacity(0));
-		SetAmmoCapacity("QCShellAmmo",	getGenericDMAmmoCapacity(1)); SetInventory("QCShellAmmo",	getGenericDMAmmoCapacity(1));
-		SetAmmoCapacity("QCNailAmmo",	getGenericDMAmmoCapacity(2)); SetInventory("QCNailAmmo",	getGenericDMAmmoCapacity(2));
-		SetAmmoCapacity("QCBoltAmmo",	getGenericDMAmmoCapacity(3)); SetInventory("QCBoltAmmo",	getGenericDMAmmoCapacity(3));
-		SetAmmoCapacity("QCRocketAmmo",	getGenericDMAmmoCapacity(4)); SetInventory("QCRocketAmmo",	getGenericDMAmmoCapacity(4));
-		SetAmmoCapacity("QCCoilAmmo",	getGenericDMAmmoCapacity(5)); SetInventory("QCCoilAmmo",	getGenericDMAmmoCapacity(5));
-		SetAmmoCapacity("QCSlugAmmo",	getGenericDMAmmoCapacity(6)); SetInventory("QCSlugAmmo",	getGenericDMAmmoCapacity(6));
-		SetAmmoCapacity("QCBFGAmmo",	getGenericDMAmmoCapacity(7)); SetInventory("QCBFGAmmo",		getGenericDMAmmoCapacity(7));
-	}
-
-	// Reduce ammo cap to have nicely filled icons in weapon bar
-	if(rocketarena)
-	{
-		SetAmmoCapacity("QCBulletAmmo", 5);
-		SetAmmoCapacity("QCShellAmmo" , 5);
-		SetAmmoCapacity("QCNailAmmo"  , 5);
-		SetAmmoCapacity("QCRocketAmmo", 5);
-		SetAmmoCapacity("QCBoltAmmo"  , 5);
-		SetAmmoCapacity("QCSlugAmmo"  , 5);
-		SetAmmoCapacity("QCCoilAmmo"  , 5);
-		SetAmmoCapacity("QCBFGAmmo"   , 5);
-	}
-}
-
-
-
 // Make players slower or faster depending on server settings
 
 Script "QCDE_PlayerSpeed" (void)

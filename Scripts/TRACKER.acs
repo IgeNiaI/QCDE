@@ -133,7 +133,6 @@ Script "QCDE_NewLife" (int firsttime)
 	ACS("QCDE_UpdateScores_CLIENTSIDE");
 	ACS_NamedExecuteAlways("QCDE_ConfigureMovement"		,0);
 	ACS_NamedExecuteAlways("QCDE_DM_HealthAndWeapons"	,0);
-	ACS_NamedExecuteAlways("QCDE_DM_AmmoCapacity"		,0);
 	ACS_NamedExecuteAlways("QCDE_DM_PlayerCollision"	,0);
 	ACS_NamedExecuteAlways("QCDE_PlayerSpeed"			,0);
 	ACS_NamedExecuteAlways("QCDE_Degeneration"			,0);
