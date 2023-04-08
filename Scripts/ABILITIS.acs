@@ -1115,6 +1115,8 @@ Script "QCDE_Ability_Inquisitor" (void)
 			SetNetworkReplicationFlags( 0 );
 			ACS_NamedExecuteAlways("QCDE_Clean_Shield_Message", 0, 0);
 
+			delay(3); // add short delay before bringing up proper weapon, or else player can shoot his own shield with rocket
+
 			//Give and select fake weapon
 			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			SetWeapon(weaponList[w]);
