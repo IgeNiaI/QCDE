@@ -194,6 +194,79 @@ Actor QCRailGun : QCWeapon
 		Goto ReadyCont
 
 	ReadyCont:
+		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_RailJumpEnabled",0,0,0,0) == 1, "ReadyContRailjump")
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" B 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" B 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" B 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" B 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" B 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" B 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" C 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" C 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" C 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" C 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" C 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" C 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" D 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" D 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" D 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" D 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" D 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" D 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" E 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" E 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" E 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" E 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" E 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" E 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" F 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" F 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" F 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" F 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" F 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" F 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" G 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" G 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" G 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" G 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" G 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" G 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" H 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" H 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" H 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" H 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" H 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" H 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" I 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" I 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" I 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" I 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" I 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" I 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		"####" A 1 A_WeaponReady(WRF_NOSECONDARY)
+		Loop
+
+	ReadyContRailjump: // same as above, but alt fire is allowed
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
 		"####" A 1 A_WeaponReady
@@ -270,7 +343,7 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Ready")
 		TNT1 A 0 A_JumpIfInventory("RailgunCharges",52,"ReadyZoomedCharged")
-		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB)
+		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
 		TNT1 A 0 A_GiveInventory("RailgunCharges",1)
 		Loop
 
@@ -279,13 +352,13 @@ Actor QCRailGun : QCWeapon
 	ReadyZoomedChargedLoop:
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Ready")
-		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB)
+		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
 		Loop
 
 	ReadyZoomedDM:
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Ready")
-		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB)
+		TNT1 A 1 Bright A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
 		Loop
 
 
@@ -1510,7 +1583,6 @@ Actor QCRailGun : QCWeapon
 
 
 	AltFire:
-		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_RailJumpEnabled",0,0,0,0) == 0, "ReadyAgain") // don't change velocity at all if 0
 		"####" "#" 0 A_ChangeVelocity(15 * -cos(pitch), 0, 15 * sin(pitch), CVF_RELATIVE)
 		"####" "#" 0 A_PlaySound("QC/Abilities/Freeman/Exhaust", 7, 0.75)
 		"####" "#" 0 A_FireCustomMissile("RailgunJumpReflector", 0, false, 1, 5, FPF_NOUNLAGGED|FPF_SKIPOWNER)
