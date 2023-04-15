@@ -891,7 +891,28 @@ Actor LGPuff
 	Crash:
 		TNT1 A 0 A_JumpIf(waterlevel > 0, "Water")
 	Choose:
-		TNT1 A 100
+		"####" A 0 A_JumpIfInTargetInventory("QCLightningGunSkin", 6, "Choose.QCDE1")
+		"####" A 0 A_JumpIfInTargetInventory("QCLightningGunSkin", 5, "Choose.ETQW")
+		"####" A 0 A_JumpIfInTargetInventory("QCLightningGunSkin", 4, "Choose.Quake4")
+		"####" A 0 A_JumpIfInTargetInventory("QCLightningGunSkin", 3, "Choose.Quake3")
+		"####" A 0 A_JumpIfInTargetInventory("QCLightningGunSkin", 2, "Choose.Quake2")
+		"####" A 0 A_JumpIfInTargetInventory("QCLightningGunSkin", 1, "Choose.Quake1")
+	Choose.Default:
+	Choose.QCDE1:
+		TNT1 A 1 Bright Light("BlueSmallPoint2")
+		Stop
+	Choose.Quake1:
+	Choose.Quake4:
+	Choose.ETQW:
+		TNT1 A 1 Bright Light("WhiteSmallPoint2")
+		Stop
+	Choose.Quake2:
+		TNT1 A 2 Bright Light("YellowSmallPoint2")
+		TNT1 A 2 Bright Light("YellowSmallPoint2")
+		Stop
+	Choose.Quake3:
+		TNT1 A 2 Bright Light("BlueSmallPoint2")
+		TNT1 A 2 Bright Light("BlueSmallPoint2")
 		Stop
 	Water:
 		TNT1 A 0 A_SpawnItemEx("WaterLightningSparks", 0,0,0, 0,0,0,0, SXF_NOCHECKPOSITION,160)
