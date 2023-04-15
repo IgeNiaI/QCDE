@@ -84,6 +84,7 @@ script "GenericJumpPad" ( int z_for, int angle, int xy_for, int tidder )
 	
 	if( GetActorProperty( 0, APROP_Health ) > 0 )
 	{
+		if (tidder == 0) Log(s:"Jumppad plays sound at activator, please fix");
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		PlaySound( tidder, "QCDE/Other/QCJumpPad", CHAN_7, 0.8, 0, 0.9 );
 		SetNetworkReplicationFlags( 0 );
