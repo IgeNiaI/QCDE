@@ -330,6 +330,11 @@ Script "QCDE_ShowActiveInProgress" (int duration, int now)
 	ACS_NamedExecuteAlways("QCDE_DoActiveInProgressCooldown", 0);
 }
 
+Script "QCDE_ShowActiveInProgress_CLIENTSIDE" (int duration, int now) clientside
+{
+	ACS("QCDE_ShowActiveInProgress", duration, now);
+}
+
 Script "QCDE_DoActiveInProgressCooldown" ()
 {
 	int plr = PlayerNumber();
@@ -5514,6 +5519,8 @@ Script "QCDE_Passive_Painkiller" (int activate)
 
 	int t = GetActorPowerupTics(0, "PowerDemonMorph");
 	ACS("QCDE_ShowActiveInProgress", t);
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS("QCDE_ShowActiveInProgress_CLIENTSIDE", t);
 
 	GiveInventory("NoReticle", 1);
 	GiveInventory("NoAmmoCount", 1);
@@ -5529,6 +5536,7 @@ Script "QCDE_Passive_Painkiller" (int activate)
 
 	// Morph ended
 	GiveInventory("PainkillerCleanerProc",1);
+	ACS_NamedExecuteAlways("QCDE_ConfigureMovement", 0);
 	if(GetActorProperty(0, APROP_Health) < 0) terminate;
 
 	// Morph ended successfully
