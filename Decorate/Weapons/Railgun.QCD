@@ -1766,7 +1766,7 @@ Actor RailgunPuff_Quake1 : RailgunPuff
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_Quake1", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake1", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto Super::Crash+1
+		Goto Super::Crash+2
 	}
 }
 
@@ -1777,7 +1777,7 @@ Actor RailgunPuff_Quake2 : RailgunPuff
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_Quake2", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake2", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto Super::Crash+1
+		Goto Super::Crash+2
 	}
 }
 
@@ -1788,7 +1788,7 @@ Actor RailgunPuff_Quake4 : RailgunPuff
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_Quake4", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake4", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto Super::Crash+1
+		Goto Super::Crash+2
 	}
 }
 
@@ -1799,7 +1799,7 @@ Actor RailgunPuff_ETQW : RailgunPuff
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_ETQW", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_ETQW", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto Super::Crash+1
+		Goto Super::Crash+2
 	}
 }
 
@@ -1834,7 +1834,7 @@ Actor RailgunPuff_DM_Quake1 : RailgunPuff_DM
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_Quake1", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake1", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto Super::Crash+1
+		Goto Super::Crash+2
 	}
 }
 
@@ -1845,7 +1845,7 @@ Actor RailgunPuff_DM_Quake2 : RailgunPuff_DM
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_Quake2", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake2", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto Super::Crash+1
+		Goto Super::Crash+2
 	}
 }
 
@@ -1856,7 +1856,7 @@ Actor RailgunPuff_DM_Quake4 : RailgunPuff_DM
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_Quake4", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Quake4", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto Super::Crash+1
+		Goto Super::Crash+2
 	}
 }
 
@@ -1867,7 +1867,7 @@ Actor RailgunPuff_DM_ETQW : RailgunPuff_DM
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_ETQW", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_ETQW", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
-		Goto Super::Crash+1
+		Goto Super::Crash+2
 	}
 }
 
