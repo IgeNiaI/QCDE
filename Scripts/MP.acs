@@ -540,7 +540,8 @@ Script "QCDE_Players=0" OPEN
 		int maxBots = GetCVar("qcde_botscount");
 		int botCount = 0;
 		int i;
-		ConsoleCommand("removebots");
+		if (GetGameModeState() < GAMESTATE_INPROGRESS)
+			ConsoleCommand("removebots");
 		for (i = 0; i < 64; i++)
 			if(PlayerIsBot(i))
 				botCount++;
