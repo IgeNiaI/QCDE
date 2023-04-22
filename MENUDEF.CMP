@@ -15,7 +15,7 @@ DefaultFreeformMenu
 
 FreeformMenu "ChampionSelector"
 {
-	Label { Pos	-170,  20	Text "LIGHT"	Font QCSMFONT	FontColor Gray }
+	// Light
 	Label { Pos -179,  25	Size 25, 50		Background "portrC04"	Anchor center, top } // Kane
 	Label { Pos -152,  25	Size 25, 50		Background "portrC05"	Anchor center, top } // Caleb
 	Label { Pos -125,  25	Size 25, 50		Background "portrC06"	Anchor center, top } // Menelkir
@@ -28,7 +28,7 @@ FreeformMenu "ChampionSelector"
 	Label { Pos   64,  25	Size 25, 50		Background "portrC29"	Anchor center, top } // Postal
 	Label { Pos   91,  25	Size 25, 50		Background "portrC32"	Anchor center, top } // Orbb
 
-	Label { Pos	-170,  70	Text "MEDIUM"	Font QCSMFONT	FontColor Gray }
+	// Medium
 	Label { Pos -184,  75	Size 25, 50		Background "portrC01"	Anchor center, top } // Ranger
 	Label { Pos -157,  75	Size 25, 50		Background "portrC02"	Anchor center, top } // DoomSlayer
 	Label { Pos -130,  75	Size 25, 50		Background "portrC03"	Anchor center, top } // Corvus
@@ -41,7 +41,7 @@ FreeformMenu "ChampionSelector"
 	Label { Pos   59,  75	Size 25, 50		Background "portrC30"	Anchor center, top } // Painkiller
 	Label { Pos   86,  75	Size 25, 50		Background "portrC31"	Anchor center, top } // Intruder
 
-	Label { Pos	-180, 120	Text "HEAVY"	Font QCSMFONT	FontColor Gray }
+	// Heavy
 	Label { Pos -189, 125	Size 25, 50		Background "portrC07"	Anchor center, top } // Terminator
 	Label { Pos -162, 125	Size 25, 50		Background "portrC08"	Anchor center, top } // Zedek
 	Label { Pos -135, 125	Size 25, 50		Background "portrC09"	Anchor center, top } // Inquisitor
@@ -133,6 +133,12 @@ FreeformMenu "ChampionSelector"
 	Label { Pos   27, 115	VisibilityCVar _bc_25,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
 	Label { Pos   54, 115	VisibilityCVar _bc_27,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
 	// ^ insert more classes here
+
+
+	// Draw these texts on top of champion selections
+	Label { Pos	-170,  20	Text "LIGHT"	Font QCSMFONT	FontColor Gray }
+	Label { Pos	-170,  70	Text "MEDIUM"	Font QCSMFONT	FontColor Gray }
+	Label { Pos	-180, 120	Text "HEAVY"	Font QCSMFONT	FontColor Gray }
 
 
 	Option { NotSelectable	Pos 170,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCSMFONT	FontColor Gold					}
