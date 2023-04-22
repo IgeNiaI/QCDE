@@ -181,10 +181,10 @@ Actor QCBulletPuff
 		Goto Crash
 	XDeath: //hit bleeding actor
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",CHAN_7,0.6,0,9)
 		Stop
 	Crash: //hit everything else
-		TNT1 A 0 A_PlaySound("BulletHitConcreteRandom",7,0.6,0,9)
+		TNT1 A 0 A_PlaySound("BulletHitConcreteRandom",CHAN_7,0.6,0,9)
 	Choose:
 		TNT1 A 0 A_Jump(256,"Type1","Type2")
 	Type1:
@@ -221,7 +221,7 @@ Actor QCShotgunPuff : QCBulletPuff
 	{
 	XDeath:
 		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",CHAN_7,0.6,0,9)
 		Stop
 	}
 }
@@ -235,7 +235,7 @@ Actor QCBulletPuff_DM : QCBulletPuff
 	XDeath: //hit bleeding actor
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_GiveToTarget("MGDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
-		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",CHAN_7,0.6,0,9)
 		Stop
 	}
 }
@@ -266,12 +266,12 @@ Actor QCShotgunPuff_DM : QCShotgunPuff
 		TNT1 A 0 A_GiveToTarget("SGDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		//TNT1 A 0 A_GiveToTarget("PelletHitToken",1)  //unused
 		TNT1 A 0 A_JumpIfCloser(96, "XDeath_PBlank")
-		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",CHAN_7,0.6,0,9)
 		Stop
 
 	XDeath_PBlank:
 		TNT1 A 0 A_GiveToTarget("PointBlankToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
-		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",CHAN_7,0.6,0,9)
 		TNT1 A 0 A_TakeFromTarget("PointBlankToken",1)
 		Stop
 	}
@@ -286,7 +286,7 @@ Actor QCBulletPuffMonster : QCBulletPuff replaces BulletPuff
 	States
 	{
 	XDeath:
-		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",7,0.6,0,9)
+		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",CHAN_7,0.6,0,9)
 		Stop
 	}
 }

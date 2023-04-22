@@ -150,7 +150,7 @@ Actor QCBFG : QCWeapon
 
 		ReadyCantFire:
 			"####" A 0 A_StopSound(CHAN_WEAPON)
-			"####" A 0 A_StopSound(6)
+			"####" A 0 A_StopSound(CHAN_6)
 			"####" A 0 A_ZoomFactor(1.0)
 			"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 			"####" A 0 A_TakeInventory("BFG_Charges",32767)
@@ -219,7 +219,7 @@ Actor QCBFG : QCWeapon
 	//Regular fire
 	FIRAH:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		"####" A 0 A_StopSound(6) //stops raise sound
+		"####" A 0 A_StopSound(CHAN_6) //stops raise sound
 		"####" I 1 Bright offset(6,47) A_GunFlash("PrimaryFlash")
 		"####" IJ 1 Bright
 		"####" K 1 offset(7,48)
@@ -550,7 +550,7 @@ Actor QCBFGShot
 	States
 	{
 	Spawn:
-		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",7,0.6,true,2.5)
+		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
 		"####" AB 1 Bright Light("GreenBigPoint3")
 		"####" CD 1 Bright Light("GreenBigPoint3")
 		"####" EF 1 Bright Light("GreenBigPoint3")
@@ -602,7 +602,7 @@ Actor QCBFGShot
 		Goto EndDeath
 
 	EndDeath:
-		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,1,0,0.75)
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
 		TNT1 A 0 A_Quake(4,20,0,1500)
 		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
@@ -787,7 +787,7 @@ Actor QCBFGChargeShot
 	States
 	{
 	Spawn:
-		DB67 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",7,0.6,true,2.5)
+		DB67 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
 		DB67 AB 1 Bright Light("GreenBigPoint3")
 		DB67 CD 1 Bright Light("GreenBigPoint3")
 		DB67 EF 1 Bright Light("GreenBigPoint3")
@@ -844,7 +844,7 @@ Actor QCBFGChargeShot
 		Goto EndDeath
 
 	EndDeath:
-		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,1,0,0.75)
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
 		TNT1 A 0 A_Quake(4,20,0,1500)
 		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
@@ -957,7 +957,7 @@ Actor QCBFGChargeShot6 : QCBFGChargeShot
 		TNT1 A 0 A_Jump(255,"EndDeath")
 		Goto EndDeath
 	EndDeath:
-		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,1,0,0.75)
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
 		TNT1 A 0 A_Quake(4,20,0,1500)
 		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
@@ -1005,7 +1005,7 @@ Actor QCBFGShot_DM	//No AOE while flying
 	States
 	{
 	Spawn:
-		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",7,0.6,true,2.5)
+		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
 		DB48 ABCDEFGHIJKLMNOPQRSTUVWX 1 Bright Light("GreenBigPoint3")
 		Goto Spawn+1
 
@@ -1034,7 +1034,7 @@ Actor QCBFGShot_DM	//No AOE while flying
 			Goto DeathCont
 
 	DeathCont:
-		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",7,0.85,0,0.75)
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,0.85,0,0.75)
 		TNT1 A 0 A_Quake(3,15,0,768)
 		TNT1 A 0 A_Explode(40,64,XF_HURTSOURCE,0,20)	//self damage. Beware
 		TNT1 A 0 A_RadiusThrust(88,64,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough

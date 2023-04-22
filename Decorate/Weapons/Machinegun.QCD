@@ -117,7 +117,7 @@ Actor QCMachinegun : QCWeapon
 
 		ReadyCantFire:
 			"####" A 0 A_StopSound(CHAN_WEAPON)
-			"####" A 0 A_StopSound(6)
+			"####" A 0 A_StopSound(CHAN_6)
 			"####" A 0 A_ZoomFactor(1.0)
 			"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 		RCFLooper:
@@ -154,7 +154,7 @@ Actor QCMachinegun : QCWeapon
 
 	SelectCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
-		"####" A 0 A_PlaySound("QC/Weapons/Switch",6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		"####" A 0 A_PlaySound("QC/Weapons/Switch",CHAN_6,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
 		"####" A 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
 		"####" A 0 A_ZoomFactor(1.0)
 		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
