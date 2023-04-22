@@ -113,7 +113,7 @@ FreeformMenu "MainMenu"
 	InsertFreeformMenu MainMenuTopBar
 
 	SubMenu {
-		Static	NotInSingleplayer
+		Static
 		Pos		0, -15					Text				"CHAMPIONS"			Background			BTCHAMP
 		Size	154, 30					Font				QCSMFONT			SelectedBackground	BTCHAMPS
 		Anchor	center, center			FontColor			Tan
