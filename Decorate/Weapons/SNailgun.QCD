@@ -150,8 +150,7 @@ Actor QCSuperNailgun : QCWeapon
 		"####" A 0 A_TakeInventory("QCNailgunDM")
 		"####" A 0 A_TakeInventory("QCNailgun")
 		"####" A 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
-		"####" A 0 A_ZoomFactor(1.0)
-		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
+		"####" A 0 ACS_NamedExecuteWithResult("QCDE_ZoomCheckSelect")
 	SelectLooper:
 		"####" A 1 A_Raise
 		"####" AAA 0 A_Raise
@@ -159,8 +158,6 @@ Actor QCSuperNailgun : QCWeapon
 
 	Deselect:
 		"####" A 0 A_StopSound(CHAN_WEAPON) //stops the looping fire sound
-		"####" A 0 A_ZoomFactor(1.0)
-		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 	DeselectLooper:
 		"####" A 1 A_Lower
 		"####" AAA 0 A_Lower
@@ -210,8 +207,6 @@ Actor QCSuperNailgun : QCWeapon
 
 		ReadyCantFire:
 			"####" A 0 A_StopSound(CHAN_WEAPON)
-			"####" A 0 A_ZoomFactor(1.0)
-			"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 		RCFLooper:
 			"####" A 4 A_WeaponReady(WRF_NOFIRE)
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")

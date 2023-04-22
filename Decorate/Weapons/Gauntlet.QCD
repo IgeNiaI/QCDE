@@ -51,8 +51,6 @@ Actor QCGauntlet : QCWeapon
 
 		ReadyCantFire:
 			"####" A 0 A_StopSound(CHAN_WEAPON)
-			"####" A 0 A_ZoomFactor(1.0)
-			"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 		RCFLooper:
 			"####" A 4 A_WeaponReady(WRF_NOFIRE)
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
@@ -81,8 +79,7 @@ Actor QCGauntlet : QCWeapon
 	SelectCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
 		"####" A 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
-		"####" A 0 A_ZoomFactor(1.0)
-		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
+		"####" A 0 ACS_NamedExecuteWithResult("QCDE_ZoomCheckSelect")
 		"####" A 0 A_TakeInventory("PunchedAlready",32767)
 	SelectLooper:
 		"####" A 1 A_Raise
@@ -91,8 +88,6 @@ Actor QCGauntlet : QCWeapon
 
 	Deselect:
 		"####" A 0 A_StopSound(CHAN_WEAPON)
-		"####" A 0 A_ZoomFactor(1.0)
-		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 		"####" A 0 A_TakeInventory("PunchedAlready",32767)
 		"####" A 0 A_JumpIfInventory("PKTipDetached",1,"PKDetachedDeSelect")
 	DeselectLooper:
@@ -461,8 +456,6 @@ Actor QCGauntlet : QCWeapon
 
 		PKReadyCantFire:
 			WP30 A 0 A_StopSound(CHAN_WEAPON)
-			"####" "#" 0 A_ZoomFactor(1.0)
-			"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
 		PKRCFLooper:
 			WP30 A 4 A_WeaponReady(WRF_NOFIRE)
 			WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKRCFLooper")
@@ -720,8 +713,6 @@ Actor QCGauntlet : QCWeapon
 		WP30  A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
 		WP30  A 0 A_PlaySound("QC/Weapons/Switch",CHAN_5,1,0,3)
 		"####" "#" 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
-		"####" "#" 0 A_ZoomFactor(1.0)
-		"####" "#" 0 A_TakeInventory("WeaponZoomedToken",32767)
 		"####" "#" 0 A_TakeInventory("PunchedAlready",32767)
 		"####" "#" 0 A_JumpIfInventory("PKTipDetached",1,"RaiseDetached")
 	PKSelectLooper:

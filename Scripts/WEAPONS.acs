@@ -250,169 +250,166 @@ Script "QCDE_FreeTribolt" (void)
 	SpawnForced("QCTribolt", GetActorX(0),GetActorY(0),GetActorZ(0));
 }
 
-Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, int buttons)
+function void QCDE_SetWeaponZoom (int zoomed, int unzoomsound)
 {
-	if (!predicting && !ACS_NamedExecuteWithResult("QCDE_RailJumpEnabled", 0))
+	int HMGSkin = CheckInventory("QCHMachinegunSkin");
+	int RailSkin = CheckInventory("QCRailgunSkin");
+
+	if (zoomed)
 	{
-		bool shouldZoomIn = !CheckInventory("WeaponZoomedToken") && justPressed;
-		bool shouldZoomOut = CheckInventory("WeaponZoomedToken") && GetCVar("cl_holdZoom") ? justReleased : justPressed;
-		int HMGSkin = CheckInventory("QCHMachinegunSkin");
-		int RailSkin = CheckInventory("QCRailgunSkin");
-
-		if (shouldZoomIn)
+		int zoom = 1.0;
+		if (CheckWeapon("QCGauntlet"))
 		{
-			int zoom = 1.0;
-			if (CheckWeapon("QCGauntlet"))
+			// gauntlet zooms only in DM, but not for Painkiller
+			if (GameType() == GAME_NET_DEATHMATCH && !CheckInventory("Class_Painkiller"))
+				zoom = 1.8;
+		}
+		else if (CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCHeavyMachinegunDM"))
+		{
+			// both heavy machineguns zoom to 1.8
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+			switch (HMGSkin)
 			{
-				// gauntlet zooms only in DM, but not for Painkiller
-				if (GameType() == GAME_NET_DEATHMATCH && !CheckInventory("Class_Painkiller"))
-					zoom = 1.8;
+				case 4: // Quake 4
+					PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_Quake4",CHAN_7,1.0,false,0.5);
+					break;
+				case 5: // ET: QW
+					PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_ETQW",CHAN_7,1.0,false,0.5);
+					break;
+				Default:
+					PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_Default",CHAN_7,1.0,false,0.5);
+					break;
 			}
-			else if (CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCHeavyMachinegunDM"))
-			{
-				// both heavy machineguns zoom to 1.8
-				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-				switch (HMGSkin)
-				{
-					case 4: // Quake 4
-						PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_Quake4",CHAN_7,1.0,false,0.5);
-						break;
-					case 5: // ET: QW
-						PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_ETQW",CHAN_7,1.0,false,0.5);
-						break;
-					Default:
-						PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_Default",CHAN_7,1.0,false,0.5);
-						break;
-				}
-				SetNetworkReplicationFlags( 0 );
-				zoom = GetCVar("cl_hmgZoom");
-				if (zoom < 1.1)
-					zoom = 1.1;
-			}
-			else if (CheckWeapon("QCShotgun"))
-			{
-				// coop shotgun zoom if second upgrade was picked up
-				if (CheckInventory("SG_UG_Explosive"))
-				{
-					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-					PlaySound(0,"QC/Weapons/Upgrade/SGBeep",CHAN_7);
-					SetNetworkReplicationFlags( 0 );
-					zoom = 1.1;
-				}
-			}
-			else if (CheckWeapon("QCSuperShotgun"))
-			{
-				// coop super shotgun zoom if second upgrade was picked up
-				if (CheckInventory("SSG_UG_Flame"))
-				{
-					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-					PlaySound(0,"QC/Weapons/Upgrade/SSGBeep",CHAN_7);
-					SetNetworkReplicationFlags( 0 );
-					zoom = 1.1;
-				}
-			}
-			else if (CheckWeapon("QCSuperNailgun"))
-			{
-				// coop super nailgun zoom if second upgrade was picked up
-				if (CheckInventory("SNG_UG_Seeker"))
-				{
-					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-					PlaySound(0,"QC/Weapons/Upgrade/SNGBeep",CHAN_7);
-					SetNetworkReplicationFlags( 0 );
-					zoom = 1.1;
-				}
-			}
-			else if (CheckWeapon("QCTribolt"))
-			{
-				// coop tribolt zoom if second upgrade was picked up
-				if (CheckInventory("TB_UG_Grenade"))
-				{
-					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-					PlaySound(0,"QC/Weapons/Upgrade/TBBeep",CHAN_7);
-					SetNetworkReplicationFlags( 0 );
-					zoom = 1.1;
-				}
-			}
-			else if (CheckWeapon("QCRocketLauncher"))
-			{
-				// coop rocket launcher zoom if second upgrade was picked up
-				if (CheckInventory("RL_UG_Control"))
-				{
-					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-					PlaySound(0,"QC/Weapons/Upgrade/RLBeep",CHAN_7);
-					SetNetworkReplicationFlags( 0 );
-					zoom = 1.1;
-				}
-			}
-			else if (CheckWeapon("QCLightningGun"))
-			{
-				// coop lightning gun zoom if second upgrade was picked up
-				if (CheckInventory("LG_UG_Static"))
-				{
-					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-					PlaySound(0,"QC/Weapons/Upgrade/LGBeep",CHAN_7);
-					SetNetworkReplicationFlags( 0 );
-					zoom = 1.1;
-				}
-			}
-			else if (CheckWeapon("QCLightningGunDM"))
-			{
-				zoom = GetCVar("cl_lgZoom");
-				if (zoom < 1.1)
-					zoom = 1.1;
-			}
-			else if (CheckWeapon("QCRailgun") || CheckWeapon("QCRailgunDM"))
-			{
-				// both railguns zoom to 2.5
-				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-				switch (RailSkin)
-				{
-					case 4: // Quake 4
-						PlaySound(0,"QC/Weapons/Railgun/ZoomIn_Quake4",CHAN_7,1.0,false);
-						break;
-					case 5: // ET: QW
-						PlaySound(0,"QC/Weapons/Railgun/ZoomIn_ETQW",CHAN_7,1.0,false);
-						break;
-					Default:
-						PlaySound(0,"QC/Weapons/Railgun/ZoomIn_Default",CHAN_7,1.0,false);
-						break;
-				}
-				SetNetworkReplicationFlags( 0 );
-				zoom = GetCVar("cl_railgunZoom");
-				if (zoom < 1.1)
-					zoom = 1.1;
-			}
-			else if (CheckWeapon("QCBFG"))
-			{
-				// coop BFG zoom if second upgrade was picked up
-				if (CheckInventory("BFG_UG_Charge"))
-				{
-					SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-					PlaySound(0,"QC/Weapons/Upgrade/BFGBeep",CHAN_7);
-					SetNetworkReplicationFlags( 0 );
-					zoom = 1.1;
-				}
-			}
-			else if (CheckWeapon("QCMachinegunDM") || CheckWeapon("QCBFGDM")
-					|| CheckWeapon("QCShotgunDM") || CheckWeapon("QCSuperShotgunDM")
-					|| CheckWeapon("QCNailgunDM") || CheckWeapon("QCSuperNailgunDM")
-					|| CheckWeapon("QCTriboltDM") || CheckWeapon("QCRocketLauncherDM"))
-            {
-				// all other weapons zoom to 1.8
-				zoom = GetCVar("cl_otherZoom");
-				if (zoom < 1.1)
-					zoom = 1.1;
-            }
-
-			if (zoom != 1.0)
+			SetNetworkReplicationFlags( 0 );
+			zoom = GetCVar("cl_hmgZoom");
+			if (zoom < 1.1)
+				zoom = 1.1;
+		}
+		else if (CheckWeapon("QCShotgun"))
+		{
+			// coop shotgun zoom if second upgrade was picked up
+			if (CheckInventory("SG_UG_Explosive"))
 			{
 				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-				SetInventory("WeaponZoomedToken", 1);
-				SetPlayerWeaponZoomFactor(PlayerNumber(), zoom);
+				PlaySound(0,"QC/Weapons/Upgrade/SGBeep",CHAN_7);
 				SetNetworkReplicationFlags( 0 );
+				zoom = 1.1;
 			}
 		}
-		else if (shouldZoomOut)
+		else if (CheckWeapon("QCSuperShotgun"))
+		{
+			// coop super shotgun zoom if second upgrade was picked up
+			if (CheckInventory("SSG_UG_Flame"))
+			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+				PlaySound(0,"QC/Weapons/Upgrade/SSGBeep",CHAN_7);
+				SetNetworkReplicationFlags( 0 );
+				zoom = 1.1;
+			}
+		}
+		else if (CheckWeapon("QCSuperNailgun"))
+		{
+			// coop super nailgun zoom if second upgrade was picked up
+			if (CheckInventory("SNG_UG_Seeker"))
+			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+				PlaySound(0,"QC/Weapons/Upgrade/SNGBeep",CHAN_7);
+				SetNetworkReplicationFlags( 0 );
+				zoom = 1.1;
+			}
+		}
+		else if (CheckWeapon("QCTribolt"))
+		{
+			// coop tribolt zoom if second upgrade was picked up
+			if (CheckInventory("TB_UG_Grenade"))
+			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+				PlaySound(0,"QC/Weapons/Upgrade/TBBeep",CHAN_7);
+				SetNetworkReplicationFlags( 0 );
+				zoom = 1.1;
+			}
+		}
+		else if (CheckWeapon("QCRocketLauncher"))
+		{
+			// coop rocket launcher zoom if second upgrade was picked up
+			if (CheckInventory("RL_UG_Control"))
+			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+				PlaySound(0,"QC/Weapons/Upgrade/RLBeep",CHAN_7);
+				SetNetworkReplicationFlags( 0 );
+				zoom = 1.1;
+			}
+		}
+		else if (CheckWeapon("QCLightningGun"))
+		{
+			// coop lightning gun zoom if second upgrade was picked up
+			if (CheckInventory("LG_UG_Static"))
+			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+				PlaySound(0,"QC/Weapons/Upgrade/LGBeep",CHAN_7);
+				SetNetworkReplicationFlags( 0 );
+				zoom = 1.1;
+			}
+		}
+		else if (CheckWeapon("QCLightningGunDM"))
+		{
+			zoom = GetCVar("cl_lgZoom");
+			if (zoom < 1.1)
+				zoom = 1.1;
+		}
+		else if (CheckWeapon("QCRailgun") || CheckWeapon("QCRailgunDM"))
+		{
+			// both railguns zoom to 2.5
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+			switch (RailSkin)
+			{
+				case 4: // Quake 4
+					PlaySound(0,"QC/Weapons/Railgun/ZoomIn_Quake4",CHAN_7,1.0,false);
+					break;
+				case 5: // ET: QW
+					PlaySound(0,"QC/Weapons/Railgun/ZoomIn_ETQW",CHAN_7,1.0,false);
+					break;
+				Default:
+					PlaySound(0,"QC/Weapons/Railgun/ZoomIn_Default",CHAN_7,1.0,false);
+					break;
+			}
+			SetNetworkReplicationFlags( 0 );
+			zoom = GetCVar("cl_railgunZoom");
+			if (zoom < 1.1)
+				zoom = 1.1;
+		}
+		else if (CheckWeapon("QCBFG"))
+		{
+			// coop BFG zoom if second upgrade was picked up
+			if (CheckInventory("BFG_UG_Charge"))
+			{
+				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+				PlaySound(0,"QC/Weapons/Upgrade/BFGBeep",CHAN_7);
+				SetNetworkReplicationFlags( 0 );
+				zoom = 1.1;
+			}
+		}
+		else if (CheckWeapon("QCMachinegunDM") || CheckWeapon("QCBFGDM")
+				|| CheckWeapon("QCShotgunDM") || CheckWeapon("QCSuperShotgunDM")
+				|| CheckWeapon("QCNailgunDM") || CheckWeapon("QCSuperNailgunDM")
+				|| CheckWeapon("QCTriboltDM") || CheckWeapon("QCRocketLauncherDM"))
+        {
+			// all other weapons zoom to 1.8
+			zoom = GetCVar("cl_otherZoom");
+			if (zoom < 1.1)
+				zoom = 1.1;
+        }
+
+		if (zoom != 1.0)
+		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+			SetPlayerWeaponZoomFactor(PlayerNumber(), zoom);
+			SetNetworkReplicationFlags( 0 );
+		}
+	}
+	else
+	{
+		if (unzoomsound)
 		{
 			if (CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCHeavyMachinegunDM"))
 			{
@@ -448,11 +445,42 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 				}
 				SetNetworkReplicationFlags( 0 );
 			}
+		}
 
-			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		SetPlayerWeaponZoomFactor(PlayerNumber(), 1.0);
+		SetNetworkReplicationFlags( 0 );
+	}
+}
+
+Script "QCDE_ZoomCheckSelect" (void)
+{
+	if (CheckInventory("WeaponZoomedToken"))
+	{
+		QCDE_SetWeaponZoom(true, false);
+	}
+	else
+	{
+		QCDE_SetWeaponZoom(false, false);
+	}
+}
+
+Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, int buttons)
+{
+	if (!predicting && !ACS_NamedExecuteWithResult("QCDE_RailJumpEnabled", 0))
+	{
+		bool shouldZoomIn = !CheckInventory("WeaponZoomedToken") && justPressed;
+		bool shouldZoomOut = CheckInventory("WeaponZoomedToken") && GetCVar("cl_holdZoom") ? justReleased : justPressed;
+
+		if (shouldZoomIn)
+		{
+			SetInventory("WeaponZoomedToken", 1);
+			QCDE_SetWeaponZoom(true, true);
+		}
+		else if (shouldZoomOut)
+		{
 			SetInventory("WeaponZoomedToken", 0);
-			SetPlayerWeaponZoomFactor(PlayerNumber(), 1.0);
-			SetNetworkReplicationFlags( 0 );
+			QCDE_SetWeaponZoom(false, true);
 		}
 	}
 }

@@ -145,8 +145,6 @@ Actor QCRocketLauncher : QCWeapon
 
 		ReadyCantFire:
 			"####" A 0 A_StopSound(CHAN_WEAPON)
-			"####" A 0 A_ZoomFactor(1.0)
-			"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 		RCFLooper:
 			"####" A 4 A_WeaponReady(WRF_NOFIRE)
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
@@ -191,8 +189,7 @@ Actor QCRocketLauncher : QCWeapon
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
 		"####" A 0 A_PlaySound("QC/Weapons/Switch",CHAN_5,1,0,3)
 		"####" A 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
-		"####" A 0 A_ZoomFactor(1.0)
-		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
+		"####" A 0 ACS_NamedExecuteWithResult("QCDE_ZoomCheckSelect")
 	SelectLooper:
 		"####" A 1 A_Raise
 		"####" AAA 0 A_Raise
@@ -202,8 +199,6 @@ Actor QCRocketLauncher : QCWeapon
 		//Medals start
 		"####" A 0 A_GiveInventory("ComboSwitchRLGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		//Medals end
-		"####" A 0 A_ZoomFactor(1.0)
-		"####" A 0 A_TakeInventory("WeaponZoomedToken",32767)
 	DeselectLooper:
 		"####" A 1 A_Lower
 		"####" AAA 0 A_Lower
@@ -254,8 +249,6 @@ Actor QCRocketLauncher : QCWeapon
 				TNT1 A 0 A_FireCustomMissile("RocketControlled", 0, true, 1, 5, FPF_NOUNLAGGED|FPF_SKIPOWNER)
 				TNT1 A 0 SetPlayerProperty(0,1,PROP_TOTALLYFROZEN) // to remove possibility of refire and such
 				TNT1 A 0 A_GiveInventory("PowerControllerProtection") // because player is otherwise defenseless
-				TNT1 A 0 A_ZoomFactor(1.0) 	//immediately unzooms and removes zoom token
-				TNT1 A 0 A_TakeInventory("WeaponZoomedToken",32767)
 				Goto FlashCheckSound
 
 		PerformDM:
