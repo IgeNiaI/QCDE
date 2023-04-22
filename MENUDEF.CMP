@@ -230,6 +230,7 @@ OptionValue QCDE_StartingWeaponBG_SG { 2,	"WPSELEKS" }
 OptionValue QCDE_StartingWeaponBG_NG { 3,	"WPSELEKS" }
 
 
+OptionString QCDE_Champion_Random		{ "Random",			"" }
 // Light
 OptionString QCDE_Champion_Kane			{ "Kane",			"" }
 OptionString QCDE_Champion_Caleb		{ "Caleb",			"" }
@@ -267,6 +268,7 @@ OptionString QCDE_Champion_Major		{ "Major",			"" }
 OptionString QCDE_Champion_Sam			{ "Sam",			"" }
 // ^ insert more classes here
 
+OptionString QCDE_ChampionBG_Random		{ "Random",			"Cpicker1" }
 // Light
 OptionString QCDE_ChampionBG_Kane		{ "Kane",			"Cpicker1" }
 OptionString QCDE_ChampionBG_Caleb		{ "Caleb",			"Cpicker1" }
@@ -305,6 +307,7 @@ OptionString QCDE_ChampionBG_Sam		{ "Sam",			"Cpicker1" }
 // ^ insert more classes here
 
 OptionString QCDE_Champions_FakeText {
+	"Random",		""
 	// light
 	"Kane",			""
 	"Caleb",		""
@@ -344,6 +347,7 @@ OptionString QCDE_Champions_FakeText {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Names {
+	"Random",		"Random"
 	// light
 	"Kane",			"Kane"
 	"Caleb",		"Caleb"
@@ -383,6 +387,7 @@ OptionString QCDE_Champions_Names {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Images {
+	"Random",		"QPRN"
 	// light
 	"Kane",			"QP04A"
 	"Caleb",		"QP05A"
@@ -422,6 +427,7 @@ OptionString QCDE_Champions_Images {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Movement {
+	"Random",		""
 	// light
 	"Kane",			"$MOVTQUAK"
 	"Caleb",		"$MOVTQUAK"
@@ -461,6 +467,7 @@ OptionString QCDE_Champions_Movement {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Active {
+	"Random",		""
 	// light
 	"Kane",			"$ABILT104"
 	"Caleb",		"$ABILT105"
@@ -500,6 +507,7 @@ OptionString QCDE_Champions_Active {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Passive1 {
+	"Random",		""
 	// light
 	"Kane",			"$ABILT304"
 	"Caleb",		"$ABILT305"
@@ -539,6 +547,7 @@ OptionString QCDE_Champions_Passive1 {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Passive2 {
+	"Random",		""
 	// light
 	"Kane",			"$ABILT504"
 	"Caleb",		"$ABILT505"
@@ -578,6 +587,7 @@ OptionString QCDE_Champions_Passive2 {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Portraits {
+	"Random",		"portrCRN"
 	// light
 	"Kane",			"portrC04"
 	"Caleb",		"portrC05"
@@ -617,6 +627,7 @@ OptionString QCDE_Champions_Portraits {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_PortraitsFull {
+	"Random",		"portrDRN"
 	// light
 	"Kane",			"portrD04"
 	"Caleb",		"portrD05"
@@ -656,6 +667,7 @@ OptionString QCDE_Champions_PortraitsFull {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Abilities {
+	"Random",		""
 	// light
 	"Kane",			"abilit04"
 	"Caleb",		"abilit05"
@@ -695,6 +707,7 @@ OptionString QCDE_Champions_Abilities {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Type {
+	"Random",		""
 	// light
 	"Kane",			"$CMPLIGHT"
 	"Caleb",		"$CMPLIGHT"
@@ -734,6 +747,7 @@ OptionString QCDE_Champions_Type {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Health {
+	"Random",		""
 	// light
 	"Kane",			"100 / 100 / 175"
 	"Caleb",		"100 / 100 / 175"
@@ -773,6 +787,7 @@ OptionString QCDE_Champions_Health {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Armor {
+	"Random",		""
 	// light
 	"Kane",			"25 / 75 / 150"
 	"Caleb",		"25 / 75 / 150"
@@ -812,6 +827,7 @@ OptionString QCDE_Champions_Armor {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_MovementDesc {
+	"Random",		""
 	// light
 	"Kane",			"$MOVDQUAK"
 	"Caleb",		"$MOVDQUAK"
@@ -851,6 +867,7 @@ OptionString QCDE_Champions_MovementDesc {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_ActiveDesc {
+	"Random",		""
 	// light
 	"Kane",			"$ABILT204"
 	"Caleb",		"$ABILT205"
@@ -890,6 +907,7 @@ OptionString QCDE_Champions_ActiveDesc {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Cooldowns {
+	"Random",		""
 	// light
 	"Kane",			"40 / 35"
 	"Caleb",		"30 / 35"
@@ -929,6 +947,7 @@ OptionString QCDE_Champions_Cooldowns {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Passive1Desc {
+	"Random",		""
 	// light
 	"Kane",			"$ABILT404"
 	"Caleb",		"$ABILT405"
@@ -968,6 +987,7 @@ OptionString QCDE_Champions_Passive1Desc {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Passive2Desc {
+	"Random",		""
 	// light
 	"Kane",			"$ABILT604"
 	"Caleb",		"$ABILT605"
@@ -1007,6 +1027,7 @@ OptionString QCDE_Champions_Passive2Desc {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Story {
+	"Random",		""
 	// light
 	"Kane",			"$LORCP104"
 	"Caleb",		"$LORCP105"
@@ -1046,6 +1067,7 @@ OptionString QCDE_Champions_Story {
 // ^ insert more classes here
 
 OptionString QCDE_Champions_Lore {
+	"Random",		""
 	// light
 	"Kane",			"$LORCP204"
 	"Caleb",		"$LORCP205"
