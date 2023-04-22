@@ -105,10 +105,20 @@ server int theme4  = 1; // Doom 4 (Death Foretold)
 // Menu settings
 server noarchive int qcde_selectedoptions  = 0; // which options menu is currently visible
 
-server int qcde_botscount        = 0; // fills slots with bots if there are fewer players
-server int qcde_skirmishgamemode = 3; // used in skirmish menu to setup gamemode
-server int qcde_skirmishmodifier = 0; // used in skirmish menu to setup modifier
-server int qcde_maxlives         = 3; // used in skirmish menu to setup lives limit
+server int skirm_botscount        = 0; // fills slots with bots if there are fewer players
+server int skirm_skirmishgamemode = 3; // used in skirmish menu to setup gamemode
+server int skirm_skirmishmodifier = 0; // used in skirmish menu to setup modifier
+server int skirm_maxlives         = 3; // used in skirmish menu to setup lives limit
+
+server bool skirm_railjump			= false; // enable alt fire rail jump?
+server bool skirm_heavymachinegun	=  true; // spawn with Heavy Machinegun?
+server bool skirm_supershotgun		=  true; // spawn with Super Shotgun?
+server bool skirm_supernailgun		=  true; // spawn with Super Nailgun?
+server bool skirm_tribolt			=  true; // spawn with Tribolt?
+server bool skirm_rocketlauncher	=  true; // spawn with Rocket Launcher?
+server bool skirm_lightninggun		=  true; // spawn with Lightning Gun?
+server bool skirm_railgun			=  true; // spawn with Railgun?
+server bool skirm_bfg				=  true; // spawn with BFG?
 
 // User-supplied
 

@@ -535,9 +535,11 @@ Script "QCDE_Players=0" OPEN
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
 	if(GameType() == GAME_TITLE_MAP) terminate;
 
-	if (!GetCvar("sv_minplayers"))
+	if (!GetCvar("sv_minplayers") && GetCVar("skirm_botscount"))
 	{
-		int maxBots = GetCVar("qcde_botscount");
+		int maxBots = GetCVar("skirm_botscount");
+		if (maxBots > 32)
+			maxBots = 32;
 		int botCount = 0;
 		int i;
 		if (GetGameModeState() < GAMESTATE_INPROGRESS)
@@ -685,7 +687,7 @@ function void clearBots()
 
 function void setupGamemode()
 {
-	int gamemode = GetCVar("qcde_skirmishgamemode");
+	int gamemode = GetCVar("skirm_skirmishgamemode");
 	int menu_skirmishgamemode = 3; // default to deathmatch
 	int qc_elderssoul = 0;
 	int qc_freezetag = 0;
@@ -709,28 +711,39 @@ function void setupGamemode()
 	ConsoleCommand(strparam(s:"menu_skirmishgamemode ",		d:menu_skirmishgamemode));
 	ConsoleCommand(strparam(s:"qc_elderssoul ",				d:qc_elderssoul));
 	ConsoleCommand(strparam(s:"qc_freezetag ",				d:qc_freezetag));
-	ConsoleCommand(strparam(s:"sv_maxlives ",				d:GetCVar("qcde_maxlives")));
+	ConsoleCommand(strparam(s:"sv_maxlives ",				d:GetCVar("skirm_maxlives")));
 }
 
 function void setupModifier()
 {
-	int modifier = GetCVar("qcde_skirmishmodifier");
+	int modifier = GetCVar("skirm_skirmishmodifier");
 	int menu_skirmishmodifier = 0;
 	int rocketarena = 0;
+	bool railjump = false;
 
 	switch (modifier)
 	{
 	case 1: menu_skirmishmodifier = 1;		break;	// Instagib
-	case 2: rocketarena = 1;				break;	// Rocket Arena
-	case 3: rocketarena = 2;				break;	// Buckshot
-	case 4: rocketarena = 3;				break;	// Unholy Trinity
-	case 5: rocketarena = 6;				break;	// Lightning Storm
-	case 6: rocketarena = 4;				break;	// Random Weapons (Per map)
-	case 7: rocketarena = 5;				break;	// Random Weapons (Per life)
+	case 2: rocketarena = 5;				break;	// Random Weapons
+	case 3: {										// Custom Weapons
+		if (GetCVar("skirm_heavymachinegun"))	rocketarena += 0000000001;
+		if (GetCVar("skirm_supershotgun"))		rocketarena += 0000000010;
+		if (GetCVar("skirm_supernailgun"))		rocketarena += 0000000100;
+		if (GetCVar("skirm_tribolt"))			rocketarena += 0000001000;
+		if (GetCVar("skirm_rocketlauncher"))	rocketarena += 0000010000;
+		if (GetCVar("skirm_lightninggun"))		rocketarena += 0000100000;
+		if (GetCVar("skirm_railgun"))			rocketarena += 0001000000;
+		if (GetCVar("skirm_bfg"))				rocketarena += 0010000000;
+		break;
 	}
+	}
+
+	if (GetCVar("skirm_railjump"))
+		railjump = true;
 
 	ConsoleCommand(strparam(s:"menu_skirmishmodifier ",		d:menu_skirmishmodifier));
 	ConsoleCommand(strparam(s:"rocketarena ",	d:rocketarena));
+	ConsoleCommand(strparam(s:"sv_railjump ",	d:railjump));
 }
 
 

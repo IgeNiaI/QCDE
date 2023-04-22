@@ -156,14 +156,28 @@ function void GiveRocketArena(int ra)
 
 	if(ra > 8) // Custom bitfield (in decimals (bruh))
 	{
-		if(ra % 10) GiveInventory("QCHeavyMachinegunDM", 1); ra /= 10; // __ _ ___ _ __X
-		if(ra % 10) GiveInventory("QCSuperShotgunDM"   , 1); ra /= 10; // __ _ ___ _ _X_
-		if(ra % 10) GiveInventory("QCSuperNailgunDM"   , 1); ra /= 10; // __ _ ___ _ X__
-		if(ra % 10) GiveInventory("QCTriboltDM"        , 1); ra /= 10; // __ _ ___ X ___
-		if(ra % 10) GiveInventory("QCRocketLauncherDM" , 1); ra /= 10; // __ _ __X _ ___
-		if(ra % 10) GiveInventory("QCLightningGunDM"   , 1); ra /= 10; // __ _ _X_ _ ___
-		if(ra % 10) GiveInventory("QCRailgunDM"        , 1); ra /= 10; // __ _ X__ _ ___
-		if(ra % 10) GiveInventory("QCBFGDM"            , 1); ra /= 10; // __ X ___ _ ___
+		if (ACS_NamedExecuteWithResult("MultiplayerCheck", 0, 0) == 2)
+		{
+			if(ra % 10) GiveInventory("QCHeavyMachinegunDM", 1); ra /= 10; // __ _ ___ _ __X
+			if(ra % 10) GiveInventory("QCSuperShotgunDM"   , 1); ra /= 10; // __ _ ___ _ _X_
+			if(ra % 10) GiveInventory("QCSuperNailgunDM"   , 1); ra /= 10; // __ _ ___ _ X__
+			if(ra % 10) GiveInventory("QCTriboltDM"        , 1); ra /= 10; // __ _ ___ X ___
+			if(ra % 10) GiveInventory("QCRocketLauncherDM" , 1); ra /= 10; // __ _ __X _ ___
+			if(ra % 10) GiveInventory("QCLightningGunDM"   , 1); ra /= 10; // __ _ _X_ _ ___
+			if(ra % 10) GiveInventory("QCRailgunDM"        , 1); ra /= 10; // __ _ X__ _ ___
+			if(ra % 10) GiveInventory("QCBFGDM"            , 1); ra /= 10; // __ X ___ _ ___
+		}
+		else
+		{
+			if(ra % 10) GiveInventory("QCHeavyMachinegun"  , 1); ra /= 10; // __ _ ___ _ __X
+			if(ra % 10) GiveInventory("QCSuperShotgun"     , 1); ra /= 10; // __ _ ___ _ _X_
+			if(ra % 10) GiveInventory("QCSuperNailgun"     , 1); ra /= 10; // __ _ ___ _ X__
+			if(ra % 10) GiveInventory("QCTribolt"          , 1); ra /= 10; // __ _ ___ X ___
+			if(ra % 10) GiveInventory("QCRocketLauncher"   , 1); ra /= 10; // __ _ __X _ ___
+			if(ra % 10) GiveInventory("QCLightningGun"     , 1); ra /= 10; // __ _ _X_ _ ___
+			if(ra % 10) GiveInventory("QCRailgun"          , 1); ra /= 10; // __ _ X__ _ ___
+			if(ra % 10) GiveInventory("QCBFG"              , 1); ra /= 10; // __ X ___ _ ___
+		}
 
 		if(ra % 10) GiveInventory("QCMegaMega"         , 1); ra /= 10; // _X _ ___ _ ___
 		if(ra % 10) GiveInventory("QCMegaMega"         , 1); ra /= 10; // X_ _ ___ _ ___
@@ -175,8 +189,8 @@ function void GiveRocketArena(int ra)
 	{
 	default: // go to case 1
 	case 1: if (CheckInventory("QCHeavyMachinegunDM")) SetWeapon("QCHeavyMachinegunDM");	break;
-	case 2: if (CheckInventory("QCSuperShotgunDM")) SetWeapon("QCSuperShotgunDM");		break;
-	case 3: if (CheckInventory("QCSuperNailgunDM")) SetWeapon("QCSuperNailgunDM");		break;
+	case 2: if (CheckInventory("QCSuperShotgunDM")) SetWeapon("QCSuperShotgunDM");			break;
+	case 3: if (CheckInventory("QCSuperNailgunDM")) SetWeapon("QCSuperNailgunDM");			break;
 	}
 
 	GiveInventory("EndlessInfiniteAmmo",1);

@@ -252,75 +252,6 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 
-
-	Label {
-		Pos		0, 30				Font		SmallFont
-		Anchor	left, top			FontColor	DarkRed
-		Text	"Game Mode"
-	}
-	Option {
-		Pos		0, 47				CVar				qcde_skirmishgamemode		UnknownBackground	OP21028
-		Size	105, 14				Values				QCDE_Gamemode				SelectedBackground	OP21028S
-		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
-		Padding	3, 1				SelectedFontColor	Gray
-	}
-
-	Label {
-		Pos		0, 60				Font		SmallFont
-		Anchor	left, top			FontColor	DarkRed
-		Text	"Modifier"
-	}
-	Option {
-		Pos		0, 77				CVar				qcde_skirmishmodifier		UnknownBackground	OP21028
-		Size	105, 14				Values				QCDE_Modifier				SelectedBackground	OP21028S
-		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
-		Padding	3, 1				SelectedFontColor	Gray
-	}
-
-	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
-		Pos		0, 90				Font		SmallFont
-		Anchor	left, top			FontColor	DarkRed
-		Text	"Bots count"
-	}
-	Option {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
-		Pos		0, 107				CVar				qcde_botscount				UnknownBackground	OP21028
-		Size	105, 14				Values				QCDE_BotsCount				SelectedBackground	OP21028S
-		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
-		Padding	3, 1				SelectedFontColor	Gray
-	}
-
-	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
-		Pos 0, 120					Font		SmallFont
-		Anchor left, top			FontColor	DarkRed
-		Text "Bot Skill"
-	}
-	Option {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
-		Pos		0, 137				CVar				menu_skirmishbotskill		UnknownBackground	OP21028
-		Size	105, 14				Values				QCDE_BotSkill				SelectedBackground	OP21028S
-		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
-		Padding	3, 1				SelectedFontColor	Gray
-	}
-
-	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
-		Pos		0, 167				Font		SmallFont
-		Anchor	left, center		FontColor	DarkRed
-		Text	"Bots can talk"
-	}
-	Option {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
-		Pos		105, 166			CVar				bot_allowchat
-		Size	14, 14				Values				QCDE_CheckText
-		Anchor	right, center		BackgroundValues	QCDE_CheckBG
-		MouseArea	105, 14			UnknownBackground	CHKBOX
-									SelectedForeground	CHKBOXS, 14, 14
-	}
-
-
 	// 0, "Cooperative"
 	// 1, "Survival"
 	// 2, "Invasion"
@@ -335,162 +266,220 @@ FreeformMenu QCDE_SkirmishMenu
 	// 11, "Capture The Flag"
 	// 12, "Domination"
 
+	Label {
+		Pos		0, 30				Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"Game Mode"
+	}
+	Option {
+		Pos		0, 47				CVar				skirm_skirmishgamemode		UnknownBackground	OP21028
+		Size	105, 14				Values				QCDE_Gamemode				SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	SubMenu {
+		Pos  53, 77				Text "Setup Weapons"		Background			BV21028
+		Size 105, 14			Font SmallFont				SelectedBackground	BV21028S
+		Anchor center, center	FontColor Tan				Menu QCDE_SkirmishWeapons
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	SubMenu {
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		Pos  53, 107			Text "Setup Bots"			Background			BV21028
+		Size 105, 14			Font SmallFont				SelectedBackground	BV21028S
+		Anchor center, center	FontColor Tan				Menu QCDE_SkirmishBots
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
+	Label {
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		Pos		0, 137				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Item respawn timers"
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		Pos		105, 136			CVar				sv_showItemTimers
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		Pos		0, 157				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Show killer stack"
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		Pos		105, 156			CVar				sv_showStackLeft
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
 	// Max Lives, for Survival and Invasion
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	1, 2
+		VisibilityCVar skirm_skirmishgamemode,	1, 2
 		Pos		125, 30			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Max Lives"
 	}
 	TextField {
-		VisibilityCVar qcde_skirmishgamemode,	1, 2
-		Pos		137, 47			CVar				qcde_maxlives	Background			TX05028
+		VisibilityCVar skirm_skirmishgamemode,	1, 2
+		Pos		137, 47			CVar				skirm_maxlives	Background			TX05028
 		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
-		Padding 0, 0			SelectedFontColor	Gray
+		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	1, 2
+		VisibilityCVar skirm_skirmishgamemode,	1, 2
 		Pos		153, 48		Anchor left, center
 		Text	"Lives"		Font SmallFont
 	}
 
 	// Wave Limit, for Invasion
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	2, 2
+		VisibilityCVar skirm_skirmishgamemode,	2, 2
 		Pos		125, 60			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Wave Limit"
 	}
 	TextField {
-		VisibilityCVar qcde_skirmishgamemode,	2, 2
+		VisibilityCVar skirm_skirmishgamemode,	2, 2
 		Pos		137, 77			CVar				menu_skirmishwavelimit	Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	2, 2
+		VisibilityCVar skirm_skirmishgamemode,	2, 2
 		Pos		153, 78		Anchor left, center
 		Text	"Waves"		Font SmallFont
 	}
 
 	// Time limit, for all PvP modes
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
 		Pos		125, 30			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Time Limit"
 	}
 	TextField {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
 		Pos		137, 47			CVar				menu_skirmishtimelimit	Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
 		Pos		153, 48		Anchor left, center
 		Text	"Minutes"	Font SmallFont
 	}
 
 	// Win Limit, for all PvP gamemodes
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
 		Pos		125, 60			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Win Limit"
 	}
 	TextField {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
 		Pos		137, 77			CVar				menu_skirmishwinlimit	Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
 		Pos		153, 78		Anchor left, center
 		Text	"Wins"		Font SmallFont
 	}
 
 	// Frag Limit, for DM, TDM and Duel
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 5
+		VisibilityCVar skirm_skirmishgamemode,	3, 5
 		Pos		125, 90			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Frag Limit"
 	}
 	TextField {
-		VisibilityCVar qcde_skirmishgamemode,	3, 5
+		VisibilityCVar skirm_skirmishgamemode,	3, 5
 		Pos		137, 107		CVar				menu_skirmishfraglimit	Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 5
+		VisibilityCVar skirm_skirmishgamemode,	3, 5
 		Pos		153, 108	Anchor left, center
 		Text	"Frags"		Font SmallFont
 	}
 
 	// Max Lives, for LMS
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	6, 7
+		VisibilityCVar skirm_skirmishgamemode,	6, 7
 		Pos		125, 90			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Max Lives"
 	}
 	TextField {
-		VisibilityCVar qcde_skirmishgamemode,	6, 7
-		Pos		137, 107		CVar				qcde_maxlives	Background			TX05028
+		VisibilityCVar skirm_skirmishgamemode,	6, 7
+		Pos		137, 107		CVar				skirm_maxlives	Background			TX05028
 		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	6, 7
+		VisibilityCVar skirm_skirmishgamemode,	6, 7
 		Pos		153, 108	Anchor left, center
 		Text	"Lives"		Font SmallFont
 	}
 
 	// Frag Limit again, for Elder's Soul
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		VisibilityCVar skirm_skirmishgamemode,	9, 10
 		Pos		125, 90			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Frag Limit"
 	}
 	TextField {
-		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		VisibilityCVar skirm_skirmishgamemode,	9, 10
 		Pos		137, 107		CVar				menu_skirmishfraglimit	Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		VisibilityCVar skirm_skirmishgamemode,	9, 10
 		Pos		153, 108	Anchor left, center
 		Text	"Frags"		Font SmallFont
 	}
 
 	// Point Limit again, for CTF and Domination
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	11, 12
+		VisibilityCVar skirm_skirmishgamemode,	11, 12
 		Pos		125, 90			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Point Limit"
 	}
 	TextField {
-		VisibilityCVar qcde_skirmishgamemode,	11, 12
+		VisibilityCVar skirm_skirmishgamemode,	11, 12
 		Pos		137, 107		CVar				menu_skirmishpointlimit	Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	11, 12
+		VisibilityCVar skirm_skirmishgamemode,	11, 12
 		Pos		153, 108	Anchor left, center
 		Text	"Points"	Font SmallFont
 	}
@@ -498,13 +487,13 @@ FreeformMenu QCDE_SkirmishMenu
 
 	// Warmup Mode, for DM and TDM
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 4
+		VisibilityCVar skirm_skirmishgamemode,	3, 4
 		Pos		125, 137			Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Warmup"
 	}
 	Option {
-		VisibilityCVar qcde_skirmishgamemode,	3, 4
+		VisibilityCVar skirm_skirmishgamemode,	3, 4
 		Pos		195, 136			CVar				sv_deathmatchwarmup
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -514,13 +503,13 @@ FreeformMenu QCDE_SkirmishMenu
 
 	// Warmup Mode again, for Elder's Soul
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		VisibilityCVar skirm_skirmishgamemode,	9, 10
 		Pos		125, 137			Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Warmup"
 	}
 	Option {
-		VisibilityCVar qcde_skirmishgamemode,	9, 10
+		VisibilityCVar skirm_skirmishgamemode,	9, 10
 		Pos		195, 136			CVar				sv_deathmatchwarmup
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -530,13 +519,13 @@ FreeformMenu QCDE_SkirmishMenu
 
 	// Warmup Mode, for Duel
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	5, 5
+		VisibilityCVar skirm_skirmishgamemode,	5, 5
 		Pos		125, 137			Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Warmup"
 	}
 	Option {
-		VisibilityCVar qcde_skirmishgamemode,	5, 5
+		VisibilityCVar skirm_skirmishgamemode,	5, 5
 		Pos		195, 136			CVar				sv_duelwarmup
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -546,13 +535,13 @@ FreeformMenu QCDE_SkirmishMenu
 
 	// Warmup Mode, for LMS and FreezeTag
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	6, 8
+		VisibilityCVar skirm_skirmishgamemode,	6, 8
 		Pos		125, 137			Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Warmup"
 	}
 	Option {
-		VisibilityCVar qcde_skirmishgamemode,	6, 8
+		VisibilityCVar skirm_skirmishgamemode,	6, 8
 		Pos		195, 136			CVar				sv_lmswarmup
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -566,6 +555,247 @@ FreeformMenu QCDE_SkirmishMenu
 		Anchor	center, center		FontColor			Tan				Command				qcde_startskirmish
 		Padding	0, 2				SelectedFontColor	Tan
 	}
+
+	InsertFreeformMenu MainMenuTopBar
+}
+
+FreeformMenu QCDE_SkirmishWeaponsCommon
+{
+	Centermenu
+	TopPadding 20
+	DefaultSelection -2
+	OverrideHeight 250
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Label {
+		Pos		-62, 47				Font		SmallFont
+		Anchor	right, center		FontColor	DarkRed
+		Text	"$Weapon_Slot2b"
+	}
+	Option {
+		EnableCVar skirm_skirmishmodifier,	3, 3
+		Pos		-45, 46				CVar				skirm_heavymachinegun
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-62, 67				Font		SmallFont
+		Anchor	right, center		FontColor	DarkRed
+		Text	"$Weapon_Slot3b"
+	}
+	Option {
+		EnableCVar skirm_skirmishmodifier,	3, 3
+		Pos		-45, 66				CVar				skirm_supershotgun
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-62, 87				Font		SmallFont
+		Anchor	right, center		FontColor	DarkRed
+		Text	"$Weapon_Slot4b"
+	}
+	Option {
+		EnableCVar skirm_skirmishmodifier,	3, 3
+		Pos		-45, 86				CVar				skirm_supernailgun
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-62, 107			Font		SmallFont
+		Anchor	right, center		FontColor	DarkRed
+		Text	"$Weapon_Slot5"
+	}
+	Option {
+		EnableCVar skirm_skirmishmodifier,	3, 3
+		Pos		-45, 106			CVar				skirm_tribolt
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-62, 127			Font		SmallFont
+		Anchor	right, center		FontColor	DarkRed
+		Text	"$Weapon_Slot6"
+	}
+	Option {
+		EnableCVar skirm_skirmishmodifier,	3, 3
+		Pos		-45, 126			CVar				skirm_rocketlauncher
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-62, 147			Font		SmallFont
+		Anchor	right, center		FontColor	DarkRed
+		Text	"$Weapon_Slot7"
+	}
+	Option {
+		EnableCVar skirm_skirmishmodifier,	3, 3
+		Pos		-45, 146			CVar				skirm_lightninggun
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-62, 167			Font		SmallFont
+		Anchor	right, center		FontColor	DarkRed
+		Text	"$Weapon_Slot8"
+	}
+	Option {
+		EnableCVar skirm_skirmishmodifier,	3, 3
+		Pos		-45, 166			CVar				skirm_railgun
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		-62, 187			Font		SmallFont
+		Anchor	right, center		FontColor	DarkRed
+		Text	"$Weapon_Slot9"
+	}
+	Option {
+		EnableCVar skirm_skirmishmodifier,	3, 3
+		Pos		-45, 186			CVar				skirm_bfg
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
+	Label {
+		Pos		0, 30				Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"Modifier"
+	}
+	Option {
+		Pos		0, 47				CVar				skirm_skirmishmodifier		UnknownBackground	OP21028
+		Size	105, 14				Values				QCDE_Modifier				SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+
+	Command {
+		Pos		100, 205			Text				"Start Game!"	Background			BT28060
+		Size	140, 30				Font				QCBGFONT		SelectedBackground	BT28060S
+		Anchor	center, center		FontColor			Tan				Command				qcde_startskirmish
+		Padding	0, 2				SelectedFontColor	Tan
+	}
+
+
+	InsertFreeformMenu MainMenuTopBar
+}
+
+FreeformMenu QCDE_SkirmishWeapons
+{
+	InsertFreeformMenu QCDE_SkirmishWeaponsCommon
+
+	Label {
+		Pos		0, 67				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Railgun Alt Fire Jump"
+	}
+	Option {
+		Pos		105, 66				CVar				skirm_railjump
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+}
+
+FreeformMenu QCDE_SkirmishBots
+{
+	Centermenu
+	TopPadding 20
+	DefaultSelection -2
+	OverrideHeight 250
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+
+	Label {
+		Pos 0, 30					Font		SmallFont
+		Anchor left, top			FontColor	DarkRed
+		Text "Bot Skill"
+	}
+	Option {
+		Pos		0, 47				CVar				menu_skirmishbotskill		UnknownBackground	OP21028
+		Size	105, 14				Values				QCDE_BotSkill				SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont					SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		0, 67				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Bots can talk"
+	}
+	Option {
+		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		Pos		105, 66				CVar				bot_allowchat
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+
+	Label {
+		Pos		125, 30			Font		SmallFont
+		Anchor	left, top		FontColor	DarkRed
+		Text	"Bots Count"
+	}
+	TextField {
+		Pos		137, 47			CVar				skirm_botscount			Background			TX05028
+		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
+		Padding 0, 1			SelectedFontColor	Gray
+		Anchor	center, center
+	}
+	Label {
+		Pos		153, 48		Anchor left, center
+		Text	"Bots"		Font SmallFont
+	}
+
+
+	Command {
+		Pos		100, 205			Text				"Start Game!"	Background			BT28060
+		Size	140, 30				Font				QCBGFONT		SelectedBackground	BT28060S
+		Anchor	center, center		FontColor			Tan				Command				qcde_startskirmish
+		Padding	0, 2				SelectedFontColor	Tan
+	}
+
 
 	InsertFreeformMenu MainMenuTopBar
 }
@@ -884,27 +1114,8 @@ OptionValue QCDE_Modifier
 {
 	0, "None"
 	1, "Instagib"
-	2, "Rocket Arena"
-	3, "Buckshot"
-	4, "Unholy Trinity"
-	5, "Lightning Storm"
-	//6, "Random Weapons (Per map)" // the text doesn't fit, so leaving only one Random Weapons variant
-	7, "Random Weapons"
-}
-
-OptionValue QCDE_BotsCount
-{
-	0, "0 Bots"
-	1, "1 Bot"
-	2, "2 Bots"
-	3, "3 Bots"
-	4, "4 Bots"
-	5, "5 Bots"
-	6, "6 Bots"
-	7, "7 Bots"
-	8, "8 Bots"
-	9, "9 Bots"
-	10, "10 Bots"
+	2, "Random Weapons"
+	3, "Custom Weapons"
 }
 
 OptionValue QCDE_BotSkill
