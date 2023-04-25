@@ -1843,6 +1843,25 @@ FreeformMenu "QCDE_OptionsPvE"
 	}
 
 
+	Label {
+		Pos		0, 130				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Misc"
+	}
+
+	Label {
+		Pos		60, 143				Font		SmallFont
+		Anchor	left, top			FontColor	DarkGray
+		Text	"Level change effect"
+	}
+	Option {
+		Pos		60, 160				CVar				wipetype		UnknownBackground	OP21028
+		Size	105, 14				Values				Wipes			SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+
 	InsertFreeformMenu MainMenuTopBar
 	InsertFreeformMenu QCDE_OptionsTabs
 }
