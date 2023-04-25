@@ -103,7 +103,7 @@ server int theme3  = 0; // Doom
 server int theme4  = 1; // Doom 4 (Death Foretold)
 
 // Menu settings
-server noarchive int qcde_selectedoptions  = 0; // which options menu is currently visible
+local noarchive int qcde_selectedoptions  = 0; // which options menu is currently visible
 
 server int skirm_botscount        = 0; // fills slots with bots if there are fewer players
 server int skirm_skirmishgamemode = 3; // used in skirmish menu to setup gamemode
