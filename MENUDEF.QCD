@@ -549,6 +549,22 @@ FreeformMenu QCDE_SkirmishMenu
 									SelectedForeground	CHKBOXS, 14, 14
 	}
 
+	// Warmup Mode, for CTF and Domination
+	Label {
+		VisibilityCVar skirm_skirmishgamemode,	11, 12
+		Pos		125, 137			Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Warmup"
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	11, 12
+		Pos		195, 136			CVar				sv_teamgamewarmup
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	70, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
 	Command {
 		Pos		100, 205			Text				"Start Game!"	Background			BT28060
 		Size	140, 30				Font				QCBGFONT		SelectedBackground	BT28060S
