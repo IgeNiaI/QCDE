@@ -78,7 +78,7 @@ alias addlives     "pukename addlives %1"
 
 alias qcde_openmainmenu		"closemenu; openmenu MainMenu"
 alias qcde_opencallvote		"closemenu; openmenu QCDE_CallVote"
-alias qcde_opencampaign		"closemenu; openmenu PlayerclassMenu"
+alias qcde_opencampaign		"closemenu; sv_railjump false; openmenu PlayerclassMenu"
 alias qcde_openskirmish		"closemenu; qcde_selectedoptions 0; openmenu QCDE_SkirmishMenu"
 
 alias qcde_optionsgeneral	"closemenu; qcde_selectedoptions 0; openmenu QCDE_OptionsGeneral"
