@@ -539,7 +539,7 @@ Script "QCDE_AbilityCooldown_DoCooldown" (int playAlert)
 	SetInventory("TeleporterThrownToken",		0); // Reset Ranger orb
 	SetNetworkReplicationFlags( 0 );
 
-	if(playAlert)
+	if(playAlert && !CheckInventory("Class_Sarge"))
 	{
 		if (GetNetworkState() != NETSTATE_SERVER)
 		{
