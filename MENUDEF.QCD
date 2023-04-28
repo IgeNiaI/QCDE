@@ -294,13 +294,26 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	0, 1
+		Pos		0, 117				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Items respawn"
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	0, 1
+		Pos		105, 116			CVar				sv_itemrespawn
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
 		Pos		0, 137				Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Item respawn timers"
 	}
 	Option {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
 		Pos		105, 136			CVar				sv_showItemTimers
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
