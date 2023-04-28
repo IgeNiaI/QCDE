@@ -41,14 +41,17 @@ script "QCDE_StartingWeapon_Apply" (void)
 		TakeInventory("QCNailAmmo", 125);
 	}
 
-	SetAmmoCapacity("QCBulletAmmo",	getGenericDMAmmoCapacity(0));
-	SetAmmoCapacity("QCShellAmmo",	getGenericDMAmmoCapacity(1));
-	SetAmmoCapacity("QCNailAmmo",	getGenericDMAmmoCapacity(2));
-	SetAmmoCapacity("QCBoltAmmo", 	getGenericDMAmmoCapacity(3));
-	SetAmmoCapacity("QCRocketAmmo",	getGenericDMAmmoCapacity(4));
-	SetAmmoCapacity("QCCoilAmmo", 	getGenericDMAmmoCapacity(5));
-	SetAmmoCapacity("QCSlugAmmo", 	getGenericDMAmmoCapacity(6));
-	SetAmmoCapacity("QCBFGAmmo",	getGenericDMAmmoCapacity(7));
+	if (GameType() >= 2)
+	{
+		SetAmmoCapacity("QCBulletAmmo",	getGenericDMAmmoCapacity(0));
+		SetAmmoCapacity("QCShellAmmo",	getGenericDMAmmoCapacity(1));
+		SetAmmoCapacity("QCNailAmmo",	getGenericDMAmmoCapacity(2));
+		SetAmmoCapacity("QCBoltAmmo", 	getGenericDMAmmoCapacity(3));
+		SetAmmoCapacity("QCRocketAmmo",	getGenericDMAmmoCapacity(4));
+		SetAmmoCapacity("QCCoilAmmo", 	getGenericDMAmmoCapacity(5));
+		SetAmmoCapacity("QCSlugAmmo", 	getGenericDMAmmoCapacity(6));
+		SetAmmoCapacity("QCBFGAmmo",	getGenericDMAmmoCapacity(7));
+	}
 
 	int rocketarena = GetCvar("rocketarena");
 	if (rocketarena) GiveRocketArena(rocketarena);
