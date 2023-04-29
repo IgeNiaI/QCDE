@@ -51,6 +51,10 @@ QC/Weapons/Machinegun/FireEnd_ETQW					"Sounds/Weapons/Machinegun/ETQW/MG_End.og
 QC/Weapons/Machinegun/FireStartLoop_ETQW			"Sounds/Weapons/Machinegun/ETQW/MG_Fire_Looper.ogg"
 QC/Weapons/Machinegun/Quad/FireStartLoop_ETQW		"Sounds/Weapons/Machinegun/ETQW/Quad/MG_Fire_Looper.ogg"
 
+QC/Weapons/Machinegun/FireEnd_HalfLife				"Sounds/Weapons/Machinegun/HalfLife/MG_End.ogg"
+QC/Weapons/Machinegun/FireStartLoop_HalfLife		"Sounds/Weapons/Machinegun/HalfLife/MG_Fire_Looper.ogg"
+QC/Weapons/Machinegun/Quad/FireStartLoop_HalfLife	"Sounds/Weapons/Machinegun/HalfLife/Quad/MG_Fire_Looper.ogg"
+
 
 //********************
 // Heavy Manchinegun
@@ -92,6 +96,13 @@ QC/Weapons/HeavyMachinegun/ZoomIn_ETQW					"Sounds/Weapons/HeavyMachineGun/ETQW/
 QC/Weapons/HeavyMachinegun/ZoomOut_ETQW					"Sounds/Weapons/HeavyMachineGun/ETQW/HMG_ZoomOut.ogg"
 QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_ETQW		"Sounds/Weapons/HeavyMachineGun/ETQW/Quad/HMG_Fire_Looper.ogg"
 QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_ETQW	"Sounds/Weapons/HeavyMachineGun/ETQW/Quad/HMG_Zoomed_Start.ogg"
+
+QC/Weapons/HeavyMachinegun/FireEnd_HalfLife				"Sounds/Weapons/HeavyMachineGun/HalfLife/HMG_End.ogg"
+QC/Weapons/HeavyMachinegun/FireStartLoop_HalfLife		"Sounds/Weapons/HeavyMachineGun/HalfLife/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedStart_HalfLife		"Sounds/Weapons/HeavyMachineGun/HalfLife/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedEnd_HalfLife		"Sounds/Weapons/HeavyMachineGun/HalfLife/HMG_Zoomed_End.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_HalfLife	"Sounds/Weapons/HeavyMachineGun/HalfLife/Quad/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_HalfLife	"Sounds/Weapons/HeavyMachineGun/HalfLife/Quad/HMG_Zoomed_Start.ogg"
 
 
 //********************
@@ -184,6 +195,10 @@ QC/Weapons/Nailgun/FireEnd_Quake4				"Sounds/Weapons/Nailgun/Quake4/NG_End.ogg"
 QC/Weapons/Nailgun/FireStartLoop_Quake4			"Sounds/Weapons/Nailgun/Quake4/NG_Start_Loop.ogg"
 QC/Weapons/Nailgun/Quad/FireStartLoop_Quake4	"Sounds/Weapons/Nailgun/Quake4/Quad/NG_Start_Loop.ogg"
 
+QC/Weapons/Nailgun/FireEnd_HalfLife				"Sounds/Weapons/Nailgun/HalfLife/NG_End.ogg"
+QC/Weapons/Nailgun/FireStartLoop_HalfLife		"Sounds/Weapons/Nailgun/HalfLife/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/Quad/FireStartLoop_HalfLife	"Sounds/Weapons/Nailgun/HalfLife/Quad/NG_Start_Loop.ogg"
+
 
 
 //********************
@@ -268,6 +283,12 @@ QC/Weapons/SuperNailgun/Impact6_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperN
 QC/Weapons/SuperNailgun/Impact7_ETQW				"Sounds/Weapons/SuperNailgun/ETQW/SuperNailImpact7.ogg"
 $random QC/Weapons/SuperNailgun/Impact_ETQW 		{ QC/Weapons/SuperNailgun/Impact1_ETQW QC/Weapons/SuperNailgun/Impact2_ETQW QC/Weapons/SuperNailgun/Impact3_ETQW
 		QC/Weapons/SuperNailgun/Impact4_ETQW QC/Weapons/SuperNailgun/Impact5_ETQW QC/Weapons/SuperNailgun/Impact6_ETQW QC/Weapons/SuperNailgun/Impact7_ETQW }
+
+QC/Weapons/SuperNailgun/FireStartLoop_HalfLife		"Sounds/Weapons/SuperNailgun/HalfLife/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireEnd_HalfLife			"Sounds/Weapons/SuperNailgun/HalfLife/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_HalfLife			"Sounds/Weapons/SuperNailgun/HalfLife/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_HalfLife	"Sounds/Weapons/SuperNailgun/HalfLife/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_HalfLife	"Sounds/Weapons/SuperNailgun/HalfLife/Quad/SNG_Single.ogg"
 
 
 //********************

@@ -116,6 +116,7 @@ Actor QCSuperNailgun : QCWeapon
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
+		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "Select.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "Select.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "Select.Quake4")
@@ -143,6 +144,9 @@ Actor QCSuperNailgun : QCWeapon
 	Select.QCDE1:
 		Q0GD A 0
 		Goto SelectCont
+	Select.HalfLife:
+		HLGD A 0
+		Goto SelectCont
 
 	SelectCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
@@ -167,6 +171,7 @@ Actor QCSuperNailgun : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
+		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "Ready.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "Ready.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "Ready.Quake4")
@@ -193,6 +198,9 @@ Actor QCSuperNailgun : QCWeapon
 		Goto ReadyCont
 	Ready.QCDE1:
 		Q0GD A 0
+		Goto ReadyCont
+	Ready.HalfLife:
+		HLGD A 0
 		Goto ReadyCont
 
 	ReadyCont:
@@ -222,6 +230,7 @@ Actor QCSuperNailgun : QCWeapon
 		Goto FireNormalSound
 
 		FireNormalSound:
+			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "FireNormalSound.HalfLife")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "FireNormalSound.Default")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "FireNormalSound.ETQW")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "FireNormalSound.Quake4")
@@ -246,8 +255,12 @@ Actor QCSuperNailgun : QCWeapon
 		FireNormalSound.ETQW:
 			"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireStartLoop_ETQW",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
+		FireNormalSound.HalfLife:
+			"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
 
 		FireQuadSound:
+			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "FireQuadSound.HalfLife")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "FireQuadSound.Default")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "FireQuadSound.ETQW")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "FireQuadSound.Quake4")
@@ -271,6 +284,9 @@ Actor QCSuperNailgun : QCWeapon
 			Goto FirePostSoundCheck
 		FireQuadSound.ETQW:
 			"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/Quad/FireStartLoop_ETQW",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireQuadSound.HalfLife:
+			"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 
 	FirePostSoundCheck:
@@ -332,6 +348,7 @@ Actor QCSuperNailgun : QCWeapon
 			Goto EndFireLooper
 
 	EndFireLooper:
+		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "EndFireLooper.HalfLife")
 		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "EndFireLooper.Default")
 		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "EndFireLooper.ETQW")
 		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "EndFireLooper.Quake4")
@@ -355,6 +372,9 @@ Actor QCSuperNailgun : QCWeapon
 		Goto EndFireLooperCont
 	EndFireLooper.ETQW:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_ETQW",CHAN_WEAPON,1,0)
+		Goto EndFireLooperCont
+	EndFireLooper.HalfLife:
+		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_HalfLife",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
 
 	EndFireLooperCont:
@@ -517,6 +537,7 @@ Actor QCSuperNailgun : QCWeapon
 
 		EndSeekerFlash:
 			TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"EndSeekerQuadFlash")
+			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "EndSeekerFlash.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "EndSeekerFlash.Default")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "EndSeekerFlash.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "EndSeekerFlash.Quake4")
@@ -541,8 +562,12 @@ Actor QCSuperNailgun : QCWeapon
 		EndSeekerFlash.ETQW:
 			TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireSeeker_ETQW",CHAN_WEAPON)
 			Goto EndFlash
+		EndSeekerFlash.HalfLife:
+			TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireSeeker_HalfLife",CHAN_WEAPON)
+			Goto EndFlash
 
 		EndSeekerQuadFlash:
+			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "EndSeekerQuadFlash.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "EndSeekerQuadFlash.Default")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "EndSeekerQuadFlash.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "EndSeekerQuadFlash.Quake4")
@@ -566,6 +591,9 @@ Actor QCSuperNailgun : QCWeapon
 			Goto EndFlash
 		EndSeekerQuadFlash.ETQW:
 			TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Quad/FireSeeker_ETQW",CHAN_WEAPON)
+			Goto EndFlash
+		EndSeekerQuadFlash.HalfLife:
+			TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Quad/FireSeeker_HalfLife",CHAN_WEAPON)
 			Goto EndFlash
 
 

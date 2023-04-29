@@ -85,6 +85,7 @@ Actor QCNailgun : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "Ready.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "Ready.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "Ready.Quake2")
@@ -104,6 +105,9 @@ Actor QCNailgun : QCWeapon
 	Ready.QCDE1:
 		Q0G4 A 0
 		Goto ReadyCont
+	Ready.HalfLife:
+		HLG4 A 0
+		Goto ReadyCont
 
 	ReadyCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
@@ -120,6 +124,7 @@ Actor QCNailgun : QCWeapon
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "Select.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "Select.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "Select.Quake2")
@@ -138,6 +143,9 @@ Actor QCNailgun : QCWeapon
 		Goto SelectCont
 	Select.QCDE1:
 		Q0G4 A 0
+		Goto SelectCont
+	Select.HalfLife:
+		HLG4 A 0
 		Goto SelectCont
 
 	SelectCont:
@@ -165,6 +173,7 @@ Actor QCNailgun : QCWeapon
 		Goto FireNormalSound
 
 		FireNormalSound:
+			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 7, "FireNormalSound.HalfLife")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 6, "FireNormalSound.Default")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 4, "FireNormalSound.Quake4")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 2, "FireNormalSound.Quake2")
@@ -181,8 +190,12 @@ Actor QCNailgun : QCWeapon
 		FireNormalSound.Quake4:
 			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
+		FireNormalSound.HalfLife:
+			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
 
 		FireQuadSound:
+			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 7, "FireQuadSound.HalfLife")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 6, "FireQuadSound.Default")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 4, "FireQuadSound.Quake4")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 2, "FireQuadSound.Quake2")
@@ -198,6 +211,9 @@ Actor QCNailgun : QCWeapon
 			Goto FirePostSoundCheck
 		FireQuadSound.Quake4:
 			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireQuadSound.HalfLife:
+			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 
 	FirePostSoundCheck:
@@ -243,6 +259,7 @@ Actor QCNailgun : QCWeapon
 			Goto EndFireLooper
 
 	EndFireLooper:
+		"####" A 0 A_JumpIfInventory("QCNailgunSkin", 7, "EndFireLooper.HalfLife")
 		"####" A 0 A_JumpIfInventory("QCNailgunSkin", 6, "EndFireLooper.Default")
 		"####" A 0 A_JumpIfInventory("QCNailgunSkin", 4, "EndFireLooper.Quake4")
 		"####" A 0 A_JumpIfInventory("QCNailgunSkin", 2, "EndFireLooper.Quake2")
@@ -259,6 +276,9 @@ Actor QCNailgun : QCWeapon
 	EndFireLooper.Quake4:
 		"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireEnd_Quake4",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
+	EndFireLooper.HalfLife:
+		"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireEnd_HalfLife",CHAN_WEAPON,1,0)
+		Goto EndFireLooperCont
 
 	EndFireLooperCont:
 		"####" GHIGGHHIIGGGHHHIII 1 A_WeaponReady
@@ -271,7 +291,6 @@ Actor QCNailgun : QCWeapon
 
 	//Single player
 	SP_Flash:
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "SP_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "SP_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "SP_Flash.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "SP_Flash.Quake1")
@@ -286,7 +305,6 @@ Actor QCNailgun : QCWeapon
 		Goto EndFlash
 
 	SP_FlashNA:
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "SP_FlashNA.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "SP_FlashNA.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "SP_FlashNA.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "SP_FlashNA.Quake1")
@@ -302,7 +320,6 @@ Actor QCNailgun : QCWeapon
 
 	//Deathmatch
 	DM_Flash:
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "DM_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "DM_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "DM_Flash.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "DM_Flash.Quake1")
