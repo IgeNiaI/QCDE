@@ -336,7 +336,7 @@ FreeformMenu "QCDE_OptionsHud"
 	NoBackButton
 	TopPadding 40
 	DefaultSelection -2
-	OverrideHeight 500
+	OverrideHeight 530
 
 	Label {
 		Static
@@ -680,6 +680,19 @@ FreeformMenu "QCDE_OptionsHud"
 	}
 
 	Label {
+		Pos		-72, 430			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"3rd person death camera"
+	}
+	Option {
+		Pos		-55, 430			CVar				r_deathcamera
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
 		Pos		45, 371				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Pickup flash"
@@ -721,18 +734,18 @@ FreeformMenu "QCDE_OptionsHud"
 
 
 	Label {
-		Pos		0, 440				Font		QCSMFONT
+		Pos		0, 470				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Champion specific settings"
 	}
 
 	Label {
-		Pos		75, 461				Font		SmallFont
+		Pos		75, 491				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Eradicator Radar mode"
 	}
 	Option {
-		Pos		80, 460				CVar				cl_radarMode		UnknownBackground	OP21028
+		Pos		80, 490				CVar				cl_radarMode		UnknownBackground	OP21028
 		Size	105, 14				Values				RadarMode			SelectedBackground	OP21028S
 		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
