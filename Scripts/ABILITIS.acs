@@ -1298,7 +1298,7 @@ Script "QCDE_Ability_Nyx" (void)
 		delay(1);
 	}
 
-	// Main loop: leaving Durandal-only trail
+	// Main loop
 	counter=0;
 	while(counter <= GetDuration())
 	{
@@ -2119,8 +2119,7 @@ Script "QCDE_ColorDoppelganger_CLIENTSIDE" (void) CLIENTSIDE
 	int spec = PlayerIsSpectator(ConsolePlayerNumber());
 	if(!spec) // judges always see real Eleena
 	{
-		if(!CheckActorInventory(1000 + ConsolePlayerNumber(), "Class_Durandal")) // Durandals can see through the catsy tricks
-			if(plr != ConsolePlayerNumber()) terminate; // only owner can notice their own clone
+		if(plr != ConsolePlayerNumber()) terminate; // only owner can notice their own clone
 		if(PlayerCount() <= 1) terminate; // no other Eleenas when no other players
 	}
 
