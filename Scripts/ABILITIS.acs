@@ -2973,10 +2973,7 @@ Script "QCDE_Ability_Orbb" (void)
 			{
 				SetActivator(plrtid);
 				extraAbilityData[plr] = Timer();
-				if(GameType() < GAME_NET_DEATHMATCH)
-					ACS_NamedExecuteWithResult("ORBB_DroneViewEnterCoop", 0);
-				else
-					ACS_NamedExecuteWithResult("ORBB_DroneViewEnterDM", 0);
+				ACS_NamedExecuteWithResult("ORBB_DroneViewEnter", 0);
 				if (GetNetworkState() == NETSTATE_CLIENT)
 				{
 					NamedRequestScriptPuke("ORBB_DroneViewEnterServer", 0);
@@ -3040,7 +3037,7 @@ Script "ORBB_DroneSpawned" (void)
 }
 
 // Activator: player
-Script "ORBB_DroneViewEnterCoop" (void)
+Script "ORBB_DroneViewEnter" (void)
 {
 	int plr = PlayerNumber();
 	int plrtid = plr + 1000;
@@ -3163,86 +3160,11 @@ Script "ORBB_DroneViewEnterCoop" (void)
 		delay(1);
 	}
 
+	SetActorVelocity(tid, 0, 0, 0, 0, 0);
+
 	if (GetNetworkState() == NETSTATE_CLIENT)
 	{
 		NamedRequestScriptPuke("ORBB_ReplicateDronePos", GetActorX(tid), GetActorY(tid), GetActorZ(tid));
-		SetActorVelocity(tid, 0, 0, 0, 0, 0);
-	}
-
-	SetActivator(plrtid);
-
-	SetActorAngle(plrtid, origa);
-	SetActorPitch(plrtid, origP);
-
-	ACS_NamedExecuteWithResult("ORBB_DroneViewExit", 0);
-	if (GetNetworkState() == NETSTATE_CLIENT)
-	{
-		NamedRequestScriptPuke("ORBB_DroneViewExitServer");
-	}
-}
-
-// Activator: player
-Script "ORBB_DroneViewEnterDM" (void)
-{
-	int plr = PlayerNumber();
-	int plrtid = plr + 1000;
-	int tid = ORBBDRON_TIDBASE + plr;
-
-	GiveInventory("OrbbDroneEnter", 1);
-
-	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
-	ChangeCamera(tid, false, false);
-	GiveInventory("UsingDrone", 1); // giving the item to player, used for tunnel vision
-	SetNetworkReplicationFlags( 0 );
-	ACS_NamedExecuteWithResult("ORBB_TunnelVision", tid);
-
-	SetActivator(tid);
-	GiveInventory("OrbbDroneEnterDrone", 1);
-	GiveInventory("UsingDrone", 1); // giving the item to drone, used to switch drone sprites
-	// Activator: controlled drone
-
-	int origa = GetActorAngle(plrtid), a = GetActorAngle(tid);
-	int origp = GetActorPitch(plrtid), p = GetActorPitch(tid);
-	int oldbuttons = GetPlayerInput(plr, INPUT_BUTTONS);
-	int buttons = oldbuttons;
-
-	while(true)
-	{
-		if (CheckInventory("ImDead") || !IsTidUsed(tid))
-			break;
-
-		oldbuttons = buttons;
-		buttons = GetPlayerInput(plr, INPUT_BUTTONS);
-
-		if ((buttons & BT_USER1) && !(oldbuttons & BT_USER1))
-		{
-			extraAbilityData[plr] = Timer();
-			break;
-		}
-
-		if ((GetNetworkState() != NETSTATE_SERVER) && (buttons & BT_ATTACK) && !(oldbuttons & BT_ATTACK))
-		{
-			NamedRequestScriptPuke("ORBB_NotifyDroneChargeUp", tid);
-		}
-
-		if (GetNetworkState() != NETSTATE_SERVER)
-		{
-			a += GetPlayerInput(plr, INPUT_YAW);
-			p -= GetPlayerInput(plr, INPUT_PITCH);
-			if(p >  0.25) p =  0.25;
-			if(p < -0.25) p = -0.25;
-
-			SetActorAngle(tid, a);
-			SetActorPitch(tid, p);
-
-			if (GetNetworkState() == NETSTATE_CLIENT)
-			{
-				NamedRequestScriptPuke("ORBB_ReplicateDroneAngle", a, p);
-			}
-		}
-
-		delay(1);
 	}
 
 	SetActivator(plrtid);
@@ -3280,10 +3202,7 @@ Script "ORBB_DroneViewExit" (void)
 
 Script "ORBB_DroneViewEnterServer" (void) NET
 {
-	if(GameType() < GAME_NET_DEATHMATCH)
-		ACS_NamedExecuteWithResult("ORBB_DroneViewEnterCoop", 0);
-	else
-		ACS_NamedExecuteWithResult("ORBB_DroneViewEnterDM", 0);
+	ACS_NamedExecuteWithResult("ORBB_DroneViewEnter", 0);
 }
 
 Script "ORBB_DroneViewExitServer" (void) NET
