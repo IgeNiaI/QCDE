@@ -568,7 +568,7 @@ FreeformMenu "QCDE_OptionsHud"
 	}
 	Option {
 		Pos		80, 210				CVar				cl_hiteffect		UnknownBackground	OP21028
-		Size	105, 14				Values				QCSpeedometer		SelectedBackground	OP21028S
+		Size	105, 14				Values				HitEffect			SelectedBackground	OP21028S
 		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
 	}
