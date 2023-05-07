@@ -872,20 +872,8 @@ FreeformMenu "QCDE_OptionsZoom"
 	}
 }
 
-FreeformMenu "QCDE_OptionsControls"
+FreeformMenu "QCDE_OptionsControlsCommon"
 {
-	NoBackButton
-	TopPadding 40
-	DefaultSelection -2
-
-	Label {
-		Static
-		Background	"BackMenw"
-		Pos		0, 20
-		Size	450, 500
-	}
-
-
 	Label {
 		Pos		0, 20				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
@@ -992,7 +980,22 @@ FreeformMenu "QCDE_OptionsControls"
 			Padding	3, 1				SelectedFontColor	Gray
 		}
 	}
+}
 
+FreeformMenu "QCDE_OptionsControls"
+{
+	NoBackButton
+	TopPadding 40
+	DefaultSelection -2
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 20
+		Size	450, 500
+	}
+
+	InsertFreeformMenu QCDE_OptionsControlsCommon
 
 	InsertFreeformMenu QCDE_OptionsZoom
 
