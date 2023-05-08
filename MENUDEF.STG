@@ -33,18 +33,18 @@ FreeformMenu "QCDE_OptionsTabs"
 
 	Command {
 		Static
-		Pos		-100, 31				Text				"HUD"				Background			TB08040
+		Pos		-100, 31				Text				"Game"				Background			TB08040
 		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
 		Anchor	center, center			FontColor			Tan
-		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionshud
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsgame
 		Padding	0, 1
 	}
 	Command {
 		Static		VisibilityCVar	qcde_selectedoptions, 1, 1
-		Pos		-100, 31				Text				"HUD"				Background			TB08040S
+		Pos		-100, 31				Text				"Game"				Background			TB08040S
 		Size	39, 19					Font				SmallFont			SelectedBackground	TB08040S
 		Anchor	center, center			FontColor			Tan
-		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionshud
+		Gravity center, top				SelectedFontColor	Tan					Command	qcde_optionsgame
 		Padding	0, 1
 	}
 
@@ -331,7 +331,7 @@ FreeformMenu "QCDE_OptionsGeneral"
 	InsertFreeformMenu QCDE_OptionsTabs
 }
 
-FreeformMenu "QCDE_OptionsHud"
+FreeformMenu "QCDE_OptionsGame"
 {
 	NoBackButton
 	TopPadding 40
