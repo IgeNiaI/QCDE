@@ -317,22 +317,18 @@ function int SetTidIfHadNone(int firsttid, int lasttid)
 // Translations ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-#libdefine TRANSLATION_REDTEAM  9200
-#libdefine TRANSLATION_BLUETEAM 9201
-#libdefine TRANSLATION_GCOLOR   9202
-#libdefine TRANSLATION_MGCOLOR  9203
-#libdefine TRANSLATION_SGCOLOR  9204
-#libdefine TRANSLATION_NGCOLOR  9205
-#libdefine TRANSLATION_HMGCOLOR 9206
-#libdefine TRANSLATION_SSGCOLOR 9207
-#libdefine TRANSLATION_SNGCOLOR 9208
-#libdefine TRANSLATION_TBCOLOR  9209
-#libdefine TRANSLATION_RLCOLOR  9210
-#libdefine TRANSLATION_LGCOLOR  9211
-#libdefine TRANSLATION_RGCOLOR  9212
-#libdefine TRANSLATION_BFGCOLOR 9213
-#libdefine TRANSLATION_HUNTERTRACE     9214
-#libdefine TRANSLATION_HUNTERTRACEBLUE 9215
+#libdefine TRANSLATION_GCOLOR   9200
+#libdefine TRANSLATION_MGCOLOR  9201
+#libdefine TRANSLATION_SGCOLOR  9202
+#libdefine TRANSLATION_NGCOLOR  9203
+#libdefine TRANSLATION_HMGCOLOR 9204
+#libdefine TRANSLATION_SSGCOLOR 9205
+#libdefine TRANSLATION_SNGCOLOR 9206
+#libdefine TRANSLATION_TBCOLOR  9207
+#libdefine TRANSLATION_RLCOLOR  9208
+#libdefine TRANSLATION_LGCOLOR  9209
+#libdefine TRANSLATION_RGCOLOR  9210
+#libdefine TRANSLATION_BFGCOLOR 9211
 
 
 

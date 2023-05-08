@@ -441,7 +441,7 @@ Actor TotemVanish : TotemExplosion
 
 
 //The FX showing if the totem is friendly or not
-Actor TotemFriendlyFX : GenericPowerupFXBackground
+Actor TotemFX : GenericPowerupFXBackground
 {
 	-FORCEXYBILLBOARD
 	Scale 0.25
@@ -456,7 +456,7 @@ Actor TotemFriendlyFX : GenericPowerupFXBackground
 	}
 }
 
-Actor TotemHostileFX : TotemFriendlyFX
+Actor TotemColoredFX : TotemFX
 {
 	States
 	{

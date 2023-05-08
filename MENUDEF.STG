@@ -156,7 +156,7 @@ FreeformMenu "QCDE_OptionsGeneral"
 	NoBackButton
 	TopPadding 40
 	DefaultSelection -2
-	OverrideHeight 240
+	OverrideHeight 230
 
 	Label {
 		Static
@@ -178,21 +178,24 @@ FreeformMenu "QCDE_OptionsGeneral"
 	}
 
 	Label {
-		Pos		-105, 51			Font		SmallFont
+		Pos		-105, 50			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
-		Text	"Field of View"
+		Text	"Player Color"
 	}
-	TextField {
-		Pos		-87, 50			CVar				fov			Background			TX05028
-		Size	25, 14			Font				SmallFont	SelectedBackground	TX05028S
-		Anchor	center, center	SelectedFontColor	Gray
-		Padding	0, 1
+	Label {
+		Pos		-83, 50				Background	COLRFRME
+		Size	32, 32
+		Anchor	center, center
 	}
-	Slider {
-		Pos		-70, 50			CVar	fov
-		Size	105, 6			Range	50.0, 150.0, 1.0
-		Anchor	left, center	MouseArea	105, 14
-		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	ColorPicker {
+		Pos		-83, 50				CVar				color
+		Size	30, 30				SelectedForeground	COLRSELC, 32, 32
+		Anchor	center, center
+	}
+	Label {
+		Pos		-60, 50				Font		SmallFont
+		Anchor	left, center		FontColor	DarkGray
+		Text	"(how others see you)"
 	}
 
 	Label {
@@ -336,7 +339,7 @@ FreeformMenu "QCDE_OptionsGame"
 	NoBackButton
 	TopPadding 40
 	DefaultSelection -2
-	OverrideHeight 530
+	OverrideHeight 570
 
 	Label {
 		Static
@@ -495,6 +498,11 @@ FreeformMenu "QCDE_OptionsGame"
 		Size	30, 30				SelectedForeground	COLRSELC, 32, 32
 		Anchor	center, center
 	}
+	Label {
+		VisibilityCVar	crosshair, 0, 0
+		Pos		67, 130				Background	MenuDim
+		Size	32, 32				Anchor	center, center
+	}
 
 
 	Label {
@@ -641,18 +649,82 @@ FreeformMenu "QCDE_OptionsGame"
 
 
 	Label {
-		Pos		0, 350				Font		QCSMFONT
+		Pos		-153, 323			Font		SmallFont
+		Anchor	left, top			FontColor	DarkGray
+		Text	"Override Player Colors"
+	}
+	Option {
+		Pos		-153, 340			CVar				cl_overrideplayercolors	UnknownBackground	OP21028
+		Size	105, 14				Values				OverridePlayerColors	SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont				SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	Label {
+		Pos		36, 340				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Enemy Color"
+	}
+	Label {
+		Pos		58, 340				Background	COLRFRME
+		Size	32, 32
+		Anchor	center, center
+	}
+	ColorPicker {
+		EnableCVar	cl_overrideplayercolors, 1, 3
+		Pos		58, 340				CVar				cl_enemycolor
+		Size	30, 30				SelectedForeground	COLRSELC, 32, 32
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar	cl_overrideplayercolors, 0, 0
+		Pos		58, 340				Background	MenuDim
+		Size	32, 32				Anchor	center, center
+	}
+
+	Label {
+		Pos		147, 340			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Ally Color"
+	}
+	Label {
+		Pos		169, 340			Background	COLRFRME
+		Size	32, 32
+		Anchor	center, center
+	}
+	ColorPicker {
+		EnableCVar	cl_overrideplayercolors, 2, 3
+		Pos		169, 340			CVar				cl_allycolor
+		Size	30, 30				SelectedForeground	COLRSELC, 32, 32
+		Anchor	center, center
+	}
+	Label {
+		VisibilityCVar	cl_overrideplayercolors, 0, 1
+		Pos		169, 340			Background	MenuDim
+		Size	32, 32				Anchor	center, center
+	}
+
+	Label {
+		Pos		0, 365				Font		SmallFont
+		Anchor	center, center		FontColor	DarkRed
+		Text	"Some color changes apply only after map restart"
+	}
+
+
+
+	Label {
+		Pos		0, 400				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Effects"
 	}
 
 	Label {
-		Pos		-72, 370			Font		SmallFont
+		Pos		-72, 420			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Weapon firing recoil"
 	}
 	Option {
-		Pos		-55, 370			CVar				cl_weaponrecoil
+		Pos		-55, 420			CVar				cl_weaponrecoil
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	105, 14			UnknownBackground	CHKBOX
@@ -660,12 +732,12 @@ FreeformMenu "QCDE_OptionsGame"
 	}
 
 	Label {
-		Pos		-72, 390			Font		SmallFont
+		Pos		-72, 440			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Weapon firing flash"
 	}
 	Option {
-		Pos		-55, 390			CVar				cl_weaponfireflash
+		Pos		-55, 440			CVar				cl_weaponfireflash
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	105, 14			UnknownBackground	CHKBOX
@@ -673,12 +745,12 @@ FreeformMenu "QCDE_OptionsGame"
 	}
 
 	Label {
-		Pos		-72, 410			Font		SmallFont
+		Pos		-72, 460			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"HUD Blood smears"
 	}
 	Option {
-		Pos		-55, 410			CVar				cl_ShowHUDBloodSmears
+		Pos		-55, 460			CVar				cl_ShowHUDBloodSmears
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	105, 14			UnknownBackground	CHKBOX
@@ -686,12 +758,12 @@ FreeformMenu "QCDE_OptionsGame"
 	}
 
 	Label {
-		Pos		-72, 430			Font		SmallFont
+		Pos		-72, 480			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"3rd person death camera"
 	}
 	Option {
-		Pos		-55, 430			CVar				r_deathcamera
+		Pos		-55, 480			CVar				r_deathcamera
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	105, 14			UnknownBackground	CHKBOX
@@ -699,40 +771,40 @@ FreeformMenu "QCDE_OptionsGame"
 	}
 
 	Label {
-		Pos		45, 371				Font		SmallFont
+		Pos		45, 421				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Pickup flash"
 	}
 	TextField {
 		EnableCVar	crosshair, 1, 100
-		Pos		63, 370			CVar				pickup_blend_scalar	Background			TX05028
+		Pos		63, 420			CVar				pickup_blend_scalar	Background			TX05028
 		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
 		Anchor	center, center	SelectedFontColor	Gray
 		Padding	0, 1
 	}
 	Slider {
 		EnableCVar	crosshair, 1, 100
-		Pos		80, 370			CVar	pickup_blend_scalar
+		Pos		80, 420			CVar	pickup_blend_scalar
 		Size	105, 6			Range	0, 1.0, 0.05
 		Anchor	left, center	MouseArea	105, 14
 		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
 	}
 
 	Label {
-		Pos		45, 391				Font		SmallFont
+		Pos		45, 441				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Screen blood"
 	}
 	TextField {
 		EnableCVar	crosshair, 1, 100
-		Pos		63, 390			CVar				blood_fade_scalar	Background			TX05028
+		Pos		63, 440			CVar				blood_fade_scalar	Background			TX05028
 		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
 		Anchor	center, center	SelectedFontColor	Gray
 		Padding	0, 1
 	}
 	Slider {
 		EnableCVar	crosshair, 1, 100
-		Pos		80, 390			CVar	blood_fade_scalar
+		Pos		80, 440			CVar	blood_fade_scalar
 		Size	105, 6			Range	0, 1.0, 0.05
 		Anchor	left, center	MouseArea	105, 14
 		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
@@ -740,18 +812,18 @@ FreeformMenu "QCDE_OptionsGame"
 
 
 	Label {
-		Pos		0, 470				Font		QCSMFONT
+		Pos		0, 520				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Champion specific settings"
 	}
 
 	Label {
-		Pos		75, 491				Font		SmallFont
+		Pos		75, 541				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Eradicator Radar mode"
 	}
 	Option {
-		Pos		80, 490				CVar				cl_radarMode		UnknownBackground	OP21028
+		Pos		80, 540				CVar				cl_radarMode		UnknownBackground	OP21028
 		Size	105, 14				Values				RadarMode			SelectedBackground	OP21028S
 		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
@@ -1206,7 +1278,7 @@ FreeformMenu "QCDE_OptionsVideo"
 	NoBackButton
 	TopPadding 40
 	DefaultSelection -2
-	OverrideHeight 200
+	OverrideHeight 220
 
 	Label {
 		Static
@@ -1280,6 +1352,24 @@ FreeformMenu "QCDE_OptionsVideo"
 	}
 
 	Label {
+		Pos		-123, 61			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Field of View"
+	}
+	TextField {
+		Pos		-107, 60		CVar				fov			Background			TX05028
+		Size	25, 14			Font				SmallFont	SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		-90, 60			CVar	fov
+		Size	105, 6			Range	50.0, 150.0, 1.0
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
 		Pos		148, 40				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Display FPS"
@@ -1295,13 +1385,13 @@ FreeformMenu "QCDE_OptionsVideo"
 
 	Label {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-112, 80			Font		SmallFont
+		Pos		-112, 100			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Dynamic Lights"
 	}
 	Option {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-95, 80				CVar				gl_lights
+		Pos		-95, 100			CVar				gl_lights
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	90, 14			UnknownBackground	CHKBOX
@@ -1310,13 +1400,13 @@ FreeformMenu "QCDE_OptionsVideo"
 
 	Label {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-2, 80				Font		SmallFont
+		Pos		-2, 100				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"3D models"
 	}
 	Option {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		15, 80				CVar				gl_use_models
+		Pos		15, 100				CVar				gl_use_models
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	90, 14			UnknownBackground	CHKBOX
@@ -1325,13 +1415,13 @@ FreeformMenu "QCDE_OptionsVideo"
 
 	Label {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		148, 80				Font		SmallFont
+		Pos		148, 100			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Map textures"
 	}
 	Option {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		165, 80				CVar				gl_texture
+		Pos		165, 100			CVar				gl_texture
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	105, 14			UnknownBackground	CHKBOX
@@ -1340,20 +1430,20 @@ FreeformMenu "QCDE_OptionsVideo"
 
 	Label {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-123, 101			Font		SmallFont
+		Pos		-123, 121			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Particles limit"
 	}
 	TextField {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-107, 100		CVar				r_maxparticles	Background			TX05028
+		Pos		-107, 120		CVar				r_maxparticles	Background			TX05028
 		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
 		Anchor	center, center	SelectedFontColor	Gray
 		Padding	0, 1
 	}
 	Slider {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-90, 100		CVar	r_maxparticles
+		Pos		-90, 120		CVar	r_maxparticles
 		Size	105, 6			Range	500, 10000, 100
 		Anchor	left, center	MouseArea	105, 14
 		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
@@ -1361,13 +1451,13 @@ FreeformMenu "QCDE_OptionsVideo"
 
 	Label {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		148, 100			Font		SmallFont
+		Pos		148, 120			Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Rotate sprites vertically"
 	}
 	Option {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		165, 100			CVar				gl_billboard_mode
+		Pos		165, 120			CVar				gl_billboard_mode
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	90, 14			UnknownBackground	CHKBOX
@@ -1376,17 +1466,17 @@ FreeformMenu "QCDE_OptionsVideo"
 
 
 	Label {
-		Pos		0, 133				Font		SmallFont
+		Pos		0, 153				Font		SmallFont
 		Anchor	center, top			FontColor	DarkGray
 		Text	"Renderer"
 	}
 	Option {
-		Pos		0, 150				CVar				vid_renderer	UnknownBackground	OP21028
+		Pos		0, 170				CVar				vid_renderer	UnknownBackground	OP21028
 		Size	105, 14				Values				Renderers		SelectedBackground	OP21028S
 		Anchor	center, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
 		Padding	0, 1				SelectedFontColor	Gray
 	}
-	Label {	Pos 0, 165		Text "Renderer changes apply after restart"		Anchor center, center		Font SmallFont	FontColor DarkGray }
+	Label {	Pos 0, 185		Text "Renderer changes apply after restart"		Anchor center, center		Font SmallFont	FontColor DarkGray }
 
 
 	InsertFreeformMenu MainMenuTopBar
@@ -2365,6 +2455,13 @@ OptionValue "OstOrder"
 	0, "Strict"
 	1, "Shuffled"
 	2, "Randomized"
+}
+
+OptionValue OverridePlayerColors
+{
+	0, "Never"
+	1, "FFA only"
+	3, "Always"
 }
 
 OptionValue "TauntSubtitles"

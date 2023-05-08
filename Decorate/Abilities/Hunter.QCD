@@ -194,8 +194,8 @@ Actor OverTraced : GetTraced
 
 Actor HunterTrace : FX
 {
-	RenderStyle Translucent
-	Alpha 0.4
+	RenderStyle Add
+	Alpha 0.5
 	+DONTBLAST
 	+SERVERNETID
 	States
@@ -206,38 +206,38 @@ Actor HunterTrace : FX
 
 		// --------------------------------------------------------------------
 
-	Ranger:		QP01 "#" 0 A_Turn(0) Goto Frame
-	DoomSlayer:	QP02 "#" 0 A_Turn(0) Goto Frame
-	Corvus:		QP03 "#" 0 A_Turn(0) Goto Frame
-	Kane:		QP04 "#" 0 A_Turn(0) Goto Frame
-	Caleb:		QP05 "#" 0 A_Turn(0) Goto Frame
-	Menelkir:	QP06 "#" 0 A_Turn(0) Goto Frame
-	Terminator:	QP07 "#" 0 A_Turn(0) Goto Frame
-	Zedek:		QP08 "#" 0 A_Turn(0) Goto Frame
-	Inquisitor:	QP09 "#" 0 A_Turn(0) Goto Frame
-	Bitterman:	QP10 "#" 0 A_Turn(0) Goto Frame
-	Galen:		QP11 "#" 0 A_Turn(0) Goto Frame
-	Nyx:		QP12 "#" 0 A_Turn(0) Goto Frame
-	Sorgaul:	QP13 "#" 0 A_Turn(0) Goto Frame
-	DukeNukem:	QP14 "#" 0 A_Turn(0) Goto Frame
-	Durandal:	QP15 "#" 0 A_Turn(0) Goto Frame
-	Keel:		QP16 "#" 0 A_Turn(0) Goto Frame
-	Sarge:		QP17 "#" 0 A_Turn(0) Goto Frame
-	LoWang:		QP18 "#" 0 A_Turn(0) Goto Frame
-	Grayson:	QP19 "#" 0 A_Turn(0) Goto Frame
-	Eradicator:	QP20 "#" 0 A_Turn(0) Goto Frame
-	Blazkowicz:	QP21 "#" 0 A_Turn(0) Goto Frame
-	Freeman:	QP22 "#" 0 A_Turn(0) Goto Frame
-	VorMatur:	QP23 "#" 0 A_Turn(0) Goto Frame
-	Eleena:		QP24 "#" 0 A_Turn(0) Goto Frame
-	Lucienne:	QP25 "#" 0 A_Turn(0) Goto Frame
-	Major:		QP26 "#" 0 A_Turn(0) Goto Frame
-	Hunter:		QP27 "#" 0 A_Turn(0) Goto Frame
-	Sam:		QP28 "#" 0 A_Turn(0) Goto Frame
-	Postal:		QP29 "#" 0 A_Turn(0) Goto Frame
-	Painkiller:	QP30 "#" 0 A_Turn(0) Goto Frame
-	Intruder:	QP31 "#" 0 A_Turn(0) Goto Frame
-	Orbb:		QP32 "#" 0 A_Turn(0) Goto Frame
+	Ranger:		RP01 "#" 0 A_Turn(0) Goto Frame
+	DoomSlayer:	RP02 "#" 0 A_Turn(0) Goto Frame
+	Corvus:		RP03 "#" 0 A_Turn(0) Goto Frame
+	Kane:		RP04 "#" 0 A_Turn(0) Goto Frame
+	Caleb:		RP05 "#" 0 A_Turn(0) Goto Frame
+	Menelkir:	RP06 "#" 0 A_Turn(0) Goto Frame
+	Terminator:	RP07 "#" 0 A_Turn(0) Goto Frame
+	Zedek:		RP08 "#" 0 A_Turn(0) Goto Frame
+	Inquisitor:	RP09 "#" 0 A_Turn(0) Goto Frame
+	Bitterman:	RP10 "#" 0 A_Turn(0) Goto Frame
+	Galen:		RP11 "#" 0 A_Turn(0) Goto Frame
+	Nyx:		RP12 "#" 0 A_Turn(0) Goto Frame
+	Sorgaul:	RP13 "#" 0 A_Turn(0) Goto Frame
+	DukeNukem:	RP14 "#" 0 A_Turn(0) Goto Frame
+	Durandal:	RP15 "#" 0 A_Turn(0) Goto Frame
+	Keel:		RP16 "#" 0 A_Turn(0) Goto Frame
+	Sarge:		RP17 "#" 0 A_Turn(0) Goto Frame
+	LoWang:		RP18 "#" 0 A_Turn(0) Goto Frame
+	Grayson:	RP19 "#" 0 A_Turn(0) Goto Frame
+	Eradicator:	RP20 "#" 0 A_Turn(0) Goto Frame
+	Blazkowicz:	RP21 "#" 0 A_Turn(0) Goto Frame
+	Freeman:	RP22 "#" 0 A_Turn(0) Goto Frame
+	VorMatur:	RP23 "#" 0 A_Turn(0) Goto Frame
+	Eleena:		RP24 "#" 0 A_Turn(0) Goto Frame
+	Lucienne:	RP25 "#" 0 A_Turn(0) Goto Frame
+	Major:		RP26 "#" 0 A_Turn(0) Goto Frame
+	Hunter:		RP27 "#" 0 A_Turn(0) Goto Frame
+	Sam:		RP28 "#" 0 A_Turn(0) Goto Frame
+	Postal:		RP29 "#" 0 A_Turn(0) Goto Frame
+	Painkiller:	RP30 "#" 0 A_Turn(0) Goto Frame
+	Intruder:	RP31 "#" 0 A_Turn(0) Goto Frame
+	Orbb:		RP32 "#" 0 A_Turn(0) Goto Frame
 	// ^ insert more classes here
 
 	Frame:
@@ -248,9 +248,8 @@ Actor HunterTrace : FX
 		"####" D 0 A_Turn(0) Goto Fade
 
 	Fade:
-		"####" "#" 70
-		"####" "#########################################################################################################################################################################################################" 1 A_SetScale(scalex * 0.98)
-		Stop
+		"####" "##" 1 A_FadeOut(0.01)
+		Loop
 	}
 }
 

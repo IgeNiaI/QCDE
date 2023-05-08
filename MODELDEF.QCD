@@ -87,12 +87,12 @@ Model AirStrikeTargetCircle
 {
 	Path "MD3/Projectiles"
 	Model 0 "Target.md3"
-	Skin 0 "Target.png"
-	Skin 1 "Target.png"
+	Skin 0 "TargetMajor.png"
+	Skin 1 "TargetMajor.png"
 	Scale 22.0 22.0 22.0
 	ZOffset 3
-	FrameIndex X060 A 0 0
-	FrameIndex X060 A 0 1
+	FrameIndex QP26 Z 0 0
+	FrameIndex QP26 Z 0 1
 }
 
 Model RocketZoomer

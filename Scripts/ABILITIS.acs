@@ -2023,6 +2023,9 @@ Script "QCDE_Ability_Eleena" (void)
 			GiveActorInventory(doptid, "TeamColor", CheckInventory("TeamColor"));
 			giveEleenaCloneWeaponSkins(doptid);
 
+			int translation = GetActorProperty(plrtid, APROP_Translation);
+			SetActorProperty(doptid, APROP_Translation, translation);
+
 			ACS("QCDE_ColorDoppelganger_CLIENTSIDE");
 		}
 
@@ -2116,12 +2119,7 @@ Script "QCDE_ColorDoppelganger_CLIENTSIDE" (void) CLIENTSIDE
 {
 	int plrtid = ActivatorTid();
 	int plr = plrtid - 1000;
-	int spec = PlayerIsSpectator(ConsolePlayerNumber());
-	if(!spec) // judges always see real Eleena
-	{
-		if(plr != ConsolePlayerNumber()) terminate; // only owner can notice their own clone
-		if(PlayerCount() <= 1) terminate; // no other Eleenas when no other players
-	}
+	int conplr = ConsolePlayerNumber();
 
 	int doptid = plr + DOPPELGANG_TIDBASE;
 
@@ -2130,19 +2128,12 @@ Script "QCDE_ColorDoppelganger_CLIENTSIDE" (void) CLIENTSIDE
 	bool teampossession = getCvar("teampossession");
 	bool teamgame       = getCvar("teamgame");
 
-	// Your own is always blue in non-team games
-	if(!(teamplay || teamlms || teampossession || teamgame))
+	// Your own is always cyan
+	if (plr == conplr || PlayerIsSpectator(conplr))
 		Thing_SetTranslation(doptid, TRANSLATION_LGCOLOR);
-	// In team games and from other people, has same color as spawner
-	else
-	{
-		if(CheckInventory("TeamColor") == 1)
-			Thing_SetTranslation(doptid, TRANSLATION_LGCOLOR);
-		else if(CheckInventory("TeamColor") == 2)
-			Thing_SetTranslation(doptid, TRANSLATION_RLCOLOR);
-		else // shouldn't happen
-			Thing_SetTranslation(doptid, TRANSLATION_RGCOLOR);
-	}
+	// Teammates also see the clone
+	else if((teamplay || teamlms || teampossession || teamgame) && (GetPlayerInfo(plr, PLAYERINFO_TEAM) == GetPlayerInfo(conplr, PLAYERINFO_TEAM)))
+		Thing_SetTranslation(doptid, TRANSLATION_LGCOLOR);
 }
 
 #define DURATION_DOPPELGANGER 15
@@ -2361,17 +2352,8 @@ Script "QCDE_BombIncoming" (void)
 {
 	int plrtid = GetActorProperty(0, APROP_TargetTID);
 
-	bool teamplay       = getCvar("teamplay");
-	bool teamlms        = getCvar("teamlms");
-	bool teampossession = getCvar("teampossession");
-	bool teamgame       = getCvar("teamgame");
-
-	// Always red in non-team games
-	if(!(teamplay || teamlms || teampossession || teamgame)) terminate;
-
-	// If coming from a blue guy, color blue
-	if(CheckActorInventory(plrtid, "TeamColor") == 1)
-		Thing_SetTranslation(0, TRANSLATION_SNGCOLOR);
+	int translation = GetActorProperty(plrtid, APROP_Translation);
+	SetActorProperty(0, APROP_Translation, translation);
 }
 
 
@@ -3499,37 +3481,43 @@ script "QCDE_TotemSpawned" (void)
 	Thing_ChangeTID(0,tid);
 	totemsUp[plr][lastTotem] = Timer();
 	Warp(0, GetActorX(0), GetActorY(0), GetActorZ(0), 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION);
-	ACS_NamedExecuteAlways("QCDE_TotemSpawned_Client",0);
+	ACS_NamedExecuteAlways("QCDE_TotemSpawned_Client",0,plr);
 	//log(s:"Totem[", d:plr, s:"][", d:lastTotem, s:"] spawned at ", d:totemsUp[plr][lastTotem], s:", tidded ", d:tid);
 }
 
 // Activator: Totem
-script "QCDE_TotemSpawned_Client" (void) clientside
+script "QCDE_TotemSpawned_Client" (int plr) clientside
 {
 	bool cooperative    = getCvar("cooperative");
 	bool teamplay       = getCvar("teamplay");
 	bool teamlms        = getCvar("teamlms");
 	bool teampossession = getCvar("teampossession");
 	bool teamgame       = getCvar("teamgame");
-	int plr = (ActivatorTid() - TOTEM_TIDBASE) % 64;
+
+	int tid = UniqueTid();
+	int translation = GetActorProperty(plr + 1000, APROP_Translation);
 
 	if(cooperative)
 	{
-		SpawnProjectile(0, "TotemFriendlyFX", 0, 0, 0, 0, 0);
+		SpawnProjectile(0, "TotemFX", 0, 0, 0, 0, 0);
 	}
-	if(teamplay || teamlms || teampossession || teamgame)
+	else if(teamplay || teamlms || teampossession || teamgame)
 	{
-		if (GetPlayerInfo(plr, PLAYERINFO_TEAM) == 0)
-			SpawnProjectile(0, "TotemFriendlyFX", 0, 0, 0, 0, 0);
-		else
-			SpawnProjectile(0, "TotemHostileFX", 0, 0, 0, 0, 0);
+		SpawnProjectile(0, "TotemColoredFX", 0, 0, 0, 0, tid);
+		SetActorProperty(tid, APROP_Translation, translation);
 	}
 	else // ffa or duel
 	{
 		if(ConsolePlayerNumber() == plr)
-			SpawnProjectile(0, "TotemFriendlyFX", 0, 0, 0, 0, 0);
+		{
+			SpawnProjectile(0, "TotemFX", 0, 0, 0, 0, 0);
+			// Own totems aren't color translated in ffa
+		}
 		else
-			SpawnProjectile(0, "TotemHostileFX", 0, 0, 0, 0, 0);
+		{
+			SpawnProjectile(0, "TotemColoredFX", 0, 0, 0, 0, tid);
+			SetActorProperty(tid, APROP_Translation, translation);
+		}
 	}
 }
 
@@ -3916,7 +3904,7 @@ script "QCDE_BlinkSandwatch" (void) clientside
 
 
 // Activator: freshly spawned BOB
-Script "QCDE_BobRecolor" (void)
+Script "QCDE_BobPointers" (void)
 {
 	int mast = GetActorProperty(0, APROP_MasterTID) - 1000;
 	int targ = GetActorProperty(0, APROP_TargetTID) - 1000;
@@ -3928,42 +3916,15 @@ Script "QCDE_BobRecolor" (void)
 }
 
 // Activator: BOB spawned a few tics ago
-Script "QCDE_BobRecolor_CLIENTSIDE" (int tid) CLIENTSIDE
+Script "QCDE_BobRecolor" (int tid)
 {
-	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only recolor in PvP
-
 	int plr = tid - BOB_TIDBASE;
 	if(CheckActorClass(0, "QCDEMaulotaur")) plr = tid - MAULOTAUR_TIDBASE;
+	if(CheckActorClass(0, "QCDEMaulotaurPvE")) plr = tid - MAULOTAUR_TIDBASE;
 	if(CheckActorClass(0, "OrbbDrone")) plr = tid - ORBBDRON_TIDBASE;
 
-	int me = ConsolePlayerNumber();
-
-	bool teamplay       = getCvar("teamplay");
-	bool teamlms        = getCvar("teamlms");
-	bool teampossession = getCvar("teampossession");
-	bool teamgame       = getCvar("teamgame");
-
-	int mast = GetActorProperty(0, APROP_MasterTID) - 1000;
-	int targ = GetActorProperty(0, APROP_TargetTID) - 1000;
-	//log(n:plr + 1, s:" aka ", d:plr, s:" owns BOBs");
-
-	if(teamplay || teamlms || teampossession || teamgame)
-		if(GetPlayerInfo(plr, PLAYERINFO_TEAM) == 0)
-		{
-			//log(d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" == 0 , so blue");
-			Thing_SetTranslation(0, TRANSLATION_BLUETEAM);
-		}
-		else
-		{
-			//log(d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" > 0 , so red");
-			Thing_SetTranslation(0, TRANSLATION_REDTEAM);
-		}
-	else
-		if(me != plr)
-		{
-			//log(d:me, s:" != ", d:plr, s:", so red");
-			Thing_SetTranslation(0, TRANSLATION_REDTEAM);
-		}
+	int translation = GetActorProperty(plr + 1000, APROP_Translation);
+	SetActorProperty(tid, APROP_Translation, translation);
 }
 
 // Activator: BOB's explosive hack
@@ -5171,9 +5132,8 @@ Script "QCDE_Traced_CLIENTSIDE" (void) clientside
 		SpawnForced("HunterTrace", x,y,z, tid, a);
 
 		SetStateByClass(tid);
-		Thing_SetTranslation(tid, TRANSLATION_HUNTERTRACE);
-		if(isTeamgame() && GetPlayerInfo(plr,PLAYERINFO_TEAM) == TEAM_BLUE)
-			Thing_SetTranslation(tid, TRANSLATION_HUNTERTRACEBLUE);
+		int translation = GetActorProperty(0, APROP_Translation);
+		SetActorProperty(tid, APROP_Translation, translation);
 
 		Thing_ChangeTID(tid,0); // free tid just in case
 		//Log(n:0, s:" trace remaining tics: ", d:GetActorPowerupTics(0, "PowerTraced"));
@@ -5424,7 +5384,9 @@ Script "QCDE_Passive_Painkiller" (int activate)
 	delay(1); // Necessary not to crash GZDoom on morph
 
 	ACS_NamedExecuteWithResult("QCDE_PainkillerAbilityMovement", 0);
+	int translation = GetActorProperty(0, APROP_Translation);
 	GiveInventory("DemonMorphProc",1);
+	SetActorProperty(0, APROP_Translation, translation);
 	// Break tarot if active
 	GiveInventory("NoAbilitiesToken",1);
 	for(int i = 1; i <= 3; i++)

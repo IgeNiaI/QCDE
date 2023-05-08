@@ -89,15 +89,14 @@ Actor AirStrikeTargetCircle
 	+FORCEXYBILLBOARD
 	+FLOORHUGGER
 	RenderStyle Add
-	Translation "0:255=%[0,0,0]:[2.0,0.0,0.2]"
 	XScale 1.6
 	YScale 0.4
 	States
 	{
 	Spawn:
 		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_BombIncoming")
-		X060 A 42 Bright
-		X060 A 2 Bright A_FadeOut(0.05)
+		QP26 Z 42 Bright
+		QP26 Z 2 Bright A_FadeOut(0.05)
 		Wait
 
 	}

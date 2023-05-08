@@ -28,6 +28,8 @@ Actor QCPlayer : PlayerPawn
 	Gravity 0.75
 	+BRIGHT
 
+	Player.ColorRange 250, 255
+
 	Player.ActionScript "altattack" "QCDE_ZoomControl"
 	Player.ActionScript "user1" "QCDE_ActiveAbility"
 
@@ -142,19 +144,14 @@ Actor QCRanger : QCPlayerMedium
 	{
 	Spawn:
 		QP01 E 0 NoDelay
-		QP01 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP01 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP01 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP01 E 0 A_JumpIf(true,                   "DefSpawn")
 		QP01 E 100
 		Loop
 
-		RedSpawn:
-			RP01 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP01 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP01 E 4
-			Loop
-		BlueSpawn:
-			BP01 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP01 E 4
 			Loop
 		DefSpawn:
 			QP01 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -162,18 +159,13 @@ Actor QCRanger : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP01 ABCD 4
-			RP01 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP01 ABCD 4
-			BP01 A 0 A_JumpIf(true,"BlueSpawn")
+			RP01 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP01 ABCD 4
@@ -181,18 +173,13 @@ Actor QCRanger : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP01 E 12
 			RP01 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP01 E 12
-			BP01 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP01 E 12
@@ -200,18 +187,13 @@ Actor QCRanger : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP01 F 6 BRIGHT Light("PlayerFiringLight")
 			RP01 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP01 F 6 BRIGHT Light("PlayerFiringLight")
-			BP01 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP01 F 6 BRIGHT Light("PlayerFiringLight")
@@ -219,20 +201,14 @@ Actor QCRanger : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP01 G 4
 			RP01 G 4 A_Pain
 			RP01 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP01 G 4
-			BP01 G 4 A_Pain
-			BP01 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP01 G 4
@@ -303,19 +279,14 @@ Actor QCDoomSlayer : QCPlayerMedium
 	{
 	Spawn:
 		QP02 E 0 NoDelay
-		QP02 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP02 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP02 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP02 E 0 A_JumpIf(true,                   "DefSpawn")
 		QP02 E 100
 		Loop
 
-		RedSpawn:
-			RP02 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP02 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP02 E 4
-			Loop
-		BlueSpawn:
-			BP02 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP02 E 4
 			Loop
 		DefSpawn:
 			QP02 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -323,18 +294,13 @@ Actor QCDoomSlayer : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP02 ABCD 4
-			RP02 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP02 ABCD 4
-			BP02 A 0 A_JumpIf(true,"BlueSpawn")
+			RP02 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP02 ABCD 4
@@ -342,18 +308,13 @@ Actor QCDoomSlayer : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP02 E 12
 			RP02 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP02 E 12
-			BP02 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP02 E 12
@@ -361,18 +322,13 @@ Actor QCDoomSlayer : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP02 F 6 BRIGHT Light("PlayerFiringLight")
 			RP02 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP02 F 6 BRIGHT Light("PlayerFiringLight")
-			BP02 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP02 F 6 BRIGHT Light("PlayerFiringLight")
@@ -380,20 +336,14 @@ Actor QCDoomSlayer : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP02 G 4
 			RP02 G 4 A_Pain
 			RP02 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP02 G 4
-			BP02 G 4 A_Pain
-			BP02 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP02 G 4
@@ -462,19 +412,14 @@ Actor QCCorvus : QCPlayerMedium
 	{
 	Spawn:
 		QP03 E 0 NoDelay
-		QP03 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP03 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP03 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP03 E 0 A_JumpIf(true,                   "DefSpawn")
 		QP03 E 100
 		Loop
 
-		RedSpawn:
-			RP03 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP03 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP03 E 4
-			Loop
-		BlueSpawn:
-			BP03 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP03 E 4
 			Loop
 		DefSpawn:
 			QP03 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -482,18 +427,13 @@ Actor QCCorvus : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP03 ABCD 4
-			RP03 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP03 ABCD 4
-			BP03 A 0 A_JumpIf(true,"BlueSpawn")
+			RP03 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP03 ABCD 4
@@ -501,18 +441,13 @@ Actor QCCorvus : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP03 E 12
 			RP03 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP03 E 12
-			BP03 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP03 E 12
@@ -520,18 +455,13 @@ Actor QCCorvus : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP03 F 6 BRIGHT Light("PlayerFiringLight")
 			RP03 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP03 F 6 BRIGHT Light("PlayerFiringLight")
-			BP03 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP03 F 6 BRIGHT Light("PlayerFiringLight")
@@ -539,20 +469,14 @@ Actor QCCorvus : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP03 G 4
 			RP03 G 4 A_Pain
 			RP03 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP03 G 4
-			BP03 G 4 A_Pain
-			BP03 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP03 G 4
@@ -619,19 +543,14 @@ Actor QCKane : QCPlayerLight
 	{
 	Spawn:
 		QP04 E 0 NoDelay
-		QP04 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP04 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP04 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP04 E 0 A_JumpIf(true,                   "DefSpawn")
 		QP04 E 100
 		Loop
 
-		RedSpawn:
-			RP04 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP04 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP04 E 4
-			Loop
-		BlueSpawn:
-			BP04 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP04 E 4
 			Loop
 		DefSpawn:
 			QP04 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -639,18 +558,13 @@ Actor QCKane : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP04 ABCD 4
-			RP04 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP04 ABCD 4
-			BP04 A 0 A_JumpIf(true,"BlueSpawn")
+			RP04 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP04 ABCD 4
@@ -658,18 +572,13 @@ Actor QCKane : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP04 E 12
 			RP04 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP04 E 12
-			BP04 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP04 E 12
@@ -677,18 +586,13 @@ Actor QCKane : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP04 F 6 BRIGHT Light("PlayerFiringLight")
 			RP04 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP04 F 6 BRIGHT Light("PlayerFiringLight")
-			BP04 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP04 F 6 BRIGHT Light("PlayerFiringLight")
@@ -696,20 +600,14 @@ Actor QCKane : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP04 G 4
 			RP04 G 4 A_Pain
 			RP04 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP04 G 4
-			BP04 G 4 A_Pain
-			BP04 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP04 G 4
@@ -780,19 +678,14 @@ Actor QCCaleb : QCPlayerLight
 	{
 	Spawn:
 		QP05 G 0 NoDelay
-		QP05 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP05 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP05 G 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP05 G 0 A_JumpIf(true,                   "DefSpawn")
 		QP05 G 100
 		Loop
 
-		RedSpawn:
-			RP05 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP05 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP05 G 4
-			Loop
-		BlueSpawn:
-			BP05 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP05 G 4
 			Loop
 		DefSpawn:
 			QP05 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -800,18 +693,13 @@ Actor QCCaleb : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP05 ABCDEF 3
-			RP05 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP05 ABCDEF 3
-			BP05 A 0 A_JumpIf(true,"BlueSpawn")
+			RP05 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP05 ABCDEF 3
@@ -819,18 +707,13 @@ Actor QCCaleb : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" G 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP05 G 12
 			RP05 G 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP05 G 12
-			BP05 G 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP05 G 12
@@ -838,18 +721,13 @@ Actor QCCaleb : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP05 H 6 BRIGHT Light("PlayerFiringLight")
 			RP05 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP05 H 6 BRIGHT Light("PlayerFiringLight")
-			BP05 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP05 H 6 BRIGHT Light("PlayerFiringLight")
@@ -857,20 +735,14 @@ Actor QCCaleb : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" I 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP05 I 4
 			RP05 I 4 A_Pain
 			RP05 I 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP05 I 4
-			BP05 I 4 A_Pain
-			BP05 I 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP05 I 4
@@ -940,19 +812,14 @@ Actor QCMenelkir : QCPlayerLight
 	{
 	Spawn:
 		QP06 E 0 NoDelay
-		QP06 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP06 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP06 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP06 E 0 A_JumpIf(true,                   "DefSpawn")
 		QP06 E 100
 		Loop
 
-		RedSpawn:
-			RP06 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP06 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP06 E 4
-			Loop
-		BlueSpawn:
-			BP06 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP06 E 4
 			Loop
 		DefSpawn:
 			QP06 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -960,18 +827,13 @@ Actor QCMenelkir : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP06 ABCD 4
-			RP06 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP06 ABCD 4
-			BP06 A 0 A_JumpIf(true,"BlueSpawn")
+			RP06 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP06 ABCD 4
@@ -979,18 +841,13 @@ Actor QCMenelkir : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP06 E 12
 			RP06 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP06 E 12
-			BP06 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP06 E 12
@@ -998,18 +855,13 @@ Actor QCMenelkir : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP06 F 6 BRIGHT Light("PlayerFiringLight")
 			RP06 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP06 F 6 BRIGHT Light("PlayerFiringLight")
-			BP06 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP06 F 6 BRIGHT Light("PlayerFiringLight")
@@ -1017,20 +869,14 @@ Actor QCMenelkir : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP06 G 4
 			RP06 G 4 A_Pain
 			RP06 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP06 G 4
-			BP06 G 4 A_Pain
-			BP06 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP06 G 4
@@ -1098,19 +944,14 @@ Actor QCTerminator : QCPlayerHeavy
 	{
 	Spawn:
 		QP07 E 0 NoDelay
-		QP07 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP07 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP07 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP07 E 0 A_JumpIf(true,                   "DefSpawn")
 		QP07 E 100
 		Loop
 
-		RedSpawn:
-			RP07 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP07 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP07 E 4
-			Loop
-		BlueSpawn:
-			BP07 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP07 E 4
 			Loop
 		DefSpawn:
 			QP07 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -1118,18 +959,13 @@ Actor QCTerminator : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP07 ABCD 4
-			RP07 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP07 ABCD 4
-			BP07 A 0 A_JumpIf(true,"BlueSpawn")
+			RP07 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP07 ABCD 4
@@ -1137,18 +973,13 @@ Actor QCTerminator : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP07 E 12
 			RP07 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP07 E 12
-			BP07 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP07 E 12
@@ -1156,18 +987,13 @@ Actor QCTerminator : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP07 F 6 BRIGHT Light("PlayerFiringLight")
 			RP07 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP07 F 6 BRIGHT Light("PlayerFiringLight")
-			BP07 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP07 F 6 BRIGHT Light("PlayerFiringLight")
@@ -1175,20 +1001,14 @@ Actor QCTerminator : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP07 G 4
 			RP07 G 4 A_Pain
 			RP07 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP07 G 4
-			BP07 G 4 A_Pain
-			BP07 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP07 G 4
@@ -1293,19 +1113,14 @@ Actor QCZedek : QCPlayerHeavy
 	{
 	Spawn:
 		QP08 A 0 NoDelay
-		QP08 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP08 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP08 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP08 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP08 A 100
 		Loop
 
-		RedSpawn:
-			RP08 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP08 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP08 A 4
-			Loop
-		BlueSpawn:
-			BP08 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP08 A 4
 			Loop
 		DefSpawn:
 			QP08 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -1313,18 +1128,13 @@ Actor QCZedek : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP08 ABCD 4
-			RP08 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP08 ABCD 4
-			BP08 A 0 A_JumpIf(true,"BlueSpawn")
+			RP08 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP08 ABCD 4
@@ -1332,18 +1142,13 @@ Actor QCZedek : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP08 E 12
 			RP08 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP08 E 12
-			BP08 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP08 E 12
@@ -1351,18 +1156,13 @@ Actor QCZedek : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP08 F 6 BRIGHT Light("PlayerFiringLight")
 			RP08 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP08 F 6 BRIGHT Light("PlayerFiringLight")
-			BP08 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP08 F 6 BRIGHT Light("PlayerFiringLight")
@@ -1370,20 +1170,14 @@ Actor QCZedek : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP08 G 4
 			RP08 G 4 A_Pain
 			RP08 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP08 G 4
-			BP08 G 4 A_Pain
-			BP08 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP08 G 4
@@ -1455,19 +1249,14 @@ Actor QCInquisitor : QCPlayerHeavy
 	{
 	Spawn:
 		QP09 F 0 NoDelay
-		QP09 F 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP09 F 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP09 F 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP09 F 0 A_JumpIf(true,                   "DefSpawn")
 		QP09 F 100
 		Loop
 
-		RedSpawn:
-			RP09 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP09 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP09 F 4
-			Loop
-		BlueSpawn:
-			BP09 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP09 F 4
 			Loop
 		DefSpawn:
 			QP09 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -1475,18 +1264,13 @@ Actor QCInquisitor : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP09 ABCDCB 4
-			RP09 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP09 ABCDCB 4
-			BP09 A 0 A_JumpIf(true,"BlueSpawn")
+			RP09 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP09 ABCDCB 4
@@ -1494,18 +1278,13 @@ Actor QCInquisitor : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" F 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP09 F 12
 			RP09 F 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP09 F 12
-			BP09 F 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP09 F 12
@@ -1513,18 +1292,13 @@ Actor QCInquisitor : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" E 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP09 E 6 BRIGHT Light("PlayerFiringLight")
 			RP09 E 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP09 E 6 BRIGHT Light("PlayerFiringLight")
-			BP09 E 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP09 E 6 BRIGHT Light("PlayerFiringLight")
@@ -1532,20 +1306,14 @@ Actor QCInquisitor : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" I 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP09 I 4
 			RP09 I 4 A_Pain
 			RP09 I 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP09 I 4
-			BP09 I 4 A_Pain
-			BP09 I 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP09 I 4
@@ -1618,19 +1386,14 @@ Actor QCBitterman : QCPlayerHeavy
 	{
 	Spawn:
 		QP10 G 0 NoDelay
-		QP10 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP10 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP10 G 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP10 G 0 A_JumpIf(true,                   "DefSpawn")
 		QP10 G 100
 		Loop
 
-		RedSpawn:
-			RP10 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP10 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP10 G 4
-			Loop
-		BlueSpawn:
-			BP10 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP10 G 4
 			Loop
 		DefSpawn:
 			QP10 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -1638,18 +1401,13 @@ Actor QCBitterman : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP10 ABCDEF 4
-			RP10 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP10 ABCDEF 4
-			BP10 A 0 A_JumpIf(true,"BlueSpawn")
+			RP10 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP10 ABCDEF 4
@@ -1657,18 +1415,13 @@ Actor QCBitterman : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" G 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP10 G 12
 			RP10 G 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP10 G 12
-			BP10 G 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP10 G 12
@@ -1676,18 +1429,13 @@ Actor QCBitterman : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP10 H 6 BRIGHT Light("PlayerFiringLight")
 			RP10 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP10 H 6 BRIGHT Light("PlayerFiringLight")
-			BP10 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP10 H 6 BRIGHT Light("PlayerFiringLight")
@@ -1695,20 +1443,14 @@ Actor QCBitterman : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" I 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP10 I 4
 			RP10 I 4 A_Pain
 			RP10 I 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP10 I 4
-			BP10 I 4 A_Pain
-			BP10 I 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP10 I 4
@@ -1777,19 +1519,14 @@ Actor QCGalen : QCPlayerMedium
 	{
 	Spawn:
 		QP11 A 0 NoDelay
-		QP11 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP11 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP11 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP11 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP11 A 100
 		Loop
 
-		RedSpawn:
-			RP11 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP11 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP11 A 4
-			Loop
-		BlueSpawn:
-			BP11 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP11 A 4
 			Loop
 		DefSpawn:
 			QP11 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -1797,18 +1534,13 @@ Actor QCGalen : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP11 ABCD 4
-			RP11 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP11 ABCD 4
-			BP11 A 0 A_JumpIf(true,"BlueSpawn")
+			RP11 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP11 ABCD 4
@@ -1816,18 +1548,13 @@ Actor QCGalen : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP11 E 12
 			RP11 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP11 E 12
-			BP11 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP11 E 12
@@ -1835,18 +1562,13 @@ Actor QCGalen : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" G 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP11 G 6 BRIGHT Light("PlayerFiringLight")
 			RP11 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP11 G 6 BRIGHT Light("PlayerFiringLight")
-			BP11 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP11 G 6 BRIGHT Light("PlayerFiringLight")
@@ -1854,20 +1576,14 @@ Actor QCGalen : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" H 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP11 H 4
 			RP11 H 4 A_Pain
 			RP11 H 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP11 H 4
-			BP11 H 4 A_Pain
-			BP11 H 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP11 H 4
@@ -1935,19 +1651,14 @@ Actor QCNyx : QCPlayerLight
 	{
 	Spawn:
 		QP12 E 0 NoDelay
-		QP12 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP12 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP12 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP12 E 0 A_JumpIf(true,                   "DefSpawn")
 		QP12 E 100
 		Loop
 
-		RedSpawn:
-			RP12 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP12 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP12 E 4
-			Loop
-		BlueSpawn:
-			BP12 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP12 E 4
 			Loop
 		DefSpawn:
 			QP12 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -1955,18 +1666,13 @@ Actor QCNyx : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP12 ABCD 4
-			RP12 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP12 ABCD 4
-			BP12 A 0 A_JumpIf(true,"BlueSpawn")
+			RP12 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP12 ABCD 4
@@ -1974,18 +1680,13 @@ Actor QCNyx : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP12 E 12
 			RP12 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP12 E 12
-			BP12 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP12 E 12
@@ -1993,18 +1694,13 @@ Actor QCNyx : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP12 F 6 BRIGHT Light("PlayerFiringLight")
 			RP12 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP12 F 6 BRIGHT Light("PlayerFiringLight")
-			BP12 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP12 F 6 BRIGHT Light("PlayerFiringLight")
@@ -2012,20 +1708,14 @@ Actor QCNyx : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP12 G 4
 			RP12 G 4 A_Pain
 			RP12 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP12 G 4
-			BP12 G 4 A_Pain
-			BP12 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP12 G 4
@@ -2096,19 +1786,14 @@ Actor QCSorgaul : QCPlayerHeavy
 
 	Spawn:
 		QP13 G 0 NoDelay
-		QP13 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP13 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP13 G 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP13 G 0 A_JumpIf(true,                   "DefSpawn")
 		QP13 G 100
 		Loop
 
-		RedSpawn:
-			RP13 A 0 A_JumpIf(momx||momy,"RedSee")
-			RP13 G 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
-			Loop
-		BlueSpawn:
-			BP13 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP13 G 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+		ColoredSpawn:
+			RP13 A 0 A_JumpIf(momx||momy,"ColoredSee")
+			RP13 G 3 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
 			Loop
 		DefSpawn:
 			QP13 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -2116,18 +1801,13 @@ Actor QCSorgaul : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
-			RP13 ABCDEF 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
-			RP13 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP13 ABCDEF 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
-			BP13 A 0 A_JumpIf(true,"BlueSpawn")
+		ColoredSee:
+			RP13 ABCDEF 3 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
+			RP13 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP13 ABCDEF 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
@@ -2135,18 +1815,13 @@ Actor QCSorgaul : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
-			RP13 GGGG 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+		ColoredMissile:
+			RP13 GGGG 3 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
 			RP13 G 3 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP13 GGGG 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
-			BP13 G 3 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP13 GGGG 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
@@ -2154,18 +1829,13 @@ Actor QCSorgaul : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP13 H 6 BRIGHT Light("PlayerFiringLight")
 			RP13 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP13 H 6 BRIGHT Light("PlayerFiringLight")
-			BP13 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP13 H 6 BRIGHT Light("PlayerFiringLight")
@@ -2173,20 +1843,14 @@ Actor QCSorgaul : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" L 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
-			RP13 L 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+		ColoredPain:
+			RP13 L 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
 			RP13 L 4 A_Pain
 			RP13 L 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP13 L 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
-			BP13 L 4 A_Pain
-			BP13 L 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP13 L 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
@@ -2194,13 +1858,9 @@ Actor QCSorgaul : QCPlayerHeavy
 			QP13 L 4 A_JumpIf(true, "Spawn")
 			Loop
 
-		RedPuncheroo:
+		ColoredPuncheroo:
 			RP13 IJK 4
 			RP13 K 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePuncheroo:
-			BP13 IJK 4
-			BP13 K 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPuncheroo:
 			QP13 IJK 4
@@ -2264,19 +1924,14 @@ Actor QCDukeNukem : QCPlayerMedium
 	{
 	Spawn:
 		QP14 e 0 nodelay
-		QP14 e 0 a_jumpifinventory("teamcolor",2, "RedSpawn")
-		QP14 e 0 a_jumpifinventory("teamcolor",1,"BlueSpawn")
+		QP14 e 0 a_jumpifinventory("TeamColor",1, "ColoredSpawn")
 		QP14 e 0 a_jumpif(true,                   "DefSpawn")
 		QP14 e 100
 		loop
 
-		RedSpawn:
-			RP14 a 0 a_jumpif(momx||momy,"RedSee")
-			RP14 e 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
-			loop
-		BlueSpawn:
-			BP14 a 0 a_jumpif(momx||momy,"BlueSee")
-			BP14 e 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+		ColoredSpawn:
+			RP14 a 0 a_jumpif(momx||momy,"ColoredSee")
+			RP14 e 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
 			loop
 		DefSpawn:
 			QP14 a 0 a_jumpif(momx||momy,"DefSee")
@@ -2284,18 +1939,13 @@ Actor QCDukeNukem : QCPlayerMedium
 			goto Spawn // to catch color
 
 	See:
-		"####" a 0 a_jumpifinventory("teamcolor",2, "RedSee") // so tempted to call it "red sea"
-		"####" a 0 a_jumpifinventory("teamcolor",1,"BlueSee")
+		"####" a 0 a_jumpifinventory("TeamColor",1, "ColoredSee") // so tempted to call it "red sea"
 		"####" a 1 a_jumpif(true,                   "DefSee")
 		goto DefSee // for preview screen and prediction
 
-		RedSee:
-			RP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
-			RP14 a 0 a_jumpif(true,"RedSpawn")
-			loop
-		BlueSee:
-			BP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
-			BP14 a 0 a_jumpif(true,"BlueSpawn")
+		ColoredSee:
+			RP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
+			RP14 a 0 a_jumpif(true,"ColoredSpawn")
 			loop
 		DefSee:
 			QP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
@@ -2303,31 +1953,22 @@ Actor QCDukeNukem : QCPlayerMedium
 			loop
 
 	Missile:
-		"####" a 0 a_jumpifinventory("teamcolor",2, "RedMissile")
-		"####" a 0 a_jumpifinventory("teamcolor",1,"BlueMissile")
+		"####" a 0 a_jumpifinventory("TeamColor",1, "ColoredMissile")
 		"####" e 1 a_jumpif(true,                   "DefMissile")
 		loop
 
-		RedMissile:
-			RP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+		ColoredMissile:
+			RP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
 			RP14 e 12 a_jumpif(true, "Spawn")
-			loop
-		BlueMissile:
-			BP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
-			BP14 e 12 a_jumpif(true, "Spawn")
 			loop
 		DefMissile:
 			QP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
 			QP14 e 12 a_jumpif(true, "Spawn")
 			loop
 
-		RedPuncheroo:
+		ColoredPuncheroo:
 			RP14 GH 5
 			RP14 H 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePuncheroo:
-			BP14 GH 5
-			BP14 H 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPuncheroo:
 			QP14 GH 5
@@ -2335,18 +1976,13 @@ Actor QCDukeNukem : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" a 0 a_jumpifinventory("teamcolor",2, "RedMelee")
-		"####" a 0 a_jumpifinventory("teamcolor",1,"BlueMelee")
+		"####" a 0 a_jumpifinventory("TeamColor",1, "ColoredMelee")
 		"####" f 1 a_jumpif(true,                   "DefMelee")
 		loop
 
-		RedMelee:
+		ColoredMelee:
 			RP14 f 6 bright light("playerfiringlight")
 			RP14 f 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
-			loop
-		BlueMelee:
-			BP14 f 6 bright light("playerfiringlight")
-			BP14 f 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
 			loop
 		DefMelee:
 			QP14 f 6 bright light("playerfiringlight")
@@ -2354,20 +1990,14 @@ Actor QCDukeNukem : QCPlayerMedium
 			loop
 
 	Pain:
-		"####" a 0 a_jumpifinventory("teamcolor",2, "RedPain")
-		"####" a 0 a_jumpifinventory("teamcolor",1,"BluePain")
+		"####" a 0 a_jumpifinventory("TeamColor",1, "ColoredPain")
 		"####" g 1 a_jumpif(true,                   "DefPain")
 		loop
 
-		RedPain:
+		ColoredPain:
 			RP14 b 4
 			RP14 b 4 a_Pain
 			RP14 b 4 a_jumpif(true, "Spawn")
-			loop
-		BluePain:
-			BP14 b 4
-			BP14 b 4 a_Pain
-			BP14 b 4 a_jumpif(true, "Spawn")
 			loop
 		DefPain:
 			QP14 b 4
@@ -2435,19 +2065,14 @@ Actor QCDurandal : QCPlayerLight
 	{
 	Spawn:
 		QP15 A 0 NoDelay
-		QP15 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP15 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP15 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP15 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP15 A 100
 		Loop
 
-		RedSpawn:
-			RP15 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP15 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP15 A 4
-			Loop
-		BlueSpawn:
-			BP15 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP15 A 4
 			Loop
 		DefSpawn:
 			QP15 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -2455,18 +2080,13 @@ Actor QCDurandal : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP15 BCDE 4
-			RP15 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP15 BCDE 4
-			BP15 A 0 A_JumpIf(true,"BlueSpawn")
+			RP15 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP15 BCDE 4
@@ -2474,18 +2094,13 @@ Actor QCDurandal : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP15 F 12
 			RP15 F 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP15 F 12
-			BP15 F 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP15 F 12
@@ -2493,18 +2108,13 @@ Actor QCDurandal : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" G 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP15 G 6 BRIGHT Light("PlayerFiringLight")
 			RP15 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP15 G 6 BRIGHT Light("PlayerFiringLight")
-			BP15 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP15 G 6 BRIGHT Light("PlayerFiringLight")
@@ -2512,20 +2122,14 @@ Actor QCDurandal : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" A 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP15 A 4
 			RP15 A 4 A_Pain
 			RP15 A 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP15 A 4
-			BP15 A 4 A_Pain
-			BP15 A 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP15 A 4
@@ -2591,19 +2195,14 @@ Actor QCKeel : QCPlayerHeavy
 	{
 	Spawn:
 		QP16 A 0 NoDelay
-		QP16 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP16 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP16 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP16 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP16 A 100
 		Loop
 
-		RedSpawn:
-			RP16 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP16 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP16 A 4
-			Loop
-		BlueSpawn:
-			BP16 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP16 A 4
 			Loop
 		DefSpawn:
 			QP16 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -2611,18 +2210,13 @@ Actor QCKeel : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP16 ABCD 5
-			RP16 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP16 ABCD 5
-			BP16 A 0 A_JumpIf(true,"BlueSpawn")
+			RP16 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP16 ABCD 5
@@ -2630,18 +2224,13 @@ Actor QCKeel : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP16 E 12
 			RP16 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP16 E 12
-			BP16 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP16 E 12
@@ -2649,18 +2238,13 @@ Actor QCKeel : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP16 F 6 BRIGHT Light("PlayerFiringLight")
 			RP16 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP16 F 6 BRIGHT Light("PlayerFiringLight")
-			BP16 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP16 F 6 BRIGHT Light("PlayerFiringLight")
@@ -2668,20 +2252,14 @@ Actor QCKeel : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" I 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP16 I 4
 			RP16 I 4 A_Pain
 			RP16 I 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP16 I 4
-			BP16 I 4 A_Pain
-			BP16 I 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP16 I 4
@@ -2745,19 +2323,14 @@ Actor QCSarge : QCPlayerMedium
 	{
 	Spawn:
 		QP17 A 0 NoDelay
-		QP17 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP17 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP17 A 0 A_JumpIfInventory("TeamColor",1,"ColoredSpawn")
 		QP17 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP17 A 100
 		Loop
 
-		RedSpawn:
-			RP17 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP17 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP17 A 4
-			Loop
-		BlueSpawn:
-			BP17 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP17 A 4
 			Loop
 		DefSpawn:
 			QP17 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -2765,18 +2338,13 @@ Actor QCSarge : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP17 BCDE 4
-			RP17 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP17 BCDE 4
-			BP17 A 0 A_JumpIf(true,"BlueSpawn")
+			RP17 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP17 BCDE 4
@@ -2784,18 +2352,13 @@ Actor QCSarge : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"ColoredMissile")
 		"####" F 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP17 F 12
 			RP17 F 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP17 F 12
-			BP17 F 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP17 F 12
@@ -2803,18 +2366,13 @@ Actor QCSarge : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"ColoredMelee")
 		"####" G 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP17 G 6 BRIGHT Light("PlayerFiringLight")
 			RP17 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP17 G 6 BRIGHT Light("PlayerFiringLight")
-			BP17 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP17 G 6 BRIGHT Light("PlayerFiringLight")
@@ -2822,20 +2380,14 @@ Actor QCSarge : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1,"ColoredPain")
 		"####" H 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP17 H 4
 			RP17 H 4 A_Pain
 			RP17 H 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP17 H 4
-			BP17 H 4 A_Pain
-			BP17 H 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP17 H 4
@@ -2900,19 +2452,14 @@ Actor QCLoWang : QCPlayerLight
 	{
 	Spawn:
 		QP18 C 0 NoDelay
-		QP18 C 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP18 C 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP18 C 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP18 C 0 A_JumpIf(true,                   "DefSpawn")
 		QP18 C 100
 		Loop
 
-		RedSpawn:
-			RP18 C 0 A_JumpIf(momx||momy,"RedSee")
-			RP18 C 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
-			Loop
-		BlueSpawn:
-			BP18 C 0 A_JumpIf(momx||momy,"BlueSee")
-			BP18 C 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
+		ColoredSpawn:
+			RP18 C 0 A_JumpIf(momx||momy,"ColoredSee")
+			RP18 C 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
 			Loop
 		DefSpawn:
 			QP18 C 0 A_JumpIf(momx||momy,"DefSee")
@@ -2920,18 +2467,13 @@ Actor QCLoWang : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
-			RP18 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
-			RP18 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP18 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
-			BP18 A 0 A_JumpIf(true,"BlueSpawn")
+		ColoredSee:
+			RP18 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
+			RP18 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP18 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
@@ -2939,18 +2481,13 @@ Actor QCLoWang : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
-			RP18 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo")
+		ColoredMissile:
+			RP18 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
 			RP18 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP18 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
-			BP18 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP18 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
@@ -2958,31 +2495,22 @@ Actor QCLoWang : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
-			RP18 FF 3 BRIGHT Light("PlayerFiringLight") //A_JumpIfInventory("ThirdPersonPunch",1,"RedPuncheroo") //had to remove or it gets weird with quick fire weapons
+		ColoredMelee:
+			RP18 FF 3 BRIGHT Light("PlayerFiringLight") //A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo") //had to remove or it gets weird with quick fire weapons
 			RP18 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP18 FF 3 BRIGHT Light("PlayerFiringLight") //A_JumpIfInventory("ThirdPersonPunch",1,"BluePuncheroo")
-			BP18 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP18 FF 3 BRIGHT Light("PlayerFiringLight") //A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
 			QP18 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 
-		RedPuncheroo:
+		ColoredPuncheroo:
 			RP18 GHIGHI 3
 			RP18 K 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePuncheroo:
-			BP18 GHIGHI 3
-			BP18 K 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPuncheroo:
 			QP18 GHIGHI 3
@@ -2990,20 +2518,14 @@ Actor QCLoWang : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" B 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP18 B 4
 			RP18 B 4 A_Pain
 			RP18 B 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP18 B 4
-			BP18 B 4 A_Pain
-			BP18 B 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP18 B 4
@@ -3069,19 +2591,14 @@ Actor QCGrayson : QCPlayerMedium
 	{
 	Spawn:
 		QP19 E 0 NoDelay
-		QP19 E 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP19 E 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP19 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP19 E 0 A_JumpIf(true,                   "DefSpawn")
 		QP19 E 100
 		Loop
 
-		RedSpawn:
-			RP19 E 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP19 E 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP19 E 4
-			Loop
-		BlueSpawn:
-			BP19 E 0 A_JumpIf(momx||momy,"BlueSee")
-			BP19 E 4
 			Loop
 		DefSpawn:
 			QP19 E 0 A_JumpIf(momx||momy,"DefSee")
@@ -3089,18 +2606,13 @@ Actor QCGrayson : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP19 ABCD 4
-			RP19 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP19 ABCD 4
-			BP19 A 0 A_JumpIf(true,"BlueSpawn")
+			RP19 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP19 ABCD 4
@@ -3108,18 +2620,13 @@ Actor QCGrayson : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP19 E 12
 			RP19 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP19 E 12
-			BP19 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP19 E 12
@@ -3127,18 +2634,13 @@ Actor QCGrayson : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP19 F 6 BRIGHT Light("PlayerFiringLight")
 			RP19 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP19 F 6 BRIGHT Light("PlayerFiringLight")
-			BP19 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP19 F 6 BRIGHT Light("PlayerFiringLight")
@@ -3146,20 +2648,14 @@ Actor QCGrayson : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP19 G 4
 			RP19 G 4 A_Pain
 			RP19 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP19 G 4
-			BP19 G 4 A_Pain
-			BP19 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP19 G 4
@@ -3230,19 +2726,14 @@ Actor QCEradicator : QCPlayerHeavy
 	{
 	Spawn:
 		QP20 A 0 NoDelay
-		QP20 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP20 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP20 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP20 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP20 A 100
 		Loop
 
-		RedSpawn:
-			RP20 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP20 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP20 A 4
-			Loop
-		BlueSpawn:
-			BP20 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP20 A 4
 			Loop
 		DefSpawn:
 			QP20 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -3250,18 +2741,13 @@ Actor QCEradicator : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP20 BCDEFG 3
-			RP20 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP20 BCDEFG 3
-			BP20 B 0 A_JumpIf(true,"BlueSpawn")
+			RP20 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP20 BCDEFG 3
@@ -3269,18 +2755,13 @@ Actor QCEradicator : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" H 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP20 H 12
 			RP20 H 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP20 H 12
-			BP20 H 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP20 H 12
@@ -3288,18 +2769,13 @@ Actor QCEradicator : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" I 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP20 I 6 BRIGHT Light("PlayerFiringLight")
 			RP20 I 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP20 I 6 BRIGHT Light("PlayerFiringLight")
-			BP20 I 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP20 I 6 BRIGHT Light("PlayerFiringLight")
@@ -3307,20 +2783,14 @@ Actor QCEradicator : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP20 M 4
 			RP20 M 4 A_Pain
 			RP20 M 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP20 M 4
-			BP20 M 4 A_Pain
-			BP20 M 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP20 M 4
@@ -3392,19 +2862,14 @@ Actor QCBlazkowicz : QCPlayerMedium
 	{
 	Spawn:
 		QP21 G 0 NoDelay
-		QP21 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP21 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP21 G 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP21 G 0 A_JumpIf(true,                   "DefSpawn")
 		QP21 G 100
 		Loop
 
-		RedSpawn:
-			RP21 G 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP21 G 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP21 G 4
-			Loop
-		BlueSpawn:
-			BP21 G 0 A_JumpIf(momx||momy,"BlueSee")
-			BP21 G 4
 			Loop
 		DefSpawn:
 			QP21 G 0 A_JumpIf(momx||momy,"DefSee")
@@ -3412,18 +2877,13 @@ Actor QCBlazkowicz : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP21 ABCDEF 3
-			RP21 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP21 ABCDEF 3
-			BP21 A 0 A_JumpIf(true,"BlueSpawn")
+			RP21 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP21 ABCDEF 3
@@ -3431,18 +2891,13 @@ Actor QCBlazkowicz : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" G 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" G 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" G 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" G 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP21 G 12
 			RP21 G 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP21 G 12
-			BP21 G 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP21 G 12
@@ -3450,18 +2905,13 @@ Actor QCBlazkowicz : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" H 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" H 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" H 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP21 H 6 BRIGHT Light("PlayerFiringLight")
 			RP21 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP21 H 6 BRIGHT Light("PlayerFiringLight")
-			BP21 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP21 H 6 BRIGHT Light("PlayerFiringLight")
@@ -3469,20 +2919,14 @@ Actor QCBlazkowicz : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" I 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" I 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" I 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" I 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP21 I 4
 			RP21 I 4 A_Pain
 			RP21 I 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP21 I 4
-			BP21 I 4 A_Pain
-			BP21 I 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP21 I 4
@@ -3550,19 +2994,14 @@ Actor QCFreeman : QCPlayerMedium
 	{
 	Spawn:
 		QP22 A 0 NoDelay
-		QP22 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP22 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP22 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP22 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP22 G 100
 		Loop
 
-		RedSpawn:
-			RP22 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP22 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP22 G 4
-			Loop
-		BlueSpawn:
-			BP22 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP22 G 4
 			Loop
 		DefSpawn:
 			QP22 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -3570,18 +3009,13 @@ Actor QCFreeman : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP22 ABCDEF 3
-			RP22 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP22 ABCDEF 3
-			BP22 B 0 A_JumpIf(true,"BlueSpawn")
+			RP22 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP22 ABCDEF 3
@@ -3589,18 +3023,13 @@ Actor QCFreeman : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" G 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP22 G 12
 			RP22 G 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP22 G 12
-			BP22 G 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP22 G 12
@@ -3608,18 +3037,13 @@ Actor QCFreeman : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP22 H 6 BRIGHT Light("PlayerFiringLight")
 			RP22 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP22 H 6 BRIGHT Light("PlayerFiringLight")
-			BP22 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP22 H 6 BRIGHT Light("PlayerFiringLight")
@@ -3627,20 +3051,14 @@ Actor QCFreeman : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" I 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP22 I 4
 			RP22 I 4 A_Pain
 			RP22 I 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP22 I 4
-			BP22 I 4 A_Pain
-			BP22 I 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP22 I 4
@@ -3715,19 +3133,14 @@ Actor QCVorMatur : QCPlayerHeavy
 	{
 	Spawn:
 		QP23 A 0 NoDelay
-		QP23 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP23 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP23 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP23 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP23 F 100
 		Loop
 
-		RedSpawn:
-			RP23 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP23 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP23 F 4
-			Loop
-		BlueSpawn:
-			BP23 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP23 F 4
 			Loop
 		DefSpawn:
 			QP23 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -3735,18 +3148,13 @@ Actor QCVorMatur : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP23 ABCD 4
-			RP23 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP23 ABCD 4
-			BP23 B 0 A_JumpIf(true,"BlueSpawn")
+			RP23 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP23 ABCD 4
@@ -3754,18 +3162,13 @@ Actor QCVorMatur : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" F 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP23 F 12
 			RP23 F 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP23 F 12
-			BP23 F 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP23 F 12
@@ -3773,18 +3176,13 @@ Actor QCVorMatur : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" G 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP23 G 6 BRIGHT Light("PlayerFiringLight")
 			RP23 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP23 G 6 BRIGHT Light("PlayerFiringLight")
-			BP23 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP23 G 6 BRIGHT Light("PlayerFiringLight")
@@ -3792,20 +3190,14 @@ Actor QCVorMatur : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" H 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP23 H 4
 			RP23 H 4 A_Pain
 			RP23 H 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP23 H 4
-			BP23 H 4 A_Pain
-			BP23 H 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP23 H 4
@@ -3875,19 +3267,14 @@ Actor QCEleena : QCPlayerLight
 	{
 	Spawn:
 		QP24 A 0 NoDelay
-		QP24 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP24 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP24 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP24 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP24 G 100
 		Loop
 
-		RedSpawn:
-			RP24 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP24 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP24 G 4
-			Loop
-		BlueSpawn:
-			BP24 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP24 G 4
 			Loop
 		DefSpawn:
 			QP24 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -3895,18 +3282,13 @@ Actor QCEleena : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP24 ABCDEF 3
-			RP24 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP24 ABCDEF 3
-			BP24 B 0 A_JumpIf(true,"BlueSpawn")
+			RP24 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP24 ABCDEF 3
@@ -3914,18 +3296,13 @@ Actor QCEleena : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" G 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP24 G 12
 			RP24 G 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP24 G 12
-			BP24 G 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP24 G 12
@@ -3933,18 +3310,13 @@ Actor QCEleena : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP24 H 6 BRIGHT Light("PlayerFiringLight")
 			RP24 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP24 H 6 BRIGHT Light("PlayerFiringLight")
-			BP24 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP24 H 6 BRIGHT Light("PlayerFiringLight")
@@ -3952,20 +3324,14 @@ Actor QCEleena : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" L 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP24 L 4
 			RP24 L 4 A_Pain
 			RP24 L 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP24 L 4
-			BP24 L 4 A_Pain
-			BP24 L 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP24 L 4
@@ -4032,19 +3398,14 @@ Actor QCLucienne : QCPlayerLight
 	{
 	Spawn:
 		QP25 A 0 NoDelay
-		QP25 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP25 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP25 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP25 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP25 C 100
 		Loop
 
-		RedSpawn:
-			RP25 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP25 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP25 C 4
-			Loop
-		BlueSpawn:
-			BP25 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP25 C 4
 			Loop
 		DefSpawn:
 			QP25 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -4052,18 +3413,13 @@ Actor QCLucienne : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP25 ABCDCB 3
-			RP25 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP25 ABCDCB 3
-			BP25 B 0 A_JumpIf(true,"BlueSpawn")
+			RP25 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP25 ABCDCB 3
@@ -4071,18 +3427,13 @@ Actor QCLucienne : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP25 E 12
 			RP25 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP25 E 12
-			BP25 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP25 E 12
@@ -4090,18 +3441,13 @@ Actor QCLucienne : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP25 F 6 BRIGHT Light("PlayerFiringLight")
 			RP25 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP25 F 6 BRIGHT Light("PlayerFiringLight")
-			BP25 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP25 F 6 BRIGHT Light("PlayerFiringLight")
@@ -4109,20 +3455,14 @@ Actor QCLucienne : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP25 G 4
 			RP25 G 4 A_Pain
 			RP25 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP25 G 4
-			BP25 G 4 A_Pain
-			BP25 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP25 G 4
@@ -4221,19 +3561,14 @@ Actor QCMajor : QCPlayerHeavy
 	{
 	Spawn:
 		QP26 A 0 NoDelay
-		QP26 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP26 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP26 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP26 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP26 A 100
 		Loop
 
-		RedSpawn:
-			RP26 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP26 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP26 A 4
-			Loop
-		BlueSpawn:
-			BP26 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP26 A 4
 			Loop
 		DefSpawn:
 			QP26 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -4241,18 +3576,13 @@ Actor QCMajor : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" B 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP26 BCDE 4
-			RP26 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP26 BCDE 4
-			BP26 B 0 A_JumpIf(true,"BlueSpawn")
+			RP26 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP26 BCDE 4
@@ -4260,18 +3590,13 @@ Actor QCMajor : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" F 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP26 F 12
 			RP26 F 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP26 F 12
-			BP26 F 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP26 F 12
@@ -4279,18 +3604,13 @@ Actor QCMajor : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" G 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP26 G 6 BRIGHT Light("PlayerFiringLight")
 			RP26 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP26 G 6 BRIGHT Light("PlayerFiringLight")
-			BP26 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP26 G 6 BRIGHT Light("PlayerFiringLight")
@@ -4298,20 +3618,14 @@ Actor QCMajor : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" H 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP26 H 4
 			RP26 H 4 A_Pain
 			RP26 H 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP26 H 4
-			BP26 H 4 A_Pain
-			BP26 H 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP26 H 4
@@ -4377,19 +3691,14 @@ Actor QCHunter : QCPlayerLight
 	{
 	Spawn:
 		QP27 A 0 NoDelay
-		QP27 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP27 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP27 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP27 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP27 A 100
 		Loop
 
-		RedSpawn:
-			RP27 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP27 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP27 A 4
-			Loop
-		BlueSpawn:
-			BP27 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP27 A 4
 			Loop
 		DefSpawn:
 			QP27 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -4397,18 +3706,13 @@ Actor QCHunter : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP27 BCDE 4
-			RP27 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP27 BCDE 4
-			BP27 B 0 A_JumpIf(true,"BlueSpawn")
+			RP27 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP27 BCDE 4
@@ -4416,18 +3720,13 @@ Actor QCHunter : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" F 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP27 F 12
 			RP27 F 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP27 F 12
-			BP27 F 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP27 F 12
@@ -4435,18 +3734,13 @@ Actor QCHunter : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" G 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP27 G 6 BRIGHT Light("PlayerFiringLight")
 			RP27 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP27 G 6 BRIGHT Light("PlayerFiringLight")
-			BP27 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP27 G 6 BRIGHT Light("PlayerFiringLight")
@@ -4454,20 +3748,14 @@ Actor QCHunter : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" H 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP27 H 4
 			RP27 H 4 A_Pain
 			RP27 H 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP27 H 4
-			BP27 H 4 A_Pain
-			BP27 H 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP27 H 4
@@ -4538,19 +3826,14 @@ Actor QCSam : QCPlayerHeavy
 	{
 	Spawn:
 		QP28 A 0 NoDelay
-		QP28 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP28 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP28 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP28 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP28 A 100
 		Loop
 
-		RedSpawn:
-			RP28 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP28 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP28 A 4
-			Loop
-		BlueSpawn:
-			BP28 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP28 A 4
 			Loop
 		DefSpawn:
 			QP28 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -4558,18 +3841,13 @@ Actor QCSam : QCPlayerHeavy
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" B 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP28 BCDEFG 4
-			RP28 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP28 BCDEFG 4
-			BP28 B 0 A_JumpIf(true,"BlueSpawn")
+			RP28 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP28 BCDEFG 4
@@ -4577,18 +3855,13 @@ Actor QCSam : QCPlayerHeavy
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" A 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP28 A 12
 			RP28 A 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP28 A 12
-			BP28 A 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP28 A 12
@@ -4596,18 +3869,13 @@ Actor QCSam : QCPlayerHeavy
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP28 H 6 BRIGHT Light("PlayerFiringLight")
 			RP28 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP28 H 6 BRIGHT Light("PlayerFiringLight")
-			BP28 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP28 H 6 BRIGHT Light("PlayerFiringLight")
@@ -4615,20 +3883,14 @@ Actor QCSam : QCPlayerHeavy
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" I 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP28 I 4
 			RP28 I 4 A_Pain
 			RP28 I 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP28 I 4
-			BP28 I 4 A_Pain
-			BP28 I 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP28 I 4
@@ -4696,19 +3958,14 @@ Actor QCPostal : QCPlayerLight
 	{
 	Spawn:
 		QP29 A 0 NoDelay
-		QP29 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP29 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP29 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP29 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP29 A 100
 		Loop
 
-		RedSpawn:
-			RP29 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP29 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP29 A 4
-			Loop
-		BlueSpawn:
-			BP29 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP29 A 4
 			Loop
 		DefSpawn:
 			QP29 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -4716,18 +3973,13 @@ Actor QCPostal : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP29 ABCD 4
-			RP29 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP29 ABCD 4
-			BP29 A 0 A_JumpIf(true,"BlueSpawn")
+			RP29 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP29 ABCD 4
@@ -4735,18 +3987,13 @@ Actor QCPostal : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" E 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP29 E 12
 			RP29 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP29 E 12
-			BP29 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP29 E 12
@@ -4754,18 +4001,13 @@ Actor QCPostal : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" L 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP29 L 6 BRIGHT Light("PlayerFiringLight")
 			RP29 L 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP29 L 6 BRIGHT Light("PlayerFiringLight")
-			BP29 L 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP29 L 6 BRIGHT Light("PlayerFiringLight")
@@ -4773,20 +4015,14 @@ Actor QCPostal : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" F 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" F 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" F 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" F 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP29 F 4
 			RP29 F 4 A_Pain
 			RP29 F 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP29 F 4
-			BP29 F 4 A_Pain
-			BP29 F 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP29 F 4
@@ -4855,19 +4091,14 @@ Actor QCPainkiller : QCPlayerMedium
 	{
 	Spawn:
 		QP30 A 0 NoDelay
-		QP30 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP30 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP30 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP30 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP30 A 100
 		Loop
 
-		RedSpawn:
-			RP30 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP30 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP30 A 4
-			Loop
-		BlueSpawn:
-			BP30 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP30 A 4
 			Loop
 		DefSpawn:
 			QP30 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -4875,18 +4106,13 @@ Actor QCPainkiller : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" B 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" B 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" B 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" B 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP30 BCDE 4
-			RP30 B 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP30 BCDE 4
-			BP30 B 0 A_JumpIf(true,"BlueSpawn")
+			RP30 B 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP30 BCDE 4
@@ -4894,18 +4120,13 @@ Actor QCPainkiller : QCPlayerMedium
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" F 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP30 F 12
 			RP30 F 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP30 F 12
-			BP30 F 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP30 F 12
@@ -4913,18 +4134,13 @@ Actor QCPainkiller : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" G 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP30 G 6 BRIGHT Light("PlayerFiringLight")
 			RP30 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP30 G 6 BRIGHT Light("PlayerFiringLight")
-			BP30 G 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP30 G 6 BRIGHT Light("PlayerFiringLight")
@@ -4932,20 +4148,14 @@ Actor QCPainkiller : QCPlayerMedium
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" H 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP30 H 4
 			RP30 H 4 A_Pain
 			RP30 H 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP30 H 4
-			BP30 H 4 A_Pain
-			BP30 H 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP30 H 4
@@ -5026,19 +4236,14 @@ Actor QCIntruder : QCPlayerMedium
 	{
 	Spawn:
 		QP31 A 0 NoDelay
-		QP31 A 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP31 A 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP31 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP31 A 0 A_JumpIf(true,                   "DefSpawn")
 		QP31 A 100
 		Loop
 
-		RedSpawn:
-			RP31 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP31 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP31 A 4
-			Loop
-		BlueSpawn:
-			BP31 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP31 A 4
 			Loop
 		DefSpawn:
 			QP31 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -5046,18 +4251,13 @@ Actor QCIntruder : QCPlayerMedium
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP31 ABCD 4
-			RP31 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP31 ABCD 4
-			BP31 A 0 A_JumpIf(true,"BlueSpawn")
+			RP31 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP31 ABCD 4
@@ -5066,18 +4266,13 @@ Actor QCIntruder : QCPlayerMedium
 
 	Missile:
 		"####" A 0 A_GiveInventory("IntruderFadeBreakToken",1)
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" A 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP31 E 12
 			RP31 E 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP31 E 12
-			BP31 E 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP31 E 12
@@ -5086,18 +4281,13 @@ Actor QCIntruder : QCPlayerMedium
 
 	Melee:
 		"####" A 0 A_GiveInventory("IntruderFadeBreakToken",1)
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" F 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP31 F 6 BRIGHT Light("PlayerFiringLight")
 			RP31 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP31 F 6 BRIGHT Light("PlayerFiringLight")
-			BP31 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP31 F 6 BRIGHT Light("PlayerFiringLight")
@@ -5106,20 +4296,14 @@ Actor QCIntruder : QCPlayerMedium
 
 	Pain:
 		"####" A 0 A_GiveInventory("IntruderFadeBreakToken",1)
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" G 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP31 G 4
 			RP31 G 4 A_Pain
 			RP31 G 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP31 G 4
-			BP31 G 4 A_Pain
-			BP31 G 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP31 G 4
@@ -5199,19 +4383,14 @@ Actor QCOrbb : QCPlayerLight
 	{
 	Spawn:
 		QP32 G 0 NoDelay
-		QP32 G 0 A_JumpIfInventory("TeamColor",2, "RedSpawn")
-		QP32 G 0 A_JumpIfInventory("TeamColor",1,"BlueSpawn")
+		QP32 G 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
 		QP32 G 0 A_JumpIf(true,                   "DefSpawn")
 		QP32 G 100
 		Loop
 
-		RedSpawn:
-			RP32 A 0 A_JumpIf(momx||momy,"RedSee")
+		ColoredSpawn:
+			RP32 A 0 A_JumpIf(momx||momy,"ColoredSee")
 			RP32 G 4
-			Loop
-		BlueSpawn:
-			BP32 A 0 A_JumpIf(momx||momy,"BlueSee")
-			BP32 G 4
 			Loop
 		DefSpawn:
 			QP32 A 0 A_JumpIf(momx||momy,"DefSee")
@@ -5219,18 +4398,13 @@ Actor QCOrbb : QCPlayerLight
 			Goto Spawn // to catch color
 
 	See:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedSee") // so tempted to call it "Red Sea"
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueSee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
 		"####" A 1 A_JumpIf(true,                   "DefSee")
 		Goto DefSee // for preview screen and prediction
 
-		RedSee:
+		ColoredSee:
 			RP32 ABCDEF 3
-			RP32 A 0 A_JumpIf(true,"RedSpawn")
-			Loop
-		BlueSee:
-			BP32 ABCDEF 3
-			BP32 A 0 A_JumpIf(true,"BlueSpawn")
+			RP32 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
 			QP32 ABCDEF 3
@@ -5238,18 +4412,13 @@ Actor QCOrbb : QCPlayerLight
 			Loop
 
 	Missile:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMissile")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMissile")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
 		"####" G 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
-		RedMissile:
+		ColoredMissile:
 			RP32 G 12
 			RP32 G 12 A_JumpIf(true, "Spawn")
-			Loop
-		BlueMissile:
-			BP32 G 12
-			BP32 G 12 A_JumpIf(true, "Spawn")
 			Loop
 		DefMissile:
 			QP32 G 12
@@ -5257,18 +4426,13 @@ Actor QCOrbb : QCPlayerLight
 			Loop
 
 	Melee:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedMelee")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BlueMelee")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
 		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
-		RedMelee:
+		ColoredMelee:
 			RP32 H 6 BRIGHT Light("PlayerFiringLight")
 			RP32 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
-			Loop
-		BlueMelee:
-			BP32 H 6 BRIGHT Light("PlayerFiringLight")
-			BP32 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
 			Loop
 		DefMelee:
 			QP32 H 6 BRIGHT Light("PlayerFiringLight")
@@ -5276,20 +4440,14 @@ Actor QCOrbb : QCPlayerLight
 			Loop
 
 	Pain:
-		"####" A 0 A_JumpIfInventory("TeamColor",2, "RedPain")
-		"####" A 0 A_JumpIfInventory("TeamColor",1,"BluePain")
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
 		"####" C 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
-		RedPain:
+		ColoredPain:
 			RP32 C 4
 			RP32 C 4 A_Pain
 			RP32 C 4 A_JumpIf(true, "Spawn")
-			Loop
-		BluePain:
-			BP32 C 4
-			BP32 C 4 A_Pain
-			BP32 C 4 A_JumpIf(true, "Spawn")
 			Loop
 		DefPain:
 			QP32 C 4

@@ -104,25 +104,9 @@ Script "QCDE_AllyMarkerSpawned" (int plr) CLIENTSIDE
 
 	// Track player color changes
 	int color, team;
-	if(!IsTeamgame()) // Free for alls, PvE or PvP
 	while(ACS("GetTargetProperty", APROP_Health) > 0)
 	{
 		color = GetPlayerInfo(plr, PLAYERINFO_COLOR);
-		SetActorProperty(0, APROP_StencilColor, color);
-		//Log(s:"ACS: Marker ", d:ActivatorTid(),
-		//	s:" at z ", d:GetUserVariable(0, "user_z"),
-		//	s:" is following ", s:ACS("TargetN:0"),
-		//	s:", tracking color of ", n:plr+1,
-		//	s:", current value ", x:color,
-		//	s:", classed ", d:ACS("ClassifyTarget")) ;
-		delay(100);
-	}
-	else // Red vs Blue
-	while(ACS("GetTargetProperty", APROP_Health) > 0)
-	{
-		team = GetPlayerInfo(plr, PLAYERINFO_TEAM);
-		if(team == TEAM_BLUE) color = 0x4488FF;
-		if(team == TEAM_RED ) color = 0xFF7755;
 		SetActorProperty(0, APROP_StencilColor, color);
 		delay(100);
 	}

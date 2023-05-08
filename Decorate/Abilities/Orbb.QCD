@@ -46,7 +46,7 @@ Actor OrbbDrone
 	{
 	Spawn:
 		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("ORBB_DroneSpawned")
-		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_BobRecolor_CLIENTSIDE",0,tid)
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_BobRecolor",0,tid)
 		Goto ClosedEyeLoop
 
 	CloseEye:

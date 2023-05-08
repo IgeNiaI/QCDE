@@ -35,9 +35,6 @@ Script "QCDE_Open" Open
 	taunt_chance += 20;
 
 	// Translations
-	CreateTranslation(TRANSLATION_REDTEAM,  112:127=168:191, 144:159=168:191); // Red
-	CreateTranslation(TRANSLATION_BLUETEAM, 112:127=192:207, 144:159=192:207); // Blue
-
 	CreateTranslation(TRANSLATION_GCOLOR,   0:255=[ 90, 50,130]:[ 90, 50,130]); // Gauntlet purple
 	CreateTranslation(TRANSLATION_MGCOLOR,  0:255=[255,255, 50]:[255,255, 50]); // Bullet yellow
 	CreateTranslation(TRANSLATION_HMGCOLOR, 0:255=[255,255, 50]:[255,255, 50]); // ^
@@ -50,9 +47,6 @@ Script "QCDE_Open" Open
 	CreateTranslation(TRANSLATION_LGCOLOR,  0:255=[  0,255,255]:[  0,255,255]); // Coil cyan
 	CreateTranslation(TRANSLATION_RGCOLOR,  0:255=[ 30,255, 30]:[ 30,255, 30]); // Rail green
 	CreateTranslation(TRANSLATION_BFGCOLOR, 0:255=[220, 20,255]:[220, 20,255]); // BFG violet
-
-	CreateTranslation(TRANSLATION_HUNTERTRACE,     0:255=[255, 64, 64]:[16,16,16]); // Red
-	CreateTranslation(TRANSLATION_HUNTERTRACEBLUE, 0:255=[ 64, 96,255]:[16,16,16]); // Blue
 
 	ACS("QCDE_Gamemode");
 	ACS("QCDE_QcsInterpreter");
