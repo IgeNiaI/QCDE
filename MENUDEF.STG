@@ -434,7 +434,7 @@ FreeformMenu "QCDE_OptionsHud"
 		Pos		-71, 100			CVar				crosshair
 		Size	32, 32				Values				Crosshairs
 		Anchor	center, center
-		Padding 64, 64				SelectedForeground	CROSSELC, 32, 32
+		Padding 64, 64				SelectedForeground	COLRSELC, 32, 32
 	}
 	Option {
 		NotSelectable
@@ -486,7 +486,7 @@ FreeformMenu "QCDE_OptionsHud"
 	ColorPicker {
 		EnableCVar	crosshair, 1, 100
 		Pos		67, 130				CVar				crosshaircolor
-		Size	32, 32				SelectedForeground	CROSSELC, 32, 32
+		Size	32, 32				SelectedForeground	COLRSELC, 32, 32
 		Anchor	center, center
 	}
 
