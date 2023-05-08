@@ -2128,10 +2128,10 @@ Script "QCDE_ColorDoppelganger_CLIENTSIDE" (void) CLIENTSIDE
 	bool teamplay       = getCvar("teamplay");
 	bool teamlms        = getCvar("teamlms");
 	bool teampossession = getCvar("teampossession");
-	bool ctf            = getCvar("ctf");
+	bool teamgame       = getCvar("teamgame");
 
 	// Your own is always blue in non-team games
-	if(!(teamplay || teamlms || teampossession || ctf))
+	if(!(teamplay || teamlms || teampossession || teamgame))
 		Thing_SetTranslation(doptid, TRANSLATION_LGCOLOR);
 	// In team games and from other people, has same color as spawner
 	else
@@ -2364,10 +2364,10 @@ Script "QCDE_BombIncoming" (void)
 	bool teamplay       = getCvar("teamplay");
 	bool teamlms        = getCvar("teamlms");
 	bool teampossession = getCvar("teampossession");
-	bool ctf            = getCvar("ctf");
+	bool teamgame       = getCvar("teamgame");
 
 	// Always red in non-team games
-	if(!(teamplay || teamlms || teampossession || ctf)) terminate;
+	if(!(teamplay || teamlms || teampossession || teamgame)) terminate;
 
 	// If coming from a blue guy, color blue
 	if(CheckActorInventory(plrtid, "TeamColor") == 1)
@@ -3510,14 +3510,14 @@ script "QCDE_TotemSpawned_Client" (void) clientside
 	bool teamplay       = getCvar("teamplay");
 	bool teamlms        = getCvar("teamlms");
 	bool teampossession = getCvar("teampossession");
-	bool ctf            = getCvar("ctf");
+	bool teamgame       = getCvar("teamgame");
 	int plr = (ActivatorTid() - TOTEM_TIDBASE) % 64;
 
 	if(cooperative)
 	{
 		SpawnProjectile(0, "TotemFriendlyFX", 0, 0, 0, 0, 0);
 	}
-	if(teamplay || teamlms || teampossession || ctf)
+	if(teamplay || teamlms || teampossession || teamgame)
 	{
 		if (GetPlayerInfo(plr, PLAYERINFO_TEAM) == 0)
 			SpawnProjectile(0, "TotemFriendlyFX", 0, 0, 0, 0, 0);
@@ -3631,9 +3631,9 @@ script "QCDE_TotemAttacks" (void)
 	bool teamplay       = getCvar("teamplay");
 	bool teamlms        = getCvar("teamlms");
 	bool teampossession = getCvar("teampossession");
-	bool ctf            = getCvar("ctf");
+	bool teamgame       = getCvar("teamgame");
 
-	if(teamplay || teamlms || teampossession || ctf)
+	if(teamplay || teamlms || teampossession || teamgame)
 		friendly = GetPlayerInfo(plr,       PLAYERINFO_TEAM) ==
 		           GetPlayerInfo(targetplr, PLAYERINFO_TEAM);
 	else
@@ -3941,13 +3941,13 @@ Script "QCDE_BobRecolor_CLIENTSIDE" (int tid) CLIENTSIDE
 	bool teamplay       = getCvar("teamplay");
 	bool teamlms        = getCvar("teamlms");
 	bool teampossession = getCvar("teampossession");
-	bool ctf            = getCvar("ctf");
+	bool teamgame       = getCvar("teamgame");
 
 	int mast = GetActorProperty(0, APROP_MasterTID) - 1000;
 	int targ = GetActorProperty(0, APROP_TargetTID) - 1000;
 	//log(n:plr + 1, s:" aka ", d:plr, s:" owns BOBs");
 
-	if(teamplay || teamlms || teampossession || ctf)
+	if(teamplay || teamlms || teampossession || teamgame)
 		if(GetPlayerInfo(plr, PLAYERINFO_TEAM) == 0)
 		{
 			//log(d:GetPlayerInfo(plr, PLAYERINFO_TEAM), s:" == 0 , so blue");
