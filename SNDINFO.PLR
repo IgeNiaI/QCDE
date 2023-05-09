@@ -818,9 +818,9 @@ $playeralias	Terminator	other	*footstep	VisorStep
 //================================================================
 
 $random ZedekJump { ZedekJump1 ZedekJump2 ZedekJump3 }
-ZedekJump1 "Sounds/Players/Zedek/Jump1.wav"
-ZedekJump2 "Sounds/Players/Zedek/Jump2.wav"
-ZedekJump3 "Sounds/Players/Zedek/Jump3.wav"
+ZedekJump1 "Sounds/Players/Zedek/Jump1.ogg"
+ZedekJump2 "Sounds/Players/Zedek/Jump2.ogg"
+ZedekJump3 "Sounds/Players/Zedek/Jump3.ogg"
 
 QCZedekTaunt01	"Sounds/Players/Zedek/ZedekTaunt01.ogg"
 QCZedekTaunt02	"Sounds/Players/Zedek/ZedekTaunt02.ogg"
@@ -840,45 +840,45 @@ QCZedekTaunt15 	"Sounds/Players/Zedek/ZedekTaunt15.ogg"
 QCZedekTaunt16	"Sounds/Players/Zedek/ZedekTaunt16.ogg"
 
 
-$playersound	Zedek	male	*death		"Sounds/Players/Zedek/Death.wav"
+$playersound	Zedek	male	*death		"Sounds/Players/Zedek/Death.ogg"
 $playeralias	Zedek	male	*xdeath		NoSoundHax
-$playersound	Zedek	male	*gibbed		"Sounds/Players/Zedek/Xdeath.wav"
-$playersound	Zedek	male	*pain100	"Sounds/Players/Zedek/Pain100.wav"
-$playersound	Zedek	male	*pain75		"Sounds/Players/Zedek/Pain075.wav"
-$playersound	Zedek	male	*pain50		"Sounds/Players/Zedek/Pain050.wav"
-$playersound	Zedek	male	*pain25		"Sounds/Players/Zedek/Pain025.wav"
-$playersound	Zedek	male	*grunt		"Sounds/Players/Zedek/Grunt.wav"
+$playersound	Zedek	male	*gibbed		"Sounds/Players/Zedek/Xdeath.ogg"
+$playersound	Zedek	male	*pain100	"Sounds/Players/Zedek/Pain100.ogg"
+$playersound	Zedek	male	*pain75		"Sounds/Players/Zedek/Pain075.ogg"
+$playersound	Zedek	male	*pain50		"Sounds/Players/Zedek/Pain050.ogg"
+$playersound	Zedek	male	*pain25		"Sounds/Players/Zedek/Pain025.ogg"
+$playersound	Zedek	male	*grunt		"Sounds/Players/Zedek/Grunt.ogg"
 $playersound	Zedek	male	*land		"Sounds/Players/Footsteps/HeavyStomp.ogg"
 $playeralias	Zedek	male	*jump		ZedekJump
-$playersound	Zedek	male	*usefail	"Sounds/Players/Zedek/Oof.wav"
+$playersound	Zedek	male	*usefail	"Sounds/Players/Zedek/Oof.ogg"
 $playeralias	Zedek	male	*taunt		NoSoundHax
 $playeralias	Zedek	male	*footstep	HeavyStep
 
-$playersound	Zedek	female	*death		"Sounds/Players/Zedek/Death.wav"
+$playersound	Zedek	female	*death		"Sounds/Players/Zedek/Death.ogg"
 $playeralias	Zedek	female	*xdeath		NoSoundHax
-$playersound	Zedek	female	*gibbed		"Sounds/Players/Zedek/Xdeath.wav"
-$playersound	Zedek	female	*pain100	"Sounds/Players/Zedek/Pain100.wav"
-$playersound	Zedek	female	*pain75		"Sounds/Players/Zedek/Pain075.wav"
-$playersound	Zedek	female	*pain50		"Sounds/Players/Zedek/Pain050.wav"
-$playersound	Zedek	female	*pain25		"Sounds/Players/Zedek/Pain025.wav"
-$playersound	Zedek	female	*grunt		"Sounds/Players/Zedek/Grunt.wav"
+$playersound	Zedek	female	*gibbed		"Sounds/Players/Zedek/Xdeath.ogg"
+$playersound	Zedek	female	*pain100	"Sounds/Players/Zedek/Pain100.ogg"
+$playersound	Zedek	female	*pain75		"Sounds/Players/Zedek/Pain075.ogg"
+$playersound	Zedek	female	*pain50		"Sounds/Players/Zedek/Pain050.ogg"
+$playersound	Zedek	female	*pain25		"Sounds/Players/Zedek/Pain025.ogg"
+$playersound	Zedek	female	*grunt		"Sounds/Players/Zedek/Grunt.ogg"
 $playersound	Zedek	female	*land		"Sounds/Players/Footsteps/HeavyStomp.ogg"
 $playeralias	Zedek	female	*jump		ZedekJump
-$playersound	Zedek	female	*usefail	"Sounds/Players/Zedek/Oof.wav"
+$playersound	Zedek	female	*usefail	"Sounds/Players/Zedek/Oof.ogg"
 $playeralias	Zedek	female	*taunt		NoSoundHax
 $playeralias	Zedek	female	*footstep	HeavyStep
 
-$playersound	Zedek	other	*death		"Sounds/Players/Zedek/Death.wav"
+$playersound	Zedek	other	*death		"Sounds/Players/Zedek/Death.ogg"
 $playeralias	Zedek	other	*xdeath		NoSoundHax
-$playersound	Zedek	other	*gibbed		"Sounds/Players/Zedek/Xdeath.wav"
-$playersound	Zedek	other	*pain100	"Sounds/Players/Zedek/Pain100.wav"
-$playersound	Zedek	other	*pain75		"Sounds/Players/Zedek/Pain075.wav"
-$playersound	Zedek	other	*pain50		"Sounds/Players/Zedek/Pain050.wav"
-$playersound	Zedek	other	*pain25		"Sounds/Players/Zedek/Pain025.wav"
-$playersound	Zedek	other	*grunt		"Sounds/Players/Zedek/Grunt.wav"
+$playersound	Zedek	other	*gibbed		"Sounds/Players/Zedek/Xdeath.ogg"
+$playersound	Zedek	other	*pain100	"Sounds/Players/Zedek/Pain100.ogg"
+$playersound	Zedek	other	*pain75		"Sounds/Players/Zedek/Pain075.ogg"
+$playersound	Zedek	other	*pain50		"Sounds/Players/Zedek/Pain050.ogg"
+$playersound	Zedek	other	*pain25		"Sounds/Players/Zedek/Pain025.ogg"
+$playersound	Zedek	other	*grunt		"Sounds/Players/Zedek/Grunt.ogg"
 $playersound	Zedek	other	*land		"Sounds/Players/Footsteps/HeavyStomp.ogg"
 $playeralias	Zedek	other	*jump		ZedekJump
-$playersound	Zedek	other	*usefail	"Sounds/Players/Zedek/Oof.wav"
+$playersound	Zedek	other	*usefail	"Sounds/Players/Zedek/Oof.ogg"
 $playeralias	Zedek	other	*taunt		NoSoundHax
 $playeralias	Zedek	other	*footstep	HeavyStep
 
