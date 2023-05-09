@@ -590,11 +590,6 @@ FreeformMenu QCDE_SkirmishMenu
 
 FreeformMenu QCDE_SkirmishWeaponsCommon
 {
-	Centermenu
-	TopPadding 20
-	DefaultSelection -2
-	OverrideHeight 250
-
 	Label {
 		Static
 		Background	"BackMenw"
@@ -742,6 +737,11 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 
 FreeformMenu QCDE_SkirmishWeapons
 {
+	Centermenu
+	TopPadding 20
+	DefaultSelection -2
+	OverrideHeight 250
+
 	InsertFreeformMenu QCDE_SkirmishWeaponsCommon
 
 	Label {
