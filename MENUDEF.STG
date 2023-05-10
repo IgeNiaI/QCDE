@@ -427,12 +427,13 @@ FreeformMenu "QCDE_OptionsGame"
 		Text	"Crosshair"
 	}
 	Label {
-		Pos		-71, 100			Background BlackDot
-		Size	32, 32				Anchor	center, center
+		Pos		-71, 100			Background	COLRFRME
+		Size	32, 32
+		Anchor	center, center
 	}
 	Option {
 		Pos		-71, 100			CVar				crosshair
-		Size	32, 32				Values				Crosshairs
+		Size	30, 30				Values				Crosshairs
 		Anchor	center, center
 		Padding 64, 64				SelectedForeground	COLRSELC, 32, 32
 	}
@@ -483,10 +484,15 @@ FreeformMenu "QCDE_OptionsGame"
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Crosshair color"
 	}
+	Label {
+		Pos		67, 130				Background	COLRFRME
+		Size	32, 32
+		Anchor	center, center
+	}
 	ColorPicker {
 		EnableCVar	crosshair, 1, 100
 		Pos		67, 130				CVar				crosshaircolor
-		Size	32, 32				SelectedForeground	COLRSELC, 32, 32
+		Size	30, 30				SelectedForeground	COLRSELC, 32, 32
 		Anchor	center, center
 	}
 

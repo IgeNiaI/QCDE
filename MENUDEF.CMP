@@ -160,22 +160,22 @@ FreeformMenu "WeaponSelectorCoop"
 {
 	Label 	{ Pos -147, 177		Text "Starting Weapon"	Font SmallFont	FontColor Gray }
 
-	Label 	{ Pos -175, 190		Size 56, 33		Background "WPSELECM"	Anchor center, top }
-	Option	{ Pos -175, 190		Values QCDE_StartingWeapon_MG		BackgroundValues QCDE_StartingWeaponBG_MG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
-	Label 	{ Pos -120, 190		Size 56, 33		Background "WPSELECN"	Anchor center, top }
-	Option	{ Pos -120, 190		Values QCDE_StartingWeapon_NG		BackgroundValues QCDE_StartingWeaponBG_NG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
+	Label 	{ Pos -175, 206		Size 56, 33		Background "WPSELECM"	Anchor center, center }
+	Option	{ Pos -175, 206		Values QCDE_StartingWeapon_MG		BackgroundValues QCDE_StartingWeaponBG_MG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, center 	UnknownValueText ""}
+	Label 	{ Pos -120, 206		Size 56, 33		Background "WPSELECN"	Anchor center, center }
+	Option	{ Pos -120, 206		Values QCDE_StartingWeapon_NG		BackgroundValues QCDE_StartingWeaponBG_NG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, center 	UnknownValueText ""}
 }
 
 FreeformMenu "WeaponSelectorDM"
 {
 	Label 	{ Pos -120, 177		Text "Starting Weapon"	Font SmallFont	FontColor Gray }
 
-	Label 	{ Pos -175, 190		Size 56, 33		Background "WPSELECM"	Anchor center, top }
-	Option	{ Pos -175, 190		Values QCDE_StartingWeapon_MG		BackgroundValues QCDE_StartingWeaponBG_MG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
-	Label 	{ Pos -120, 190		Size 56, 33		Background "WPSELECS"	Anchor center, top }
-	Option	{ Pos -120, 190		Values QCDE_StartingWeapon_SG		BackgroundValues QCDE_StartingWeaponBG_SG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
-	Label 	{ Pos  -65, 190		Size 56, 33		Background "WPSELECN"	Anchor center, top }
-	Option	{ Pos  -65, 190		Values QCDE_StartingWeapon_NG		BackgroundValues QCDE_StartingWeaponBG_NG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, top 	UnknownValueText ""}
+	Label 	{ Pos -175, 206		Size 56, 33		Background "WPSELECM"	Anchor center, center }
+	Option	{ Pos -175, 206		Values QCDE_StartingWeapon_MG		BackgroundValues QCDE_StartingWeaponBG_MG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, center 	UnknownValueText ""}
+	Label 	{ Pos -120, 206		Size 56, 33		Background "WPSELECS"	Anchor center, center }
+	Option	{ Pos -120, 206		Values QCDE_StartingWeapon_SG		BackgroundValues QCDE_StartingWeaponBG_SG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, center 	UnknownValueText ""}
+	Label 	{ Pos  -65, 206		Size 56, 33		Background "WPSELECN"	Anchor center, center }
+	Option	{ Pos  -65, 206		Values QCDE_StartingWeapon_NG		BackgroundValues QCDE_StartingWeaponBG_NG		CVar cl_startingWeapon		Size 56, 33		SelectedForeground WPSELECH, 56, 33		Anchor center, center 	UnknownValueText ""}
 
 	Label 	{ Pos -120, 222		Text "(PvP only)"	Font SmallFont	FontColor DarkGray }
 }

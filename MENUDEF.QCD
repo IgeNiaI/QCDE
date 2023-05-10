@@ -1034,8 +1034,8 @@ FreeformMenu ZA_JoinMenu
 	InsertFreeformMenu	WeaponSelectorDM
 
 	Command {
-		NotInSingleplayer	NotOnTitlemap
-		Pos		55, 207					Text				"RESPAWN"			Background			BT28060
+		NotOnTitlemap
+		Pos		55, 206					Text				"RESPAWN"			Background			BT28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Command				joingame0
 		Padding	0, 2					SelectedFontColor	Yellow
@@ -1092,7 +1092,7 @@ FreeformMenu QCDE_JoinBlue
 	InsertFreeformMenu	WeaponSelectorDM
 
 	Command {
-		Pos		55, 207					Text				"JOIN BLUE"			Background			BB28060
+		Pos		55, 206					Text				"JOIN BLUE"			Background			BB28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BB28060S
 		Anchor	center, center			FontColor			Tan					Command				joingame1
 		Padding	0, 2					SelectedFontColor	Yellow
@@ -1114,7 +1114,7 @@ FreeformMenu QCDE_JoinRed
 	InsertFreeformMenu	WeaponSelectorDM
 
 	Command {
-		Pos		55, 207					Text				"JOIN RED"			Background			BR28060
+		Pos		55, 206					Text				"JOIN RED"			Background			BR28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BR28060S
 		Anchor	center, center			FontColor			Tan					Command				joingame2
 		Padding	0, 2					SelectedFontColor	Yellow
