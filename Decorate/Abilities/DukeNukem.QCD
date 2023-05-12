@@ -99,10 +99,10 @@ Actor DukeFreezeThrower : QCWeapon
 		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"PerformDM")
 	PerformSP:
-		TNT1 A 2 A_FireCustomMissile("DukeFreezeShot",0,true,3)
+		TNT1 A 2 A_FireCustomMissile("DukeFreezeShot",0,false,3)
 		Stop
 	PerformDM:
-		TNT1 A 2 A_FireCustomMissile("DukeFreezeShot_DM",0,true,3)
+		TNT1 A 2 A_FireCustomMissile("DukeFreezeShot_DM",0,false,3)
 		Stop
 
 

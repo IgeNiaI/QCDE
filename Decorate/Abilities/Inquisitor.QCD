@@ -196,11 +196,11 @@ Actor Shieldquisitor : QCWeapon
 	//-----------------------
 	Ready:
 		TNT1 A 0 ACS_NamedExecuteAlways("CheckIfCorrectPlayer",0,4) // 4 = inquisitor
-		TNT1 A 0 A_FireCustomMissile("ShieldPieceFront", 0, true, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
-		TNT1 A 0 A_FireCustomMissile("ShieldPieceLeft1", 0, true, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
-		TNT1 A 0 A_FireCustomMissile("ShieldPieceLeft2", 0, true, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
-		TNT1 A 0 A_FireCustomMissile("ShieldPieceRight1", 0, true, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
-		TNT1 A 0 A_FireCustomMissile("ShieldPieceRight2", 0, true, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceFront", 0, false, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceLeft1", 0, false, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceLeft2", 0, false, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceRight1", 0, false, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
+		TNT1 A 0 A_FireCustomMissile("ShieldPieceRight2", 0, false, 3, 2, FPF_NOUNLAGGED|FPF_SKIPOWNER)
 		TNT1 A 3 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
 		Wait
 	//-----------------------
