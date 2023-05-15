@@ -734,6 +734,8 @@ Script "QCDE_Ability_Doomslayer" (void)
 	}
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	//Unzoom if using toggle zoom
+	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
 	//Give and select fake weapon
 	SetWeapon(weaponList[w]);
 	//Remove ability weapon
@@ -1125,8 +1127,10 @@ Script "QCDE_Ability_Inquisitor" (void)
 
 			delay(3); // add short delay before bringing up proper weapon, or else player can shoot his own shield with rocket
 
-			//Give and select fake weapon
 			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+			//Unzoom if using toggle zoom
+			if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
+			//Give and select fake weapon
 			SetWeapon(weaponList[w]);
 			//Remove ability weapon
 			TakeInventory("Shieldquisitor",1);
@@ -1378,6 +1382,8 @@ Script "QCDE_Ability_Sorgaul" (void)
 	}
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	//Unzoom if using toggle zoom
+	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
 	//Give and select fake weapon
 	SetWeapon(weaponList[w]);
 	//Remove ability weapon
@@ -1418,6 +1424,8 @@ Script "QCDE_Ability_DukeNukem" (void)
 	}
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	//Unzoom if using toggle zoom
+	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
 	//Give and select fake weapon
 	SetWeapon(weaponList[w]);
 	//Remove ability weapon
@@ -1873,6 +1881,8 @@ Script "QCDE_Ability_Blazkowicz" (void)
 	}
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	//Unzoom if using toggle zoom
+	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
 	//Give and select fake weapon
 	SetWeapon(weaponList[w]);
 	//Remove ability weapon
@@ -2453,8 +2463,10 @@ Script "QCDE_Ability_Sam" (void)
 	// Break progress meter: 1 total duration, 1 remaining tic
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
 
-	//Give and select fake weapon
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	//Unzoom if using toggle zoom
+	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
+	//Give and select fake weapon
 	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("SamMinigunCleanerProc",1);

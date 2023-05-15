@@ -252,9 +252,6 @@ Script "QCDE_FreeTribolt" (void)
 
 function void QCDE_SetWeaponZoom (int zoomed, int unzoomsound)
 {
-	int HMGSkin = CheckInventory("QCHMachinegunSkin");
-	int RailSkin = CheckInventory("QCRailgunSkin");
-
 	if (zoomed)
 	{
 		int zoom = 1.0;
@@ -268,7 +265,7 @@ function void QCDE_SetWeaponZoom (int zoomed, int unzoomsound)
 		{
 			// both heavy machineguns zoom to 1.8
 			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-			switch (HMGSkin)
+			switch (CheckInventory("QCHMachinegunSkin"))
 			{
 				case 4: // Quake 4
 					PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_Quake4",CHAN_7,1.0,false,0.5);
@@ -361,7 +358,7 @@ function void QCDE_SetWeaponZoom (int zoomed, int unzoomsound)
 		{
 			// both railguns zoom to 2.5
 			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-			switch (RailSkin)
+			switch (CheckInventory("QCRailgunSkin"))
 			{
 				case 4: // Quake 4
 					PlaySound(0,"QC/Weapons/Railgun/ZoomIn_Quake4",CHAN_7,1.0,false);
@@ -414,7 +411,7 @@ function void QCDE_SetWeaponZoom (int zoomed, int unzoomsound)
 			if (CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCHeavyMachinegunDM"))
 			{
 				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-				switch (HMGSkin)
+				switch (CheckInventory("QCHMachinegunSkin"))
 				{
 					case 4: // Quake 4
 						PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomOut_Quake4",CHAN_7,1.0,false,0.5);
@@ -431,7 +428,7 @@ function void QCDE_SetWeaponZoom (int zoomed, int unzoomsound)
 			else if (CheckWeapon("QCRailgun") || CheckWeapon("QCRailgunDM"))
 			{
 				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-				switch (RailSkin)
+				switch (CheckInventory("QCRailgunSkin"))
 				{
 					case 4: // Quake 4
 						PlaySound(0,"QC/Weapons/Railgun/ZoomOut_Quake4",CHAN_7,1.0,false);
