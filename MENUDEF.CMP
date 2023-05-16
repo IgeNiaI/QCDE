@@ -144,9 +144,9 @@ FreeformMenu "ChampionSelector"
 	Option { NotSelectable	Pos 170,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCSMFONT	FontColor Gold					}
 	Option { NotSelectable	Pos 170,  25	Values QCDE_Champions_FakeText	BackgroundValues QCDE_Champions_Images	Size -1, -1		CVar playerclass	}
 	Option { NotSelectable	Pos 170, 118	Values QCDE_Champions_Active	CVar playerclass	Font QCSMFONT	FontColor Gold					}
-	Option { NotSelectable	Pos 170, 133	Values QCDE_Champions_Movement	CVar playerclass	Font QCSMFONT	FontColor DarkGray				}
-	Option { NotSelectable	Pos 170, 148	Values QCDE_Champions_Passive1	CVar playerclass	Font QCSMFONT	FontColor DarkGray				}
-	Option { NotSelectable	Pos 170, 163	Values QCDE_Champions_Passive2	CVar playerclass	Font QCSMFONT	FontColor DarkGray				}
+	Option { NotSelectable	Pos 170, 133	Values QCDE_Champions_Movement	CVar playerclass	Font SmalLFont	FontColor DarkGray				}
+	Option { NotSelectable	Pos 170, 148	Values QCDE_Champions_Passive1	CVar playerclass	Font SmalLFont	FontColor DarkGray				}
+	Option { NotSelectable	Pos 170, 163	Values QCDE_Champions_Passive2	CVar playerclass	Font SmalLFont	FontColor DarkGray				}
 
 	SubMenu {
 		Pos		170, 191				Text				"DETAILS"			Background			BT10028
