@@ -4,15 +4,15 @@
 CMPLIGHT = "Light";
 CMPMEDIM = "Medium";
 CMPHEAVY = "Heavy";
-MOVTDOOM = "Doom Movement";
+MOVTDOOM = "\c[brick]Doom Movement";
 MOVDDOOM = "Standard Doom engine movement.\n"
            "Low ground friction.\n"
            "Can utilize \c[Greay]Strafe-running.";
-MOVTQUAK = "Quake Movement";
+MOVTQUAK = "\c[orange]Quake Movement";
 MOVDQUAK = "Vanilla Quake 3 (VQ3) movement.\n"
            "High ground friction.\n"
            "Can utilize \c[Greay]Strafe-jumping.";
-MOVTQCPM = "CPM Movement";
+MOVTQCPM = "\c[green]CPM Movement";
 MOVDQCPM = "Challenge ProMode movement.\n"
            "Identical to Quake movement, but can\n"
            "additionally utilize \c[Greay]Air Control.";
