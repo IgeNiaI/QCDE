@@ -500,7 +500,7 @@ Actor QCSargeArmorGain : BasicArmorBonus
 	Inventory.Pickupmessage "$GOT_QCSargeArmorGain" // "Picked up an armor shard."
 	Inventory.Icon "BON2A0"
 	Armor.Savepercent 66.665
-	Armor.Saveamount 12
+	Armor.Saveamount 10
 	Armor.Maxsaveamount 200
 	Inventory.RespawnTics 525 //15 sec
 	+COUNTITEM
@@ -514,6 +514,11 @@ Actor QCSargeArmorGain : BasicArmorBonus
 		QCAR AAAAAAAAAA 35 BRIGHT		//10 seconds
 		Stop
 	}
+}
+
+Actor QCSargeArmorGainBig : QCSargeArmorGain
+{
+	Armor.Saveamount 25
 }
 
 Actor QCArmorPoint : BasicArmorBonus //used for the ACS script that gives armor

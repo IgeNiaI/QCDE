@@ -118,8 +118,8 @@ Actor BigHourglass : Hourglass 15509
 		Stop
 	GiveArmor:
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_Sarge_Armor_Full",0,0,0,0)==1, "Death")
-		TNT1 A 0 A_PlaySound("QC/Items/ArmorSmallPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("QCSmallArmorGiver", 1, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_PlaySound("QC/Items/ArmorShardPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("QCSargeArmorGainBig", 1, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveRockets:
 		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck",0,0,0,0) < 2, "CooldownPickup")
