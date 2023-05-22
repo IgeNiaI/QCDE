@@ -12,23 +12,20 @@ Script "QCDE_Music" OPEN CLIENTSIDE
 {
 	if(GameType() == GAME_TITLE_MAP) terminate;
 
-	if((GetGameModeState() == 0 && (GetCvar("survival") || GetCvar("invasion") || GetCvar("duel") || GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("possession") || GetCvar("teampossession"))) ||
+	int randomness = GetUserCvar(CPN(), "snd_randommus");
+	if (GetNetworkState() != NETSTATE_SERVER && randomness == 3) terminate;
+
+	if((GetGameModeState() == 0 && (GetCvar("survival") || GetCvar("invasion") || GetCvar("duel") || GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("possession") || GetCvar("teampossession") || GetCvar("teamgame"))) ||
 		GetGameModeState() == 1) // GAMESTATE_WAITFORPLAYERS in countdown modes or just GAMESTATE_COUNTDOWN
 	{
-		//log(s:"\c[red]Calm before the storm. \c[RL]", d:GetGameModeState(), s:".", d:GetCvar("survival"),  d:GetCvar("invasion"), d:GetCvar("duel"), d:GetCvar("lastmanstanding"), d:GetCvar("teamlms"), d:GetCvar("possession"), d:GetCvar("teampossession"));
 		SetMusic("SILENCIO");
 		terminate;
-	}
-	else
-	{
-		//log(s:"\c[cyan]Music plays! \c[RG]", d:GetGameModeState(), s:".", d:GetCvar("survival"),  d:GetCvar("invasion"), d:GetCvar("duel"), d:GetCvar("lastmanstanding"), d:GetCvar("teamlms"), d:GetCvar("possession"), d:GetCvar("teampossession"));
 	}
 
 	if(CheckQcdeModule("QCDE-OST") == false) terminate;
 	delay(1);
 
 	int sel = -1;
-	int randomness = GetUserCvar(CPN(), "snd_randommus");
 	// Play song through QCDE jukebox if it's present, but not if RANDOM mode is enabled
 	if(IsTidUsed(JUKEBOX_TID) && (randomness < 2))
 	{
@@ -71,6 +68,9 @@ Script "QCDE_Music" OPEN CLIENTSIDE
 Script "QCDE_Jukebox" (int x) NET CLIENTSIDE
 {
 	if(CheckQcdeModule("QCDE-OST") == false) terminate;
+
+	int randomness = GetUserCvar(CPN(), "snd_randommus");
+	if (GetNetworkState() != NETSTATE_SERVER && randomness == 3) terminate;
 
 	//log(s:"Jukes: Playing map-defined ", d:x);
 	PlaySong(x);

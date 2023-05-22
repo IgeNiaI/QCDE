@@ -1573,7 +1573,7 @@ FreeformMenu "QCDE_OptionsSound"
 	Label {
 		Pos		80, 23				Font		SmallFont
 		Anchor	left, top			FontColor	DarkGray
-		Text	"QC:DE OST playback order"
+		Text	"QC:DE OST playback"
 	}
 	Option {
 		Pos		80, 40				CVar				snd_randommus	UnknownBackground	OP21028
@@ -2455,6 +2455,7 @@ OptionValue "OstOrder"
 	0, "Strict"
 	1, "Shuffled"
 	2, "Randomized"
+	3, "OFF"
 }
 
 OptionValue OverridePlayerColors
