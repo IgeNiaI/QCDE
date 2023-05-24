@@ -668,7 +668,25 @@ Script "QCDE_StartSkirmish" (void) NET CLIENTSIDE
 		ConsoleCommand("sv_minPlayers 0");
 		ConsoleCommand("skill 2");
 		clearBots();
-		ConsoleCommand("menu_startskirmish customgamemode");
+
+		int category = 0;
+		switch(GetCVar("skirm_skirmishgamemode"))
+		{
+		case 0:  category = 0;	break;	// Cooperative
+		case 1:  category = 0;	break;	// Survival
+		case 2:  category = 3;	break;	// Invasion
+		case 3:  category = 1;	break;	// Deathmatch
+		case 4:  category = 1;	break;	// Team Deathmatch
+		case 5:  category = 1;	break;	// Duel
+		case 6:  category = 1;	break;	// Last Man Standing
+		case 7:  category = 1;	break;	// Team Last Man Standing
+		case 8:  category = 1;	break;	// Freeze Tag
+		case 9:  category = 1;	break;	// Elder's Soul
+		case 10: category = 1;	break;	// Team Elder's Soul
+		case 11: category = 2;	break;	// Capture The Flag
+		case 12: category = 4;	break;	// Domination
+		}
+		ConsoleCommand(strparam(s:"menu_startskirmish customgamemode ", d:category));
 	}
 }
 

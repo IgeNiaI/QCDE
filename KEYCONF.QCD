@@ -90,7 +90,12 @@ alias qcde_optionssound		"closemenu; qcde_selectedoptions 5; openmenu QCDE_Optio
 alias qcde_optionsskins		"closemenu; qcde_selectedoptions 6; openmenu QCDE_OptionsSkins"
 alias qcde_optionspve		"closemenu; qcde_selectedoptions 7; openmenu QCDE_OptionsPvE"
 
-alias qcde_randommap		"setskirmishlevel random; setcallvotemap random"
+alias qcde_randommapmp		"setcallvotemap random"
+alias qcde_randommap		"setskirmishlevel random;"
+alias qcde_randommap1		"setskirmishlevel random 1;"
+alias qcde_randommap2		"setskirmishlevel random 2;"
+alias qcde_randommap3		"setskirmishlevel random 3;"
+alias qcde_randommap4		"setskirmishlevel random 4;"
 alias qcde_startskirmish	"closemenu; pukename QCDE_StartSkirmish"
 
 alias qcde_callmapvote		"menu_callvotereason \"\";	menu_callmapvote"

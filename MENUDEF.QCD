@@ -230,28 +230,6 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 
-	Option {
-		Pos		-170, 35			CVar		menu_skirmishlevel		UnknownBackground	NOMAPPIC
-		Size	120, 67				Values		ZA_LevelNames			BackgroundValues	ZA_LevelPreviews
-		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
-		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
-	}
-	Option {
-		NotSelectable
-		Size	120, 27				Values		ZA_LevelTitles
-		Pos		-110, 103			Font		QCSMFONT
-		MaxTextWidth 120			FontColor	Gold
-		Anchor	center, top			CVar		menu_skirmishlevel
-	}
-
-	Command {
-		Pos		-110, 138			Text				"Random Map"	Background			BV21028
-		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
-		Anchor	center, center		FontColor			Tan				Command				qcde_randommap
-		Padding	0, 0				SelectedFontColor	Tan
-	}
-
-
 	// 0, "Cooperative"
 	// 1, "Survival"
 	// 2, "Invasion"
@@ -265,6 +243,138 @@ FreeformMenu QCDE_SkirmishMenu
 	// 10, "Team Elder's Soul"
 	// 11, "Capture The Flag"
 	// 12, "Domination"
+
+	// ZA_Levels, Coop
+	// ZA_Levels1, Deathmatch
+	// ZA_Levels2, CTF
+	// ZA_Levels3, Invasion
+	// ZA_Levels4, Domination
+
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	0, 1
+		Pos		-170, 35			CVar		menu_skirmishlevel		UnknownBackground	NOMAPPIC
+		Size	120, 67				Values		ZA_LevelNames			BackgroundValues	ZA_LevelPreviews
+		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
+		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	0, 1
+		NotSelectable
+		Size	120, 27				CVar		menu_skirmishlevel
+		Pos		-110, 103			Values		ZA_LevelTitles
+		MaxTextWidth 120			Font		QCSMFONT
+		Anchor	center, top			FontColor	Gold
+	}
+
+	Command {
+		VisibilityCVar skirm_skirmishgamemode,	0, 1
+		Pos		-110, 138			Text				"Random Map"	Background			BV21028
+		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
+		Anchor	center, center		FontColor			Tan				Command				qcde_randommap
+		Padding	0, 0				SelectedFontColor	Tan
+	}
+
+
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	2, 2
+		Pos		-170, 35			CVar		menu_skirmishlevel3		UnknownBackground	NOMAPPIC
+		Size	120, 67				Values		ZA_LevelNames3			BackgroundValues	ZA_LevelPreviews3
+		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
+		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	2, 2
+		NotSelectable
+		Size	120, 27				CVar		menu_skirmishlevel3
+		Pos		-110, 103			Values		ZA_LevelTitles3
+		MaxTextWidth 120			Font		QCSMFONT
+		Anchor	center, top			FontColor	Gold
+	}
+
+	Command {
+		VisibilityCVar skirm_skirmishgamemode,	2, 2
+		Pos		-110, 138			Text				"Random Map"	Background			BV21028
+		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
+		Anchor	center, center		FontColor			Tan				Command				qcde_randommap3
+		Padding	0, 0				SelectedFontColor	Tan
+	}
+
+
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	3, 10
+		Pos		-170, 35			CVar		menu_skirmishlevel1		UnknownBackground	NOMAPPIC
+		Size	120, 67				Values		ZA_LevelNames1			BackgroundValues	ZA_LevelPreviews1
+		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
+		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	3, 10
+		NotSelectable
+		Size	120, 27				CVar		menu_skirmishlevel1
+		Pos		-110, 103			Values		ZA_LevelTitles1
+		MaxTextWidth 120			Font		QCSMFONT
+		Anchor	center, top			FontColor	Gold
+	}
+
+	Command {
+		VisibilityCVar skirm_skirmishgamemode,	3, 10
+		Pos		-110, 138			Text				"Random Map"	Background			BV21028
+		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
+		Anchor	center, center		FontColor			Tan				Command				qcde_randommap1
+		Padding	0, 0				SelectedFontColor	Tan
+	}
+
+
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	11, 11
+		Pos		-170, 35			CVar		menu_skirmishlevel2		UnknownBackground	NOMAPPIC
+		Size	120, 67				Values		ZA_LevelNames2			BackgroundValues	ZA_LevelPreviews2
+		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
+		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	11, 11
+		NotSelectable
+		Size	120, 27				CVar		menu_skirmishlevel2
+		Pos		-110, 103			Values		ZA_LevelTitles2
+		MaxTextWidth 120			Font		QCSMFONT
+		Anchor	center, top			FontColor	Gold
+	}
+
+	Command {
+		VisibilityCVar skirm_skirmishgamemode,	11, 11
+		Pos		-110, 138			Text				"Random Map"	Background			BV21028
+		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
+		Anchor	center, center		FontColor			Tan				Command				qcde_randommap2
+		Padding	0, 0				SelectedFontColor	Tan
+	}
+
+
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	12, 12
+		Pos		-170, 35			CVar		menu_skirmishlevel4		UnknownBackground	NOMAPPIC
+		Size	120, 67				Values		ZA_LevelNames4			BackgroundValues	ZA_LevelPreviews4
+		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
+		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	12, 12
+		NotSelectable
+		Size	120, 27				CVar		menu_skirmishlevel4
+		Pos		-110, 103			Values		ZA_LevelTitles4
+		MaxTextWidth 120			Font		QCSMFONT
+		Anchor	center, top			FontColor	Gold
+	}
+
+	Command {
+		VisibilityCVar skirm_skirmishgamemode,	12, 12
+		Pos		-110, 138			Text				"Random Map"	Background			BV21028
+		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
+		Anchor	center, center		FontColor			Tan				Command				qcde_randommap4
+		Padding	0, 0				SelectedFontColor	Tan
+	}
+
+
 
 	Label {
 		Pos		0, 30				Font		SmallFont
@@ -915,27 +1025,29 @@ FreeformMenu QCDE_CallVote
 
 	Option {
 		Pos		-49, 35				CVar		menu_callvotemap		UnknownBackground	NOMAPPIC
-		Size	 98, 54				Values		ZA_LevelNames			BackgroundValues	ZA_LevelPreviews
+		Size	 98, 54				Values		ZA_LevelNamesLoaded		BackgroundValues	ZA_LevelPreviewsLoaded
 		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEF, 110, 62
 		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+									UnknownValueText "Map not loaded!"
 	}
 	Option {
 		NotSelectable
-		Size	120, 26				Values		ZA_LevelTitles
+		Size	120, 26				Values		ZA_LevelTitlesLoaded
 		Pos		0, 90				Font		QCSMFONT
 		MaxTextWidth 120			FontColor	Gold
-		Anchor	center, top			CVar	menu_callvotemap
+		Anchor	center, top			CVar		menu_callvotemap
+									UnknownValueText "Map not loaded!"
 	}
 
 	Command {
 		Pos    0, 128			Text "Random Map"			Background			BV21028
 		Size 105, 14			Font SmallFont				SelectedBackground	BV21028S
-		Anchor center, center	FontColor Tan				Command qcde_randommap
+		Anchor center, center	FontColor Tan				Command qcde_randommapmp
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos    0, 207			Text "Vote Map!"				Background			BT21028
+		Pos    0, 207			Text "Vote Selected Map!"		Background			BT21028
 		Size 105, 14			Font SmallFont					SelectedBackground	BT21028S
 		Padding 0, 0			FontColor Tan
 		Anchor center, center	SelectedFontColor Tan			Command qcde_callmapvote
@@ -1001,8 +1113,8 @@ OptionMenu ZA_CallMapVote
 	Indent 153
 	Title		"CHANGE MAP"
 
-	Option		"Map",					"menu_callvotemap",				"ZA_Levels"
-	Command		"Random Map",			"setcallvotemap random"
+	Option		"Map",					"menu_callvotemap",				"ZA_LevelsLoaded"
+	Command		"Random Map",			qcde_randommapmp
 
 	StaticText ""
 
