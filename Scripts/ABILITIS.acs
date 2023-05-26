@@ -2960,7 +2960,7 @@ Script "QCDE_Ability_Orbb" (void)
 
 	if (IsTidUsed(tid))
 	{
-		if (GetNetworkState() != NETSTATE_SERVER)
+		if (GetNetworkState() != NETSTATE_SERVER && !PlayerIsBot(PlayerNumber()))
 		{
 			SetActivator(tid);
 			if (Timer() - extraAbilityData[plr] > 2 && !CheckInventory("ImDead"))
@@ -3025,9 +3025,12 @@ Script "QCDE_Ability_Orbb" (void)
 // Activator: controlled drone
 Script "ORBB_DroneSpawned" (void)
 {
-	int tid = ORBBDRON_TIDBASE + GetActorProperty(0, APROP_MasterTID) - 1000;
+	int plr = GetActorProperty(0, APROP_MasterTID) - 1000;
+	int tid = ORBBDRON_TIDBASE + plr;
 	Thing_ChangeTID(0, tid);
 	SetPointer(AAPTR_TARGET, GetActorProperty(0, APROP_MasterTID));
+	if(PlayerIsBot(plr) && GetNetworkState() != NETSTATE_CLIENT)
+		ACS_NamedExecuteWithResult("ORBB_NotifyDroneChargeUp", tid);
 }
 
 // Activator: player
