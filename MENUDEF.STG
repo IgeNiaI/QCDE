@@ -756,43 +756,56 @@ FreeformMenu "QCDE_OptionsGame"
 	}
 
 	Label {
-		Pos		45, 421				Font		SmallFont
+		Pos		45, 441				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Pickup flash"
 	}
 	TextField {
 		EnableCVar	crosshair, 1, 100
-		Pos		63, 420			CVar				pickup_blend_scalar	Background			TX05028
+		Pos		63, 440			CVar				pickup_blend_scalar	Background			TX05028
 		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
 		Anchor	center, center	SelectedFontColor	Gray
 		Padding	0, 1
 	}
 	Slider {
 		EnableCVar	crosshair, 1, 100
-		Pos		80, 420			CVar	pickup_blend_scalar
+		Pos		80, 440			CVar	pickup_blend_scalar
 		Size	105, 6			Range	0, 1.0, 0.05
 		Anchor	left, center	MouseArea	105, 14
 		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
 	}
 
 	Label {
-		Pos		45, 441				Font		SmallFont
+		Pos		45, 461				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Screen blood"
 	}
 	TextField {
 		EnableCVar	crosshair, 1, 100
-		Pos		63, 440			CVar				blood_fade_scalar	Background			TX05028
+		Pos		63, 460			CVar				blood_fade_scalar	Background			TX05028
 		Size	25, 14			Font				SmallFont			SelectedBackground	TX05028S
 		Anchor	center, center	SelectedFontColor	Gray
 		Padding	0, 1
 	}
 	Slider {
 		EnableCVar	crosshair, 1, 100
-		Pos		80, 440			CVar	blood_fade_scalar
+		Pos		80, 460			CVar	blood_fade_scalar
 		Size	105, 6			Range	0, 1.0, 0.05
 		Anchor	left, center	MouseArea	105, 14
 		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
+	Label {
+		Pos		168, 420			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Grow crosshair when picking up items"
+	}
+	Option {
+		Pos		185, 420			CVar				crosshairgrow
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	155, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
 	}
 
 
