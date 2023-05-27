@@ -52,9 +52,9 @@ script "QCDE_StartingWeapon_Apply" (void)
 		switch(cvar)
 		{
 		default: // go to case 1
-		case 1: if (!CheckInventory(weapon1)) {	GiveInventory(weapon1, 1);	SetWeapon(weapon1); }	break;
-		case 2: if (!CheckInventory(weapon2)) {	GiveInventory(weapon2, 1);	SetWeapon(weapon2); }	break;
-		case 3: if (!CheckInventory(weapon3)) {	GiveInventory(weapon3, 1);	SetWeapon(weapon3); }	break;
+		case 1: if (!CheckInventory(weapon1)) GiveInventory(weapon1, 1);	break;
+		case 2: if (!CheckInventory(weapon2)) GiveInventory(weapon2, 1);	break;
+		case 3: if (!CheckInventory(weapon3)) GiveInventory(weapon3, 1);	break;
 		}
 	}
 
