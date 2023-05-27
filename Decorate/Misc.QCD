@@ -25,12 +25,6 @@ Actor Resurrected 	: Token {}
 Actor ImDead 		: Token {}
 Actor MapsPlayed    : Token { Inventory.MaxAmount 9999 Inventory.InterhubAmount 9999 }
 
-// These are given by script to tell the game which starter weapon was chosen
-
-Actor Starter_Machinegun 	: Token {}
-Actor Starter_Shotgun 		: Token {}
-Actor Starter_Nailgun 		: Token {}
-
 
 // These define HUD elements shown to player
 

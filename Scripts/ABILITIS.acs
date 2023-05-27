@@ -4740,14 +4740,6 @@ Script "QCDE_Passive_Freeman" (void)
 
 					SetInventory("BasicArmor",0); //remove armor too
 
-					int startingWeapon = GetCvar("cl_startingWeapon");
-					if (startingWeapon == 1) {
-						SetInventory("Starter_Machinegun"   ,1);
-					} else if (startingWeapon == 2) {
-						SetInventory("Starter_Shotgun"   ,1);
-					} else if (startingWeapon == 3) {
-						SetInventory("Starter_Nailgun"   ,1);
-                    }
 					ACS_NamedExecuteAlways("QCDE_StartingWeapon_Apply",0);
 				}
 
@@ -5233,19 +5225,13 @@ Script "QCDE_Passive_Sam" (int ammo)
 			SetInventory("QCMachineGunDM",1);
 			SetInventory("QCShotgunDM"   ,1);
 			SetInventory("QCNailgunDM"   ,1);
-			
-			if		(CheckInventory("Starter_Machinegun"))	SetWeapon("QCMachineGunDM");
-            else if	(CheckInventory("Starter_Shotgun"   ))	SetWeapon("QCShotgunDM");
-            else if	(CheckInventory("Starter_Nailgun"   ))	SetWeapon("QCNailgunDM");
-            else
+
+            switch(startingWeapon)
             {
-            	switch(startingWeapon)
-            	{
-            	default: // go to case 1
-            	case 1: SetWeapon("QCMachineGunDM");	break;
-            	case 2: SetWeapon("QCShotgunDM");		break;
-            	case 3: SetWeapon("QCNailgunDM");		break;
-            	}
+            default: // go to case 1
+            case 1: SetWeapon("QCMachineGunDM");	break;
+            case 2: SetWeapon("QCShotgunDM");		break;
+            case 3: SetWeapon("QCNailgunDM");		break;
             }
 		}
 	}

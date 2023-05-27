@@ -13,7 +13,7 @@ Actor ZombieAmmoDropper
 	States
 	{
 	Spawn:
-		TNT1 A 0  NODELAY		A_JumpIfInTargetInventory("Starter_Nailgun",1,"DropNails")
+		TNT1 A 0  NODELAY		A_JumpIfInTargetInventory("QCNailgun",1,"DropNails")
 		Goto DropBullets	//if player doesnt have starter nailgun, drop bullets as default, also if zombie was killed by a non-player
 	DropBullets:
 		TNT1 A 10 A_SpawnItemEx("BulletsDroppedByMonster",0,0,0, frandom(0,1),0,frandom(1,4), 0,SXF_NOCHECKPOSITION)
