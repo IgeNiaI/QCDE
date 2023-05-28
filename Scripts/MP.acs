@@ -402,7 +402,7 @@ Script "QCDE_PlayerSpeed" (void)
 Script "StackLeft" (int evtTyp, int victimNo, int arg2) EVENT
 {
 	if(!GetCVar("sv_showstackleft")) terminate;
-	if(GameType() < GAME_NET_DEATHMATCH) terminate;
+	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS) terminate;
 
 	if(evtTyp == 0) {
 		Delay(5); //leave time for QCDE scripts to run
@@ -410,13 +410,18 @@ Script "StackLeft" (int evtTyp, int victimNo, int arg2) EVENT
 		int hp = GetActorProperty(0, APROP_Health);
 		int ap = CheckInventory("BasicArmor");
 
-		SetActivator(1000 + victimNo);
-
-		SetFont("SMALLFNT");
-		HudMessage(s:"\cgStack left: \cv", d:hp, s:"\cj/\cd", d:ap; HUDMSG_FADEOUT, 1, CR_RED, 0.5, 0.40, 2.5, 0.5, 1);
+		ACS_NamedExecuteAlways("StackLeft_Clientside", 0, 1000 + victimNo, hp, ap);
 	}
 }
 
+Script "StackLeft_Clientside" (int victimTid, int hp, int ap) clientside
+{
+	if (victimTid == CheckPlayerCamera(ConsolePlayerNumber()))
+	{
+		SetFont("SMALLFNT");
+		HudMessageBold(s:"\cgStack left: \cv", d:hp, s:"\cj/\cd", d:ap; HUDMSG_FADEOUT, 1, CR_RED, 0.5, 0.40, 2.5, 0.5, 1);
+	}
+}
 
 // For effects tracking items that might respawn, additional condition to
 // finish animation.
