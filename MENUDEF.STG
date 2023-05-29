@@ -549,6 +549,21 @@ FreeformMenu "QCDE_OptionsGame"
 	}
 
 	Label {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-72, 310			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Rotate sprites vertically"
+	}
+	Option {
+		VisibilityCVar	vid_renderer, 1, 1
+		Pos		-55, 310			CVar				gl_billboard_mode
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
 		Pos		75, 191				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Speedometer"
@@ -634,12 +649,12 @@ FreeformMenu "QCDE_OptionsGame"
 
 
 	Label {
-		Pos		-153, 323			Font		SmallFont
+		Pos		-160, 323			Font		SmallFont
 		Anchor	left, top			FontColor	DarkGray
 		Text	"Override Player Colors"
 	}
 	Option {
-		Pos		-153, 340			CVar				cl_overrideplayercolors	UnknownBackground	OP21028
+		Pos		-160, 340			CVar				cl_overrideplayercolors	UnknownBackground	OP21028
 		Size	105, 14				Values				OverridePlayerColors	SelectedBackground	OP21028S
 		Anchor	left, center		Font				SmallFont				SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
@@ -1415,29 +1430,14 @@ FreeformMenu "QCDE_OptionsVideo"
 		VisibilityCVar	vid_renderer, 1, 1
 		Pos		-2, 100				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
-		Text	"3D models"
+		Text	"Voxel models"
 	}
 	Option {
 		VisibilityCVar	vid_renderer, 1, 1
-		Pos		15, 100				CVar				gl_use_models
+		Pos		15, 100				CVar				r_drawvoxels
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
 		MouseArea	90, 14			UnknownBackground	CHKBOX
-									SelectedForeground	CHKBOXS, 14, 14
-	}
-
-	Label {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		148, 100			Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"Map textures"
-	}
-	Option {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		165, 100			CVar				gl_texture
-		Size	14, 14				Values				QCDE_CheckText
-		Anchor	right, center		BackgroundValues	QCDE_CheckBG
-		MouseArea	105, 14			UnknownBackground	CHKBOX
 									SelectedForeground	CHKBOXS, 14, 14
 	}
 
@@ -1460,21 +1460,6 @@ FreeformMenu "QCDE_OptionsVideo"
 		Size	105, 6			Range	500, 10000, 100
 		Anchor	left, center	MouseArea	105, 14
 		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
-	}
-
-	Label {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		148, 120			Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"Rotate sprites vertically"
-	}
-	Option {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		165, 120			CVar				gl_billboard_mode
-		Size	14, 14				Values				QCDE_CheckText
-		Anchor	right, center		BackgroundValues	QCDE_CheckBG
-		MouseArea	90, 14			UnknownBackground	CHKBOX
-									SelectedForeground	CHKBOXS, 14, 14
 	}
 
 
