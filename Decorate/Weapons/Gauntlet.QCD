@@ -28,6 +28,12 @@ Actor QCGauntlet : QCWeapon
 	//-----------------------
 	Ready:
 		TNT1 A 0 A_JumpIfInventory("Class_Painkiller",1,"PKReady")
+		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 1, "Ready.Prepared") // jump over prepare animations
+	Ready.Default.Prepare:
+		QCF1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_WeaponReady
+		Goto Ready.Default
+
+	Ready.Prepared:
 		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 4, "Ready.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 3, "Ready.Quake3")
@@ -64,7 +70,7 @@ Actor QCGauntlet : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 4, "Select.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 3, "Select.Quake3")
 	Select.Default:
-		QCG1 A 0 A_PlaySound("QC/Weapons/Gauntlet/Select_Default",CHAN_5,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
+		QCF1 A 0 A_PlaySound("QC/Weapons/Gauntlet/Select_Default",CHAN_5,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
 		Goto SelectCont
 	Select.Quake3:
 		Q3G1 A 0 A_PlaySound("QC/Weapons/Switch",CHAN_5,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
@@ -99,8 +105,21 @@ Actor QCGauntlet : QCWeapon
 	// Fire Seq
 	//-----------------------
 	Fire:
-		"####" A 0 A_JumpIfInventory("Class_Painkiller",1,"PKFire")
-		"####" A 0 A_JumpIfInventory("PowerQuad",1,"QuadSound")
+		TNT1 A 0 A_JumpIfInventory("Class_Painkiller",1,"PKFire")
+		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 6, "Fire.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 4, "Fire.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 3, "Fire.Quake3")
+	Fire.Default:
+		QCG1 A 0 A_JumpIfInventory("PowerQuad",1,"QuadSound")
+		Goto NormalSound
+	Fire.Quake3:
+		Q3G1 A 0 A_JumpIfInventory("PowerQuad",1,"QuadSound")
+		Goto NormalSound
+	Fire.Quake4:
+		Q4G1 A 0 A_JumpIfInventory("PowerQuad",1,"QuadSound")
+		Goto NormalSound
+	Fire.QCDE1:
+		Q0G1 A 0 A_JumpIfInventory("PowerQuad",1,"QuadSound")
 		Goto NormalSound
 
 		NormalSound:
@@ -160,13 +179,13 @@ Actor QCGauntlet : QCWeapon
 
 		FireLooper1Cont:
 			"####" DC 1
-			"####" C 0 A_ReFire("FireLooper2")
+			"####" A 0 A_ReFire("FireLooper2")
 			Goto EndFire
 		FireLooper2:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" D 1
 			"####" CD 1
-			"####" B 0 A_ReFire("FireLooper1")
+			"####" A 0 A_ReFire("FireLooper1")
 			Goto EndFire
 
 		Omnier:
@@ -179,29 +198,29 @@ Actor QCGauntlet : QCWeapon
 				"####" A 0 A_JumpIfInventory("QCGauntletSkin", 4, "OmniLooper1.Quake4")
 				"####" A 0 A_JumpIfInventory("QCGauntletSkin", 3, "OmniLooper1.Quake3")
 			OmniLooper1.Default:
-				"####" C 0 A_CustomPunch(1,1,0,"GauntletPuff",56)
+				"####" A 0 A_CustomPunch(1,1,0,"GauntletPuff",56)
 				"####" A 0 A_FireCustomMissile("OmnislashProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
 				"####" A 0 A_FireCustomMissile("OmnislashProjectileFX",0,0)
 				Goto OmniLooper1Cont
 			OmniLooper1.Quake3:
-				"####" C 0 A_CustomPunch(1,1,0,"GauntletPuff_Quake3",56)
+				"####" A 0 A_CustomPunch(1,1,0,"GauntletPuff_Quake3",56)
 				"####" A 0 A_FireCustomMissile("OmnislashProjectile_Quake3",0,0,0,0, FPF_FORCESERVERSIDE)
 				"####" A 0 A_FireCustomMissile("OmnislashProjectileFX_Quake3",0,0)
 				Goto OmniLooper1Cont
 			OmniLooper1.Quake4:
-				"####" C 0 A_CustomPunch(1,1,0,"GauntletPuff_Quake4",56)
+				"####" A 0 A_CustomPunch(1,1,0,"GauntletPuff_Quake4",56)
 				"####" A 0 A_FireCustomMissile("OmnislashProjectile_Quake4",0,0,0,0, FPF_FORCESERVERSIDE)
 				"####" A 0 A_FireCustomMissile("OmnislashProjectileFX_Quake4",0,0)
 				Goto OmniLooper1Cont
 			OmniLooper1.QCDE1:
-				"####" C 0 A_CustomPunch(1,1,0,"GauntletPuff_QCDE1",56)
+				"####" A 0 A_CustomPunch(1,1,0,"GauntletPuff_QCDE1",56)
 				"####" A 0 A_FireCustomMissile("OmnislashProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
 				"####" A 0 A_FireCustomMissile("OmnislashProjectileFX",0,0)
 				Goto OmniLooper1Cont
 
 			OmniLooper1Cont:
 				"####" CDC 1
-				"####" C 0 A_ReFire("OmniLooper2")
+				"####" A 0 A_ReFire("OmniLooper2")
 				Goto EndFire
 
 			OmniLooper2:
@@ -221,7 +240,7 @@ Actor QCGauntlet : QCWeapon
 
 			OmniLooper2Cont:
 				"####" DCD 1
-				"####" B 0 A_ReFire("OmniLooper1")
+				"####" A 0 A_ReFire("OmniLooper1")
 				Goto EndFire
 
 		Burner:
@@ -249,17 +268,17 @@ Actor QCGauntlet : QCWeapon
 			BurnLooper1Cont:
 				"####" A 0 A_Jump(128,2)
 				"####" C 0 A_FireCustomMissile("BurnerFlamelet",0,0,random(6,-6),random(4,-4))
-				"####" C 1
-				"####" DC 1
-				"####" C 0 A_ReFire("BurnLooper2")
+				"####" E 1 Bright
+				"####" FG 1 Bright
+				"####" A 0 A_ReFire("BurnLooper2")
 				Goto EndFire
 			BurnLooper2:
 				"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 				"####" A 0 A_Jump(128,2)
 				"####" D 0 A_FireCustomMissile("BurnerFlamelet",0,0,random(6,-6),random(4,-4))
-				"####" D 1
-				"####" CD 1
-				"####" B 0 A_ReFire("BurnLooper1")
+				"####" H 1 Bright
+				"####" IJ 1 Bright
+				"####" A 0 A_ReFire("BurnLooper1")
 				Goto EndFire
 
 			BurnOmniLooper1:
@@ -268,27 +287,27 @@ Actor QCGauntlet : QCWeapon
 				"####" A 0 A_JumpIfInventory("QCGauntletSkin", 4, "BurnOmniLooper1.Quake4")
 				"####" A 0 A_JumpIfInventory("QCGauntletSkin", 3, "BurnOmniLooper1.Quake3")
 			BurnOmniLooper1.Default:
-				"####" C 0 A_CustomPunch(1,1,0,"GauntletPuff",56)
+				"####" A 0 A_CustomPunch(1,1,0,"GauntletPuff",56)
 				"####" A 0 A_FireCustomMissile("OmnislashFireProjectileFX",0,0)
 				Goto BurnOmniLooper1Cont
 			BurnOmniLooper1.Quake3:
-				"####" C 0 A_CustomPunch(1,1,0,"GauntletPuff_Quake3",56)
+				"####" A 0 A_CustomPunch(1,1,0,"GauntletPuff_Quake3",56)
 				"####" A 0 A_FireCustomMissile("OmnislashFireProjectileFX_Quake3",0,0)
 				Goto BurnOmniLooper1Cont
 			BurnOmniLooper1.Quake4:
-				"####" C 0 A_CustomPunch(1,1,0,"GauntletPuff_Quake4",56)
+				"####" A 0 A_CustomPunch(1,1,0,"GauntletPuff_Quake4",56)
 				"####" A 0 A_FireCustomMissile("OmnislashFireProjectileFX_Quake4",0,0)
 				Goto BurnOmniLooper1Cont
 			BurnOmniLooper1.QCDE1:
-				"####" C 0 A_CustomPunch(1,1,0,"GauntletPuff_QCDE1",56)
+				"####" A 0 A_CustomPunch(1,1,0,"GauntletPuff_QCDE1",56)
 				"####" A 0 A_FireCustomMissile("OmnislashFireProjectileFX",0,0)
 				Goto BurnOmniLooper1Cont
 
 			BurnOmniLooper1Cont:
-				"####" C 0 A_FireCustomMissile("OmnislashFireProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
-				"####" C 1
-				"####" DC 1
-				"####" C 0 A_ReFire("BurnOmniLooper2")
+				"####" A 0 A_FireCustomMissile("OmnislashFireProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
+				"####" E 1 Bright
+				"####" FG 1 Bright
+				"####" A 0 A_ReFire("BurnOmniLooper2")
 				Goto EndFire
 
 			BurnOmniLooper2:
@@ -307,9 +326,9 @@ Actor QCGauntlet : QCWeapon
 				Goto BurnOmniLooper2Cont
 
 			BurnOmniLooper2Cont:
-				"####" D 1
-				"####" CD 1
-				"####" B 0 A_ReFire("BurnOmniLooper1")
+				"####" H 1 Bright
+				"####" IJ 1 Bright
+				"####" A 0 A_ReFire("BurnOmniLooper1")
 				Goto EndFire
 
 
@@ -342,7 +361,7 @@ Actor QCGauntlet : QCWeapon
 			"####" D 1
 			"####" A 0 A_JumpIfInventory("PunchedAlready",1,"GauntStop")
 
-			"####" B 0 A_ReFire("NormalDMRefire")
+			"####" A 0 A_ReFire("NormalDMRefire")
 			Goto EndFire
 
 		IGRefire:
@@ -371,7 +390,7 @@ Actor QCGauntlet : QCWeapon
 			"####" D 1
 			"####" A 0 A_JumpIfInventory("PunchedAlready",1,"GauntStop")
 
-			"####" B 0 A_ReFire("IGRefire")
+			"####" A 0 A_ReFire("IGRefire")
 			Goto EndFire
 
 	GauntStop:
@@ -395,7 +414,7 @@ Actor QCGauntlet : QCWeapon
 		"####" CDCDCABB 1
 		"####" A 1 Offset(-3,21) A_TakeInventory("PunchedAlready",32767)
 		"####" A 11 Offset(-1,31)
-		Goto Ready
+		Goto Ready.Prepared
 
 	EndFire:
 		"####" A 0 A_JumpIfInventory("QCGauntletSkin", 6, "EndFire.Default")
@@ -418,7 +437,7 @@ Actor QCGauntlet : QCWeapon
 		"####" A 1 Offset(-3,21) A_TakeInventory("PunchedAlready",32767)
 		"####" B 1 Offset(-2,26) A_WeaponReady
 		"####" B 1 Offset(-1,30) A_WeaponReady
-		Goto Ready
+		Goto Ready.Prepared
 
 	//-----------------------
 	// Fire Seq / Zoom
@@ -428,7 +447,7 @@ Actor QCGauntlet : QCWeapon
 	NoZoom:
 		"####" A 2 A_WeaponReady(WRF_NOSECONDARY)	//dummy state in case player is holding "alt fire" all along
 		"####" A 0 A_Refire("NoZoom")
-		Goto Ready
+		Goto Ready.Prepared
 
 
 
@@ -459,7 +478,7 @@ Actor QCGauntlet : QCWeapon
 		PKRCFLooper:
 			WP30 A 4 A_WeaponReady(WRF_NOFIRE)
 			WP30 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"PKRCFLooper")
-			Goto Ready
+			Goto PKReady
 	PKFire:
 		WP30 A 0 A_JumpIfInventory("PKTipDetached",1,"PKPlayIsBackSound")
 		WP30 A 0 A_PlaySound("QC/Abilities/Painkiller/Weapon/SpinStartLoop",CHAN_WEAPON,1,1)

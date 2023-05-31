@@ -345,7 +345,7 @@ Sprite DB16Z0, 64, 64 { Offset 38, 34		Patch DB13Z0, 0, 0	{ FlipX Rotate 270} }
 
 
 //==============================================================================
-// Terminator rocket explo flipped
+// Monster rocket explo flipped
 //==============================================================================
 
 Sprite X001A0, 64, 64	{ Offset  32,  32	Patch X002A0, 0, 0	{ FlipX } }
@@ -369,6 +369,32 @@ Sprite X001R0, 64, 64	{ Offset  32,  32	Patch X002R0, 0, 0	{ FlipX } }
 Sprite X001S0, 64, 64	{ Offset  32,  32	Patch X002S0, 0, 0	{ FlipX } }
 Sprite X001T0, 64, 64	{ Offset  32,  32	Patch X002T0, 0, 0	{ FlipX } }
 Sprite X001U0, 64, 64	{ Offset  32,  32	Patch X002U0, 0, 0	{ FlipX } }
+
+//==============================================================================
+// Terminator rocket explo flipped
+//==============================================================================
+
+Sprite X011A0, 64, 64	{ Offset  32,  32	Patch X012A0, 0, 0	{ FlipX } }
+Sprite X011B0, 64, 64	{ Offset  32,  32	Patch X012B0, 0, 0	{ FlipX } }
+Sprite X011C0, 64, 64	{ Offset  32,  32	Patch X012C0, 0, 0	{ FlipX } }
+Sprite X011D0, 64, 64	{ Offset  32,  32	Patch X012D0, 0, 0	{ FlipX } }
+Sprite X011E0, 64, 64	{ Offset  32,  32	Patch X012E0, 0, 0	{ FlipX } }
+Sprite X011F0, 64, 64	{ Offset  32,  32	Patch X012F0, 0, 0	{ FlipX } }
+Sprite X011G0, 64, 64	{ Offset  32,  32	Patch X012G0, 0, 0	{ FlipX } }
+Sprite X011H0, 64, 64	{ Offset  32,  32	Patch X012H0, 0, 0	{ FlipX } }
+Sprite X011I0, 64, 64	{ Offset  32,  32	Patch X012I0, 0, 0	{ FlipX } }
+Sprite X011J0, 64, 64	{ Offset  32,  32	Patch X012J0, 0, 0	{ FlipX } }
+Sprite X011K0, 64, 64	{ Offset  32,  32	Patch X012K0, 0, 0	{ FlipX } }
+Sprite X011L0, 64, 64	{ Offset  32,  32	Patch X012L0, 0, 0	{ FlipX } }
+Sprite X011M0, 64, 64	{ Offset  32,  32	Patch X012M0, 0, 0	{ FlipX } }
+Sprite X011N0, 64, 64	{ Offset  32,  32	Patch X012N0, 0, 0	{ FlipX } }
+Sprite X011O0, 64, 64	{ Offset  32,  32	Patch X012O0, 0, 0	{ FlipX } }
+Sprite X011P0, 64, 64	{ Offset  32,  32	Patch X012P0, 0, 0	{ FlipX } }
+Sprite X011Q0, 64, 64	{ Offset  32,  32	Patch X012Q0, 0, 0	{ FlipX } }
+Sprite X011R0, 64, 64	{ Offset  32,  32	Patch X012R0, 0, 0	{ FlipX } }
+Sprite X011S0, 64, 64	{ Offset  32,  32	Patch X012S0, 0, 0	{ FlipX } }
+Sprite X011T0, 64, 64	{ Offset  32,  32	Patch X012T0, 0, 0	{ FlipX } }
+Sprite X011U0, 64, 64	{ Offset  32,  32	Patch X012U0, 0, 0	{ FlipX } }
 
 //=================================================================================
 //
@@ -1310,6 +1336,7 @@ remap QCG3E0 	HCG3E0
 remap QCG3F0 	HCG3F0
 remap QCG3G0 	HCG3G0
 remap QCG3H0 	HCG3H0
+remap QCG3I0 	HCG3I0
 
 // Super Shotgun
 remap QCGCA0 	HCGCA0
@@ -1387,6 +1414,12 @@ remap QCG8J0 	HCG8J0
 remap QCG8K0 	HCG8K0
 remap QCG8L0 	HCG8L0
 remap QCG8M0 	HCG8M0
+remap QCF8A0 	HCF8A0
+remap QCF8B0 	HCF8B0
+remap QCF8C0 	HCF8C0
+remap QCF8D0 	HCF8D0
+remap QCF8E0 	HCF8E0
+remap QCF8F0 	HCF8F0
 
 
 
@@ -1403,7 +1436,7 @@ remap HITMED 	HITMARK
 //----------------------
 // Misc
 define POSTPOIS 96 96
-define ZEDKFIRE 96 96
+define ZEDKFIRE 64 96
 
 
 //=============================================================================

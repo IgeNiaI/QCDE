@@ -110,6 +110,12 @@ Actor QCBFG : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
+		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 1, "Ready.Prepared") // jump over prepare animations
+	Ready.Default.Prepare:
+		QCF8 ABCDEF 3 A_WeaponReady
+		Goto Ready.Default
+
+	Ready.Prepared:
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 4, "Ready.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 3, "Ready.Quake3")
@@ -146,7 +152,7 @@ Actor QCBFG : QCWeapon
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" HAAAAA 3 A_WeaponReady(WRF_NOSECONDARY)
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		Goto Ready
+		Goto Ready.Prepared
 
 		ReadyCantFire:
 			"####" A 0 A_StopSound(CHAN_WEAPON)
@@ -154,7 +160,7 @@ Actor QCBFG : QCWeapon
 		RCFLooper:
 			"####" A 4 A_WeaponReady(WRF_NOFIRE)
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
-			Goto Ready
+			Goto Ready.Prepared
 
 	//-----------------------
 	// Select/Deselect Seq
@@ -165,7 +171,7 @@ Actor QCBFG : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 3, "Select.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 2, "Select.Quake2")
 	Select.Default:
-		QCG8 A 0
+		QCF8 A 0
 		Goto SelectCont
 	Select.Quake2:
 		Q2G8 A 0
@@ -201,6 +207,26 @@ Actor QCBFG : QCWeapon
 	// Fire Seq
 	//-----------------------
 	Fire:
+		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 6, "Fire.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 4, "Fire.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 3, "Fire.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 2, "Fire.Quake2")
+	Fire.Default:
+		QCG8 A 0
+		Goto FireCont
+	Fire.Quake2:
+		Q2G8 A 0
+		Goto FireCont
+	Fire.Quake3:
+		Q3G8 A 0
+		Goto FireCont
+	Fire.Quake4:
+		Q4G8 A 0
+		Goto FireCont
+	Fire.QCDE1:
+		Q0G8 A 0
+		Goto FireCont
+	FireCont:
 		"####" A 0 A_AlertMonsters
 		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
 		Goto FIRAH
