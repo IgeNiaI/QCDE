@@ -1592,6 +1592,36 @@ FreeformMenu "QCDE_OptionsSound"
 		Padding	3, 1				SelectedFontColor	Gray
 	}
 
+	Label {
+		Pos		80, 103				Font		SmallFont
+		Anchor	left, top			FontColor	DarkGray
+		Text	"Midi Device"
+	}
+	Option {
+		Pos		80, 120				CVar				snd_mididevice	UnknownBackground	OP21028
+		Size	105, 14				Values				MidiDevices		SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+	IfOption(fmodex)
+	{
+		IfOption(openal)
+		{
+			Label {
+				Pos		-50, 103			Font		SmallFont
+				Anchor	left, top			FontColor	DarkGray
+				Text	"Sound Backend"
+			}
+			Option {
+				Pos		-50, 120			CVar				snd_backend		UnknownBackground	OP21028
+				Size	105, 14				Values				SoundBackends	SelectedBackground	OP21028S
+				Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+				Padding	3, 1				SelectedFontColor	Gray
+			}
+		}
+	}
+
 
 	InsertFreeformMenu MainMenuTopBar
 	InsertFreeformMenu QCDE_OptionsTabs
