@@ -403,7 +403,7 @@ FreeformMenu "QCDE_OptionsGame"
 	Slider {
 		EnableCVar	r_drawplayersprites, 1, 1
 		Pos		80, 60			CVar	movesway
-		Size	105, 6			Range	0, 2.0, 0.01
+		Size	105, 6			Range	0, 1.0, 0.01
 		Anchor	left, center	MouseArea	105, 14
 		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
 	}
