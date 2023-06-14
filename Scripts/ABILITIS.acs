@@ -2059,9 +2059,20 @@ Script "QCDE_Ability_Eleena" (void)
 			SetActivator(plrtid);
 		}
 
-		int t = GetDuration();
-		while(t --> 0) delay(1);
+		int cooldown = GetDuration();
+		while (cooldown --> 0)
+		{
+			SetActivator(plrtid);
+			if (GetActorProperty(0, APROP_HEALTH) <= 0)
+			{
+				SetActorState(doptid, "Vanish");
+				break;
+			}
+			SetActivator(-1);
+			Delay(1);
+		}
 
+		SetActivator(plrtid);
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("PowerShieldCharge", 0);
 		GiveInventory("GenericActiveCleanerProc", 1);
