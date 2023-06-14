@@ -316,7 +316,7 @@ Actor QCLightningGun : QCWeapon
 		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DMCheckTransparency")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
-		Goto CoopHold
+		Goto CheckCoopHold
 
 		CheckIfUpgrade:		//sets regular lg, visible
 			TNT1 A 0 A_JumpIfInventory("LG_UG_Static",1,"LGSet100Purp")
