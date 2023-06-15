@@ -1052,7 +1052,17 @@ FTShadows		"Sounds/Medals/FromTheShadows.ogg"
 //==============================================================================
 
 QCDE/Other/D4Teleport					"Sounds/Misc/Teleport.ogg"
-QCDE/Other/QCTeleport					"Sounds/UI/DSTelept.ogg"
+
+QCDE/Other/QCTeleport1					"Sounds/UI/DSTelept1.ogg"
+QCDE/Other/QCTeleport2					"Sounds/UI/DSTelept2.ogg"
+QCDE/Other/QCTeleport3					"Sounds/UI/DSTelept3.ogg"
+QCDE/Other/QCTeleport4					"Sounds/UI/DSTelept4.ogg"
+QCDE/Other/QCTeleport5					"Sounds/UI/DSTelept5.ogg"
+QCDE/Other/QCTeleport6					"Sounds/UI/DSTelept6.ogg"
+QCDE/Other/QCTeleport7					"Sounds/UI/DSTelept7.ogg"
+QCDE/Other/QCTeleport8					"Sounds/UI/DSTelept8.ogg"
+$random QCDE/Other/QCTeleport { QCDE/Other/QCTeleport1 QCDE/Other/QCTeleport2 QCDE/Other/QCTeleport3 QCDE/Other/QCTeleport4
+ 								QCDE/Other/QCTeleport5 QCDE/Other/QCTeleport6 QCDE/Other/QCTeleport7 QCDE/Other/QCTeleport8 }
 
 QCDE/Other/QCJumpPad					"Sounds/Movers/QCJumpPad.ogg"
 $limit QCDE/Other/QCJumpPad 10
