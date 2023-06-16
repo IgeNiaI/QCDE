@@ -74,7 +74,7 @@ script "3DTeleport" ( int minheight, int maxheight, int desttag, int minspeed )
 //    JUMP PAD    //
 ////////////////////
 
-script "GenericJumpPad" ( int z_for, int angle, int xy_for, int tidder )
+script "GenericJumpPad" ( int z_push, int angle, int xy_push, int sound_tag )
 {
 	if( PlayerIsBot( PlayerNumber() ) )	//bots are movement-frozen
 	{
@@ -84,15 +84,15 @@ script "GenericJumpPad" ( int z_for, int angle, int xy_for, int tidder )
 	
 	if( GetActorProperty( 0, APROP_Health ) > 0 )
 	{
-		if (tidder == 0) Log(s:"Jumppad plays sound at activator, please fix");
+		if (sound_tag == 0) Log(s:"Jumppad plays sound at activator, please fix");
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		PlaySound( tidder, "QCDE/Other/QCJumpPad", CHAN_7, 0.8, 0, 0.9 );
+		PlaySound( sound_tag, "QCDE/Other/QCJumpPad", CHAN_7, 0.8, 0, 0.9 );
 		SetNetworkReplicationFlags( 0 );
 		Thing_Stop(0);
-		if ( z_for != 0 )
-			ThrustThingZ( 0, z_for, 0, 0 );
-		if ( xy_for != 0 )
-			ThrustThing( angle, xy_for, 0 );
+		if ( z_push != 0 )
+			ThrustThingZ( 0, z_push, 0, 0 );
+		if ( xy_push != 0 )
+			ThrustThing( angle, xy_push, 0 );
 	} else {
 		//If player is dead, pushes corpse away
 		ThrustThing( random(1,255), random(10,20), 1, 0 );
@@ -102,12 +102,12 @@ script "GenericJumpPad" ( int z_for, int angle, int xy_for, int tidder )
 	{
 		//help bepis not get stuck on vertical jump pads
 		
-		if( xy_for < 8 )
+		if( xy_push < 8 )
 		{
-			int delayTics = z_for / 3;
+			int delayTics = z_push / 3;
 
 			Delay( delayTics );
-			ThrustThing( angle, xy_for / 2, 0 );
+			ThrustThing( angle, xy_push / 2, 0 );
 
 			Delay( 30 - delayTics );
 			
@@ -145,7 +145,7 @@ Script "DamageFloor" ( int damage, int timeout )
 //  BOT HELPER SCRIPTS  //
 //////////////////////////
 
-script "BotPusher" ( int angle, int xy_for, int max_height, int min_height )
+script "BotPusher" ( int angle, int xy_push, int max_height, int min_height )
 {
 
     if( PlayerIsBot( PlayerNumber() ) )
@@ -175,7 +175,7 @@ script "BotPusher" ( int angle, int xy_for, int max_height, int min_height )
 
 				Thing_Stop(0);
 				SetPlayerProperty( 0, 1, PROP_TOTALLYFROZEN );
-				ThrustThing( randomAngle, xy_for, 0 );
+				ThrustThing( randomAngle, xy_push, 0 );
 				SetActorAngle( 0, randomAngle << 8 ); //turn them around so they notice you watching >)
 				Delay(5);
 				SetPlayerProperty( 0, 0, PROP_TOTALLYFROZEN );			
