@@ -161,9 +161,9 @@ Actor QCSuperShotgun : QCWeapon
 	Weapon.AmmoUse 2
 	Weapon.AmmoGive 16
 	Weapon.AmmoType "QCShellAmmo"
-	Obituary "$OB_QCSuperShotgun" // "%o was too close to %k's double barreled shotgun."
-	Inventory.PickupMessage "$GOT_QCSuperShotgun" // "Picked up a Super Shotgun."
-	Tag "$TAG_QCSuperShotgun" // "Super Shotgun"
+	Obituary "$OB_QCSuperShotgun"
+	Inventory.PickupMessage "$GOT_QCSuperShotgun"
+	Tag "$TAG_QCSuperShotgun"
 	Scale 0.66
 	States
 	{

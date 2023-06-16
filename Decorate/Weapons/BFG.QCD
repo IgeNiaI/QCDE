@@ -88,9 +88,9 @@ Actor QCBFG : QCWeapon
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 8
 	Weapon.AmmoType "QCBFGAmmo"
-	Obituary "$OB_QCBFG" // "%o was melted by %k's BFG."
+	Obituary "$OB_QCBFG"
 	+WEAPON.WIMPY_WEAPON
-	Inventory.PickupMessage "$GOT_QCBFG" // "Picked up the BFG 10k."
+	Inventory.PickupMessage "$GOT_QCBFG"
 	Tag "$TAG_QCBFG" // "BFG 10k"
 	Scale 0.65
 	States
@@ -564,7 +564,7 @@ Actor QCBFGShot
 	+SEEKERMISSILE
 	+EXTREMEDEATH
 	+DONTBLAST
-	Obituary "$OB_QCBFGShot" // "%o felt the power of argent energy at %k's fingertips."
+	Obituary "$OB_QCBFG"
 	Decal "D4BFGScorchSmall"
 	DamageType "BFGDamage"
 	States
@@ -801,7 +801,7 @@ Actor QCBFGChargeShot
 	+SEEKERMISSILE
 	+EXTREMEDEATH
 	+DONTBLAST
-	Obituary "$OB_QCBFGChargeShot" // "%o felt the power of argent energy at %k's fingertips."
+	Obituary "$OB_QCBFG"
 	Decal "D4BFGScorchSmall"
 	DamageType "BFGDamage"
 	States
@@ -1019,7 +1019,7 @@ Actor QCBFGShot_DM	//No AOE while flying
 	+FORCERADIUSDMG
 	+FORCEXYBILLBOARD
 	+SEEKERMISSILE
-	Obituary "$OB_QCBFGShot" // "%o felt the power of argent energy at %k's fingertips."
+	Obituary "$OB_QCBFG"
 	Decal "D4BFGScorchSmall"
 	DamageType "BFGDamage"
 	States

@@ -72,10 +72,10 @@ Actor QCMachinegun : QCWeapon
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 50
 	Weapon.AmmoType "QCBulletAmmo"
-	Obituary "$OB_QCMachinegun" // "%o was riddled with holes by %k."
+	Obituary "$OB_QCMachinegun"
 	+INVENTORY.UNDROPPABLE
-	Inventory.PickupMessage "$GOT_QCMachinegun" // "Picked up the Machinegun."
-	Tag "$TAG_QCMachinegun" // "Machinegun"
+	Inventory.PickupMessage "$GOT_QCMachinegun"
+	Tag "$TAG_QCMachinegun"
 	States
 	{
  	Spawn:

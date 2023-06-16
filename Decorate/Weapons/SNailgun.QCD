@@ -95,9 +95,9 @@ Actor QCSuperNailgun : QCWeapon
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 50
 	Weapon.AmmoType "QCNailAmmo"
-	Obituary "$OB_QCSuperNailgun" // "%o was perforated by %k."
-	Inventory.PickupMessage "$GOT_QCSuperNailgun" // "Picked up a Super Nailgun."
-	Tag "$TAG_QCSuperNailgun" // "Super Nailgun"
+	Obituary "$OB_QCSuperNailgun"
+	Inventory.PickupMessage "$GOT_QCSuperNailgun"
+	Tag "$TAG_QCSuperNailgun"
 	Scale 0.67
 	States
 	{
@@ -737,7 +737,7 @@ Actor QCNailStrong : FastProjectile
 	Damage (random(8,12)*2)
 	Scale 0.42
 	DamageType "ZombieGibber"
-	Obituary "$OB_QCSuperNailgun" // "%o was perforated by %k."
+	Obituary "$OB_QCSuperNailgun"
 	Decal "NailgunChip"
 	States
 	{
@@ -759,6 +759,7 @@ Actor QCNailStrong : FastProjectile
 		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Explode(7,32,XF_HURTSOURCE,0,32)
 		TNT1 A 0 A_RadiusThrust(17,32,RTF_AFFECTSOURCE|RTF_THRUSTZ,32)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 1 // Need the actor to live one more tick so that a proper obituary message is shown
 		Stop
 	}
 }
@@ -843,7 +844,7 @@ Actor QCNailStrongDM : QCNailStrong
 	Damage (20)
 	-MTHRUSPECIES
 	-DONTBLAST
-	Obituary "$OB_QCSuperNailgun" // "%o was perforated by %k."
+	Obituary "$OB_QCSuperNailgun"
 }
 
 Actor QCNailStrongDM_Quake1 : QCNailStrongDM

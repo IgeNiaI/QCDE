@@ -87,9 +87,9 @@ Actor QCRailGun : QCWeapon
 	Weapon.AmmoGive1 10
 	Weapon.AmmoUse1 1
 	Weapon.SelectionOrder 1400
-	Inventory.PickupMessage "$GOT_QCRailGun" // "Picked up a Railgun."
-	Tag "$TAG_QCRailGun" // "Railgun"
-	Obituary "$OB_QCRailGun" // "%o was railed by %k."
+	Inventory.PickupMessage "$GOT_QCRailGun"
+	Tag "$TAG_QCRailGun"
+	Obituary "$OB_QCRailGun"
 	Decal "Q4RailgunGreenFull"
 	Scale 0.63
 	Weapon.KickBack 90
@@ -2147,7 +2147,7 @@ Actor RailgunExplosivePuffoidWeak : FastProjectile
 	+DONTBLAST
 	Alpha 0.99
 	Scale 0.9
-	Obituary "$OB_RailgunExplosivePuffoid" // "%o was besieged by %k."
+	Obituary "$OB_QCRailGun"
 	Translation "0:255=%[0,0,0]:[0,1.2,0]"
 	DamageType "NoDamageToPlayers"
 	ProjectileKickBack 0
@@ -2227,7 +2227,7 @@ Actor RailgunExplosivePuffoidStrong : FastProjectile
 	+DONTBLAST
 	Alpha 0.99
 	Scale 1.35
-	Obituary "$OB_RailgunExplosivePuffoid" // "%o was besieged by %k."
+	Obituary "$OB_QCRailGun"
 	Translation "0:255=%[0,0,0]:[0,1.2,0]"
 	DamageType "NoDamageToPlayers"
 	ProjectileKickBack 0

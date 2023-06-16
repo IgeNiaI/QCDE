@@ -85,9 +85,9 @@ Actor QCRocketLauncher : QCWeapon
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 5
 	Weapon.AmmoType "QCRocketAmmo"
-	Inventory.PickupMessage "$GOT_QCRocketLauncher" // "Picked up a Rocket Launcher."
-	Obituary "$OB_QCRocketLauncher" // "%o embraced %k's rockets."
-	Tag "$TAG_QCRocketLauncher" // "Rocket Launcher"
+	Inventory.PickupMessage "$GOT_QCRocketLauncher"
+	Obituary "$OB_QCRocketLauncher"
+	Tag "$TAG_QCRocketLauncher"
 	Scale 0.69
 	States
 	{
@@ -349,13 +349,13 @@ Actor QCRocketPlayer
 	-ROCKETTRAIL
 	+SEEKERMISSILE //Not actually used for anything other than checking radius.
 	+MTHRUSPECIES
+	+DONTBLAST
 	Radius 3
 	Height 6
 	Speed 34
 	Damage (random(7,11)*10)
-	+DONTBLAST
 	Scale 0.6
-	Obituary "$OB_QCRocketPlayer" // "%o rode %k's rocket."
+	Obituary "$OB_QCRocketLauncher"
 	SeeSound ""
 	DeathSound "QC/Weapons/RocketLauncher/RocketExplo"
 	Decal "D4ExploScorch"
@@ -440,7 +440,8 @@ Actor QCRocketPlayer
 	DamageFX:
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebris",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,0,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
-		TNT1 A 10 A_SpawnItemEx("QCRocketExplosion",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCRocketExplosion",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 1 // Need the actor to live one more tick so that a proper obituary message is shown
 		Stop
 	PerformCluster:
 		TNT1 A 0 A_CheckFloor("PerformPlane")
@@ -467,7 +468,7 @@ Actor QCRocketPlayerDM : QCRocketPlayer
 	+FORCERADIUSDMG
 	-MTHRUSPECIES
 	-DONTBLAST
-	Obituary "$OB_QCRocketPlayer" // "%o rode %k's rocket."
+	Obituary "$OB_QCRocketLauncher"
 	States
 	{
 	DeathCont:
@@ -494,11 +495,12 @@ Actor QCRocketPlayerDM : QCRocketPlayer
 	DamageFX:
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebrisDM",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,0,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
-		TNT1 A 10 A_SpawnItemEx("QCRocketExplosionDM",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCRocketExplosionDM",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		//Medals start
 		TNT1 A 0 A_TakeFromTarget("DirectRocketToken",1)
 		TNT1 A 0 A_TakeFromTarget("CollateralToken",1)
 		//Medals end
+		TNT1 A 1 // Need the actor to live one more tick so that a proper obituary message is shown
 		Stop
 	}
 }
@@ -856,7 +858,7 @@ Actor RocketControlled
 	+FORCERADIUSDMG
 	+DONTBLAST
 	+SERVERNETID
-	Obituary "$OB_RocketControlled" // "%o rode %k's rocket."
+	Obituary "$OB_QCRocketLauncher"
 	radius 3
 	height 6
 	speed 15

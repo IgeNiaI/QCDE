@@ -90,9 +90,9 @@ Actor QCLightningGun : QCWeapon
 	Weapon.AmmoUse1 1
 	Weapon.SelectionOrder 1300
 	Weapon.KickBack 200
-	Obituary "$OB_QCLightningGun" // "%o was electrocuted by %k."
-	Inventory.PickupMessage "$GOT_QCLightningGun" // "Picked up a Lightning Gun."
-	Tag "$TAG_QCLightningGun" // "Lightning Gun"
+	Obituary "$OB_QCLightningGun"
+	Inventory.PickupMessage "$GOT_QCLightningGun"
+	Tag "$TAG_QCLightningGun"
 	Scale 0.62
 	States
 	{
@@ -869,7 +869,7 @@ Actor LGPuff
 	+PUFFONACTORS
 	Scale 0.35
 	Renderstyle Add
-	Obituary "$OB_LGPuff" // "%o was electrified by %k." // variation line
+	Obituary "$OB_QCLightningGun"
 	+FORCEXYBILLBOARD
 	+MTHRUSPECIES
 	+DONTSPLASH
@@ -1174,7 +1174,7 @@ Actor LGPuffStatic
 	Alpha 0.99
 	Translation "0:255=%[0,0,0]:[0.9,0.74,1.5]"
 	Scale 0.4
-	Obituary "$OB_LGPuffStatic" // "%o was conductive for %k."
+	Obituary "$OB_QCLightningGun"
 	DamageType "NoDamageToPlayers"
 	DamageType "Electric"
 	ProjectileKickBack 0

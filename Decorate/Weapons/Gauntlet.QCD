@@ -13,9 +13,9 @@ Actor QCGauntlet : QCWeapon
 	Weapon.SwaySpeed 3.0
 	Weapon.Kickback 0
 	Weapon.SelectionOrder 2000
-	Inventory.PickupMessage "$GOT_QCGauntlet" // "Picked up the Gauntlet."
-	Obituary "$OB_QCGauntlet" // "%o got shredded by %k's gauntlet."
-	Tag "$TAG_QCGauntlet" // "Gauntlet"
+	Inventory.PickupMessage "$GOT_QCGauntlet"
+	Obituary "$OB_QCGauntlet"
+	Tag "$TAG_QCGauntlet"
 	+INVENTORY.UNDROPPABLE
 	+WEAPON.MELEEWEAPON
 	States
@@ -815,7 +815,7 @@ Actor GauntletPuff_DM
 	Renderstyle Add
 	Decal "GauntletDecal"
 	Scale 0.35
-	Obituary "$OB_GauntletPuff_DM" // "%o was pummeled by %k." // variation line
+	Obituary "$OB_QCGauntlet"
 	States
 	{
 	Spawn:	//Hit non bleeder
@@ -863,7 +863,7 @@ Actor GauntletPuff_DM_NoFX
 	+PUFFGETSOWNER
 	+PUFFONACTORS
 	+FORCEXYBILLBOARD
-	Obituary "$OB_GauntletPuff_DM_NoFX" // "%o tried to stop %k's rotating blade with a wrong limb." // variation line
+	Obituary "$OB_QCGauntlet"
 	States
 	{
 	Spawn:

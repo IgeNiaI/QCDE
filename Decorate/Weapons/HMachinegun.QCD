@@ -95,9 +95,9 @@ Actor QCHeavyMachinegun : QCWeapon
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 50
 	Weapon.AmmoType "QCBulletAmmo"
-	Obituary "$OB_QCHeavyMachinegun" // "%o got lead poisoning from %k."
-	Inventory.PickupMessage "$GOT_QCHeavyMachinegun" // "Picked up a Heavy Machinegun."
-	Tag "$TAG_QCHeavyMachinegun" // "Heavy Machinegun"
+	Obituary "$OB_QCHeavyMachinegun"
+	Inventory.PickupMessage "$GOT_QCHeavyMachinegun"
+	Tag "$TAG_QCHeavyMachinegun"
 	Scale 0.64
 	States
 	{

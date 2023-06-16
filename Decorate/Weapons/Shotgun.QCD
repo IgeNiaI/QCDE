@@ -97,9 +97,9 @@ Actor QCShotgun : QCWeapon
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 8
 	Weapon.AmmoType "QCShellAmmo"
-	Obituary "$OB_QCShotgun" // "%o was shot down by %k."
-	Inventory.PickupMessage "$GOT_QCShotgun" // "Picked up a Shotgun."
-	Tag "$TAG_QCShotgun" // "Shotgun"
+	Obituary "$OB_QCShotgun"
+	Inventory.PickupMessage "$GOT_QCShotgun"
+	Tag "$TAG_QCShotgun"
 	Scale 0.55
 	States
 	{

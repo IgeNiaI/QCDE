@@ -711,7 +711,7 @@ Actor PKGauntletPuff : GauntletPuff
 Actor PKGauntletPuff_DM : GauntletPuff_DM
 {
 	Decal "Nope"
-	Obituary "$OB_PKGauntletPuff_DM" // "%o was minced by %k."
+	Obituary "$OB_PKProjectile" // "%o was minced by %k."
 	States
 	{
 	XDeath: //hit bleeder
@@ -731,7 +731,7 @@ Actor PKGauntletPuff_DM : GauntletPuff_DM
 Actor PKGauntletPuff_DM_NoFX : GauntletPuff_DM_NoFX
 {
 	Decal "Nope"
-	Obituary "$OB_PKGauntletPuff_DM_NoFX" // "%o was minced by %k."
+	Obituary "$OB_PKProjectile" // "%o was minced by %k."
 	States
 	{
 	Crash:
