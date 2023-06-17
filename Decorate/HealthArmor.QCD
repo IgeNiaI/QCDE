@@ -106,7 +106,7 @@ Actor QCHealthBonus : Health replaces HealthBonus
 	Inventory.PickupMessage "$GOT_QCHealthBonus" // "Picked up an overstacking health bonus."
 	Inventory.PickupSound "QC/Items/SmallHealth"
 	Inventory.RespawnTics 1050 //30 sec
-	Scale 0.7
+	Scale 0.85
 	States
 	{
 	Spawn:
