@@ -122,6 +122,7 @@ Actor QCRanger : QCPlayerMedium
 {
 	Player.DisplayName "Ranger"
 	Player.SoundClass "Ranger"
+	Player.Palette "PLRanger"
 
 	Scale 0.88
 
@@ -255,6 +256,7 @@ Actor QCDoomSlayer : QCPlayerMedium
 {
 	Player.DisplayName "DoomSlayer"
 	Player.SoundClass "DoomSlayer"
+	Player.Palette "PLDoomSlayer"
 
 	XScale 0.98
 	YScale 1.02
@@ -388,6 +390,7 @@ Actor QCCorvus : QCPlayerMedium
 {
 	Player.DisplayName "Corvus"
 	Player.SoundClass "Corvus"
+	Player.Palette "PLCorvus"
 
 	Scale 1.1
 
@@ -411,19 +414,19 @@ Actor QCCorvus : QCPlayerMedium
 	States
 	{
 	Spawn:
-		QP03 E 0 NoDelay
-		QP03 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
-		QP03 E 0 A_JumpIf(true,                   "DefSpawn")
-		QP03 E 100
+		QP03 A 0 NoDelay
+		QP03 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
+		QP03 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP03 A 100
 		Loop
 
 		ColoredSpawn:
 			RP03 A 0 A_JumpIf(momx||momy,"ColoredSee")
-			RP03 E 4
+			RP03 A 4
 			Loop
 		DefSpawn:
 			QP03 A 0 A_JumpIf(momx||momy,"DefSee")
-			QP03 E 4
+			QP03 A 4
 			Goto Spawn // to catch color
 
 	See:
@@ -519,6 +522,7 @@ Actor QCKane : QCPlayerLight
 {
 	Player.DisplayName "Kane"
 	Player.SoundClass "Kane"
+	Player.Palette "PLKane"
 
 	Scale 0.537
 
@@ -656,6 +660,7 @@ Actor QCCaleb : QCPlayerLight
 {
 	Player.DisplayName "Caleb"
 	Player.SoundClass "Caleb"
+	Player.Palette "PLCaleb"
 
 	Scale 0.46
 
@@ -789,6 +794,7 @@ Actor QCMenelkir : QCPlayerLight
 {
 	Player.DisplayName "Menelkir"
 	Player.SoundClass "Menelkir"
+	Player.Palette "PLMenelkir"
 
 	XScale 0.79
 	YScale 0.9
@@ -811,19 +817,19 @@ Actor QCMenelkir : QCPlayerLight
 	States
 	{
 	Spawn:
-		QP06 E 0 NoDelay
-		QP06 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
-		QP06 E 0 A_JumpIf(true,                   "DefSpawn")
-		QP06 E 100
+		QP06 A 0 NoDelay
+		QP06 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
+		QP06 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP06 A 100
 		Loop
 
 		ColoredSpawn:
 			RP06 A 0 A_JumpIf(momx||momy,"ColoredSee")
-			RP06 E 4
+			RP06 A 4
 			Loop
 		DefSpawn:
 			QP06 A 0 A_JumpIf(momx||momy,"DefSee")
-			QP06 E 4
+			QP06 A 4
 			Goto Spawn // to catch color
 
 	See:
@@ -921,6 +927,7 @@ Actor QCTerminator : QCPlayerHeavy
 {
 	Player.DisplayName "Terminator"
 	Player.SoundClass "Terminator"
+	Player.Palette "PLTerminator"
 
 	XScale 0.87
 	YScale 0.9
@@ -1088,6 +1095,7 @@ Actor QCZedek : QCPlayerHeavy
 {
 	Player.DisplayName "Zedek"
 	Player.SoundClass "Zedek"
+	Player.Palette "PLZedek"
 
 	XScale 0.93
 	YScale 0.98
@@ -1221,6 +1229,10 @@ Actor QCZedek : QCPlayerHeavy
 
 Actor QCInquisitor : QCPlayerHeavy
 {
+	Player.DisplayName "Inquisitor"
+	Player.SoundClass "Inquisitor"
+	Player.Palette "PLInquisitor"
+
 	XScale 0.41
 	YScale 0.525
 
@@ -1230,9 +1242,6 @@ Actor QCInquisitor : QCPlayerHeavy
 	Player.MaxHealth 175
 	Health 175
 	//Player.StartItem "QCStartingArmor0"
-
-	Player.DisplayName "Inquisitor"
-	Player.SoundClass "Inquisitor"
 
 	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 175
 	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 100
@@ -1362,6 +1371,7 @@ Actor QCBitterman : QCPlayerHeavy
 {
 	Player.DisplayName "Bitterman"
 	Player.SoundClass "Bitterman"
+	Player.Palette "PLBitterman"
 
 	Scale 0.74
 
@@ -1497,6 +1507,7 @@ Actor QCGalen : QCPlayerMedium
 {
 	Player.DisplayName "Galen"
 	Player.SoundClass "Galen"
+	Player.Palette "PLGalen"
 
 	Scale 0.885
 
@@ -1628,6 +1639,7 @@ Actor QCNyx : QCPlayerLight
 {
 	Player.DisplayName "Nyx"
 	Player.SoundClass "Nyx"
+	Player.Palette "PLNyx"
 
 	XScale 0.82
 	YScale 0.925
@@ -1762,6 +1774,7 @@ Actor QCSorgaul : QCPlayerHeavy
 {
 	Player.DisplayName "Sorgaul"
 	Player.SoundClass "Sorgaul"
+	Player.Palette "PLSorgaul"
 
 	XScale 0.54
 	YScale 0.74
@@ -1903,6 +1916,7 @@ Actor QCDukeNukem : QCPlayerMedium
 {
 	Player.DisplayName "Duke Nukem" //Needed to have that space
 	Player.SoundClass "DukeNukem"
+	Player.Palette "PLDuke"
 
 	Scale 0.692
 
@@ -2040,6 +2054,7 @@ Actor QCDurandal : QCPlayerLight
 {
 	Player.DisplayName "Durandal"
 	Player.SoundClass "Durandal"
+	Player.Palette "PLDurandal"
 
 	XScale 0.7
 	YScale 0.65
@@ -2171,6 +2186,7 @@ Actor QCKeel : QCPlayerHeavy
 {
 	Player.DisplayName "Keel"
 	Player.SoundClass "Keel"
+	Player.Palette "PLKeel"
 
 	XScale 0.52
 	YScale 0.645
@@ -2301,6 +2317,7 @@ Actor QCSarge : QCPlayerMedium
 {
 	Player.DisplayName "Sarge"
 	Player.SoundClass "Sarge"
+	Player.Palette "PLSarge"
 
 	Scale 0.71
 
@@ -2429,6 +2446,7 @@ Actor QCLoWang : QCPlayerLight
 {
 	Player.DisplayName "Lo Wang"
 	Player.SoundClass "LoWang"
+	Player.Palette "PLLoWang"
 
 	Scale 0.53
 
@@ -2569,6 +2587,7 @@ Actor QCGrayson : QCPlayerMedium
 {
 	Player.DisplayName "Grayson"
 	Player.SoundClass "Grayson"
+	Player.Palette "PLGrayson"
 
 	Scale 0.745
 
@@ -2702,6 +2721,7 @@ Actor QCEradicator : QCPlayerHeavy
 {
 	Player.DisplayName "Eradicator"
 	Player.SoundClass "Eradicator"
+	Player.Palette "PLEradicator"
 
 	XScale 0.76
 	YScale 0.75
@@ -2838,6 +2858,7 @@ Actor QCBlazkowicz : QCPlayerMedium
 {
 	Player.DisplayName "Blazkowicz"
 	Player.SoundClass "Blazkowicz"
+	Player.Palette "PLBlazkowicz"
 
 	XScale 0.58
 	YScale 0.55
@@ -2971,6 +2992,7 @@ Actor QCFreeman : QCPlayerMedium
 {
 	Player.DisplayName "Freeman"
 	Player.SoundClass "Freeman"
+	Player.Palette "PLFreeman"
 
 	Scale 0.55
 
@@ -3104,6 +3126,7 @@ Actor QCVorMatur : QCPlayerHeavy
 {
 	Player.DisplayName "VorMatur"
 	Player.SoundClass "VorMatur"
+	Player.Palette "PLVorMatur"
 
 	XScale 0.58
 	YScale 0.76
@@ -3242,6 +3265,7 @@ Actor QCEleena : QCPlayerLight
 {
 	Player.DisplayName "Eleena"
 	Player.SoundClass "Eleena"
+	Player.Palette "PLEleena"
 
 	Scale 0.595
 
@@ -3376,6 +3400,7 @@ Actor QCLucienne : QCPlayerLight
 {
 	Player.DisplayName "Lucienne"
 	Player.SoundClass "Lucienne"
+	Player.Palette "PLLucienne"
 
 	Scale 0.551
 
@@ -3534,6 +3559,7 @@ Actor QCMajor : QCPlayerHeavy
 {
 	Player.DisplayName "Major"
 	Player.SoundClass "Major"
+	Player.Palette "PLMajor"
 
 	//Passive 2:
 	Radius 16	// Same as a medium
@@ -3669,6 +3695,7 @@ Actor QCHunter : QCPlayerLight
 {
 	Player.DisplayName "Hunter"
 	Player.SoundClass "Hunter"
+	Player.Palette "PLHunter"
 
 	Scale 0.715
 
@@ -3802,6 +3829,7 @@ Actor QCSam : QCPlayerHeavy
 {
 	Player.DisplayName "Sam"
 	Player.SoundClass "Sam"
+	Player.Palette "PLSam"
 
 	XScale 0.69
 	YScale 0.57
@@ -3935,6 +3963,7 @@ Actor QCPostal : QCPlayerLight
 {
 	Player.DisplayName "Postal"
 	Player.SoundClass "Postal"
+	Player.Palette "PLPostal"
 
 	XScale 0.5
 	YScale 0.58
@@ -4069,6 +4098,7 @@ Actor QCPainkiller : QCPlayerMedium
 {
 	Player.DisplayName "Painkiller"
 	Player.SoundClass "Painkiller"
+	Player.Palette "PLPainkiller"
 
 	Scale 0.75
 
@@ -4212,6 +4242,7 @@ Actor QCIntruder : QCPlayerMedium
 {
 	Player.DisplayName "Intruder"
 	Player.SoundClass "Intruder"
+	Player.Palette "PLIntruder"
 
 	XScale 0.68
 	YScale 0.75
@@ -4351,6 +4382,7 @@ Actor QCOrbb : QCPlayerLight
 {
 	Player.DisplayName "Orbb"
 	Player.SoundClass "Orbb"
+	Player.Palette "PLOrbb"
 
 	Height 39
 	Player.AttackZOffset 15
