@@ -118,6 +118,26 @@ script "GenericJumpPad" ( int z_push, int angle, int xy_push, int sound_tag )
 	}
 }
 
+////////////////////
+//  UT 2004 Slope //
+////////////////////
+
+script "UTSlope" (int slopeAngle, int slopeLength, int slopeHeight)
+{
+	int velx = GetActorVelX(0);
+	int vely = GetActorVelY(0);
+	int velz = GetActorVelZ(0);
+	int velHor = VectorLength(velx, vely);
+
+	int dot = (velHor * slopeLength + velz * slopeHeight);
+	int mul = dot / 65536;
+	velx = -FixedMul(velx, mul) * 2;
+	vely = -FixedMul(vely, mul) * 2;
+	velz += FixedMul(FixedMul(velHor, 65536 - mul), 0.70);
+	ThrustThingZ(0, 1, false, true); // we need this to handle player holding Jump key
+	SetActorVelocity(0, velx, vely, velz, false, true);
+}
+
 ////////////////////////
 //    DAMAGE FLOOR    //
 ////////////////////////
