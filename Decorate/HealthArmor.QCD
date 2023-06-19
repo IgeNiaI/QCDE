@@ -228,7 +228,7 @@ Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
 	Height 48
 	Radius 20
 	Scale 1.0
-	Inventory.PickupSound "QC/Items/PowerupPick"
+	Inventory.PickupSound "QC/Items/MegaHealth"
 	Inventory.PickupMessage "$GOT_QCMegaHealth" // "Picked up a mega health!"
 	Inventory.RespawnTics 1050 //30 sec
 	States
@@ -352,7 +352,7 @@ Actor QCMegaMega : CustomInventory replaces MegaSphere
 	Radius 20
 	Scale 1.0
 	Inventory.PickupMessage "$GOT_QCMegaMega" // "Picked up a mega charge!"
-	Inventory.PickupSound "QC/Items/PowerupPick"
+	Inventory.PickupSound "QC/Items/MegaMega"
 	Inventory.RespawnTics 2100 //60 sec
 	+INVENTORY.ALWAYSPICKUP
 	States

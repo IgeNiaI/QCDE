@@ -110,7 +110,7 @@ Actor QCQuad : CustomInventory 15511
 	Scale 0.95
 	Tag "$TAG_QCQuad" // "Quad Damage"
 	Inventory.PickupMessage "$GOT_QCQuad" // "Picked up Quad Damage!"
-	Inventory.PickupSound "QC/Items/PowerupPick"
+	Inventory.PickupSound "QC/Items/PowerupQuad"
 	Inventory.RespawnTics 3150 //90 sec
 	+INVENTORY.BIGPOWERUP
 
@@ -263,7 +263,7 @@ Actor QCQuadSP : CustomInventory
 	Pickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMGiveSuperAmmo")
 		TNT1 A 0 A_SpawnItemEx("QuadFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_PlaySound("QC/Items/PowerupPick",CHAN_ITEM)
+		TNT1 A 0 A_PlaySound("QC/Items/PowerupQuad",CHAN_ITEM)
 		TNT1 A 0 A_ThrowGrenade("QuadIndicator", 0, 0, 0, 0, TGR_NOUNLAGGED)
 		TNT1 A 0 A_JumpIfInventory("LongerPowerupToken",1,"Longer")
 		TNT1 A 0 A_GiveInventory("QuadFull",1)
@@ -432,7 +432,7 @@ Actor QCProtecSP : CustomInventory
 	Pickup:
 		TNT1 A 9 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMGiveSuperAmmo")
 		TNT1 A 0 A_SpawnItemEx("ProtecFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_PlaySound("QC/Items/PowerupPick",CHAN_ITEM)
+		TNT1 A 0 A_PlaySound("QC/Items/PowerupProtection",CHAN_ITEM)
 		TNT1 A 0 A_ThrowGrenade("ProtecIndicator", 0, 0, 0, 0, TGR_NOUNLAGGED)
 		TNT1 A 0 A_JumpIfInventory("LongerPowerupToken",1,"Longer")
 		TNT1 A 0 A_GiveInventory("ProtecFull",1)
@@ -503,6 +503,7 @@ Actor QCInvul : QCQuad replaces InvulnerabilitySphere 15513
 	//$Title "Invulnerability"
 	Tag "$TAG_QCInvul" // "Invulnerability"
 	Inventory.PickupMessage "$GOT_QCInvul" // "Picked up Invulnerability!"
+	Inventory.PickupSound ""
 	Scale 0.95
 	States
 	{
@@ -521,7 +522,7 @@ Actor QCInvul : QCQuad replaces InvulnerabilitySphere 15513
 		TNT1 A 0 A_SpawnItemEx("InvulFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMGiveSuperAmmo")
 		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_PowerupTaken",0,2)
-		TNT1 A 0 A_PlaySound("QC/Items/PowerupPick",CHAN_ITEM)
+		TNT1 A 0 A_PlaySound("QC/Items/PowerupProtection",CHAN_ITEM)
 		TNT1 A 0 A_ThrowGrenade("InvulIndicator", 0, 0, 0, 0, TGR_NOUNLAGGED)
 		TNT1 A 0 A_JumpIfInventory("LongerPowerupToken",1,"Longer")
 		TNT1 A 0 A_GiveInventory("InvulnerabilityFull",1,0,GIF_FORCESERVERSIDE)

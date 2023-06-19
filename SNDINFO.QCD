@@ -568,24 +568,27 @@ QC/UI/FreezeTag_ThawPartial			"Sounds/UI/FreezeTag_ThawPartial.ogg"
 //	Item related
 //==============================================================================
 
+QC/Items/LargeHealth			"Sounds/Items/HealthLarge.ogg"
+QC/Items/MediumHealth			"Sounds/Items/HealthMedium.ogg"
+QC/Items/SmallHealth			"Sounds/Items/HealthSmall.ogg"
+QC/Items/MegaHealth				"Sounds/Items/HealthMega.ogg"
+
 QC/Items/ArmorBigPick			"Sounds/Items/Armor_Big_Pick.ogg"
 QC/Items/ArmorSmallPick			"Sounds/Items/Armor_Small_Pick.ogg"
 QC/Items/ArmorShardPick			"Sounds/Items/Armor_Shard_Pick.ogg"
 
+QC/Items/MegaMega				"Sounds/Items/MegaMega.ogg"
+QC/Items/PowerupQuad			"Sounds/Items/PowerupQuad.ogg"
+QC/Items/PowerupProtection		"Sounds/Items/PowerupProtection.ogg"
 
 QC/Items/AmmoPick				"Sounds/Items/Ammo_Pick.ogg"
 QC/Items/HourglassPick			"Sounds/Items/Hourglass_Pick.ogg"
-QC/Items/PowerupPick			"Sounds/Items/Powerup_Pick.ogg"
 
 QC/Items/WeaponPick				"Sounds/Items/Weap_Pick.ogg"
 $volume QC/Items/WeaponPick 0.6
 QC/Items/WeaponRespawn			"Sounds/Items/Weap_Respawn.ogg"
 QC/Items/ItemRespawn			"Sounds/Items/DSITMBK.ogg"
 QC/Items/Backpack				"Sounds/Items/BackPack_Pick.ogg"
-
-QC/Items/LargeHealth			"Sounds/Items/HealthLarge.ogg"
-QC/Items/MediumHealth			"Sounds/Items/HealthMedium.ogg"
-QC/Items/SmallHealth			"Sounds/Items/HealthSmall.ogg"
 
 $volume QC/Items/LargeHealth 0.9
 
