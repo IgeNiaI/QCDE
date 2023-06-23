@@ -471,12 +471,16 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 
 		if (shouldZoomIn)
 		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			SetInventory("WeaponZoomedToken", 1);
+			SetNetworkReplicationFlags( 0 );
 			QCDE_SetWeaponZoom(true, true);
 		}
 		else if (shouldZoomOut)
 		{
+			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			SetInventory("WeaponZoomedToken", 0);
+			SetNetworkReplicationFlags( 0 );
 			QCDE_SetWeaponZoom(false, true);
 		}
 	}
