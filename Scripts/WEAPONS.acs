@@ -464,7 +464,7 @@ Script "QCDE_ZoomCheckSelect" (void)
 
 Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, int buttons)
 {
-	if (!predicting && !ACS_NamedExecuteWithResult("QCDE_RailJumpEnabled", 0))
+	if (!predicting && ((!CheckWeapon("QCRailgun") && !CheckWeapon("QCRailgunDM")) || !ACS_NamedExecuteWithResult("QCDE_RailJumpEnabled", 0)))
 	{
 		bool shouldZoomIn = !CheckInventory("WeaponZoomedToken") && justPressed;
 		bool shouldZoomOut = CheckInventory("WeaponZoomedToken") && GetCVar("cl_holdZoom") ? justReleased : justPressed;
