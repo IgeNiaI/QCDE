@@ -426,15 +426,15 @@ Actor SGExplosiveBullet : FastProjectile
 	speed 90
 	renderstyle ADD
 	alpha 0.9
-	scale 0.1
+	scale 0.025
 	Translation "0:255=%[0,0,0]:[1.4,0.7,0]"
 	DamageType "NoDamageToPlayers"
 	ProjectileKickBack 0
 	states
 	{
 	Spawn:
-		X029 A 1 BRIGHT
-		X029 A 70 BRIGHT A_PlaySound("QCDE/Other/BulletWhoosh",CHAN_AUTO,1.0,false,3.0)
+		G3EX A 1 BRIGHT
+		G3EX A 70 BRIGHT A_PlaySound("QCDE/Other/BulletWhoosh",CHAN_AUTO,1.0,false,3.0)
 		Wait
 	XDeath:
 		TNT1 A 1 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
