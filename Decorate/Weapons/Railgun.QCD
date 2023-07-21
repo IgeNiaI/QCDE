@@ -111,6 +111,7 @@ Actor QCRailGun : QCWeapon
 	Select:
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ZoomCheckSelect")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken", 0, "Select.Zoomed")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "Select.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "Select.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "Select.Quake4")
@@ -141,6 +142,9 @@ Actor QCRailGun : QCWeapon
 	Select.QCDE1:
 		Q0G7 A 0
 		Goto SelectCont
+	Select.HalfLife:
+		HLG7 A 0
+		Goto SelectCont
 
 	SelectCont:
 		"####" A 0 A_PlaySound("QC/Weapons/Switch",CHAN_5,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
@@ -166,6 +170,7 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_TakeInventory("RailgunCharges",52)
 	ReadyAgain:
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "Ready.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "Ready.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "Ready.Quake4")
@@ -192,6 +197,9 @@ Actor QCRailGun : QCWeapon
 		Goto ReadyCont
 	Ready.QCDE1:
 		Q0G7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyCont
+	Ready.HalfLife:
+		HLG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 
 	ReadyCont:
@@ -244,6 +252,7 @@ Actor QCRailGun : QCWeapon
 		"####" H 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" H 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
 		"####" H 1 A_WeaponReady(WRF_NOSECONDARY)
+		"####" A 0 A_JumpIfInventory("QCRailgunSkin", 7, "ReadyCont") // Loop the animation immediately for HL skin
 		"####" I 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" I 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
 		"####" I 1 A_WeaponReady(WRF_NOSECONDARY)
@@ -316,6 +325,7 @@ Actor QCRailGun : QCWeapon
 		"####" H 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" H 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
 		"####" H 1 A_WeaponReady
+		"####" A 0 A_JumpIfInventory("QCRailgunSkin", 7, "ReadyContRailjump") // Loop the animation immediately for HL skin
 		"####" I 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" I 0 A_JumpIfInventory("WeaponZoomedToken",1,"ReadyZoomed")
 		"####" I 1 A_WeaponReady
@@ -502,6 +512,7 @@ Actor QCRailGun : QCWeapon
 		Goto PerformSP
 
 		PerformSP:
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "PerformSP.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformSP.Default")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformSP.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformSP.Quake4")
@@ -526,12 +537,16 @@ Actor QCRailGun : QCWeapon
 		PerformSP.ETQW:
 			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
 			Goto PerformSPCont
+		PerformSP.HalfLife:
+			TNT1 A 0 A_RailAttack(random(20,24)*10,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT,0,"RailgunPuff_HalfLife",0,0,0,0,6.0,1.0,"RailgunTrail_HalfLife")
+			Goto PerformSPCont
 
 		PerformSPCont:
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeam")
 			Goto FlashCheckSound
 
 			AddPierceBeam:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "AddPierceBeam.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddPierceBeam.Default")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddPierceBeam.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddPierceBeam.Quake4")
@@ -553,8 +568,12 @@ Actor QCRailGun : QCWeapon
 			AddPierceBeam.ETQW:
 				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_ETQW",0,false,1,0,0,0)
 				Goto FlashCheckSound
+			AddPierceBeam.HalfLife:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_HalfLife",0,false,1,0,0,0)
+				Goto FlashCheckSound
 
 		PerformDM:
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "PerformDM.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformDM.Default")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformDM.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformDM.Quake4")
@@ -579,6 +598,9 @@ Actor QCRailGun : QCWeapon
 		PerformDM.ETQW:
 			TNT1 A 0 A_RailAttack(80,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ,0,"RailgunPuff_DM_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
 			Goto PerformDMCont
+		PerformDM.HalfLife:
+			TNT1 A 0 A_RailAttack(80,2,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ,0,"RailgunPuff_DM_HalfLife",0,0,0,0,6.0,1.0,"RailgunTrail_HalfLife")
+			Goto PerformDMCont
 
 		PerformDMCont:
 			//Medals start
@@ -592,6 +614,7 @@ Actor QCRailGun : QCWeapon
 			Goto NormalSound
 
 			NormalSound:
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 7, "NormalSound.HalfLife")
 				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 6, "NormalSound.Default")
 				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 5, "NormalSound.ETQW")
 				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 4, "NormalSound.Quake4")
@@ -616,8 +639,12 @@ Actor QCRailGun : QCWeapon
 			NormalSound.ETQW:
 				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnder
+			NormalSound.HalfLife:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Fire_HalfLife", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
 
 			QuadSound:
+				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 7, "QuadSound.HalfLife")
 				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 6, "QuadSound.Default")
 				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 5, "QuadSound.ETQW")
 				"####" A 0 A_JumpIfInventory("QCRailgunSkin", 4, "QuadSound.Quake4")
@@ -641,6 +668,9 @@ Actor QCRailGun : QCWeapon
 				Goto FlashEnder
 			QuadSound.ETQW:
 				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnder
+			QuadSound.HalfLife:
+				"####" A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_HalfLife", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnder
 
 	FlashEnder:
@@ -953,6 +983,7 @@ Actor QCRailGun : QCWeapon
 
 		PerformSPZoomed:
 			TNT1 A 0 A_JumpIfInventory("RailgunCharges",52,"PerformSPZoomedCharged")
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "PerformSPZoomed.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformSPZoomed.Default")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformSPZoomed.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformSPZoomed.Quake4")
@@ -977,6 +1008,9 @@ Actor QCRailGun : QCWeapon
 		PerformSPZoomed.ETQW:
 			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ,0,"RailgunPuff_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
 			Goto PerformSPZoomedCont
+		PerformSPZoomed.HalfLife:
+			TNT1 A 0 A_RailAttack(random(20,25)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ,0,"RailgunPuff_HalfLife",0,0,0,0,6.0,1.0,"RailgunTrail_HalfLife")
+			Goto PerformSPZoomedCont
 
 		PerformSPZoomedCont:
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Explosive",1,"AddExplosiveWeak")
@@ -984,6 +1018,7 @@ Actor QCRailGun : QCWeapon
 			Goto FlashZoomedCheckSound
 
 			AddExplosiveWeak:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "AddExplosiveWeak.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddExplosiveWeak.Default")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddExplosiveWeak.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddExplosiveWeak.Quake4")
@@ -1005,12 +1040,16 @@ Actor QCRailGun : QCWeapon
 			AddExplosiveWeak.ETQW:
 				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidWeak_ETQW",0,false,0)
 				Goto AddExplosiveWeakCont
+			AddExplosiveWeak.HalfLife:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidWeak_HalfLife",0,false,0)
+				Goto AddExplosiveWeakCont
 			AddExplosiveWeakCont:
 				TNT1 A 0 A_RailAttack(random(10,15)*10,0,false,"none","none",RGF_SILENT|RGF_FULLBRIGHT)
 				TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeamZoomedWeak")
 				Goto FlashZoomedCheckSound
 
 			AddPierceBeamZoomedWeak:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "AddPierceBeamZoomedWeak.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddPierceBeamZoomedWeak.Default")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddPierceBeamZoomedWeak.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddPierceBeamZoomedWeak.Quake4")
@@ -1032,9 +1071,13 @@ Actor QCRailGun : QCWeapon
 			AddPierceBeamZoomedWeak.ETQW:
 				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_ETQW",0,false,1,0,0,0)
 				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedWeak.HalfLife:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectile_HalfLife",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
 
 
 		PerformSPZoomedCharged:
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "PerformSPZoomedCharged.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformSPZoomedCharged.Default")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformSPZoomedCharged.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformSPZoomedCharged.Quake4")
@@ -1059,6 +1102,9 @@ Actor QCRailGun : QCWeapon
 		PerformSPZoomedCharged.ETQW:
 			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ,0,"RailgunPuff_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
 			Goto PerformSPZoomedChargedCont
+		PerformSPZoomedCharged.HalfLife:
+			TNT1 A 0 A_RailAttack(random(30,40)*10,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ,0,"RailgunPuff_HalfLife",0,0,0,0,6.0,1.0,"RailgunTrail_HalfLife")
+			Goto PerformSPZoomedChargedCont
 
 		PerformSPZoomedChargedCont:
 			TNT1 A 0 A_JumpIfInventory("RG_UG_Explosive",1,"AddExplosiveStrong")
@@ -1066,6 +1112,7 @@ Actor QCRailGun : QCWeapon
 			Goto FlashZoomedCheckSound
 
 			AddExplosiveStrong:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "AddExplosiveStrong.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddExplosiveStrong.Default")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddExplosiveStrong.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddExplosiveStrong.Quake4")
@@ -1087,12 +1134,16 @@ Actor QCRailGun : QCWeapon
 			AddExplosiveStrong.ETQW:
 				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidStrong_ETQW",0,false,0)
 				Goto AddExplosiveStrongCont
+			AddExplosiveStrong.HalfLife:
+				TNT1 A 0 A_FireCustomMissile("RailgunExplosivePuffoidStrong_HalfLife",0,false,0)
+				Goto AddExplosiveStrongCont
 			AddExplosiveStrongCont:
 				TNT1 A 0 A_RailAttack(random(20,25)*10,0,false,"none","none",RGF_SILENT|RGF_FULLBRIGHT)
 				TNT1 A 0 A_JumpIfInventory("RG_UG_Pierce",1,"AddPierceBeamZoomedStrong")
 				Goto FlashZoomedCheckSound
 
 			AddPierceBeamZoomedStrong:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "AddPierceBeamZoomedStrong.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "AddPierceBeamZoomedStrong.Default")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "AddPierceBeamZoomedStrong.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "AddPierceBeamZoomedStrong.Quake4")
@@ -1114,9 +1165,13 @@ Actor QCRailGun : QCWeapon
 			AddPierceBeamZoomedStrong.ETQW:
 				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectileStrong_ETQW",0,false,1,0,0,0)
 				Goto FlashZoomedCheckSound
+			AddPierceBeamZoomedStrong.HalfLife:
+				TNT1 A 0 A_FireCustomMissile("RGPierceBeamProjectileStrong_HalfLife",0,false,1,0,0,0)
+				Goto FlashZoomedCheckSound
 
 
 		PerformDMZoomed:
+			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "PerformDMZoomed.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "PerformDMZoomed.Default")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "PerformDMZoomed.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "PerformDMZoomed.Quake4")
@@ -1141,6 +1196,9 @@ Actor QCRailGun : QCWeapon
 		PerformDMZoomed.ETQW:
 			TNT1 A 0 A_RailAttack(80,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ,0,"RailgunPuff_DM_ETQW",0,0,0,0,6.0,1.0,"RailgunTrail_ETQW")
 			Goto PerformDMZoomedCont
+		PerformDMZoomed.HalfLife:
+			TNT1 A 0 A_RailAttack(80,0,1,"None","None",RGF_SILENT|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ,0,"RailgunPuff_DM_HalfLife",0,0,0,0,6.0,1.0,"RailgunTrail_HalfLife")
+			Goto PerformDMZoomedCont
 
 		PerformDMZoomedCont:
 			//Medals start
@@ -1154,6 +1212,7 @@ Actor QCRailGun : QCWeapon
 			Goto NormalSoundZoomed
 
 			NormalSoundZoomed:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "NormalSoundZoomed.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "NormalSoundZoomed.Default")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "NormalSoundZoomed.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "NormalSoundZoomed.Quake4")
@@ -1178,8 +1237,12 @@ Actor QCRailGun : QCWeapon
 			NormalSoundZoomed.ETQW:
 				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnderZoomed
+			NormalSoundZoomed.HalfLife:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Fire_HalfLife", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
 
 			QuadSoundZoomed:
+				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "QuadSoundZoomed.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "QuadSoundZoomed.Default")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "QuadSoundZoomed.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "QuadSoundZoomed.Quake4")
@@ -1204,6 +1267,9 @@ Actor QCRailGun : QCWeapon
 			QuadSoundZoomed.ETQW:
 				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_ETQW", CHAN_WEAPON, 1.0, 0)
 				Goto FlashEnderZoomed
+			QuadSoundZoomed.HalfLife:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Quad/Fire_HalfLife", CHAN_WEAPON, 1.0, 0)
+				Goto FlashEnderZoomed
 
 	FlashEnderZoomed:
 		TNT1 A 0 A_TakeInventory("RailgunCharges",32767)
@@ -1223,6 +1289,7 @@ Actor QCRailGun : QCWeapon
 		Stop
 
 	DoTheMathFromZoom:
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "DoTheMathFromZoom.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "DoTheMathFromZoom.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "DoTheMathFromZoom.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "DoTheMathFromZoom.Quake4")
@@ -1249,6 +1316,9 @@ Actor QCRailGun : QCWeapon
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.QCDE1:
 		Q0G7 A 0
+		Goto DoTheMathFromZoomCont
+	DoTheMathFromZoom.HalfLife:
+		HLG7 A 0
 		Goto DoTheMathFromZoomCont
 
 	DoTheMathFromZoomCont:
@@ -1683,6 +1753,12 @@ Actor RailgunTrail_ETQW : RailgunTrail
 	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
 }
 
+Actor RailgunTrail_HalfLife : RailgunTrail
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+	Scale 0.04
+}
+
 
 Actor RailgunWhoosher : FastProjectile
 {
@@ -1801,6 +1877,17 @@ Actor RailgunPuff_ETQW : RailgunPuff
 	}
 }
 
+Actor RailgunPuff_HalfLife : RailgunPuff
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_HalfLife", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_HalfLife", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+2
+	}
+}
+
 Actor RailgunPuff_DM : RailgunPuff
 {
 	-MTHRUSPECIES
@@ -1865,6 +1952,17 @@ Actor RailgunPuff_DM_ETQW : RailgunPuff_DM
 	Crash:
 		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_ETQW", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_ETQW", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::Crash+2
+	}
+}
+
+Actor RailgunPuff_DM_HalfLife : RailgunPuff_DM
+{
+	States
+	{
+	Crash:
+		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_HalfLife", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_HalfLife", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		Goto Super::Crash+2
 	}
 }
@@ -1934,6 +2032,21 @@ Actor RailgunLightFx_Quake4
 }
 
 Actor RailgunLightFx_ETQW
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 Light("OrangeMediumFlicker1")	Bright
+		TNT1 A 1 Light("OrangeMediumFlicker1")	Bright
+		TNT1 A 1 Light("OrangeMediumFlicker2")	Bright
+		TNT1 A 1 Light("OrangeMediumFlicker2")	Bright
+		TNT1 A 1 Light("OrangeMediumFlicker3")	Bright
+		TNT1 A 1 Light("OrangeMediumFlicker3")	Bright
+		Stop
+	}
+}
+
+Actor RailgunLightFx_HalfLife
 {
 	States
 	{
@@ -2032,6 +2145,18 @@ Actor RailgunPuffFx_ETQW : RailgunPuffFx
 	}
 }
 
+Actor RailgunPuffFx_HalfLife : RailgunPuffFx
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+
+	States
+	{
+	EndAnimation:
+		"####" A 0 A_SpawnItemEx("RailgunPuffFxSmoke_HalfLife",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		Goto Super::EndAnimation+1
+	}
+}
+
 Actor RailgunPuffFxSmoke
 {
 	+NOINTERACTION
@@ -2072,6 +2197,11 @@ Actor RailgunPuffFxSmoke_Quake4 : RailgunPuffFxSmoke
 }
 
 Actor RailgunPuffFxSmoke_ETQW : RailgunPuffFxSmoke
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+}
+
+Actor RailgunPuffFxSmoke_HalfLife : RailgunPuffFxSmoke
 {
 	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
 }
@@ -2213,6 +2343,11 @@ Actor RailgunExplosivePuffoidWeak_ETQW : RailgunExplosivePuffoidWeak
 	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
 }
 
+Actor RailgunExplosivePuffoidWeak_HalfLife : RailgunExplosivePuffoidWeak
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+}
+
 Actor RailgunExplosivePuffoidStrong : FastProjectile
 {
 	Speed 4000
@@ -2289,6 +2424,11 @@ Actor RailgunExplosivePuffoidStrong_Quake4 : RailgunExplosivePuffoidStrong
 }
 
 Actor RailgunExplosivePuffoidStrong_ETQW : RailgunExplosivePuffoidStrong
+{
+	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+}
+
+Actor RailgunExplosivePuffoidStrong_HalfLife : RailgunExplosivePuffoidStrong
 {
 	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
 }
@@ -2377,6 +2517,17 @@ Actor RGPierceBeamProjectile_ETQW: RGPierceBeamProjectile
 	}
 }
 
+Actor RGPierceBeamProjectile_HalfLife: RGPierceBeamProjectile
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_HalfLife",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
 Actor RGPierceBeamProjectileStrong : RGPierceBeamProjectile
 {
 	Scale 0.6
@@ -2428,6 +2579,17 @@ Actor RGPierceBeamProjectileStrong_ETQW: RGPierceBeamProjectileStrong
 	{
 	DoFX:
 		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_ETQW",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
+Actor RGPierceBeamProjectileStrong_HalfLife: RGPierceBeamProjectileStrong
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_HalfLife",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		PLAY A 0 A_Jump(256, "DoCountdown")
 		Goto DoCountdown
 	}
@@ -2485,6 +2647,16 @@ Actor RailgunPierceTrail_ETQW : RailgunPierceTrail
 	{
 	Spawn:
 		RGB5 D 1 A_FadeOut(0.04)
+		Loop
+	}
+}
+
+Actor RailgunPierceTrail_HalfLife : RailgunPierceTrail
+{
+	States
+	{
+	Spawn:
+		RGB7 D 1 A_FadeOut(0.04)
 		Loop
 	}
 }
