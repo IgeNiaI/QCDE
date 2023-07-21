@@ -919,6 +919,38 @@ Actor QCBFGAmmoDM : QCBFGAmmo
 }
 
 
+// All ammo
+
+Actor QCAllAmmo : CustomInventory 15095
+{
+	//$Angled
+	//$Category "QCDE Ammunition"
+	//$Color 6
+	//$Title "Ammo for everything (CTF)"
+	+FLOORCLIP
+	-TELESTOMP
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOT_QCAllAmmo" // "Picked up all ammo pack."
+	Inventory.PickupSound "QC/Items/AmmoPick"
+	Scale 0.901
+	States
+	{
+	Spawn:
+		AMAL A -1 NoDelay
+		Stop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("QCBulletAmmo",50)
+		TNT1 A 0 A_GiveInventory("QCShellAmmo",	 5)
+		TNT1 A 0 A_GiveInventory("QCNailAmmo",	50)
+		TNT1 A 0 A_GiveInventory("QCBoltAmmo", 	 5)
+		TNT1 A 0 A_GiveInventory("QCRocketAmmo", 5)
+		TNT1 A 0 A_GiveInventory("QCCoilAmmo", 	50)
+		TNT1 A 0 A_GiveInventory("QCSlugAmmo", 	 5)
+		Stop
+	}
+}
+
 
 // Full ammo
 
