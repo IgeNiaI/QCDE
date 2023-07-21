@@ -225,27 +225,27 @@ TAG_Q4Voss                      = "Voss";
 
 
 // Health/armor pickups
-GOT_QCHealthBonus               = "\cdPicked up a health bonus.";
-GOT_QCStimpack                  = "\ckPicked up a health bubble.";
-GOT_QCMedikit                   = "\ciPicked up a health sphere.";
-GOT_QCMegaHealth                = "\cvPicked up a mega health!";
-GOT_QCMegaMega                  = "\cvPicked up a mega charge!";
-GOT_QCArmorBonus                = "\cdPicked up an armor shard.";
-GOT_QCArmorShardNoHourGlass     = "\cdPicked up an armor shard.";
-GOT_QCSargeArmorGain            = "\cdPicked up an armor shard.";
-GOT_QCSmallArmorGiver           = "\cdPicked up an armored plate.";
-GOT_QCBigArmorGiver             = "\cdPicked up an armored vest.";
+GOT_QCHealthBonus               = "\ccPicked up a \cdhealth bonus.";
+GOT_QCStimpack                  = "\ccPicked up a \ckhealth bubble.";
+GOT_QCMedikit                   = "\ccPicked up a \cihealth sphere.";
+GOT_QCMegaHealth                = "\ccPicked up a \cvmega health!";
+GOT_QCMegaMega                  = "\ccPicked up a \cvmega charge!";
+GOT_QCArmorBonus                = "\ccPicked up an \cdarmor shard.";
+GOT_QCArmorShardNoHourGlass     = "\ccPicked up an \cdarmor shard.";
+GOT_QCSargeArmorGain            = "\ccPicked up an \cdarmor shard.";
+GOT_QCSmallArmorGiver           = "\ccPicked up an \cdarmored plate.";
+GOT_QCBigArmorGiver             = "\ccPicked up an \cdarmored vest.";
 
 // Misc pickups
-GOT_Hourglass                   = "\ciPicked up an equipment bonus.";
-GOT_BigHourglass                = "\ciPicked up a big equipment bonus.";
+GOT_Hourglass                   = "\ccPicked up an \ciequipment bonus.";
+GOT_BigHourglass                = "\ccPicked up a \cibig equipment bonus.";
 
 // Powerups
-GOT_QCQuad                      = "\ctPicked up Quad Damage!";
-GOT_QCProtec                    = "\tnPicked up Protection!";
-GOT_QCInvul                     = "\cdPicked up Invulnerability!";
-GOT_QCInfin                     = "\ciPicked up Infinite Ammo!";
-GOT_QCEldersSoul                = "\caPicked up an Elder's Soul!";
+GOT_QCQuad                      = "\ccPicked up \ctQuad Damage!";
+GOT_QCProtec                    = "\tcPicked up \tnProtection!";
+GOT_QCInvul                     = "\ccPicked up \cdInvulnerability!";
+GOT_QCInfin                     = "\ccPicked up \ciInfinite Ammo!";
+GOT_QCEldersSoul                = "\ccPicked up an \caElder's Soul!";
 
 TAG_QCQuad                      = "Quad Damage";
 TAG_QCProtec                    = "Protection";
@@ -254,14 +254,14 @@ TAG_QCInfin                     = "Infinite Ammo";
 
 
 // PvE pickups
-GOT_QCRedCard                   = "\caPicked up the Red keycard.";
-GOT_QCYellowCard                = "\ckPicked up the Yellow keycard.";
-GOT_QCBlueCard                  = "\cnPicked up the Blue keycard.";
-GOT_QCRedSkull                  = "\caPicked up the Red skull.";
-GOT_QCYellowSkull               = "\ckPicked up the Yellow skull.";
-GOT_QCBlueSkull                 = "\cnPicked up the Blue skull.";
-GOT_QCAllmap                    = "\cbPicked up the computer area map.";
-GOT_QCBackPack                  = "\cbPicked up a backpack.";
+GOT_QCRedCard                   = "\ccPicked up the \caRed keycard\cc.";
+GOT_QCYellowCard                = "\ccPicked up the \ckYellow keycard\cc.";
+GOT_QCBlueCard                  = "\ccPicked up the \cnBlue keycard\cc.";
+GOT_QCRedSkull                  = "\ccPicked up the \caRed skull\cc.";
+GOT_QCYellowSkull               = "\ccPicked up the \ckYellow skull\cc.";
+GOT_QCBlueSkull                 = "\ccPicked up the \cnBlue skull\cc.";
+GOT_QCAllmap                    = "\ccPicked up the \cbcomputer area map\cc.";
+GOT_QCBackPack                  = "\ccPicked up a \cbbackpack\cc.";
 
 TAG_QCRedCard                   = "Red Card";
 TAG_QCYellowCard                = "Yellow Card";
@@ -554,13 +554,13 @@ STARTUP1 =                                               "\n"
 			"\cg   $$$$ $  $$$$       $$$$$   $$$$$$  "  "\n"
 			"                \ca v3.0     "   ;
 STARTUP2 =  " ";
-STARTUP3 =  "Добро пожаловать в Quake Champions: Doom Edition. \n"
-			"Заходи в Дискорд: у нас можно поиграть по сети, \n"
-			"поболтать с игроками или доложить о багах авторам. \n"
-			"(только на английском языке) \n"
+STARTUP3 =  "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Quake Champions: Doom Edition. \n"
+			"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ, \n"
+			"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. \n"
+			"(пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ) \n"
 			"\ci->  https://\ckis.gd/qc_de  \ci<-";
 STARTUP4 =  " \n"
-			"Также есть неофициальный чат на русском: \n"
+			"пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: \n"
 			"\ci->  https://\ckis.gd/qc_de_ru  \ci<-";
 STARTUP5 =  " ";
 
