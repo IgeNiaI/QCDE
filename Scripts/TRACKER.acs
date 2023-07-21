@@ -537,7 +537,7 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 		delay(3);
 
 		// Console toggle
-		if(!GetCvar("cl_lowAmmoWarning"))
+		if(!GetCvar("cl_lowAmmoWarning") || CheckInventory("PowerInfiniteAmmo"))
 		{
 			delay(70);
 			continue;
