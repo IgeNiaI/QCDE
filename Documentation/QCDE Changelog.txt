@@ -1,0 +1,1285 @@
+Changelog
+
+---------------------------------------------------------------------
+
+V3.0 (August ## 2023)
+
+
+General:
+- Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
+- Reworked all champions movement mechanics. Most champions gained VQ3 movement. Menelkir, Doom Slayer, Corvus, Galen and Zedek kept the original Doom movement, but lost some air acceleration. Durandal, Dusk Dude and Eradicator gained CPM movement. Kane Crouch Slide is using the engine implementation and no longer deals damage when bumping into enemies. Freeman also gained Crouch Slide, but it's slower than what Kane has, but lasts longer. Nyx, Doom Slayer, Inquisitor and Major are using the engine implementation for Wall Jump, Double Jump, Thrust Dodge and Wall Climb respectively. Bitterman gained a Ramp Jump movement mechanic, similar to Quake 2. Eleena and Postal Dude jump mechanics were reworked to make them lagless.
+- All weapons, abilities and map interactibles are much less affected by ping.
+- Completely remade mod menus.
+- Added weapon skins like in QC. The skins are based on weapon models from other Quake titles and Half-Life.
+- Remade Blazkowicz sprites and portrait, now based on his default model from QC.
+- Ability cooldown now continues when the player is dead, like in Quake Champions.
+- Reworked Zoom mechanics. You can now switch between hold-to-zoom and toggle-zoom methods. Also you can now zoom in and out while firing the weapon.
+- Refactored ammo on pickup in PvP to work like in Quake Champions.
+- Reworked weapon respawn logic. All weapons except BFG respawn after 1 second. In duel, the weapons respawn after 5 seconds instead. The respawn time can also be configured using `sv_weaponrespawn` cvar.
+- Rocket Launcher, Lightning Gun, Railgun and BFG weapon slots were moved up. Make sure to rebind your controls.
+- Integrated the medals addon. Medals can be toggled using the `cl_qcmedals` clientside cvar.
+- Integrated the item respawn timers addon. It can be toggled on server using the `sv_showItemTimers` cvar.
+- Integrated the "Stack Left" addon. It can be toggled on server using the `sv_showStackLeft` cvar.
+- Added a new Markie music track, "Broodmother". It is played on QCDE15 (Chastity Belt) and QCDE24 (Sarnath).
+- LMS and Team LMS now spawn players with full ammo and no longer give starter weapons.
+- Completely revamped mod menu.
+- Added a random class option to the class menu.
+- Added new clean fonts for console, menu and game texts.
+- Changed blood color for Inquisitor and Vor Matur to their respective blood color.
+- Added `sv_railjump` cvar that replaces Railgun alt fire zoom with a backwards push. Its main use is for Instagib, but can be turned on in any gamemode.
+- Reworked Speedometer. It can now be placed either in center, or under champion avatar. Also removed speed averaging over time.
+- Completely replaced old Menelkir sounds with Death Knight's from QC.
+- Replaced Zedek painsounds and grunts with sounds from Painkiller.
+- Replaced Caleb active ability sounds, changed some of his voicelines to higher quality ones.
+- QC:DE now automatically configures cvars based on gamemode, no need to do that manually anymore.
+- Removed the "minimum 4 players" requirement for Powerups and BFG.
+- Made the intro track controllable by music sound option.
+- `sv_QCDEPowerups` now only controls powerups spawning
+- Added `sv_QCDEBFG` to control BFG spawning
+- Revamped HUD behavior regarding the `screenblocks` cvar to improve. A value of `11` (the default) is the normal HUD, value `10` turns off spectator HUD elements, value `12` removes all HUD elements aside from zoom reticle and a few other effects, value `13` removes all HUD elements on engine side, even the menu and console text.
+- Added a new sound engine for better 3D sounds. You can choose between old (FMOD) and new (OpenAL) in sound options.
+- Made player outline colors configurable. You can now set any color to yourself, but you can also override colors for your enemies and allies to any color you want.
+- All default and ability weapon sprites have been extended to resolve them being cropped when using weapon sway.
+- Default Gauntlet, Lightning Gun and BFG now play a prepare animation when selected.
+- QCDE OST can now be turned off in the Sound menu.
+
+Balance:
+- All Light champions gained 25 more max armor and all Heavy champions lost 25 max armor, except Vor Matur.
+- Raised players camera and attack Z offset.
+- Ranger now only reduces self rocket damage instead of all.
+- Eleena now only loses her speed buff when she has above 15 armor.
+- Galen can now have only up to 3 totems in PvP.
+- Galen totem in PvE now heals 1 hp per second, but it never times out. When you have all 5 totems, they will heal 2 hp per second each.
+- Galen totem in PvP now heals 50 hp immediately on touch, and will no longer heal, like in QC. Having all 3 totems will make it heal 100 hp, with a possibility to overstack 50 hp.
+- Reworked Painkiller active. First speed card gives CPM movement, second card gives 20% more speed and third card makes it last 20 seconds more.
+- Reworked Terminator ability in PvP. He now spawns with 10 rockets ready, and picking up hourglasses increases the rockets amount up to 20, but doesn't reduce cooldown. Increased Terminator rocket damage from 11 to 15. Terminator no longer shoots rockets after death.
+- Eradicator no longer receives his bonuses from health, because he gained CPM movement instead.
+- Durandal can no longer see invisible players in PVP, because he gained CPM movement instead. Infra-Chromatic Unveil passive still works against invisible monsters in PVE.
+- Corvus ability now has 3 charges, but it lasts 2 seconds in PvP and 5 seconds in PvE.
+- Lucienne now has a 3 seconds cooldown between using her abilities.
+- Nerfed Duke active projectile speed from 32 to 25 units, bounce count from 3 to 2, ability cooldown from 40 to 45 seconds, ability duration from 7 to 4 seconds. Required freeze balls till freeze from 5 to 6, freeze duration from 3 to 1 second.
+- Nerfed Freeman Extraction passive. It now requires to stay alive for 60 seconds, and spawns the player with 25 hp and one starting weapon.
+- Increased Caleb ability spread from 1.2 to 1.3, but decreased self damage on miss from 10 to 5.
+- Nerfed Durandal Bobs health from 35 to 30 and damage from 60 to 40.
+- Nerfed Inquisitor ability damage reduction from 50% to 33%.
+- Removed damage from Freeman blast but increased blast strength from 15 to 25.
+- Removed Bitterman slower health degeneration and increased ability cooldown from 35 to 45 seconds.
+- Reduced amount of Vor Matur spilled blood and its damage.
+- Increased Shotgun and Super Shotgun spread.
+- Sarge now can pick up hourglasses in coop.
+- Nerfed Sarge armor gain from small/big hourglasses from 12/50 to 10/25.
+- Sarge, Terminator and Sam will not pick up hourglasses if their respective ability is full.
+
+Maps:
+- Moved QCDE07 "Morpheus" to QCME02
+- Moved QCDE15 "House of Decay" to QCDL05
+- Added "Temple of Retribution" from Quake 3 as QCDE07
+- Added "Chastity Belt" from Quake 3 OSP mappack as QCDE15
+- Added "Arcane Temple" from Unreal Tournament as QCDE39
+- Added "Rankin" from Unreal Tournament 2004 as QCDE40
+- Added "ASDF" from Unreal Tournament 4 as QCDE41
+- Added "Deep Embrace" from Quake Champions as QCDE42
+- Added "Corrosion" from Doom Eternal as QCDE43
+- Added "Forsaken" from Doom Eternal as QCDE44
+- Added "Deck 17" from Unreal Tournament 2004 as QCDE45
+- Added "Duel1" from Doombringer as QCDE46
+- Added "Claustrophobopolis" from Quake 1 as QCDE47
+- Added "Mythic" from Unreal Tournament 4 as QCDE48
+- Added "Erase" from Unreal Tournament 4 as QCDE49
+- Added "Achilles" from Unreal Tournament 2004 CBP2 mappack as QCDE50
+- Added "Hell's Gate" from Quake 3 as QCDL06
+- Added "The Dark Zone" from Quake 1 as QCDL07
+- Added "Crash Course" from Quake Live as QCDL08
+- Added "Hektik" from Quake Live as QCDL09
+- Added "Nicktest1" from Unreal Tournament 4 as QCDL10
+- Added "The Struggle", "CTF Run" and "Fatal Error" for Capture the Flag gamemode (QCTF01, QCTF02 and QCTF03 respectively)
+- Added "Outpost", "Hangar" "Cathedral" and "Asteroid Garden" for Invasion gamemode (QCIN01, QCIN02, QCIN03 and QCIN04 respectively)
+- Retextured QCDL02 "Aerowalk"
+- Reworked map scripts like jumppads and teleports to make them feel lagless in multiplayer
+- Fixed multiple misaligned textures and lights on almost every map
+
+Bug fixes:
+- Fixed some effects like the overhead powerup or blood being visible to their owner.
+- Fixed Eleena clone rockets having different effects.
+- Fixed projectile hitbox being shifted up.
+- Fixed starter weapon selection taking weapons away from Sam.
+- Fixed dropped DM weapons looking like SP and staying in place infinitely.
+- Fixed Galen and Painkiller UI elements not recognising CTF as PvP gamemode.
+- Fixed Galen totem exploding when the enemy flies above it
+- Fixed multiple player sounds like BJ regen or Nyx invisibility not playing for spectators.
+- Fixed music restarting in gamemodes with multiple rounds.
+- Fixed selecting incorrect weapon when picking up a stronger weapon (MG to HMG, SG to SSG, NG to SNG).
+- Fixed taunts stopping when landing from a high place.
+- Fixed Hunter skull not disappearing when the player leaves the game or goes to spectator.
+- Fixed players instantly losing 1 hp and armor on spawn due to degeneration.
+- Fixed join game menu not working properly in singleplayer.
+- Fixed Eleena clone hitbox size to be as Eleena herself. It used to be a little slimmer and could get into places where Eleena couldn't.
+- Made Zedek and Postal ability HUD effects show up immediately instead of on first damage tick
+- Selecting starter shotgun when owning super shotgun now properly updates the UI.
+
+
+---------------------------------------------------------------------
+
+V2.7 (May 16 2020)
+
+Highlights
+- New Champion: The Intruder
+- QCDEmaps: New map "Fusillade", ported from Dusk
+- QCDEmaps: New map "Battleforged", ported from Quake Live
+- QCDEmaps: New map "Helix", ported from Doom 2016
+- New PvP gamemode: Unholy Trinity. Unlimited Rocket, Rail and LG
+- New PvP gamemode: Lightning Storm. All Lightning Gun, all day
+- New PvP gamemode: Random Loadout. Each life gives you random weapons
+
+Balance
+- Caleb's new active ability reworked: Voodoo Doll
+- Buffed Kane's armor shards generated by PvE slidekick 
+- Kane's active ability fully removes Postal and Zedek's abilities DoT
+- Lucienne's ability reduces lenght of Postal and Zedek's abilities DoT
+- Eradicator's movement is a bit faster
+- Major's PvE ability Rockets have extra damage when they're a "direct hit" on a target
+- Nerfed Terminator rockets damage, since they're harder to dodge now
+
+Bugfixes
+- Fixed warning in PvP modes related to PowerupFactory
+- Fixed Quake 2 Tank Commander being unkillable
+- Fixed Quake 2 blaster sounds constantly cutting off
+- Fixed Quake 4's monster spawners (Makron & Dropper) getting stuck
+- QCDEmaps: Fixed some texture misalignment on Vale of Pnath
+- QCDEmaps: Fixed some hinding spots on Awoken
+- Fixed Kane's slide being blocked by players in PvE
+- Fixed bots sometimes taunting when killed
+- Fixed "Controlled Rocket" movement imprecisions
+- Fixed Hunter's skull attacking teammates in PvP
+- Fixed being able to pick multiple armors at the same time regardless if armor would be filled
+- Fixed some issues with coop keycard pickup messages
+- Fixed Q2 and Q4 Makron's 2nd phase not spawning if under a door
+- Fixed GZDoom showing "unknown" in theme picker menu
+- Fixed startup warnings for stealth monsters
+- Fixed startup warning for double defninition of SilverKey
+- Fixed Sam's active ability having unlimited ammo in some gamemodes
+- Fixed some script error messages in some QCDE maps
+- Fixed "DORMANT" flag not being applied for QCDE monsters
+- Fixed Sarge not picking hourglasses in single player
+
+Quality of Life
+- Zscript-fueled fattyslims implemented: All player classes have standard size, to avoid breaking maps (GZDoom only)
+- Optimized sprites for small filesize reduction
+- BJ Blazkowicz active ability respects options for recoil and weapon flash
+- Inquisitor bots will only rarely use the ability's 2nd stage
+- Map placed "stealth monsters" are replaced by non-stealth
+
+Misc
+- Extra Health and Extra armor reliquaries are no longer limited to 2 each
+- Bots use defensive abilities sooner
+- Assigned "Electric" damage to LG and it's altfires
+
+
+---------------------------------------------------------------------
+
+V2.6.1 (Feb 14 2020)
+
+Bugfixes
+- Fixed "qc_shufflemode 0" (per-monster randomization) not working
+- Fixed many "p-code 130" when running in GZDoom
+- Fixed powerups spawning on duels
+- Fixed first monster on invasion having the wrong theme
+- Fixed powerup spawn-spot indicator not showing sometimes
+- Fixed typo on Eradicator's Champion Help Screen
+- Fixed some champions leaving the incorrect after-image when affected by Hunter's passive
+- QCDEmaps: Silence. Fixed wrong wall acting as teleporter
+- QCDEmaps: Zenith. Fixed some tiny ledges on pillars at the bottom not triggering insta-death
+
+Misc
+- Disabled "Your team has the quad" announcer in coop
+- In "Skirmish Rogue" you get 3 random upgrades to any weapon when map starts 
+
+---------------------------------------------------------------------
+
+V2.6 (Feb 07 2020)
+
+Highlights
+- QCDEmaps: New map "Gibel Complex", original map
+- QCDEmaps: New map "Excavation", ported from Doom 2016
+- QCDEmaps: New map "Delirium", ported from Quake Live
+- QCDEmaps: New map "Silence", ported from Quake Live
+- QCDEmaps: New map "Zenith", original
+- QCDEmaps: New map "The Edge", ported from Quake 2
+
+Balance
+- QCDEmaps: Matched Quake Champions Lockbox's item placement
+- QCDEmaps: Matched Quake Champions Blood Run's item placement
+- QCDEmaps: Matched Quake Champion's powerup spawn timings (1:30, then 2 minutes afterwards)
+- Freeman can no longer attack while ability is in progress in PvP and PvP
+- Freeman can no longer blast players away with his active ability in PvP
+- Freeman's PvP blast deals 15dmg at close range, has slighly longer time-window in which it blasts projectiles away
+- Freeman's PvE blast radius increased
+- Freeman active ability charges +2
+- Freeman gains more armor from LG and coil pickups
+- Major's ability explosion radius and knockback reduced by 25%
+- Major's ability explosion damage increased to 70 with less falloff
+- Major's ability markers (where explosion will happen) can no longer be 100% nullified by Freeman's ability
+- Major's climbing lasts much longer
+- Menelkir's Maulotaur no longer dies if Menelkir dies
+- Menelkir's Maulotaur produces hitbeeps and death notification on his master
+- Menelkir's Maulotaur health nerfed to 200, and overall damage slightly reduced
+- Added a system to prevent Menelkir's Maulotaur from being excessively good against bots
+- Menelkir's PvP Cooldown increased by 5 seconds
+- Lucienne health increased to 100, armor reduced to 50
+- Lucienne ability charges reduced to 4, each fireball heals 20hp
+- Doomslayer's mid-air jump speed gain and height reduced
+- Doomslayer's PvP Cooldown increased by 10 seconds
+- Postal PvP cowhead stays in-world active 33% less time
+- Hunter's ability fireballs are much worse at homing on targets
+- Buffed Nyx's speed after doing a walljump for a more natural feeling
+- Eradicator's armor gain from Health Pickups has been buffed
+- Eleena's Doppleganger can be blasted away by Freeman's ability
+- Kane's crouchslide rebalance: much shorter, slower, but speed gained depends on the turn-angle rate (closer to that of Q4/QC)
+- Sarge no longer can pick hourglasses in PvE (stop hoarding, Sarge!)
+- Terminator's ability rockets can no longer be completely dodged by crouching
+- Vormatur's acidic blood dissolves harmlessly when underwater
+- Painkiller in PvP drops Quad/Protection when morphing into demon
+- Painkiller Demon Morph last 5 seconds more (PvP and PvE)
+- Heavy Machinegun: Matched firerate and (PvP) DPS to that of Quake Champions; slight buff to unzoomed accuracy
+- Machinegun: Slight buff to accuracy (same as HMG)
+- Super Shotgun's "Dragon Breath" upgrade damage buffed
+- Reduced volume and how far away the LG and RG "hum" sounds can be heard
+
+
+Quality of Life
+- Caleb's outlines are thicker to match the other champions better
+- Kane's outlines are thicker to match the other champions better
+- Inquisitor's "thrust dodge" can be performed while holding another movement key
+- Inquisitor can only perform "thrust dodge" while airborne
+- Spectators in duel now hear the frag SFX when a frag happens
+- PvE "Delayed powerups" will not trigger if the "next map" has no monsters, instead gets carried over to the next map
+- Added a system to give player (in PvE) the Tribolt if he's not acquired it in several maps
+- Sam's minigun ammo capacity is affected by lootbox "ammo cap increased"
+- Quake 1 monsters made brighter for slighly improved visibility
+- Freeman no longer blast away his own and other player's projectiles in PvE
+- Zedek and Postal's ability FX are colored to match the team's color in teamgames
+
+
+Bugfixes
+- Fixed some weapons not being selectable when using the "Bind Weapon Key" section under QCDE options
+- Fixed one of Duke's taunts being almost inaudible
+- Fixed Doom2016's Nazi not dropping ammo
+- Fixed Painkiller's demon form not removing "Alt fire mode active" message in PvE
+- Fixed some texture offsets on Molten Falls
+- Fixed Painkiller's weapon projectile making the weapon stuck if it hit something that had +DONTRIP flag
+- Fixed gibblets spawning way too many blood particles when underwater
+- Fixed ice chunks never disappearing when underwater
+- Fixed health bubbles having their sounds mixed: Now they use their (unused) QC's (QL-based) version of the sounds
+- Fixed RL's controlled rockets not respecting the Hitbeep nor Hitmarker options
+- Fixed Bloodrun's HMG jumppad playing sounds when player would jump over it as opposed to "when landing"
+- Fixed Menelkir's Maulotaur not spawning if player was summoning at certain horizontal angles
+- Fixed Menelkir's Maulotaur in PvP not attacking unless attacked first
+- Fixed very rare bug where picking up hourglasses and using ability at the same time could lock it up
+- Fixed multiple instances of GZDoom terminating screen FX early
+- Fixed long-standing issue where champions could thaw from Duke's ability if they had used their own at the right time
+- Fixed wall detail geometry in Almost Lost by Heavy Armor, which could get player stuck
+- Fixed Maulotaur's ally marker bugging out sometimes
+- Fixed Zedek "poisoning" himself if the ability was used too close to a wall or object
+- Fixed Durandal getting +50 max overstack from Heavy Armor instead of +75
+- Fixed Blazkowicz "regen" sound looping on PvE when overstack became non-degenerating
+- Fixed issues with Cooldown timer when switching to and from Sarge
+- Fixed rare instances of players getting another player's ability weapon
+
+Misc
+- Added Abysswalker's new Doomslayer sprites (as seen in D4T), and updated his "lo-res" portrait
+- Support for Invasion: Players get a lootbox at the start of each wave after the first one
+- Support for Invasion: Show lives left in HUD, akin to how it is in Survival
+- Support for Invasion: "One theme per map" shuffle option, shuffles per wave instead
+- Support for Invasion: When using QCDEmus, music now actually works
+- Support for Invasion: Added qcde_inv console command, which auto sets 8 waves
+- Support for Invasion: Added qcde_inv_surv console command, which in addition sets 3 lives
+- Support for Invasion: Disabled Boss health scalar
+- New Reliquary reward: Better Hourglasses (improved cooldown reduction from hourglasses)
+- New Reliquary reward: Better Healing pickups (improved healing from 25s, 50s and Megas)
+- New Reliquary reward: Better Armor pickups (improved armor gained from Light and Heavy armors)
+- Made QCDE's teleporter texture a bit brighter
+- Fixed issue in Molten Falls where Nyx could survive falling into the lava after Ghostwalk ended
+- Fixed issue in Molten Falls where player wouldn't be insta-killed by Rapha's Ledge
+- Added console variable "sv_shufflebots" to periodically change the bots when sv_minplayers is being used
+- "The longest Yard" map no longer belongs to the main FFA map rotation (instead became QCME01)
+- "Toxicity" and "Blood Run" were moved from duel-only rotation to FFA (as QCDE02 and QCDE29 respectively)
+- New skybox for Deck and Morpheus
+- Added a lot of QC's bots and brand new ones along with more balanced bot-stats and randomized colors/botscripts
+- Added new class "QCDE_MonsterTiny" for addon themes, for monsters that aren't meant to give death rewards (like Caleb's passive)
+
+
+
+---------------------------------------------------------------------
+
+V2.5.1 (Sept 09 2019)
+
+Highlights
+- New optional addon: PvP visiblity. Removes blood actors and further decreases opacity of 
+  rocket explosion, trails and tribolt explosions (addon included in main download)
+
+Balance
+- Galen can no longer shoot after throwing totem for 0.8 sec
+- Galen cooldown from 25 to 35 sec in PvP (from 40 to 35 in PvE)
+- Kane can resume firing after injection sooner (from 1.5 to ~0.8sec)
+- Grayson takes slighly longer to charge up thumper (1/7th of a second longer)
+- Sam's minigun primary fire spin-up was pratically removed, making the weapon more responsive
+- Inquisitor's ability mirrors that of QC: Duration 5 sec. Absorbs 50% damage (was 85%), 
+  no damage penalty for itself (was 50%), change color palette of his ability to match 
+  that of the actual shield
+- Inquisitor lost invulnerability to Duke's FreezeThrower and Grayson's Thumper. He can still however
+  bounce said shots back with the 2nd phase shield
+
+Quality of Life
+- All weapons, health and armor height increased, to prevent jumping-over them
+- Daniel's Tarot selection is now visible when spectating that player
+- Vormatur's active ability is now visible when spectating a victim of "blindness"
+- Decreased scale at which monsters would get additional health from the player count in the server
+- Moved up "Last survivor" message in TLMS and FT to avoid it getting too much in the view
+- Ability meters are now less opaque towards the center of the screen, for visibility
+- Decreased size of LG beam particles when seen from the outside
+- Added support for the addon mentioned above, to disable blood when shooting enemies, gibbing
+  them however, still bloody as always
+
+Bugfixes
+- Fixed some Cyberdemon/Mastermind classes taking explosive damage from non-specific explosives
+- Fixed Railgun's "Overcharge Slugs" taking 2 ammo per shot
+- Fixed Painkiller's "demon form" making some Doomguy noises
+- Fixed Q4 Makron becoming "frozen" after summoning monsters
+- Fixed BFG's "Argent Capacitor" taking ammo when sv_infiniteammo was active
+- Fixed PvE world-spawned hourglasses messing up item count
+- Fixed Painkiller being unable to use Tarot after morphing during selection
+
+
+
+
+---------------------------------------------------------------------
+
+V2.5 (Jul 19 2019)
+
+Highlights
+- New Champion: Painkiller (Daniel Garner)
+- QCDEmaps: New map "Placebo Effect", based Quake 4's map by wviperw
+- QCDEmaps: New map "Vale of Pnath", a port of Quake Champions' map
+- QCDEmaps: New map "Quarantine", a port of Quake Live' map
+- QCDEmaps: New map "Lh'owoken", a port of Quake Champions' "Awoken"
+- QCDEmaps: New map "Molten Falls", a port of Quake Champions' map
+
+Big Balance
+- Huge PvE champion rebalance (see "QCDE PvE Rebalance.txt" for full list)
+- Heavy Armor overstack limit increased from +50 to +75
+- MegaHealth overstack limit increased from +50 to +75
+- All light champions lost 25 points to max stack
+- Levelled speed of ALL light champs to 0.91 (default value of light champs in 2.2); Menelkir is the exception at 0.9
+- All heavy champions lost 25 points to max stack
+- All heavy champions have -50 starting stack
+- Increased speed of all heavy championss to 0.89 (used to be 0.875)
+- Decreased hitbox size of all heavy champions
+
+Balance
+- Bitterman is now a heavy champion (as it was originally designed)
+- Added alt fire for Sam's minigun. Double firerate (therefore double DPS and ammo spend speed), with huge spread
+  Make sure you've got ammo for it before trying to mow down crowds!
+- Eradicator damage buff is gained sooner in PvP and PvE
+- Sarge's new PvE-only passive: "Stacked". Health and armor overstack will not degenerate
+- Sarge's armor gain from hourglasses from 8 to 12ap in PvP and PvE
+- VorMatur's PvE-only passive adjustment: "Excess Matter": takes 20% less overall damage in PvE
+- Kane's new PvE-only passive: "Slidekick". Crouchslide into enemies, stun them and shoot them for armor shards
+- Kane's PvP cooldown from 45 to 40 seconds
+- Lucienne stack set to 75HP/75AP
+- (Indirect nerf) Due to the health stack change, self healing gives 15 rather than 25hp
+- Lucienne has a max of 5 fireballs instead of 6
+- Lucienne fireball "curse" makes the enemy take 20 instead of 15% additional damage
+- Lucienne armor overstack from Heavy Armor from +75(like all other champs in v2.5) to +100ap
+- Hunter's PvP skull (active ability) fireballs damage from 4 to 5
+- Hunter's PvP cooldown from 30 to 35 seconds
+- Caleb's PvP hearts (dropped by other players) healing increased from 15 to 20hp
+- Caleb's PvP hearts overstack limit from +50 to +75hp
+- Durandal's PvP Simulacra still deal 60dmg, but without falloff within the explosion radius
+- Lo Wang's PvP sword damage per tick from 8 to 9
+- Menelkir's PvP Maulotaur fanned fireballs damage from 10 to 12
+- Menelkir's PvE chance to drop hourglases from 15 to 20%
+- Nyx PvP cooldown from 40 to 35 seconds
+- Eleena PvP cooldown from 35 to 30 seconds
+- Postal's PvP cowhead gas posoning damage from 8 to 9 per tick
+- Postal's PvP cowhead gas minimum amount of poison points from 8 to 9
+- Postal's passive health overstack limit increased from +75 to +100
+- Terminator's BFG ammo regen rate halved (takes twice as long)
+- PvE hourglasses are a bit more rare
+- Archvile, Baron, Mancubus and Arachnotron classes will scale health up based on upgrade (along with player count in coop)
+- Shambler painchance decreased
+- Elder's Soul: Carrier's stack degeneration speed decreased
+- Elder's Soul: Every 10 frags, the carrier's stack will degenerate progressively faster
+
+Quality of Life
+- QCDEmaps: Sinister. Greatly reduced detail in Heavy Armor room for huge performance boost
+- QCDEmaps: Sarnath Reduced detail throughout the map for a small performance boost
+- QCDEmaps: Elder. Slight change in structure for easier jump from "high" tentacle to mega side
+- QCDEmaps: Longest Yard and Chasm are spread in the MAPINFO maplist (lump names remain the same)
+- QCDEmaps: Deck. Lifts are no longer 3d floors to simplify their functionality and to avoid players getting stuck in the slope
+- QCDEmaps: Morpheus. Map has lower gravity. Juuuuump!
+- Classpicker MP menu has a hint "Close menu with alt fire"
+- Added cooldown information in the Champion Help Screen
+- Coop Railgun no longer pushes players
+- Freeman no longer blasts away other players in PvE
+- Bitterman drops more armor shards in multiplayer PvE
+- Galen's PvE totems have an "outer ring" with light healing and a smaller "inner ring" with heavier healing
+- Survival mode: Players die on their last life will drop ALL their weapon upgrades
+- Elder's Soul: Carrier's overhead FX has the soul icon for easier spotting
+- Elder's Soul: Added hints regarding killing the carrier, suicide and "you have the soul" for easier understanding of the mode
+
+Bugfixes
+- Fixed ages-old bug of overhead indicators looking choppy on movement, which affected ability/powerup indicators for
+  Caleb, Terminator, Kane, Grayson, Lucinenne, VorMatur, Quad, Protection, Invulnerability, Unlimited Ammo, etc.
+- Fixed Eradicator's radar showing up if you died with the ability and respawned as diferent champion
+- Fixed Postal's cowhead poison beeps being played on the wrong player's channels
+- Fixed Maulotaur's enemy targetting system in PvP (may still have issues)
+- Fixed some "boot" footsteps having a low humming sound
+- Fixed Hunter not tracking Sam
+- Fixed cluster rockets being bounced off by Inquisitor's shield in PvE
+- Fixed Eleena being able to "Crouch drop" while affected by Grayson's thumper
+- Fixed Eleena's clone using weapons that aren't present in the current gamemode (like using non-RG in instagib)
+- Fixed long-standing bug where bots would't backfill in the middle of the match according to sv_minplayers
+- QCDEmaps: Lockbox. Fixed a door generating it's sounds in a different part of the map
+- QCDEmaps: Lockbox. Fixed the same door that could get 100% stuck on very rare ocasions
+- QCDEmaps: Almost Lost. Fixed blind spots of jumppads
+- QCDEmaps: Fixed/Adjusted jumppads in all maps so that bots aren't thrown way higher than players
+- QCDEmaps: Lh'owon of Ice and Fire, fixed player being able to get inside the "water pipe" section
+- QCDEnaos; Fixed Hexen trees billboarding oddly
+- Fixed Q4 and Q1 monster nails looking too small
+- Fixed Q4 Machinegunner being too strong
+- Fixed some startup warnings
+
+
+Misc
+- Added option to display health/armor bars in HUD as flat lines rather than blocks
+- Health and armor that go over 300, will show as flat lines
+- Added subtitles to all taunts. Campaign only. Can be disabled through menu
+- Added startup message (you can see it in the console)
+- Changed poisoned-by-cow HUD indicator
+- QCDEmaps: OST music will not play during countdowns (for duels, or TLMS)
+- QCDEmaps: Increased MIDI volume for some tracks that were too low
+- Health bubble sprites improved
+- Micro ammo pickups (dropped by Terminator) color adjusted to match the other pickups
+- "Pick starting weapon" prompt's graphics improved
+- Removed invalid MS Word characters from lore
+- Fixed some lowercase entries in MENUDEF that would look odd in GZD 4.x
+
+
+---------------------------------------------------------------------
+
+V2.2.1 (May 24 2019)
+
+Bugfixes
+- Hopefully fixed rare bug Freezetag not finishing after all players are frozen
+- Fixed BFG never spawning it's "spawn point" smoke in PvP games.
+- Fixed Kane being able to crouch slide when frozen in Freezetag
+- Fixed Nyx being able to double jump when frozen in Freezetag
+- Fixed Q2Gunner dropping Zombieman-class ammo
+- Fixed Inquisitor's ability end sound playing after he already died
+- Fixed Galen's totems not healing properly players that got "+Max Health" Reliquary reward
+- Fixed cowhead gas indicator not showing when spectating a poisoned player
+- Fixed stack upgrade not showing after death and map change
+
+Balance
+- Serious Sam gets 80 bullets for his ability in PvP instead of 50
+- Serious Sam gets 15 and 75 ammo from normal and big hourglasses respectively
+
+Misc
+- Tribolt animation remade to better match the refiring speed
+- Slight sprite detailing to shotgun reloading animation
+- BFG now turns on it's LED when fully charged with alt fire (PvE)
+- Added toggle for "Zandronum Medals" on "Engine shortcuts" menu
+- Increased monster-alert radius by x4 on Keel's active ability use
+
+
+---------------------------------------------------------------------
+
+V2.2 (Apr 19 2019)
+
+Highlights
+- New Champion: Postal Dude
+- QCDEmaps: New map "Sarnath", a port of Quake Champions' "Ruins of Sarnath"
+- QCDEmaps: New original map "Lh'owon of Ice and Fire", using Marathon's textures
+- New Gamemode: Freezetag. Defeated enemies freeze until thawed by their teammates
+- New multiplayer class picker
+
+Balance
+- Tribolt firing rate now matches QC's (1.3s)
+- Tribolt detonation timer now matches QC's (0.6s)
+- Tribolt gravity-trajectory now matches QC's better
+- Tribolt explosion radius increased (now is the same as rockets)
+- PvE Tribolt DPS increased to ~250 (almost the same as rockets)
+- PvP Tribolt's damage is all dealt via explosion, instead of requiring a direct hit for max damage
+- Vormatur's blood damage halved
+- Gauntlet upgrades damage buffed
+- Lucienne immolation radius and damage decreased
+- Lucienne's Blessing passive only affects armor (no armor degeneration)
+- Sam's cooldown -10 seconds
+- Sam's Minigun damage reduced 20%
+- Duke's ability duration +1.5 sec
+- Caleb healing from PvP hearts from 25 to 15
+- Eleena drops slower when pressing crouch while mid-air
+- When picking the Elder's Soul, nearby enemies take damage (up to 50) and are blasted away
+- Elder's Soul provides damage reduction based on player count. The more players, the less damage you take (max of 60% dmg reduction)
+- Decreased volume of LG and RG "humming" sounds
+- QCDEmaps: Added HMG to Monsoon
+- QCDEmaps: Added SNG to Aerowalk
+- QCDEmaps: Lockbox no longer "pierces" radiation suits
+
+Bugfixes
+- Fixed stray white pixel in RL weapon bar icon
+- Fixed PvP damage warning appearing in PvE after finishing an episode
+- Fixed PVP powerups not spawning at exactly 1:30
+- Fixed occasional script error in "The Bad Place"
+- Fixed Grayson's thumper ball never exploding when they get stuck in a ceiling
+- Fixed some weapon and abilities being nullified by "liquid" terrain
+- Fixed some weapon and abilities spamming splashes in "liquid" terrain
+- Fixed Sam getting starter weapons in modes like insta-gib
+- Fixed a bug where players could auto taunt when commiting suicide
+- Fixed an instance where Eradicator's radar wouldn't show players in the enemy team
+- Fixed Blazkowicz bots deselecting his ability weapon before it ran out
+- QCDEmaps: Fixed some texture missalignments on Corrupted station
+
+Quality of Life
+- Adjusted rarity of lootboxes as completionist rewards; you're much less likely to get a "backpack"
+- "Full ammo" and "All Weapons" have been moved from Reliquary to Chest rewards
+- "Full ammo" will still be given as reliquary reward, as fallback when you've acquired almost if not all other reliquary rewards
+- Ranger's Dire Orb spawns less trails for better visiblity
+- Fixed Kane stomp sound being too loud
+- Deprecated "Taunt button"; added key for "Voice Line" which is network sync'd and cannot be spammed
+- Gauntlet now shows up in the weapon bar when you acquire upgrades for it
+- Recolored Caleb's hearts to be more visible
+- Added visual indication in HUD when health/armor overstack will not degenerate
+- Added notification in TLMS derived modes for when you're the last team member alive
+- Added slider for "auto joining bots" on menu for easy disabling
+- Infinite ammo for InstaGib
+- In InstaGib, players won't drop their weapons on death, less littering
+
+Misc
+- In "Skirmish Rogue", each map has a guaranteed reliquary dropped in the world
+- Added improved weapon upgrade icons
+- Updated many ability icons
+- New crown icon for 1st place in PvP games
+- New CTF flag sprites
+- New "Small Ammo Pack" sprites
+- New "Terminator's Ammo Pack" sprites
+- Inquisitor got a new coat of paint: Dark Inquisitor
+- Internal: More robust gamemode handling
+- Playing skirmish with Doom or Doom 4 monsters in Doom.wad gives a warning about missing sprites
+- Additional bot system to teleport them somewhere else if they get stuck/immobile on a wall
+- Duel spectator health/armor bar and icons updated
+- New "Frozen" VFX for when enemies are frozen by Duke's ability
+- Small color tweaks to radar icons
+
+
+
+
+
+---------------------------------------------------------------------
+
+V2.1 (Feb 15 2019)
+
+Highlights
+- New Champion: Serious Sam
+- QCDEmaps: New map "Corrupted Station", reinterpretation of Quake Champions' Corrupted Keep
+- QCDEmaps: New map "Deck", reinterpretation of various Unreal Tournament's Deck maps
+- QCDEmaps: New map "Almost Lost", reinterpretation of Quake Live's map
+- New Gamemode support: Elder's Soul. Pick the soul and get unlimited Quad Damage, until you die
+
+Balance
+- Slight increase in accuracy for MG and HMG in both PvP and PvE
+- Slight DPS reduction for SNG and LG
+- Considerable DPS reduction for SSG's flame and LG's Static field upgrades
+- New system to balance champions in PvE: Heavies take more damage than a medium champ, while light ones take less
+- Caleb's passive no longer auto heals. Instead, enemies drop a heart. Upon picking it, heals 25hp and allows overheal
+- Freeman's extraction moves player to spawn spot, rather than semi random
+- Lo Wang's ability slashes will now cause some damage when they collide immediately with a wall on activation
+- Lo Wang's ability cooldown +5sec
+- Lo Wang's ability damage reduced by 20%
+- Duke Nukem's ability duration -1 sec
+- Duke Nukem's ability cooldown +5 sec
+- Duke Nukem's PvE damage drastically increased
+- Hunter's PvE ability fireballs damage increase 33%
+- BFG doesn't stay in PvP even with "sv_weaponstay 1", since it's more of a powerup than a weapon
+- QCDEmaps: Blood Covenant, less health by Heavy armor side
+- QCDEmaps: Blood Covenant, less hourglasses by Heavy armor side, and repositioned two by RL
+
+Bugfixes
+- Fixed blood sprites not randomizing properly with SG/SSG in net games
+- Fixed rare double death damage number
+
+Quality of Life
+- Tribolt explosion sprites fade away much faster
+- Rocket Launcher explosion sprites fade away much faster in PvP
+- Added QCDE keybind to bring up "champion selection screen" for easy switching in net games only
+- QCDEmaps: Added "quickjump" hack for easier jumps in pillars for Blood covenant, Phobos campgrounds, Cure & Furious Heights
+- QCDEmaps: Reduced fall height in Morpheus and reduced dynamic lights for performance improvements
+
+Misc
+- Added "Voice" keybind, which is basically "taunt" but for Gzdoom, where said key doesn't exist
+- Additional taunts for: Ranger, Terminator, Inquisitor, Galen, Nyx, Sorgaul, Kane, Bitterman, Corvus & Doomslayer
+
+
+** "Elder's Soul" details **
+
+This mode is very similar to Zandronum's "Terminator" gamemode which is unsupported directly by QC:DE. Instead, 
+Elder's Soul is our own take of this mode.
+
+Description: An Elder's soul spawns in the map. When a champion picks it up, they acquire the Elder's powers. 
+Frag the soul carrier to get 10 frags at once.
+
+Soul carrier's powers:
+- Maximum overstack of health and armor when picking the soul
+- Massive power, dealing x4 damage
+- Said damage power lasts for as long as you're alive
+
+But they're also affected by it's curse:
+- All health and armor quickly degenerates
+- If you die by health degeneration, you lose 10 frags
+- Can't use active abilities while carrying the soul
+
+Additional things to consider:
+- The carrier of the soul is unable to pick up Quad Damage or Protection
+- If a player carrying Quad/Protec picks the Soul, they will drop the quad/protec
+- Carrier's degeneration of health/armor is inversely proportional to the size of the champ. 
+  Heavies degenerate faster, while for light champs it's slower
+- Freeman can't use his passive "Extraction" while carrying the soul
+- Lucienne's passive "Blessing" doesn't prevent the soul's "stack degeneration" curse
+- Blazkowicz's passive "Blitz" doesn't trigger when carrying the soul, due to constant health degen
+
+
+---------------------------------------------------------------------
+
+V2.0.2 (Jan 18 2019)
+
+Balance
+- PvE hard skills rebalanced to be more fair while still being challening
+- Freeman's active ability rework: Pushes enemies, players and projectiles away from user, 3 charges, no damage
+- Freeman is slighly slower than the average medium champion
+- Major's ability: cooldown +5sec, max damage per bomb from 100 to 60dmg
+- Sarge no longer starts with armor on spawn
+- Sarge armor gain from small hourglasses +60%
+- Durandal can identify fake Eleenas easily thanks to his passive
+- Eleena's passive renamed to Acrobatic: in addition to high jump, allows to "drop fast" when pressing +crouch while midair
+- Eradicator is slighly faster than the average heavy champion
+- Grayson's ability, time from thumper placement to activation reduced
+- PvE LG damage buffed, while "static field" upgrade was slighly nerfed
+- Slight decrease of boss health scaling based on upgrades
+
+Bugfixes
+- Fixed LG residue hurting coop allies
+- Fixed Homing nails not alerting monsters
+- Fixed bad lootbox seed when game starts not on map01
+- Fixed Skirmish Rogue weapon upgrades misbehaviour when changing maps
+- Fixed "Full Arsenal" lootbox reward not giving shotgun
+- Fixed Doppleganger typo on Eleena's description in CHS
+- Fixed bad cooldown for Freeman's extraction in CHS
+- Fixed Freeman remainig "on stasis" when extracted while he was Grayson-thumped
+- Fixed Eleena not getting any benefit from lootbox rewards of "-x% cooldown reduction"
+- Fixed wrong ammo capacity for Hunter in PvP modes
+- Fixed Zedek self burn when using active ability too close
+- Fixed some champions summoning Lucienne's gun-prop on death
+- Fixed outdated info on Sarge's Light Armor overstack, which was changed long ago
+- Fixed Simulacra (BOBs) leaving an erroneous trail when hit by Hunter's tracking projectiles
+
+Quality of Life
+- Monster damage numbers have been greatly optimized for performance
+- Players drop some of their upgrades on last death on survival (to allow other players to get them)
+- Weapon upgrade pickups no longer have a frame, and they are lifted from the ground for easier spotting
+- Upgrades are much more common in Skirmish Rogue
+- Auto-bots no longer join duels
+- Weapon Upgrade messages mirrored into log to read later
+- Fixed "RocketArena" cvar being saved between sessions
+- Duke's freeze projectiles go through players in Coop
+- Blazkowicz's regeneration SFX volume decreased
+
+Misc
+- Added QC bots
+- Highest fragger gets crowned in DM modes (server disable with sv_crowntheleader 0)
+- Gman can only be seen by Freeman
+- Beautifying of HUD elements: ability meter, keys, etc
+- Beautifying of 1st person Ability-Weapon sprites for Zedek, Duke Nukem, Galen
+- "Player picked up key" message will no longer appear in coop if the key had been already picked up
+
+
+
+
+---------------------------------------------------------------------
+
+
+V2.0.1 (Dec 14 2018)
+
+Balance
+- Freeman "Extraction" ability readiness, from 45 seconds after spawn, to 60
+- Freeman damage-to-charge, from 50% to 66%
+- Freeman self charge from 2 to 1.5 sec per point
+- Hunter PvP active ability damage from 5 to 3
+- Eleena "time to teleport" from 5 to 7 seconds
+- Eleena cooldown from 40 to 35 sec
+- Eradicator's armor gain from healing items increased ~30%
+- LG's static field (AoE puff) damage per tick from 30 to 18
+
+Bugfixes
+- Fixed Hunter starting at full stack rather than "Light champ standard"
+- Fixed armor scripts using a considerable amount of bandwith
+- Fixed player being able to "pickup" OST dummy actor
+- Fixed wrong stack info in Grayson's Champion Help Screen
+- Fixed typo in Hunter's active in the Champion Help Screen
+- Fixed hitmarker scripts not being clientside-only
+
+Quality of Life
+- HUD animations now play for spectators too (ability-hand animation, hourglass, ability ready)
+- Doom4 Cacodemon and Baron of Hell now have colored blood
+- Railgun smoke (grayish smoke) and pierce beam FX opacity decreased for visibility
+- Upgrade's altfire-armed zoom reduced by 33.3% for all weapons excep HMG and RG
+
+Misc
+- Removed some console warnings when using GZdoom instead of Zandronum
+
+
+---------------------------------------------------------------------
+
+
+V2.0.0 (Nov 30 2018)
+
+Highlights
+- New Champion: BJ Blazkowicz
+- New Champion: VorMatur
+- New Champion: Eleena
+- New Champion: Major
+- New Champion: Lucienne
+- New Champion: Gordon Freeman
+- New Champion: Hunter
+- All brand new sprites for all weapons, by Franco Tieppo
+- All weapons have 2 upgrades in PvE games (dropped by monsters)
+- QCDEmaps: New map "Lockbox" from Quake Champions
+- QCDEmaps: New map "Elder" from Quake Live
+- Addon Theme Selector now properly displays the theme names!
+- New official addon monster set: Half life
+- New official addon monster set: Half life 2
+- New HUD animations for status effects (healing, powerups, etc)
+- Hitmarkers (HUD indicators when a shot is succesful)
+
+
+Balance
+- All weapons have slighly reduced knockback
+- Railgun damage in PvP from 90 to 80
+- PvE Super Shotgun damage increased
+- PvP Tribolt damage increased
+- PvP SSG damage from 120 to 110
+- PvP SG damage from 70 to 60
+- PvP NG damage from 10 to 12
+- SNG and NG projectile speed decreased
+- PvE nail capacity decreased
+- Kane stack: 100hp and 75ap
+- Kane's PvP ability heals 75hp instead of full health, no overstacking
+- Kane's PvE ability heals 100hp, allows overstacking
+- Kane's cooldown +5 seconds
+- Grayson gets +25ap when killing enemies
+- Corvus' flight from 5 to 7 seconds
+- Corvus' PvE self healing from from 1 to 2hp per second
+- Doomslayer's PvE ability damage increased
+- Terminator's PvE ability damage increased
+- Caleb's PvE ability grants him +50% damage dealt
+- Galen's totems disappear if player respawns as another champion
+- Eradicator has a new passive: get additional armor when picking medium-to-big health items
+- Q2 Shotgun guard spread of bullets increased, he hits less hard now
+- QCDEmaps: Added SSG to Toxicity
+- QCDEmaps: Removed RG from Sight
+- QCDEmaps: Moved HMG to where RG used to be in Sight
+- QCDEmaps: Modified layout of "The bad place" for slightly improve gameplay
+
+
+Quality of Life
+- Adjusted champions blue outline hue for better TDM visibility
+- Galen's totems aren't shootable anymore in PvE
+- Zedek's damage over time from flames now plays hitbeeps and is cancelled by ghostwalk
+- Changes to Terminator's rockets; they now (sometimes) hit crouching players!
+- Menelkir's maulotaur was reworked to work smoother in net games
+- Menelkir's maulotaur is walk-through in PvE
+- Powerups are drawn in Eradicator's radar
+- Added HUD icon when Ranger's orb is in the world, disappears when used
+- "Full ammo" reliquary reward made more rare. It's meant to be a fallback in case all the other rewards are gone
+- Reliquary reward "all weapons" icons disappear faster
+- QCDEmaps: Added additional "padding" on Phrantic's jumppad for easier triggering in the corner
+- Removed "peace time" in TLMS between rounds
+- When playing multiple themes with "one theme per map", all themes will be cycled through before repeating
+
+
+Bugfixes
+- QCDEmaps: Fixed a window in Toxicity where players would be able to get out of the playable area
+- QCDEmaps: Fixed double Heavy Armor in one spot in The Chasm
+- QCDEmaps: Improved performance in Sinister
+- QCDEmaps: Improved performance in Sight
+- QCDEmaps: Fixed some bad offsets and textures in Blood Covenant
+- Fixed issue where location of Galen's totems hitbox and visual indicator sometimes would not match
+- Fixed (even more) edge cases of Menelkir's Maulotaur bugging out and going rogue
+- Fixed some abilities not alerting monsters in PvE
+- Fixed Sarge losing hp on PvE map change
+- Fixed bad damage attribution for several monsters
+- Fixed "Sniper" Q1 grunt being too accurate
+
+Misc
+- All weapons (except HMG and RG) lost the "zoom" functionality in PvE
+- Picking health and armor now has a small animation in the HUD
+- Reorganized QCDE options menu
+- Health and armor sprites retouched
+- New reliquary reward: Huge increase of ammo capacity
+- New reliquary reward: Permanent +25hp
+- New reliquary reward: Permanent +25ap
+- New reliquary reward: Longer powerup duration
+- Fixed QCDE object names for GZDoombuilder users
+- Added 1st person animation for Galen throwing totems
+
+
+
+
+================================================================
+
+
+V1.5.1 (Sept 14 2018)
+
+Balance
+- Durandal: Cooldown +5 seconds
+- Durandal: One less BOB spawned from ability
+- Durandal: BOBs climb height reduced by 16mu
+- Eradicator: Cooldown -10 seconds
+- Eradicator: first levels of damage buff are reached quicker
+- Grayson: Cooldown -5 seconds
+- Grayson: Activation buildup (before he can shoot the thumper) drastically reduced
+- Grayson: AOE of thumper reduced 40%
+- Grayson: Thumped AOE applied from a higher Z-height to ensure it's not blocked by small terrain 
+- Kane's sliding speed slighly faster
+- NG and SNG projectiles are slightly slower (-2mu per tic)
+- LG damage from 8 to 7 per tick
+
+Quality of Life
+- Adjusted boss (Cyberdemon and SMM) health scalar in coop games. They're less tanky now
+- PvP radar distance scaling is no longer curved (for proportional distance scaling)
+
+Bugfixes
+- Fixed Durandal's BOBs not dealing damage to enemies in certaing DM modes (CTF, Domination)
+- Fixed Skirmish Rogue completionist sound playing too many times (too loud) when there's more than 1 player in the game
+- Fixed Skirmish Rogue issue where items respawning would "repopulate" a map
+- Fixed Megahealth and Heavy Armor not disappearing right away from Eradicator's radar when picked up
+- Fixed issue with cooldown timer related to player's death
+- Fixed monsters being invisible when thumped in coop games
+- Fixed heavy armor not being bright for the first second when it spawns
+- Fixed issue where sometimes two players would not be able to use ability at the same time
+- Fixed Mega lowering health if it was above max+50
+- Fixed (for real this time) Kane playing sliding sound even after death
+
+Misc
+- Some script optimizations for net games bandwidth usage
+- Players don't get a lootbox at the countdown of "Survival" in Skirmish Rogue
+- Added name tags to Quake 2 monsters
+
+
+---------------------------------------------------------------------
+
+
+V1.5.0 (Aug 31 2018)
+
+New
+- New Champion: Grayson (Hunt)
+- New Champion: Eradicator
+- New PvE gamemode: Skirmish Rogue
+- Custom Monster Sets are now supported
+- New optional Custom Monster Set: Heretic (separate download)
+- New PvP gamemode: Rocket Arena
+- QCDEmaps: New map "Monsoon" (QCDE11)
+- QCDEmaps: New map "Phobos Campgrounds" (QCDE12)
+- QCDEmaps: New map "Sight" (QCDE13)
+- QCDEmaps: New map "Stubborn" (QCDE14)
+- QCDEmaps: New map "House of Decay" (QCDE15)
+- QCDEmaps: New map "Sinister" (QCDE16)
+- QCDEmaps: New map "The Bad Place" (QCDL06)
+
+
+Quality Of Life
+- Monsters now get their special/arguments properly assigned in maps that use these
+- SG and SSG have a pattern spread like in QC, rather than completely random spread
+- "Frozen" VFX on HUD of a player frozen by Duke Nukem's ability no longer carries over to next life
+- Added "Low health" SFX
+- Decreased alpha of powerup spawn-point indicators to not be confused with the actual powerup
+- Powerups spawn in turns in PvP, always starting with Quad Damage
+- Bots will no longer spawn in Duel when sv_minplayers >= 1
+- Armor shards are no longer dropped by dead players in Instagib
+- QCDEmaps: Changed torch types in Fatal Instinct to prevent Nyx getting stuck after ghostwalk
+- Added doomednums and tags to Doom2016 monsters for map placement in GZDBuilder
+- BFG now shouldn't autoselect in PvE when you run out of ammo for any weapon
+
+Balance
+- Duke Nukem's ability from 10 to 7 seconds
+- Crouching movement speed heavily reduced
+- Reduced health of Menelkir's minotaur from 400 to 300 in PvE
+- Menelkir is no longer able to spam the "Minotaur Doll" ability use
+- Reduced amount of projectiles fired by Menelkir's minotaur in it's "fan" attack
+- Slightly increased Nailgun and Super Nailgun projectile speed
+- Improved physics and trajectory of Keel's grenades
+- Keel cooldown reduction from ammo pickups from 3% to 5% per pickup
+- Nyx moves faster when in GhostWalk
+- Lightning Gun's shaft deals AOE damage when underwater
+- Lo Wang's cooldown from 15 to 20 seconds
+- Nerfed PvE tribolt overall damage
+
+Bugfixes
+- Fixed GZDoom not showing "Champion Info Screen"
+- Fixed GZDoom not showing blood screen stains when taking damage
+- Fixed GZDoom not playing "pain beep" sound when taking damage
+- Fixed issue with starting weapon system not taking away SG when you pick another starter in PvE
+- Fixed HMG not allowing tap-refire
+- Fixed Galen's totems being "indestructable" under rare circumstances
+- Fixed tribolt not restoring pitch correctly when firing
+- Fixed Instagib spawning weapons in non QCDE-dedicated maps
+- Fixed some items falling through 3d floors at the start of duels
+- Potentially fixed the "weapon desync" when player finishes using an "ability weapon" (E.G. Doomslayer or Sorgaul)
+- Fixed "Readme" music playing in intermission
+- Fixed GZDBuilder tags for Light Armor showing +25 instead of current +50ap
+- Fixed potential offset issue in RL's firing animation
+- Fixed brown smudge in Lo Wang's low res portrait
+- QCDEmaps: Fixed bad render of "upper" part of Bloodrun's patio
+- Fixed spectator bug where champions would show stack as "100/0" until they respawned
+- Fixed rare "Already opening a lootbox" message on level start 
+- Fixed double dave bug
+
+Misc
+- You can "flip page" in the in-game champion info screen to read the lore for the champion
+- QCDEmaps: Added Megahealth and Heavy armor pedestals in all maps
+- Added obituary to Nyx telefrag after ghostwalk
+- Added a warning when using a non-standard damage skill in PvP games
+- Added a couple new lootboxes rewards
+- Adjusted visual size of health, armor and weapon pickups
+- Added "AY AY AY" Duke pain sound. You're welcome
+- Zedek's ability now has a 1st person sword swinging animation. Doesn't alter behaviour of ability at all
+- Fixed typo on Keel's grenade obituary
+- "Dead Marine" decorations now shows dead QCDE champions rather than Doom Marine
+- Fixed Lo Wang not appearing in the champion overview in the Manual
+- Baron of Hell, Hell knight and Cacodemon have colored blood
+- Improved bandwidth usage for net games
+- Added new voice lines to Zedek
+- "QCDE Options" menu reorganized
+
+
+---------------------------------------------------------------------
+
+
+V1.4.0a (Jul 03 2018)
+
+(Nano silent-update)
+- Updated Readme file to address lack of credits
+- All .bat files load the custom wad/pk3s after QCDE itself, which allows to run the HD faces and voxel addons by dragging them into 
+  the .bat files, along with mapsets and whatever else thrown at them
+
+
+---------------------------------------------------------------------
+
+V1.4.0 (Jun 28 2018)
+
+New
+- New champion: Lo wang
+- QCDEmaps: New duel map "Toxicity" (QCDL05)
+- QCDEmaps: New map "Cure" (QCDE10)
+- New addon: QCDE voxel pack (by Ivory Duke and Barbarossa)
+
+Quality of Life
+- HUD in team games highlight your team color (in the scoreboard) to better show which team you belong to
+- Duel Spectator HUD shows weapons for both players
+- QCDEmaps: Removed Railgun from "Lost Rail" and renamed it to "Lost World"
+- QCDEmaps: Adjusted geomety/frames in Lost World for better map navigation (less "got stuck in wall/floor details")
+- QCDEmaps: Fixed an odd spot where a Light champion could fit (and get trapped) to the left of the tribolt TP's frame in Aerowalk
+- QCDEmaps: Improved teleport activation range on all QCDEmaps, to get stuck less in teleporter frames
+- QCDEmaps: Drastically improved teleporters on all QCDEmaps where the TP was under/above 3d floors (you no longer need to be 
+  touching the floor to teleport)
+- QCDEmaps: Galena can no longer put totems behind teleporters; they're either visible or impossible to put behind the TP 
+- QCDEmaps: Phrantic's dynamic light coloring adjusted to better identify the different corridor levels (blue=lower, green=mid, orange=top)
+- QCDEmaps: Removed upper ledge that prevented "easy" rocketjump to heavy armor in Aerowalk
+- QCDEmaps: Improved Mega Health pickup-ability in Longest Yard
+- QCDEmaps: Sky texture in Blood Covenant is now seamless (courtesy of RoosTer)
+- Duke Nukem now shows the third person animation of kicking when doing so
+
+Balance:
+- DM Shotgun and Super Shotgun spread equalized, and narrowed from 6.5 degrees to 5.0
+- DM starting Shotgun damage increased from 60 to 70
+- DM Railgun unzoomed damage increased from 80 to 90
+- Tribolt now behaves like in QC, bolts detonate after 0.5 seconds after being fired
+- Light armor from 25 to 50ap
+- Light armor respawn time from 15sec to 30
+- Descreased chance to find Light Armors in ammo pools in PvE
+- Nerfed Gauntlet range by 20%
+- Menelkir's minion transformation from doll to Maulotaur decreased from 1.4s to 0.8s
+- Caleb stack changed from 125/50 (hp/ap) to 100/75
+- In PvE, Caleb heals a bit more when killing monsters
+- QCDEmaps: Adjusted amount and position of hourglasses in "Fortress in the Void"
+
+Bugfixes
+- Fixed "Aeod like" randomizer not working properly
+- Fixed Inquisitor's dodge thrust bugging after death
+- Fixed zombieman class monsters not dropping ammo when killed by a non-player
+- QCDEmaps: Fixed some bad texture offsets in Phrantic
+- QCDEmaps: Fixed QCDE green wall torches being blue
+- QCDEmaps: Minor texture alignment issues fixed in Chasm
+- QCDEmaps: Minor texture alignment issues fixed in "Fortress in the Void"
+- Fixed Inqusitor help screen reporting him as a "medium" champ
+
+Misc
+- Keel's grenades now have an obituary
+- Added a slider for champion verbosity (how often they auto-taunt)
+- Auto-taunts are syncronized between clients
+- Improved outline sprites for champions (courtesy of Ivory Duke)
+- Big hourglass now uses a different sprite, to be somewhat discernible from regular hourglasses
+- Slightly reorganized QCDE options
+
+
+---------------------------------------------------------------------
+
+V1.3.0 (May 18 2018)
+
+New
+- New champion: Sarge
+- New champion: Keel
+- QCDEmaps: New duel map "Phrantic" (QCDL04)
+- QCDEmaps: New map "Furious Heights" (QCDE08)
+- QCDEmaps: New map "Lost Rail" (QCDE09)
+- New PvE shuffling mode: One Theme Per Map
+
+Quality of Life
+- QCDEmaps: Maps were renamed/divided into duel exclusive maps (QCDL##) and FFA/General purpose (QCDE##) to avoid rotating into duel maps 
+  in FFA. See readme of QCDEmaps for the detailed list
+- Spectators get "Bloody screen" when the player being spectated takes damage
+- Made FFA HUD scoreboard always show first place when you're not it
+- Added dynamic light to tribolt projectiles when they're in "waiting phase" to detonate
+- Reduced volume of intermission music
+- In all MP modes, players are forced to respawn 10 seconds after death
+
+Balance
+- Corvus can no longer overstack from small armors
+- Ranger's cooldown from 20 to 25sec as in QC
+- Zedek's projectile speed and damage increased
+- QCDEmaps: Adjusted weapon spawn points in Morpheus
+
+Bugfixes
+- Fixed Durandal getting too much HP from Mega Health
+- Fixed Instagib typo in alias
+- Gauntlet insta-gibs in that mode
+- QCDEmaps: Fixed RL jumppad not playing sound when used in Vertical Vengeance
+- Fixed "sv_weaponstay 1" making monster-dropped weapons unpickable if you already had one
+
+Misc
+- Reorganized lootboxes rewards
+- Added railgun impact sound (only works on walls, not on floor/ceilings)
+- Champion descriptions now contain some lore about each champion (Courtesy of Ivory Duke)
+
+Known Issues
+- "Show Champion Information" key doesn't work on GZDoom
+
+
+
+---------------------------------------------------------------------
+
+V1.2.0 (Apr 20 2018)
+
+New
+- New champion: Durandal
+- New monster set: Doom 2016 (D4T based)
+- Instagib mode now supported
+- Buckshot mode now supported
+- QCDEmaps: New duel map "Fatal Instinct" by RoosTer
+- QCDEmaps: New map "Morpheus" by RoosTer
+- QCDEmus: Five new songs. Grabbag, Marathon 2: Durandal theme, G.M.G, Vyper & Wraith.
+
+Quality of life
+- Menelkir's minotaur (Dave) is team colored now
+- All player jump sounds volume decreased, and limited the range at which they can be heard (was too big)
+- Duke's voice volume lowered (was way louder than the rest)
+- Spectator: Added powerup timers (mega, heavy, quad/prot)
+- Spectator: in duel, you can see at the top portraits, stacks and ability timers for both players
+- Rocket's explosions now fade out much faster
+- Added an option to turn off weapon firing recoil
+- Added an option to turn off weapon firing flash
+- Added an option for LG beam transparency in 1st person (Fully visible, 50%, invisible)
+- QCDEmaps: The longest yard has a few railings to prevent falling in the LG/SSG/RG platforms
+- QCDEmaps: Improved teleporter detection in Bloodrun and Blood covenant
+
+Balance
+- Duke's active ability projectiles speed buffed
+- Duke's active ability projectiles damage buffed
+- Duke's active ability freeze players with 5 hits, instead of 6
+- Duke's active ability kick damage buffed
+- Duke's passive ability gives more health per pickup
+- Doomslayer's BFG shot's in-flight melts armor 60% faster
+- Doomslayer's BFG shot direct damage increased from 120 to 200
+- Doomslayer's BFG shot indirect damage (explosion only) increased from 50 to 60
+- Kane's crouchsliding lasts a bit less 
+- Kane's crouchsliding is slightly slower
+- Menelkir's minotaur (Dave) can be frozen by Duke's ability
+- Menelkir's minotaur (Dave) takes a bit longer to transition from doll to full minotaur
+- Terminator's rockets partially "pierce" Inquisitor's active ability protection (1st stage only)
+- Nerfed Ranger's radius of Dire Orb detonation (telefrag detection remains unchanged)
+- Zedeks's ability: Direct impact of a gust-projectile deals 50dmg over time
+- Zedeks's ability: Direct impact of a gust-projectile pushback greatly reduced
+- Zedeks's ability: Burning spot deals increasing radius damage, starting from zero (no more insta 150+ damage when used at point blank)
+- Zedeks's ability: Burning spot max damage increased 20%
+- Zedeks's ability: Cooldown decreased from 40 to 35 seconds
+
+Bugfixes
+- Fixed FFA, 1st player not seeing 2nd place in scoreboard
+- Fixed Kane playing Doomguy (original doom) xdeath scream
+- Fixed Kane's crouchlide being activated in odd situations
+- Fixed rare cases of Kane's corpses playing crouchlide sound forever
+- Fixed multiple footsteps bug when "sv_forcerespawn true" (no more rompy-stompy)
+- Fixed players dropping shards too late when "sv_forcerespawn true", causing them to pick their own death-shards on next life
+- Fixed "sv_weaponstay true" not working
+- Fixed Sorgaul's active ability not looping the active sound
+- Fixed bug where sometimes on killing a player, damage numbers would erroneously show 1000+ damage (note that this damage was never dealt,
+  was only a visual bug)
+- Fixed Bitterman's armor-regen-power speed doubling under rare circumstances
+- Fixed some active abilities using ammo of current weapon
+- Fixed frozen zombieman class monsters not dropping ammo
+- Fixed cases in PvE when reaching a new map would decrease ammo for bullets or nails depending on the starting weapon
+- QCDEmaps: Longest yard, fixed being able to get to quad from first jumpad instead of going through the usual 2
+- QCDEmaps: The chasm, fixed a couple spawns where heavy players would be stuck
+- QCDEmaps: Vertical vengeance, fixed geometry that would get players stuck when using jumppads to mid level too close to the wall
+- QCDEmaps: Vertical vengeance, fixed Light Champs being able to fall through east door track
+- QCDEmaps: Vertical vengeance, fixed doors not playing "door sounds"
+- QCDEmaps: Aerowalk, fixed missing sky texture in software renderer
+
+Misc
+- Bosses (Cyberdemon and Mastermind classes) scale health according to how many players there are in coop
+- Added autofilling DM games with bots (configurable in console via sv_minplayers)
+- Adjusted DM dropped shards duration from 8 to 10 seconds (as in QC)
+- Adjusted DM dropped weapon duration from 10 to 15 seconds (as in QC)
+- Adjusted sprite size for players to better match their hitboxes
+- CTF: Completely forbidden flag dropping when attempting to use active ability, as it was causing too many issues
+- Reworked projectile firing position, to match crosshair better (at slight cost of "visual fidelity")
+- QCDEmaps: map introductions disappear faster
+- Footsteps attenuation reworked for better directional audio-location
+
+
+
+
+---------------------------------------------------------------------
+
+V1.1.0 (Mar 16 2018)
+
+New
+- Added Duke Nukem Champion
+- QCDEmaps: New duel map, Aerowalk by RoosTer
+- QCDEmaps: New duel map, Vertical Vengeance by RoosTer
+- New chat sound. Q3-4Life <3
+- Scoreboard for free-flight spectating
+- Quake Champions-like beep sound when you take damage
+- Optional blood smears in the HUD when taking damage
+
+Quality of life
+- Added red outlines to champions in all DM modes
+- Adjusted blue color outlines of champions for better visibility
+- Sorgaul now plays a looping sound while ability is active
+- Slighly reduced volume of titlemap music
+- Reordered default weapon priority
+- Terminator has a 3rd person FX to display he's using his ability
+- Friendly/enemy Galen totem coloration is more pronnounced now
+- Scoreboard and timer showing while free-flight spectating
+
+Balance
+- Normalization of speed for all champions (all closer to a central speed value)
+- Protection powerup damage absorption from 75% to 60% (ATQCMP: Akin To QC's March Patch)
+- DM zoomed Railgun damage from 90 to 100 (ATQCMP)
+- DM zoomed HMG DPS equalized to unzoomed (damage from 15 to 20) (sort of ATQCMP)
+- DM starting Machinegun damage from 8 to 9 (ATQCMP)
+- Tribolt rate of fire from 1.1 to 1.0 seconds (ATQCMP)
+- Inquisitor dodge thrust slightly buffed
+- Menelkir's Maulotaur aggressivenes increased
+- Menelkir's cooldown from 50 to 40 seconds
+- Menelkir's hourglass after kill spawn faster
+
+Bugfixes
+- Fixed looping sounds still playing after death in some instances
+- Fixed sv_nodrop misbehaving
+- Fixed timer not showing up for spectators
+- Fixed scoreboard showing -999 frags for absent player
+- Fixed Sorgaul not showing "Big champ" warning
+- Fixed Caleb's footsteps being a bit too loud
+- Fixed jumppads being extremely loud
+- "Teleport dropper" should spawn monsters stuck in walls less often
+- QCDEmaps: fixed bad texture alignment in QCDE01
+- QCDEmaps: fixed bad map name on QCDE07 introduction
+
+Misc
+- Added more Caleb taunts
+
+---------------------------------------------------------------------
+
+V1.0.3 (Mar 02 2018)
+
+Quality of Life
+- Added outlines for blue/red teams in team games
+- Sorgaul's ability visual impact decreased
+- Weapon-firing screen flash intensity decreased
+- Chat bubble was made smaller
+
+---------------------------------------------------------------------
+
+V1.0.2 (Feb 23 2018)
+
+Balance
+- Bitterman's active can overstack +25 armor
+- Bitterman got a 2nd passive: any overstack degenerates much slower
+
+Quality of Life
+- Champion info screen displays mod version
+
+Bugfixes
+- Fixed instances of overstack not showing numerically in the HUD
+- Fixed spectator hud showing garbage data
+- Fixed speedometer as spectator showing garbage data
+- Fixed ghostwalking Nyx being somewhat visible in software renderer
+- Fixed Zombieman class monsters not dropping ammo
+- Fixed Railgun playing weak hitbeep sound when hitting non-bleeding monsters
+- Hopefully fixed damage numbers stopping to work
+- Fixed weapons sometimes dealing +-1 damage in DM
+
+General
+- Removed uunecessary reminder to bind starting weapon
+- Fixed guide showing outdated info for Caleb's abilities
+
+---------------------------------------------------------------------
+
+V1.0.1 (Feb 15 2018)
+
+Balance
+- Caleb no longer gets damage protection while using active ability
+- Caleb heals 50hp per player kill instead of full health while using active
+- Zedek's Quietus fireballs deal less damage on impact, AOE damage remains the same
+- Zedek's Quietus fireballs thrust players away on impact
+- Zedek's cannonball passive's damage buffed
+- Doomslayer's BFG after firing, takes less time to restore normal weapons
+- Machineguns' accuracy slightly nerfed
+- LG kickback halved
+- SuperNailgun kickback reduced ~20%
+
+Quality of Life
+- Starting weapon can be selected via QCDE options or in-game
+- Starting weapon preference is saved between levels and sessions
+- Weapon bar supports 16:10 resolutions
+
+Fixes
+- Fixed Tribolt having higher selection priority than Rocket Launcher
+- Hourglasses no longer are considered for Item Count %
+- Fixed Gauntlet bad offset when firing
+
+Other
+- Weapon colors/shading tweaked (courtesy of Abysswalker)
+
+Things we can't fix :(
+- Bad HUD while spectating. SBARINFO (HUD language) doesn't discriminate between spectators and non-spectators. 
+
+
+---------------------------------------------------------------------
+
+V1.0
+
+Initial Release
+
+
+---------------------------------------------------------------------
