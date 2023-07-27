@@ -736,7 +736,6 @@ Script "QCDE_Ability_Doomslayer" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Unzoom if using toggle zoom
 	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	//Give and select fake weapon
 	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	TakeInventory("SlayerBFG",1);
@@ -839,6 +838,8 @@ Script "QCDE_Ability_Caleb" (void)
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
 
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	//Unzoom if using toggle zoom
+	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
 	SetWeapon(weaponList[w]);
 	TakeInventory("CalebDoll",1);
 	TakeInventory("CalebDollBot",1);
