@@ -4,7 +4,6 @@ Changelog
 
 V3.0 (August ## 2023)
 
-
 General:
 - Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
 - Reworked all champions movement mechanics. Most champions gained VQ3 movement. Menelkir, Doom Slayer, Corvus, Galen and Zedek kept the original Doom movement, but lost some air acceleration. Durandal, Dusk Dude and Eradicator gained CPM movement. Kane Crouch Slide is using the engine implementation and no longer deals damage when bumping into enemies. Freeman also gained Crouch Slide, but it's slower than what Kane has, but lasts longer. Nyx, Doom Slayer, Inquisitor and Major are using the engine implementation for Wall Jump, Double Jump, Thrust Dodge and Wall Climb respectively. Bitterman gained a Ramp Jump movement mechanic, similar to Quake 2. Eleena and Postal Dude jump mechanics were reworked to make them lagless.
@@ -17,6 +16,7 @@ General:
 - Refactored ammo on pickup in PvP to work like in Quake Champions.
 - Reworked weapon respawn logic. All weapons except BFG respawn after 1 second. In duel, the weapons respawn after 5 seconds instead. The respawn time can also be configured using `sv_weaponrespawn` cvar.
 - Rocket Launcher, Lightning Gun, Railgun and BFG weapon slots were moved up. Make sure to rebind your controls.
+- Added an option to render the game at true horizontal fov (previously horizontal fov was about 15% smaller).
 - Integrated the medals addon. Medals can be toggled using the `cl_qcmedals` clientside cvar.
 - Integrated the item respawn timers addon. It can be toggled on server using the `sv_showItemTimers` cvar.
 - Integrated the "Stack Left" addon. It can be toggled on server using the `sv_showStackLeft` cvar.
@@ -31,6 +31,8 @@ General:
 - Completely replaced old Menelkir sounds with Death Knight's from QC.
 - Replaced Zedek painsounds and grunts with sounds from Painkiller.
 - Replaced Caleb active ability sounds, changed some of his voicelines to higher quality ones.
+- Replaced Lo Wang sounds with higher quality ones.
+- Added dedicated powerup pickup sounds for Quad and Protection.
 - QC:DE now automatically configures cvars based on gamemode, no need to do that manually anymore.
 - Removed the "minimum 4 players" requirement for Powerups and BFG.
 - Made the intro track controllable by music sound option.
@@ -41,6 +43,8 @@ General:
 - Made player outline colors configurable. You can now set any color to yourself, but you can also override colors for your enemies and allies to any color you want.
 - All default and ability weapon sprites have been extended to resolve them being cropped when using weapon sway.
 - Default Gauntlet, Lightning Gun and BFG now play a prepare animation when selected.
+- Small and large health bubbles now have more unique sprites.
+- New active ability icons for all champions.
 - QCDE OST can now be turned off in the Sound menu.
 
 Balance:
@@ -56,7 +60,7 @@ Balance:
 - Eradicator no longer receives his bonuses from health, because he gained CPM movement instead.
 - Durandal can no longer see invisible players in PVP, because he gained CPM movement instead. Infra-Chromatic Unveil passive still works against invisible monsters in PVE.
 - Corvus ability now has 3 charges, but it lasts 2 seconds in PvP and 5 seconds in PvE.
-- Lucienne now has a 3 seconds cooldown between using her abilities.
+- Lucienne now has a 2 seconds cooldown between using her abilities.
 - Nerfed Duke active projectile speed from 32 to 25 units, bounce count from 3 to 2, ability cooldown from 40 to 45 seconds, ability duration from 7 to 4 seconds. Required freeze balls till freeze from 5 to 6, freeze duration from 3 to 1 second.
 - Nerfed Freeman Extraction passive. It now requires to stay alive for 60 seconds, and spawns the player with 25 hp and one starting weapon.
 - Increased Caleb ability spread from 1.2 to 1.3, but decreased self damage on miss from 10 to 5.
@@ -95,8 +99,10 @@ Maps:
 - Added "The Struggle", "CTF Run" and "Fatal Error" for Capture the Flag gamemode (QCTF01, QCTF02 and QCTF03 respectively)
 - Added "Outpost", "Hangar" "Cathedral" and "Asteroid Garden" for Invasion gamemode (QCIN01, QCIN02, QCIN03 and QCIN04 respectively)
 - Retextured QCDL02 "Aerowalk"
+- Added second Rocket Launcher spawn and moved Heavy Machinegun on QCDE08 "Furious Heights"
 - Reworked map scripts like jumppads and teleports to make them feel lagless in multiplayer
 - Fixed multiple misaligned textures and lights on almost every map
+- Added Heavy and Mega spawn foundation decorations to maps that didn't have them
 
 Bug fixes:
 - Fixed some effects like the overhead powerup or blood being visible to their owner.

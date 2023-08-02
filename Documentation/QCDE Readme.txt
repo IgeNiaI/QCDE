@@ -4,7 +4,7 @@ Primary purpose         : Single & Multiplayer
 ==================================================================================
 Title                   : QC: Doom Edition
 Filename                : QCDEv3.0.pk3
-Release date            : July ##th 2023
+Release date            : August ##th 2023
 Author                  : DBThanatos, Michaelis, geNia
 Email Address           : DBThanatos@hotmail.com, Michael.is.D4T@gmail.com, geniann93@gmail.com
 Other Files By Author   : *DBThanatos: "Quake4 Lightning Fast Mod Doom Edition",
@@ -408,6 +408,8 @@ anvi & Hvellor          : Various sound adjustments
 N4h                     : Various sprite adjustments
 
 Dzierzan                : Shadow Warrior high quality sound effects
+
+ako                     : Assistance with Unreal Tournament music addon
 
 Digital Dialect         : Adrenix Textures
 
