@@ -2903,11 +2903,11 @@ Actor QCBlazkowicz : QCPlayerMedium
 		Goto DefSee // for preview screen and prediction
 
 		ColoredSee:
-			RP21 ABCD 3
+			RP21 ABCD 4
 			RP21 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
-			QP21 ABCD 3
+			QP21 ABCD 4
 			QP21 A 0 A_JumpIf(true,"Spawn") // to catch color
 			Loop
 
