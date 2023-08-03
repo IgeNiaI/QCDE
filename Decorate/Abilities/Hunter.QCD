@@ -195,7 +195,7 @@ Actor OverTraced : GetTraced
 Actor HunterTrace : FX
 {
 	RenderStyle Add
-	Alpha 0.5
+	Alpha 0.4
 	+DONTBLAST
 	+SERVERNETID
 	VisibleToPlayerClass QCHunter
@@ -249,6 +249,13 @@ Actor HunterTrace : FX
 		"####" D 0 A_Turn(0) Goto Fade
 
 	Fade:
+		"####" "#" 0 A_SetScale(scalex * 0.96, scaley * 1.02)
+		"####" "##" 1 A_FadeOut(0.01)
+		"####" "#" 0 A_SetScale(scalex * 1.00, scaley * 1.00)
+		"####" "##" 1 A_FadeOut(0.01)
+		"####" "#" 0 A_SetScale(scalex * 1.04, scaley * 0.98)
+		"####" "##" 1 A_FadeOut(0.01)
+		"####" "#" 0 A_SetScale(scalex * 1.00, scaley * 1.00)
 		"####" "##" 1 A_FadeOut(0.01)
 		Loop
 	}
