@@ -759,7 +759,7 @@ Actor QCNailStrong : FastProjectile
 		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Explode(7,32,XF_HURTSOURCE,0,32)
 		TNT1 A 0 A_RadiusThrust(17,32,RTF_AFFECTSOURCE|RTF_THRUSTZ,32)	//extra thrust because damage thrust alone is not enough
-		TNT1 A 1 // Need the actor to live one more tick so that a proper obituary message is shown
+		TNT1 A 99 // We need this for proper rocket jump unlagged when exploding too soon
 		Stop
 	}
 }
