@@ -50,7 +50,7 @@ Actor PostalCowDropProc : CustomInventory
 		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlace",0,0,0,-10, FPF_UNLAGDEATH)
 		Stop
 	DM:
-		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10, FPF_UNLAGDEATH)
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10, FPF_UNLAGDEATH|FPF_TRANSFERTRANSLATION)
 		Stop
 	}
 }
@@ -149,7 +149,7 @@ Actor PostalCowHead : QCWeapon
 		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlace",0,0,0,-10, FPF_UNLAGDEATH)
 		Stop
 	SecondaryDM:
-		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10, FPF_UNLAGDEATH)
+		TNT1 A 0 A_FireCustomMissile("CowHeadProjectilePlaceDM",0,0,0,-10, FPF_UNLAGDEATH|FPF_TRANSFERTRANSLATION)
 		Stop
 	}
 }
