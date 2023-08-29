@@ -167,8 +167,7 @@ Script "DamageFloor" ( int damage, int timeout )
 
 script "BotPusher" ( int angle, int xy_push, int max_height, int min_height )
 {
-
-    if( PlayerIsBot( PlayerNumber() ) )
+    if( PlayerIsBot( PlayerNumber() ) && GetActorProperty( 0, APROP_Health ) > 0 )
     {
 		if( max_height == 0 || max_height >= GetActorZ(0) >> 16 )
 		{
