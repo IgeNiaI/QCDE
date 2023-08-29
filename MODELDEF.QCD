@@ -74,9 +74,9 @@ Model ShieldGuyTracer
 Model RocketTarget
 {
 	Path "MD3/Projectiles"
-	Model 0 "Target.md3"
-	Skin 0 "Target.png"
-	Skin 1 "Target.png"
+	Model 0 "target.md3"
+	Skin 0 "target.png"
+	Skin 1 "target.png"
 	Scale 22.0 22.0 22.0
 	ZOffset 3
 	FrameIndex X060 A 0 0
@@ -86,9 +86,9 @@ Model RocketTarget
 Model AirStrikeTargetCircle
 {
 	Path "MD3/Projectiles"
-	Model 0 "Target.md3"
-	Skin 0 "Target.png"
-	Skin 1 "Target.png"
+	Model 0 "target.md3"
+	Skin 0 "targetMajor.png"
+	Skin 1 "targetMajor.png"
 	Scale 22.0 22.0 22.0
 	ZOffset 3
 	FrameIndex QP26 Z 0 0
@@ -98,9 +98,9 @@ Model AirStrikeTargetCircle
 Model RocketZoomer
 {
 	Path "MD3/Projectiles"
-	Model 0 "Target.md3"
-	Skin 0 "Target2.png"
-	Skin 1 "Target2.png"
+	Model 0 "target.md3"
+	Skin 0 "target2.png"
+	Skin 1 "target2.png"
 	Scale 22.0 22.0 22.0
 	ZOffset 3
 	FrameIndex X060 A 0 0
