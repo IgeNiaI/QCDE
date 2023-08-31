@@ -438,6 +438,7 @@ Actor QCRocketPlayer
 		Goto DamageFX
 
 	DamageFX:
+		TNT1 A 0 A_StopSound(CHAN_5) // Stop whoosh sound
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebris",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,0,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("QCRocketExplosion",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -493,6 +494,7 @@ Actor QCRocketPlayerDM : QCRocketPlayer
 		Goto DamageFX
 
 	DamageFX:
+		TNT1 A 0 A_StopSound(CHAN_5) // Stop whoosh sound
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebrisDM",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,0,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("QCRocketExplosionDM",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
