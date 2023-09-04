@@ -1147,7 +1147,7 @@ FreeformMenu ZA_JoinMenu
 
 	Command {
 		NotOnTitlemap
-		Pos		55, 206					Text				"RESPAWN"			Background			BT28060
+		Pos		55, 206					Text				"SELECT"			Background			BT28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Command				joingame0
 		Padding	0, 2					SelectedFontColor	Yellow
