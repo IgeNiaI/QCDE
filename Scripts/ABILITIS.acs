@@ -2393,6 +2393,7 @@ Script "QCDE_Ability_Hunter" (void)
 	delay(GetDuration()); //duration of active ability
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("HunterCleanerProc",1);
+	Thing_Remove(PlayerNumber() + SKULL_TIDBASE);
 	SetNetworkReplicationFlags( 0 );
 }
 
