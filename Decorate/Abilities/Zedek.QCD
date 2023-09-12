@@ -162,9 +162,9 @@ Actor QuietusFireSpot
 			TNT1 A 0 A_Jump(256,"ContinueLooper")
 		ContinueLooper:
 			TNT1 A 0 A_SetUserVar(user_counter, user_counter+1)
-			TNT1 A 5 Light("GreenMediumFlicker3") A_Explode(10,96,0,0,96)
-			TNT1 A 1 Light("GreenMediumFlicker3") A_Explode(10,96,0,0,96)
-			TNT1 A 3 Light("GreenMediumFlicker3") A_SpawnItemEx("QuietusADFireFX", random(8,-8),random(8,-8),0, 0,0,frandom(0.1,0.6), 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE,0,0)
+			TNT1 A 5 Light("WhiteSmallFlicker3") A_Explode(10,96,0,0,96)
+			TNT1 A 1 Light("WhiteSmallFlicker3") A_Explode(10,96,0,0,96)
+			TNT1 A 3 Light("WhiteSmallFlicker3") A_SpawnItemEx("QuietusADFireFX", random(8,-8),random(8,-8),0, 0,0,frandom(0.1,0.6), 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE,0,0)
 			Goto Looper
 
 	Sounder:
@@ -174,12 +174,12 @@ Actor QuietusFireSpot
 
 	Ender:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Zedek/FireCrackleFadeOut",CHAN_BODY,0.3,0,7)
-		TNT1 A 10 Light("GreenMediumFlicker3")
-		TNT1 A 2 Light("GreenMediumPoint2")
-		TNT1 A 2 Light("GreenMediumPoint3")
-		TNT1 A 2 Light("GreenSmallPoint1")
-		TNT1 A 2 Light("GreenSmallPoint2")
-		TNT1 A 2 Light("GreenSmallPoint3")
+		TNT1 A 10 Light("WhiteSmallFlicker3")
+		TNT1 A 2 Light("WhiteSmallPoint2")
+		TNT1 A 2 Light("WhiteSmallPoint3")
+		TNT1 A 2 Light("WhiteSmallPoint1")
+		TNT1 A 2 Light("WhiteSmallPoint2")
+		TNT1 A 2 Light("WhiteSmallPoint3")
 		Stop
 	}
 }
@@ -190,13 +190,13 @@ Actor QuietusFireSpot_DM : QuietusFireSpot
 	States
 	{
 		ContinueLooper:
-			TNT1 A 5 Light("GreenMediumFlicker3") A_Explode(user_dmg,96,0,0,96)
-			TNT1 A 1 Light("GreenMediumFlicker3")
+			TNT1 A 5 Light("WhiteSmallFlicker3") A_Explode(user_dmg,96,0,0,96)
+			TNT1 A 1 Light("WhiteSmallFlicker3")
 			TNT1 A 0 A_JumpIf(user_dmg>=12,3)
 			TNT1 A 0 A_SetUserVar(user_dmg,user_dmg+3)
 			TNT1 A 0 A_SetScale(scalex+0.075)
 			TNT1 A 0 A_SetUserVar(user_counter, user_counter+1)
-			TNT1 A 3 Light("GreenMediumFlicker3") A_SpawnItemEx("QuietusADFireFX", random(8,-8),random(8,-8),0, 0,0,frandom(0.1,0.6), 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION,0,0)
+			TNT1 A 3 Light("WhiteSmallFlicker3") A_SpawnItemEx("QuietusADFireFX", random(8,-8),random(8,-8),0, 0,0,frandom(0.1,0.6), 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION,0,0)
 			Goto Looper
 	}
 }
