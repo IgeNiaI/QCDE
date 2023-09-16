@@ -271,6 +271,7 @@ Actor QCBFG : QCWeapon
 
 		FlashCheckSound:
 			"####" A 0 A_JumpIfInventory("PowerQuad",1,"QuadSound")
+			"####" A 0 A_JumpIfInventory("PowerTerminatorArtifact",1,"QuadSound")
 			Goto NormalSound
 
 			NormalSound:
@@ -456,6 +457,7 @@ Actor QCBFG : QCWeapon
 
 		GenericFlashChecks:
 			"####" A 0 A_JumpIfInventory("PowerQuad",1,"ChargeQuadSound")
+			"####" A 0 A_JumpIfInventory("PowerTerminatorArtifact",1,"ChargeQuadSound")
 			Goto ChargeNormalSound
 			ChargeNormalSound:
 				"####" A 0 A_JumpIfInventory("BFG_Charges",15,"PlayChargeMaxSound")

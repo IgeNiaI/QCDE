@@ -285,6 +285,7 @@ Actor QCShotgun : QCWeapon
 
 		FlashCheckSound:
 			TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"QuadSound")
+			TNT1 A 0 A_JumpIfInventory("PowerTerminatorArtifact",1,"QuadSound")
 			Goto NormalSound
 
 			NormalSound:
