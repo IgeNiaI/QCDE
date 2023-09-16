@@ -364,6 +364,7 @@ statusbar Fullscreen, forcescaled
 	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "AmmSlugs", 1170, 897; }
 	isSelected QCBFG 				, QCBFGDM				{ drawImage "AmmBfugs", 1170, 897; }
 	}
+	}
 
 	// Upgrades for current weapon
 	isSelected QCGauntlet		 { inInventory GNT_UG_Burn      { drawImage "APG_00_1",1237,901; }   inInventory GNT_UG_Omni      { drawImage "APG_00_2",1299,901; } }
@@ -376,7 +377,6 @@ statusbar Fullscreen, forcescaled
 	isSelected QCLightningGun	 { inInventory  LG_UG_Residue   { drawImage "APG_17_1",1237,901; }   inInventory  LG_UG_Static    { drawImage "APG_17_2",1299,901; } }
 	isSelected QCRailgun 		 { inInventory  RG_UG_Pierce    { drawImage "APG_19_1",1237,901; }   inInventory  RG_UG_Explosive { drawImage "APG_19_2",1299,901; } }
 	isSelected QCBFG 			 { inInventory BFG_UG_Rays      { drawImage "APG_21_1",1237,901; }   inInventory BFG_UG_Charge    { drawImage "APG_21_2",1299,901; } }
-	}
 
 	// Speedometer
 	inInventory Speedometer, 2 {
@@ -432,6 +432,7 @@ statusbar Fullscreen, forcescaled
 
 	// Ammo measure inherent to every individual weapon
 	// +59, +12 from SELECTOR to bar
+	inInventory not NoAmmoCount {
 	inInventory not RocketArena || Instagib {
 		inInventory QCMachinegun 		|| QCMachinegunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,360; }
 		inInventory QCShotgun			|| QCShotgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,430; }
@@ -444,6 +445,7 @@ statusbar Fullscreen, forcescaled
 		inInventory QCLightningGun		|| QCLightningGunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo 		, vertical, 1499,710; }
 		inInventory QCRailgun 			|| QCRailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo 		, vertical, 1499,780; }
 		inInventory QCBFG 				|| QCBFGDM				{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1499,850; }
+	}
 	}
 
 	// Weapon icons themselves
@@ -483,6 +485,7 @@ statusbar Fullscreen, forcescaled
 	}
 
 	// Ammo number near weapons
+	inInventory not NoAmmoCount {
 	inInventory not RocketArena || Instagib {
 		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM {
 			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 50 { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM	{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1489,400; } } else { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM		{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1489,400; } } }
@@ -512,6 +515,7 @@ statusbar Fullscreen, forcescaled
 		}}
 	}
 	}
+	}
 	} else {
 	inInventory not NoWeaponBar
 	{
@@ -537,6 +541,7 @@ statusbar Fullscreen, forcescaled
 
 	// Ammo measure inherent to every individual weapon
 	// +59, +12 from SELECTOR to bar
+	inInventory not NoAmmoCount {
 	inInventory not RocketArena || Instagib {
 		inInventory QCMachinegun 		|| QCMachinegunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,360; }
 		inInventory QCShotgun			|| QCShotgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,430; }
@@ -549,6 +554,7 @@ statusbar Fullscreen, forcescaled
 		inInventory QCLightningGun		|| QCLightningGunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo 		, vertical, 1599,710; }
 		inInventory QCRailgun 			|| QCRailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo 		, vertical, 1599,780; }
 		inInventory QCBFG 				|| QCBFGDM				{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1599,850; }
+	}
 	}
 
 	// Weapon icons themselves
@@ -588,6 +594,7 @@ statusbar Fullscreen, forcescaled
 	}
 
 	// Ammo number near weapons
+	inInventory not NoAmmoCount {
 	inInventory not RocketArena || Instagib {
 		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM {
 			inInventory QCBulletAmmo { inInventory QCBulletAmmo	, 30 { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM	{ drawNumber 3, QCFNT040, brite, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkgrey, QCBulletAmmo	, alignment(right), 1589,400; } } else { isSelected QCHeavyMachinegun	, QCHeavyMachinegunDM		{ drawNumber 3, QCFNT040, red, QCBulletAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT030, darkred, QCBulletAmmo, alignment(right), 1589,400; } } }
@@ -616,6 +623,7 @@ statusbar Fullscreen, forcescaled
 			inInventory QCShotgunDM || QCSuperShotgunDM	 { inInventory QCShellAmmo	, 10 { drawNumber 3, QCFNT030, darkgrey, QCShellAmmo	, alignment(right), 1589,470; } else {drawNumber 3, QCFNT030, darkred, QCShellAmmo	, alignment(right), 1589,470; } }
 		}}
 		}
+	}
 	}
 	}
 

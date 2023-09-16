@@ -181,6 +181,7 @@ function void GiveRocketArena(int ra)
 	}
 
 	GiveInventory("EndlessInfiniteAmmo",1);
+	GiveInventory("NoAmmoCount",1);
 }
 
 function void GiveLMS()

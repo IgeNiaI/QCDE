@@ -163,8 +163,7 @@ Script "QCDE_NewLife" (int firsttime)
 	bool pointgame = getCvar("teampossession") || getCvar("domination") || getCvar("skulltag");
 	bool ctf       = getCvar("ctf") || getCvar("oneflagctf");
 	bool duel      = getCvar("duel");
-	bool instagib  = getCvar("instagib");
-	bool rockarena = getCvar("rocketarena");
+
 	if(teamplay || teamlms || pointgame || ctf) {
 		GiveInventory("TeamDeathmatch", 1);
 		if(teamlms)   { maxScore = getCvar(  "winlimit"); if(!maxScore) maxScore =  10; }
@@ -183,8 +182,8 @@ Script "QCDE_NewLife" (int firsttime)
 			else
 				maxScore = 20;
 	}
-	if(instagib)  GiveInventory("Instagib",1);
-	if(rockarena) GiveInventory("RocketArena",1);
+	if(getCvar("instagib"))			GiveInventory("Instagib",1);
+	if(getCvar("rocketarena"))		GiveInventory("RocketArena",1);
 
 	// After all setup is done, we can launch the loops.
 	ACS_NamedExecuteAlways("QCDE_Tracker"				,0);
