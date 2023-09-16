@@ -33,10 +33,6 @@ server noarchive int rocketarena            = 0; // 1: RL, 2: SSG, 3: Unholy Tri
 server noarchive int qc_elderssoul          = 0; // QCDE's own "terminator" gameplay mode, allowing team play
 server noarchive int qc_freezetag           = 0; // Freeze enemies instead of kill, thaw allies with body heat
 
-// Mutators
-
-server noarchive bool sv_railjump			=  false; // Replaces Railgun zoom with an attack that pushes the player backwards
-
 // QCS
 
 server noarchive string qcs        = "";
@@ -110,7 +106,6 @@ server int skirm_skirmishgamemode = 3; // used in skirmish menu to setup gamemod
 server int skirm_skirmishmodifier = 0; // used in skirmish menu to setup modifier
 server int skirm_maxlives         = 3; // used in skirmish menu to setup lives limit
 
-server bool skirm_railjump			= false; // enable alt fire rail jump?
 server bool skirm_heavymachinegun	=  true; // spawn with Heavy Machinegun?
 server bool skirm_supershotgun		=  true; // spawn with Super Shotgun?
 server bool skirm_supernailgun		=  true; // spawn with Super Nailgun?

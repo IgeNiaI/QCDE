@@ -72,12 +72,6 @@ Script "QCDE_SetWeaponRespawnTics" (void)
 	SetResultValue(result);
 }
 
-// Activator: player
-Script "QCDE_RailJumpEnabled" (void)
-{
-	SetResultValue(GetCvar("sv_railjump"));
-}
-
 
 
 
@@ -464,7 +458,8 @@ Script "QCDE_ZoomCheckSelect" (void)
 
 Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, int buttons)
 {
-	if (!predicting && ((!CheckWeapon("QCRailgun") && !CheckWeapon("QCRailgunDM")) || !ACS_NamedExecuteWithResult("QCDE_RailJumpEnabled", 0)))
+	// Players only have the gauntlet and railgun in instagib, so just disable zoom for them
+	if (!predicting && !CheckInventory("Instagib"))
 	{
 		bool shouldZoomIn = !CheckInventory("WeaponZoomedToken") && justPressed;
 		bool shouldZoomOut = CheckInventory("WeaponZoomedToken") && GetCVar("cl_holdZoom") ? justReleased : justPressed;

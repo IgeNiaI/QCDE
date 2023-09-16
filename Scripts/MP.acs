@@ -742,7 +742,6 @@ function void setupModifier()
 	int modifier = GetCVar("skirm_skirmishmodifier");
 	int menu_skirmishmodifier = 0;
 	int rocketarena = 0;
-	bool railjump = false;
 
 	switch (modifier)
 	{
@@ -761,12 +760,8 @@ function void setupModifier()
 	}
 	}
 
-	if (GetCVar("skirm_railjump"))
-		railjump = true;
-
 	ConsoleCommand(strparam(s:"menu_skirmishmodifier ",		d:menu_skirmishmodifier));
 	ConsoleCommand(strparam(s:"rocketarena ",	d:rocketarena));
-	ConsoleCommand(strparam(s:"sv_railjump ",	d:railjump));
 }
 
 
