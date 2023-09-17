@@ -518,6 +518,8 @@ script "QCDE_LowAmmoAlert_CLIENT" (int sound, int text, int noammo) CLIENTSIDE
 		cameraPlayer -= 1000;
 	if (cameraPlayer != PlayerNumber()) terminate;
 
+	if (CheckActorInventory(cameraPlayer + 1000, "NoLowEffects")) terminate;
+
 	if(sound) AmbientSound("QC/UI/PlayerSounds/LowAmmoWarning", 127);
 
 	if(!text || GetCvar("screenblocks") >= 12) terminate;
@@ -539,6 +541,8 @@ script "QCDE_LowHealthAlert_CLIENT" (int sound, int text) CLIENTSIDE
 	else
 		cameraPlayer -= 1000;
 	if (cameraPlayer != PlayerNumber()) terminate;
+
+	if (CheckActorInventory(cameraPlayer + 1000, "NoLowEffects")) terminate;
 
 	if(sound) AmbientSound("QC/UI/PlayerSounds/LowHealthWarning", 127);
 

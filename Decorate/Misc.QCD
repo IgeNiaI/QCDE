@@ -23,7 +23,12 @@ Actor DegenerationSingleton : Token { Inventory.MaxAmount 999 Inventory.Interhub
 
 Actor Resurrected 	: Token {}
 Actor ImDead 		: Token {}
-Actor MapsPlayed    : Token { Inventory.MaxAmount 9999 Inventory.InterhubAmount 9999 }
+Actor MapsPlayed    : Token { Inventory.MaxAmount 9999	Inventory.InterhubAmount 9999 }
+Actor InDMHub		: Token { Inventory.MaxAmount 1		Inventory.InterhubAmount 0 } // To tell if the player is in DM Hub
+Actor HubReturn		: Token {} // To prevent certain scripts from multiplying when returning to a campaign Hub
+
+Actor HideHUD : Token {}
+Actor NoLowEffects : Token {} // given by DM Campaign HUB map to not play low ammo and low health effects when entering HUB map
 
 
 // These define HUD elements shown to player

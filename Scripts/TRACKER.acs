@@ -112,8 +112,9 @@ Script "QCDE_Return" Return
 	// Spectators: Please don't
 	if(PlayerIsSpectator(PlayerNumber())) terminate;
 
-	ACS_NamedExecuteAlways("QCDE_NewLife",0);
-	ACS_NamedExecuteAlways("QCDE_NewLife_BOT",0);
+	ACS_NamedExecuteAlways("QCDE_PlayerSpeed"			,0);
+	ACS_NamedExecuteAlways("QCDE_AbilityCooldown"		,0, -1); // continue cooldowns from last map
+	ACS_NamedExecuteAlways("QCDE_CleanUpAbilities"		,0);	//to clean up flag/token changes that occurred in the previous level
 }
 
 // This script is responsible for most effects that concern player.
@@ -130,12 +131,14 @@ Script "QCDE_NewLife" (int firsttime)
 	// vital first step: ensure class token and stack caps correctness
 	ACS("QCDE_ResetClass", firsttime);
 
+	int hubReturn = CheckInventory("HubReturn"); // To prevent certain scripts from multiplying when returning to a campaign Hub
+
 	ACS("QCDE_UpdateScores_CLIENTSIDE");
 	ACS_NamedExecuteAlways("QCDE_PlayerSpeed"			,0);
 	ACS_NamedExecuteAlways("QCDE_ConfigureMovement"		,0);
 	ACS_NamedExecuteAlways("QCDE_DM_HealthAndWeapons"	,0);
 	ACS_NamedExecuteAlways("QCDE_DM_PlayerCollision"	,0);
-	ACS_NamedExecuteAlways("QCDE_Degeneration"			,0);
+	if (!hubReturn) 	ACS_NamedExecuteAlways("QCDE_Degeneration"			,0);
 	ACS_NamedExecuteAlways("QCDE_PassiveAbility"		,0);
 	ACS_NamedExecuteAlways("QCDE_StartingArmor"			,0);
 	ACS_NamedExecuteAlways("QCDE_UpdateTotemCount"		,0);
@@ -144,8 +147,8 @@ Script "QCDE_NewLife" (int firsttime)
 	ACS_NamedExecuteAlways("QCDE_InitLCG"				,0);
 	ACS_NamedExecuteAlways("QCDE_RegiveKeys"			,0);
 	ACS_NamedExecuteAlways("QCDE_InitLMS"				,0);
-	ACS_NamedExecuteAlways("QCDE_TrackLowAmmo_CLIENT"	,0);
-	ACS_NamedExecuteAlways("QCDE_TrackLowHealth_CLIENT"	,0);
+	if (!hubReturn) 	ACS_NamedExecuteAlways("QCDE_TrackLowAmmo_CLIENT"	,0);
+	if (!hubReturn) 	ACS_NamedExecuteAlways("QCDE_TrackLowHealth_CLIENT"	,0);
 	ACS_NamedExecuteAlways("QCDE_AbilityCooldown"		,0, -1); // continue cooldowns from last map
 	ACS_NamedExecuteAlways("QCDE_UpdateMultiusePeriod"	,0);
 	ACS_NamedExecuteAlways("QCDE_StartingWeapon_Apply"	,0);

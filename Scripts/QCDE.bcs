@@ -34,8 +34,8 @@ str btos[2] = {"false", "true"};
 
 str dtot[2] = {"blue", "red"};
 
-function int IsPVE(void) { return GameType() <  GAME_NET_DEATHMATCH; }
-function int IsPVP(void) { return GameType() >= GAME_NET_DEATHMATCH; }
+function int IsPVE(void) { return GameType() <  GAME_NET_DEATHMATCH && !InCampaign(); }
+function int IsPVP(void) { return GameType() >= GAME_NET_DEATHMATCH || InCampaign(); }
 
 function int clamp(int x, int min, int max)
 {
@@ -699,46 +699,41 @@ function int IsKillerEligibleForKillBonus(void)
 // Classes ////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-typedef struct
+str champion[100] =
 {
-	str canon;
-} class_T;
-
-class_T champion[100] =
-{
-{"Ranger"    ,},
-{"Doomslayer",},
-{"Corvus"    ,},
-{"Kane"      ,},
-{"Caleb"     ,},
-{"Menelkir"  ,},
-{"Terminator",},
-{"Zedek"     ,},
-{"Inquisitor",},
-{"Bitterman" ,},
-{"Galen"     ,},
-{"Nyx"       ,},
-{"Sorgaul"   ,},
-{"DukeNukem" ,},
-{"Durandal"  ,},
-{"Keel"      ,},
-{"Sarge"     ,},
-{"LoWang"    ,},
-{"Grayson"   ,},
-{"Eradicator",},
-{"Blazkowicz",},
-{"Freeman"   ,},
-{"VorMatur"  ,},
-{"Eleena"    ,},
-{"Lucienne"  ,},
-{"Major"     ,},
-{"Hunter"    ,},
-{"Sam"       ,},
-{"Postal"    ,},
-{"Painkiller",},
-{"Intruder"  ,},
-{"Orbb"      ,},
-{"Brock"     ,},
+	"Ranger",
+	"Doomslayer",
+	"Corvus",
+	"Kane",
+	"Caleb",
+	"Menelkir",
+	"Terminator",
+	"Zedek",
+	"Inquisitor",
+	"Bitterman",
+	"Galen",
+	"Nyx",
+	"Sorgaul",
+	"DukeNukem",
+	"Durandal",
+	"Keel",
+	"Sarge",
+	"LoWang",
+	"Grayson",
+	"Eradicator",
+	"Blazkowicz",
+	"Freeman",
+	"VorMatur",
+	"Eleena",
+	"Lucienne",
+	"Major",
+	"Hunter",
+	"Sam",
+	"Postal",
+	"Painkiller",
+	"Intruder",
+	"Orbb",
+	"Brock"
 };
 // ^ insert more classes here
 
@@ -752,7 +747,7 @@ str cpnames[100] = {
 	"", // zero-length string serves as line break
 	"Kane"      ,"Caleb"     ,"Menelkir"  ,"Nyx"    ,"Durandal"  ,"Lo Wang","Eleena"    ,"Lucienne"  ,"Hunter" ,"Postal", "Orbb",         "",
 	"Ranger"    ,"Doomslayer","Corvus"    ,"Galen"  ,"Duke Nukem","Sarge"  ,"Grayson"   ,"Blazkowicz","Freeman","Painkiller", "Intruder", "",
-	"Terminator","Zedek"     ,"Inquisitor","Sorgaul","Bitterman" ,"Keel"   ,"Eradicator","VorMatur"  ,"Major"  ,"Sam", "Brock"            "",
+	"Terminator","Zedek"     ,"Inquisitor","Sorgaul","Bitterman" ,"Keel"   ,"Eradicator","VorMatur"  ,"Major"  ,"Sam", "Brock",          "",
 	"",
 	// ^ insert more classes here
 	// array should end with a zero-length string

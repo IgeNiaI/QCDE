@@ -33,7 +33,7 @@
 
 Script "MultiplayerCheck" (void)
 {
-	if(GameType() == 4)
+	if(GameType() == 4 || InCampaign())
 		SetResultValue(2); // team games have same weapons as DM
 	else
 		SetResultValue(GameType());
@@ -103,7 +103,7 @@ Script "iamamiwhoami" (void)
 
 Script "QCDE_DM_HealthAndWeapons" (void)
 {
-	if (GameType() < GAME_NET_DEATHMATCH) terminate; // only if game is DM
+	if (GameType() < GAME_NET_DEATHMATCH && !InCampaign()) terminate; // only if game is DM or DM Campaign
 
 	str unused = ""; // beats "DMToken" in case of broken string table
 	GiveInventory("DMToken", 1);
@@ -378,9 +378,9 @@ Script "QCDE_CalculatePlayerSpeed" (void)
 {
 	int sv_PlayerSpeed = GetCvar("sv_PlayerSpeed");
 
-	if (sv_PlayerSpeed == 0)
+	if (sv_PlayerSpeed == 0 || InCampaign())
 	{
-		if (GetCvar("deathmatch") || GetCvar("ctf") || GetCvar("oneflagctf") || GetCvar("skulltag") || GetCvar("domination") || GetCvar("customteamgame"))
+		if (InCampaign() || GetCvar("deathmatch") || GetCvar("ctf") || GetCvar("oneflagctf") || GetCvar("skulltag") || GetCvar("domination") || GetCvar("customteamgame"))
 			sv_PlayerSpeed = 80;
 		else
 			sv_PlayerSpeed = 100;
@@ -549,6 +549,7 @@ Script "QCDE_Players=0" OPEN
 {
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
 	if(GameType() == GAME_TITLE_MAP) terminate;
+	if(InCampaign()) terminate;
 
 	if (!GetCvar("sv_minplayers") && GetCVar("skirm_botscount"))
 	{

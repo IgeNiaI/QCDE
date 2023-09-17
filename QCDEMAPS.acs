@@ -367,3 +367,13 @@ function int clampByteAngle( int angle )
 
 	return angle;
 }
+
+// Wrapper for InCampaign() function from Q-Zandronum, so that mappers don't need to modify ACS files in UDB
+function bool QCDE_InCampaign(void) {
+	return InCampaign();
+}
+
+// Wrapper for SetActionScript() function from Q-Zandronum, so that mappers don't need to modify ACS files in UDB
+function void QCDE_SetActionScript(int tid, int action_button, str script_name) {
+	SetActionScript(tid, action_button, script_name);
+}

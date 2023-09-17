@@ -122,7 +122,7 @@ script "QCDE_VoiceLine" (int chance_percentage, int triggered_by_player, int whi
 	// Pick a random (or not) taunt and play it
 	int index = (Timer() % variety) + 1;//random(1, variety);
 	if(triggered_by_player && which > -1) index = ((which - 1) % variety) + 1;
-	str sound = strparam(s:"QC", s:champion[classid].canon, s:pagename, s:"Taunt", d:index / 10, d:index % 10); // always two digits at least
+	str sound = strparam(s:"QC", s:champion[classid], s:pagename, s:"Taunt", d:index / 10, d:index % 10); // always two digits at least
 	PlaySound(0,sound,CHAN_6,1.0,false,1.0);
 	//printbold(n:0, s:" is gloating with sample \c[white]", s:sound);
 	ACS("QCDE_VoiceLineSubtitle", classid, page, index);

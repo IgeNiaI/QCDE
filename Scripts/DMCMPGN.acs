@@ -1,0 +1,84 @@
+#library "DMCMPGN"
+#include "zcommon.acs"
+#include "AACS.acs"
+#import "QCDE.bcs"
+
+//=============================================================================
+//=============================================================================
+//=============================================================================
+//
+//
+//		SCRIPTS FOR SINGLEPLAYER DEATHMATCH CAMPAIGN A-LA Quake 3 Arena
+//
+//
+//=============================================================================
+//=============================================================================
+//=============================================================================
+
+
+bool playedBotJoinSound[64];
+
+script "QCDE_DMCMPGN_PlayBotJoinSound" ()
+{
+	int plr = PlayerNumber();
+	if (!playedBotJoinSound[plr] && PlayerIsBot(plr) && InCampaign() && GetGameModeState() <= GAMESTATE_WARMUP)
+	{
+		playedBotJoinSound[plr] = true;
+
+		str botName = GetCVarString("name");
+		if (!stricmp(botName, "Toxjq"))
+			PlaySound(0, "pro/Toxjq", CHAN_AUTO, 1.0, false, ATTN_NONE);
+		else if (!stricmp(botName, "COOLLER"))
+			PlaySound(0, "pro/Cooller", CHAN_AUTO, 1.0, false, ATTN_NONE);
+		else if (!stricmp(botName, "Rapha"))
+			PlaySound(0, "pro/Rapha", CHAN_AUTO, 1.0, false, ATTN_NONE);
+		else if (!stricmp(botName, "Cypher"))
+			PlaySound(0, "pro/Cypher", CHAN_AUTO, 1.0, false, ATTN_NONE);
+		else if (!stricmp(botName, "RAISY"))
+			PlaySound(0, "pro/Raisy", CHAN_AUTO, 1.0, false, ATTN_NONE);
+		else
+			PlaySound(0, getBotNameSound(GetCVar("playerclass")), CHAN_AUTO, 1.0, false, ATTN_NONE);
+	}
+}
+
+function str getBotNameSound(int classIndex)
+{
+	switch (classIndex)
+	{
+		case  0: return "champion/Ranger";
+		case  1: return "champion/DoomSlayer";
+		case  2: return "champion/Corvus";
+		case  3: return "champion/Galen";
+		case  4: return "champion/DukeNukem";
+		case  5: return "champion/Sarge";
+		case  6: return "champion/Grayson";
+		case  7: return "champion/Blazkowicz";
+		case  8: return "champion/Freeman";
+		case  9: return "champion/Painkiller";
+		case 10: return "champion/Intruder";
+		case 11: return "champion/Kane";
+		case 12: return "champion/Caleb";
+		case 13: return "champion/Menelkir";
+		case 14: return "champion/Nyx";
+		case 15: return "champion/Durandal";
+		case 16: return "champion/LoWang";
+		case 17: return "champion/Eleena";
+		case 18: return "champion/Lucienne";
+		case 19: return "champion/Hunter";
+		case 20: return "champion/Postal";
+		case 21: return "champion/Orbb";
+		case 22: return "champion/Terminator";
+		case 23: return "champion/Zedek";
+		case 24: return "champion/Inquisitor";
+		case 25: return "champion/Sorgaul";
+		case 26: return "champion/Bitterman";
+		case 27: return "champion/Keel";
+		case 28: return "champion/Eradicator";
+		case 29: return "champion/Vormatur";
+		case 30: return "champion/Major";
+		case 31: return "champion/Sam";
+		case 32: return "champion/Brock";
+		default: return "";
+		// ^ insert more classes here, in MAPINFO order
+	}
+}

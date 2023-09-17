@@ -220,6 +220,55 @@ FreeformMenu "SkillMenu"
 	}
 }
 
+FreeformMenu "BotSkillMenu"
+{
+	Centermenu
+	TopPadding 0
+	DefaultSelection -2
+	OverrideHeight 180
+
+	Label {
+		Static
+		Background	"BackMenu"
+		Size		230, 500
+	}
+
+	SubMenu {
+		Pos		0, 25					Text				"I Can Win"			Background			BT28060
+		Size	160, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
+		Padding	0, 2					SelectedFontColor	Tan					Param	0
+	}
+
+	SubMenu {
+		Pos		0, 60					Text				"Bring it On"		Background			BT28060
+		Size	160, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
+		Padding	0, 2					SelectedFontColor	Tan					Param	1
+	}
+
+	SubMenu {
+		Pos		0, 95					Text				"Hurt me Plenty"	Background			BT28060
+		Size	160, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
+		Padding	0, 2					SelectedFontColor	Tan					Param	2
+	}
+
+	SubMenu {
+		Pos		0, 130					Text				"Hardcore"			Background			BT28060
+		Size	160, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
+		Padding	0, 2					SelectedFontColor	Tan					Param	3
+	}
+
+	SubMenu {
+		Pos		0, 160					Text				"NIGHTMARE!"
+		Size	160, 20					Font				QCBGFONT
+		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
+										SelectedFontColor	Red					Param	4
+	}
+}
+
 FreeformMenu QCDE_SkirmishMenu
 {
 	NoBackButton

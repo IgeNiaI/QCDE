@@ -17,11 +17,11 @@ script "QCDE_StartingWeapon_Apply" (void)
 	//PrintBold(s:"Applying starting weapon");
 
 	// Give DM version if starting in a DM game
-	str weapon1 = "QCMachinegun"; 	if(GameType() >= 2) weapon1 = "QCMachinegunDM";
-	str weapon2 = "QCMachinegun"; 	if(GameType() >= 2) weapon2 = "QCShotgunDM";
-	str weapon3 = "QCNailgun"; 		if(GameType() >= 2) weapon3 = "QCNailgunDM";
+	str weapon1 = "QCMachinegun"; 	if(GameType() >= 2 || InCampaign()) weapon1 = "QCMachinegunDM";
+	str weapon2 = "QCMachinegun"; 	if(GameType() >= 2 || InCampaign()) weapon2 = "QCShotgunDM";
+	str weapon3 = "QCNailgun"; 		if(GameType() >= 2 || InCampaign()) weapon3 = "QCNailgunDM";
 
-	if (GameType() >= 2)
+	if (GameType() >= 2 || InCampaign())
 	{
 		SetAmmoCapacity("QCBulletAmmo",	getGenericDMAmmoCapacity(0));
 		SetAmmoCapacity("QCShellAmmo",	getGenericDMAmmoCapacity(1));

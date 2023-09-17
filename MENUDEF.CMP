@@ -1135,3 +1135,29 @@ OptionString QCDE_Champions_Lore {
 	"Brock",		"$LORCP233"
 }
 // ^ insert more classes here
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+FreeformMenu QCDE_RespawnMenu
+{
+	Centermenu
+	TopPadding 10
+	DefaultSelection -2
+
+	Label {
+		Background	"CPicker0"
+		Size		1000, 250
+	}
+
+	InsertFreeformMenu	ChampionSelector
+	InsertFreeformMenu	WeaponSelectorDM
+
+	Command {
+		NotOnTitlemap
+		Pos		55, 206					Text				"RESPAWN"			Background			BT28060
+		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
+		Anchor	center, center			FontColor			Tan					Command				qcde_force_respawn
+		Padding	0, 2					SelectedFontColor	Yellow
+	}
+}

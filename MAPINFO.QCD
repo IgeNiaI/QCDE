@@ -87,7 +87,6 @@ Skill Normal_MoreMonsters
 	Aggressiveness = 0.8
 	Name = "$SKILL_NORMAL_MED"
 	TextColor = White
-	DefaultSkill
 	ACSReturn = 2
 }
 Skill Normal_MaxMonsters
@@ -96,6 +95,7 @@ Skill Normal_MaxMonsters
 	Aggressiveness = 0.8
 	Name = "$SKILL_NORMAL_MAX"
 	TextColor = White
+	DefaultSkill
 	ACSReturn = 3
 }
 

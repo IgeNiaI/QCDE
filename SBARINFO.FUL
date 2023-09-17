@@ -17,6 +17,8 @@ InterpolateArmor false, 20;
 //================================================================================================
 
 statusbar Fullscreen, forcescaled
+{ inInventory HideHUD {}
+else
 { inInventory NotSpectator {  // You only lack it when you don't exist.
 	inInventory DemonMorpher || DemonMorpherDM { // Demon HUD for online
 		drawImage "PCORN001",-234,   0;
@@ -1032,7 +1034,7 @@ statusbar Fullscreen, forcescaled
 else // Spectator
 {
 	drawString QCFNT100, white, GlobalVar 1, 700,25, 0, alignment(center);	//timer
-}}
+}}}
 
 //================================================================================================
 
