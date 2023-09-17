@@ -746,8 +746,12 @@ function void setupModifier()
 	switch (modifier)
 	{
 	case 1: menu_skirmishmodifier = 1;		break;	// Instagib
-	case 2: rocketarena = 5;				break;	// Random Weapons
-	case 3: {										// Custom Weapons
+	case 2: rocketarena = 1;				break;	// Rocket Arena
+	case 3: rocketarena = 3;				break;	// Unholy Trinity
+	case 4: rocketarena = 2;				break;	// Buckshot
+	case 5: rocketarena = 4;				break;	// Lightning Storm
+	case 6: rocketarena = 6;				break;	// Random Weapons
+	case 7: {										// Custom Weapons
 		if (GetCVar("skirm_heavymachinegun"))	rocketarena += 0000000001;
 		if (GetCVar("skirm_supershotgun"))		rocketarena += 0000000010;
 		if (GetCVar("skirm_supernailgun"))		rocketarena += 0000000100;

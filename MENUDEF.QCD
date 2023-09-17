@@ -714,7 +714,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Text	"$Weapon_Slot2b"
 	}
 	Option {
-		EnableCVar skirm_skirmishmodifier,	3, 3
+		EnableCVar skirm_skirmishmodifier,	7, 7
 		Pos		-45, 46				CVar				skirm_heavymachinegun
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -728,7 +728,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Text	"$Weapon_Slot3b"
 	}
 	Option {
-		EnableCVar skirm_skirmishmodifier,	3, 3
+		EnableCVar skirm_skirmishmodifier,	7, 7
 		Pos		-45, 66				CVar				skirm_supershotgun
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -742,7 +742,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Text	"$Weapon_Slot4b"
 	}
 	Option {
-		EnableCVar skirm_skirmishmodifier,	3, 3
+		EnableCVar skirm_skirmishmodifier,	7, 7
 		Pos		-45, 86				CVar				skirm_supernailgun
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -756,7 +756,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Text	"$Weapon_Slot5"
 	}
 	Option {
-		EnableCVar skirm_skirmishmodifier,	3, 3
+		EnableCVar skirm_skirmishmodifier,	7, 7
 		Pos		-45, 106			CVar				skirm_tribolt
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -770,7 +770,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Text	"$Weapon_Slot6"
 	}
 	Option {
-		EnableCVar skirm_skirmishmodifier,	3, 3
+		EnableCVar skirm_skirmishmodifier,	7, 7
 		Pos		-45, 126			CVar				skirm_rocketlauncher
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -784,7 +784,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Text	"$Weapon_Slot7"
 	}
 	Option {
-		EnableCVar skirm_skirmishmodifier,	3, 3
+		EnableCVar skirm_skirmishmodifier,	7, 7
 		Pos		-45, 146			CVar				skirm_lightninggun
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -798,7 +798,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Text	"$Weapon_Slot8"
 	}
 	Option {
-		EnableCVar skirm_skirmishmodifier,	3, 3
+		EnableCVar skirm_skirmishmodifier,	7, 7
 		Pos		-45, 166			CVar				skirm_railgun
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -812,7 +812,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Text	"$Weapon_Slot9"
 	}
 	Option {
-		EnableCVar skirm_skirmishmodifier,	3, 3
+		EnableCVar skirm_skirmishmodifier,	7, 7
 		Pos		-45, 186			CVar				skirm_bfg
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -1242,8 +1242,12 @@ OptionValue QCDE_Modifier
 {
 	0, "None"
 	1, "Instagib"
-	2, "Random Weapons"
-	3, "Custom Weapons"
+	2, "Rocket Arena"
+	3, "Unholy Trinity"
+	4, "Buckshot"
+	5, "Lightning Storm"
+	6, "Random Weapons"
+	7, "Custom Weapons"
 }
 
 OptionValue QCDE_BotSkill
