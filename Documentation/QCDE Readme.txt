@@ -4,7 +4,7 @@ Primary purpose         : Single & Multiplayer
 ==================================================================================
 Title                   : QC: Doom Edition
 Filename                : QCDEv3.0.pk3
-Release date            : August ##th 2023
+Release date            : September ##th 2023
 Author                  : DBThanatos, Michaelis, geNia
 Email Address           : DBThanatos@hotmail.com, Michael.is.D4T@gmail.com, geniann93@gmail.com
 Other Files By Author   : *DBThanatos: "Quake4 Lightning Fast Mod Doom Edition",
@@ -103,12 +103,12 @@ This mod has several unfixable "bugs", due to technical limitations.
 
 - Quad damage: When using rapid fire weapon (MG, HMG, NG, SNG, LG) and you pick the
   quad damage while firing, the quad sound will not play, until you stop firing and
-  start again. Same will happen when quad wears off but you�re still firing: the quad
+  start again. Same will happen when quad wears off but you're still firing: the quad
   sound will continue playing despite the powerup having worn off. This does NOT affect
   the damage increase. Damage will be increased for as long as you have the powerup 
   indicator in the HUD, regardless of the sound.
 
-- "Active ability ready" sound might not play sometimes. There�s only so many channels
+- "Active ability ready" sound might not play sometimes. There's only so many channels
   per actor in game, and this sound sometimes gets overridden by other things.
 
 - In cooperative games, if you try to change class without dying when switching levels,

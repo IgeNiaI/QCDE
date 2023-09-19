@@ -4,7 +4,7 @@ Primary purpose         : Deathmatch
 ===========================================================================
 Title                   : QCDEMaps
 Filename                : QCDEmaps3.0.pk3
-Release date            : June ##th 2023
+Release date            : September ##th 2023
 Author                  : DBThanatos & Various Mappers
 Email Address           : DBThanatos@gmail.com
 Other Files By Author   : QC: Doom Edition (QCDE), Death Foretold (D4T),
@@ -89,7 +89,7 @@ QCDE25   Quarantine                   RoosTer
 QCDE26   Lh'owoken                    DBThanatos
 QCDE27   Placebo Effect               DBThanatos
 QCDE28   Molten Falls                 DBThanatos
-QCDL29   Blood Run                    DBThanatos
+QCDE29   Blood Run                    DBThanatos
 QCDE30   Gibel Complex                DBThanatos
 QCDE31   Excavation                   DBThanatos
 QCDE32   Delirium                     Ivory Duke

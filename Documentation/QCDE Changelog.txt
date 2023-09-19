@@ -2,36 +2,41 @@ Changelog
 
 ---------------------------------------------------------------------
 
-V3.0 (August ## 2023)
+V3.0 (September ## 2023)
 
 General:
 - Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
-- Reworked all champions movement mechanics. Most champions gained VQ3 movement. Menelkir, Doom Slayer, Corvus, Galen and Zedek kept the original Doom movement, but lost some air acceleration. Durandal, Dusk Dude and Eradicator gained CPM movement. Kane Crouch Slide is using the engine implementation and no longer deals damage when bumping into enemies. Freeman also gained Crouch Slide, but it's slower than what Kane has, but lasts longer. Nyx, Doom Slayer, Inquisitor and Major are using the engine implementation for Wall Jump, Double Jump, Thrust Dodge and Wall Climb respectively. Bitterman gained a Ramp Jump movement mechanic, similar to Quake 2. Eleena and Postal Dude jump mechanics were reworked to make them lagless.
-- All weapons, abilities and map interactibles are much less affected by ping.
+- Reworked all champions movement mechanics.
+  - Most champions gained VQ3 movement.
+  - Menelkir, Doom Slayer, Corvus, Galen and Zedek kept the original Doom movement, but lost some air acceleration.
+  - Durandal, Intruder and Eradicator gained CPM movement.
+  - Kane Crouch Slide is using the engine implementation and no longer deals damage when bumping into enemies. Freeman also gained Crouch Slide, but it's slower than what Kane has, but lasts longer.
+  - Nyx, Doom Slayer, Inquisitor and Major are using the engine implementation for Wall Jump, Double Jump, Thrust Dodge and Wall Climb respectively.
+  - Bitterman gained a Ramp Jump movement mechanic, similar to Quake 2.
+  - Eleena and Postal Dude jump mechanics were reworked to make them lagless.
+- All weapons, abilities and map interactables are much less affected by ping.
+- No delay when holding the jump button. Hop hop hop!
 - Completely remade mod menus.
 - Added weapon skins like in QC. The skins are based on weapon models from other Quake titles and Half-Life.
 - Remade Blazkowicz sprites and portrait, now based on his default model from QC.
 - Ability cooldown now continues when the player is dead, like in Quake Champions.
 - Reworked Zoom mechanics. You can now switch between hold-to-zoom and toggle-zoom methods. Also you can now zoom in and out while firing the weapon.
 - Refactored ammo on pickup in PvP to work like in Quake Champions.
+  - First time picked, will give a certain "default" amount.
+  - If picked again when at or over "default" amount, it will give only a little bit of ammo.
+  - If picked again when under the "default" amount, it will refill up to "default".
 - Reworked weapon respawn logic. All weapons except BFG respawn after 1 second. In duel, the weapons respawn after 5 seconds instead. The respawn time can also be configured using `sv_weaponrespawn` cvar.
 - Rocket Launcher, Lightning Gun, Railgun and BFG weapon slots were moved up. Make sure to rebind your controls.
 - Added an option to render the game at true horizontal fov (previously horizontal fov was about 15% smaller).
 - Integrated the medals addon. Medals can be toggled using the `cl_qcmedals` clientside cvar.
 - Integrated the item respawn timers addon. It can be toggled on server using the `sv_showItemTimers` cvar.
 - Integrated the "Stack Left" addon. It can be toggled on server using the `sv_showStackLeft` cvar.
-- Added a new Markie music track, "Broodmother". It is played on QCDE15 (Chastity Belt) and QCDE24 (Sarnath).
 - LMS and Team LMS now spawn players with full ammo and no longer give starter weapons.
-- Completely revamped mod menu.
+- Rocket jumping no longer deals self damage in gamemodes like Rocket Arena and Unholy Trinity.
 - Added a random class option to the class menu.
 - Added new clean fonts for console, menu and game texts.
-- Changed blood color for Inquisitor and Vor Matur to their respective blood color.
+- Changed Railgun zoom alt fire with a backwards push for Instagib gamemode.
 - Reworked Speedometer. It can now be placed either in center, or under champion avatar. Also removed speed averaging over time.
-- Completely replaced old Menelkir sounds with Death Knight's from QC.
-- Replaced Zedek painsounds and grunts with sounds from Painkiller.
-- Replaced Caleb active ability sounds, changed some of his voicelines to higher quality ones.
-- Replaced Lo Wang sounds with higher quality ones.
-- Added dedicated powerup pickup sounds for Quad and Protection.
 - QC:DE now automatically configures cvars based on gamemode, no need to do that manually anymore.
 - Removed the "minimum 4 players" requirement for Powerups and BFG.
 - Made the intro track controllable by music sound option.
@@ -43,10 +48,10 @@ General:
 - All default and ability weapon sprites have been extended to resolve them being cropped when using weapon sway.
 - Default Gauntlet, Lightning Gun and BFG now play a prepare animation when selected.
 - Small and large health bubbles now have more unique sprites.
-- New active ability icons for all champions.
 - QCDE OST can now be turned off in the Sound menu.
 
 Balance:
+- Railgun no longer deals additional "zoomed charge" damage in PVP.
 - All Light champions gained 25 more max armor and all Heavy champions lost 25 max armor, except Vor Matur.
 - Raised players camera and attack Z offset.
 - Ranger now only reduces self rocket damage instead of all.
@@ -58,9 +63,10 @@ Balance:
 - Reworked Terminator ability in PvP. He now spawns with 10 rockets ready, and picking up hourglasses increases the rockets amount up to 20, but doesn't reduce cooldown. Increased Terminator rocket damage from 11 to 15. Terminator no longer shoots rockets after death.
 - Eradicator no longer receives his bonuses from health, because he gained CPM movement instead.
 - Durandal can no longer see invisible players in PVP, because he gained CPM movement instead. Infra-Chromatic Unveil passive still works against invisible monsters in PVE.
-- Corvus ability now has 3 charges, but it lasts 2 seconds in PvP and 5 seconds in PvE.
+- Corvus active ability now has 3 charges, but it lasts 2 seconds in PvP and 5 seconds in PvE.
 - Lucienne now has a 2 seconds cooldown between using her abilities.
 - Nerfed Duke active projectile speed from 32 to 25 units, bounce count from 3 to 2, ability cooldown from 40 to 45 seconds, ability duration from 7 to 4 seconds. Required freeze balls till freeze from 5 to 6, freeze duration from 3 to 1 second.
+- Nerfed Grayson active ability. Enemies affected by Thumper will stay in stasis much less time.
 - Nerfed Freeman Extraction passive. It now requires to stay alive for 60 seconds, and spawns the player with 25 hp and one starting weapon.
 - Increased Caleb ability spread from 1.2 to 1.3, but decreased self damage on miss from 10 to 5.
 - Nerfed Durandal Bobs health from 35 to 30 and damage from 60 to 40.
@@ -99,6 +105,7 @@ Maps:
 - Added "Outpost", "Hangar" "Cathedral" and "Asteroid Garden" for Invasion gamemode (QCIN01, QCIN02, QCIN03 and QCIN04 respectively)
 - Retextured QCDL02 "Aerowalk"
 - Added second Rocket Launcher spawn and moved Heavy Machinegun on QCDE08 "Furious Heights"
+- Made the slope on top of broken pillar in QCDL03 work like UT slope
 - Reworked map scripts like jumppads and teleports to make them feel lagless in multiplayer
 - Fixed multiple misaligned textures and lights on almost every map
 - Added Heavy and Mega spawn foundation decorations to maps that didn't have them
@@ -110,7 +117,7 @@ Bug fixes:
 - Fixed starter weapon selection taking weapons away from Sam.
 - Fixed dropped DM weapons looking like SP and staying in place infinitely.
 - Fixed Galen and Painkiller UI elements not recognising CTF as PvP gamemode.
-- Fixed Galen totem exploding when the enemy flies above it
+- Fixed Galen totem exploding when the enemy flies above it.
 - Fixed multiple player sounds like BJ regen or Nyx invisibility not playing for spectators.
 - Fixed music restarting in gamemodes with multiple rounds.
 - Fixed selecting incorrect weapon when picking up a stronger weapon (MG to HMG, SG to SSG, NG to SNG).
@@ -119,8 +126,23 @@ Bug fixes:
 - Fixed players instantly losing 1 hp and armor on spawn due to degeneration.
 - Fixed join game menu not working properly in singleplayer.
 - Fixed Eleena clone hitbox size to be as Eleena herself. It used to be a little slimmer and could get into places where Eleena couldn't.
-- Made Zedek and Postal ability HUD effects show up immediately instead of on first damage tick
-- Selecting starter shotgun when owning super shotgun now properly updates the UI.
+- Made Zedek and Postal ability HUD effects show up immediately instead of on first damage tick.
+- Selecting a starter shotgun when owning a super shotgun now properly updates the UI.
+
+Misc:
+- All champions show their movement type in the Champion Help Screen (F1 by default).
+- Added a new Markie music track, "Broodmother". It is played on QCDE15 (Chastity Belt) and QCDE24 (Sarnath).
+- Changed blood color for Inquisitor and Vor Matur to their respective blood color.
+- New active ability icons for all champions.
+- All champions will always play their respective sound when jumping, where it was random before. 
+  - Except Lo Wang, his vocalization was too annoying to play always.
+- Added dedicated powerup pickup sounds for Quad and Protection.
+- Completely replaced old Menelkir sounds with Death Knight's from QC.
+- Replaced Zedek painsounds and grunts with sounds from Painkiller.
+- Replaced Caleb active ability sounds, changed some of his voicelines to higher quality ones.
+- Replaced Lo Wang sounds with higher quality ones.
+- Added a jumping sound for Freeman.
+- You can now change your class on respawn in singleplayer invasion.
 
 
 ---------------------------------------------------------------------
