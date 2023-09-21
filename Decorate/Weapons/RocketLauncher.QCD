@@ -511,6 +511,7 @@ Actor QCRocketPlayerDM : QCRocketPlayer
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebrisDM",-1,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,0,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("QCRocketExplosionDM",-2,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 10 // Need this delay for below medals
 		//Medals start
 		TNT1 A 0 A_TakeFromTarget("DirectRocketToken",1)
 		TNT1 A 0 A_TakeFromTarget("CollateralToken",1)
