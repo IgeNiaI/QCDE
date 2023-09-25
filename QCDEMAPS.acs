@@ -59,6 +59,7 @@ script "3DTeleport" ( int minheight, int maxheight, int desttag, int minspeed )
         }
 
 		Teleport_NoStop( desttag, 0, 0 );    //you're good to go
+		SetActorProperty(0, APROP_JumpTics, 0); // Also reset jump delay
 
         if ( minspeed > 0 )
         {
