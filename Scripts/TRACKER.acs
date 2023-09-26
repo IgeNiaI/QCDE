@@ -227,28 +227,11 @@ Script "QCDE_Disconnect" (int gone) Disconnect
 //
 //=============================================================================
 
-int MAXIMUM_TAP_DELAY = 35;
-int INQUISITOR_THRUST = 11;
-int MOVEMENT_BUTTONS = (BT_MOVELEFT|BT_FORWARD|BT_MOVERIGHT|BT_BACK);
-
 Script "QCDE_Tracker" (void)
 {
-	int buttons, oldbuttons, triggers;
-	int lastTapTime, lastTapValue, angle;
 	int plr = PlayerNumber();
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
-		// Player input information
-		oldbuttons = buttons;
-		buttons = GetPlayerInput(plr, MODINPUT_BUTTONS);
-		int ws_axis = GetPlayerInput(plr, INPUT_FORWARDMOVE);
-		int ad_axis = GetPlayerInput(plr, INPUT_SIDEMOVE);
-		if(ws_axis < 0) buttons |= BT_BACK;
-		if(ws_axis > 0) buttons |= BT_FORWARD;
-		if(ad_axis < 0) buttons |= BT_MOVELEFT;
-		if(ad_axis > 0) buttons |= BT_MOVERIGHT;
-		triggers = buttons & ~oldbuttons;
-
 		// Health/armor and multiplayer score display
 		updateHealthArmorDisplay();
 		if(GameType() >= GAME_NET_DEATHMATCH)
@@ -415,7 +398,6 @@ Script "QCDE_Tracker_CLIENTSIDE" (void) clientside
 {
 	if(PlayerNumber() != ConsolePlayerNumber()) terminate;
 
-	int lastSpeed, speed;
 	int ctf = getCvar("ctf") || getCvar("oneflagctf");
 	int myTeam = GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM);
 	int scoresum, scoresum_was, our_uncarried, their_uncarried, i;
