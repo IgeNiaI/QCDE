@@ -447,3 +447,21 @@ Actor QCIceChunk replaces IceChunk
 		Goto Crash
 	}
 }
+
+
+Actor GenericLandFX
+{
+	+NOINTERACTION
+	+NOGRAVITY
+	+CLIENTSIDEONLY
+	+NONETID
+	RenderStyle Add
+	Scale 0.5
+	//Alpha 0.4
+	States
+	{
+	Spawn:
+		GJMP ABCDEFGHIJ 1 Bright
+		Stop
+	}
+}

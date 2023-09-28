@@ -32,6 +32,7 @@ Actor QCPlayer : PlayerPawn
 
 	Player.ActionScript "altattack" "QCDE_ZoomControl"
 	Player.ActionScript "user1" "QCDE_ActiveAbility"
+	Player.EffectActor "grunt" "GenericLandFX"
 
 	Player.CrouchScale 0.75
 	Player.CrouchChangeSpeed 0.08

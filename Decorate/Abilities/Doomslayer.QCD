@@ -507,14 +507,10 @@ Actor MultiJumpFX
 	+CLIENTSIDEONLY
 	+NONETID
 	RenderStyle Add
-	XScale 0.2
-	YScale 0.1
-	Alpha 0.4
-	Translation "0:255=%[0,0,0]:[0.3,0.9,1.5]"
 	States
 	{
 	Spawn:
-		X125 ABCDEFGHIJKL 1 Bright
+		DJMP ABCDEFGHIJKL 1 Bright
 		Stop
 	}
 }
