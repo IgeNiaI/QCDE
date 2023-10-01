@@ -3393,7 +3393,8 @@ script "QCDE_DireOrbTimedOut" (void)
 
 script "QCDE_DireOrbTimedOutClientside" (void) clientside
 {
-	ACS("QCDE_DireOrbTimedOut");
+	if(ConsolePlayerNumber() == PlayerNumber())
+		ACS("QCDE_DireOrbTimedOut");
 }
 
 Script "QCDE_SetWeapon" (int weapon, int tics)
