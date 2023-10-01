@@ -73,8 +73,31 @@ Script "QCDE_SetWeaponRespawnTics" (void)
 }
 
 
+//=============================================================================
+//
+//		Rocket whoosh
+//
+//=============================================================================
 
+// Activator: noisy projectile in flight
+script "QCDE_AttachWhoosh" (void) CLIENTSIDE
+{
+	// remember rocket
+	int tid = ActivatorTid();
+	if(!tid)
+	{
+		tid = UniqueTid();
+		Thing_ChangeTid(0,tid);
+	}
 
+	// don't whoosh if your own rocket
+	SetActivatorToTarget(0);
+	if(ConsolePlayerNumber() == PlayerNumber()) terminate;
+
+	// if rocket isn't moving, then it has exploded already. So no whoosh
+	if (GetActorVelX(tid) || GetActorVelY(tid) || GetActorVelZ(tid))
+		PlaySound(tid, "QC/Weapons/RocketLauncher/Fly",CHAN_5,0.5,true,1.0); // whoosh!
+}
 
 
 //----------------------------------------------------------------------
