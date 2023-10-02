@@ -1938,47 +1938,47 @@ Actor QCDukeNukem : QCPlayerMedium
 	States
 	{
 	Spawn:
-		QP14 e 0 nodelay
-		QP14 e 0 a_jumpifinventory("TeamColor",1, "ColoredSpawn")
-		QP14 e 0 a_jumpif(true,                   "DefSpawn")
-		QP14 e 100
+		QP14 E 0 nodelay
+		QP14 E 0 a_jumpifinventory("TeamColor",1, "ColoredSpawn")
+		QP14 E 0 a_jumpif(true,                   "DefSpawn")
+		QP14 E 100
 		loop
 
 		ColoredSpawn:
-			RP14 a 0 a_jumpif(momx||momy,"ColoredSee")
-			RP14 e 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
+			RP14 A 0 a_jumpif(momx||momy,"ColoredSee")
+			RP14 E 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
 			loop
 		DefSpawn:
-			QP14 a 0 a_jumpif(momx||momy,"DefSee")
-			QP14 e 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP14 A 0 a_jumpif(momx||momy,"DefSee")
+			QP14 E 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
 			goto Spawn // to catch color
 
 	See:
-		"####" a 0 a_jumpifinventory("TeamColor",1, "ColoredSee") // so tempted to call it "red sea"
-		"####" a 1 a_jumpif(true,                   "DefSee")
+		"####" A 0 a_jumpifinventory("TeamColor",1, "ColoredSee") // so tempted to call it "red sea"
+		"####" A 1 a_jumpif(true,                   "DefSee")
 		goto DefSee // for preview screen and prediction
 
 		ColoredSee:
-			RP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
-			RP14 a 0 a_jumpif(true,"ColoredSpawn")
+			RP14 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
+			RP14 A 0 a_jumpif(true,"ColoredSpawn")
 			loop
 		DefSee:
-			QP14 abcd 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
-			QP14 a 0 a_jumpif(true,"Spawn") // to catch color
+			QP14 ABCD 4 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP14 A 0 a_jumpif(true,"Spawn") // to catch color
 			loop
 
 	Missile:
-		"####" a 0 a_jumpifinventory("TeamColor",1, "ColoredMissile")
-		"####" e 1 a_jumpif(true,                   "DefMissile")
+		"####" A 0 a_jumpifinventory("TeamColor",1, "ColoredMissile")
+		"####" E 1 a_jumpif(true,                   "DefMissile")
 		loop
 
 		ColoredMissile:
-			RP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
-			RP14 e 12 a_jumpif(true, "Spawn")
+			RP14 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"ColoredPuncheroo")
+			RP14 E 12 a_jumpif(true, "Spawn")
 			loop
 		DefMissile:
-			QP14 eeee 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
-			QP14 e 12 a_jumpif(true, "Spawn")
+			QP14 EEEE 3 A_JumpIfInventory("ThirdPersonPunch",1,"DefPuncheroo")
+			QP14 E 12 a_jumpif(true, "Spawn")
 			loop
 
 		ColoredPuncheroo:
@@ -1991,33 +1991,33 @@ Actor QCDukeNukem : QCPlayerMedium
 			Loop
 
 	Melee:
-		"####" a 0 a_jumpifinventory("TeamColor",1, "ColoredMelee")
-		"####" f 1 a_jumpif(true,                   "DefMelee")
+		"####" A 0 a_jumpifinventory("TeamColor",1, "ColoredMelee")
+		"####" F 1 a_jumpif(true,                   "DefMelee")
 		loop
 
 		ColoredMelee:
-			RP14 f 6 bright light("playerfiringlight")
-			RP14 f 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
+			RP14 F 6 bright light("playerfiringlight")
+			RP14 F 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
 			loop
 		DefMelee:
-			QP14 f 6 bright light("playerfiringlight")
-			QP14 f 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
+			QP14 F 6 bright light("playerfiringlight")
+			QP14 F 6 bright light("playerfiringlight") a_jumpif(true, "Spawn")
 			loop
 
 	Pain:
-		"####" a 0 a_jumpifinventory("TeamColor",1, "ColoredPain")
-		"####" g 1 a_jumpif(true,                   "DefPain")
+		"####" A 0 a_jumpifinventory("TeamColor",1, "ColoredPain")
+		"####" G 1 a_jumpif(true,                   "DefPain")
 		loop
 
 		ColoredPain:
-			RP14 b 4
-			RP14 b 4 a_Pain
-			RP14 b 4 a_jumpif(true, "Spawn")
+			RP14 B 4
+			RP14 B 4 a_Pain
+			RP14 B 4 a_jumpif(true, "Spawn")
 			loop
 		DefPain:
-			QP14 b 4
-			QP14 b 4 a_Pain
-			QP14 b 4 a_jumpif(true, "Spawn")
+			QP14 B 4
+			QP14 B 4 a_Pain
+			QP14 B 4 a_jumpif(true, "Spawn")
 			loop
 
 	Death:
@@ -3016,9 +3016,9 @@ Actor QCFreeman : QCPlayerMedium
 	States
 	{
 	Spawn:
-		QP22 A 0 NoDelay
-		QP22 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
-		QP22 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP22 G 0 NoDelay
+		QP22 G 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
+		QP22 G 0 A_JumpIf(true,                   "DefSpawn")
 		QP22 G 100
 		Loop
 
@@ -3156,9 +3156,9 @@ Actor QCVorMatur : QCPlayerHeavy
 	States
 	{
 	Spawn:
-		QP23 A 0 NoDelay
-		QP23 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
-		QP23 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP23 F 0 NoDelay
+		QP23 F 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
+		QP23 F 0 A_JumpIf(true,                   "DefSpawn")
 		QP23 F 100
 		Loop
 
@@ -3291,9 +3291,9 @@ Actor QCEleena : QCPlayerLight
 	States
 	{
 	Spawn:
-		QP24 A 0 NoDelay
-		QP24 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
-		QP24 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP24 G 0 NoDelay
+		QP24 G 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
+		QP24 G 0 A_JumpIf(true,                   "DefSpawn")
 		QP24 G 100
 		Loop
 
@@ -3423,9 +3423,9 @@ Actor QCLucienne : QCPlayerLight
 	States
 	{
 	Spawn:
-		QP25 A 0 NoDelay
-		QP25 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
-		QP25 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP25 C 0 NoDelay
+		QP25 C 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
+		QP25 C 0 A_JumpIf(true,                   "DefSpawn")
 		QP25 C 100
 		Loop
 
