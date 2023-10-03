@@ -166,13 +166,13 @@ FreeformMenu "EpisodeMenu"
 	}
 
 	Label {
-		Pos 0, 20				Font QCBGFONT
+		Pos 0, 0				Font QCBGFONT
 		Text "SELECT EPISODE"	FontColor Gold
 	}
 
 	SubMenu {
-		Pos 0, 60				Font QCBGFONT
-		Size 500, 20			SelectedFontColor Red
+		Pos 0, 30				Font QCBGFONT
+		Size 500, 24			SelectedFontColor Red
 		Menu EpisodesTop
 		Text "TEST EPISODE"
 	}
@@ -183,7 +183,7 @@ FreeformMenu "SkillMenu"
 	Centermenu
 	TopPadding 0
 	DefaultSelection -2
-	OverrideHeight 145
+	OverrideHeight 165
 
 	Label {
 		Static
@@ -191,29 +191,34 @@ FreeformMenu "SkillMenu"
 		Size		230, 500
 	}
 
+	Label {
+		Pos 0, 0			Font QCBGFONT
+		Text "DIFFICULTY"	FontColor Gold
+	}
+
 	SubMenu {
-		Pos		0, 25					Text				"Easy"				Background			BT28060
+		Pos		0, 45					Text				"Easy"				Background			BT28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Menu	Startgame
 		Padding	0, 2					SelectedFontColor	Tan					Param	8
 	}
 
 	SubMenu {
-		Pos		0, 60					Text				"Normal"			Background			BT28060
+		Pos		0, 80					Text				"Normal"			Background			BT28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Menu	Startgame
 		Padding	0, 2					SelectedFontColor	Tan					Param	2
 	}
 
 	SubMenu {
-		Pos		0, 95					Text				"Hard"				Background			BT28060
+		Pos		0, 115					Text				"Hard"				Background			BT28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Menu	Startgame
 		Padding	0, 2					SelectedFontColor	Tan					Param	5
 	}
 
 	SubMenu {
-		Pos		0, 125					Text				"DEATHBOUND"
+		Pos		0, 145					Text				"DEATHBOUND"
 		Size	140, 20					Font				QCBGFONT
 		Anchor	center, center			FontColor			Tan					Menu	StartgameConfirm
 										SelectedFontColor	Red					Param	6
@@ -225,7 +230,7 @@ FreeformMenu "BotSkillMenu"
 	Centermenu
 	TopPadding 0
 	DefaultSelection -2
-	OverrideHeight 180
+	OverrideHeight 200
 
 	Label {
 		Static
@@ -233,36 +238,41 @@ FreeformMenu "BotSkillMenu"
 		Size		230, 500
 	}
 
+	Label {
+		Pos 0, 0			Font QCBGFONT
+		Text "DIFFICULTY"	FontColor Gold
+	}
+
 	SubMenu {
-		Pos		0, 25					Text				"I Can Win"			Background			BT28060
+		Pos		0, 45					Text				"I Can Win"			Background			BT28060
 		Size	160, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
 		Padding	0, 2					SelectedFontColor	Tan					Param	0
 	}
 
 	SubMenu {
-		Pos		0, 60					Text				"Bring it On"		Background			BT28060
+		Pos		0, 80					Text				"Bring it On"		Background			BT28060
 		Size	160, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
 		Padding	0, 2					SelectedFontColor	Tan					Param	1
 	}
 
 	SubMenu {
-		Pos		0, 95					Text				"Hurt me Plenty"	Background			BT28060
+		Pos		0, 115					Text				"Hurt me Plenty"	Background			BT28060
 		Size	160, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
 		Padding	0, 2					SelectedFontColor	Tan					Param	2
 	}
 
 	SubMenu {
-		Pos		0, 130					Text				"Hardcore"			Background			BT28060
+		Pos		0, 150					Text				"Hardcore"				Background			BT28060
 		Size	160, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
 		Padding	0, 2					SelectedFontColor	Tan					Param	3
 	}
 
 	SubMenu {
-		Pos		0, 160					Text				"NIGHTMARE!"
+		Pos		0, 180					Text				"NIGHTMARE!"
 		Size	160, 20					Font				QCBGFONT
 		Anchor	center, center			FontColor			Tan					Menu	ChooseBotSkill
 										SelectedFontColor	Red					Param	4
