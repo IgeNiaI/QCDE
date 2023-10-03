@@ -137,11 +137,14 @@ script "QCDE_Bot_Twitch" (void)
 #define TRACKER_UPDATE_RATE 5
 script "QCDE_AbilityTracker_BOT" (void)
 {
+	if (GetGameModeState() < GAMESTATE_INPROGRESS)
+		terminate;
+
 	// Depending on situation and nature of active ability, activate it in
 	// different situations.
 	int health;
 
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	while(GetActorProperty(0,APROP_HEALTH) > 0 && GetGameModeState() < GAMESTATE_INRESULTSEQUENCE)
 	{
 		if(CheckInventory("ActiveOffensive"))
 		{
