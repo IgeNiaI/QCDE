@@ -217,7 +217,7 @@ Actor LoWangHealProc : CustomInventory
 		TNT1 A 0 A_JumpIfHealthLower(60, "Passive")
 		Stop
 	Passive:
-		TNT1 A 0 A_PlaySound("QC/Abilities/Caleb/Ability", CHAN_ITEM, 1.0, false, 2018.0210)
+		TNT1 A 0 A_PlaySound("QC/Abilities/LoWang/HealingArea", CHAN_ITEM, 1.0, false, 2018.0210)
 		TNT1 A 0 HealThing(1)
 		TNT1 A 0 A_SetBlend("FF 88 88", .05, 35)
 		TNT1 A 0 A_SpawnItemEx("LoWangHealFX", random(5,16),random(-12,12),32, 0,0,frandom(0.5,2), 0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
