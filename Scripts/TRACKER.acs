@@ -345,15 +345,11 @@ function void updateHealthArmorDisplay(void)
 
 function void rereadCvars(void)
 {
-	SetInventory("NoWeaponBar",      !GetCVar("cl_showWeaponBar"  ));
-	SetInventory("Speedometer",       GetCVar("cl_speedometer"    ));
 	SetInventory("PlayHitEffect",     GetCVar("cl_hiteffect"      ));
 	SetInventory("WepNoRecoilToken", !GetCVar("cl_weaponrecoil"   ));
 	SetInventory("WepNoFlashToken",  !GetCVar("cl_weaponfireflash"));
 	SetInventory("AutoTauntToken",    GetCVar("cl_autoTaunt"      ));
 	SetInventory("LGTransparency",   !GetCVar("cl_lgtransparency" ));
-	SetInventory("FlatHealthPref",    GetCVar("cl_barStyle"       ));
-	SetInventory("FlatArmorPref",     GetCVar("cl_barStyle"       ));
 }
 
 Script "QCDE_OtherPlayerFrags" (void)
