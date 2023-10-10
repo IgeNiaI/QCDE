@@ -803,6 +803,11 @@ statusbar Normal, forcescaled
 			drawString BIGFONT , white, GlobalArray 7, 648,80, 0, alignment(left);   // name 2nd
 			drawString QCFNT030, white, GlobalArray 8, 892,55, 0, alignment(center); // frags 1st
 			drawString QCFNT030, white, GlobalArray 9, 892,82, 0, alignment(center); // frags 2nd
+
+			inInventory ScoreLimit {
+				drawString QCFNT080, white, "/", 925, 54, 0, alignment(left);
+				drawnumber 3, QCFNT080, white, ScoreLimit, alignment(left), 945, 54;
+			}
 		}
 	}
 	else

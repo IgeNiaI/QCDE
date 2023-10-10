@@ -50,6 +50,7 @@ Actor WepNoFlashToken  : Token { Inventory.MaxAmount     1 Inventory.InterhubAmo
 Actor WepNoRecoilToken : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
 Actor LGTransparency   : Token { Inventory.MaxAmount     1 Inventory.InterhubAmount 0x7FFFFFFF }
 Actor MultiuseCharge   : Token { Inventory.MaxAmount   999 }
+Actor ScoreLimit       : Token { Inventory.MaxAmount   999 }
 Actor Radar            : Token {}
 Actor NoPortrait       : Status {}
 Actor NoVitals         : Status {}

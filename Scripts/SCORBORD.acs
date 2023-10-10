@@ -253,6 +253,7 @@ str mirrorThings[MIRROR_THINGS_COUNT] = {
 // map-scope, because gametype cannot change mid-map
 int duel          ;
 int teamplay      ;
+int lastmanstanding;
 int teamlms       ;
 int teampossession;
 int ctf           ;
@@ -262,6 +263,7 @@ int teamgame      ;
 int pointgame     ;
 int coop          ;
 int freezetag     ;
+int scorelimit    ;
 
 Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 {
@@ -271,6 +273,7 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 
 	duel           = getCvar("duel");
 	teamplay       = getCvar("teamplay");
+	lastmanstanding= getCvar("lastmanstanding");
 	teamlms        = getCvar("teamlms");
 	teampossession = getCvar("teampossession");
 	ctf            = getCvar("ctf");
@@ -326,8 +329,8 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 		// ^ insert more classes here
 	}
 
-	if(teamplay || teamlms || pointgame || ctf) {
-		if(teamlms)   { maxScore = getCvar(  "winlimit"); if(!maxScore) maxScore =  10; }
+	if(teamplay || lastmanstanding || teamlms || pointgame || ctf) {
+		if(lastmanstanding || teamlms)   { maxScore = getCvar(  "winlimit"); if(!maxScore) maxScore =  10; }
 		if(teamplay)  { maxScore = getCvar( "fraglimit"); if(!maxScore) maxScore = 100; }
 		if(pointgame) { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore = 100; }
 		if(ctf)       { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore =  10; }
@@ -341,6 +344,24 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 			else
 				maxScore = 20;
 	}
+
+	if (lastmanstanding || teamlms)
+    	scorelimit = GetCVar("winlimit");
+    else if (teamplay || pointgame || ctf)
+    	scorelimit = 0;
+    else
+    	scorelimit = GetCVar("fraglimit");
+
+    for (i = 0; i < 64; i++)
+    {
+    	if (PlayerInGame(i))
+    	{
+    		SetActivatorToPlayer(i);
+    		SetInventory("ScoreLimit",		  scorelimit);
+    	}
+    }
+    SetActivatorToPlayer(me);
+    SetInventory("ScoreLimit",		  scorelimit); // set scorelimit to self if spectating
 
 	while(true)
 	{
@@ -360,8 +381,8 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 
 		if(!(Timer() % 36))
 		{
-			if(teamplay || teamlms || pointgame || ctf) {
-				if(teamlms)   { maxScore = getCvar(  "winlimit"); if(!maxScore) maxScore =  10; }
+			if(teamplay || lastmanstanding || teamlms || pointgame || ctf) {
+				if(lastmanstanding || teamlms)   { maxScore = getCvar(  "winlimit"); if(!maxScore) maxScore =  10; }
 				if(teamplay)  { maxScore = getCvar( "fraglimit"); if(!maxScore) maxScore = 100; }
 				if(pointgame) { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore = 100; }
 				if(ctf)       { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore =  10; }
@@ -377,6 +398,24 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 			}
 
 			radarMode = GetUserCvar(me, "cl_radarMode");
+
+			if (lastmanstanding || teamlms)
+				scorelimit = GetCVar("winlimit");
+			else if (teamplay || pointgame || ctf)
+				scorelimit = 0;
+			else
+				scorelimit = GetCVar("fraglimit");
+
+			for (i = 0; i < 64; i++)
+			{
+				if (PlayerInGame(i))
+				{
+					SetActivatorToPlayer(i);
+					SetInventory("ScoreLimit",		  scorelimit);
+				}
+			}
+			SetActivatorToPlayer(me);
+			SetInventory("ScoreLimit",		  scorelimit); // set scorelimit to self if spectating
 		}
 
 
