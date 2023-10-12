@@ -292,41 +292,65 @@ function void reReadWeaponCvars(void)
 	// Q3 characters use Quake 3
 	// Kane uses Quake 4
 	// Doom movement champions use QCDE v1.0
-	// Everyone else uses this formula : class index % 6
+	// Everyone else tries to equalize class count per skin
 	int classSkin = CheckInventory("ClassID");
 	switch (classSkin) {
+
 	case 11: // Nyx
 	case 15: // Keel
-	case 20: // BJ
+	case 17: // Lo Wang
+	case 20: // Blazkowicz
 		classSkin = 0;
 		break;
-	case 0: // Ranger
+
+	case 0:  // Ranger
+	case 4:  // Caleb
+	case 6:  // Terminator
+	case 28: // Postal
+	case 30: // Intruder
 		classSkin = 1;
 		break;
-	case 9: // Bitterman
+
+	case 9:  // Bitterman
+	case 18: // Grayson
+	case 22: // Vor Matur
+	case 24: // Lucienne
 		classSkin = 2;
 		break;
+
+	case 12: // Sorgaul
 	case 16: // Sarge
 	case 25: // Major
 	case 26: // Hunter
 	case 31: // Orbb
 		classSkin = 3;
 		break;
-	case 3: //Kane
+
+	case 3:  // Kane
+	case 8:  // Inquisitor
+	case 13: // Duke Nukem
+	case 14: // Durandal
+	case 23: // Eleena
 		classSkin = 4;
 		break;
-	case 1: // DoomSlayer
-	case 2: // Corvus
-	case 5: // Menelkir
-	case 7: // Zedek
+
+	case 1:  // DoomSlayer
+	case 2:  // Corvus
+	case 5:  // Menelkir
+	case 7:  // Zedek
 	case 10: // Galen
 		classSkin = 6;
 		break;
+
+	case 19: // Eradicator
 	case 21: // Freeman
+	case 27: // Sam
+	case 29: // Painkiller
 		classSkin = 7;
 		break;
+
 	default:
-		classSkin = classSkin % 6;
+		classSkin = classSkin % 8; // This shouldn't happen, but just in case
 	}
 	// ^ insert more classes here, or update their indexes in MAPINFO order
 
