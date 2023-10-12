@@ -193,9 +193,9 @@ FreeformMenu "QCDE_OptionsGeneral"
 		Anchor	center, center
 	}
 	Label {
-		Pos		-60, 50				Font		SmallFont
+		Pos		-64, 50				Font		SmallFont
 		Anchor	left, center		FontColor	DarkGray
-		Text	"(how others see you)"
+		Text	"- how others see you"
 	}
 
 	Label {
@@ -285,6 +285,18 @@ FreeformMenu "QCDE_OptionsGeneral"
 		Size	105, 14				Values				ZA_PacketDupRate	SelectedBackground	OP21028S
 		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+
+	Label {
+		Pos		185, 115		Font		SmallFont
+		Anchor	right, top		FontColor	Gray
+		Text	"QC:DE Discord"
+	}
+	Label {
+		Pos		185, 125		Font		SmallFont
+		Anchor	right, top		FontColor	Cyan
+		Text	"discord.gg/u4ptaMk"
 	}
 
 
