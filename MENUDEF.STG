@@ -1355,123 +1355,148 @@ FreeformMenu "QCDE_OptionsVideo"
 	TextField	{ NotSelectable	Pos 135, 21		CVar vid_defheight	Anchor left, center		Font SmallFont	FontColor Tan	}
 
 
-	Label {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-123, 41			Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"Max FPS"
-	}
-	TextField {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-107, 40		CVar				vid_maxfps		Background			TX05028
-		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
-		Anchor	center, center	SelectedFontColor	Gray
-		Padding	0, 1
-	}
-	Slider {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-90, 40			CVar	vid_maxfps
-		Size	105, 6			Range	0, 1000, 5
-		Anchor	left, center	MouseArea	105, 14
-		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
-	}
+	IfOption(OpenGL)
+	{
+		Label {
+			Pos		-123, 41			Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Max FPS"
+		}
+		TextField {
+			Pos		-107, 40		CVar				vid_maxfps		Background			TX05028
+			Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+			Anchor	center, center	SelectedFontColor	Gray
+			Padding	0, 1
+		}
+		Slider {
+			Pos		-90, 40			CVar	vid_maxfps
+			Size	105, 6			Range	0, 1000, 5
+			Anchor	left, center	MouseArea	105, 14
+			Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+		}
 
-	Label {
-		Pos		-123, 61			Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"Field of View"
-	}
-	TextField {
-		Pos		-107, 60		CVar				fov			Background			TX05028
-		Size	25, 14			Font				SmallFont	SelectedBackground	TX05028S
-		Anchor	center, center	SelectedFontColor	Gray
-		Padding	0, 1
-	}
-	Slider {
-		Pos		-90, 60			CVar	fov
-		Size	105, 6			Range	50.0, 150.0, 1.0
-		Anchor	left, center	MouseArea	105, 14
-		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
-	}
+		Label {
+			Pos		-123, 61			Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Field of View"
+		}
+		TextField {
+			Pos		-107, 60		CVar				fov			Background			TX05028
+			Size	25, 14			Font				SmallFont	SelectedBackground	TX05028S
+			Anchor	center, center	SelectedFontColor	Gray
+			Padding	0, 1
+		}
+		Slider {
+			Pos		-90, 60			CVar	fov
+			Size	105, 6			Range	50.0, 150.0, 1.0
+			Anchor	left, center	MouseArea	105, 14
+			Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+		}
 
-	Label {
-		Pos		148, 40				Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"Display FPS"
-	}
-	Option {
-		Pos		165, 40				CVar				vid_fps
-		Size	14, 14				Values				QCDE_CheckText
-		Anchor	right, center		BackgroundValues	QCDE_CheckBG
-		MouseArea	90, 14			UnknownBackground	CHKBOX
-									SelectedForeground	CHKBOXS, 14, 14
-	}
+		Label {
+			Pos		148, 40				Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Display FPS"
+		}
+		Option {
+			Pos		165, 40				CVar				vid_fps
+			Size	14, 14				Values				QCDE_CheckText
+			Anchor	right, center		BackgroundValues	QCDE_CheckBG
+			MouseArea	90, 14			UnknownBackground	CHKBOX
+										SelectedForeground	CHKBOXS, 14, 14
+		}
 
-	Label {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		148, 60				Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"True horizontal FoV"
-	}
-	Option {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		165, 60				CVar				gl_true_fov
-		Size	14, 14				Values				QCDE_CheckText
-		Anchor	right, center		BackgroundValues	QCDE_CheckBG
-		MouseArea	90, 14			UnknownBackground	CHKBOX
-									SelectedForeground	CHKBOXS, 14, 14
-	}
+		Label {
+			Pos		148, 60				Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"True horizontal FoV"
+		}
+		Option {
+			Pos		165, 60				CVar				gl_true_fov
+			Size	14, 14				Values				QCDE_CheckText
+			Anchor	right, center		BackgroundValues	QCDE_CheckBG
+			MouseArea	90, 14			UnknownBackground	CHKBOX
+										SelectedForeground	CHKBOXS, 14, 14
+		}
 
 
-	Label {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-112, 100			Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"Dynamic Lights"
-	}
-	Option {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-95, 100			CVar				gl_lights
-		Size	14, 14				Values				QCDE_CheckText
-		Anchor	right, center		BackgroundValues	QCDE_CheckBG
-		MouseArea	90, 14			UnknownBackground	CHKBOX
-									SelectedForeground	CHKBOXS, 14, 14
+		Label {
+			Pos		-112, 100			Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Dynamic Lights"
+		}
+		Option {
+			Pos		-95, 100			CVar				gl_lights
+			Size	14, 14				Values				QCDE_CheckText
+			Anchor	right, center		BackgroundValues	QCDE_CheckBG
+			MouseArea	90, 14			UnknownBackground	CHKBOX
+										SelectedForeground	CHKBOXS, 14, 14
+		}
+
+		Label {
+			Pos		-2, 100				Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Voxel models"
+		}
+		Option {
+			Pos		15, 100				CVar				r_drawvoxels
+			Size	14, 14				Values				QCDE_CheckText
+			Anchor	right, center		BackgroundValues	QCDE_CheckBG
+			MouseArea	90, 14			UnknownBackground	CHKBOX
+										SelectedForeground	CHKBOXS, 14, 14
+		}
+
+		Label {
+			Pos		-123, 121			Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Particles limit"
+		}
+		TextField {
+			Pos		-107, 120		CVar				r_maxparticles	Background			TX05028
+			Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+			Anchor	center, center	SelectedFontColor	Gray
+			Padding	0, 1
+		}
+		Slider {
+			Pos		-90, 120		CVar	r_maxparticles
+			Size	105, 6			Range	500, 10000, 100
+			Anchor	left, center	MouseArea	105, 14
+			Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+		}
 	}
 
-	Label {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-2, 100				Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"Voxel models"
-	}
-	Option {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		15, 100				CVar				r_drawvoxels
-		Size	14, 14				Values				QCDE_CheckText
-		Anchor	right, center		BackgroundValues	QCDE_CheckBG
-		MouseArea	90, 14			UnknownBackground	CHKBOX
-									SelectedForeground	CHKBOXS, 14, 14
-	}
+	IfOption(Software)
+	{
+		Label {
+			Pos		-123, 41			Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Field of View"
+		}
+		TextField {
+			Pos		-107, 40		CVar				fov			Background			TX05028
+			Size	25, 14			Font				SmallFont	SelectedBackground	TX05028S
+			Anchor	center, center	SelectedFontColor	Gray
+			Padding	0, 1
+		}
+		Slider {
+			Pos		-90, 40			CVar	fov
+			Size	105, 6			Range	50.0, 150.0, 1.0
+			Anchor	left, center	MouseArea	105, 14
+			Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+		}
 
-	Label {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-123, 121			Font		SmallFont
-		Anchor	right, center		FontColor	DarkGray
-		Text	"Particles limit"
-	}
-	TextField {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-107, 120		CVar				r_maxparticles	Background			TX05028
-		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
-		Anchor	center, center	SelectedFontColor	Gray
-		Padding	0, 1
-	}
-	Slider {
-		VisibilityCVar	vid_renderer, 1, 1
-		Pos		-90, 120		CVar	r_maxparticles
-		Size	105, 6			Range	500, 10000, 100
-		Anchor	left, center	MouseArea	105, 14
-		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+		Label {
+			Pos		148, 40				Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Display FPS"
+		}
+		Option {
+			Pos		165, 40				CVar				vid_fps
+			Size	14, 14				Values				QCDE_CheckText
+			Anchor	right, center		BackgroundValues	QCDE_CheckBG
+			MouseArea	90, 14			UnknownBackground	CHKBOX
+										SelectedForeground	CHKBOXS, 14, 14
+		}
 	}
 
 
