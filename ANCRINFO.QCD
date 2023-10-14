@@ -1,0 +1,152 @@
+/*	
+	George Exley Announcer 1
+	ANCRINFO Organized by Whoo
+*/
+
+{
+name = "QC:DE Announcer"
+
+//	Medals
+accuracy = announcer/QCDE/accuracy
+assist = announcer/QCDE/assist
+yourskillisnotenough = announcer/QCDE/yourskillisnotenough
+youfailit = announcer/QCDE/youfailit
+totaldomination = announcer/QCDE/totaldomination
+spam = announcer/QCDE/spam
+capture = announcer/QCDE/capture
+defense = announcer/QCDE/defense
+domination = announcer/QCDE/domination
+excellent = announcer/QCDE/excellent
+fight = announcer/QCDE/fight
+firstfrag = announcer/QCDE/firstfrag
+fisting = announcer/QCDE/fisting
+llama = announcer/QCDE/llama
+impressive = announcer/QCDE/impressive
+incredible = announcer/QCDE/incredible
+mostimpressive = announcer/QCDE/mostimpressive
+perfect = announcer/QCDE/perfect
+precision = announcer/QCDE/precision
+
+//	Blue Team Sounds
+blueflagdropped = announcer/QCDE/blueflagdropped
+blueflagreturned = announcer/QCDE/blueflagreturned
+
+blueflagtaken = announcer/QCDE/blueflagtaken
+
+blueleads = announcer/QCDE/blueleads
+bluescores = announcer/QCDE/bluescores
+blueskulldropped = announcer/QCDE/blueskulldropped
+blueskullreturned = announcer/QCDE/blueskullreturned
+
+blueskulltaken = announcer/QCDE/blueskulltaken
+
+//	Red Team Sounds
+
+redflagdropped = announcer/QCDE/redflagdropped
+redflagreturned = announcer/QCDE/redflagreturned
+
+redflagtaken = announcer/QCDE/redflagtaken
+
+redleads = announcer/QCDE/redleads
+redredskull = announcer/QCDE/redredskull
+redscores = announcer/QCDE/redscores
+redskulldropped = announcer/QCDE/redskulldropped
+redskullreturned = announcer/QCDE/redskullreturned
+
+redskulltaken = announcer/QCDE/redskulltaken
+
+//	Gold Team Sounds
+goldflagtaken = announcer/QCDE/goldflagtaken
+goldflagdropped = announcer/QCDE/goldflagdropped
+goldflagreturned = announcer/QCDE/goldflagreturned
+
+goldscores = announcer/QCDE/goldscores
+
+goldskulltaken = announcer/QCDE/goldskulltaken
+goldskulldropped = announcer/QCDE/goldskulldropped
+goldskullreturned = announcer/QCDE/goldskullreturned
+
+
+//	Green Team Sounds
+
+greenflagtaken = announcer/QCDE/greenflagtaken
+greenflagdropped = announcer/QCDE/greenflagdropped
+greenflagreturned = announcer/QCDE/greenflagreturned
+
+greenscores = announcer/QCDE/greenscores
+
+greenskulltaken = announcer/QCDE/greenskulltaken
+greenskulldropped = announcer/QCDE/greenskulldropped
+greenskullreturned = announcer/QCDE/greenskullreturned
+
+//	White Flag
+whiteflagreturned = announcer/QCDE/whiteflagreturned
+
+//	Time Warnings
+
+oneminutewarning = announcer/QCDE/oneminutewarning
+fiveminutewarning = announcer/QCDE/fiveminutewarning
+
+//	Player Notifications
+
+nextroundin = announcer/QCDE/nextroundin
+three = announcer/QCDE/three
+two = announcer/QCDE/two
+one = announcer/QCDE/one
+onefragleft = announcer/QCDE/onefragleft
+preparetofight = announcer/QCDE/preparetofight
+teamsaretied = announcer/QCDE/teamsaretied
+theenemyhastheflag = announcer/QCDE/theenemyhastheflag
+three = announcer/QCDE/three
+threefragsleft = announcer/QCDE/threefragsleft
+twofragsleft = announcer/QCDE/twofragsleft
+victory = announcer/QCDE/victory
+youaretiedforthelead = announcer/QCDE/youaretiedforthelead
+youhavetheflag = announcer/QCDE/youhavetheflag
+yourteamhastheflag = announcer/QCDE/yourteamhastheflag
+youvelostthelead = announcer/QCDE/youvelostthelead
+youvetakenthelead = announcer/QCDE/youvetakenthelead
+youwin = announcer/QCDE/youwin
+youlose = announcer/QCDE/youlose
+drawgame = announcer/QCDE/drawgame
+suddendeath = announcer/QCDE/suddendeath
+
+//	Runes/Powerups
+
+guardsphere = announcer/QCDE/guardsphere
+haste = announcer/QCDE/haste
+highjump = announcer/QCDE/highjump
+partialinvisibility = announcer/QCDE/partialinvisibility
+possessionartifactdropped = announcer/QCDE/possessionartifactdropped
+possessionartifactpickedup = announcer/QCDE/possessionartifactpickedup
+prosperity = announcer/QCDE/prosperity
+rage = announcer/QCDE/rage
+reflection = announcer/QCDE/reflection
+regeneration = announcer/QCDE/regeneration
+resistance = announcer/QCDE/resistance
+spread = announcer/QCDE/spread
+strength = announcer/QCDE/strength
+timefreeze = announcer/QCDE/timefreeze
+turbosphere = announcer/QCDE/turbosphere
+doomsphere = announcer/QCDE/doomsphere
+drain = announcer/QCDE/drain
+
+invisibility = announcer/QCDE/invisibility
+invulnerability = announcer/QCDE/invulnerability
+megasphere = announcer/QCDE/megasphere
+soulsphere = announcer/QCDE/soulsphere
+
+//	Gamemode Sounds
+tag = announcer/QCDE/tag
+termination = announcer/QCDE/termination
+terminator = announcer/QCDE/terminator
+welcometoctf = announcer/QCDE/welcometoctf
+welcometooneflagctf = announcer/QCDE/welcometooneflagctf
+welcometost = announcer/QCDE/welcometost
+
+//	Vote Sounds
+votefailed = announcer/QCDE/votefailed
+votenow = announcer/QCDE/votenow
+votepassed = announcer/QCDE/votepassed
+
+}

@@ -1625,18 +1625,6 @@ FreeformMenu "QCDE_OptionsSound"
 	}
 
 	Label {
-		Pos		80, 63				Font		SmallFont
-		Anchor	left, top			FontColor	DarkGray
-		Text	"Announcer"
-	}
-	Option {
-		Pos		80, 80				CVar				cl_announcer	UnknownBackground	OP21028
-		Size	105, 14				Values				ZA_Announcers	SelectedBackground	OP21028S
-		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
-		Padding	3, 1				SelectedFontColor	Gray
-	}
-
-	Label {
 		Pos		80, 103				Font		SmallFont
 		Anchor	left, top			FontColor	DarkGray
 		Text	"Midi Device"
