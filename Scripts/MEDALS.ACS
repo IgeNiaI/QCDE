@@ -272,6 +272,8 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 //Medal drawer
 script "DrawMedal" (int medal) CLIENTSIDE {
 
+	delay(35); // delay medals to avoid reduce the overlap chance with announcer line
+
 	while(CheckInventory("MedalInExecutionToken"))
 		Delay(1);
 
