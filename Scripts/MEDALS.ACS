@@ -33,7 +33,7 @@ script "MedalsInitiator" ENTER {
 	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
-	if(!GetCVar("cl_qcmedals"))
+	if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER)
 		terminate;
 
 	ACS_NamedExecuteAlways("NetMasterStarter", 0);
@@ -49,7 +49,7 @@ script "ResetMedalCounters" DEATH {
 	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
-	if(!GetCVar("cl_qcmedals"))
+	if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER)
 		terminate;
 
 	Delay(2);
@@ -118,7 +118,7 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 		int victimHP = GetActorProperty(victimTID, APROP_Health);
 		int distance = QCDE_ProximityCheck(victimTID, ActivatorTID());
 
-		if(!GetCVar("cl_qcmedals")) {
+		if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER) {
 			if(!firstBloodGiven)			//still have to flip the switch even if the fist killer has turned medals off
 				firstBloodGiven = true;
 			terminate;
@@ -277,10 +277,20 @@ script "DrawMedal" (int medal) CLIENTSIDE {
 
 	GiveInventory("MedalInExecutionToken", 1);
 
-	SetFont(medalPool[medal][GRAPHIC]);
-	SetHudSize(1280, 952, 1);
+	int activator = ActivatorTID();
+	int consoleplayer = ConsolePlayerNumber();
+	if (CheckPlayerCamera(consoleplayer) == activator)
+		SetActivatorToPlayer(consoleplayer);
+
 	if(GetCVar("cl_qcmedals") < 2)
+	{
+		SetFont(medalPool[medal][GRAPHIC]);
+		SetHudSize(1280, 952, 1);
 		HudMessage(s:"A"; HUDMSG_FADEOUT, 1234, CR_UNTRANSLATED, 640.0, 220.0, 2.0, 0.2);
+	}
+
+	SetActivator(activator);
+
 	LocalAmbientSound(medalPool[medal][SOUND], 127 * GetCVar("snd_announcervolume") >> 16);
 
 	Delay(48);
@@ -323,7 +333,7 @@ script "QCDE_Impressive" (void) {
 	if (GetNetworkState() == NETSTATE_CLIENT)
 		terminate;
 
-	if(!GetCVar("cl_qcmedals"))
+	if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER)
 		terminate;
 
 	if((CheckInventory("AimWellToken") == 1) && (CheckInventory("TwoHitsToken") == 0)) {
@@ -538,7 +548,7 @@ script "QCDE_PowerUpMassacre" (void) {
 	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
-	if(!GetCVar("cl_qcmedals"))
+	if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER)
 		terminate;
 
 	int f = PlayerFrags() + 5;
@@ -570,7 +580,7 @@ Script "QCDE_StopWatch" (int itemType) {
 	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
-	if(!GetCVar("cl_qcmedals"))
+	if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER)
 		terminate;
 
 	if(GetCVar("lastmanstanding") || GetCVar("teamlms"))
