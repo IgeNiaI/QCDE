@@ -861,3 +861,21 @@ Script "QCDE_CrownTheBest" (void)
 	if (!CheckActorInventory(1000 + best, "PowerGhostTint") && !CheckActorInventory(1000 + best, "PowerWendigoTint"))
 		GiveActorInventory(1000 + best, "CrownProc", 1);
 }
+
+str endgame[7] = { "ENDGAME0", "ENDGAME1", "ENDGAME2", "ENDGAME3", "ENDGAME4",
+					"ENDGAME5", "ENDGAME6" };
+
+Script "QCDE_EndGameFlash" (int type, int arg1, int arg2) EVENT
+{
+	if (type != GAMEEVENT_ROUND_ENDS)
+		terminate;
+
+	int i;
+	for (i = 0; i < 7; i++)
+	{
+		SetHudSize(800, 600, true);
+		SetFont(endgame[i]);
+		HudMessageBold(s:"A"; HUDMSG_FADEOUT, ENDGAME_FLASH, CR_UNTRANSLATED, 400.0, 220.0, 1.0, 0.5);
+		delay(2);
+	}
+}
