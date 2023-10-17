@@ -65,6 +65,7 @@ ClearBots //to remove skulltag bots
 { name = "Princess"			class = "Eleena"	 accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 2	perception = 2	color = "68 D3 AD"	gender="female"	railcolor = green	script = "humanbot"	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/notow.txt"		}
 { name = "Gunman"			class = "DoomSlayer" accuracy = 1	intellect = 1	evade = 3	anticipation = 3	reactiontime = 2	perception = 2	color = "37 3F 46"	gender = "male"	railcolor = grey	script = "humanbot"	favoriteweapon = "QCHeavyMachinegunDM"	chatfrequency =  9	chatlump = "bots/chatfiles/sheriff.txt"		}
 { name = "Borsch"			class = "Sam"		 accuracy = 1	intellect = 3	evade = 1	anticipation = 2	reactiontime = 2	perception = 3	color = "E3 45 48"	gender = "male"	railcolor = red		script = "humanbot"	favoriteweapon = "QCHeavyMachinegunDM"	chatfrequency =  8	chatlump = "bots/chatfiles/heavich.txt"		}
+{ name = "Foxhound"			class = "Lucienne"	 accuracy = 2	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 2	color = "A2 32 3F"	gender="female"	railcolor = red		script = "humanbot" favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/kunai.txt"		}
 
 // QC, spread attributes, better than previous range (18pts)
 { name = "Die Apotheke"		class = "Ranger" 		accuracy = 2	intellect = 3	evade = 4 	anticipation = 3	reactiontime = 3 	perception = 3	script = "humanbot"	gender = "male" }
