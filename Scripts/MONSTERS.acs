@@ -978,14 +978,12 @@ function void SetMenuThemeName(void)
 	int me = CPN();
 
 	str cvarname  = strparam(s:"themename", d:NUMBER_OF_THEMES);
-	str cvarvalue = strparam(s:"\c[brite]", s:themes[NUMBER_OF_THEMES]);
+	str cvarvalue = themes[NUMBER_OF_THEMES];
 	SetCvarString(cvarname,cvarvalue);
-	SetUserCvarString(me, cvarname, cvarvalue);
 
 	cvarname  = strparam(s:"theme", d:NUMBER_OF_THEMES);
 	cvarvalue = 1;
 	if(GetCvar    (   cvarname) == -1) SetCvar    (    cvarname, cvarvalue);
-	if(GetUserCvar(me,cvarname) == -1) SetUserCvar(me, cvarname, cvarvalue);
 
 
 	int i;
@@ -996,7 +994,6 @@ function void SetMenuThemeName(void)
 
 		cvarvalue = strparam(s:" ");
 		SetCvarString(cvarname,cvarvalue);
-		SetUserCvarString(me, cvarname, cvarvalue);
 	}
 }
 

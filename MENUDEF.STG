@@ -2064,108 +2064,249 @@ OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of 
 	class VideoModeMenu
 }
 
-OptionMenu "QCDE_CustomThemes"
+FreeformMenu "QCDE_CustomThemes"
 {
-	Indent 80
-	StaticText 	"Custom Monster Set Selection",1
+	TopPadding 20
+	DefaultSelection -2
 
-	StaticText ""
+	Label {
+		Pos		0, 20				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
+		Text	"Custom Monster Set Selection"
+	}
 
-	TextField " ", "themename5"    Option " ", "theme5","OI"    StaticText ""
-	TextField " ", "themename6"    Option " ", "theme6","OI"    StaticText ""
-	TextField " ", "themename7"    Option " ", "theme7","OI"    StaticText ""
-	TextField " ", "themename8"    Option " ", "theme8","OI"    StaticText ""
-	TextField " ", "themename9"    Option " ", "theme9","OI"    StaticText ""
-	TextField " ","themename10"    Option " ","theme10","OI"    StaticText ""
-	TextField " ","themename11"    Option " ","theme11","OI"    StaticText ""
-	TextField " ","themename12"    Option " ","theme12","OI"    StaticText ""
-	TextField " ","themename13"    Option " ","theme13","OI"    StaticText ""
-	TextField " ","themename14"    Option " ","theme14","OI"    StaticText ""
-	TextField " ","themename15"    Option " ","theme15","OI"    StaticText ""
-	TextField " ","themename16"    Option " ","theme16","OI"    StaticText ""
-	TextField " ","themename17"    Option " ","theme17","OI"    StaticText ""
-	TextField " ","themename18"    Option " ","theme18","OI"    StaticText ""
-	TextField " ","themename19"    Option " ","theme19","OI"    StaticText ""
-	TextField " ","themename20"    Option " ","theme20","OI"    StaticText ""
-	TextField " ","themename21"    Option " ","theme21","OI"    StaticText ""
-	TextField " ","themename22"    Option " ","theme22","OI"    StaticText ""
-	TextField " ","themename23"    Option " ","theme23","OI"    StaticText ""
-	TextField " ","themename24"    Option " ","theme24","OI"    StaticText ""
-	TextField " ","themename25"    Option " ","theme25","OI"    StaticText ""
-	TextField " ","themename26"    Option " ","theme26","OI"    StaticText ""
-	TextField " ","themename27"    Option " ","theme27","OI"    StaticText ""
-	TextField " ","themename28"    Option " ","theme28","OI"    StaticText ""
-	TextField " ","themename29"    Option " ","theme29","OI"    StaticText ""
-	TextField " ","themename30"    Option " ","theme30","OI"    StaticText ""
-	TextField " ","themename31"    Option " ","theme31","OI"    StaticText ""
-	TextField " ","themename32"    Option " ","theme32","OI"    StaticText ""
-	TextField " ","themename33"    Option " ","theme33","OI"    StaticText ""
-	TextField " ","themename34"    Option " ","theme34","OI"    StaticText ""
-	TextField " ","themename35"    Option " ","theme35","OI"    StaticText ""
-	TextField " ","themename36"    Option " ","theme36","OI"    StaticText ""
-	TextField " ","themename37"    Option " ","theme37","OI"    StaticText ""
-	TextField " ","themename38"    Option " ","theme38","OI"    StaticText ""
-	TextField " ","themename39"    Option " ","theme39","OI"    StaticText ""
-	TextField " ","themename40"    Option " ","theme40","OI"    StaticText ""
-	TextField " ","themename41"    Option " ","theme41","OI"    StaticText ""
-	TextField " ","themename42"    Option " ","theme42","OI"    StaticText ""
-	TextField " ","themename43"    Option " ","theme43","OI"    StaticText ""
-	TextField " ","themename44"    Option " ","theme44","OI"    StaticText ""
-	TextField " ","themename45"    Option " ","theme45","OI"    StaticText ""
-	TextField " ","themename46"    Option " ","theme46","OI"    StaticText ""
-	TextField " ","themename47"    Option " ","theme47","OI"    StaticText ""
-	TextField " ","themename48"    Option " ","theme48","OI"    StaticText ""
-	TextField " ","themename49"    Option " ","theme49","OI"    StaticText ""
-	TextField " ","themename50"    Option " ","theme50","OI"    StaticText ""
-	TextField " ","themename51"    Option " ","theme51","OI"    StaticText ""
-	TextField " ","themename52"    Option " ","theme52","OI"    StaticText ""
-	TextField " ","themename53"    Option " ","theme53","OI"    StaticText ""
-	TextField " ","themename54"    Option " ","theme54","OI"    StaticText ""
-	TextField " ","themename55"    Option " ","theme55","OI"    StaticText ""
-	TextField " ","themename56"    Option " ","theme56","OI"    StaticText ""
-	TextField " ","themename57"    Option " ","theme57","OI"    StaticText ""
-	TextField " ","themename58"    Option " ","theme58","OI"    StaticText ""
-	TextField " ","themename59"    Option " ","theme59","OI"    StaticText ""
-	TextField " ","themename60"    Option " ","theme60","OI"    StaticText ""
-	TextField " ","themename61"    Option " ","theme61","OI"    StaticText ""
-	TextField " ","themename62"    Option " ","theme62","OI"    StaticText ""
-	TextField " ","themename63"    Option " ","theme63","OI"    StaticText ""
-	TextField " ","themename64"    Option " ","theme64","OI"    StaticText ""
-	TextField " ","themename65"    Option " ","theme65","OI"    StaticText ""
-	TextField " ","themename66"    Option " ","theme66","OI"    StaticText ""
-	TextField " ","themename67"    Option " ","theme67","OI"    StaticText ""
-	TextField " ","themename68"    Option " ","theme68","OI"    StaticText ""
-	TextField " ","themename69"    Option " ","theme69","OI"    StaticText ""
-	TextField " ","themename70"    Option " ","theme70","OI"    StaticText ""
-	TextField " ","themename71"    Option " ","theme71","OI"    StaticText ""
-	TextField " ","themename72"    Option " ","theme72","OI"    StaticText ""
-	TextField " ","themename73"    Option " ","theme73","OI"    StaticText ""
-	TextField " ","themename74"    Option " ","theme74","OI"    StaticText ""
-	TextField " ","themename75"    Option " ","theme75","OI"    StaticText ""
-	TextField " ","themename76"    Option " ","theme76","OI"    StaticText ""
-	TextField " ","themename77"    Option " ","theme77","OI"    StaticText ""
-	TextField " ","themename78"    Option " ","theme78","OI"    StaticText ""
-	TextField " ","themename79"    Option " ","theme79","OI"    StaticText ""
-	TextField " ","themename80"    Option " ","theme80","OI"    StaticText ""
-	TextField " ","themename81"    Option " ","theme81","OI"    StaticText ""
-	TextField " ","themename82"    Option " ","theme82","OI"    StaticText ""
-	TextField " ","themename83"    Option " ","theme83","OI"    StaticText ""
-	TextField " ","themename84"    Option " ","theme84","OI"    StaticText ""
-	TextField " ","themename85"    Option " ","theme85","OI"    StaticText ""
-	TextField " ","themename86"    Option " ","theme86","OI"    StaticText ""
-	TextField " ","themename87"    Option " ","theme87","OI"    StaticText ""
-	TextField " ","themename88"    Option " ","theme88","OI"    StaticText ""
-	TextField " ","themename89"    Option " ","theme89","OI"    StaticText ""
-	TextField " ","themename90"    Option " ","theme90","OI"    StaticText ""
-	TextField " ","themename91"    Option " ","theme91","OI"    StaticText ""
-	TextField " ","themename92"    Option " ","theme92","OI"    StaticText ""
-	TextField " ","themename93"    Option " ","theme93","OI"    StaticText ""
-	TextField " ","themename94"    Option " ","theme94","OI"    StaticText ""
-	TextField " ","themename95"    Option " ","theme95","OI"    StaticText ""
-	TextField " ","themename96"    Option " ","theme96","OI"    StaticText ""
-	TextField " ","themename97"    Option " ","theme97","OI"    StaticText ""
-	TextField " ","themename98"    Option " ","theme98","OI"    StaticText ""
-	TextField " ","themename99"    Option " ","theme99","OI"    StaticText ""
+	Label {
+		VisibilityCvar  theme5,	-1, -1
+		Pos		0, 40				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gray
+		Text	"No custom themes loaded!"
+	}
+
+	TextField {	NotSelectable	VisibilityCvar  theme5,	0, 1	Pos -135,  60	CVar themename5		Size 100, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar  theme5,	0, 1	Pos	-155,  60	CVar     theme5		Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar  theme6,	0, 1	Pos  -25,  60	CVar themename6		Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar  theme6,	0, 1	Pos	 -45,  60	CVar     theme6		Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar  theme7,	0, 1	Pos   85,  60	CVar themename7		Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar  theme7,	0, 1	Pos	  65,  60	CVar     theme7		Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar  theme8,	0, 1	Pos -135,  80	CVar themename8		Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar  theme8,	0, 1	Pos	-155,  80	CVar     theme8		Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar  theme9,	0, 1	Pos  -25,  80	CVar themename9		Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar  theme9,	0, 1	Pos	 -45,  80	CVar     theme9		Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme10,	0, 1	Pos   85,  80	CVar themename10	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme10,	0, 1	Pos	  65,  80	CVar     theme10	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme11,	0, 1	Pos -135, 100	CVar themename11	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme11,	0, 1	Pos	-155, 100	CVar     theme11	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme12,	0, 1	Pos  -25, 100	CVar themename12	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme12,	0, 1	Pos	 -45, 100	CVar     theme12	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme13,	0, 1	Pos   85, 100	CVar themename13	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme13,	0, 1	Pos	  65, 100	CVar     theme13	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme14,	0, 1	Pos -135, 120	CVar themename14	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme14,	0, 1	Pos	-155, 120	CVar     theme14	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme15,	0, 1	Pos  -25, 120	CVar themename15	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme15,	0, 1	Pos	 -45, 120	CVar     theme15	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme16,	0, 1	Pos   85, 120	CVar themename16	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme16,	0, 1	Pos	  65, 120	CVar     theme16	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme17,	0, 1	Pos -135, 140	CVar themename17	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme17,	0, 1	Pos	-155, 140	CVar     theme17	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme18,	0, 1	Pos  -25, 140	CVar themename18	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme18,	0, 1	Pos	 -45, 140	CVar     theme18	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme19,	0, 1	Pos   85, 140	CVar themename19	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme19,	0, 1	Pos	  65, 140	CVar     theme19	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme20,	0, 1	Pos -135, 160	CVar themename20	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme20,	0, 1	Pos	-155, 160	CVar     theme20	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme21,	0, 1	Pos  -25, 160	CVar themename21	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme21,	0, 1	Pos	 -45, 160	CVar     theme21	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme22,	0, 1	Pos   85, 160	CVar themename22	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme22,	0, 1	Pos	  65, 160	CVar     theme22	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme23,	0, 1	Pos -135, 180	CVar themename23	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme23,	0, 1	Pos	-155, 180	CVar     theme23	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme24,	0, 1	Pos  -25, 180	CVar themename24	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme24,	0, 1	Pos	 -45, 180	CVar     theme24	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme25,	0, 1	Pos   85, 180	CVar themename25	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme25,	0, 1	Pos	  65, 180	CVar     theme25	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme26,	0, 1	Pos -135, 200	CVar themename26	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme26,	0, 1	Pos	-155, 200	CVar     theme26	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme27,	0, 1	Pos  -25, 200	CVar themename27	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme27,	0, 1	Pos	 -45, 200	CVar     theme27	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme28,	0, 1	Pos   85, 200	CVar themename28	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme28,	0, 1	Pos	  65, 200	CVar     theme28	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme29,	0, 1	Pos -135, 220	CVar themename29	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme29,	0, 1	Pos	-155, 220	CVar     theme29	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme30,	0, 1	Pos  -25, 220	CVar themename30	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme30,	0, 1	Pos	 -45, 220	CVar     theme30	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme31,	0, 1	Pos   85, 220	CVar themename31	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme31,	0, 1	Pos	  65, 220	CVar     theme31	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme32,	0, 1	Pos -135, 240	CVar themename32	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme32,	0, 1	Pos	-155, 240	CVar     theme32	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme33,	0, 1	Pos  -25, 240	CVar themename33	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme33,	0, 1	Pos	 -45, 240	CVar     theme33	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme34,	0, 1	Pos   85, 240	CVar themename34	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme34,	0, 1	Pos	  65, 240	CVar     theme34	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme35,	0, 1	Pos -135, 260	CVar themename35	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme35,	0, 1	Pos	-155, 260	CVar     theme35	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme36,	0, 1	Pos  -25, 260	CVar themename36	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme36,	0, 1	Pos	 -45, 260	CVar     theme36	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme37,	0, 1	Pos   85, 260	CVar themename37	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme37,	0, 1	Pos	  65, 260	CVar     theme37	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme38,	0, 1	Pos -135, 280	CVar themename38	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme38,	0, 1	Pos	-155, 280	CVar     theme38	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme39,	0, 1	Pos  -25, 280	CVar themename39	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme39,	0, 1	Pos	 -45, 280	CVar     theme39	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme40,	0, 1	Pos   85, 280	CVar themename40	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme40,	0, 1	Pos	  65, 280	CVar     theme40	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme41,	0, 1	Pos -135, 300	CVar themename41	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme41,	0, 1	Pos	-155, 300	CVar     theme41	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme42,	0, 1	Pos  -25, 300	CVar themename42	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme42,	0, 1	Pos	 -45, 300	CVar     theme42	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme43,	0, 1	Pos   85, 300	CVar themename43	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme43,	0, 1	Pos	  65, 300	CVar     theme43	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme44,	0, 1	Pos -135, 320	CVar themename44	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme44,	0, 1	Pos	-155, 320	CVar     theme44	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme45,	0, 1	Pos  -25, 320	CVar themename45	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme45,	0, 1	Pos	 -45, 320	CVar     theme45	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme46,	0, 1	Pos   85, 320	CVar themename46	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme46,	0, 1	Pos	  65, 320	CVar     theme46	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme47,	0, 1	Pos -135, 340	CVar themename47	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme47,	0, 1	Pos	-155, 340	CVar     theme47	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme48,	0, 1	Pos  -25, 340	CVar themename48	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme48,	0, 1	Pos	 -45, 340	CVar     theme48	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme49,	0, 1	Pos   85, 340	CVar themename49	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme49,	0, 1	Pos	  65, 340	CVar     theme49	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme50,	0, 1	Pos -135, 360	CVar themename50	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme50,	0, 1	Pos	-155, 360	CVar     theme50	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme51,	0, 1	Pos  -25, 360	CVar themename51	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme51,	0, 1	Pos	 -45, 360	CVar     theme51	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme52,	0, 1	Pos   85, 360	CVar themename52	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme52,	0, 1	Pos	  65, 360	CVar     theme52	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme53,	0, 1	Pos -135, 380	CVar themename53	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme53,	0, 1	Pos	-155, 380	CVar     theme53	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme54,	0, 1	Pos  -25, 380	CVar themename54	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme54,	0, 1	Pos	 -45, 380	CVar     theme54	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme55,	0, 1	Pos   85, 380	CVar themename55	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme55,	0, 1	Pos	  65, 380	CVar     theme55	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme56,	0, 1	Pos -135, 400	CVar themename56	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme56,	0, 1	Pos	-155, 400	CVar     theme56	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme57,	0, 1	Pos  -25, 400	CVar themename57	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme57,	0, 1	Pos	 -45, 400	CVar     theme57	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme58,	0, 1	Pos   85, 400	CVar themename58	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme58,	0, 1	Pos	  65, 400	CVar     theme58	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme59,	0, 1	Pos -135, 420	CVar themename59	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme59,	0, 1	Pos	-155, 420	CVar     theme59	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme60,	0, 1	Pos  -25, 420	CVar themename60	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme60,	0, 1	Pos	 -45, 420	CVar     theme60	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme61,	0, 1	Pos   85, 420	CVar themename61	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme61,	0, 1	Pos	  65, 420	CVar     theme61	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme62,	0, 1	Pos -135, 440	CVar themename62	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme62,	0, 1	Pos	-155, 440	CVar     theme62	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme63,	0, 1	Pos  -25, 440	CVar themename63	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme63,	0, 1	Pos	 -45, 440	CVar     theme63	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme64,	0, 1	Pos   85, 440	CVar themename64	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme64,	0, 1	Pos	  65, 440	CVar     theme64	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme65,	0, 1	Pos -135, 460	CVar themename65	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme65,	0, 1	Pos	-155, 460	CVar     theme65	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme66,	0, 1	Pos  -25, 460	CVar themename66	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme66,	0, 1	Pos	 -45, 460	CVar     theme66	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme67,	0, 1	Pos   85, 460	CVar themename67	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme67,	0, 1	Pos	  65, 460	CVar     theme67	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme68,	0, 1	Pos -135, 480	CVar themename68	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme68,	0, 1	Pos	-155, 480	CVar     theme68	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme69,	0, 1	Pos  -25, 480	CVar themename69	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme69,	0, 1	Pos	 -45, 480	CVar     theme69	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme70,	0, 1	Pos   85, 480	CVar themename70	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme70,	0, 1	Pos	  65, 480	CVar     theme70	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme71,	0, 1	Pos -135, 500	CVar themename71	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme71,	0, 1	Pos	-155, 500	CVar     theme71	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme72,	0, 1	Pos  -25, 500	CVar themename72	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme72,	0, 1	Pos	 -45, 500	CVar     theme72	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme73,	0, 1	Pos   85, 500	CVar themename73	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme73,	0, 1	Pos	  65, 500	CVar     theme73	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme74,	0, 1	Pos -135, 520	CVar themename74	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme74,	0, 1	Pos	-155, 520	CVar     theme74	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme75,	0, 1	Pos  -25, 520	CVar themename75	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme75,	0, 1	Pos	 -45, 520	CVar     theme75	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme76,	0, 1	Pos   85, 520	CVar themename76	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme76,	0, 1	Pos	  65, 520	CVar     theme76	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme77,	0, 1	Pos -135, 540	CVar themename77	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme77,	0, 1	Pos	-155, 540	CVar     theme77	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme78,	0, 1	Pos  -25, 540	CVar themename78	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme78,	0, 1	Pos	 -45, 540	CVar     theme78	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme79,	0, 1	Pos   85, 540	CVar themename79	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme79,	0, 1	Pos	  65, 540	CVar     theme79	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme80,	0, 1	Pos -135, 560	CVar themename80	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme80,	0, 1	Pos	-155, 560	CVar     theme80	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme81,	0, 1	Pos  -25, 560	CVar themename81	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme81,	0, 1	Pos	 -45, 560	CVar     theme81	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme82,	0, 1	Pos   85, 560	CVar themename82	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme82,	0, 1	Pos	  65, 560	CVar     theme82	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme83,	0, 1	Pos -135, 580	CVar themename83	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme83,	0, 1	Pos	-155, 580	CVar     theme83	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme84,	0, 1	Pos  -25, 580	CVar themename84	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme84,	0, 1	Pos	 -45, 580	CVar     theme84	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme85,	0, 1	Pos   85, 580	CVar themename85	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme85,	0, 1	Pos	  65, 580	CVar     theme85	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme86,	0, 1	Pos -135, 600	CVar themename86	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme86,	0, 1	Pos	-155, 600	CVar     theme86	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme87,	0, 1	Pos  -25, 600	CVar themename87	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme87,	0, 1	Pos	 -45, 600	CVar     theme87	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme88,	0, 1	Pos   85, 600	CVar themename88	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme88,	0, 1	Pos	  65, 600	CVar     theme88	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme89,	0, 1	Pos -135, 620	CVar themename89	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme89,	0, 1	Pos	-155, 620	CVar     theme89	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme90,	0, 1	Pos  -25, 620	CVar themename90	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme90,	0, 1	Pos	 -45, 620	CVar     theme90	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme91,	0, 1	Pos   85, 620	CVar themename91	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme91,	0, 1	Pos	  65, 620	CVar     theme91	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme92,	0, 1	Pos -135, 640	CVar themename92	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme92,	0, 1	Pos	-155, 640	CVar     theme92	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme93,	0, 1	Pos  -25, 640	CVar themename93	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme93,	0, 1	Pos	 -45, 640	CVar     theme93	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme94,	0, 1	Pos   85, 640	CVar themename94	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme94,	0, 1	Pos	  65, 640	CVar     theme94	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme95,	0, 1	Pos -135, 660	CVar themename95	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme95,	0, 1	Pos	-155, 660	CVar     theme95	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme96,	0, 1	Pos  -25, 660	CVar themename96	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme96,	0, 1	Pos	 -45, 660	CVar     theme96	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme97,	0, 1	Pos   85, 660	CVar themename97	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme97,	0, 1	Pos	  65, 660	CVar     theme97	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	TextField {	NotSelectable	VisibilityCvar theme98,	0, 1	Pos -135, 680	CVar themename98	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme98,	0, 1	Pos	-155, 680	CVar     theme98	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+	TextField {	NotSelectable	VisibilityCvar theme99,	0, 1	Pos  -25, 680	CVar themename99	Size 180, 14	Font SmallFont		FontColor DarkGray		Anchor left, center	}
+	Option {					VisibilityCvar theme99,	0, 1	Pos	 -45, 680	CVar     theme99	Size  14, 14	Values QCDE_CheckText	Anchor left, center		BackgroundValues QCDE_CheckBG	MouseArea 120, 14	UnknownBackground CHKBOX	SelectedForeground CHKBOXS, 14, 14	}
+
+	Label {
+		Pos 0, 700	Text ""
+	}
 }
 
 
