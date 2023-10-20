@@ -271,6 +271,8 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 
 //Medal drawer
 script "DrawMedal" (int medal) CLIENTSIDE {
+	int activator = ActivatorTID();
+	int plr = activator - 1000;
 
 	delay(35); // delay medals to avoid reduce the overlap chance with announcer line
 
@@ -279,7 +281,6 @@ script "DrawMedal" (int medal) CLIENTSIDE {
 
 	GiveInventory("MedalInExecutionToken", 1);
 
-	int activator = ActivatorTID();
 	int consoleplayer = ConsolePlayerNumber();
 	if (CheckPlayerCamera(consoleplayer) == activator)
 		SetActivatorToPlayer(consoleplayer);
@@ -291,9 +292,11 @@ script "DrawMedal" (int medal) CLIENTSIDE {
 		HudMessage(s:"A"; HUDMSG_FADEOUT, 1234, CR_UNTRANSLATED, 640.0, 220.0, 2.0, 0.2);
 	}
 
-	SetActivator(activator);
+	SetActivatorToPlayer(plr); // if the player respawned, play sounds at new body
 
 	LocalAmbientSound(medalPool[medal][SOUND], 127 * GetCVar("snd_announcervolume") >> 16);
+
+	SetActivator(activator); // go back to old body to properly handle items
 
 	Delay(48);
 	TakeInventory("MedalInExecutionToken", 1);
