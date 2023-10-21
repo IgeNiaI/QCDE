@@ -736,7 +736,8 @@ Script "QCDE_Ability_Doomslayer" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Unzoom if using toggle zoom
 	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	SetWeapon(weaponList[w]);
+	if(GetActorProperty(0,APROP_HEALTH) > 0)
+		SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	TakeInventory("SlayerBFG",1);
 	TakeInventory("BFGstarted",1);
@@ -840,7 +841,8 @@ Script "QCDE_Ability_Caleb" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Unzoom if using toggle zoom
 	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	SetWeapon(weaponList[w]);
+	if(GetActorProperty(0,APROP_HEALTH) > 0)
+		SetWeapon(weaponList[w]);
 	TakeInventory("CalebDoll",1);
 	TakeInventory("CalebDollBot",1);
 	GiveInventory("DollCleanerProc",1); //Remove ability weapon
@@ -1131,8 +1133,9 @@ Script "QCDE_Ability_Inquisitor" (void)
 			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			//Unzoom if using toggle zoom
 			if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-			//Give and select fake weapon
-			SetWeapon(weaponList[w]);
+			//Select old weapon
+			if(GetActorProperty(0,APROP_HEALTH) > 0)
+				SetWeapon(weaponList[w]);
 			//Remove ability weapon
 			TakeInventory("Shieldquisitor",1);
 			SetNetworkReplicationFlags( 0 );
@@ -1385,8 +1388,9 @@ Script "QCDE_Ability_Sorgaul" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Unzoom if using toggle zoom
 	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	//Give and select fake weapon
-	SetWeapon(weaponList[w]);
+	//Select old weapon
+	if(GetActorProperty(0,APROP_HEALTH) > 0)
+		SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("PrimalRageCleanerProc",1);
 	TakeInventory("SorgaulFists",1);
@@ -1427,7 +1431,7 @@ Script "QCDE_Ability_DukeNukem" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Unzoom if using toggle zoom
 	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	//Give and select fake weapon
+	//Select old weapon
 	SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("DukeFreezerCleanerProc",1);
@@ -1884,8 +1888,9 @@ Script "QCDE_Ability_Blazkowicz" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Unzoom if using toggle zoom
 	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	//Give and select fake weapon
-	SetWeapon(weaponList[w]);
+	//Select old weapon
+	if(GetActorProperty(0,APROP_HEALTH) > 0)
+		SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("AkimboCleanerProc",1);
 	TakeInventory("BlazkoAkimbo",1);
@@ -2479,8 +2484,9 @@ Script "QCDE_Ability_Sam" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	//Unzoom if using toggle zoom
 	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	//Give and select fake weapon
-	SetWeapon(weaponList[w]);
+	//Select old weapon
+	if(GetActorProperty(0,APROP_HEALTH) > 0)
+		SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("SamMinigunCleanerProc",1);
 	TakeInventory("SamMinigun",1);
@@ -2538,9 +2544,10 @@ Script "QCDE_Ability_Postal" (void)
 		SetNetworkReplicationFlags( 0 );
 	}
 
-	//Give and select fake weapon
+	//Select old weapon
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	SetWeapon(weaponList[w]);
+	if(GetActorProperty(0,APROP_HEALTH) > 0)
+		SetWeapon(weaponList[w]);
 	//Remove ability weapon
 	GiveInventory("PostalCowCleanerProc",1);
 	TakeInventory("PostalCowHead",1);
