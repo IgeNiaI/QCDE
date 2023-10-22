@@ -263,7 +263,6 @@ int teamgame      ;
 int pointgame     ;
 int coop          ;
 int freezetag     ;
-int scorelimit    ;
 
 Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 {
@@ -352,17 +351,6 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
     else
     	scorelimit = GetCVar("fraglimit");
 
-    for (i = 0; i < 64; i++)
-    {
-    	if (PlayerInGame(i))
-    	{
-    		SetActivatorToPlayer(i);
-    		SetInventory("ScoreLimit",		  scorelimit);
-    	}
-    }
-    SetActivatorToPlayer(me);
-    SetInventory("ScoreLimit",		  scorelimit); // set scorelimit to self if spectating
-
 	while(true)
 	{
 		watchdog = Timer();
@@ -405,17 +393,6 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 				scorelimit = 0;
 			else
 				scorelimit = GetCVar("fraglimit");
-
-			for (i = 0; i < 64; i++)
-			{
-				if (PlayerInGame(i))
-				{
-					SetActivatorToPlayer(i);
-					SetInventory("ScoreLimit",		  scorelimit);
-				}
-			}
-			SetActivatorToPlayer(me);
-			SetInventory("ScoreLimit",		  scorelimit); // set scorelimit to self if spectating
 		}
 
 
