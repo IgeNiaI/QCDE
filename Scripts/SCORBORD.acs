@@ -408,31 +408,24 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 		str txtH = strparam(d:hours  );
 		timedisplay = strparam(s:txtH, s:":", s:txtM, s:":", s:txtS);
 
-		SetActivatorToPlayer(me);
-		int cl_noWeaponBar = GetCVar("cl_showWeaponBar");
-		int cl_speedometer = GetCVar("cl_speedometer");
-		int cl_barStyle = GetCVar("cl_barStyle");
-
-		for (i = 0; i < 64; i++)
-		{
-			if (PlayerInGame(i))
-			{
-				SetActivatorToPlayer(i);
-				SetInventory("NoWeaponBar",      !cl_noWeaponBar);
-				SetInventory("Speedometer",       cl_speedometer);
-				SetInventory("FlatHealthPref",    cl_barStyle);
-				SetInventory("FlatArmorPref",     cl_barStyle);
-			}
-		}
-		SetActivatorToPlayer(me);
-
 		if(plr)
 		{
 			//---------------------------------
 			// Player's PoV
 			//---------------------------------
 
+			SetActivatorToPlayer(me);
+			int cl_noWeaponBar = GetCVar("cl_showWeaponBar");
+			int cl_speedometer = GetCVar("cl_speedometer");
+			int cl_barStyle = GetCVar("cl_barStyle");
+
 			SetActivator(plr);
+
+			SetInventory("NoWeaponBar",      !cl_noWeaponBar);
+			SetInventory("Speedometer",       cl_speedometer);
+			SetInventory("FlatHealthPref",    cl_barStyle);
+			SetInventory("FlatArmorPref",     cl_barStyle);
+
 			int plrtid = plr;
 			if(plrtid == -1) plrtid = 1000;
 			plr -= 1000; // convert tid to PlayerNumber()
