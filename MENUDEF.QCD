@@ -15,15 +15,21 @@ FreeformMenu "MainMenuTopBar"
 
 	Command {
 		Static
-		Pos		0, 0			Background			BT_HOME
-		Size	15, 20			SelectedBackground	BT_HOMES
+		Pos		0, 0			Background			BM_4040
+		Size	20, 20			SelectedBackground	BM_4040R
 		Anchor	left, top
 		Gravity left, top		Command	qcde_openmainmenu
+	}
+	Label {
+		Static
+		Pos		10, 10			Size 10, 10
+		Anchor	center, center	Gravity left, top
+		Background IC_BACK
 	}
 
 	Command {
 		Static	NotOnTitlemap	NotInSingleplayer	NotInBotplay
-		Pos		52, 10					Text				"Call Vote"			Background			BM14040
+		Pos		57, 10					Text				"Call Vote"			Background			BM14040
 		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
 		Anchor	center, center			FontColor			Tan
 		Gravity left, top				SelectedFontColor	Tan					Command	qcde_opencallvote
@@ -32,7 +38,7 @@ FreeformMenu "MainMenuTopBar"
 
 	Command {
 		Static	NotInMultiplayer
-		Pos		52, 10					Text				"New Game"			Background			BM14040
+		Pos		57, 10					Text				"New Game"			Background			BM14040
 		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
 		Anchor	center, center			FontColor			Tan
 		Gravity left, top				SelectedFontColor	Tan					Command	qcde_opencampaign
@@ -41,7 +47,7 @@ FreeformMenu "MainMenuTopBar"
 
 	Command {
 		Static	NotInMultiplayer
-		Pos		124, 10					Text				"Skirmish"			Background			BM14040
+		Pos		129, 10					Text				"Skirmish"			Background			BM14040
 		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
 		Anchor	center, center			FontColor			Tan
 		Gravity left, top				SelectedFontColor	Tan					Command	qcde_openskirmish
@@ -50,7 +56,7 @@ FreeformMenu "MainMenuTopBar"
 
 	SubMenu {
 		Static	NotInMultiplayer
-		Pos		196, 10					Text				"Load Game"			Background			BM14040
+		Pos		201, 10					Text				"Load Game"			Background			BM14040
 		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
 		Anchor	center, center			FontColor			Tan
 		Gravity left, top				SelectedFontColor	Tan					Menu	LoadGameMenu
@@ -59,7 +65,7 @@ FreeformMenu "MainMenuTopBar"
 
 	SubMenu {
 		Static	NotOnTitlemap	NotInMultiplayer	NotInBotplay
-		Pos		268, 10					Text				"Save Game"			Background			BM14040
+		Pos		273, 10					Text				"Save Game"			Background			BM14040
 		Size	70, 20					Font				QCSMFONT			SelectedBackground	BM14040S
 		Anchor	center, center			FontColor			Tan
 		Gravity left, top				SelectedFontColor	Tan					Menu	SaveGameMenu
@@ -73,7 +79,6 @@ FreeformMenu "MainMenuTopBar"
 		Anchor	right, top
 		Gravity right, top		Command	qcde_optionsgeneral
 	}
-
 	Label {
 		Static
 		Pos		-32, 10			Size 10, 10
@@ -88,7 +93,6 @@ FreeformMenu "MainMenuTopBar"
 		Anchor	right, top
 		Gravity right, top		Menu	QuitMenu
 	}
-
 	Label {
 		Static
 		Pos		-10, 10			Size 10, 10
@@ -111,6 +115,20 @@ FreeformMenu "MainMenu"
 	}
 
 	InsertFreeformMenu MainMenuTopBar
+
+	Command {
+		Static
+		Pos		0, 0			Background			BM_4040
+		Size	20, 20			SelectedBackground	BM_4040R
+		Anchor	left, top
+		Gravity left, top		Command	closemenu
+	}
+	Label {
+		Static
+		Pos		10, 10			Size 10, 10
+		Anchor	center, center	Gravity left, top
+		Background IC_BACK
+	}
 
 	SubMenu {
 		Static
