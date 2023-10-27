@@ -1421,32 +1421,12 @@ FreeformMenu "QCDE_OptionsVideo"
 
 
 		Label {
-			Pos		-112, 100			Font		SmallFont
-			Anchor	right, center		FontColor	DarkGray
-			Text	"Dynamic Lights"
-		}
-		Command {
-			VisibilityCVar	gl_lights, 0, 0
-			Pos		-95, 100			Background			CHKBOX
-			Size	14, 14				SelectedForeground	CHKBOXS, 14, 14
-			Anchor	right, center		Command qcde_lightson
-			MouseArea	90, 14
-		}
-		Command {
-			VisibilityCVar	gl_lights, 1, 1
-			Pos		-95, 100			Background			CHKBOXC
-			Size	14, 14				SelectedForeground	CHKBOXS, 14, 14
-			Anchor	right, center		Command qcde_lightsoff
-			MouseArea	90, 14
-		}
-
-		Label {
-			Pos		-2, 100				Font		SmallFont
+			Pos		148, 100			Font		SmallFont
 			Anchor	right, center		FontColor	DarkGray
 			Text	"Voxel models"
 		}
 		Option {
-			Pos		15, 100				CVar				r_drawvoxels
+			Pos		165, 100			CVar				r_drawvoxels
 			Size	14, 14				Values				QCDE_CheckText
 			Anchor	right, center		BackgroundValues	QCDE_CheckBG
 			MouseArea	90, 14			UnknownBackground	CHKBOX
@@ -1454,18 +1434,52 @@ FreeformMenu "QCDE_OptionsVideo"
 		}
 
 		Label {
-			Pos		-123, 121			Font		SmallFont
+			Pos		148, 120			Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Dynamic Lights"
+		}
+		Command {
+			VisibilityCVar	gl_lights, 0, 0
+			Pos		165, 120			Background			CHKBOX
+			Size	14, 14				SelectedForeground	CHKBOXS, 14, 14
+			Anchor	right, center		Command qcde_lightson
+			MouseArea	90, 14
+		}
+		Command {
+			VisibilityCVar	gl_lights, 1, 1
+			Pos		165, 120			Background			CHKBOXC
+			Size	14, 14				SelectedForeground	CHKBOXS, 14, 14
+			Anchor	right, center		Command qcde_lightsoff
+			MouseArea	90, 14
+		}
+
+		Label {
+			Pos		148, 140			Font		SmallFont
+			Anchor	right, center		FontColor	DarkGray
+			Text	"Fancy light shaders"
+		}
+		Option {
+			EnableCVar	gl_lights, 1, 1
+			Pos		165, 140			CVar				gl_dynlight_shader
+			Size	14, 14				Values				QCDE_CheckText
+			Anchor	right, center		BackgroundValues	QCDE_CheckBG
+			MouseArea	90, 14			UnknownBackground	CHKBOX
+										SelectedForeground	CHKBOXS, 14, 14
+		}
+
+		Label {
+			Pos		-123, 101			Font		SmallFont
 			Anchor	right, center		FontColor	DarkGray
 			Text	"Particles limit"
 		}
 		TextField {
-			Pos		-107, 120		CVar				r_maxparticles	Background			TX05028
+			Pos		-107, 100		CVar				r_maxparticles	Background			TX05028
 			Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
 			Anchor	center, center	SelectedFontColor	Gray
 			Padding	0, 1
 		}
 		Slider {
-			Pos		-90, 120		CVar	r_maxparticles
+			Pos		-90, 100		CVar	r_maxparticles
 			Size	105, 6			Range	500, 10000, 100
 			Anchor	left, center	MouseArea	105, 14
 			Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
@@ -1508,17 +1522,17 @@ FreeformMenu "QCDE_OptionsVideo"
 
 
 	Label {
-		Pos		0, 153				Font		SmallFont
+		Pos		0, 173				Font		SmallFont
 		Anchor	center, top			FontColor	DarkGray
 		Text	"Renderer"
 	}
 	Option {
-		Pos		0, 170				CVar				vid_renderer	UnknownBackground	OP21028
+		Pos		0, 190				CVar				vid_renderer	UnknownBackground	OP21028
 		Size	105, 14				Values				Renderers		SelectedBackground	OP21028S
 		Anchor	center, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
 		Padding	0, 1				SelectedFontColor	Gray
 	}
-	Label {	Pos 0, 185		Text "Renderer changes apply after restart"		Anchor center, center		Font SmallFont	FontColor DarkGray }
+	Label {	Pos 0, 205		Text "Renderer changes apply after restart"		Anchor center, center		Font SmallFont	FontColor DarkGray }
 
 
 	InsertFreeformMenu MainMenuTopBar
