@@ -423,7 +423,7 @@ Actor MenelkirHourglass : Hourglass
 		SAND AAAAAAAAAA 1 Bright A_FadeIn(0.1)
 		SAND A 0 Bright A_ChangeFlag("NOBLOCKMAP", false)
 		SAND AAAAAAAA 35 Bright						//8 sec
-		SAND AAAAAAAAAA 7 Bright A_FadeOut(0.1)		//2 sec
+		SAND AAAAAAAAAA 7 Light(YellowSmallPoint3) Bright A_FadeOut(0.1)		//2 sec
 		Stop
 	OK:
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"VeryOK")

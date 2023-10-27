@@ -117,7 +117,7 @@ Actor QCQuad : CustomInventory 15511
 	States
 	{
 	Spawn:
-		QUAD A 35 BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",0)
+		QUAD A 35 Light(PurpleMediumPoint2) BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",0)
 		QUAD A 0 A_SpawnItemEx("PowerupBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		QUAD A 0 A_ThrowGrenade("QCQuadFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		Goto Idle
@@ -133,9 +133,14 @@ Actor QCQuad : CustomInventory 15511
 		"####" "#" 0 A_SetArg(2,32767) // default time before disappearing
 		Goto See
 	See:
-		"####" "#" 35 BRIGHT A_SetArg(2, args[2] - 1)
+		"####" "#" 0 A_SetArg(2, args[2] - 1)
+		"####" "#" 0 A_Jump(256, "SeeLight") // to jump to override state
+	SeeLight:
+		"####" "#" 35 Light(PurpleMediumPoint2) BRIGHT
+		Goto SeeCont
+	SeeCont:
 		"####" "#" 0 A_JumpIf(args[2] <= 0, "Death")
-		Loop
+		Goto See
 	Death:
 		"####" AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_FadeOut(1/35)
 		Stop
@@ -251,10 +256,10 @@ Actor QCQuadSP : CustomInventory
 	States
 	{
 	Spawn:
-		QUAD A 35 BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		QUAD A 35 Light(PurpleMediumPoint2) BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
 		QUAD A 0 ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",0)
 		QUAD A 0 A_ThrowGrenade("QCQuadFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
-		QUAD A -1 BRIGHT
+		QUAD A -1 Light(PurpleMediumPoint2) BRIGHT
 		Stop
 	DMSpawn:	//Super ammo pack
 		AMAL A 0 A_SetScale(1.15)
@@ -324,10 +329,13 @@ Actor QCProtec : QCQuad 15512
 	States
 	{
 	Spawn:
-		PROT A 35 BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",1)
+		PROT A 35 Light(BlueMediumPoint2) BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",1)
 		PROT A 0 A_SpawnItemEx("PowerupBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		PROT A 0 A_ThrowGrenade("QCProtecFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		Goto Idle
+	SeeLight:
+		"####" "#" 35 Light(BlueMediumPoint2) BRIGHT
+		Goto SeeCont
 	Pickup:
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_CantPickPowerup"), "Failer")
 		TNT1 A 0 A_SpawnItemEx("ProtecFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
@@ -420,10 +428,10 @@ Actor QCProtecSP : CustomInventory
 	States
 	{
 	Spawn:
-		PROT A 35 BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		PROT A 35 Light(BlueMediumPoint2) BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
 		PROT A 0 ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",1)
 		PROT A 0 A_ThrowGrenade("QCProtecFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
-		PROT A -1 BRIGHT
+		PROT A -1 Light(BlueMediumPoint2) BRIGHT
 		Stop
 	DMSpawn:	//Super ammo pack
 		AMAL A 0 A_SetScale(1.15)
@@ -508,10 +516,10 @@ Actor QCInvul : QCQuad replaces InvulnerabilitySphere 15513
 	States
 	{
 	Spawn:
-		PENT A 35 BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
+		PENT A 35 Light(RedMediumPoint2) BRIGHT NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMSpawn")
 		PENT A 0 ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",2)
 		PENT A 0 A_ThrowGrenade("QCInvulFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
-		PENT A -1 BRIGHT
+		PENT A -1 Light(RedMediumPoint2) BRIGHT
 		Stop
 	DMSpawn:	//Super ammo pack
 		AMAL A 0 A_SetScale(1.15)
@@ -624,10 +632,13 @@ Actor QCInfin : QCQuad 15519
 	States
 	{
 	Spawn:
-		INFN A 35 BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",3)
+		INFN A 35 Light(OrangeMediumPoint3) BRIGHT NoDelay ACS_NamedExecuteWithResult("QCDE_PowerupSpawned",3)
 		INFN A 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		INFN A 0 A_ThrowGrenade("QCInfinFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		Goto Idle
+	SeeLight:
+		"####" "#" 35 Light(OrangeMediumPoint3) BRIGHT
+		Goto SeeCont
 	Pickup:
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_CantPickPowerup"), "Failer")
 		TNT1 A 0 A_SpawnItemEx("InfinFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
@@ -779,7 +790,7 @@ Actor PowerupFactory
 
 	SpawnQuad:
 		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Quad_Spawned",CHAN_AUTO,1,0,ATTN_NONE)
-		TNT1 A 0 A_SpawnItemEx("QCQuad", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
+		TNT1 A 0 A_SpawnItemEx("QCQuad", 0,0,1, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
 		TNT1 A 0 A_SetUserVar(user_next_powerup, 1)
 		Goto Idle2
 
@@ -837,7 +848,7 @@ Actor PowerupFactory
 
 	SpawnQuad2:
 		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Quad_Spawned",CHAN_AUTO,1,0,ATTN_NONE)
-		TNT1 A 0 A_SpawnItemEx("QCQuad", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
+		TNT1 A 0 A_SpawnItemEx("QCQuad", 0,0,1, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
 		TNT1 A 0 A_SetUserVar(user_next_powerup, 1)
 		Goto Idle2
 
@@ -886,7 +897,7 @@ Actor PowerupFactory
 
 	SpawnProtec2:
 		TNT1 A 0 A_PlaySound("QC/UI/Powerup/Protec_Spawned",CHAN_AUTO,1,0,ATTN_NONE)
-		TNT1 A 0 A_SpawnItemEx("QCProtec", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
+		TNT1 A 0 A_SpawnItemEx("QCProtec", 0,0,1, 0,0,0, 0,SXF_NOCHECKPOSITION,0, 995)
 		TNT1 A 0 A_SetUserVar(user_next_powerup, 0)
 		Goto Idle2
 	}

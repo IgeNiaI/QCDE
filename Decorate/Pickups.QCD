@@ -27,7 +27,7 @@ Actor Hourglass : CustomInventory 15508
 	{
 	Spawn:
 		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_UndropDuringInit")
-		SAND A -1 Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned", true)
+		SAND A -1 Light(YellowSmallPoint3) Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned", true)
 		Loop
 	Pickup:
 		TNT1 A 0 A_JumpIfInventory("Class_Sarge", 1, "GiveArmor")
@@ -107,7 +107,7 @@ Actor BigHourglass : Hourglass 15509
 	{
 	Spawn:
 		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_UndropDuringInit")
-		SAND B -1 Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
+		SAND B -1 Light(YellowSmallPoint2) Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
 		Loop
 	OK:
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"VeryOK")
