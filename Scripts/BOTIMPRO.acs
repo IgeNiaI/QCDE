@@ -90,6 +90,7 @@ script "QCDE_Bot_Twitch" (void)
 	if(CheckInventory("Freezetagged")) terminate;
 	if(CheckInventory("Twitchless3sec")) terminate; // As don't those thrown up by Grayson's Thumper
 	if(GetActorProperty(0, APROP_HEALTH) <= 0) terminate; // As don't those that are dead like disco
+	if(GetGameModeState() >= GAMESTATE_INRESULTSEQUENCE) terminate; // Everyone should be frozen when the match ends
 
 	if(GetActorVelX(0) | GetActorVelY(0))
 	{
