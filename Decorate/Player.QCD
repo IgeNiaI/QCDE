@@ -1954,7 +1954,7 @@ Actor QCDukeNukem : QCPlayerMedium
 			goto Spawn // to catch color
 
 	See:
-		"####" A 0 a_jumpifinventory("TeamColor",1, "ColoredSee") // so tempted to call it "red sea"
+		"####" A 0 a_jumpifinventory("TeamColor",1, "ColoredSee")
 		"####" A 1 a_jumpif(true,                   "DefSee")
 		goto DefSee // for preview screen and prediction
 

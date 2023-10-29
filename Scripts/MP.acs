@@ -110,19 +110,6 @@ Script "QCDE_DM_HealthAndWeapons" (void)
 }
 
 
-Script "QCDE_StoreTeam" (void)
-{
-	if(CheckInventory("TeamDeathmatch")) // Team color
-	{
-		SetInventory("TeamColor", GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM) + 1);
-	}
-	else if(GameType() >= GAME_NET_DEATHMATCH) // Red outlines in non-team PvP
-	{
-		SetInventory("TeamColor", 2);
-	}
-}
-
-
 int lastTime = -999999;
 Script "QCDE_FirstInSeconds" (int secs)
 {

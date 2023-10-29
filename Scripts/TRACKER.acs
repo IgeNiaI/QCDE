@@ -145,7 +145,6 @@ Script "QCDE_NewLife" (int firsttime)
 	ACS_NamedExecuteAlways("QCDE_StartingWeapon_Apply"	,0);
 	ACS_NamedExecuteAlways("QCDE_CleanUpAbilities"		,0);	//to clean up flag/token changes that occurred in the previous level
 	ACS_NamedExecuteAlways("QCDE_AllyMarker_CLIENT"		,0, true);
-	ACS_NamedExecuteAlways("QCDE_StoreTeam"				,0);
 	ACS_NamedExecuteAlways("QCDE_BindAbilityKey_Hint"	,0);
 
 	if(firsttime) ACS_NamedExecuteAlways("QCDE_FreeTribolt",0);
@@ -158,6 +157,7 @@ Script "QCDE_NewLife" (int firsttime)
 	rereadCvars();
 	reReadWeaponCvars();
 
+	bool deathmatch= getCvar("deathmatch");
 	bool teamplay  = getCvar("teamplay");
 	bool teamlms   = getCvar("teamlms");
 	bool pointgame = getCvar("teampossession") || getCvar("domination") || getCvar("skulltag");
@@ -166,13 +166,15 @@ Script "QCDE_NewLife" (int firsttime)
 
 	if(teamplay || teamlms || pointgame || ctf) {
 		GiveInventory("TeamDeathmatch", 1);
+		SetInventory("TeamColor", GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM) + 1);
 		if(teamlms)   { maxScore = getCvar(  "winlimit"); if(!maxScore) maxScore =  10; }
 		if(teamplay)  { maxScore = getCvar( "fraglimit"); if(!maxScore) maxScore = 100; }
 		if(pointgame) { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore = 100; }
 		if(ctf)       { maxScore = getCvar("pointlimit"); if(!maxScore) maxScore =  10; }
 	}
-	else // ffa or duel
+	else if (deathmatch) // ffa or duel
 	{
+		SetInventory("TeamColor", 2);
 		if(duel) GiveInventory("Duel", 1);
 
 		maxScore = getCvar("fraglimit");
