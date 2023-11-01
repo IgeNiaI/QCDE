@@ -2,7 +2,7 @@ Changelog
 
 ---------------------------------------------------------------------
 
-V3.0 (October ## 2023)
+V3.0 (November ## 2023)
 
 General:
 - Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
@@ -32,6 +32,7 @@ General:
 - Integrated the item respawn timers addon. It can be toggled on server using the `sv_showItemTimers` cvar.
 - Integrated the "Stack Left" addon. It can be toggled on server using the `sv_showStackLeft` cvar.
 - Integrated the QC:DE Announcer addon.
+- Integrated TDRR's universal bump mapping addon into the mod and added "Fancy lights" option to control it.
 - LMS and Team LMS now spawn players with full ammo and no longer give starter weapons.
 - Rocket jumping no longer deals self damage in gamemodes like Rocket Arena and Unholy Trinity.
 - Added a random class option to the class menu.
@@ -108,7 +109,7 @@ Maps:
 - Added "Outpost", "Hangar" "Cathedral" and "Asteroid Garden" for Invasion gamemode (QCIN01, QCIN02, QCIN03 and QCIN04 respectively)
 - Retextured QCDL02 "Aerowalk"
 - Added second Rocket Launcher spawn and moved Heavy Machinegun on QCDE08 "Furious Heights"
-- Made the slope on top of broken pillar in QCDL03 work like UT slope
+- Made the slope on top of broken pillar in QCDL03 "Fatal Instinct" work like UT slope
 - Reworked map scripts like jumppads and teleports to make them feel lagless in multiplayer
 - Fixed multiple misaligned textures and lights on almost every map
 - Added Heavy and Mega spawn foundation decorations to maps that didn't have them
@@ -148,6 +149,8 @@ Misc:
 - Replaced Lo Wang sounds with higher quality ones.
 - Added a jumping sound for Freeman.
 - You can now change your class on respawn in singleplayer invasion.
+- Bots no longer jump around after the game ends.
+- Multiple pickup items now emit lights.
 
 
 ---------------------------------------------------------------------
