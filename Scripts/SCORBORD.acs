@@ -845,7 +845,7 @@ Script "QCDE_EndGameFlash" (int type, int arg1, int arg2) EVENT
 	{
 		SetHudSize(800, 600, true);
 		SetFont(endgame[i]);
-		HudMessageBold(s:"A"; HUDMSG_FADEOUT, ENDGAME_FLASH, CR_UNTRANSLATED, 400.0, 220.0, 1.0, 0.5);
+		HudMessageBold(s:"A"; HUDMSG_LAYER_UNDERHUD|HUDMSG_FADEOUT, ENDGAME_FLASH, CR_UNTRANSLATED, 400.0, 220.0, 1.0, 0.5);
 		delay(2);
 	}
 }
