@@ -28,10 +28,12 @@ Actor SuperShotgunPickup : CustomInventory 15602
 		Goto Idle
 	DMSpawn:
 		"####" "#" 0 A_ChangeFlag("DROPPED", 0)
-		QCGC Z -1 Bright ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",10,args[4])
+		QCGC Z 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",10,args[4])
+		QCGC Z -1 Bright A_SetArg(4, 0)
 		Stop
 	Idle:
-		QCGC Y -1 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",9,args[4])
+		QCGC Y 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",9,args[4])
+		QCGC Y -1 A_SetArg(4, 0)
 		Wait
 	Pickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMPickup")
@@ -112,11 +114,13 @@ Actor SuperShotgunPickupDMvar: CustomInventory 	//this one is for SSGs spawned i
 			TNT1 A 0 A_SpawnItemEx("SuperNailgunPickup", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 			Stop
 		BeSSG:
-			QCGC Z -1 Bright ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",10,args[4])
+			QCGC Z 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",10,args[4])
+			QCGC Z -1 Bright A_SetArg(4, 0)
 			Wait
 
 	Idle:
-		QCGC Y -1 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",9,args[4])
+		QCGC Y 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",9,args[4])
+		QCGC Y -1 A_SetArg(4, 0)
 		Wait
 	Pickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMPickup")

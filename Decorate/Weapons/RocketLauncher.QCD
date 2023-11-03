@@ -29,10 +29,12 @@ Actor RocketLauncherPickup : CustomInventory 15605
 		Goto Idle
 	DMSpawn:
 		"####" "#" 0 A_ChangeFlag("DROPPED", 0)
-		QCG5 Z -1 Bright ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",16,args[4])
+		QCG5 Z 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",16,args[4])
+		QCG5 Z -1 Bright A_SetArg(4, 0)
 		Stop
 	Idle:
-		QCG5 Y -1 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",15,args[4])
+		QCG5 Y 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",15,args[4])
+		QCG5 Y -1 A_SetArg(4, 0)
 		Wait
 	Pickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2,"DMPickup")

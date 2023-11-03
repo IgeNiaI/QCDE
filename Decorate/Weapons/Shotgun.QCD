@@ -57,7 +57,8 @@ Actor ShotgunPickup : CustomInventory 15601
 		Stop
 
 	Idle:
-		QCG3 Y -1 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",3,args[4])
+		QCG3 Y 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",3,args[4])
+		QCG3 Y -1 A_SetArg(4, 0)
 		Wait
 	Pickup:
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("WeaponStayCheck",0,0,0,0),"WeaponStay")
