@@ -328,15 +328,34 @@ Actor QCShotgun : QCWeapon
 	FlashEnder:
 		TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 		TNT1 A 0 A_SetBlend("Orange",0.10,10)
-		TNT1 A 0
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "FlashEnder.HalfLife")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "FlashEnder.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "FlashEnder.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "FlashEnder.Quake1")
+	FlashEnder.Default:
+		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,4,4)
+		Goto FlashEnderCont
+	FlashEnder.Quake1:
+		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,2,4)
+		Goto FlashEnderCont
+	FlashEnder.Quake2:
+		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,5,4)
+		Goto FlashEnderCont
+	FlashEnder.QCDE1:
+		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,4,4)
+		Goto FlashEnderCont
+	FlashEnder.HalfLife:
+		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,4,4)
+		Goto FlashEnderCont
+
+	FlashEnderCont:
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"FlashEnderNoRecoil")
 		TNT1 A 0 A_SetPitch(pitch-3.5)
-		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,4,4)
 		TNT1 A 2
 		TNT1 AAAAAAA 1 A_SetPitch(pitch+0.5)
 		Stop
 	FlashEnderNoRecoil:
-		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,4,4)
+		TNT1 A 0
 		Stop
 	}
 }

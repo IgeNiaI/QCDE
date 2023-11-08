@@ -162,12 +162,13 @@ Franco Tieppo           : Spriter for all weapons in v2.0
                           Revamping of HUD elements, radar graphics, edit to face for "Grayson"
                           champion. Redrawn sprites for Painkiller weapon, Demonic HUD,
                           Soul Pickup sprites, Redrawn/retouched "Black tarot" card icons and
-                          overhead sprites, Elder Soul pickup sprites, menu graphics for v3.0 and a lot more. 
+                          overhead sprites, Elder Soul pickup sprites, menu graphics for v3.0,
+                          Quake 3 weapon skin sprites and a lot more. 
                           Seriously, I ought to make a file to list all of Franco's contributions
                           But most importantly: The **WET FLOOR SIGN**
 
 Pixo                    : Orbb sprites, console font graphics,
-                          Quake 1, 2, 3, 4 and QW: ET weapon skin sprites
+                          Quake 1, 2, 4 and QW: ET weapon skin sprites
 
 Michael Markie          : QCDE Original Soundtrack, production of voice effects of Durandal,
                           sounds for BFG10k, sounds for Duke's Freeze Gun, other misc sounds.
