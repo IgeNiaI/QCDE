@@ -16,6 +16,21 @@
 //=============================================================================
 
 
+script "QCDE_DMCMPGN_Open" OPEN
+{
+	if (!InCampaign())
+		terminate;
+
+	switch (GetCVar("botskill"))
+	{
+	case 0:		SetCVar("sv_showItemTimers", true);		SetCVar("sv_showStackLeft", true);		break;
+	case 1:		SetCVar("sv_showItemTimers", true);		SetCVar("sv_showStackLeft", true);		break;
+	case 2:		SetCVar("sv_showItemTimers", true);		SetCVar("sv_showStackLeft", false);		break;
+	case 3:		SetCVar("sv_showItemTimers", false);	SetCVar("sv_showStackLeft", false);		break;
+	case 4:		SetCVar("sv_showItemTimers", false);	SetCVar("sv_showStackLeft", false);		break;
+	}
+}
+
 bool playedBotJoinSound[64];
 
 script "QCDE_DMCMPGN_PlayBotJoinSound" ()
