@@ -93,7 +93,7 @@ script "GenericJumpPad" ( int z_push, int angle, int xy_push, int sound_tag )
 		if ( z_push != 0 )
 			ThrustThingZ( 0, z_push, 0, 0 );
 		if ( xy_push != 0 )
-			ThrustThing( angle, xy_push, 0 );
+			ThrustThing( angle, xy_push, 1 );
 	} else {
 		//If player is dead, pushes corpse away
 		ThrustThing( random(1,255), random(10,20), 1, 0 );
@@ -108,7 +108,7 @@ script "GenericJumpPad" ( int z_push, int angle, int xy_push, int sound_tag )
 			int delayTics = z_push / 3;
 
 			Delay( delayTics );
-			ThrustThing( angle, xy_push / 2, 0 );
+			ThrustThing( angle, xy_push / 2, 1 );
 
 			Delay( 30 - delayTics );
 			
