@@ -94,179 +94,179 @@ script "ResetMedalCounters" DEATH {
 //////////////////////////////////////////////////////////////////
 
 //Handles various medals that should activate on frag events
-script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
+script "QCDE_FragEventMedals" (int evtTyp, int victimNo, int arg2) EVENT {
 
 	if(GameType() < GAME_NET_DEATHMATCH || GetGameModeState() < GAMESTATE_INPROGRESS)
 		terminate;
 
-	if(evtTyp == GAMEEVENT_PLAYERFRAGS) {
-		int victimTID = 1000 + victimNo;
-		int victimActiveTokens = CheckActorInventory(victimNo+1000, "ActiveProgressToken");
-		int victimSpreeToken = CheckActorInventory(victimTID, "SpreeToken");
-		int killerAbilityToken = CheckInventory("PowerAbilityToken");
-		int killerHP = GetActorProperty(0, APROP_Health);
-		int victimHP = GetActorProperty(victimTID, APROP_Health);
-		int distance = QCDE_ProximityCheck(victimTID, ActivatorTID());
+	if(evtTyp != GAMEEVENT_PLAYERFRAGS)
+		terminate;
 
-		if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER) {
-			if(!firstBloodGiven)			//still have to flip the switch even if the fist killer has turned medals off
-				firstBloodGiven = true;
-			terminate;
-		}
-		
-		if(CheckActorInventory(victimTID, "Class_DukeNukem") || CheckActorInventory(victimTID, "Class_Sam")) {
-		
-			int activator = ActivatorTID();
-			bool victimAbilityWeapon = false;
-			
-			SetActivator(victimTID);
-			if(CheckWeapon("SamMinigun") || CheckWeapon("DukeFreezeThrower"))
-				victimAbilityWeapon = true;
-			SetActivator(activator);
-		}
+	int victimTID = 1000 + victimNo;
+	int victimActiveTokens = CheckActorInventory(victimNo+1000, "ActiveProgressToken");
+	int victimSpreeToken = CheckActorInventory(victimTID, "SpreeToken");
+	int killerAbilityToken = CheckInventory("PowerAbilityToken");
+	int killerHP = GetActorProperty(0, APROP_Health);
+	int victimHP = GetActorProperty(victimTID, APROP_Health);
+	int distance = QCDE_ProximityCheck(victimTID, ActivatorTID());
 
-		ACS_NamedExecuteAlways("QCDE_Excellent", 0, Timer());
-		ACS_NamedExecuteAlways("QCDE_KillingSpree", 0);
+	if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER) {
+		if(!firstBloodGiven)			//still have to flip the switch even if the fist killer has turned medals off
+			firstBloodGiven = true;
+		terminate;
+	}
 
-		Delay(3);	//Delay these checks slightly to leave time for other scripts to run
+	if(CheckActorInventory(victimTID, "Class_DukeNukem") || CheckActorInventory(victimTID, "Class_Sam")) {
+		int activator = ActivatorTID();
+		bool victimAbilityWeapon = false;
 
-		//////////////////////
-		//	Ability medals	//
-		//////////////////////
+		SetActivator(victimTID);
+		if(CheckWeapon("SamMinigun") || CheckWeapon("DukeFreezeThrower"))
+			victimAbilityWeapon = true;
+		SetActivator(activator);
+	}
 
-		//Abilities where we can check for progress
-		if(CheckInventory("ActiveProgressToken")) {
+	ACS_NamedExecuteAlways("QCDE_Excellent", 0, Timer());
+	ACS_NamedExecuteAlways("QCDE_KillingSpree", 0);
 
-			//Blazko
-			if(CheckInventory("Class_Blazkowicz"))
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PSYCHED);
+	Delay(3);	//Delay these checks slightly to leave time for other scripts to run
 
-			//Eradicator
-			if(CheckInventory("Class_Eradicator"))
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PSIRADAR);
+	//////////////////////
+	//	Ability medals	//
+	//////////////////////
 
-			//Inquisitor
-			if(CheckInventory("Class_Inquisitor"))
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SHOCKER);
-		}
+	//Abilities where we can check for progress
+	if(CheckInventory("ActiveProgressToken")) {
 
-		//Abilities where we can't
-		//Galen
-		if(CheckInventory("TotemExploded"))
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_CURSED);
+		//Blazko
+		if(CheckInventory("Class_Blazkowicz"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PSYCHED);
 
-		//Kane
-		if(CheckInventory("PowerInjectionSpeed"))
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_STROYGREEN);
+		//Eradicator
+		if(CheckInventory("Class_Eradicator"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PSIRADAR);
 
-		//Projectile or puff based abilities
-		if(killerAbilityToken) {
+		//Inquisitor
+		if(CheckInventory("Class_Inquisitor"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SHOCKER);
+	}
 
-			//Keel
-			if(CheckInventory("Class_Keel"))
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PINEAPPLE);
+	//Abilities where we can't
+	//Galen
+	if(CheckInventory("TotemExploded"))
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_CURSED);
 
-			//Doomslayer
-			if(CheckInventory("Class_Doomslayer"))
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_BFGDIVISION);
+	//Kane
+	if(CheckInventory("PowerInjectionSpeed"))
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_STROYGREEN);
 
-			//Zedek
-			if(CheckInventory("Class_Zedek"))
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_STOMPER);
+	//Projectile or puff based abilities
+	if(killerAbilityToken) {
 
-			//Nyx
-			if(CheckInventory("Class_Nyx")) {
-				bool insidedOut = true;
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_INSIDEOUT);
-			}
-		}
+		//Keel
+		if(CheckInventory("Class_Keel"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PINEAPPLE);
+
+		//Doomslayer
+		if(CheckInventory("Class_Doomslayer"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_BFGDIVISION);
+
+		//Zedek
+		if(CheckInventory("Class_Zedek"))
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_STOMPER);
 
 		//Nyx
-		if(CheckInventory("PowerFromTheShadows") && !insidedOut && distance > 32)
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_FTSHADOWS);
-
-		//////////////////////
-		//	Other medals	//
-		//////////////////////
-
-		//First blood
-		if(!firstBloodGiven) {
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_FIRSTBLOOD);
-			firstBloodGiven = true;
+		if(CheckInventory("Class_Nyx")) {
+			bool insidedOut = true;
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_INSIDEOUT);
 		}
+	}
 
-		//Humiliation
-		if(CheckWeapon("QCGauntlet") && CheckInventory("PunchedAlready"))
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_HUMIL);
+	//Nyx
+	if(CheckInventory("PowerFromTheShadows") && !insidedOut && distance > 32)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_FTSHADOWS);
 
-		//From the Grave
-		if(killerHP <= 0 && victimHP <= 0)
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_FTGRAVE);
+	//////////////////////
+	//	Other medals	//
+	//////////////////////
 
-		//Combo Kill
-		if(CheckInventory("PowerSickShot"))
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_CKILL);
+	//First blood
+	if(!firstBloodGiven) {
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_FIRSTBLOOD);
+		firstBloodGiven = true;
+	}
 
-		//Show Stopper
-		if(victimSpreeToken)
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SSTOPPER);
+	//Humiliation
+	if(CheckWeapon("QCGauntlet") && CheckInventory("PunchedAlready"))
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_HUMIL);
 
-		//Party Breaker
-		if(CheckActorInventory(victimTID, "QuadTimer") || CheckActorInventory(victimTID, "ProtecTimer"))
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PBREAKER);
+	//From the Grave
+	if(killerHP <= 0 && victimHP <= 0)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_FTGRAVE);
 
-		//Die Hard
-		if(killerHP <= 15 && killerHP > 0)
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DIEHARD);
+	//Combo Kill
+	if(CheckInventory("PowerSickShot"))
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_CKILL);
 
-		//Denied
-		if(victimActiveTokens > 0 || victimAbilityWeapon)
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DENIED);
+	//Show Stopper
+	if(victimSpreeToken)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SSTOPPER);
 
-		//Perforated
-		if(GetActorProperty(victimTID, APROP_HEALTH) < -2000) {
-			if(distance < 64) { //if we are close enough, this was a telefrag
+	//Party Breaker
+	if(CheckActorInventory(victimTID, "QuadTimer") || CheckActorInventory(victimTID, "ProtecTimer"))
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PBREAKER);
 
-				if(CheckInventory("PowerRGFired")) //no-no if Instagib point blank range with Quad Damage - just in case
-					terminate;
+	//Die Hard
+	if(killerHP <= 15 && killerHP > 0)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DIEHARD);
 
-				//Check for Shub Slaying
-				if(CheckInventory("Class_Ranger") && CheckInventory("ActiveProgressToken")) {
-					ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SHUB);
-					terminate;
-				}
+	//Denied
+	if(victimActiveTokens > 0 || victimAbilityWeapon)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DENIED);
 
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PERFORATED);
-				//I have to terminate here otherwise a Perforated player would always also give Ring Out medal
-				//Ringed out player cannot have less than -2000 health (Telefrag damage -1000000, Instadeath Floor -999)
-				//
-				//Actually can by recieving damage through DamageThing when passed 0 as damage amount, deals the same as telefrag
-				//to bypass god and buddha [kultasakaali]
+	//Perforated
+	if(GetActorProperty(victimTID, APROP_HEALTH) < -2000) {
+		if(distance < 64) { //if we are close enough, this was a telefrag
+
+			if(CheckInventory("PowerRGFired")) //no-no if Instagib point blank range with Quad Damage - just in case
+				terminate;
+
+			//Check for Shub Slaying
+			if(CheckInventory("Class_Ranger") && CheckInventory("ActiveProgressToken")) {
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SHUB);
 				terminate;
 			}
-		}
 
-		//Ring Out
-		if(GetActorProperty(victimTID, APROP_HEALTH) < -500 && !GetCVar("instagib") && !insidedOut) {
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_RINGOUT);
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PERFORATED);
+			//I have to terminate here otherwise a Perforated player would always also give Ring Out medal
+			//Ringed out player cannot have less than -2000 health (Telefrag damage -1000000, Instadeath Floor -999)
+			//
+			//Actually can by recieving damage through DamageThing when passed 0 as damage amount, deals the same as telefrag
+			//to bypass god and buddha [kultasakaali]
+			terminate;
 		}
+	}
 
-		//Point Blank
-		if(CheckInventory("PointBlankToken")) {
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PBLANK);
-			terminate; //wielding a shotgun, don't check for rocket medals
-		}
+	//Ring Out
+	if(GetActorProperty(victimTID, APROP_HEALTH) < -500 && !GetCVar("instagib") && !insidedOut) {
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_RINGOUT);
+	}
 
-		//Midair
-		if(CheckInventory("DirectRocketToken")) {
-			if(!CheckSolidFooting(victimTID, 64 << 16) && GetActorProperty(0, APROP_WATERLEVEL) == 0) {
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_MIDAIR);
-				terminate; //if midair was given don't give precise
-			}
-			//Precise
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PRECISE);
-			TakeInventory("DirectRocketToken", 256);
+	//Point Blank
+	if(CheckInventory("PointBlankToken")) {
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PBLANK);
+		terminate; //wielding a shotgun, don't check for rocket medals
+	}
+
+	//Midair
+	if(CheckInventory("DirectRocketToken")) {
+		if(!CheckSolidFooting(victimTID, 64 << 16) && GetActorProperty(0, APROP_WATERLEVEL) == 0) {
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_MIDAIR);
+			terminate; //if midair was given don't give precise
 		}
+		//Precise
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PRECISE);
+		TakeInventory("DirectRocketToken", 256);
 	}
 }
 

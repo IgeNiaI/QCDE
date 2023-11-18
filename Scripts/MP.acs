@@ -107,6 +107,26 @@ Script "QCDE_DM_HealthAndWeapons" (void)
 
 	str unused = ""; // beats "DMToken" in case of broken string table
 	GiveInventory("DMToken", 1);
+
+	if (GetCVar("sv_healonkill")) {
+		ACS("HealthGiver",ACS("MaxHealth"),ACS("MaxHealth"),false);
+		ACS("ArmorGiver", ACS("MaxArmor"), ACS("MaxArmor"), false);
+	}
+}
+
+//Handles various events to trigger after frag
+script "QCDE_FragEventTracker" (int evtTyp, int victimNo, int arg2) EVENT
+{
+	if(GameType() < GAME_NET_DEATHMATCH)
+		terminate;
+
+	if(evtTyp != GAMEEVENT_PLAYERFRAGS)
+		terminate;
+
+	if (GetCVar("sv_healonkill")) {
+		ACS("HealthGiver",ACS("MaxHealth"),ACS("MaxHealth"),false);
+		ACS("ArmorGiver", ACS("MaxArmor"), ACS("MaxArmor"), false);
+	}
 }
 
 
