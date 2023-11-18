@@ -61,7 +61,7 @@ script "QCDE_Bot_Buff" (void)
 	if( random(0,20) < buff ) 	GiveInventory("QCStimpack", 1);
 }
 
-script "QCDE_Bot_SelectWeapon" (void)
+script "QCDE_Bot_SelectWeapon" (int noRandom)
 {
 	// Unless is using an ability weapon
 	if(CheckWeapon("SorgaulFists"     )) terminate;
@@ -79,8 +79,16 @@ script "QCDE_Bot_SelectWeapon" (void)
 
 	if(CheckInventory("Freezetagged")) terminate;
 
-	// Randomly reselect weapon
-	SetWeapon(BotPreferredWeapons[random(0,7)]);
+	if(ACS("QCDE_HasTarget",0) && GetCVar("botskill") >= 3)
+	{
+		int distance = ACS("QCDE_DistanceToTarget",0);
+		ACS("QCDE_SelectBotWeapon", distance);
+	}
+	else if (!noRandom)
+	{
+		// Randomly reselect weapon
+		SetWeapon(BotPreferredWeapons[random(0,7)]);
+	}
 }
 
 int bot_pos_checksum[64], bepisx,bepisy,bepisz;
@@ -188,8 +196,16 @@ script "QCDE_Bot_FreezetagTimeout" (void)
 
 script "QCDE_HasTarget" (void)
 {
-	str nameWas = strparam(n:0);
+	int activator = ActivatorTID();
 	SetActivatorToTarget(0);
-	str nameIs = strparam(n:0);
-	setResultValue(stricmp(nameWas, nameIs));
+	int target = ActivatorTID();
+	setResultValue(activator != target);
+}
+
+script "QCDE_DistanceToTarget" (void)
+{
+	int activator = ActivatorTID();
+	SetActivatorToTarget(0);
+	int target = ActivatorTID();
+	setResultValue(QCDE_ProximityCheck(activator, target));
 }

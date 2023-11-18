@@ -1,6 +1,7 @@
 #library "MEDALS"
 #include "zcommon.acs"
 #include "medaldef.acs"
+#import "QCDE.bcs"
 
 bool firstBloodGiven = false;
 
@@ -83,18 +84,6 @@ script "ResetMedalCounters" DEATH {
 
 	lastFrag[plr][EXCELLENT] = 0;
 	killingSpree[plr] = 0;
-}
-
-function int QCDE_ProximityCheck(int victimTID, int killerTID) {
-
-	int xDiff = GetActorX(victimTID) - GetActorX(killerTID);
-	int yDiff = GetActorY(victimTID) - GetActorY(killerTID);
-	int zDiff = GetActorZ(victimTID) - GetActorZ(killerTID);
-
-	int len = VectorLength(xDiff, yDiff);
-		len = VectorLength(zDiff, len);
-
-	return len >> 16;
 }
 
 //////////////////////////////////////////////////////////////////

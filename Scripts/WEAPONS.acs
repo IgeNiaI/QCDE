@@ -246,6 +246,28 @@ script "QCDE_HitMark" (void) clientside
 	HudMessageBold(s:"a";HUDMSG_FADEOUT,-234,-1,600.0,450.0,0.0,0.15);
 }
 
+Script "QCDE_SelectBotWeapon" (int distanceToTarget)
+{
+	if (distanceToTarget < 300)
+	{
+			 if (CheckInventory("QCBFGDM")				&& CheckInventory("QCBFGAmmo"))		SetWeapon("QCBFGDM");
+		else if (CheckInventory("QCRocketLauncherDM")	&& CheckInventory("QCRocketAmmo"))	SetWeapon("QCRocketLauncherDM");
+		else if (CheckInventory("QCSuperShotgunDM")		&& CheckInventory("QCShellAmmo"))	SetWeapon("QCSuperShotgunDM");
+		else if (CheckInventory("QCSuperNailgunDM")		&& CheckInventory("QCNailAmmo"))	SetWeapon("QCSuperNailgunDM");
+	}
+	else if (distanceToTarget < 600)
+	{
+			 if (CheckInventory("QCBFGDM")				&& CheckInventory("QCBFGAmmo"))		SetWeapon("QCBFGDM");
+		else if (CheckInventory("QCLightningGunDM")		&& CheckInventory("QCCoilAmmo"))	SetWeapon("QCLightningGunDM");
+		else if (CheckInventory("QCSuperNailgunDM")		&& CheckInventory("QCNailAmmo"))	SetWeapon("QCSuperNailgunDM");
+		else if (CheckInventory("QCTriboltDM")			&& CheckInventory("QCBoltAmmo"))	SetWeapon("QCTriboltDM");
+	}
+	else
+	{
+			 if (CheckInventory("QCRailgunDM")			&& CheckInventory("QCSlugAmmo"))	SetWeapon("QCRailgunDM");
+		else if (CheckInventory("QCHeavyMachinegunDM")	&& CheckInventory("QCBulletAmmo"))	SetWeapon("QCHeavyMachinegunDM");
+	}
+}
 
 //------------------------------------------------
 // Give Tribolt on map03

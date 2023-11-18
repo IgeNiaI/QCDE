@@ -476,19 +476,21 @@ Script "QCDE_Tracker_BOT" (void)
 {
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
-		ACS_NamedExecuteAlways("QCDE_Bot_SelectWeapon"     , 0);
+		ACS_NamedExecuteAlways("QCDE_Bot_SelectWeapon"     , 0, 0);
 		ACS_NamedExecuteAlways("QCDE_Bot_Twitch"           , 0);
 		ACS_NamedExecuteAlways("QCDE_Bot_FreezetagTimeout" , 0);
 
 		delay(random(8,25));
 
-		ACS_NamedExecuteAlways("QCDE_Bot_Twitch", 0);
+		ACS_NamedExecuteAlways("QCDE_Bot_SelectWeapon"     , 0, 1);
+		ACS_NamedExecuteAlways("QCDE_Bot_Twitch"           , 0);
 		ACS_NamedExecuteAlways("QCDE_VoiceLine" , 0, 2, 0, Timer()); // 2% chance to taunt every sec
 
 		delay(random(8,25));
 
-		ACS_NamedExecuteAlways("QCDE_Bot_Twitch", 0);
-		ACS_NamedExecuteAlways("QCDE_Bot_Buff"  , 0);
+		ACS_NamedExecuteAlways("QCDE_Bot_SelectWeapon"     , 0, 1);
+		ACS_NamedExecuteAlways("QCDE_Bot_Twitch"           , 0);
+		ACS_NamedExecuteAlways("QCDE_Bot_Buff"             , 0);
 
 		delay(random(8,25));
 	}
