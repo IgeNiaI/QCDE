@@ -72,8 +72,8 @@ int taunt_count[NUMBER_OF_CLASSES][3] = {
 	{22     ,0}, // POSTAL
 	{26,9   ,0}, // PAINKILLER, Demon morph
 	{27,11  ,0}, // INTRUDER
-	{3      ,0}, // Orbb
-	{23     ,0}, // Brock
+	{3      ,0}, // ORBB
+	{23     ,0}, // BROCK
 		// ^ insert more classes here
 };
 
@@ -103,6 +103,11 @@ script "QCDE_VoiceLine" (int chance_percentage, int triggered_by_player, int whi
 	last_taunt = Timer();
 	int classid = CheckInventory("ClassID");
 
+	ACS_NamedExecuteWithResult("QCDE_PlayVoiceLine", classid, triggered_by_player, which, 0);
+}
+
+Script "QCDE_PlayVoiceLine" (int classid, int triggered_by_player, int which, int tid)
+{
 	// Pick the right page, if there are any pages
 	str page, pagename = "";
 	if(taunt_count[classid][1])
@@ -123,7 +128,7 @@ script "QCDE_VoiceLine" (int chance_percentage, int triggered_by_player, int whi
 	int index = (Timer() % variety) + 1;//random(1, variety);
 	if(triggered_by_player && which > -1) index = ((which - 1) % variety) + 1;
 	str sound = strparam(s:"QC", s:champion[classid], s:pagename, s:"Taunt", d:index / 10, d:index % 10); // always two digits at least
-	PlaySound(0,sound,CHAN_6,1.0,false,1.0);
+	PlaySound(tid,sound,CHAN_6,1.0,false,1.0);
 	//printbold(n:0, s:" is gloating with sample \c[white]", s:sound);
 	ACS("QCDE_VoiceLineSubtitle", classid, page, index);
 }

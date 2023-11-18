@@ -270,6 +270,19 @@ int classConversion[NUMBER_OF_CLASSES] = {    //Class conversion chart from "can
 };
 // ^ insert more classes here, format: classConversion[canonicalIndex] = MAPINFOindex
 
+Script "QCDE_classMAPINFOtoCANONICAL" (int classIndex)
+{
+	SetResultValue(-1);
+	for (int i = 0; i < NUMBER_OF_CLASSES; i++)
+	{
+		if (classConversion[i] == classIndex)
+		{
+			SetResultValue(i);
+			break;
+		}
+	}
+}
+
 int allowedClasses[NUMBER_OF_CLASSES - 1];	//because at least 1 is disabled
 
 Script "QCDE_ClassDisabled" (void)
