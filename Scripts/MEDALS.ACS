@@ -132,7 +132,7 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 
 			//Eradicator
 			if(CheckInventory("Class_Eradicator"))
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SEER);
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_PSIRADAR);
 
 			//Inquisitor
 			if(CheckInventory("Class_Inquisitor"))
@@ -146,7 +146,7 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 
 		//Kane
 		if(CheckInventory("PowerInjectionSpeed"))
-			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_JUNKIE);
+			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_STROYGREEN);
 
 		//Projectile or puff based abilities
 		if(killerAbilityToken) {
@@ -157,7 +157,7 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 
 			//Doomslayer
 			if(CheckInventory("Class_Doomslayer"))
-				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_SLAYER);
+				ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_ABIL_BFGDIVISION);
 
 			//Zedek
 			if(CheckInventory("Class_Zedek"))

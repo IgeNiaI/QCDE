@@ -51,13 +51,13 @@
 //		Ability		//
 //////////////////////
 #define MEDAL_ABIL_PSYCHED		29
-#define MEDAL_ABIL_SEER			30
+#define MEDAL_ABIL_PSIRADAR		30
 #define MEDAL_ABIL_CURSED		31
-#define MEDAL_ABIL_JUNKIE		32
+#define MEDAL_ABIL_STROYGREEN	32
 #define MEDAL_ABIL_PINEAPPLE	33
 #define MEDAL_ABIL_INSIDEOUT	34
 #define MEDAL_ABIL_FTSHADOWS	35
-#define MEDAL_ABIL_SLAYER		36
+#define MEDAL_ABIL_BFGDIVISION	36
 #define MEDAL_ABIL_STOMPER		37
 #define MEDAL_ABIL_SHOCKER		38
 #define MEDAL_ABIL_SHUB			39
@@ -99,13 +99,13 @@ str medalPool[MEDALS_TOTAL][2] = {
 	{	"COLMEDAL",	"medals/QCDE/Collateral"	},
 
 	{	"PSYMEDAL", "medals/QCDE/GPsyched"		},
-	{	"SEEMEDAL", "medals/QCDE/Seer"			},
+	{	"PSRMEDAL", "medals/QCDE/PsiRadar"		},
 	{	"CURMEDAL", "medals/QCDE/Cursed"		},
-	{	"JUNMEDAL", "medals/QCDE/Junkie"		},
+	{	"STGMEDAL", "medals/QCDE/StroyGreen"	},
 	{	"PINMEDAL", "medals/QCDE/Pineapple"		},
 	{	"IOMEDAL" , "medals/QCDE/InsideOut"		},
 	{	"SHAMEDAL",	"medals/QCDE/FTShadows"		},
-	{	"SLAMEDAL", "medals/QCDE/Slayer"		},
+	{	"BFGMEDAL", "medals/QCDE/BfgDivision"	},
 	{	"STOMEDAL", "medals/QCDE/Stomper"		},
 	{	"SHKMEDAL", "medals/QCDE/Shocker"		},
 	{	"SHUMEDAL",	"medals/QCDE/ShubSlayer"	}
