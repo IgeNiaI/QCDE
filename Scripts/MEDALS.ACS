@@ -15,6 +15,7 @@ int spreeLevels[4][2] = {{5, MEDAL_KILLSPREE}, {10, MEDAL_RAGE}, {20, MEDAL_FREN
 
 int megaSpawnTics;
 int heavySpawnTics;
+int megaMegaSpawnTics;
 
 //////////////////////////////////////////////////////////////////
 //																//
@@ -560,13 +561,16 @@ script "QCDE_PowerUpMassacre" (void) {
 		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_PMASSACRE);
 }
 
-Script "QCDE_MajorItemSpawned" (int itemType) { // 0 for Mega, 1 for Heavy <-- from SCORBORD.acs QCDE_ItemSpawned
+Script "QCDE_MajorItemSpawned" (int itemType) { // 0 for Mega, 1 for Heavy, 3 for MegaMega <-- from SCORBORD.acs QCDE_ItemSpawned
 
 	if(itemType == 0)
 		megaSpawnTics = Timer();
 
 	if(itemType == 1)
 		heavySpawnTics = Timer();
+
+	if(itemType == 3)
+		megaMegaSpawnTics = Timer();
 }
 
 Script "QCDE_StopWatch" (int itemType) {
@@ -580,9 +584,12 @@ Script "QCDE_StopWatch" (int itemType) {
 	if(GetCVar("lastmanstanding") || GetCVar("teamlms"))
 		terminate;
 
-	if(itemType == 1 && Timer() - megaSpawnTics <= 10)
+	if(itemType == 0 && Timer() - megaSpawnTics <= 10)
 		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SWATCH);
 
-	if(itemType == 2 && Timer() - heavySpawnTics <= 10)
+	if(itemType == 1 && Timer() - heavySpawnTics <= 10)
+		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SWATCH);
+
+	if(itemType == 3 && Timer() - megaMegaSpawnTics <= 10)
 		ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_SWATCH);
 }

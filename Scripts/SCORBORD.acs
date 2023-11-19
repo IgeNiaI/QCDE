@@ -147,20 +147,22 @@ Script "QCDE_HudTracker_Watchdog" OPEN CLIENTSIDE
 	}
 }
 
-#define ITEM_TIMERS 3
+#define ITEM_TIMERS 4
 str itemNames[ITEM_TIMERS]  = {
 	"Health",
 	"Armor",
-	"Powerup"
+	"Powerup",
+    "MegaMega"
 };
 str itemColors[ITEM_TIMERS]  = { // <- currently unused
 	"\c[cyan]",
 	"\c[green]",
+	"\c[purple]",
 	"\c[purple]"
 };
-int itemRespawnTics[ITEM_TIMERS] = { 1050, 1050, 3150 };
-int itemPresent[ITEM_TIMERS] = { false, false, false };
-str itemPic[ITEM_TIMERS] = { "SHUDMEGA", "SHUDHEVY", "SHUDPWUP" };
+int itemRespawnTics[ITEM_TIMERS] = { 1050, 1050, 3150, 2100 };
+int itemPresent[ITEM_TIMERS] = { false, false, false, false };
+str itemPic[ITEM_TIMERS] = { "SHUDMEGA", "SHUDHEVY", "SHUDPWUP", "SHUDMEGB" };
 int itemTaken[ITEM_TIMERS];
 
 Script "timer" (void)
@@ -186,7 +188,7 @@ Script "QCDE_ItemTaken" (int item, int when_offset)
 Script "QCDE_ItemSpawned" (int item)
 {
 	//Medals start
-	ACS_NamedExecuteAlways("QCDE_MajorItemSpawned", 0, item);
+	ACS_NamedExecuteWithResult("QCDE_MajorItemSpawned", item);
 	//Medals end
 
 	if(item < 0 || item >= ITEM_TIMERS) log(s:"\c[red]QCDE ERROR: wrong item index ", d:item, s:" spawned");

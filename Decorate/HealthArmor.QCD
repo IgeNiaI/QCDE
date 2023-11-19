@@ -242,7 +242,7 @@ Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
 
 	//Medals start
 	Pickup:
-		TNT1 A 0 ACS_NamedExecute("QCDE_StopWatch", 0, 1)
+		TNT1 A 0 ACS_NamedExecute("QCDE_StopWatch", 0, 0)
 		Goto Super::Pickup
 	//Medals end
 
@@ -358,13 +358,19 @@ Actor QCMegaMega : CustomInventory replaces MegaSphere
 	States
 	{
 	Spawn:
-		MEGB A 0 NODELAY BRIGHT A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		MEGB A 0 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 3)
 		MEGB A 0 A_ThrowGrenade("QCMegamegaFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
+		MEGB A 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		MEGB A -1 Light(PurpleSmallPoint1) BRIGHT
 		Stop
 	Pickup:
+		//Medals start
+		TNT1 A 0 ACS_NamedExecute("QCDE_StopWatch", 0, 3)
+		//Medals end
 		TNT1 A 0 A_GiveInventory("QCMegaHealth",1)
 		TNT1 A 0 A_GiveInventory("QCBigArmorGiver",1)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ItemTaken", 3)
+		TNT1 A 0
 		Stop
 	}
 }
@@ -768,7 +774,7 @@ Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
 
 	ArmorDoneSuccess:
 		//Medals start
-		TNT1 A 0 ACS_NamedExecute("QCDE_StopWatch", 0, 2)
+		TNT1 A 0 ACS_NamedExecute("QCDE_StopWatch", 0, 1)
 		//Medals end
 		TNT1 A 0 A_SpawnItemEx("BigArmorGiverFlash", 0,0,24, 0,0,0,0, SXF_NOCHECKPOSITION)
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ItemTaken", 1)
