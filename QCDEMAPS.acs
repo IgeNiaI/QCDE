@@ -204,6 +204,29 @@ script "BotPusher" ( int angle, int xy_push, int max_height, int min_height )
     }
 }
 
+script "BotGapCrosser" ( int z_for, int angle, int xy_for )
+{
+	if( !PlayerIsBot( PlayerNumber() ) ) Terminate;
+
+	int movementAngle = VectorAngle( GetActorVelX(0), GetActorVelY(0) ) >> 8;
+	int maxAngle = clampByteAngle( angle + 56 );
+	int minAngle = clampByteAngle( angle - 56 );
+
+	// print(s:"angle acceptance: ", d:minAngle, s:"-", d:maxAngle, s:"; you crossed at: ", d:movementAngle);
+
+	if( minAngle > maxAngle )	// wrapped around zero, special case
+	{
+		if( ( movementAngle >= minAngle ) || ( maxAngle >= movementAngle ) )	// 0 >= angle >= min || max >= angle >= 255
+			ACS_NamedExecuteWithResult( "GenericJumppad", z_for, angle, xy_for, 876 );
+	} else if ( minAngle <= movementAngle && movementAngle <= maxAngle )
+		ACS_NamedExecuteWithResult( "GenericJumppad", z_for, angle, xy_for, 876 );
+	else	// if coming in from the wrong angle, act as a botPusher
+	{
+		int botPusherAngle = clampByteAngle(angle - 128);
+		ACS_NamedExecuteWithResult("BotPusher", botPusherAngle, 15);
+	}
+}
+
 ////////////////
 //    MISC    //
 ////////////////
