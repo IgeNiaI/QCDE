@@ -174,22 +174,12 @@ script "BotPusher" ( int angle, int xy_push, int max_height, int min_height )
 		{
 			if( min_height == 0 || min_height <= GetActorZ(0) >> 16 )
 			{
-				int randomAngleMin = angle - 32;
-				int randomAngleMax = angle + 32;
+				int randomAngleMin = clampByteAngle( angle - 32 );
+				int randomAngleMax = clampByteAngle( angle + 32 );
 				int randomAngle;
 
-				if( randomAngleMin < 0 )
-					randomAngleMin = randomAngleMin + 256;
-
-				if( randomAngleMax > 255 )
-					randomAngleMax = randomAngleMax - 256;
-
 				if( randomAngleMin > randomAngleMax )
-				{
-					randomAngle = Random( randomAngleMin, randomAngleMax + 256 );
-					if( randomAngle > 255 )
-						randomAngle = randomAngle - 256;
-				}
+					randomAngle = clampByteAngle( Random( randomAngleMin, randomAngleMax + 256 ) );
 				else
 					randomAngle = Random( randomAngleMin, randomAngleMax );
 
