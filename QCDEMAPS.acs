@@ -242,3 +242,14 @@ function bool heightCheck( int min, int max, int actorZ )
 
 	return false;
 }
+
+function int clampByteAngle( int angle )
+{
+	if( angle > 255 )
+		return angle - 256;
+
+	else if( angle < 0 )
+		return angle + 256;
+
+	return angle;
+}
