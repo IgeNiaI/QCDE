@@ -122,7 +122,10 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.975);
-		SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
+		if (GetCVar("qc_defrag"))
+			SetActorProperty(0, APROP_VelocityCap, 0.0);
+		else
+			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0872665);
 		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
 	}
@@ -138,7 +141,10 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.95);
-		SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
+		if (GetCVar("qc_defrag"))
+			SetActorProperty(0, APROP_VelocityCap, 0.0);
+		else
+			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0872665);
 		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
 	}
@@ -173,7 +179,10 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.96);
-		SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
+		if (GetCVar("qc_defrag"))
+			SetActorProperty(0, APROP_VelocityCap, 0.0);
+		else
+			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.122173);
 		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
 	}

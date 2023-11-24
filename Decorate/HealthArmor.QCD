@@ -519,6 +519,7 @@ Actor QCPlayerArmorDrop
 	Spawn:
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck") < 2, "Death")
 		TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("InstagibCheck",true), "Death")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("DefragCheck"), "Death")
 		TNT1 AAA 1 A_SpawnItemEx("QCArmorShardNoHourGlass",0,0,24,random(-3,3),random(-3,3),random(3,7),0,SXF_NOCHECKPOSITION)
 		Stop
 	Death:

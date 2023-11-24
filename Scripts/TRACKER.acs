@@ -156,7 +156,15 @@ Script "QCDE_NewLife" (int firsttime)
 	ACS_NamedExecuteAlways("QCDE_AllyMarker_CLIENT"		,0, true);
 	ACS_NamedExecuteAlways("QCDE_BindAbilityKey_Hint"	,0);
 
-	if(firsttime) ACS_NamedExecuteAlways("QCDE_FreeTribolt",0);
+	if (GetCVar("qc_defrag"))
+	{
+		ACS_NamedExecuteAlways("QCDE_Hourglass", 0, 100);
+	}
+	else
+	{
+		if(firsttime)
+			ACS_NamedExecuteAlways("QCDE_FreeTribolt",0);
+	}
 
 	if(GameType() < GAME_NET_DEATHMATCH)
 	{

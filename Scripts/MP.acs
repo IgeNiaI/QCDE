@@ -33,7 +33,7 @@
 
 Script "MultiplayerCheck" (void)
 {
-	if(GameType() == 4 || InCampaign())
+	if(GameType() == 4 || InCampaign() || GetCVar("qc_defrag"))
 		SetResultValue(2); // team games have same weapons as DM
 	else
 		SetResultValue(GameType());
@@ -398,9 +398,9 @@ Script "QCDE_CalculatePlayerSpeed" (void)
 {
 	int sv_PlayerSpeed = GetCvar("sv_PlayerSpeed");
 
-	if (sv_PlayerSpeed == 0 || InCampaign())
+	if (sv_PlayerSpeed == 0 || InCampaign() || GetCVar("qc_defrag"))
 	{
-		if (InCampaign() || GetCvar("deathmatch") || GetCvar("ctf") || GetCvar("oneflagctf") || GetCvar("skulltag") || GetCvar("domination") || GetCvar("customteamgame"))
+		if (InCampaign() || GetCVar("qc_defrag") || GetCvar("deathmatch") || GetCvar("ctf") || GetCvar("oneflagctf") || GetCvar("skulltag") || GetCvar("domination") || GetCvar("customteamgame"))
 			sv_PlayerSpeed = 80;
 		else
 			sv_PlayerSpeed = 100;
@@ -569,7 +569,7 @@ Script "QCDE_Players=0" OPEN
 {
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // only in DM
 	if(GameType() == GAME_TITLE_MAP) terminate;
-	if(InCampaign()) terminate;
+	if(InCampaign() || GetCVar("qc_defrag")) terminate;
 
 	if (!GetCvar("sv_minplayers") && GetCVar("skirm_botscount"))
 	{
@@ -722,6 +722,7 @@ Script "QCDE_StartSkirmish" (void) NET CLIENTSIDE
 		case 11: category = 2;	break;	// Capture The Flag
 		case 12: category = 2;	break;	// One flag CTF
 		case 13: category = 4;	break;	// Domination
+		case 14: category = 5;	break;	// Defrag
 		}
 		ConsoleCommand(strparam(s:"menu_startskirmish customgamemode ", d:category));
 	}
@@ -746,6 +747,7 @@ function void setupGamemode()
 	int menu_skirmishgamemode = 3; // default to deathmatch
 	int qc_elderssoul = 0;
 	int qc_freezetag = 0;
+	int qc_defrag = 0;
 
 	switch (gamemode) {
 	case 0:  menu_skirmishgamemode = 0;							break;	// Cooperative
@@ -762,42 +764,48 @@ function void setupGamemode()
 	case 11: menu_skirmishgamemode = 12;						break;	// Capture The Flag
 	case 12: menu_skirmishgamemode = 13;						break;	// One Flag CTF
 	case 13: menu_skirmishgamemode = 15;						break;	// Domination
+	case 14: menu_skirmishgamemode = 0;	qc_defrag = 1;			break;	// Defrag
 	}
 
 	ConsoleCommand(strparam(s:"sv_showItemTimers ",			d:GetCVar("skirm_showItemTimers")));
 	ConsoleCommand(strparam(s:"sv_showStackLeft ",			d:GetCVar("skirm_showStackLeft")));
 	ConsoleCommand(strparam(s:"sv_QCDEPowerups ",			d:GetCVar("skirm_QCDEPowerups")));
 	ConsoleCommand(strparam(s:"menu_skirmishgamemode ",		d:menu_skirmishgamemode));
-	ConsoleCommand(strparam(s:"qc_elderssoul ",				d:qc_elderssoul));
 	ConsoleCommand(strparam(s:"qc_freezetag ",				d:qc_freezetag));
+	ConsoleCommand(strparam(s:"qc_elderssoul ",				d:qc_elderssoul));
+	ConsoleCommand(strparam(s:"qc_defrag ",					d:qc_defrag));
 	ConsoleCommand(strparam(s:"sv_maxlives ",				d:GetCVar("skirm_maxlives")));
 }
 
 function void setupModifier()
 {
+	int gamemode = GetCVar("skirm_skirmishgamemode");
 	int modifier = GetCVar("skirm_skirmishmodifier");
 	int menu_skirmishmodifier = 0;
 	int rocketarena = 0;
 
-	switch (modifier)
+	if (gamemode != 14) // Defrag
 	{
-	case 1: menu_skirmishmodifier = 1;		break;	// Instagib
-	case 2: rocketarena = 1;				break;	// Rocket Arena
-	case 3: rocketarena = 3;				break;	// Unholy Trinity
-	case 4: rocketarena = 2;				break;	// Buckshot
-	case 5: rocketarena = 4;				break;	// Lightning Storm
-	case 6: rocketarena = 6;				break;	// Random Weapons
-	case 7: {										// Custom Weapons
-		if (GetCVar("skirm_heavymachinegun"))	rocketarena += 0000000001;
-		if (GetCVar("skirm_supershotgun"))		rocketarena += 0000000010;
-		if (GetCVar("skirm_supernailgun"))		rocketarena += 0000000100;
-		if (GetCVar("skirm_tribolt"))			rocketarena += 0000001000;
-		if (GetCVar("skirm_rocketlauncher"))	rocketarena += 0000010000;
-		if (GetCVar("skirm_lightninggun"))		rocketarena += 0000100000;
-		if (GetCVar("skirm_railgun"))			rocketarena += 0001000000;
-		if (GetCVar("skirm_bfg"))				rocketarena += 0010000000;
-		break;
-	}
+		switch (modifier)
+		{
+		case 1: menu_skirmishmodifier = 1;		break;	// Instagib
+		case 2: rocketarena = 1;				break;	// Rocket Arena
+		case 3: rocketarena = 3;				break;	// Unholy Trinity
+		case 4: rocketarena = 2;				break;	// Buckshot
+		case 5: rocketarena = 4;				break;	// Lightning Storm
+		case 6: rocketarena = 6;				break;	// Random Weapons
+		case 7: {										// Custom Weapons
+			if (GetCVar("skirm_heavymachinegun"))	rocketarena += 0000000001;
+			if (GetCVar("skirm_supershotgun"))		rocketarena += 0000000010;
+			if (GetCVar("skirm_supernailgun"))		rocketarena += 0000000100;
+			if (GetCVar("skirm_tribolt"))			rocketarena += 0000001000;
+			if (GetCVar("skirm_rocketlauncher"))	rocketarena += 0000010000;
+			if (GetCVar("skirm_lightninggun"))		rocketarena += 0000100000;
+			if (GetCVar("skirm_railgun"))			rocketarena += 0001000000;
+			if (GetCVar("skirm_bfg"))				rocketarena += 0010000000;
+			break;
+		}
+		}
 	}
 
 	ConsoleCommand(strparam(s:"allstarterweapons ", d:GetCVar("skirm_starterweap")));

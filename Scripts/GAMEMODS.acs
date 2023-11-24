@@ -38,6 +38,7 @@ str gamemode[NUMBER_OF_GAMEMODES] = {
 	"qc_EldersSoul",    // 19
 	"qc_FreezeTag",     // 20
 	"qc_SkirmishRogue", // 21
+	"qc_Defrag",        // 22
 };
 
 Script "QCDE_Gamemode" (void)
@@ -497,4 +498,251 @@ Script "QCDE_Skirmish_SpawnReliq" (void)
 	// Didn't find random place? Put at first monster on map
 	SpawnSpotForced("LBReliquary",MONSTER1_TIDBASE,lbtid,0);
 	SetThingSpecial(lbtid, 84, 1827, 2, ACS("QCDE_GetLootboxCode"));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// No shooting, just racing to the end
+//
+///////////////////////////////////////////////////////////////////////////////
+
+Script "QCDE_Gamemode_qc_Defrag"     (void)
+{
+	SetCVar("qc_defrag", true);
+	ConsoleCommand("sv_weapondrop 0");
+}
+
+#define MAX_CHECKPOINTS 100
+
+bool defrag_timer_active[64];
+int defrag_timer[64];
+bool defrag_checkpoint_activated[64][MAX_CHECKPOINTS];
+
+Script "QCDE_Defrag_Open" OPEN
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	SetCVar("qc_defrag", false); // to be reset by defrag maps
+
+	delay(3);
+
+	if (!GetCVar("qc_defrag"))
+		terminate;
+
+	ConsoleCommand("netgame");
+	ACS_NamedExecute("QCDE_Defrag_RunTimers", 0);
+}
+
+Script "QCDE_Defrag_Enter" ENTER
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	delay(3);
+
+	if (!GetCVar("qc_defrag"))
+		terminate;
+
+	int plr = PlayerNumber();
+	defrag_timer_active[plr] = false;
+	defrag_timer[plr] = 0;
+	ACS_NamedExecuteAlways("Defrag_ResetPlayer", 0);
+}
+
+Script "QCDE_Defrag_Respawn" RESPAWN
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	delay(3);
+
+	if (!GetCVar("qc_defrag"))
+		terminate;
+
+	int plr = PlayerNumber();
+	defrag_timer_active[plr] = false;
+	defrag_timer[plr] = 0;
+	ACS_NamedExecuteAlways("Defrag_ResetPlayer", 0);
+}
+
+Script "QCDE_Defrag_Death" DEATH
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	if (!GetCVar("qc_defrag"))
+		terminate;
+
+	int plr = PlayerNumber();
+	defrag_timer_active[plr] = false;
+}
+
+Script "QCDE_Defrag_Disconnect" (int plr) DISCONNECT
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	delay(3);
+
+	if (!GetCVar("qc_defrag"))
+		terminate;
+
+	defrag_timer_active[plr] = false;
+	defrag_timer[plr] = 0;
+	for (int i = 0; i < MAX_CHECKPOINTS; i++)
+	{
+		defrag_checkpoint_activated[plr][i] = false;
+	}
+}
+
+Script "DefragCheck" (void)
+{
+	SetResultValue(GetCVar("qc_defrag"));
+}
+
+script "QCDE_Defrag_RunTimers" (void)
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	int i;
+	while (true)
+	{
+		for (i = 0; i < 64; i++)
+		{
+			if (defrag_timer_active[i] && PlayerInGame(i))
+			{
+				defrag_timer[i]++;
+
+				SetActivatorToPlayer(i);
+				SetHUDsize(400,300,1);
+
+				str text = StrParam(s:ticsToTime(defrag_timer[i]));
+				HudMessage(s:text; 0, HMID_DEFRAG_TIMER, CR_UNTRANSLATED, 200.0, 200.0, 1.0);
+			}
+		}
+
+		SetActivator(-1);
+
+		delay(1);
+	}
+}
+
+script "QCDE_Defrag_StartTimer" (void)
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	if (defragDisabled())
+		terminate;
+
+	int plr = PlayerNumber();
+	if (defrag_timer_active[plr])
+		terminate;
+
+	defrag_timer_active[plr] = true;
+	for (int i = 0; i < MAX_CHECKPOINTS; i++)
+	{
+		defrag_checkpoint_activated[plr][i] = false;
+	}
+	PlaySound(0, "QCDE/Defrag/Finish", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
+	HudMessage(s:""; 0, HMID_DEFRAG_CHECKPOINT, CR_UNTRANSLATED, 200.0, 210.0, 1);
+}
+
+script "QCDE_Defrag_StopTimer" (void)
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	if (defragDisabled())
+		terminate;
+
+	int plr = PlayerNumber();
+	if (!defrag_timer_active[plr])
+		terminate;
+
+	defrag_timer_active[plr] = false;
+
+	PlaySound(0, "QCDE/Defrag/Finish", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
+
+	SetHUDsize(400,300,1);
+
+	str text = StrParam(s:"Finish!  :  ", s:ticsToTime(defrag_timer[plr]));
+	HudMessage(s:text; 0, HMID_DEFRAG_CHECKPOINT, CR_UNTRANSLATED, 200.0, 210.0, 1);
+
+	text = StrParam(s:strparam(n:0), s:" finished the map!  :  ", s:ticsToTime(defrag_timer[plr]));
+	HudMessageBold(s:text; 0, HMID_DEFRAG_FINISH, CR_UNTRANSLATED, 200.0, 100.0, 5.0);
+
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS_NamedExecuteAlways("QCDE_Defrag_StopTimer_CLIENTSIDE", 0, defrag_timer[plr]);
+	Log(s:text);
+}
+
+script "QCDE_Defrag_StopTimer_CLIENTSIDE" (int time) CLIENTSIDE
+{
+	int plr = PlayerNumber();
+
+	str text = StrParam(s:strparam(n:0), s:" finished the map!  :  ", s:ticsToTime(time));
+	Log(s:text);
+}
+
+script "QCDE_Defrag_TagCheckpoint" (int checkpoint_number)
+{
+	if (GetNetworkState() == NETSTATE_CLIENT)
+		terminate;
+
+	if (defragDisabled())
+		terminate;
+
+	int plr = PlayerNumber();
+	if (!defrag_timer_active[plr] || defrag_checkpoint_activated[plr][checkpoint_number])
+		terminate;
+
+	defrag_checkpoint_activated[plr][checkpoint_number] = true;
+
+	ACS_NamedExecuteAlways("QCDE_Defrag_TagCheckpoint_CLIENTSIDE", 0, plr, checkpoint_number, defrag_timer[plr]);
+}
+
+script "QCDE_Defrag_TagCheckpoint_CLIENTSIDE" (int plr, int checkpoint_number, int time) CLIENTSIDE
+{
+	int consoleplayer = ConsolePlayerNumber();
+	if (plr != CheckPlayerCamera(consoleplayer) - 1000)
+		terminate;
+
+	PlaySound(0, "QCDE/Defrag/Checkpoint", CHAN_7|CHAN_UI, 1.0, false, ATTN_NONE, true);
+	SetActivatorToPlayer(consoleplayer);
+	SetHUDsize(400,300,1);
+	str text = StrParam(s:"Checkpoint ", d:checkpoint_number, s:"  :  ", s:ticsToTime(time));
+	HudMessage(s:text; 0, HMID_DEFRAG_CHECKPOINT, CR_UNTRANSLATED, 200.0, 210.0, 1.0);
+	if (plr == consoleplayer)
+		Log(s:text);
+}
+
+function bool defragDisabled(void)
+{
+	if (!GetCVar("qc_defrag"))
+	{
+		Print(s:"Defrag mode is not active! Please run 'qc_defrag true' in console and restart the map!");
+		return true;
+	}
+
+	return false;
+}
+
+function str ticsToTime(int tics)
+{
+	int hours = tics / 126000;	tics %= 126000;
+	int minutes = tics / 2100;	tics %= 2100;
+	int seconds = tics / 35;	tics %= 35;
+	int millis = tics * 29; // Rough convertion of tics to ms. Should be multiplied by 28.57 to be more accurate, but welp...
+
+	if (hours > 0)
+		return StrParam(d:hours, s:":", d:minutes, s:":", d:seconds, s:".", d:millis);
+
+	if (minutes > 0)
+		return StrParam(d:minutes, s:":", d:seconds, s:".", d:millis);
+
+	return StrParam(d:seconds, s:".", d:millis);
 }

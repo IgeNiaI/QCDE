@@ -27,10 +27,11 @@ server noarchive bool sv_healonkill			=	false; // heal the player to full normal
 
 // Game modes
 
-server noarchive int rocketarena            = 0; // 1: RL, 2: SSG, 3: Unholy Trinity, other: bitfield (1110000 is UT)
-server noarchive bool allstarterweapons     = false; // Give all starter weapons at spawn?
-server noarchive int qc_elderssoul          = 0; // QCDE's own "terminator" gameplay mode, allowing team play
-server noarchive int qc_freezetag           = 0; // Freeze enemies instead of kill, thaw allies with body heat
+server noarchive int  rocketarena            = 0; // 1: RL, 2: SSG, 3: Unholy Trinity, other: bitfield (1110000 is UT)
+server noarchive bool allstarterweapons      = false; // Give all starter weapons at spawn?
+server noarchive bool qc_elderssoul          = false; // QCDE's own "terminator" gameplay mode, allowing team play
+server noarchive bool qc_freezetag           = false; // Freeze enemies instead of kill, thaw allies with body heat
+server noarchive bool qc_defrag              = false; // Defrag gamemode. No fighting, but racing to the end of the map
 
 // QCS
 

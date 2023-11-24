@@ -120,10 +120,21 @@ FreeformMenu "MainMenu"
 
 	SubMenu {
 		Static
+		VisibilityCVar qc_defrag,	0, 0
 		Pos		0, -15					Text				"CHAMPIONS"			Background			BTCHAMP
 		Size	154, 30					Font				QCSMFONT			SelectedBackground	BTCHAMPS
 		Anchor	center, center			FontColor			Tan
 		Gravity center, bottom			SelectedFontColor	Tan					Menu	ZA_JoinMenu
+		Padding	0, 1
+	}
+
+	SubMenu {
+		Static
+		VisibilityCVar qc_defrag,	1, 1
+		Pos		0, -15					Text				"CHAMPIONS"			Background			BTCHAMP
+		Size	154, 30					Font				QCSMFONT			SelectedBackground	BTCHAMPS
+		Anchor	center, center			FontColor			Tan
+		Gravity center, bottom			SelectedFontColor	Tan					Menu	QCDE_RespawnMenu
 		Padding	0, 1
 	}
 }
@@ -308,12 +319,14 @@ FreeformMenu QCDE_SkirmishMenu
 	// 11, "Capture The Flag"
 	// 12, "One Flag CTF"
 	// 13, "Domination"
+	// 14, "Defrag"
 
 	// ZA_Levels, Coop
 	// ZA_Levels1, Deathmatch
 	// ZA_Levels2, CTF
 	// ZA_Levels3, Invasion
 	// ZA_Levels4, Domination
+	// ZA_Levels5, Defrag
 
 	Option {
 		VisibilityCVar skirm_skirmishgamemode,	0, 1
@@ -436,6 +449,31 @@ FreeformMenu QCDE_SkirmishMenu
 		Pos		-110, 138			Text				"Random Map"	Background			BV21028
 		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
 		Anchor	center, center		FontColor			Tan				Command				qcde_randommap4
+		Padding	0, 0				SelectedFontColor	Tan
+	}
+
+
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	14, 14
+		Pos		-170, 35			CVar		menu_skirmishlevel5		UnknownBackground	NOMAPPIC
+		Size	120, 67				Values		ZA_LevelNames5			BackgroundValues	ZA_LevelPreviews5
+		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
+		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	14, 14
+		NotSelectable
+		Size	120, 27				CVar		menu_skirmishlevel5
+		Pos		-110, 103			Values		ZA_LevelTitles5
+		MaxTextWidth 120			Font		QCSMFONT
+		Anchor	center, top			FontColor	Gold
+	}
+
+	Command {
+		VisibilityCVar skirm_skirmishgamemode,	14, 14
+		Pos		-110, 138			Text				"Random Map"	Background			BV21028
+		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
+		Anchor	center, center		FontColor			Tan				Command				qcde_randommap5
 		Padding	0, 0				SelectedFontColor	Tan
 	}
 
@@ -1339,6 +1377,7 @@ OptionValue QCDE_Gamemode
 	0, "Cooperative"
 	1, "Survival"
 	2, "Invasion"
+	14, "Defrag"
 	3, "Deathmatch"
 	4, "Team Deathmatch"
 	5, "Duel"

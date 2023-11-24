@@ -291,6 +291,10 @@ function int SetTidIfHadNone(int firsttid, int lasttid)
 #libdefine HMID_TAROT_PICK_2      26724
 #libdefine HMID_TAROT_PICK_3      26725
 
+#libdefine HMID_DEFRAG_TIMER      26726
+#libdefine HMID_DEFRAG_CHECKPOINT 26727
+#libdefine HMID_DEFRAG_FINISH     26728
+
 #libdefine ENDGAME_FLASH          26810
 
 #libdefine ID_RADAR_MONSTERS34    26904 // goes up to 31000

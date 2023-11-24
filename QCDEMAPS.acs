@@ -368,6 +368,21 @@ function int clampByteAngle( int angle )
 	return angle;
 }
 
+script "Defrag_StartTimer" (void)
+{
+	ACS_NamedExecuteWithResult("QCDE_Defrag_StartTimer", 0);
+}
+
+script "Defrag_StopTimer" (void)
+{
+	ACS_NamedExecuteWithResult("QCDE_Defrag_StopTimer", 0);
+}
+
+script "Defrag_TagCheckpoint" (int checkpoint_number)
+{
+	ACS_NamedExecuteWithResult("QCDE_Defrag_TagCheckpoint", checkpoint_number);
+}
+
 // Wrapper for InCampaign() function from Q-Zandronum, so that mappers don't need to modify ACS files in UDB
 function bool QCDE_InCampaign(void) {
 	return InCampaign();

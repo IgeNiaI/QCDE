@@ -16,6 +16,21 @@ script "QCDE_StartingWeapon_Apply" (void)
 {
 	//PrintBold(s:"Applying starting weapon");
 
+	if (GetCVar("qc_defrag"))
+	{
+		// Take away all weapons, let maps decide what weapons are available
+		TakeInventory("QCGauntlet",1);			TakeInventory("QCGauntletDM",1);
+		TakeInventory("QCMachinegun",1);		TakeInventory("QCMachinegunDM",1);		TakeInventory("QCBulletAmmo",	999);
+		TakeInventory("QCShotgun",1);			TakeInventory("QCShotgunDM",1);			TakeInventory("QCShellAmmo",	999);
+		TakeInventory("QCNailgun",1);			TakeInventory("QCNailgunDM",1);			TakeInventory("QCNailAmmo",		999);
+		TakeInventory("QCTribolt",1);			TakeInventory("QCTriboltDM",1);			TakeInventory("QCBoltAmmo", 	999);
+		TakeInventory("QCRocketLauncher",1);	TakeInventory("QCRocketLauncherDM",1);	TakeInventory("QCRocketAmmo",	999);
+		TakeInventory("QCLightningGun",1);		TakeInventory("QCLightningGunDM",1);	TakeInventory("QCCoilAmmo", 	999);
+		TakeInventory("QCRailgun",1);			TakeInventory("QCRailgunDM",1);			TakeInventory("QCSlugAmmo", 	999);
+		TakeInventory("QCBFG",1);				TakeInventory("QCBFGDM",1);				TakeInventory("QCBFGAmmo",		999);
+		terminate;
+	}
+
 	// Give DM version if starting in a DM game
 	str weapon1 = "QCMachinegun"; 	if(GameType() >= 2 || InCampaign()) weapon1 = "QCMachinegunDM";
 	str weapon2 = "QCMachinegun"; 	if(GameType() >= 2 || InCampaign()) weapon2 = "QCShotgunDM";
