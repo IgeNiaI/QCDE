@@ -211,9 +211,15 @@ script "BotGapCrosser" ( int z_for, int angle, int xy_for )
 	if( minAngle > maxAngle )	// wrapped around zero, special case
 	{
 		if( ( movementAngle >= minAngle ) || ( maxAngle >= movementAngle ) )	// 0 >= angle >= min || max >= angle >= 255
+		{
+			PlaySound(0, "*jump", CHAN_BODY);
 			ACS_NamedExecuteWithResult( "GenericJumppad", z_for, angle, xy_for, 876 );
+		}
 	} else if ( minAngle <= movementAngle && movementAngle <= maxAngle )
+	{
+		PlaySound(0, "*jump", CHAN_BODY);
 		ACS_NamedExecuteWithResult( "GenericJumppad", z_for, angle, xy_for, 876 );
+	}
 	else	// if coming in from the wrong angle, act as a botPusher
 	{
 		int botPusherAngle = clampByteAngle(angle - 128);
