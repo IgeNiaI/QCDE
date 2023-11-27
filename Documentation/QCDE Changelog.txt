@@ -42,8 +42,8 @@ General:
 - QC:DE now automatically configures cvars based on gamemode, no need to do that manually anymore.
 - Removed the "minimum 4 players" requirement for Powerups and BFG.
 - Made the intro track controllable by music sound option.
-- `sv_QCDEPowerups` now only controls powerups spawning
-- Added `sv_QCDEBFG` to control BFG spawning
+- `sv_QCDEPowerups` now only controls powerups spawning.
+- Added `sv_QCDEBFG` to control BFG spawning.
 - Revamped HUD behavior regarding the `screenblocks` cvar to improve. A value of `11` (the default) is the normal HUD, value `10` turns off spectator HUD elements, value `12` removes all HUD elements aside from zoom reticle and a few other effects, value `13` removes all HUD elements on engine side, even the menu and console text.
 - Added a new sound engine for better 3D sounds. You can choose between old (FMOD) and new (OpenAL) in sound options.
 - Made player outline colors configurable. You can now set any color to yourself, but you can also override colors for your enemies and allies to any color you want.
@@ -53,6 +53,8 @@ General:
 - Deathmatch gamemode now shows fraglimit near player frags counter.
 - Last man standing gamemode now shows winlimit near player frags counter.
 - QCDE OST can now be turned off in the Sound menu.
+- Bots at `botskill` 3 and 4 now select weapons according to distance to their target.
+- Bots are less likely to navigate towards damaging and instant death sectors.
 
 Balance:
 - Railgun no longer deals additional "zoomed charge" damage in PVP.
@@ -132,6 +134,7 @@ Bug fixes:
 - Fixed Eleena clone hitbox size to be as Eleena herself. It used to be a little slimmer and could get into places where Eleena couldn't.
 - Made Zedek and Postal ability HUD effects show up immediately instead of on first damage tick.
 - Selecting a starter shotgun when owning a super shotgun now properly updates the UI.
+- BFG ammo no longer spawns if gamemode or config prevents BFG from spawning.
 
 Misc:
 - All champions show their movement type in the Champion Help Screen (F1 by default).
