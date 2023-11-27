@@ -243,16 +243,31 @@ Script "QCDE_Tracker" (void)
 			{
 				tscore1 = PlayerFrags();
 				tscore2 = ACS("QCDE_OtherPlayerFrags");
-				if(tscore1 > maxScore) maxScore = tscore1;
-				if(tscore2 > maxScore) maxScore = tscore2;
-				SetInventory("Team1Score", tscore1 * 220 / maxScore);
-				SetInventory("Team2Score", tscore2 * 220 / maxScore);
+				if (maxScore > 0)
+				{
+					if(tscore1 > maxScore) maxScore = tscore1;
+					if(tscore2 > maxScore) maxScore = tscore2;
+					SetInventory("Team1Score", tscore1 * 220 / maxScore);
+					SetInventory("Team2Score", tscore2 * 220 / maxScore);
+				}
+				else
+				{
+					SetInventory("Team1Score", 0);
+					SetInventory("Team2Score", 0);
+				}
 			}
 			else if(!CheckInventory("TeamDeathmatch"))
 			{
 				tscore1 = PlayerFrags();
-				if(tscore1 > maxScore) maxScore = tscore1;
-				SetInventory("Team1Score", tscore1 * 220 / maxScore);
+				if (maxScore > 0)
+				{
+					if(tscore1 > maxScore) maxScore = tscore1;
+					SetInventory("Team1Score", tscore1 * 220 / maxScore);
+				}
+				else
+				{
+					SetInventory("Team1Score", 0);
+				}
 			}
 		}
 
