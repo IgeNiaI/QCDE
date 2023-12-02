@@ -87,7 +87,7 @@ Actor HourglassNoGrav : Hourglass 15518
 	{
 	Spawn:
 		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("QCDE_UndropDuringInit")
-		SAND A -1 Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned", false) // don't force remonstration
+		SAND A -1 Light(YellowSmallPoint3) Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned", false) // don't force remonstration
 		Loop
 	}
 }
