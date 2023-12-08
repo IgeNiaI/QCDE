@@ -30,7 +30,7 @@ Actor QCGauntlet : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("Class_Painkiller",1,"PKReady")
 		TNT1 A 0 A_JumpIfInventory("QCGauntletSkin", 1, "Ready.Prepared") // jump over prepare animations
 	Ready.Default.Prepare:
-		QCF1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_WeaponReady
+		QCF1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_WeaponReady(WRF_NOSECONDARY)
 		Goto Ready.Default
 
 	Ready.Prepared:
@@ -52,7 +52,7 @@ Actor QCGauntlet : QCWeapon
 
 	ReadyCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		"####" A 3 A_WeaponReady
+		"####" A 3 A_WeaponReady(WRF_NOSECONDARY)
 		Loop
 
 		ReadyCantFire:
@@ -439,8 +439,8 @@ Actor QCGauntlet : QCWeapon
 
 	EndFireCont:
 		"####" A 1 Offset(-3,21) A_TakeInventory("PunchedAlready",32767)
-		"####" B 1 Offset(-2,26) A_WeaponReady
-		"####" B 1 Offset(-1,30) A_WeaponReady
+		"####" B 1 Offset(-2,26) A_WeaponReady(WRF_NOSECONDARY)
+		"####" B 1 Offset(-1,30) A_WeaponReady(WRF_NOSECONDARY)
 		Goto Ready.Prepared
 
 	//-----------------------
