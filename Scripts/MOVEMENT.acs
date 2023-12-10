@@ -3,6 +3,11 @@
 #include "AACS.acs"
 #import "QCDE.bcs"
 
+Script "QCDE_GetMovementType" (void)
+{
+	SetResultValue("Quake");
+}
+
 Script "QCDE_ConfigureMovement" (void)
 {
 	if (GetNetworkState() == NETSTATE_SERVER)

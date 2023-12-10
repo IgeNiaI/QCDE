@@ -5,6 +5,11 @@
 #import "WEAPCNST.bcs"
 #include "../BotSource/headers/TDBots.h.bcs"
 
+Script "QCDE_GetWeaponsType" (void)
+{
+	SetResultValue("Quake");
+}
+
 int weaponSpawned[NUMBER_OF_WEAPONS];
 
 Script "QCDE_WeaponSpawned" (int type, int arg4)
