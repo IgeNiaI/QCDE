@@ -115,6 +115,8 @@ server bool skirm_lightninggun		=  true; // spawn with Lightning Gun?
 server bool skirm_railgun			=  true; // spawn with Railgun?
 server bool skirm_bfg				=  true; // spawn with BFG?
 
+user int gl_lights_quality          = 1; // 0 - no lights, 1 - lights without shaders, 2 - default shaders, 3 - bump map light shaders
+
 // User-supplied
 
                                      server noarchive int theme50 = -1;                                               	server noarchive string themename50 = "    ";

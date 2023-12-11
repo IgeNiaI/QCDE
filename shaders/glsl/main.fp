@@ -65,6 +65,7 @@ vec4 Process(vec4 color);
 
 
 varying float lightlevel;
+varying float customarg;
 
 #ifdef SOFTLIGHT
 // Doom lighting equation ripped from EDGE.
@@ -101,7 +102,7 @@ float desat(vec4 texel)
 vec3 specularity (vec3 lightPos, vec3 viewDir, vec3 normal, vec3 color, vec3 lightDir)
 {
 	vec3 reflectDir = reflect(-lightDir, normal);
-	
+
 	vec3 spec = vec3(pow(max(dot(viewDir, reflectDir), 0.0), 128)) * 2;
 	return spec * (color*2);
 }
@@ -109,45 +110,45 @@ vec3 specularity (vec3 lightPos, vec3 viewDir, vec3 normal, vec3 color, vec3 lig
 vec3 getNormalFromBumpMap (vec2 tex_coord)
 {
 	const vec3 offset = vec3(-1.0/BTEX_SIZE, 0.0, 1.0/BTEX_SIZE);
-	
+
     float L = desat(texture2D(tex, tex_coord + offset.xy));
     float R = desat(texture2D(tex, tex_coord + offset.zy));
     float T = desat(texture2D(tex, tex_coord + offset.yz));
     float B = desat(texture2D(tex, tex_coord + offset.yx));
-	
+
 	vec3 normal = normalize(vec3(4*(R-L), 4*(B-T), 4));
-	
+
 	return vec3(normal.x, -normal.y, normal.z);
 }
 
 mat3 cotangent_frame(vec3 N, vec2 uv, vec3 dp1, vec3 dp2)
 {
 	#ifdef FAST_MODE //"faster" method
-		vec3 c1 = cross(N, vec3(0.0, 0.0, 1.0)); 
-		vec3 c2 = cross(N, vec3(0.0, -1.0, 0.0)); 
-		
+		vec3 c1 = cross(N, vec3(0.0, 0.0, 1.0));
+		vec3 c2 = cross(N, vec3(0.0, -1.0, 0.0));
+
 		vec3 t;
-		
+
 		if (length(c1) > length(c2))
 			t = c1;
 		else
 			t = c2;
-			
+
 		t = normalize(t);
 		vec3 b = normalize(cross(N, t));
 	#else //"slower" method
 		// get edge vectors of the pixel triangle
 		vec2 duv1 = dFdx( uv );
 		vec2 duv2 = dFdy( uv );
-	
+
 		// solve the linear system
 		vec3 dp2perp = cross( dp2, N );
 		vec3 dp1perp = cross( N, dp1 );
 		vec3 t = dp2perp * duv1.x + dp1perp * duv2.x;
 		vec3 b = dp2perp * duv1.y + dp1perp * duv2.y;
 	#endif
- 
-    // construct a scale-invariant frame 
+
+    // construct a scale-invariant frame
     float invmax = inversesqrt( max( dot(t,t), dot(b,b) ) );
     return mat3( t * invmax, b * invmax, N );
 }
@@ -163,7 +164,7 @@ mat3 cotangent_frame(vec3 N, vec2 uv, vec3 dp1, vec3 dp2)
 vec4 desaturate(vec4 texel)
 {
 	#ifndef NO_DESATURATE
-		float gray = (texel.r * 0.3 + texel.g * 0.56 + texel.b * 0.14);	
+		float gray = (texel.r * 0.3 + texel.g * 0.56 + texel.b * 0.14);
 		return mix (vec4(gray,gray,gray,texel.a), texel, desaturation_factor);
 	#else
 		return texel;
@@ -185,23 +186,23 @@ vec4 getLightColor(float fogdist, float fogfactor)
 	#endif
 	#ifndef NO_FOG
 	//
-	// apply light diminishing	
+	// apply light diminishing
 	//
 	if (fogenabled > 0)
 	{
 		#if (!defined(NO_SM4) || defined(DOOMLIGHT)) && !defined SOFTLIGHT
 			// special lighting mode 'Doom' not available on older cards for performance reasons.
-			if (fogdist < fogparm.y) 
+			if (fogdist < fogparm.y)
 			{
 				color.rgb *= fogparm.x - (fogdist / fogparm.y) * (fogparm.x - 1.0);
 			}
 		#endif
-		
+
 		//color = vec4(color.rgb * (1.0 - fogfactor), color.a);
 		color.rgb = mix(vec3(0.0, 0.0, 0.0), color.rgb, fogfactor);
 	}
 	#endif
-	
+
 	#ifndef NO_GLOW
 	//
 	// handle glowing walls
@@ -216,7 +217,7 @@ vec4 getLightColor(float fogdist, float fogfactor)
 	}
 	color = min(color, 1.0);
 	#endif
-	
+
 	// calculation of actual light color is complete.
 	return color;
 }
@@ -230,16 +231,16 @@ vec4 getLightColor(float fogdist, float fogfactor)
 vec4 getTexel(vec2 st)
 {
 	vec4 texel = texture2D(tex, st);
-	
+
 	#ifndef NO_TEXTUREMODE
 	//
 	// Apply texture modes
 	//
-	if (texturemode == 2) 
+	if (texturemode == 2)
 	{
 		texel.a = 1.0;
 	}
-	else if (texturemode == 1) 
+	else if (texturemode == 1)
 	{
 		texel.rgb = vec3(1.0,1.0,1.0);
 	}
@@ -277,28 +278,33 @@ void main()
 {
 	float fogdist = 0.0;
 	float fogfactor = 0.0;
-	
+
 	#ifdef DYNLIGHT
 		vec4 dynlight = vec4(0.0,0.0,0.0,0.0);
 		vec4 addlight = vec4(0.0,0.0,0.0,0.0);
-		
-		vec2 UV = gl_TexCoord[0].st;
-		
-		//these are used later to calculate the tangents in the non-FAST_MODE
-		//version, so to save some time they're stored.
-		vec3 dFd_x = dFdx(pixelpos.xyz);
-		vec3 dFd_y = dFdy(pixelpos.xyz);
-		
-		vec3 polynormal = normalize(cross(dFd_x, dFd_y));
-		
+
 		vec3 eyedir = normalize(camerapos.xyz - pixelpos.xyz);
-		vec3 normal = getNormalFromBumpMap(UV);
-		
-		//perturb normal with generated tangent matrix
-		mat3 TBN = cotangent_frame(polynormal, UV, dFd_x, dFd_y);
-		normal = normalize(TBN * normal);
-		
+		vec3 normal = vec3(0.0);
 		vec3 spec = vec3(0.0);
+
+		if (customarg != 0)
+		{
+			vec2 UV = gl_TexCoord[0].st;
+
+			//these are used later to calculate the tangents in the non-FAST_MODE
+			//version, so to save some time they're stored.
+			vec3 dFd_x = dFdx(pixelpos.xyz);
+			vec3 dFd_y = dFdy(pixelpos.xyz);
+
+			vec3 polynormal = normalize(cross(dFd_x, dFd_y));
+
+			normal = getNormalFromBumpMap(UV);
+
+			//perturb normal with generated tangent matrix
+			mat3 TBN = cotangent_frame(polynormal, UV, dFd_x, dFd_y);
+			normal = normalize(TBN * normal);
+		}
+
 	#endif
 
 	#ifndef NO_FOG
@@ -308,11 +314,11 @@ void main()
 	if (fogenabled != 0)
 	{
 		#ifndef NO_SM4
-			if (fogenabled == 1 || fogenabled == -1) 
+			if (fogenabled == 1 || fogenabled == -1)
 			{
 				fogdist = pixelpos.w;
 			}
-			else 
+			else
 			{
 				fogdist = max(16.0, distance(pixelpos.xyz, camerapos));
 			}
@@ -324,38 +330,52 @@ void main()
 		fogfactor = exp2 (fogparm.z * fogdist);
 	}
 	#endif
-	
+
 	vec4 frag = getLightColor(fogdist, fogfactor);
-	
+
 	#ifdef DYNLIGHT
-		for(int i=0; i<lightrange.x; i+=2)
+		if (customarg != 0)
 		{
-			vec4 lightpos = lights[i];
-			lightpos.y += 8.0;
-			vec4 lightcolor = lights[i+1];
-			
-			vec3 lightDir = normalize(lightpos.xyz - pixelpos.xyz);  
-			float lightIntensity = (-clamp(dot(normal, lightDir), -1.0, 0.0));
-			
-			#if ENABLE_CUTOFF
-			if(lightIntensity >= CUTOFF_VALUE)
+			for(int i=0; i<lightrange.x; i+=2)
 			{
-			#endif
-				vec3 extendedpos = (lightcolor.rgb) * (max((lightpos.w*2) - distance(pixelpos.xyz, lightpos.xyz),0.0) / (lightpos.w*2));
-				
-				lightcolor.rgb *= (max(lightpos.w - distance(pixelpos.xyz, lightpos.xyz),0.0) / lightpos.w) * lightIntensity;
-				dynlight += lightcolor;
-			
-				spec += specularity(lightpos.xyz, eyedir, normal, extendedpos.xyz, lightDir);
-			#if ENABLE_CUTOFF
+				vec4 lightpos = lights[i];
+				lightpos.y += 8.0;
+				vec4 lightcolor = lights[i+1];
+
+				vec3 lightDir = normalize(lightpos.xyz - pixelpos.xyz);
+				float lightIntensity = (-clamp(dot(normal, lightDir), -1.0, 0.0));
+
+				#if ENABLE_CUTOFF
+				if(lightIntensity >= CUTOFF_VALUE)
+				{
+				#endif
+					vec3 extendedpos = (lightcolor.rgb) * (max((lightpos.w*2) - distance(pixelpos.xyz, lightpos.xyz),0.0) / (lightpos.w*2));
+
+					lightcolor.rgb *= (max(lightpos.w - distance(pixelpos.xyz, lightpos.xyz),0.0) / lightpos.w) * lightIntensity;
+					dynlight += lightcolor;
+
+					spec += specularity(lightpos.xyz, eyedir, normal, extendedpos.xyz, lightDir);
+				#if ENABLE_CUTOFF
+				}
+				#endif
 			}
-			#endif
+		}
+		else
+		{
+			for(int i=0; i<lightrange.x; i+=2)
+			{
+				vec4 lightpos = lights[i];
+				vec4 lightcolor = lights[i+1];
+
+				lightcolor.rgb *= max(lightpos.w - distance(pixelpos.xyz, lightpos.xyz),0.0) / lightpos.w;
+				dynlight += lightcolor;
+			}
 		}
 		for(int i=lightrange.x; i<lightrange.y; i+=2)
 		{
 			vec4 lightpos = lights[i];
 			vec4 lightcolor = lights[i+1];
-			
+
 			lightcolor.rgb *= max(lightpos.w - distance(pixelpos.xyz, lightpos.xyz),0.0) / lightpos.w;
 			dynlight -= lightcolor;
 		}
@@ -363,7 +383,7 @@ void main()
 		{
 			vec4 lightpos = lights[i];
 			vec4 lightcolor = lights[i+1];
-			
+
 			lightcolor.rgb *= max(lightpos.w - distance(pixelpos.xyz, lightpos.xyz),0.0) / lightpos.w;
 			addlight += lightcolor;
 		}

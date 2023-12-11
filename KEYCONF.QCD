@@ -105,8 +105,10 @@ alias qcde_callkickvote		"menu_callvoteban true;		menu_callkickvote"
 alias qcde_calllimitvote	"menu_callvotereason \"\";	menu_calllimitvote"
 
 
-alias qcde_lightsoff		"gl_lights 0; gl_lightmode 1"
-alias qcde_lightson			"gl_lights 1; gl_lightmode 0"
+alias qcde_lightsoff		"gl_lights_quality 0; gl_lights 0; gl_lightmode 1; gl_dynlight_shader 0; gl_custom_argument 0"
+alias qcde_lightssimple		"gl_lights_quality 1; gl_lights 1; gl_lightmode 0; gl_dynlight_shader 0; gl_custom_argument 0"
+alias qcde_lightsadvanced	"gl_lights_quality 2; gl_lights 1; gl_lightmode 0; gl_dynlight_shader 1; gl_custom_argument 0"
+alias qcde_lightscomplex	"gl_lights_quality 3; gl_lights 1; gl_lightmode 0; gl_dynlight_shader 1; gl_custom_argument 1"
 
 
 // =========================================================

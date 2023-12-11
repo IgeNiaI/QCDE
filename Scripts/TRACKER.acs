@@ -64,6 +64,9 @@ Script "QCDE_Open" Open
 
 Script "QCDE_Enter" Enter
 {
+	if (GetNetworkState() != NETSTATE_SERVER && GetCVar("gl_lights_quality") == 3)
+		ConsoleCommand("gl_custom_argument 1");
+
 	// Vanilla rules on titlemap, no QCDE extensions
 	if(GameType() == GAME_TITLE_MAP) terminate;
 

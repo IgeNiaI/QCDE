@@ -1434,37 +1434,37 @@ FreeformMenu "QCDE_OptionsVideo"
 		}
 
 		Label {
-			Pos		148, 120			Font		SmallFont
+			Pos		165, 118			Font		SmallFont
 			Anchor	right, center		FontColor	DarkGray
-			Text	"Dynamic Lights"
+			Text	"Lights quality"
 		}
 		Command {
-			VisibilityCVar	gl_lights, 0, 0
-			Pos		165, 120			Background			CHKBOX
-			Size	14, 14				SelectedForeground	CHKBOXS, 14, 14
-			Anchor	right, center		Command qcde_lightson
-			MouseArea	90, 14
+			VisibilityCVar	gl_lights_quality, 0, 0
+			Pos		165, 125		Text "OFF"					Background DYNLGHT0
+			Size	144, 81			Font SmallFont				SelectedForeground	DYNLGHTS, 151, 88
+			Anchor right, top		FontColor DarkGray			Command qcde_lightssimple
+			Padding	-2, 1			SelectedFontColor Gray
 		}
 		Command {
-			VisibilityCVar	gl_lights, 1, 1
-			Pos		165, 120			Background			CHKBOXC
-			Size	14, 14				SelectedForeground	CHKBOXS, 14, 14
-			Anchor	right, center		Command qcde_lightsoff
-			MouseArea	90, 14
+			VisibilityCVar	gl_lights_quality, 1, 1
+			Pos		165, 125		Text "Simple"				Background DYNLGHT1
+			Size	144, 81			Font SmallFont				SelectedForeground	DYNLGHTS, 151, 88
+			Anchor right, top		FontColor DarkGray			Command qcde_lightsadvanced
+			Padding	-2, 1			SelectedFontColor Gray
 		}
-
-		Label {
-			Pos		148, 140			Font		SmallFont
-			Anchor	right, center		FontColor	DarkGray
-			Text	"Fancy light shaders"
+		Command {
+			VisibilityCVar	gl_lights_quality, 2, 2
+			Pos		165, 125		Text "Advanced"				Background DYNLGHT2
+			Size	144, 81			Font SmallFont				SelectedForeground	DYNLGHTS, 151, 88
+			Anchor right, top		FontColor DarkGray			Command qcde_lightscomplex
+			Padding	-2, 1			SelectedFontColor Gray
 		}
-		Option {
-			EnableCVar	gl_lights, 1, 1
-			Pos		165, 140			CVar				gl_dynlight_shader
-			Size	14, 14				Values				QCDE_CheckText
-			Anchor	right, center		BackgroundValues	QCDE_CheckBG
-			MouseArea	90, 14			UnknownBackground	CHKBOX
-										SelectedForeground	CHKBOXS, 14, 14
+		Command {
+			VisibilityCVar	gl_lights_quality, 3, 3
+			Pos		165, 125		Text "Complex"				Background DYNLGHT3
+			Size	144, 81			Font SmallFont				SelectedForeground	DYNLGHTS, 151, 88
+			Anchor right, top		FontColor DarkGray			Command qcde_lightsoff
+			Padding	-2, 1			SelectedFontColor Gray
 		}
 
 		Label {
@@ -1519,20 +1519,6 @@ FreeformMenu "QCDE_OptionsVideo"
 										SelectedForeground	CHKBOXS, 14, 14
 		}
 	}
-
-
-	Label {
-		Pos		0, 173				Font		SmallFont
-		Anchor	center, top			FontColor	DarkGray
-		Text	"Renderer"
-	}
-	Option {
-		Pos		0, 190				CVar				vid_renderer	UnknownBackground	OP21028
-		Size	105, 14				Values				Renderers		SelectedBackground	OP21028S
-		Anchor	center, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
-		Padding	0, 1				SelectedFontColor	Gray
-	}
-	Label {	Pos 0, 205		Text "Renderer changes apply after restart"		Anchor center, center		Font SmallFont	FontColor DarkGray }
 
 
 	InsertFreeformMenu MainMenuTopBar
