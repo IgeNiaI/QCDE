@@ -8,6 +8,7 @@
 #define JUKEBOX_TID 46290
 
 int servers_suggestion = -1;
+bool musicWasSilenced = false;
 Script "QCDE_Music" OPEN CLIENTSIDE
 {
 	if(GameType() == GAME_TITLE_MAP) terminate;
@@ -24,6 +25,8 @@ Script "QCDE_Music" OPEN CLIENTSIDE
 
 	if(CheckQcdeModule("QCDE-OST") == false) terminate;
 	delay(1);
+
+	if(musicWasSilenced) terminate;
 
 	int sel = -1;
 	// Play song through QCDE jukebox if it's present, but not if RANDOM mode is enabled
@@ -68,6 +71,7 @@ Script "QCDE_Music" OPEN CLIENTSIDE
 Script "QCDE_Jukebox" (int x) NET CLIENTSIDE
 {
 	if(CheckQcdeModule("QCDE-OST") == false) terminate;
+	if(x < 0) terminate;
 
 	int randomness = GetUserCvar(CPN(), "snd_randommus");
 	if (GetNetworkState() != NETSTATE_SERVER && randomness == 3) terminate;
