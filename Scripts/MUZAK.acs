@@ -132,8 +132,12 @@ Script "QCDE_RandomSongPicked" (int which) CLIENTSIDE
 
 Script "QCDE_SetMusicNumber" (int musicNumber)
 {
-	if (SpawnForced("QCDE OST", 0, 0, 0, JUKEBOX_TID))
+	musicWasSilenced = musicNumber < 0;
+	bool result = CheckQcdeModule("QCDE-OST") && SpawnForced("QCDE OST", 0, 0, 0, JUKEBOX_TID);
+	if(result)
 		SetThingSpecial(JUKEBOX_TID, 0, musicNumber);
+
+	SetResultValue(result);
 }
 
 function int GetTune(int x)

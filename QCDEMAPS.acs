@@ -15,11 +15,13 @@ str mapTitle = "Blood Covenant";
 str mapAuthor = "DBThanatos";
 str mapSource = "\"Blood Covenant\" from Quake Champions"; // leave this blank if this is a brand new map
 int musicNumber = 11;
+str midiTrack = "QCDEM01";
 
 Script "Introduction" OPEN CLIENTSIDE
 {
-	ACS_NamedExecuteWithResult("QCDE_SetMusicNumber", musicNumber);
 	ACS_NamedExecuteWithResult("QCDE_ShowMapIntroduction", mapName, mapTitle, mapAuthor, mapSource);
+	if (!ACS_NamedExecuteWithResult("QCDE_SetMusicNumber", musicNumber))
+		SetMusic(midiTrack);
 }
 
 */
