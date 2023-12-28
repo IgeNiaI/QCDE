@@ -51,7 +51,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (40 *35) +XYZ, (120 *35) +XYZ, (10 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // BLAZKOWICZ
 	  (50 *35) +XYZ, ( 35 *35) +XYZ, (14)         +XYZ, (14)         +XYZ,   5      +XYZ,   18     +XYZ, "NoSoundHax"                        , // FREEMAN
 	  (25 *35) +XYZ, ( 25 *35) +XYZ, (20)         +XYZ, (20)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // VORMATUR
-	  (30 *35) +XYZ, ( 20 *35) +XYZ, ( 7 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ELEENA
+	  (30 *35) +XYZ, ( 20 *35) +XYZ, (12 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ELEENA
 	  (50 *35) +XYZ, ( 25 *35) +XYZ, ( 2 *35)     +XYZ, ( 2 *35)     +XYZ,   4      +XYZ,   2*35   +XYZ, "NoSoundHax"                        , // LUCIENNE
 	  (45 *35) +XYZ, (135 *35) +XYZ, ( 4 *35)     +XYZ, ( 4 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // MAJOR
 	  (40 *35) +XYZ, ( 60 *35) +XYZ, ( 7 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // HUNTER
@@ -2078,6 +2078,7 @@ Script "QCDE_Ability_Eleena" (void)
 			Delay(1);
 		}
 
+		SetActorState(doptid, "Vanish");
 		SetActivator(plrtid);
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		SetInventory("PowerShieldCharge", 0);
@@ -2163,7 +2164,6 @@ Script "QCDE_ColorDoppelganger_CLIENTSIDE" (void) CLIENTSIDE
 		Thing_SetTranslation(doptid, TRANSLATION_LGCOLOR);
 }
 
-#define DURATION_DOPPELGANGER 15
 Script "QCDE_DoppelgangerSpawned" (void)
 {
 	if(CheckInventory("NotSpectator")) terminate;
@@ -2171,9 +2171,6 @@ Script "QCDE_DoppelgangerSpawned" (void)
 
 	if(GetCvar("rocketarena") == 1) giveRocketArenaItems(); // needs rework
 	if(GetCvar("instagib"   )) giveInstagibItems();
-
-	delay(DURATION_DOPPELGANGER * 35);
-	SetActorState(0, "Vanish");
 }
 
 // Activator: Player
