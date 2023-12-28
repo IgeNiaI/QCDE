@@ -305,7 +305,6 @@ function void reReadWeaponCvars(void)
 
 	case 0:  // Ranger
 	case 4:  // Caleb
-	case 6:  // Terminator
 	case 28: // Postal
 	case 30: // Intruder
 		classSkin = 1;
@@ -327,11 +326,16 @@ function void reReadWeaponCvars(void)
 		break;
 
 	case 3:  // Kane
-	case 8:  // Inquisitor
 	case 13: // Duke Nukem
 	case 14: // Durandal
 	case 23: // Eleena
 		classSkin = 4;
+		break;
+
+	case 6:  // Terminator
+	case 8:  // Inquisitor
+	case 27: // Sam
+		classSkin = 5;
 		break;
 
 	case 1:  // DoomSlayer
@@ -344,7 +348,6 @@ function void reReadWeaponCvars(void)
 
 	case 19: // Eradicator
 	case 21: // Freeman
-	case 27: // Sam
 	case 29: // Painkiller
 		classSkin = 7;
 		break;
