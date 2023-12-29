@@ -247,9 +247,18 @@ Script "QCDE_KMP" (int to, int security) NET
 script "QCDE_InitLMS" (void)
 {
 	if(!(GetCvar("lastmanstanding") || GetCvar("teamlms"))) terminate;
-
-	GiveInventory("QCMegaMega", 1);
-	GiveInventory("QCMegaMega", 1);
+	
+	int overheal = 75;
+	int maxArmor = ACS("MaxArmor");
+	
+	if(CheckInventory("Class_Sarge") || CheckInventory("Class_Postal"))
+		overheal += 25;
+	
+	if(CheckInventory("Class_Sarge") || CheckInventory("Class_Lucienne"))
+		maxArmor += 25;
+		
+	ACS("HealthGiver", ACS("MaxHealth"), 200, overheal);
+	ACS("ArmorGiver", maxArmor, 200, true);
 }
 
 
