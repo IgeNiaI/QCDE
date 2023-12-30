@@ -451,7 +451,6 @@ FreeformMenu "QCDE_OptionsGame"
 		Text	"Crosshair shows health"
 	}
 	Option {
-		EnableCVar	crosshair, 1, 100
 		Pos		-55, 130			CVar				crosshairhealth
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -465,14 +464,12 @@ FreeformMenu "QCDE_OptionsGame"
 		Text	"Crosshair scale"
 	}
 	TextField {
-		EnableCVar	crosshair, 1, 100
 		Pos		63, 100			CVar				crosshairscalef	Background			TX05028
 		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
 		Anchor	center, center	SelectedFontColor	Gray
 		Padding	0, 1
 	}
 	Slider {
-		EnableCVar	crosshair, 1, 100
 		Pos		80, 100			CVar	crosshairscalef
 		Size	105, 6			Range	0, 10.0, 0.1
 		Anchor	left, center	MouseArea	105, 14
@@ -490,13 +487,13 @@ FreeformMenu "QCDE_OptionsGame"
 		Anchor	center, center
 	}
 	ColorPicker {
-		EnableCVar	crosshair, 1, 100
+		EnableCVar	crosshairhealth, 0, 0
 		Pos		67, 130				CVar				crosshaircolor
 		Size	30, 30				SelectedForeground	COLRSELC, 32, 32
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar	crosshair, 0, 0
+		VisibilityCVar	crosshairhealth, 1, 100
 		Pos		67, 130				Background	MenuDim
 		Size	32, 32				Anchor	center, center
 	}

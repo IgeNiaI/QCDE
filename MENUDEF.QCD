@@ -854,6 +854,7 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 FreeformMenu QCDE_SkirmishWeapons
 {
 	Centermenu
+	NoBackButton
 	TopPadding 20
 	DefaultSelection -2
 	OverrideHeight 250
@@ -864,6 +865,7 @@ FreeformMenu QCDE_SkirmishWeapons
 FreeformMenu QCDE_SkirmishBots
 {
 	Centermenu
+	NoBackButton
 	TopPadding 20
 	DefaultSelection -2
 	OverrideHeight 250
