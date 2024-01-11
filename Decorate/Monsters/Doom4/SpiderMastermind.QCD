@@ -40,48 +40,48 @@ Actor D4SpiderMastermind : QCDE_MonsterBoss 15461
 	States
 	{
 	Idle:
-		SPID A 0 A_StopSound(6)
-		SPID AB 10 A_Look
+		SPIM A 0 A_StopSound(6)
+		SPIM AB 10 A_Look
 		Goto Idle+1
 	See:
-		SPID A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.88)
-		SPID A 3   A_Chase
-		SPID ABB 3 A_Chase
-		SPID A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.89)
-		SPID C 3   A_Chase
-		SPID CDD 3 A_Chase
-		SPID A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.90)
-		SPID E 3   A_Chase
-		SPID EFF 3 A_Chase
+		SPIM A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.88)
+		SPIM A 3   A_Chase
+		SPIM ABB 3 A_Chase
+		SPIM A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.89)
+		SPIM C 3   A_Chase
+		SPIM CDD 3 A_Chase
+		SPIM A 0   A_PlaySound("Player/Demon/MastermindStep",CHAN_AUTO,1.0,false,0.90)
+		SPIM E 3   A_Chase
+		SPIM EFF 3 A_Chase
 		Loop
 
 
 
 
 	Missile:
-		SPID A 0 A_JumpIfCloser(500,"ChooseShortRange")
+		SPIM A 0 A_JumpIfCloser(500,"ChooseShortRange")
 		Goto ChooseLongRange
 
 	ChooseShortRange:
-		SPID A 0 A_Jump(160,"GrenadeThrow","MultiLaser","FloorGas")
+		SPIM A 0 A_Jump(160,"GrenadeThrow","MultiLaser","FloorGas")
 		Goto ChooseLongRange
 
 	ChooseLongRange:
-		SPID A 0 A_Jump(256,"PlasmaBurst","LaserShot","TelekineticRock")
+		SPIM A 0 A_Jump(256,"PlasmaBurst","LaserShot","TelekineticRock")
 		Goto PlasmaBurst
 
 	Melee:
-		SPID A 0 A_Jump(200,"FloorGas")
+		SPIM A 0 A_Jump(200,"FloorGas")
 		Goto ChooseShortRange
 
 	//---------------------------------------------------
 	// Rock throw
 	TelekineticRock:
-		SPID A 0 A_ThrowGrenade("SMMRockDummy")
-		SPID A 0 A_PlaySound("Doom4/Monsters/SpiderMMKineticRock")
-		SPID AAAAAAAAAAAA 5 A_FaceTarget
-		SPID A 0 A_CustomMissile("SMMRockTrown",95,0)
-		SPID A 30
+		SPIM A 0 A_ThrowGrenade("SMMRockDummy")
+		SPIM A 0 A_PlaySound("Doom4/Monsters/SpiderMMKineticRock")
+		SPIM AAAAAAAAAAAA 5 A_FaceTarget
+		SPIM A 0 A_CustomMissile("SMMRockTrown",95,0)
+		SPIM A 30
 		Goto See
 
 	//---------------------------------------------------
@@ -90,7 +90,7 @@ Actor D4SpiderMastermind : QCDE_MonsterBoss 15461
 		TNT1 A 0 A_SetUserVar("user_attsweepangle",60)
 		TNT1 A 0 A_PlaySound("Doom4/Monsters/SpiderMMGrenadePrepare",5)
 		TNT1 A 0 A_SetUserVar("user_attmainangle",30)
-		SPID GGGG 6 A_FaceTarget
+		SPIM GGGG 6 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Doom4/Monsters/SpiderMMLaserShot",7,0.7,0,0.3)
 		Goto DMBeamLoop1
 
@@ -102,25 +102,25 @@ Actor D4SpiderMastermind : QCDE_MonsterBoss 15461
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
 			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle-2)
-			SPID H 2 A_FaceTarget
+			SPIM H 2 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLQ",55,0,user_attmainangle)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
 			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle-3)
-			SPID H 2 A_FaceTarget
+			SPIM H 2 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
 			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle-2)
-			SPID H 2 A_FaceTarget
+			SPIM H 2 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLQ",55,0,user_attmainangle)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
 			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle-3)
-			SPID H 2 A_FaceTarget
+			SPIM H 2 A_FaceTarget
 			Goto DMBeamLoop1+1
 		DMBeamLoop2:		//main shot from right to left
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",60)
@@ -131,29 +131,29 @@ Actor D4SpiderMastermind : QCDE_MonsterBoss 15461
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
 			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle+2)
-			SPID H 2 A_FaceTarget
+			SPIM H 2 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
 			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle+3)
-			SPID H 2 A_FaceTarget
+			SPIM H 2 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLQ",55,0,user_attmainangle)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
 			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle+2)
-			SPID H 2 A_FaceTarget
+			SPIM H 2 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle+60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_CustomMissile("SmallLaserBeamLongTrail",55,0,user_attmainangle-60,CMF_AIMDIRECTION,0)
 			TNT1 A 0 A_SetUserVar("user_attsweepangle",user_attsweepangle-5)
 			TNT1 A 0 A_SetUserVar("user_attmainangle",user_attmainangle+3)
-			SPID H 2 A_FaceTarget
+			SPIM H 2 A_FaceTarget
 			Goto DMBeamLoop2+2
 	DMBeamEnd:
 		TNT1 A 0 A_StopSound(6)
-		SPID A 15
+		SPIM A 15
 		Goto See
 
 	//---------------------------------------------------
@@ -163,72 +163,72 @@ Actor D4SpiderMastermind : QCDE_MonsterBoss 15461
 		Goto PlasmaStraight
 
 	PlasmaSpread:
-		SPID A 20 Light("OrangeBigFlicker3DLS") A_FaceTarget
-		SPID A 0 A_SetUserVar(user_count,0) //resets
+		SPIM A 20 Light("OrangeBigFlicker3DLS") A_FaceTarget
+		SPIM A 0 A_SetUserVar(user_count,0) //resets
 		Goto SpreadLooper
 
 		SpreadLooper:
-			SPID G 0 A_FaceTarget
-			SPID G 1 BRIGHT Light("OrangeBigFlicker2DLS") A_CustomMissile("SMMPlasmaBurst",40,0,random(15,-15))
-			SPID H 1 BRIGHT Light("OrangeBigFlicker2DLS") A_SetUserVar(user_count,user_count+1)
-			SPID A 0 A_JumpIf(user_count>=20,"EndStraight")
+			SPIM G 0 A_FaceTarget
+			SPIM G 1 BRIGHT Light("OrangeBigFlicker2DLS") A_CustomMissile("SMMPlasmaBurst",40,0,random(15,-15))
+			SPIM H 1 BRIGHT Light("OrangeBigFlicker2DLS") A_SetUserVar(user_count,user_count+1)
+			SPIM A 0 A_JumpIf(user_count>=20,"EndStraight")
 			Loop
 
 	PlasmaStraight:
-		SPID A 20 Light("OrangeBigFlicker3DLS") A_FaceTarget
-		SPID A 0 A_SetUserVar(user_count,0) //resets
+		SPIM A 20 Light("OrangeBigFlicker3DLS") A_FaceTarget
+		SPIM A 0 A_SetUserVar(user_count,0) //resets
 		Goto StraightLooper
 
 		StraightLooper:
-			SPID G 0 A_FaceTarget
-			SPID G 1 BRIGHT Light("OrangeBigFlicker2DLS") A_CustomMissile("SMMPlasmaBurstFast",40,0,0)
-			SPID H 1 BRIGHT Light("OrangeBigFlicker2DLS") A_SetUserVar(user_count,user_count+1)
-			SPID A 0 A_JumpIf(user_count>=35,"EndStraight")
+			SPIM G 0 A_FaceTarget
+			SPIM G 1 BRIGHT Light("OrangeBigFlicker2DLS") A_CustomMissile("SMMPlasmaBurstFast",40,0,0)
+			SPIM H 1 BRIGHT Light("OrangeBigFlicker2DLS") A_SetUserVar(user_count,user_count+1)
+			SPIM A 0 A_JumpIf(user_count>=35,"EndStraight")
 			Loop
 
 	EndStraight:
-		SPID A 10
+		SPIM A 10
 		Goto See
 	//---------------------------------------------------
 	// Laser attack
 	LaserShot:
-		SPID A 0 A_PlaySound("Doom4/Monsters/MastermindLaserCharge",5,1.0,false,0.7)
-		SPID AAAA 5 Light("RedBigFlicker2DLS") A_FaceTarget
-		SPID A 0 A_SpawnItemEx("LaserChargeIndicator",0,0,30,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION)
-		SPID GGGGG 2 Light("RedBigFlicker2DLS") A_FaceTarget
-		SPID G 0 A_PlaySound("Doom4/Monsters/SpiderMMLaserShot",5,1.0,false,0.8)
-		SPID G 0 A_PlaySound("Doom4/Monsters/ElectricDischarge",6,0.3,false,0.6)
-		SPID GGG 3 Light("RedBigFlicker2DLS") A_FaceTarget //gives you a tiny bit of chance to run away
-		SPID H 10 Bright A_CustomMissile("SMMLaser",40,0,0)
-		SPID G 10
+		SPIM A 0 A_PlaySound("Doom4/Monsters/MastermindLaserCharge",5,1.0,false,0.7)
+		SPIM AAAA 5 Light("RedBigFlicker2DLS") A_FaceTarget
+		SPIM A 0 A_SpawnItemEx("LaserChargeIndicator",0,0,30,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION)
+		SPIM GGGGG 2 Light("RedBigFlicker2DLS") A_FaceTarget
+		SPIM G 0 A_PlaySound("Doom4/Monsters/SpiderMMLaserShot",5,1.0,false,0.8)
+		SPIM G 0 A_PlaySound("Doom4/Monsters/ElectricDischarge",6,0.3,false,0.6)
+		SPIM GGG 3 Light("RedBigFlicker2DLS") A_FaceTarget //gives you a tiny bit of chance to run away
+		SPIM H 10 Bright A_CustomMissile("SMMLaser",40,0,0)
+		SPIM G 10
 		Goto See
 
 	//---------------------------------------------------
 	// Grenades
 	GrenadeThrow:
-		SPID GG 10 A_FaceTarget
-		SPID G 10 A_PlaySound("Doom4/Monsters/SpiderMMGrenadePrepare",5,1.0,false,1.1)
-		SPID GGGGGGGGGGGGGG 3 A_CustomMissile("SMMGrenade",60,0,random(30,-30))
-		SPID G 30
+		SPIM GG 10 A_FaceTarget
+		SPIM G 10 A_PlaySound("Doom4/Monsters/SpiderMMGrenadePrepare",5,1.0,false,1.1)
+		SPIM GGGGGGGGGGGGGG 3 A_CustomMissile("SMMGrenade",60,0,random(30,-30))
+		SPIM G 30
 		Goto See
 	//---------------------------------------------------
 	// Gas attack (short range)
 	FloorGas:
-		SPID G 10
-		SPID G 15 A_PlaySound("Doom4/Monsters/SpiderMMGroundElectro")
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,   0)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,  30)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,  60)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,  90)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0, 120)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0, 150)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0, 180)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,- 30)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,- 60)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,- 90)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,-120)
-		SPID G 0 A_CustomMissile("SMMGasSpawner",0,0,-150)
-		SPID G 100
+		SPIM G 10
+		SPIM G 15 A_PlaySound("Doom4/Monsters/SpiderMMGroundElectro")
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,   0)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,  30)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,  60)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,  90)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0, 120)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0, 150)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0, 180)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,- 30)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,- 60)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,- 90)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,-120)
+		SPIM G 0 A_CustomMissile("SMMGasSpawner",0,0,-150)
+		SPIM G 100
 		Goto See
 
 
@@ -236,24 +236,24 @@ Actor D4SpiderMastermind : QCDE_MonsterBoss 15461
 
 	Pain.StunBomb:
 	Pain:
-		SPID I 3 A_StopSound(6)
-		SPID I 3 A_Pain
+		SPIM I 3 A_StopSound(6)
+		SPIM I 3 A_Pain
 		Goto See
 	DeathChecksDone:
 	XDeathChecksDone:
 		CYBR H 0 A_Explode(50,64,XF_NOTMISSILE,0,64)
-		SPID J 0 A_StopSound(6)
-		SPID J 10 A_Scream
-		SPID K 0 A_NoBlocking
-		SPID K 6 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION)
-		SPID L 6
-		SPID M 6 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SPIM J 0 A_StopSound(6)
+		SPIM J 10 A_Scream
+		SPIM K 0 A_NoBlocking
+		SPIM K 6 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION)
+		SPIM L 6
+		SPIM M 6 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_PlaySound("Doom4/Gore/Big")
 		TNT1 A 0 A_SpawnItemEx("GibDropperBig",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		SPID NOPQR 5 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION,70)
-		SPID S 30
+		SPIM NOPQR 5 A_SpawnItemEx("BossDeathExplosion",random(80,-80),random(80,-80),random(30,80), 0,0,0, 0,SXF_NOCHECKPOSITION,70)
+		SPIM S 30
 	Death.Corpse:
-		SPID S -1
+		SPIM S -1
 		Stop
 
 
