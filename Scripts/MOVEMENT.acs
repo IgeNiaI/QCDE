@@ -8,6 +8,13 @@ Script "QCDE_ConfigureMovement" (void)
 	if (GetNetworkState() == NETSTATE_SERVER)
 		ACS("QCDE_ConfigureMovement_CLIENTSIDE");
 
+	if ( // Call UT movement script for UT champions
+       	CheckInventory("Class_Brock")
+    ) {
+    	ACS("QCDE_ConfigureMovement_UT");
+    	terminate;
+    }
+
 	// Common
 	SetActorProperty(0, APROP_MvType, 1);
 	SetActorProperty(0, APROP_JumpDelay, 0);
@@ -77,10 +84,11 @@ Script "QCDE_ConfigureMovement" (void)
 		CheckInventory("Class_Inquisitor")
 		|| CheckInventory("Class_Freeman")
 	) {
-		SetActorProperty(0, APROP_DoubleTapJump, true);
+		ACS_NamedExecuteAlways("QCDE_CheckDoubleTapConfig", 0); // for double tap dodge
+		SetActorProperty(0, APROP_User4Jump, true);
 		SetActorProperty(0, APROP_SecondJumpXY, 10.0);
 		SetActorProperty(0, APROP_SecondJumpZ, 1);
-		SetActorProperty(0, APROP_SecondJumpDelay, 17);
+		SetActorProperty(0, APROP_SecondJumpDelay, 35);
 		SetActorProperty(0, APROP_SecondJumpAmount, 1);
 	}
 
@@ -174,6 +182,46 @@ Script "QCDE_ConfigureMovement" (void)
 	// ^ insert more classes here if needed
 }
 
+Script "QCDE_ConfigureMovement_UT" (void)
+{
+	ACS_NamedExecuteAlways("QCDE_CheckDoubleTapConfig", 0);
+
+	// Common
+	SetActorProperty(0, APROP_MvType, 1);
+	SetActorProperty(0, APROP_Speed, 0.92);
+	SetActorProperty(0, APROP_AbsoluteSecondJump, true);
+	SetActorProperty(0, APROP_GroundSecondJump, true);
+	SetActorProperty(0, APROP_User4Jump, true);
+	SetActorProperty(0, APROP_WallJump, true);
+	SetActorProperty(0, APROP_ElevatorJump, true);
+	SetActorProperty(0, APROP_GroundFriction, 7.0);
+	SetActorProperty(0, APROP_JumpDelay, 4);
+	SetActorProperty(0, APROP_JumpZ, 7.45);
+	SetActorProperty(0, APROP_SecondJumpAmount, 1);
+	SetActorProperty(0, APROP_SecondJumpZ, 6.75);
+	SetActorProperty(0, APROP_SecondJumpDelay, 17);
+	SetActorProperty(0, APROP_AirAcceleration, 0.35);
+	SetActorProperty(0, APROP_VelocityCap, 10.0);
+
+	if ( // Most Medium champs
+		CheckInventory("Body_Medium")
+	) {
+		SetActorProperty(0, APROP_SecondJumpXY, 17.5);
+	}
+
+	else if ( // Most Light champs
+		CheckInventory("Body_Small")
+	) {
+		SetActorProperty(0, APROP_SecondJumpXY, 18.0);
+	}
+
+	else if ( // Most Heavy champs
+		CheckInventory("Body_Big")
+	) {
+		SetActorProperty(0, APROP_SecondJumpXY, 17.0);
+	}
+}
+
 Script "QCDE_ConfigureMovement_CLIENTSIDE" (void) clientside
 {
 	ACS("QCDE_ConfigureMovement");
@@ -230,5 +278,39 @@ Script "QCDE_IntruderAbilityMovement" (int active)
 	else
 	{
 		SetActorProperty(0,APROP_CpmAirControl,true); //movement back to CPM
+	}
+}
+
+// UTMov additions
+
+Script "QCDE_CheckDoubleTapConfig" (void)
+{
+	if (PlayerIsBot(PlayerNumber()))
+	{
+		SetActorProperty(0, APROP_DoubleTapJump, true);
+		terminate;
+	}
+
+	int oldDoubleTapTics = -1;
+	int newDoubleTapTics;
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		newDoubleTapTics = GetCvar("cl_DoubleTapTics");
+
+		if (oldDoubleTapTics != newDoubleTapTics)
+		{
+			if (newDoubleTapTics < 0)	newDoubleTapTics = 0;
+			if (newDoubleTapTics > 35)	newDoubleTapTics = 35;
+
+			SetActorProperty(0, APROP_DoubleTapMaxTics, newDoubleTapTics);
+			if (newDoubleTapTics)
+				SetActorProperty(0, APROP_DoubleTapJump, true);
+			else
+				SetActorProperty(0, APROP_DoubleTapJump, false);
+
+			oldDoubleTapTics = newDoubleTapTics;
+		}
+
+		delay(35);
 	}
 }

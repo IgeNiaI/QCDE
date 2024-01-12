@@ -40,7 +40,7 @@ script "QCDE_Taunt" (int which) NET
 }
 
 #define T_TOKEN 0
-int taunt_count[32][NUMBER_OF_CLASSES] = {
+int taunt_count[NUMBER_OF_CLASSES][3] = {
 	{14     ,0}, // RANGER
 	{13     ,0}, // DOOMSLAYER
 	{13     ,0}, // CORVUS
@@ -73,6 +73,7 @@ int taunt_count[32][NUMBER_OF_CLASSES] = {
 	{26,9   ,0}, // PAINKILLER, Demon morph
 	{27,11  ,0}, // INTRUDER
 	{3      ,0}, // Orbb
+	{23     ,0}, // Brock
 		// ^ insert more classes here
 };
 
@@ -106,7 +107,7 @@ script "QCDE_VoiceLine" (int chance_percentage, int triggered_by_player, int whi
 	str page, pagename = "";
 	if(taunt_count[classid][1])
 	{
-		for(int i = 1; i < 31; i++)
+		for(int i = 1; i < 3; i++)
 		if(taunt_count[classid][i])
 		if(CheckInventory(taunt_txt[classid][i][T_TOKEN])) // this page eligible
 		{
@@ -117,7 +118,6 @@ script "QCDE_VoiceLine" (int chance_percentage, int triggered_by_player, int whi
 	}
 
 	int variety = taunt_count[classid][page];
-
 
 	// Pick a random (or not) taunt and play it
 	int index = (Timer() % variety) + 1;//random(1, variety);
@@ -218,7 +218,8 @@ script "QCDE_Target_Taunt" (int increase_likeliness)
 
 // For non-zero page, first line is the name of the token that activates this page. First found -- first picked.
 
-str taunt_txt[NUMBER_OF_CLASSES][32][32] = {
+#define MAX_TAUNTS 33
+str taunt_txt[NUMBER_OF_CLASSES][3][MAX_TAUNTS] = {
 	{{ // 1   RANGER
 	"", // no token to access the default page
 "Sometimes the world doesn't need another hero. \n\c[brite] It needs a monster.",
@@ -872,6 +873,32 @@ str taunt_txt[NUMBER_OF_CLASSES][32][32] = {
 "**Disgusting!**",
 "**LoL!**",
 "**I've been watching you!**",
+	}},
+	{{ // 33  Brock
+	"",
+"And stay down!",
+"Damn I'm good.",
+"Death warrant enforced.",
+"F Yeah!",
+"Hold still dammit!",
+"Holy shit!",
+"I'm on fire!",
+"Keep it up!",
+"I think I've made my pont.",
+"Next!",
+"Nice shot!",
+"Oh yeah!",
+"Ownage!",
+"Right between the eyes.",
+"Sick!",
+"Step aside!",
+"Take it!",
+"Oh, that had to hurt.",
+"Oh, that was messy.",
+"That was nasty!",
+"Try that again!",
+"Welcome to basic training.",
+"Who wants some?",
 	}},
 	// ^ insert more classes here
 };

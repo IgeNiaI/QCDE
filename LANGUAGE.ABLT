@@ -16,6 +16,10 @@ MOVTQCPM = "\c[green]- CPM Movement -";
 MOVDQCPM = "Challenge ProMode movement.\n"
            "Identical to Quake movement, but can\n"
            "additionally utilize \c[Greay]Air Control.";
+MOVTUT   = "\c[purple]UT Movement";
+MOVDUT   = "Movement from Unreal Tournament.\n"
+           "Can instantly dash in any direction\n"
+           "when on ground or near a wall.";
 
 // Ranger
 ABILT101 = "- Dire Orb -";
@@ -418,5 +422,19 @@ ABILT432 = "Small hitbox, only 75% height of a normal\n"
 ABILT532 = "- Overbounce -";
 ABILT632 = "Holding \c[gold]Crouch\c[CR_UNTRANSLATED] when falling allows to bounce\n"
            "back at almost the same vertical velocity.";
+
+
+// Brock
+ABILT133 = "\c[black]- No Active Ability -";
+ABILT233 = "This champion is too oldschool\n"
+           "to have an Active Ability";
+ABILT333 = "- Big Keg O' Health -";
+ABILT433 = "Megahealth gives up to \c[white]+100hp overstack\c[DarkGray].\n"
+           "Overstack health and armor \c[cyan]do not decay\c[DarkGray].\n"
+           "Picking up hourglasses \c[white]gives health\c[DarkGray].";
+ABILT533 = "- Iron Guard -";
+ABILT633 = "HeavyArmor gives up to \c[white]+150ap overstack\c[DarkGray].\n"
+           "and absorbs \c[white]100% of the damage\c[DarkGray]\n"
+           "until all armor points are lost.\n";
 
 // ^ insert more classes here

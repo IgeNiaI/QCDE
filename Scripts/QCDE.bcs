@@ -321,7 +321,7 @@ function int SetTidIfHadNone(int firsttid, int lasttid)
 ///////////////////////////////////////////////////////////////////////////////
 
 #libdefine ALL_OF_IT  0x7FFFFFFF
-#libdefine NUMBER_OF_CLASSES  32
+#libdefine NUMBER_OF_CLASSES  33
 	// ^ insert more classes here
 #libdefine NUMBER_OF_MONSTERS 18
 #libdefine NUMBER_OF_POWERUPS  4
@@ -738,7 +738,9 @@ class_T champion[100] =
 {"Painkiller",},
 {"Intruder"  ,},
 {"Orbb"      ,},
+{"Brock"     ,},
 };
+// ^ insert more classes here
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -750,7 +752,7 @@ str cpnames[100] = {
 	"", // zero-length string serves as line break
 	"Kane"      ,"Caleb"     ,"Menelkir"  ,"Nyx"    ,"Durandal"  ,"Lo Wang","Eleena"    ,"Lucienne"  ,"Hunter" ,"Postal", "Orbb",         "",
 	"Ranger"    ,"Doomslayer","Corvus"    ,"Galen"  ,"Duke Nukem","Sarge"  ,"Grayson"   ,"Blazkowicz","Freeman","Painkiller", "Intruder", "",
-	"Terminator","Zedek"     ,"Inquisitor","Sorgaul","Bitterman" ,"Keel"   ,"Eradicator","VorMatur"  ,"Major"  ,"Sam", "Random"           "",
+	"Terminator","Zedek"     ,"Inquisitor","Sorgaul","Bitterman" ,"Keel"   ,"Eradicator","VorMatur"  ,"Major"  ,"Sam", "Brock"            "",
 	"",
 	// ^ insert more classes here
 	// array should end with a zero-length string
@@ -759,7 +761,7 @@ str cpfaces[100] = {
 	"", // zero-length string serves as line break
 	"PortrC04","PortrC05","PortrC06","PortrC12","PortrC15","PortrC18","PortrC24","PortrC25","PortrC27","PortrC29","PortrC32", "",
 	"PortrC01","PortrC02","PortrC03","PortrC11","PortrC14","PortrC17","PortrC19","PortrC21","PortrC22","PortrC30","PortrC31", "",
-	"PortrC07","PortrC08","PortrC09","PortrC13","PortrC10","PortrC16","PortrC20","PortrC23","PortrC26","PortrC28","PortrCRN", "",
+	"PortrC07","PortrC08","PortrC09","PortrC13","PortrC10","PortrC16","PortrC20","PortrC23","PortrC26","PortrC28","PortrC33", "",
 	"",
 	// ^ insert more classes here
 	// array should end with a zero-length string

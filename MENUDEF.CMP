@@ -52,9 +52,8 @@ FreeformMenu "ChampionSelector"
 	Label { Pos    0, 125	Size 25, 50		Background "portrC23"	Anchor center, top } // VorMatur
 	Label { Pos   27, 125	Size 25, 50		Background "portrC26"	Anchor center, top } // Major
 	Label { Pos   54, 125	Size 25, 50		Background "portrC28"	Anchor center, top } // Sam
+	Label { Pos   81, 125	Size 25, 50		Background "portrC33"	Anchor center, top } // Brock
 	// ^ insert more classes here
-
-	Label { Pos   81, 125	Size 25, 50		Background "portrCRN"	Anchor center, top } // Random
 
 	// Light
 	Option { Pos -179,  45	Values QCDE_Champion_Kane		BackgroundValues QCDE_ChampionBG_Kane		EnableCVar _bc_3,  0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
@@ -93,9 +92,8 @@ FreeformMenu "ChampionSelector"
     Option { Pos    0, 145	Values QCDE_Champion_VorMatur	BackgroundValues QCDE_ChampionBG_VorMatur	EnableCVar _bc_22, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
     Option { Pos   27, 145	Values QCDE_Champion_Major		BackgroundValues QCDE_ChampionBG_Major		EnableCVar _bc_25, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
     Option { Pos   54, 145	Values QCDE_Champion_Sam		BackgroundValues QCDE_ChampionBG_Sam		EnableCVar _bc_27, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos   81, 145	Values QCDE_Champion_Brock		BackgroundValues QCDE_ChampionBG_Brock		EnableCVar _bc_33, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
 	// ^ insert more classes here
-
-	Command {Pos   81, 120	Size 25, 50		Command randomclasssilent		SelectedForeground Cpicker2, 35, 60		Anchor center, top	}
 
 
 	Label { Pos -179,  15	VisibilityCVar _bc_3,  1,1		Background Cpicker3		Size 35, 60		Anchor center, top 	}
@@ -132,6 +130,7 @@ FreeformMenu "ChampionSelector"
 	Label { Pos    0, 115	VisibilityCVar _bc_22,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
 	Label { Pos   27, 115	VisibilityCVar _bc_25,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
 	Label { Pos   54, 115	VisibilityCVar _bc_27,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   81, 115	VisibilityCVar _bc_33,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
 	// ^ insert more classes here
 
 
@@ -141,12 +140,15 @@ FreeformMenu "ChampionSelector"
 	Label { Pos	-180, 120	Text "HEAVY"	Font QCSMFONT	FontColor Gray }
 
 
-	Option { NotSelectable	Pos 170,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCSMFONT	FontColor Gold					}
-	Option { NotSelectable	Pos 170,  25	Values QCDE_Champions_FakeText	BackgroundValues QCDE_Champions_Images	Size -1, -1		CVar playerclass	}
+	Option { NotSelectable	Pos 150,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCSMFONT	FontColor Gold					}
+	Option { NotSelectable	Pos 150,  25	Values QCDE_Champions_FakeText	BackgroundValues QCDE_Champions_Images	Size -1, -1		CVar playerclass	}
 	Option { NotSelectable	Pos 170, 118	Values QCDE_Champions_Active	CVar playerclass	Font QCSMFONT	FontColor Gold					}
 	Option { NotSelectable	Pos 170, 133	Values QCDE_Champions_Movement	CVar playerclass	Font SmalLFont	FontColor DarkGray				}
 	Option { NotSelectable	Pos 170, 148	Values QCDE_Champions_Passive1	CVar playerclass	Font SmalLFont	FontColor DarkGray				}
 	Option { NotSelectable	Pos 170, 163	Values QCDE_Champions_Passive2	CVar playerclass	Font SmalLFont	FontColor DarkGray				}
+
+	Label { Pos		200, 45	Size 25, 50		Background "portrCRN"	Anchor center, top } // Random Champion
+	Command {Pos	200, 40	Size 25, 50		Command randomclasssilent		SelectedForeground Cpicker2, 35, 60		Anchor center, top	}
 
 	SubMenu {
 		Pos		170, 191				Text				"DETAILS"			Background			BT10028
@@ -272,6 +274,7 @@ OptionString QCDE_Champion_Eradicator	{ "Eradicator",		"" }
 OptionString QCDE_Champion_VorMatur		{ "VorMatur",		"" }
 OptionString QCDE_Champion_Major		{ "Major",			"" }
 OptionString QCDE_Champion_Sam			{ "Sam",			"" }
+OptionString QCDE_Champion_Brock		{ "Brock",			"" }
 // ^ insert more classes here
 
 OptionString QCDE_ChampionBG_Random		{ "Random",			"Cpicker1" }
@@ -310,6 +313,7 @@ OptionString QCDE_ChampionBG_Eradicator	{ "Eradicator",		"Cpicker1" }
 OptionString QCDE_ChampionBG_VorMatur	{ "VorMatur",		"Cpicker1" }
 OptionString QCDE_ChampionBG_Major		{ "Major",			"Cpicker1" }
 OptionString QCDE_ChampionBG_Sam		{ "Sam",			"Cpicker1" }
+OptionString QCDE_ChampionBG_Brock		{ "Brock",			"Cpicker1" }
 // ^ insert more classes here
 
 OptionString QCDE_Champions_FakeText {
@@ -349,6 +353,7 @@ OptionString QCDE_Champions_FakeText {
 	"VorMatur",		""
 	"Major",		""
 	"Sam",			""
+	"Brock",		""
 }
 // ^ insert more classes here
 
@@ -389,6 +394,7 @@ OptionString QCDE_Champions_Names {
 	"VorMatur",		"VorMatur"
 	"Major",		"Major"
 	"Sam",			"Sam"
+	"Brock",		"Brock"
 }
 // ^ insert more classes here
 
@@ -429,6 +435,7 @@ OptionString QCDE_Champions_Images {
 	"VorMatur",		"QP23A"
 	"Major",		"QP26A"
 	"Sam",			"QP28A"
+	"Brock",		"QP33A"
 }
 // ^ insert more classes here
 
@@ -469,6 +476,7 @@ OptionString QCDE_Champions_Movement {
 	"VorMatur",		"$MOVTQUAK"
 	"Major",		"$MOVTQUAK"
 	"Sam",			"$MOVTQUAK"
+	"Brock",		"$MOVTUT"
 }
 // ^ insert more classes here
 
@@ -509,6 +517,7 @@ OptionString QCDE_Champions_Active {
 	"VorMatur",		"$ABILT123"
 	"Major",		"$ABILT126"
 	"Sam",			"$ABILT128"
+	"Brock",		"$ABILT133"
 }
 // ^ insert more classes here
 
@@ -549,6 +558,7 @@ OptionString QCDE_Champions_Passive1 {
 	"VorMatur",		"$ABILT323"
 	"Major",		"$ABILT326"
 	"Sam",			"$ABILT328"
+	"Brock",		"$ABILT333"
 }
 // ^ insert more classes here
 
@@ -589,6 +599,7 @@ OptionString QCDE_Champions_Passive2 {
 	"VorMatur",		"$ABILT523"
 	"Major",		"$ABILT526"
 	"Sam",			"$ABILT528"
+	"Brock",		"$ABILT533"
 }
 // ^ insert more classes here
 
@@ -629,6 +640,7 @@ OptionString QCDE_Champions_Portraits {
 	"VorMatur",		"portrC23"
 	"Major",		"portrC26"
 	"Sam",			"portrC28"
+	"Brock",		"portrC33"
 }
 // ^ insert more classes here
 
@@ -669,6 +681,7 @@ OptionString QCDE_Champions_PortraitsFull {
 	"VorMatur",		"portrD23"
 	"Major",		"portrD26"
 	"Sam",			"portrD28"
+	"Brock",		"portrD33"
 }
 // ^ insert more classes here
 
@@ -709,6 +722,7 @@ OptionString QCDE_Champions_Abilities {
 	"VorMatur",		"abilit23"
 	"Major",		"abilit26"
 	"Sam",			"abilit28"
+	"Brock",		"abilit33"
 }
 // ^ insert more classes here
 
@@ -749,6 +763,7 @@ OptionString QCDE_Champions_Type {
 	"VorMatur",		"$CMPHEAVY"
 	"Major",		"$CMPHEAVY"
 	"Sam",			"$CMPHEAVY"
+	"Brock",		"$CMPHEAVY"
 }
 // ^ insert more classes here
 
@@ -789,6 +804,7 @@ OptionString QCDE_Champions_Health {
 	"VorMatur",		"225 / 300 / 375"
 	"Major",		"150 / 150 / 225"
 	"Sam",			"175 / 175 / 250"
+	"Brock",		"100 / 100 / 199"
 }
 // ^ insert more classes here
 
@@ -829,6 +845,7 @@ OptionString QCDE_Champions_Armor {
 	"VorMatur",		"0 / 0 / 75"
 	"Major",		"25 / 125 / 200"
 	"Sam",			"0 / 100 / 175"
+	"Brock",		"50 / 100 / 150"
 }
 // ^ insert more classes here
 
@@ -869,6 +886,7 @@ OptionString QCDE_Champions_MovementDesc {
 	"VorMatur",		"$MOVDQUAK"
 	"Major",		"$MOVDQUAK"
 	"Sam",			"$MOVDQUAK"
+	"Brock",		"$MOVDUT"
 }
 // ^ insert more classes here
 
@@ -909,6 +927,7 @@ OptionString QCDE_Champions_ActiveDesc {
 	"VorMatur",		"$ABILT223"
 	"Major",		"$ABILT226"
 	"Sam",			"$ABILT228"
+	"Brock",		"$ABILT233"
 }
 // ^ insert more classes here
 
@@ -949,6 +968,7 @@ OptionString QCDE_Champions_Cooldowns {
 	"VorMatur",		"25 / 25"
 	"Major",		"45 / 135"
 	"Sam",			"None"
+	"Brock",		"None"
 }
 // ^ insert more classes here
 
@@ -989,6 +1009,7 @@ OptionString QCDE_Champions_Passive1Desc {
 	"VorMatur",		"$ABILT423"
 	"Major",		"$ABILT426"
 	"Sam",			"$ABILT428"
+	"Brock",		"$ABILT433"
 }
 // ^ insert more classes here
 
@@ -1029,6 +1050,7 @@ OptionString QCDE_Champions_Passive2Desc {
 	"VorMatur",		"$ABILT623"
 	"Major",		"$ABILT626"
 	"Sam",			"$ABILT628"
+	"Brock",		"$ABILT633"
 }
 // ^ insert more classes here
 
@@ -1069,6 +1091,7 @@ OptionString QCDE_Champions_Story {
 	"VorMatur",		"$LORCP123"
 	"Major",		"$LORCP126"
 	"Sam",			"$LORCP128"
+	"Brock",		"$LORCP133"
 }
 // ^ insert more classes here
 
@@ -1109,5 +1132,6 @@ OptionString QCDE_Champions_Lore {
 	"VorMatur",		"$LORCP223"
 	"Major",		"$LORCP226"
 	"Sam",			"$LORCP228"
+	"Brock",		"$LORCP233"
 }
 // ^ insert more classes here

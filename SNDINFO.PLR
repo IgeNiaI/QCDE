@@ -207,6 +207,11 @@ OrbbStep2 "Sounds/Players/Footsteps/OrbbStep2.ogg"
 OrbbStep3 "Sounds/Players/Footsteps/OrbbStep3.ogg"
 OrbbStep4 "Sounds/Players/Footsteps/OrbbStep4.ogg"
 
+$random BrockStep { BrockStep1 BrockStep2 BrockStep3 }
+BrockStep1 "Sounds/Players/Footsteps/BrockStep1.ogg"
+BrockStep2 "Sounds/Players/Footsteps/BrockStep2.ogg"
+BrockStep3 "Sounds/Players/Footsteps/BrockStep3.ogg"
+
 
 //================================================================
 //================================================================
@@ -3010,3 +3015,81 @@ $playersound	Orbb	other	*usefail	"Sounds/Players/Orbb/OrbbOof.ogg"
 $playeralias	Orbb	other	*taunt		NoSoundHax
 $playeralias	Orbb	other	*footstep	OrbbStep
 
+
+//================================================================
+//================================================================
+// Brock, using UT99 taunts
+//================================================================
+//================================================================
+
+QCBrockTaunt01 "Sounds/Players/Brock/BrockTaunt1.ogg"
+QCBrockTaunt02 "Sounds/Players/Brock/BrockTaunt2.ogg"
+QCBrockTaunt03 "Sounds/Players/Brock/BrockTaunt3.ogg"
+QCBrockTaunt04 "Sounds/Players/Brock/BrockTaunt4.ogg"
+QCBrockTaunt05 "Sounds/Players/Brock/BrockTaunt5.ogg"
+QCBrockTaunt06 "Sounds/Players/Brock/BrockTaunt6.ogg"
+QCBrockTaunt07 "Sounds/Players/Brock/BrockTaunt7.ogg"
+QCBrockTaunt08 "Sounds/Players/Brock/BrockTaunt8.ogg"
+QCBrockTaunt09 "Sounds/Players/Brock/BrockTaunt9.ogg"
+QCBrockTaunt10 "Sounds/Players/Brock/BrockTaunt10.ogg"
+QCBrockTaunt11 "Sounds/Players/Brock/BrockTaunt11.ogg"
+QCBrockTaunt12 "Sounds/Players/Brock/BrockTaunt12.ogg"
+QCBrockTaunt13 "Sounds/Players/Brock/BrockTaunt13.ogg"
+QCBrockTaunt14 "Sounds/Players/Brock/BrockTaunt14.ogg"
+QCBrockTaunt15 "Sounds/Players/Brock/BrockTaunt15.ogg"
+QCBrockTaunt16 "Sounds/Players/Brock/BrockTaunt16.ogg"
+QCBrockTaunt17 "Sounds/Players/Brock/BrockTaunt17.ogg"
+QCBrockTaunt18 "Sounds/Players/Brock/BrockTaunt18.ogg"
+QCBrockTaunt19 "Sounds/Players/Brock/BrockTaunt19.ogg"
+QCBrockTaunt20 "Sounds/Players/Brock/BrockTaunt20.ogg"
+QCBrockTaunt21 "Sounds/Players/Brock/BrockTaunt21.ogg"
+QCBrockTaunt22 "Sounds/Players/Brock/BrockTaunt22.ogg"
+QCBrockTaunt23 "Sounds/Players/Brock/BrockTaunt23.ogg"
+
+
+$playersound	Brock	male	*death		"Sounds/Players/Brock/BrockDeath.ogg"
+$playersound	Brock	male	*xdeath		"Sounds/Players/Brock/BrockGib.ogg"
+$playersound	Brock	male	*gibbed		"Sounds/Players/Brock/BrockGib.ogg"
+$playersound	Brock	male	*pain100	"Sounds/Players/Brock/BrockPain100.ogg"
+$playersound	Brock	male	*pain75		"Sounds/Players/Brock/BrockPain075.ogg"
+$playersound	Brock	male	*pain50		"Sounds/Players/Brock/BrockPain050.ogg"
+$playersound	Brock	male	*pain25		"Sounds/Players/Brock/BrockPain025.ogg"
+$playersound	Brock	male	*grunt		"Sounds/Players/Brock/BrockGrunt.ogg"
+$playeralias	Brock	male	*land		BrockStep
+$playersound	Brock	male	*jump		"Sounds/Players/Brock/BrockJump.ogg"
+$playersound	Brock	male	*usefail	"Sounds/Players/Brock/BrockOof.ogg"
+$playeralias	Brock	male	*taunt		NoSoundHax
+$playeralias	Brock	male	*footstep	BrockStep
+$playersound	Brock	male	*secondjump	"Sounds/Players/Brock/BrockDodge.ogg"
+
+$playersound	Brock	female	*death		"Sounds/Players/Brock/BrockDeath.ogg"
+$playersound	Brock	female	*xdeath		"Sounds/Players/Brock/BrockGib.ogg"
+$playersound	Brock	female	*gibbed		"Sounds/Players/Brock/BrockGib.ogg"
+$playersound	Brock	female	*pain100	"Sounds/Players/Brock/BrockPain100.ogg"
+$playersound	Brock	female	*pain75		"Sounds/Players/Brock/BrockPain075.ogg"
+$playersound	Brock	female	*pain50		"Sounds/Players/Brock/BrockPain050.ogg"
+$playersound	Brock	female	*pain25		"Sounds/Players/Brock/BrockPain025.ogg"
+$playersound	Brock	female	*grunt		"Sounds/Players/Brock/BrockGrunt.ogg"
+$playeralias	Brock	female	*land		BrockStep
+$playersound	Brock	female	*jump		"Sounds/Players/Brock/BrockJump.ogg"
+$playersound	Brock	female	*usefail	"Sounds/Players/Brock/BrockOof.ogg"
+$playeralias	Brock	female	*taunt		NoSoundHax
+$playeralias	Brock	female	*footstep	BrockStep
+$playersound	Brock	female	*secondjump	"Sounds/Players/Brock/BrockDodge.ogg"
+
+$playersound	Brock	Other	*death		"Sounds/Players/Brock/BrockDeath.ogg"
+$playersound	Brock	Other	*xdeath		"Sounds/Players/Brock/BrockGib.ogg"
+$playersound	Brock	Other	*gibbed		"Sounds/Players/Brock/BrockGib.ogg"
+$playersound	Brock	Other	*pain100	"Sounds/Players/Brock/BrockPain100.ogg"
+$playersound	Brock	Other	*pain75		"Sounds/Players/Brock/BrockPain075.ogg"
+$playersound	Brock	Other	*pain50		"Sounds/Players/Brock/BrockPain050.ogg"
+$playersound	Brock	Other	*pain25		"Sounds/Players/Brock/BrockPain025.ogg"
+$playersound	Brock	Other	*grunt		"Sounds/Players/Brock/BrockGrunt.ogg"
+$playeralias	Brock	Other	*land		BrockStep
+$playersound	Brock	Other	*jump		"Sounds/Players/Brock/BrockJump.ogg"
+$playersound	Brock	Other	*usefail	"Sounds/Players/Brock/BrockOof.ogg"
+$playeralias	Brock	Other	*taunt		NoSoundHax
+$playeralias	Brock	other	*footstep	BrockStep
+$playersound	Brock	other	*secondjump	"Sounds/Players/Brock/BrockDodge.ogg"
+
+// ^ insert more classes here

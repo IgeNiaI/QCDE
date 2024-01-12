@@ -1144,6 +1144,11 @@ FreeformMenu "QCDE_OptionsBinds"
 	Label	{ Pos -128, 101		Text "Crouch"				Anchor right, center	Font SmallFont		FontColor DarkGray }
 	Control	{ Pos  -70, 100		Action "+crouch"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
+	Label	{ Pos   74, 101		Text "Double Tap Time"		Anchor right, center		Font SmallFont		FontColor DarkGray }
+	Option	{ Pos  132, 100		CVar cl_DoubleTapTics		Values QCDE_DoubleTapTimes	Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	UnknownBackground OP21028	SelectedBackground	OP21028S	SelectedForeground	OP21028A, 119, 14 }
+
+	Label	{ Pos   74, 121		Text "Dash"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 120		Action "+user4"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
 	Label {
 		Pos		0, 130				Font		QCSMFONT
@@ -1293,6 +1298,41 @@ FreeformMenu "QCDE_OptionsBinds"
 
 	InsertFreeformMenu MainMenuTopBar
 	InsertFreeformMenu QCDE_OptionsTabs
+}
+
+OptionValue QCDE_DoubleTapTimes {
+	0, "Off"
+	5, "0.14 second"
+	6, "0.17 second"
+	7, "0.20 second"
+	8, "0.23 second"
+	9, "0.26 second"
+	10, "0.29 second"
+	11, "0.31 second"
+	12, "0.34 second"
+	13, "0.37 second"
+	14, "0.40 second"
+	15, "0.43 second"
+	16, "0.46 second"
+	17, "0.49 second"
+	18, "0.51 second"
+	19, "0.54 second"
+	20, "0.57 second"
+	21, "0.60 second"
+	22, "0.63 second"
+	23, "0.66 second"
+	24, "0.69 second"
+	25, "0.71 second"
+	26, "0.74 second"
+	27, "0.77 second"
+	28, "0.80 second"
+	29, "0.83 second"
+	30, "0.86 second"
+	31, "0.89 second"
+	32, "0.91 second"
+	33, "0.94 second"
+	34, "0.97 second"
+	35, "1 second"
 }
 
 FreeformMenu "QCDE_OptionsVideo"

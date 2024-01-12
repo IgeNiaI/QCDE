@@ -315,6 +315,7 @@ Script "QCDE_HudTracker_CLIENTSIDE" OPEN CLIENTSIDE
 		if(CheckActorClass(1000+i, "QCPainkiller")) { SetActorInventory(1000+i, "ClassID", 29); SetActorQcdeStack(1000+i, 100, 125); }
 		if(CheckActorClass(1000+i, "QCIntruder"  )) { SetActorInventory(1000+i, "ClassID", 30); SetActorQcdeStack(1000+i, 150,  75); }
 		if(CheckActorClass(1000+i, "QCOrbb"      )) { SetActorInventory(1000+i, "ClassID", 31); SetActorQcdeStack(1000+i, 100,  75); }
+		if(CheckActorClass(1000+i, "QCBrock"     )) { SetActorInventory(1000+i, "ClassID", 32); SetActorQcdeStack(1000+i, 100, 100); }
 		// ^ insert more classes here
 	}
 
@@ -745,6 +746,7 @@ function void giveEnemyClassToken(int enemyTid)
 	if(CheckActorInventory(enemyTid,  "Class_Painkiller"))	GiveInventory("EnemyClass_Painkiller"   ,1); else TakeInventory("EnemyClass_Painkiller",1);
 	if(CheckActorInventory(enemyTid,  "Class_Intruder"	))	GiveInventory("EnemyClass_Intruder"     ,1); else TakeInventory("EnemyClass_Intruder"  ,1);
 	if(CheckActorInventory(enemyTid,  "Class_Orbb"		))	GiveInventory("EnemyClass_Orbb"		    ,1); else TakeInventory("EnemyClass_Orbb"      ,1);
+	if(CheckActorInventory(enemyTid,  "Class_Brock"		))	GiveInventory("EnemyClass_Brock"	    ,1); else TakeInventory("EnemyClass_Brock"     ,1);
 	// ^ insert more classes here
 }
 

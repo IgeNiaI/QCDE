@@ -236,3 +236,14 @@ Actor PostalDummy : PlLightDummy 23429
 
 Actor PainkillerDummy : PlMediumDummy 23430
 {	Scale 0.765					States	{	Spawn: 	QP30 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor IntruderDummy : PlMediumDummy 23431
+{	XScale 0.68 YScale 0.75		States	{	Spawn: 	QP31 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor OrbbDummy : PlLightDummy 23432
+{	Scale 0.46	Height 39		States	{	Spawn: 	QP32 ABCDEFGH 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+Actor BrockDummy : PlHeavyDummy 23433
+{	Scale 0.56					States	{	Spawn: 	QP33 ABCDEFGHI 12 A_SetUserVar(user_test,1)	Loop	}	}
+
+// ^ insert more classes here

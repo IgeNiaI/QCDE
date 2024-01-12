@@ -48,6 +48,7 @@ Actor InventoryClassChecker : CustomInventory
 		TNT1 A 0 A_JumpIfInventory("Class_Painkiller",	1,"DoPainkiller")
 		TNT1 A 0 A_JumpIfInventory("Class_Intruder",	1,"DoIntruder")
 		TNT1 A 0 A_JumpIfInventory("Class_Orbb",		1,"DoOrbb")
+		TNT1 A 0 A_JumpIfInventory("Class_Brock",		1,"DoBrock")
 		// ^ insert more classes here
 		TNT1 A 0 A_Jump(256, "Default")
 		Fail
@@ -83,6 +84,7 @@ Actor InventoryClassChecker : CustomInventory
 	DoPainkiller:	TNT1 A 1 A_PrintBold("$DBG_HAPainkiller")     Stop
 	DoIntruder:		TNT1 A 1 A_PrintBold("$DBG_HAIntruder")       Stop
 	DoOrbb:			TNT1 A 1 A_PrintBold("$DBG_HAOrbb")           Stop
+	DoBrock:		TNT1 A 1 A_PrintBold("$DBG_HABrock")          Stop
 	// ^ insert more classes here
 	Default:		TNT1 A 1 A_PrintBold("InventoryClassChecker default debug message") Stop
 	}
@@ -93,7 +95,7 @@ Actor InventoryClassChecker : CustomInventory
 //			Health
 //==================================================================================
 //==================================================================================
-Actor QCHealthBonus : Health replaces HealthBonus
+Actor QCHealthBonus : InventoryClassChecker replaces HealthBonus
 {
 	+COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
@@ -119,6 +121,52 @@ Actor QCHealthBonus : Health replaces HealthBonus
 	BeHealthBonus:
 		HEAL A -1 Light(GreenSmallPoint3) Bright ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
 		Loop
+
+	DoRanger:
+	DoDoomSlayer:
+	DoCorvus:
+	DoKane:
+	DoCaleb:
+	DoMenelkir:
+	DoTerminator:
+	DoZedek:
+	DoInquisitor:
+	DoGalen:
+	DoBitterman:
+	DoNyx:
+	DoDukeNukem:
+	DoSorgaul:
+	DoDurandal:
+	DoKeel:
+	DoLoWang:
+	DoGrayson:
+	DoBlazkowicz:
+	DoFreeman:
+	DoVorMatur:
+	DoEleena:
+	DoLucienne:
+	DoMajor:
+	DoHunter:
+	DoSam:
+	DoPainkiller:
+	DoIntruder:
+	DoEradicator:
+	DoOrbb:
+	Default:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),3, 75)
+		Goto HealthDoneSuccess
+	DoSarge:
+	DoPostal:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),3,100)
+		Goto HealthDoneSuccess
+	DoBrock:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),3,99)
+		Goto HealthDoneSuccess
+	// ^ insert more classes here
+
+	HealthDoneSuccess:
+		TNT1 A 0
+		Stop
 	}
 }
 
@@ -169,6 +217,7 @@ Actor QCStimpack : InventoryClassChecker replaces Stimpack
 		DoIntruder:
 		DoEradicator:
 		DoOrbb:
+		DoBrock:
 		Default:
 			TNT1 A 0 A_JumpIfHealthLower(CallACS("MaxHealth"),1)	Goto Failer
 			TNT1 A 0 A_Jump(256,"HealDoneSuccess")					Goto HealDoneSuccess
@@ -290,6 +339,9 @@ Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
 	DoPostal:
 		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100,100)
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Postal_Mega")
+		Goto HealthDoneSuccess
+	DoBrock:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HealthGiver",CallACS("MaxHealth"),100,99)
 		Goto HealthDoneSuccess
 	// ^ insert more classes here
 
@@ -513,7 +565,7 @@ Actor QCSargeArmorGain : BasicArmorBonus
 	+INVENTORY.ALWAYSPICKUP
 	+SERVERNETID
 	Scale 0.9
-	Inventory.PickupSound "QC/Items/ArmorShardPick"
+	Inventory.PickupSound "QC/Items/ArmorShardQ3Pick"
 	States
 	{
 	Spawn:
@@ -525,6 +577,29 @@ Actor QCSargeArmorGain : BasicArmorBonus
 Actor QCSargeArmorGainBig : QCSargeArmorGain
 {
 	Armor.Saveamount 25
+}
+
+Actor QCBrockArmorGain : BasicArmorPickup
+{
+	Radius 20
+	Height 48
+	//Inventory.Pickupmessage "$GOT_QCBrockArmorGain" // "Picked up an armor shard."
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 100.0
+	Armor.Saveamount 150
+	//Armor.Maxsaveamount 150
+	Inventory.RespawnTics 525 //15 sec
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	+SERVERNETID
+	Scale 0.9
+	//Inventory.PickupSound "QC/Items/ArmorShardQ3Pick"
+	States
+	{
+	Spawn:
+		QCAR AAAAAAAAAA 35 BRIGHT		//10 seconds
+		Stop
+	}
 }
 
 Actor QCArmorPoint : BasicArmorBonus //used for the ACS script that gives armor
@@ -624,6 +699,9 @@ Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer")
 			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),MediumArmorAmount,0)
 			TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Sam",5) // <- Passive
+			Goto ArmorDoneSuccess
+		DoBrock:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),	MediumArmorAmount,0)
 			Goto ArmorDoneSuccess
 		// ^ insert more classes here
 
@@ -769,6 +847,9 @@ Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+75,"Failer")
 			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),BigArmorAmount,1)
 			TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Sam",10) // <- Passive
+			Goto ArmorDoneSuccess
+		DoBrock:
+			TNT1 A 0 A_GiveInventory("QCBrockArmorGain", 1, 0, GIF_FORCESERVERSIDE)		// Give 150 armor and absorb to 100%
 			Goto ArmorDoneSuccess
 		// ^ insert more classes here
 

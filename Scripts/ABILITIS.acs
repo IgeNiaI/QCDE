@@ -60,6 +60,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (40 *35) +XYZ, (120 *35) +XYZ, (10*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // PAINKILLER
 	  (45 *35) +XYZ, (100 *35) +XYZ, (12*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INTRUDER
 	  (45 *35) +XYZ, ( 30 *35) +XYZ, (25*35 )     +XYZ, (25 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ORBB
+	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // Brock
 // ^ insert more classes here
 };
 
@@ -188,6 +189,7 @@ Script "QCDE_PassiveAbility" (void)
 	else if(CheckInventory("Class_Postal"		))	ACS("QCDE_Passive_Postal"    );
 	else if(CheckInventory("Class_Painkiller"	))	ACS("QCDE_Passive_Painkiller");
 	else if(CheckInventory("Class_Intruder"		))	ACS("QCDE_Passive_Intruder"  );
+	else if(CheckInventory("Class_Brock"		))	ACS("QCDE_Passive_Brock"     );
 	// ^ insert more classes here
 }
 
@@ -5044,6 +5046,7 @@ function void SetStateByClass(int tid)
 	if(CheckActorClass(0,"QCPainkiller")) { SetActorState(tid, "Painkiller"); return; }
 	if(CheckActorClass(0,"QCIntruder"  )) { SetActorState(tid, "Intruder"  ); return; }
 	if(CheckActorClass(0,"QCOrbb"      )) { SetActorState(tid, "Orbb"      ); return; }
+	if(CheckActorClass(0,"QCBrock"     )) { SetActorState(tid, "Brock"     ); return; }
 	// ^ insert more classes here
 }
 
@@ -5386,4 +5389,23 @@ Script "QCDE_Orbb_Bounce" (int predicting, int justPressed, int justReleased, in
 
 		orbbVelocityZ[PlayerNumber()] = GetActorVelZ(0) * 82 / 100;
 	}
+}
+
+
+//---------------------------------
+//		Brock's Passive
+
+Script "QCDE_Passive_Brock" (void)
+{
+	GiveInventory("NoHealthDegenerationToken", 1);
+	GiveInventory("NoArmorDegenerationToken" , 1);
+}
+
+Script "QCDE_Brock_Health_Full"
+{
+	// Don't consume hourglasses in coop
+	if(GameType() < GAME_NET_DEATHMATCH && GetActorProperty(0,APROP_HEALTH) >= CheckInventory("MaxHealthToken") + 99)
+		SetResultValue(1);
+	else
+		SetResultValue(0);
 }

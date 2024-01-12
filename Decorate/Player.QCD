@@ -4514,3 +4514,139 @@ Actor QCOrbb : QCPlayerLight
 	}
 }
 
+
+
+//======================================================================================
+//
+//		33. Brock
+//
+//======================================================================================
+
+Actor QCBrock : QCPlayerHeavy
+{
+	Player.DisplayName "Brock"
+	Player.SoundClass "Brock"
+	Player.Palette "PL33"
+
+	Scale 0.56
+
+	Player.FootstepInterval 13
+	Player.FootstepVolume 0.75
+
+	Player.MaxHealth 100
+	Health 100
+	Player.StartItem "QCStartingArmor50"
+
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxHealthToken", 100
+	// goto SETCLASS::QCDE_ResetClass // Player.StartItem "MaxArmorToken", 100
+
+	Player.StartItem "Class_Inquisitor"
+	Player.StartItem "Body_Big"
+	Player.StartItem "ActiveDefensive"
+	Player.StartItem "NotSpectator"
+
+	States
+	{
+	Spawn:
+		QP33 A 0 NoDelay
+		QP33 A 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
+		QP33 A 0 A_JumpIf(true,                   "DefSpawn")
+		QP33 A 100
+		Loop
+
+		ColoredSpawn:
+			RP33 A 0 A_JumpIf(momx||momy,"ColoredSee")
+			RP33 A 4
+			Loop
+		DefSpawn:
+			QP33 A 0 A_JumpIf(momx||momy,"DefSee")
+			QP33 A 4
+			Goto Spawn // to catch color
+
+	See:
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredSee")
+		"####" A 1 A_JumpIf(true,                   "DefSee")
+		Goto DefSee // for preview screen and prediction
+
+		ColoredSee:
+			RP33 BCDEF 4
+			RP33 A 0 A_JumpIf(true,"ColoredSpawn")
+			Loop
+		DefSee:
+			QP33 BCDEF 4
+			QP33 A 0 A_JumpIf(true,"Spawn") // to catch color
+			Loop
+
+	Missile:
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
+		"####" A 1 A_JumpIf(true,                   "DefMissile")
+		Loop
+
+		ColoredMissile:
+			RP33 A 12
+			RP33 A 12 A_JumpIf(true, "Spawn")
+			Loop
+		DefMissile:
+			QP33 A 12
+			QP33 A 12 A_JumpIf(true, "Spawn")
+			Loop
+
+	Melee:
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
+		Loop
+
+		ColoredMelee:
+			RP33 H 6 BRIGHT Light("PlayerFiringLight")
+			RP33 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+		DefMelee:
+			QP33 H 6 BRIGHT Light("PlayerFiringLight")
+			QP33 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "Spawn")
+			Loop
+
+	Pain:
+		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
+		"####" I 1 A_JumpIf(true,                   "DefPain")
+		Loop
+
+		ColoredPain:
+			RP33 I 4
+			RP33 I 4 A_Pain
+			RP33 I 4 A_JumpIf(true, "Spawn")
+			Loop
+		DefPain:
+			QP33 I 4
+			QP33 I 4 A_Pain
+			QP33 I 4 A_JumpIf(true, "Spawn")
+			Loop
+
+	Death:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(CHAN_WEAPON) //stops looping sounds
+		TNT1 A 0 A_StopSound(CHAN_6)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		QP33 J 5
+		QP33 K 5 A_PlayerScream
+		QP33 L 5 A_NoBlocking
+		QP33 MNOP 5
+		QP33 Q -1 A_StopSound(CHAN_WEAPON)
+		Stop
+	XDeath:
+		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+		TNT1 A 0 A_StopSound(CHAN_WEAPON) //stops looping sounds
+		TNT1 A 0 A_StopSound(CHAN_6)
+		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
+		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,1.0,false,1.2)
+		QP33 A 0 A_XScream
+		QP33 J 5 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
+		QP33 K 5
+		QP33 L 5 A_NoBlocking
+		QP33 MNOP 5
+		QP33 Q -1 A_StopSound(CHAN_WEAPON)
+		Stop
+	}
+}
+
+// ^ insert more classes here
+

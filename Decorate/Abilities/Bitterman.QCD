@@ -62,6 +62,7 @@ Actor QCArmorBitterman : InventoryClassChecker
 		DoPainkiller:
 		DoIntruder:
 		DoOrbb:
+		DoBrock:
 		Default:
 			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer") //If already at max armor for this class, fails
 			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,	CallACS("MaxArmor"),	SmallArmorAmount,0) 	//arg 2 = max class armor,

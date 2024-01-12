@@ -222,7 +222,8 @@ Script "QCDE_ClassCheck_ENTER" ENTER CLIENTSIDE
 		CheckInventory("Class_Postal"		) +
 		CheckInventory("Class_Painkiller"	) +
 		CheckInventory("Class_Intruder"		) +
-		CheckInventory("Class_Orbb"			);
+		CheckInventory("Class_Orbb"			) +
+		CheckInventory("Class_Brock"		);
 	// ^ insert more classes here
 
 	if(mustbe1 > 1)
@@ -247,16 +248,15 @@ Script "QCDE_KMP" (int to, int security) NET
 script "QCDE_InitLMS" (void)
 {
 	if(!(GetCvar("lastmanstanding") || GetCvar("teamlms"))) terminate;
-	
+
 	int overheal = 75;
 	int maxArmor = ACS("MaxArmor");
-	
-	if(CheckInventory("Class_Sarge") || CheckInventory("Class_Postal"))
-		overheal += 25;
-	
-	if(CheckInventory("Class_Sarge") || CheckInventory("Class_Lucienne"))
-		maxArmor += 25;
-		
+
+	if(CheckInventory("Class_Sarge"))	{	overheal += 25;	maxArmor += 25;	}
+	if(CheckInventory("Class_Postal"))	{	overheal += 25;					}
+	if(CheckInventory("Class_Lucienne")){	maxArmor += 25;					}
+	if(CheckInventory("Class_Brock"))	{	overheal += 24;	maxArmor -= 25;	}
+
 	ACS("HealthGiver", ACS("MaxHealth"), 200, overheal);
 	ACS("ArmorGiver", maxArmor, 200, true);
 }

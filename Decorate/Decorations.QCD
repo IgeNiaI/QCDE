@@ -89,7 +89,7 @@ Actor QCDDeadPlayer replaces DeadMarine
 		                            "T01","T02","T03","T04","T05","T06","T07","T08","T09","T10",
 		                            "T11","T12","T13","T14","T15","T16","T17","T18","T19","T20",
                                     "T21","T22","T23","T24","T25","T26","T27","T28","T29","T30",
-                                    "T31","T32")
+                                    "T31","T32","T33")
 									// ^ insert more classes here
 		PLAY N 0 A_Jump(255,"Bones")
 		Goto T01
@@ -220,6 +220,10 @@ Actor QCDDeadPlayer replaces DeadMarine
 	T32:	//Orbb
 		TNT1 A 0 A_SetScale(0.8,0.72)
 		QP32 P -1
+		Stop
+	T33:	//Brock
+		TNT1 A 0 A_SetScale(0.465,0.48)
+		QP33 N -1
 		Stop
 	// ^ insert more classes here
 	Bones:	// When

@@ -83,6 +83,7 @@ statusbar Normal, forcescaled
 	inInventory Class_Painkiller	{ drawImage "PORTRX30", 	10,795; }
 	inInventory Class_Intruder		{ drawImage "PORTRX31", 	10,795; }
 	inInventory Class_Orbb			{ drawImage "PORTRX32",		10,795; }
+	inInventory Class_Brock			{ drawImage "PORTRX33",		10,795; }
 	// ^ insert more classes here
 
 	// Number of lives
@@ -642,7 +643,7 @@ statusbar Normal, forcescaled
 
 	InInventory not NoAbilityIcon {
 	// Frame
-	inInventory not Class_Sarge {
+	inInventory not Class_Sarge || Class_Brock {
 		inInventory AbilityCooldownToken {
 			inInventory not MultiuseCharge {
 				drawImage "ACTFRAM0", 572,800;
@@ -686,10 +687,11 @@ statusbar Normal, forcescaled
 	inInventory Class_Painkiller	{ drawSwitchableImage AbilityCooldownToken, 	"TAROT001", "TAROT000", 	636,850; }
 	inInventory Class_Intruder		{ drawSwitchableImage AbilityCooldownToken, 	"WENDIG01", "WENDIG00", 	636,850; }
 	inInventory Class_Orbb			{ drawSwitchableImage AbilityCooldownToken,		"ORBBEYE1", "ORBBEYE0",		636,850; }
+	inInventory Class_Brock			{ drawSwitchableImage AbilityCooldownToken,		"OLDSCHOL", "OLDSCHOL", 	636,850; }
 	// ^ insert more classes here
 
 	// Counter
-	inInventory not Class_Sarge {
+	inInventory not Class_Sarge || Class_Brock {
 	inInventory not ActiveInProgress
 	{
 		inInventory AbilityCooldownSeconds, 4
