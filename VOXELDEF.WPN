@@ -1,0 +1,62 @@
+//Weapons SP
+
+QCG3Y = "Voxels/Weapons/SP/ShotgunSP.kvx" 			{Spin=50} // Shotgun
+QCGbY = "Voxels/Weapons/SP/HeavyMachinegunSP.kvx" 	{Spin=50} // Heavy Machinegun
+QCGCY = "Voxels/Weapons/SP/SuperShotGunSP.kvx" 		{Spin=50} // Super Shotgun
+QCGDY = "Voxels/Weapons/SP/SuperNailGunSP.kvx" 		{Spin=50} // Super Nailgun
+QCG5Y = "Voxels/Weapons/SP/RocketLauncherSP.kvx" 	{Spin=50} // Rocket Launcher
+QCGEY = "Voxels/Weapons/SP/TriboltSP.kvx" 			{Spin=50} // Tribolt
+QCG6Y = "Voxels/Weapons/SP/LightningGunSP.kvx" 		{Spin=50} // Lightning Gun
+QCG7Y = "Voxels/Weapons/SP/RailgunSP.kvx" 			{Spin=50} // Railgun
+QCG8Y = "Voxels/Weapons/SP/BFGSP.kvx" 				{Spin=50} // BFG
+
+//Weapons MP
+
+QCGbZ = "Voxels/Weapons/MP/HeavyMachinegunMP.kvx" 	{Spin=50} // Heavy Machinegun
+QCGCZ = "Voxels/Weapons/MP/SuperShotGunMP.kvx" 		{Spin=50} // Super Shotgun
+QCGDZ = "Voxels/Weapons/MP/SuperNailGunMP.kvx" 		{Spin=50} // Super Nailgun
+QCG5Z = "Voxels/Weapons/MP/RocketLauncherMP.kvx" 	{Spin=50} // Rocket Launcher
+QCGEZ = "Voxels/Weapons/MP/TriboltMP.kvx" 			{Spin=50} // Tribolt
+QCG6Z = "Voxels/Weapons/MP/LightningGunMP.kvx" 		{Spin=50} // Lightning Gun
+QCG7Z = "Voxels/Weapons/MP/RailgunMP.kvx" 			{Spin=50} // Railgun
+QCG8Z = "Voxels/Weapons/MP/BFGMP.kvx" 				{Spin=50} // BFG
+
+//Ammo Pickups
+
+AMALA = "Voxels/Ammo/Generic.kvx"		{Scale=0.9 Spin=75} // Generic
+
+AMBUA = "Voxels/Ammo/Bullets.kvx" 		{Scale=0.9 Spin=75} // Bullets
+AMBUC = "Voxels/Ammo/SmallBullets.kvx" 	{Spin=75} // Small Bullets
+
+AMSHA = "Voxels/Ammo/Shells.kvx" 		{Scale=0.9 Spin=75} // Shells
+AMSHC = "Voxels/Ammo/SmallShells.kvx" 	{Spin=75} // Small Shells
+
+AMNAA = "Voxels/Ammo/Nails.kvx" 		{Scale=0.9 Spin=75} // Nails
+AMNAC = "Voxels/Ammo/SmallNails.kvx" 	{Spin=75} // Small Nails
+
+AMROA = "Voxels/Ammo/Rockets.kvx" 		{Scale=0.9 Spin=75} // Rockets
+AMROC = "Voxels/Ammo/SmallRockets.kvx" 	{Spin=75} // Small Rockets
+
+AMTBA = "Voxels/Ammo/Bolts.kvx"			{Scale=0.9 Spin=75} // Bolts
+AMTBC = "Voxels/Ammo/SmallBolts.kvx"	{Spin=75} // Small Bolts
+
+AMCLA = "Voxels/Ammo/Coils.kvx"			{Scale=0.9 Spin=75} // Coils
+AMCLC = "Voxels/Ammo/SmallCoils.kvx"	{Spin=75} // Small Coils
+
+AMRAA = "Voxels/Ammo/Slugs.kvx" 		{Scale=0.9 Spin=75} // Slugs
+AMRAC = "Voxels/Ammo/SmallSlugs.kvx" 	{Spin=75} // Small Slugs
+
+AMBFA = "Voxels/Ammo/Cells.kvx" 		{Scale=0.9 Spin=75} // Cells
+AMBFC = "Voxels/Ammo/SmallCells.kvx" 	{Spin=75} // Cells
+
+
+//Spawns
+
+VXMGA = "Voxels/Spawns/HMGSpawn.kvx"	{Scale=0.7} // HMG Platform
+VXSGA = "Voxels/Spawns/SSGSpawn.kvx" 	{Scale=0.7} // SSG Platform
+VXNGA = "Voxels/Spawns/SNGSpawn.kvx" 	{Scale=0.7} // SNG Platform
+VXRLA = "Voxels/Spawns/RLSpawn.kvx" 	{Scale=0.7} // RL Platform
+VXTBA = "Voxels/Spawns/TBSpawn.kvx" 	{Scale=0.7} // TB Platform
+VXLGA = "Voxels/Spawns/LGSpawn.kvx" 	{Scale=0.7} // LG Platform
+VXRGA = "Voxels/Spawns/RGSpawn.kvx" 	{Scale=0.7} // RG Platform
+VXBFA = "Voxels/Spawns/BFGSpawn.kvx" 	{Scale=0.7} // BFG Platform

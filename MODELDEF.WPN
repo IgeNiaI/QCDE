@@ -1,0 +1,412 @@
+// Nails
+
+Model QCNailStrong
+{
+   Path "MD3"
+   SKIN 0 "nail.png"
+   MODEL 0 "nail.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NAIL A 0 0
+}
+
+Model QCNailStrong_Quake1
+{
+   Path "MD3"
+   SKIN 0 "na1l.png"
+   MODEL 0 "na1l.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex NA1L A 0 0
+}
+
+Model QCNailStrong_Quake2
+{
+   Path "MD3"
+   SKIN 0 "na2l.png"
+   MODEL 0 "na2l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA2L A 0 0
+}
+
+Model QCNailStrong_ETQW
+{
+   Path "MD3"
+   SKIN 0 "na5l.png"
+   MODEL 0 "na5l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA5L A 0 0
+}
+
+Model QCNailWeak
+{
+   Path "MD3"
+   SKIN 0 "naii.png"
+   MODEL 0 "naii.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NAII A 0 0
+}
+
+Model QCNailWeak_Quake1
+{
+   Path "MD3"
+   SKIN 0 "na1i.png"
+   MODEL 0 "na1i.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex NA1I A 0 0
+}
+
+Model QCNailWeak_Quake2
+{
+   Path "MD3"
+   SKIN 0 "na2i.png"
+   MODEL 0 "na2i.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex NA2I A 0 0
+}
+
+Model QCNailStrongDM
+{
+   Path "MD3"
+   SKIN 0 "nail.png"
+   MODEL 0 "nail.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NAIL A 0 0
+}
+
+Model QCNailStrongDM_Quake1
+{
+   Path "MD3"
+   SKIN 0 "na1l.png"
+   MODEL 0 "na1l.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex NA1L A 0 0
+}
+
+Model QCNailStrongDM_Quake2
+{
+   Path "MD3"
+   SKIN 0 "na2l.png"
+   MODEL 0 "na2l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA2L A 0 0
+}
+
+Model QCNailStrongDM_ETQW
+{
+   Path "MD3"
+   SKIN 0 "na5l.png"
+   MODEL 0 "na5l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA5L A 0 0
+}
+
+Model QCNailWeakDM
+{
+   Path "MD3"
+   SKIN 0 "naii.png"
+   MODEL 0 "naii.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NAII A 0 0
+}
+
+Model QCNailWeakDM_Quake1
+{
+   Path "MD3"
+   SKIN 0 "na1i.png"
+   MODEL 0 "na1i.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex NA1I A 0 0
+}
+
+Model QCNailWeakDM_Quake2
+{
+   Path "MD3"
+   SKIN 0 "na2i.png"
+   MODEL 0 "na2i.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex NA2I A 0 0
+}
+
+Model QCNailStrongIllusion
+{
+   Path "MD3"
+   SKIN 0 "nail.png"
+   MODEL 0 "nail.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NAIL A 0 0
+}
+
+Model QCNailStrongIllusion_Quake1
+{
+   Path "MD3"
+   SKIN 0 "na1l.png"
+   MODEL 0 "na1l.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex NA1L A 0 0
+}
+
+Model QCNailStrongIllusion_Quake2
+{
+   Path "MD3"
+   SKIN 0 "na2l.png"
+   MODEL 0 "na2l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA2L A 0 0
+}
+
+Model QCNailStrongIllusion_ETQW
+{
+   Path "MD3"
+   SKIN 0 "na5l.png"
+   MODEL 0 "na5l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA5L A 0 0
+}
+
+
+//Bolts
+
+Model TriboltBolt
+{
+   Path "MD3"
+   SKIN 0 "bolt.png"
+   MODEL 0 "bolt.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex GRNL A 0 0
+}
+
+Model TriboltBoltDM
+{
+   Path "MD3"
+   SKIN 0 "bolt.png"
+   MODEL 0 "bolt.md3"
+   Scale 1.0 1.0 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex GRNL A 0 0
+}
+
+//Rockets
+
+Model QCRocketPlayer
+{
+   Path "MD3"
+   SKIN 0 "Rocket.png"
+   MODEL 0 "Rocket.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 3
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex MICR A 0 0
+}
+
+Model QCRocketPlayerDM
+{
+   Path "MD3"
+   SKIN 0 "Rocket.png"
+   MODEL 0 "Rocket.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 3
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex MICR A 0 0
+}
+
+Model QCRocketPlayerIllusion
+{
+   Path "MD3"
+   SKIN 0 "Rocket.png"
+   MODEL 0 "Rocket.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 3
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex MICR A 0 0
+}
+
+// LG Beams
+
+Model LGworldactor
+{
+   Path "MD3"
+   SKIN 0 "beam1.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 3.0 3.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Y 0 0
+}
+
+Model LGworldactor2
+{
+   Path "MD3"
+   SKIN 0 "beam2.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 3.0 3.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Z 0 0
+}
+
+Model LGworldactor_Quake2
+{
+   Path "MD3"
+   SKIN 0 "beam1_quake2.png"
+   MODEL 0 "beam_quake2.md3"
+   Scale 1.8 1.0 1.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Y 0 0
+}
+
+Model LGworldactor2_Quake2
+{
+   Path "MD3"
+   SKIN 0 "beam2_quake2.png"
+   MODEL 0 "beam_quake2.md3"
+   Scale 1.8 1.0 1.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Z 0 0
+}
+
+Model LGworldactor_Quake3
+{
+   Path "MD3"
+   SKIN 0 "beam1_quake3.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 2.0 2.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Y 0 0
+}
+
+Model LGworldactor2_Quake3
+{
+   Path "MD3"
+   SKIN 0 "beam2_quake3.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 2.0 2.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Z 0 0
+}
+
+Model LGworldactorPurple
+{
+   Path "MD3"
+   SKIN 0 "beam1.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 3.0 3.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Y 0 0
+}
+
+Model LGworldactor2Purple
+{
+   Path "MD3"
+   SKIN 0 "beam2.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 3.0 3.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Z 0 0
+}
+
+Model LGworldactorPurple_Quake2
+{
+   Path "MD3"
+   SKIN 0 "beam1_quake2.png"
+   MODEL 0 "beam_quake2.md3"
+   Scale 1.8 1.0 1.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Y 0 0
+}
+
+Model LGworldactor2Purple_Quake2
+{
+   Path "MD3"
+   SKIN 0 "beam2_quake2.png"
+   MODEL 0 "beam_quake2.md3"
+   Scale 1.8 1.0 1.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Z 0 0
+}
+
+Model LGworldactorPurple_Quake3
+{
+   Path "MD3"
+   SKIN 0 "beam1_quake3.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 2.0 2.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Y 0 0
+}
+
+Model LGworldactor2Purple_Quake3
+{
+   Path "MD3"
+   SKIN 0 "beam2_quake3.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 2.0 2.0
+   INHERITACTORPITCH
+   FrameIndex LGWR Z 0 0
+}
+
+// Misc
+
+Model LaserKraftTrail
+{
+   Path "MD3"
+   SKIN 0 "bjbeam.png"
+   MODEL 0 "beam.md3"
+   Scale 3.6 10.0 10.0
+   INHERITACTORPITCH
+   FrameIndex LTRL A 0 0
+}

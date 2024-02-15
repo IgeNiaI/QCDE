@@ -1,0 +1,83 @@
+//Health Pickups
+HEALA = "Voxels/Armor Health/HealthBonus.kvx" 	{Spin=75} // Health Bonus
+HEALB = "Voxels/Armor Health/SmallHealth.kvx" 	{Spin=75} // Small Health
+HEALC = "Voxels/Armor Health/LargeHealth.kvx" 	{Spin=75} // Large Health
+MEGRA = "Voxels/Armor Health/MegaHealth.kvx" 	{Scale= 0.95 Spin=75} // Mega Health
+MEGBA = "Voxels/Armor Health/MegaCharge.kvx" 	{Scale= 0.95 Spin=75} // Mega Charge
+MEGRB = "Voxels/empty.kvx" // Mega Health Glow
+MEGBB = "Voxels/empty.kvx" // Mega Charge Glow
+
+//Armor Pickups
+
+QCARA = "Voxels/Armor Health/ArmorShard.kvx" {Spin=75} // Shard
+QCARB = "Voxels/Armor Health/LightArmor.kvx" {Spin=75} // Light Armor
+QCARC = "Voxels/Armor Health/HeavyArmor.kvx" {Spin=75} // Heavy Armor
+
+//Lootboxes
+
+LBOXA = "Voxels/Lootboxes/BackpackLoot.kvx"	// Backpack Lootbox
+LBOXB = "Voxels/Lootboxes/Chest.kvx"		// Chest
+LBOXC = "Voxels/Lootboxes/Reliquary.kvx"	// Reliquary
+
+//Key Cards
+
+//Blue
+KCRBA = "Voxels/Pickups/KeyCardBlue.kvx" {Scale=2.0 Spin=50}
+KCRBB = "Voxels/Pickups/KeyCardBlue.kvx" {Scale=2.0 Spin=50}
+KCRBC = "Voxels/Pickups/KeyCardBlue.kvx" {Scale=2.0 Spin=50}
+KCRBD = "Voxels/Pickups/KeyCardBlue.kvx" {Scale=2.0 Spin=50}
+
+//Yellow
+KCRYA = "Voxels/Pickups/KeyCardYellow.kvx" {Scale=2.0 Spin=50}
+KCRYB = "Voxels/Pickups/KeyCardYellow.kvx" {Scale=2.0 Spin=50}
+KCRYC = "Voxels/Pickups/KeyCardYellow.kvx" {Scale=2.0 Spin=50}
+KCRYD = "Voxels/Pickups/KeyCardYellow.kvx" {Scale=2.0 Spin=50}
+
+//Red
+KCRRA = "Voxels/Pickups/KeyCardRed.kvx" {Scale=2.0 Spin=50}
+KCRRB = "Voxels/Pickups/KeyCardRed.kvx" {Scale=2.0 Spin=50}
+KCRRC = "Voxels/Pickups/KeyCardRed.kvx" {Scale=2.0 Spin=50}
+KCRRD = "Voxels/Pickups/KeyCardRed.kvx" {Scale=2.0 Spin=50}
+
+//Skull Keys
+
+//Blue
+KSKBA = "Voxels/Pickups/SkullKeyBlue.kvx" {Scale=1.0 Spin=50}
+KSKBB = "Voxels/Pickups/SkullKeyBlue.kvx" {Scale=1.0 Spin=50}
+KSKBC = "Voxels/Pickups/SkullKeyBlue.kvx" {Scale=1.0 Spin=50}
+KSKBD = "Voxels/Pickups/SkullKeyBlue.kvx" {Scale=1.0 Spin=50}
+
+//Yellow
+KSKYA = "Voxels/Pickups/SkullKeyYellow.kvx" {Scale=1.0 Spin=50}
+KSKYB = "Voxels/Pickups/SkullKeyYellow.kvx" {Scale=1.0 Spin=50}
+KSKYC = "Voxels/Pickups/SkullKeyYellow.kvx" {Scale=1.0 Spin=50}
+KSKYD = "Voxels/Pickups/SkullKeyYellow.kvx" {Scale=1.0 Spin=50}
+
+//Red
+KSKRA = "Voxels/Pickups/SkullKeyRed.kvx" {Scale=1.0 Spin=50}
+KSKRB = "Voxels/Pickups/SkullKeyRed.kvx" {Scale=1.0 Spin=50}
+KSKRC = "Voxels/Pickups/SkullKeyRed.kvx" {Scale=1.0 Spin=50}
+KSKRD = "Voxels/Pickups/SkullKeyRed.kvx" {Scale=1.0 Spin=50}
+
+//Pickups
+
+SANDA = "Voxels/Pickups/Hourglass.kvx" 		{Spin=75} // Hourglass
+SANDB = "Voxels/Pickups/BigHourglass.kvx" 	{Spin=75} // Big Hourglass
+
+BPAKB = "Voxels/Pickups/Backpack.kvx" {Spin=75} // Backpack
+
+DMAPA = "Voxels/Pickups/DMAPA0.kvx" {Spin=75} // Map
+DMAPB = "Voxels/Pickups/DMAPB0.kvx" {Spin=75} // Map
+DMAPC = "Voxels/Pickups/DMAPC0.kvx" {Spin=75} // Map
+DMAPD = "Voxels/Pickups/DMAPD0.kvx" {Spin=75} // Map
+
+SUITA = "Voxels/Pickups/SUITA.kvx" {Spin=75} // Radiation Shielding Suit
+
+//Powerups
+
+PROTA = "Voxels/Pickups/Protection.kvx" {Spin=75} // Protection
+PROTB = "Voxels/Pickups/Protection.kvx" {Spin=75} // Protection
+QUADA = "Voxels/Pickups/QuadDamage.kvx" {Spin=75} // Quad Damage
+QUADB = "Voxels/Pickups/QuadDamage.kvx" {Spin=75} // Quad Damage
+PENTA = "Voxels/Pickups/Pentagram.kvx" 	{Spin=75} // Pentagram of Protection
+PENTB = "Voxels/Pickups/Pentagram.kvx" 	{Spin=75} // Pentagram of Protection
