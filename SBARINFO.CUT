@@ -372,6 +372,7 @@ statusbar Normal, forcescaled
 	isSelected QCLightningGun		, QCLightningGunDM		{ drawImage "AmmCoils", 1170, 897; }
 	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "AmmSlugs", 1170, 897; }
 	isSelected QCBFG 				, QCBFGDM				{ drawImage "AmmBfugs", 1170, 897; }
+	isSelected SamMinigun									{ drawImage "AmmSBult", 1170, 897; }
 	}
 
 	// Upgrades for current weapon
@@ -764,15 +765,7 @@ statusbar Normal, forcescaled
 	}
 	// Sam's ammo
 	inInventory Class_Sam {
-		inInventory not AbilityCooldownToken {
-			drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950;
-		} else {
-			inInventory ActiveProgressToken {
-				drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950;
-			} else {
-				drawNumber 3, QCFNT050, graey, SeriousBullets, alignment(center), 700,950;
-			}
-		}
+		drawNumber 3, QCFNT050, brite, SeriousBullets, alignment(center), 700,950;
 	}
 	// Painkiller's souls counter
 	inInventory PainsKilled {

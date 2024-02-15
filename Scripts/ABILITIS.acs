@@ -55,7 +55,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (50 *35) +XYZ, ( 25 *35) +XYZ, ( 2 *35)     +XYZ, ( 2 *35)     +XYZ,   4      +XYZ,   2*35   +XYZ, "NoSoundHax"                        , // LUCIENNE
 	  (45 *35) +XYZ, (135 *35) +XYZ, ( 4 *35)     +XYZ, ( 4 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // MAJOR
 	  (40 *35) +XYZ, ( 60 *35) +XYZ, ( 7 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // HUNTER
-	  (35 *35) +XYZ, ( 80 *35) +XYZ, ((11 *35)+8) +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SAM
+	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // SAM
 	  (45 *35) +XYZ, ( 60 *35) +XYZ, (5 *35 )     +XYZ, ( 5 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // POSTAL
 	  (40 *35) +XYZ, (120 *35) +XYZ, (10*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // PAINKILLER
 	  (45 *35) +XYZ, ( 90 *35) +XYZ, (12*35 )     +XYZ, (24 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INTRUDER
@@ -2448,58 +2448,11 @@ Script "QCDE_HasLivingTarget" (void)
 Script "QCDE_Ability_Sam" (void)
 {
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	PlaySound(0,"QC/Abilities/Sam/Activate",CHAN_7,0.85,false,0.5);
-	GiveInventory("SamMinigunProc",1);
-	SetNetworkReplicationFlags( 0 );
-	ACS("QCDE_SetWeapon", "SamMinigun", GetDuration());
-
-	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
-	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
-
-	// Rocket arena special case: disable infinite ammo for duration
-	if(CheckInventory("RocketArena")) TakeInventory("PowerInfiniteAmmo",1);
-
-	// Store previously used weapon
-	int w;
-	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
-		if(!stricmp(getWeapon(), weaponList[w]))
-			break;
-
-
-	// Main loop
-	int t = GetDuration();
-	while(t --> 0)
-	{
-		if(CheckInventory("SeriousBullets") <= 0) t = 0;
-		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
-		delay(1);
+	SetWeapon("SamMinigun");
+	if (GetNetworkState() != NETSTATE_SERVER && !CheckInventory("SeriousBullets") && GetCvar("cl_lowAmmoWarning") > 0) {
+		ACS_NamedExecuteAlways("QCDE_LowAmmoAlert_CLIENT",0, true, GetCvar("cl_lowAmmoWarning") > 1, true);
 	}
-
-	// Break progress meter: 1 total duration, 1 remaining tic
-	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", 1, 1);
-
-	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	//Unzoom if using toggle zoom
-	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	//Select old weapon
-	if(GetActorProperty(0,APROP_HEALTH) > 0)
-		SetWeapon(weaponList[w]);
-	//Remove ability weapon
-	GiveInventory("SamMinigunCleanerProc",1);
-	TakeInventory("SamMinigun",1);
-	If(CheckInventory("DMToken"))	//this if is no longer needed, kept "just in case" in the future
-		GiveInventory("SeriousBullets",80);
-	else
-		GiveInventory("SeriousBullets",GetAmmoCapacity("SeriousBullets"));
 	SetNetworkReplicationFlags( 0 );
-
-	// Rocket arena special case: reenable infinite ammo for duration
-	if(CheckInventory("RocketArena"))
-	{
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		GiveInventory("EndlessInfiniteAmmo",1);
-		SetNetworkReplicationFlags( 0 );
-	}
 }
 
 
@@ -5220,6 +5173,7 @@ Script "QCDE_Passive_Sam" (int ammo)
 {
 	if(!ammo) // Start of life
 	{
+		SetInventory("SamMinigun",1);
 		SetInventory("SeriousBullets",80);
         int startingWeapon = GetCvar("cl_startingWeapon");
 		if(GameType() <= GAME_NET_COOPERATIVE)
@@ -5227,9 +5181,7 @@ Script "QCDE_Passive_Sam" (int ammo)
 			if(!CheckInventory("QCHeavyMachinegun")) GiveInventory("QCMachineGun", 1);
 			SetInventory("QCShotgun"   ,1);
          	if(!CheckInventory("QCSuperNailgun")) GiveInventory("QCNailgun", 1);
-			SetInventory("SamMinigun"  ,0);
-			SetInventory("SeriousBullets",GetAmmoCapacity("SeriousBullets"));
-			
+
             switch(startingWeapon)
             {
             default: // go to case 1
