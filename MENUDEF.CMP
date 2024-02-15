@@ -201,26 +201,26 @@ FreeformMenu QCDE_ChampionDetails
 
 	Option { NotSelectable	Pos -200, 140	Values QCDE_Champions_Story		Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
 
-	Label {					Pos	-200, 190	Text "Type:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
-	Option { NotSelectable	Pos -157, 190	Values QCDE_Champions_Type		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
-	Label {					Pos	-200, 210	Text "Health:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
-	Option { NotSelectable	Pos -157, 210	Values QCDE_Champions_Health	Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
-	Label {					Pos	-200, 230	Text "Armor:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
-	Option { NotSelectable	Pos -157, 230	Values QCDE_Champions_Armor		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
+	Label {					Pos	-200, 200	Text "Type:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -157, 200	Values QCDE_Champions_Type		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
+	Label {					Pos	-200, 220	Text "Health:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -157, 220	Values QCDE_Champions_Health	Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
+	Label {					Pos	-200, 240	Text "Armor:"					Anchor left, center							Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -157, 240	Values QCDE_Champions_Armor		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor DarkGray	}
 
-	Option { NotSelectable	Pos -200, 260	Values QCDE_Champions_Movement		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
-	Option { NotSelectable	Pos -200, 275	Values QCDE_Champions_MovementDesc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+	Option { NotSelectable	Pos -200, 270	Values QCDE_Champions_Movement		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -200, 285	Values QCDE_Champions_MovementDesc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
 
-	Option { NotSelectable	Pos -200, 330	Values QCDE_Champions_Active		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
-	Label {					Pos	-200, 345	Text "Cooldown PvP / PvE:"			Anchor left, center							Font SmallFont	FontColor Gray		}
-	Option { NotSelectable	Pos -107, 345	Values QCDE_Champions_Cooldowns		Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
-	Option { NotSelectable	Pos -200, 360	Values QCDE_Champions_ActiveDesc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+	Option { NotSelectable	Pos -200, 340	Values QCDE_Champions_Active		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
+	Label {					Pos	-200, 355	Text "Cooldown PvP / PvE:"			Anchor left, center							Font SmallFont	FontColor Gray		}
+	Option { NotSelectable	Pos -107, 355	Values QCDE_Champions_Cooldowns		Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+	Option { NotSelectable	Pos -200, 370	Values QCDE_Champions_ActiveDesc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
 
-	Option { NotSelectable	Pos -200, 410	Values QCDE_Champions_Passive1		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
-	Option { NotSelectable	Pos -200, 425	Values QCDE_Champions_Passive1Desc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+	Option { NotSelectable	Pos -200, 430	Values QCDE_Champions_Passive1		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -200, 445	Values QCDE_Champions_Passive1Desc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
 
-	Option { NotSelectable	Pos -200, 480	Values QCDE_Champions_Passive2		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
-	Option { NotSelectable	Pos -200, 495	Values QCDE_Champions_Passive2Desc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
+	Option { NotSelectable	Pos -200, 510	Values QCDE_Champions_Passive2		Anchor left, center		CVar playerclass	Font QCSMFONT	FontColor BRITE		}
+	Option { NotSelectable	Pos -200, 525	Values QCDE_Champions_Passive2Desc	Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
 
 
 	Label { 				Pos  105,  20	Text "Backstory"	Font QCBGFONT	FontColor Gold	}

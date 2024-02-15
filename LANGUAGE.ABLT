@@ -4,66 +4,66 @@
 CMPLIGHT = "Light";
 CMPMEDIM = "Medium";
 CMPHEAVY = "Heavy";
-MOVTDOOM = "\c[brick]Doom Movement";
+MOVTDOOM = "\c[brick]- Doom Movement -";
 MOVDDOOM = "Standard Doom engine movement.\n"
            "Low ground friction.\n"
            "Can utilize \c[Greay]Strafe-running.";
-MOVTQUAK = "\c[orange]Quake Movement";
+MOVTQUAK = "\c[orange]- Quake Movement -";
 MOVDQUAK = "Vanilla Quake 3 (VQ3) movement.\n"
            "High ground friction.\n"
            "Can utilize \c[Greay]Strafe-jumping.";
-MOVTQCPM = "\c[green]CPM Movement";
+MOVTQCPM = "\c[green]- CPM Movement -";
 MOVDQCPM = "Challenge ProMode movement.\n"
            "Identical to Quake movement, but can\n"
            "additionally utilize \c[Greay]Air Control.";
 
 // Ranger
-ABILT101 = "Dire Orb";
-ABILT201 = "Throws the orb.\n"
-           "Activate again to teleport to its location.";
-ABILT301 = "Rocket Jumper";
+ABILT101 = "- Dire Orb -";
+ABILT201 = "Throws an orb, dealing damage\n"
+           "to everyone it passes thru.\n"
+           "Activate again to teleport to orb location.";
+ABILT301 = "- Rocket Jumper -";
 ABILT401 = "20% less damage from own rockets.";
 ABILT501 = "";
 ABILT601 = "";
 
 
 // DoomSlayer
-ABILT102 = "BFG";
+ABILT102 = "- BFG -";
 ABILT202 = "Fires an area-of-effect BFG shot.";
-ABILT302 = "Double Jump";
+ABILT302 = "- Double Jump -";
 ABILT402 = "Perform a second jump while in mid air.";
 ABILT502 = "";
 ABILT602 = "";
 
 
 // Corvus
-ABILT103 = "Wings of Wrath";
+ABILT103 = "- Wings of Wrath -";
 ABILT203 = "Temporarily flies at very high speed.";
-ABILT303 = "Elven Vitality";
+ABILT303 = "- Elven Vitality -";
 ABILT403 = "Constantly regenerates health.";
 ABILT503 = "";
 ABILT603 = "";
 
 
 // Kane
-ABILT104 = "Stroyent Injection";
+ABILT104 = "- Stroyent Injection -";
 ABILT204 = "Heals 75 hp and gets a speed boost. In PvE,\n"
            "it gives a MegaHealth worth of stack.";
-ABILT304 = "Crouch Slide";
-ABILT404 = "Hold \c[gold]crouch\c[green] when landing on the floor to\n"
-           "gain a big speed boost.";
+ABILT304 = "- Crouch Slide -";
+ABILT404 = "Hold \c[gold]crouch\c[CR_UNTRANSLATED] when landing on the floor\n"
+           "to gain a big speed boost.";
 ABILT504 = "";
 ABILT604 = "";
 
 
 // Caleb
-ABILT105 = "Voodoo Doll";
-ABILT205 = "Dealing any damage with primary fire will\n"
-           "heal you, but missing your target will\n"
-           "hurt instead. Secondary fire releases\n"
-           "damaging energy thatgoes through walls\n"
-           "but spends the doll.";
-ABILT305 = "Life Essence";
+ABILT105 = "- Voodoo Doll -";
+ABILT205 = "Brings up a voodoo doll. Dealing any damage\n"
+           "will heal you, but missing your target\n"
+           "will hurt instead. Secondary fire releases\n"
+           "damaging energy that goes through walls.";
+ABILT305 = "- Life Essence -";
 ABILT405 = "Enemies killed by Caleb will drop a heart\n"
            "which heals by a small amount. It can\n"
            "overstack.";
@@ -72,9 +72,9 @@ ABILT605 = "";
 
 
 // Menelkir
-ABILT106 = "Dark Servant";
+ABILT106 = "- Dark Servant -";
 ABILT206 = "Summons a servant to fight his enemies.";
-ABILT306 = "Hex";
+ABILT306 = "- Hex -";
 ABILT406 = "Killed monsters can drop additional\n"
            "hourglasses. Killed champions always\n"
            "drop them.";
@@ -83,94 +83,96 @@ ABILT606 = "";
 
 
 // Terminator
-ABILT107 = "Barrage";
-ABILT207 = "Mini missiles that home on whatever is in\n"
-           "your line of sight. \c[red]In PvP, hourglasses\n"
-           "don't reduce cooldown\c[green], instead they\n"
-           "increase the rockets amount up to 20.";
-ABILT307 = "Ammo Regeneration";
-ABILT407 = "Permanent ammo regen for the selected\n"
-           "weapon.";
+ABILT107 = "- Barrage -";
+ABILT207 = "Fires mini missiles that home on the enemies.\n"
+           "In PvP, hourglasses don't reduce cooldown,\n"
+           "instead they increase the rockets amount.";
+ABILT307 = "- Ammo Regeneration -";
+ABILT407 = "Permanent ammo regen\n"
+           "for the selected weapon.";
 ABILT507 = "";
 ABILT607 = "";
 
 
 // Zedek
-ABILT108 = "Quietus";
-ABILT208 = "Launches five gusts of fire that cause area\n"
-           "damage on impact.";
-ABILT308 = "Iron Feet";
+ABILT108 = "- Quietus -";
+ABILT208 = "Launches five gusts of fire that set\n"
+           "impacted enemies and location on fire.";
+ABILT308 = "- Iron Feet -";
 ABILT408 = "Damage inflicted by damaging floors\n"
            "(Lava, Nukage, etc.) is halved.";
-ABILT508 = "Cannonball";
+ABILT508 = "- Cannonball -";
 ABILT608 = "Falling from great heights causes\n"
            "a damaging shockwave.";
 
 
 // Inquisitor
-ABILT109 = "Protective Shield";
+ABILT109 = "- Protective Shield -";
 ABILT209 = "Absorbs 50% of incoming damage for\n"
            "the duration. Reactivate to generate a large\n"
            "shield for allies. Cannot fire while the\n"
            "shield is active.";
-ABILT309 = "Thrust Dodge";
+ABILT309 = "- Thrust Dodge -";
 ABILT409 = "While airborne, double tapping a direction\n"
            "key will boost the movement.";
-ABILT509 = "Still Defense";
+ABILT509 = "- Still Defense -";
 ABILT609 = "When stationary, Inquisitor takes 10%\n"
            "less damage.";
 
 
 // Bitterman
-ABILT110 = "Power Shield";
-ABILT210 = "Gains armor based on the charge level, to a\n"
-           "maximum of 200 armor points. In team\n"
-           "games, excess armor is dropped on the floor.";
-ABILT310 = "Bandoliers";
+ABILT110 = "- Power Shield -";
+ABILT210 = "Accumulates armor points over time and\n"
+           "when picking up armor items. Upon activation,\n"
+           "grants accumulated armor to Bitterman.\n"
+           "In team games, excess armor is dropped.";
+ABILT310 = "- Bandoliers -";
 ABILT410 = "Naturally carries more ammo than any other\n"
            "champion.";
-ABILT510 = "Edge Jump";
+ABILT510 = "- Edge Jump -";
 ABILT610 = "Jumping while taking ramps, stairs or ledges\n"
            "will cause a higher jump for added mobility.";
 
 
 // Galen
-ABILT111 = "Unholy Totem";
+ABILT111 = "- Unholy Totem -";
 ABILT211 = "Throws a totem that heal champions nearby.\n"
            "It will explode when enemies get close to it.";
-ABILT311 = "Channeling";
-ABILT411 = "Ability cooldown decreases when picking\n"
-           "health items.";
+ABILT311 = "- Channeling -";
+ABILT411 = "Picking up health items decreases\n"
+           "active ability cooldown";
 ABILT511 = "";
 ABILT611 = "";
 
 
 // Nyx
-ABILT112 = "Ghostwalk";
-ABILT212 = "Briefly disappears, becoming completely\n"
-           "ethereal and invulnerable.";
-ABILT312 = "Walljump";
-ABILT412 = "Perform a second, big jump off a wall.";
+ABILT112 = "- Ghostwalk -";
+ABILT212 = "Nyx becomes invisible and invulnerable\n"
+           "for short duration.";
+ABILT312 = "- Walljump -";
+ABILT412 = "Nyx can perform a second jump off walls.";
 ABILT512 = "";
 ABILT612 = "";
 
 
 // Sorgaul
-ABILT113 = "Primal Rage";
-ABILT213 = "Devastating melee attacks, health\n"
-           "regeneration and speed boost.";
-ABILT313 = "Armor Hoarder";
-ABILT413 = "Gains extra armor from medium and\n"
-           "big armor pickups.";
+ABILT113 = "- Primal Rage -";
+ABILT213 = "Sorgaul takes out her claws, letting her\n"
+           "rip her enemies in melee. Also grants\n"
+           "health regeneration and speed\n"
+           "for the duration.";
+ABILT313 = "- Armor Hoarder -";
+ABILT413 = "Gains extra armor from medium\n"
+           "and big armor pickups.";
 ABILT513 = "";
 ABILT613 = "";
 
 
 // DukeNukem
-ABILT114 = "Freeze Thrower";
-ABILT214 = "Fires projectiles that can freeze enemies.\n"
+ABILT114 = "- Freeze Thrower -";
+ABILT214 = "Take out a gun that can freeze enemies.\n"
            "Use \c[gold]Alt Fire\c[green] to kick.";
-ABILT314 = "Huge Ego";
+ABILT314 = "- Huge Ego -";
 ABILT414 = "Gains extra health from medium and big\n"
            "health pickups.";
 ABILT514 = "";
@@ -178,80 +180,80 @@ ABILT614 = "";
 
 
 // Durandal
-ABILT115 = "Simulacrums";
-ABILT215 = "Teleports in several human-looking bots that\n"
+ABILT115 = "- Simulacrums -";
+ABILT215 = "Summons several human-looking bots that\n"
            "will chase enemies and explode on contact.";
-ABILT315 = "Unified Vitality";
-ABILT415 = "Medium and Big armor pickups will first fill up\n"
-           "health, then armor.";
-ABILT515 = "Infra-Chromatic Unveil \c[orange]-PvE-";
+ABILT315 = "- Unified Vitality -";
+ABILT415 = "Medium and Big armor pickups will\n"
+           "first fill up health, then armor.";
+ABILT515 = "- Infra-Chromatic Unveil \c[orange](PvE only)\c[CR_UNTRANSLATED] -";
 ABILT615 = "Allows Durandal to detect beings shifting\n"
            "between dimensions.";
 
 // Keel
-ABILT116 = "Grenade Swarm";
-ABILT216 = "Fires up to 5 grenades from his shoulder\n"
-           "mounted cannons.";
-ABILT316 = "Stockpile";
-ABILT416 = "Ability cooldown decreases when picking\n"
-           "ammunition items.";
+ABILT116 = "- Grenade Swarm -";
+ABILT216 = "Fires grenades from his\n"
+           "shoulder mounted cannons.";
+ABILT316 = "- Stockpile -";
+ABILT416 = "Picking up ammunition items\n"
+           "decreases ability cooldown";
 ABILT516 = "";
 ABILT616 = "";
 
 
 // Sarge
-ABILT117 = "\c[black]No Active Ability";
+ABILT117 = "\c[black]- No Active Ability -";
 ABILT217 = "This champion is too oldschool\n"
            "to have an Active Ability";
-ABILT317 = "Veteran";
+ABILT317 = "- Veteran -";
 ABILT417 = "Overstacks health & armor a la Quake Live.\n"
            "\c[cyan]Mega \c[white]& \c[green]Heavy armor \c[white]= +100 overstack.\n"
            "\c[green]Light Armor \c[white]= +50 overstack.\n"
-           "\c[yellow]Hourglasses \c[white]= +12 \c[green]ap \c[white]overstack.";
-ABILT517 = "Stacked \c[orange]-PvE Only-";
+           "\c[yellow]Hourglasses \c[white]= +10 \c[green]ap \c[white]overstack.";
+ABILT517 = "- Stacked \c[orange](PvE only) -";
 ABILT617 = "Overstack gained from health and armor\n"
            "pickups will not degenerate over time.";
 
 
 // LoWang
-ABILT118 = "Nobitsura Kage";
-ABILT218 = "Quickly execute a double slash with the\n"
-           "Katana.";
-ABILT318 = "Peacock's Blessing";
-ABILT418 = "Tap \c[gold]Right, Right, \c[green]then hold \c[gold]Use \c[green]to heal up to\n"
-           "60hp whenever your health is lower than that.";
-ABILT518 = "Tiger's Rage";
+ABILT118 = "- Nobitsura Kage -";
+ABILT218 = "Quickly double slash the Katana, dealing\n"
+           "damage to enemies in front.";
+ABILT318 = "- Peacock's Blessing -";
+ABILT418 = "Tap \c[gold]Right, Right,\c[CR_UNTRANSLATED] then hold \c[gold]Use\c[CR_UNTRANSLATED]\n"
+           "to heal up to \c[cyan]60hp\c[CR_UNTRANSLATED].";
+ABILT518 = "- Tiger's Rage -";
 ABILT618 = "When under 40hp, deal 30% more damage.";
 
 
 // Grayson
-ABILT119 = "Leash Thumper";
-ABILT219 = "After charging, releases an energy projectile\n"
+ABILT119 = "- Leash Thumper -";
+ABILT219 = "Charge, then release an energy projectile\n"
            "that on floor-impact will send enemies flying.";
-ABILT319 = "Personal Dropkit";
-ABILT419 = "Hold \c[gold]USE \c[green]to open buying prompt. Hold the\n"
-           "button for longer to confirm the purchase.\n"
-           "Spends \c[white]25 armor \c[green]for \c[white]ammo \c[green]of current\n"
-           "weapon.";
-ABILT519 = "Bounty Hunter";
+ABILT319 = "- Personal Dropkit -";
+ABILT419 = "Hold \c[gold]USE\c[CR_UNTRANSLATED] to buy ammo\n"
+           "for current weapon at the cost of armor.";
+ABILT519 = "- Bounty Hunter -";
 ABILT619 = "Every kill is rewarded with armor.";
 
 
 // Eradicator
-ABILT120 = "Scanner";
+ABILT120 = "- Scanner -";
 ABILT220 = "Allows him to see the position of enemies\n"
            "and some items in a 2D display in the HUD.";
-ABILT320 = "Murderface";
-ABILT420 = "Damage increase based on kills.";
+ABILT320 = "- Murderface -";
+ABILT420 = "Damage increase based after several\n"
+           "consecutive kills."
+           "Bonus is lost upon death";
 ABILT520 = "";
 ABILT620 = "";
 
 
 // Blazkowicz
-ABILT121 = "Kraftsman";
+ABILT121 = "- Kraftsman -";
 ABILT221 = "Pulls out the diesel and laserkfraftwerk\n"
            "which can be fired independently.";
-ABILT321 = "Blitz";
+ABILT321 = "- Blitz -";
 ABILT421 = "After two seconds without taking damage,\n"
            "health regenerates to the nearest multiple\n"
            "of 25.";
@@ -260,162 +262,162 @@ ABILT621 = "";
 
 
 // Freeman
-ABILT122 = "Antigravity Discharge";
+ABILT122 = "- Antigravity Discharge -";
 ABILT222 = "Pushes nearby monsters and projectiles\n"
            "away from you.";
-ABILT322 = "Extraction";
-ABILT422 = "When near death, Freeman is forcibly\n"
-           "extracted and placed into a random location\n"
-           "by his overseer. This is active once per life,\n"
-           "and only after 120 seconds after spawning.\n"
-           "Inventory is lost in PVP.";
-ABILT522 = "Crouch Slide";
-ABILT622 = "Hold \c[gold]crouch\c[green] when landing on the floor to gain\n"
-           "a moderate bug long speed boost.";
+ABILT322 = "- Extraction -";
+ABILT422 = "If Freeman survives for 2 minutes,\n"
+           "he gets an extra life. When health drops to 0,\n"
+           "Freeman gets teleported to respawn location.\n"
+           "In PvP, respawns with 25 hp and no weapons.";
+ABILT522 = "- Crouch Slide -";
+ABILT622 = "Hold \c[gold]crouch\c[CR_UNTRANSLATED] when landing on the floor\n"
+           "to gain a moderate bug long speed boost.";
 
 
 // VorMatur
-ABILT123 = "Horror";
-ABILT223 = "Casts a projectile that blinds champions and\n"
-           "causes fear on monsters.";
-ABILT323 = "Excess Matter";
+ABILT123 = "- Horror -";
+ABILT223 = "Casts a projectile that blinds champions\n"
+           "and causes fear on monsters.";
+ABILT323 = "- Excess Matter -";
 ABILT423 = "Massive health pool, no armor. Less\n"
            "knockback, but smaller Rocket Jump height.\n"
            "\n"
-           "20% less damage taken \c[orange]-PvE Only-";
-ABILT523 = "Corrosive Blood";
-ABILT623 = "Blood sprayed when taking damage hurts\n"
-           "enemies.";
+           "20% less damage taken \c[orange]-PvE only-";
+ABILT523 = "- Corrosive Blood -";
+ABILT623 = "Taking damage sprays acid blood,\n"
+           "dealing damage to enemies.";
 
 
 // Eleena
-ABILT124 = "Doppelganger";
+ABILT124 = "- Doppelganger -";
 ABILT224 = "Deploys a copycat on the field as\n"
            "a distraction or to trade places with.";
-ABILT324 = "Acrobatic";
-ABILT424 = "Holding \c[gold]jump \c[green]jumps slightly higher.\n"
-           "\c[gold]Crouch \c[green]in mid-air drops much faster.";
-ABILT524 = "Training Weights";
-ABILT624 = "When Eleena has 15 or less armor, she gains\n"
-           "20% speed.";
+ABILT324 = "- Training Weights -";
+ABILT424 = "When Eleena has 15 or less armor,\n"
+           "she gains 20% speed.";
+ABILT524 = "- Acrobatic -";
+ABILT624 = "Holding \c[gold]jump key\c[CR_UNTRANSLATED] jumps slightly higher.\n"
+           "\c[gold]Crouching\c[CR_UNTRANSLATED] in mid-air drops much faster.";
 
 
 // Lucienne
-ABILT125 = "Cleansing Fire";
-ABILT225 = "Cast a fireball that deals 10% damage of max\n"
-           "HP and curse with +20% damage taken for\n"
-           "2 seconds. Also can heal allies by 20% of\n"
-           "max HP.";
-ABILT325 = "Immolation";
+ABILT125 = "- Cleansing Fire -";
+ABILT225 = "Cast a fireball that damages enemies\n"
+           "and curses them with +20% damage taken.\n"
+           "Also can heal allies by 20% of their max HP.";
+ABILT325 = "- Immolation -";
 ABILT425 = "When killed, drop a fireball that explodes\n"
            "after a bit of time, dealing damage in\n"
            "a huge radius.";
-ABILT525 = "Blessing";
+ABILT525 = "- Blessing -";
 ABILT625 = "Lucienne's armor overstack does not\n"
            "degenerate over time. Heavy armors allows\n"
            "her to overstack up to \c[white]+100AP \c[green]instead of 75.";
 
 
 // Major
-ABILT126 = "Airstrike";
-ABILT226 = "When using ability, pressing \c[gold]fire \c[green]will drop a\n"
-           "bomb target on the floor.";
-ABILT326 = "Tall, Lean and Mean";
+ABILT126 = "- Airstrike -";
+ABILT226 = "When using ability, pressing \c[gold]fire\c[CR_UNTRANSLATED]\n"
+           "will drop a bomb target on the floor.";
+ABILT326 = "- Tall, Lean and Mean -";
 ABILT426 = "Hitbox is slimmer than all the other heavy\n"
            "champs; She is able to climb higher stair\n"
            "steps.";
-ABILT526 = "Wall Climb";
+ABILT526 = "- Wall Climb -";
 ABILT626 = "Holding \c[gold]jump\c[green] and \c[gold]forward\c[green] in front of a wall,\n"
            "starts a brief wall climb.";
 
 
 // Hunter
-ABILT127 = "Voodoo Guardian";
-ABILT227 = "Summon a skull that will attack nearby\n"
-           "enemies and track other champions.";
-ABILT327 = "Sixth Sense";
+ABILT127 = "- Voodoo Guardian -";
+ABILT227 = "Summon a skull that follows Hunter\n"
+           "and attacks nearby enemies.";
+ABILT327 = "- Sixth Sense \c[red](PvP only)\c[CR_UNTRANSLATED] -";
 ABILT427 = "Enemies under your crosshair, will leave\n"
-           "a track of their position. \c[red](PvP only)";
-ABILT527 = "Spoil of the Hunt";
+           "a track of their position.";
+ABILT527 = "- Spoil of the Hunt -";
 ABILT627 = "Killing enemies will increase Hunter's health,\n"
            "armor or ammo capacity for current level\n"
            "and/or current life.";
 
 
 // Sam
-ABILT128 = "Serious Minigun";
-ABILT228 = "Pulls out his minigun with \c[gold]80 ammo\c[green].\n"
-           "\c[red]Hourglasses don't reduce cooldown\c[green], instead\n"
+ABILT128 = "- Serious Minigun -";
+ABILT228 = "Pulls out his iconic minigun.\n"
+           "Hourglasses don't reduce cooldown, instead\n"
            "they increase minigun ammunition when\n"
            "picked. \c[gold]Alt fire \c[green]doubles fire rate\n"
            "at expense of accuracy.";
-ABILT328 = "Seriously Loaded";
-ABILT428 = "Carries all three starting weapons:\n"
-           "Machinegun, Shotgun and Nailgun.";
-ABILT528 = "Complementary Ammo";
+ABILT328 = "- Seriously Loaded -";
+ABILT428 = "Carries all three starting weapons\n"
+           "at respawn.";
+ABILT528 = "- Complementary Ammo -";
 ABILT628 = "Gets a serious amount of ammo for the\n"
            "current weapon when picking up Light\n"
            "and Heavy armors.";
 
 
 // Postal
-ABILT129 = "Diseased Cow Head";
+ABILT129 = "- Diseased Cow Head -";
 ABILT229 = "Throws a severed cow head; anyone close \n"
            "to it will be contaminated and take damage\n"
            "over time. This damage ignores the\n"
            "victim's armor.";
-ABILT329 = "Cracked Lungs";
-ABILT429 = "Megahealth gives up to +100hp \c[cyan]overstack\c[green].\n"
-           "After 40sec (90 in pve), any overstack will\n"
-           "degenerate rapidly; if no \c[cyan]OS\c[green] is present, takes\n"
-           "25dmg instead. This is cancelled by picking\n"
-           "another megahealth.";
-ABILT529 = "Crouch Jump";
-ABILT629 = "Holding \c[gold]Crouch \c[green]then pressing \c[gold]Jump \c[green]allows\n"
+ABILT329 = "- Cracked Lungs -";
+ABILT429 = "Megahealth gives up to +100hp \c[cyan]overstack\c[CR_UNTRANSLATED].\n"
+           "After 40sec (90 in PvE), any overstack will\n"
+           "degenerate rapidly; if no \c[cyan]overstack\c[CR_UNTRANSLATED] is present,\n"
+           "takes 25dmg instead. This is cancelled\n"
+           "by picking another megahealth.";
+ABILT529 = "- Crouch Jump -";
+ABILT629 = "Holding \c[gold]Crouch\c[green] then pressing \c[gold]Jump\c[green] grants\n"
            "a higher jump.";
 
 
 // Painkiller
-ABILT130 = "Black Tarot";
-ABILT230 = "Allows to select with the \c[gold]directional keys\c[green] up\n"
-           "to 3 tarot effects. Speed effect provides\n"
-           "air control for the duration.";
-ABILT330 = "Demon Morph";
+ABILT130 = "- Black Tarot -";
+ABILT230 = "Allows to select up to 3 tarot effects\n"
+           "with the \c[gold]directional keys\c[CR_UNTRANSLATED].\n"
+           "Effects are \c[green]protection\c[CR_UNTRANSLATED], \c[red]damage\c[CR_UNTRANSLATED] and \c[yellow]speed\c[CR_UNTRANSLATED].\n"
+           "Speed effect also grants Air Control.";
+ABILT330 = "- Demon Morph -";
 ABILT430 = "Gathering 66 souls morphs Daniel into his\n"
            "Demon Form. Powerful, but slow. In PvP,\n"
            "player souls are worth 11.";
-ABILT530 = "Painkiller Weapon";
+ABILT530 = "- Painkiller Weapon -";
 ABILT630 = "Replaces the standard \"Gauntlet\" for the\n"
            "eponymous weapon, which is slightly\n"
            "stronger and has an \c[gold]Alt Fire\c[green].";
 
 
 // Intruder
-ABILT131 = "Wendigo Curse";
+ABILT131 = "- Wendigo Curse -";
 ABILT231 = "Turns invisible if not shooting nor taking\n"
            "damage, leaving trails behind you. \c[yellow]While\n"
-           "fully invisible\c[green], take and deal less damage with\n"
+           "fully invisible\c[CR_UNTRANSLATED], take and deal less damage with\n"
            "weapons, along with a low-dmg AoE aura.\n"
            "Impedes air control while active.";
-ABILT331 = "His Sparks";
-ABILT431 = "Killing an enemy boosts your speed for\n"
-           "a short period of time. Does not apply\n"
-           "when using an active ability.";
-ABILT531 = "Treasure Hunter \c[orange]-PvE-";
-ABILT631 = "Finding a secret will reward with +50 armor.\n"
+ABILT331 = "- Treasure Hunter \c[orange](PvE only)\c[CR_UNTRANSLATED] -";
+ABILT431 = "Finding a secret will reward with +50 armor.\n"
            "This bonus also applies when found by other\n"
            "players.";
+ABILT531 = "- His Sparks -";
+ABILT631 = "Killing an enemy boosts your speed for\n"
+           "a short period of time. Does not apply\n"
+           "when using an active ability.";
 
 
 // Orbb
-ABILT132 = "Observer";
+ABILT132 = "- Observer -";
 ABILT232 = "Deploys an Eye Drone to spectate the arena.\n"
            "Use the ability again to switch to drone's\n"
-           "camera and back. Press \c[gold]fire\c[CR_UNTRANSLATED] to detonate.";
-ABILT332 = "Bipedal Eyeball";
+           "camera and back. Press \c[gold]fire\c[CR_UNTRANSLATED] to\n"
+           "begin a self detonation sequence.";
+ABILT332 = "- Bipedal Eyeball -";
 ABILT432 = "Small hitbox, only 75% height of a normal\n"
            "champion, but without an option to crouch.";
-ABILT532 = "Overbounce";
+ABILT532 = "- Overbounce -";
 ABILT632 = "Holding \c[gold]Crouch\c[CR_UNTRANSLATED] when falling allows to bounce\n"
            "back at almost the same vertical velocity.";
 
