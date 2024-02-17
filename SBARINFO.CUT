@@ -373,6 +373,7 @@ statusbar Normal, forcescaled
 	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "AmmSlugs", 1170, 897; }
 	isSelected QCBFG 				, QCBFGDM				{ drawImage "AmmBfugs", 1170, 897; }
 	isSelected SamMinigun									{ drawImage "AmmSBult", 1170, 897; }
+	isSelected DukeFreezeThrower							{ drawImage "AmmoDuke", 1170, 897; }
 	}
 
 	// Upgrades for current weapon
@@ -762,6 +763,10 @@ statusbar Normal, forcescaled
 				InInventory TerminatorRockets, 1  { drawNumber 3, QCFNT050, graey, TerminatorRockets, alignment(center), 700,950; }
 			}
 		}
+	}
+	// Duke's ammo
+	inInventory Class_DukeNukem {
+		drawNumber 3, QCFNT050, brite, DukeAmmo, alignment(center), 700,950;
 	}
 	// Sam's ammo
 	inInventory Class_Sam {

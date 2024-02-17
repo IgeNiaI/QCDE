@@ -552,7 +552,8 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 			((CheckWeapon("QCLightningGun")                                   || CheckWeapon("QCLightningGunDM")                                    ) && (CheckInventory("QCCoilAmmo")   <= getLowAmmoWarningThreshold(5)) && (warned != 6)) ||
 			((CheckWeapon("QCRailgun")                                        || CheckWeapon("QCRailgunDM")                                         ) && (CheckInventory("QCSlugAmmo")   <= getLowAmmoWarningThreshold(6)) && (warned != 7)) ||
 			((CheckWeapon("QCBFG")                                            || CheckWeapon("QCBFGDM")                                             ) && (CheckInventory("QCBFGAmmo")    <= getLowAmmoWarningThreshold(7)) && (warned != 8)) ||
-            ((CheckWeapon("SamMinigun")                                                                                                             ) &&(CheckInventory("SeriousBullets")<= 50)                            && (warned != 9)))
+            ((CheckWeapon("SamMinigun")                                                                                                             ) &&(CheckInventory("SeriousBullets")<= 50)                            && (warned != 9)) ||
+            ((CheckWeapon("DukeFreezeThrower")                                                                                                      ) && (CheckInventory("DukeAmmo")     <= 15)                            && (warned != 9)))
 		{
 			if((CheckWeapon("QCMachinegun") || CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCMachinegunDM") || CheckWeapon("QCHeavyMachinegunDM")) && (!CheckInventory("QCBulletAmmo"))) noammo = true;
 			if((CheckWeapon("QCShotgun")    || CheckWeapon("QCSuperShotgun")    || CheckWeapon("QCShotgunDM")    || CheckWeapon("QCSuperShotgunDM")   ) && (!CheckInventory("QCShellAmmo") )) noammo = true;
@@ -563,6 +564,7 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 			if((CheckWeapon("QCRailgun")                                        || CheckWeapon("QCRailgunDM")                                         ) && (!CheckInventory("QCSlugAmmo")  )) noammo = true;
 			if((CheckWeapon("QCBFG")                                            || CheckWeapon("QCBFGDM")                                             ) && (!CheckInventory("QCBFGAmmo")   )) noammo = true;
 			if((CheckWeapon("SamMinigun")                                                                                                             ) &&(!CheckInventory("SeriousBullets")))noammo = true;
+			if((CheckWeapon("DukeFreezeThrower")                                                                                                      ) && (!CheckInventory("DukeAmmo")    )) noammo = true;
 
 			ACS_NamedExecuteAlways("QCDE_LowAmmoAlert_CLIENT",0, true, GetCvar("cl_lowAmmoWarning") > 1, noammo);
 			if(CheckWeapon("QCMachinegun") || CheckWeapon("QCHeavyMachinegun") || CheckWeapon("QCMachinegunDM") || CheckWeapon("QCHeavyMachinegunDM")) warned = 2;
@@ -574,6 +576,7 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 			if(CheckWeapon("QCRailgun")                                        || CheckWeapon("QCRailgunDM")                                         ) warned = 7;
 			if(CheckWeapon("QCBFG")                                            || CheckWeapon("QCBFGDM")                                             ) warned = 8;
 			if(CheckWeapon("SamMinigun")                                                                                                             ) warned = 9;
+			if(CheckWeapon("DukeFreezeThrower")                                                                                                      ) warned = 9;
 			///* debug */ log(s:"\c[bludi]Alerting about low ammo! Text: ", d:GetCvar("cl_lowAmmoWarning") > 1, s:", stays: ", d:GetCvar("cl_lowAmmoWarning") >= 3);
 			str weapon = GetWeapon();
 
@@ -591,6 +594,7 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 				if((!stricmp(weapon,"QCRailgun")                                            || !stricmp(weapon,"QCRailgunDM")                                             ) && (CheckInventory("QCSlugAmmo")   > getLowAmmoWarningThreshold(6))) break;
 				if((!stricmp(weapon,"QCBFG")                                                || !stricmp(weapon,"QCBFGDM")                                                 ) && (CheckInventory("QCBFGAmmo")    > getLowAmmoWarningThreshold(7))) break;
 				if((!stricmp(weapon,"SamMinigun")                                                                                                                         ) &&(CheckInventory("SeriousBullets")> 50))                            break;
+				if((!stricmp(weapon,"DukeFreezeThrower")                                                                                                                  ) && (CheckInventory("DukeAmmo")     > 15))                            break;
 
 				if((!stricmp(weapon,"QCMachinegun") || !stricmp(weapon,"QCHeavyMachinegun") || !stricmp(weapon,"QCMachinegunDM") || !stricmp(weapon,"QCHeavyMachinegunDM"))) if(CheckInventory("QCBulletAmmo")) noammo = false; else noammo = true;
 				if((!stricmp(weapon,"QCShotgun")    || !stricmp(weapon,"QCSuperShotgun")    || !stricmp(weapon,"QCShotgunDM")    || !stricmp(weapon,"QCSuperShotgunDM")   )) if(CheckInventory("QCShellAmmo") ) noammo = false; else noammo = true;
@@ -601,6 +605,7 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 				if((!stricmp(weapon,"QCRailgun")                                            || !stricmp(weapon,"QCRailgunDM")                                             )) if(CheckInventory("QCSlugAmmo")  ) noammo = false; else noammo = true;
 				if((!stricmp(weapon,"QCBFG")                                                || !stricmp(weapon,"QCBFGDM")                                                 )) if(CheckInventory("QCBFGAmmo")   ) noammo = false; else noammo = true;
 				if((!stricmp(weapon,"SamMinigun")                                                                                                                         ))if(CheckInventory("SeriousBullets"))noammo = false; else noammo = true;
+				if((!stricmp(weapon,"DukeFreezeThrower")                                                                                                                  )) if(CheckInventory("DukeAmmo")    ) noammo = false; else noammo = true;
 
 			}
 			///* debug */ log(s:"\c[bludi]Changed from ", s:weapon, s:" to ", s:GetWeapon());
@@ -615,6 +620,7 @@ script "QCDE_TrackLowAmmo_CLIENT" (void) CLIENTSIDE
 			 ((CheckWeapon("QCRailgun")                                        || CheckWeapon("QCRailgunDM")                                         ) && (CheckInventory("QCSlugAmmo")   > getLowAmmoWarningThreshold(6))) ||
 			 ((CheckWeapon("QCBFG")                                            || CheckWeapon("QCBFGDM")                                             ) && (CheckInventory("QCBFGAmmo")    > getLowAmmoWarningThreshold(7))) ||
 			 ((CheckWeapon("SamMinigun")                                                                                                             ) &&(CheckInventory("SeriousBullets")> 50)) ||
+			 ((CheckWeapon("DukeFreezeThrower")                                                                                                      ) && (CheckInventory("DukeAmmo")     > 15)) ||
 			 ((CheckWeapon("QCGauntlet")                                       || CheckWeapon("QCGauntletDM")                                        )))
 			warned = 0;
 

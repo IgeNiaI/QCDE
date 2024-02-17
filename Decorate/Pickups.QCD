@@ -32,6 +32,7 @@ Actor Hourglass : CustomInventory 15508
 	Pickup:
 		TNT1 A 0 A_JumpIfInventory("Class_Sarge", 1, "GiveArmor")
 		TNT1 A 0 A_JumpIfInventory("Class_Terminator", 1, "GiveRockets")
+		TNT1 A 0 A_JumpIfInventory("Class_DukeNukem", 1, "GiveDuke")
 		TNT1 A 0 A_JumpIfInventory("Class_Sam", 1, "GiveBullets")
 	CooldownPickup:
 		TNT1 A 0 A_JumpIfInventory("ActiveInProgress", 1, "Death")
@@ -61,6 +62,16 @@ Actor Hourglass : CustomInventory 15508
 	GiveMoarRockets:
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
 		TNT1 A 0 A_GiveInventory("TerminatorRockets", 4, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveDuke:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_DukeNukem_Ammo_Full",0,0,0,0)==1, "Death")
+		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarDuke")
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("DukeAmmo", 6, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveMoarDuke:
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("DukeAmmo", 15, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveBullets:
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_Sam_Bullets_Full",0,0,0,0)==1, "Death")
@@ -130,6 +141,16 @@ Actor BigHourglass : Hourglass 15509
 	GiveMoarRockets:
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
 		TNT1 A 0 A_GiveInventory("TerminatorRockets", 10, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveDuke:
+		TNT1 A 0 A_JumpIf(CallACS("QCDE_DukeNukem_Ammo_Full",0,0,0,0)==1, "Death")
+		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarDuke")
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("DukeAmmo",21, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveMoarBullets:
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("DukeAmmo",30, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveBullets:
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_Sam_Bullets_Full",0,0,0,0)==1, "Death")

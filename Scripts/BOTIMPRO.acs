@@ -68,7 +68,6 @@ script "QCDE_Bot_SelectWeapon" (int noRandom)
 	if(CheckWeapon("SorgaulFistsBot"  )) terminate;
 	if(CheckWeapon("Shieldquisitor"   )) terminate;
 	if(CheckWeapon("SlayerBFG"        )) terminate;
-	if(CheckWeapon("DukeFreezeThrower")) terminate;
 	if(CheckWeapon("BlazkoAkimbo"     )) terminate;
 	if(CheckWeapon("BlazkoAkimboBot"  )) terminate;
 	if(CheckWeapon("PostalCowHead"    )) terminate;

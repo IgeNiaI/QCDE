@@ -41,7 +41,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (35 *35) +XYZ, ( 35 *35) +XYZ, (28)         +XYZ, (28)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GALEN
 	  (35 *35) +XYZ, ( 15 *35) +XYZ,(( 3 *35)-10) +XYZ,(( 3 *35)-10) +XYZ, no       +XYZ, no       +XYZ, no                                  , // NYX
 	  (45 *35) +XYZ, ( 90 *35) +XYZ, ( 8 *35)     +XYZ, ( 8 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SORGAUL
-	  (45 *35) +XYZ, ( 80 *35) +XYZ,(( 4 *35)+17) +XYZ, (14 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // DUKENUKEM
+	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DUKENUKEM
 	  (40 *35) +XYZ, (120 *35) +XYZ, (53)         +XYZ, (53)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DURANDAL
 	  (50 *35) +XYZ, ( 30 *35) +XYZ, ( 9)         +XYZ, ( 9)         +XYZ,   5      +XYZ,   9      +XYZ, "QC/UI/PlayerSounds/LowAmmoWarning" , // KEEL
 	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // SARGE
@@ -132,7 +132,6 @@ Script "QCDE_DoCleanUpAbilities" (void)
 	else if(CheckInventory("Class_Galen"		))	GiveInventory("TotemCleanerProc",1);	// removes the NoFire token
 	else if(CheckInventory("Class_Nyx"			))	GiveInventory("GhostWalkCleanerProc",1);
 	else if(CheckInventory("Class_Sorgaul"		))	GiveInventory("PrimalRageCleanerProc",1);
-	else if(CheckInventory("Class_DukeNukem"	))	GiveInventory("DukeFreezerCleanerProc",1);
 	else if(CheckInventory("Class_Blazkowicz"	))	GiveInventory("AkimboCleanerProc",1);
 	else if(CheckInventory("Class_Hunter"		))	GiveInventory("HunterCleanerProc",1); // remove the cubes
 	else if(CheckInventory("Class_Painkiller"	))	GiveInventory("PainkillerCleanerProc",1); // restore HUD elements
@@ -175,6 +174,7 @@ Script "QCDE_PassiveAbility" (void)
 	else if(CheckInventory("Class_Bitterman"	))	ACS("QCDE_Passive_Bitterman" );
 	else if(CheckInventory("Class_Keel"			))	ACS("QCDE_Passive_Keel"      );
 	else if(CheckInventory("Class_Sarge"		))	ACS("QCDE_Passive_Sarge"     );
+	else if(CheckInventory("Class_DukeNukem"	))	ACS("QCDE_Passive_DukeNukem" );
 	else if(CheckInventory("Class_LoWang"		))	ACS("QCDE_Passive_LoWang"    );
 	else if(CheckInventory("Class_Grayson"		))	ACS("QCDE_Passive_Grayson"   );
 	else if(CheckInventory("Class_Eradicator"	))	ACS("QCDE_Passive_Eradicator");
@@ -1407,35 +1407,7 @@ Script "QCDE_Ability_Sorgaul" (void)
 Script "QCDE_Ability_DukeNukem" (void)
 {
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	PlaySound(0,"QC/Abilities/DukeNukem/PullWeapon",CHAN_7,1.0,false,0.5);
-	GiveInventory("DukeFreezerProc",1);
-	SetNetworkReplicationFlags( 0 );
-	ACS("QCDE_SetWeapon", "DukeFreezeThrower", GetDuration());
-
-	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
-	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
-
-	int w;
-	for(w = 0; w < NUMBER_OF_WEAPONS; w++)
-		if(!stricmp(getWeapon(), weaponList[w]))
-			break;
-
-
-	int t = GetDuration();
-	while(t --> 0)
-	{
-		if(GetActorProperty(0,APROP_HEALTH) <= 0) break;
-		delay(1);
-	}
-
-	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	//Unzoom if using toggle zoom
-	if (!GetCVar("cl_holdZoom")) SetInventory("WeaponZoomedToken", 0);
-	//Select old weapon
-	SetWeapon(weaponList[w]);
-	//Remove ability weapon
-	GiveInventory("DukeFreezerCleanerProc",1);
-	TakeInventory("DukeFreezeThrower",1);
+	SetWeapon("DukeFreezeThrower");
 	SetNetworkReplicationFlags( 0 );
 }
 
@@ -4950,6 +4922,20 @@ Script "QCDE_Passive_Lucienne" (void)
 	SetPointer(AAPTR_TARGET, plrtid);
 }
 
+
+Script "QCDE_Passive_DukeNukem" (void)
+{
+	SetInventory("DukeFreezeThrower",1);
+	SetInventory("DukeAmmo",30);
+}
+
+Script "QCDE_DukeNukem_Ammo_Full"
+{
+	if (CheckInventory("DukeAmmo") >= GetAmmoCapacity("DukeAmmo"))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+}
 
 //---------------------------------
 //		Hunter's Passive

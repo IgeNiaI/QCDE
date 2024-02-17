@@ -250,7 +250,8 @@ Script "QCDE_SelectBotWeapon" (int distanceToTarget)
 {
 	if (distanceToTarget < 300)
 	{
-			 if (CheckInventory("QCBFGDM")				&& CheckInventory("QCBFGAmmo"))		SetWeapon("QCBFGDM");
+			 if (CheckInventory("Class_DukeNukem")		&& CheckInventory("DukeAmmo"))		SetWeapon("DukeFreezeThrower");
+		else if (CheckInventory("QCBFGDM")				&& CheckInventory("QCBFGAmmo"))		SetWeapon("QCBFGDM");
 		else if (CheckInventory("QCRocketLauncherDM")	&& CheckInventory("QCRocketAmmo"))	SetWeapon("QCRocketLauncherDM");
 		else if (CheckInventory("QCSuperShotgunDM")		&& CheckInventory("QCShellAmmo"))	SetWeapon("QCSuperShotgunDM");
 		else if (CheckInventory("QCSuperNailgunDM")		&& CheckInventory("QCNailAmmo"))	SetWeapon("QCSuperNailgunDM");
