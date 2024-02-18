@@ -75,6 +75,7 @@ Script "QCDE_ConfigureMovement" (void)
 
 	else if (
 		CheckInventory("Class_Inquisitor")
+		|| CheckInventory("Class_Freeman")
 	) {
 		SetActorProperty(0, APROP_DoubleTapJump, true);
 		SetActorProperty(0, APROP_SecondJumpXY, 10.0);
@@ -128,16 +129,6 @@ Script "QCDE_ConfigureMovement" (void)
 		SetActorProperty(0, APROP_VelocityCap, 20.0);
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0872665);
 		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
-	}
-
-	else if (
-		CheckInventory("Class_Freeman")
-	) {
-		SetActorProperty(0, APROP_CrouchSlide, true);
-		SetActorProperty(0, APROP_CrouchSlideAcceleration, 5.5);
-		SetActorProperty(0, APROP_CrouchSlideFriction, 1.0);
-		SetActorProperty(0, APROP_CrouchSlideMaxTics, 70.0);
-		SetActorProperty(0, APROP_CrouchSlideRegen, 2.0);
 	}
 
 	else if (
