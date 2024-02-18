@@ -522,6 +522,7 @@ Actor PainkillerSoul : CustomInventory
 	Inventory.PickupMessage "$GOT_PainkillerSoul" // "Picked up a soul."
 	VisibleToPlayerClass QCPainkiller, PKDemonForm
 	+DROPPED
+	+SERVERNETID
 	RenderStyle Add
 	Alpha 0.99
 	States

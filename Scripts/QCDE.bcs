@@ -664,7 +664,8 @@ Script "QCDE_Log_CLIENTSIDE" (int player, int slot) CLIENTSIDE
 
 // Look ma, no KILL scripts!
 
-str ListOfPeopleWhoEnjoyKilling[100] = {
+#define NUMBER_OF_KILL_BONUSES 9
+str ListOfPeopleWhoEnjoyKilling[NUMBER_OF_KILL_BONUSES] = {
 	"QCMenelkir",
 	"QCCaleb",
 	"QCGrayson",
@@ -672,9 +673,8 @@ str ListOfPeopleWhoEnjoyKilling[100] = {
 	"QCHunter",
 	"QCPainkiller",
 	"QCIntruder",
+	"QCFreeman"
 };
-
-int NumberOfPeopleWhoEnjoyKilling = 8;
 
 function int IsKillerEligibleForKillBonus(void)
 {
@@ -682,7 +682,7 @@ function int IsKillerEligibleForKillBonus(void)
 	int i, found,
 		killertid = GetActorProperty(0, APROP_TargetTID),
 		classname = GetActorClass(killertid);
-	for(i = 0; i < NumberOfPeopleWhoEnjoyKilling; i++)
+	for(i = 0; i < NUMBER_OF_KILL_BONUSES; i++)
 	{
 		found = !stricmp(classname, ListOfPeopleWhoEnjoyKilling[i]);
 		if(found) break;
