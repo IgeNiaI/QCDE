@@ -130,7 +130,6 @@ Actor ThumperProjectile
 {
 	Projectile
 	var int user_counter1;
-	var int user_counter2;
 	Speed 32
 	Height 6
 	Radius 5
@@ -161,32 +160,19 @@ Actor ThumperProjectile
 		TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
 		TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
 		TNT1 A 0 A_ChangeFlag("NOCLIP",1)
-		Goto Looper2
+		Goto Death
 
 	Death: 	//it reached a target or surface, and starts the effect
-		TNT1 A 0 A_SetUserVar("user_counter2",0)
+		TNT1 A 0 A_SetUserVar("user_counter1",0)
 	Looper2:
-		TNT1 A 0 A_JumpIf(user_counter2>=10,"ThumpAction")
-		TNT1 A 0 A_SetUserVar("user_counter2",user_counter2+1)
+		TNT1 A 0 A_JumpIf(user_counter1>=10,"ThumpAction")
+		TNT1 A 0 A_SetUserVar("user_counter1",user_counter1+1)
 		TNT1 AA 0 A_SpawnItemEx("LeashSpark",0,0,0,frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,0.1),0,SXF_NOCHECKPOSITION)
 		DB52 A 1 BRIGHT //A_CustomRailgun(0,0,"None","None",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"CustomPuffLeash",0,0,0,2,4.0,1.0,"LeashTrail")
 		Loop
 	ThumpAction:
 		TNT1 A 0 A_PlaySound("DoomStorm/Player/LeashThumper",6,1,0,ATTN_NONE)
 		TNT1 A 0 A_SpawnItemEx("ThumperBall",0,0,0,0.01,0,24,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
-		TNT1 A 0 A_TakeFromTarget("NoWeaponFireToken")
-		TNT1 A 5 A_TakeFromTarget("ActiveInProgress")
-		Stop
-	}
-}
-Actor ThumperProjectileDM : ThumperProjectile
-{
-	-DONTBLAST
-	States
-	{
-	ThumpAction:
-		TNT1 A 0 A_PlaySound("DoomStorm/Player/LeashThumper",6,1,0,ATTN_NONE)
-		TNT1 A 0 A_SpawnItemEx("ThumperBallDM",0,0,0,0.01,0,24,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_TakeFromTarget("NoWeaponFireToken")
 		TNT1 A 5 A_TakeFromTarget("ActiveInProgress")
 		Stop
@@ -234,18 +220,20 @@ Actor ThumperBall
 	}
 }
 
-Actor ThumperBallDM : ThumperBall
+Actor ThumperProjectileDM : ThumperProjectile
 {
 	-DONTBLAST
 	States
 	{
-		Death:
+	Death: 	//it reached a target or surface, and starts the effect
 		TNT1 A 0 A_SpawnItemEx("ThumperDustSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_Warp(AAPTR_DEFAULT,0,0,64)	//raise it a bit to avoid "stair-step blocking"
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ThumperHit")
 		TNT1 A 0 A_PlaySound("QC/Abilities/Grayson/ThumperExplode",5,1,0,0.7)
 		TNT1 A 0 A_Explode(1,384,0,1,384)
 		TNT1 A 10 A_RadiusGive("ThumperOnPlayerProc",384,RGF_PLAYERS)
+		TNT1 A 0 A_TakeFromTarget("NoWeaponFireToken")
+		TNT1 A 5 A_TakeFromTarget("ActiveInProgress")
 		Stop
 	}
 }
