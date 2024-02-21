@@ -33,7 +33,7 @@ Script "QCDE_UpdateScores_CLIENTSIDE" (int called_by_victim) CLIENTSIDE
 		if(!PlayerIsSpectator(p) && SetActivatorToPlayer(p))
 		{
 			name[p] = strparam(n:0);
-			frags[p] = PlayerFrags();
+			frags[p] = getPlayerFrags(p);
 		}
 		else
 		{
@@ -55,24 +55,12 @@ Script "QCDE_UpdateScores_CLIENTSIDE" (int called_by_victim) CLIENTSIDE
 	flashes++;*/
 }
 
-function void update(void)
+function int getPlayerFrags(int playernum)
 {
-	int i;
+	if (lastmanstanding || teamlms)
+		return GetPlayerScore(playernum, SCORE_WINS);
 
-	frags[i] = PlayerFrags();
-	SetCvarString(strparam(s:"_frags", d:i), strparam(d:frags[i]));
-	SetCvarString(strparam(s:"_name" , d:i), strparam(s:name[i]));
-}
-
-function int updateTarget(void)
-{
-	int playerWas = PlayerNumber();
-	SetActivatorToTarget(0);
-
-	bool changed = PlayerNumber() != playerWas;
-	if(changed) update();
-
-	return changed;
+	return GetPlayerScore(playernum, SCORE_FRAGS);
 }
 
 function void sort(void)
@@ -818,11 +806,11 @@ Script "QCDE_CrownTheBest" (void)
 	for(p = 0; p < 64; p++)
 	{
 		SetActivator(1000+p);
-		if(PlayerFrags() == max) tie = true;
-		if(PlayerFrags() <= max) continue;
+		if(getPlayerFrags(p) == max) tie = true;
+		if(getPlayerFrags(p) <= max) continue;
 
 		tie = false;
-		max = PlayerFrags();
+		max = getPlayerFrags(p);
 		best = p;
 	}
 
