@@ -118,6 +118,7 @@ Actor QCBFG : QCWeapon
 		Goto Ready.Default
 
 	Ready.Prepared:
+		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 7, "Ready.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 4, "Ready.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 3, "Ready.Quake3")
@@ -137,13 +138,16 @@ Actor QCBFG : QCWeapon
 	Ready.QCDE1:
 		Q0G8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto ReadyCont
+	Ready.HalfLife:
+		HLG8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
+		Goto ReadyCont
 
 	ReadyCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" ABCD 3 A_WeaponReady(WRF_NOSECONDARY)
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" EFGH 3 A_WeaponReady(WRF_NOSECONDARY)
-		"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 2) // Jump over skin specific jumps
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, 2) // Jump over skin specific jumps
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "ReadyCont") // Q3 and Q4 skins play animation differently
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" AAAA 3 A_WeaponReady(WRF_NOSECONDARY)
@@ -168,6 +172,7 @@ Actor QCBFG : QCWeapon
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
+		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 6, "Select.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 4, "Select.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 3, "Select.Quake3")
@@ -186,6 +191,9 @@ Actor QCBFG : QCWeapon
 		Goto SelectCont
 	Select.QCDE1:
 		Q0G8 A 0
+		Goto SelectCont
+	Select.HalfLife:
+		HLG8 A 0
 		Goto SelectCont
 
 	SelectCont:
@@ -209,6 +217,7 @@ Actor QCBFG : QCWeapon
 	// Fire Seq
 	//-----------------------
 	Fire:
+		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 7, "Fire.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 6, "Fire.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 4, "Fire.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCBFGSkin", 3, "Fire.Quake3")
@@ -227,6 +236,9 @@ Actor QCBFG : QCWeapon
 		Goto FireCont
 	Fire.QCDE1:
 		Q0G8 A 0
+		Goto FireCont
+	Fire.HalfLife:
+		HLG8 A 0
 		Goto FireCont
 	FireCont:
 		"####" A 0 A_AlertMonsters
@@ -275,6 +287,7 @@ Actor QCBFG : QCWeapon
 			Goto NormalSound
 
 			NormalSound:
+				"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "NormalSound.HalfLife")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "NormalSound.Default")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "NormalSound.Quake4")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "NormalSound.Quake3")
@@ -291,8 +304,12 @@ Actor QCBFG : QCWeapon
 			NormalSound.Quake4:
 				"####" A 0 A_PlaySound("QC/Weapons/BFG/Fire_Quake4",	CHAN_WEAPON)
 				Goto FlashEnder
+			NormalSound.HalfLife:
+				"####" A 0 A_PlaySound("QC/Weapons/BFG/Fire_HalfLife",	CHAN_WEAPON)
+				Goto FlashEnder
 
 			QuadSound:
+				"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "QuadSound.HalfLife")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "QuadSound.Default")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "QuadSound.Quake4")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "QuadSound.Quake3")
@@ -308,6 +325,9 @@ Actor QCBFG : QCWeapon
 				Goto FlashEnder
 			QuadSound.Quake4:
 				"####" A 0 A_PlaySound("QC/Weapons/BFG/Quad/Fire_Quake4",	CHAN_WEAPON)
+				Goto FlashEnder
+			QuadSound.HalfLife:
+				"####" A 0 A_PlaySound("QC/Weapons/BFG/Quad/Fire_HalfLife",	CHAN_WEAPON)
 				Goto FlashEnder
 
 	FlashEnder:
@@ -343,7 +363,7 @@ Actor QCBFG : QCWeapon
 	//-----------
 	//Charge fire
 	StartCharge:
-		"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "StartCharge.Default")
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "StartCharge.Default")
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "StartCharge.Quake4")
 	StartCharge.Default:
 		"####" A 0 A_PlaySound("QC/Weapons/BFG/Charge_Default",	CHAN_WEAPON,1)
@@ -461,6 +481,7 @@ Actor QCBFG : QCWeapon
 			Goto ChargeNormalSound
 			ChargeNormalSound:
 				"####" A 0 A_JumpIfInventory("BFG_Charges",15,"PlayChargeMaxSound")
+				"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "ChargeNormalSound.HalfLife")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "ChargeNormalSound.Default")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "ChargeNormalSound.Quake4")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "ChargeNormalSound.Quake3")
@@ -477,8 +498,12 @@ Actor QCBFG : QCWeapon
 			ChargeNormalSound.Quake4:
 				"####" A 0 A_PlaySound("QC/Weapons/BFG/Fire_Quake4",	CHAN_WEAPON)
 				Goto ChargeFlashEnder
+			ChargeNormalSound.HalfLife:
+				"####" A 0 A_PlaySound("QC/Weapons/BFG/Fire_HalfLife",	CHAN_WEAPON)
+				Goto ChargeFlashEnder
 
 			PlayChargeMaxSound:
+				"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "PlayChargeMaxSound.HalfLife")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "PlayChargeMaxSound.Default")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "PlayChargeMaxSound.Quake4")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "PlayChargeMaxSound.Quake3")
@@ -495,9 +520,13 @@ Actor QCBFG : QCWeapon
 			PlayChargeMaxSound.Quake4:
 				"####" A 0 A_PlaySound("QC/Weapons/BFG/ChargedShot_Quake4",		CHAN_WEAPON)
 				Goto ChargeFlashEnder
+			PlayChargeMaxSound.HalfLife:
+				"####" A 0 A_PlaySound("QC/Weapons/BFG/ChargedShot_HalfLife",	CHAN_WEAPON)
+				Goto ChargeFlashEnder
 
 			ChargeQuadSound:
 				"####" A 0 A_JumpIfInventory("BFG_Charges",15,"PlayChargeMaxQuadSound")
+				"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "ChargeQuadSound.HalfLife")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "ChargeQuadSound.Default")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "ChargeQuadSound.Quake4")
 				"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "ChargeQuadSound.Quake3")
@@ -514,8 +543,12 @@ Actor QCBFG : QCWeapon
 			ChargeQuadSound.Quake4:
 				"####" A 0 A_PlaySound("QC/Weapons/BFG/Quad/Fire_Quake4",	CHAN_WEAPON)
 				Goto ChargeFlashEnder
+			ChargeQuadSound.HalfLife:
+				"####" A 0 A_PlaySound("QC/Weapons/BFG/Quad/Fire_HalfLife",	CHAN_WEAPON)
+				Goto ChargeFlashEnder
 
 				PlayChargeMaxQuadSound:
+					"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "PlayChargeMaxQuadSound.HalfLife")
 					"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "PlayChargeMaxQuadSound.Default")
 					"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "PlayChargeMaxQuadSound.Quake4")
 					"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "PlayChargeMaxQuadSound.Quake3")
@@ -531,6 +564,9 @@ Actor QCBFG : QCWeapon
 					Goto ChargeFlashEnder
 				PlayChargeMaxQuadSound.Quake4:
 					"####" A 0 A_PlaySound("QC/Weapons/BFG/Quad/ChargedShot_Quake4",	CHAN_WEAPON)
+					Goto ChargeFlashEnder
+				PlayChargeMaxQuadSound.HalfLife:
+					"####" A 0 A_PlaySound("QC/Weapons/BFG/Quad/ChargedShot_HalfLife",	CHAN_WEAPON)
 					Goto ChargeFlashEnder
 
 	ChargeFlashEnder:

@@ -304,6 +304,9 @@ QC/Weapons/Tribolt/Quad/Fire_Quake3		"Sounds/Weapons/Tribolt/Quake3/Quad/Tribolt
 QC/Weapons/Tribolt/Fire_Quake4			"Sounds/Weapons/Tribolt/Quake4/Tribolt_FireFast.ogg"
 QC/Weapons/Tribolt/Quad/Fire_Quake4		"Sounds/Weapons/Tribolt/Quake4/Quad/Tribolt_FireFast.ogg"
 
+QC/Weapons/Tribolt/Fire_HalfLife		"Sounds/Weapons/Tribolt/HalfLife/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Quad/Fire_HalfLife	"Sounds/Weapons/Tribolt/HalfLife/Quad/Tribolt_FireFast.ogg"
+
 QC/Weapons/Tribolt/Explo		"Sounds/Weapons/Tribolt/Tribolt_Explo.ogg"
 $limit "QC/Weapons/Tribolt/Explo" 9
 $attenuation QC/Weapons/Tribolt/Explo 0.8
@@ -406,6 +409,10 @@ QC/Weapons/LightningGun/FireEnd_ETQW				"Sounds/Weapons/LightningGun/ETQW/LG_End
 QC/Weapons/LightningGun/FireStartLoop_ETQW			"Sounds/Weapons/LightningGun/ETQW/LG_Start_Loop.ogg"
 QC/Weapons/LightningGun/Quad/FireStartLoop_ETQW		"Sounds/Weapons/LightningGun/ETQW/Quad/LG_Start_Loop.ogg"
 
+QC/Weapons/LightningGun/FireEnd_HalfLife			"Sounds/Weapons/LightningGun/HalfLife/LG_End.ogg"
+QC/Weapons/LightningGun/FireStartLoop_HalfLife		"Sounds/Weapons/LightningGun/HalfLife/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Quad/FireStartLoop_HalfLife	"Sounds/Weapons/LightningGun/HalfLife/Quad/LG_Start_Loop.ogg"
+
 
 //********************
 // Railgun
@@ -468,13 +475,11 @@ QC/Weapons/BFG/ChargedShot_Default			"Sounds/Weapons/BFG/Default/BFGChargedShot.
 QC/Weapons/BFG/Quad/Fire_Default			"Sounds/Weapons/BFG/Default/Quad/NeoBFG_Fire.ogg"
 QC/Weapons/BFG/Quad/ChargedShot_Default		"Sounds/Weapons/BFG/Default/Quad/BFGChargedShot.ogg"
 
-QC/Weapons/BFG/Idle_Quake2					"Sounds/Weapons/BFG/Quake2/NeoBFG_Idle.ogg"
 QC/Weapons/BFG/Fire_Quake2					"Sounds/Weapons/BFG/Quake2/NeoBFG_Fire.ogg"
 QC/Weapons/BFG/ChargedShot_Quake2			"Sounds/Weapons/BFG/Quake2/BFGChargedShot.ogg"
 QC/Weapons/BFG/Quad/Fire_Quake2				"Sounds/Weapons/BFG/Quake2/Quad/NeoBFG_Fire.ogg"
 QC/Weapons/BFG/Quad/ChargedShot_Quake2		"Sounds/Weapons/BFG/Quake2/Quad/BFGChargedShot.ogg"
 
-QC/Weapons/BFG/Idle_Quake3					"Sounds/Weapons/BFG/Quake3/NeoBFG_Idle.ogg"
 QC/Weapons/BFG/Fire_Quake3					"Sounds/Weapons/BFG/Quake3/NeoBFG_Fire.ogg"
 QC/Weapons/BFG/ChargedShot_Quake3			"Sounds/Weapons/BFG/Quake3/BFGChargedShot.ogg"
 QC/Weapons/BFG/Quad/Fire_Quake3				"Sounds/Weapons/BFG/Quake3/Quad/NeoBFG_Fire.ogg"
@@ -486,6 +491,11 @@ QC/Weapons/BFG/Charge_Quake4				"Sounds/Weapons/BFG/Quake4/BFGCharge.ogg"
 QC/Weapons/BFG/ChargedShot_Quake4			"Sounds/Weapons/BFG/Quake4/BFGChargedShot.ogg"
 QC/Weapons/BFG/Quad/Fire_Quake4				"Sounds/Weapons/BFG/Quake4/Quad/NeoBFG_Fire.ogg"
 QC/Weapons/BFG/Quad/ChargedShot_Quake4		"Sounds/Weapons/BFG/Quake4/Quad/BFGChargedShot.ogg"
+
+QC/Weapons/BFG/Fire_HalfLife				"Sounds/Weapons/BFG/HalfLife/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/ChargedShot_HalfLife			"Sounds/Weapons/BFG/HalfLife/BFGChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_HalfLife			"Sounds/Weapons/BFG/HalfLife/Quad/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_HalfLife	"Sounds/Weapons/BFG/HalfLife/Quad/BFGChargedShot.ogg"
 
 
 QC/Weapons/BFG/BallFlying			"Sounds/Weapons/BFG/BFGFlying.ogg"
