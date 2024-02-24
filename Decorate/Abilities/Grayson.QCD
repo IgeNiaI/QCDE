@@ -171,6 +171,7 @@ Actor ThumperProjectile
 		DB52 A 1 BRIGHT //A_CustomRailgun(0,0,"None","None",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"CustomPuffLeash",0,0,0,2,4.0,1.0,"LeashTrail")
 		Loop
 	ThumpAction:
+		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_PlaySound("DoomStorm/Player/LeashThumper",6,1,0,ATTN_NONE)
 		TNT1 A 0 A_SpawnItemEx("ThumperBall",0,0,0,0.01,0,24,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
 		TNT1 A 0 A_TakeFromTarget("NoWeaponFireToken")
@@ -211,6 +212,7 @@ Actor ThumperBall
 		TNT1 A 0 A_CountDown
 		Loop
 	Death:
+		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_SpawnItemEx("ThumperDustSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Abilities/Grayson/ThumperExplode",5,1,0,0.85)
 		TNT1 A 0 A_Warp(AAPTR_DEFAULT,0,0,64)	//raise it a bit to avoid "stair-step blocking"

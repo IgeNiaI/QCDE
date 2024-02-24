@@ -62,6 +62,7 @@ Actor HunterSkull
 	Scale 0.4
 	Speed 0
 	Gravity 0
+	Species "Players" // for projectile to pass thru Hunter
 	States
 	{
 	Spawn:
@@ -97,6 +98,7 @@ Actor HunterSkull
 
 Actor HunterSkullDM : HunterSkull
 {
+	Species ""
 	States
 	{
 	Fire:

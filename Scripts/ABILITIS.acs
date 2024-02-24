@@ -30,36 +30,36 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	//             ,               ,                  ,                  ,              , COOLDOWN     , FAIL SND
 	  (25 *35) +XYZ, ( 60 *35) +XYZ, (17)         +XYZ, (17)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // RANGER
 	  (60 *35) +XYZ, (150 *35) +XYZ, (83)         +XYZ, (83)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DOOMSLAYER
-	  (60 *35) +XYZ, ( 60 *35) +XYZ, ( 2 *35)     +XYZ, ( 5 *35)     +XYZ,   3      +XYZ,   2*35   +XYZ, "NoSoundHax"                        , // CORVUS
-	  (40 *35) +XYZ, ( 35 *35) +XYZ, (30)         +XYZ, (30)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // KANE
+	  (60 *35) +XYZ, (120 *35) +XYZ, ( 2 *35)     +XYZ, ( 5 *35)     +XYZ,   3      +XYZ,   2*35   +XYZ, "NoSoundHax"                        , // CORVUS
+	  (40 *35) +XYZ, ( 75 *35) +XYZ, (30)         +XYZ, ( 3 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // KANE
 	  (30 *35) +XYZ, ( 30 *35) +XYZ, ( 8 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // CALEB
 	  (50 *35) +XYZ, (120 *35) +XYZ, (17)         +XYZ, (17)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // MENELKIR
 	  (45 *35) +XYZ, (135 *35) +XYZ, ( 3 *35)     +XYZ, ( 3 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // TERMINATOR
-	  (35 *35) +XYZ, ( 35 *35) +XYZ, ( 1 *35)     +XYZ, ( 1 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ZEDEK
+	  (35 *35) +XYZ, ( 50 *35) +XYZ, ( 1 *35)     +XYZ, ( 1 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ZEDEK
 	  (40 *35) +XYZ, ( 90 *35) +XYZ, ( 5 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INQUISITOR
 	  (35 *45) +XYZ, ( 35 *35) +XYZ, ( 1 *35)     +XYZ, ( 1 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // BITTERMAN
-	  (35 *35) +XYZ, ( 35 *35) +XYZ, (28)         +XYZ, (28)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GALEN
-	  (35 *35) +XYZ, ( 15 *35) +XYZ,(( 3 *35)-10) +XYZ,(( 3 *35)-10) +XYZ, no       +XYZ, no       +XYZ, no                                  , // NYX
+	  (35 *35) +XYZ, ( 70 *35) +XYZ, (28)         +XYZ, (28)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GALEN
+	  (35 *35) +XYZ, ( 20 *35) +XYZ,(( 3 *35)-10) +XYZ,(( 3 *35)-10) +XYZ, no       +XYZ, no       +XYZ, no                                  , // NYX
 	  (45 *35) +XYZ, ( 90 *35) +XYZ, ( 8 *35)     +XYZ, ( 8 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // SORGAUL
 	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DUKENUKEM
 	  (40 *35) +XYZ, (120 *35) +XYZ, (53)         +XYZ, (53)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DURANDAL
 	  (50 *35) +XYZ, ( 30 *35) +XYZ, ( 9)         +XYZ, ( 9)         +XYZ,   5      +XYZ,   9      +XYZ, "QC/UI/PlayerSounds/LowAmmoWarning" , // KEEL
 	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // SARGE
 	  (25 *35) +XYZ, ( 25 *35) +XYZ, (30)         +XYZ, (30)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // LOWANG
-	  (35 *35) +XYZ, (110 *35) +XYZ, (75)         +XYZ, (75)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GRAYSON
+	  (35 *35) +XYZ, ( 80 *35) +XYZ, (75)         +XYZ, (75)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // GRAYSON
 	  (30 *35) +XYZ, ( 30 *35) +XYZ, (10 *35)     +XYZ, (10 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ERADICATOR
 	  (40 *35) +XYZ, (120 *35) +XYZ, (10 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // BLAZKOWICZ
 	  (50 *35) +XYZ, ( 35 *35) +XYZ, (14)         +XYZ, (14)         +XYZ,   5      +XYZ,   18     +XYZ, "NoSoundHax"                        , // FREEMAN
 	  (25 *35) +XYZ, ( 25 *35) +XYZ, (20)         +XYZ, (20)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // VORMATUR
-	  (30 *35) +XYZ, ( 20 *35) +XYZ, (12 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ELEENA
+	  (30 *35) +XYZ, ( 30 *35) +XYZ, (12 *35)     +XYZ, (12 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ELEENA
 	  (50 *35) +XYZ, ( 25 *35) +XYZ, ( 2 *35)     +XYZ, ( 2 *35)     +XYZ,   4      +XYZ,   2*35   +XYZ, "NoSoundHax"                        , // LUCIENNE
-	  (45 *35) +XYZ, (135 *35) +XYZ, ( 4 *35)     +XYZ, ( 4 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // MAJOR
+	  (45 *35) +XYZ, (150 *35) +XYZ, ( 4 *35)     +XYZ, ( 4 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // MAJOR
 	  (40 *35) +XYZ, ( 60 *35) +XYZ, ( 7 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // HUNTER
 	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // SAM
-	  (45 *35) +XYZ, ( 60 *35) +XYZ, (5 *35 )     +XYZ, ( 5 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // POSTAL
+	  (45 *35) +XYZ, ( 70 *35) +XYZ, (5 *35 )     +XYZ, ( 5 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // POSTAL
 	  (40 *35) +XYZ, (120 *35) +XYZ, (10*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // PAINKILLER
-	  (45 *35) +XYZ, ( 90 *35) +XYZ, (12*35 )     +XYZ, (24 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INTRUDER
-	  (45 *35) +XYZ, ( 45 *35) +XYZ, (25*35 )     +XYZ, (25 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ORBB
+	  (45 *35) +XYZ, (100 *35) +XYZ, (12*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INTRUDER
+	  (45 *35) +XYZ, ( 30 *35) +XYZ, (25*35 )     +XYZ, (25 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ORBB
 // ^ insert more classes here
 };
 
@@ -850,20 +850,20 @@ Script "QCDE_Ability_Caleb" (void)
 	SetNetworkReplicationFlags( 0 );
 }
 
-Script "VoodooHealer" (int deathmatcher)
+Script "VoodooHealer" (int inPvP)
 {
 	int maxhealth = CheckInventory("MaxHealthToken");
 	int healnormal, healover;
 
-	if(deathmatcher==1)
+	if (inPvP)
 	{
 		healnormal=25;
 		healover=5;
 	}
 	else
 	{
-		healnormal=35;
-		healover=10;
+		healnormal=25;
+		healover=5;
 	}
 
 
@@ -4126,6 +4126,7 @@ Script "QCDE_Passive_Bitterman" (void)
 {
 	if(GameType() < GAME_NET_DEATHMATCH)
 	{
+		SetInventory("PowerShieldCharge", 50);
 		if(!CheckInventory("ExtraAmmoCapacity"))
 		{
 			GiveInventory("ExtraAmmoCapacity",1);

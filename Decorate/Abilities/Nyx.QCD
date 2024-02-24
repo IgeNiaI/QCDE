@@ -81,6 +81,7 @@ Actor GhostwalkKiller
 	Obituary "$OB_GhostwalkKiller" // "%o was ghosted by %k."
 	ProjectileKickBack 0
 	+FORCERADIUSDMG // Imagine getting stuck in a cyber. [This meme brought to you by Dire Orb Gang.]
+	+FORCEPAIN
 	States
 	{
 	Spawn:
