@@ -47,13 +47,13 @@ Actor ClipReplacer : FakeAmmo replaces Clip
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
 		Goto SPSpawn
 	DMSpawn:
-		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A -1
 		Stop
 	SPSpawn:
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
-		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
-		TNT1 A 0 A_SpawnItemEx("QCNailAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoSmall",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCNailAmmoSmall",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
 		TNT1 A -1
 		Stop
 	}
@@ -70,14 +70,14 @@ Actor ClipBoxReplacer : FakeAmmo replaces ClipBox
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
 		Goto SPSpawn
 	DMSpawn:
-		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCBulletAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A -1
 		Stop
 	SPSpawn:
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
-		TNT1 A 0 A_SpawnItemEx("QCBulletAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,36)
-		TNT1 A 0 A_SpawnItemEx("QCNailAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
-		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+		TNT1 A 0 A_SpawnItemEx("QCBulletAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,36)
+		TNT1 A 0 A_SpawnItemEx("QCNailAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,230)
 		TNT1 A -1
 		Stop
 	}
@@ -98,15 +98,15 @@ Actor ShellReplacer : FakeAmmo replaces Shell
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
 		Goto SPSpawn
 	DMSpawn:
-		TNT1 A 0 A_SpawnItemEx("QCShellAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
-		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
+		TNT1 A 0 A_SpawnItemEx("QCShellAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
 		TNT1 A -1
 		Stop
 	SPSpawn:
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
-		TNT1 A 0 A_SpawnItemEx("QCShellAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,50)
-		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,180)
-		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,220)
+		TNT1 A 0 A_SpawnItemEx("QCShellAmmoSmall",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,50)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoSmall",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,180)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoSmall",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,220)
 		TNT1 A -1
 		Stop
 	}
@@ -123,15 +123,15 @@ Actor ShellBoxReplacer : FakeAmmo replaces ShellBox
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
 		Goto SPSpawn
 	DMSpawn:
-		TNT1 A 0 A_SpawnItemEx("QCShellAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
-		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
+		TNT1 A 0 A_SpawnItemEx("QCShellAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
 		TNT1 A -1
 		Stop
 	SPSpawn:
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
-		TNT1 A 0 A_SpawnItemEx("QCShellAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,50)
-		TNT1 A 0 A_SpawnItemEx("QCSlugAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,180)
-		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,220)
+		TNT1 A 0 A_SpawnItemEx("QCShellAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,50)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,180)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,220)
 		TNT1 A -1
 		Stop
 	}
@@ -152,14 +152,14 @@ Actor RocketAmmoReplacer : FakeAmmo replaces RocketAmmo
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
 		Goto SPSpawn
 	DMSpawn:
-		TNT1 A 0 A_SpawnItemEx("QCRocketAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
-		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCRocketAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
 		TNT1 A -1
 		Stop
 	SPSpawn:
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
 		TNT1 A 0 A_SpawnItemEx("QCRocketAmmoSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,40)
-		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoSmall",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
 		TNT1 A -1
 		Stop
 	}
@@ -177,14 +177,14 @@ Actor RocketBoxReplacer : FakeAmmo replaces RocketBox
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
 		Goto SPSpawn
 	DMSpawn:
-		TNT1 A 0 A_SpawnItemEx("QCRocketAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
-		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCRocketAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
 		TNT1 A -1
 		Stop
 	SPSpawn:
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
 		TNT1 A 0 A_SpawnItemEx("QCRocketAmmo",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,40)
-		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
+		TNT1 A 0 A_SpawnItemEx("QCBoltAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,40)
 		TNT1 A -1
 		Stop
 	}
@@ -205,16 +205,16 @@ Actor CellReplacer : FakeAmmo replaces Cell
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
 		Goto SPSpawn
 	DMSpawn:
-		TNT1 A 0 A_SpawnItemEx("QCCoilAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
-		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
+		TNT1 A 0 A_SpawnItemEx("QCCoilAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,128)
 		TNT1 A -1
 		Stop
 	SPSpawn:
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
 		TNT1 A 0 A_SpawnItemEx("QCCoilAmmoSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,32)
-		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,56)
-		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoSmall",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,170)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoSmall",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,56)
+		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoSmall",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,170)
 		TNT1 A -1
 		Stop
 	}
@@ -231,16 +231,16 @@ Actor CellPackReplacer : FakeAmmo replaces CellPack
 		TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0)==2,"DMSpawn")
 		Goto SPSpawn
 	DMSpawn:
-		TNT1 A 0 A_SpawnItemEx("QCCoilAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
-		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoDM",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,64)
+		TNT1 A 0 A_SpawnItemEx("QCCoilAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCBFGAmmoDM",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,64)
 		TNT1 A -1
 		Stop
 	SPSpawn:
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
-		TNT1 A 0 A_SpawnItemEx("QCCoilAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
-		TNT1 A 0 A_SpawnItemEx("QCSlugAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,56)
-		TNT1 A 0 A_SpawnItemEx("QCBFGAmmo",random(16,-16),random(16,-16),0,0,0,0,0,SXF_NOCHECKPOSITION,140)
+		TNT1 A 0 A_SpawnItemEx("QCCoilAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,32)
+		TNT1 A 0 A_SpawnItemEx("QCSlugAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,56)
+		TNT1 A 0 A_SpawnItemEx("QCBFGAmmo",random(8,-8),random(8,-8),0,0,0,0,0,SXF_NOCHECKPOSITION,140)
 		TNT1 A -1
 		Stop
 	}
