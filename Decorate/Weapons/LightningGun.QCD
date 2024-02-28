@@ -338,7 +338,7 @@ Actor QCLightningGun : QCWeapon
 	FirePostSoundCheck:
 		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DMCheckTransparency")
-		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_LgShouldGoPurple",0,0,0,0) == 1,"CheckIfUpgrade")
 		Goto CheckCoopHold
 
 		CheckIfUpgrade:		//sets regular lg, visible
@@ -456,7 +456,7 @@ Actor QCLightningGun : QCWeapon
 		CoopHold2Cont:
 			"####" A 0 Offset(0,32)
 			"####" H 1 Bright
-			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
+			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_LgShouldGoPurple",0,0,0,0) == 1,"LGSet100Purp")
 			"####" A 0 A_ReFire("CoopHold3")
 			Goto FireEnd
 
@@ -503,7 +503,7 @@ Actor QCLightningGun : QCWeapon
 		CoopHold4Cont:
 			"####" A 0 Offset(0,32)
 			"####" J 1 Bright
-			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
+			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_LgShouldGoPurple",0,0,0,0) == 1,"LGSet100Purp")
 			"####" A 0 A_ReFire("CoopHold5")
 			Goto FireEnd
 
@@ -551,7 +551,7 @@ Actor QCLightningGun : QCWeapon
 		CoopHold6Cont:
 			"####" A 0 Offset(0,32)
 			"####" L 1 Bright
-			"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"LGSet100Purp")
+			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_LgShouldGoPurple",0,0,0,0) == 1,"LGSet100Purp")
 			"####" A 0 A_ReFire("CoopHold")
 			Goto FireEnd
 
@@ -599,7 +599,7 @@ Actor QCLightningGun : QCWeapon
 			CoopHoldPurple2Cont:
 				"####" A 0 Offset(0,32)
 				"####" H 1 Bright
-				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckCoopHold")
+				"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_LgShouldGoPurple",0,0,0,0) == 0,"CheckCoopHold")
 				"####" A 0 A_ReFire("CoopHoldPurple3")
 				Goto FireEnd
 
@@ -646,7 +646,7 @@ Actor QCLightningGun : QCWeapon
 			CoopHoldPurple4Cont:
 				"####" A 0 Offset(0,32)
 				"####" J 1 Bright
-				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckCoopHold")
+				"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_LgShouldGoPurple",0,0,0,0) == 0,"CheckCoopHold")
 				"####" A 0 A_ReFire("CoopHoldPurple5")
 				Goto FireEnd
 
@@ -694,7 +694,7 @@ Actor QCLightningGun : QCWeapon
 			CoopHoldPurple6Cont:
 				"####" A 0 Offset(0,32)
 				"####" L 1 Bright
-				"####" A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"CheckCoopHold")
+				"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_LgShouldGoPurple",0,0,0,0) == 0,"CheckCoopHold")
 				"####" A 0 A_ReFire("CoopHoldPurple")
 				Goto FireEnd
 

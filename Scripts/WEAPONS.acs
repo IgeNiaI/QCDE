@@ -291,6 +291,11 @@ Script "QCDE_FreeTribolt" (void)
 	SpawnForced("QCTribolt", GetActorX(0),GetActorY(0),GetActorZ(0));
 }
 
+Script "QCDE_LgShouldGoPurple" (void)
+{
+	SetResultValue(CheckInventory("LG_UG_Static") && CheckInventory("WeaponZoomedToken"));
+}
+
 Script "QCDE_SNGShouldGoFire" (void)
 {
 	SetResultValue(CheckInventory("SNG_UG_Seeker") && CheckInventory("WeaponZoomedToken"));
