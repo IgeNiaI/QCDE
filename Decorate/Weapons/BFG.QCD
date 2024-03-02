@@ -22,18 +22,6 @@ Actor BFGPickup : CustomInventory 15608
 	Tag "$TAG_QCBFG" // "BFG 10k"
 	Inventory.RespawnTics 2100	//60sec
 
-	// Zandronum's client-server disagreement over whether the #dress is under
-	// the balcony or on the ledge has really wasted quite a bit of my time.
-	// Here's to 2018, and here's to like maybe 16 hours I spent in both D4T
-	// and QCDE trying to get BFG to show its pickup where you can get it,
-	// despite pickup being one actor.
-	//
-	// This flag is here to keep us from it until it's fixed in engine.
-	// In some cases... :joy::gun:
-	//
-	// ~Michaelis
-	+NOGRAVITY
-
 	States
 	{
 	Spawn:
