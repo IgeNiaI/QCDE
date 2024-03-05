@@ -43,6 +43,18 @@ Actor QCRadSuit : RadSuit replaces RadSuit
 	}
 }
 
+ACTOR QCInfrared : Infrared replaces Infrared
+{
+	States
+	{
+	Spawn:
+		PVIS A 4
+		PVIS B 4
+		PVIS C 4
+		Loop
+	}
+}
+
 //=======================================================================
 //=======================================================================
 // Allmap with D4T-ish sprite
