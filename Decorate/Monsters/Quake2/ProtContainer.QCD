@@ -24,22 +24,21 @@ Actor Q2PrototypeContainer : QCDE_MonsterBig	  15216	//arachno
 	+NOBLOOD
 	MinMissileChance 248
 	Tag "$TAG_Q2PrototypeContainer" // "Prototype Container"
-	BloodColor "olive drab"	//used for the gibblets
+	BloodColor "4c0466"	//used for the gibblets
 	SeeSound "q2makron2/voice"
 	PainSound "q2makron1/pain"
 	DeathSound "q2makron2/death"
 	ActiveSound "q2makron2/seeking"
 	AttackSound "q2weapon/railgunfire"
 	Obituary "$OB_Q2PrototypeContainer" // "%o found a prototype container."
-	Translation "0:255=%[0.0,0.0,0.0]:[0.8,0.8,0.8]", "176:191=112:127", "32:47=112:127", "208:223=112:127", "232:235=112:127"
 	DropItem "Hourglass", 48
 	States
 	{
 	Idle:
-		BS5I A 5 A_Look
+		QS0I A 5 A_Look
 		Loop
 	See:
-		BS5W AABBCCDDEE 3 A_Chase
+		QS0W AABBCCDDEE 3 A_Chase
 		Loop
 
 	Missile:
@@ -47,42 +46,42 @@ Actor Q2PrototypeContainer : QCDE_MonsterBig	  15216	//arachno
 		Goto RocketAttack
 
 	TeslaAttack:
-		BS5R ABCD 6 A_FaceTarget
+		QS0R ABCD 6 A_FaceTarget
 	TeslaLoop:
-		BS5R E 0 A_PlaySound("Quake2/Extra/TeslaShot")
-		BS5R E 4 A_CustomMissile("PCGreensmaShot",48,0,0)
-		BS5R E 4
-		BS5R E 1 A_CposRefire
+		QS0R E 0 A_PlaySound("Quake2/Extra/TeslaShot")
+		QS0R E 4 A_CustomMissile("PCGreensmaShot",48,0,0)
+		QS0R E 4
+		QS0R E 1 A_CposRefire
 		Goto TeslaLoop
 
 	RocketAttack:
-		BS5B ABC 6 A_FaceTarget
-		BS5B D 3 A_FaceTarget
-		BS5B D 0 A_CustomMissile("BitchRocket",45,-7,0)
-		BS5B EFG 6
-		BS5R E 0 A_CPosRefire
-		BS5B ABC 6 A_FaceTarget
-		BS5B D 3 A_FaceTarget
-		BS5B D 0 A_CustomMissile("BitchRocket",45,-7,0)
-		BS5B EFG 6
+		QS0B ABC 6 A_FaceTarget
+		QS0B D 3 A_FaceTarget
+		QS0B D 0 A_CustomMissile("BitchRocket",45,-7,0)
+		QS0B EFG 6
+		QS0R E 0 A_CPosRefire
+		QS0B ABC 6 A_FaceTarget
+		QS0B D 3 A_FaceTarget
+		QS0B D 0 A_CustomMissile("BitchRocket",45,-7,0)
+		QS0B EFG 6
 		Goto See
 
 	Pain:
-		BS5P A 2
-		BS5P A 5 A_Pain
+		QS0P A 2
+		QS0P A 5 A_Pain
 		Goto See
 
 	DeathChecksDone:
 		TNT1 A 0 A_Scream
 		TNT1 AAAAAA 0 A_TossGib
-		TNT1 A 0 A_SpawnItemEx("PContTorso",0,0,50, random(3,-3),random(3,-3),5,random(0,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
-		BS5D B 25
-		BS5D C 20 A_Fall
-		BS5D D 6
+		TNT1 A 0 A_SpawnItemEx("PContTorso2",0,0,50, random(3,-3),random(3,-3),5,random(0,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+		QS0D B 25
+		QS0D C 20 A_Fall
+		QS0D D 6
 		TNT1 A 0 A_PlaySound("quake4/Misc/Body/Metal")
-		BS5D EFGH 6
+		QS0D EFGH 6
 	Death.Corpse:
-		BS5D H -1
+		QS0D H -1
 		Stop
 
 
@@ -93,7 +92,7 @@ Actor Q2PrototypeContainer : QCDE_MonsterBig	  15216	//arachno
 	}
 }
 
-Actor PContTorso
+Actor PContTorso2
 {
 	+CLIENTSIDEONLY
 	-NOLIFTDROP
@@ -101,22 +100,25 @@ Actor PContTorso
 	+DROPOFF
 	+NOTELEPORT
 	+CORPSE
+	+NOBLOOD
 	Scale 0.45
 	Radius 6
 	Height 5
 	States
 	{
 	Spawn:
-		BS5D A 6
+		QS0D A 6
 		Wait
 	Crash:
-		BS5D Z -1
+		QS0D A 220
+		TNT1 A 0 A_SpawnItemEx("BossDeathExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 AAAAA 0 A_TossGib
 		Stop
 	}
 }
 
 
-Actor PCGreensmaShot	//green plasma
+Actor PCGreensmaShot	//green plasma - actually blue plasma since new recolor but better keep the actor's name the same
 {
 	Projectile
 	Speed 25
@@ -125,20 +127,20 @@ Actor PCGreensmaShot	//green plasma
 	Height 8
 	RenderStyle Add
 	Scale 0.45
-	Translation "0:255=%[0,0,0]:[0.8,2.0,1.0]"
+	Translation "0:255=%[0,0,0]:[0,150,255]"
 	DeathSound "Quake2/Extra/TeslaImpact"
 	States
 	{
 	Spawn:
-		X020 ABCDEFGHIJKLMNOPQRST 2 Bright Light("GreenMediumPoint3")
+		X020 ABCDEFGHIJKLMNOPQRST 2 Bright Light("BlueCyanMediumPoint3")
 		Loop
 	Death:
-		X019 AB 2 Bright Light("GreenMediumPoint3")
-		X019 CDEF 2 Bright Light("GreenMediumPoint2")
-		X019 GH 2 Bright Light("GreenMediumPoint3")
-		X019 IJ 2 Bright Light("GreenSmallPoint1")
-		X019 KL 2 Bright Light("GreenSmallPoint2")
-		X019 MN 2 Bright Light("GreenSmallPoint3")
+		X019 AB 2 Bright Light("BlueCyanMediumPoint3")
+		X019 CDEF 2 Bright Light("BlueCyanMediumPoint3")
+		X019 GH 2 Bright Light("BlueCyanMediumPoint3")
+		X019 IJ 2 Bright Light("BlueCyanSmallPoint3")
+		X019 KL 2 Bright Light("BlueCyanSmallPoint3")
+		X019 MN 2 Bright Light("BlueCyanSmallPoint3")
 		X019 OPQRS 2 Bright
 		Stop
 	}
