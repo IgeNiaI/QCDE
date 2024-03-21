@@ -1,0 +1,31 @@
+//TDBots MK2: The faster-performing bots
+//
+//(C) 2019-2024 Moises Aguirre / TDRR
+//
+//Licensed under the MIT license
+
+// warning: may contain some of the worst code I've written in a very long time
+
+#pragma raw define on
+#pragma raw include on
+
+#library "TDBOTS"
+#import "zcommon.bcs"
+#include "printf.acs"
+
+//#define DEBUG_MODE
+#define QCDE_BOT
+
+using BCSFormat;
+
+strict namespace
+{
+	#include "TDB_SharedDefs.txt"
+	#include "TDB_Defs.acs"
+	#include "TDB_Hash.acs"
+	#include "TDB_Input.acs"
+	#include "TDB_Common.acs"
+	#include "TDB_States.acs"
+	#include "TDB_Node.acs"
+	#include "TDB_Init.acs"
+}

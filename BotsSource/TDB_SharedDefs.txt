@@ -1,0 +1,12 @@
+enum
+{
+	TDB_Touch_Node = 32512
+};
+
+enum
+{
+	TDB_PATH_NODE,
+	TDB_JUMP_NODE,
+	TDB_PREC_NODE,
+	TDB_LIFT_NODE
+};

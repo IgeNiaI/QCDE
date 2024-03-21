@@ -3,6 +3,7 @@
 #include "AACS.acs"
 #import "QCDE.bcs"
 #import "WEAPCNST.bcs"
+#include "./LibHeaders/TDBots.h.bcs"
 
 int weaponSpawned[NUMBER_OF_WEAPONS];
 
@@ -246,29 +247,50 @@ script "QCDE_HitMark" (void) clientside
 	HudMessageBold(s:"a";HUDMSG_FADEOUT,-234,-1,600.0,450.0,0.0,0.15);
 }
 
-Script "QCDE_SelectBotWeapon" (int distanceToTarget)
+Script "QCDE_ConfigureBotWeapons" (void)
 {
-	if (distanceToTarget < 300)
-	{
-			 if (CheckInventory("Class_DukeNukem")		&& CheckInventory("DukeAmmo"))		SetWeapon("DukeFreezeThrower");
-		else if (CheckInventory("QCBFGDM")				&& CheckInventory("QCBFGAmmo"))		SetWeapon("QCBFGDM");
-		else if (CheckInventory("QCRocketLauncherDM")	&& CheckInventory("QCRocketAmmo"))	SetWeapon("QCRocketLauncherDM");
-		else if (CheckInventory("QCSuperShotgunDM")		&& CheckInventory("QCShellAmmo"))	SetWeapon("QCSuperShotgunDM");
-		else if (CheckInventory("QCSuperNailgunDM")		&& CheckInventory("QCNailAmmo"))	SetWeapon("QCSuperNailgunDM");
-	}
-	else if (distanceToTarget < 600)
-	{
-			 if (CheckInventory("Class_Sam")			&& CheckInventory("SeriousBullets"))SetWeapon("SamMinigun");
-		else if (CheckInventory("QCBFGDM")				&& CheckInventory("QCBFGAmmo"))		SetWeapon("QCBFGDM");
-		else if (CheckInventory("QCLightningGunDM")		&& CheckInventory("QCCoilAmmo"))	SetWeapon("QCLightningGunDM");
-		else if (CheckInventory("QCSuperNailgunDM")		&& CheckInventory("QCNailAmmo"))	SetWeapon("QCSuperNailgunDM");
-		else if (CheckInventory("QCTriboltDM")			&& CheckInventory("QCBoltAmmo"))	SetWeapon("QCTriboltDM");
-	}
-	else
-	{
-			 if (CheckInventory("QCRailgunDM")			&& CheckInventory("QCSlugAmmo"))	SetWeapon("QCRailgunDM");
-		else if (CheckInventory("QCHeavyMachinegunDM")	&& CheckInventory("QCBulletAmmo"))	SetWeapon("QCHeavyMachinegunDM");
-	}
+	// Define weapons
+	//					Name				Priority
+	TDB_Weapon_New(		"DukeFreezeThrower",	5);
+	TDB_Weapon_New(		"SamMinigun",			5);
+	TDB_Weapon_New(		"QCGauntlet",			0);
+	TDB_Weapon_New(		"QCMachinegunDM",		1);
+	TDB_Weapon_New(		"QCHeavyMachinegunDM",	1);
+	TDB_Weapon_New(		"QCShotgunDM",			1);
+	TDB_Weapon_New(		"QCSuperShotgunDM",		1);
+	TDB_Weapon_New(		"QCNailgunDM",			1);
+	TDB_Weapon_New(		"QCSuperNailgunDM",		1);
+	TDB_Weapon_New(		"QCTriboltDM",			2);
+	TDB_Weapon_New(		"QCRocketLauncherDM",	3);
+	TDB_Weapon_New(		"QCLightningGunDM",		3);
+	TDB_Weapon_New(		"QCRailgunDM",			3);
+	TDB_Weapon_New(		"QCBFGDM",				4);
+
+	// Setup fire modes
+	//					Name					Ammo Class		Ammo Use	Proj Speed	Min Dist	Max Dist	Flags								Alt Fire chance
+	// Abilities
+	TDB_Weapon_Pri(		"DukeFreezeThrower",	"DukeAmmo",			1,		25.0,		0.0,		400.0,		TDB_CW_PROJECTILE);
+	TDB_Weapon_Alt(		"DukeFreezeThrower",	"DukeAmmo",			0,		0.0,		0.0,		128.0,		0,									0.5);
+	TDB_Weapon_Pri(		"SamMinigun",			"SeriousBullets",	1,		0.0,		0.0,		700.0,		0);
+	TDB_Weapon_Alt(		"SamMinigun",			"SeriousBullets",	1,		0.0,		0.0,		400.0,		0,									0.5);
+
+	//					Name					Ammo Class		Ammo Use	Proj Speed	Min Dist	Max Dist	Flags	Alt Fire chance
+	// Starter weapons + upgrades
+	TDB_Weapon_Pri(		"QCGauntlet",			"",					0,		0.0,		0.0,		55.0,		TDB_CW_MELEE);
+	TDB_Weapon_Pri(		"QCMachinegunDM",		"QCBulletAmmo",		1,		0.0,		300.0,		MAX_RANGE,	0);
+	TDB_Weapon_Pri(		"QCHeavyMachinegunDM",	"QCBulletAmmo",		1,		0.0,		300.0,		MAX_RANGE,	0);
+	TDB_Weapon_Pri(		"QCShotgunDM",			"QCShellAmmo",		1,		0.0,		0.0,		400.0,		0);
+	TDB_Weapon_Pri(		"QCSuperShotgunDM",		"QCShellAmmo",		1,		0.0,		0.0,		400.0,		0);
+	TDB_Weapon_Pri(		"QCNailgunDM",			"QCNailAmmo",		1,		52.0,		0.0,		700.0,		TDB_CW_PROJECTILE);
+	TDB_Weapon_Pri(		"QCSuperNailgunDM",		"QCNailAmmo",		1,		52.0,		0.0,		700.0,		TDB_CW_PROJECTILE);
+
+	//					Name					Ammo Class		Ammo Use	Proj Speed	Min Dist	Max Dist	Flags	Alt Fire chance
+	// Strong weapons
+	TDB_Weapon_Pri(		"QCTriboltDM",			"QCBoltAmmo",		1,		37.0,		0.0,		700.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);
+	TDB_Weapon_Pri(		"QCRocketLauncherDM",	"QCRocketAmmo",		1,		34.0,		0.0,		400.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);
+	TDB_Weapon_Pri(		"QCLightningGunDM",		"QCCoilAmmo",		1,		0.0,		300.0,		700.0,		0);
+	TDB_Weapon_Pri(		"QCRailgunDM",			"QCSlugAmmo",		1,		0.0,		600.0,		MAX_RANGE,	0);
+	TDB_Weapon_Pri(		"QCBFGDM",				"QCBFGAmmo",		1,		45.0,		0.0,		700.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);
 }
 
 //------------------------------------------------

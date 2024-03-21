@@ -254,7 +254,7 @@ Actor QCMedikit : QCStimpack replaces Medikit
 	States
 	{
 	Spawn:
-		HEAL C 0 NODELAY A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		HEAL C 0
 		HEAL C -1 Light(OrangeSmallPoint3) BRIGHT ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
 		Stop
 		//special handler for Duke only
@@ -285,7 +285,6 @@ Actor QCMegaHealth : InventoryClassChecker replaces SoulSphere
 	Spawn:
 		MEGR A 0 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 0)
 		MEGR A 0 A_ThrowGrenade("QCMegaHealthFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
-		MEGR A 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		MEGR A -1 Light(BlueSmallPoint2) BRIGHT
 		Stop
 
@@ -412,7 +411,6 @@ Actor QCMegaMega : CustomInventory replaces MegaSphere
 	Spawn:
 		MEGB A 0 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 3)
 		MEGB A 0 A_ThrowGrenade("QCMegamegaFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
-		MEGB A 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		MEGB A -1 Light(PurpleSmallPoint1) BRIGHT
 		Stop
 	Pickup:
@@ -635,7 +633,7 @@ Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
 	States
 	{
 	Spawn:
-		QCAR B 0 NODELAY A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QCAR B 0
 		QCAR B 0 A_ThrowGrenade("QCLightArmorFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		QCAR B -1 Light(GreenSmallPoint3) BRIGHT ACS_NamedExecuteWithResult("QCDE_PickupSpawned")
 		Stop
@@ -786,7 +784,7 @@ Actor QCBigArmorGiver : InventoryClassChecker replaces BlueArmor
 	Spawn:
 		QCAR C 0 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 1)
 		QCAR C 0 A_ThrowGrenade("QCHeavyArmorFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
-		QCAR C 0 A_SpawnItemEx("QCDEBotBait", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		QCAR C 0
 		QCAR C -1 Light(GreenSmallPoint2) BRIGHT
 		Stop
 

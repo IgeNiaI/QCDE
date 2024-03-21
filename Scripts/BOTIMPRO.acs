@@ -27,92 +27,14 @@ str BotPreferredWeapons[8] = {
 		"QCBFGDM"
 		};
 
-script "QCDE_Bot_Weaponize" (void)
-{
-	if(GameType() < GAME_NET_DEATHMATCH) terminate; // bots only matter in DM
-
-	if(GetCVar("teamlms")) terminate;
-	if(!GetCVar("bot_weaponize")) terminate;
-
-	int skill = GetCVar("bot_weaponize") + GetCVar("botskill");
-
-	// Skill-based chance to get weapons
-	if( random(1,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap", 8) )	{ GiveInventory("QCHeavyMachinegunDM"	,1); TakeInventory("QCMachinegunDM",1); }
-	if( random(2,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap",10) )	{ GiveInventory("QCSuperShotgunDM"		,1); TakeInventory("QCShotgunDM",1); }
-	if( random(3,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap",12) )	{ GiveInventory("QCSuperNailgunDM"		,1); TakeInventory("QCNailgunDM",1); }
-	if( random(4,20) <= skill ) if( ACS("QCDE_IsWeaponOnMap",14) )	GiveInventory("QCTriboltDM"			,1);
-	if( random(5,10) <= skill ) if( ACS("QCDE_IsWeaponOnMap",16) )	GiveInventory("QCRocketLauncherDM"	,1);
-	if( random(6,20) <= skill ) if( ACS("QCDE_IsWeaponOnMap",18) )	GiveInventory("QCLightningGunDM"	,1);
-	if( random(7,15) <= skill ) if( ACS("QCDE_IsWeaponOnMap",20) )	GiveInventory("QCRailgunDM"			,1);
-	if( random(8,40) <= skill ) if( ACS("QCDE_IsWeaponOnMap",22) )	GiveInventory("QCBFGDM"				,1);
-}
-
-script "QCDE_Bot_Buff" (void)
-{
-	if(GameType() < GAME_NET_DEATHMATCH) terminate; // bots only matter in DM
-
-	int buff = GetCVar("bot_buff");
-
-	if(!buff) terminate;
-
-	buff += GetCVar("botskill") - 2;
-
-	// Chance to get hEaLiNg
-	if( random(0,20) < buff ) 	GiveInventory("QCStimpack", 1);
-}
-
-script "QCDE_Bot_SelectWeapon" (int noRandom)
-{
-	// Unless is using an ability weapon
-	if(CheckWeapon("SorgaulFists"     )) terminate;
-	if(CheckWeapon("SorgaulFistsBot"  )) terminate;
-	if(CheckWeapon("Shieldquisitor"   )) terminate;
-	if(CheckWeapon("SlayerBFG"        )) terminate;
-	if(CheckWeapon("BlazkoAkimbo"     )) terminate;
-	if(CheckWeapon("BlazkoAkimboBot"  )) terminate;
-	if(CheckWeapon("PostalCowHead"    )) terminate;
-	if(CheckWeapon("CalebDoll"        )) terminate;
-	if(CheckWeapon("CalebDollBot"     )) terminate;
-	// ^ insert more ability weapons here
-
-	if(CheckInventory("Freezetagged")) terminate;
-
-	if(ACS("QCDE_HasTarget",0) && GetCVar("botskill") >= 3)
-	{
-		int distance = ACS("QCDE_DistanceToTarget",0);
-		ACS("QCDE_SelectBotWeapon", distance);
-	}
-	else if (!noRandom)
-	{
-		// Randomly reselect weapon
-		SetWeapon(BotPreferredWeapons[random(0,7)]);
-	}
-}
-
 int bot_pos_checksum[64], bepisx,bepisy,bepisz;
-script "QCDE_Bot_Twitch" (void)
+script "QCDE_Bot_Unstuck" (void)
 {
-	if(CheckInventory("ImFrozen")) terminate; // Elsa doesn't twitch
+	if(CheckInventory("ImFrozen")) terminate; // Elsa doesn't get stuck
 	if(CheckInventory("Freezetagged")) terminate;
 	if(CheckInventory("Twitchless3sec")) terminate; // As don't those thrown up by Grayson's Thumper
 	if(GetActorProperty(0, APROP_HEALTH) <= 0) terminate; // As don't those that are dead like disco
 	if(GetGameModeState() >= GAMESTATE_INRESULTSEQUENCE) terminate; // Everyone should be frozen when the match ends
-
-	if(GetActorVelX(0) | GetActorVelY(0))
-	{
-		// Low chance to get a dash in random direction
-		int power = random(-2 * GetCvar("bot_twitch") / 100, (GetCvar("botskill")) * GetCvar("bot_twitch") / 100);
-
-		ThrustThing(random(0,256), power, false, 0);
-		ThrustThingZ(0, power, 0, 1);
-	}
-	else
-	{
-		// If unmoving, turn around and jump especially far
-		SetActorAngle(0, random(0, 1.0));
-		ThrustThing(random(0,256), 13, false, 0);
-		ThrustThingZ(0, 18, 0, 1);
-	}
 
 	// Extra BEPIS
 	// https://cdn.discordapp.com/attachments/297799908084154378/435081076889616384/image.jpg
@@ -198,12 +120,4 @@ script "QCDE_HasTarget" (void)
 	SetActivatorToTarget(0);
 	int target = ActivatorTID();
 	setResultValue(activator != target);
-}
-
-script "QCDE_DistanceToTarget" (void)
-{
-	int activator = ActivatorTID();
-	SetActivatorToTarget(0);
-	int target = ActivatorTID();
-	setResultValue(QCDE_ProximityCheck(activator, target));
 }

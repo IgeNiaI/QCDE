@@ -69,12 +69,6 @@ script "QCDE_StartingWeapon_Apply" (void)
 	// Don't re-give weak weapons if stronger ones are present in coop
 	if(CheckInventory("QCHeavyMachinegun")) TakeInventory(weapon1,1);
 	if(CheckInventory("QCSuperNailgun"   )) TakeInventory(weapon3,1);
-
-	if(PlayerIsBot(PlayerNumber()))
-	{
-		// Don't include scripts that apply to both live players and bots.
-		ACS_NamedExecuteAlways("QCDE_Bot_Weaponize",0);
-	}
 }
 
 script "QCDE_SelectUpgradedWeapon" (int weap)

@@ -60,6 +60,7 @@ Script "QCDE_Open" Open
 	delay(1);
 
 	ACS_NamedExecuteAlways("QCDE_RareTracker",0);
+	ACS_NamedExecuteAlways("QCDE_ConfigureBotWeapons",0);
 }
 
 Script "QCDE_Enter" Enter
@@ -475,15 +476,10 @@ Script "QCDE_Tracker_CLIENTSIDE" (void) clientside
 
 // This script sets up everything needed for a bot.
 // Like its non-bot counterpart, it is executed both on birth and respawn.
-#define BOT_INITIAL_THRUST 20
 Script "QCDE_NewLife_BOT" (void)
 {
 	if(!PlayerIsBot(PlayerNumber())) terminate;
 	if(GameType() < GAME_NET_DEATHMATCH) terminate; // bots only matter in DM
-
-	// Initial thrust, to prevent them from camping spawn
-	ThrustThing(GetActorAngle(0) >> 8, BOT_INITIAL_THRUST, 0, 0);
-	ThrustThingZ(0, BOT_INITIAL_THRUST, 0, 1);
 
 	// After all setup is done, we can launch the loops.
 	ACS_NamedExecuteAlways("QCDE_Tracker_BOT",0);
@@ -492,29 +488,27 @@ Script "QCDE_NewLife_BOT" (void)
 
 Script "QCDE_Tracker_BOT" (void)
 {
-	while(GetActorProperty(0,APROP_HEALTH) > 0)
-	{
-		ACS_NamedExecuteAlways("QCDE_Bot_SelectWeapon"     , 0, 0);
-		ACS_NamedExecuteAlways("QCDE_Bot_Twitch"           , 0);
-		ACS_NamedExecuteAlways("QCDE_Bot_FreezetagTimeout" , 0);
+	while (true) {
+		if (GetActorProperty(0,APROP_HEALTH) > 0) {
+			ACS_NamedExecuteAlways("QCDE_Bot_Unstuck"          , 0);
+			ACS_NamedExecuteAlways("QCDE_Bot_FreezetagTimeout" , 0);
+		} else break;
 
 		delay(random(8,25));
 
-		ACS_NamedExecuteAlways("QCDE_Bot_SelectWeapon"     , 0, 1);
-		ACS_NamedExecuteAlways("QCDE_Bot_Twitch"           , 0);
-		ACS_NamedExecuteAlways("QCDE_VoiceLine" , 0, 2, 0, Timer()); // 2% chance to taunt every sec
+		if (GetActorProperty(0,APROP_HEALTH) > 0) {
+			ACS_NamedExecuteAlways("QCDE_Bot_Unstuck"          , 0);
+			ACS_NamedExecuteAlways("QCDE_VoiceLine" , 0, 2, 0, Timer()); // 2% chance to taunt every sec
+		} else break;
 
 		delay(random(8,25));
 
-		ACS_NamedExecuteAlways("QCDE_Bot_SelectWeapon"     , 0, 1);
-		ACS_NamedExecuteAlways("QCDE_Bot_Twitch"           , 0);
-		ACS_NamedExecuteAlways("QCDE_Bot_Buff"             , 0);
+		if (GetActorProperty(0,APROP_HEALTH) > 0) {
+			ACS_NamedExecuteAlways("QCDE_Bot_Unstuck"          , 0);
+		} else break;
 
 		delay(random(8,25));
 	}
-
-	// Setting all of the tokens affected in the loop to end-of-life values
-
 }
 
 
