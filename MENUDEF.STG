@@ -1144,154 +1144,160 @@ FreeformMenu "QCDE_OptionsBinds"
 	Label	{ Pos -128, 101		Text "Crouch"				Anchor right, center	Font SmallFont		FontColor DarkGray }
 	Control	{ Pos  -70, 100		Action "+crouch"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 101		Text "Double Tap Time"		Anchor right, center		Font SmallFont		FontColor DarkGray }
-	Option	{ Pos  132, 100		CVar cl_DoubleTapTics		Values QCDE_DoubleTapTimes	Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	UnknownBackground OP21028	SelectedBackground	OP21028S	SelectedForeground	OP21028A, 119, 14 }
+	Label	{ Pos   74, 101		Text "Dash"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 100		Action "+user4"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 121		Text "Dash"					Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 120		Action "+user4"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 121		Text "Double Tap Time"		Anchor right, center		Font SmallFont		FontColor DarkGray }
+	Option	{ Pos  132, 120		CVar cl_DoubleTapTics		Values QCDE_DoubleTapTimes	Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	UnknownBackground OP21028	SelectedBackground	OP21028S	SelectedForeground	OP21028A, 119, 14 }
 
 	Label {
-		Pos		0, 130				Font		QCSMFONT
+		Pos		0, 150				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Weapons"
 	}
 
-	Label	{ Pos -128, 151		Text "Fire"					Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 150		Action "+attack"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 171		Text "Fire"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 170		Action "+attack"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 151		Text "Drop weapon"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 150		Action "weapdrop"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 171		Text "Drop weapon"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 170		Action "weapdrop"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 171		Text "Zoom / Alt Fire"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 170		Action "+altattack"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 191		Text "Zoom / Alt Fire"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 190		Action "+altattack"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 171		Text "Drop upgrade"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 170		Action "drop_upgrade"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 191		Text "Drop upgrade"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 190		Action "drop_upgrade"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 191		Text "$Control_Slot1"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 190		Action "slot 1"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 211		Text "Prev Weapon"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 210		Action "weapprev"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 191		Text "$Control_Slot2"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 190		Action "slot 2"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 211		Text "Next Weapon"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 210		Action "weapnext"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 211		Text "$Control_Slot3"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 210		Action "slot 3"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 231		Text "$Control_Slot1"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 230		Action "slot 1"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 211		Text "$Control_Slot4"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 210		Action "slot 4"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 231		Text "$Control_Slot2"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 230		Action "slot 2"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 231		Text "$Control_Slot5"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 230		Action "slot 5"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 251		Text "$Control_Slot3"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 250		Action "slot 3"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 231		Text "$Control_Slot6"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 230		Action "slot 6"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 251		Text "$Control_Slot4"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 250		Action "slot 4"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 251		Text "$Control_Slot7"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 250		Action "slot 7"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 271		Text "$Control_Slot5"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 270		Action "slot 5"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 251		Text "$Control_Slot8"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 250		Action "slot 8"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 271		Text "$Control_Slot6"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 270		Action "slot 6"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 271		Text "$Control_Slot9"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 270		Action "slot 9"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 291		Text "$Control_Slot7"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 290		Action "slot 7"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 291		Text "$Control_Slot8"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 290		Action "slot 8"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos -128, 311		Text "$Control_Slot9"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 310		Action "slot 9"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
 
 	Label {
-		Pos		0, 300				Font		QCSMFONT
+		Pos		0, 340				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Actions"
 	}
 
-	Label	{ Pos -128, 321		Text "Use active ability"	Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 320		Action "+user1"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 361		Text "Use active ability"	Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 360		Action "+user1"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 321		Text "Show Scoreboard"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 320		Action "+showscores"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 361		Text "Show Scoreboard"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 360		Action "+showscores"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 341		Text "Use / Open"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 340		Action "+use"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 381		Text "Use / Open"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 380		Action "+use"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 341		Text "Open lootbox"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 340		Action "invuse"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 381		Text "Open lootbox"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 380		Action "invuse"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 361		Text "Taunt"				Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 360		Action "voice"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 401		Text "Taunt"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 400		Action "voice"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 361		Text "Automap"				Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 360		Action "togglemap"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 401		Text "Automap"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 400		Action "togglemap"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
 
 	Label {
-		Pos		0, 390				Font		QCSMFONT
+		Pos		0, 430				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Game"
 	}
 
-	Label	{ Pos -128, 411		Text "Change class"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 410		Action "mpclassmenu"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 451		Text "Change class"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 450		Action "mpclassmenu"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 411		Text "Join the game"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Option	{ Pos  132, 410		CVar joinmenukey			Values JoinMenuKeys		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	UnknownBackground OP21028	SelectedBackground	OP21028S	SelectedForeground	OP21028A, 119, 14 }
+	Label	{ Pos   74, 451		Text "Join the game"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Option	{ Pos  132, 450		CVar joinmenukey			Values JoinMenuKeys		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	UnknownBackground OP21028	SelectedBackground	OP21028S	SelectedForeground	OP21028A, 119, 14 }
 
-	Label	{ Pos -128, 431		Text "Champion info"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 430		Action "champdetails"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 471		Text "Champion info"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 470		Action "champdetails"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 431		Text "Ready to play"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 430		Action "ready"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 471		Text "Ready to play"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 470		Action "ready"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 451		Text "Chat"					Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 450		Action "messagemode"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 491		Text "Chat"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 490		Action "messagemode"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 451		Text "Vote yes"				Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 450		Action "vote_yes"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 491		Text "Vote yes"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 490		Action "vote_yes"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 471		Text "Team Chat"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 470		Action "messagemode2"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 511		Text "Team Chat"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 510		Action "messagemode2"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 471		Text "Vote no"				Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 470		Action "vote_no"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 511		Text "Vote no"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 510		Action "vote_no"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 491		Text "Quick Save"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 490		Action "quicksave"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 531		Text "Quick Save"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 530		Action "quicksave"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 491		Text "Quick Load"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 490		Action "quickload"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 531		Text "Quick Load"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 530		Action "quickload"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
 
 	Label {
-		Pos		0, 520				Font		QCSMFONT
+		Pos		0, 560				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Spectating"
 	}
 
-	Label	{ Pos -128, 541		Text "Join spectators"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 540		Action "spectate"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 581		Text "Join spectators"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 580		Action "spectate"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 541		Text "Spectate next"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 540		Action "spynext"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 581		Text "Spectate next"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 580		Action "spynext"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 561		Text "Spectate killer"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 560		Action "spykiller"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 601		Text "Spectate killer"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 600		Action "spykiller"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 561		Text "Spectate prev"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 560		Action "spyprev"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 601		Text "Spectate prev"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 600		Action "spyprev"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
 
 	Label {
-		Pos		0, 590				Font		QCSMFONT
+		Pos		0, 630				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Misc"
 	}
 
-	Label	{ Pos -128, 611		Text "Open Console"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 610		Action "toggleconsole"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128, 651		Text "Open Console"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 650		Action "toggleconsole"		Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 611		Text "Screenshot"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132, 610		Action "screenshot"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74, 651		Text "Screenshot"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 650		Action "screenshot"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
 
 	Label { // empty text to add extra scroll area
-		Pos 0, 650
+		Pos 0, 690
 		Text ""
 	}
 
