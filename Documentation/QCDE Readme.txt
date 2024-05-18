@@ -4,7 +4,7 @@ Primary purpose         : Single & Multiplayer
 ==================================================================================
 Title                   : QC: Doom Edition
 Filename                : QCDEv3.0.pk3
-Release date            : November ##th 2023
+Release date            : May ##th 2024
 Author                  : DBThanatos, Michaelis, geNia
 Email Address           : DBThanatos@hotmail.com, Michael.is.D4T@gmail.com, geniann93@gmail.com
 Other Files By Author   : *DBThanatos: "Quake4 Lightning Fast Mod Doom Edition",
@@ -168,7 +168,7 @@ Franco Tieppo           : Spriter for all weapons in v2.0
                           But most importantly: The **WET FLOOR SIGN**
 
 Pixo                    : Orbb sprites, console font graphics,
-                          Quake 1, 2, 4 and QW: ET weapon skin sprites
+                          Quake 2, 4 and QW: ET weapon skin sprites
 
 Michael Markie          : QCDE Original Soundtrack, production of voice effects of Durandal,
                           sounds for BFG10k, sounds for Duke's Freeze Gun, other misc sounds.
@@ -204,11 +204,9 @@ TheSwampyLad            : "Temple of the Blood Serpants", "Exile"
 
 Pixo                    : "Crash Course", "Hektik"
 
-Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis"
+Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard"
 
 Dech                    : "The Struggle", "CTF Run", "Fatal Error"
-
-Abysswalker             : "The Longest Yard"
 
 KillerKouhai            : "Zenith"
 
@@ -229,7 +227,7 @@ YukiHerz                : Ranger and Bitterman's sprite sets
 
 Abysswalker             : Doomslayer sprites
 
-LegendBourne            : Drawings for HD portraits found in optional package
+LegendBourne            : Drawings for HD portraits
 
 DrPyspy                 : Model posing/texturing/ripping of Sarge, Hunter, 
                           Major and Painkiller (PK's face edited by DBT)
@@ -241,6 +239,8 @@ Ivory Duke              : Description/Lore for all champions in the Manual up to
                           Base coding for "Freezetag" gamemode
                           Voxels, code assistance, QCDEmaps resource repacking
                           Original Medals and Item Respawn timers addons
+
+Abysswalker             : pre-3.0 version of "The Longest Yard"
 
 Revenatn                : Half-Life weapon skins, ripping Serious Sam model
 
@@ -257,6 +257,14 @@ katherinecode           : v3.0 model posing/texturing/ripping of BJ Blazkowicz
 kultasakaali            : Mapping, testing, addon updating
 
 DoomJoshuaBoy           : OpenAL implementation
+
+TDRR                    : Universal Bump Mapping addon, TDBots addon
+
+N4h                     : Quake 1 weapon skins, various sprite adjustments
+
+Hvellor                 : Remaining Half-Life weapon skins, various sound adjustments
+
+anvi                    : Various sound adjustments
 
 Revenatn, Dech,
 Excedentia, Ivory Duke,
@@ -305,7 +313,7 @@ Pixo                    : v3.0 Beta Tester
 
 prod1G                  : v3.0 Beta Tester
 
-Pootis Korn             : v3.0 Beta Tester
+PopKorn                 : v3.0 Beta Tester
 
 
 
@@ -396,7 +404,7 @@ Killerkouhai            : Sky textures for The Edge and Silence
 
 Kerrek                  : MIDI version of HL's "Diabolical Adrenaline Guitar"
 
-Pootis Korn             : Early v3.0 Terror Billy sprites for BJ Blazkowicz, v3.0 manual update
+PopKorn                 : Early v3.0 Terror Billy sprites for BJ Blazkowicz, v3.0 manual update
 
 Mr.Rocket               : Eye model on QCDE22 (Sarnath)
 
@@ -404,15 +412,11 @@ Holy Keyboarder         : Deep Embrace map mockup in Minecraft
 
 prod1G                  : Layout update for QCDL02 (Aerowalk)
 
-anvi & Hvellor          : Various sound adjustments
-
-N4h                     : Various sprite adjustments
-
 Dzierzan                : Shadow Warrior high quality sound effects
 
 ako                     : Assistance with Unreal Tournament music addon
 
-TDRR                    : Universal Bump Mapping addon
+Craneo                  : Doom 4 Tech Mancubus sprites
 
 Digital Dialect         : Adrenix Textures
 
