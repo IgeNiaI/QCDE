@@ -113,6 +113,17 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 				firstBloodGiven = true;
 			terminate;
 		}
+		
+		if(CheckActorInventory(victimTID, "Class_DukeNukem") || CheckActorInventory(victimTID, "Class_Sam")) {
+		
+			int activator = ActivatorTID();
+			bool victimAbilityWeapon = false;
+			
+			SetActivator(victimTID);
+			if(CheckWeapon("SamMinigun") || CheckWeapon("DukeFreezeThrower"))
+				victimAbilityWeapon = true;
+			SetActivator(activator);
+		}
 
 		ACS_NamedExecuteAlways("QCDE_Excellent", 0, Timer());
 		ACS_NamedExecuteAlways("QCDE_KillingSpree", 0);
@@ -209,7 +220,7 @@ script "FragEvent" (int evtTyp, int victimNo, int arg2) EVENT {
 			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DIEHARD);
 
 		//Denied
-		if(victimActiveTokens > 0)
+		if(victimActiveTokens > 0 || victimAbilityWeapon)
 			ACS_NamedExecuteAlways("DrawMedal", 0, MEDAL_DENIED);
 
 		//Perforated
