@@ -293,6 +293,38 @@ Script "QCDE_ConfigureBotWeapons" (void)
 	TDB_Weapon_Pri(		"QCBFGDM",				"QCBFGAmmo",		1,		45.0,		0.0,		700.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);
 }
 
+// Freeman PvE Ammo Box passive. Placing the script here for weapon addons to override
+// Activator: dying victim
+Script "QCDE_MonsterKill_QCFreeman" (void)
+{
+	if(CheckInventory("MonsterBig") || CheckInventory("MonsterBoss"))
+	{
+		int itemAmount = 0;
+		itemAmount |= (random(0, 5) & 0xFF); // Slugs
+		itemAmount <<= 8;
+		itemAmount |= (random(0, 5) & 0xFF); // Rockets
+		itemAmount <<= 8;
+		itemAmount |= (random(0, 30) & 0xFF); // Nails
+		itemAmount <<= 8;
+		itemAmount |= (random(0, 30) & 0xFF); // Bullets
+
+		if (itemAmount > 0)
+			DropItem(0, "FreemanWeaponBox1", itemAmount, 256);
+
+		itemAmount = 0;
+		itemAmount |= (random(0, 3) & 0xFF); // BFG
+		itemAmount <<= 8;
+		itemAmount |= (random(0, 30) & 0xFF); // Coils
+		itemAmount <<= 8;
+		itemAmount |= (random(0, 5) & 0xFF); // Bolts
+		itemAmount <<= 8;
+		itemAmount |= (random(0, 10) & 0xFF); // Shells
+
+		if (itemAmount > 0)
+			DropItem(0, "FreemanWeaponBox2", itemAmount, 256);
+	}
+}
+
 //------------------------------------------------
 // Give Tribolt on map03
 // or after 30 minutes on one map

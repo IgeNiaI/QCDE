@@ -4614,12 +4614,6 @@ Script "QCDE_Passive_Blazkowicz" (void)
 // Due to item's amount only having 32 bits to use, aka 4*8 bits, we have to drop 2 items to cover all 8 weapons.
 
 // Activator: dying victim
-Script "QCDE_MonsterKill_QCFreeman" (void)
-{
-	// do nothing
-}
-
-// Activator: dying victim
 Script "QCDE_PlayerKill_QCFreeman" (void)
 {
 	// Slugs + Rockets + Nails + Bullets
