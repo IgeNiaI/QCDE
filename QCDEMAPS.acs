@@ -141,7 +141,7 @@ function void markSectorTagInactive(int sectorTag)
 	int i = findActiveSectorIndex(sectorTag);
 
 	if (i < 0) {
-		Log(s:"setSectorTagInactive - Tag", d:sectorTag, s:" was not marked active!");
+		// Don't print errors, just exit
 		return;
 	}
 
