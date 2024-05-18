@@ -2,15 +2,16 @@ Changelog
 
 ---------------------------------------------------------------------
 
-V3.0 (November ## 2023)
+V3.0 (May ## 2024)
 
 General:
 - Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
+- Added a long requested UT champion, Brock from Unreal Tournament 99. He is a heavy champion, stack is 100/50. His first passive ability grants up to +100 HP overstack from Mega Health pickups. Health and Armor overstack will not degenerate over time. Additionally, Hourglass grants +10 HP and Big Hourglass +25 HP. His second passive ability allows Heavy Armor pickups to grant up to +150 AP overstack. Upon acquiring a Heavy Armor pickup, Brock’s Armor stack will absorb 100% of all damage inflicted to him until it is fully depleted. Brock has no active ability and uses Unreal Tournament movement.
 - Reworked all champions movement mechanics.
   - Most champions gained VQ3 movement.
   - Menelkir, Doom Slayer, Corvus, Galen and Zedek kept the original Doom movement, but lost some air acceleration.
   - Durandal, Intruder and Eradicator gained CPM movement.
-  - Kane Crouch Slide is using the engine implementation and no longer deals damage when bumping into enemies. Freeman also gained Crouch Slide, but it's slower than what Kane has, but lasts longer.
+  - Kane Crouch Slide is using the engine implementation and no longer deals damage when bumping into enemies.
   - Nyx, Doom Slayer, Inquisitor and Major are using the engine implementation for Wall Jump, Double Jump, Thrust Dodge and Wall Climb respectively.
   - Bitterman gained a Ramp Jump movement mechanic, similar to Quake 2.
   - Eleena and Postal Dude jump mechanics were reworked to make them lagless.
@@ -28,11 +29,14 @@ General:
 - Reworked weapon respawn logic. All weapons except BFG respawn after 1 second. In duel, the weapons respawn after 5 seconds instead. The respawn time can also be configured using `sv_weaponrespawn` cvar.
 - Rocket Launcher, Lightning Gun, Railgun and BFG weapon slots were moved up. Make sure to rebind your controls.
 - Added an option to render the game at true horizontal fov (previously horizontal fov was about 15% smaller).
+- Integrated voxels addons into main QCDE mod and UT weapons addon.
+- Integrated HD champion portraits by Legendbourne into main mod.
 - Integrated the medals addon. Medals can be toggled using the `cl_qcmedals` clientside cvar.
 - Integrated the item respawn timers addon. It can be toggled on server using the `sv_showItemTimers` cvar.
 - Integrated the "Stack Left" addon. It can be toggled on server using the `sv_showStackLeft` cvar.
 - Integrated the QC:DE Announcer addon.
 - Integrated TDRR's universal bump mapping addon into the mod and added "Fancy lights" option to control it.
+- Integrated TDRR' TDBots addon. Bots can now navigate the maps really good!
 - LMS and Team LMS now spawn players with full ammo and no longer give starter weapons.
 - Rocket jumping no longer deals self damage in gamemodes like Rocket Arena and Unholy Trinity.
 - Added a random class option to the class menu.
@@ -56,11 +60,14 @@ General:
 - Bots at `botskill` 3 and 4 now select weapons according to distance to their target.
 - Bots are less likely to navigate towards damaging and instant death sectors.
 
-Balance:
+PVP Balance:
 - Railgun no longer deals additional "zoomed charge" damage in PVP.
 - All Light champions gained 25 more max armor and all Heavy champions lost 25 max armor, except Vor Matur.
 - Raised players camera and attack Z offset.
+- Reworked Freeman. He no longer has H.E.V Suit passive, but has Double Tap dodge instead, like Inquisitor. Also, he no longer has the Extraction passive, and instead enemies killed by Freeman drop Half-Life 1 weapon boxes that contain all ammo the dead player had.
+- Turned Duke Nukem and Sam abilities into weapons that are always available instead of being on a timer. Ammo no longer regenerates automatically, Duke and Sam have to pick up hourglasses to replenish ammo.
 - Ranger now only reduces self rocket damage instead of all.
+- Slightly reworked Eleena's active ability. Now Doppelganger lasts for 12 seconds, but you can swap positions for the full duration. You can still only swap them for up to 3 times.
 - Eleena now only loses her speed buff when she has above 15 armor.
 - Galen can now have only up to 3 totems in PvP.
 - Galen totem in PvE now heals 1 hp per second, but it never times out. When you have all 5 totems, they will heal 2 hp per second each.
@@ -73,7 +80,7 @@ Balance:
 - Lucienne now has a 2 seconds cooldown between using her abilities.
 - Nerfed Duke active projectile speed from 32 to 25 units, bounce count from 3 to 2, ability cooldown from 40 to 45 seconds, ability duration from 7 to 4 seconds. Required freeze balls till freeze from 5 to 6, freeze duration from 3 to 1 second.
 - Nerfed Grayson active ability. Enemies affected by Thumper will stay in stasis much less time.
-- Nerfed Freeman Extraction passive. It now requires to stay alive for 60 seconds, and spawns the player with 25 hp and one starting weapon.
+- Made Grayson ability ball push enemies immediately upon hitting a surface or enemy.
 - Increased Caleb ability spread from 1.2 to 1.3, but decreased self damage on miss from 10 to 5.
 - Nerfed Durandal Bobs health from 35 to 30 and damage from 60 to 40.
 - Nerfed Inquisitor ability damage reduction from 50% to 33%.
@@ -81,13 +88,32 @@ Balance:
 - Removed Bitterman slower health degeneration and increased ability cooldown from 35 to 45 seconds.
 - Reduced amount of Vor Matur spilled blood and its damage.
 - Increased Shotgun and Super Shotgun spread.
-- Sarge now can pick up hourglasses in coop.
 - Nerfed Sarge armor gain from small/big hourglasses from 12/50 to 10/25.
 - Sarge, Terminator and Sam will not pick up hourglasses if their respective ability is full.
+
+PvE Rebalance:
+- Increased Kane cooldown from 35 to 75 seconds, but increased duration from 0.8 to 3 seconds.
+- Nerfed Caleb ability heal per hit from 35 to 25, and overstack from 10 to 5.
+- Increased Nyx cooldown from 15 to 20 seconds, telefrag forces surviving monsters into pain state, also awakening them.
+- Increased Eleena ability cooldown from 20 to 30 seconds, and decreased clone life time from 15 to 12 seconds
+- Made Hunter skull projectiles pass thru Hunter and other players.
+- Increased Postal cooldown from 60 to 70 seconds.
+- Decreased Orbb cooldown from 45 to 30 seconds.
+- Increased Corvus total cooldown from 60 to 120 seconds (20 to 40 seconds per charge).
+- Increased Galen cooldown from 35 to 70 seconds.
+- Sarge now can pick up hourglasses in coop.
+- Decreased Grayson cooldown from 110 to 80 seconds. Monsters affected by ability take 1 point of damage every 3 ticks. That's enough to guarantee a kill on any small monster, and heavily damage mediums.
+- Increased Intruder cooldown from 90 to 100 seconds, but decreased duration from 24 to 20 seconds.
+- Increased Zedek cooldown from 35 to 50 seconds.
+- Bitterman now starts with 50 ability charges.
+- Increased Sorgaul primary fire damage from 130-250 to 150-300, and increased range from 80 to 96.
+- Increased Major cooldown from 135 to 150 seconds.
 
 Maps:
 - Moved QCDE07 "Morpheus" to QCME02
 - Moved QCDE15 "House of Decay" to QCDL05
+- Moved QCDE03 "The Chasm" out of the mappack
+- Added "Underland" from Unreal Tournament 4 as QCDE03
 - Added "Temple of Retribution" from Quake 3 as QCDE07
 - Added "Chastity Belt" from Quake 3 OSP mappack as QCDE15
 - Added "Arcane Temple" from Unreal Tournament as QCDE39
@@ -109,12 +135,14 @@ Maps:
 - Added "Nicktest1" from Unreal Tournament 4 as QCDL10
 - Added "The Struggle", "CTF Run" and "Fatal Error" for Capture the Flag gamemode (QCTF01, QCTF02 and QCTF03 respectively)
 - Added "Outpost", "Hangar" "Cathedral" and "Asteroid Garden" for Invasion gamemode (QCIN01, QCIN02, QCIN03 and QCIN04 respectively)
+- Completely remade QCME01 "The Longest Yard", based on QC version this time
 - Retextured QCDL02 "Aerowalk"
 - Added second Rocket Launcher spawn and moved Heavy Machinegun on QCDE08 "Furious Heights"
 - Made the slope on top of broken pillar in QCDL03 "Fatal Instinct" work like UT slope
 - Reworked map scripts like jumppads and teleports to make them feel lagless in multiplayer
 - Fixed multiple misaligned textures and lights on almost every map
 - Added Heavy and Mega spawn foundation decorations to maps that didn't have them
+- Removed custom campaign skyboxes from QCDE mappack, they are not used by any DM map anyway
 
 Bug fixes:
 - Fixed some effects like the overhead powerup or blood being visible to their owner.
@@ -128,11 +156,11 @@ Bug fixes:
 - Fixed music restarting in gamemodes with multiple rounds.
 - Fixed selecting incorrect weapon when picking up a stronger weapon (MG to HMG, SG to SSG, NG to SNG).
 - Fixed taunts stopping when landing from a high place.
-- Fixed Hunter skull not disappearing when the player leaves the game or goes to spectator.
+- Fixed Hunter skull not disappearing when the player leaves the game or turns into spectator.
 - Fixed players instantly losing 1 hp and armor on spawn due to degeneration.
 - Fixed join game menu not working properly in singleplayer.
 - Fixed Eleena clone hitbox size to be as Eleena herself. It used to be a little slimmer and could get into places where Eleena couldn't.
-- Made Zedek and Postal ability HUD effects show up immediately instead of on first damage tick.
+- Made Zedek and Postal ability HUD effects show up immediately instead of on the first damage tick.
 - Selecting a starter shotgun when owning a super shotgun now properly updates the UI.
 - BFG ammo no longer spawns if gamemode or config prevents BFG from spawning.
 
@@ -141,10 +169,10 @@ Misc:
 - Added a new Markie music track, "Broodmother". It is played on QCDE15 (Chastity Belt) and QCDE24 (Sarnath).
 - Changed blood color for Inquisitor and Vor Matur to their respective blood color.
 - New active ability icons for all champions.
-- All weapon upgrade now display upgrade reticles.
+- All weapon upgrades now display upgrade reticles.
 - Added announcer lines for "You Win", "You Lose", "Draw Game" and "Sudden Death"
 - Replaced all announcer and medals sounds with completely new sounds from George Exley.
-- All champions will always play their respective sound when jumping, where it was random before. 
+- All champions except Lo Wang will always play their respective sound when jumping, where it was random before.
   - Except Lo Wang, his vocalization was too annoying to always play.
 - Added dedicated powerup pickup sounds for Quad and Protection.
 - Completely replaced old Menelkir sounds with Death Knight's from QC.
@@ -155,7 +183,8 @@ Misc:
 - You can now change your class on respawn in singleplayer invasion.
 - Bots no longer jump around after the game ends.
 - Multiple pickup items now emit lights.
-
+- Duplicated Doom 4 Spider Mastermind, Cyberdemon and Revenant sprites so that they look correct when playing with Freedoom.
+- Replaced Doom 4 Tech Mancubus sprites with ones from addon by Craneo.
 
 ---------------------------------------------------------------------
 

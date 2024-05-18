@@ -4,7 +4,7 @@ Primary purpose         : Deathmatch
 ===========================================================================
 Title                   : QCDEMaps
 Filename                : QCDEmaps3.0.pk3
-Release date            : September ##th 2023
+Release date            : May ##th 2024
 Author                  : DBThanatos & Various Mappers
 Email Address           : DBThanatos@gmail.com
 Other Files By Author   : QC: Doom Edition (QCDE), Death Foretold (D4T),
@@ -63,7 +63,7 @@ Map      Title                        Author
 ---------------------------------------------------
 QCDE01   Blood Covenant               DBThanatos
 QCDE02   Toxicity                     DBThanatos
-QCDE03   The Chasm                    DBThanatos
+QCDE03   Menelkir's Domain            geNia
 QCDE04   Bitterman's Revenge          Mr.Enchanter
 QCDE05   Fortress in the Void         Ivan Dobrovski
 QCDE06   Vertical Vengeance           RoosTer
@@ -123,7 +123,7 @@ QCDL08   Crash Course                 Pixo
 QCDL09   Hektik                       Pixo & geNia
 QCDL10   Unreal Place                 geNia
 
-QCME01   The Longest Yard             Abysswalker
+QCME01   The Longest Yard             Mr.Rocket
 QCME02   Morpheus                     RoosTer
 
 QCTF01   The Struggle                 Dech
