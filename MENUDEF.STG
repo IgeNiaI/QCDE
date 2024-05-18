@@ -289,16 +289,24 @@ FreeformMenu "QCDE_OptionsGeneral"
 
 
 	Label {
-		Pos		185, 115		Font		SmallFont
+		Pos		185, 105		Font		SmallFont
 		Anchor	right, top		FontColor	Gray
 		Text	"QC:DE Discord"
 	}
 	Label {
-		Pos		185, 125		Font		SmallFont
+		Pos		185, 115		Font		SmallFont
 		Anchor	right, top		FontColor	Cyan
 		Text	"discord.gg/u4ptaMk"
 	}
 
+
+	Command {
+		Pos		185, 140			Text				"Credits"
+		Size	130, 14				Font				SmallFont
+		Anchor	right, center		FontColor			Gray
+		Padding	0, 0				SelectedFontColor	Brick
+		Command	menu_help
+	}
 
 	Command {
 		SafeCommand
