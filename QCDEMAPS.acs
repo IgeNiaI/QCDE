@@ -178,6 +178,12 @@ script "MarkSectorTagActive_CLIENTSIDE" (int sectorTag, int active) CLIENTSIDE
 
 script "UTSlope" (int slopeAngle, int slopeLength, int slopeHeight)
 {
+	if (PlayerIsBot( PlayerNumber() ))
+	{
+		ThrustThingZ( 0, slopeHeight * 2/5, 0, 0 );
+		terminate;
+	}
+
 	int velx = GetActorVelX(0);
 	int vely = GetActorVelY(0);
 	int velz = GetActorVelZ(0);
