@@ -3,7 +3,7 @@
 #include "AACS.acs"
 #import "QCDE.bcs"
 #import "WEAPCNST.bcs"
-#include "./LibHeaders/TDBots.h.bcs"
+#include "../BotSource/headers/TDBots.h.bcs"
 
 int weaponSpawned[NUMBER_OF_WEAPONS];
 

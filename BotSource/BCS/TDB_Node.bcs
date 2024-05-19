@@ -10,6 +10,12 @@ private struct TDB_NodeT
 
 int CurrArrayIndex;
 
+#ifndef DEBUG_MODE
+int ShowNodes = -1;
+#else
+int ShowNodes = 1;
+#endif
+
 //Player-generated nodes, then transfered to TDB_Nodes once finished.
 int PlayNodeTID[MAX_NODES];
 int PlayNodePos[MAX_NODES][4];
@@ -246,6 +252,12 @@ Script "TDBots_Node_Add" (int type, int arg1, int arg2, int arg3)
 	
 	GiveActorInventory(TID, "TDBots_IDoExist", 1);
 	SetThingSpecial(TID, ACS_ExecuteWithResult, TDB_Touch_Node, CurrArrayIndex);
+
+	if(ShowNodes == -1)
+		ShowNodes = GetCVAR("tdb_show_nodes");
+
+	if(ShowNodes)
+		SetActorProperty(TID, APROP_RenderStyle, STYLE_Normal);
 
 	CurrArrayIndex++;
 }

@@ -41,11 +41,50 @@ struct TDB_WeaponInfoT
 	fixed altFireChance; // [0.0, 1.0], 1.0 is 100% likely to alt fire
 };
 
-world int 63:TDB_WeaponsMap[];
-world TDB_WeaponInfoT 62:TDB_WeaponsStore[];
-world int 61:TDB_WeaponsCurrIdx;
+world int 163:TDB_WeaponsMap[];
+world TDB_WeaponInfoT 162:TDB_WeaponsStore[];
+world int 161:TDB_WeaponsCurrIdx;
 
 TDB_WeaponInfoT TDB_CurrWeapon;
+
+HeapArrayT_Defn(str, TDB_TargetCallbacks, 8);
+
+bool TDB_CheckTarget ()
+{
+	bool retval;
+	int max = TDB_TargetCallbacks_Curr();
+	if(!max)
+		return true;
+
+	int enemyTID, botTID = UniqueTID();
+	int oldEnemyTID, oldBotTID = ActivatorTID();
+
+	Thing_ChangeTID(0, botTID);
+
+	if(!SetActivator(0, AAPTR_TARGET))
+		goto done;
+
+	oldEnemyTID = ActivatorTID();
+	enemyTID = UniqueTID();
+	Thing_ChangeTID(0, enemyTID);
+
+	if(!SetActivator(botTID))
+		goto done;
+
+	for(int i = 0; i < max; i++)
+	{
+		if(!CallACS(TDB_TargetCallbacks_Get(i), enemyTID))
+			break;
+	}
+
+	done:
+	if(!retval)
+		DecoAction("TDBot_ClearTarget");
+
+	Thing_ChangeTID(enemyTID, oldEnemyTID);
+	Thing_ChangeTID(botTID, oldBotTID);
+	return retval;
+}
 
 // just forces BCC to generate PCD_TAGSTRING
 int TDB_Address_Weapons(str key)

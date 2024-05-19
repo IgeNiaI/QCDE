@@ -1,5 +1,5 @@
-#define selfExDat TDBot_ExData[pnum]
-#define selfInput TDBot_Inputs[pnum];
+#define selfExDat TDBot_ExData[PlayerNumber()]
+#define selfInput TDBot_Inputs[PlayerNumber()];
 #define TDB_HasTargetNode(s) (s.goalNode && CheckActorInventory(s.goalNode, "TDBots_IDoExist"))
 #define AngleDiff(src,dst) ((fixed)((((raw)(dst) - (raw)(src)) + 1.5) % 1.0 - 0.5))
 #define self TDBotInfo[PlayerNumber()]
@@ -51,7 +51,6 @@ enum
 
 global gameT 43:currentGame;
 global bool 44:hasWarnedODM;
-modT loadedMod = MOD_NONE;
 #ifndef QCDE_BOT
 bool canQuickswitch;
 #else
@@ -64,6 +63,73 @@ struct
 	int lessFOV;
 } TDB_Difficulty;
 
+struct HeapArrayT
+{
+	bool init;
+	int size, curr, growSize;
+	ptrT ptr;
+};
+
+#define HeapArrayT_Init(name, s) {_##name.ptr = malloc(s); _##name.size = s;}
+
+#define HeapArrayT_Set_Defn(type, name, growSize) \
+void name##_Set (int idx, type val) \
+{ \
+	if(!_##name.init) \
+		HeapArrayT_Init(name, growSize); \
+ \
+	if( (idx > 0) && (idx < _##name.size) ) \
+		zm[ _##name.ptr + idx] = val; \
+}
+
+#define HeapArrayT_Get_Defn(type, name, growSize) \
+type name##_Get (int idx) \
+{ \
+	if(!_##name.init) \
+		HeapArrayT_Init(name, growSize); \
+	return zm[ _##name.ptr + idx ]; \
+}
+
+#define HeapArrayT_Append_Defn(type, name, growSize) \
+void name##_Append (type val) \
+{ \
+	if(!_##name.init) \
+		HeapArrayT_Init(name, growSize); \
+ \
+	if(_##name.curr > _##name.size) \
+	{ \
+		int newSize = _##name.size + growSize; \
+		_##name.ptr = realloc(_##name.ptr, newSize); \
+		_##name.size = newSize; \
+	} \
+	zm[ _##name.ptr + _##name.curr ] = val; \
+	_##name.curr++; \
+}
+
+#define HeapArrayT_Size_Defn(type, name, growSize) \
+int name##_Size () \
+{ \
+	if(!_##name.init) \
+		HeapArrayT_Init(name, growSize); \
+	return _##name.size; \
+}
+
+#define HeapArrayT_Curr_Defn(type, name, growSize) \
+int name##_Curr () \
+{ \
+	if(!_##name.init) \
+		HeapArrayT_Init(name, growSize); \
+	return _##name.curr; \
+}
+
+#define HeapArrayT_Defn(type, name, growSize) \
+HeapArrayT_Size_Defn(type, name, growSize) \
+HeapArrayT_Curr_Defn(type, name, growSize) \
+HeapArrayT_Get_Defn(type, name, growSize) \
+HeapArrayT_Set_Defn(type, name, growSize) \
+HeapArrayT_Append_Defn(type, name, growSize) \
+private HeapArrayT _##name
+
 enum gameT
 {
 	GAME_UNSET = 0,
@@ -71,12 +137,6 @@ enum gameT
 	GAME_HERETIC,
 	GAME_HEXEN,
 	GAME_STRIFE
-};
-
-enum modT
-{
-	MOD_NONE,
-	MOD_MEGAGAME,
 };
 
 str TDB_NodeActors[] =

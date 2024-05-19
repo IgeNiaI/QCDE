@@ -7,7 +7,7 @@ changecom(`//')
 
 define(`DEBUG_MODE', `0')
 
-include(`TDB_SharedDefs.txt') // shared between DECORATE and ACS
+include(`BCS/TDB_SharedDefs.txt') // shared between DECORATE and BCS
 include(`Actors/Tokens.dec')
 include(`Actors/Nodes.dec')
 include(`Actors/Actions.dec')

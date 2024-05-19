@@ -19,7 +19,7 @@ enum
 	TDB_PREC_NODE,
 	TDB_LIFT_NODE
 };
- // shared between DECORATE and ACS
+ // shared between DECORATE and BCS
 Actor BotAttack : Inventory {}
 Actor BotAltAttack : Inventory {}
 Actor BotExplosiveWeapon : Inventory {}

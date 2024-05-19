@@ -1,5 +1,5 @@
 #!/bin/sh
-zt-bcc TDBots.bcs ../ACS/TDBots.o
+zt-bcc BCS/TDBots.bcs ../ACS/TDBots.o
 m4 DECOM4.dec > ../DECORATE.tdb
 cd BotC
 ./botc tdbot.botc ../../tdbot

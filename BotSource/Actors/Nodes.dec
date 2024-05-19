@@ -99,7 +99,7 @@ ACTOR TDBots_PathNode_Map_NG : TDBots_PathNode_Map 2405
 ==============================================================================*/
 ACTOR TDBots_PathNode : Inventory
 {
-	ifelse(DEBUG_MODE, `1', `RenderStyle Normal', `RenderStyle None')
+	RenderStyle None
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.NOSCREENFLASH
 	+INVENTORY.NEVERRESPAWN
