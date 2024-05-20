@@ -1315,9 +1315,15 @@ FreeformMenu "QCDE_OptionsBinds"
 	Label	{ Pos   74, 651		Text "Screenshot"			Anchor right, center	Font SmallFont		FontColor DarkGray }
 	Control	{ Pos  132, 650		Action "screenshot"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
+	Label	{ Pos -128, 671		Text "Screen size up"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 670		Action "sizeup"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
+	Label	{ Pos   74, 671		Text "Screen size down"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132, 670		Action "sizedown"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+
 
 	Label { // empty text to add extra scroll area
-		Pos 0, 690
+		Pos 0, 710
 		Text ""
 	}
 
