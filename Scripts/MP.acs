@@ -760,6 +760,7 @@ function void setupModifier()
 	}
 	}
 
+	ConsoleCommand(strparam(s:"allstarterweapons ", d:GetCVar("skirm_starterweap")));
 	ConsoleCommand(strparam(s:"menu_skirmishmodifier ",		d:menu_skirmishmodifier));
 	ConsoleCommand(strparam(s:"rocketarena ",	d:rocketarena));
 }

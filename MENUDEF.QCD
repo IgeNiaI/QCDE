@@ -839,6 +839,20 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Padding	3, 1				SelectedFontColor	Gray
 	}
 
+	Option {
+		EnableCVar skirm_skirmishmodifier,	0, 0
+		Pos		0, 66				CVar				skirm_starterweap
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	left, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+	Label {
+		Pos		17, 67				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Give all Starter Weapons at spawn"
+	}
+
 
 	Command {
 		Pos		100, 205			Text				"Start Game!"	Background			BT28060

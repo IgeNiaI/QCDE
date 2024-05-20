@@ -27,6 +27,7 @@ server           bool sv_showItemTimers     =   false; // show Heavy, Mega, Mega
 // Game modes
 
 server noarchive int rocketarena            = 0; // 1: RL, 2: SSG, 3: Unholy Trinity, other: bitfield (1110000 is UT)
+server noarchive bool allstarterweapons     = false; // Give all starter weapons at spawn?
 server noarchive int qc_elderssoul          = 0; // QCDE's own "terminator" gameplay mode, allowing team play
 server noarchive int qc_freezetag           = 0; // Freeze enemies instead of kill, thaw allies with body heat
 
@@ -101,9 +102,10 @@ local noarchive int qcde_selectedoptions  = 0; // which options menu is currentl
 
 server int skirm_botscount        = 0; // fills slots with bots if there are fewer players
 server int skirm_skirmishgamemode = 3; // used in skirmish menu to setup gamemode
-server int skirm_skirmishmodifier = 0; // used in skirmish menu to setup modifier
+server int skirm_skirmishmodifier = 0; // used in skirmish menu to setup weapons modifier
 server int skirm_maxlives         = 3; // used in skirmish menu to setup lives limit
 
+server bool skirm_starterweap		=  false; // spawn with all Starter Weapons a-la Sam passive?
 server bool skirm_heavymachinegun	=  true; // spawn with Heavy Machinegun?
 server bool skirm_supershotgun		=  true; // spawn with Super Shotgun?
 server bool skirm_supernailgun		=  true; // spawn with Super Nailgun?

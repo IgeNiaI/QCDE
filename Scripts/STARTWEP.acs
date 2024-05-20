@@ -48,13 +48,22 @@ script "QCDE_StartingWeapon_Apply" (void)
 	else if (CheckInventory("Class_Sam"))          { ACS("QCDE_Passive_Sam"); }
 	else
 	{
-		int cvar = GetCvar("cl_startingWeapon");
-		switch(cvar)
+		if (GetCVar("allstarterweapons"))
 		{
-		default: // go to case 1
-		case 1: if (!CheckInventory(weapon1)) GiveInventory(weapon1, 1);	break;
-		case 2: if (!CheckInventory(weapon2)) GiveInventory(weapon2, 1);	break;
-		case 3: if (!CheckInventory(weapon3)) GiveInventory(weapon3, 1);	break;
+			if (!CheckInventory(weapon1)) GiveInventory(weapon1, 1);
+			if (!CheckInventory(weapon2)) GiveInventory(weapon2, 1);
+			if (!CheckInventory(weapon3)) GiveInventory(weapon3, 1);
+		}
+		else
+		{
+			int cvar = GetCvar("cl_startingWeapon");
+			switch(cvar)
+			{
+			default: // go to case 1
+			case 1: if (!CheckInventory(weapon1)) GiveInventory(weapon1, 1);	break;
+			case 2: if (!CheckInventory(weapon2)) GiveInventory(weapon2, 1);	break;
+			case 3: if (!CheckInventory(weapon3)) GiveInventory(weapon3, 1);	break;
+			}
 		}
 	}
 
