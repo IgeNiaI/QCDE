@@ -1074,15 +1074,27 @@ FreeformMenu "QCDE_OptionsControlsCommon"
 									SelectedForeground	CHKBOXS, 14, 14
 	}
 
+	Label {
+		Pos		80, 63				Font		SmallFont
+		Anchor	left, top			FontColor	DarkGray
+		Text	"Mouse cursor"
+	}
+	Option {
+		Pos		80, 80				CVar				vid_cursor		UnknownBackground	OP21028
+		Size	105, 14				Values				Cursors			SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
 	IfOption(Windows)
 	{
 		Label {
-			Pos		80, 63				Font		SmallFont
+			Pos		80, 93				Font		SmallFont
 			Anchor	left, top			FontColor	DarkGray
 			Text	"Mouse input type"
 		}
 		Option {
-			Pos		80, 80				CVar				in_mouse		UnknownBackground	OP21028
+			Pos		80, 110				CVar				in_mouse		UnknownBackground	OP21028
 			Size	105, 14				Values				InMouse			SelectedBackground	OP21028S
 			Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
 			Padding	3, 1				SelectedFontColor	Gray
