@@ -249,31 +249,20 @@ private void TDB_UpdateWeaponFlags ()
 // By DarkAssassin.
 Script "TDB_FaceTarget" (int noPitch, int theirID)
 {
-	int myID;
+	int myOldID, myID;
 
 	if(!theirID)
 	{
-		// Get the TIDs else set them.
-		myID = ActivatorTID();
-
-		if(myID == 0)
-		{
-			myID = UniqueTID();
-			Thing_ChangeTID(0, myID);
-		}
+		// Create a temporary unique TID, as the bot's TID may be 0 or shared with other things.
+		myOldID = ActivatorTID();
+		myID = UniqueTID();
+		Thing_ChangeTID(0, myID);
 
 		if(!SetActivator(myID, AAPTR_TARGET))
 		{
-			//SetActorPitch(myID, 0);
+			Thing_ChangeTID(myID, myOldID);
 			terminate;
 		}
-
-		/*theirID = ActivatorTID();
-		if (!theirID)
-		{
-			theirID = UniqueTID();
-			Thing_ChangeTID(0, theirID);
-		}*/
 	}
 
 	// Set angle and pitch.
@@ -281,11 +270,14 @@ Script "TDB_FaceTarget" (int noPitch, int theirID)
 	fixed y = GetActorY(theirID) - GetActorY(myID);
 	if(!noPitch)
 	{
-		fixed z = ((GetActorProperty(theirID, APROP_Height) / 2) + GetActorZ(theirID)) - ((GetActorProperty(theirID, APROP_Height) / 2) + GetActorZ(myID));
+		fixed z = (((fixed)GetActorProperty(theirID, APROP_Height) * 0.5) + GetActorZ(theirID)) - (GetActorZ(myID) + GetActorViewHeight(myID));
 		SetActorPitch(myID, -VectorAngle(VectorLength(x, y), z));
 	}
 		
 	SetActorAngle(myID, VectorAngle(x, y));
+
+	if(!theirID)
+		Thing_ChangeTID(myID, myOldID);
 }
 
 //from ACSUtils
