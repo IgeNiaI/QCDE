@@ -70,7 +70,9 @@ struct HeapArrayT
 	ptrT ptr;
 };
 
-#define HeapArrayT_Init(name, s) {_##name.ptr = malloc(s); _##name.size = s;}
+int r1, r2;
+
+#define HeapArrayT_Init(name, s) {_##name.init = true; _##name.ptr = malloc(s); _##name.size = s;}
 
 #define HeapArrayT_Set_Defn(type, name, growSize) \
 void name##_Set (int idx, type val) \
@@ -85,8 +87,6 @@ void name##_Set (int idx, type val) \
 #define HeapArrayT_Get_Defn(type, name, growSize) \
 type name##_Get (int idx) \
 { \
-	if(!_##name.init) \
-		HeapArrayT_Init(name, growSize); \
 	return zm[ _##name.ptr + idx ]; \
 }
 
@@ -109,16 +109,12 @@ void name##_Append (type val) \
 #define HeapArrayT_Size_Defn(type, name, growSize) \
 int name##_Size () \
 { \
-	if(!_##name.init) \
-		HeapArrayT_Init(name, growSize); \
 	return _##name.size; \
 }
 
 #define HeapArrayT_Curr_Defn(type, name, growSize) \
 int name##_Curr () \
 { \
-	if(!_##name.init) \
-		HeapArrayT_Init(name, growSize); \
 	return _##name.curr; \
 }
 

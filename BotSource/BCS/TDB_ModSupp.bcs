@@ -51,39 +51,62 @@ HeapArrayT_Defn(str, TDB_TargetCallbacks, 8);
 
 bool TDB_CheckTarget ()
 {
-	bool retval;
+	int botTID, oldBotTID;
+	int enemyTID, oldEnemyTID;
 	int max = TDB_TargetCallbacks_Curr();
 	if(!max)
 		return true;
 
-	int enemyTID, botTID = UniqueTID();
-	int oldEnemyTID, oldBotTID = ActivatorTID();
+	void Cleanup (bool cleanEnemy = true)
+	{
+		DecoAction("TDBot_ClearTarget");
+		if(cleanEnemy)
+		{
+			SetActivator(botTID);
+			Thing_ChangeTID(enemyTID, oldEnemyTID);
+		}
 
-	Thing_ChangeTID(0, botTID);
+		Thing_ChangeTID(botTID, oldBotTID);
+
+		DLogf("%n my TID now is %i", 0, ActivatorTID());
+	}
+
+	DLogf("%n my TID is %i", 0, ActivatorTID());
+
+	TDB_NewTempTID();
+	botTID = r1;
+	oldBotTID = r2;
 
 	if(!SetActivator(0, AAPTR_TARGET))
-		goto done;
+	{
+		DLogf("pingas 1");
+		Cleanup(false);
+		return false;
+	}
 
-	oldEnemyTID = ActivatorTID();
-	enemyTID = UniqueTID();
-	Thing_ChangeTID(0, enemyTID);
+	TDB_NewTempTID();
+	enemyTID = r1;
+	oldEnemyTID = r2;
 
 	if(!SetActivator(botTID))
-		goto done;
+	{
+		DLogf("pingas 2");
+		Cleanup();
+		return false;
+	}
 
 	for(int i = 0; i < max; i++)
 	{
-		if(!CallACS(TDB_TargetCallbacks_Get(i), enemyTID))
-			break;
+		DLogf("%s: callback %s #%i", __FUNCTION__, TDB_TargetCallbacks_Get(i), i);
+		if(!CallACS(TDB_TargetCallbacks_Get(i), enemyTID, oldEnemyTID))
+		{
+			Cleanup();
+			return false;
+		}
 	}
 
-	done:
-	if(!retval)
-		DecoAction("TDBot_ClearTarget");
-
-	Thing_ChangeTID(enemyTID, oldEnemyTID);
-	Thing_ChangeTID(botTID, oldBotTID);
-	return retval;
+	Cleanup();
+	return true;
 }
 
 // just forces BCC to generate PCD_TAGSTRING

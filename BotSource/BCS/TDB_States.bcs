@@ -10,15 +10,15 @@ private int TDBot_StateRoam (bool justEntered)
 	if( (self.lastTargetPlayer != -1) && (PlayerFollowTID[self.lastTargetPlayer][0] == 0) )
 	{
 		DLogf("%n: Stopped chasing player #%i", 0, self.lastTargetPlayer);
-		
+
 		self.lastTargetPlayer = -1;
 	}
-	
+
 	DecoAction("TDBot_ClearTarget");
-	
+
 	TDB_BotLook(self.perception);
-	
-	if( ((!CallACS("TDBot_IsTargetAlive", AAPTR_TARGET)) || (!CallACS("TDBot_TargetIsShootable"))) && TDB_CheckTarget() )
+
+	if((!CallACS("TDBot_IsTargetAlive", AAPTR_TARGET)) || (!CallACS("TDBot_TargetIsShootable")) || !TDB_CheckTarget())
 	{
 		//Current order is to stand still? If so, don't run any of the movement
 		if(CheckInventory("BotCurrentOrder") || (self.flags & TDB_FLAGS_WAIT))

@@ -3,6 +3,7 @@
 strict namespace ZMemory {
 
 world raw 160:zm[];
+bool memoryInitialized = false; // allocated memory must reset per-map
 
 typedef int ptrT;
 
@@ -22,7 +23,6 @@ private enum
 
 private enum
 {
-	p_malloc_init_flag_location,
 	p_malloc_first_header_location
 };
 
@@ -35,9 +35,9 @@ ptrT malloc (int size)
 Script "TDB_Malloc" (int size)
 {
 	//Do the setup on the first run of this function.
-	if(!zm[p_malloc_init_flag_location]) //Default values for global values is 0, so this is true.
+	if(!memoryInitialized) //Default values for module values is 0, so this is true.
 	{
-		zm[p_malloc_init_flag_location] = true;
+		memoryInitialized = true;
 		zm[p_malloc_first_header_location+malloc_allocated] = false;
 		zm[p_malloc_first_header_location+malloc_size] = -1; //"infinite"
 		zm[p_malloc_first_header_location+malloc_next_header] = nullptr; //nullptr
@@ -224,6 +224,20 @@ ptrT calloc (int n, int s)
 	return ptr;
 }
 
+// single-tic allocation
+Script "TDB_Alloca_Handle" (int ptr)
+{
+	Delay(1);
+	free(ptr);
+}
+
+ptrT alloca (int size)
+{
+	ptrT ptr = ACS_NamedExecuteWithResult("TDB_Malloc", size);
+	ACS_NamedExecuteWithResult("TDB_Alloca_Handle", ptr);
+	return ptr;
+}
+
 //These are for debugging
 Script "TDB_Memory_Write" (int index, int value)
 {
@@ -235,11 +249,21 @@ Script "TDB_Memory_Read" (int index)
 	log(d:zm[index]);
 }
 
+Script "TDB_Memory_Read_Str" (int index)
+{
+	log(s:zm[index]);
+}
+
+Script "TDB_Read_test" (int index)
+{
+	log(s:TDB_TargetCallbacks_Get(index));
+}
+
 Script "TDB_Memory_Print"
 {
 	ptrT p_current_header = p_malloc_first_header_location;
 
-	while(p_current_header != nullptr)
+	do
 	{
 		log(s:  "Header location: ", d:p_current_header,
 		    s:"\n Allocated flag: ", d:zm[p_current_header+malloc_allocated],
@@ -249,7 +273,7 @@ Script "TDB_Memory_Print"
 		    s:"\n");
 
 		p_current_header = zm[p_current_header+malloc_next_header];
-	}
+	} while(p_current_header != nullptr);
 }
 
 }

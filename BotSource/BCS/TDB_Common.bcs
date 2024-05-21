@@ -12,6 +12,14 @@ raw abs (raw x)
 	return x;
 }
 
+void TDB_NewTempTID()
+{
+	r1 = UniqueTID();
+	r2 = ActivatorTID();
+	Thing_ChangeTID(0, r1);
+	return;
+}
+
 void TDB_BotLook (int fov)
 {
 	int oldAccuracy = GetActorProperty(0, APROP_Accuracy);
