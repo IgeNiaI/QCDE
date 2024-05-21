@@ -189,38 +189,34 @@ Actor QCSuperNailgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 2, "Ready.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 1, "Ready.Quake1")
 	Ready.Default:
-		QCGD A 0
+		QCGD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
 		Goto ReadyCont
 	Ready.Quake1:
-		Q1GD A 0
+		Q1GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
 		Goto ReadyCont
 	Ready.Quake2:
-		Q2GD A 0
+		Q2GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
 		Goto ReadyCont
 	Ready.Quake3:
 		Q3GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Ready.Quake3Upgraded")
-		Q3GD A 0
 		Goto ReadyCont.Animated
 	Ready.Quake3Upgraded:
 		Q3FD A 0 A_JumpIfInventory("SNG_UG_Lava",-1,"Ready.Quake3")
-		Q3FD A 0
 		Goto ReadyCont.AnimatedUpgraded
 	Ready.Quake4:
 		Q4GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Ready.Quake4Upgraded")
-		Q4GD A 0
 		Goto ReadyCont
 	Ready.Quake4Upgraded:
 		Q4FD A 0 A_JumpIfInventory("SNG_UG_Lava",-1,"Ready.Quake4")
-		Q4FD A 0
 		Goto ReadyCont.Upgraded
 	Ready.ETQW:
-		QWGD A 0
+		QWGD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
 		Goto ReadyCont
 	Ready.QCDE1:
-		Q0GD A 0
+		Q0GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
 		Goto ReadyCont
 	Ready.HalfLife:
-		HLGD A 0
+		HLGD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
 		Goto ReadyCont
 
 	ReadyCont:
