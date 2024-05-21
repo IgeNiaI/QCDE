@@ -121,3 +121,18 @@ script "QCDE_HasTarget" (void)
 	int target = ActivatorTID();
 	setResultValue(activator != target);
 }
+
+Script "QCDE_TDB_TargetCheck" (int targetTID, int oldTargetTID)
+{
+    SetResultValue(1);
+
+    if(GetActorClass(targetTID) == "TotemTotem")
+    {
+        int enemyPlr = (oldTargetTID - TOTEM_TIDBASE) % 128;
+
+        if(isTeamGame())
+            SetResultValue((int)(GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM) != GetPlayerInfo(enemyPlr, PLAYERINFO_TEAM)));
+        else
+            SetResultValue((int)(PlayerNumber() != enemyPlr));
+    }
+}

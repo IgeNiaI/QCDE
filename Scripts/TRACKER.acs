@@ -3,6 +3,7 @@
 #include "AACS.acs"
 #import "QCDE.bcs"
 #import "WEAPCNST.bcs"
+#include "../BotSource/headers/TDBots.h.bcs"
 
 //=============================================================================
 //=============================================================================
@@ -61,6 +62,7 @@ Script "QCDE_Open" Open
 
 	ACS_NamedExecuteAlways("QCDE_RareTracker",0);
 	ACS_NamedExecuteAlways("QCDE_ConfigureBotWeapons",0);
+	TDB_TargetCallbacks_Append("QCDE_TDB_TargetCheck");
 }
 
 Script "QCDE_Enter" Enter
