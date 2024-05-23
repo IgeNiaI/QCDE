@@ -21,8 +21,8 @@ server           int sv_pistolStart         =   0; // reset inventory on every m
 server           int sv_crowntheleader      =   1; // crown that marks best fragger in deathmatch
 server           int sv_pvescaledamage      =   1; // reduce damage to squishies, increase to tanks in coop
 server           int sv_weaponrespawn       =   0; // weapon respawn time
-server           bool sv_showStackLeft      =   false; // show enemy's health and armor on death
 server           bool sv_showItemTimers     =   false; // show Heavy, Mega, MegaMega, Light Armor and Powerup respawn timers
+server           bool sv_showStackLeft      =   false; // show enemy's health and armor on death
 
 // Game modes
 
@@ -100,6 +100,8 @@ server int theme4  = 1; // Doom 4 (Death Foretold)
 // Menu settings
 local noarchive int qcde_selectedoptions  = 0; // which options menu is currently visible
 
+server bool skirm_showItemTimers  = true; // show Heavy, Mega, MegaMega, Light Armor and Powerup respawn timers
+server bool skirm_showStackLeft   = false; // show enemy's health and armor on death
 server int skirm_botscount        = 0; // fills slots with bots if there are fewer players
 server int skirm_skirmishgamemode = 3; // used in skirmish menu to setup gamemode
 server int skirm_skirmishmodifier = 0; // used in skirmish menu to setup weapons modifier

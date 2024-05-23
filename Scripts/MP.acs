@@ -727,6 +727,8 @@ function void setupGamemode()
 	case 12: menu_skirmishgamemode = 15;						break;	// Domination
 	}
 
+	ConsoleCommand(strparam(s:"sv_showItemTimers ",			d:GetCVar("skirm_showItemTimers")));
+	ConsoleCommand(strparam(s:"sv_showStackLeft ",			d:GetCVar("skirm_showStackLeft")));
 	ConsoleCommand(strparam(s:"menu_skirmishgamemode ",		d:menu_skirmishgamemode));
 	ConsoleCommand(strparam(s:"qc_elderssoul ",				d:qc_elderssoul));
 	ConsoleCommand(strparam(s:"qc_freezetag ",				d:qc_freezetag));
