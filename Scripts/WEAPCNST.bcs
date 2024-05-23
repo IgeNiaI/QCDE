@@ -305,15 +305,15 @@ function void reReadWeaponCvars(void)
 
 	case 0:  // Ranger
 	case 4:  // Caleb
-	case 28: // Postal
+	case 22: // Vor Matur
 	case 30: // Intruder
 		classSkin = 1;
 		break;
 
 	case 9:  // Bitterman
 	case 18: // Grayson
-	case 22: // Vor Matur
 	case 24: // Lucienne
+	case 28: // Postal
 		classSkin = 2;
 		break;
 
