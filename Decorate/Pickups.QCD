@@ -73,21 +73,21 @@ Actor Hourglass : CustomInventory 15508
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_DukeNukem_Ammo_Full",0,0,0,0)==1, "Death")
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarDuke")
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("DukeAmmo", 6, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("DukeAmmo", 12, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveMoarDuke:
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("DukeAmmo", 15, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("DukeAmmo", 18, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveBullets:
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_Sam_Bullets_Full",0,0,0,0)==1, "Death")
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarBullets")
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("SeriousBullets", 20, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("SeriousBullets", 40, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveMoarBullets:
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("SeriousBullets", 40, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("SeriousBullets", 60, 0, GIF_FORCESERVERSIDE)
 		Stop
 	}
 }
@@ -157,17 +157,17 @@ Actor BigHourglass : Hourglass 15509
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_DukeNukem_Ammo_Full",0,0,0,0)==1, "Death")
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarDuke")
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("DukeAmmo",21, 0, GIF_FORCESERVERSIDE)
-		Stop
-	GiveMoarBullets:
-		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
 		TNT1 A 0 A_GiveInventory("DukeAmmo",30, 0, GIF_FORCESERVERSIDE)
+		Stop
+	GiveMoarDuke:
+		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
+		TNT1 A 0 A_GiveInventory("DukeAmmo",45, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveBullets:
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_Sam_Bullets_Full",0,0,0,0)==1, "Death")
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"GiveMoarBullets")
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
-		TNT1 A 0 A_GiveInventory("SeriousBullets",75, 0, GIF_FORCESERVERSIDE)
+		TNT1 A 0 A_GiveInventory("SeriousBullets",100, 0, GIF_FORCESERVERSIDE)
 		Stop
 	GiveMoarBullets:
 		TNT1 A 0 A_PlaySound("QC/Items/AmmoPick",CHAN_AUTO)
