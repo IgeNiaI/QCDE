@@ -204,14 +204,9 @@ ClearBots //to remove skulltag bots
 { name = "PinkPiolet"			class = "Terminator"	gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "8F BC 8F"	script = "dfultbot"		}
 
 
-// Tribute to Champions, the "ouch they hurt" (29pts)
-//Excellent aim, not great dodger, excellent reaction time and OK at finding you (the Aimbot)
-{ name = "Toxjq"			class = "Kane"		 accuracy = 6	intellect = 6	evade = 4	anticipation = 3	reactiontime = 6 	perception = 4	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		}
-//Dodge master, good aim, good reaction, great finding (the dodge master)
-{ name = "COOLLER"			class = "Ranger"	 accuracy = 4	intellect = 4	evade = 6	anticipation = 6	reactiontime = 4 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCRocketLauncherDM"	}
-//Good aim and dodge, excellent reaction and finding (the brains)
-{ name = "Rapha"			class = "Sarge"		 accuracy = 5	intellect = 4	evade = 4	anticipation = 4	reactiontime = 6 	perception = 6	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCLightningGunDM"		}
-//Great aim, pretty good dodge, reaction and finding are very good (the all-rounder)
-{ name = "Cypher"			class = "Sorgaul"	 accuracy = 5	intellect = 5	evade = 5	anticipation = 4	reactiontime = 5 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCRailgunDM"			}
-//Great aim with hitscan, excellent with projectiles, good evade, not great at finding the enemy (the speedrunner)
-{ name = "RAISY"			class = "Inquisitor" accuracy = 5	intellect = 6	evade = 4	anticipation = 5	reactiontime = 5 	perception = 4	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCRocketLauncherDM"	}
+// Tribute to Champions, the "ouch they hurt" (30pts)
+{ name = "Toxjq"			class = "Kane"		 accuracy = 5	intellect = 5	evade = 5	anticipation = 5	reactiontime = 5 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		}
+{ name = "COOLLER"			class = "Ranger"	 accuracy = 5	intellect = 5	evade = 5	anticipation = 5	reactiontime = 5 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCRocketLauncherDM"	}
+{ name = "Rapha"			class = "Sarge"		 accuracy = 5	intellect = 5	evade = 5	anticipation = 5	reactiontime = 5 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCLightningGunDM"		}
+{ name = "Cypher"			class = "Sorgaul"	 accuracy = 5	intellect = 5	evade = 5	anticipation = 5	reactiontime = 5 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCRailgunDM"			}
+{ name = "RAISY"			class = "Inquisitor" accuracy = 5	intellect = 5	evade = 5	anticipation = 5	reactiontime = 5 	perception = 5	color = "B9 B4 9E"	gender ="male"	railcolor = gold	script = "humanbot" favoriteweapon = "QCRocketLauncherDM"	}
