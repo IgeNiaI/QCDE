@@ -163,12 +163,12 @@ Franco Tieppo           : Spriter for all weapons in v2.0
                           champion. Redrawn sprites for Painkiller weapon, Demonic HUD,
                           Soul Pickup sprites, Redrawn/retouched "Black tarot" card icons and
                           overhead sprites, Elder Soul pickup sprites, menu graphics for v3.0,
-                          Quake 3 weapon skin sprites and a lot more. 
+                          redrawn weapon skin sprites and a lot more. 
                           Seriously, I ought to make a file to list all of Franco's contributions
                           But most importantly: The **WET FLOOR SIGN**
 
 Pixo                    : Orbb sprites, console font graphics,
-                          Quake 2, 4 and QW: ET weapon skin sprites
+                          original Quake 1, 2, 3, 4 and QW: ET weapon skin sprites
 
 Michael Markie          : QCDE Original Soundtrack, production of voice effects of Durandal,
                           sounds for BFG10k, sounds for Duke's Freeze Gun, other misc sounds.
@@ -240,7 +240,7 @@ Ivory Duke              : Description/Lore for all champions in the Manual up to
                           Voxels, code assistance, QCDEmaps resource repacking
                           Original Medals and Item Respawn timers addons
 
-Revenatn                : Half-Life weapon skins, ripping Serious Sam model
+Revenatn                : Original Half-Life weapon skins, ripping Serious Sam model
 
 DeXiaZ                  : Base sprites for Nyx
 
@@ -260,7 +260,7 @@ TDRR                    : Universal Bump Mapping addon, TDBots addon
 
 N4h                     : Quake 1 weapon skins, various sprite adjustments
 
-Hvellor                 : Remaining Half-Life weapon skins, various sound adjustments
+Hvellor                 : Remaining original Half-Life and Serious Sam weapon skins, various sound adjustments
 
 anvi                    : Various sound adjustments
 
@@ -313,7 +313,11 @@ prod1G                  : v3.0 Beta Tester
 
 PopKorn                 : v3.0 Beta Tester
 
+anvi                    : v3.0 Beta Tester
 
+ako                     : v3.0 Beta Tester
+
+TDRR                    : v3.0 Beta Tester
 
 
 

@@ -7,6 +7,7 @@ V3.0 (May ## 2024)
 General:
 - Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
 - Added a long requested UT champion, Brock from Unreal Tournament 99. He is a heavy champion, stack is 100/50. His first passive ability grants up to +100 HP overstack from Mega Health pickups. Health and Armor overstack will not degenerate over time. Additionally, Hourglass grants +10 HP and Big Hourglass +25 HP. His second passive ability allows Heavy Armor pickups to grant up to +150 AP overstack. Upon acquiring a Heavy Armor pickup, Brock’s Armor stack will absorb 100% of all damage inflicted to him until it is fully depleted. Brock has no active ability and uses Unreal Tournament movement.
+- Reworked Freeman. He no longer has H.E.V Suit passive, but has Double Tap dodge instead, like Inquisitor. Also, he no longer has the Extraction passive, and instead enemies killed by Freeman drop Half-Life 1 weapon boxes that contain all ammo the dead player had.
 - Reworked all champions movement mechanics.
   - Most champions gained VQ3 movement.
   - Menelkir, Doom Slayer, Corvus, Galen and Zedek kept the original Doom movement, but lost some air acceleration.
@@ -59,12 +60,12 @@ General:
 - QCDE OST can now be turned off in the Sound menu.
 - Bots at `botskill` 3 and 4 now select weapons according to distance to their target.
 - Bots are less likely to navigate towards damaging and instant death sectors.
+- Added Discord Rich Presence support. It displays what gamemode and map you are playing as your Discord status.
 
 PVP Balance:
 - Railgun no longer deals additional "zoomed charge" damage in PVP.
 - All Light champions gained 25 more max armor and all Heavy champions lost 25 max armor, except Vor Matur.
 - Raised players camera and attack Z offset.
-- Reworked Freeman. He no longer has H.E.V Suit passive, but has Double Tap dodge instead, like Inquisitor. Also, he no longer has the Extraction passive, and instead enemies killed by Freeman drop Half-Life 1 weapon boxes that contain all ammo the dead player had.
 - Turned Duke Nukem and Sam abilities into weapons that are always available instead of being on a timer. Ammo no longer regenerates automatically, Duke and Sam have to pick up hourglasses to replenish ammo.
 - Ranger now only reduces self rocket damage instead of all.
 - Slightly reworked Eleena's active ability. Now Doppelganger lasts for 12 seconds, but you can swap positions for the full duration. You can still only swap them for up to 3 times.
