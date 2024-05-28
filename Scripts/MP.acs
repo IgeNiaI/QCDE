@@ -374,7 +374,7 @@ Script "QCDE_DM_FragBeep" (void) clientside
 
 // Make players slower or faster depending on server settings
 
-Script "QCDE_PlayerSpeed" (void)
+Script "QCDE_CalculatePlayerSpeed" (void)
 {
 	int sv_PlayerSpeed = GetCvar("sv_PlayerSpeed");
 
@@ -389,6 +389,13 @@ Script "QCDE_PlayerSpeed" (void)
 	sv_PlayerSpeed = sv_PlayerSpeed / 5 * 5; // floor to multiple of 5
 	if(sv_PlayerSpeed <  70) sv_PlayerSpeed =  70;
 	if(sv_PlayerSpeed > 130) sv_PlayerSpeed = 130;
+
+	SetResultValue(sv_PlayerSpeed);
+}
+
+Script "QCDE_PlayerSpeed" (void)
+{
+	int sv_PlayerSpeed = ACS_NamedExecuteWithResult("QCDE_CalculatePlayerSpeed", 0);
 
 	str power = strparam(s:"PlayerSpeed", d:sv_PlayerSpeed);
 	GiveInventory(power, 1);
