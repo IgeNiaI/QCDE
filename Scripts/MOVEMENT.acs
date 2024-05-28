@@ -15,6 +15,10 @@ Script "QCDE_ConfigureMovement" (void)
     	terminate;
     }
 
+	int sv_PlayerSpeed = ACS_NamedExecuteWithResult("QCDE_CalculatePlayerSpeed", 0);
+	sv_PlayerSpeed *= 1.0;
+	sv_PlayerSpeed /= 100;
+
 	// Common
 	SetActorProperty(0, APROP_MvType, 1);
 	SetActorProperty(0, APROP_JumpDelay, 0);
@@ -118,7 +122,7 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.975);
-		SetActorProperty(0, APROP_VelocityCap, 20.0);
+		SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0872665);
 		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
 	}
@@ -134,7 +138,7 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.95);
-		SetActorProperty(0, APROP_VelocityCap, 20.0);
+		SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0872665);
 		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
 	}
@@ -169,7 +173,7 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.96);
-		SetActorProperty(0, APROP_VelocityCap, 20.0);
+		SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.122173);
 		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
 	}
@@ -184,6 +188,10 @@ Script "QCDE_ConfigureMovement" (void)
 
 Script "QCDE_ConfigureMovement_UT" (void)
 {
+	int sv_PlayerSpeed = ACS_NamedExecuteWithResult("QCDE_CalculatePlayerSpeed", 0);
+	sv_PlayerSpeed *= 1.0;
+	sv_PlayerSpeed /= 100;
+
 	ACS_NamedExecuteAlways("QCDE_CheckDoubleTapConfig", 0);
 
 	// Common
@@ -201,24 +209,24 @@ Script "QCDE_ConfigureMovement_UT" (void)
 	SetActorProperty(0, APROP_SecondJumpZ, 6.75);
 	SetActorProperty(0, APROP_SecondJumpDelay, 17);
 	SetActorProperty(0, APROP_AirAcceleration, 0.35);
-	SetActorProperty(0, APROP_VelocityCap, 10.0);
+	SetActorProperty(0, APROP_VelocityCap, FixedMul(12.5, sv_PlayerSpeed));
 
 	if ( // Most Medium champs
 		CheckInventory("Body_Medium")
 	) {
-		SetActorProperty(0, APROP_SecondJumpXY, 17.5);
+		SetActorProperty(0, APROP_SecondJumpXY, FixedMul(21.875, sv_PlayerSpeed));
 	}
 
 	else if ( // Most Light champs
 		CheckInventory("Body_Small")
 	) {
-		SetActorProperty(0, APROP_SecondJumpXY, 18.0);
+		SetActorProperty(0, APROP_SecondJumpXY, FixedMul(22.5, sv_PlayerSpeed));
 	}
 
 	else if ( // Most Heavy champs
 		CheckInventory("Body_Big")
 	) {
-		SetActorProperty(0, APROP_SecondJumpXY, 17.0);
+		SetActorProperty(0, APROP_SecondJumpXY, FixedMul(21.25, sv_PlayerSpeed));
 	}
 }
 
