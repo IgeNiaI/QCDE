@@ -249,7 +249,25 @@ script "QCDE_HitMark" (void) clientside
 
 Script "QCDE_ConfigureBotWeapons" (void)
 {
-	// Define weapons
+	// Define ability weapons with max priority and infinite range, to prevent bots from switching to other weapons
+	TDB_Weapon_New(		"BlazkoAkimbo",			10);
+	TDB_Weapon_New(		"CalebDoll",			10);
+	TDB_Weapon_New(		"SlayerBFG",			10);
+	TDB_Weapon_New(		"Shieldquisitor",		10);
+	TDB_Weapon_New(		"PostalCowHead",		10);
+	TDB_Weapon_New(		"SorgaulFists",			10);
+
+	// Setup fire modes
+	//					Name					Ammo Class		Ammo Use	Proj Speed	Min Dist	Max Dist	Flags								Alt Fire chance
+	TDB_Weapon_Pri(		"BlazkoAkimbo",			"",					0,		25.0,		0.0,		MAX_RANGE,	TDB_CW_PROJECTILE);
+	TDB_Weapon_Alt(		"BlazkoAkimbo",			"",					0,		0.0,		0.0,		MAX_RANGE,	0,									0.5);
+	TDB_Weapon_Pri(		"CalebDoll",			"",					0,		0.0,		0.0,		MAX_RANGE,	0);
+	TDB_Weapon_Pri(		"SlayerBFG",			"",					0,		25.0,		0.0,		MAX_RANGE,	TDB_CW_PROJECTILE);
+	TDB_Weapon_Pri(		"Shieldquisitor",		"",					0,		0.0,		0.0,		MAX_RANGE,	0);
+	TDB_Weapon_Pri(		"PostalCowHead",		"",					0,		14.0,		0.0,		MAX_RANGE,	TDB_CW_PROJECTILE);
+	TDB_Weapon_Pri(		"SorgaulFists",			"",					0,		0.0,		0.0,		MAX_RANGE,	TDB_CW_MELEE);
+
+	// Define normal weapons
 	//					Name				Priority
 	TDB_Weapon_New(		"DukeFreezeThrower",	4);
 	TDB_Weapon_New(		"SamMinigun",			3);
