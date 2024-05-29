@@ -170,7 +170,6 @@ Actor FreemanWeaponBox1 : CustomInventory
 	Inventory.PickupSound "QC/Abilities/Freeman/WeaponBoxPick"
 	Inventory.PickupMessage "$GOT_FreemanWeaponBox" // "Picked up a weapon box."
 	Inventory.MaxAmount 0
-	VisibleToPlayerClass QCFreeman
 	+DROPPED
 	+SERVERNETID
 	+INVENTORY.AUTOACTIVATE
@@ -181,9 +180,6 @@ Actor FreemanWeaponBox1 : CustomInventory
 		FRAM A 525
 		Stop
 	Pickup:
-		TNT1 A 0 A_JumpIfInventory("Class_Freeman",1,"Success")
-		Fail
-	Success:
 		TNT1 A 0 A_SetBlend("FF FF FF", .0, 1)
 		Stop
 	Use:
