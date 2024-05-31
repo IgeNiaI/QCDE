@@ -4616,6 +4616,10 @@ Script "QCDE_Passive_Blazkowicz" (void)
 // Activator: dying victim
 Script "QCDE_PlayerKill_QCFreeman" (void)
 {
+	// Check if gamemode with unlimited ammo
+	if (CheckInventory("NoAmmoCount") || CheckInventory("RocketArena") || CheckInventory("Instagib"))
+		terminate;
+
 	// Slugs + Rockets + Nails + Bullets
 	int itemAmount = 0;
 	if (!CheckWeapon("QCRailgunDM"))
