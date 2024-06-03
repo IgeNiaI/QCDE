@@ -159,13 +159,27 @@ private void __printf (__printf_parms)
 				>printbinary
 				paramNum++;
 			break;
+
+			case 'k':
+				PUSH_PARAMNUM
+				PUSH_PARAMS_ARRAY
+				>printbind
+				paramNum++;
+			break;
+
+			case 'l':
+				PUSH_PARAMNUM
+				PUSH_PARAMS_ARRAY
+				>printlocalized
+				paramNum++;
+			break;
 			
 			case '%':
 				__putc('%');
 			break;
 			
 			default:
-				Log(s:"(SIMPLE_FORMAT enabled) unexpected flag identifier ", c:string[i]);
+				Log(s:"unexpected flag identifier ", c:string[i]);
 			return;
 			}
 		}

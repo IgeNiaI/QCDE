@@ -1,5 +1,6 @@
 private struct TDB_NodeT
 {
+	str className;
 	int tid, type;
 	fixed x,y,z;
 	fixed angle;

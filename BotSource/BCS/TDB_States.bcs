@@ -94,7 +94,7 @@ private int TDBot_StateAttack (bool justEntered)
 		self.atkTimer = self.reactTime;
 
 		// decide to keep following nodes or not
-		self.misc2 = ( (!self.nonEvadeChance) || (self.flags & TDB_FLAGS_PREC) ) ? 1 : (int)!random(0, self.nonEvadeChance);
+		self.misc2 = ( (self.flags & TDB_FLAGS_PREC) || (!self.nonEvadeChance) ) ? 1 : (int)!random(0, self.nonEvadeChance);
 	}
 
 	dist = (fixed)CallACS("TDBot_GetDistToTarget");
@@ -110,7 +110,7 @@ private int TDBot_StateAttack (bool justEntered)
 
 	if( (!CheckSight(0, GetActorProperty(0, APROP_TARGETTID), CSF_NOFAKEFLOORS)) || (!CallACS("TDBot_IsTargetAlive")) || (!CallACS("TDBot_TargetIsShootable")) )
 	{
-		TDB_ReleaseKey(BT_ATTACK);
+		TDB_ReleaseKey(BT_ATTACK|BT_ALTATTACK);
 		return TDB_STATE_ROAM;
 	}
 	
