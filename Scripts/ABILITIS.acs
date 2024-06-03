@@ -4635,7 +4635,7 @@ Script "QCDE_PlayerKill_QCFreeman" (void)
 		itemAmount |= (CheckInventory("QCBulletAmmo") & 0xFF);
 
 	if (itemAmount > 0)
-		DropItem(0, "FreemanWeaponBox1", itemAmount, 256);
+		DropItem(0, "FreemanWeaponBox1DM", itemAmount, 256);
 
 
 	// BFG + Coils + Bolts + Shells
@@ -4653,7 +4653,7 @@ Script "QCDE_PlayerKill_QCFreeman" (void)
 		itemAmount |= (CheckInventory("QCShellAmmo") & 0xFF);
 
 	if (itemAmount > 0)
-		DropItem(0, "FreemanWeaponBox2", itemAmount, 256);
+		DropItem(0, "FreemanWeaponBox2DM", itemAmount, 256);
 }
 
 Script "QCDE_HandleFreemanWeaponBox" (int boxIndex)
