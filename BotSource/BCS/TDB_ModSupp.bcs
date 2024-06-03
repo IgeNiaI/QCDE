@@ -192,7 +192,7 @@ void TDB_CallWeaponTick(str wpn, fixed dist)
 
 	TDB_ReleaseKey(self.lastAttackBtn);
 	btns = CallACS(wpnTickName, dist, self.lastAttackBtn);
-	self.lastAttackBtn = btns & (BT_ATTACK|BT_ALTATTACK);
+	self.lastAttackBtn = btns & (BT_ATTACK|BT_ALTATTACK|BT_ZOOM|BT_RELOAD);
 	TDB_HoldKey(self.lastAttackBtn);
 
 	if(btns & BT_FORWARD)
