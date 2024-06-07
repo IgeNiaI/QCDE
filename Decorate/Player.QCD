@@ -46,6 +46,7 @@ Actor QCPlayer : PlayerPawn
 	Player.WeaponSlot 7, QCLightningGun,						QCLightningGunDM
 	Player.WeaponSlot 8, QCRailgun,								QCRailgunDM
 	Player.WeaponSlot 9, QCBFG,									QCBFGDM
+	Player.WeaponSlot 0, DukeFreezeThrower,						SamMinigun
 
 	Player.ForwardMove 0.75,1,0.5,0.5
 	Player.SideMove 0.78,1.25,0.54,0.52
