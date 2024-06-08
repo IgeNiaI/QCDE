@@ -227,30 +227,30 @@ Script "DamageFloor" ( int damage, int timeout )
 
 script "BotPusher" ( int angle, int xy_push, int max_height, int min_height )
 {
-    if( PlayerIsBot( PlayerNumber() ) && GetActorProperty( 0, APROP_Health ) > 0 )
-    {
-		if( max_height == 0 || max_height >= GetActorZ(0) >> 16 )
-		{
-			if( min_height == 0 || min_height <= GetActorZ(0) >> 16 )
-			{
-				int randomAngleMin = clampByteAngle( angle - 32 );
-				int randomAngleMax = clampByteAngle( angle + 32 );
-				int randomAngle;
+   	if( !PlayerIsBot( PlayerNumber() ) || GetActorProperty( 0, APROP_Health ) <= 0 )
+    	terminate;
 
-				if( randomAngleMin > randomAngleMax )
-					randomAngle = clampByteAngle( Random( randomAngleMin, randomAngleMax + 256 ) );
-				else
-					randomAngle = Random( randomAngleMin, randomAngleMax );
+	if( max_height != 0 && max_height < GetActorZ(0) >> 16 )
+		terminate;
 
-				Thing_Stop(0);
-				SetPlayerProperty( 0, 1, PROP_TOTALLYFROZEN );
-				ThrustThing( randomAngle, xy_push, 0 );
-				SetActorAngle( 0, randomAngle << 8 ); //turn them around so they notice you watching >)
-				Delay(5);
-				SetPlayerProperty( 0, 0, PROP_TOTALLYFROZEN );			
-			}
-		}
-    }
+	if( min_height != 0 && min_height > GetActorZ(0) >> 16 )
+		terminate;
+
+	int randomAngleMin = clampByteAngle( angle - 32 );
+	int randomAngleMax = clampByteAngle( angle + 32 );
+	int randomAngle;
+
+	if( randomAngleMin > randomAngleMax )
+		randomAngle = clampByteAngle( Random( randomAngleMin, randomAngleMax + 256 ) );
+	else
+		randomAngle = Random( randomAngleMin, randomAngleMax );
+
+	Thing_Stop(0);
+	ThrustThing( randomAngle, xy_push, 0 );
+	//SetActorAngle( 0, randomAngle << 8 ); //turn them around so they notice you watching >)
+	SetPlayerProperty( 0, 1, PROP_FROZEN );
+	Delay(5);
+	SetPlayerProperty( 0, 0, PROP_FROZEN );
 }
 
 script "BotGapCrosser" ( int z_for, int angle, int xy_for )
