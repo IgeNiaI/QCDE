@@ -48,7 +48,7 @@ STARTUP1 =                                                     "\n"
 			"\cd   $$$$ $  $$\cj$$       $$$\cg$$   $$$$$$  "  "\n"
 			   "                \cj v3.0     "   ;
 STARTUP2 =  " ";
-STARTUP3 =  "Stai ora giocando Quake Champions : Doom Edition. \n"
+STARTUP3 =  "Stai ora giocando Quake Champions: Doom Edition. \n"
 			"Entra a far parte del nostro server Discord. Chatta con gli altri \n"
 			"giocatori, segnala bugs, e partecipa agli eventi multiplayer!";
 STARTUP4 =
@@ -154,3 +154,42 @@ STARTUP3 =  "Vous jouez Quake Champions: Doom Edition."
 STARTUP4 =  "\n"
 			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
 STARTUP5 =  " ";
+
+
+
+[hu] // Thanks to kultasakaali!
+
+STARTUP1 =                                                                                                  "\n"
+			"\cm   \ck$$$$\cm    \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "                             "\n"
+			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
+			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "        "\n"
+			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
+			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
+			   "   " "      " "  " "     \ck v3.0     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "Udvozol a Quake Champions: Doom Edition. \n"
+			"Csatlakozz Discord szerverunkhoz es chatelj velunk, \n"
+			"jelezd, ha hibat talaltal a jatekban, \n"
+			"valamint ertesulj szervezett online jatszmakrol!";
+STARTUP4 =  "\n"
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
+STARTUP5 = " ";
+
+
+
+[fi] // Thanks to kultasakaali!
+
+STARTUP1 =                                                                                                  "\n"
+			"\cm   \ck$$$$\cm    \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "                             "\n"
+			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
+			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "        "\n"
+			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
+			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
+			   "   " "      " "  " "     \ck v3.0     "   ;
+STARTUP2 =  " ";
+STARTUP3 =  "Tervetuloa Quake Champions: Doom Editioniin. \n"
+			"Liity Discordiimme ja chattaile muiden pelaajien kanssa, \n"
+			"ilmoita bugeista ja osallistu moninpeli matseihin!";
+STARTUP4 =  "\n"
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
+STARTUP5 = " ";
