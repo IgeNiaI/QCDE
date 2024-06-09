@@ -13,8 +13,7 @@ STARTUP3 =  "You are playing Quake Champions: Doom Edition. \n"
 			"Join our Discord to chat with other players, \n"
 			"report bugs and enjoy multiplayer events!";
 STARTUP4 = "\n"
-			"\ci->  https://\ckis.gd/qc_de  \ci<- \n"
-			" \cj- DBThanatos & Michaelis ";
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
 STARTUP5 = " ";
 
 
@@ -32,12 +31,9 @@ STARTUP1 =                                               "\n"
 STARTUP2 =  " ";
 STARTUP3 =  "Добро пожаловать в Quake Champions: Doom Edition. \n"
 			"Заходи в Дискорд: у нас можно поиграть по сети, \n"
-			"поболтать с игроками или доложить о багах авторам. \n"
-			"(только на английском языке) \n"
-			"\ci->  https://\ckis.gd/qc_de  \ci<-";
+			"поболтать с игроками или доложить о багах авторам.";
 STARTUP4 =  " \n"
-			"Также есть неофициальный чат на русском: \n"
-			"\ci->  https://\ckis.gd/qc_de_ru  \ci<-";
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
 STARTUP5 =  " ";
 
 
@@ -54,13 +50,9 @@ STARTUP1 =                                                     "\n"
 STARTUP2 =  " ";
 STARTUP3 =  "Stai ora giocando Quake Champions : Doom Edition. \n"
 			"Entra a far parte del nostro server Discord. Chatta con gli altri \n"
-			"giocatori, segnala bugs, e partecipa agli eventi multiplayer! \n"
-			"\ci->  https://\ckis.gd/qc_de  \ci<- \n";
+			"giocatori, segnala bugs, e partecipa agli eventi multiplayer!";
 STARTUP4 =
-			" \n"
-			"L'Inglese e' l'unica lingua permessa nel server Discord ufficiale, \n"
-			"ma esistono servers non ufficiale dedicati ad altri linguaggi: \n"
-			"\ci->  https://\ckis.gd/qc_de_it  \ci<-\n";
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
 STARTUP5 =  " ";
 
 
@@ -84,7 +76,7 @@ STARTUP3 =  "Estas jugando Quake Champions: Doom Edition. \n"
 			"excelente mod. Ten en cuenta que en el servidor solo se admite \n"
 			"Ingles para la comodidad de todos los jugadores.";
 STARTUP4 =  " \n"
-			"\ci->  https://\ckis.gd/qc_de  \ci<- ";
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
 STARTUP5 =  " ";
 
 
@@ -121,7 +113,7 @@ STARTUP3 =  "Hrajete Quake Champions: Doom Edici."
       "\n"  "Jake herni mody a mapy budou hrany jsou vzdy voleny den predem."
       "\n"  "Discord je pouze anglicky, jsou na nem take vyvojari a je se vsemi legrace.";
 STARTUP4 =  "\n"
-			"\ci->  https://\ckis.gd/qc_de  \ci<- \n";
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
 STARTUP5 =  " ";
 
 
@@ -143,7 +135,7 @@ STARTUP3 =  "Witaj w Quake Champions: Doom Edition!"
       "\n"  "Pamietajcie ze co piatek organizujemy eventy od 17:00 GMT +2. "
       "\n"  "Do zobaczenia na arenie!";
 STARTUP4 =  "\n"
-			"\ci->  https://\ckis.gd/qc_de  \ci<- \n";
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
 STARTUP5 =  " ";
 
 [fr] // Thanks to 1 anonymous collaborator!
@@ -160,5 +152,5 @@ STARTUP3 =  "Vous jouez Quake Champions: Doom Edition."
       "\n"  "Rejoignez notre Discord pour vous contacter d'autres joueurs, "
       "\n"  "rapporer les bogues and profiter des evenements de jeu.";
 STARTUP4 =  "\n"
-			"\ci->  https://\ckis.gd/qc_de  \ci<- \n";
+			"\ci->  https://\ckdiscord.gg/u4ptaMk  \ci<-";
 STARTUP5 =  " ";
