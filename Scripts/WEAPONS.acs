@@ -590,7 +590,8 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 	// Players only have the gauntlet and railgun in instagib, so just disable zoom for them
 	if (!predicting && !CheckInventory("Instagib"))
 	{
-		bool shouldZoomIn = !CheckInventory("WeaponZoomedToken") && justPressed;
+		bool shouldZoomIn = !CheckInventory("WeaponZoomedToken") && justPressed
+							&& !CheckWeapon("DukeFreezeThrower") && !CheckWeapon("SamMinigun");
 		bool shouldZoomOut = CheckInventory("WeaponZoomedToken") && GetCVar("cl_holdZoom") ? justReleased : justPressed;
 
 		if (shouldZoomIn)
