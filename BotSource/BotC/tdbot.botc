@@ -14,8 +14,6 @@ event "KilledByPlayer" {changestate(3);}
 event "KilledBySelf" {changestate(3);}
 event "KilledByEnvironment" {changestate(3);}
 
-var int $tics;
-
 state "stateSpawn": // 0
 	onenter
 	{
@@ -39,6 +37,7 @@ state "stateRoam": // 1
 	var int $fwmove;
 	var int $sdmove;
 	var int $randchat;
+	var int $tics;
 
 	onenter
 	{

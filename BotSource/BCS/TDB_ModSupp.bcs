@@ -109,6 +109,21 @@ bool TDB_CheckTarget ()
 	return true;
 }
 
+void TDB_Set_Flags(int pnum, int flags)
+{
+	TDBotInfo[pnum].flags |= flags;
+}
+
+void TDB_Clear_Flags(int pnum, int flags)
+{
+	TDBotInfo[pnum].flags &= ~flags;
+}
+
+int TDB_Get_Flags(int pnum)
+{
+	return TDBotInfo[pnum].flags;
+}
+
 // just forces BCC to generate PCD_TAGSTRING
 int TDB_Address_Weapons(str key)
 {
