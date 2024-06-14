@@ -1,5 +1,6 @@
 #library "QCDEMAPS"
 #include "zcommon.acs"
+#include "./BotSource/headers/TDBots.h.bcs"
 
 ////////////////////////////////////
 //    MAP INTRODUCTION SCRIPTS    //
@@ -98,6 +99,21 @@ script "GenericJumpPad" ( int z_push, int angle, int xy_push, int sound_tag )
 		//If player is dead, pushes corpse away
 		ThrustThing( random(1,255), random(10,20), 1, 0 );
 	}
+}
+
+script "DisableBotAirMovement" ( void )
+{
+	int plr = PlayerNumber();
+	if (!PlayerIsBot(plr))
+		terminate;
+
+	TDB_Set_Flags(plr, TDB_FLAGS_NOMOVE);
+	do
+	{
+		Delay(5);
+	} while((CheckSolidFooting(0, 0) == CSF_INAIR) && (GetActorProperty( 0, APROP_Health ) > 0));
+
+	TDB_Clear_Flags(plr, TDB_FLAGS_NOMOVE);
 }
 
 ///////////////////////////
