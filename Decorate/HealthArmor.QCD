@@ -409,7 +409,8 @@ Actor QCMegaMega : CustomInventory replaces MegaSphere
 	States
 	{
 	Spawn:
-		MEGB A 0 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 3)
+		MEGB A 0 NODELAY BRIGHT ACS_NamedExecuteWithResult("QCDE_RemoveIfDuel", 0)
+		MEGB A 0 ACS_NamedExecuteWithResult("QCDE_ItemSpawned", 3)
 		MEGB A 0 A_ThrowGrenade("QCMegamegaFX", -35, 0, 0, 0, TGR_NOUNLAGGED)
 		MEGB A -1 Light(PurpleSmallPoint1) BRIGHT
 		Stop
