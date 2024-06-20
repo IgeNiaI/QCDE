@@ -490,6 +490,12 @@ Script "QCDE_RemoveIfNoBfg" (int noRestore)
 	if(!GetCvar("sv_QCDEBFG")) Thing_Remove(0);
 }
 
+script "QCDE_RemoveIfDuel" (int noRestore)
+{
+	if(GameType() < GAME_NET_DEATHMATCH) terminate;
+	if(GetCvar("duel")) Thing_Remove(0);
+}
+
 // Prevent Dave & Merlin from farming too many frags on bots.
 // Not too much, because Merlin's own kills on bots also hurt his Dave.
 #define DAVE_BOT_PENALTY 40 //+ slight randomization
