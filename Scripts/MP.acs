@@ -742,6 +742,7 @@ function void setupGamemode()
 
 	ConsoleCommand(strparam(s:"sv_showItemTimers ",			d:GetCVar("skirm_showItemTimers")));
 	ConsoleCommand(strparam(s:"sv_showStackLeft ",			d:GetCVar("skirm_showStackLeft")));
+	ConsoleCommand(strparam(s:"sv_QCDEPowerups ",			d:GetCVar("skirm_QCDEPowerups")));
 	ConsoleCommand(strparam(s:"menu_skirmishgamemode ",		d:menu_skirmishgamemode));
 	ConsoleCommand(strparam(s:"qc_elderssoul ",				d:qc_elderssoul));
 	ConsoleCommand(strparam(s:"qc_freezetag ",				d:qc_freezetag));
@@ -778,6 +779,7 @@ function void setupModifier()
 	ConsoleCommand(strparam(s:"allstarterweapons ", d:GetCVar("skirm_starterweap")));
 	ConsoleCommand(strparam(s:"menu_skirmishmodifier ",		d:menu_skirmishmodifier));
 	ConsoleCommand(strparam(s:"rocketarena ",	d:rocketarena));
+	ConsoleCommand(strparam(s:"sv_QCDEBFG ",	d:GetCVar("skirm_QCDEBFG")));
 }
 
 

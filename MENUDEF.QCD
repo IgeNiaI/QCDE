@@ -451,6 +451,21 @@ FreeformMenu QCDE_SkirmishMenu
 									SelectedForeground	CHKBOXS, 14, 14
 	}
 
+	Label {
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		Pos		0, 177				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Spawn powerups"
+	}
+	Option {
+		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		Pos		105, 176			CVar				skirm_QCDEPowerups
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
 
 	// Max Lives, for Survival and Invasion
 	Label {
@@ -852,6 +867,20 @@ FreeformMenu QCDE_SkirmishWeaponsCommon
 		Pos		17, 67				Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Give all Starter Weapons at spawn"
+	}
+
+	Option {
+		EnableCVar skirm_skirmishmodifier,	0, 0
+		Pos		0, 86				CVar				skirm_QCDEBFG
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	left, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+	Label {
+		Pos		17, 87				Font		SmallFont
+		Anchor	left, center		FontColor	DarkRed
+		Text	"Spawn BFG"
 	}
 
 
