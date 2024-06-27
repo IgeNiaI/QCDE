@@ -106,6 +106,7 @@ server int skirm_botscount        = 0; // fills slots with bots if there are few
 server int skirm_skirmishgamemode = 3; // used in skirmish menu to setup gamemode
 server int skirm_skirmishmodifier = 0; // used in skirmish menu to setup weapons modifier
 server int skirm_maxlives         = 3; // used in skirmish menu to setup lives limit
+server bool skirm_QCDEPowerups    = true; // spawn powerup factory?
 
 server bool skirm_starterweap		=  false; // spawn with all Starter Weapons a-la Sam passive?
 server bool skirm_heavymachinegun	=  true; // spawn with Heavy Machinegun?
@@ -116,6 +117,7 @@ server bool skirm_rocketlauncher	=  true; // spawn with Rocket Launcher?
 server bool skirm_lightninggun		=  true; // spawn with Lightning Gun?
 server bool skirm_railgun			=  true; // spawn with Railgun?
 server bool skirm_bfg				=  true; // spawn with BFG?
+server bool skirm_QCDEBFG		    =  true; // spawn BFG when using normal weapons mode?
 
 user int gl_lights_quality          = 1; // 0 - no lights, 1 - lights without shaders, 2 - default shaders, 3 - bump map light shaders
 
