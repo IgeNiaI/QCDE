@@ -22,6 +22,7 @@
 #define BASE_SlugAmmo    40
 #define BASE_BFGAmmo     30
 #define BASE_SamBullets 175
+#define BASE_DukeAmmo 60
 
 #define LEVEL_BulletAmmo 20
 #define LEVEL_ShellAmmo   5
@@ -32,6 +33,7 @@
 #define LEVEL_SlugAmmo    5
 #define LEVEL_BFGAmmo     2
 #define LEVEL_SamBullets 15
+#define LEVEL_DukeAmmo 6
 
 
 // ----------------------------------------------------------------------------
@@ -330,6 +332,7 @@ script "鳞~Loot🅱ox0_0" (void)
 	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 10);
 
 	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 10);
+	GiveInventory("DukeAmmo", GetAmmoCapacity("DukeAmmo") / 10);
 }
 
 // Random weapon
@@ -357,6 +360,7 @@ script "鳞~Loot🅱ox0_2" (void)
 	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 10);
 
 	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 10);
+	GiveInventory("DukeAmmo", GetAmmoCapacity("DukeAmmo") / 10);
 }
 
 // -5% cooldown
@@ -366,7 +370,20 @@ script "鳞~Loot🅱ox0_3" (void)
 	if(CheckInventory("Class_Sarge")) terminate;
 	if(GiveAndCheck("CooldownRewardToken", 5))
 	{
-		SetResultValue("CDLOOT05:5% Faster Cooldown");
+		if(CheckInventory("Class_Sam"))
+		{
+			SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * (CheckInventory("CooldownRewardToken") / 5));
+			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+		}
+		else if(CheckInventory("Class_DukeNukem"))
+		{
+			SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * (CheckInventory("CooldownRewardToken") / 5));
+			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+		}
+		else
+		{
+			SetResultValue("CDLOOT05:5% Faster Cooldown");
+		}
 	}
 }
 
@@ -432,6 +449,7 @@ script "鳞~Loot🅱ox1_0" (void)
 	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 3);
 
 	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 3);
+	GiveInventory("DukeAmmo", GetAmmoCapacity("DukeAmmo") / 3);
 }
 
 // 33% ammo
@@ -448,6 +466,7 @@ script "鳞~Loot🅱ox1_1" (void)
 	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 3);
 
 	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 3);
+	GiveInventory("DukeAmmo", GetAmmoCapacity("DukeAmmo") / 3);
 }
 
 // 50% ammo
@@ -464,6 +483,7 @@ script "鳞~Loot🅱ox1_2" (void)
 	GiveInventory("QCBFGAmmo"   , GetAmmoCapacity("QCBFGAmmo"   ) / 2);
 
 	GiveInventory("SeriousBullets", GetAmmoCapacity("SeriousBullets") / 2);
+	GiveInventory("DukeAmmo", GetAmmoCapacity("DukeAmmo") / 2);
 }
 
 // Ammo capacity upgrade
@@ -485,11 +505,37 @@ script "鳞~Loot🅱ox1_4" (void)
 	int given = GiveAndCheck("CooldownRewardToken", 10);
 	if(given == 10)
 	{
-		SetResultValue("CDLOOT10:-10% Cooldown");
+		if(CheckInventory("Class_Sam"))
+		{
+			SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * (CheckInventory("CooldownRewardToken") / 5));
+			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+		}
+		else if(CheckInventory("Class_DukeNukem"))
+		{
+			SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * (CheckInventory("CooldownRewardToken") / 5));
+			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+		}
+		else
+		{
+			SetResultValue("CDLOOT10:-10% Cooldown");
+		}
 	}
 	else if(given == 5)
 	{
-		SetResultValue("CDLOOT05:-5% Cooldown");
+		if(CheckInventory("Class_Sam"))
+		{
+			SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * (CheckInventory("CooldownRewardToken") / 5));
+			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+		}
+		else if(CheckInventory("Class_DukeNukem"))
+		{
+			SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * (CheckInventory("CooldownRewardToken") / 5));
+			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+		}
+		else
+		{
+			SetResultValue("CDLOOT05:-5% Cooldown");
+		}
 	}
 }
 
@@ -646,6 +692,7 @@ script "鳞~Loot🅱ox1_14" (void)
 	GiveInventory("QCBFGAmmo"   , 99999);
 
 	GiveInventory("SeriousBullets", 99999);
+	GiveInventory("DukeAmmo", 99999);
 }
 
 
@@ -669,6 +716,7 @@ script "鳞~Loot🅱ox2_0" (void)
 	GiveInventory("QCBFGAmmo"   , 99999);
 
 	GiveInventory("SeriousBullets", 99999);
+	GiveInventory("DukeAmmo", 99999);
 }
 
 // Disable degeneration
@@ -694,6 +742,17 @@ script "鳞~Loot🅱ox2_2" (void)
 	SetResultValue("CDLOOT50:-50% cooldown");
 	SetInventory("CooldownRewardToken2", CheckInventory("CooldownRewardToken")); // transfer up to 10% of already accumulated
 	SetInventory("CooldownRewardToken" , 50);
+
+	if(CheckInventory("Class_Sam"))
+	{
+		SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * (CheckInventory("CooldownRewardToken") / 5));
+		SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+	}
+	else if(CheckInventory("Class_DukeNukem"))
+	{
+		SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * (CheckInventory("CooldownRewardToken") / 5));
+		SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+	}
 }
 
 // 5 backpack stack levels
@@ -818,6 +877,7 @@ Script "QCDE_SetBackpackStack" (int level)
 	SetAmmoCapacity("QCBFGAmmo"   , BASE_BFGAmmo    + LEVEL_BFGAmmo    * level + CheckInventory("HunterQCBFGAmmo"   ));
 
 	SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * level);
+	SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * level);
 }
 
 str loadoutWeapons[8] = {
