@@ -252,6 +252,29 @@ script "BotPusher" ( int angle, int xy_push, int max_height, int min_height )
 	if( min_height != 0 && min_height > GetActorZ(0) >> 16 )
 		terminate;
 
+	pushBot(angle, xy_push);
+
+	SetPlayerProperty( 0, 1, PROP_FROZEN );
+	Delay(5);
+	SetPlayerProperty( 0, 0, PROP_FROZEN );
+}
+
+script "BotPusherGrounded" ( int angle, int xy_push )
+{
+   	if( !PlayerIsBot( PlayerNumber() ) || GetActorProperty( 0, APROP_Health ) <= 0 )
+    	terminate;
+
+	if( CheckSolidFooting(0, 0) == CSF_INAIR )
+		terminate;
+
+	pushBot(angle, xy_push);
+
+	SetPlayerProperty( 0, 1, PROP_FROZEN );
+	Delay(5);
+	SetPlayerProperty( 0, 0, PROP_FROZEN );
+}
+
+function void pushBot(int angle, int xy_push) {
 	int randomAngleMin = clampByteAngle( angle - 32 );
 	int randomAngleMax = clampByteAngle( angle + 32 );
 	int randomAngle;
@@ -264,9 +287,6 @@ script "BotPusher" ( int angle, int xy_push, int max_height, int min_height )
 	Thing_Stop(0);
 	ThrustThing( randomAngle, xy_push, 0 );
 	//SetActorAngle( 0, randomAngle << 8 ); //turn them around so they notice you watching >)
-	SetPlayerProperty( 0, 1, PROP_FROZEN );
-	Delay(5);
-	SetPlayerProperty( 0, 0, PROP_FROZEN );
 }
 
 script "BotGapCrosser" ( int z_for, int angle, int xy_for )
