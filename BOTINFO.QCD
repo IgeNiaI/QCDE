@@ -32,7 +32,7 @@ ClearBots //to remove skulltag bots
 { name = "Postal"		class = "Postal"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "CA 13 00"	gender = "male"	script = "humanbot" }
 { name = "Painkiller"	class = "Painkiller"	accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "9C 34 FF"	gender = "male"	script = "humanbot" }
 { name = "Intruder"		class = "Intruder"		accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "3A 00 75"	gender = "male"	script = "humanbot" }
-{ name = "Orbb"			class = "Orbb"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "8A C1 C0"	gender = "male"	script = "humanbot" }
+{ name = "Orbb"			class = "Orbb"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "8A C1 C0"	gender ="other"	script = "humanbot" }
 { name = "Brock"		class = "Brock"			accuracy = 3	intellect = 3	evade = 3	anticipation = 3	reactiontime = 3 	perception = 3	color = "FF BC 3C"	gender = "male"	script = "humanbot" }
 
 // OW, spread attributes, all balanced around same points (12pts)
