@@ -1959,6 +1959,13 @@ FreeformMenu "QCDE_OptionsSkins"
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
+	Command {
+		Pos   0, 285			Text "Serious Sam"			Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_SeriousSam
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
 
 	InsertFreeformMenu MainMenuTopBar
 	InsertFreeformMenu QCDE_OptionsTabs
@@ -2422,6 +2429,7 @@ OptionValue "GNTLskin"
 	3, "Quake 3"
 	4, "Quake 4"
 	6, "QC:DE 1.0"
+	8, "Serious Sam"
 }
 
 OptionValue "GNTLskinBG"
@@ -2431,6 +2439,7 @@ OptionValue "GNTLskinBG"
 	3, "SKING1Q3"
 	4, "SKING1Q4"
 	6, "SKING1Q0"
+	8, "SKING1SS"
 }
 
 OptionValue "MGskin"
@@ -2442,6 +2451,7 @@ OptionValue "MGskin"
 	5, "ET: QW"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
+	8, "Serious Sam"
 }
 
 OptionValue "MGskinBG"
@@ -2453,6 +2463,7 @@ OptionValue "MGskinBG"
 	5, "SKING2QW"
 	6, "SKING2Q0"
 	7, "SKING2HL"
+	8, "SKING2SS"
 }
 
 OptionValue "HMGskin"
@@ -2465,6 +2476,7 @@ OptionValue "HMGskin"
 	5, "ET: QW"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
+	8, "Serious Sam"
 }
 
 OptionValue "HMGskinBG"
@@ -2477,6 +2489,7 @@ OptionValue "HMGskinBG"
 	5, "SKINGBQW"
 	6, "SKINGBQ0"
 	7, "SKINGBHL"
+	8, "SKINGBSS"
 }
 
 OptionValue "SGskin"
@@ -2487,6 +2500,7 @@ OptionValue "SGskin"
 	2, "Quake 2"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
+	8, "Serious Sam"
 }
 
 OptionValue "SGskinBG"
@@ -2497,6 +2511,7 @@ OptionValue "SGskinBG"
 	2, "SKING3Q2"
 	6, "SKING3Q0"
 	7, "SKING3HL"
+	8, "SKING3SS"
 }
 
 OptionValue "SSGskin"
@@ -2510,6 +2525,7 @@ OptionValue "SSGskin"
 	5, "ET: QW"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
+	8, "Serious Sam"
 }
 
 OptionValue "SSGskinBG"
@@ -2523,6 +2539,7 @@ OptionValue "SSGskinBG"
 	5, "SKINGCQW"
 	6, "SKINGCQ0"
 	7, "SKINGCHL"
+	8, "SKINGCSS"
 }
 
 OptionValue "NGskin"
@@ -2534,6 +2551,7 @@ OptionValue "NGskin"
 	4, "Quake 4"
 	6, "QC:DE 1.0"
 	7, "TF Classic"
+	8, "Serious Sam"
 }
 
 OptionValue "NGskinBG"
@@ -2545,6 +2563,7 @@ OptionValue "NGskinBG"
 	4, "SKING4Q4"
 	6, "SKING4Q0"
 	7, "SKING4HL"
+	8, "SKING4SS"
 }
 
 OptionValue "SNGskin"
@@ -2558,6 +2577,7 @@ OptionValue "SNGskin"
 	5, "ET: QW"
 	6, "QC:DE 1.0"
 	7, "TF Classic"
+	8, "Serious Sam"
 }
 
 OptionValue "SNGskinBG"
@@ -2571,6 +2591,7 @@ OptionValue "SNGskinBG"
 	5, "SKINGDQW"
 	6, "SKINGDQ0"
 	7, "SKINGDHL"
+	8, "SKINGDSS"
 }
 
 OptionValue "TBskin"
@@ -2583,6 +2604,7 @@ OptionValue "TBskin"
 	4, "Quake 4"
 	6, "QC:DE 1.0"
 	7, "TF Classic"
+	8, "Serious Sam"
 }
 
 OptionValue "TBskinBG"
@@ -2595,6 +2617,7 @@ OptionValue "TBskinBG"
 	4, "SKINGEQ4"
 	6, "SKINGEQ0"
 	7, "SKINGEHL"
+	8, "SKINGESS"
 }
 
 OptionValue "RLskin"
@@ -2608,6 +2631,7 @@ OptionValue "RLskin"
 	5, "ET: QW"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
+	8, "Serious Sam"
 }
 
 OptionValue "RLskinBG"
@@ -2621,6 +2645,7 @@ OptionValue "RLskinBG"
 	5, "SKING5QW"
 	6, "SKING5Q0"
 	7, "SKING5HL"
+	8, "SKING5SS"
 }
 
 OptionValue "LGskin"
@@ -2634,6 +2659,7 @@ OptionValue "LGskin"
 	5, "ET: QW"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
+	8, "Serious Sam"
 }
 
 OptionValue "LGskinBG"
@@ -2647,6 +2673,7 @@ OptionValue "LGskinBG"
 	5, "SKING6QW"
 	6, "SKING6Q0"
 	7, "SKING6HL"
+	8, "SKING6SS"
 }
 
 OptionValue "RGskin"
@@ -2660,6 +2687,7 @@ OptionValue "RGskin"
 	5, "ET: QW"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
+	8, "Serious Sam"
 }
 
 OptionValue "RGskinBG"
@@ -2673,6 +2701,7 @@ OptionValue "RGskinBG"
 	5, "SKING7QW"
 	6, "SKING7Q0"
 	7, "SKING7HL"
+	8, "SKING7SS"
 }
 
 OptionValue "BFGskin"
@@ -2684,6 +2713,7 @@ OptionValue "BFGskin"
 	4, "Quake 4"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
+	8, "Serious Sam"
 }
 
 OptionValue "BFGskinBG"
@@ -2695,6 +2725,7 @@ OptionValue "BFGskinBG"
 	4, "SKING8Q4"
 	6, "SKING8Q0"
 	7, "SKING8HL"
+	8, "SKING8SS"
 }
 
 OptionValue "OI"

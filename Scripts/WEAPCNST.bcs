@@ -296,28 +296,30 @@ function void reReadWeaponCvars(void)
 	int classSkin = CheckInventory("ClassID");
 	switch (classSkin) {
 
+	case 8:  // Inquisitor
 	case 11: // Nyx
+	case 12: // Sorgaul
 	case 15: // Keel
 	case 17: // Lo Wang
+	case 19: // Eradicator
 	case 20: // Blazkowicz
+	case 24: // Lucienne
 		classSkin = 0;
 		break;
 
 	case 0:  // Ranger
 	case 4:  // Caleb
 	case 22: // Vor Matur
+	case 29: // Painkiller
 	case 30: // Intruder
 		classSkin = 1;
 		break;
 
 	case 9:  // Bitterman
 	case 18: // Grayson
-	case 24: // Lucienne
-	case 28: // Postal
 		classSkin = 2;
 		break;
 
-	case 12: // Sorgaul
 	case 16: // Sarge
 	case 25: // Major
 	case 26: // Hunter
@@ -326,15 +328,12 @@ function void reReadWeaponCvars(void)
 		break;
 
 	case 3:  // Kane
-	case 13: // Duke Nukem
 	case 14: // Durandal
 	case 23: // Eleena
 		classSkin = 4;
 		break;
 
 	case 6:  // Terminator
-	case 8:  // Inquisitor
-	case 27: // Sam
 	case 32: // Brock
 		classSkin = 5;
 		break;
@@ -347,10 +346,14 @@ function void reReadWeaponCvars(void)
 		classSkin = 6;
 		break;
 
-	case 19: // Eradicator
 	case 21: // Freeman
-	case 29: // Painkiller
+	case 28: // Postal
 		classSkin = 7;
+		break;
+
+	case 13: // Duke Nukem
+	case 27: // Sam
+		classSkin = 8;
 		break;
 
 	default:

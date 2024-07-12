@@ -49,6 +49,19 @@ Model QCNailStrong_ETQW
    FrameIndex NA5L A 0 0
 }
 
+Model QCNailStrong_SeriousSam
+{
+   Path "MD3"
+   SKIN 0 "na8l.png"
+   MODEL 0 "na8l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA8L A 0 0
+}
+
 Model QCNailWeak
 {
    Path "MD3"
@@ -131,6 +144,19 @@ Model QCNailStrongDM_ETQW
    FrameIndex NA5L A 0 0
 }
 
+Model QCNailStrongDM_SeriousSam
+{
+   Path "MD3"
+   SKIN 0 "na8l.png"
+   MODEL 0 "na8l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA8L A 0 0
+}
+
 Model QCNailWeakDM
 {
    Path "MD3"
@@ -211,6 +237,19 @@ Model QCNailStrongIllusion_ETQW
    Rotation-Vector 1 0 0
    PITCHFROMMOMENTUM
    FrameIndex NA5L A 0 0
+}
+
+Model QCNailStrongIllusion_SeriousSam
+{
+   Path "MD3"
+   SKIN 0 "na8l.png"
+   MODEL 0 "na8l.md3"
+   Scale 1.0 1.0 1.2
+   ROTATING
+   Rotation-Speed 2
+   Rotation-Vector 1 0 0
+   PITCHFROMMOMENTUM
+   FrameIndex NA8L A 0 0
 }
 
 
@@ -397,6 +436,16 @@ Model LGworldactor2Purple_Quake3
    Scale 1.8 2.0 2.0
    INHERITACTORPITCH
    FrameIndex LGWR Z 0 0
+}
+
+Model RailgunTrail_SeriousSam
+{
+	Path "MD3/Projectiles"
+	SKIN 0 "tracer1.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 3.0 3.0 3.0
+	INHERITACTORPITCH
+	FrameIndex SPTR A 0 0
 }
 
 // Misc

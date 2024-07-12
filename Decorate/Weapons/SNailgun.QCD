@@ -118,6 +118,7 @@ Actor QCSuperNailgun : QCWeapon
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
+		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "Select.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "Select.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "Select.ETQW")
@@ -157,6 +158,13 @@ Actor QCSuperNailgun : QCWeapon
 	Select.HalfLife:
 		HLGD A 0
 		Goto SelectCont
+	Select.SeriousSam:
+		SSGD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Select.SeriousSamUpgraded")
+		SSGD A 0
+		Goto SelectCont
+	Select.SeriousSamUpgraded:
+		SSFD A 0
+		Goto SelectCont
 
 	SelectCont:
 		"####" A 0 A_PlaySound("QC/Weapons/Switch",CHAN_5,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
@@ -181,6 +189,7 @@ Actor QCSuperNailgun : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
+		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "Ready.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "Ready.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "Ready.ETQW")
@@ -201,13 +210,13 @@ Actor QCSuperNailgun : QCWeapon
 		Q3GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Ready.Quake3Upgraded")
 		Goto ReadyCont.Animated
 	Ready.Quake3Upgraded:
-		Q3FD A 0 A_JumpIfInventory("SNG_UG_Lava",-1,"Ready.Quake3")
+		Q3FD A 0
 		Goto ReadyCont.AnimatedUpgraded
 	Ready.Quake4:
 		Q4GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Ready.Quake4Upgraded")
 		Goto ReadyCont
 	Ready.Quake4Upgraded:
-		Q4FD A 0 A_JumpIfInventory("SNG_UG_Lava",-1,"Ready.Quake4")
+		Q4FD A 0
 		Goto ReadyCont.Upgraded
 	Ready.ETQW:
 		QWGD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
@@ -218,6 +227,12 @@ Actor QCSuperNailgun : QCWeapon
 	Ready.HalfLife:
 		HLGD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
 		Goto ReadyCont
+	Ready.SeriousSam:
+		SSGD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Ready.SeriousSamUpgraded")
+		Goto ReadyCont
+	Ready.SeriousSamUpgraded:
+		SSFD A 0
+		Goto ReadyCont.Upgraded
 
 	ReadyCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
@@ -259,6 +274,7 @@ Actor QCSuperNailgun : QCWeapon
 		Goto FireNormalSound
 
 		FireNormalSound:
+			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "FireNormalSound.SeriousSam")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "FireNormalSound.HalfLife")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "FireNormalSound.Default")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "FireNormalSound.ETQW")
@@ -287,8 +303,12 @@ Actor QCSuperNailgun : QCWeapon
 		FireNormalSound.HalfLife:
 			"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
+		FireNormalSound.SeriousSam:
+			"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
 
 		FireQuadSound:
+			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "FireQuadSound.SeriousSam")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "FireQuadSound.HalfLife")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "FireQuadSound.Default")
 			"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "FireQuadSound.ETQW")
@@ -316,6 +336,9 @@ Actor QCSuperNailgun : QCWeapon
 			Goto FirePostSoundCheck
 		FireQuadSound.HalfLife:
 			"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireQuadSound.SeriousSam:
+			"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/Quad/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 
 	FirePostSoundCheck:
@@ -394,6 +417,7 @@ Actor QCSuperNailgun : QCWeapon
 			Goto EndFireLooper
 
 	EndFireLooper:
+		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "EndFireLooper.SeriousSam")
 		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "EndFireLooper.HalfLife")
 		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "EndFireLooper.Default")
 		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "EndFireLooper.ETQW")
@@ -412,7 +436,7 @@ Actor QCSuperNailgun : QCWeapon
 		Goto EndFireLooperCont2
 	EndFireLooper.Quake3:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_Quake3",CHAN_WEAPON,1,0)
-		Goto EndFireLooperCont
+		Goto Ready // Q3 skin uses spin down frames for idle animation
 	EndFireLooper.Quake4:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_Quake4",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
@@ -422,6 +446,9 @@ Actor QCSuperNailgun : QCWeapon
 	EndFireLooper.HalfLife:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_HalfLife",CHAN_WEAPON,1,0)
 		Goto Ready // Half-Life skin doesn't have spin down animation
+	EndFireLooper.SeriousSam:
+		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_SeriousSam",CHAN_WEAPON,1,0)
+		Goto Ready // Serious Sam skin doesn't have spin down animation
 
 	EndFireLooperCont:
 		"####" AQRRAAQQQRRRAAAQQQRRR 1 A_WeaponReady
@@ -487,6 +514,7 @@ Actor QCSuperNailgun : QCWeapon
 	//Single player
 	SP_Flash:
 		TNT1 A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ShootLavaNail")
+		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "SP_Flash.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "SP_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "SP_Flash.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "SP_Flash.Quake4")
@@ -511,8 +539,12 @@ Actor QCSuperNailgun : QCWeapon
 	SP_Flash.ETQW:
 		TNT1 A 0 A_FireCustomMissile("QCNailStrong_ETQW",0,true,2,5)
 		Goto EndFlash
+	SP_Flash.SeriousSam:
+		TNT1 A 0 A_FireCustomMissile("QCNailStrong_SeriousSam",0,true,2,5)
+		Goto EndFlash
 
 		ShootLavaNail:
+			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "ShootLavaNail.SeriousSam")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "ShootLavaNail.Default")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "ShootLavaNail.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "ShootLavaNail.Quake4")
@@ -537,11 +569,15 @@ Actor QCSuperNailgun : QCWeapon
 		ShootLavaNail.ETQW:
 			TNT1 A 0 A_FireCustomMissile("QCNailStrongLava_ETQW",0,true,2,5)
 			Goto EndFlash
+		ShootLavaNail.SeriousSam:
+			TNT1 A 0 A_FireCustomMissile("QCNailStrongLava_SeriousSam",0,true,2,5)
+			Goto EndFlash
 
 		SP_FlashSeeker:
 			TNT1 A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ShootSeekerLava")
 
 			ShootNormal:
+				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "ShootNormal.SeriousSam")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "ShootNormal.Default")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "ShootNormal.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "ShootNormal.Quake4")
@@ -566,8 +602,12 @@ Actor QCSuperNailgun : QCWeapon
 			ShootNormal.ETQW:
 				TNT1 A 0 A_FireCustomMissile("QCNailStrongSeeker_ETQW",0,true,2,5)
 				Goto EndSeekerFlash
+			ShootNormal.SeriousSam:
+				TNT1 A 0 A_FireCustomMissile("QCNailStrongSeeker_SeriousSam",0,true,2,5)
+				Goto EndSeekerFlash
 
 			ShootSeekerLava:
+				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "ShootSeekerLava.SeriousSam")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "ShootSeekerLava.Default")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "ShootSeekerLava.ETQW")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "ShootSeekerLava.Quake4")
@@ -592,10 +632,14 @@ Actor QCSuperNailgun : QCWeapon
 			ShootSeekerLava.ETQW:
 				TNT1 A 0 A_FireCustomMissile("QCNailStrongLavaSeeker_ETQW",0,true,2,5)
 				Goto EndSeekerFlash
+			ShootSeekerLava.SeriousSam:
+				TNT1 A 0 A_FireCustomMissile("QCNailStrongLavaSeeker_SeriousSam",0,true,2,5)
+				Goto EndSeekerFlash
 
 		EndSeekerFlash:
 			TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"EndSeekerQuadFlash")
 			TNT1 A 0 A_JumpIfInventory("PowerTerminatorArtifact",1,"EndSeekerQuadFlash")
+			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "EndSeekerFlash.SeriousSam")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "EndSeekerFlash.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "EndSeekerFlash.Default")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "EndSeekerFlash.ETQW")
@@ -624,8 +668,12 @@ Actor QCSuperNailgun : QCWeapon
 		EndSeekerFlash.HalfLife:
 			TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireSeeker_HalfLife",CHAN_WEAPON)
 			Goto EndFlash
+		EndSeekerFlash.SeriousSam:
+			TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireSeeker_SeriousSam",CHAN_WEAPON)
+			Goto EndFlash
 
 		EndSeekerQuadFlash:
+			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "EndSeekerQuadFlash.SeriousSam")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "EndSeekerQuadFlash.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "EndSeekerQuadFlash.Default")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "EndSeekerQuadFlash.ETQW")
@@ -654,10 +702,14 @@ Actor QCSuperNailgun : QCWeapon
 		EndSeekerQuadFlash.HalfLife:
 			TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Quad/FireSeeker_HalfLife",CHAN_WEAPON)
 			Goto EndFlash
+		EndSeekerQuadFlash.SeriousSam:
+			TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Quad/FireSeeker_SeriousSam",CHAN_WEAPON)
+			Goto EndFlash
 
 
 	//Deathmatch
 	DM_Flash:
+		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "DM_Flash.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "DM_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "DM_Flash.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "DM_Flash.Quake4")
@@ -682,9 +734,13 @@ Actor QCSuperNailgun : QCWeapon
 	DM_Flash.ETQW:
 		TNT1 A 0 A_FireCustomMissile("QCNailStrongDM_ETQW",0,true,2,5)
 		Goto EndFlash
+	DM_Flash.SeriousSam:
+		TNT1 A 0 A_FireCustomMissile("QCNailStrongDM_SeriousSam",0,true,2,5)
+		Goto EndFlash
 
 		EndFlash:
 			TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,"EndFlashCont")
+			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 8, "EndFlash.SeriousSam")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 7, "EndFlash.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 6, "EndFlash.QCDE1")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 5, "EndFlash.ETQW")
@@ -719,6 +775,9 @@ Actor QCSuperNailgun : QCWeapon
 		EndFlash.HalfLife:
 			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,3,3)
 			TNT1 A 0 A_SetBlend("Yellow",0.03,3)
+			Goto EndFlashCont
+		EndFlash.SeriousSam:
+			TNT1 A 0 A_SetBlend("Green",0.03,3)
 			Goto EndFlashCont
 
 		EndFlashCont:
@@ -920,6 +979,62 @@ Actor QCNailStrongDeathFX_ETQW : QCNailStrongDeathFX
 	}
 }
 
+Actor QCNailStrongDeathFX_SeriousSam : QCNailStrongDeathFX
+{
+	RenderStyle Add
+	Scale 0.21
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
+
+	T1:
+		NA8D A 1
+		NA8D BCDEFG 1
+        Stop
+	T2:
+		NA8D A 1
+		NA8D HIJKLM 1
+        Stop
+	T3:
+		NA8D A 1
+		NA8D NOPQRS 1
+        Stop
+	T4:
+		NA8D A 1
+		NA8D TUVWXY 1
+        Stop
+	}
+}
+
+Actor QCNailStrongDeathFXLava_SeriousSam : QCNailStrongDeathFX
+{
+	RenderStyle Add
+	Scale 0.21
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
+
+	T1:
+		NA8E A 1
+		NA8E BCDEFG 1
+        Stop
+	T2:
+		NA8E A 1
+		NA8E HIJKLM 1
+        Stop
+	T3:
+		NA8E A 1
+		NA8E NOPQRS 1
+        Stop
+	T4:
+		NA8E A 1
+		NA8E TUVWXY 1
+        Stop
+	}
+}
+
 Actor QCNailStrong : FastProjectile
 {
 	Projectile
@@ -1043,6 +1158,24 @@ Actor QCNailStrong_ETQW : QCNailStrong
 	}
 }
 
+Actor QCNailStrong_SeriousSam : QCNailStrong
+{
+	RenderStyle Add
+	Decal "SSNailgunGreenFull"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		NA8L A 1 Bright Light("GreenSmallPoint2")
+		Wait
+
+	Death:
+		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_SeriousSam",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_SeriousSam", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
+	}
+}
+
 Actor QCNailStrongDM : QCNailStrong
 {
 	Damage (20)
@@ -1130,6 +1263,24 @@ Actor QCNailStrongDM_ETQW : QCNailStrongDM
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_ETQW",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
 		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_ETQW", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
+	}
+}
+
+Actor QCNailStrongDM_SeriousSam : QCNailStrongDM
+{
+	RenderStyle Add
+	Decal "SSNailgunGreenFull"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		NA8L A 1 Bright Light("GreenSmallPoint2")
+		Wait
+
+	Death:
+		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_SeriousSam",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_SeriousSam", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		Goto Super::Death+2
 	}
 }
@@ -1257,6 +1408,26 @@ Actor QCNailStrongLava_ETQW : QCNailStrongLava
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_ETQW",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
 		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_ETQW", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
+	}
+}
+
+Actor QCNailStrongLava_SeriousSam : QCNailStrongLava
+{
+	RenderStyle Add
+	Decal "SSNailgunOrangeFull"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+	Looper:
+		TNT1 A 0 A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
+		NA8L B 1 Bright Light("YellowSmallPoint2")
+		Loop
+
+	Death:
+		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_SeriousSam",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFXLava_SeriousSam", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		Goto Super::Death+2
 	}
 }
@@ -1436,6 +1607,28 @@ Actor QCNailStrongSeeker_ETQW : QCNailStrongSeeker
 	}
 }
 
+Actor QCNailStrongSeeker_SeriousSam : QCNailStrongSeeker
+{
+	RenderStyle Add
+	Decal "SSNailgunGreenFull"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+	Looper:
+		TNT1 A 0 A_SpawnItemEx("NailSeekerSmoke",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 AA 0 A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
+		NA8L A 1 Bright Light("PurpleSmallPoint2")
+		Loop
+
+	Death:
+		TNT1 A 0 A_SpawnItemEx("NailSeekerLavaNSmoke",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_SeriousSam",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_SeriousSam", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
+	}
+}
+
 // Lava + Seeker Nail
 Actor QCNailStrongLavaSeeker : QCNailStrongLava
 {
@@ -1569,6 +1762,31 @@ Actor QCNailStrongLavaSeeker_ETQW : QCNailStrongLavaSeeker
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_ETQW",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
 		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_ETQW", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
+	}
+}
+
+Actor QCNailStrongLavaSeeker_SeriousSam : QCNailStrongLavaSeeker
+{
+	RenderStyle Add
+	Decal "SSNailgunOrangeFull"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+	Looper:
+		TNT1 A 0 A_SpawnItemEx("NailSeekerLavaNSmoke",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
+		NA8L B 1 Bright Light("YellowSmallPoint2")
+		TNT1 A 0 A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
+		TNT1 A 0 A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
+		NA8L B 1 Bright Light("YellowSmallPoint2")
+		TNT1 A 0 A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
+		Loop
+
+	Death:
+		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_SeriousSam",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFXLava_SeriousSam", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		Goto Super::Death+2
 	}
 }
