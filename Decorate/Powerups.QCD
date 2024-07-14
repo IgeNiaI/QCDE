@@ -336,6 +336,7 @@ Actor QCProtec : QCQuad 15512
 	//$Title "Protection"
 	Tag "$TAG_QCProtec" // "Protection"
 	Inventory.PickupMessage "$GOT_QCProtec" // "Picked up Protection!"
+	Inventory.PickupSound "QC/Items/PowerupProtection"
 	Scale 0.95
 	States
 	{
