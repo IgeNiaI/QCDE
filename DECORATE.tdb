@@ -49,6 +49,7 @@ ACTOR TDBots_PathNode_Map 2401
 	//$Title Path node
 	//$Category TDBots
 	//$NotAngled
+	//$Color 13
 	
 	+INVISIBLE
 	+NOBLOCKMAP
@@ -73,6 +74,7 @@ ACTOR TDBots_JumpNode_Map : TDBots_PathNode_Map 2402
 	//$Arg0 Add. speed
 	//$Arg1 Always jump
 	//$Angled
+	//$Color 10
 	
 	States
 	{
@@ -87,6 +89,7 @@ ACTOR TDBots_PrecisionNode_Map : TDBots_PathNode_Map 2403
 	//$Title Precision node
 	//$Category TDBots
 	//$NotAngled
+	//$Color 4
 	
 	States
 	{
@@ -101,6 +104,7 @@ ACTOR TDBots_LiftNode_Map : TDBots_PathNode_Map 2404
 	//$Title Lift node
 	//$Category TDBots
 	//$Angled
+	//$Color 7
 	
 	States
 	{
@@ -115,6 +119,7 @@ ACTOR TDBots_PathNode_Map_NG : TDBots_PathNode_Map 2405
 	//$Title Path node (No Gravity)
 	//$Category TDBots
 	//$NotAngled
+	//$Color 13
 
 	+AMBUSH
 	States
