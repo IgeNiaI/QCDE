@@ -234,13 +234,13 @@ Actor QCSuperNailgun : QCWeapon
 	ReadyCont.Animated:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Ready") // reset the skin if upgraded
-		"####" ABCDEF 3 A_WeaponReady
+		"####" ABCDEFGHIJKL 3 A_WeaponReady
 		Loop
 
 	ReadyCont.AnimatedUpgraded:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" A 0 A_JumpIfInventory("SNG_UG_Lava",-1,"Ready") // reset the skin if upgraded
-		"####" ABCDEF 3 A_WeaponReady
+		"####" ABCDEFGHIJKL 3 A_WeaponReady
 		Loop
 
 		ReadyCantFire:
@@ -326,27 +326,36 @@ Actor QCSuperNailgun : QCWeapon
 		FireLooper:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash("SP_Flash")
-			"####" G 1 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
+			"####" M 1 Bright 	Offset(2,33)
+			"####" B 1 		 	Offset(3,35)
+			"####" C 1 			Offset(0,32)
 			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SNGShouldGoFire",0,0,0,0) == 1,"FireSeekerLooper2")
 			"####" A 0 A_ReFire("FireLooper2")
 			Goto EndFireLooper
 		FireLooper2:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash("SP_Flash")
-			"####" H 1 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
+			"####" N 1 Bright 	Offset(2,33)
+			"####" E 1 		 	Offset(3,35)
+			"####" F 1 			Offset(0,32)
 			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SNGShouldGoFire",0,0,0,0) == 1,"FireSeekerLooper3")
 			"####" A 0 A_ReFire("FireLooper3")
 			Goto EndFireLooper
 		FireLooper3:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash("SP_Flash")
-			"####" I 1 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
+			"####" O 1 Bright 	Offset(2,33)
+			"####" H 1 		 	Offset(3,35)
+			"####" I 1 			Offset(0,32)
+			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SNGShouldGoFire",0,0,0,0) == 1,"FireSeekerLooper")
+			"####" A 0 A_ReFire("FireLooper4")
+			Goto EndFireLooper
+		FireLooper4:
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_GunFlash("SP_Flash")
+			"####" P 1 Bright 	Offset(2,33)
+			"####" K 1 		 	Offset(3,35)
+			"####" L 1 			Offset(0,32)
 			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SNGShouldGoFire",0,0,0,0) == 1,"FireSeekerLooper")
 			"####" A 0 A_ReFire("FireLooper")
 			Goto EndFireLooper
@@ -354,25 +363,33 @@ Actor QCSuperNailgun : QCWeapon
 		DM_FireLooper:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash("DM_Flash")
-			"####" G 1 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
+			"####" M 1 Bright 	Offset(2,33)
+			"####" B 1 		 	Offset(3,35)
+			"####" C 1 			Offset(0,32)
 			"####" A 0 A_ReFire("DM_FireLooper2")
 			Goto EndFireLooper
 		DM_FireLooper2:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash("DM_Flash")
-			"####" H 1 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
+			"####" N 1 Bright 	Offset(2,33)
+			"####" E 1 		 	Offset(3,35)
+			"####" F 1 			Offset(0,32)
 			"####" A 0 A_ReFire("DM_FireLooper3")
 			Goto EndFireLooper
 		DM_FireLooper3:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash("DM_Flash")
-			"####" I 1 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
+			"####" O 1 Bright 	Offset(2,33)
+			"####" H 1 		 	Offset(3,35)
+			"####" I 1 			Offset(0,32)
+			"####" A 0 A_ReFire("DM_FireLooper4")
+			Goto EndFireLooper
+		DM_FireLooper4:
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_GunFlash("DM_Flash")
+			"####" P 1 Bright 	Offset(2,33)
+			"####" K 1 		 	Offset(3,35)
+			"####" L 1 			Offset(0,32)
 			"####" A 0 A_ReFire("DM_FireLooper")
 			Goto EndFireLooper
 
@@ -392,7 +409,7 @@ Actor QCSuperNailgun : QCWeapon
 		Goto EndFireLooperCont
 	EndFireLooper.Quake2:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_Quake2",CHAN_WEAPON,1,0)
-		Goto EndFireLooperCont
+		Goto EndFireLooperCont2
 	EndFireLooper.Quake3:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_Quake3",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
@@ -401,15 +418,17 @@ Actor QCSuperNailgun : QCWeapon
 		Goto EndFireLooperCont
 	EndFireLooper.ETQW:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_ETQW",CHAN_WEAPON,1,0)
-		Goto EndFireLooperCont
+		Goto EndFireLooperCont2
 	EndFireLooper.HalfLife:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_HalfLife",CHAN_WEAPON,1,0)
-		Goto EndFireLooperCont
+		Goto Ready // Half-Life skin doesn't have spin down animation
 
 	EndFireLooperCont:
-		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 4, 2)
-		"####" A 0 A_JumpIfInventory("QCSNailgunSkin", 3, "Ready") // Q3 skin uses spin down frames for idle animation
-		"####" ABCCDDEEEFFFAAAABBBBCCCC 1 A_WeaponReady
+		"####" AQRRAAQQQRRRAAAQQQRRR 1 A_WeaponReady
+		Goto Ready
+
+	EndFireLooperCont2:
+		"####" ABCDEFGHIJKLAABBCCDDEEFFGGHHIIJJKKLL 1 A_WeaponReady
 		Goto Ready
 
 
@@ -417,30 +436,44 @@ Actor QCSuperNailgun : QCWeapon
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_AlertMonsters
 			"####" A 0 A_GunFlash("SP_FlashSeeker")
-			"####" G 2 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
-			"####" A 1
+			"####" M 1 Bright 	Offset(2,33)
+			"####" C 1 Bright 	Offset(2,33)
+			"####" E 1 		 	Offset(3,35)
+			"####" G 1 			Offset(0,32)
+			"####" I 1
 			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SNGShouldGoFire",0,0,0,0) == 0,"Fire")
 			"####" A 0 A_ReFire("FireSeekerLooper2")
 			Goto EndFireLooper
 		FireSeekerLooper2:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash("SP_FlashSeeker")
-			"####" H 2 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
-			"####" A 1
+			"####" P 1 Bright 	Offset(2,33)
+			"####" L 1 Bright 	Offset(2,33)
+			"####" B 1 		 	Offset(3,35)
+			"####" D 1 			Offset(0,32)
+			"####" F 1
 			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SNGShouldGoFire",0,0,0,0) == 0,"Fire")
 			"####" A 0 A_ReFire("FireSeekerLooper3")
 			Goto EndFireLooper
 		FireSeekerLooper3:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 			"####" A 0 A_GunFlash("SP_FlashSeeker")
-			"####" I 2 Bright 	Offset(2,33)
-			"####" J 1 		 	Offset(3,35)
-			"####" K 1 			Offset(0,32)
-			"####" A 1
+			"####" O 1 Bright 	Offset(2,33)
+			"####" I 1 Bright 	Offset(2,33)
+			"####" K 1 		 	Offset(3,35)
+			"####" A 1 			Offset(0,32)
+			"####" C 1
+			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SNGShouldGoFire",0,0,0,0) == 0,"Fire")
+			"####" A 0 A_ReFire("FireSeekerLooper4")
+			Goto EndFireLooper
+		FireSeekerLooper4:
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_GunFlash("SP_FlashSeeker")
+			"####" N 1 Bright 	Offset(2,33)
+			"####" F 1 Bright 	Offset(2,33)
+			"####" H 1 		 	Offset(3,35)
+			"####" J 1 			Offset(0,32)
+			"####" L 1
 			"####" A 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_SNGShouldGoFire",0,0,0,0) == 0,"Fire")
 			"####" A 0 A_ReFire("FireSeekerLooper")
 			Goto EndFireLooper
