@@ -229,8 +229,6 @@ RangerJump2 "Sounds/Players/Ranger/RangerJump2.ogg"
 
 $volume RangerJump1 0.8
 $volume RangerJump2 0.8
-$attenuation RangerJump1 2.0
-$attenuation RangerJump1 2.0
 
 QCRangerTaunt01 "Sounds/Players/Ranger/RangerTaunt1.ogg"
 QCRangerTaunt02 "Sounds/Players/Ranger/RangerTaunt2.ogg"
@@ -316,7 +314,6 @@ QCDoomslayerTaunt13 "Sounds/Players/DoomSlayer/Taunt13.ogg"
 
 DoomJump		"Sounds/Players/DoomSlayer/Jump.ogg"
 $volume DoomJump 0.8
-$attenuation DoomJump 2.0
 
 $random DoomDoubleJump { DoomDoubleJump1 DoomDoubleJump2 }
 DoomDoubleJump1 "Sounds/UI/Abilities/Doom_DoubleJump1.ogg"
@@ -397,7 +394,6 @@ $random CorvusJump { CorvusJump1 CorvusJump1 }
 CorvusJump1		"Sounds/Players/Corvus/Jump.ogg"
 
 $volume CorvusJump1 0.8
-$attenuation CorvusJump1 2.0
 
 $playersound	Corvus	male	*death		"Sounds/Players/Corvus/Death.ogg"
 $playersound	Corvus	male	*xdeath		"Sounds/Players/Corvus/Xdeath.ogg"
@@ -467,7 +463,6 @@ $random KaneJump { KaneJump1 KaneJump1 }
 KaneJump1 "Sounds/Players/Kane/Q4PLJUMP.ogg"
 
 $volume KaneJump1 0.8
-$attenuation KaneJump1 2.0
 
 KaneStomp		"Sounds/Players/Footsteps/KaneStomp.ogg"
 $volume KaneStomp 0.65
@@ -580,7 +575,6 @@ $random CalebJump { CalebJump1 CalebJump1 }
 CalebJump1 "Sounds/Players/Caleb/Jump.ogg"
 
 $volume CalebJump1 0.8
-$attenuation CalebJump1 2.0
 
 $playeralias	Caleb	male	*death		CalebDeath
 $playeralias	Caleb	male	*xdeath		CalebXDeath
@@ -659,10 +653,6 @@ $volume MenelkirJump1 0.8
 $volume MenelkirJump2 0.8
 $volume MenelkirJump3 0.8
 $volume MenelkirJump4 0.8
-$attenuation MenelkirJump1 2.0
-$attenuation MenelkirJump2 2.0
-$attenuation MenelkirJump3 2.0
-$attenuation MenelkirJump4 2.0
 
 $random QC/Abilities/Menelkir/Activate {QC/Abilities/Menelkir/Activate1 QC/Abilities/Menelkir/Activate2}
 QC/Abilities/Menelkir/Activate1 		"Sounds/UI/Abilities/Menelkir_Activate1.ogg"
@@ -769,8 +759,6 @@ VisorJump2 "Sounds/Players/Terminator/VisorJump2.ogg"
 
 $volume VisorJump1 0.8
 $volume VisorJump2 0.8
-$attenuation VisorJump1 2.0
-$attenuation VisorJump2 2.0
 
 $playeralias	Terminator	male	*death		VisorDeath
 $playeralias	Terminator	male	*xdeath		VisorDeath
@@ -917,8 +905,6 @@ InquisJump2 "Sounds/Players/Inquisitor/ClutchJump2.ogg"
 
 $volume InquisJump1 0.8
 $volume InquisJump2 0.8
-$attenuation InquisJump1 2.0
-$attenuation InquisJump2 2.0
 
 $random ClutchDodge { ClutchDodge1 ClutchDodge2 ClutchDodge3 }
 ClutchDodge1 "Sounds/Players/Inquisitor/ClutchDodge1.ogg"
@@ -997,7 +983,6 @@ $random BitterJump { BitterJump1 BitterJump1 }
 BitterJump1 "Sounds/Players/Bitterman/Jump.ogg"
 
 $volume BitterJump1 0.7
-$attenuation BitterJump1 2.0
 
 $random BitterEdge { BitterEdge1 BitterEdge2 BitterEdge3 }
 BitterEdge1 "Sounds/Players/Bitterman/Edge1.ogg"
@@ -1084,7 +1069,6 @@ $random GalenJump { GalenJump1 GalenJump1 }
 GalenJump1 "Sounds/Players/Galen/GalenJump.ogg"
 
 $volume GalenJump1 0.8
-$attenuation GalenJump1 2.0
 
 $playersound	Galen	male	*death		"Sounds/Players/Galen/GalenDeath1.ogg"
 $playersound	Galen	male	*xdeath		"Sounds/Players/Galen/GalenDeath2.ogg"
@@ -1145,8 +1129,6 @@ NyxJump2 "Sounds/Players/Nyx/NyxJump2.ogg"
 
 $volume NyxJump1 0.8
 $volume NyxJump2 0.8
-$attenuation NyxJump1 2.0
-$attenuation NyxJump2 2.0
 
 $random NyxWallJump { NyxWallJump1 NyxWallJump2 }
 NyxWallJump1 "Sounds/UI/Abilities/Nyx_Walljump1.ogg"
@@ -1246,8 +1228,6 @@ $random SorgaulJump { SorgaulJump1 SorgaulJump2 }
 
 $volume SorgaulJump1 0.8
 $volume SorgaulJump2 0.8
-$attenuation SorgaulJump1 2.0
-$attenuation SorgaulJump2 2.0
 
 $playersound	Sorgaul	male	*death		"Sounds/Players/Sorgaul/SorgaulDeath1.ogg"
 $playersound	Sorgaul	male	*xdeath		"Sounds/Players/Sorgaul/SorgaulDeath2.ogg"
@@ -1353,8 +1333,6 @@ DukeNukemJump2 "Sounds/Players/DukeNukem/DukeNukemJump2.ogg"
 
 $volume DukeNukemJump1 0.8
 $volume DukeNukemJump2 0.8
-$attenuation DukeNukemJump1 2.0
-$attenuation DukeNukemJump2 2.0
 
 $random DukeNukemPainRandomizer { DukeNukemPain100 DukeNukemPain100 DukeNukemPain100 DukeNukemPain100 DukeNukemPain100
 								DukeNukemPain100 DukeNukemPain100 DukeNukemPain100 DukeNukemPain100 DukeNukemPain100rare}
@@ -1439,8 +1417,6 @@ $random DurandalJump { DurandalJump1 DurandalJump2 }
 
 $volume DurandalJump1 0.9
 $volume DurandalJump2 0.9
-$attenuation DurandalJump1 2.0
-$attenuation DurandalJump2 2.0
 
 $playersound	Durandal	male	*death		"Sounds/Players/Durandal/DurandalDeath.ogg"
 $playersound	Durandal	male	*xdeath		"Sounds/Players/Durandal/DurandalXDeath.ogg"
@@ -1509,8 +1485,6 @@ $random KeelJump { KeelJump1 KeelJump2 }
 
 $volume KeelJump1 0.9
 $volume KeelJump2 0.9
-$attenuation KeelJump1 2.0
-$attenuation KeelJump2 2.0
 
 $playersound	Keel	male	*death		"Sounds/Players/Keel/KeelDeath1.ogg"
 $playersound	Keel	male	*xdeath		"Sounds/Players/Keel/KeelDeath2.ogg"
@@ -1592,8 +1566,6 @@ SargeJump1 "Sounds/Players/Sarge/SargeJump1.ogg"
 SargeJump2 "Sounds/Players/Sarge/SargeJump2.ogg"
 $volume SargeJump1 0.9
 $volume SargeJump2 0.9
-$attenuation SargeJump1 2.0
-$attenuation SargeJump2 2.0
 
 $playeralias	Sarge	male	*death		SargeDeath
 $playersound	Sarge	male	*xdeath		"Sounds/Players/Sarge/SargeXDeath.ogg"
@@ -1674,7 +1646,6 @@ $random LoWangJump { LoWangJump1 None None }
 LoWangJump1 "Sounds/Players/LoWang/LoWangJump.ogg"
 
 $volume LoWangJump1 0.8
-$attenuation LoWangJump1 2.0
 
 $random LoWangPainMid { LoWangPainMid1 LoWangPainMid2 }
 $random LoWangPainLow { LoWangPainLow1 LoWangPainLow2 }
@@ -1772,8 +1743,6 @@ GraysonJump1 "Sounds/Players/Grayson/GraysonJump1.ogg"
 GraysonJump2 "Sounds/Players/Grayson/GraysonJump2.ogg"
 $volume GraysonJump1 0.9
 $volume GraysonJump2 0.9
-$attenuation GraysonJump1 2.0
-$attenuation GraysonJump2 2.0
 
 $playersound	Grayson	male	*death		"Sounds/Players/Grayson/GraysonDeath.ogg"
 $playersound	Grayson	male	*xdeath		"Sounds/Players/Grayson/GraysonXDeath.ogg"
@@ -1853,7 +1822,6 @@ QCEradicatorTaunt21 "Sounds/Players/Eradicator/EradicatorTaunt21.ogg"
 $random EradicatorJump { EradicatorJump1 EradicatorJump1 }
 EradicatorJump1 "Sounds/Players/Eradicator/EradicatorJump.ogg"
 $volume EradicatorJump1 0.9
-$attenuation EradicatorJump1 2.0
 
 $playersound	Eradicator	male	*death		"Sounds/Players/Eradicator/EradicatorDeath.ogg"
 $playersound	Eradicator	male	*xdeath		"Sounds/Players/Eradicator/EradicatorXDeath.ogg"
@@ -1928,8 +1896,6 @@ BlazkowiczJump1 "Sounds/Players/Blazkowicz/BlazkowiczJump1.ogg"
 BlazkowiczJump2 "Sounds/Players/Blazkowicz/BlazkowiczJump2.ogg"
 $volume BlazkowiczJump1 0.9
 $volume BlazkowiczJump2 0.9
-$attenuation BlazkowiczJump1 2.0
-$attenuation BlazkowiczJump2 2.0
 
 $random BlazkowiczDeath { BlazkowiczDeath1 BlazkowiczDeath2 }
 BlazkowiczDeath1 "Sounds/Players/Blazkowicz/BlazkowiczDeath1.ogg"
@@ -2049,8 +2015,6 @@ EleenaJump1 "Sounds/Players/Eleena/EleenaJump1.ogg"
 EleenaJump2 "Sounds/Players/Eleena/EleenaJump2.ogg"
 $volume EleenaJump1 0.9
 $volume EleenaJump2 0.9
-$attenuation EleenaJump1 2.0
-$attenuation EleenaJump2 2.0
 
 $playersound	Eleena	male	*death		"Sounds/Players/Eleena/EleenaDeath.ogg"
 $playersound	Eleena	male	*xdeath		"Sounds/Players/Eleena/EleenaXDeath.ogg"
@@ -2129,8 +2093,6 @@ $random VorMaturJump { VorMaturJump1 VorMaturJump2 }
 
 $volume VorMaturJump1 0.9
 $volume VorMaturJump2 0.9
-$attenuation VorMaturJump1 2.0
-$attenuation VorMaturJump2 2.0
 
 VorMaturDeath1 "Sounds/Players/VorMatur/VorMaturDeath1.ogg"
 VorMaturDeath2 "Sounds/Players/VorMatur/VorMaturDeath2.ogg"
@@ -2302,8 +2264,6 @@ MajorJump1 "Sounds/Players/Major/MajorJump1.ogg"
 MajorJump2 "Sounds/Players/Major/MajorJump2.ogg"
 $volume MajorJump1 0.9
 $volume MajorJump2 0.9
-$attenuation MajorJump1 2.0
-$attenuation MajorJump2 2.0
 
 $random MajorClimb { MajorClimb1 MajorClimb2 MajorClimb3 MajorClimb4 }
 MajorClimb1 "Sounds/UI/Abilities/Major_Climb1.ogg"
@@ -2390,7 +2350,6 @@ QCLucienneTaunt20 "Sounds/Players/Lucienne/LucienneTaunt20.ogg"
 $random LucienneJump { LucienneJump1 LucienneJump1 }
 LucienneJump1 "Sounds/Players/Lucienne/LucienneJump.ogg"
 $volume LucienneJump1 0.9
-$attenuation LucienneJump1 2.0
 
 $random LucienneDeath { LucienneDeath1 LucienneDeath2 }
 LucienneDeath1 "Sounds/Players/Lucienne/LucienneDeath1.ogg"
@@ -2474,8 +2433,6 @@ HunterJump1 "Sounds/Players/Hunter/HunterJump1.ogg"
 HunterJump2 "Sounds/Players/Hunter/HunterJump2.ogg"
 $volume HunterJump1 0.9
 $volume HunterJump2 0.9
-$attenuation HunterJump1 2.0
-$attenuation HunterJump2 2.0
 
 $playersound	Hunter	male	*death		"Sounds/Players/Hunter/HunterDeath.ogg"
 $playersound	Hunter	male	*xdeath		"Sounds/Players/Hunter/HunterXDeath.ogg"
@@ -2557,8 +2514,6 @@ SamJump1 "Sounds/Players/Sam/SamJump1.ogg"
 SamJump2 "Sounds/Players/Sam/SamJump2.ogg"
 $volume SamJump1 0.9
 $volume SamJump2 0.9
-$attenuation SamJump1 2.0
-$attenuation SamJump2 2.0
 
 $playersound	Sam	male	*death		"Sounds/Players/Sam/SamDeath.ogg"
 $playersound	Sam	male	*xdeath		"Sounds/Players/Sam/SamDeath.ogg"
@@ -2656,7 +2611,6 @@ PostalPain25rare "Sounds/Players/Postal/PostalPain25rare.ogg"
 $random PostalJump { PostalJump1 PostalJump1 }
 PostalJump1 "Sounds/Players/Postal/PostalJump.ogg"
 $volume PostalJump1 0.9
-$attenuation PostalJump1 2.0
 
 $playeralias	Postal	male	*death		PostalDeath
 $playeralias	Postal	male	*xdeath		PostalDeath
@@ -2754,8 +2708,6 @@ PainkillerJump1 "Sounds/Players/Painkiller/PainkillerJump1.ogg"
 PainkillerJump2 "Sounds/Players/Painkiller/PainkillerJump2.ogg"
 $volume PainkillerJump1 0.9
 $volume PainkillerJump2 0.9
-$attenuation PainkillerJump1 2.0
-$attenuation PainkillerJump2 2.0
 
 $playersound	Painkiller	male	*death		"Sounds/Players/Painkiller/PainkillerDeath.ogg"
 $playersound	Painkiller	male	*xdeath		"Sounds/Players/Painkiller/PainkillerXDeath.ogg"
@@ -2895,8 +2847,6 @@ IntruderJump1 "Sounds/Players/Intruder/IntruderJump1.ogg"
 IntruderJump2 "Sounds/Players/Intruder/IntruderJump2.ogg"
 $volume IntruderJump1 0.9
 $volume IntruderJump2 0.9
-$attenuation IntruderJump1 2.0
-$attenuation IntruderJump2 2.0
 
 $random IntruderOof { IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1
 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOof1 IntruderOofRare }
@@ -2973,7 +2923,6 @@ $random OrbbDeath { OrbbDeath1 OrbbDeath2 OrbbDeath3 }
 
 OrbbJump "Sounds/Players/Orbb/OrbbJump.ogg"
 $volume OrbbJump1 0.9
-$attenuation OrbbJump1 2.0
 
 $playeralias	Orbb	male	*death		OrbbDeath
 $playeralias	Orbb	male	*xdeath		OrbbDeath
