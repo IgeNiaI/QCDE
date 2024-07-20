@@ -236,12 +236,8 @@ Actor Doppelganger
 			"####" H 0 A_JumpIfInventory("QCSNailgunSkin", 4, "NailFire.Quake4")
 			"####" H 0 A_JumpIfInventory("QCSNailgunSkin", 3, "NailFire.Quake3")
 			"####" H 0 A_JumpIfInventory("QCSNailgunSkin", 2, "NailFire.Quake2")
-			"####" H 0 A_JumpIfInventory("QCSNailgunSkin", 1, "NailFire.Quake1")
 		NailFire.Default:
 			"####" H 0 A_CustomMissile ("QCNailStrongIllusion", 40, 0, random(-1,1), CMF_AIMDIRECTION|CMF_NOUNLAGGED, random(-1,1))
-			Goto NailPost
-		NailFire.Quake1:
-			"####" H 0 A_CustomMissile ("QCNailStrongIllusion_Quake1", 40, 0, random(-1,1), CMF_AIMDIRECTION|CMF_NOUNLAGGED, random(-1,1))
 			Goto NailPost
 		NailFire.Quake2:
 			"####" H 0 A_CustomMissile ("QCNailStrongIllusion_Quake2", 40, 0, random(-1,1), CMF_AIMDIRECTION|CMF_NOUNLAGGED, random(-1,1))
@@ -413,20 +409,6 @@ Actor DrawAttentionProc : CustomInventory
 }
 
 Actor QCNailStrongIllusion : QCNailStrong
-{
-	+NOINTERACTION
-	+SERVERNETID
-	Damage (0)
-	States
-	{
-	Death:
-		TNT1 A 10 A_PlaySound("QC/Weapons/SuperNailgun/Impact_Default",CHAN_AUTO,0.7,0,2.5)
-		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
-		Stop
-	}
-}
-
-Actor QCNailStrongIllusion_Quake1 : QCNailStrong_Quake1
 {
 	+NOINTERACTION
 	+SERVERNETID

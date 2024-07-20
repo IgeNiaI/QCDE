@@ -322,12 +322,8 @@ Actor QCNailgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "SP_Flash.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "SP_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "SP_Flash.Quake2")
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "SP_Flash.Quake1")
 	SP_Flash.Default:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeak",0,true,1,5)
-		Goto EndFlash
-	SP_Flash.Quake1:
-		TNT1 A 0 A_FireCustomMissile("QCNailWeak_Quake1",0,true,1,5)
 		Goto EndFlash
 	SP_Flash.Quake2:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeak_Quake2",0,true,1,5)
@@ -340,12 +336,8 @@ Actor QCNailgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "SP_FlashNA.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "SP_FlashNA.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "SP_FlashNA.Quake2")
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "SP_FlashNA.Quake1")
 	SP_FlashNA.Default:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeak",0, false,1,5) //doesnt use ammo
-		Goto EndFlash
-	SP_FlashNA.Quake1:
-		TNT1 A 0 A_FireCustomMissile("QCNailWeak_Quake1",0, false,1,5) //doesnt use ammo
 		Goto EndFlash
 	SP_FlashNA.Quake2:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeak_Quake2",0, false,1,5) //doesnt use ammo
@@ -359,12 +351,8 @@ Actor QCNailgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "DM_Flash.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "DM_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "DM_Flash.Quake2")
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "DM_Flash.Quake1")
 	DM_Flash.Default:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeakDM",0,true,1,5)
-		Goto EndFlash
-	DM_Flash.Quake1:
-		TNT1 A 0 A_FireCustomMissile("QCNailWeakDM_Quake1",0,true,1,5)
 		Goto EndFlash
 	DM_Flash.Quake2:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeakDM_Quake2",0,true,1,5)
@@ -521,17 +509,6 @@ Actor QCNailWeak : FastProjectile
 	}
 }
 
-Actor QCNailWeak_Quake1 : QCNailWeak
-{
-	States
-	{
-	Spawn:
-		TNT1 A 1
-		NA1I A 1 Bright
-		Wait
-	}
-}
-
 Actor QCNailWeak_Quake2 : QCNailWeak
 {
 	RenderStyle Add
@@ -571,17 +548,6 @@ Actor QCNailWeakDM : QCNailWeak
 	-DONTBLAST
 }
 
-Actor QCNailWeakDM_Quake1 : QCNailWeakDM
-{
-	States
-	{
-	Spawn:
-		TNT1 A 1
-		NA1I A 1 Bright
-		Wait
-	}
-}
-
 Actor QCNailWeakDM_Quake2 : QCNailWeakDM
 {
 	States
@@ -592,7 +558,8 @@ Actor QCNailWeakDM_Quake2 : QCNailWeakDM
 		Wait
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact_Quake2",CHAN_AUTO,0.6,0,1.7,AAPTR_TARGET)
-		Goto Super::Death+1
+		TNT1 A 0 A_SpawnItemEx("QCNailWeakDeathFX_Quake2", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
 	}
 }
 

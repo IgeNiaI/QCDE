@@ -124,7 +124,7 @@ Actor QCRocketLauncher : QCWeapon
 		Goto ReadyCont
 	Ready.Quake2:
 		Q2G5 A 0
-		Goto ReadyCont
+		Goto ReadyCont.Animated
 	Ready.Quake3:
 		Q3G5 A 0
 		Goto ReadyCont
@@ -147,6 +147,11 @@ Actor QCRocketLauncher : QCWeapon
 	ReadyCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" A 4 A_WeaponReady
+		Loop
+
+	ReadyCont.Animated:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+		"####" ARSTUV 4 A_WeaponReady
 		Loop
 
 		ReadyCantFire:

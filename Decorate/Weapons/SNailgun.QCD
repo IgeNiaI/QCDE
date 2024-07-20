@@ -520,12 +520,8 @@ Actor QCSuperNailgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "SP_Flash.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 3, "SP_Flash.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 2, "SP_Flash.Quake2")
-		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 1, "SP_Flash.Quake1")
 	SP_Flash.Default:
 		TNT1 A 0 A_FireCustomMissile("QCNailStrong",0,true,2,5)
-		Goto EndFlash
-	SP_Flash.Quake1:
-		TNT1 A 0 A_FireCustomMissile("QCNailStrong_Quake1",0,true,2,5)
 		Goto EndFlash
 	SP_Flash.Quake2:
 		TNT1 A 0 A_FireCustomMissile("QCNailStrong_Quake2",0,true,2,5)
@@ -550,12 +546,8 @@ Actor QCSuperNailgun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "ShootLavaNail.Quake4")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 3, "ShootLavaNail.Quake3")
 			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 2, "ShootLavaNail.Quake2")
-			TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 1, "ShootLavaNail.Quake1")
 		ShootLavaNail.Default:
 			TNT1 A 0 A_FireCustomMissile("QCNailStrongLava",0,true,2,5)
-			Goto EndFlash
-		ShootLavaNail.Quake1:
-			TNT1 A 0 A_FireCustomMissile("QCNailStrongLava_Quake1",0,true,2,5)
 			Goto EndFlash
 		ShootLavaNail.Quake2:
 			TNT1 A 0 A_FireCustomMissile("QCNailStrongLava_Quake2",0,true,2,5)
@@ -583,12 +575,8 @@ Actor QCSuperNailgun : QCWeapon
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "ShootNormal.Quake4")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 3, "ShootNormal.Quake3")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 2, "ShootNormal.Quake2")
-				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 1, "ShootNormal.Quake1")
 			ShootNormal.Default:
 				TNT1 A 0 A_FireCustomMissile("QCNailStrongSeeker",0,true,2,5)
-				Goto EndSeekerFlash
-			ShootNormal.Quake1:
-				TNT1 A 0 A_FireCustomMissile("QCNailStrongSeeker_Quake1",0,true,2,5)
 				Goto EndSeekerFlash
 			ShootNormal.Quake2:
 				TNT1 A 0 A_FireCustomMissile("QCNailStrongSeeker_Quake2",0,true,2,5)
@@ -613,12 +601,8 @@ Actor QCSuperNailgun : QCWeapon
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "ShootSeekerLava.Quake4")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 3, "ShootSeekerLava.Quake3")
 				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 2, "ShootSeekerLava.Quake2")
-				TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 1, "ShootSeekerLava.Quake1")
 			ShootSeekerLava.Default:
 				TNT1 A 0 A_FireCustomMissile("QCNailStrongLavaSeeker",0,true,2,5)
-				Goto EndSeekerFlash
-			ShootSeekerLava.Quake1:
-				TNT1 A 0 A_FireCustomMissile("QCNailStrongLavaSeeker_Quake1",0,true,2,5)
 				Goto EndSeekerFlash
 			ShootSeekerLava.Quake2:
 				TNT1 A 0 A_FireCustomMissile("QCNailStrongLavaSeeker_Quake2",0,true,2,5)
@@ -715,12 +699,8 @@ Actor QCSuperNailgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 4, "DM_Flash.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 3, "DM_Flash.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 2, "DM_Flash.Quake2")
-		TNT1 A 0 A_JumpIfInventory("QCSNailgunSkin", 1, "DM_Flash.Quake1")
 	DM_Flash.Default:
 		TNT1 A 0 A_FireCustomMissile("QCNailStrongDM",0,true,2,5)
-		Goto EndFlash
-	DM_Flash.Quake1:
-		TNT1 A 0 A_FireCustomMissile("QCNailStrongDM_Quake1",0,true,2,5)
 		Goto EndFlash
 	DM_Flash.Quake2:
 		TNT1 A 0 A_FireCustomMissile("QCNailStrongDM_Quake2",0,true,2,5)
@@ -1075,17 +1055,6 @@ Actor QCNailStrong : FastProjectile
 	}
 }
 
-Actor QCNailStrong_Quake1 : QCNailStrong
-{
-	States
-	{
-	Spawn:
-		TNT1 A 1
-		NA1L A 1 Bright
-		Wait
-	}
-}
-
 Actor QCNailStrong_Quake2 : QCNailStrong
 {
 	RenderStyle Add
@@ -1182,17 +1151,6 @@ Actor QCNailStrongDM : QCNailStrong
 	-MTHRUSPECIES
 	-DONTBLAST
 	Obituary "$OB_QCSuperNailgun"
-}
-
-Actor QCNailStrongDM_Quake1 : QCNailStrongDM
-{
-	States
-	{
-	Spawn:
-		TNT1 A 1
-		NA1L A 1 Bright
-		Wait
-	}
 }
 
 Actor QCNailStrongDM_Quake2 : QCNailStrongDM
@@ -1325,17 +1283,6 @@ Actor QCNailStrongLava : QCNailStrong
 	}
 }
 
-Actor QCNailStrongLava_Quake1 : QCNailStrongLava
-{
-	States
-	{
-	Spawn:
-		TNT1 A 1
-		NA1L B 1 Bright A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
-		Wait
-	}
-}
-
 Actor QCNailStrongLava_Quake2 : QCNailStrongLava
 {
 	RenderStyle Add
@@ -1358,6 +1305,7 @@ Actor QCNailStrongLava_Quake2 : QCNailStrongLava
 
 Actor QCNailStrongLava_Quake3 : QCNailStrongLava
 {
+	Scale 0.42
 	RenderStyle Add
 	Decal "Q3NailgunOrangeFull"
 	States
@@ -1512,19 +1460,6 @@ Actor QCNailStrongSeeker : QCNailStrong
 	}
 }
 
-Actor QCNailStrongSeeker_Quake1 : QCNailStrongSeeker
-{
-	States
-	{
-	Spawn:
-		TNT1 A 1
-	Looper:
-		NA1L C 0 A_SpawnItemEx("NailSeekerSmoke",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		NA1L CC 1 Bright A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
-		Loop
-	}
-}
-
 Actor QCNailStrongSeeker_Quake2 : QCNailStrongSeeker
 {
 	RenderStyle Add
@@ -1548,6 +1483,7 @@ Actor QCNailStrongSeeker_Quake2 : QCNailStrongSeeker
 
 Actor QCNailStrongSeeker_Quake3 : QCNailStrongSeeker
 {
+	Scale 0.42
 	RenderStyle Add
 	Decal "Q3NailgunBlueFull"
 	States
@@ -1653,22 +1589,6 @@ Actor QCNailStrongLavaSeeker : QCNailStrongLava
 	}
 }
 
-Actor QCNailStrongLavaSeeker_Quake1 : QCNailStrongLavaSeeker
-{
-	States
-	{
-	Spawn:
-		TNT1 A 1
-	Looper:
-		NA1L D 0 A_SpawnItemEx("NailSeekerLavaNSmoke",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		NA1L D 1 Bright A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
-		NA1L D 0 A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
-		NA1L D 1 Bright A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
-		NA1L D 0 A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
-		Loop
-	}
-}
-
 Actor QCNailStrongLavaSeeker_Quake2 : QCNailStrongLavaSeeker
 {
 	RenderStyle Add
@@ -1696,6 +1616,7 @@ Actor QCNailStrongLavaSeeker_Quake2 : QCNailStrongLavaSeeker
 
 Actor QCNailStrongLavaSeeker_Quake3 : QCNailStrongLavaSeeker
 {
+	Scale 0.42
 	RenderStyle Add
 	Decal "Q3NailgunOrangeFull"
 	States
