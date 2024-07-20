@@ -1554,3 +1554,15 @@ decal Q4NailgunOrangeFull	//Glowing spot
 	animator ShrinkFadePlasmaGlow
 	LowerDecal "Q4RailgunBlack"
 }
+
+decal QWNailgunOrangeFull	//Glowing spot
+{
+	pic QWSNGDCL
+	x-scale 0.21
+	y-scale 0.21
+	randomflipx
+	randomflipy
+	Fullbright
+	animator GoAwayBulletGlow
+	LowerDecal "Q4RailgunBlack"
+}
