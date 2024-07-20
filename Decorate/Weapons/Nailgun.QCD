@@ -411,6 +411,34 @@ Actor QCNailWeakDeathFX
 	}
 }
 
+Actor QCNailWeakDeathFX_Quake2 : QCNailWeakDeathFX
+{
+	RenderStyle Add
+	Scale 0.21
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
+
+	T1:
+		NA2D A 1
+		NA2D BCDEFG 1
+        Stop
+	T2:
+		NA2D A 1
+		NA2D HIJKLM 1
+        Stop
+	T3:
+		NA2D A 1
+		NA2D NOPQRS 1
+        Stop
+	T4:
+		NA2D A 1
+		NA2D TUVWXY 1
+        Stop
+	}
+}
+
 Actor QCNailWeak : FastProjectile
 {
 	Projectile
@@ -463,6 +491,8 @@ Actor QCNailWeak_Quake1 : QCNailWeak
 
 Actor QCNailWeak_Quake2 : QCNailWeak
 {
+	RenderStyle Add
+	Decal "Q2NailgunOrangeFull"
 	States
 	{
 	Spawn:
@@ -471,7 +501,8 @@ Actor QCNailWeak_Quake2 : QCNailWeak
 		Wait
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact_Quake2",CHAN_AUTO,0.6,0,1.7,AAPTR_TARGET)
-		Goto Super::Death+1
+		TNT1 A 0 A_SpawnItemEx("QCNailWeakDeathFX_Quake2", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
 	}
 }
 

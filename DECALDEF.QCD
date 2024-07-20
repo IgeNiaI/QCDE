@@ -1495,6 +1495,18 @@ Combiner ShrinkFadePlasmaGlow
    ShrinkPlasmaGlow
 }
 
+decal Q2NailgunOrangeFull	//Glowing spot
+{
+	pic Q2SNGDCL
+	x-scale 0.21
+	y-scale 0.21
+	randomflipx
+	randomflipy
+	Fullbright
+	animator GoAwayBulletGlow
+	LowerDecal "Q4RailgunBlack"
+}
+
 decal Q3NailgunBlueFull	//Glowing spot
 {
 	pic Q3SNGDCL
