@@ -1591,7 +1591,9 @@ $random SargeJump { SargeJump1 SargeJump2 }
 SargeJump1 "Sounds/Players/Sarge/SargeJump1.ogg"
 SargeJump2 "Sounds/Players/Sarge/SargeJump2.ogg"
 $volume SargeJump1 0.9
+$volume SargeJump2 0.9
 $attenuation SargeJump1 2.0
+$attenuation SargeJump2 2.0
 
 $playeralias	Sarge	male	*death		SargeDeath
 $playersound	Sarge	male	*xdeath		"Sounds/Players/Sarge/SargeXDeath.ogg"
