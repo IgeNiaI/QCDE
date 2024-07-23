@@ -368,6 +368,7 @@ script "鳞~Loot🅱ox0_3" (void)
 {
 	SetResultValue("");
 	if(CheckInventory("Class_Sarge")) terminate;
+	if(CheckInventory("Class_Brock")) terminate;
 	if(GiveAndCheck("CooldownRewardToken", 5))
 	{
 		if(CheckInventory("Class_Sam"))
@@ -502,6 +503,7 @@ script "鳞~Loot🅱ox1_4" (void)
 {
 	SetResultValue("");
 	if(CheckInventory("Class_Sarge")) terminate;
+	if(CheckInventory("Class_Brock")) terminate;
 	int given = GiveAndCheck("CooldownRewardToken", 10);
 	if(given == 10)
 	{
@@ -737,6 +739,7 @@ script "鳞~Loot🅱ox2_2" (void)
 {
 	SetResultValue("");
 	if(CheckInventory("Class_Sarge")) terminate;
+	if(CheckInventory("Class_Brock")) terminate;
 	if(CheckInventory("CooldownRewardToken") >= 50) terminate;
 
 	SetResultValue("CDLOOT50:-50% cooldown");
