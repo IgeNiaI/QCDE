@@ -16,10 +16,12 @@ General:
   - Nyx, Doom Slayer, Inquisitor and Major are using the engine implementation for Wall Jump, Double Jump, Thrust Dodge and Wall Climb respectively.
   - Bitterman gained a Ramp Jump movement mechanic, similar to Quake 2.
   - Eleena and Postal Dude jump mechanics were reworked to make them lagless.
+- Turned Duke Nukem and Sam abilities into weapons that are always available instead of being on a timer. Ammo no longer regenerates automatically, Duke and Sam have to pick up hourglasses to replenish ammo.
+- Cooldown reduction lootbox in PVE increases Sam and Duke ammo capacity.
 - All weapons, abilities and map interactables are much less affected by ping.
 - No delay when holding the jump button. Hop hop hop!
 - Completely remade mod menus.
-- Added weapon skins like in QC. The skins are based on weapon models from other Quake titles and Half-Life.
+- Added weapon skins like in QC. The skins are based on weapon models from other Quake titles, Half-Life and Serious Sam.
 - Remade Blazkowicz sprites and portrait, now based on his default model from QC.
 - Ability cooldown now continues when the player is dead, like in Quake Champions.
 - Reworked Zoom mechanics. You can now switch between hold-to-zoom and toggle-zoom methods. Also you can now zoom in and out while firing the weapon.
@@ -61,12 +63,12 @@ General:
 - Bots at `botskill` 3 and 4 now select weapons according to distance to their target.
 - Bots are less likely to navigate towards damaging and instant death sectors.
 - Added Discord Rich Presence support. It displays what gamemode and map you are playing as your Discord status.
+- Added Hungarian and Finnish welcome texts.
 
 PVP Balance:
 - Railgun no longer deals additional "zoomed charge" damage in PVP.
 - All Light champions gained 25 more max armor and all Heavy champions lost 25 max armor, except Vor Matur.
 - Raised players camera and attack Z offset.
-- Turned Duke Nukem and Sam abilities into weapons that are always available instead of being on a timer. Ammo no longer regenerates automatically, Duke and Sam have to pick up hourglasses to replenish ammo.
 - Ranger now only reduces self rocket damage instead of all.
 - Slightly reworked Eleena's active ability. Now Doppelganger lasts for 12 seconds, but you can swap positions for the full duration. You can still only swap them for up to 3 times.
 - Eleena now only loses her speed buff when she has above 15 armor.
@@ -90,7 +92,7 @@ PVP Balance:
 - Reduced amount of Vor Matur spilled blood and its damage.
 - Increased Shotgun and Super Shotgun spread.
 - Nerfed Sarge armor gain from small/big hourglasses from 12/50 to 10/25.
-- Sarge, Terminator and Sam will not pick up hourglasses if their respective ability is full.
+- Sarge, Terminator, Sam and Duke will not pick up hourglasses if their respective ability is full.
 
 PvE Rebalance:
 - Increased Kane cooldown from 35 to 75 seconds, but increased duration from 0.8 to 3 seconds.
@@ -175,11 +177,14 @@ Misc:
 - Replaced all announcer and medals sounds with completely new sounds from George Exley.
 - All champions except Lo Wang will always play their respective sound when jumping, where it was random before.
   - Except Lo Wang, his vocalization was too annoying to always play.
+- Doubled player jump sounds distance.
 - Added dedicated powerup pickup sounds for Quad and Protection.
 - Completely replaced old Menelkir sounds with Death Knight's from QC.
 - Replaced Zedek painsounds and grunts with sounds from Painkiller.
 - Replaced Caleb active ability sounds, changed some of his voicelines to higher quality ones.
 - Replaced Lo Wang sounds with higher quality ones.
+- Decreased tribolt and rocket explosion sounds volume and distance.
+- Shortened tribolt and rocket explosion sounds duration.
 - Added a jumping sound for Freeman.
 - You can now change your class on respawn in singleplayer invasion.
 - Bots no longer jump around after the game ends.
