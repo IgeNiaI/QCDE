@@ -4670,6 +4670,7 @@ Script "QCDE_HandleFreemanWeaponBox" (int boxIndex)
 	if (boxIndex == 1)
 	{
 		itemAmount = CheckInventory("FreemanWeaponBox1");
+		itemAmount += CheckInventory("FreemanWeaponBox1DM");
 							ammoAmount = (itemAmount & 0xFF); GiveInventory("QCBulletAmmo",	ammoAmount);
 		itemAmount >>= 8;	ammoAmount = (itemAmount & 0xFF); GiveInventory("QCNailAmmo",	ammoAmount);
 		itemAmount >>= 8;	ammoAmount = (itemAmount & 0xFF); GiveInventory("QCRocketAmmo",	ammoAmount);
@@ -4680,6 +4681,7 @@ Script "QCDE_HandleFreemanWeaponBox" (int boxIndex)
 	else if (boxIndex == 2)
 	{
 		itemAmount = CheckInventory("FreemanWeaponBox2");
+		itemAmount += CheckInventory("FreemanWeaponBox2DM");
 							ammoAmount = (itemAmount & 0xFF); GiveInventory("QCShellAmmo",	ammoAmount);
 		itemAmount >>= 8;	ammoAmount = (itemAmount & 0xFF); GiveInventory("QCBoltAmmo",	ammoAmount);
 		itemAmount >>= 8;	ammoAmount = (itemAmount & 0xFF); GiveInventory("QCCoilAmmo",	ammoAmount);
