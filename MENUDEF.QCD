@@ -1066,7 +1066,7 @@ FreeformMenu QCDE_CallVote
 		Size	 98, 54				Values		ZA_LevelNamesLoaded		BackgroundValues	ZA_LevelPreviewsLoaded
 		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEF, 110, 62
 		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
-									UnknownValueText "Map not loaded!"
+									UnknownValueText ""
 	}
 	Option {
 		NotSelectable
