@@ -290,6 +290,7 @@ Script TDB_Touch_Node (int id)
 	switch(node.type)
 	{
 	case TDB_PATH_NODE:
+	case TDB_BIG_NODE:
 	{
 		self.flags &= ~(TDB_FLAGS_PREC | TDB_FLAGS_NOJUMPNODE);
 	}
@@ -366,6 +367,9 @@ Script TDB_Touch_Node (int id)
 	SpawnForced(TDB_NodeActors[node.type], node.x, node.y, node.z, node.tid, (raw)node.angle >> 8);
 	SetThingSpecial(node.tid, ACS_ExecuteWithResult, TDB_Touch_Node, id);
 	GiveActorInventory(node.tid, "TDBots_IDoExist", 1);
+
+	if(ShowNodes)
+		SetActorProperty(node.tid, APROP_RenderStyle, STYLE_Normal);	
 
 	if(node.noGravity)
 	{
@@ -491,7 +495,7 @@ bool TDB_FollowNode (int targetPlayer = -1)
 		dist = 256.0;
 
 		// pick a random close node (or don't, if this is a special node)
-		if(self.goalNode && TDB_Nodes[self.goalNode].type == TDB_PATH_NODE)
+		if(self.goalNode && ((TDB_Nodes[self.goalNode].type == TDB_PATH_NODE) || (TDB_Nodes[self.goalNode].type == TDB_BIG_NODE)))
 		{
 			for(int i = 0; i <= MAX_NODES; i++)
 			{

@@ -247,8 +247,9 @@ void TDB_CallWeaponTick(str wpn, fixed dist)
 
 void TDB_Weapon_Switch (fixed dist)
 {
+	fixed bestDist, tmp;
 	int priority;
-	str finalWpn = "";
+	str finalWpn = "", bestDistWpn = "";
 
 	for(int i = TDB_WeaponsCurrIdx; i < 0; i++)
 	{
@@ -256,12 +257,26 @@ void TDB_Weapon_Switch (fixed dist)
 		{
 			if( ( ((!StrLen(TDB_WeaponsStore[i].ammo1)) ||
 				(CheckInventory(TDB_WeaponsStore[i].ammo1) >= TDB_WeaponsStore[i].ammoUse1)) &&
-				((dist > TDB_WeaponsStore[i].minDist) && (dist < TDB_WeaponsStore[i].maxDist)) )
+				((dist >= TDB_WeaponsStore[i].minDist) && (dist <= TDB_WeaponsStore[i].maxDist)) )
 				||
 				( ((!StrLen(TDB_WeaponsStore[i].ammo2)) ||
 				(CheckInventory(TDB_WeaponsStore[i].ammo2) >= TDB_WeaponsStore[i].ammoUse2)) &&
-				((dist > TDB_WeaponsStore[i].minDistAlt) && (dist < TDB_WeaponsStore[i].maxDistAlt)) ) )
+				((dist >= TDB_WeaponsStore[i].minDistAlt) && (dist <= TDB_WeaponsStore[i].maxDistAlt)) ) )
 			{
+				tmp = abs(dist - TDB_WeaponsStore[i].minDist);
+				if(bestDist >= tmp)
+				{
+					bestDist = tmp;
+					bestDistWpn = TDB_WeaponsStore[i].wpnName;
+				}
+				
+				tmp = abs(dist - TDB_WeaponsStore[i].maxDist);
+				if(bestDist >= tmp)
+				{
+					bestDist = tmp;
+					bestDistWpn = TDB_WeaponsStore[i].wpnName;
+				}
+				
 				if(TDB_WeaponsStore[i].priority >= priority)
 				{
 					priority = TDB_WeaponsStore[i].priority;
@@ -271,11 +286,15 @@ void TDB_Weapon_Switch (fixed dist)
 		}
 	}
 
-	if(StrLen(finalWpn))
+	if(!StrLen(finalWpn))
 	{
-		DPrintf("%n: Selecting weapon %s", 0, finalWpn);
-		SetWeapon(finalWpn);
+		if(!StrLen(bestDistWpn))
+			return;
+
+		finalWpn = bestDistWpn;
 	}
+
+	SetWeapon(finalWpn);
 }
 
 Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
@@ -291,14 +310,14 @@ Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
 	{
 		if( ((!StrLen(TDB_CurrWeapon.ammo1)) ||
 			(CheckInventory(TDB_CurrWeapon.ammo1) >= TDB_CurrWeapon.ammoUse1)) &&
-			((dist > TDB_CurrWeapon.minDist) && (dist < TDB_CurrWeapon.maxDist)) )
+			((dist >= TDB_CurrWeapon.minDist) && (dist <= TDB_CurrWeapon.maxDist)) )
 		{
 			attackBtn |= BT_ATTACK;
 		}
 
 		if( ((!StrLen(TDB_CurrWeapon.ammo2)) ||
 			(CheckInventory(TDB_CurrWeapon.ammo2) >= TDB_CurrWeapon.ammoUse2)) &&
-			((dist > TDB_CurrWeapon.minDistAlt) && (dist < TDB_CurrWeapon.maxDistAlt)) )
+			((dist >= TDB_CurrWeapon.minDistAlt) && (dist <= TDB_CurrWeapon.maxDistAlt)) )
 		{
 			attackBtn |= BT_ALTATTACK;
 		}
@@ -353,3 +372,30 @@ Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
 
 	SetResultValue(btns);
 }
+
+#define this TDB_WeaponsStore[i]
+Script "TDB_Weapons_Print" (void)
+{
+	for(int i = -1; i > TDB_WeaponsCurrIdx; i--)
+	{
+		Log(s:"\n===== Weapon #", i:-i, s:" =====");
+		Log(s:"wpnName = ", s:this.wpnName);
+		Log(s:"wpnTick = ", s:this.wpnTick);
+		Log(s:"wpnId = ", i:this.wpnId);
+		Log(s:"ammo1 = ", s:(StrLen(this.ammo1)) ? this.ammo1 : "N/A");
+		Log(s:"ammo2 = ", s:(StrLen(this.ammo2)) ? this.ammo2 : "N/A");
+		Log(s:"ammoUse1 = ", i:this.ammoUse1);
+		Log(s:"ammoUse2 = ", i:this.ammoUse2);
+		Log(s:"priority = ", i:this.priority);
+		Log(s:"minDist = ", f:this.minDist);
+		Log(s:"maxDist = ", f:this.maxDist);
+		Log(s:"projSpeed = ", f:this.projSpeed);
+		Log(s:"flags = ", i:this.flags);
+		Log(s:"minDistAlt = ", f:this.minDistAlt);
+		Log(s:"maxDistAlt = ", f:this.maxDistAlt);
+		Log(s:"projSpeedAlt = ", f:this.projSpeedAlt);
+		Log(s:"flagsAlt = ", i:this.flagsAlt);
+		Log(s:"altFireChance = ", i:this.altFireChance);
+	}
+}
+#undef this

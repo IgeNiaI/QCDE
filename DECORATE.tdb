@@ -17,7 +17,8 @@ enum
 	TDB_PATH_NODE,
 	TDB_JUMP_NODE,
 	TDB_PREC_NODE,
-	TDB_LIFT_NODE
+	TDB_LIFT_NODE,
+	TDB_BIG_NODE
 };
  // shared between DECORATE and BCS
 Actor BotAttack : Inventory {}
@@ -50,7 +51,7 @@ ACTOR TDBots_PathNode_Map 2401
 	//$Category TDBots
 	//$NotAngled
 	//$Color 13
-	
+
 	+INVISIBLE
 	+NOBLOCKMAP
 	+NOINTERACTION
@@ -75,7 +76,7 @@ ACTOR TDBots_JumpNode_Map : TDBots_PathNode_Map 2402
 	//$Arg1 Always jump
 	//$Angled
 	//$Color 10
-	
+
 	States
 	{
 	Spawn:
@@ -90,7 +91,7 @@ ACTOR TDBots_PrecisionNode_Map : TDBots_PathNode_Map 2403
 	//$Category TDBots
 	//$NotAngled
 	//$Color 4
-	
+
 	States
 	{
 	Spawn:
@@ -105,7 +106,7 @@ ACTOR TDBots_LiftNode_Map : TDBots_PathNode_Map 2404
 	//$Category TDBots
 	//$Angled
 	//$Color 7
-	
+
 	States
 	{
 	Spawn:
@@ -126,6 +127,24 @@ ACTOR TDBots_PathNode_Map_NG : TDBots_PathNode_Map 2405
 	{
 	Spawn:
 		TBND B 2 NoDelay A_SpawnItemEx("TDBots_PathNode", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG)
+		Stop
+	}
+}
+
+ACTOR TDBots_BigPathNode_Map 2406
+{
+	//$Title Path node (big)
+	//$Category TDBots
+	//$NotAngled
+	//$Color 13
+
+	Scale 2.0
+	Radius 40
+	Height 64
+	States
+	{
+	Spawn:
+		TBND B 2 NoDelay A_SpawnItemEx("TDBots_BigPathNode", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG)
 		Stop
 	}
 }
@@ -213,6 +232,24 @@ ACTOR TDBots_LiftNode : TDBots_PathNode
 	Spawn:
 		TBND Z 0
 		TBND Z -1 ACS_NamedExecuteWithResult("TDBots_Node_Add", TDB_LIFT_NODE)
+		Stop
+	}
+}
+
+/*==============================================================================
+
+		Normal Path Node, extra big edition
+	
+==============================================================================*/
+ACTOR TDBots_BigPathNode : TDBots_PathNode
+{
+	Accuracy 4
+	Tag "Big"
+	states
+	{
+	Spawn:
+		TBND C 0
+		TBND C -1 ACS_NamedExecuteWithResult("TDBots_Node_Add", TDB_BIG_NODE)
 		Stop
 	}
 }
