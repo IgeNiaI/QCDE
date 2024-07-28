@@ -12,29 +12,6 @@
 //
 //=============================================================================
 
-// Base ammo capacities are already with backpack
-#define BASE_BulletAmmo 300
-#define BASE_ShellAmmo   60
-#define BASE_NailAmmo   200
-#define BASE_BoltAmmo    50
-#define BASE_RocketAmmo  80
-#define BASE_CoilAmmo   300
-#define BASE_SlugAmmo    40
-#define BASE_BFGAmmo     30
-#define BASE_SamBullets 175
-#define BASE_DukeAmmo 60
-
-#define LEVEL_BulletAmmo 20
-#define LEVEL_ShellAmmo   5
-#define LEVEL_NailAmmo   20
-#define LEVEL_BoltAmmo    5
-#define LEVEL_RocketAmmo  5
-#define LEVEL_CoilAmmo   15
-#define LEVEL_SlugAmmo    5
-#define LEVEL_BFGAmmo     2
-#define LEVEL_SamBullets 15
-#define LEVEL_DukeAmmo 6
-
 
 // ----------------------------------------------------------------------------
 //
@@ -373,12 +350,12 @@ script "鳞~Loot🅱ox0_3" (void)
 	{
 		if(CheckInventory("Class_Sam"))
 		{
-			SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * (CheckInventory("CooldownRewardToken") / 5));
+			SetAmmoCapacity("SeriousBullets", getLootboxBonusAmmo(8, (CheckInventory("CooldownRewardToken") / 5)));
 			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
 		}
 		else if(CheckInventory("Class_DukeNukem"))
 		{
-			SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * (CheckInventory("CooldownRewardToken") / 5));
+			SetAmmoCapacity("DukeAmmo", getLootboxBonusAmmo(9, (CheckInventory("CooldownRewardToken") / 5)));
 			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
 		}
 		else
@@ -509,12 +486,12 @@ script "鳞~Loot🅱ox1_4" (void)
 	{
 		if(CheckInventory("Class_Sam"))
 		{
-			SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * (CheckInventory("CooldownRewardToken") / 5));
+			SetAmmoCapacity("SeriousBullets", getLootboxBonusAmmo(8, (CheckInventory("CooldownRewardToken") / 5)));
 			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
 		}
 		else if(CheckInventory("Class_DukeNukem"))
 		{
-			SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * (CheckInventory("CooldownRewardToken") / 5));
+			SetAmmoCapacity("DukeAmmo", getLootboxBonusAmmo(9, (CheckInventory("CooldownRewardToken") / 5)));
 			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
 		}
 		else
@@ -526,12 +503,12 @@ script "鳞~Loot🅱ox1_4" (void)
 	{
 		if(CheckInventory("Class_Sam"))
 		{
-			SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * (CheckInventory("CooldownRewardToken") / 5));
+			SetAmmoCapacity("SeriousBullets", getLootboxBonusAmmo(8, (CheckInventory("CooldownRewardToken") / 5)));
 			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
 		}
 		else if(CheckInventory("Class_DukeNukem"))
 		{
-			SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * (CheckInventory("CooldownRewardToken") / 5));
+			SetAmmoCapacity("DukeAmmo", getLootboxBonusAmmo(9, (CheckInventory("CooldownRewardToken") / 5)));
 			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
 		}
 		else
@@ -748,12 +725,12 @@ script "鳞~Loot🅱ox2_2" (void)
 
 	if(CheckInventory("Class_Sam"))
 	{
-		SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * (CheckInventory("CooldownRewardToken") / 5));
+		SetAmmoCapacity("SeriousBullets", getLootboxBonusAmmo(8, (CheckInventory("CooldownRewardToken") / 5)));
 		SetResultValue("CDLOOT05:More Ability Ammo Capacity");
 	}
 	else if(CheckInventory("Class_DukeNukem"))
 	{
-		SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * (CheckInventory("CooldownRewardToken") / 5));
+		SetAmmoCapacity("DukeAmmo", getLootboxBonusAmmo(9, (CheckInventory("CooldownRewardToken") / 5)));
 		SetResultValue("CDLOOT05:More Ability Ammo Capacity");
 	}
 }
@@ -870,17 +847,17 @@ Script "QCDE_UpdateBackpackStack" (void)
 
 Script "QCDE_SetBackpackStack" (int level)
 {
-	SetAmmoCapacity("QCBulletAmmo", BASE_BulletAmmo + LEVEL_BulletAmmo * level + CheckInventory("HunterQCBulletAmmo"));
-	SetAmmoCapacity("QCShellAmmo" , BASE_ShellAmmo  + LEVEL_ShellAmmo  * level + CheckInventory("HunterQCShellAmmo" ));
-	SetAmmoCapacity("QCNailAmmo"  , BASE_NailAmmo   + LEVEL_NailAmmo   * level + CheckInventory("HunterQCNailAmmo"  ));
-	SetAmmoCapacity("QCBoltAmmo"  , BASE_BoltAmmo   + LEVEL_BoltAmmo   * level + CheckInventory("HunterQCBoltAmmo"  ));
-	SetAmmoCapacity("QCRocketAmmo", BASE_RocketAmmo + LEVEL_RocketAmmo * level + CheckInventory("HunterQCRocketAmmo"));
-	SetAmmoCapacity("QCCoilAmmo"  , BASE_CoilAmmo   + LEVEL_CoilAmmo   * level + CheckInventory("HunterQCCoilAmmo"  ));
-	SetAmmoCapacity("QCSlugAmmo"  , BASE_SlugAmmo   + LEVEL_SlugAmmo   * level + CheckInventory("HunterQCSlugAmmo"  ));
-	SetAmmoCapacity("QCBFGAmmo"   , BASE_BFGAmmo    + LEVEL_BFGAmmo    * level + CheckInventory("HunterQCBFGAmmo"   ));
+	SetAmmoCapacity("QCBulletAmmo", getLootboxBonusAmmo(0, level) + CheckInventory("HunterQCBulletAmmo"));
+	SetAmmoCapacity("QCShellAmmo" , getLootboxBonusAmmo(1, level) + CheckInventory("HunterQCShellAmmo" ));
+	SetAmmoCapacity("QCNailAmmo"  , getLootboxBonusAmmo(2, level) + CheckInventory("HunterQCNailAmmo"  ));
+	SetAmmoCapacity("QCBoltAmmo"  , getLootboxBonusAmmo(3, level) + CheckInventory("HunterQCBoltAmmo"  ));
+	SetAmmoCapacity("QCRocketAmmo", getLootboxBonusAmmo(4, level) + CheckInventory("HunterQCRocketAmmo"));
+	SetAmmoCapacity("QCCoilAmmo"  , getLootboxBonusAmmo(5, level) + CheckInventory("HunterQCCoilAmmo"  ));
+	SetAmmoCapacity("QCSlugAmmo"  , getLootboxBonusAmmo(6, level) + CheckInventory("HunterQCSlugAmmo"  ));
+	SetAmmoCapacity("QCBFGAmmo"   , getLootboxBonusAmmo(7, level) + CheckInventory("HunterQCBFGAmmo"   ));
 
-	SetAmmoCapacity("SeriousBullets", BASE_SamBullets + LEVEL_SamBullets * level);
-	SetAmmoCapacity("DukeAmmo", BASE_DukeAmmo + LEVEL_DukeAmmo * level);
+	SetAmmoCapacity("SeriousBullets",	getLootboxBonusAmmo(8, level));
+	SetAmmoCapacity("DukeAmmo",			getLootboxBonusAmmo(9, level));
 }
 
 str loadoutWeapons[8] = {

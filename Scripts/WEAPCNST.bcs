@@ -243,7 +243,7 @@ int SamAmmoBonus[8] = {
 		1,	//7  bfg
 	};
 
-int LootboxBonusAmmo[9][2] = {
+int LootboxBonusAmmo[10][2] = {
 		//Base		Level bonus
 		{	300,	20,		},	//0  bullet
 		{	60,		5,		},	//1  shell
@@ -253,7 +253,8 @@ int LootboxBonusAmmo[9][2] = {
 		{	300,	15,		},	//5  coil
 		{	40,		5,		},	//6  slug
 		{	30,		2,		},	//7  bfg
-		{	175,	15,		}	//8  Sam
+		{	175,	15,		},	//8  Sam
+		{	60,		6,		}	//9  Duke
 	};
 
 // These have had offsets removed.
