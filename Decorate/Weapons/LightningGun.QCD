@@ -612,6 +612,7 @@ Actor QCLightningGun : QCWeapon
 			CoopHoldPurpleCont:
 				"####" A 0 Offset(0,32)
 				"####" A 0 A_GunFlash
+				"####" A 0 Bright A_FireBullets(0,0,1,0,"LGPuffPurple",FBF_NORANDOM|FBF_NORANDOMPUFFZ,768)
 				"####" G 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 
 			CoopHoldPurple2:
@@ -661,6 +662,7 @@ Actor QCLightningGun : QCWeapon
 			CoopHoldPurple3Cont:
 				"####" A 0 Offset(0,32)
 				"####" A 0 A_GunFlash
+				"####" A 0 Bright A_FireBullets(0,0,1,0,"LGPuffPurple",FBF_NORANDOM|FBF_NORANDOMPUFFZ,768)
 				"####" I 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 
 			CoopHoldPurple4:
@@ -711,6 +713,7 @@ Actor QCLightningGun : QCWeapon
 				"####" A 0 Offset(0,32)
 				"####" A 0 A_GiveInventory("LGcharge",1,0,GIF_SKIPOWNER)
 				"####" A 0 A_GunFlash
+				"####" A 0 Bright A_FireBullets(0,0,1,0,"LGPuffPurple",FBF_NORANDOM|FBF_NORANDOMPUFFZ,768)
 				"####" K 1 Bright A_FireBullets(0,0,1,0,"LGPuffStatic",FBF_NORANDOM|FBF_NORANDOMPUFFZ|FBF_USEAMMO,768)
 
 			CoopHoldPurple6:
@@ -1409,6 +1412,29 @@ Actor LGPuffStatic
 		Stop
 	Perform2:
 		"####" MOST 1 Bright
+		Stop
+	}
+}
+
+Actor LGPuffPurple
+{
+	+NONETID
+	Radius 10
+	+NOINTERACTION +NOTONAUTOMAP
+	+ALWAYSPUFF
+	+PUFFGETSOWNER
+	+PUFFONACTORS
+	Scale 0.35
+	Renderstyle Add
+	Obituary "$OB_QCLightningGun"
+	+FORCEXYBILLBOARD
+	+MTHRUSPECIES
+	+DONTSPLASH
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 Bright Light("PurpleSmallPoint2")
 		Stop
 	}
 }
