@@ -469,7 +469,7 @@ Actor SGExplosiveBullet : FastProjectile
 	alpha 0.9
 	scale 0.025
 	Translation "0:255=%[0,0,0]:[1.4,0.7,0]"
-	DamageType "NoDamageToPlayers"
+	DamageType "RocketDamage"
 	ProjectileKickBack 0
 	states
 	{

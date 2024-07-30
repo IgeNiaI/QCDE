@@ -2245,7 +2245,7 @@ function void CleanseHurt(void)
 		Thing_ChangeTID(0,victim);
 	}
 	SetActivator(currentCleanser + 1000);
-	Thing_Damage2(victim, hurt, "Cleanse");
+	Thing_Damage2(victim, hurt, "FireDamage");
 	SetActivator(victim);
 	if(temptid)
 	{

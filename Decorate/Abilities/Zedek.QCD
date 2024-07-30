@@ -54,6 +54,7 @@ Actor QuietusFireProjectile //: FSwordMissile
 {
 	Projectile
 	Speed 40
+	DamageType "FireDamage"
 	Damage 20
 	Radius 3
 	Height 6
@@ -143,6 +144,7 @@ Actor QuietusFireSpot
 	+SERVERNETID
 	Radius 4
 	Height 2
+	DamageType "FireDamage"
 	Damage 0
 	Scale 0.28
 	var int user_counter;

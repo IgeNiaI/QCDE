@@ -206,6 +206,7 @@ Actor DieselBall
 	Speed 25
 	Radius 3
 	Height 6
+	DamageType "FireDamage"
 	Damage 40
 	Scale 0.5
 	RenderStyle Add
@@ -369,6 +370,7 @@ Actor LaserPuff
 	+EXTREMEDEATH
 	+FORCEXYBILLBOARD
 	+MTHRUSPECIES
+	DamageType "Electric"
 	States
 	{
 	Spawn:	//hit non bleeding actor

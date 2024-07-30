@@ -156,6 +156,7 @@ Actor BFG9000Shot
 	YScale 0.6
 	Radius 4
 	Height 8
+	DamageType "BFGDamage"
 	Damage (random(8,14)*100)
 	+FORCERADIUSDMG
 	+FORCEXYBILLBOARD

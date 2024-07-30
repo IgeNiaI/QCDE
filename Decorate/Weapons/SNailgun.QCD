@@ -1304,6 +1304,7 @@ Actor QCSNailgunSkin	: Token { Inventory.MaxAmount 20 }
 Actor QCNailStrongLava : QCNailStrong
 {
 	//same damage as regular nail, but with chance to spawn ember
+	DamageType "FireDamage"
 	Scale 0.6
 	States
 	{
@@ -1635,6 +1636,7 @@ Actor QCNailStrongLavaSeeker : QCNailStrongLava
 	+SEEKERMISSILE
 	+SCREENSEEKER
 	Speed 45
+	DamageType "FireDamage"
 	Damage (random(8,12)*3)
 	Scale 0.49
 	States

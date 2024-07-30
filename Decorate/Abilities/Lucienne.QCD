@@ -39,6 +39,7 @@ Actor LucienneBall : FastProjectile
 	Height 7
 	Speed 80
 	Scale 0.2
+	DamageType "FireDamage"
 	Damage (0)
 	PROJECTILE
 	+EXTREMEDEATH

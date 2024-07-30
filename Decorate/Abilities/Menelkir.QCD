@@ -303,6 +303,7 @@ Actor QCDEMinotaurFX1 : MinotaurFX1 replaces MinotaurFX1
 {
 	+SERVERNETID
 	Speed 26
+	DamageType "FireDamage"
 	Damage (10)
 	Species "Players"
 	States
@@ -334,6 +335,7 @@ Actor QCDEMinotaurFX1PvE : QCDEMinotaurFX1	//Only stronger
 Actor QCDEMinotaurFX2 : MinotaurFX2 replaces MinotaurFX2
 {
 	+SERVERNETID
+	DamageType "FireDamage"
 	Damage (20)
 	Speed 20
 	States

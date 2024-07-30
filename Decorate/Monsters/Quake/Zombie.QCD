@@ -61,6 +61,7 @@ Actor QZombie : QCDE_MonsterSmall	15119	//imp
 		Stop
 
 	Death.ZombieGibber:
+	Death.FireDamage:
 		TNT1 A 0 A_Jump(256,"XDeath")
 		Goto XDeath
 

@@ -115,6 +115,7 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 	Projectile
 	-NOGRAVITY
 	+DONTBLAST
+	DamageType "RocketDamage"
 	Obituary "$OB_AirStrikeTargetRocket" // "%o was starstruck by %k."
 	States
 	{
