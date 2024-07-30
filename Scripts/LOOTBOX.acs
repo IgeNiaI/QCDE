@@ -855,9 +855,6 @@ Script "QCDE_SetBackpackStack" (int level)
 	SetAmmoCapacity("QCCoilAmmo"  , getLootboxBonusAmmo(5, level) + CheckInventory("HunterQCCoilAmmo"  ));
 	SetAmmoCapacity("QCSlugAmmo"  , getLootboxBonusAmmo(6, level) + CheckInventory("HunterQCSlugAmmo"  ));
 	SetAmmoCapacity("QCBFGAmmo"   , getLootboxBonusAmmo(7, level) + CheckInventory("HunterQCBFGAmmo"   ));
-
-	SetAmmoCapacity("SeriousBullets",	getLootboxBonusAmmo(8, level));
-	SetAmmoCapacity("DukeAmmo",			getLootboxBonusAmmo(9, level));
 }
 
 str loadoutWeapons[8] = {
