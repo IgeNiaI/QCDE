@@ -659,6 +659,10 @@ statusbar Fullscreen, forcescaled
 
 	InInventory not NoAbilityIcon {
 	// Frame
+	inInventory Class_DukeNukem || Class_Sam {		//Duke and Sam are special
+		inInventory Class_DukeNukem		{ drawSwitchableImage DukeAmmo, 		"ACTFRAM0", "ACTFRAME", 572,800; }
+		inInventory Class_Sam			{ drawSwitchableImage SeriousBullets, 	"ACTFRAM0", "ACTFRAME", 572,800; }
+	} else {
 	inInventory not Class_Sarge || Class_Brock {
 		inInventory AbilityCooldownToken {
 			inInventory not MultiuseCharge {
@@ -669,7 +673,7 @@ statusbar Fullscreen, forcescaled
 		} else {
 				drawImage "ACTFRAME", 572,800;
 		}
-	}
+	}}
 	// Icon
 	inInventory Class_Ranger		{ drawSwitchableImage AbilityCooldownToken, 	"DIREORB1", "DIREORB0", 	636,850; }
 	inInventory Class_Doomslayer	{ drawSwitchableImage AbilityCooldownToken, 	"BIGFGUN1", "BIGFGUN0", 	636,850; }
@@ -684,7 +688,7 @@ statusbar Fullscreen, forcescaled
 	inInventory Class_Galen			{ drawSwitchableImage AbilityCooldownToken, 	"TOTEM001", "TOTEM000", 	636,850; }
 	inInventory Class_Nyx			{ drawSwitchableImage AbilityCooldownToken, 	"GHSTWLK1", "GHSTWLK0", 	636,850; }
 	inInventory Class_Sorgaul		{ drawSwitchableImage AbilityCooldownToken, 	"RAGE0001", "RAGE0000", 	636,850; }
-	inInventory Class_DukeNukem		{ drawSwitchableImage AbilityCooldownToken, 	"FREEZE01", "FREEZE00", 	636,850; }
+	inInventory Class_DukeNukem		{ drawSwitchableImage DukeAmmo,				 	"FREEZE00", "FREEZE01", 	636,850; }
 	inInventory Class_Durandal		{ drawSwitchableImage AbilityCooldownToken, 	"BOBBQ001", "BOBBQ000", 	636,850; }
 	inInventory Class_Keel			{ drawSwitchableImage AbilityCooldownToken, 	"GRENADE1", "GRENADE0", 	636,850; }
 	inInventory Class_Sarge			{ drawSwitchableImage AbilityCooldownToken, 	"OLDSCHOL", "OLDSCHOL", 	636,850; }
@@ -698,7 +702,7 @@ statusbar Fullscreen, forcescaled
 	inInventory Class_Lucienne		{ drawSwitchableImage AbilityCooldownToken, 	"CLNFIRE1", "CLNFIRE0", 	636,850; }
 	inInventory Class_Major			{ drawSwitchableImage AbilityCooldownToken, 	"AIRSTRK1", "AIRSTRK0", 	636,850; }
 	inInventory Class_Hunter		{ drawSwitchableImage AbilityCooldownToken, 	"HUNTSKL1", "HUNTSKL0", 	636,850; }
-	inInventory Class_Sam			{ drawSwitchableImage AbilityCooldownToken, 	"MINIGUN1", "MINIGUN0", 	636,850; }
+	inInventory Class_Sam			{ drawSwitchableImage SeriousBullets,		 	"MINIGUN0", "MINIGUN1", 	636,850; }
 	inInventory Class_Postal		{ drawSwitchableImage AbilityCooldownToken, 	"COWHEAD1", "COWHEAD0", 	636,850; }
 	inInventory Class_Painkiller	{ drawSwitchableImage AbilityCooldownToken, 	"TAROT001", "TAROT000", 	636,850; }
 	inInventory Class_Intruder		{ drawSwitchableImage AbilityCooldownToken, 	"WENDIG01", "WENDIG00", 	636,850; }
