@@ -443,6 +443,7 @@ Script "QCDE_AbilityFXMustDie" (void)
 	bool result = false;
 	result |= GetActorProperty(0,APROP_HEALTH) <= 0;
 	result |= GetActorProperty(0,APROP_HEALTH) > 0 && GetActorProperty(0,APROP_HEIGHT) == 0;
+	result |= PlayerIsSpectator(PlayerNumber());
 	result |= CheckInventory("PowerGhostTint") || CheckInventory("PowerWendigoTint");
 	SetResultValue(result);
 }
