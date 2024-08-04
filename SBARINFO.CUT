@@ -481,7 +481,7 @@ statusbar Normal, forcescaled
 	inInventory QCSuperShotgun		|| QCSuperShotgunDM		{
 		isSelected QCSuperShotgun		, QCSuperShotgunDM		{ drawBar "1SHOTGUN", "0SHOTGUN", QCShellAmmo	, horizontal, 1380,350; } else { isSelected QCShotgun		, QCShotgunDM		{ drawBar "1HOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1380,350; } else { drawBar "SSHOTGUN", "0SHOTGUN", QCShellAmmo		, horizontal, 1380,350; } }
 	} else {
-		inInventory QCShotgun		|| QCShotgunDM		{ isSelected QCShotgun		, QCShotgunDM		{ drawBar "1HOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1380,420; } else { drawBar "SHOTGUN" , "0HOTGUN" , QCShellAmmo		, horizontal, 1380,350; } } else { inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ drawImage "0HOTGUN" , 1380,350; } }
+		inInventory QCShotgun		|| QCShotgunDM		{ isSelected QCShotgun		, QCShotgunDM		{ drawBar "1HOTGUN" , "0HOTGUN" , QCShellAmmo	, horizontal, 1380,350; } else { drawBar "SHOTGUN" , "0HOTGUN" , QCShellAmmo		, horizontal, 1380,350; } } else { inInventory not QCSuperShotgun		|| QCSuperShotgunDM		{ drawImage "0HOTGUN" , 1380,350; } }
 	}
 
 	// Upgrade icons on top of weapons
