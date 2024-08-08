@@ -2523,6 +2523,11 @@ Actor RailgunExplosivePuffoidWeak_HalfLife : RailgunExplosivePuffoidWeak
 	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
 }
 
+Actor RailgunExplosivePuffoidWeak_SeriousSam : RailgunExplosivePuffoidWeak
+{
+	Translation 0
+}
+
 Actor RailgunExplosivePuffoidStrong : FastProjectile
 {
 	Speed 4000
@@ -2606,6 +2611,11 @@ Actor RailgunExplosivePuffoidStrong_ETQW : RailgunExplosivePuffoidStrong
 Actor RailgunExplosivePuffoidStrong_HalfLife : RailgunExplosivePuffoidStrong
 {
 	Translation "0:255=%[0,0,0]:[0.82,0.51,0.02]"
+}
+
+Actor RailgunExplosivePuffoidStrong_SeriousSam : RailgunExplosivePuffoidStrong
+{
+	Translation 0
 }
 
 
@@ -2703,6 +2713,17 @@ Actor RGPierceBeamProjectile_HalfLife: RGPierceBeamProjectile
 	}
 }
 
+Actor RGPierceBeamProjectile_SeriousSam: RGPierceBeamProjectile
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_SeriousSam",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
 Actor RGPierceBeamProjectileStrong : RGPierceBeamProjectile
 {
 	Scale 0.6
@@ -2770,6 +2791,17 @@ Actor RGPierceBeamProjectileStrong_HalfLife: RGPierceBeamProjectileStrong
 	}
 }
 
+Actor RGPierceBeamProjectileStrong_SeriousSam: RGPierceBeamProjectileStrong
+{
+	States
+	{
+	DoFX:
+		PLAY A 1 A_SpawnItemEx("RailgunPierceTrail_SeriousSam",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		PLAY A 0 A_Jump(256, "DoCountdown")
+		Goto DoCountdown
+	}
+}
+
 Actor RailgunPierceTrail
 {
 	+NOINTERACTION
@@ -2832,6 +2864,16 @@ Actor RailgunPierceTrail_HalfLife : RailgunPierceTrail
 	{
 	Spawn:
 		RGB7 D 1 A_FadeOut(0.04)
+		Loop
+	}
+}
+
+Actor RailgunPierceTrail_SeriousSam : RailgunPierceTrail
+{
+	States
+	{
+	Spawn:
+		RGB8 D 1 A_FadeOut(0.04)
 		Loop
 	}
 }
