@@ -92,7 +92,7 @@ FreeformMenu "ChampionSelector"
     Option { Pos    0, 145	Values QCDE_Champion_VorMatur	BackgroundValues QCDE_ChampionBG_VorMatur	EnableCVar _bc_22, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
     Option { Pos   27, 145	Values QCDE_Champion_Major		BackgroundValues QCDE_ChampionBG_Major		EnableCVar _bc_25, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
     Option { Pos   54, 145	Values QCDE_Champion_Sam		BackgroundValues QCDE_ChampionBG_Sam		EnableCVar _bc_27, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
-    Option { Pos   81, 145	Values QCDE_Champion_Brock		BackgroundValues QCDE_ChampionBG_Brock		EnableCVar _bc_33, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
+    Option { Pos   81, 145	Values QCDE_Champion_Brock		BackgroundValues QCDE_ChampionBG_Brock		EnableCVar _bc_32, 0,0		CVar playerclass	Size 35, 60		MouseArea 25, 50	SelectedForeground Cpicker2, 35, 60		Anchor center, center 	UnknownValueText ""}
 	// ^ insert more classes here
 
 
@@ -130,7 +130,7 @@ FreeformMenu "ChampionSelector"
 	Label { Pos    0, 115	VisibilityCVar _bc_22,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
 	Label { Pos   27, 115	VisibilityCVar _bc_25,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
 	Label { Pos   54, 115	VisibilityCVar _bc_27,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
-	Label { Pos   81, 115	VisibilityCVar _bc_33,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
+	Label { Pos   81, 115	VisibilityCVar _bc_32,	1,1		Background Cpicker3		Size 35, 60		Anchor center, top	}
 	// ^ insert more classes here
 
 
