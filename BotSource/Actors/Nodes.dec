@@ -205,6 +205,8 @@ ACTOR TDBots_BigPathNode : TDBots_PathNode
 {
 	Accuracy 4
 	Tag "Big"
+    Radius 40
+    Height 64
 	states
 	{
 	Spawn:
