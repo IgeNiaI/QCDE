@@ -1603,6 +1603,40 @@ FreeformMenu "QCDE_OptionsVideo"
 			MouseArea	90, 14			UnknownBackground	CHKBOX
 										SelectedForeground	CHKBOXS, 14, 14
 		}
+
+		Label {
+			Pos		0, 70				Font		SmallFont
+			Anchor	center, center		FontColor	DarkGray
+			Text	"You are playing with Software renderer."
+		}
+		Label {
+			Pos		0, 80				Font		SmallFont
+			Anchor	center, center		FontColor	DarkGray
+			Text	"The game cannot be rendered properly in this mode."
+		}
+		Label {
+			Pos		0, 94				Font		SmallFont
+			Anchor	center, center		FontColor	DarkGray
+			Text	"If you didn't enable this mode manually,"
+		}
+		Label {
+			Pos		0, 104				Font		SmallFont
+			Anchor	center, center		FontColor	DarkGray
+			Text	"then it's likely that your hardware doesn't support OpenGL."
+		}
+		Label {
+			VisibilityCVar	vid_renderer, 1, 1
+			Pos		0, 118				Font		SmallFont
+			Anchor	center, center		FontColor	Red
+			Text	"Now restart the game to enable OpenGL"
+		}
+		Command {
+			EnableCVar	vid_renderer, 0, 0
+			Pos 0, 132				Text "Enable OpenGL"		Background			BV14028
+			Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+			Anchor center, center	FontColor Tan				Command "vid_renderer 1"
+			Padding	0, 0			SelectedFontColor Tan
+		}
 	}
 
 
