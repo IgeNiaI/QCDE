@@ -51,7 +51,7 @@ ACTOR TDBots_PathNode_Map 2401
 	//$Category TDBots
 	//$NotAngled
 	//$Color 13
-
+	
 	+INVISIBLE
 	+NOBLOCKMAP
 	+NOINTERACTION
@@ -76,7 +76,7 @@ ACTOR TDBots_JumpNode_Map : TDBots_PathNode_Map 2402
 	//$Arg1 Always jump
 	//$Angled
 	//$Color 10
-
+	
 	States
 	{
 	Spawn:
@@ -91,7 +91,7 @@ ACTOR TDBots_PrecisionNode_Map : TDBots_PathNode_Map 2403
 	//$Category TDBots
 	//$NotAngled
 	//$Color 4
-
+	
 	States
 	{
 	Spawn:
@@ -106,7 +106,7 @@ ACTOR TDBots_LiftNode_Map : TDBots_PathNode_Map 2404
 	//$Category TDBots
 	//$Angled
 	//$Color 7
-
+	
 	States
 	{
 	Spawn:
@@ -245,6 +245,9 @@ ACTOR TDBots_BigPathNode : TDBots_PathNode
 {
 	Accuracy 4
 	Tag "Big"
+
+	Radius 40
+	Height 64
 	states
 	{
 	Spawn:

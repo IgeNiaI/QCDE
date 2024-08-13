@@ -247,42 +247,57 @@ void TDB_CallWeaponTick(str wpn, fixed dist)
 
 void TDB_Weapon_Switch (fixed dist)
 {
-	fixed bestDist, tmp;
+	fixed bestDist = MAX_RANGE, tmp;
 	int priority;
 	str finalWpn = "", bestDistWpn = "";
+	bool foundWithinRange = false;
 
 	for(int i = TDB_WeaponsCurrIdx; i < 0; i++)
 	{
-		if(CheckInventory(TDB_WeaponsStore[i].wpnName))
+		// Check if bot has the weapon
+		if(!CheckInventory(TDB_WeaponsStore[i].wpnName))
+			continue;
+
+		// Check if bot has ammo
+		if ( ( StrLen(TDB_WeaponsStore[i].ammo1) && CheckInventory(TDB_WeaponsStore[i].ammo1) < TDB_WeaponsStore[i].ammoUse1 )
+			&& ( ( TDB_WeaponsStore[i].altFireChance <= 0.0 )
+			 || ( StrLen(TDB_WeaponsStore[i].ammo2) && CheckInventory(TDB_WeaponsStore[i].ammo2) < TDB_WeaponsStore[i].ammoUse2 ) ) )
+			continue;
+
+		// Check if distance to the enemy is within weapon range
+		if ( ((dist >= TDB_WeaponsStore[i].minDist) && (dist <= TDB_WeaponsStore[i].maxDist))
+			||
+			((dist >= TDB_WeaponsStore[i].minDistAlt) && (dist <= TDB_WeaponsStore[i].maxDistAlt)) )
 		{
-			if( ( ((!StrLen(TDB_WeaponsStore[i].ammo1)) ||
-				(CheckInventory(TDB_WeaponsStore[i].ammo1) >= TDB_WeaponsStore[i].ammoUse1)) &&
-				((dist >= TDB_WeaponsStore[i].minDist) && (dist <= TDB_WeaponsStore[i].maxDist)) )
-				||
-				( ((!StrLen(TDB_WeaponsStore[i].ammo2)) ||
-				(CheckInventory(TDB_WeaponsStore[i].ammo2) >= TDB_WeaponsStore[i].ammoUse2)) &&
-				((dist >= TDB_WeaponsStore[i].minDistAlt) && (dist <= TDB_WeaponsStore[i].maxDistAlt)) ) )
-			{
-				tmp = abs(dist - TDB_WeaponsStore[i].minDist);
-				if(bestDist >= tmp)
-				{
-					bestDist = tmp;
-					bestDistWpn = TDB_WeaponsStore[i].wpnName;
-				}
-				
-				tmp = abs(dist - TDB_WeaponsStore[i].maxDist);
-				if(bestDist >= tmp)
-				{
-					bestDist = tmp;
-					bestDistWpn = TDB_WeaponsStore[i].wpnName;
-				}
-				
-				if(TDB_WeaponsStore[i].priority >= priority)
-				{
-					priority = TDB_WeaponsStore[i].priority;
-					finalWpn = TDB_WeaponsStore[i].wpnName;
-				}
-			}
+			foundWithinRange = true;
+
+			// Find best weapon by priority
+        	if(TDB_WeaponsStore[i].priority >= priority)
+        	{
+        		priority = TDB_WeaponsStore[i].priority;
+        		finalWpn = TDB_WeaponsStore[i].wpnName;
+        	}
+		}
+		else
+		{
+			// Some previous weapon is within distance range, so ignore all weapons outside the range
+			if (foundWithinRange)
+				continue;
+
+			// Find best weapon by distance
+            tmp = abs(dist - TDB_WeaponsStore[i].minDist);
+            if(bestDist > tmp)
+            {
+            	bestDist = tmp;
+            	bestDistWpn = TDB_WeaponsStore[i].wpnName;
+            }
+            
+            tmp = abs(dist - TDB_WeaponsStore[i].maxDist);
+            if(bestDist > tmp)
+            {
+            	bestDist = tmp;
+            	bestDistWpn = TDB_WeaponsStore[i].wpnName;
+            }
 		}
 	}
 
@@ -309,15 +324,13 @@ Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
 	if(!attackBtn)
 	{
 		if( ((!StrLen(TDB_CurrWeapon.ammo1)) ||
-			(CheckInventory(TDB_CurrWeapon.ammo1) >= TDB_CurrWeapon.ammoUse1)) &&
-			((dist >= TDB_CurrWeapon.minDist) && (dist <= TDB_CurrWeapon.maxDist)) )
+			(CheckInventory(TDB_CurrWeapon.ammo1) >= TDB_CurrWeapon.ammoUse1)) )
 		{
 			attackBtn |= BT_ATTACK;
 		}
 
 		if( ((!StrLen(TDB_CurrWeapon.ammo2)) ||
-			(CheckInventory(TDB_CurrWeapon.ammo2) >= TDB_CurrWeapon.ammoUse2)) &&
-			((dist >= TDB_CurrWeapon.minDistAlt) && (dist <= TDB_CurrWeapon.maxDistAlt)) )
+			(CheckInventory(TDB_CurrWeapon.ammo2) >= TDB_CurrWeapon.ammoUse2)) )
 		{
 			attackBtn |= BT_ALTATTACK;
 		}
@@ -326,7 +339,11 @@ Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
 		{
 			attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ATTACK : BT_ALTATTACK;
 		}
-		else
+
+		// Consider switching to another weapon if target is out of current weapon effective range
+		if ( ((dist < TDB_CurrWeapon.minDist) && (dist > TDB_CurrWeapon.maxDist))
+		 	|| ( (TDB_CurrWeapon.altFireChance > 0.0) &&
+		 	( (dist < TDB_CurrWeapon.minDistAlt) && (dist > TDB_CurrWeapon.maxDistAlt)) ) )
 		{
 			TDB_Weapon_Switch(dist);
 			terminate;
