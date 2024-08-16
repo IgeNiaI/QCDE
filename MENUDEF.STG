@@ -1940,77 +1940,71 @@ FreeformMenu "QCDE_OptionsSkins"
 	}
 
 
-	Label {
-		Pos		78, 200			Font		QCSMFONT
-		Anchor	center, top		FontColor	Gold
-		Text	"Presets"
-	}
-
 	Command {
-		Pos   0, 225			Text "Default"				Background			BV14028
+		Pos   0, 207			Text "Default"				Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Default
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos  78, 225			Text "QC:DE 1.0"			Background			BV14028
+		Pos  78, 207			Text "QC:DE 1.0"			Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_QCDE10
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos  156, 225			Text "Class Based"			Background			BV14028
+		Pos  156, 207			Text "Class Based"			Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Class
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos   0, 245			Text "Quake 1"				Background			BV14028
+		Pos   0, 227			Text "Quake 1"				Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Quake1
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos  78, 245			Text "Quake 2"				Background			BV14028
+		Pos  78, 227			Text "Quake 2"				Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Quake2
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos  156, 245			Text "Quake 3"				Background			BV14028
+		Pos  156, 227			Text "Quake 3"				Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Quake3
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos   0, 265			Text "Quake 4"				Background			BV14028
+		Pos   0, 247			Text "Quake 4"				Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Quake4
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos  78, 265			Text "ET:QW"				Background			BV14028
+		Pos  78, 247			Text "ET:QW"				Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_ETQW
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos  156, 265			Text "Half-Life"			Background			BV14028
+		Pos  156, 247			Text "Half-Life"			Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_HalfLife
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
 	Command {
-		Pos   0, 285			Text "Serious Sam"			Background			BV14028
+		Pos   0, 267			Text "Serious Sam"			Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_SeriousSam
 		Padding	0, 0			SelectedFontColor Tan
