@@ -528,3 +528,23 @@ BOTSKILL_1  = "Bring It On";
 BOTSKILL_2  = "Hurt Me Plenty";
 BOTSKILL_3  = "Hardcore";
 BOTSKILL_4  = "\c[Red]NIGHTMARE!";
+
+TRBLVD10 = "- My framerate fluctuates a lot";
+TRBLVD11 = "Long story short: this engine was not designed for the kind of maps that QC:DE has.\n"
+           "While the engine can do slopes and rooms above rooms, it doesn't do that efficiently.\n"
+           "Unfortunately, this can only be fixed by completely rewriting the engine renderer,\n"
+           "which is too complicated for the QC:DE team.";
+
+TRBLVD20 = "- My framerate is always low";
+TRBLVD21 = "Try lowering lights quality, and disable voxel pickups.";
+
+TRBLVD30 = "- My framerate is still low";
+TRBLVD31 = "Are you playing on a Windows laptop?\n"
+           "It is possible that the game is running in low performance mode.\n"
+           "Go to Windows settings -> Display -> Graphics settings -> Graphic performance\n"
+           "and add \"q-zandronum.exe\" that you can find in \"QCDE/Q-Zandronum\" folder.\n"
+           "Then turn High performance mode for Q-Zandronum.";
+
+TRBLVD40 = "- My framerate is still low";
+TRBLVD41 = "- Any other problem";
+TRBLVD42 = "Please reach out to QC:DE discord at \cvdiscord.gg/u4ptaMk";

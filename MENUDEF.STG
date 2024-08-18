@@ -1569,6 +1569,18 @@ FreeformMenu "QCDE_OptionsVideo"
 			Anchor	left, center	MouseArea	105, 14
 			Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
 		}
+
+		Label {
+			Pos		-180, 130			Font		SmallFont
+			Anchor	left, center		FontColor	DarkGray
+			Text	"Having performance issues?"
+		}
+		SubMenu {
+			Pos		-128, 145			Text				"Troubleshoot"
+			Size	105, 14				Background			BV21028
+			Anchor	center, center		SelectedBackground	BV21028S
+			Menu	QCDE_TroubleshootVideo
+		}
 	}
 
 	IfOption(Software)
@@ -2182,6 +2194,31 @@ OptionMenu VideoModeMenu	//had to overwrite, because redefine broke the list of 
 	StaticTextSwitchable "T to test mode for 5 seconds", "Please wait 5 seconds...", "VMTestText"
 
 	class VideoModeMenu
+}
+
+FreeformMenu "QCDE_TroubleshootVideo"
+{
+	DefaultSelection -2
+
+	Label {
+		Static
+		Background	"BackMenw"
+		Pos		0, 0
+		Size	450, 500
+	}
+
+	Label {	Pos -190, 20	Text "$TRBLVD10"	Anchor	left, top	FontColor Gold	}
+	Label {	Pos	-190, 30	Text "$TRBLVD11"	Anchor	left, top	FontColor DarkGray	}
+
+	Label {	Pos -190, 80	Text "$TRBLVD20"	Anchor	left, top	FontColor Gold	}
+	Label {	Pos	-190, 90	Text "$TRBLVD21"	Anchor	left, top	FontColor DarkGray	}
+
+	Label {	Pos -190, 110	Text "$TRBLVD30"	Anchor	left, top	FontColor Gold	}
+	Label {	Pos	-190, 120	Text "$TRBLVD31"	Anchor	left, top	FontColor DarkGray	}
+
+	Label {	Pos -190, 180	Text "$TRBLVD40"	Anchor	left, top	FontColor Gold	}
+	Label {	Pos	-190, 190	Text "$TRBLVD41"	Anchor	left, top	FontColor Gold	}
+	Label {	Pos	-190, 200	Text "$TRBLVD42"	Anchor	left, top	FontColor DarkGray	}
 }
 
 FreeformMenu "QCDE_CustomThemes"
