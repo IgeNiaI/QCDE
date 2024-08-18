@@ -1,9 +1,9 @@
 // For weapons
 Model BulletSmallTracer
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	SKIN 0 "tracer1.tga"
-	MODEL 0 "Tracer.md3"
+	MODEL 0 "tracer.md3"
 	Scale 4.5 4.5 1.5
 	PITCHFROMMOMENTUM
 	FrameIndex TRAC A 0 0
@@ -11,9 +11,9 @@ Model BulletSmallTracer
 
 Model BulletSmallTracer_Quake4
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	SKIN 0 "tracerB.tga"
-	MODEL 0 "Tracer.md3"
+	MODEL 0 "tracer.md3"
 	Scale 4.5 4.5 1.5
 	PITCHFROMMOMENTUM
 	FrameIndex TRAC B 0 0
@@ -22,9 +22,9 @@ Model BulletSmallTracer_Quake4
 // For weapons
 Model SGExplosiveBullet
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	SKIN 0 "tracer1.tga"
-	MODEL 0 "Tracer.md3"
+	MODEL 0 "tracer.md3"
 	Scale 4.5 4.5 1.5
 	PITCHFROMMOMENTUM
 	FrameIndex X029 A 0 0
@@ -34,27 +34,27 @@ Model SGExplosiveBullet
 // For monsters, they're different because of sound played also
 Model MonsterTracer
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	SKIN 0 "tracer1.tga"
-	MODEL 0 "Tracer.md3"
+	MODEL 0 "tracer.md3"
 	Scale 4.5 4.5 1.5
 	PITCHFROMMOMENTUM
 	FrameIndex TRAC A 0 0
 }
 Model MonsterTracerLowVol
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	SKIN 0 "tracer1.tga"
-	MODEL 0 "Tracer.md3"
+	MODEL 0 "tracer.md3"
 	Scale 4.5 4.5 1.5
 	PITCHFROMMOMENTUM
 	FrameIndex TRAC A 0 0
 }
 Model MonsterTracerMidVol
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	SKIN 0 "tracer1.tga"
-	MODEL 0 "Tracer.md3"
+	MODEL 0 "tracer.md3"
 	Scale 4.5 4.5 1.5
 	PITCHFROMMOMENTUM
 	FrameIndex TRAC A 0 0
@@ -62,9 +62,9 @@ Model MonsterTracerMidVol
 
 Model ShieldGuyTracer
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	SKIN 0 "tracer1.tga"
-	MODEL 0 "Tracer.md3"
+	MODEL 0 "tracer.md3"
 	Scale 4.5 4.5 1.5
 	PITCHFROMMOMENTUM
 	FrameIndex TRAC A 0 0
@@ -73,7 +73,7 @@ Model ShieldGuyTracer
 
 Model RocketTarget
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	Model 0 "target.md3"
 	Model 1 "target.md3"
 	Skin 0 "target.png"
@@ -86,7 +86,7 @@ Model RocketTarget
 
 Model AirStrikeTargetCircle
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	Model 0 "target.md3"
 	Model 1 "target.md3"
 	Skin 0 "targetMajor.png"
@@ -99,7 +99,7 @@ Model AirStrikeTargetCircle
 
 Model RocketZoomer
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	Model 0 "target.md3"
 	Model 1 "target.md3"
 	Skin 0 "target2.png"
@@ -112,7 +112,7 @@ Model RocketZoomer
 
 Model WendigoFootprint
 {
-	Path "MD3/Projectiles"
+	Path "MD3/PROJECTILES"
 	Model 0 "Target.md3"
 	Model 1 "Target.md3"
 	Skin 0 "Blood.png"
