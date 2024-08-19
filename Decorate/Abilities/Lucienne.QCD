@@ -146,7 +146,24 @@ Actor LucienneBallExplosion
 	{
 	Spawn:
 		TNT1 A 0
-		DB54 ABCDEFGHIJKLMNOPQR 2 Bright
+		DB54 A 1 Light("YellowSmallFlicker2") 	Bright
+		DB54 B 1 Light("YellowMediumFlicker3") 	Bright
+		DB54 C 1 Light("YellowMediumFlicker1") 	Bright
+		DB54 D 1 Light("YellowBigFlicker3") 	Bright
+		DB54 E 1 Light("YellowBigFlicker3") 	Bright
+		DB54 F 1 Light("YellowBigFlicker3") 	Bright
+		DB54 G 1 Light("YellowBigFlicker3") 	Bright
+		DB54 H 1 Light("YellowBigFlicker3") 	Bright
+		DB54 I 1 Light("YellowBigFlicker3")		Bright
+		DB54 J 1 Light("YellowMediumFlicker1")	Bright
+		DB54 K 1 Light("YellowMediumFlicker1")	Bright
+		DB54 L 1 Light("YellowMediumFlicker2")	Bright
+		DB54 M 1 Light("YellowMediumFlicker2")	Bright
+		DB54 N 1 Light("YellowMediumFlicker3")	Bright
+		DB54 O 0 Light("YellowSmallFlicker1")	Bright
+		DB54 P 1 Light("YellowSmallFlicker1")	Bright
+		DB54 Q 1 Light("YellowSmallFlicker2")	Bright
+		DB54 R 1 Light("YellowSmallFlicker3")	Bright
 		Stop
 	}
 }
