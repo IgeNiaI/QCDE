@@ -34,6 +34,7 @@ Actor QCPlayer : PlayerPawn
 	Player.ActionScript "user1" "QCDE_ActiveAbility"
 	Player.EffectActor "grunt" "GenericLandFX"
 
+	Player.AttackZOffset -2
 	Player.CrouchScale 0.75
 	Player.CrouchChangeSpeed 0.08
 
@@ -92,7 +93,6 @@ Actor QCPlayerLight : QCPlayer
 {
 	Radius 13
 	Height 52
-	Player.AttackZOffset 20
 	Player.ViewHeight 48
 }
 
@@ -100,7 +100,6 @@ Actor QCPlayerMedium : QCPlayer
 {
 	Radius 16
 	Height 56
-	Player.AttackZOffset 20
 	Player.ViewHeight 50
 }
 
@@ -109,7 +108,6 @@ Actor QCPlayerHeavy : QCPlayer
 {
 	Radius 18
 	Height 60
-	Player.AttackZOffset 23
 	Player.ViewHeight 55
 }
 
@@ -4387,7 +4385,6 @@ Actor QCOrbb : QCPlayerLight
 	Player.Palette "PL32"
 
 	Height 39
-	Player.AttackZOffset 15
 	Player.ViewHeight 36
 
 	Player.CrouchScale 1.0
