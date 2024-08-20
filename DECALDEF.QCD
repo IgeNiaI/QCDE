@@ -1322,6 +1322,40 @@ decalgroup Q4PlasmaBlack
 	Q4PlasmaBlack3	1
 }
 
+decal Q4PlasmaBlackSmall1
+{
+	pic PLSCRCH1
+	x-scale 0.38
+	y-scale 0.38
+	randomflipx
+	randomflipy
+	shade "00 00 00"
+}
+decal Q4PlasmaBlackSmall2
+{
+	pic PLSCRCH2
+	x-scale 0.38
+	y-scale 0.38
+	randomflipx
+	randomflipy
+	shade "00 00 00"
+}
+decal Q4PlasmaBlackSmall3
+{
+	pic PLSCRCH3
+	x-scale 0.38
+	y-scale 0.38
+	randomflipx
+	randomflipy
+	shade "00 00 00"
+}
+decalgroup Q4PlasmaBlackSmall
+{
+	Q4PlasmaBlackSmall1	1
+	Q4PlasmaBlackSmall2	1
+	Q4PlasmaBlackSmall3	1
+}
+
 //----------------------------------------------
 // Bright part
 decal Q4Plasma1
@@ -1522,7 +1556,7 @@ decal Q2NailgunOrangeFull	//Glowing spot
 	randomflipy
 	Fullbright
 	animator GoAwayBulletGlow
-	LowerDecal "Q4RailgunBlack"
+	LowerDecal "Q4PlasmaBlackSmall"
 }
 
 decal Q3NailgunBlueFull	//Glowing spot
@@ -1558,7 +1592,7 @@ decal Q4NailgunBlueFull	//Glowing spot
 	randomflipy
 	Fullbright
 	animator ShrinkFadePlasmaGlow
-	LowerDecal "Q4RailgunBlack"
+	LowerDecal "Q4PlasmaBlackSmall"
 }
 
 decal Q4NailgunOrangeFull	//Glowing spot
@@ -1570,7 +1604,7 @@ decal Q4NailgunOrangeFull	//Glowing spot
 	randomflipy
 	Fullbright
 	animator ShrinkFadePlasmaGlow
-	LowerDecal "Q4RailgunBlack"
+	LowerDecal "Q4PlasmaBlackSmall"
 }
 
 decal QWNailgunOrangeFull	//Glowing spot
@@ -1582,7 +1616,7 @@ decal QWNailgunOrangeFull	//Glowing spot
 	randomflipy
 	Fullbright
 	animator GoAwayBulletGlow
-	LowerDecal "Q4RailgunBlack"
+	LowerDecal "Q4PlasmaBlackSmall"
 }
 
 decal SSNailgunGreenFull	//Glowing spot
@@ -1594,7 +1628,7 @@ decal SSNailgunGreenFull	//Glowing spot
 	randomflipy
 	Fullbright
 	animator ShrinkFadePlasmaGlow
-	LowerDecal "Q4RailgunBlack"
+	LowerDecal "Q4PlasmaBlackSmall"
 }
 
 decal SSNailgunOrangeFull	//Glowing spot
@@ -1606,5 +1640,5 @@ decal SSNailgunOrangeFull	//Glowing spot
 	randomflipy
 	Fullbright
 	animator ShrinkFadePlasmaGlow
-	LowerDecal "Q4RailgunBlack"
+	LowerDecal "Q4PlasmaBlackSmall"
 }
