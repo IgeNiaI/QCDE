@@ -146,11 +146,11 @@ id Software
 * QCDE Team *
 
 
-DBThanatos              : Developer, Lead Designer
+geNia                   : Lead Developer, Q-Zandronum Developer
 
-Michaelis               : Developer, Lead Programmer
+DBThanatos              : Developer, former Lead Designer
 
-geNia                   : Developer, Q-Zandronum Developer
+Michaelis               : Developer, former Lead Programmer
 
 Captain J               : Sprites for the weapons in 1.x. Base sprites for armor, health,
                           ammo pickups.
@@ -167,7 +167,8 @@ Franco Tieppo           : Spriter for all weapons in v2.0
                           Seriously, I ought to make a file to list all of Franco's contributions
                           But most importantly: The **WET FLOOR SIGN**
 
-Pixo                    : Orbb sprites, console font graphics,
+Pixo                    : Orbb sprites, console font graphics, various sound edits,
+                          voxel models for UT weapons and some pickups,
                           original Quake 1, 2, 3, 4 and QW: ET weapon skin sprites
 
 Michael Markie          : QCDE Original Soundtrack, production of voice effects of Durandal,
@@ -237,7 +238,7 @@ Simploo                 : Model posing/texturing/ripping of Postal Dude
 Ivory Duke              : Description/Lore for all champions in the Manual up to 2.7.
                           Base coding for "Terminator"/"Elder Soul" gamemode
                           Base coding for "Freezetag" gamemode
-                          Voxels, code assistance, QCDEmaps resource repacking
+                          voxel models, code assistance, QCDEmaps resource repacking
                           Original Medals and Item Respawn timers addons
 
 Revenatn                : Original Half-Life weapon skins, ripping Serious Sam model
