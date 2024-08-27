@@ -414,18 +414,16 @@ Actor DaveisDedProc : CustomInventory
 Actor MenelkirHourglass : Hourglass
 {
 	Inventory.PickupMessage "$GOT_MenelkirHourglass" // "Picked up a necromantic hourglass."
-	Alpha 0.0
 	Scale 0.7
-	RenderStyle Add
 	+NOBLOCKMAP
 	States
 	{
 	Spawn:
 		TNT1 A 10
-		SAND AAAAAAAAAA 1 Bright A_FadeIn(0.1)
+		SAND CCCCCCCCCC 1 Light(RedSmallPoint3) Bright A_FadeIn(0.1)
 		SAND A 0 Bright A_ChangeFlag("NOBLOCKMAP", false)
-		SAND AAAAAAAA 35 Bright						//8 sec
-		SAND AAAAAAAAAA 7 Light(YellowSmallPoint3) Bright A_FadeOut(0.1)		//2 sec
+		SAND CCCCCCCC 35 Light(RedSmallPoint3) Bright						//8 sec
+		SAND CCCCCCCCCC 7 Light(RedSmallPoint3) Bright A_FadeOut(0.1)		//2 sec
 		Stop
 	OK:
 		TNT1 A 0 A_JumpIfInventory("ImprovedHourglasses",1,"VeryOK")
