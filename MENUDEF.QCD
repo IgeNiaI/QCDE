@@ -1074,7 +1074,7 @@ FreeformMenu QCDE_CallVote
 		Pos		0, 90				Font		QCSMFONT
 		MaxTextWidth 120			FontColor	Gold
 		Anchor	center, top			CVar		menu_callvotemap
-									UnknownValueText "Map not loaded!"
+									UnknownValueText "Map is disabled!"
 	}
 
 	Command {
