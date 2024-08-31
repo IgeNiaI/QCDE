@@ -288,7 +288,6 @@ Script "QCDE_ConfigureBotWeapons" (void)
 	//					Name					Ammo Class		Ammo Use	Proj Speed	Min Dist	Max Dist	Flags								Alt Fire chance
 	// Abilities
 	TDB_Weapon_Pri(		"DukeFreezeThrower",	"DukeAmmo",			1,		25.0,		0.0,		400.0,		TDB_CW_PROJECTILE);
-	TDB_Weapon_Alt(		"DukeFreezeThrower",	"DukeAmmo",			0,		0.0,		0.0,		128.0,		0,									0.5);
 	TDB_Weapon_Pri(		"SamMinigun",			"SeriousBullets",	1,		0.0,		0.0,		700.0,		0);
 	TDB_Weapon_Alt(		"SamMinigun",			"SeriousBullets",	2,		0.0,		0.0,		400.0,		0,									0.5);
 
