@@ -2,7 +2,7 @@ Changelog
 
 ---------------------------------------------------------------------
 
-V3.0 (May ## 2024)
+V3.0 (September ## 2024)
 
 General:
 - Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
@@ -44,6 +44,7 @@ General:
 - Rocket jumping no longer deals self damage in gamemodes like Rocket Arena and Unholy Trinity.
 - Added a random class option to the class menu.
 - Added new clean fonts for console, menu and game texts.
+- Replaced Railgun particle beams with 3D models.
 - Changed Railgun zoom alt fire with a backwards push for Instagib gamemode.
 - Reworked Speedometer. It can now be placed either in center, or under champion avatar. Also removed speed averaging over time.
 - QC:DE now automatically configures cvars based on gamemode, no need to do that manually anymore.
@@ -52,6 +53,7 @@ General:
 - `sv_QCDEPowerups` now only controls powerups spawning.
 - Added `sv_QCDEBFG` to control BFG spawning.
 - Revamped HUD behavior regarding the `screenblocks` cvar to improve. A value of `11` (the default) is the normal HUD, value `10` turns off spectator HUD elements, value `12` removes all HUD elements aside from zoom reticle and a few other effects, value `13` removes all HUD elements on engine side, even the menu and console text.
+- Updated HUD blood sprites.
 - Added a new sound engine for better 3D sounds. You can choose between old (FMOD) and new (OpenAL) in sound options.
 - Made player outline colors configurable. You can now set any color to yourself, but you can also override colors for your enemies and allies to any color you want.
 - All default and ability weapon sprites have been extended to resolve them being cropped when using weapon sway.
@@ -93,8 +95,10 @@ PVP Balance:
 - Increased Shotgun and Super Shotgun spread.
 - Nerfed Sarge armor gain from small/big hourglasses from 12/50 to 10/25.
 - Sarge, Terminator, Sam and Duke will not pick up hourglasses if their respective ability is full.
+- Cooldown reduction lootbox in PVE increases Sam and Duke ammo capacity. However, weapons ammo capcacity lootboxes does not.
 
 PvE Rebalance:
+- Updated damage types for some weapons and abilities. This lets monster addon devs define more complex behaviors.
 - Increased Kane cooldown from 35 to 75 seconds, but increased duration from 0.8 to 3 seconds.
 - Nerfed Caleb ability heal per hit from 35 to 25, and overstack from 10 to 5.
 - Increased Nyx cooldown from 15 to 20 seconds, telefrag forces surviving monsters into pain state, also awakening them.
@@ -171,6 +175,7 @@ Misc:
 - All champions show their movement type in the Champion Help Screen (F1 by default).
 - Added a new Markie music track, "Broodmother". It is played on QCDE15 (Chastity Belt) and QCDE24 (Sarnath).
 - Changed blood color for Inquisitor and Vor Matur to their respective blood color.
+- Updated Menelkir hourglass sprite and voxel model.
 - New active ability icons for all champions.
 - All weapon upgrades now display upgrade reticles.
 - Added announcer lines for "You Win", "You Lose", "Draw Game" and "Sudden Death"
