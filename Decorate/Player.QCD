@@ -1931,7 +1931,7 @@ Actor QCDukeNukem : QCPlayerMedium
 
 	Player.StartItem "Class_DukeNukem"
 	Player.StartItem "Body_Medium"
-	Player.StartItem "ActiveOffensive"
+	// Player.StartItem "ActiveOffensive" // Duke should select the ability as a weapon
 	Player.StartItem "NotSpectator"
 
 	States
@@ -2332,7 +2332,7 @@ Actor QCSarge : QCPlayerMedium
 
 	Player.StartItem "Class_Sarge"
 	Player.StartItem "Body_Medium"
-	Player.StartItem "ActiveDefensive"
+	// Player.StartItem "ActiveDefensive" // Sarge has no ability
 	Player.StartItem "NotSpectator"
 
 
@@ -3846,7 +3846,7 @@ Actor QCSam : QCPlayerHeavy
 
 	Player.StartItem "Class_Sam"
 	Player.StartItem "Body_Big"
-	Player.StartItem "ActiveOffensive"
+	// Player.StartItem "ActiveOffensive" // Sam should select the ability as a weapon
 	Player.StartItem "NotSpectator"
 
 
@@ -4540,7 +4540,7 @@ Actor QCBrock : QCPlayerHeavy
 
 	Player.StartItem "Class_Brock"
 	Player.StartItem "Body_Medium" // Brock has medium champion health/armor stack
-	Player.StartItem "ActiveDefensive"
+	// Player.StartItem "ActiveDefensive" // Brock has no ability
 	Player.StartItem "NotSpectator"
 
 	States
