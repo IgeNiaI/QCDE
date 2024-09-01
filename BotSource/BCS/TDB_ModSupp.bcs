@@ -245,11 +245,10 @@ void TDB_CallWeaponTick(str wpn, fixed dist)
 	}
 }
 
-void TDB_Weapon_Switch (fixed dist)
-{
+str TDB_FindBestWeapon (fixed dist) {
 	fixed bestDist = MAX_RANGE, tmp;
 	int priority;
-	str finalWpn = "", bestDistWpn = "";
+	str finalWpn = "";
 	bool foundWithinRange = false;
 
 	for(int i = TDB_WeaponsCurrIdx; i < 0; i++)
@@ -289,100 +288,87 @@ void TDB_Weapon_Switch (fixed dist)
             if(bestDist > tmp)
             {
             	bestDist = tmp;
-            	bestDistWpn = TDB_WeaponsStore[i].wpnName;
+            	finalWpn = TDB_WeaponsStore[i].wpnName;
             }
             
             tmp = abs(dist - TDB_WeaponsStore[i].maxDist);
             if(bestDist > tmp)
             {
             	bestDist = tmp;
-            	bestDistWpn = TDB_WeaponsStore[i].wpnName;
+            	finalWpn = TDB_WeaponsStore[i].wpnName;
             }
 		}
 	}
 
-	if(!StrLen(finalWpn))
-	{
-		if(!StrLen(bestDistWpn))
-			return;
-
-		finalWpn = bestDistWpn;
-	}
-
-	SetWeapon(finalWpn);
+	return finalWpn;
 }
 
 Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
 {
 	int btns, flags;
-	fixed minDist, maxDist;
-	str ammo;
-	int ammoUse;
+	fixed minDist;
 
 	SetResultValue(0);
 
 	if(!attackBtn)
 	{
-		if( ((!StrLen(TDB_CurrWeapon.ammo1)) ||
-			(CheckInventory(TDB_CurrWeapon.ammo1) >= TDB_CurrWeapon.ammoUse1)) )
-		{
-			attackBtn |= BT_ATTACK;
-		}
+		bool hasPrimAmmo = !StrLen(TDB_CurrWeapon.ammo1) || (CheckInventory(TDB_CurrWeapon.ammo1) >= TDB_CurrWeapon.ammoUse1);
+		bool hasAltAmmo = (TDB_CurrWeapon.altFireChance > 0.0) && (!StrLen(TDB_CurrWeapon.ammo2) || (CheckInventory(TDB_CurrWeapon.ammo2) >= TDB_CurrWeapon.ammoUse2));
 
-		if( ((!StrLen(TDB_CurrWeapon.ammo2)) ||
-			(CheckInventory(TDB_CurrWeapon.ammo2) >= TDB_CurrWeapon.ammoUse2)) )
+		if (!hasPrimAmmo && !hasAltAmmo)
 		{
-			attackBtn |= BT_ALTATTACK;
-		}
-
-		if(attackBtn == (BT_ATTACK|BT_ALTATTACK))
-		{
-			attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ATTACK : BT_ALTATTACK;
-		}
-
-		// Consider switching to another weapon if target is out of current weapon effective range
-		if ( ((dist < TDB_CurrWeapon.minDist) && (dist > TDB_CurrWeapon.maxDist))
-		 	|| ( (TDB_CurrWeapon.altFireChance > 0.0) &&
-		 	( (dist < TDB_CurrWeapon.minDistAlt) && (dist > TDB_CurrWeapon.maxDistAlt)) ) )
-		{
-			TDB_Weapon_Switch(dist);
+			str bestWeapon = TDB_FindBestWeapon(dist);
+			if (strcmp(bestWeapon, TDB_CurrWeapon.wpnName))
+				SetWeapon(bestWeapon);
 			terminate;
+		}
+
+		bool primInRange = hasPrimAmmo && (dist >= TDB_CurrWeapon.minDist) && (dist <= TDB_CurrWeapon.maxDist);
+		bool altInRange = hasAltAmmo && (dist >= TDB_CurrWeapon.minDistAlt) && (dist <= TDB_CurrWeapon.maxDistAlt);
+
+		if (primInRange && altInRange) {
+			attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ATTACK : BT_ALTATTACK;
+		} else if (primInRange) {
+			attackBtn = BT_ATTACK;
+		} else if (altInRange) {
+			attackBtn = BT_ALTATTACK;
+		} else {
+			// Both fire modes are out of range, consider changing weapon to a better suited one
+			str bestWeapon = TDB_FindBestWeapon(dist);
+			if (strcmp(bestWeapon, TDB_CurrWeapon.wpnName)) {
+				SetWeapon(bestWeapon);
+				terminate;
+			}
+
+			// Current weapon is best despite being out of range. Fire it then.
+			if (hasPrimAmmo && hasAltAmmo) {
+            	attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ATTACK : BT_ALTATTACK;
+            } else if (hasPrimAmmo) {
+            	attackBtn = BT_ATTACK;
+            } else if (hasAltAmmo) {
+            	attackBtn = BT_ALTATTACK;
+            }
 		}
 	}
 
 	if(attackBtn == BT_ATTACK)
 	{
 		minDist = TDB_CurrWeapon.minDist;
-		maxDist = TDB_CurrWeapon.maxDist;
-		ammo = TDB_CurrWeapon.ammo1;
-		ammoUse = TDB_CurrWeapon.ammoUse1;
 		flags = TDB_CurrWeapon.flags;
 	}
 	else
 	{
 		minDist = TDB_CurrWeapon.minDistAlt;
-		maxDist = TDB_CurrWeapon.maxDistAlt;
-		ammo = TDB_CurrWeapon.ammo2;
-		ammoUse = TDB_CurrWeapon.ammoUse2;
 		flags = TDB_CurrWeapon.flagsAlt;
-	}
-
-	if((StrLen(ammo)) && (CheckInventory(ammo) < ammoUse))
-	{
-		TDB_Weapon_Switch(dist);
-		terminate;
 	}
 
 	btns |= attackBtn;
 
-	if(dist < minDist)
+	if(flags & TDB_CW_EXPLOSIVE && dist < minDist)
 	{
 		btns |= BT_BACK;
-
-		if(flags & TDB_CW_EXPLOSIVE)
-			btns &= ~attackBtn;
 	}
-	else if( (dist > maxDist) || (flags & TDB_CW_MELEE) )
+	else if(flags & TDB_CW_MELEE)
 	{
 		btns |= BT_FORWARD;
 	}

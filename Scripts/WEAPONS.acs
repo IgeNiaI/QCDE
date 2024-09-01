@@ -303,8 +303,8 @@ Script "QCDE_ConfigureBotWeapons" (void)
 
 	//					Name					Ammo Class		Ammo Use	Proj Speed	Min Dist	Max Dist	Flags	Alt Fire chance
 	// Strong weapons
-	TDB_Weapon_Pri(		"QCTriboltDM",			"QCBoltAmmo",		1,		37.0,		0.0,		700.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);
-	TDB_Weapon_Pri(		"QCRocketLauncherDM",	"QCRocketAmmo",		1,		34.0,		0.0,		400.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);
+	TDB_Weapon_Pri(		"QCTriboltDM",			"QCBoltAmmo",		1,		37.0,		50.0,		700.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);
+	TDB_Weapon_Pri(		"QCRocketLauncherDM",	"QCRocketAmmo",		1,		34.0,		50.0,		400.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);
 	TDB_Weapon_Pri(		"QCLightningGunDM",		"QCCoilAmmo",		1,		0.0,		300.0,		700.0,		0);
 	TDB_Weapon_Pri(		"QCRailgunDM",			"QCSlugAmmo",		1,		0.0,		600.0,		MAX_RANGE,	0);
 	TDB_Weapon_Pri(		"QCBFGDM",				"QCBFGAmmo",		1,		45.0,		0.0,		700.0,		TDB_CW_PROJECTILE|TDB_CW_EXPLOSIVE);

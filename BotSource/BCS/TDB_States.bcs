@@ -115,7 +115,7 @@ private int TDBot_StateAttack (bool justEntered)
 	}
 	
 	if(canQuickswitch && (random(0, 100) <= 25))
-		TDB_Weapon_Switch(dist);
+		SetWeapon(TDB_FindBestWeapon(dist));
 	
 	TDB_HoldKey(BT_ATTACK);
 	
