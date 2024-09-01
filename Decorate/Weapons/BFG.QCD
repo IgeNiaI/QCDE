@@ -188,6 +188,7 @@ Actor QCBFG : QCWeapon
 		"####" ABCD 3 A_WeaponReady(WRF_NOSECONDARY)
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" EFGH 3 A_WeaponReady(WRF_NOSECONDARY)
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "ReadyCont") // Serious Sam skin play animation differently
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, 2) // Jump over skin specific jumps
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "ReadyCont") // Q3 and Q4 skins play animation differently
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
@@ -195,7 +196,7 @@ Actor QCBFG : QCWeapon
 		Loop
 
 	PostFireReady:
-		"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "PostFireReadySimple")
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "PostFireReady.SeriousSam") // Serious Sam skin has special post fire animation
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "PostFireReadyExtended")
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "PostFireReadySimple")
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "PostFireReady.Quake3") // Quake 3 skin has special post fire animation
@@ -211,6 +212,9 @@ Actor QCBFG : QCWeapon
 		Q3H8 TUAAAA 3 A_WeaponReady(WRF_NOSECONDARY)
 		Q3H8 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		Goto Ready.Prepared
+	PostFireReady.SeriousSam:
+		SSH8 A 0
+		Goto PostFireReadyExtended
 
 	PostFireReadySimple:
 		"####" NOPQRS 3 A_WeaponReady(WRF_NOSECONDARY)
