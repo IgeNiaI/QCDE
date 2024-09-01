@@ -141,6 +141,7 @@ Actor PowerGhostTint : PowerSpeed
 
 Actor GhostWalkWindowTint : PowerupGiver
 {
+	+SERVERNETID
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 	Powerup.Colormap 0,0,0, .25,.5,1
