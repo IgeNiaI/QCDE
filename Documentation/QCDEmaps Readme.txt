@@ -242,7 +242,7 @@ Contact Us:
 
 If you have questions or suggestions, you can find us in the following links:
 
-Official Discord: https://discord.gg/RN9hhmA
+Official Discord: https://discord.gg/u4ptaMk
 Official Download site: https://qzandronum.com/qcde/
 Official ModDB: http://www.moddb.com/mods/quake-champions-doom-edition
 Doomworld Thread: https://www.doomworld.com/forum/topic/99079-qc-doom-edition/
