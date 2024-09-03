@@ -536,7 +536,9 @@ TRBLVD11 = "Long story short: this engine was not designed for the kind of maps 
            "which is too complicated for the QC:DE team.";
 
 TRBLVD20 = "- My framerate is always low";
-TRBLVD21 = "Try lowering lights quality, and disable voxel pickups.";
+TRBLVD21 = "Try switching from \"Advanced\" lights to \"Simple\", or from \"Simple\" to \"Advanced\".\n"
+           "On some GPUs, one option is faster than the other.\n"
+           "Alternatively, try turning lights off entirely, and turn off Voxel pickups.\n";
 
 TRBLVD30 = "- My framerate is still low";
 TRBLVD31 = "Are you playing on a Windows laptop?\n"
