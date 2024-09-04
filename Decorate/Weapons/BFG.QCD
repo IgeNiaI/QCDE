@@ -196,24 +196,19 @@ Actor QCBFG : QCWeapon
 
 	PostFireReady:
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "PostFireReadySimple")
-		"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "PostFireReady.HalfLife") // Half-Life skin has special post fire animation
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "PostFireReadyExtended")
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "PostFireReadySimple")
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "PostFireReady.Quake3") // Quake 3 skin has special post fire animation
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "PostFireReady.Quake2") // Quake 2 skin has special post fire animation
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "PostFireReadySimple")
-	PostFireReady.Default:													 // Default skin has special post fire animation
-		QCH8 A 0
-		Goto PostFireReadyExtended
+		Goto PostFireReadyExtended											 // Default skin has special post fire animation
 	PostFireReady.Quake2:
 		Q2H8 A 0
 		Goto PostFireReadyExtended
-	PostFireReady.HalfLife:
-		HLH8 A 0
-		Goto PostFireReadyExtended
 	PostFireReady.Quake3:
-		Q3H8 NOPQ 3 A_WeaponReady(WRF_NOSECONDARY)
+		Q3H8 NOPQRS 3 A_WeaponReady(WRF_NOSECONDARY)
 		Q3H8 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		Q3H8 RSTU 3 A_WeaponReady(WRF_NOSECONDARY)
+		Q3H8 TUAAAA 3 A_WeaponReady(WRF_NOSECONDARY)
 		Q3H8 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		Goto Ready.Prepared
 
