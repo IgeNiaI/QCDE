@@ -218,11 +218,11 @@ kultasakaali            : "Hell's Gate"
 
 * Special Credits *
 
-George Exley            : Voice actor for Sarge, VorMatur, Painkiller and QCDE Announcer
+George Exley            : Voice actor for Sarge, VorMatur, Painkiller and QCDE Announcer, sound edits for UT announcer
 
 David M Neyland         : Voice actor for Durandal
 
-Gianni Matragrano       : Voice actor for Intruder
+Gianni Matragrano       : Voice actor for Intruder, voice for UT announcer
 
 YukiHerz                : Ranger and Bitterman's sprite sets
 

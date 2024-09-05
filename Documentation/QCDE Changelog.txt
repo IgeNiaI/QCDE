@@ -22,6 +22,7 @@ General:
 - No delay when holding the jump button. Hop hop hop!
 - Completely remade mod menus.
 - Added weapon skins like in QC. The skins are based on weapon models from other Quake titles, Half-Life and Serious Sam.
+- Bundled Unreal Tournament weapons addon with main QC:DE release.
 - Remade Blazkowicz sprites and portrait, now based on his default model from QC.
 - Ability cooldown now continues when the player is dead, like in Quake Champions.
 - Reworked Zoom mechanics. You can now switch between hold-to-zoom and toggle-zoom methods. Also you can now zoom in and out while firing the weapon.
@@ -67,7 +68,7 @@ General:
 - Added Discord Rich Presence support. It displays what gamemode and map you are playing as your Discord status.
 - Added Hungarian and Finnish welcome texts.
 
-PVP Balance:
+PvP Balance:
 - Railgun no longer deals additional "zoomed charge" damage in PVP.
 - All Light champions gained 25 more max armor and all Heavy champions lost 25 max armor, except Vor Matur.
 - Raised players camera and attack Z offset.
@@ -180,6 +181,7 @@ Misc:
 - All weapon upgrades now display upgrade reticles.
 - Added announcer lines for "You Win", "You Lose", "Draw Game" and "Sudden Death"
 - Replaced all announcer and medals sounds with completely new sounds from George Exley.
+- UT weapons addon replaces George Exley announcer with UT-like announcer voiced by Gianni Mantagrano and edited by George Exley.
 - All champions except Lo Wang will always play their respective sound when jumping, where it was random before.
   - Except Lo Wang, his vocalization was too annoying to always play.
 - Doubled player jump sounds distance.
