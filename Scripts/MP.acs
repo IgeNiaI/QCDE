@@ -699,7 +699,8 @@ Script "QCDE_StartSkirmish" (void) NET CLIENTSIDE
 		case 9:  category = 1;	break;	// Elder's Soul
 		case 10: category = 1;	break;	// Team Elder's Soul
 		case 11: category = 2;	break;	// Capture The Flag
-		case 12: category = 4;	break;	// Domination
+		case 12: category = 2;	break;	// One flag CTF
+		case 13: category = 4;	break;	// Domination
 		}
 		ConsoleCommand(strparam(s:"menu_startskirmish customgamemode ", d:category));
 	}
@@ -738,7 +739,8 @@ function void setupGamemode()
 	case 9:  menu_skirmishgamemode = 3; qc_elderssoul = 1;		break;	// Elder's Soul
 	case 10: menu_skirmishgamemode = 4;	qc_elderssoul = 1;		break;	// Team Elder's Soul
 	case 11: menu_skirmishgamemode = 12;						break;	// Capture The Flag
-	case 12: menu_skirmishgamemode = 15;						break;	// Domination
+	case 12: menu_skirmishgamemode = 13;						break;	// One Flag CTF
+	case 13: menu_skirmishgamemode = 15;						break;	// Domination
 	}
 
 	ConsoleCommand(strparam(s:"sv_showItemTimers ",			d:GetCVar("skirm_showItemTimers")));

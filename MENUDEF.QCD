@@ -247,7 +247,8 @@ FreeformMenu QCDE_SkirmishMenu
 	// 9, "Elder's Soul"
 	// 10, "Team Elder's Soul"
 	// 11, "Capture The Flag"
-	// 12, "Domination"
+	// 12, "One Flag CTF"
+	// 13, "Domination"
 
 	// ZA_Levels, Coop
 	// ZA_Levels1, Deathmatch
@@ -331,14 +332,14 @@ FreeformMenu QCDE_SkirmishMenu
 
 
 	Option {
-		VisibilityCVar skirm_skirmishgamemode,	11, 11
+		VisibilityCVar skirm_skirmishgamemode,	11, 12
 		Pos		-170, 35			CVar		menu_skirmishlevel2		UnknownBackground	NOMAPPIC
 		Size	120, 67				Values		ZA_LevelNames2			BackgroundValues	ZA_LevelPreviews2
 		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
 		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
 	}
 	Option {
-		VisibilityCVar skirm_skirmishgamemode,	11, 11
+		VisibilityCVar skirm_skirmishgamemode,	11, 12
 		NotSelectable
 		Size	120, 27				CVar		menu_skirmishlevel2
 		Pos		-110, 103			Values		ZA_LevelTitles2
@@ -347,7 +348,7 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 	Command {
-		VisibilityCVar skirm_skirmishgamemode,	11, 11
+		VisibilityCVar skirm_skirmishgamemode,	11, 12
 		Pos		-110, 138			Text				"Random Map"	Background			BV21028
 		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
 		Anchor	center, center		FontColor			Tan				Command				qcde_randommap2
@@ -356,14 +357,14 @@ FreeformMenu QCDE_SkirmishMenu
 
 
 	Option {
-		VisibilityCVar skirm_skirmishgamemode,	12, 12
+		VisibilityCVar skirm_skirmishgamemode,	13, 13
 		Pos		-170, 35			CVar		menu_skirmishlevel4		UnknownBackground	NOMAPPIC
 		Size	120, 67				Values		ZA_LevelNames4			BackgroundValues	ZA_LevelPreviews4
 		Anchor	left, top			Font		SmallFont				SelectedForeground	MAPSELEV, 136, 78
 		Padding	2, 1				FontColor	DarkGray				SelectedFontColor	Gray
 	}
 	Option {
-		VisibilityCVar skirm_skirmishgamemode,	12, 12
+		VisibilityCVar skirm_skirmishgamemode,	13, 13
 		NotSelectable
 		Size	120, 27				CVar		menu_skirmishlevel4
 		Pos		-110, 103			Values		ZA_LevelTitles4
@@ -372,7 +373,7 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 	Command {
-		VisibilityCVar skirm_skirmishgamemode,	12, 12
+		VisibilityCVar skirm_skirmishgamemode,	13, 13
 		Pos		-110, 138			Text				"Random Map"	Background			BV21028
 		Size	105, 14				Font				SmallFont		SelectedBackground	BV21028S
 		Anchor	center, center		FontColor			Tan				Command				qcde_randommap4
@@ -609,20 +610,20 @@ FreeformMenu QCDE_SkirmishMenu
 
 	// Point Limit again, for CTF and Domination
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	11, 12
+		VisibilityCVar skirm_skirmishgamemode,	11, 13
 		Pos		125, 90			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Point Limit"
 	}
 	TextField {
-		VisibilityCVar skirm_skirmishgamemode,	11, 12
+		VisibilityCVar skirm_skirmishgamemode,	11, 13
 		Pos		137, 107		CVar				menu_skirmishpointlimit	Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	11, 12
+		VisibilityCVar skirm_skirmishgamemode,	11, 13
 		Pos		153, 108	Anchor left, center
 		Text	"Points"	Font SmallFont
 	}
@@ -694,13 +695,13 @@ FreeformMenu QCDE_SkirmishMenu
 
 	// Warmup Mode, for CTF and Domination
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	11, 12
+		VisibilityCVar skirm_skirmishgamemode,	11, 13
 		Pos		125, 137			Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Warmup"
 	}
 	Option {
-		VisibilityCVar skirm_skirmishgamemode,	11, 12
+		VisibilityCVar skirm_skirmishgamemode,	11, 13
 		Pos		195, 136			CVar				sv_teamgamewarmup
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -1288,7 +1289,8 @@ OptionValue QCDE_Gamemode
 	9, "Elder's Soul"
 	10, "Team Elder's Soul"
 	11, "Capture The Flag"
-	// 12, "Domination"
+	12, "One Flag CTF"
+	// 13, "Domination"
 }
 
 OptionValue QCDE_Modifier
