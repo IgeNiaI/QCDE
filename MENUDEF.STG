@@ -1754,6 +1754,16 @@ FreeformMenu "QCDE_OptionsSound"
 		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
 	}
+	Label {
+		Pos		80, 50				Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"OST changes apply"
+	}
+	Label {
+		Pos		80, 60				Font		SmallFont
+		Anchor	left, top			FontColor	DarkRed
+		Text	"after map restart"
+	}
 
 	Label {
 		Pos		80, 103				Font		SmallFont
@@ -2845,7 +2855,7 @@ OptionValue "OstOrder"
 	0, "Strict"
 	1, "Shuffled"
 	2, "Randomized"
-	3, "OFF"
+	3, "Level MIDI"
 }
 
 OptionValue OverridePlayerColors
