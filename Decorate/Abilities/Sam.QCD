@@ -40,13 +40,13 @@ Actor SamMinigun : QCWeapon
 	Ready:
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("SeriousBullets", -1, "ReadyCantFire") // Using this instead of A_JumpIfNoAmmo so that it works when ammo is infinite
-		QP28 U 10 A_WeaponReady
+		QP28 R 10 A_WeaponReady
 		Loop
 
 		ReadyCantFire:
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 		RCFLooper:
-			QP28 U 4 A_WeaponReady(WRF_NOFIRE)
+			QP28 R 4 A_WeaponReady(WRF_NOFIRE)
 			TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
 			TNT1 A 0 A_JumpIfInventory("SeriousBullets", -1, "RCFLooper") // Using this instead of A_JumpIfNoAmmo so that it works when ammo is infinite
 			Goto Ready
@@ -59,13 +59,13 @@ Actor SamMinigun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
 		TNT1 A 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
 	SelectLooper:
-		QP28 U 1 A_Raise
+		QP28 R 1 A_Raise
 		TNT1 AAA 0 A_Raise
 		Loop
 
 	Deselect:
 		TNT1 A 0 A_StopSound(CHAN_WEAPON)
-		QP28 U 1 A_Lower
+		QP28 R 1 A_Lower
 		TNT1 AAA 0 A_Lower
 		Loop
 
@@ -74,7 +74,7 @@ Actor SamMinigun : QCWeapon
 	//-------------------------------------------------------
 	Fire:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Sam/SpinUp",CHAN_WEAPON,1.0)
-		QP28 UUVVW 1
+		QP28 RRSST 1
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"Holder1DM")
 		TNT1 A 0 A_Refire("Holder1")
 		Goto SpinDown
@@ -84,9 +84,9 @@ Actor SamMinigun : QCWeapon
 			TNT1 A 0 A_AlertMonsters
 			//Fires every other tic
 			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(2.5,-2.5),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(2.5,-2.5))
-			QP28 X 1 Bright A_GunFlash("FlashSP")
-			QP28 Y 1 Bright
-			QP28 Z 1 Bright A_GunFlash("FlashSP")
+			QP28 U 1 Bright A_GunFlash("FlashSP")
+			QP28 V 1 Bright
+			QP28 W 1 Bright A_GunFlash("FlashSP")
 			TNT1 A 0 A_Refire("Holder2")
 			Goto SpinDown
 		Holder2:
@@ -101,9 +101,9 @@ Actor SamMinigun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("SeriousBullets", -1, "Ready") // Using this instead of A_JumpIfNoAmmo so that it works when ammo is infinite
 			TNT1 A 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_WEAPON,0.8,true)
 			TNT1 A 0 A_AlertMonsters
-			QP28 X 1 Bright A_GunFlash("FlashDM")
-			QP28 Y 1 Bright
-			QP28 Z 1 Bright A_GunFlash("FlashDM")
+			QP28 U 1 Bright A_GunFlash("FlashDM")
+			QP28 V 1 Bright
+			QP28 W 1 Bright A_GunFlash("FlashDM")
 			TNT1 A 0 A_Refire("Holder2DM")
 			Goto SpinDown
 		Holder2DM:
@@ -116,10 +116,11 @@ Actor SamMinigun : QCWeapon
 
 	SpinDown:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Sam/SpinDown",CHAN_WEAPON,1.0,false)
-		QP28 UVW 1
-		QP28 UVW 2 A_WeaponReady
-		QP28 UVW 3 A_WeaponReady
-		QP28 UVW 4 A_WeaponReady
+		TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,3,3,FPF_NOUNLAGGED|FPF_SKIPOWNER)
+		QP28 RST 1
+		QP28 RST 2 A_WeaponReady
+		QP28 RST 3 A_WeaponReady
+		QP28 RST 4 A_WeaponReady
 		Goto Ready
 
 		FlashSP:
@@ -135,8 +136,8 @@ Actor SamMinigun : QCWeapon
 	// alt fire: Very spread and more damage, good for close range only
 	AltFire:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Sam/SpinUp",CHAN_WEAPON,1.0)
-		QP28 UVW 3
-		QP28 UVW 2
+		QP28 RST 3
+		QP28 RST 2
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"AltHolder1DM")
 		TNT1 A 0 A_Refire("AltHolder1")
 		Goto AltSpinDown
@@ -146,9 +147,9 @@ Actor SamMinigun : QCWeapon
 			TNT1 A 0 A_AlertMonsters
 			//Fires every other tic
 			TNT1 A 0 A_FireCustomMissile("BulletSmallTracer",frandom(2.5,-2.5),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(8,-8))
-			QP28 X 1 Bright A_GunFlash("AltFlashSP")
-			QP28 Y 1 Bright
-			QP28 Z 1 Bright A_GunFlash("AltFlashSP")
+			QP28 U 1 Bright A_GunFlash("AltFlashSP")
+			QP28 V 1 Bright
+			QP28 W 1 Bright A_GunFlash("AltFlashSP")
 			TNT1 A 0 A_Refire("AltHolder2")
 			Goto AltSpinDown
 		AltHolder2:
@@ -163,9 +164,9 @@ Actor SamMinigun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("SeriousBullets", -1, "Ready") // Using this instead of A_JumpIfNoAmmo so that it works when ammo is infinite
 			TNT1 A 0 A_PlaySound("QC/Abilities/Sam/FireLoop",CHAN_WEAPON,0.8,true)
 			TNT1 A 0 A_AlertMonsters
-			QP28 X 1 Bright A_GunFlash("AltFlashDM")
-			QP28 Y 1 Bright
-			QP28 Z 1 Bright A_GunFlash("AltFlashDM")
+			QP28 U 1 Bright A_GunFlash("AltFlashDM")
+			QP28 V 1 Bright
+			QP28 W 1 Bright A_GunFlash("AltFlashDM")
 			TNT1 A 0 A_Refire("AltHolder2DM")
 			Goto AltSpinDown
 		AltHolder2DM:
@@ -178,10 +179,11 @@ Actor SamMinigun : QCWeapon
 
 	AltSpinDown:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Sam/SpinDown",CHAN_WEAPON,1.0,false)
-		QP28 UVW 1
-		QP28 UVW 2 A_WeaponReady
-		QP28 UVW 3 A_WeaponReady
-		QP28 UVW 4 A_WeaponReady
+		TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,3,3,FPF_NOUNLAGGED|FPF_SKIPOWNER)
+		QP28 RST 1
+		QP28 RST 2 A_WeaponReady
+		QP28 RST 3 A_WeaponReady
+		QP28 RST 4 A_WeaponReady
 		Goto Ready
 
 		AltFlashSP:
