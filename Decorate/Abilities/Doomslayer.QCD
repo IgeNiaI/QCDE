@@ -169,7 +169,7 @@ Actor BFG9000Shot
 	States
 	{
 	Spawn:
-		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",7,0.8,true,0.6)
+		TNT1 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",7,0.8,true,0.6)
 		DB48 AB 1 Bright Light("GreenBigPoint3")
 		DB48 CD 1 Bright Light("GreenBigPoint3")
 		TNT1 A 0 A_Explode(30,384,0,0,384)
@@ -180,13 +180,7 @@ Actor BFG9000Shot
 		DB48 KL 1 Bright Light("GreenBigPoint3")
 		TNT1 A 0 A_Explode(30,384,0,0,384)
 		DB48 MN 1 Bright Light("GreenBigPoint3")
-		DB48 OP 1 Bright Light("GreenBigPoint3")
-		TNT1 A 0 A_Explode(30,384,0,0,384)
-		DB48 QR 1 Bright Light("GreenBigPoint3")
-		DB48 ST 1 Bright Light("GreenBigPoint3")
-		TNT1 A 0 A_Explode(30,384,0,0,384)
-		DB48 UV 1 Bright Light("GreenBigPoint3")
-		DB48 WX 1 Bright Light("GreenBigPoint3")
+		DB48 OA 1 Bright Light("GreenBigPoint3")
 		TNT1 A 0 A_Explode(30,384,0,0,384)
 		Goto Spawn+1
 
@@ -230,8 +224,8 @@ Actor BFG9000Shot_DM : BFG9000Shot
 	States
 	{
 	Spawn:
-		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",7,0.8,true,0.6)
-		DB48 A 0 ACS_NamedExecuteWithResult("QCDE_BfgBallSpawned")
+		TNT1 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",7,0.8,true,0.6)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_BfgBallSpawned")
 		Goto Idle
 	Idle:
 		DB48 AB 1 Bright Light("GreenBigPoint3")
@@ -244,14 +238,7 @@ Actor BFG9000Shot_DM : BFG9000Shot
 		DB48 KL 1 Bright Light("GreenBigPoint3")
 		TNT1 A 0 A_RadiusGive("RadiationProc", 384, RGF_PLAYERS|RGF_FORCESERVERSIDE)
 		DB48 MN 1 Bright Light("GreenBigPoint3")
-		DB48 OP 1 Bright Light("GreenBigPoint3")
-		TNT1 A 0 A_RadiusGive("RadiationProc", 384, RGF_PLAYERS|RGF_FORCESERVERSIDE)
-		DB48 QR 1 Bright Light("GreenBigPoint3")
-		DB48 ST 1 Bright Light("GreenBigPoint3")
-		TNT1 A 0 A_RadiusGive("RadiationProc", 384, RGF_PLAYERS|RGF_FORCESERVERSIDE)
-		DB48 UV 1 Bright Light("GreenBigPoint3")
-		DB48 WX 1 Bright Light("GreenBigPoint3")
-		TNT1 A 0 A_RadiusGive("RadiationProc", 384, RGF_PLAYERS|RGF_FORCESERVERSIDE)
+		DB48 OA 1 Bright Light("GreenBigPoint3")
 		Goto Idle
 
 	DeathCont:

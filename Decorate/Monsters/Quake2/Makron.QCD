@@ -112,7 +112,7 @@ Actor BFG10KShot
 	States
 	{
 	Spawn:
-		DB48 A 0
+		TNT1 A 0
 		DB48 ABC 1 Bright Light("GreenBigPoint3")
 		TNT1 A 0 A_SpawnItemEx("BFGTrailMonster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
 		DB48 DEF 1 Bright Light("GreenBigPoint3")
@@ -122,12 +122,6 @@ Actor BFG10KShot
 		DB48 JKL 1 Bright Light("GreenBigPoint3")
 		TNT1 A 0 A_SpawnItemEx("BFGTrailMonster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
 		DB48 MNO 1 Bright Light("GreenBigPoint3")
-		TNT1 A 0 A_SpawnItemEx("BFGTrailMonster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
-		DB48 PQR 1 Bright Light("GreenBigPoint3")
-		TNT1 A 0 A_SpawnItemEx("BFGTrailMonster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
-		DB48 STU 1 Bright Light("GreenBigPoint3")
-		TNT1 A 0 A_SpawnItemEx("BFGTrailMonster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
-		DB48 VWX 1 Bright Light("GreenBigPoint3")
 		TNT1 A 0 A_SpawnItemEx("BFGTrailMonster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
 		Goto Spawn+1
 	Death:
@@ -156,9 +150,9 @@ Actor BFGTrailMonster	//not friendly, attacks players
 		TNT1 A 0 			A_SpawnItemEx("BFGLooker",0,0,0,3,0,0, 90,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
 		TNT1 A 0 			A_SpawnItemEx("BFGLooker",0,0,0,3,0,0,180,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
 		TNT1 A 0 			A_SpawnItemEx("BFGLooker",0,0,0,3,0,0,270,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
-		TNT1 A 0 A_Jump(255,2,4,6,8,10,12,14,16,18,20,22)
+		TNT1 A 0 A_Jump(255,2,4,6,8,10,12,14)
 	Looper:
-		DB48 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 Bright A_FadeOut(0.1)
+		DB48 ABCDEFGHIJKLMNO 1 Bright A_FadeOut(0.1)
 		Loop
 	}
 }

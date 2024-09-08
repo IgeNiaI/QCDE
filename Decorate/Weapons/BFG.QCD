@@ -691,12 +691,8 @@ Actor QCBFGShot
 		"####" KL 1 Bright Light("GreenBigPoint3")
 		"####" A 0 A_Explode(16,128,0)
 		"####" MN 1 Bright Light("GreenBigPoint3")
-		"####" OP 1 Bright Light("GreenBigPoint3")
-		"####" QR 1 Bright Light("GreenBigPoint3")
-		"####" A 0 A_Explode(16,128,0)
-		"####" ST 1 Bright Light("GreenBigPoint3")
-		"####" UV 1 Bright Light("GreenBigPoint3")
-		"####" WX 1 Bright Light("GreenBigPoint3")
+		"####" OA 1 Bright Light("GreenBigPoint3")
+		"####" BC 1 Bright Light("GreenBigPoint3")
 		"####" A 0 A_Explode(16,128,0)
 		Goto Spawn
 
@@ -1137,7 +1133,7 @@ Actor QCBFGShot_DM	//No AOE while flying
 	{
 	Spawn:
 		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
-		DB48 ABCDEFGHIJKLMNOPQRSTUVWX 1 Bright Light("GreenBigPoint3")
+		DB48 ABCDEFGHIJKLMNO 1 Bright Light("GreenBigPoint3")
 		Goto Spawn+1
 
 	Xdeath:	//Direct hit
