@@ -81,10 +81,10 @@ Actor DukeFreezeThrower : QCWeapon
 		QW14 E 2 Bright
 		TNT1 A 0 A_JumpIfInventory("DukeAmmo", -1, "Ready") // Using this instead of A_JumpIfNoAmmo so that it works when ammo is infinite
 		QW14 F 2 Bright A_GunFlash("PrimaryFlash")
-		QW14 D 2 Bright
+		QW14 G 2 Bright
 		TNT1 A 0 A_JumpIfInventory("DukeAmmo", -1, "Ready") // Using this instead of A_JumpIfNoAmmo so that it works when ammo is infinite
-		QW14 E 2 Bright A_GunFlash("PrimaryFlash")
-		QW14 F 2 Bright
+		QW14 H 2 Bright A_GunFlash("PrimaryFlash")
+		QW14 I 2 Bright
 		Goto Ready
 	PrimaryFlash:
 		TNT1 A 0 A_PlaySound("QC/Abilities/DukeNukem/FreezeShot",CHAN_WEAPON)
@@ -240,7 +240,7 @@ Actor DukeFreezeShot
 	States
 	{
 	Spawn:
-		QW14 GHI 3 Bright A_CountDown
+		QW14 JKL 3 Bright A_CountDown
 		Loop
 	XDeath:
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
@@ -288,7 +288,7 @@ Actor DukeFreezeShot_DM : DukeFreezeShot
 	States
 	{
 	Spawn:
-		QW14 GHI 3 Bright A_CountDown
+		QW14 JKL 3 Bright A_CountDown
 		Loop
 	XDeath:
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
