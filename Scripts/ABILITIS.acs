@@ -1607,9 +1607,10 @@ Script "QCDE_NobitsuraAnimation" (void) clientside
 	DrawWeapon("QP18W0", 140.1, 250.1);	delay(1);
 	DrawWeapon("QP18W0", 190.1, 300.1);	delay(1);
 	DrawWeapon("QP18W0", 230.1, 330.1);	delay(1);
-	DrawWeapon("QP18W0", 250.1, 360.1);
+	DrawWeapon("QP18W0", 250.1, 360.1); delay(1);
+	DrawWeapon("QP18W0", 250.1, 400.1);		//away from sight to remove without fadeout
 
-	delay(8);
+	delay(7);
 
 	DrawWeapon("QP18X0",  300.1, 180.1);	delay(1);
 	DrawWeapon("QP18X0",  250.1, 187.1);	delay(1);
