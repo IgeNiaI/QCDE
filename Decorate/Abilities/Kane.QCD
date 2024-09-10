@@ -259,7 +259,6 @@ Actor KaneShardDropProc : CustomInventory
 
 Actor DebugBadTurn1 : FX
 {
-	RenderStyle Add
 	Translation "0:255=%[0,0,0]:[1,0,0]"
 	States
 	{
@@ -272,7 +271,6 @@ Actor DebugBadTurn1 : FX
 
 Actor DebugBadTurn2 : FX
 {
-	RenderStyle Add
 	Translation "0:255=%[0,0,0]:[0,0,1]"
 	States
 	{
@@ -285,7 +283,6 @@ Actor DebugBadTurn2 : FX
 
 Actor DebugGoodTurn : FX
 {
-	RenderStyle Add
 	Translation "0:255=%[0,0,0]:[0,1,0]"
 	States
 	{

@@ -304,7 +304,6 @@ Actor RedAntiFreeze : CustomInventory
 Actor FreezetaggedFX : FX
 {
 	+BRIGHT
-	RenderStyle Add
 	Scale 1.1
 	Translation "0:255=%[0,0,0]:[1,1,2]"
 	VSpeed 1
@@ -322,7 +321,6 @@ Actor FreezetaggedFX : FX
 Actor ThawFX : FX
 {
 	+BRIGHT
-	RenderStyle Add
 	Scale 1.1
 	Translation "0:255=%[0,0,0]:[2,2,2]"
 	VSpeed 1
