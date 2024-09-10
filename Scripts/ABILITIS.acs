@@ -3969,11 +3969,12 @@ Script "QCDE_PlayerKill_QCMenelkir" (void)
 {
 	if(GetActorProperty(0,APROP_HEALTH) > 0) terminate;
 
-	int killertid = GetActorProperty(0,APROP_TargetTID);
-	if(!CheckActorInventory(killertid, "Class_Menelkir")) terminate;
-	if(GetActorProperty(killertid, APROP_HEALTH) <= 0) terminate;
+	SetActivatorToTarget(0);
+	// Activator: Player
+	if(!CheckInventory("Class_Menelkir")) terminate;
+	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
 
-	SpawnSpotForced("MenelkirHourglass",0,0,0);
+	GiveInventory("MenelkirHourglass", 1);
 }
 
 
