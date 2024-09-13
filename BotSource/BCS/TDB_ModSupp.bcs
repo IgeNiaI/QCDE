@@ -327,7 +327,7 @@ Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
 		bool altInRange = hasAltAmmo && (dist >= TDB_CurrWeapon.minDistAlt) && (dist <= TDB_CurrWeapon.maxDistAlt);
 
 		if (primInRange && altInRange) {
-			attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ATTACK : BT_ALTATTACK;
+			attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ALTATTACK : BT_ATTACK;
 		} else if (primInRange) {
 			attackBtn = BT_ATTACK;
 		} else if (altInRange) {
@@ -342,7 +342,7 @@ Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
 
 			// Current weapon is best despite being out of range. Fire it then.
 			if (hasPrimAmmo && hasAltAmmo) {
-            	attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ATTACK : BT_ALTATTACK;
+            	attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ALTATTACK : BT_ATTACK;
             } else if (hasPrimAmmo) {
             	attackBtn = BT_ATTACK;
             } else if (hasAltAmmo) {
