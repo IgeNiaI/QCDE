@@ -4,7 +4,7 @@ Primary purpose         : Deathmatch
 ===========================================================================
 Title                   : QCDEMaps
 Filename                : QCDEmaps3.0.pk3
-Release date            : May ##th 2024
+Release date            : September ##th 2024
 Author                  : DBThanatos & Various Mappers
 Email Address           : DBThanatos@gmail.com
 Other Files By Author   : QC: Doom Edition (QCDE), Death Foretold (D4T),
@@ -83,7 +83,7 @@ QCDE19   Corrupted Station            DBThanatos
 QCDE20   Deck                         RoosTer
 QCDE21   Almost Lost                  RoosTer
 QCDE22   Sarnath                      DBThanatos
-QCDE23   Lh'owon of Ice and Fire      DBThanatos
+QCDE23   Lea                          Mr.Rocket
 QCDE24   Vale of Pnath                DBThanatos
 QCDE25   Quarantine                   RoosTer
 QCDE26   Lh'owoken                    DBThanatos

@@ -4,7 +4,7 @@ Primary purpose         : Single & Multiplayer
 ==================================================================================
 Title                   : QC: Doom Edition
 Filename                : QCDEv3.0.pk3
-Release date            : May ##th 2024
+Release date            : September ##th 2024
 Author                  : DBThanatos, Michaelis, geNia
 Email Address           : DBThanatos@hotmail.com, Michael.is.D4T@gmail.com, geniann93@gmail.com
 Other Files By Author   : *DBThanatos: "Quake4 Lightning Fast Mod Doom Edition",
@@ -182,10 +182,10 @@ Michael Markie          : QCDE Original Soundtrack, production of voice effects 
 
 
 DBThanatos              : "Blood Covenant", "Blood Run", "Phrantic", "Furious Heights",
-                          "Toxicity", "Monsoon", "Cure", "House of Decay", "Sinister", "Lockbox", 
-                          "Corrupted Station", "Sarnath", "Lh'owon of Ice and Fire", "Vale of Pnath",
-                          "Monsoon", "Lh'owoken", "Molten Falls", "Gibel Complex", "Excavation",
-						  "Silence", "The Edge", "Fusillade", "Battleforged", "Helix"
+                          "Toxicity", "Monsoon", "Cure", "House of Decay", "Sinister", "Lockbox",
+                          "Corrupted Station", "Sarnath", "Vale of Pnath", "Monsoon", "Lh'owoken",
+                          "Molten Falls", "Gibel Complex", "Excavation", "Silence", "The Edge",
+						  "Fusillade", "Battleforged", "Helix"
 
 RoosTer                 : "Aerowalk", "Vertical Vengeance", "Fatal Instinct", "Morpheus",
                           "Lost World", "Stubborn", "Phobos Campgrounds", "Deck", "Almost Lost",
@@ -205,7 +205,7 @@ TheSwampyLad            : "Temple of the Blood Serpants", "Exile"
 
 Pixo                    : "Crash Course", "Hektik"
 
-Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard"
+Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard", "Lea"
 
 Dech                    : "The Struggle", "CTF Run", "Fatal Error"
 
@@ -222,7 +222,7 @@ George Exley            : Voice actor for Sarge, VorMatur, Painkiller and QCDE A
 
 David M Neyland         : Voice actor for Durandal
 
-Gianni Matragrano       : Voice actor for Intruder, voice for UT announcer
+Gianni Matragrano       : Voice actor for Intruder and Unreal Tournament announcer
 
 YukiHerz                : Ranger and Bitterman's sprite sets
 

@@ -69,7 +69,7 @@ General:
 - Added Hungarian and Finnish welcome texts.
 
 PvP Balance:
-- Railgun no longer deals additional "zoomed charge" damage in PVP.
+- Railgun no longer deals additional "zoomed charge" damage in PvP.
 - All Light champions gained 25 more max armor and all Heavy champions lost 25 max armor, except Vor Matur.
 - Raised players camera and attack Z offset.
 - Ranger now only reduces self rocket damage instead of all.
@@ -78,6 +78,7 @@ PvP Balance:
 - Galen can now have only up to 3 totems in PvP.
 - Galen totem in PvE now heals 1 hp per second, but it never times out. When you have all 5 totems, they will heal 2 hp per second each.
 - Galen totem in PvP now heals only 50 hp immediately on touch, like in QC. Having all 3 totems will make it heal 100 hp, with a possibility to overstack 50 hp.
+- Menelkir now receives cooldown reduction immediately upon killing the enemy instead of dropping the hourglass.
 - Reworked Painkiller active. First speed card gives CPM movement, second card gives 20% more speed and third card makes it last 20 seconds more.
 - Reworked Terminator ability in PvP. He now spawns with 10 rockets ready, and picking up hourglasses increases the rockets amount up to 20, but doesn't reduce cooldown. Increased Terminator rocket damage from 11 to 15. Terminator no longer shoots rockets after death.
 - Eradicator no longer receives his bonuses from health, because he gained CPM movement instead.
@@ -96,7 +97,6 @@ PvP Balance:
 - Increased Shotgun and Super Shotgun spread.
 - Nerfed Sarge armor gain from small/big hourglasses from 12/50 to 10/25.
 - Sarge, Terminator, Sam and Duke will not pick up hourglasses if their respective ability is full.
-- Cooldown reduction lootbox in PVE increases Sam and Duke ammo capacity. However, weapons ammo capcacity lootboxes does not.
 
 PvE Rebalance:
 - Updated damage types for some weapons and abilities. This lets monster addon devs define more complex behaviors.
@@ -116,14 +116,17 @@ PvE Rebalance:
 - Bitterman now starts with 50 ability charges.
 - Increased Sorgaul primary fire damage from 130-250 to 150-300, and increased range from 80 to 96.
 - Increased Major cooldown from 135 to 150 seconds.
+- Cooldown reduction lootbox increases Sam and Duke ammo capacity. However, weapons ammo capcacity lootboxes does not.
 
 Maps:
 - Moved QCDE07 "Morpheus" to QCME02
 - Moved QCDE15 "House of Decay" to QCDL05
 - Moved QCDE03 "The Chasm" out of the mappack
+- Moved QCDE23 "Lh'owon of Ice and Fire" out of the mappack
 - Added "Underland" from Unreal Tournament 4 as QCDE03
 - Added "Temple of Retribution" from Quake 3 as QCDE07
 - Added "Chastity Belt" from Quake 3 OSP mappack as QCDE15
+- Added "Lea" from Unreal Tournament 2004 as QCDE23
 - Added "Arcane Temple" from Unreal Tournament as QCDE39
 - Added "Rankin" from Unreal Tournament 2004 as QCDE40
 - Added "ASDF" from Unreal Tournament 4 as QCDE41
@@ -183,7 +186,6 @@ Misc:
 - Replaced all announcer and medals sounds with completely new sounds from George Exley.
 - UT weapons addon replaces George Exley announcer with UT-like announcer voiced by Gianni Mantagrano and edited by George Exley.
 - All champions except Lo Wang will always play their respective sound when jumping, where it was random before.
-  - Except Lo Wang, his vocalization was too annoying to always play.
 - Doubled player jump sounds distance.
 - Added dedicated powerup pickup sounds for Quad and Protection.
 - Completely replaced old Menelkir sounds with Death Knight's from QC.
