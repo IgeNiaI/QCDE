@@ -114,8 +114,11 @@ private int TDBot_StateAttack (bool justEntered)
 		return TDB_STATE_ROAM;
 	}
 	
-	if(canQuickswitch && (random(0, 100) <= 25))
-		SetWeapon(TDB_FindBestWeapon(dist));
+	if(canQuickswitch && (random(0, 100) <= 25)) {
+		str bestWeapon = TDB_FindBestWeapon(dist);
+		if (strcmp(bestWeapon, TDB_CurrWeapon.wpnName))
+			SetWeapon(bestWeapon);
+	}
 	
 	TDB_HoldKey(BT_ATTACK);
 	
