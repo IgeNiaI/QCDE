@@ -2424,9 +2424,6 @@ Script "QCDE_Ability_Sam" (void)
 {
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	SetWeapon("SamMinigun");
-	if (GetNetworkState() != NETSTATE_SERVER && !CheckInventory("SeriousBullets") && GetCvar("cl_lowAmmoWarning") > 0) {
-		ACS_NamedExecuteAlways("QCDE_LowAmmoAlert_CLIENT",0, true, GetCvar("cl_lowAmmoWarning") > 1, true);
-	}
 	SetNetworkReplicationFlags( 0 );
 }
 
