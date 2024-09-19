@@ -402,7 +402,7 @@ Script "QCDE_RareTracker" (void)
 {
 	while(true)
 	{
-		if (GameType() == GAME_NET_DEATHMATCH  &&  PlayerCount() > 2  &&  GetCvar("sv_crowntheleader"))
+		if (GameType() == GAME_NET_DEATHMATCH && PlayerCount() > 2 && !getCvar("teamlms") && GetCvar("sv_crowntheleader"))
 		{
 			ACS("QCDE_CrownTheBest");
 		}
