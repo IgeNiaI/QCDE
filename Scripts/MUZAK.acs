@@ -2,7 +2,6 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
-#import "MUZAKCST.acs"
 
 #define NUMBER_OF_SONGS 31
 #define JUKEBOX_TID 46290
@@ -148,20 +147,22 @@ function int GetTune(int x)
 	return strparam(s:"a", d:x/1000000%10, d:x/100000%10, d:x/10000%10, d:x/1000%10, d:x/100%10, d:x/10%10, d:x%10);
 }
 
-function void PlaySong(int x)
+function void PlaySong(int musicNumber)
 {
-	SetMusic(GetTune(x),0,1);
-	SetUserCvar(CPN(), "_previousSong", x);
+	SetMusic(GetTune(musicNumber),0,1);
+	SetUserCvar(CPN(), "_previousSong", musicNumber);
 	SetActivator(1000 + ConsolePlayerNumber());
 }
 
-function void PrintSongName(int x)
+function void PrintSongName(int musicNumber)
 {
 	if (GetCvar("screenblocks") >= 12) return;
 
 	SetHudSize(640, 480, 1);
 	SetFont("QCSMFONT");
-	HudMessage(s:" \c[yellow]Music: \c[brite]", s:getMusicName(x), s:"\n \c[yellow]Author: \c[brite]", s:getMusicAuthor(x),
+	str musicName = strparam(l:strparam(s:"MUZAKN", d:musicNumber));
+	str musicAuthor = strparam(l:strparam(s:"MUZAKA", d:musicNumber));
+	HudMessage(s:" \c[yellow]Music: \c[brite]", s:musicName, s:"\n \c[yellow]Author: \c[brite]", s:musicAuthor,
 		s:"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
 		s:"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"; // this helps placing the text box properly
 		HUDMSG_FADEINOUT, 0, CR_RED, 272.0, 296.0, 2.3, 0.9, 1.0);
