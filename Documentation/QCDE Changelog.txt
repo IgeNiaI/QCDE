@@ -42,6 +42,8 @@ General:
 - Integrated TDRR's universal bump mapping addon into the mod and added "Fancy lights" option to control it.
 - Integrated TDRR' TDBots addon. Bots can now navigate the maps really good!
 - LMS and Team LMS now spawn players with full ammo and no longer give starter weapons.
+- In Team LMS, dead spectators can't see their opponents. Previously, all spectators couldn't see all players.
+- Turned off leader crown feature in Team LMS, because it exposes opponent position to dead spectators.
 - Rocket jumping no longer deals self damage in gamemodes like Rocket Arena and Unholy Trinity.
 - Added a random class option to the class menu.
 - Added new clean fonts for console, menu and game texts.
@@ -65,6 +67,7 @@ General:
 - QCDE OST can now be turned off in the Sound menu.
 - Bots at `botskill` 3 and 4 now select weapons according to distance to their target.
 - Bots are less likely to navigate towards damaging and instant death sectors.
+- Updated bot icons in scoreboard.
 - Added Discord Rich Presence support. It displays what gamemode and map you are playing as your Discord status.
 - Added Hungarian and Finnish welcome texts.
 
@@ -117,6 +120,7 @@ PvE Rebalance:
 - Increased Sorgaul primary fire damage from 130-250 to 150-300, and increased range from 80 to 96.
 - Increased Major cooldown from 135 to 150 seconds.
 - Cooldown reduction lootbox increases Sam and Duke ammo capacity. However, weapons ammo capcacity lootboxes does not.
+- Menelkir hourglasses no longer disappear over time.
 
 Maps:
 - Moved QCDE07 "Morpheus" to QCME02
