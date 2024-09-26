@@ -119,9 +119,7 @@ private int TDBot_StateAttack (bool justEntered)
 		if (strcmp(bestWeapon, TDB_CurrWeapon.wpnName))
 			SetWeapon(bestWeapon);
 	}
-	
-	TDB_HoldKey(BT_ATTACK);
-	
+
 	CallACS("TDB_FaceTarget", 0, 0);
 
 	SetActorAngle(0, GetActorAngle(0) + frandom(-self.inaccuracy, self.inaccuracy));

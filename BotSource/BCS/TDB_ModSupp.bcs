@@ -38,7 +38,7 @@ struct TDB_WeaponInfoT
 	fixed projSpeedAlt;
 	int flagsAlt;
 
-	fixed altFireChance; // [0.0, 1.0], 1.0 is 100% likely to alt fire
+	fixed altFireChance; // {-1.0, [0.0, 1.0]}, -1 is no alt fire at all, 1.0 is 100% likely to alt fire
 };
 
 world int 163:TDB_WeaponsMap[];
@@ -142,6 +142,7 @@ void TDB_Weapon_New(str wpn, int priority = 0, int flags = 0, str callback = "",
 	TDB_WeaponsStore[idx].wpnTick = (StrLen(callback)) ? callback : TDB_DEFAULTWPNTICK;
 	TDB_WeaponsStore[idx].priority = priority;
 	TDB_WeaponsStore[idx].flags = flags;
+	TDB_WeaponsStore[idx].altFireChance = -1.0;
 }
 
 void TDB_Weapon_Pri(str wpn, str ammo = "", int ammoUse = 1, fixed projSpeed = 0.0, fixed minDist = 0.0, fixed maxDist = MAX_RANGE, int flags = 0)
@@ -205,7 +206,7 @@ void TDB_CallWeaponTick(str wpn, fixed dist)
 	if(TDB_Weapons_Check(self.weaponName))
 		wpnTickName = TDB_Weapons(self.weaponName).wpnTick;
 
-	TDB_ReleaseKey(self.lastAttackBtn);
+	TDB_ReleaseKey(BT_ATTACK|BT_ALTATTACK|BT_ZOOM|BT_RELOAD);
 	btns = CallACS(wpnTickName, dist, self.lastAttackBtn);
 	self.lastAttackBtn = btns & (BT_ATTACK|BT_ALTATTACK|BT_ZOOM|BT_RELOAD);
 	TDB_HoldKey(self.lastAttackBtn);
@@ -251,6 +252,20 @@ str TDB_FindBestWeapon (fixed dist) {
 	str finalWpn = "";
 	bool foundWithinRange = false;
 
+	// If current weapon is in range, keep using it
+	bool hasPrimAmmo = !StrLen(TDB_CurrWeapon.ammo1) || (CheckInventory(TDB_CurrWeapon.ammo1) >= TDB_CurrWeapon.ammoUse1);
+	bool hasAltAmmo = (TDB_CurrWeapon.altFireChance >= 0.0) && (!StrLen(TDB_CurrWeapon.ammo2) || (CheckInventory(TDB_CurrWeapon.ammo2) >= TDB_CurrWeapon.ammoUse2));
+
+	if (hasPrimAmmo || hasAltAmmo)
+	{
+		bool primInRange = hasPrimAmmo && (dist >= TDB_CurrWeapon.minDist) && (dist <= TDB_CurrWeapon.maxDist);
+		bool altInRange = hasAltAmmo && (dist >= TDB_CurrWeapon.minDistAlt) && (dist <= TDB_CurrWeapon.maxDistAlt);
+
+		if (primInRange || altInRange) {
+			return TDB_CurrWeapon.wpnName;
+		}
+	}
+
 	for(int i = TDB_WeaponsCurrIdx; i < 0; i++)
 	{
 		// Check if bot has the weapon
@@ -259,7 +274,7 @@ str TDB_FindBestWeapon (fixed dist) {
 
 		// Check if bot has ammo
 		if ( ( StrLen(TDB_WeaponsStore[i].ammo1) && CheckInventory(TDB_WeaponsStore[i].ammo1) < TDB_WeaponsStore[i].ammoUse1 )
-			&& ( ( TDB_WeaponsStore[i].altFireChance <= 0.0 )
+			&& ( ( TDB_WeaponsStore[i].altFireChance < 0.0 )
 			 || ( StrLen(TDB_WeaponsStore[i].ammo2) && CheckInventory(TDB_WeaponsStore[i].ammo2) < TDB_WeaponsStore[i].ammoUse2 ) ) )
 			continue;
 
@@ -271,8 +286,11 @@ str TDB_FindBestWeapon (fixed dist) {
 			foundWithinRange = true;
 
 			// Find best weapon by priority
-        	if(TDB_WeaponsStore[i].priority >= priority)
+        	if (TDB_WeaponsStore[i].priority > priority)
         	{
+        		priority = TDB_WeaponsStore[i].priority;
+        		finalWpn = TDB_WeaponsStore[i].wpnName;
+        	} else if (TDB_WeaponsStore[i].priority == priority && frandom(1, 1.0) < 0.5) {
         		priority = TDB_WeaponsStore[i].priority;
         		finalWpn = TDB_WeaponsStore[i].wpnName;
         	}
@@ -305,64 +323,62 @@ str TDB_FindBestWeapon (fixed dist) {
 
 Script TDB_DEFAULTWPNTICK (raw dist, int attackBtn)
 {
-	int btns, flags;
-	fixed minDist;
-
 	SetResultValue(0);
 
-	if(!attackBtn)
-	{
-		bool hasPrimAmmo = !StrLen(TDB_CurrWeapon.ammo1) || (CheckInventory(TDB_CurrWeapon.ammo1) >= TDB_CurrWeapon.ammoUse1);
-		bool hasAltAmmo = (TDB_CurrWeapon.altFireChance > 0.0) && (!StrLen(TDB_CurrWeapon.ammo2) || (CheckInventory(TDB_CurrWeapon.ammo2) >= TDB_CurrWeapon.ammoUse2));
+	bool hasPrimAmmo = !StrLen(TDB_CurrWeapon.ammo1) || (CheckInventory(TDB_CurrWeapon.ammo1) >= TDB_CurrWeapon.ammoUse1);
+	bool hasAltAmmo = (TDB_CurrWeapon.altFireChance >= 0.0) && (!StrLen(TDB_CurrWeapon.ammo2) || (CheckInventory(TDB_CurrWeapon.ammo2) >= TDB_CurrWeapon.ammoUse2));
 
-		if (!hasPrimAmmo && !hasAltAmmo)
-		{
-			str bestWeapon = TDB_FindBestWeapon(dist);
-			if (strcmp(bestWeapon, TDB_CurrWeapon.wpnName))
-				SetWeapon(bestWeapon);
+	if (!hasPrimAmmo && !hasAltAmmo)
+	{
+		str bestWeapon = TDB_FindBestWeapon(dist);
+		if (strcmp(bestWeapon, TDB_CurrWeapon.wpnName))
+			SetWeapon(bestWeapon);
+		terminate;
+	}
+
+	bool primInRange = hasPrimAmmo && (dist >= TDB_CurrWeapon.minDist) && (dist <= TDB_CurrWeapon.maxDist);
+	bool altInRange = hasAltAmmo && (dist >= TDB_CurrWeapon.minDistAlt) && (dist <= TDB_CurrWeapon.maxDistAlt);
+
+	if (primInRange && altInRange) {
+		fixed chance = frandom(1, 1.0);
+		attackBtn = (chance < TDB_CurrWeapon.altFireChance) ? BT_ALTATTACK : BT_ATTACK;
+	} else if (primInRange) {
+		attackBtn = BT_ATTACK;
+	} else if (altInRange) {
+		attackBtn = BT_ALTATTACK;
+	} else {
+		// Both fire modes are out of range, consider changing weapon to a better suited one
+		str bestWeapon = TDB_FindBestWeapon(dist);
+		if (strcmp(bestWeapon, TDB_CurrWeapon.wpnName)) {
+			SetWeapon(bestWeapon);
 			terminate;
 		}
 
-		bool primInRange = hasPrimAmmo && (dist >= TDB_CurrWeapon.minDist) && (dist <= TDB_CurrWeapon.maxDist);
-		bool altInRange = hasAltAmmo && (dist >= TDB_CurrWeapon.minDistAlt) && (dist <= TDB_CurrWeapon.maxDistAlt);
-
-		if (primInRange && altInRange) {
-			attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ALTATTACK : BT_ATTACK;
-		} else if (primInRange) {
-			attackBtn = BT_ATTACK;
-		} else if (altInRange) {
-			attackBtn = BT_ALTATTACK;
-		} else {
-			// Both fire modes are out of range, consider changing weapon to a better suited one
-			str bestWeapon = TDB_FindBestWeapon(dist);
-			if (strcmp(bestWeapon, TDB_CurrWeapon.wpnName)) {
-				SetWeapon(bestWeapon);
-				terminate;
-			}
-
-			// Current weapon is best despite being out of range. Fire it then.
-			if (hasPrimAmmo && hasAltAmmo) {
-            	attackBtn = (frandom(1, 1.0) < TDB_CurrWeapon.altFireChance) ? BT_ALTATTACK : BT_ATTACK;
-            } else if (hasPrimAmmo) {
-            	attackBtn = BT_ATTACK;
-            } else if (hasAltAmmo) {
-            	attackBtn = BT_ALTATTACK;
-            }
-		}
+		// Current weapon is best despite being out of range. Fire it then.
+		if (hasPrimAmmo && hasAltAmmo) {
+			fixed chance = frandom(1, 1.0);
+        	attackBtn = (chance < TDB_CurrWeapon.altFireChance) ? BT_ALTATTACK : BT_ATTACK;
+        } else if (hasPrimAmmo) {
+        	attackBtn = BT_ATTACK;
+        } else if (hasAltAmmo) {
+        	attackBtn = BT_ALTATTACK;
+        }
 	}
 
-	if(attackBtn == BT_ATTACK)
-	{
-		minDist = TDB_CurrWeapon.minDist;
-		flags = TDB_CurrWeapon.flags;
-	}
-	else
+	fixed minDist;
+	int flags;
+	if(attackBtn == BT_ALTATTACK)
 	{
 		minDist = TDB_CurrWeapon.minDistAlt;
 		flags = TDB_CurrWeapon.flagsAlt;
 	}
+	else
+	{
+		minDist = TDB_CurrWeapon.minDist;
+		flags = TDB_CurrWeapon.flags;
+	}
 
-	btns |= attackBtn;
+	int btns = attackBtn;
 
 	if(flags & TDB_CW_EXPLOSIVE && dist < minDist)
 	{
