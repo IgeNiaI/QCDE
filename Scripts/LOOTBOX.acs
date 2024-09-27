@@ -487,12 +487,12 @@ script "鳞~Loot🅱ox1_4" (void)
 		if(CheckInventory("Class_Sam"))
 		{
 			SetAmmoCapacity("SeriousBullets", getLootboxBonusAmmo(8, (CheckInventory("CooldownRewardToken") / 5)));
-			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+			SetResultValue("CDLOOT10:More Ability Ammo Capacity");
 		}
 		else if(CheckInventory("Class_DukeNukem"))
 		{
 			SetAmmoCapacity("DukeAmmo", getLootboxBonusAmmo(9, (CheckInventory("CooldownRewardToken") / 5)));
-			SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+			SetResultValue("CDLOOT10:More Ability Ammo Capacity");
 		}
 		else
 		{
@@ -726,12 +726,12 @@ script "鳞~Loot🅱ox2_2" (void)
 	if(CheckInventory("Class_Sam"))
 	{
 		SetAmmoCapacity("SeriousBullets", getLootboxBonusAmmo(8, (CheckInventory("CooldownRewardToken") / 5)));
-		SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+		SetResultValue("CDLOOT50:More Ability Ammo Capacity");
 	}
 	else if(CheckInventory("Class_DukeNukem"))
 	{
 		SetAmmoCapacity("DukeAmmo", getLootboxBonusAmmo(9, (CheckInventory("CooldownRewardToken") / 5)));
-		SetResultValue("CDLOOT05:More Ability Ammo Capacity");
+		SetResultValue("CDLOOT50:More Ability Ammo Capacity");
 	}
 }
 
