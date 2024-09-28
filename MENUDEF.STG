@@ -344,7 +344,7 @@ FreeformMenu "QCDE_OptionsGame"
 	NoBackButton
 	TopPadding 40
 	DefaultSelection -2
-	OverrideHeight 570
+	OverrideHeight 650
 
 	Label {
 		Static
@@ -788,6 +788,19 @@ FreeformMenu "QCDE_OptionsGame"
 	}
 
 	Label {
+		Pos		168, 420			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Grow crosshair when picking up items"
+	}
+	Option {
+		Pos		185, 420			CVar				crosshairgrow
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	155, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
 		Pos		45, 441				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Pickup flash"
@@ -828,32 +841,63 @@ FreeformMenu "QCDE_OptionsGame"
 	}
 
 	Label {
-		Pos		168, 420			Font		SmallFont
+		Pos		75, 480				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
-		Text	"Grow crosshair when picking up items"
+		Text	"Level change effect"
 	}
 	Option {
-		Pos		185, 420			CVar				crosshairgrow
-		Size	14, 14				Values				QCDE_CheckText
-		Anchor	right, center		BackgroundValues	QCDE_CheckBG
-		MouseArea	155, 14			UnknownBackground	CHKBOX
-									SelectedForeground	CHKBOXS, 14, 14
+		Pos		80, 480				CVar				wipetype			UnknownBackground	OP21028
+		Size	105, 14				Values				Wipes				SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
 	}
 
 
 	Label {
 		Pos		0, 520				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
+		Text	"Gameplay"
+	}
+
+	Label {
+		Pos		-72, 540			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Always run"
+	}
+	Option {
+		Pos		-55, 540			CVar				cl_run
+		Size	14, 14				Values				QCDE_CheckText
+		Anchor	right, center		BackgroundValues	QCDE_CheckBG
+		MouseArea	105, 14			UnknownBackground	CHKBOX
+									SelectedForeground	CHKBOXS, 14, 14
+	}
+
+	Label {
+		Pos		75, 540				Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Player speed"
+	}
+	Option {
+		Pos		80, 540				CVar				sv_playerspeed		UnknownBackground	OP21028
+		Size	105, 14				Values				PlayerSpeeds		SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
+
+
+	Label {
+		Pos		0, 580				Font		QCSMFONT
+		Anchor	center, center		FontColor	Gold
 		Text	"Champion specific settings"
 	}
 
 	Label {
-		Pos		75, 541				Font		SmallFont
+		Pos		75, 601				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Eradicator Radar mode"
 	}
 	Option {
-		Pos		80, 540				CVar				cl_radarMode		UnknownBackground	OP21028
+		Pos		80, 600				CVar				cl_radarMode		UnknownBackground	OP21028
 		Size	105, 14				Values				RadarMode			SelectedBackground	OP21028S
 		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
@@ -1146,11 +1190,11 @@ FreeformMenu "QCDE_OptionsBinds"
 	Label	{ Pos -128,  41		Text "Move Forward"			Anchor right, center	Font SmallFont		FontColor DarkGray }
 	Control	{ Pos  -70,  40		Action "+forward"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74,  41		Text "Strafe Left"			Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132,  40		Action "+moveleft"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos -128,  61		Text "Strafe Left"			Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70,  60		Action "+moveleft"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128,  61		Text "Move Backward"		Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70,  60		Action "+back"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74,  41		Text "Move Backward"		Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132,  40		Action "+back"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
 	Label	{ Pos   74,  61		Text "Strafe Right"			Anchor right, center	Font SmallFont		FontColor DarkGray }
 	Control	{ Pos  132,  60		Action "+moveright"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
@@ -1158,16 +1202,17 @@ FreeformMenu "QCDE_OptionsBinds"
 	Label	{ Pos -128,  81		Text "Jump"					Anchor right, center	Font SmallFont		FontColor DarkGray }
 	Control	{ Pos  -70,  80		Action "+jump"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74,  81		Text "Walk"					Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  132,  80		Action "+speed"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{ Pos   74,  81		Text "Crouch"				Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  132,  80		Action "+crouch"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos -128, 101		Text "Crouch"				Anchor right, center	Font SmallFont		FontColor DarkGray }
-	Control	{ Pos  -70, 100		Action "+crouch"			Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
+	Label	{	VisibilityCVar	cl_run, 0, 0	 Pos  -128, 101		Text "Run"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Label	{	VisibilityCVar	cl_run, 1, 1	 Pos  -128, 101		Text "Walk"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Control	{ Pos  -70, 100		Action "+speed"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 101		Text "Dash"					Anchor right, center	Font SmallFont		FontColor DarkGray }
+	Label	{ Pos   74, 101		Text "Dash Ability"			Anchor right, center	Font SmallFont		FontColor DarkGray }
 	Control	{ Pos  132, 100		Action "+user4"				Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	Background TX21028	SelectedBackground	TX21028S }
 
-	Label	{ Pos   74, 121		Text "Double Tap Time"		Anchor right, center		Font SmallFont		FontColor DarkGray }
+	Label	{ Pos   74, 121		Text "Double Tap Window"	Anchor right, center		Font SmallFont		FontColor DarkGray }
 	Option	{ Pos  132, 120		CVar cl_DoubleTapTics		Values QCDE_DoubleTapTimes	Anchor center, center	Padding 0, 1	Font SmallFont		SelectedFontColor Gray		Size 105, 14	UnknownBackground OP21028	SelectedBackground	OP21028S	SelectedForeground	OP21028A, 119, 14 }
 
 	Label {
@@ -2157,25 +2202,6 @@ FreeformMenu "QCDE_OptionsPvE"
 	}
 
 
-	Label {
-		Pos		0, 130				Font		QCSMFONT
-		Anchor	center, center		FontColor	Gold
-		Text	"Misc"
-	}
-
-	Label {
-		Pos		60, 143				Font		SmallFont
-		Anchor	left, top			FontColor	DarkGray
-		Text	"Level change effect"
-	}
-	Option {
-		Pos		60, 160				CVar				wipetype		UnknownBackground	OP21028
-		Size	105, 14				Values				Wipes			SelectedBackground	OP21028S
-		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
-		Padding	3, 1				SelectedFontColor	Gray
-	}
-
-
 	InsertFreeformMenu MainMenuTopBar
 	InsertFreeformMenu QCDE_OptionsTabs
 }
@@ -2894,4 +2920,20 @@ OptionValue "CrosshairsBG"
 	16, "QHAIRB16"
 	17, "QHAIRB17"
 	18, "QHAIRB18"
+}
+
+OptionValue PlayerSpeeds
+{
+	0, "Gamemode Default"
+	70, "70%"
+	75, "75%"
+	80, "80%"
+	85, "85%"
+	90, "90%"
+	95, "95%"
+	100, "100%"
+	105, "105%"
+	110, "110%"
+	115, "115%"
+	120, "120%"
 }
