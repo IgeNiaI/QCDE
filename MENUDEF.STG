@@ -377,7 +377,7 @@ FreeformMenu "QCDE_OptionsGame"
 	Label {
 		Pos		-72, 60				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
-		Text	"Invisible LG beam (DM)"
+		Text	"$Control_LGBeam"
 	}
 	Option {
 		EnableCVar	r_drawplayersprites, 1, 1
