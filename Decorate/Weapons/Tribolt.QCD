@@ -73,9 +73,10 @@ Actor TriboltPickup : CustomInventory 15604
 	}
 }
 
-Actor TriboltPickupFloat : TriboltPickup 15614
+Actor TriboltPickupNoGravity : TriboltPickup 15614
 {
-	//$Title "Float Tribolt"
+	//$Category "QCDE Weapons (No Gravity)"
+	//$Title "Tribolt (No Gravity)"
 	+NOGRAVITY
 }
 

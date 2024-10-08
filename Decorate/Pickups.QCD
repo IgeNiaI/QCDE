@@ -92,12 +92,12 @@ Actor Hourglass : CustomInventory 15508
 	}
 }
 
-Actor HourglassNoGrav : Hourglass 15518
+Actor HourglassNoGravity : Hourglass 15518
 {
 	//$NotAngled
 	//$Category "QCDE Pickups"
 	//$Color 3
-	//$Title "Hourglass Floaty (-10%)"
+	//$Title "Hourglass (-10%) (No Gravity)"
 	+NOGRAVITY
 	States
 	{

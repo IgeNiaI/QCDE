@@ -75,9 +75,10 @@ Actor LightningGunPickup : CustomInventory 15606
 	}
 }
 
-Actor LightningGunPickupFloat : LightningGunPickup 15616
+Actor LightningGunPickupNoGravity : LightningGunPickup 15616
 {
-	//$Title "Float Lightning Gun"
+	//$Category "QCDE Weapons (No Gravity)"
+	//$Title "Lightning Gun (No Gravity)"
 	+NOGRAVITY
 }
 

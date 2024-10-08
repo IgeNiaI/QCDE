@@ -81,9 +81,10 @@ Actor HeavyMachinegunPickup : CustomInventory 15600
 	}
 }
 
-Actor HeavyMachinegunPickupFloat : HeavyMachinegunPickup 15610
+Actor HeavyMachinegunPickupNoGravity : HeavyMachinegunPickup 15610
 {
-	//$Title "Float Heavy Machinegun"
+	//$Category "QCDE Weapons (No Gravity)"
+	//$Title "Heavy Machinegun (No Gravity)"
 	+NOGRAVITY
 }
 

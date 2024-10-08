@@ -70,9 +70,10 @@ Actor RailgunPickup : CustomInventory 15607
 	}
 }
 
-Actor RailgunPickupFloat : RailgunPickup 15617
+Actor RailgunPickupNoGravity : RailgunPickup 15617
 {
-	//$Title "Float Railgun"
+	//$Category "QCDE Weapons (No Gravity)"
+	//$Title "Railgun (No Gravity)"
 	+NOGRAVITY
 }
 

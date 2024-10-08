@@ -447,7 +447,7 @@ Script "QCDE_Freezetag_Thaw" (int flags)
 
 	// Reward for teamwork
 	SpawnForced("QCBackpack",        x,y,z);
-	SpawnForced("QCStimpackMapFloat",x,y,z + 24.0);
+	SpawnForced("QCStimpackMapNoGravity",x,y,z + 24.0);
 
 	// Sound to leave behind
 	int tid = UniqueTID();

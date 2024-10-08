@@ -45,7 +45,7 @@ Actor RLMinorPickup : RLNothing
 		TNT1 A 0 A_SpawnItemEx("QCMedikit",           0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  7
 		TNT1 A 0 A_SpawnItemEx("QCArmorBonus",        0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  8
 		TNT1 A 0 A_SpawnItemEx("QCSmallArmorGiver",   0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  9
-		TNT1 A 0 A_SpawnItemEx("HourglassNoGrav",     0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop // 10
+		TNT1 A 0 A_SpawnItemEx("HourglassNoGravity",  0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop // 10
 		TNT1 A 0 A_SpawnItemEx("ShotgunReplacer",     0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop // 11
 		TNT1 A 0 A_SpawnItemEx("SuperShotgunReplacer",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop // 12
 		TNT1 A 0 A_SpawnItemEx("ChaingunReplacer",    0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop // 13
@@ -67,7 +67,7 @@ Actor RLMajorPickup : RLNothing
 		TNT1 A 0 A_SpawnItemEx("CellPackReplacer",      0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  4
 		TNT1 A 0 A_SpawnItemEx("QCMegaHealth",          0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  5
 		TNT1 A 0 A_SpawnItemEx("QCBigArmorGiver",       0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  6
-		TNT1 A 0 A_SpawnItemEx("QCMegaMegaMapFloat",    0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  7
+		TNT1 A 0 A_SpawnItemEx("QCMegaMegaMapNoGravity",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  7
 		TNT1 A 0 A_SpawnItemEx("BigHourglass",          0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  8
 		TNT1 A 0 A_SpawnItemEx("QCBackPack",            0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop //  9
 		TNT1 A 0 A_SpawnItemEx("RLPowerup",             0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL,0,tid) Stop // 10

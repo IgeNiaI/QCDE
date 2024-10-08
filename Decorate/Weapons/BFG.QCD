@@ -64,9 +64,10 @@ Actor BFGPickup : CustomInventory 15608
 	}
 }
 
-Actor BFGPickupFloat : BFGPickup 15618
+Actor BFGPickupNoGravity : BFGPickup 15618
 {
-	//$Title "Float BFG 10k"
+	//$Category "QCDE Weapons (No Gravity)"
+	//$Title "BFG 10k (No Gravity)"
 	+NOGRAVITY
 }
 

@@ -72,9 +72,10 @@ Actor SuperShotgunPickup : CustomInventory 15602
 	}
 }
 
-Actor SuperShotgunPickupFloat : SuperShotgunPickup 15612
+Actor SuperShotgunPickupNoGravity : SuperShotgunPickup 15612
 {
-	//$Title "Float Super Shotgun"
+	//$Category "QCDE Weapons (No Gravity)"
+	//$Title "Super Shotgun (No Gravity)"
 	+NOGRAVITY
 }
 

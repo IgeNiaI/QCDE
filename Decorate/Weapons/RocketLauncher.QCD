@@ -71,9 +71,10 @@ Actor RocketLauncherPickup : CustomInventory 15605
 	}
 }
 
-Actor RocketLauncherPickupFloat : RocketLauncherPickup 15615
+Actor RocketLauncherPickupNoGravity : RocketLauncherPickup 15615
 {
-	//$Title "Float Rocket Launcher"
+	//$Category "QCDE Weapons (No Gravity)"
+	//$Title "Rocket Launcher (No Gravity)"
 	+NOGRAVITY
 }
 

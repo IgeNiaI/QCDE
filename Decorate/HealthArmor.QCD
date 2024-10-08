@@ -1002,76 +1002,76 @@ Actor QCMegaMegaMap : QCMegaMega  15507
 
 
 //--------------------------
-// Floaty versions
-Actor QCHealthBonusMapFloat : QCHealthBonusMap 15520
+// No Gravity versions
+Actor QCHealthBonusMapNoGravity : QCHealthBonusMap 15520
 {
 	//$NotAngled
-	//$Category "QCDE Float Health & Armor"
+	//$Category "QCDE Health & Armor (No Gravity)"
 	//$Color 1
-	//$Title "Float Health Bonus (+3)"
+	//$Title "Health Bonus (+3) (No Gravity)"
 	+NOGRAVITY
 }
-Actor QCStimpackMapFloat : QCStimpackMap  15521
+Actor QCStimpackMapNoGravity : QCStimpackMap  15521
 {
 	//$NotAngled
-	//$Category "QCDE Float Health & Armor"
+	//$Category "QCDE Health & Armor (No Gravity)"
 	//$Color 1
-	//$Title "Float Medium Health (+25)"
+	//$Title "Medium Health (+25) (No Gravity)"
 	+NOGRAVITY
 }
-Actor QCMedikitMapFloat : QCMedikitMap  15522
+Actor QCMedikitMapNoGravity : QCMedikitMap  15522
 {
 	//$NotAngled
-	//$Category "QCDE Float Health & Armor"
+	//$Category "QCDE Health & Armor (No Gravity)"
 	//$Color 1
-	//$Title "Float Big Health (+50)"
-	+NOGRAVITY
-}
-
-Actor QCMegaHealthFMapFloat : QCMegaHealth  15523
-{
-	//$NotAngled
-	//$Category "QCDE Float Health & Armor"
-	//$Color 1
-	//$Title "Float Mega Health (+100)"
+	//$Title "Big Health (+50) (No Gravity)"
 	+NOGRAVITY
 }
 
-
-Actor QCArmorBonusMapFloat : QCArmorBonusMap 15524
+Actor QCMegaHealthFMapNoGravity : QCMegaHealth  15523
 {
 	//$NotAngled
-	//$Category "QCDE Float Health & Armor"
+	//$Category "QCDE Health & Armor (No Gravity)"
+	//$Color 1
+	//$Title "Mega Health (+100) (No Gravity)"
+	+NOGRAVITY
+}
+
+
+Actor QCArmorBonusMapNoGravity : QCArmorBonusMap 15524
+{
+	//$NotAngled
+	//$Category "QCDE Health & Armor (No Gravity)"
 	//$Color 10
-	//$Title "Float Armor Shard (+3)"
+	//$Title "Armor Shard (+3) (No Gravity)"
 	+NOGRAVITY
 }
 
-Actor QCSmallArmorGiverMapFloat : QCSmallArmorGiverMap  15525
+Actor QCSmallArmorGiverMapNoGravity : QCSmallArmorGiverMap  15525
 {
 	//$NotAngled
-	//$Category "QCDE Float Health & Armor"
+	//$Category "QCDE Health & Armor (No Gravity)"
 	//$Color 10
-	//$Title "Float Light Armor (+50)"
+	//$Title "Light Armor (+50) (No Gravity)"
 	+NOGRAVITY
 }
 
-Actor QCBigArmorGiverMapFloat : QCBigArmorGiver  15526
+Actor QCBigArmorGiverMapNoGravity : QCBigArmorGiver  15526
 {
 	//$NotAngled
-	//$Category "QCDE Float Health & Armor"
+	//$Category "QCDE Health & Armor (No Gravity)"
 	//$Color 10
-	//$Title "Float Heavy Armor (+100)"
+	//$Title "Heavy Armor (+100) (No Gravity)"
 	+NOGRAVITY
 }
 
 
-Actor QCMegaMegaMapFloat : QCMegaMega  15527
+Actor QCMegaMegaMapNoGravity : QCMegaMega  15527
 {
 	//$NotAngled
-	//$Category "QCDE Float Health & Armor"
+	//$Category "QCDE Health & Armor (No Gravity)"
 	//$Color 1
-	//$Title "Float MegaMega (+100, +100)"
+	//$Title "MegaMega (+100, +100) (No Gravity)"
 	+NOGRAVITY
 }
 

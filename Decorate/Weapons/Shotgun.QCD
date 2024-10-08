@@ -82,9 +82,10 @@ Actor ShotgunPickup : CustomInventory 15601
 	}
 }
 
-Actor ShotgunPickupFloat : ShotgunPickup 15611
+Actor ShotgunPickupNoGravity : ShotgunPickup 15611
 {
-	//$Title "Float Shotgun"
+	//$Category "QCDE Weapons (No Gravity)"
+	//$Title "Shotgun (No Gravity)"
 	+NOGRAVITY
 }
 
