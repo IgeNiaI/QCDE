@@ -65,7 +65,7 @@ Actor SorgaulFists : QCWeapon
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
-		TNT1 A 0 A_ZoomFactor(0.8)
+		TNT1 A 0 A_ZoomFactor(0.9)
 		TNT1 A 0 A_PlaySound("QC/Abilities/Sorgaul/RageLoop",CHAN_5,1.0,1,0.85)
 		QP13 X 1 A_Raise
 		"####" "########" 0 A_Raise
