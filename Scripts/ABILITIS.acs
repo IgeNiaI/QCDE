@@ -4829,6 +4829,9 @@ Script "QCDE_Passive_Lucienne" (void)
 Script "QCDE_Passive_DukeNukem" (void)
 {
 	SetInventory("DukeFreezeThrower",1);
+	if (GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("qc_freezetag")) {
+		SetInventory("DukeAmmo", 60);
+	}
 }
 
 Script "QCDE_DukeNukem_Ammo_Full"
@@ -5063,6 +5066,9 @@ Script "QCDE_Passive_Sam" (int ammo)
 	if(!ammo) // Start of life
 	{
 		SetInventory("SamMinigun",1);
+		if (GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("qc_freezetag")) {
+			SetInventory("SeriousBullets", 175);
+		}
         int startingWeapon = GetCvar("cl_startingWeapon");
 		if(GameType() <= GAME_NET_COOPERATIVE)
 		{
