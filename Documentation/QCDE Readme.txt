@@ -4,7 +4,7 @@ Primary purpose         : Single & Multiplayer
 ==================================================================================
 Title                   : QC: Doom Edition
 Filename                : QCDEv3.0.pk3
-Release date            : September ##th 2024
+Release date            : November ##th 2024
 Author                  : DBThanatos, Michaelis, geNia
 Email Address           : DBThanatos@hotmail.com, Michael.is.D4T@gmail.com, geniann93@gmail.com
 Other Files By Author   : *DBThanatos: "Quake4 Lightning Fast Mod Doom Edition",
@@ -33,7 +33,7 @@ Additional Credits to   : See credits section
 
 * What is included *
 
-New levels              : 69 QCDE exclusive maps in "QCDEmaps3.0.pk3"
+New levels              : 75 QCDE exclusive maps in "QCDEmaps3.0.pk3"
 Sounds                  : Yes
 Music                   : Yes, in QCDEmus3.0.pk3
 Graphics                : Yes
@@ -194,6 +194,7 @@ RoosTer                 : "Aerowalk", "Vertical Vengeance", "Fatal Instinct", "M
 
 geNia                   : "Chastity Belt", "Arcane Temple", "Rankin", "QWER", "Deep Embrace", "Deck 17",
                           "Brought 2 Doom", "Mythic", "Erase", "Unreal Place", "Achilles", "Menelkir's Domain"
+                          "Crash Course", "w00tabulous", "Quake Movement Training", "Unreal Movement Training"
 
 Ivan Dobrovski          : "Fortress in the Void", "Sinister", "Battleforged", "Sight"
 
@@ -203,15 +204,16 @@ Ivory Duke              : "Elder", "Delirium"
 
 TheSwampyLad            : "Temple of the Blood Serpants", "Exile"
 
-Pixo                    : "Crash Course", "Hektik"
+Pixo                    : "Hektik", "Okey"
 
-Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard", "Lea"
+Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard", 
+                          "Lea", "The Proving Grounds"
 
 Dech                    : "The Struggle", "CTF Run", "Fatal Error"
 
 KillerKouhai            : "Zenith"
 
-kultasakaali            : "Hell's Gate"
+kultasakaali            : "Hell's Gate", "Fractal Reactor"
 
 
 
@@ -319,6 +321,8 @@ anvi                    : v3.0 Beta Tester
 ako                     : v3.0 Beta Tester
 
 TDRR                    : v3.0 Beta Tester
+
+HeliosDrive             : v3.0 Beta Tester
 
 
 

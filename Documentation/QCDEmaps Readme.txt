@@ -4,7 +4,7 @@ Primary purpose         : Deathmatch
 ===========================================================================
 Title                   : QCDEMaps
 Filename                : QCDEmaps3.0.pk3
-Release date            : September ##th 2024
+Release date            : November ##th 2024
 Author                  : DBThanatos & Various Mappers
 Email Address           : DBThanatos@gmail.com
 Other Files By Author   : QC: Doom Edition (QCDE), Death Foretold (D4T),
@@ -24,7 +24,7 @@ Additional Credits to   : See the Credits section
 ===========================================================================
 * What is included *
 
-New levels              : 69
+New levels              : 75
 Sounds                  : Yes
 Music                   : Yes
 Graphics                : Yes
@@ -37,8 +37,8 @@ Other files required    : Latest version of QCDE
 * Play Information *
 
 Game                    : DOOM2
-Map #                   : QCDE01-QCDE50, QCDL01-QCDL10, QCME01-QCME02
-                          QCTF01-03, QCIN01-04
+Map #                   : QCDE01-QCDE50, QCDL01-QCDL13, QCME01-QCME02
+                          QCTF01-04, QCIN01-04, QCDF01-QCDF02
 Single Player           : No
 Cooperative 2-4 Player  : No
 Deathmatch 2-4 Player   : Designed for
@@ -119,9 +119,12 @@ QCDL04   Phrantic                     DBThanatos
 QCDL05   House of Decay               DBThanatos
 QCDL06   Hell's Gate                  kultasakaali
 QCDL07   The Dark Zone                Mr.Rocket
-QCDL08   Crash Course                 Pixo
+QCDL08   Crash Course                 geNia
 QCDL09   Hektik                       Pixo & geNia
 QCDL10   Unreal Place                 geNia
+QCDL11   Fractal Reactor	          kultasakaali
+QCDL12   Okey		                  Pixo
+QCDL13   The Proving Grounds          Mr.Rocket
 
 QCME01   The Longest Yard             Mr.Rocket
 QCME02   Morpheus                     RoosTer
@@ -129,11 +132,15 @@ QCME02   Morpheus                     RoosTer
 QCTF01   The Struggle                 Dech
 QCTF02   CTF Run                      Dech
 QCTF03   Fatal Error                  Dech
+QCTF04   w00tabulous                  geNia
 
 QCIN01   Outpost                      RoosTer
 QCIN02   Hangar                       RoosTer
 QCIN03   Cathedral                    RoosTer
 QCIN04   Asteroid Garden              RoosTer
+
+QCDF01   Quake Movement Training      geNia
+QCDF02   Unreal Movement Training     geNia
 ------------------------------------------------------------------------------
 * Credits *
 

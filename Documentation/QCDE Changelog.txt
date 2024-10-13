@@ -2,7 +2,7 @@ Changelog
 
 ---------------------------------------------------------------------
 
-V3.0 (September ## 2024)
+V3.0 (November 29 2024)
 
 General:
 - Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
@@ -33,6 +33,7 @@ General:
 - Reworked weapon respawn logic. All weapons except BFG respawn after 1 second. In duel, the weapons respawn after 5 seconds instead. The respawn time can also be configured using `sv_weaponrespawn` cvar.
 - Rocket Launcher, Lightning Gun, Railgun and BFG weapon slots were moved up. Make sure to rebind your controls.
 - Added an option to render the game at true horizontal fov (previously horizontal fov was about 15% smaller).
+- Added Defrag gamemode with a map for Quake and Unreal movement each.
 - Integrated voxels addons into main QCDE mod and UT weapons addon.
 - Integrated HD champion portraits by Legendbourne into main mod.
 - Integrated the medals addon. Medals can be toggled using the `cl_qcmedals` clientside cvar.
@@ -123,9 +124,9 @@ PvE Rebalance:
 - Menelkir hourglasses no longer disappear over time.
 
 Maps:
+- Moved QCDE03 "The Chasm" out of the mappack
 - Moved QCDE07 "Morpheus" to QCME02
 - Moved QCDE15 "House of Decay" to QCDL05
-- Moved QCDE03 "The Chasm" out of the mappack
 - Moved QCDE23 "Lh'owon of Ice and Fire" out of the mappack
 - Added "Underland" from Unreal Tournament 4 as QCDE03
 - Added "Temple of Retribution" from Quake 3 as QCDE07
@@ -148,9 +149,15 @@ Maps:
 - Added "Crash Course" from Quake Live as QCDL08
 - Added "Hektik" from Quake Live as QCDL09
 - Added "Nicktest1" from Unreal Tournament 4 as QCDL10
+- Added "Fractal" from Unreal Tournament as QCDL11
+- Added "wfda3" from Warfork as QCDL12
+- Added "The Proving Grounds" from Quake 3 as QCDL13
 - Added "The Struggle", "CTF Run" and "Fatal Error" for Capture the Flag gamemode (QCTF01, QCTF02 and QCTF03 respectively)
+- Added "w00tabulous" from Unreal Tournament as QCTF04
 - Added "Outpost", "Hangar" "Cathedral" and "Asteroid Garden" for Invasion gamemode (QCIN01, QCIN02, QCIN03 and QCIN04 respectively)
-- Completely remade QCME01 "The Longest Yard", based on QC version this time
+- Added "TATMT-S8 & -S9" from Quake 3 as QCDF01
+- Added "BT-DomicileCB" from Unreal Tournament as QCDF02
+- Completely remade QCME01 "The Longest Yard", based on Quake Champions version this time
 - Retextured QCDL02 "Aerowalk"
 - Added second Rocket Launcher spawn and moved Heavy Machinegun on QCDE08 "Furious Heights"
 - Made the slope on top of broken pillar in QCDL03 "Fatal Instinct" work like UT slope
