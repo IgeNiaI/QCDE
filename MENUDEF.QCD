@@ -147,7 +147,7 @@ FreeformMenu "PlayerclassMenu"
 		Pos		40, 207					Text				"NEXT"				Background			BT20060
 		Size	100, 30					Font				QCBGFONT			SelectedBackground	BT20060S
 		Anchor	center, center			FontColor			Tan					Menu				Episodemenu
-		Padding	0, 2					SelectedFontColor	Yellow				Param				-2
+		Padding	0, 2					SelectedFontColor	Tan					Param				-2
 	}
 
 	InsertFreeformMenu MainMenuTopBar
@@ -1191,7 +1191,7 @@ FreeformMenu ZA_JoinMenu
 		Pos		55, 206					Text				"SELECT"			Background			BT28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BT28060S
 		Anchor	center, center			FontColor			Tan					Command				joingame0
-		Padding	0, 2					SelectedFontColor	Yellow
+		Padding	0, 2					SelectedFontColor	Tan
 	}
 }
 
@@ -1248,7 +1248,7 @@ FreeformMenu QCDE_JoinBlue
 		Pos		55, 206					Text				"JOIN BLUE"			Background			BB28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BB28060S
 		Anchor	center, center			FontColor			Tan					Command				joingame1
-		Padding	0, 2					SelectedFontColor	Yellow
+		Padding	0, 2					SelectedFontColor	Tan
 	}
 }
 
@@ -1270,7 +1270,7 @@ FreeformMenu QCDE_JoinRed
 		Pos		55, 206					Text				"JOIN RED"			Background			BR28060
 		Size	140, 30					Font				QCBGFONT			SelectedBackground	BR28060S
 		Anchor	center, center			FontColor			Tan					Command				joingame2
-		Padding	0, 2					SelectedFontColor	Yellow
+		Padding	0, 2					SelectedFontColor	Tan
 	}
 }
 
