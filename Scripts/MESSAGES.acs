@@ -689,7 +689,7 @@ Script "QCDE_ShowVersionNumber" (void)
 {
 	SetHudSize(960,720,0);
 	SetFont("SMALLFNT");
-	HudMessageBold(s:"v3.0";HUDMSG_PLAIN,ID_TITLEMAP_VERSION,CR_WHITE, 955.0, 710.0, 0);
+	HudMessageBold(s:"v3.1";HUDMSG_PLAIN,ID_TITLEMAP_VERSION,CR_WHITE, 955.0, 710.0, 0);
 }
 
 

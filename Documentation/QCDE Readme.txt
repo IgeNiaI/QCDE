@@ -3,7 +3,7 @@ Advanced engine needed  : Q-Zandronum 1.4
 Primary purpose         : Single & Multiplayer
 ==================================================================================
 Title                   : QC: Doom Edition
-Filename                : QCDEv3.0.pk3
+Filename                : QCDEv3.1.pk3
 Release date            : November ##th 2024
 Author                  : DBThanatos, Michaelis, geNia
 Email Address           : DBThanatos@hotmail.com, Michael.is.D4T@gmail.com, geniann93@gmail.com
@@ -33,7 +33,7 @@ Additional Credits to   : See credits section
 
 * What is included *
 
-New levels              : 75 QCDE exclusive maps in "QCDEmaps3.0.pk3"
+New levels              : 75 QCDE exclusive maps in "QCDEmaps3.1.pk3"
 Sounds                  : Yes
 Music                   : Yes, in QCDEmus3.0.pk3
 Graphics                : Yes

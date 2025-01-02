@@ -3,7 +3,7 @@ Advanced engine needed  : Q-Zandronum 1.4
 Primary purpose         : Deathmatch
 ===========================================================================
 Title                   : QCDEMaps
-Filename                : QCDEmaps3.0.pk3
+Filename                : QCDEmaps3.1.pk3
 Release date            : November ##th 2024
 Author                  : DBThanatos & Various Mappers
 Email Address           : DBThanatos@gmail.com
