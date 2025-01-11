@@ -744,7 +744,8 @@ function void clearBots()
 function void setupGamemode()
 {
 	int gamemode = GetCVar("skirm_skirmishgamemode");
-	int menu_skirmishgamemode = 3; // default to deathmatch
+	int menu_skirmishgamemode = 0; // default to coop
+	int menu_timelimit = 0;
 	int qc_elderssoul = 0;
 	int qc_freezetag = 0;
 	int qc_defrag = 0;
@@ -767,10 +768,16 @@ function void setupGamemode()
 	case 14: menu_skirmishgamemode = 0;	qc_defrag = 1;			break;	// Defrag
 	}
 
+	// If PvP, use timelimit
+	if (gamemode >= 3 && gamemode <= 13) {
+		menu_timelimit = GetCVar("skirm_timelimit");
+	}
+
 	ConsoleCommand(strparam(s:"sv_showItemTimers ",			d:GetCVar("skirm_showItemTimers")));
 	ConsoleCommand(strparam(s:"sv_showStackLeft ",			d:GetCVar("skirm_showStackLeft")));
 	ConsoleCommand(strparam(s:"sv_QCDEPowerups ",			d:GetCVar("skirm_QCDEPowerups")));
 	ConsoleCommand(strparam(s:"menu_skirmishgamemode ",		d:menu_skirmishgamemode));
+	ConsoleCommand(strparam(s:"menu_skirmishtimelimit ",	d:menu_timelimit));
 	ConsoleCommand(strparam(s:"qc_freezetag ",				d:qc_freezetag));
 	ConsoleCommand(strparam(s:"qc_elderssoul ",				d:qc_elderssoul));
 	ConsoleCommand(strparam(s:"qc_defrag ",					d:qc_defrag));

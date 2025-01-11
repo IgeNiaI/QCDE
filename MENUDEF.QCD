@@ -492,6 +492,7 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 	SubMenu {
+		VisibilityCVar skirm_skirmishgamemode,	0, 13
 		Pos  53, 77				Text "Setup Weapons"		Background			BV21028
 		Size 105, 14			Font SmallFont				SelectedBackground	BV21028S
 		Anchor center, center	FontColor Tan				Menu QCDE_SkirmishWeapons
@@ -499,7 +500,7 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 	SubMenu {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos  53, 107			Text "Setup Bots"			Background			BV21028
 		Size 105, 14			Font SmallFont				SelectedBackground	BV21028S
 		Anchor center, center	FontColor Tan				Menu QCDE_SkirmishBots
@@ -522,11 +523,13 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 	Label {
+		VisibilityCVar skirm_skirmishgamemode,	0, 13
 		Pos		0, 137				Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Item respawn timers"
 	}
 	Option {
+		VisibilityCVar skirm_skirmishgamemode,	0, 13
 		Pos		105, 136			CVar				skirm_showItemTimers
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -535,13 +538,13 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		0, 157				Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Show killer stack"
 	}
 	Option {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		105, 156			CVar				skirm_showStackLeft
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -550,13 +553,13 @@ FreeformMenu QCDE_SkirmishMenu
 	}
 
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		0, 177				Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Spawn powerups"
 	}
 	Option {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		105, 176			CVar				skirm_QCDEPowerups
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
@@ -607,40 +610,40 @@ FreeformMenu QCDE_SkirmishMenu
 
 	// Time limit, for all PvP modes
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		125, 30			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Time Limit"
 	}
 	TextField {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
-		Pos		137, 47			CVar				menu_skirmishtimelimit	Background			TX05028
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
+		Pos		137, 47			CVar				skirm_timelimit			Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		153, 48		Anchor left, center
 		Text	"Minutes"	Font SmallFont
 	}
 
 	// Win Limit, for all PvP gamemodes
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		125, 60			Font		SmallFont
 		Anchor	left, top		FontColor	DarkRed
 		Text	"Win Limit"
 	}
 	TextField {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		137, 77			CVar				menu_skirmishwinlimit	Background			TX05028
 		Size	25, 14			Font				SmallFont				SelectedBackground	TX05028S
 		Padding 0, 1			SelectedFontColor	Gray
 		Anchor	center, center
 	}
 	Label {
-		VisibilityCVar skirm_skirmishgamemode,	3, 100
+		VisibilityCVar skirm_skirmishgamemode,	3, 13
 		Pos		153, 78		Anchor left, center
 		Text	"Wins"		Font SmallFont
 	}
@@ -1033,13 +1036,13 @@ FreeformMenu QCDE_SkirmishBots
 	}
 
 	Label {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		VisibilityCVar qcde_skirmishgamemode,	3, 13
 		Pos		0, 67				Font		SmallFont
 		Anchor	left, center		FontColor	DarkRed
 		Text	"Bots can talk"
 	}
 	Option {
-		VisibilityCVar qcde_skirmishgamemode,	3, 100
+		VisibilityCVar qcde_skirmishgamemode,	3, 13
 		Pos		105, 66				CVar				bot_allowchat
 		Size	14, 14				Values				QCDE_CheckText
 		Anchor	right, center		BackgroundValues	QCDE_CheckBG
