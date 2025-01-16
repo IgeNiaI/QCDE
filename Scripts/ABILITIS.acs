@@ -3228,7 +3228,7 @@ Script "ORBB_DroneChargeUp" (int tid) CLIENTSIDE
 		GiveInventory("DroneExplodeCoop", 1);
 	else
 		GiveInventory("DroneExplodeDM", 1);
-	int time = 5;
+	int time = 4;
 	while (GetActorProperty(tid, APROP_HEALTH) > 0)
 	{
 		SetActorProperty(tid, APROP_RenderStyle, Style_Stencil);

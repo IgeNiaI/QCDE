@@ -117,9 +117,9 @@ Actor OrbbDrone
 
 	ExplodeDM:
 		TNT1 A 0 A_PlaySound("QC/Abilities/Orbb/ChargeUp",CHAN_WEAPON,1.0,1,0.6)
-		ODRN A 75
+		ODRN A 65
 		TNT1 A 0 A_GiveInventory("ImDead", 1, 0, GIF_SKIPOWNER)
-		ODRN E 15
+		ODRN E 5
 		TNT1 A 0 A_ChangeFlag("MISSILE", true)
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHitDM",360,JLOSF_PROJECTILE,360)
