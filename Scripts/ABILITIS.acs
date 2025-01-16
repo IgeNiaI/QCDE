@@ -5391,7 +5391,7 @@ Script "QCDE_Orbb_Bounce" (int predicting, int justPressed, int justReleased, in
 			SetNetworkReplicationFlags( 0 );
 		}
 
-		orbbVelocityZ[PlayerNumber()] = GetActorVelZ(0) * 82 / 100;
+		orbbVelocityZ[PlayerNumber()] = GetActorVelZ(0) * 85 / 100;
 	}
 }
 
