@@ -156,12 +156,17 @@ function void PlaySong(int musicNumber)
 
 function void PrintSongName(int musicNumber)
 {
-	if (GetCvar("screenblocks") >= 12) return;
+	str musicName = strparam(l:strparam(s:"MUZAKN", d:musicNumber));
+	str musicAuthor = strparam(l:strparam(s:"MUZAKA", d:musicNumber));
+	ACS_NamedExecuteWithResult("QCDE_DoPrintSongName", musicName, musicAuthor);
+}
+
+Script "QCDE_DoPrintSongName" (int musicName, int musicAuthor)
+{
+	if (GetCvar("screenblocks") >= 12) terminate;
 
 	SetHudSize(640, 480, 1);
 	SetFont("QCSMFONT");
-	str musicName = strparam(l:strparam(s:"MUZAKN", d:musicNumber));
-	str musicAuthor = strparam(l:strparam(s:"MUZAKA", d:musicNumber));
 	HudMessage(s:" \c[yellow]Music: \c[brite]", s:musicName, s:"\n \c[yellow]Author: \c[brite]", s:musicAuthor,
 		s:"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
 		s:"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"; // this helps placing the text box properly

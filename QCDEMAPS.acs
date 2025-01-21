@@ -322,6 +322,12 @@ script "BotGapCrosser" ( int z_for, int angle, int xy_for )
 //    MISC    //
 ////////////////
 
+Script "PrintSongName" ( int musicName, int musicAuthor )
+{
+	delay(145);
+	ACS_NamedExecuteWithResult("QCDE_DoPrintSongName", musicName, musicAuthor);
+}
+
 script "NotARealDoor" ( int minheight, int maxheight )
 {
 	if( heightCheck( minheight, maxheight, GetActorZ(0) ))
