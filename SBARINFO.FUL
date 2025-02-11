@@ -425,8 +425,9 @@ else
 	// Gauntlet -- special case, only drawn when there are upgrades
 	inInventory GNT_UG_Burn || GNT_UG_Omni {
 	isSelected QCGauntlet                                   { drawImage "SELECTOR", 1440,207;
-	                                                          drawImage "1AUNTLET", 1399,210;
-	} else {                                                  drawImage "GAUNTLET", 1399,210;
+	inInventory Class_Painkiller { drawImage "1AINKILR", 1380,210; } else { drawImage "1AUNTLET", 1380,210; }
+	} else {
+	inInventory Class_Painkiller { drawImage "PAINKILR", 1380,210; } else { drawImage "GAUNTLET", 1380,210; }
 	}}
 
 	// Orange pad behind selected weapon
@@ -543,8 +544,9 @@ else
 	// Gauntlet -- special case, only drawn when there are upgrades
 	inInventory GNT_UG_Burn || GNT_UG_Omni {
 	isSelected QCGauntlet                                   { drawImage "SELECTOR", 1540,207;
-	                                                          drawImage "1AUNTLET", 1499,210;
-	} else {                                                  drawImage "GAUNTLET", 1499,210;
+	inInventory Class_Painkiller { drawImage "1AINKILR", 1480,210; } else { drawImage "1AUNTLET", 1480,210; }
+	} else {
+	inInventory Class_Painkiller { drawImage "PAINKILR", 1480,210; } else { drawImage "GAUNTLET", 1480,210; }
 	}}
 	// Orange pad behind selected weapon
 	isSelected QCMachinegun 		, QCMachinegunDM		{ drawImage "SELECTOR", 1540,277; }
