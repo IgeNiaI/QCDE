@@ -571,7 +571,7 @@ Script "QCDE_Players=0" OPEN
 	if(GameType() == GAME_TITLE_MAP) terminate;
 	if(InCampaign() || GetCVar("qc_defrag")) terminate;
 
-	if (!GetCvar("sv_minplayers") && GetCVar("skirm_botscount"))
+	if (!GetCvar("sv_minplayers") && GetCVar("skirm_botscount") && GetNetworkState() != NETSTATE_SERVER)
 	{
 		int maxBots = GetCVar("skirm_botscount");
 		if (maxBots > 32)
