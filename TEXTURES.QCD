@@ -405,6 +405,46 @@ Sprite NA3EX0, 128, 128 { Offset 64, 64		Patch NA3EF0, 0, 0	{ FlipX Rotate 270} 
 Sprite NA3EY0, 128, 128 { Offset 64, 64		Patch NA3EG0, 0, 0	{ FlipX Rotate 270} }
 
 
+//Quake 4 SNG plasma death variations
+Sprite NA4DH0, 128, 128 { Offset 64, 64		Patch NA4DB0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4DI0, 128, 128 { Offset 64, 64		Patch NA4DC0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4DJ0, 128, 128 { Offset 64, 64		Patch NA4DD0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4DK0, 128, 128 { Offset 64, 64		Patch NA4DE0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4DL0, 128, 128 { Offset 64, 64		Patch NA4DF0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4DM0, 128, 128 { Offset 64, 64		Patch NA4DG0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4DN0, 128, 128 { Offset 64, 64		Patch NA4DB0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4DO0, 128, 128 { Offset 64, 64		Patch NA4DC0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4DP0, 128, 128 { Offset 64, 64		Patch NA4DD0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4DQ0, 128, 128 { Offset 64, 64		Patch NA4DE0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4DR0, 128, 128 { Offset 64, 64		Patch NA4DF0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4DS0, 128, 128 { Offset 64, 64		Patch NA4DG0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4DT0, 128, 128 { Offset 64, 64		Patch NA4DB0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4DU0, 128, 128 { Offset 64, 64		Patch NA4DC0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4DV0, 128, 128 { Offset 64, 64		Patch NA4DD0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4DW0, 128, 128 { Offset 64, 64		Patch NA4DE0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4DX0, 128, 128 { Offset 64, 64		Patch NA4DF0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4DY0, 128, 128 { Offset 64, 64		Patch NA4DG0, 0, 0	{ FlipX Rotate 270} }
+
+Sprite NA4EH0, 128, 128 { Offset 64, 64		Patch NA4EB0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4EI0, 128, 128 { Offset 64, 64		Patch NA4EC0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4EJ0, 128, 128 { Offset 64, 64		Patch NA4ED0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4EK0, 128, 128 { Offset 64, 64		Patch NA4EE0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4EL0, 128, 128 { Offset 64, 64		Patch NA4EF0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4EM0, 128, 128 { Offset 64, 64		Patch NA4EG0, 0, 0	{ FlipX Rotate 90} }
+Sprite NA4EN0, 128, 128 { Offset 64, 64		Patch NA4EB0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4EO0, 128, 128 { Offset 64, 64		Patch NA4EC0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4EP0, 128, 128 { Offset 64, 64		Patch NA4ED0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4EQ0, 128, 128 { Offset 64, 64		Patch NA4EE0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4ER0, 128, 128 { Offset 64, 64		Patch NA4EF0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4ES0, 128, 128 { Offset 64, 64		Patch NA4EG0, 0, 0	{ FlipX Rotate 180} }
+Sprite NA4ET0, 128, 128 { Offset 64, 64		Patch NA4EB0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4EU0, 128, 128 { Offset 64, 64		Patch NA4EC0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4EV0, 128, 128 { Offset 64, 64		Patch NA4ED0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4EW0, 128, 128 { Offset 64, 64		Patch NA4EE0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4EX0, 128, 128 { Offset 64, 64		Patch NA4EF0, 0, 0	{ FlipX Rotate 270} }
+Sprite NA4EY0, 128, 128 { Offset 64, 64		Patch NA4EG0, 0, 0	{ FlipX Rotate 270} }
+
+
 //ET QW SNG plasma death variations
 Sprite NA5DH0, 128, 128 { Offset 64, 64		Patch NA5DB0, 0, 0	{ FlipX Rotate 90} }
 Sprite NA5DI0, 128, 128 { Offset 64, 64		Patch NA5DC0, 0, 0	{ FlipX Rotate 90} }
@@ -1580,7 +1620,7 @@ remap QCF8D0	HCF8D0
 remap QCF8E0	HCF8E0
 remap QCF8F0	HCF8F0
 
-// Default BFG
+// Default BFG idle and charge
 remap QCG8A0	HCG8A0
 remap QCG8B0	HCG8B0
 remap QCG8C0	HCG8C0
@@ -1606,6 +1646,24 @@ remap QCG8V0	HCG8V0
 remap QCG8W0	HCG8W0
 remap QCG8X0	HCG8X0
 
+// Default BFG fire and post fire
+remap QCH8A0	HCH8A0
+remap QCH8B0	HCH8B0
+remap QCH8C0	HCH8C0
+remap QCH8D0	HCH8D0
+remap QCH8E0	HCH8E0
+remap QCH8F0	HCH8F0
+remap QCH8G0	HCH8G0
+remap QCH8H0	HCH8H0
+remap QCH8I0	HCH8I0
+remap QCH8J0	HCH8J0
+remap QCH8K0	HCH8K0
+remap QCH8L0	HCH8L0
+remap QCH8M0	HCH8M0
+remap QCH8N0	HCH8N0
+remap QCH8O0	HCH8O0
+remap QCH8P0	HCH8P0
+remap QCH8Q0	HCH8Q0
 
 
 

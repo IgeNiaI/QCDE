@@ -6,7 +6,7 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_Nailgun {} // for compatibility checks
+Actor CompatVer31_Nailgun {} // for compatibility checks
 
 // This pickup is only for consistency -- it never gives weapon.
 Actor NailgunPickup : CustomInventory
@@ -152,7 +152,7 @@ Actor QCNailgun : QCWeapon
 		Goto ReadyCont
 	Ready.Quake4:
 		Q4G4 A 0
-		Goto ReadyCont
+		Goto ReadyCont.Animated
 	Ready.QCDE1:
 		Q0G4 A 0
 		Goto ReadyCont

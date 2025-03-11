@@ -232,13 +232,13 @@ Actor QCGauntlet : QCWeapon
 			Goto FireLooper1Cont
 
 		FireLooper1Cont:
-			"####" DC 1
+			"####" DE 1
 			"####" A 0 A_ReFire("FireLooper2")
 			Goto EndFire
 		FireLooper2:
 			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-			"####" D 1
-			"####" CD 1
+			"####" F 1
+			"####" GH 1
 			"####" A 0 A_ReFire("FireLooper1")
 			Goto EndFire
 
@@ -285,7 +285,7 @@ Actor QCGauntlet : QCWeapon
 				Goto OmniLooper1Cont
 
 			OmniLooper1Cont:
-				"####" CDC 1
+				"####" CDE 1
 				"####" A 0 A_ReFire("OmniLooper2")
 				Goto EndFire
 
@@ -316,7 +316,7 @@ Actor QCGauntlet : QCWeapon
 				Goto OmniLooper2Cont
 
 			OmniLooper2Cont:
-				"####" DCD 1
+				"####" FGH 1
 				"####" A 0 A_ReFire("OmniLooper1")
 				Goto EndFire
 
@@ -352,17 +352,17 @@ Actor QCGauntlet : QCWeapon
 
 			BurnLooper1Cont:
 				"####" A 0 A_Jump(128,2)
-				"####" C 0 A_FireCustomMissile("BurnerFlamelet",0,0,random(6,-6),random(4,-4))
-				"####" E 1 Bright
-				"####" FG 1 Bright
+				"####" A 0 A_FireCustomMissile("BurnerFlamelet",0,0,random(6,-6),random(4,-4))
+				"####" I 1 Bright
+				"####" JK 1 Bright
 				"####" A 0 A_ReFire("BurnLooper2")
 				Goto EndFire
 			BurnLooper2:
 				"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 				"####" A 0 A_Jump(128,2)
-				"####" D 0 A_FireCustomMissile("BurnerFlamelet",0,0,random(6,-6),random(4,-4))
-				"####" H 1 Bright
-				"####" IJ 1 Bright
+				"####" A 0 A_FireCustomMissile("BurnerFlamelet",0,0,random(6,-6),random(4,-4))
+				"####" L 1 Bright
+				"####" MN 1 Bright
 				"####" A 0 A_ReFire("BurnLooper1")
 				Goto EndFire
 
@@ -400,8 +400,8 @@ Actor QCGauntlet : QCWeapon
 
 			BurnOmniLooper1Cont:
 				"####" A 0 A_FireCustomMissile("OmnislashFireProjectile",0,0,0,0, FPF_FORCESERVERSIDE)
-				"####" E 1 Bright
-				"####" FG 1 Bright
+				"####" I 1 Bright
+				"####" JK 1 Bright
 				"####" A 0 A_ReFire("BurnOmniLooper2")
 				Goto EndFire
 
@@ -432,8 +432,8 @@ Actor QCGauntlet : QCWeapon
 				Goto BurnOmniLooper2Cont
 
 			BurnOmniLooper2Cont:
-				"####" H 1 Bright
-				"####" IJ 1 Bright
+				"####" L 1 Bright
+				"####" MN 1 Bright
 				"####" A 0 A_ReFire("BurnOmniLooper1")
 				Goto EndFire
 
@@ -471,8 +471,12 @@ Actor QCGauntlet : QCWeapon
 			"####" D 1
 			"####" A 0 A_JumpIfInventory("PunchedAlready",1,"GauntStop")
 
-			"####" C 1 A_CustomPunch(75,1,0,"GauntletPuff_DM_NoFX",56)
-			"####" D 1
+			"####" E 1 A_CustomPunch(75,1,0,"GauntletPuff_DM_NoFX",56)
+			"####" F 1
+			"####" A 0 A_JumpIfInventory("PunchedAlready",1,"GauntStop")
+
+			"####" G 1 A_CustomPunch(75,1,0,"GauntletPuff_DM_NoFX",56)
+			"####" H 1
 			"####" A 0 A_JumpIfInventory("PunchedAlready",1,"GauntStop")
 
 			"####" A 0 A_ReFire("NormalDMRefire")
@@ -508,8 +512,12 @@ Actor QCGauntlet : QCWeapon
 			"####" D 1
 			"####" A 0 A_JumpIfInventory("PunchedAlready",1,"GauntStop")
 
-			"####" C 1 A_CustomPunch(999,1,0,"GauntletPuff_DM_NoFX",56)
-			"####" D 1
+			"####" E 1 A_CustomPunch(999,1,0,"GauntletPuff_DM_NoFX",56)
+			"####" F 1
+			"####" A 0 A_JumpIfInventory("PunchedAlready",1,"GauntStop")
+
+			"####" G 1 A_CustomPunch(999,1,0,"GauntletPuff_DM_NoFX",56)
+			"####" H 1
 			"####" A 0 A_JumpIfInventory("PunchedAlready",1,"GauntStop")
 
 			"####" A 0 A_ReFire("IGRefire")

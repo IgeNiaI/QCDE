@@ -6,7 +6,7 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_SNailgun {} // for compatibility checks
+Actor CompatVer31_SNailgun {} // for compatibility checks
 
 Actor SuperNailgunPickup : CustomInventory 15603
 {
@@ -440,7 +440,7 @@ Actor QCSuperNailgun : QCWeapon
 		Goto Ready // Q3 skin uses spin down frames for idle animation
 	EndFireLooper.Quake4:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_Quake4",CHAN_WEAPON,1,0)
-		Goto EndFireLooperCont
+		Goto EndFireLooperCont2
 	EndFireLooper.ETQW:
 		"####" A 0 A_PlaySound("QC/Weapons/SuperNailgun/FireEnd_ETQW",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont2
@@ -895,11 +895,68 @@ Actor QCNailStrongDeathFXLava_Quake3 : QCNailStrongDeathFX
 
 Actor QCNailStrongDeathFX_Quake4 : QCNailStrongDeathFX
 {
+	RenderStyle Add
+	Scale 0.42
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
+
+	T1:
+		NA4D A 1
+		NA4D BCDEFG 1
+        Stop
+	T2:
+		NA4D A 1
+		NA4D HIJKLM 1
+        Stop
+	T3:
+		NA4D A 1
+		NA4D NOPQRS 1
+        Stop
+	T4:
+		NA4D A 1
+		NA4D TUVWXY 1
+        Stop
+	}
+}
+
+Actor QCNailStrongDeathFXLava_Quake4 : QCNailStrongDeathFX
+{
+	RenderStyle Add
+	Scale 0.42
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
+
+	T1:
+		NA4E A 1
+		NA4E BCDEFG 1
+        Stop
+	T2:
+		NA4E A 1
+		NA4E HIJKLM 1
+        Stop
+	T3:
+		NA4E A 1
+		NA4E NOPQRS 1
+        Stop
+	T4:
+		NA4E A 1
+		NA4E TUVWXY 1
+        Stop
+	}
+}
+
+Actor QCNailStrongDeathFX2_Quake4 : QCNailStrongDeathFX
+{
+	RenderStyle Add
 	Scale 0.20
 	States
 	{
 	Spawn:
-		NA4L E 0
+		NA4L M 0
 		"####" "#" 0 A_SetScale(0.20)
 		"####" "#" 0 Light("BlueSmallFlicker3")
 		"####" "#" 1 Bright
@@ -917,6 +974,46 @@ Actor QCNailStrongDeathFX_Quake4 : QCNailStrongDeathFX
 		"####" "#" 1 Bright A_FadeOut(0.10)
 		"####" "#" 0 A_SetScale(0.35)
 		"####" "#" 1 Light("BlueSmallFlicker3")
+		"####" "#" 1 Bright A_FadeOut(0.10)
+		"####" "#" 0 A_SetScale(0.38)
+		"####" "#" 1 A_FadeOut(0.10)
+		"####" "#" 0 A_SetScale(0.41)
+		"####" "#" 1 A_FadeOut(0.10)
+		"####" "#" 0 A_SetScale(0.44)
+		"####" "#" 1 A_FadeOut(0.10)
+		"####" "#" 0 A_SetScale(0.47)
+		"####" "#" 1 A_FadeOut(0.10)
+		"####" "#" 0 A_SetScale(0.50)
+		"####" "#" 1 A_FadeOut(0.10)
+		Stop
+	}
+}
+
+Actor QCNailStrongDeathFX2Lava_Quake4 : QCNailStrongDeathFX2_Quake4
+{
+	RenderStyle Add
+	Scale 0.20
+	States
+	{
+	Spawn:
+		NA4L N 0
+		"####" "#" 0 A_SetScale(0.20)
+		"####" "#" 0 Light("OrangeSmallFlicker3")
+		"####" "#" 1 Bright
+		"####" "#" 0 A_SetScale(0.23)
+		"####" "#" 0 Light("OrangeSmallFlicker3")
+		"####" "#" 1 Bright
+		"####" "#" 0 A_SetScale(0.26)
+		"####" "#" 0 Light("OrangeSmallFlicker3")
+		"####" "#" 1 Bright A_FadeOut(0.10)
+		"####" "#" 0 A_SetScale(0.29)
+		"####" "#" 0 Light("OrangeSmallFlicker3")
+		"####" "#" 1 Bright A_FadeOut(0.10)
+		"####" "#" 0 A_SetScale(0.32)
+		"####" "#" 0 Light("OrangeSmallFlicker3")
+		"####" "#" 1 Bright A_FadeOut(0.10)
+		"####" "#" 0 A_SetScale(0.35)
+		"####" "#" 1 Light("OrangeSmallFlicker3")
 		"####" "#" 1 Bright A_FadeOut(0.10)
 		"####" "#" 0 A_SetScale(0.38)
 		"####" "#" 1 A_FadeOut(0.10)
@@ -1095,17 +1192,20 @@ Actor QCNailStrong_Quake3 : QCNailStrong
 
 Actor QCNailStrong_Quake4 : QCNailStrong
 {
+	RenderStyle Add
 	Decal "Q4NailgunBlueFull"
 	States
 	{
 	Spawn:
 		TNT1 A 1
-		NA4L A 1 Bright Light("BlueMediumPoint2")
-		Wait
+	Looper:
+		NA4L ABCDEFGHIJKL 1 Bright Light("BlueMediumPoint2")
+		Loop
 
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_Quake4",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
 		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX2_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		Goto Super::Death+2
 	}
 }
@@ -1193,17 +1293,20 @@ Actor QCNailStrongDM_Quake3 : QCNailStrongDM
 
 Actor QCNailStrongDM_Quake4 : QCNailStrongDM
 {
+	RenderStyle Add
 	Decal "Q4NailgunBlueFull"
 	States
 	{
 	Spawn:
 		TNT1 A 1
-		NA4L A 1 Bright Light("BlueMediumPoint2")
-		Wait
+	Looper:
+		NA4L ABCDEFGHIJKL 1 Bright Light("BlueMediumPoint2")
+		Loop
 
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_Quake4",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
 		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX2_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		Goto Super::Death+2
 	}
 }
@@ -1327,6 +1430,8 @@ Actor QCNailStrongLava_Quake3 : QCNailStrongLava
 
 Actor QCNailStrongLava_Quake4 : QCNailStrongLava
 {
+	Scale 0.42
+	RenderStyle Add
 	Decal "Q4NailgunOrangeFull"
 	States
 	{
@@ -1334,12 +1439,13 @@ Actor QCNailStrongLava_Quake4 : QCNailStrongLava
 		TNT1 A 1
 	Looper:
 		TNT1 A 0 A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
-		NA4L B 1 Bright Light("YellowMediumPoint2")
+		NA4H ABCDEFGHIJKL 1 Bright Light("YellowMediumPoint2")
 		Loop
 
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_Quake4",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
-		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFXLava_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX2Lava_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		Goto Super::Death+2
 	}
 }
@@ -1506,6 +1612,8 @@ Actor QCNailStrongSeeker_Quake3 : QCNailStrongSeeker
 
 Actor QCNailStrongSeeker_Quake4 : QCNailStrongSeeker
 {
+	Scale 0.42
+	RenderStyle Add
 	Decal "Q4NailgunBlueFull"
 	States
 	{
@@ -1514,12 +1622,13 @@ Actor QCNailStrongSeeker_Quake4 : QCNailStrongSeeker
 	Looper:
 		TNT1 A 0 A_SpawnItemEx("NailSeekerSmoke",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AA 0 A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
-		NA4L C 1 Bright Light("BlueMediumPoint2")
+		NA4S ABCDEFGHIJKL 1 Bright Light("BlueMediumPoint2")
 		Loop
 
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_Quake4",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
 		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX2_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		Goto Super::Death+2
 	}
 }
@@ -1643,6 +1752,8 @@ Actor QCNailStrongLavaSeeker_Quake3 : QCNailStrongLavaSeeker
 
 Actor QCNailStrongLavaSeeker_Quake4 : QCNailStrongLavaSeeker
 {
+	Scale 0.42
+	RenderStyle Add
 	Decal "Q4NailgunOrangeFull"
 	States
 	{
@@ -1651,16 +1762,17 @@ Actor QCNailStrongLavaSeeker_Quake4 : QCNailStrongLavaSeeker
 	Looper:
 		TNT1 A 0 A_SpawnItemEx("NailSeekerLavaNSmoke",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
-		NA4L D 1 Bright Light("YellowMediumPoint2")
+		NA4F ABCDEFGHIJKL 1 Bright Light("YellowMediumPoint2")
 		TNT1 A 0 A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
 		TNT1 A 0 A_SeekerMissile(6,6,SMF_LOOK|SMF_PRECISE|SMF_CURSPEED)
-		NA4L D 1 Bright Light("YellowMediumPoint2")
+		NA4F ABCDEFGHIJKL 1 Bright Light("YellowMediumPoint2")
 		TNT1 A 0 A_SpawnItemEx("LavaNailTrail",0,0,0, 0,0,frandom(-0.5,-1.5),0,SXF_NOCHECKPOSITION,230)
 		Loop
 
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/SuperNailgun/Impact_Quake4",CHAN_AUTO,0.7,0,1.5,AAPTR_TARGET)
-		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFXLava_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("QCNailStrongDeathFX2Lava_Quake4", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
 		Goto Super::Death+2
 	}
 }
