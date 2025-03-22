@@ -1688,110 +1688,80 @@ define ZEDKFIRE 64 96
 //
 //=============================================================================
 
-remap U001A0 UPG_00_1    remap U002A0 UPG_00_2    remap U003A0 UPG_00_3
-remap U031A0 UPG_03_1    remap U032A0 UPG_03_2    remap U033A0 UPG_03_3
-remap U071A0 UPG_07_1    remap U072A0 UPG_07_2    remap U073A0 UPG_07_3
-remap U091A0 UPG_09_1    remap U092A0 UPG_09_2    remap U093A0 UPG_09_3
-remap U111A0 UPG_11_1    remap U112A0 UPG_11_2    remap U113A0 UPG_11_3
-remap U131A0 UPG_13_1    remap U132A0 UPG_13_2    remap U133A0 UPG_13_3
-remap U151A0 UPG_15_1    remap U152A0 UPG_15_2    remap U153A0 UPG_15_3
-remap U171A0 UPG_17_1    remap U172A0 UPG_17_2    remap U173A0 UPG_17_3
-remap U191A0 UPG_19_1    remap U192A0 UPG_19_2    remap U193A0 UPG_19_3
-remap U211A0 UPG_21_1    remap U212A0 UPG_21_2    remap U213A0 UPG_21_3
+remap U001A0 UPG_00_1    remap U002A0 UPG_00_2
+remap U031A0 UPG_03_1    remap U032A0 UPG_03_2
+remap U071A0 UPG_07_1    remap U072A0 UPG_07_2
+remap U091A0 UPG_09_1    remap U092A0 UPG_09_2
+remap U111A0 UPG_11_1    remap U112A0 UPG_11_2
+remap U131A0 UPG_13_1    remap U132A0 UPG_13_2
+remap U151A0 UPG_15_1    remap U152A0 UPG_15_2
+remap U171A0 UPG_17_1    remap U172A0 UPG_17_2
+remap U191A0 UPG_19_1    remap U192A0 UPG_19_2
+remap U211A0 UPG_21_1    remap U212A0 UPG_21_2
 
 // H for HUD, G for Grayed out, A for near Ammo
-Graphic HPG_00_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_00_1,0,0{} }
-Graphic HPG_03_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_03_1,0,0{} }
-Graphic HPG_07_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_07_1,0,0{} }
-Graphic HPG_09_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_09_1,0,0{} }
-Graphic HPG_11_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_11_1,0,0{} }
-Graphic HPG_13_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_13_1,0,0{} }
-Graphic HPG_15_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_15_1,0,0{} }
-Graphic HPG_17_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_17_1,0,0{} }
-Graphic HPG_19_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_19_1,0,0{} }
-Graphic HPG_21_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_21_1,0,0{} }
-Graphic HPG_00_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_00_2,0,0{} }
-Graphic HPG_03_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_03_2,0,0{} }
-Graphic HPG_07_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_07_2,0,0{} }
-Graphic HPG_09_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_09_2,0,0{} }
-Graphic HPG_11_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_11_2,0,0{} }
-Graphic HPG_13_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_13_2,0,0{} }
-Graphic HPG_15_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_15_2,0,0{} }
-Graphic HPG_17_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_17_2,0,0{} }
-Graphic HPG_19_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_19_2,0,0{} }
-Graphic HPG_21_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_21_2,0,0{} }
-Graphic HPG_00_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_00_3,0,0{} }
-Graphic HPG_03_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_03_3,0,0{} }
-Graphic HPG_07_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_07_3,0,0{} }
-Graphic HPG_09_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_09_3,0,0{} }
-Graphic HPG_11_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_11_3,0,0{} }
-Graphic HPG_13_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_13_3,0,0{} }
-Graphic HPG_15_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_15_3,0,0{} }
-Graphic HPG_17_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_17_3,0,0{} }
-Graphic HPG_19_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_19_3,0,0{} }
-Graphic HPG_21_3, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPG_21_3,0,0{} }
+Graphic HPG_00_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_00_1,0,0{} }
+Graphic HPG_03_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_03_1,0,0{} }
+Graphic HPG_07_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_07_1,0,0{} }
+Graphic HPG_09_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_09_1,0,0{} }
+Graphic HPG_11_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_11_1,0,0{} }
+Graphic HPG_13_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_13_1,0,0{} }
+Graphic HPG_15_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_15_1,0,0{} }
+Graphic HPG_17_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_17_1,0,0{} }
+Graphic HPG_19_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_19_1,0,0{} }
+Graphic HPG_21_1, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_21_1,0,0{} }
+Graphic HPG_00_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_00_2,0,0{} }
+Graphic HPG_03_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_03_2,0,0{} }
+Graphic HPG_07_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_07_2,0,0{} }
+Graphic HPG_09_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_09_2,0,0{} }
+Graphic HPG_11_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_11_2,0,0{} }
+Graphic HPG_13_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_13_2,0,0{} }
+Graphic HPG_15_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_15_2,0,0{} }
+Graphic HPG_17_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_17_2,0,0{} }
+Graphic HPG_19_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_19_2,0,0{} }
+Graphic HPG_21_2, 144, 144  { Offset 72,72   XScale 5.1   YScale 5.1   Patch UPM_21_2,0,0{} }
 
-Graphic APG_00_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_00_1,0,0{} }
-Graphic APG_03_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_03_1,0,0{} }
-Graphic APG_07_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_07_1,0,0{} }
-Graphic APG_09_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_09_1,0,0{} }
-Graphic APG_11_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_11_1,0,0{} }
-Graphic APG_13_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_13_1,0,0{} }
-Graphic APG_15_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_15_1,0,0{} }
-Graphic APG_17_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_17_1,0,0{} }
-Graphic APG_19_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_19_1,0,0{} }
-Graphic APG_21_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_21_1,0,0{} }
-Graphic APG_00_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_00_2,0,0{} }
-Graphic APG_03_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_03_2,0,0{} }
-Graphic APG_07_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_07_2,0,0{} }
-Graphic APG_09_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_09_2,0,0{} }
-Graphic APG_11_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_11_2,0,0{} }
-Graphic APG_13_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_13_2,0,0{} }
-Graphic APG_15_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_15_2,0,0{} }
-Graphic APG_17_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_17_2,0,0{} }
-Graphic APG_19_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_19_2,0,0{} }
-Graphic APG_21_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_21_2,0,0{} }
-Graphic APG_00_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_00_3,0,0{} }
-Graphic APG_03_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_03_3,0,0{} }
-Graphic APG_07_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_07_3,0,0{} }
-Graphic APG_09_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_09_3,0,0{} }
-Graphic APG_11_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_11_3,0,0{} }
-Graphic APG_13_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_13_3,0,0{} }
-Graphic APG_15_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_15_3,0,0{} }
-Graphic APG_17_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_17_3,0,0{} }
-Graphic APG_19_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_19_3,0,0{} }
-Graphic APG_21_3, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPG_21_3,0,0{} }
+Graphic APG_00_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_00_1,0,0{} }
+Graphic APG_03_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_03_1,0,0{} }
+Graphic APG_07_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_07_1,0,0{} }
+Graphic APG_09_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_09_1,0,0{} }
+Graphic APG_11_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_11_1,0,0{} }
+Graphic APG_13_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_13_1,0,0{} }
+Graphic APG_15_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_15_1,0,0{} }
+Graphic APG_17_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_17_1,0,0{} }
+Graphic APG_19_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_19_1,0,0{} }
+Graphic APG_21_1, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_21_1,0,0{} }
+Graphic APG_00_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_00_2,0,0{} }
+Graphic APG_03_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_03_2,0,0{} }
+Graphic APG_07_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_07_2,0,0{} }
+Graphic APG_09_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_09_2,0,0{} }
+Graphic APG_11_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_11_2,0,0{} }
+Graphic APG_13_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_13_2,0,0{} }
+Graphic APG_15_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_15_2,0,0{} }
+Graphic APG_17_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_17_2,0,0{} }
+Graphic APG_19_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_19_2,0,0{} }
+Graphic APG_21_2, 144, 144  {                XScale 2.5   YScale 2.5   Patch UPM_21_2,0,0{} }
 
-Graphic GPG_00_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_00_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_03_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_03_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_07_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_07_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_09_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_09_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_11_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_11_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_13_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_13_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_15_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_15_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_17_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_17_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_19_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_19_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_21_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_21_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_00_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_00_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_03_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_03_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_07_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_07_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_09_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_09_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_11_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_11_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_13_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_13_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_15_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_15_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_17_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_17_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_19_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_19_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_21_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_21_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_00_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_00_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_03_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_03_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_07_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_07_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_09_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_09_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_11_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_11_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_13_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_13_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_15_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_15_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_17_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_17_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_19_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_19_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
-Graphic GPG_21_3, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPG_21_3,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_00_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_00_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_03_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_03_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_07_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_07_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_09_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_09_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_11_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_11_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_13_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_13_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_15_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_15_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_17_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_17_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_19_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_19_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_21_1, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_21_1,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_00_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_00_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_03_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_03_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_07_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_07_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_09_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_09_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_11_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_11_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_13_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_13_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_15_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_15_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_17_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_17_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_19_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_19_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
+Graphic GPG_21_2, 144, 144  { Offset 72,72   XScale 7.0   YScale 7.0   Patch UPM_21_2,0,0{ Blend "#888888", 1.0 Alpha 0.3 } }
 
 
 

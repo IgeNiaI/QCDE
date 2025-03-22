@@ -73,8 +73,8 @@ str weaponNames[NUMBER_OF_WEAPONS] = {
 
 str WeaponUpgrades[NUMBER_OF_WEAPONS][NUMBER_OF_UPGRADES][10] = {
 	// Gauntlet
-	{	{"Upgrade_0_1" , "UPG_00_1", "0AUNTLET", "1AUNTLET", "GNT_UG_Burn"     , "(passive)", "Burning Gauntlet", "Successful hits create embers, dealing", "additional damage.", ""},
-		{"Upgrade_0_2" , "UPG_00_2", "0AUNTLET", "1AUNTLET", "GNT_UG_Omni"     , "(passive)", "Omnislash",        "Gauntlet attacks hurt multiple enemies.", "''Shiver not, Lady Luck will not fail you now.''", ""},
+	{	{"Upgrade_0_1" , "UPM_00_1", "0AUNTLET", "1AUNTLET", "GNT_UG_Burn"     , "(passive)", "Burning Gauntlet", "Successful hits create embers, dealing", "additional damage.", ""},
+		{"Upgrade_0_2" , "UPM_00_2", "0AUNTLET", "1AUNTLET", "GNT_UG_Omni"     , "(passive)", "Omnislash",        "Gauntlet attacks hurt multiple enemies.", "''Shiver not, Lady Luck will not fail you now.''", ""},
 		{0}},
 
 	// Machinegun
@@ -82,8 +82,8 @@ str WeaponUpgrades[NUMBER_OF_WEAPONS][NUMBER_OF_UPGRADES][10] = {
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// Shotgun
-	{	{"Upgrade_3_1" , "UPG_03_1", "0HOTGUN" , "1HOTGUN_",  "SG_UG_Spread"   , "(passive)", "Longer Barrel",     "Reduced pellet spread.", "", ""},
-		{"Upgrade_3_2" , "UPG_03_2", "0HOTGUN" , "1HOTGUN_",  "SG_UG_Explosive", "(altfire)", "Surface Explosive", "Hit walls near enemies for extra damage.", "''Never thought missing a shot could be such a good idea.''", ""},
+	{	{"Upgrade_3_1" , "UPM_03_1", "0HOTGUN" , "1HOTGUN_",  "SG_UG_Spread"   , "(passive)", "Longer Barrel",     "Reduced pellet spread.", "", ""},
+		{"Upgrade_3_2" , "UPM_03_2", "0HOTGUN" , "1HOTGUN_",  "SG_UG_Explosive", "(altfire)", "Surface Explosive", "Hit walls near enemies for extra damage.", "''Never thought missing a shot could be such a good idea.''", ""},
 		{0}},
 	{{0},{0},{0}}, // no upgrades for DM
 
@@ -92,50 +92,50 @@ str WeaponUpgrades[NUMBER_OF_WEAPONS][NUMBER_OF_UPGRADES][10] = {
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// Heavy Machinegun
-	{	{"Upgrade_7_1" , "UPG_07_1", "0MACHINE", "1MACHINE", "HMG_UG_Ricochet" , "(passive)", "Ricochet Shot", "All bullets have a chance to bounce off,", "dealing extra damage.", ""},
-		{"Upgrade_7_2" , "UPG_07_2", "0MACHINE", "1MACHINE", "HMG_UG_Pierce"   , "(altfire)", "Penetration",    "Bullets rip through enemies when zoomed.", "", ""},
+	{	{"Upgrade_7_1" , "UPM_07_1", "0MACHINE", "1MACHINE", "HMG_UG_Ricochet" , "(passive)", "Ricochet Shot", "All bullets have a chance to bounce off,", "dealing extra damage.", ""},
+		{"Upgrade_7_2" , "UPM_07_2", "0MACHINE", "1MACHINE", "HMG_UG_Pierce"   , "(altfire)", "Penetration",    "Bullets rip through enemies when zoomed.", "", ""},
 		{0}},
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// Super Shotgun
-	{	{"Upgrade_9_1" , "UPG_09_1", "0SHOTGUN", "1SHOTGUN", "SSG_UG_Speed"    , "(passive)", "Demanufacture", "Increased combat effectiveness.", "''You won't find a better crafted shotgun anywhere in hell!''", ""},
-		{"Upgrade_9_2" , "UPG_09_2", "0SHOTGUN", "1SHOTGUN", "SSG_UG_Flame"    , "(altfire)", "Dragon Breath", "Set enemies ablaze with every shot.", "", ""},
+	{	{"Upgrade_9_1" , "UPM_09_1", "0SHOTGUN", "1SHOTGUN", "SSG_UG_Speed"    , "(passive)", "Demanufacture", "Increased combat effectiveness.", "''You won't find a better crafted shotgun anywhere in hell!''", ""},
+		{"Upgrade_9_2" , "UPM_09_2", "0SHOTGUN", "1SHOTGUN", "SSG_UG_Flame"    , "(altfire)", "Dragon Breath", "Set enemies ablaze with every shot.", "", ""},
 		{0}},
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// Super Nailgun
-	{	{"Upgrade_11_1", "UPG_11_1", "0NAILGUN", "1NAILGUN", "SNG_UG_Lava"     , "(passive)", "Lava Nails",   "Deal extra damage with possibility of setting fire.", "''Hotter than they were in the foundry!''", ""},
-		{"Upgrade_11_2", "UPG_11_2", "0NAILGUN", "1NAILGUN", "SNG_UG_Seeker"   , "(altfire)", "Homing Nails", "Every nail augmented with homing module, zoom to enable. ", "''Economically costly, but missing targets is costlier.''", ""},
+	{	{"Upgrade_11_1", "UPM_11_1", "0NAILGUN", "1NAILGUN", "SNG_UG_Lava"     , "(passive)", "Lava Nails",   "Deal extra damage with possibility of setting fire.", "''Hotter than they were in the foundry!''", ""},
+		{"Upgrade_11_2", "UPM_11_2", "0NAILGUN", "1NAILGUN", "SNG_UG_Seeker"   , "(altfire)", "Homing Nails", "Every nail augmented with homing module, zoom to enable. ", "''Economically costly, but missing targets is costlier.''", ""},
 		{0}},
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// Tribolt
-	{	{"Upgrade_13_1", "UPG_13_1", "0RIBOLT" , "1RIBOLT_",  "TB_UG_Long"     , "(passive)", "Stable Gunpowder", "Bolts don't timeout in flight.", "", ""},
-		{"Upgrade_13_2", "UPG_13_2", "0RIBOLT" , "1RIBOLT_",  "TB_UG_Grenade"  , "(altfire)", "Bouncy Shell",     "Bolts shot when zooming bounce off surfaces", "without exploding.", ""},
+	{	{"Upgrade_13_1", "UPM_13_1", "0RIBOLT" , "1RIBOLT_",  "TB_UG_Long"     , "(passive)", "Stable Gunpowder", "Bolts don't timeout in flight.", "", ""},
+		{"Upgrade_13_2", "UPM_13_2", "0RIBOLT" , "1RIBOLT_",  "TB_UG_Grenade"  , "(altfire)", "Bouncy Shell",     "Bolts shot when zooming bounce off surfaces", "without exploding.", ""},
 		{0}},
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// Rocket Launcher
-	{	{"Upgrade_15_1", "UPG_15_1", "0AUNCHER", "1AUNCHER",  "RL_UG_Cluster"  , "(passive)", "Cluster Rocket",     "Rockets explode into smaller rockets.", "''The only thing better than rockets is more rockets.''", ""},
-		{"Upgrade_15_2", "UPG_15_2", "0AUNCHER", "1AUNCHER",  "RL_UG_Control"  , "(altfire)", "Guided Rocket",      "Rockets shot when zooming are controlled remotely.", "Fire again to detonate in midair.", ""},
-		{"Upgrade_15_3", "UPG_15_3", "0AUNCHER", "1AUNCHER",  0                , "(cheater)", "Square Root Rocket", "''Michaelis would do everything with square roots. ", "He once said we should make a square root rocket launcher.'' ", "    -DBT"}},
+	{	{"Upgrade_15_1", "UPM_15_1", "0AUNCHER", "1AUNCHER",  "RL_UG_Cluster"  , "(passive)", "Cluster Rocket",     "Rockets explode into smaller rockets.", "''The only thing better than rockets is more rockets.''", ""},
+		{"Upgrade_15_2", "UPM_15_2", "0AUNCHER", "1AUNCHER",  "RL_UG_Control"  , "(altfire)", "Guided Rocket",      "Rockets shot when zooming are controlled remotely.", "Fire again to detonate in midair.", ""},
+		{"Upgrade_15_3", "UPM_15_3", "0AUNCHER", "1AUNCHER",  0                , "(cheater)", "Square Root Rocket", "''Michaelis would do everything with square roots. ", "He once said we should make a square root rocket launcher.'' ", "    -DBT"}},
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// Lightning Gun
-	{	{"Upgrade_17_1", "UPG_17_1", "0IGHTNIN", "1IGHTNIN",  "LG_UG_Residue"  , "(passive)", "Residual Charge", "Releasing arc after keeping it for 1 second ionizes area. ", "Ionized area keeps harming enemies for a duration.", ""},
-		{"Upgrade_17_2", "UPG_17_2", "0IGHTNIN", "1IGHTNIN",  "LG_UG_Static"   , "(altfire)", "Static Field",    "Sustain arc while zoomed to hurt enemies in area.", "", ""},
+	{	{"Upgrade_17_1", "UPM_17_1", "0IGHTNIN", "1IGHTNIN",  "LG_UG_Residue"  , "(passive)", "Residual Charge", "Releasing arc after keeping it for 1 second ionizes area. ", "Ionized area keeps harming enemies for a duration.", ""},
+		{"Upgrade_17_2", "UPM_17_2", "0IGHTNIN", "1IGHTNIN",  "LG_UG_Static"   , "(altfire)", "Static Field",    "Sustain arc while zoomed to hurt enemies in area.", "", ""},
 		{0}},
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// Railgun
-	{	{"Upgrade_19_1", "UPG_19_1", "0RAILGUN", "1RAILGUN",  "RG_UG_Pierce"   , "(passive)", "Demolisher Slugs",  "Rails penetrate walls when shot point-blank. ", "Damage increased in close range.", ""},
-		{"Upgrade_19_2", "UPG_19_2", "0RAILGUN", "1RAILGUN",  "RG_UG_Explosive", "(altfire)", "Overcharged Slugs", "Charged rails explode when hitting walls.", "", ""},
+	{	{"Upgrade_19_1", "UPM_19_1", "0RAILGUN", "1RAILGUN",  "RG_UG_Pierce"   , "(passive)", "Demolisher Slugs",  "Rails penetrate walls when shot point-blank. ", "Damage increased in close range.", ""},
+		{"Upgrade_19_2", "UPM_19_2", "0RAILGUN", "1RAILGUN",  "RG_UG_Explosive", "(altfire)", "Overcharged Slugs", "Charged rails explode when hitting walls.", "", ""},
 		{0}},
 	{{0},{0},{0}}, // no upgrades for DM
 
 	// BFG
-	{	{"Upgrade_21_1", "UPG_21_1", "0BIGFGUN", "1BIGFGUN", "BFG_UG_Rays"     , "(passive)", "Fission Intensifies", "BFG tracers deal significant damage.", "", ""},
-		{"Upgrade_21_2", "UPG_21_2", "0BIGFGUN", "1BIGFGUN", "BFG_UG_Charge"   , "(altfire)", "Argent Capacitor",    "While zooming, hold fire to accumulate power. ", "''BFG Division didn't spend its budget in vain!''", ""},
+	{	{"Upgrade_21_1", "UPM_21_1", "0BIGFGUN", "1BIGFGUN", "BFG_UG_Rays"     , "(passive)", "Fission Intensifies", "BFG tracers deal significant damage.", "", ""},
+		{"Upgrade_21_2", "UPM_21_2", "0BIGFGUN", "1BIGFGUN", "BFG_UG_Charge"   , "(altfire)", "Argent Capacitor",    "While zooming, hold fire to accumulate power. ", "''BFG Division didn't spend its budget in vain!''", ""},
 		{0}},
 	{{0},{0},{0}}, // no upgrades for DM
 };
