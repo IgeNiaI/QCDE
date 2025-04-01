@@ -11,7 +11,7 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_Machinegun {} // for compatibility checks
+Actor CompatVer31_Machinegun {} // for compatibility checks
 
 // This pickup is only for consistency -- it never gives weapon.
 Actor MachinegunPickup : CustomInventory
@@ -91,12 +91,16 @@ Actor QCMachinegun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 6, "Ready.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 5, "Ready.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 4, "Ready.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 3, "Ready.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 2, "Ready.Quake2")
 	Ready.Default:
 		QCG2 A 0
 		Goto ReadyCont
 	Ready.Quake2:
 		Q2G2 A 0
+		Goto ReadyCont
+	Ready.Quake3:
+		Q3G2 A 0
 		Goto ReadyCont
 	Ready.Quake4:
 		Q4G2 A 0
@@ -134,12 +138,16 @@ Actor QCMachinegun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 6, "Select.QCDE1")
 		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 5, "Select.ETQW")
 		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 4, "Select.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 3, "Select.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 2, "Select.Quake2")
 	Select.Default:
 		QCG2 A 0
 		Goto SelectCont
 	Select.Quake2:
 		Q2G2 A 0
+		Goto SelectCont
+	Select.Quake3:
+		Q3G2 A 0
 		Goto SelectCont
 	Select.Quake4:
 		Q4G2 A 0
@@ -188,12 +196,16 @@ Actor QCMachinegun : QCWeapon
 			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 6, "FireNormalSound.Default")
 			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 5, "FireNormalSound.ETQW")
 			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 4, "FireNormalSound.Quake4")
+			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 3, "FireNormalSound.Quake3")
 			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 2, "FireNormalSound.Quake2")
 		FireNormalSound.Default:
 			"####" A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.Quake2:
 			"####" A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireNormalSound.Quake3:
+			"####" A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop_Quake3",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.Quake4:
 			"####" A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
@@ -214,12 +226,16 @@ Actor QCMachinegun : QCWeapon
 			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 6, "FireQuadSound.Default")
 			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 5, "FireQuadSound.ETQW")
 			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 4, "FireQuadSound.Quake4")
+			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 3, "FireQuadSound.Quake3")
 			"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 2, "FireQuadSound.Quake2")
 		FireQuadSound.Default:
 			"####" A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.Quake2:
 			"####" A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireQuadSound.Quake3:
+			"####" A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop_Quake3",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.Quake4:
 			"####" A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
@@ -303,12 +319,16 @@ Actor QCMachinegun : QCWeapon
 		"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 6, "EndFireLooper.Default")
 		"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 5, "EndFireLooper.ETQW")
 		"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 4, "EndFireLooper.Quake4")
+		"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 3, "EndFireLooper.Quake3")
 		"####" A 0 A_JumpIfInventory("QCMachinegunSkin", 2, "EndFireLooper.Quake2")
 	EndFireLooper.Default:
 		"####" A 0 A_PlaySound("QC/Weapons/Machinegun/FireEnd_Default",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
 	EndFireLooper.Quake2:
 		"####" A 0 A_PlaySound("QC/Weapons/Machinegun/FireEnd_Quake2",CHAN_WEAPON,1,0)
+		Goto EndFireLooperCont
+	EndFireLooper.Quake3:
+		"####" A 0 A_PlaySound("QC/Weapons/Machinegun/FireEnd_Quake3",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
 	EndFireLooper.Quake4:
 		"####" A 0 A_PlaySound("QC/Weapons/Machinegun/FireEnd_Quake4",CHAN_WEAPON,1,0)
@@ -369,11 +389,15 @@ Actor QCMachinegun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 6, "EndFlash.QCDE1")
 			TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 5, "EndFlash.ETQW")
 			TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 4, "EndFlash.Quake4")
+			TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 3, "EndFlash.Quake3")
 			TNT1 A 0 A_JumpIfInventory("QCMachinegunSkin", 2, "EndFlash.Quake2")
 		EndFlash.Default:
 			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,6,2)
 			Goto EndFlash.DefaultCont
 		EndFlash.Quake2:
+			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,4,2)
+			Goto EndFlash.DefaultCont
+		EndFlash.Quake3:
 			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,4,2)
 			Goto EndFlash.DefaultCont
 		EndFlash.ETQW:
