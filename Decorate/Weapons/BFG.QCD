@@ -191,7 +191,7 @@ Actor QCBFG : QCWeapon
 		"####" EFGH 3 A_WeaponReady(WRF_NOSECONDARY)
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, 2) // Serious sam skin has less frames
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, 2) // Jump over skin specific jumps
-		"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "ReadyCont") // Q2 and Q3 skins have less frames
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "ReadyCont") // Q3 skin has less frames
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		"####" IJKL 3 A_WeaponReady(WRF_NOSECONDARY)
 		Loop
