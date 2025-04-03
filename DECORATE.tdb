@@ -156,6 +156,7 @@ ACTOR TDBots_BigPathNode_Map 2406
 ==============================================================================*/
 ACTOR TDBots_PathNode : Inventory
 {
+	+NONETID
 	RenderStyle None
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.NOSCREENFLASH
