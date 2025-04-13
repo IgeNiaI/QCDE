@@ -123,23 +123,23 @@ Actor D4CacoBallExplo
 	+NOINTERACTION
 	+CLIENTSIDEONLY
 	RenderStyle Add
-	Scale 0.2
+	Scale 0.1
 	Translation "0:255=%[0.0,0.0,0.0]:[1.2,0.0,0.0]"
 	+FORCEXYBILLBOARD
 	States
 	{
 	Spawn:
 		TNT1 A 0 NoDelay
-		X060 B 1 Bright A_SetScale(scalex+0.08)	TNT1 A 0 A_FadeOut(0.06)
-		X060 B 1 Bright A_SetScale(scalex+0.08)	TNT1 A 0 A_FadeOut(0.06)
-		X060 B 1 Bright A_SetScale(scalex+0.08)	TNT1 A 0 A_FadeOut(0.06)
-		X060 B 1 Bright A_SetScale(scalex+0.08)	TNT1 A 0 A_FadeOut(0.06)
-		X060 B 1 Bright A_SetScale(scalex+0.08)	TNT1 A 0 A_FadeOut(0.06)
-		X060 B 1 Bright A_SetScale(scalex+0.08)	TNT1 A 0 A_FadeOut(0.06)
-		X060 B 1 Bright A_SetScale(scalex+0.08)	TNT1 A 0 A_FadeOut(0.06)
-		X060 B 1 Bright A_SetScale(scalex+0.08)	TNT1 A 0 A_FadeOut(0.06)
+		X060 B 1 Bright A_SetScale(scalex+0.04)	TNT1 A 0 A_FadeOut(0.06)
+		X060 B 1 Bright A_SetScale(scalex+0.04)	TNT1 A 0 A_FadeOut(0.06)
+		X060 B 1 Bright A_SetScale(scalex+0.04)	TNT1 A 0 A_FadeOut(0.06)
+		X060 B 1 Bright A_SetScale(scalex+0.04)	TNT1 A 0 A_FadeOut(0.06)
+		X060 B 1 Bright A_SetScale(scalex+0.04)	TNT1 A 0 A_FadeOut(0.06)
+		X060 B 1 Bright A_SetScale(scalex+0.04)	TNT1 A 0 A_FadeOut(0.06)
+		X060 B 1 Bright A_SetScale(scalex+0.04)	TNT1 A 0 A_FadeOut(0.06)
+		X060 B 1 Bright A_SetScale(scalex+0.04)	TNT1 A 0 A_FadeOut(0.06)
 	Looper:
-		X060 B 1 Bright A_SetScale(scalex+0.08)
+		X060 B 1 Bright A_SetScale(scalex+0.04)
 		X060 B 0  A_FadeOut(0.1)
 		Loop
 	}

@@ -745,7 +745,7 @@ Actor QCBFGShot
 	States
 	{
 	Spawn:
-		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB73 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
 		"####" AB 1 Bright Light("GreenBigPoint3")
 		"####" CD 1 Bright Light("GreenBigPoint3")
 		"####" EF 1 Bright Light("GreenBigPoint3")
@@ -845,12 +845,13 @@ Actor BFGExploRingSmall //shockwave
 	+FORCEXYBILLBOARD
 	RenderStyle Add
 	Alpha 1.0
+	Scale 0.5
 	Translation "0:255=%[0,0,0]:[0.0,1.8,0.0]"
 	States
 	{
 	Spawn:
-		X060 C 1 Bright A_SetScale(0.15)
-		X060 C 1 Bright A_SetScale(0.45)
+		X060 C 1 Bright A_SetScale(0.075)
+		X060 C 1 Bright A_SetScale(0.225)
 	Looper:
 		X060 C 1 Bright A_SetScale(scalex*1.2)
 		TNT1 A 0 A_FadeOut(0.1)
@@ -1587,8 +1588,8 @@ Actor QCBFGShot_DM	//No AOE while flying
 	States
 	{
 	Spawn:
-		DB48 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
-		DB48 ABCDEFGHIJKLMNO 1 Bright Light("GreenBigPoint3")
+		DB73 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB73 ABCDEFGHIJKLMNO 1 Bright Light("GreenBigPoint3")
 		Goto Spawn+1
 
 	Xdeath:	//Direct hit
