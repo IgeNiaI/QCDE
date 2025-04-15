@@ -450,19 +450,58 @@ else
 	// +59, +12 from SELECTOR to bar
 	inInventory not NoAmmoCount {
 	inInventory not RocketArena || Instagib {
-		inInventory QCMachinegun 		|| QCMachinegunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,290; }
-		inInventory QCShotgun			|| QCShotgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,360; }
-		inInventory QCNailgun			|| QCNailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1499,430; }
-		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,290; }
-		inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,360; }
-		inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1499,430; }
-		inInventory QCTribolt	 		|| QCTriboltDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBoltAmmo 		, vertical, 1499,500; }
-		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCRocketAmmo	, vertical, 1499,570; }
-		inInventory QCLightningGun		|| QCLightningGunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo 		, vertical, 1499,640; }
-		inInventory QCRailgun 			|| QCRailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo 		, vertical, 1499,710; }
-		inInventory QCBFG 				|| QCBFGDM				{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1499,780; }
-		inInventory DukeFreezeThrower							{ drawBar "AMMOBAR1", "AMMOBAR0",	DukeAmmo		, vertical, 1499,850; }
-		inInventory SamMinigun									{ drawBar "AMMOBAR1", "AMMOBAR0",	SeriousBullets	, vertical, 1499,850; }
+		inInventory QCMachinegun 		|| QCMachinegunDM		{
+			inInventory QCBulletAmmo	, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,290;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCBulletAmmo	, vertical, 1499,290;	}
+		}
+		inInventory QCShotgun			|| QCShotgunDM			{
+			inInventory QCShellAmmo		, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,360;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCShellAmmo		, vertical, 1499,360;	}
+		}
+		inInventory QCNailgun			|| QCNailgunDM			{
+			inInventory QCNailAmmo		, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1499,430;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCNailAmmo		, vertical, 1499,430;	}
+		}
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{
+			inInventory QCBulletAmmo	, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1499,290;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCBulletAmmo	, vertical, 1499,290;	}
+		}
+		inInventory QCSuperShotgun		|| QCSuperShotgunDM		{
+			inInventory QCShellAmmo		, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1499,360;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCShellAmmo		, vertical, 1499,360;	}
+		}
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM		{
+			inInventory QCNailAmmo		, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1499,430;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCNailAmmo		, vertical, 1499,430;	}
+		}
+		inInventory QCTribolt	 		|| QCTriboltDM			{
+			inInventory QCBoltAmmo		, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCBoltAmmo		, vertical, 1499,500;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCBoltAmmo		, vertical, 1499,500;	}
+		}
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{
+			inInventory QCRocketAmmo	, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCRocketAmmo	, vertical, 1499,570;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCRocketAmmo	, vertical, 1499,570;	}
+		}
+		inInventory QCLightningGun		|| QCLightningGunDM		{
+			inInventory QCCoilAmmo		, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo		, vertical, 1499,640;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCCoilAmmo		, vertical, 1499,640;	}
+		}
+		inInventory QCRailgun 			|| QCRailgunDM			{
+			inInventory QCSlugAmmo		, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo		, vertical, 1499,710;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCSlugAmmo		, vertical, 1499,710;	}
+		}
+		inInventory QCBFG 				|| QCBFGDM				{
+			inInventory QCBFGAmmo		, 9  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1499,780;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCBFGAmmo		, vertical, 1499,780;	}
+		}
+		inInventory DukeFreezeThrower							{
+			inInventory DukeAmmo		, 16 {	drawBar "AMMOBAR1", "AMMOBAR0",	DukeAmmo		, vertical, 1499,850;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	DukeAmmo		, vertical, 1499,850;	}
+		}
+		inInventory SamMinigun									{
+			inInventory SeriousBullets	, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	SeriousBullets	, vertical, 1499,850;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	SeriousBullets	, vertical, 1499,850;	}
+		}
 	}
 	}
 
@@ -568,19 +607,58 @@ else
 	// +59, +12 from SELECTOR to bar
 	inInventory not NoAmmoCount {
 	inInventory not RocketArena || Instagib {
-		inInventory QCMachinegun 		|| QCMachinegunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,290; }
-		inInventory QCShotgun			|| QCShotgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,360; }
-		inInventory QCNailgun			|| QCNailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1599,430; }
-		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,290; }
-		inInventory QCSuperShotgun		|| QCSuperShotgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,360; }
-		inInventory QCSuperNailgun		|| QCSuperNailgunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1599,430; }
-		inInventory QCTribolt	 		|| QCTriboltDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBoltAmmo 		, vertical, 1599,500; }
-		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{ drawBar "AMMOBAR1", "AMMOBAR0",	QCRocketAmmo	, vertical, 1599,570; }
-		inInventory QCLightningGun		|| QCLightningGunDM		{ drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo 		, vertical, 1599,640; }
-		inInventory QCRailgun 			|| QCRailgunDM			{ drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo 		, vertical, 1599,710; }
-		inInventory QCBFG 				|| QCBFGDM				{ drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1599,780; }
-		inInventory DukeFreezeThrower							{ drawBar "AMMOBAR1", "AMMOBAR0",	DukeAmmo		, vertical, 1599,850; }
-		inInventory SamMinigun									{ drawBar "AMMOBAR1", "AMMOBAR0",	SeriousBullets	, vertical, 1599,850; }
+		inInventory QCMachinegun 		|| QCMachinegunDM		{
+			inInventory QCBulletAmmo	, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,290;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCBulletAmmo	, vertical, 1599,290;	}
+		}
+		inInventory QCShotgun			|| QCShotgunDM			{
+			inInventory QCShellAmmo		, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,360;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCShellAmmo		, vertical, 1599,360;	}
+		}
+		inInventory QCNailgun			|| QCNailgunDM			{
+			inInventory QCNailAmmo		, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1599,430;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCNailAmmo		, vertical, 1599,430;	}
+		}
+		inInventory QCHeavyMachinegun 	|| QCHeavyMachinegunDM	{
+			inInventory QCBulletAmmo	, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCBulletAmmo	, vertical, 1599,290;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCBulletAmmo	, vertical, 1599,290;	}
+		}
+		inInventory QCSuperShotgun		|| QCSuperShotgunDM		{
+			inInventory QCShellAmmo		, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCShellAmmo		, vertical, 1599,360;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCShellAmmo		, vertical, 1599,360;	}
+		}
+		inInventory QCSuperNailgun		|| QCSuperNailgunDM		{
+			inInventory QCNailAmmo		, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCNailAmmo		, vertical, 1599,430;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCNailAmmo		, vertical, 1599,430;	}
+		}
+		inInventory QCTribolt	 		|| QCTriboltDM			{
+			inInventory QCBoltAmmo		, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCBoltAmmo		, vertical, 1599,500;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCBoltAmmo		, vertical, 1599,500;	}
+		}
+		inInventory QCRocketLauncher	|| QCRocketLauncherDM	{
+			inInventory QCRocketAmmo	, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCRocketAmmo	, vertical, 1599,570;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCRocketAmmo	, vertical, 1599,570;	}
+		}
+		inInventory QCLightningGun		|| QCLightningGunDM		{
+			inInventory QCCoilAmmo		, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	QCCoilAmmo		, vertical, 1599,640;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCCoilAmmo		, vertical, 1599,640;	}
+		}
+		inInventory QCRailgun 			|| QCRailgunDM			{
+			inInventory QCSlugAmmo		, 6  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCSlugAmmo		, vertical, 1599,710;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCSlugAmmo		, vertical, 1599,710;	}
+		}
+		inInventory QCBFG 				|| QCBFGDM				{
+			inInventory QCBFGAmmo		, 9  {	drawBar "AMMOBAR1", "AMMOBAR0",	QCBFGAmmo		, vertical, 1599,780;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	QCBFGAmmo		, vertical, 1599,780;	}
+		}
+		inInventory DukeFreezeThrower							{
+			inInventory DukeAmmo		, 16 {	drawBar "AMMOBAR1", "AMMOBAR0",	DukeAmmo		, vertical, 1599,850;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	DukeAmmo		, vertical, 1599,850;	}
+		}
+		inInventory SamMinigun									{
+			inInventory SeriousBullets	, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	SeriousBullets	, vertical, 1599,850;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	SeriousBullets	, vertical, 1599,850;	}
+		}
 	}
 	}
 
