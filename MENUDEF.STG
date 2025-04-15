@@ -1146,6 +1146,19 @@ FreeformMenu "QCDE_OptionsControlsCommon"
 	}
 }
 
+OptionString "Cursors"
+{
+	"None", "QC:DE"
+	"qcdecuro", "QC:DE Old"
+	"cursor", "Simple arrow"
+	"doomcurs", "Doom"
+	"herecurs", "Heretic"
+	"hexncurs", "Hexen"
+	"strfcurs", "Strife"
+	"chexcurs", "Chex"
+	"-", "System cursor"
+}
+
 FreeformMenu "QCDE_OptionsControls"
 {
 	NoBackButton
