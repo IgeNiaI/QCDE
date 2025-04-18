@@ -6,7 +6,7 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_Shotgun {} // for compatibility checks
+Actor CompatVer31_Shotgun {} // for compatibility checks
 
 Actor ShotgunPickup : CustomInventory 15601
 {
@@ -123,6 +123,7 @@ Actor QCShotgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "Ready.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "Ready.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "Ready.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "Ready.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "Ready.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "Ready.Quake1")
 	Ready.Default:
@@ -133,6 +134,9 @@ Actor QCShotgun : QCWeapon
 		Goto ReadyCont
 	Ready.Quake2:
 		Q2G3 A 0
+		Goto ReadyCont
+	Ready.Quake3:
+		Q3G3 A 0
 		Goto ReadyCont
 	Ready.QCDE1:
 		Q0G3 A 0
@@ -162,6 +166,7 @@ Actor QCShotgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "Select.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "Select.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "Select.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "Select.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "Select.Quake1")
 	Select.Default:
@@ -172,6 +177,9 @@ Actor QCShotgun : QCWeapon
 		Goto SelectCont
 	Select.Quake2:
 		Q2G3 A 0
+		Goto SelectCont
+	Select.Quake3:
+		Q3G3 A 0
 		Goto SelectCont
 	Select.QCDE1:
 		Q0G3 A 0
@@ -302,6 +310,7 @@ Actor QCShotgun : QCWeapon
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "NormalSound.SeriousSam")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "NormalSound.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "NormalSound.Default")
+				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "NormalSound.Quake3")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "NormalSound.Quake2")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "NormalSound.Quake1")
 			NormalSound.Default:
@@ -312,6 +321,9 @@ Actor QCShotgun : QCWeapon
 				Goto FlashEnder
 			NormalSound.Quake2:
 				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Fire_Quake2",CHAN_WEAPON)
+				Goto FlashEnder
+			NormalSound.Quake3:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Fire_Quake3",CHAN_WEAPON)
 				Goto FlashEnder
 			NormalSound.HalfLife:
 				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Fire_HalfLife",CHAN_WEAPON)
@@ -324,6 +336,7 @@ Actor QCShotgun : QCWeapon
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "QuadSound.SeriousSam")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "QuadSound.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "QuadSound.Default")
+				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "QuadSound.Quake3")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "QuadSound.Quake2")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "QuadSound.Quake1")
 			QuadSound.Default:
@@ -334,6 +347,9 @@ Actor QCShotgun : QCWeapon
 				Goto FlashEnder
 			QuadSound.Quake2:
 				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Quad/Fire_Quake2",CHAN_WEAPON)
+				Goto FlashEnder
+			QuadSound.Quake3:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Quad/Fire_Quake3",CHAN_WEAPON)
 				Goto FlashEnder
 			QuadSound.HalfLife:
 				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Quad/Fire_HalfLife",CHAN_WEAPON)
@@ -348,6 +364,7 @@ Actor QCShotgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "FlashEnder.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "FlashEnder.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "FlashEnder.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "FlashEnder.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "FlashEnder.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "FlashEnder.Quake1")
 	FlashEnder.Default:
@@ -357,6 +374,9 @@ Actor QCShotgun : QCWeapon
 		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,2,4)
 		Goto FlashEnderCont
 	FlashEnder.Quake2:
+		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,5,4)
+		Goto FlashEnderCont
+	FlashEnder.Quake3:
 		TNT1 AA 1 A_FireCustomMissile("SGSmokeSpawner",0, false,5,4)
 		Goto FlashEnderCont
 	FlashEnder.QCDE1:
