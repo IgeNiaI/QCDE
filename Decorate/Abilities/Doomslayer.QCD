@@ -141,7 +141,7 @@ Actor SlayerBFG : QCWeapon
 		W07G D 2  Bright offset( 2,36) A_WeaponReady(WRF_NOFIRE|WRF_NOBOB|WRF_ALLOWZOOM)
 		W07G E 2  Bright offset( 1,32) A_WeaponReady(WRF_NOFIRE|WRF_NOBOB|WRF_ALLOWZOOM)
 		W07G F 2  Bright               A_WeaponReady(WRF_NOFIRE|WRF_NOBOB|WRF_ALLOWZOOM)	//52
-		W07I A 2000
+		W07I A 2000 Bright
 		Goto Ready
 	}
 }
