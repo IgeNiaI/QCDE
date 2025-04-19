@@ -828,17 +828,19 @@ else
 	// Galen totem count
 	inInventory Class_Galen {
 		gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame {
-			inInventory TotemTokenPvP, 3 {
-				drawBar "GTOTEMZ3", "GTOTEMZ0", TotemTokenPvP, horizontal, 636, 800;
-			} else {
-				drawBar "GTOTEMZ2", "GTOTEMZ0", TotemTokenPvP, horizontal, 636, 800;
-			}
+					inInventory TotemTokenPvP, 3 {	drawImage "GTOTEMZ3", 592, 800;	}
+			else {	inInventory TotemTokenPvP, 2 {	drawImage "GTOTEMZ2", 592, 800;	}
+			else {	inInventory TotemTokenPvP, 1 {	drawImage "GTOTEMZ1", 592, 800;	}
+			else {									drawImage "GTOTEMZ0", 592, 800; }
+			}}
 		} else {
-			inInventory TotemTokenPvE, 5 {
-				drawBar "GTOTEMS5", "GTOTEMS0", TotemTokenPvE, horizontal, 604, 800;
-			} else {
-				drawBar "GTOTEMS4", "GTOTEMS0", TotemTokenPvE, horizontal, 604, 800;
-			}
+					inInventory TotemTokenPvE, 5 {	drawImage "GTOTEMS5", 592, 800;	}
+			else {	inInventory TotemTokenPvE, 4 {	drawImage "GTOTEMS4", 592, 800;	}
+			else {	inInventory TotemTokenPvE, 3 {	drawImage "GTOTEMS3", 592, 800;	}
+			else {	inInventory TotemTokenPvE, 2 {	drawImage "GTOTEMS2", 592, 800;	}
+			else {	inInventory TotemTokenPvE, 1 {	drawImage "GTOTEMS1", 592, 800;	}
+			else {									drawImage "GTOTEMS0", 592, 800; }
+			}}}}
 		}
 	}
 	// Eradicator murder boner
