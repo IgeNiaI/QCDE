@@ -853,6 +853,15 @@ else
 		else {									drawImage "KELGRND0", 592, 800; }
 		}}}}
 	}
+	// Lucienne charges count
+	inInventory Class_Lucienne {
+				inInventory MultiuseCharge, 4 {	drawImage "LUCCHRG4", 592, 800;	}
+		else {	inInventory MultiuseCharge, 3 {	drawImage "LUCCHRG3", 592, 800;	}
+		else {	inInventory MultiuseCharge, 2 {	drawImage "LUCCHRG2", 592, 800;	}
+		else {	inInventory MultiuseCharge, 1 {	drawImage "LUCCHRG1", 592, 800;	}
+		else {									drawImage "LUCCHRG0", 592, 800; }
+		}}}
+	}
 	// Eradicator murder boner
 	inInventory MurderLevel {
 		drawNumber 3, QCFNT050, bludi, MurderLevel, alignment(right),  960,960;
