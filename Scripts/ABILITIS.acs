@@ -1567,8 +1567,24 @@ Script "QCDE_Ability_Keel" (void)
 		SetLastUse(Timer());
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("KeelFireGrenProc",1); //Fire grenade
+		ACS("QCDE_KeelGLAnimation");
 		SetNetworkReplicationFlags( 0 );
 	}
+}
+Script "QCDE_KeelGLAnimation" (void) clientside
+{
+	// *.0 on coordinates means "align to center"
+	DrawWeapon("QP16R0",  60.0, 250.0);	delay(1);
+	DrawWeapon("QP16R0",  90.0, 270.0);	delay(1);
+	DrawWeapon("QP16S0", 120.0, 290.0);	delay(1);
+	DrawWeapon("QP16S0", 150.0, 310.0); delay(1);
+	DrawWeapon("QP16T0", 150.0, 310.0); delay(1);
+	DrawWeapon("QP16T0", 150.0, 310.0); delay(1);
+	DrawWeapon("QP16U0", 150.0, 310.0); delay(1);
+	DrawWeapon("QP16U0", 120.0, 290.0);	delay(1);
+	DrawWeapon("QP16U0",  90.0, 270.0);	delay(1);
+	DrawWeapon("QP16U0",  60.0, 250.0);	delay(1);
+	DrawWeapon("QP16U0",   0.0, 200.0);	delay(1);
 }
 
 
