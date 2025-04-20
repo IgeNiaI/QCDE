@@ -1689,6 +1689,7 @@ Script "QCDE_Ability_Grayson" (void)
 	//Fire projectile
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("ThumperShootProc",1);
+	ACS("QCDE_GraysonHandAnimation");
 	SetNetworkReplicationFlags( 0 );
 	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
@@ -1698,6 +1699,24 @@ Script "QCDE_Ability_Grayson" (void)
 	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	GiveInventory("GenericActiveCleanerProc",1);
 	SetNetworkReplicationFlags( 0 );
+}
+Script "QCDE_GraysonHandAnimation" (void) clientside
+{
+	// *.0 on coordinates means "align to center"
+	DrawWeapon("WP19A0",  60.0, 310.0);	delay(1);
+	DrawWeapon("WP19A0",  90.0, 290.0);	delay(1);
+	DrawWeapon("WP19A0", 120.0, 270.0);	delay(1);
+	DrawWeapon("WP19A0", 150.0, 250.0); delay(1);
+	DrawWeapon("WP19A0", 150.0, 250.0); delay(1);
+	DrawWeapon("WP19A0", 150.0, 250.0); delay(1);
+	DrawWeapon("WP19A0", 150.0, 250.0); delay(1);
+
+	DrawWeapon("WP19B0", 150.0, 260.0); delay(1);
+	DrawWeapon("WP19B0", 150.0, 280.0); delay(1);
+	DrawWeapon("WP19B0", 150.0, 300.0); delay(1);
+	DrawWeapon("WP19B0", 150.0, 320.0); delay(1);
+	DrawWeapon("WP19B0", 150.0, 340.0); delay(1);
+	DrawWeapon("WP19B0", 150.0, 360.0); delay(1);
 }
 
 
