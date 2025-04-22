@@ -825,6 +825,14 @@ else
 	inInventory PowerShieldCharge {
 		drawNumber 3, QCFNT050, brite, PowerShieldCharge, alignment(center),700,950;
 	}
+	// Corvus flights count
+	inInventory Class_Corvus {
+				inInventory MultiuseCharge, 3 {	drawImage "CORVFLG3", 592, 800;	}
+		else {	inInventory MultiuseCharge, 2 {	drawImage "CORVFLG2", 592, 800;	}
+		else {	inInventory MultiuseCharge, 1 {	drawImage "CORVFLG1", 592, 800;	}
+		else {									drawImage "CORVFLG0", 592, 800; }
+		}}
+	}
 	// Galen totem count
 	inInventory Class_Galen {
 		gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame {
