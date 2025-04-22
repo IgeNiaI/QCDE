@@ -833,6 +833,16 @@ else
 		else {									drawImage "CORVFLG0", 592, 800; }
 		}}
 	}
+	// Freeman charges count
+	inInventory Class_Freeman {
+				inInventory MultiuseCharge, 5 {	drawImage "FRMCHRG5", 592, 800;	}
+		else {	inInventory MultiuseCharge, 4 {	drawImage "FRMCHRG4", 592, 800;	}
+		else {	inInventory MultiuseCharge, 3 {	drawImage "FRMCHRG3", 592, 800;	}
+		else {	inInventory MultiuseCharge, 2 {	drawImage "FRMCHRG2", 592, 800;	}
+		else {	inInventory MultiuseCharge, 1 {	drawImage "FRMCHRG1", 592, 800;	}
+		else {									drawImage "FRMCHRG0", 592, 800; }
+		}}}}
+	}
 	// Galen totem count
 	inInventory Class_Galen {
 		gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame {
