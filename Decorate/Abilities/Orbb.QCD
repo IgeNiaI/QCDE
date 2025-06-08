@@ -16,37 +16,37 @@ Actor OrbbDroneProc : CustomInventory
 	States
 	{
 	Pickup:
-		TNT1 A 0 A_SpawnItemEx("OrbbDrone", 0,0,20, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_SKIPOWNER)
+		TNT1 A 0 A_SpawnItemEx("OrbbDrone", 0,0,40, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_SKIPOWNER)
 		TNT1 A 0 A_GiveInventory("ActiveInProgress", 1, 0, GIF_SKIPOWNER)
 		TNT1 A 0 A_PlaySound("QC/Abilities/Orbb/DroneSpawn", CHAN_7)
 		Stop
 	}
 }
 
-Actor OrbbDrone
+Actor OrbbDrone : UnlaggedActor
 {
-	+NOGRAVITY
-	+SLIDESONWALLS
-	+INVULNERABLE
-	+DONTBLAST
-	+ISMONSTER
-	+NOBLOCKMONST
-	+SEEKERMISSILE
+	+NOGRAVITY +SLIDESONWALLS
+	+SOLID +SHOOTABLE +CANPASS
+	+ISMONSTER +NOBLOCKMONST -COUNTKILL
+	+CANBLAST +NOBLOOD
+	+NOICEDEATH	//to prevent possibly weird behaviour of scripts
+	+SEEKERMISSILE //Not actually used for anything other than checking radius.
 
-	Radius 12
+	Radius 14
 	Height 32
+
+	Health 100
 
 	CameraHeight 16
 
 	StencilColor "#FF0000"
-	RenderStyle Translucent
 	DamageType "RocketDamage"
-	Alpha 0.70
 
 	States
 	{
 	Spawn:
 		TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("ORBB_DroneSpawned")
+		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_DamageTracker",0,1)
 		TNT1 A 0 ACS_NamedExecuteAlways("QCDE_BobRecolor",0,tid)
 		Goto ClosedEyeLoop
 
@@ -54,12 +54,6 @@ Actor OrbbDrone
 		ODRN C 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
 		ODRN D 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
 	ClosedEyeLoop:
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeCoop", 1, "ExplodeCoop")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeDM", 1, "ExplodeDM")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("UsingDrone", 1, "OpenEye")
-		ODRN E 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeCoop", 1, "ExplodeCoop")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeDM", 1, "ExplodeDM")
 		TNT1 A 0 BRIGHT A_JumpIfInventory("UsingDrone", 1, "OpenEye")
 		ODRN E 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
 		Loop
@@ -68,74 +62,68 @@ Actor OrbbDrone
 		ODRN D 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
 		ODRN C 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
 	OpenedEyeLoop:
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeCoop", 1, "ExplodeCoop")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeDM", 1, "ExplodeDM")
 		TNT1 A 0 BRIGHT A_JumpIfInventory("UsingDrone", -1, "CloseEye")
 		ODRN A 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeCoop", 1, "ExplodeCoop")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeDM", 1, "ExplodeDM")
 		TNT1 A 0 BRIGHT A_JumpIfInventory("UsingDrone", -1, "CloseEye")
 		ODRN A 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeCoop", 1, "ExplodeCoop")
-		TNT1 A 0 BRIGHT A_JumpIfInventory("DroneExplodeDM", 1, "ExplodeDM")
 		TNT1 A 0 BRIGHT A_JumpIfInventory("UsingDrone", -1, "CloseEye")
 		ODRN B 3 BRIGHT A_JumpIfInventory("ImDead", 1, "Death")
 		Loop
 
 	Death:
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY", true)
+		TNT1 A 0 A_ChangeFlag("MISSILE", false)
+		TNT1 A 0 A_GiveInventory("ImDead", 1, 0, GIF_SKIPOWNER)
 		TNT1 A 0 A_PlaySound("QC/Abilities/Durandal/BOBExplo", CHAN_7)
+		TNT1 A 0 A_JumpIfInventory("DroneTurnMissile", 1, "DeathMissile")
 		ODRN FGHIJKLMNOPQRST 1
 		Stop
 
-	ExplodeCoop:
-		TNT1 A 0 A_PlaySound("QC/Abilities/Orbb/ChargeUp",CHAN_WEAPON,1.0,1,0.6)
-		ODRN A 25 A_AlertMonsters
-		ODRN A 25 A_AlertMonsters
-		ODRN A 25 A_AlertMonsters
-		TNT1 A 0 A_GiveInventory("ImDead", 1, 0, GIF_SKIPOWNER)
-		ODRN E 15
-		TNT1 A 0 A_ChangeFlag("MISSILE", true)
+    DeathMissile:
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHitCoop",360,JLOSF_PROJECTILE,360)
-		Goto DoExplodeCoop
+		Goto DeathMissileCont
 
 		RadiusHitCoop:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-			Goto DoExplodeCoop
+			Goto DeathMissileCont
+
+    DeathMissileCont:
+		TNT1 A 0 A_JumpIfInventory("DMToken", 1, "DoExplodeDM")
+		Goto DoExplodeCoop
+
+	TurnMissile:
+		TNT1 A 0 A_ChangeFlag("MISSILE", true)
+		TNT1 A 0 A_ChangeFlag("ACTIVATEIMPACT", true)
+		TNT1 A 0 A_ChangeFlag("ACTIVATEPCROSS", true)
+		TNT1 A 0 A_PlaySound("QC/Abilities/Orbb/ChargeUp",CHAN_WEAPON,1.0,1,0.6)
+		Goto RushForwardLoop
+
+    RushForwardLoop:
+		TNT1 A 0 A_JumpIfInventory("ImDead", 1, "Death")
+		TNT1 A 0 A_ChangeVelocity(velx * 0.8, vely * 0.8, velz * 0.8, CVF_REPLACE|CVF_SKIPOWNER)
+		TNT1 A 0 A_ChangeVelocity(4 * cos(pitch), 0, 4 * -sin(pitch), CVF_RELATIVE|CVF_SKIPOWNER)
+		ODRM A 1 BRIGHT A_AlertMonsters
+        Loop
 
 	DoExplodeCoop:
-		TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/RocketExplo",CHAN_5|CHAN_NOPAUSE)
 		TNT1 A 0 A_Explode(50,256,XF_HURTSOURCE)
 		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(200,256,0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
-		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebris",-1,0,16,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,16,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("QCRocketExplosion",-2,0,16,0,0,0,0,SXF_NOCHECKPOSITION)
-		Stop
-
-	ExplodeDM:
-		TNT1 A 0 A_PlaySound("QC/Abilities/Orbb/ChargeUp",CHAN_WEAPON,1.0,1,0.6)
-		ODRN A 65
-		TNT1 A 0 A_GiveInventory("ImDead", 1, 0, GIF_SKIPOWNER)
-		ODRN E 5
-		TNT1 A 0 A_ChangeFlag("MISSILE", true)
-		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
-		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHitDM",360,JLOSF_PROJECTILE,360)
-		Goto DoExplodeDM
-
-		RadiusHitDM:	//splash damage beep
-			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-			Goto DoExplodeDM
+		Goto ExplodeFX
 
 	DoExplodeDM:
-		TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/RocketExplo",CHAN_5|CHAN_NOPAUSE)
 		TNT1 A 0 A_Explode(50,256,XF_HURTSOURCE,0,18)
 		TNT1 A 0 A_RadiusThrust(120,256,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
-		TNT1 E 0 A_Explode(100,256,0,0,18)
+		TNT1 E 0 A_Explode(50,256,0,0,18)
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+		Goto ExplodeFX
+
+    ExplodeFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/RocketLauncher/RocketExplo",CHAN_5|CHAN_NOPAUSE)
 		TNT1 A 0 A_SpawnItemEx("QCRocketExploDebrisDM",-1,0,16,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_SpawnItemEx("QCRocketExploParticle",3,0,16,frandom(3,5.5),frandom(3,5.5),frandom(1,6),random(0,359),SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("QCRocketExplosionDM",-2,0,16,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -144,8 +132,7 @@ Actor OrbbDrone
 }
 
 Actor UsingDrone : Token {}
-Actor DroneExplodeCoop : Token {}
-Actor DroneExplodeDM : Token {}
+Actor DroneTurnMissile : Token {}
 
 Actor OrbbDroneEnter : CustomInventory
 {

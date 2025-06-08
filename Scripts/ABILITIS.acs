@@ -2926,6 +2926,7 @@ Script "QCDE_IntruderLoop" (void) CLIENTSIDE
 //		Orbb's Active
 
 #define DRON_SPEED 4.0
+#DEFINE DRON_RUSH_SPEED 6.0
 #define DRON_FRICTION 0.8 // lower is more friction
 #define DRON_DURATION 25
 
@@ -3006,8 +3007,13 @@ Script "ORBB_DroneSpawned" (void)
 	int tid = ORBBDRON_TIDBASE + plr;
 	Thing_ChangeTID(0, tid);
 	SetPointer(AAPTR_TARGET, GetActorProperty(0, APROP_MasterTID));
+	if(GameType() >= GAME_NET_DEATHMATCH)
+	    GiveActorInventory(tid, "DMToken", 1);
+
 	if(PlayerIsBot(plr) && GetNetworkState() != NETSTATE_CLIENT)
-		ACS_NamedExecuteWithResult("ORBB_NotifyDroneChargeUp", tid);
+	{
+        ACS_NamedExecuteAlways("ORBB_DoDroneChargeUp", 0, tid);
+	}
 }
 
 // Activator: player
@@ -3053,9 +3059,13 @@ Script "ORBB_DroneViewEnter" (void)
 			break;
 		}
 
-		if ((GetNetworkState() != NETSTATE_SERVER) && (buttons & BT_ATTACK) && !(oldbuttons & BT_ATTACK))
-		{
-			NamedRequestScriptPuke("ORBB_NotifyDroneChargeUp", tid);
+		if (
+		    (GetNetworkState() != NETSTATE_SERVER) && !CheckInventory("DroneTurnMissile")
+		    && (buttons & BT_ATTACK) && !(oldbuttons & BT_ATTACK)
+		) {
+            ACS_NamedExecuteAlways("ORBB_DoDroneChargeUp", 0, tid);
+            if (GetNetworkState() == NETSTATE_CLIENT)
+                NamedRequestScriptPuke("ORBB_DoDroneChargeUp", tid);
 		}
 
 		if (GetNetworkState() != NETSTATE_SERVER)
@@ -3065,81 +3075,86 @@ Script "ORBB_DroneViewEnter" (void)
 			if(p >  0.25) p =  0.25;
 			if(p < -0.25) p = -0.25;
 
-			velx = FixedMul(GetActorVelX(tid), DRON_FRICTION);
-			vely = FixedMul(GetActorVelY(tid), DRON_FRICTION);
-			velz = FixedMul(GetActorVelZ(tid), DRON_FRICTION);
+            if (!CheckInventory("DroneTurnMissile")) {
+                velx = FixedMul(GetActorVelX(tid), DRON_FRICTION);
+                vely = FixedMul(GetActorVelY(tid), DRON_FRICTION);
+                velz = FixedMul(GetActorVelZ(tid), DRON_FRICTION);
 
-			spd_for = 0;
-			spd_sid = 0;
-			spd_ver = 0;
+                spd_for = 0;
+                spd_sid = 0;
+                spd_ver = 0;
 
-			// Turn pressed buttons into speed
-			if (buttons & BT_FORWARD)
-				spd_for += DRON_SPEED;
-			if (buttons & BT_BACK)
-				spd_for -= DRON_SPEED;
-			if (buttons & BT_MOVERIGHT)
-				spd_sid += DRON_SPEED;
-			if (buttons & BT_MOVELEFT)
-				spd_sid -= DRON_SPEED;
-			if (buttons & BT_MOVEUP)
-				spd_ver += DRON_SPEED;
-			if (buttons & BT_MOVEDOWN)
-				spd_ver -= DRON_SPEED;
+                // Turn pressed buttons into speed
+                if (buttons & BT_FORWARD)
+                    spd_for += DRON_SPEED;
+                if (buttons & BT_BACK)
+                    spd_for -= DRON_SPEED;
+                if (buttons & BT_MOVERIGHT)
+                    spd_sid += DRON_SPEED;
+                if (buttons & BT_MOVELEFT)
+                    spd_sid -= DRON_SPEED;
+                if (buttons & BT_MOVEUP)
+                    spd_ver += DRON_SPEED;
+                if (buttons & BT_MOVEDOWN)
+                    spd_ver -= DRON_SPEED;
 
-			// Calculate proper vector when multiple buttons are pressed
-			if (spd_for != 0 && spd_sid != 0 && spd_ver != 0)
-			{
-				spd_for = FixedMul(spd_for, 0.5);
-				spd_sid = FixedMul(spd_sid, 0.5);
-				spd_ver = FixedMul(spd_ver, 0.5);
+                // Calculate proper vector when multiple buttons are pressed
+                if (spd_for != 0 && spd_sid != 0 && spd_ver != 0)
+                {
+                    spd_for = FixedMul(spd_for, 0.5);
+                    spd_sid = FixedMul(spd_sid, 0.5);
+                    spd_ver = FixedMul(spd_ver, 0.5);
+                }
+                else if (spd_for != 0 && spd_sid != 0)
+                {
+                    spd_for = FixedMul(spd_for, 0.71);
+                    spd_sid = FixedMul(spd_sid, 0.71);
+                }
+                else if (spd_for != 0 && spd_ver != 0)
+                {
+                    spd_for = FixedMul(spd_for, 0.71);
+                    spd_ver = FixedMul(spd_ver, 0.71);
+                }
+                else if (spd_sid != 0 && spd_ver != 0)
+                {
+                    spd_sid = FixedMul(spd_sid, 0.71);
+                    spd_ver = FixedMul(spd_ver, 0.71);
+                }
+
+                // Calculate forward and vertical movement based on pitch
+                spd_tmp = spd_for;
+                spd_for = FixedMul(spd_for, cos(p)) + FixedMul(spd_ver, sin(p));
+                spd_ver = FixedMul(spd_tmp, -sin(p)) + FixedMul(spd_ver, cos(p));
+
+                // Calculate forward and side movement based on angle
+                spd_tmp = spd_for;
+                spd_for = FixedMul(spd_for, cos(a)) + FixedMul(spd_sid, sin(a));
+                spd_sid = FixedMul(spd_tmp, sin(a)) + FixedMul(spd_sid, -cos(a));
+
+                SetActorVelocity(tid, velx + spd_for, vely + spd_sid, velz + spd_ver, 0, 0);
 			}
-			else if (spd_for != 0 && spd_sid != 0)
-			{
-				spd_for = FixedMul(spd_for, 0.71);
-				spd_sid = FixedMul(spd_sid, 0.71);
-			}
-			else if (spd_for != 0 && spd_ver != 0)
-			{
-				spd_for = FixedMul(spd_for, 0.71);
-				spd_ver = FixedMul(spd_ver, 0.71);
-			}
-			else if (spd_sid != 0 && spd_ver != 0)
-			{
-				spd_sid = FixedMul(spd_sid, 0.71);
-				spd_ver = FixedMul(spd_ver, 0.71);
-			}
 
-			// Calculate forward and vertical movement based on pitch
-			spd_tmp = spd_for;
-			spd_for = FixedMul(spd_for, cos(p)) + FixedMul(spd_ver, sin(p));
-			spd_ver = FixedMul(spd_tmp, -sin(p)) + FixedMul(spd_ver, cos(p));
-
-			// Calculate forward and side movement based on angle
-			spd_tmp = spd_for;
-			spd_for = FixedMul(spd_for, cos(a)) + FixedMul(spd_sid, sin(a));
-			spd_sid = FixedMul(spd_tmp, sin(a)) + FixedMul(spd_sid, -cos(a));
-
-			SetActorVelocity(tid, velx + spd_for, vely + spd_sid, velz + spd_ver, 0, 0);
 			SetActorAngle(tid, a);
 			SetActorPitch(tid, p);
 
 			if (GetNetworkState() == NETSTATE_CLIENT)
 			{
-				NamedRequestScriptPuke("ORBB_ReplicateDronePos", GetActorX(tid), GetActorY(tid), GetActorZ(tid));
 				NamedRequestScriptPuke("ORBB_ReplicateDroneAngle", a, p);
+				NamedRequestScriptPuke("ORBB_ReplicateDronePos", GetActorX(tid), GetActorY(tid), GetActorZ(tid));
 			}
 		}
 
 		delay(1);
 	}
 
-	SetActorVelocity(tid, 0, 0, 0, 0, 0);
+    if (!CheckInventory("DroneTurnMissile") && !CheckInventory("ImDead") && IsTidUsed(tid))
+    {
+	    SetActorVelocity(tid, 0, 0, 0, 0, 0);
+        NamedRequestScriptPuke("ORBB_ReplicateDronePos", GetActorX(tid), GetActorY(tid), GetActorZ(tid));
+    }
 
-	if (GetNetworkState() == NETSTATE_CLIENT)
-	{
-		NamedRequestScriptPuke("ORBB_ReplicateDronePos", GetActorX(tid), GetActorY(tid), GetActorZ(tid));
-	}
+    if (GetNetworkState() == NETSTATE_SERVER)
+        terminate;
 
 	SetActivator(plrtid);
 
@@ -3148,9 +3163,7 @@ Script "ORBB_DroneViewEnter" (void)
 
 	ACS_NamedExecuteWithResult("ORBB_DroneViewExit", 0);
 	if (GetNetworkState() == NETSTATE_CLIENT)
-	{
 		NamedRequestScriptPuke("ORBB_DroneViewExitServer");
-	}
 }
 
 Script "ORBB_DroneViewExit" (void)
@@ -3186,21 +3199,20 @@ Script "ORBB_DroneViewExitServer" (void) NET
 
 Script "ORBB_ReplicateDronePos" (int x, int y, int z) NET
 {
-	if (PlayerNumber() != ConsolePlayerNumber())
-	{
-		int tid = ORBBDRON_TIDBASE + PlayerNumber();
-		SetActivator(tid);
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-		Warp(0, x, y, z, 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
-		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	}
+	int tid = ORBBDRON_TIDBASE + PlayerNumber();
+	SetActivator(tid);
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	Warp(0, x, y, z, 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+	SetNetworkReplicationFlags( 0 );
 }
 
 Script "ORBB_ReplicateDroneAngle" (int angle, int pitch) NET
 {
 	int tid = ORBBDRON_TIDBASE + PlayerNumber();
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 	SetActorAngle(tid, angle);
 	SetActorPitch(tid, pitch);
+	SetNetworkReplicationFlags( 0 );
 }
 
 // Activator: player
@@ -3244,42 +3256,17 @@ Script "ORBB_TunnelVision" (int tid) clientside
 	tunnelVisionAlreadyOn = false;
 }
 
-Script "ORBB_NotifyDroneChargeUp" (int tid) NET
+Script "ORBB_DoDroneChargeUp" (int tid) NET
 {
-	SetActivator(tid);
-	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
-	if(GameType() < GAME_NET_DEATHMATCH)
-		GiveInventory("DroneExplodeCoop", 1);
-	else
-		GiveInventory("DroneExplodeDM", 1);
-	SetNetworkReplicationFlags( 0 );
-	ACS_NamedExecuteAlways("ORBB_DroneChargeUp", 0, tid);
-}
+	GiveActorInventory(tid, "DroneTurnMissile", 1);
+	SetActorState(tid, "TurnMissile");
 
-Script "ORBB_DroneChargeUp" (int tid) CLIENTSIDE
-{
-	SetActivator(tid);
-	if(GameType() < GAME_NET_DEATHMATCH)
-		GiveInventory("DroneExplodeCoop", 1);
-	else
-		GiveInventory("DroneExplodeDM", 1);
-	int time = 4;
 	while (GetActorProperty(tid, APROP_HEALTH) > 0)
 	{
-		SetActorProperty(tid, APROP_RenderStyle, Style_Stencil);
-		delay(time);
-		SetActorProperty(tid, APROP_RenderStyle, Style_Translucent);
-		delay(time);
-		SetActorProperty(tid, APROP_RenderStyle, Style_Stencil);
-		delay(time);
-		SetActorProperty(tid, APROP_RenderStyle, Style_Translucent);
-		delay(time);
-		SetActorProperty(tid, APROP_RenderStyle, Style_Stencil);
-		delay(time);
-		SetActorProperty(tid, APROP_RenderStyle, Style_Translucent);
-		delay(time);
-		if (time > 1)
-			time--;
+	    SetActorProperty(tid, APROP_RenderStyle, Style_Stencil);
+	    delay(3);
+	    SetActorProperty(tid, APROP_RenderStyle, Style_Translucent);
+	    delay(3);
 	}
 }
 
