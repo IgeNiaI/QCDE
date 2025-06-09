@@ -118,7 +118,10 @@ Script "QCDE_Gamemode_SKULLTAG"        (void)
 {
 	ConsoleCommand("sv_itemrespawn true");
 }
-Script "QCDE_Gamemode_DOMINATION"      (void) {}
+Script "QCDE_Gamemode_DOMINATION"      (void)
+{
+	ConsoleCommand("sv_itemrespawn true");
+}
 Script "QCDE_Gamemode_INSTAGIB"        (void)
 {
 	ConsoleCommand("sv_weapondrop 0");
