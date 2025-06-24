@@ -443,7 +443,7 @@ Actor QCNailAmmo : Ammo
 	Height 16
 	Inventory.PickupMessage "$GOT_QCNailAmmo" // "Picked up a pack of nails."
 	Inventory.PickupSound "QC/Items/AmmoPick"
-	Inventory.Amount 30
+	Inventory.Amount 50
 	Inventory.MaxAmount 150
 	Ammo.BackpackMaxAmount 200
 	Ammo.BackpackAmount 15
@@ -492,7 +492,7 @@ Actor QCNailAmmoMap : QCNailAmmo 15041
 	//$Angled
 	//$Category "QCDE Ammunition"
 	//$Color 6
-	//$Title "Nails (+40, DM)"
+	//$Title "Nails (+50, DM)"
 }
 
 Actor QCNailAmmoSmallMap : QCNailAmmoSmall 15042
