@@ -127,7 +127,7 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.975);
-		if (GetCVar("qc_defrag"))
+		if (GetCVar("cooperative"))
 			SetActorProperty(0, APROP_VelocityCap, 0.0);
 		else
 			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
@@ -146,7 +146,7 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.95);
-		if (GetCVar("qc_defrag"))
+		if (GetCVar("cooperative"))
 			SetActorProperty(0, APROP_VelocityCap, 0.0);
 		else
 			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
@@ -184,7 +184,7 @@ Script "QCDE_ConfigureMovement" (void)
 	) {
 		SetActorProperty(0, APROP_CpmAirControl, true);
 		SetActorProperty(0, APROP_Speed, 0.96);
-		if (GetCVar("qc_defrag"))
+		if (GetCVar("cooperative"))
 			SetActorProperty(0, APROP_VelocityCap, 0.0);
 		else
 			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
