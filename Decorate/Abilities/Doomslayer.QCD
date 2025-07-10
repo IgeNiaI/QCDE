@@ -247,9 +247,9 @@ Actor BFG9000Shot_DM : BFG9000Shot
 		//Medals end
 		TNT1 A 0 A_PlaySound("QC/Abilities/Doomslayer/BFGExplosion",7,1,0,0.4)
 		TNT1 A 0 A_Quake(4,20,0,1500)
-		TNT1 A 0 A_Explode(50,160,XF_HURTSOURCE,0)		//damage to self or enemies close
-		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_RadiusThrust(170,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(50,160,XF_HURTSOURCE,0)		//damage to self or enemies close
 		TNT1 A 0 A_Explode(60,512,0,0,512)	//damage to enemies far away
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 12 A_SpawnItemEx("BFGImploder",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER)

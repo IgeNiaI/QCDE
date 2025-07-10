@@ -501,8 +501,10 @@ Actor QCNailWeak : FastProjectile
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact_Default",CHAN_AUTO,0.6,0,1.7,AAPTR_TARGET)
 		TNT1 A 0 A_SpawnItemEx("QCNailWeakDeathFX", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_RadiusThrust(24,32,RTF_AFFECTSOURCE|RTF_THRUSTZ,32)	//thrust players only this way, without damage
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(3,32,XF_HURTSOURCE,0,32)
-		TNT1 A 0 A_RadiusThrust(21,32,RTF_AFFECTSOURCE|RTF_THRUSTZ,32)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_SetScale(0.45)
 		TNT1 A 99 // We need this for proper rocket jump unlagged when exploding too soon
 		Stop
