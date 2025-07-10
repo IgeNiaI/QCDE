@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Blazkowicz {} // for compatibility checks
+Actor CompatVer31_Blazkowicz {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -241,9 +241,9 @@ Actor DieselBall
 			Goto DeathCont
 
 	DeathCont:
-		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE)
-		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_RadiusThrust(170,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE)
 		TNT1 A 0 A_Explode(random(100,200),128,0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_SpawnItemEx("DieselExplo",0,0,0,0,0,0,random(0,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_NOUNLAGGED)
@@ -265,9 +265,9 @@ Actor DieselBallDM : DieselBall
 	States
 	{
 	DeathCont:
-		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE)
-		TNT1 A 0 A_RadiusThrust(120,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_RadiusThrust(170,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE)
 		TNT1 A 0 A_Explode(30,160,0,1,64)	//30 damage he doesnt take, but other do at bigger radius
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		TNT1 A 0 A_SpawnItemEx("DieselExplo",0,0,0,0,0,0,random(0,359),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_NOUNLAGGED)

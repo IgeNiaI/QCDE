@@ -15,7 +15,7 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_Major {} // for compatibility checks
+Actor CompatVer31_Major {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -153,9 +153,9 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 			TNT1 A 0 A_Jump(256,"ContinuePvE") //for virtual jump to inherited versions
 			Goto ContinuePvE
 	ContinuePvE:
-		TNT1 A 0 A_Explode(65,256,1)	//self damage
-		TNT1 A 0 A_RadiusThrust(31,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_RadiusThrust(96,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 0 A_Explode(65,256,1)	//self damage
 		TNT1 A 0 A_Explode(500,32,0)	//Center of the explosion, "direct hit" of the rocket
 		TNT1 A 0 A_Explode(random(50,70)*10,384,0)	//big explosion
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
@@ -173,9 +173,9 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 			TNT1 A 0 A_Jump(256,"ContinueDM") //for virtual jump to inherited versions
 			Goto ContinueDM
 	ContinueDM:
-		TNT1 A 10 A_Explode(30,384,1,0,128)	//self damage and to others
-		TNT1 A 0 A_RadiusThrust(66,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//extra thrust because damage thrust alone is not enough
+		TNT1 A 0 A_RadiusThrust(96,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+		TNT1 A 10 A_Explode(30,384,1,0,128)	//self damage and to others
 		TNT1 A 0  A_Explode(40,384,0,0,128)	//damage to others
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 
