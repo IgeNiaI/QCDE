@@ -1,0 +1,147 @@
+// --------------------------------------------------------------------------
+//
+// Separate file for Terminator's ammo drops, to be overriden in weapon mods
+//
+// --------------------------------------------------------------------------
+
+Actor CompatVer31_TerminatorAmmo {} // for compatibility checks
+
+//--------------------------------------------------------
+// Passive
+//--------------------------------------------------------
+
+
+Actor QCBulletAmmoTerminator : QCBulletAmmoSmall
+{
+	Scale 0.5
+	Inventory.Amount 5
+	Inventory.PickupMessage "$GOT_QCBulletAmmoTerminator" // "Picked up a few surplus bullets."
+	+BRIGHT
+	States
+	{
+	Spawn:
+		AMBU B 0 NoDelay A_ChangeVelocity(random(-4,4),random(-4,4),random(3,7))
+		AMBU BBBBBBBBBBBBBBBBBBBB 35 BRIGHT // 20 seconds
+		AMBU B 3 A_FadeOut
+		Wait
+	}
+}
+
+
+Actor QCShellAmmoTerminator : QCShellAmmoSmall
+{
+	Scale 0.5
+	Inventory.Amount 1
+	Inventory.PickupMessage "$GOT_QCShellAmmoTerminator" // "Picked up a few surplus shells."
+	+BRIGHT
+	States
+	{
+	Spawn:
+		AMSH B 0 NoDelay A_ChangeVelocity(random(-4,4),random(-4,4),random(3,7))
+		AMSH BBBBBBBBBBBBBBBBBBBB 35 BRIGHT // 20 seconds
+		AMSH B 3 A_FadeOut
+		Wait
+	}
+}
+
+
+Actor QCNailAmmoTerminator : QCNailAmmoSmall
+{
+	Scale 0.5
+	Inventory.Amount 5
+	Inventory.PickupMessage "$GOT_QCNailAmmoTerminator" // "Picked up a few surplus nails."
+	+BRIGHT
+	States
+	{
+	Spawn:
+		AMNA B 0 NoDelay A_ChangeVelocity(random(-4,4),random(-4,4),random(3,7))
+		AMNA BBBBBBBBBBBBBBBBBBBB 35 BRIGHT // 20 seconds
+		AMNA B 3 A_FadeOut
+		Wait
+	}
+}
+
+
+Actor QCBoltAmmoTerminator : QCBoltAmmoSmall
+{
+	Scale 0.5
+	Inventory.Amount 3
+	Inventory.PickupMessage "$GOT_QCBoltAmmoTerminator" // "Picked up a few surplus bolts."
+	+BRIGHT
+	States
+	{
+	Spawn:
+		AMTB B 0 NoDelay A_ChangeVelocity(random(-4,4),random(-4,4),random(3,7))
+		AMTB BBBBBBBBBBBBBBBBBBBB 35 BRIGHT // 20 seconds
+		AMTB B 3 A_FadeOut
+		Wait
+	}
+}
+
+
+Actor QCRocketAmmoTerminator : QCRocketAmmoSmall
+{
+	Scale 0.5
+	Inventory.Amount 1
+	Inventory.PickupMessage "$GOT_QCRocketAmmoTerminator" // "Picked up a few surplus rockets."
+	+BRIGHT
+	States
+	{
+	Spawn:
+		AMRO B 0 NoDelay A_ChangeVelocity(random(-4,4),random(-4,4),random(3,7))
+		AMRO BBBBBBBBBBBBBBBBBBBB 35 BRIGHT // 20 seconds
+		AMRO B 3 A_FadeOut
+		Wait
+	}
+}
+
+
+Actor QCCoilAmmoTerminator : QCCoilAmmoSmall
+{
+	Scale 0.5
+	Inventory.Amount 2
+	Inventory.PickupMessage "$GOT_QCCoilAmmoTerminator" // "Picked up a few surplus coils."
+	+BRIGHT
+	States
+	{
+	Spawn:
+		AMCL B 0 NoDelay A_ChangeVelocity(random(-4,4),random(-4,4),random(3,7))
+		AMCL BBBBBBBBBBBBBBBBBBBB 35 BRIGHT // 20 seconds
+		AMCL B 3 A_FadeOut
+		Wait
+	}
+}
+
+
+Actor QCSlugAmmoTerminator : QCSlugAmmoSmall
+{
+	Scale 0.5
+	Inventory.Amount 1
+	Inventory.PickupMessage "$GOT_QCSlugAmmoTerminator" // "Picked up a few surplus slugs."
+	+BRIGHT
+	States
+	{
+	Spawn:
+		AMRA B 0 NoDelay A_ChangeVelocity(random(-4,4),random(-4,4),random(3,7))
+		AMRA BBBBBBBBBBBBBBBBBBBB 35 BRIGHT // 20 seconds
+		AMRA B 3 A_FadeOut
+		Wait
+	}
+}
+
+
+Actor QCBfgAmmoTerminator : QCBFGAmmoSmall
+{
+	Scale 0.55
+	Inventory.Amount 0
+	Inventory.PickupMessage "$GOT_QCBfgAmmoTerminator" // "Picked up a few surplus BFG cells."
+	+BRIGHT
+	States
+	{
+	Spawn:
+		AMBF B 0 NoDelay A_ChangeVelocity(random(-4,4),random(-4,4),random(3,7))
+		AMBF BBBBBBBBBBBBBBBBBBBB 35 BRIGHT // 20 seconds
+		AMBF B 3 A_FadeOut
+		Wait
+	}
+}
