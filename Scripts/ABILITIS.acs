@@ -3445,6 +3445,7 @@ script "QCDE_TotemSpawned" (void)
 	int lastTotem = getLastTotem(plr);
 
 	removeTotem(plr,lastTotem);
+	refillTotems(plr);
 
 	int tid = TOTEM_TIDBASE + plr + lastTotem * 128;
 
@@ -3574,6 +3575,28 @@ function void removeTotem(int plr, int totem)
 {
 	Thing_Remove( TOTEM_TIDBASE + plr + totem * 128);
 	Thing_Remove(HITBOX_TIDBASE + plr + totem * 128);
+}
+
+function void refillTotems(int plr)
+{
+	if (GameType() < GAME_NET_DEATHMATCH)
+	    return;
+
+	for(int totem = 0; totem < getMaxTotems(); totem++)
+	{
+	    if (IsTidUsed(TOTEM_TIDBASE + plr + totem * 128))
+	    {
+	        SetActorState(TOTEM_TIDBASE + plr + totem * 128, "HealRefill");
+	    }
+	}
+}
+
+script "QCDE_TotemHealSound" (int isSuper)
+{
+    if (isSuper)
+		PlaySound(0, "QC/Abilities/Galen/HealBig", CHAN_ITEM);
+	else
+		PlaySound(0, "QC/Abilities/Galen/HealSmall", CHAN_ITEM);
 }
 
 // Activator: Totem
