@@ -344,7 +344,6 @@ Actor NoTrailing : Token {}
 // Using powerups as tokens that time themselves out is his idea.
 
 Actor Timer : Powerup {	+SERVERNETID }
-Actor Twitchless3sec : Timer { Powerup.Duration 111 } // given by Thumper
 
 Actor Motionless3sec : PowerSpeed {
 	+SERVERNETID

@@ -111,21 +111,6 @@ Actor ThumperShootProc : CustomInventory
 
 
 
-Actor PowerGrayThumpFlight : PowerFlight
-{
-	//Inventory.Icon "IcnHaste"
-}
-
-Actor GrayThumperFlight : PowerupGiver
-{
-	+SERVERNETID
-	+INVENTORY.AUTOACTIVATE
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.MaxAmount 0
-	powerup.Type "GrayThumpFlight"
-	powerup.duration -15
-}
-
 Actor ThumperProjectile
 {
 	Projectile

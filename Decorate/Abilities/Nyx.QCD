@@ -10,7 +10,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Nyx {} // for compatibility checks
+Actor CompatVer31_Nyx {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -38,7 +38,6 @@ Actor GhostWalkInProc : CustomInventory
 		TNT1 A 0 A_SetTranslucent(0.0)
 		//removes effects of thumper
 		TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
-		TNT1 A 0 A_TakeInventory("PowerGrayThumpFlight", 1, TIF_SKIPOWNER)
 		TNT1 A 0 A_GiveInventory("ActiveInProgress", 1, 0, GIF_SKIPOWNER)
 		TNT1 A 35
 		Stop
