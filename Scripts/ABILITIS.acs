@@ -1756,14 +1756,12 @@ Script "QCDE_ThumperAffected" (void)
 	}
 
 	//log(s:"\c[bludi]Thumper thrown by ", n:-~thumperOwner, s:" -- #", d:thumperOwner, s:" affects ", n:0, s:" -- #", d:victim);
-	SetPlayerProperty(0,1,PROP_FROZEN);
 	Thing_Stop(0);
-	GiveInventory("GrayThumperFlight",1);
-	GiveInventory("Twitchless3sec",1);
 	ThrustThingZ(0,THUMPER_THRUSTZ * 4,0,0);
 
-	int t = 35, velz, hit; //only lasts 1 sec
-	while(t --> 0)
+	int t = 35, hit = 0; //only lasts 1 sec
+	int velz = GetActorVelZ(0);
+	while(velz > 0)
 	{
 		if(GetActorVelZ(0) == 0 && !hit)
 		{
@@ -1785,16 +1783,8 @@ Script "QCDE_ThumperAffected" (void)
 			hit = true;
 		}
 		velz = GetActorVelZ(0);
-		if(velz < 0) velz = 0;
-		SetActorVelocity(0, 0,0,0.05, true,false); // QZan only! Ensure some upward momentum for the ceiling check to work
 		delay(1);
 	}
-
-	SetActivator(1000 + victim);
-	SetPlayerProperty(0,0,PROP_FROZEN);
-
-	if(!checkinventory("PowerCorvusFlight"))	//if corvus flying, skip removing flight, since he'll lose it automatically
-		TakeInventory("PowerGrayThumpFlight",1);
 }
 
 // Activator: somebody already caught in radius
