@@ -422,16 +422,16 @@ Actor QCNailWeakDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		DB09 A 0 A_Jump(255,"EndDeath")
+		DB09 A 0
 		Goto EndDeath
 	T2:
-		DB10 A 0 A_Jump(255,"EndDeath")
+		DB10 A 0
 		Goto EndDeath
 	T3:
-		DB11 A 0 A_Jump(255,"EndDeath")
+		DB11 A 0
 		Goto EndDeath
 	T4:
-		DB12 A 0 A_Jump(255,"EndDeath")
+		DB12 A 0
 		Goto EndDeath
 
 	EndDeath:

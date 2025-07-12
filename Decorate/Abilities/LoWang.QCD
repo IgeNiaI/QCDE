@@ -9,7 +9,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_LoWang {} // for compatibility checks
+Actor CompatVer31_LoWang {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -67,7 +67,6 @@ Actor NobitsuraSlash1SP
 	{
 	Spawn:
 		QP18 A 0
-		TNT1 A 0 A_Jump(255,"Looper")
 	Looper:
 		QP18 Y 0 A_Explode(40,96,0,0,96)
 		QP18 YY 1 Bright Light(RedMediumPoint3) A_SpawnItemEx("Slash1Trail",0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
@@ -91,7 +90,6 @@ Actor NobitsuraSlash2SP : NobitsuraSlash1SP
 	{
 	Spawn:
 		QP18 A 0
-		TNT1 A 0 A_Jump(255,"Looper")
 	Looper:
 		QP18 Z 0 A_Explode(40,96,0,0,96)
 		QP18 ZZ 1 Bright Light(RedMediumPoint3) A_SpawnItemEx("Slash2Trail",0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)

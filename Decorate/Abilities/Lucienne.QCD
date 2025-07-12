@@ -10,7 +10,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Lucienne {} // for compatibility checks
+Actor CompatVer31_Lucienne {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -65,7 +65,7 @@ Actor LucienneBall : FastProjectile
 		TNT1 A 0 A_Warp(AAPTR_DEFAULT, 15,0,0,0, WARPF_NOCHECKPOSITION)
 		TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
-		Goto DeathCont
+		Goto DeathInvis
 
 	Death: //crashed somewhere and checks for splash
 		TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
@@ -73,12 +73,15 @@ Actor LucienneBall : FastProjectile
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHit",360,JLOSF_PROJECTILE,180)
 		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
-		Goto DeathCont
+		Goto DeathInvis
 
 		RadiusHit:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
-			Goto DeathCont
+			Goto DeathInvis
+
+    DeathInvis:     // To workaround multiplayer clients skipping A_Jump calls and going to incorrect state
+        TNT1 A 99   // So instead display nothing and wait for server to send correct state from it's A_Jump call
 
 	DeathCont:
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_LucienneBallHits")
@@ -318,12 +321,10 @@ Actor LucienneImmolation
 
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHit",360,JLOSF_PROJECTILE,627)
-		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 	DeathCont:
 		TNT1 A 0 A_JumpIfInTargetInventory("DMToken",1,"DMExplo")

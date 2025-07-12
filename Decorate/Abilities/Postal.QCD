@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Postal {} // for compatibility checks
+Actor CompatVer31_Postal {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -234,7 +234,6 @@ Actor CowHeadGasSpawner
 			QP29 Z 0 A_SpawnItemEx("CowHeadGasBig",random(15,-15),random(15,-15),random(0,30),frandom(1.5,-1.5),frandom(1.5,-1.5),frandom(0.01,1.5),0,SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 			TNT1 A 0 A_JumpIfTargetInLOS("Sounder",360,JLOSF_PROJECTILE,269)
-			TNT1 A 0 A_Jump(255,"ContinueLooper")
 		ContinueLooper:
 			QP29 Z 10 A_Explode(random(2,8)*10,192,0,0,192)
 			TNT1 A 0 A_SetUserVar(user_counter,user_counter+1)
@@ -242,7 +241,6 @@ Actor CowHeadGasSpawner
 
 	Sounder:
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		TNT1 A 0 A_Jump(255,"ContinueLooper")
 		Goto ContinueLooper
 
 	End:

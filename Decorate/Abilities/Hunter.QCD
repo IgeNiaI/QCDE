@@ -15,7 +15,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Hunter {} // for compatibility checks
+Actor CompatVer31_Hunter {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -135,8 +135,6 @@ Actor PlHunterBall
 		Loop
 	Xdeath:	//Direct hit
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		TNT1 A 0 A_Jump(256,"Death") //for virtual jump to inherited versions
-		Goto Death
 	Death:
 		HIB1 CDEFG 3 Bright
 		Stop
@@ -150,6 +148,8 @@ Actor PlHunterBallDM : PlHunterBall
 	Damage (5)
 	States
 	{
+	Xdeath:	//Direct hit
+		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 	Death:
 		TNT1 A 0 A_RadiusGive("HunterProjectionProc", 40, RGF_PLAYERS|RGF_FORCESERVERSIDE)
 		Goto Super::Death

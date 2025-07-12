@@ -145,12 +145,10 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHit",360,JLOSF_PROJECTILE,537)
 		TNT1 A 0 A_Warp(AAPTR_DEFAULT, 0,0,40)	//rises up a bit to avoid being blocked by a single "stair step" or w/e
-		TNT1 A 0 A_Jump(256,"ContinuePvE") //for virtual jump to inherited versions
 		Goto ContinuePvE
 
 		RadiusHit:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-			TNT1 A 0 A_Jump(256,"ContinuePvE") //for virtual jump to inherited versions
 			Goto ContinuePvE
 	ContinuePvE:
 		TNT1 A 0 A_RadiusThrust(96,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
@@ -165,12 +163,10 @@ Actor AirStrikeTargetRocket : AirStrikeTargetCircle
 	DM:
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHitDM",360,JLOSF_PROJECTILE,716)
-		TNT1 A 0 A_Jump(256,"ContinuePvE") //for virtual jump to inherited versions
-		Goto ContinuePvE
+		Goto ContinueDM
 
 		RadiusHitDM:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-			TNT1 A 0 A_Jump(256,"ContinueDM") //for virtual jump to inherited versions
 			Goto ContinueDM
 	ContinueDM:
 		TNT1 A 0 A_RadiusThrust(96,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage

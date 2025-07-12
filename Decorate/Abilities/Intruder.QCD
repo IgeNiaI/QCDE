@@ -15,7 +15,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Intruder {} // for compatibility checks
+Actor CompatVer31_Intruder {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -238,8 +238,6 @@ Actor IntruderBodyTrailInstagib
 	{
 	Spawn:
 		QP31 A 0 NODELAY A_Jump(255,1,2,3,4)
-		QP31 ABCD 0 A_Jump(255,"Doer")
-	Doer:
 		QP31 "#" 3 Bright
 		QP31 "#####" 1 Bright A_FadeIn(0.199)
 		QP31 "#" 1 Bright A_FadeOut(0.05)

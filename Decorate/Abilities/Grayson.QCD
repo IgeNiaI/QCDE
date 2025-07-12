@@ -11,7 +11,7 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_Grayson {} // for compatibility checks
+Actor CompatVer31_Grayson {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -448,8 +448,10 @@ Actor BrownSmokeBig
 	Choose1of4:
 		TNT1 A 0 A_Jump(256,"T1","T2")
 
-	T1:	X201 C 0 A_Jump(256,"Behavior")
-	T2:	X201 D 0 A_Jump(256,"Behavior")
+	T1:	X201 C 0
+	    Goto Behavior
+	T2:	X201 D 0
+	    Goto Behavior
 
 	Behavior:
 		"####" "#" 0 A_JumpIf(user_counter>=random(5,12),"SlowDown")

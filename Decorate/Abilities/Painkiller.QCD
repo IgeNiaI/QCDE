@@ -346,11 +346,9 @@ Actor PKDemonWeapon : DoomWeapon
 
 		FireSP:
 			TNT1 A 0 A_FireCustomMissile("PKDemonProjectile_SP",  0,false, 0,15)
-			TNT1 A 0 A_Jump(255,"FireCont")
 			Goto FireCont
 		FireDM:
 			TNT1 A 0 A_FireCustomMissile("PKDemonProjectile_DM",  0,false, 0,15)
-			TNT1 A 0 A_Jump(255,"FireCont")
 			Goto FireCont
 
 	FireCont:
@@ -417,7 +415,6 @@ Actor PKDemonProjectile_DM
 		//Medals start
 		TNT1 A 0 A_GiveToTarget("DemonDirectDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		//Medals end
-		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
 	Death: //crashed somewhere and checks for splash
@@ -425,7 +422,6 @@ Actor PKDemonProjectile_DM
 		TNT1 A 0 A_Stop
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHit",360,JLOSF_PROJECTILE,358)
-		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
@@ -433,7 +429,6 @@ Actor PKDemonProjectile_DM
 			//Medals start
 			TNT1 A 0 A_GiveToTarget("DemonSplashDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 			//Medals end
-			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
 	DeathCont:
@@ -785,16 +780,13 @@ Actor TarotOverheadBase
 	{
 	Spawn:
 		PLAY A 0 NODELAY
-		"####" "#" 0 A_Jump(255,"ContinueSpawn")
 	SetPvE:
 		"####" "#" 0 A_JumpIfInTargetInventory("DMToken",1,"SetPvP")
 		"####" "#" 0 A_SetUserVar(user_limit,70)		//if pve, 20 second
-		"####" "#" 0 A_Jump(255,"ContinueSpawn")
 		Goto ContinueSpawn
 
 		SetPvP:
 			"####" "#" 0 A_SetUserVar(user_limit,35)		//if DM, 10 seconds
-			"####" "#" 0 A_Jump(255,"ContinueSpawn")
 			Goto ContinueSpawn
 
 	ContinueSpawn:
@@ -803,7 +795,6 @@ Actor TarotOverheadBase
 		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("QCDE_AbilityFXMustDie"),"Ender")
 		"####" "##########" 1 A_Warp(AAPTR_TARGET, -5, 0, 70, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_SKIPOWNER|WARPF_STOP)
 		"####" "#" 0 A_SetUserVar(user_counter,user_counter+1)
-		"####" "#" 0 A_Jump(255,"ContinueSpawn")
 		Goto ContinueSpawn
 	Ender:
 		"####" "#" 0 A_JumpIf(user_counter == 0, "JustDieAlready")
@@ -819,28 +810,70 @@ Actor TarotOverheadBase
 
 //	Protect
 Actor TarotOverhead1 : TarotOverheadBase
-{	States	{ Spawn: WP30 O 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+{
+    States
+    {
+    Spawn: WP30 O 0 NODELAY
+        Goto SetPvE
+    }
+}
 
 //	Damage
 Actor TarotOverhead2 : TarotOverheadBase
-{	States	{ Spawn: WP30 P 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+{
+    States
+    {
+    Spawn: WP30 P 0 NODELAY
+        Goto SetPvE
+    }
+}
 
 //	Protect + damage
 Actor TarotOverhead3 : TarotOverheadBase
-{	States	{ Spawn: WP30 Q 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+{
+    States
+    {
+    Spawn: WP30 Q 0 NODELAY
+        Goto SetPvE
+    }
+}
 
 //	Speed
 Actor TarotOverhead4 : TarotOverheadBase
-{	States	{ Spawn: WP30 R 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+{
+    States
+    {
+    Spawn: WP30 R 0 NODELAY
+        Goto SetPvE
+    }
+}
 
 //	Protec + Speed
 Actor TarotOverhead5 : TarotOverheadBase
-{	States	{ Spawn: WP30 S 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+{
+    States
+    {
+    Spawn: WP30 S 0 NODELAY
+        Goto SetPvE
+    }
+}
 
 //	Damage + Speed
 Actor TarotOverhead6 : TarotOverheadBase
-{	States	{ Spawn: WP30 T 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+{
+    States
+    {
+    Spawn: WP30 T 0 NODELAY
+        Goto SetPvE
+    }
+}
 
 //	All 3
 Actor TarotOverhead7 : TarotOverheadBase
-{	States	{ Spawn: WP30 U 0 NODELAY A_Jump(255,"SetPvE") Goto SetPvE	}	}
+{
+    States
+    {
+    Spawn: WP30 U 0 NODELAY
+        Goto SetPvE
+    }
+}
