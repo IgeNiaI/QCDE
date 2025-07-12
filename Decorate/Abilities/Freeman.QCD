@@ -10,7 +10,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Freeman {} // for compatibility checks
+Actor CompatVer31_Freeman {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -297,7 +297,6 @@ Actor Gman
 		N049 I 3 A_Wander	N049 F 0 A_FadeOut(0.09)
 		N049 J 3 A_Wander	N049 F 0 A_FadeOut(0.09)
 		N049 J 3 A_Wander	N049 F 0 A_SetTranslucent(0.0,0)
-		TNT1 A 0 A_Jump(255,"Warp")
 	Warp:
 		TNT1 A 0 A_JumpIf(CallACS("QCDE_GmanShouldLeave"), "Leave")
 		TNT1 A 0 A_Warp(AAPTR_PLAYER1,random(random(-4096,0),random(0,4096)),random(random(-4096,0),random(0,4096)),0,0,WARPF_NOCHECKPOSITION) // <-- Ayy lmao, single-player-style code in QCDE!

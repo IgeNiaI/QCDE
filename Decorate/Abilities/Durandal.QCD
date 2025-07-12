@@ -12,7 +12,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Durandal {} // for compatibility checks
+Actor CompatVer31_Durandal {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -225,11 +225,16 @@ Actor ProtestSign
 		SIGN A 0 NODELAY A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
 		SIGN A 0 A_Jump(255,"T1","T2","T3","T4","T5")
 
-		T1: SIGN A 0 A_Jump(255,"Looper") Goto Looper
-		T2: SIGN B 0 A_Jump(255,"Looper") Goto Looper
-		T3: SIGN C 0 A_Jump(255,"Looper") Goto Looper
-		T4: SIGN D 0 A_Jump(255,"Looper") Goto Looper
-		T5: SIGN E 0 A_Jump(255,"Looper") Goto Looper
+		T1: SIGN A 0
+		    Goto Looper
+		T2: SIGN B 0
+		    Goto Looper
+		T3: SIGN C 0
+		    Goto Looper
+		T4: SIGN D 0
+		    Goto Looper
+		T5: SIGN E 0
+		    Goto Looper
 
 	Looper:
 		SIGN "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
@@ -284,12 +289,11 @@ Actor BOBSim_SP : BobSimMain
 		ABOB A 0 A_Die("BobExploSP")
 		Goto XDeath
 	XDeathVirtual:
-		ABOB A 0 A_Jump(255,"Death.BobExploSP")
+		ABOB A 0
 		Goto Death.BobExploSP
 	Death.BobExploSP:
 		//ABOB O 0 A_PrintBold("SP death",0.4)
 		ABOB O 0 A_CustomMissile("BobExploHackSP",25)
-		ABOB O 0 A_Jump(255,"EndExplosion")
 		Goto EndExplosion
 	}
 }
@@ -312,12 +316,12 @@ Actor BOBSim_DM : BobSimMain
 		ABOB A 0 A_Die("BobExploDM")
 		Goto XDeath
 	XDeathVirtual:
-		ABOB A 0 A_Jump(255,"Death.BobExploDM")
+		ABOB A 0
 		Goto Death.BobExploDM
 	Death.BobExploDM:
 		//ABOB O 0 A_PrintBold("DM death",0.4)
 		ABOB O 0 A_CustomMissile("BobExploHackDM",25)
-		ABOB O 0 A_Jump(255,"EndExplosion")
+		ABOB O 0
 		Goto EndExplosion
 	}
 }

@@ -10,7 +10,7 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_Inquisitor {} // for compatibility checks
+Actor CompatVer31_Inquisitor {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -261,17 +261,14 @@ Actor ShieldPieceFront
 		"####" "#" 0 A_SetUserVar(user_frontdist,40)
 		"####" "#" 0 A_SetUserVar(user_sidedist,0)
 		"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) >= 2,"NoThruSpecies")
-		"####" "#" 0 A_Jump(256,"Looper")	//for safety
 		Goto Looper
 	NoThruSpecies:
 		"####" "#" 0 A_ChangeFlag("THRUSPECIES", false)
-		"####" "#" 0 A_Jump(256,"Looper")	//for safety
 		Goto Looper
 	Looper:
 		//one tic not being shootable to prevent weird situations of "ownership" that left the piece floating without owner
 		"####" "#" 1 A_Warp(AAPTR_TARGET,user_frontdist,user_sidedist,0,user_angle,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_SKIPOWNER)
 		"####" "#" 0 A_ChangeFlag("SHOOTABLE",1)
-		"####" "#" 0 A_Jump(256,"Looper4Realz")	//for safety
 	Looper4Realz:
 		"####" "#" 0 A_RearrangePointers(AAPTR_TRACER,AAPTR_TARGET,AAPTR_DEFAULT)
 		"####" "#" 0 A_JumpIfInTargetInventory("DeactivateShieldToken",1,"Death.Removed") //failsafe to remove this shield
@@ -318,7 +315,6 @@ Actor ShieldPieceLeft1 : ShieldPieceFront
 		"####" "#" 0 A_SetUserVar(user_angle,0)
 		"####" "#" 0 A_SetUserVar(user_frontdist,40)
 		"####" "#" 0 A_SetUserVar(user_sidedist,-50)
-		"####" "#" 0 A_Jump(256,"Looper")	//for safety
 		Goto Looper
 	Death.Removed:	//when it was deactivated by stun, stagger, or whatever else
 		TNT1 A 10
@@ -334,7 +330,6 @@ Actor ShieldPieceLeft2 : ShieldPieceLeft1
 		"####" "#" 0 A_SetUserVar(user_angle,0)
 		"####" "#" 0 A_SetUserVar(user_frontdist,35)
 		"####" "#" 0 A_SetUserVar(user_sidedist,-100)
-		"####" "#" 0 A_Jump(256,"Looper")	//for safety
 		Goto Looper
 	}
 }
@@ -348,7 +343,6 @@ Actor ShieldPieceRight1 : ShieldPieceLeft1
 		"####" "#" 0 A_SetUserVar(user_angle,0)
 		"####" "#" 0 A_SetUserVar(user_frontdist,40)
 		"####" "#" 0 A_SetUserVar(user_sidedist,50)
-		"####" "#" 0 A_Jump(256,"Looper")	//for safety
 		Goto Looper
 	}
 }
@@ -361,7 +355,6 @@ Actor ShieldPieceRight2 : ShieldPieceLeft1
 		"####" "#" 0 A_SetUserVar(user_angle,0)
 		"####" "#" 0 A_SetUserVar(user_frontdist,35)
 		"####" "#" 0 A_SetUserVar(user_sidedist,100)
-		"####" "#" 0 A_Jump(256,"Looper")	//for safety
 		Goto Looper
 	}
 }

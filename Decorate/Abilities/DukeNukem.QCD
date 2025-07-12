@@ -13,7 +13,7 @@
 //
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_DukeNukem {} // for compatibility checks
+Actor CompatVer31_DukeNukem {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -245,17 +245,18 @@ Actor DukeFreezeShot
 	XDeath:
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"Death")
-		Goto DeathEnd
+		Goto DeathInvis
 	Crash:
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		TNT1 A 0 A_Jump(255,"Death")
-		Goto DeathEnd
+		Goto DeathInvis
 	Death:
 		TNT1 A 0 A_Explode(random(2,4)*10,40,0)
 		TNT1 A 10 A_SpawnItemEx("FreezeShotExplo", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
-	DeathEnd:
-		TNT1 A 1
 		Stop
+
+    DeathInvis:     // To workaround multiplayer clients skipping A_Jump calls and going to incorrect state
+        TNT1 A 99   // So instead display nothing and wait for server to send correct state from it's A_Jump call
 	}
 }
 Actor FreezeShotExplo
@@ -292,12 +293,10 @@ Actor DukeFreezeShot_DM : DukeFreezeShot
 		Loop
 	XDeath:
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		TNT1 A 0 A_Jump(255,"Death")
-		Goto DeathEnd
+		Goto Death
 	Crash:
 		TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		TNT1 A 0 A_Jump(255,"Death")
-		Goto DeathEnd
+		Goto Death
 	Death:
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_FreezeShotHits")
 		TNT1 A 0 A_RadiusGive("FreezeCounterProc",64,RGF_PLAYERS|RGF_NOTARGET,1)
@@ -433,8 +432,6 @@ Actor FrozenBlockLong : FrozenBlockShort
 	{
 	Spawn:
 		ICED B 0 NODELAY A_PlaySound("misc/freeze")
-		ICED B 0 A_Jump(255,"PlayOff")
-		"####" "#" 35
 		Goto PlayOff
 	PlayOff:
 		"####" "#" 0 A_JumpIfInTargetInventory("ImDead",1,"FadeAway")
@@ -452,8 +449,6 @@ Actor FrozenBlockPlayer : FrozenBlockShort
 	{
 	Spawn:
 		ICED B 0 NODELAY A_PlaySound("misc/freeze")
-		ICED B 0 A_Jump(255,"PlayOff")
-		"####" "#" 35
 		Goto PlayOff
 	PlayOff:
 		"####" "#" 0 A_JumpIfInTargetInventory("ImDead",1,"FadeAway")

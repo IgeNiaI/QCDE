@@ -415,7 +415,7 @@ Actor TriboltBolt
 		TNT1 A 0 A_GiveToTarget("TBDirectDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		//Medals end
 		TNT1 A 0 A_Jump(256,"DeathCont")
-		Goto DeathCont
+		Goto DeathInvis
 
 	Bounce:	//for when it hits floor/planes, it doesnt get destroyed, but stays there for 0.8 sec
 		GRNL A 0 A_PlaySound("QC/Weapons/Tribolt/Impact",CHAN_AUTO,1,0,1.2)
@@ -431,7 +431,7 @@ Actor TriboltBolt
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHit",360,JLOSF_PROJECTILE,180)
 		TNT1 A 0 A_Jump(256,"DeathCont")
-		Goto DeathCont
+		Goto DeathInvis
 
 		RadiusHit:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
@@ -439,7 +439,10 @@ Actor TriboltBolt
 			TNT1 A 0 A_GiveToTarget("TBSplashDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 			//Medals end
 			TNT1 A 0 A_Jump(256,"DeathCont")
-			Goto DeathCont
+			Goto DeathInvis
+
+    DeathInvis:     // To workaround multiplayer clients skipping A_Jump calls and going to incorrect state
+        TNT1 A 99   // So instead display nothing and wait for server to send correct state from it's A_Jump call
 
 	DeathCont:
 		TNT1 A 0 A_RadiusThrust(68,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
@@ -721,7 +724,6 @@ Actor TriboltBoltGrenade
 
 	Xdeath:	//Direct hit
 		TNT1 A 0 A_GiveToTarget("HitBeepBig",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
 
@@ -730,12 +732,10 @@ Actor TriboltBoltGrenade
 		TNT1 A 0 A_Stop
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHit",360,JLOSF_PROJECTILE,180)
-		TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 		Goto DeathCont
 
 		RadiusHit:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-			TNT1 A 0 A_Jump(256,"DeathCont") //for virtual jump to inherited versions
 			Goto DeathCont
 
 	DeathCont:

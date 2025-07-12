@@ -789,16 +789,16 @@ Actor QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		DB09 A 0 A_Jump(255,"EndDeath")
+		DB09 A 0
 		Goto EndDeath
 	T2:
-		DB10 A 0 A_Jump(255,"EndDeath")
+		DB10 A 0
 		Goto EndDeath
 	T3:
-		DB11 A 0 A_Jump(255,"EndDeath")
+		DB11 A 0
 		Goto EndDeath
 	T4:
-		DB12 A 0 A_Jump(255,"EndDeath")
+		DB12 A 0
 		Goto EndDeath
 
 	EndDeath:
@@ -1520,7 +1520,7 @@ Actor LavaNailFlameBurner
 			VTFB A 0 A_SpawnItemEx("NailFlameFX", random(4,-4),random(4,-4),0, 0,0,frandom(0.05,0.4), 0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
 			VTFB A 0 A_SeekerMissile(0,0,SMF_LOOK/*|SMF_CURSPEED*/,256)
 			VTFB A 0 A_JumpIfTargetInLOS("Sounder",360,JLOSF_PROJECTILE,50)
-			VTFB A 0 A_Jump(255,"ContinueLooper")
+			VTFB A 0
 		ContinueLooper:
 			VTFB A 0 A_CheckFloor("NoWarp")
 			VTFB A 0 A_Explode(15,32,0,0,32)
@@ -1535,7 +1535,7 @@ Actor LavaNailFlameBurner
 
 	Sounder:
 		VTFB A 0 A_GiveToTarget("HitBeepLow",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-		VTFB A 0 A_Jump(255,"ContinueLooper")
+		VTFB A 0
 		Goto ContinueLooper
 
 	Ender:
