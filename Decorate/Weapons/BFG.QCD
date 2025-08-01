@@ -8,7 +8,7 @@
 
 Actor CompatVer31_BFG {} // for compatibility checks
 
-Actor BFGPickup : CustomInventory 15608
+Actor BFGPickup : QCWeaponPickup 15608
 {
 	//$NotAngled
 	//$Category "QCDE Weapons"

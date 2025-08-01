@@ -8,7 +8,7 @@
 
 Actor CompatVer31_SNailgun {} // for compatibility checks
 
-Actor SuperNailgunPickup : CustomInventory 15603
+Actor SuperNailgunPickup : QCWeaponPickup 15603
 {
 	//$NotAngled
 	//$Category "QCDE Weapons"

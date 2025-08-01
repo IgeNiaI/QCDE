@@ -6,9 +6,9 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_HMachinegun {} // for compatibility checks
+Actor CompatVer31_HMachinegun {} // for compatibility checks
 
-Actor HeavyMachinegunPickup : CustomInventory 15600
+Actor HeavyMachinegunPickup : QCWeaponPickup 15600
 {
 	//$NotAngled
 	//$Category "QCDE Weapons"

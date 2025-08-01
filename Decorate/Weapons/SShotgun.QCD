@@ -6,9 +6,9 @@
 //
 // --------------------------------------------------------------------------
 
-Actor CompatVer30_SShotgun {} // for compatibility checks
+Actor CompatVer31_SShotgun {} // for compatibility checks
 
-Actor SuperShotgunPickup : CustomInventory 15602
+Actor SuperShotgunPickup : QCWeaponPickup 15602
 {
 	//$NotAngled
 	//$Category "QCDE Weapons"

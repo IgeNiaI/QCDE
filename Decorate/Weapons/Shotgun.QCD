@@ -8,7 +8,7 @@
 
 Actor CompatVer31_Shotgun {} // for compatibility checks
 
-Actor ShotgunPickup : CustomInventory 15601
+Actor ShotgunPickup : QCWeaponPickup 15601
 {
 	//$NotAngled
 	//$Category "QCDE Weapons"

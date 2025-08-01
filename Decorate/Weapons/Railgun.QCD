@@ -8,7 +8,7 @@
 
 Actor CompatVer31_Railgun {} // for compatibility checks
 
-Actor RailgunPickup : CustomInventory 15607
+Actor RailgunPickup : QCWeaponPickup 15607
 {
 	//$NotAngled
 	//$Category "QCDE Weapons"
