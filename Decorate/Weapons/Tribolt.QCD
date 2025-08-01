@@ -11,7 +11,7 @@
 
 Actor CompatVer31_Tribolt {} // for compatibility checks
 
-Actor TriboltPickup : CustomInventory 15604
+Actor TriboltPickup : QCWeaponPickup 15604
 {
 	//$NotAngled
 	//$Category "QCDE Weapons"

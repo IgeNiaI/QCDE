@@ -9,7 +9,7 @@
 
 Actor CompatVer31_RocketLauncher {} // for compatibility checks
 
-Actor RocketLauncherPickup : CustomInventory 15605
+Actor RocketLauncherPickup : QCWeaponPickup 15605
 {
 	//$NotAngled
 	//$Category "QCDE Weapons"
