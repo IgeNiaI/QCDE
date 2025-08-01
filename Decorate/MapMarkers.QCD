@@ -1,0 +1,83 @@
+Actor CompatVer31_MapMarkers {} // for compatibility checks
+
+Actor QCMapMarker : MapMarker { Scale 0.2 }
+
+Actor MapMarker_HMG : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        QCMb Z -1
+		Stop
+    }
+}
+
+Actor MapMarker_SSG : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        QCMC Z -1
+		Stop
+    }
+}
+
+Actor MapMarker_SNG : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        QCMD Z -1
+		Stop
+    }
+}
+
+Actor MapMarker_TB : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        QCME Z -1
+		Stop
+    }
+}
+
+Actor MapMarker_RL : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        QCM5 Z -1
+		Stop
+    }
+}
+
+Actor MapMarker_LG : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        QCM6 Z -1
+		Stop
+    }
+}
+
+Actor MapMarker_RG : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        QCM7 Z -1
+		Stop
+    }
+}
+
+Actor MapMarker_BFG : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        QCM8 Z -1
+		Stop
+    }
+}
