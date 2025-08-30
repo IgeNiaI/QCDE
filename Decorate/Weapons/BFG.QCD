@@ -31,13 +31,15 @@ Actor BFGPickup : QCWeaponPickup 15608
 		Goto Idle
 	DMSpawn:
 		QCG8 Z 0 A_ChangeFlag("DROPPED", false)
-		QCG8 Z 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",22,args[4])
+		QCG8 Z 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",22,args[4],args[3])
+		QCG8 Z 0 A_SetArg(3, 1)
 		QCG8 Z 70 Bright A_SetArg(4, 0)
 		QCG8 Z 0 A_ChangeFlag("NOGRAVITY", false)
 		QCG8 Z -1 Bright
 		Stop
 	Idle:
-		QCG8 Y 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",21,args[4])
+		QCG8 Y 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",21,args[4],args[3])
+		QCG8 Y 0 A_SetArg(3, 1)
 		QCG8 Y -1 A_SetArg(4, 0)
 		Wait
 	Pickup:
