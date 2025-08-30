@@ -12,7 +12,7 @@ Script "QCDE_GetWeaponsType" (void)
 
 int weaponSpawned[NUMBER_OF_WEAPONS];
 
-Script "QCDE_WeaponSpawned" (int type, int arg4)
+Script "QCDE_WeaponSpawned" (int type, int arg4, int arg3)
 {
 	// Weapon-centric modes
 	if(GetCvar("instagib") || GetCvar("rocketarena"))
@@ -22,28 +22,32 @@ Script "QCDE_WeaponSpawned" (int type, int arg4)
 		terminate;
 	}
 
-	if(arg4 == 234)
+	if(arg4 == 234 || arg3 == 0)
 	{
 		//log(s:"Weapon spawns its smoke: ", s:weaponList[type]);
 		str smonk = "WeaponSpawnPointBase";
+		str marker = "MapMarker";
+
 		switch(type)
 		{
-		case  8: smonk = "SpawnPoint_HMG"; break;
-		case 10: smonk = "SpawnPoint_SSG"; break;
-		case 12: smonk = "SpawnPoint_SNG"; break;
-		case 14: smonk = "SpawnPoint_TB" ; break;
-		case 16: smonk = "SpawnPoint_RL" ; break;
-		case 18: smonk = "SpawnPoint_LG" ; break;
-		case 20: smonk = "SpawnPoint_RG" ; break;
-		case 22: smonk = "SpawnPoint_BFG"; break;
-		case 3: case 7: case 9: case 11: case 13: case 15: case 17: case 19: case 21: smonk = "FX"; break;
-		default: log(s:"QCDE Warning: Unexpected weapon type spawning smoke: ", d:type); break;
+			case  8: smonk = "SpawnPoint_HMG"; marker = "MapMarker_HMG"; break;
+			case 10: smonk = "SpawnPoint_SSG"; marker = "MapMarker_SSG"; break;
+			case 12: smonk = "SpawnPoint_SNG"; marker = "MapMarker_SNG"; break;
+			case 14: smonk = "SpawnPoint_TB" ; marker = "MapMarker_TB"; break;
+			case 16: smonk = "SpawnPoint_RL" ; marker = "MapMarker_RL"; break;
+			case 18: smonk = "SpawnPoint_LG" ; marker = "MapMarker_LG"; break;
+			case 20: smonk = "SpawnPoint_RG" ; marker = "MapMarker_RG"; break;
+			case 22: smonk = "SpawnPoint_BFG"; marker = "MapMarker_BFG"; break;
+			case 3: case 7: case 9: case 11: case 13: case 15: case 17: case 19: case 21: smonk = "FX"; break;
+			default: log(s:"QCDE Warning: Unexpected weapon type spawning smoke: ", d:type); break;
 		}
 
 		int x = GetActorX(0);
 		int y = GetActorY(0);
 		int z = GetActorZ(0);
-		SpawnForced(smonk, x,y,z);
+	
+		if(arg4 == 234)					SpawnForced(smonk,  x,y,z);
+		if(arg3 == 0 && type % 2 == 0)	SpawnForced(marker, x,y,z);
 	}
 
 	//log(s:"Weapon trying to spawn: ", s:weaponList[type]);
