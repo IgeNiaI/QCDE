@@ -29,7 +29,8 @@ Actor SuperNailgunPickup : QCWeaponPickup 15603
 		Goto Idle
 	DMSpawn:
 		"####" "#" 0 A_ChangeFlag("DROPPED", 0)
-		QCGD Z 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",12,args[4])
+		QCGD Z 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",12,args[4],args[3])
+		QCGD Z 0 A_SetArg(3, 1)
 		QCGD Z -1 Bright A_SetArg(4, 0)
 		Stop
 
@@ -40,7 +41,8 @@ Actor SuperNailgunPickup : QCWeaponPickup 15603
 		Stop
 
 	Idle:
-		QCGD Y 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",11,args[4])
+		QCGD Y 0 ACS_NamedExecuteWithResult("QCDE_WeaponSpawned",11,args[4],args[3])
+		QCGD Y 0 A_SetArg(3, 1)
 		QCGD Y -1 A_SetArg(4, 0)
 		Wait
 	Pickup:
