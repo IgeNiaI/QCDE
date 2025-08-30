@@ -1,6 +1,11 @@
 Actor CompatVer31_MapMarkers {} // for compatibility checks
 
-Actor QCMapMarker : MapMarker { Scale 0.2 }
+Actor QCMapMarker : MapMarker
+{
+    +CLIENTSIDEONLY
+    
+    Scale 0.2
+}
 
 Actor MapMarker_HMG : QCMapMarker
 {
