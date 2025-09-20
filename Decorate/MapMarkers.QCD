@@ -86,3 +86,43 @@ Actor MapMarker_BFG : QCMapMarker
 		Stop
     }
 }
+
+Actor MapMarker_MegaHealth : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        MEGR M -1
+		Stop
+    }
+}
+
+Actor MapMarker_MegaMega : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        MEGB M -1
+		Stop
+    }
+}
+
+Actor MapMarker_HeavyArmor : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        HEVY M -1
+		Stop
+    }
+}
+
+Actor MapMarker_PwUp : QCMapMarker
+{
+    States
+    {
+    Spawn:
+        PWUP M -1
+		Stop
+    }
+}
