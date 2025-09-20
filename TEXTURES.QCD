@@ -2410,3 +2410,35 @@ Graphic "QSMFN252", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -322, -
 Graphic "QSMFN253", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -364, -404}
 Graphic "QSMFN254", 52, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -408, -404}
 Graphic "QSMFN255", 36, 56	{	XScale 6.000	YScale 6.000	Patch "KAIRCFNT", -468, -404}
+
+//=============================================================================
+//
+// Map Markers
+//
+//=============================================================================
+
+Sprite "MEGRM0", 70, 72
+{
+	Offset 35, 36
+	Patch "SHUDMEGA", -35, -32
+}
+
+Sprite "MEGBM0", 80, 82
+{
+	XScale 1.100
+	YScale 1.100
+	Offset 40, 41
+	Patch "SHUDMEGB", -30, -27
+}
+
+Sprite "HEVYM0", 76, 58
+{
+	Offset 38, 29
+	Patch "SHUDHEVY", -32, -39
+}
+
+Sprite "PWUPM0", 60, 73
+{
+	Offset 30, 36
+	Patch "SHUDPWUP", -40, -32
+}
