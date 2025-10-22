@@ -407,7 +407,7 @@ script "QCDE_NetMaster" (void) {
 	int rl1 = CheckInventory("RLDirectDamageToken") * 100;
 	int rl2 = CheckInventory("RLSplashDamageToken") * 60;
 
-	int lg = CheckInventory("LGDamageToken") * 7;
+	int lg = CheckInventory("LGDamageToken") * 8;
 
 	int rg = CheckInventory("RGDamageToken") * 80;
 

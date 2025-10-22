@@ -10,7 +10,7 @@ Actor CompatVer31_LightningGun {} // for compatibility checks
 
 const int LGDmgSPMin = 10;
 const int LGDmgSPMax = 20;
-const int LGDmgDM = 7;
+const int LGDmgDM = 8;
 
 Actor LightningGunPickup : QCWeaponPickup 15606
 {
