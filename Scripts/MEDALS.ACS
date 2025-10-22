@@ -399,7 +399,7 @@ script "QCDE_NetMaster" (void) {
 
 	int ng = CheckInventory("NGDamageToken") * 12;
 
-	int sng = CheckInventory("SNGDamageToken") * 20;
+	int sng = CheckInventory("SNGDamageToken") * 18;
 
 	int tb1 = CheckInventory("TBDirectDamageToken") * 45;
 	int tb2 = CheckInventory("TBSplashDamageToken") * 25;
