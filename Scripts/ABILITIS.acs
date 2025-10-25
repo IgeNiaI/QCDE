@@ -664,6 +664,9 @@ Script "QCDE_Ability_Ranger" (void)
 	}
 	else
 	{
+		if(CheckInventory("PowerOrbThrownCantTele"))
+			terminate;
+
 		SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 		GiveInventory("DireOrbTeleProc",1);
 		ACS_NamedExecuteWithResult("QCDE_DireOrbUsed", 0, 0);
