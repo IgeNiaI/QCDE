@@ -4847,26 +4847,41 @@ Script "QCDE_Eleena_Crouch" (int predicting, int justPressed, int justReleased, 
 
 //---------------------------------
 //		Lucienne's Passive
-
 Script "QCDE_Passive_Lucienne" (void)
 {
 	GiveInventory("NoArmorDegenerationToken", 1);
 
 	// Wait while alive
-	while(GetActorProperty(0,APROP_HEALTH) > 0) delay(1);
+	if(GameType() >= GAME_NET_DEATHMATCH) // PVP-only
+	{
+		while(GetActorProperty(0,APROP_HEALTH) > 0) delay(1);
+		
+		int x = GetActorX(0);
+		int y = GetActorY(0);
+		int z = GetActorZ(0);
+		int plrtid = ActivatorTid();
+		int tid = plrtid - 1000 + IMMOLATION_TIDBASE;
+		SpawnForced("LucienneImmolation", x,y,z, tid);
 
-	int x = GetActorX(0);
-	int y = GetActorY(0);
-	int z = GetActorZ(0);
-	int plrtid = ActivatorTid();
-	int tid = plrtid - 1000 + IMMOLATION_TIDBASE;
-	SpawnForced("LucienneImmolation", x,y,z, tid);
+		SetActivator(tid);
+		// Activator: Immolation
+		SetPointer(AAPTR_TARGET, plrtid);
+	}
+	else
+	{
+		while(GetActorProperty(0,APROP_HEALTH) > 0)
+		{
+		    while(GetActorProperty(0,APROP_HEALTH) > 30) delay(1);
 
-	SetActivator(tid);
-	// Activator: Immolation
-	SetPointer(AAPTR_TARGET, plrtid);
+			if(!CheckInventory("LucienneImmolationProc"))
+			    GiveInventory("LucienneImmolationProc",1);
+
+			while(GetActorProperty(0,APROP_HEALTH) < 100) delay(1);
+
+			TakeInventory("LucienneImmolationProc",1);
+		}
+	}
 }
-
 
 Script "QCDE_Passive_DukeNukem" (void)
 {

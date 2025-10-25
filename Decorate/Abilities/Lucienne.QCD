@@ -3,7 +3,7 @@
 // Lucienne's abilities
 //
 // Active:	Cleansing Fire
-//			Heal or heal 10% of max health.
+//			Heal 10% of max health.
 //
 // Passive: Immolation
 //			Death of Lucienne releases huge heat.
@@ -32,6 +32,17 @@ Actor LucienneFireBallProc : CustomInventory
 	}
 }
 
+Actor LucienneImmolationProc : CustomInventory 
+{
+	Inventory.MaxAmount 1
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_AlertMonsters(512)
+		TNT1 A 0 A_SpawnItemEx("LucienneImmolation", 3+abs(momx)+abs(momy),0,4, 0,0,0,0, SXF_SETMASTER|SXF_NOUNLAGGED,0,tid-1000+7464)
+		Stop
+	}
+}
 
 Actor LucienneBall : FastProjectile
 {
