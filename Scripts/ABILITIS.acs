@@ -29,7 +29,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	// COOLDOWN PVP,  COOLDOWN PVE , DURATION         , DURATION PVE     , MULTIUSE     , MULTIUSE     , MULTIUSE
 	//             ,               ,                  ,                  ,              , COOLDOWN     , FAIL SND
 	  (25 *35) +XYZ, ( 60 *35) +XYZ, (17)         +XYZ, (17)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // RANGER
-	  (60 *35) +XYZ, (150 *35) +XYZ, (83)         +XYZ, (83)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DOOMSLAYER
+	  (40 *35) +XYZ, (150 *35) +XYZ, (45)         +XYZ, (69)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // DOOMSLAYER
 	  (60 *35) +XYZ, (120 *35) +XYZ, ( 2 *35)     +XYZ, ( 5 *35)     +XYZ,   3      +XYZ,   2*35   +XYZ, "NoSoundHax"                        , // CORVUS
 	  (40 *35) +XYZ, ( 75 *35) +XYZ, (30)         +XYZ, ( 3 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // KANE
 	  (30 *35) +XYZ, ( 30 *35) +XYZ, ( 8 *35)     +XYZ, (15 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // CALEB
@@ -724,13 +724,18 @@ Script "QCDE_Ability_Doomslayer" (void)
 	ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
 	ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown());
 
-	//total duration is 83
-	//firing delay is 34
-	//remaining time is 83-34=49
+	int t;
+	if (GameType() >= GAME_NET_DEATHMATCH)
+	{
+	    Delay(25); // firing delay in PvP
+	    t = 20;
+	}
+	else
+	{
+	    Delay(34); // firing delay in PvE
+	    t = 35;
+	}
 
-	Delay(34);
-
-	int t = 35;
 
 	while(t --> 0)
 	{
