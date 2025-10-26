@@ -6,11 +6,11 @@
 //			Summons a friendly maulotaur that fights for you
 //
 // Passive: Hex
-//			Monsters killed by Menelkir or his minion, can spawn hourglasses
-//
+//			Monsters killed by Menelkir or his minion, can spawn hourglasses and extend its life.
+//			Killed players will fully refresh his minion's life longer.
 // ----------------------------------------------------------------------------
 
-Actor CompatVer30_Menelkir {} // for compatibility checks
+Actor CompatVer31_Menelkir {} // for compatibility checks
 
 //--------------------------------------------------------
 // Active
@@ -49,12 +49,11 @@ Actor "ThruSpeciesProc" : CustomInventory { States { Pickup: TNT1 A 0 A_ChangeFl
 Actor QCDEMaulotaur : MinotaurFriend replaces Minotaurfriend
 {
 	Species "Players"
-	var int user_HammerCount;
 	Scale 0.66
 	Radius 20
 	Height 63
 	Mass 200
-	Speed 8
+	Speed 12
 	+SOLID +SHOOTABLE
 	+BRIGHT
 	+NOBLOCKMONST
@@ -111,19 +110,6 @@ Actor QCDEMaulotaur : MinotaurFriend replaces Minotaurfriend
 		TNT1 A 0 A_Jump(255,"Roam")
 		Goto Roam
 
-
-	// Improved attack states
-	Melee:
-		//TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DavieDontHurtMeDontHurtMeNoMore")
-		MNTR V 3 A_Recoil(-3)		TNT1 A 0 A_FaceTarget
-		MNTR V 2 A_Recoil(-3)		TNT1 A 0 A_FaceTarget
-		MNTR V 3 A_Recoil(-3)		TNT1 A 0 A_FaceTarget
-		MNTR W 2 A_Recoil(-3)		TNT1 A 0 A_FaceTarget
-		MNTR W 3 A_Recoil(-3)		TNT1 A 0 A_FaceTarget
-		MNTR W 2 A_Recoil(-3)		TNT1 A 0 A_FaceTarget
-		//TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DavieDontHurtMeDontHurtMeNoMore")
-		MNTR X 15 A_CustomMeleeAttack(10*random(3,5),None,"minotaur/melee","Normal",1)
-		Goto See
 	Melee:
 		MNTR V 10 A_FaceTarget
 		MNTR W 7 A_FaceTarget
@@ -132,13 +118,12 @@ Actor QCDEMaulotaur : MinotaurFriend replaces Minotaurfriend
 
 	Missile:
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DavieDontHurtMeDontHurtMeNoMore")
-		TNT1 A 0 A_Jump(192,"SwingMissiles")
-		TNT1 A 0 A_Jump(255,"Hammer")
-		Goto Hammer
+		TNT1 A 0 A_Jump(64, "SwingMissiles") // 1 out of 4 times it still swings instead of charge
+		TNT1 A 0 A_JumpIfCloser(8*64, "Charge") // Charge if close to target
+		TNT1 A 0 A_Jump(255,"SwingMissiles")
+		Goto SwingMissiles
 
 	SwingMissiles:
-		MNTR V 0 A_SetUserVar(user_HammerCount,0)
-	SwingMissilesLoop:
 		MNTR V 5 A_FaceTarget
 		MNTR Y 4 A_FaceTarget
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DavieDontHurtMeDontHurtMeNoMore")
@@ -147,35 +132,28 @@ Actor QCDEMaulotaur : MinotaurFriend replaces Minotaurfriend
 		TNT1 A 0 A_CustomMissile("QCDEMinotaurFX1",32,0, 6	)
 		TNT1 A 0 A_CustomMissile("QCDEMinotaurFX1",32,0,-6	)
 		TNT1 A 0 A_CustomMissile("QCDEMinotaurFX1",32,0,-12	)
-		MNTR Z 9 A_CustomMissile("QCDEMinotaurFX1",32,0, 0		)
-		TNT1 A 0 A_SetUserVar(user_HammerCount,user_HammerCount+1)
-		TNT1 A 0 A_JumpIf(user_HammerCount>=2,"SwingEnder") //if it happened 3 times, then end it
-		Loop
+		MNTR Z 9 A_CustomMissile("QCDEMinotaurFX1",32,0, 0	)
+		Goto SwingEnder
 	SwingEnder:
 		MNTR Z 3
 		TNT1 A 0 A_Jump(255,"See")
 		Goto See
 
 	Hammer:
-		MNTR V 0 A_SetUserVar(user_HammerCount,0)
-	HammerSkipReset:
-		MNTR V 5 A_FaceTarget
-		MNTR W 7 A_FaceTarget
-		TNT1 A 0 A_PlaySound("minotaur/attack3",CHAN_VOICE)
-		TNT1 A 0 A_PlaySound("minotaur/attack1",CHAN_WEAPON)
-		MNTR X 0 A_CustomMissile("QCDEMinotaurFX2",32,0, 0	)
-		MNTR X 0 A_SetUserVar(user_HammerCount,user_HammerCount+1)
-		TNT1 A 0 A_JumpIf(user_HammerCount>=2,"EndHammerSeq") //if hammer happened 3 times, then end it
-		MNTR X 9
-		Loop
-
-	EndHammerSeq:
-		MNTR X 20
-		Goto See
-
 	Charge:
-		TNT1 A 0 A_Jump(255,"Hammer")
-		Goto Hammer
+	    TNT1 A 0 A_PlaySound("minotaur/sight",CHAN_WEAPON)
+	    TNT1 A 0 A_FaceTarget
+	ChargeLoop:
+		MNTR U 2 ThrustThing(angle * 256 / 360, 7, 0)
+		MNTR U 2 ThrustThing(angle * 256 / 360, 7, 0)
+		MNTR U 2 ThrustThing(angle * 256 / 360, 5, 0)
+		MNTR U 2 ThrustThing(angle * 256 / 360, 5, 0)
+		MNTR U 2 ThrustThing(angle * 256 / 360, 3, 0)
+		MNTR U 2 ThrustThing(angle * 256 / 360, 3, 0)
+		MNTR U 2 ThrustThing(angle * 256 / 360, 1, 0)
+		MNTR U 2 ThrustThing(angle * 256 / 360, 1, 0)
+		MNTR U 2 ThrustThing(angle * 256 / 360, 1, 0)
+		Goto See
 
 	Pain:
 		TNT1 A 0 A_JumpIf(alpha < 1.0, "Spawn")
@@ -248,8 +226,6 @@ Actor QCDEMaulotaurPvE : QCDEMaulotaur
 		Goto See
 
 	SwingMissiles:
-		MNTR V 0 A_SetUserVar(user_HammerCount,0)
-	SwingMissilesLoop:
 		MNTR V 5 A_FaceTarget
 		MNTR Y 4 A_FaceTarget
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DavieDontHurtMeDontHurtMeNoMore")
@@ -258,33 +234,8 @@ Actor QCDEMaulotaurPvE : QCDEMaulotaur
 		TNT1 A 0 A_CustomMissile("QCDEMinotaurFX1PvE",32,0, 6	)
 		TNT1 A 0 A_CustomMissile("QCDEMinotaurFX1PvE",32,0,-6	)
 		TNT1 A 0 A_CustomMissile("QCDEMinotaurFX1PvE",32,0,-12	)
-		MNTR Z 9 A_CustomMissile("QCDEMinotaurFX1PvE",32,0, 0		)
-		TNT1 A 0 A_SetUserVar(user_HammerCount,user_HammerCount+1)
-		TNT1 A 0 A_JumpIf(user_HammerCount>=2,"SwingEnder") //if it happened 3 times, then end it
-		Loop
-
-		DoSimpleSwingMissile:
-			MNTR Z 9 A_CustomMeleeAttack(20*random(4,8),None,None,"Normal",1)
-			Goto See
-
-	Hammer:
-		MNTR V 0 A_SetUserVar(user_HammerCount,0)
-	HammerSkipReset:
-		MNTR V 5 A_FaceTarget
-		MNTR W 7 A_FaceTarget
-		TNT1 A 0 A_PlaySound("minotaur/attack3",CHAN_VOICE)
-		TNT1 A 0 A_PlaySound("minotaur/attack1",CHAN_WEAPON)
-		MNTR X 0 A_CustomMissile("QCDEMinotaurFX2PvE",32,0, 0	)
-		MNTR X 0 A_SetUserVar(user_HammerCount,user_HammerCount+1)
-		TNT1 A 0 A_JumpIf(user_HammerCount>=2,"EndHammerSeq") //if hammer happened 3 times, then end it
-		MNTR X 9
-		Loop
-
-
-		DoSimpleSwingHammer:
-			MNTR X 12 A_CustomMeleeAttack(20*random(4,8),None,None,"Normal",1)
-			Goto See
-
+		MNTR Z 9 A_CustomMissile("QCDEMinotaurFX1PvE",32,0, 0	)
+		Goto SwingEnder
 	}
 }
 
@@ -383,7 +334,7 @@ Actor QCDEMinotaurFX3 : MinotaurFX3 replaces MinotaurFX3
 	States
 	{
 	Death:
-		FX13 I 4 Bright A_Explode(18,128,0)
+		FX13 I 4 Bright A_Explode(2,128,0)
 		FX13 JKLM 4 Bright
 		Stop
 	}

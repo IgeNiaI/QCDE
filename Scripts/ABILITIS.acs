@@ -3800,8 +3800,11 @@ script "QCDE_MaulotaurSpawned" (void)
 	extraAbilityData[plr] = MAULOTAUR_DURATION;
 	while(extraAbilityData[plr] --> 0)
 	{
-		if(GetActorProperty(tid, APROP_HEALTH) <= 0) break;
+		SetActivator(plrtid);
+		if (GetActorProperty(0, APROP_HEALTH) <= 0) break;
+		if (GetActorProperty(tid, APROP_HEALTH) <= 0) break;
 		SetInventory("MaulotaurAliveToken", true);
+		SetActivator(-1);
 		delay(35);
 	}
 
@@ -3997,11 +4000,31 @@ Script "QCDE_MonsterKill_QCMenelkir" (void)
 	if(GetActorProperty(0,APROP_HEALTH) > 0) terminate;
 
 	int killertid = GetActorProperty(0,APROP_TargetTID);
+	int plr = GetActorProperty(0,PlayerNumber());
 	if(!CheckActorInventory(killertid, "Class_Menelkir")) terminate;
 	if(GetActorProperty(killertid, APROP_HEALTH) <= 0) terminate;
 
 	if(random(1,100) < 20)
 		SpawnSpotForced("MenelkirMonsterHourglass",0,0,0);
+
+	if (extraAbilityData[plr]) {
+		if(CheckInventory("MonsterSmall")){
+			extraAbilityData[plr] = extraAbilityData[plr]+1;
+			Thing_Damage(PlayerNumber() + MAULOTAUR_TIDBASE, -5, MOD_UNKNOWN);
+		}
+
+		else if(CheckInventory("MonsterMedium"))
+		{
+			extraAbilityData[plr] = extraAbilityData[plr]+5;
+			Thing_Damage(PlayerNumber() + MAULOTAUR_TIDBASE, -25, MOD_UNKNOWN);
+		}
+
+		else if(CheckInventory("MonsterBig") || CheckInventory("MonsterBoss"))
+		{
+			extraAbilityData[plr] = MAULOTAUR_DURATION+35;
+			Thing_Damage(PlayerNumber() + MAULOTAUR_TIDBASE, -200, MOD_UNKNOWN);
+		}
+	}
 }
 
 // Activator: dying victim
@@ -4013,10 +4036,14 @@ Script "QCDE_PlayerKill_QCMenelkir" (void)
 	// Activator: Player
 	if(!CheckInventory("Class_Menelkir")) terminate;
 	if(GetActorProperty(0,APROP_HEALTH) <= 0) terminate;
+	int plr = PlayerNumber();
+	int davesplr = plr + MAULOTAUR_TIDBASE;
 
 	GiveInventory("MenelkirHourglass", 1);
-}
 
+	if (extraAbilityData[plr])
+		extraAbilityData[plr] = MAULOTAUR_DURATION;
+}
 
 //---------------------------------
 //		Terminator's Passive

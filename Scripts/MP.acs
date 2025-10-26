@@ -528,7 +528,7 @@ Script "QCDE_DM_HurtDave" (void)
 	SetActivatorToTarget(0);
 	if(!CheckActorClass(0,"QCMenelkir")) terminate;
 
-	Thing_Damage(PlayerNumber() + MAULOTAUR_TIDBASE, DAVE_BOT_PENALTY+random(-5,5), MOD_UNKNOWN);
+	Thing_Damage(PlayerNumber() + MAULOTAUR_TIDBASE, -DAVE_BOT_PENALTY+random(-5,0), MOD_UNKNOWN);
 }
 
 // Automatically spectate players if you're a spectator.
