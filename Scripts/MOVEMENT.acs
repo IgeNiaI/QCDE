@@ -53,8 +53,8 @@ Script "QCDE_ConfigureMovement" (void)
 		CheckInventory("Class_Doomslayer")
 	) {
 		SetActorProperty(0, APROP_MvType, 0);
-		SetActorProperty(0, APROP_Speed, 0.94);
-		SetActorProperty(0, APROP_AirAcceleration, 0.19);
+		SetActorProperty(0, APROP_Speed, 0.99);
+		SetActorProperty(0, APROP_AirAcceleration, 0.18);
 		SetActorProperty(0, APROP_SecondJumpAmount, 1);
 		SetActorProperty(0, APROP_SecondJumpZ, 7.45);
 		SetActorProperty(0, APROP_SecondJumpDelay, 0);
@@ -67,8 +67,8 @@ Script "QCDE_ConfigureMovement" (void)
 		CheckInventory("Class_Galen")
 	) {
 		SetActorProperty(0, APROP_MvType, 0);
-		SetActorProperty(0, APROP_Speed, 0.95);
-		SetActorProperty(0, APROP_AirAcceleration, 0.19);
+		SetActorProperty(0, APROP_Speed, 1.0);
+		SetActorProperty(0, APROP_AirAcceleration, 0.18);
 	}
 
 	else if (
@@ -85,8 +85,8 @@ Script "QCDE_ConfigureMovement" (void)
 		CheckInventory("Class_Zedek")
 	) {
 		SetActorProperty(0, APROP_MvType, 0);
-		SetActorProperty(0, APROP_Speed, 0.94);
-		SetActorProperty(0, APROP_AirAcceleration, 0.19);
+		SetActorProperty(0, APROP_Speed, 0.99);
+		SetActorProperty(0, APROP_AirAcceleration, 0.18);
 	}
 
 	else if (
