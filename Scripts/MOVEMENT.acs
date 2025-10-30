@@ -132,7 +132,7 @@ Script "QCDE_ConfigureMovement" (void)
 		else
 			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0872665);
-		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
+		SetActorProperty(0, APROP_CpmAirAcceleration, 8.0);
 	}
 
 	else if (
@@ -189,7 +189,7 @@ Script "QCDE_ConfigureMovement" (void)
 		else
 			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
 		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.122173);
-		SetActorProperty(0, APROP_CpmAirAcceleration, 10.0);
+		SetActorProperty(0, APROP_CpmAirAcceleration, 9.0);
 	}
 
 	else if (
