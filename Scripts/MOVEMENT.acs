@@ -75,8 +75,8 @@ Script "QCDE_ConfigureMovement" (void)
 		CheckInventory("Class_Kane")
 	) {
 		SetActorProperty(0, APROP_CrouchSlide, true);
-		SetActorProperty(0, APROP_CrouchSlideAcceleration, 8.0);
-		SetActorProperty(0, APROP_CrouchSlideFriction, 1.0);
+		SetActorProperty(0, APROP_CrouchSlideAcceleration, 7.0);
+		SetActorProperty(0, APROP_CrouchSlideFriction, 1.25);
 		SetActorProperty(0, APROP_CrouchSlideMaxTics, 35.0);
 		SetActorProperty(0, APROP_CrouchSlideRegen, 2.0);
 	}
