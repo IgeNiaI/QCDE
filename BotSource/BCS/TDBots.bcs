@@ -7,25 +7,27 @@
 #pragma raw define on
 #pragma raw include on
 
+#define LIBBCS_FATAL_ALLOC_ERROR
+
 #library "TDBOTS"
 #import "zcommon.bcs"
-#include "bcsformat.bcs"
-#include "zmemory.bcs"
+#include "libbcs.bcs"
 
-//#define DEBUG_MODE
-#define QCDE_BOT
+#include "bcsfmt.bcs"
 
-using BCSFormat;
-using ZMemory;
+using bcsfmt;
 
 strict namespace
 {
 	#include "TDB_SharedDefs.txt"
 	#include "TDB_Defs.bcs"
+	#include "TDB_Logger.bcs"
 	#include "TDB_ModSupp.bcs"
 	#include "TDB_Input.bcs"
 	#include "TDB_Common.bcs"
 	#include "TDB_States.bcs"
 	#include "TDB_Node.bcs"
+	#include "TDB_NodeLoad.bcs"
+	#include "TDB_NStudio.bcs"
 	#include "TDB_Init.bcs"
 }

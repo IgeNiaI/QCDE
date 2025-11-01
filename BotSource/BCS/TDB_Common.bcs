@@ -123,6 +123,19 @@ Script "TDBot_GetDistToTarget"
 	SetResultValue(VectorLength(GetActorX(0) - x, GetActorY(0) - y));
 }
 
+Script "TDBot_CheckSightToTarget"
+{
+	int oldTID = ActivatorTID();
+	int tid = UniqueTID();
+	Thing_ChangeTID(oldTID, tid);
+
+	if(SetActivator(0, AAPTR_TARGET))
+		SetResultValue((raw)CheckSight(tid, 0, CSF_NOFAKEFLOORS));
+
+	SetActivator(tid);
+	Thing_ChangeTID(0, oldTID);
+}
+
 bool LOFResult;
 Script "TDBot_SetLOFResult"
 {
@@ -222,7 +235,7 @@ bool CheckReplacement (str class)
 	return retval;
 }
 
-private void TDB_UpdateWeaponFlags ()
+internal void TDB_UpdateWeaponFlags ()
 {
 	int TID = UniqueTID();
 			
@@ -403,23 +416,30 @@ raw RandomPick9(raw v0, raw v1, raw v2, raw v3, raw v4, raw v5, raw v6, raw v7, 
 
 bool TDB_FollowPlayer ()
 {
-	if(CheckInventory("BotAttack")) {return FALSE;}
+	if(CheckInventory("BotAttack"))
+		return false;
+
+	TakeInventory("TDBots_TempNode", 1);
 	
 	fixed dist, newdist, angToPlayer;
 	int node;
 
-	int pNum = PlayerNumber();
+	int pNum;
 
 	int botnum = PlayerNumber();
-	fixed teledist = (fixed)INT_MAX; //fixed(GetCVAR("tdbots_autoteledist"));
+	fixed teledist = bcs::FIXED_MAX;
 	
 	if(teledist > 0.0)
 	{
-		if(teledist < 1024.0) {teledist = 1024.0;}
+		if(teledist < 1024.0)
+			teledist = 1024.0;
+
 		dist = 16384.0;
 	}
 	else
-		{dist = 2048.0;}
+	{
+		dist = 2048.0;
+	}
 	
 	self.goalNode = 0;
 
@@ -455,11 +475,10 @@ bool TDB_FollowPlayer ()
 								  PlayerLocation[0][1] - GetActorY(0));
 	}
 	
-	if(dist < 96.0)
+	if(dist < 128.0)
 	{
-		SetActorAngle(0, angToPlayer);
-		TDB_SetMove(0.5, 0.5);
-		return TRUE;
+		TDB_SetMove(0.0, 0.0);
+		return true;
 	}
 	
 	dist = 768.0;
@@ -467,8 +486,8 @@ bool TDB_FollowPlayer ()
 	{
 		node = PlayerFollowTID[pnum][i];
 		if(node == 0) {break;}
-		
-		if(ThingCount(0, node) > 0)
+
+		if(ThingCount(T_NONE, node) > 0)
 		{
 			newdist = Distance(0, node);
 			
@@ -480,17 +499,84 @@ bool TDB_FollowPlayer ()
 		}
 	}
 	
-	if(!self.goalNode) {return false;}
-	
-	//SetPointer(AAPTR_TARGET, retnode, AAPTR_DEFAULT, PTROP_NOSAFEGUARDS|PTROP_UNSAFEMASTER); //return retnode;
-	return true;
+	DLogf("following player, node %i", self.goalNode);
+	return bool(self.goalNode);
 }
 
 bool TDB_OnGround ()
 {
-	#ifdef QCDE_BOT
-		return CheckSolidFooting(0, 0) != CSF_INAIR;
-	#else
-		// use the 3x3 point check I made for BA
-	#endif
+#ifdef QZANDRONUM
+	return CheckSolidFooting(0, 0) != CSF_INAIR;
+#else
+	fixed velz = GetActorVelZ(0);
+
+	if( (velz < -8.0) || (velz > 0.0) ) {return FALSE;}
+
+	fixed rad = GetActorProperty(0, APROP_Radius);
+
+	fixed x1,y1,z1;
+	fixed x2,y2,z2;
+	fixed dist;
+
+	int tid1 = UniqueTID();
+	int tid2 = UniqueTID();
+
+	SpawnForced("BA_CheckGround", 0.0, 0.0, 0.0, tid1);
+	SpawnForced("BA_CheckGround", 0.0, 0.0, 0.0, tid2);
+
+	for(fixed ix = -rad; ix <= rad; ix += rad)
+	{
+		for(fixed iy = -rad; iy <= rad; iy += rad)
+		{
+			Warp(tid1, ix, iy, 0.0, 0.0, WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_ABSOLUTEOFFSET|WARPF_MOVEPTR);
+			Warp(tid2, ix, iy, 0.0, 0.0, WARPF_NOCHECKPOSITION|WARPF_ABSOLUTEOFFSET|WARPF_MOVEPTR);
+
+			x1 = GetActorX(tid1);
+			y1 = GetActorY(tid1);
+			z1 = GetActorZ(tid1);
+
+			x2 = GetActorX(tid2);
+			y2 = GetActorY(tid2);
+			z2 = GetActorZ(tid2);
+
+			dist = z2 - z1;
+			if( (dist >= 0.0) && (dist <= 4.0) )
+			{
+				Thing_Remove(tid1);
+				Thing_Remove(tid2);
+				return true;
+			}
+		}
+	}
+
+	Thing_Remove(tid1);
+	Thing_Remove(tid2);
+	return false;
+#endif
+}
+
+str StrToLower (str in)
+{
+	int inLen = StrLen(in);
+	char c;
+	str out;
+
+	buildmsg(out = StrParam())
+	{
+		for(int i = 0; i < inLen; i++)
+		{
+			c = in[i];
+			if( (c >= 'A') && (c <= 'Z') )
+				Append(c:c - 32);
+			else
+				Append(c:c);
+		}
+	}
+
+	return out;
+}
+
+Script "TDB_DumpHeap"
+{
+	bcs::allocDump();
 }

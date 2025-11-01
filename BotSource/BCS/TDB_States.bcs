@@ -2,7 +2,7 @@
 
 //Roam state: bot looks for targets here and walks around following nodes, if
 //there's any.
-private int TDBot_StateRoam (bool justEntered)
+internal int TDBot_StateRoam (bool justEntered)
 {
 	PRINT_STATENAME;
 	
@@ -22,9 +22,12 @@ private int TDBot_StateRoam (bool justEntered)
 	{
 		//Current order is to stand still? If so, don't run any of the movement
 		if(CheckInventory("BotCurrentOrder") || (self.flags & TDB_FLAGS_WAIT))
+		{
+			TDB_SetMove(0.0, 0.0);
 			return TDB_STATE_ROAM;
+		}
 		
-		if(TDB_FollowNode(self.lastTargetPlayer))
+		if( (!justEntered) && TDB_FollowNode(self.lastTargetPlayer))
 		{
 			/*fixed velAngle = VectorAngle(GetActorVelX(0), GetActorVelY(0));
 			fixed angleToNode = VectorAngle(GetActorX(self.goalNode) - GetActorX(0), GetActorY(self.goalNode) - GetActorX(0));
@@ -69,7 +72,7 @@ private int TDBot_StateRoam (bool justEntered)
 //Attack state: if the bot has any target, this state runs. Strafes around
 //while aiming at it's target and such. If the mod allows it, then they can also
 //switch weapons mid-fire.
-private int TDBot_StateAttack (bool justEntered)
+internal int TDBot_StateAttack (bool justEntered)
 {
 	fixed dist;
 	bool followNode;
@@ -78,23 +81,20 @@ private int TDBot_StateAttack (bool justEntered)
 
 	if(justEntered)
 	{
-		// Decide to close in or not
-		self.misc1 = (int)!random(0, 1);
-		
 		// May choose to chase down their target player 67% of the time.
-		#ifndef QCDE_BOT
 		if( (GameType() >= GAME_NET_DEATHMATCH) && random(0,2) )
 		{
 			self.lastTargetPlayer = CallACS("TDBots_ChaseNode");
 			
 			DLogf("%n: chasing player #%i", 0, self.lastTargetPlayer);
 		}
-		#endif
 
 		self.atkTimer = self.reactTime;
 
 		// decide to keep following nodes or not
-		self.misc2 = ( (self.flags & TDB_FLAGS_PREC) || (!self.nonEvadeChance) ) ? 1 : (int)!random(0, self.nonEvadeChance);
+		self.misc1 = ( (self.flags & TDB_FLAGS_PREC) || (!self.nonEvadeChance) ) ? 1 : (int)!random(0, self.nonEvadeChance);
+		if(TDB_CurrWeapon.flags & TDB_CW_MELEE)
+			self.misc1 = 0;
 	}
 
 	dist = (fixed)CallACS("TDBot_GetDistToTarget");
@@ -108,7 +108,7 @@ private int TDBot_StateAttack (bool justEntered)
 		return TDB_STATE_ATTACK;
 	}
 
-	if( (!CheckSight(0, GetActorProperty(0, APROP_TARGETTID), CSF_NOFAKEFLOORS)) || (!CallACS("TDBot_IsTargetAlive")) || (!CallACS("TDBot_TargetIsShootable")) )
+	if( (!CallACS("TDBot_CheckSightToTarget")) || (!CallACS("TDBot_IsTargetAlive")) || (!CallACS("TDBot_TargetIsShootable")) )
 	{
 		TDB_ReleaseKey(BT_ATTACK|BT_ALTATTACK);
 		return TDB_STATE_ROAM;
@@ -124,9 +124,7 @@ private int TDBot_StateAttack (bool justEntered)
 
 	SetActorAngle(0, GetActorAngle(0) + frandom(-self.inaccuracy, self.inaccuracy));
 	
-	TDB_CallWeaponTick(self.weaponName, dist);
-	
-	if(self.misc2)
+	if(self.misc1)
 	{
 		if(TDB_FollowNode())
 		{
@@ -136,6 +134,8 @@ private int TDBot_StateAttack (bool justEntered)
 			TDB_SetMove(fmod(botAng - vecAng, 1.0), 1.0);
 		}
 	}
+
+	TDB_CallWeaponTick(self.weaponName, dist);
 	
 	return TDB_STATE_ATTACK;
 }
@@ -143,7 +143,7 @@ private int TDBot_StateAttack (bool justEntered)
 //Jump state: if the bot just jumped, this state runs. It doesn't actually
 //handle the jumping, it's just here to not allow jumping again and to make the
 //bot move forward slightly in mid-air.
-private int TDBot_StateJump (bool justEntered)
+internal int TDBot_StateJump (bool justEntered)
 {
 	PRINT_STATENAME;
 	

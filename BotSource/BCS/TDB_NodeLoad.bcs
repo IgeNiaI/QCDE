@@ -1,0 +1,151 @@
+struct ParseCtx
+{
+	int pos;
+	str s;
+	bool done;
+};
+
+internal void ParseInit(struct ParseCtx module *parse, str s)
+{
+	parse.pos = 0;
+	parse.s = s;
+	parse.done = false;
+}
+
+internal int ParseGetInt (struct ParseCtx module *parse)
+{
+	char c;
+	int ret;
+	bool negate;
+
+	if(parse.s[parse.pos] == '-')
+	{
+		negate = true;
+		parse.pos++;
+	}
+
+	if(parse.done)
+	{
+		TDB_Log(TDB_LOG_ERROR, StrParam(s:"unexpected end of node list."));
+		bcs::exit();
+	}
+
+	while(true)
+	{
+		c = parse.s[parse.pos++];
+
+		if(c == ';')
+		{
+			break;
+		}
+		else if(c == '\0')
+		{
+			parse.done = true;
+			break;
+		}
+
+		if( (c >= '0') && (c <= '9') )
+		{
+			ret = (ret * 10) + (c - '0');
+		}
+		else
+		{
+			TDB_Log(TDB_LOG_ERROR, StrParam(s:"unexpected character ", c:c, s:" while parsing node list."));
+			bcs::exit();
+		}
+	}
+
+	if(negate)
+		ret = -ret;
+
+	return ret;
+}
+
+internal void ParseNodeCommon (struct ParseCtx module *parse, struct TDB_Node module *n)
+{
+	n.x = fixed(ParseGetInt(parse));
+	n.y = fixed(ParseGetInt(parse));
+	n.z = fixed(ParseGetInt(parse));
+}
+
+internal void ParseJumpNode (struct ParseCtx module *parse, struct TDB_Node module *n)
+{
+	ParseNodeCommon(parse, n);
+	n.angle = fixed(ParseGetInt(parse)) / 256.0;
+	n.arg1 = ParseGetInt(parse);
+	n.arg2 = ParseGetInt(parse);
+}
+
+internal struct
+{
+	void function(struct ParseCtx module*, struct TDB_Node module*)& f;
+} ParseFuncs[] =
+{
+	{ParseNodeCommon},
+	{ParseJumpNode},
+	{ParseNodeCommon},
+	{ParseNodeCommon},
+	{ParseNodeCommon}
+};
+
+Script "TDB_ProcessNodelist" (raw stringIn)
+{
+	static struct ParseCtx parse;
+	static TDB_NodeT n;
+
+	str string = stringIn;
+
+	int stringLen = strlen(string);
+
+	if(!stringLen)
+		terminate;
+
+	ParseInit(parse, string);
+
+	// Currently unused (all previous versions to Mk2 v2 are unsupported),
+	// but may be useful in the future
+	int versionNum = ParseGetInt(parse);
+
+	int type, tid, iters;
+
+	while(!parse.done)
+	{
+		type = ParseGetInt(parse);
+
+		n.arg1 = 0;
+		n.arg2 = 0;
+		n.arg3 = 0;
+		n.angle = 0.0;
+		tid = UniqueTID();
+
+		ParseFuncs[type].f(parse, n);
+
+		SpawnForced(TDB_NodeActors[type], n.x, n.y, n.z, tid, int(n.angle * 256.0));
+		SetThingSpecial(tid, ACS_ExecuteWithResult, TDB_Touch_Node, n.arg1, n.arg2, n.arg3);
+
+		if(++iters > 128)
+		{
+			Delay(1);
+			iters = 0;
+		}
+	}
+}
+
+Script "TDBots_LoadNodes" OPEN
+{
+	str lumpPath = "tdbots/nodes/" + StrToLower(StrParam(n:PRINTNAME_LEVEL)) + ".nod";
+	int lump = LumpOpen(lumpPath, -1, LUMP_OPEN_FULLPATH);
+
+	if(lump == -1)
+		terminate;
+
+	str data = LumpReadString(lump, 0);
+
+	if(!StrLen(data))
+	{
+		TDB_Log(TDB_LOG_ERROR, StrParam(s:"Could not read lump ", s:lumpPath));
+		terminate;
+	}
+
+	ACS_NamedExecuteWithResult("TDB_ProcessNodelist", data);
+}

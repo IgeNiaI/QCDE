@@ -1,0 +1,154 @@
+int LastNodeTID;
+int NodeAmount;
+int NodeType;
+
+int NodeListVersion = 0;
+
+str SerializeNodes ()
+{
+	str out;
+	buildmsg(out = StrParam())
+	{
+		foreach(auto n; TDB_Nodes)
+		{
+			Append(i:n.type, c:';', i:n.x, c:';', i:n.y, c:';', i:n.z, c:';');
+
+			if(n.type == TDB_JUMP_NODE)
+				Append(i:int(n.angle * 256.0), c:';', i:n.arg1, c:';', i:n.arg2, c:';');
+		}
+	}
+
+	// remove last semicolon
+	return StrLeft(out, StrLen(out) - 1);
+}
+
+Script "tdbots_chnodetype" (void)
+{
+	static str nodeTypeMessages[] =
+	{
+		"Node type: Normal (purple)",
+		"Node type: Jump (green)",
+		"Node type: Precision (red)",
+		"Node type: Unused",
+		"Node type: Big normal (purple)"
+	};
+
+	NodeType++;
+
+	// currently doesn't work, so skip it
+	if(NodeType == TDB_LIFT_NODE)
+		NodeType++;
+
+	if(NodeType > TDB_PREC_NODE)
+		NodeType = TDB_PATH_NODE;
+
+	Print(s:nodeTypeMessages[NodeType]);
+}
+
+Script "TDBots_NodeStudio_Startup" (void)
+{
+	if(IsNetworkGame() || (PlayerCount() > 1) )
+	{
+		Print(s:"Node studio can be only used in singleplayer!");
+		terminate;
+	}
+
+	if(GetCVAR("sv_freelook") == 1)
+	{
+		Print(s:"Node studio requires freelook!");
+		terminate;
+	}
+	
+	SetHUDSize(640, 480, TRUE);
+	SetFont("BIGFONT");
+	
+	HUDMessage(s:"";HUDMSG_PLAIN, 13076, CR_UNTRANSLATED, 0.0, 0.0, 0.0);
+	
+	Print(s:"Welcome to node studio.\nPress Weapon Reload for help with controls");
+
+	ClearInventory();
+	Thing_Destroy(0);
+
+	ACS_NamedExecuteAlways("TDBots_NodeStudio_InputLoop",0);
+	SetPlayerProperty(0, ON, PROP_FLY);
+	SetPlayerProperty(0, 2, PROP_INVULNERABILITY);
+	SetActorFlag(0, "PICKUP", FALSE);
+	GiveInventory("TDBots_NodeStudio_Editor", 1);
+}
+
+Script "TDBots_NodeStudio_InputLoop" (void)
+{
+	int buttons;
+	while(TRUE)
+	{
+		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+		
+		if(buttons & BT_RELOAD)
+			GiveInventory("TDB_NS_Reload",1);
+		else
+			TakeInventory("TDB_NS_Reload",1);
+		
+		if(buttons & BT_ZOOM)
+			GiveInventory("TDB_NS_Zoom",1);
+		else
+			TakeInventory("TDB_NS_Zoom",1);
+		
+		Delay(1);
+	}
+}
+
+Script "TDBots_NodeStudio_PlaceNode" (void)
+{
+	if(NodeAmount >= MAX_NODES)
+	{
+		Print(s:"Limit of ", i:MAX_NODES, s:" nodes reached.");
+		terminate;
+	}
+	
+	fixed nodeX = GetActorX(0);
+	fixed nodeY = GetActorY(0);
+	fixed nodeZ = GetActorZ(0);
+	str actorName = TDB_NodeActors[NodeType];
+	
+	SpawnForced(actorName, nodeX, nodeY, nodeZ);
+}
+
+Script "TDBots_NodeStudio_Undo" (void) {/*DeleteLastNode();*/}
+
+Script "TDBots_NodeStudio_Help" (void)
+{
+	Print(s:"Instructions have been printed to the console.");
+	
+	Log(s:"You will move in the direction you look to,");
+	Log(s:"Including Up and Down. A Mouse is recommended");
+	Log(s:"For easy operation of Node Studio.");
+	Log(s:"");
+	Log(s:"Attack/Fire = Place Node on crosshair");
+	Log(s:"Alt Attack = Undo last placed node");
+	Log(s:"Weapon Zoom = Save Nodelist");
+	Log(s:"Weapon Ready = These Instructions");
+	Log(s:"Change Node Type = Change node type");
+	Log(s:"The Change node type key is not bound by default, go bind it!");
+}
+
+Script "TDBots_NodeStudio_Save" (void)
+{
+	Print(s:"The nodelist has been printed to the console.\nAlong with some instructions.");
+	Log(s:"===START OF HELP===");
+	Log(s:"If you don't have a logfile active,");
+	Log(s:"type logfile nodeoutput.txt in the console");
+	Log(s:"and press this button again.");
+	Log(s:"");
+	Log(s:"Then, a text file called nodeoutput should be");
+	Log(s:"In your ZDoom directory, so open it with");
+	Log(s:"Notepad++, copy the line between the");
+	Log(s:"COPY THIS markers, and paste it in another text");
+	Log(s:"file, and name it whatever you want without spaces.");
+	Log(s:"");
+	Log(s:"Finally, to load it from ZDoom, type in the console");
+	Log(s:"exec nameoffile.txt");
+	Log(s:"====END OF HELP====");
+	Log(s:"===COPY NEXT LINE===");
+	Log(s:SerializeNodes());
+	Log(s:"===COPY PREVIOUS LINE==");
+}
