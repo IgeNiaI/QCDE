@@ -127,6 +127,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "Ready.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "Ready.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "Ready.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "Ready.Quake2") // Fallback to another skin
 	Ready.Default:
 		QCGB A 0
 		Goto ReadyCont
@@ -183,6 +184,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "Select.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "Select.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "Select.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "Select.Quake2") // Fallback to another skin
 	Select.Zoomed:
 		TNT1 A 0
 		Goto SelectCont
@@ -246,6 +248,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "FireNormalSound.Quake4")
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "FireNormalSound.Quake3")
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "FireNormalSound.Quake2")
+		    TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "FireNormalSound.Quake2") // Fallback to another skin
 		FireNormalSound.Default:
 			QCGB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
@@ -279,6 +282,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "FireQuadSound.Quake4")
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "FireQuadSound.Quake3")
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "FireQuadSound.Quake2")
+		    TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "FireQuadSound.Quake2") // Fallback to another skin
 		FireQuadSound.Default:
 			QCGB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
@@ -347,6 +351,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		"####" A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "EndFireLooper.Quake4")
 		"####" A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "EndFireLooper.Quake3")
 		"####" A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "EndFireLooper.Quake2")
+		"####" A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "EndFireLooper.Quake2") // Fallback to another skin
 	EndFireLooper.Default:
 		"####" A 1 A_PlaySound("QC/Weapons/HeavyMachinegun/FireEnd_Default",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
@@ -398,6 +403,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			"####" A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "EndFlash.Quake4")
 			"####" A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "EndFlash.Quake3")
 			"####" A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "EndFlash.Quake2")
+		    "####" A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "EndFlash.Quake2") // Fallback to another skin
 		EndFlash.Default:
 			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,7,2,FPF_NOUNLAGGED|FPF_SKIPOWNER)
 			Goto EndFlashCont
@@ -449,6 +455,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "ZoomedFireNormalSound.Quake4")
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "ZoomedFireNormalSound.Quake3")
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "ZoomedFireNormalSound.Quake2")
+		    TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "ZoomedFireNormalSound.Quake2") // Fallback to another skin
 		ZoomedFireNormalSound.Default:
 			TNT1 A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireZoomedStart_Default",CHAN_WEAPON,1,1)
 			Goto ZoomedFireSoundCont
@@ -479,6 +486,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "ZoomedFireQuadSound.Quake4")
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "ZoomedFireQuadSound.Quake3")
 			TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "ZoomedFireQuadSound.Quake2")
+		    TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "ZoomedFireQuadSound.Quake2") // Fallback to another skin
 		ZoomedFireQuadSound.Default:
 			TNT1 A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_Default",CHAN_WEAPON,1,1)
 			Goto ZoomedFireSoundCont
@@ -535,6 +543,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 4, "EndZoomedFireLooper.Quake4")
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 3, "EndZoomedFireLooper.Quake3")
 		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 2, "EndZoomedFireLooper.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCHMachinegunSkin", 1, "EndZoomedFireLooper.Quake2") // Fallback to another skin
 	EndZoomedFireLooper.Default:
 		TNT1 A 3 Bright A_PlaySound("QC/Weapons/HeavyMachinegun/FireZoomedEnd_Default",CHAN_WEAPON,1) //but plays the end so that it keeps ringing
 		Goto ReadyZoomed
