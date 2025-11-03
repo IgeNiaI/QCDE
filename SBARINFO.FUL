@@ -27,7 +27,7 @@ else
 		drawImage "PCORN004",-234,1050;
 		drawImage "DEMNBAR0", 444,1015;
 		drawBar "DEMNBAR1", "DEMNBAR0", health(600)        , horizontal, interpolate(9), 444,1015;
-		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(1), 444, 943;
+		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(9), 444, 943;
 	} else { inInventory PowerDemonMorph { // Demon HUD for offline
 		drawImage "PCORN001",-234,   0;
 		drawImage "PCORN002",1634,   0;
@@ -35,7 +35,7 @@ else
 		drawImage "PCORN004",-234,1050;
 		drawImage "DEMNBAR0", 444,1015;
 		drawBar "DEMNBAR1", "DEMNBAR0", health(600)        , horizontal, interpolate(9), 444,1015;
-		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(1), 444, 943;
+		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(9), 444, 943;
 	} else {
 	inInventory not NoPortrait {
 	// Team color
