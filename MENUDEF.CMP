@@ -141,7 +141,7 @@ FreeformMenu "ChampionSelector"
 
 
 	Option { NotSelectable	Pos 150,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCSMFONT	FontColor Gold					}
-	Option { NotSelectable	Pos 150,  25	Values QCDE_Champions_FakeText	BackgroundValues QCDE_Champions_Images	Size -1, -1		CVar playerclass	}
+	Option { NotSelectable	Pos 150,  25	Size 77, 97	Values QCDE_Champions_FakeText	BackgroundValues QCDE_Champions_Images	CVar playerclass	}
 	Option { NotSelectable	Pos 170, 118	Values QCDE_Champions_Active	CVar playerclass	Font QCSMFONT	FontColor Gold					}
 	Option { NotSelectable	Pos 170, 133	Values QCDE_Champions_Movement	CVar playerclass	Font SmalLFont	FontColor DarkGray				}
 	Option { NotSelectable	Pos 170, 148	Values QCDE_Champions_Passive1	CVar playerclass	Font SmalLFont	FontColor DarkGray				}
