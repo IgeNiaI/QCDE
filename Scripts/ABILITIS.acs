@@ -57,7 +57,7 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 	  (40 *35) +XYZ, ( 60 *35) +XYZ, ( 7 *35)     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // HUNTER
 	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // SAM
 	  (45 *35) +XYZ, ( 70 *35) +XYZ, (5 *35 )     +XYZ, ( 5 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // POSTAL
-	  (40 *35) +XYZ, (120 *35) +XYZ, (10*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // PAINKILLER
+	  (40 *35) +XYZ, (120 *35) +XYZ, (15*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // PAINKILLER
 	  (45 *35) +XYZ, (100 *35) +XYZ, (12*35 )     +XYZ, (20 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // INTRUDER
 	  (45 *35) +XYZ, ( 30 *35) +XYZ, (25*35 )     +XYZ, (25 *35)     +XYZ, no       +XYZ, no       +XYZ, no                                  , // ORBB
 	  ( 1 *35) +XYZ, (  1 *35) +XYZ, (99)         +XYZ, (99)         +XYZ, no       +XYZ, no       +XYZ, no                                  , // Brock
@@ -216,6 +216,12 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 {
 	if (justPressed) {
 		int plr = PlayerNumber();
+
+		if(!predicting && CheckInventory("PowerDemonMorph"))
+		{
+			ACS("QCDE_Painkiller_Unmorph");
+			terminate;
+		}
 
 		if(CheckInventory("NoAbilitiesToken"))			terminate; // Forbidden?
 		if(GetActorProperty(0,APROP_HEALTH) <= 0)		terminate; // Dead players can't activate ability
@@ -5366,6 +5372,10 @@ Script "QCDE_Passive_Painkiller" (int activate)
 			break;
 	UnmorphActor(0,true); // necessary extra layer
 
+	ACS("QCDE_ShowActiveInProgress", 1);
+	if (GetNetworkState() == NETSTATE_SERVER)
+		ACS("QCDE_ShowActiveInProgress_CLIENTSIDE", 1);
+
 	// Morph ended
 	GiveInventory("PainkillerCleanerProc",1);
 	ACS_NamedExecuteAlways("QCDE_ConfigureMovement", 0);
@@ -5375,6 +5385,11 @@ Script "QCDE_Passive_Painkiller" (int activate)
 	SetActorProperty(0, APROP_Health, hp);
 	TakeInventory("QCArmorPoint", ap);
 	GiveInventory("QCArmorPoint", ap);
+}
+
+Script "QCDE_Painkiller_Unmorph" (void)
+{
+	TakeInventory("PowerDemonMorph", 1);
 }
 
 // Activator: dying monster
