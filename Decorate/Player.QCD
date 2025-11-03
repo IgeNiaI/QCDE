@@ -527,7 +527,7 @@ Actor QCKane : QCPlayerLight
 	Player.SoundClass "Kane"
 	Player.Palette "PL04"
 
-	Scale 0.537
+	Scale 0.4
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -549,20 +549,20 @@ Actor QCKane : QCPlayerLight
 	States
 	{
 	Spawn:
-		QP04 E 0 NoDelay ACS_NamedExecuteWithResult("QCDE_DMCMPGN_PlayBotJoinSound", 0, 0, 0)
+		QP04 G 0 NoDelay ACS_NamedExecuteWithResult("QCDE_DMCMPGN_PlayBotJoinSound", 0, 0, 0)
 	SpawnLoop:
-		QP04 E 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
-		QP04 E 0 A_JumpIf(true,                   "DefSpawn")
-		QP04 E 100
+		QP04 G 0 A_JumpIfInventory("TeamColor",1, "ColoredSpawn")
+		QP04 G 0 A_JumpIf(true,                   "DefSpawn")
+		QP04 G 100
 		Loop
 
 		ColoredSpawn:
 			RP04 A 0 A_JumpIf(momx||momy,"ColoredSee")
-			RP04 E 4
+			RP04 G 4
 			Loop
 		DefSpawn:
 			QP04 A 0 A_JumpIf(momx||momy,"DefSee")
-			QP04 E 4
+			QP04 G 4
 			Goto SpawnLoop // to catch color
 
 	See:
@@ -571,56 +571,56 @@ Actor QCKane : QCPlayerLight
 		Goto DefSee // for preview screen and prediction
 
 		ColoredSee:
-			RP04 ABCD 4
+			RP04 ABCDEF 4
 			RP04 A 0 A_JumpIf(true,"ColoredSpawn")
 			Loop
 		DefSee:
-			QP04 ABCD 4
+			QP04 ABCDEF 4
 			QP04 A 0 A_JumpIf(true,"SpawnLoop") // to catch color
 			Loop
 
 	Missile:
 		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMissile")
-		"####" E 1 A_JumpIf(true,                   "DefMissile")
+		"####" G 1 A_JumpIf(true,                   "DefMissile")
 		Loop
 
 		ColoredMissile:
-			RP04 E 12
-			RP04 E 12 A_JumpIf(true, "SpawnLoop")
+			RP04 G 12
+			RP04 G 12 A_JumpIf(true, "SpawnLoop")
 			Loop
 		DefMissile:
-			QP04 E 12
-			QP04 E 12 A_JumpIf(true, "SpawnLoop")
+			QP04 G 12
+			QP04 G 12 A_JumpIf(true, "SpawnLoop")
 			Loop
 
 	Melee:
 		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredMelee")
-		"####" F 1 A_JumpIf(true,                   "DefMelee")
+		"####" H 1 A_JumpIf(true,                   "DefMelee")
 		Loop
 
 		ColoredMelee:
-			RP04 F 6 BRIGHT Light("PlayerFiringLight")
-			RP04 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "SpawnLoop")
+			RP04 H 6 BRIGHT Light("PlayerFiringLight")
+			RP04 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "SpawnLoop")
 			Loop
 		DefMelee:
-			QP04 F 6 BRIGHT Light("PlayerFiringLight")
-			QP04 F 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "SpawnLoop")
+			QP04 H 6 BRIGHT Light("PlayerFiringLight")
+			QP04 H 6 BRIGHT Light("PlayerFiringLight") A_JumpIf(true, "SpawnLoop")
 			Loop
 
 	Pain:
 		"####" A 0 A_JumpIfInventory("TeamColor",1, "ColoredPain")
-		"####" G 1 A_JumpIf(true,                   "DefPain")
+		"####" I 1 A_JumpIf(true,                   "DefPain")
 		Loop
 
 		ColoredPain:
-			RP04 G 4
-			RP04 G 4 A_Pain
-			RP04 G 4 A_JumpIf(true, "SpawnLoop")
+			RP04 I 4
+			RP04 I 4 A_Pain
+			RP04 I 4 A_JumpIf(true, "SpawnLoop")
 			Loop
 		DefPain:
-			QP04 G 4
-			QP04 G 4 A_Pain
-			QP04 G 4 A_JumpIf(true, "SpawnLoop")
+			QP04 I 4
+			QP04 I 4 A_Pain
+			QP04 I 4 A_JumpIf(true, "SpawnLoop")
 			Loop
 
 	Death:
@@ -629,12 +629,12 @@ Actor QCKane : QCPlayerLight
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
 		TNT1 A 0 A_StopSound(CHAN_6)
 		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
-		QP04 H 4
-		QP04 I 4 A_PlayerScream
-		QP04 J 4 A_NoBlocking
-		QP04 KLM 4
+		QP04 J 4
+		QP04 K 4 A_PlayerScream
+		QP04 L 4 A_NoBlocking
+		QP04 MNO 4
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
-		QP04 N -1 A_StopSound(CHAN_WEAPON)
+		QP04 P -1 A_StopSound(CHAN_WEAPON)
 		Stop
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
@@ -642,13 +642,13 @@ Actor QCKane : QCPlayerLight
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
 		TNT1 A 0 A_StopSound(CHAN_6)
 		TNT1 A 0 A_SpawnItemEx("QCPlayerArmorDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_NOUNLAGGED|SXF_FORCESERVERSIDE)
-		QP04 H 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
+		QP04 J 4 A_SpawnItemEx("GibDropperMedium",0,0,28,0,0,0,0,SXF_NOCHECKPOSITION|SXF_NOUNLAGGED)
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
-		QP04 I 4 A_XScream
-		QP04 J 4 A_NoBlocking
-		QP04 KLM 4
+		QP04 K 4 A_XScream
+		QP04 L 4 A_NoBlocking
+		QP04 MNO 4
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
-		QP04 N -1 A_StopSound(CHAN_WEAPON)
+		QP04 P -1 A_StopSound(CHAN_WEAPON)
 		Stop
 	}
 }
