@@ -567,6 +567,8 @@ Actor QCNailWeakDM : QCNailWeak
 
 Actor QCNailWeakDM_Quake2 : QCNailWeakDM
 {
+	RenderStyle Add
+	Decal "Q2NailgunOrangeFull"
 	States
 	{
 	Spawn:
@@ -582,6 +584,7 @@ Actor QCNailWeakDM_Quake2 : QCNailWeakDM
 
 Actor QCNailWeakDM_SeriousSam : QCNailWeakDM
 {
+	RenderStyle Add
 	States
 	{
 	Spawn:
