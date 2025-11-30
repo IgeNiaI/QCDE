@@ -392,18 +392,22 @@ else
 
 	// Railgun and HMG reticles when zoomed
 	isSelected QCHeavyMachinegun 	, QCHeavyMachinegunDM
-	{	inInventory WeaponZoomedToken	{ drawImage "HMGRETCL", 	184,172; }		}
+	{
+		inInventory WeaponZoomedToken	{
+						inInventory QCHMachinegunSkin, 5 {	drawImage "HMGRETCL", 	184,172;
+			} else {	inInventory QCHMachinegunSkin, 4 {	drawImage "Q4GRETCL", 	184,172;
+			} else {										drawImage "HMGRETCL", 	184,172;
+			}}
+		}
+	}
 	isSelected QCRailgun 			, QCRailgunDM
 	{
 		inInventory WeaponZoomedToken	{
-			inInventory QCRailgunSkin, 8 {	drawImage "SSNRETCL", 	184,172;
-			} else {
-			inInventory QCRailgunSkin, 6 {	drawImage "RGNRETCL", 	184,172;
-			} else {
-			inInventory QCRailgunSkin, 5 {	drawImage "QWNRETCL", 	184,172;
-			} else {
-			inInventory QCRailgunSkin, 4 {	drawImage "Q4NRETCL", 	184,172;
-			} else {	drawImage "RGNRETCL", 	184,172;
+						inInventory QCRailgunSkin, 8 {	drawImage "SSNRETCL", 	184,172;
+			} else {	inInventory QCRailgunSkin, 6 {	drawImage "RGNRETCL", 	184,172;
+			} else {	inInventory QCRailgunSkin, 5 {	drawImage "QWNRETCL", 	184,172;
+			} else {	inInventory QCRailgunSkin, 4 {	drawImage "Q4NRETCL", 	184,172;
+			} else {									drawImage "RGNRETCL", 	184,172;
 			}}}}
 		}
 	}}
