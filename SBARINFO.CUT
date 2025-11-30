@@ -362,6 +362,15 @@ else
 
 			inInventory RailgunCharges, 52 { drawImage "QWCHARG0", 668, 493; }
 		} else {
+		inInventory QCRailgunSkin, 4 {
+			drawBar "Q4CHARG1", "RGCHAR01", RailgunCharges, vertical  ,          667,363;
+			drawBar "Q4CHARG2", "RGCHAR02", RailgunCharges, horizontal,          654,493;
+			drawBar "Q4CHARG4", "RGCHAR04", RailgunCharges, vertical  , reverse, 668,433;
+			drawBar "Q4CHARG6", "RGCHAR06", RailgunCharges, horizontal, reverse, 654,493;
+			drawBar "Q4CHARG8", "RGCHAR08", RailgunCharges, vertical  ,          667,527;
+
+			inInventory RailgunCharges, 52 { drawImage "Q4CHARG0", 668, 493; }
+		} else {
         	drawBar "RGCHARG1", "RGCHAR01", RailgunCharges, vertical  ,          667,363;
         	drawBar "RGCHARG2", "RGCHAR02", RailgunCharges, horizontal,          654,493;
         	drawBar "RGCHARG4", "RGCHAR04", RailgunCharges, vertical  , reverse, 668,433;
@@ -369,7 +378,7 @@ else
         	drawBar "RGCHARG8", "RGCHAR08", RailgunCharges, vertical  ,          667,527;
 
         	inInventory RailgunCharges, 52 { drawImage "RGCHARG0", 668, 493; }
-		}}
+		}}}
 	}
 
 	// Railgun and HMG reticles when zoomed
@@ -378,14 +387,13 @@ else
 	isSelected QCRailgun 			, QCRailgunDM
 	{
 		inInventory WeaponZoomedToken	{
-			inInventory QCRailgunSkin, 6 {
-				drawImage "RGNRETCL", 	184,172;
+			inInventory QCRailgunSkin, 6 {	drawImage "RGNRETCL", 	184,172;
 			} else {
-			inInventory QCRailgunSkin, 5 {
-				drawImage "QWNRETCL", 	184,172;
+			inInventory QCRailgunSkin, 5 {	drawImage "QWNRETCL", 	184,172;
 			} else {
-				drawImage "RGNRETCL", 	184,172;
-			}}
+			inInventory QCRailgunSkin, 4 {	drawImage "Q4NRETCL", 	184,172;
+			} else {	drawImage "RGNRETCL", 	184,172;
+			}}}
 		}
 	}}
 
