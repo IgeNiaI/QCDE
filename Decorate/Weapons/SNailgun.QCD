@@ -821,20 +821,20 @@ Actor QCNailStrongDeathFX_Quake2 : QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA2D A 1
-		NA2D BCDEFG 1
+		NA2D A 1 Bright
+		NA2D BCDEFG 1 Bright
         Stop
 	T2:
-		NA2D A 1
-		NA2D HIJKLM 1
+		NA2D A 1 Bright
+		NA2D HIJKLM 1 Bright
         Stop
 	T3:
-		NA2D A 1
-		NA2D NOPQRS 1
+		NA2D A 1 Bright
+		NA2D NOPQRS 1 Bright
         Stop
 	T4:
-		NA2D A 1
-		NA2D TUVWXY 1
+		NA2D A 1 Bright
+		NA2D TUVWXY 1 Bright
         Stop
 	}
 }
@@ -849,20 +849,20 @@ Actor QCNailStrongDeathFX_Quake3 : QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA3D A 1
-		NA3D BCDEFG 1
+		NA3D A 1 Bright
+		NA3D BCDEFG 1 Bright
         Stop
 	T2:
-		NA3D A 1
-		NA3D HIJKLM 1
+		NA3D A 1 Bright
+		NA3D HIJKLM 1 Bright
         Stop
 	T3:
-		NA3D A 1
-		NA3D NOPQRS 1
+		NA3D A 1 Bright
+		NA3D NOPQRS 1 Bright
         Stop
 	T4:
-		NA3D A 1
-		NA3D TUVWXY 1
+		NA3D A 1 Bright
+		NA3D TUVWXY 1 Bright
         Stop
 	}
 }
@@ -877,20 +877,20 @@ Actor QCNailStrongDeathFXLava_Quake3 : QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA3E A 1
-		NA3E BCDEFG 1
+		NA3E A 1 Bright
+		NA3E BCDEFG 1 Bright
         Stop
 	T2:
-		NA3E A 1
-		NA3E HIJKLM 1
+		NA3E A 1 Bright
+		NA3E HIJKLM 1 Bright
         Stop
 	T3:
-		NA3E A 1
-		NA3E NOPQRS 1
+		NA3E A 1 Bright
+		NA3E NOPQRS 1 Bright
         Stop
 	T4:
-		NA3E A 1
-		NA3E TUVWXY 1
+		NA3E A 1 Bright
+		NA3E TUVWXY 1 Bright
         Stop
 	}
 }
@@ -905,20 +905,20 @@ Actor QCNailStrongDeathFX_Quake4 : QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA4D A 1
-		NA4D BCDEFG 1
+		NA4D A 1 Bright
+		NA4D BCDEFG 1 Bright
         Stop
 	T2:
-		NA4D A 1
-		NA4D HIJKLM 1
+		NA4D A 1 Bright
+		NA4D HIJKLM 1 Bright
         Stop
 	T3:
-		NA4D A 1
-		NA4D NOPQRS 1
+		NA4D A 1 Bright
+		NA4D NOPQRS 1 Bright
         Stop
 	T4:
-		NA4D A 1
-		NA4D TUVWXY 1
+		NA4D A 1 Bright
+		NA4D TUVWXY 1 Bright
         Stop
 	}
 }
@@ -933,20 +933,20 @@ Actor QCNailStrongDeathFXLava_Quake4 : QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA4E A 1
-		NA4E BCDEFG 1
+		NA4E A 1 Bright
+		NA4E BCDEFG 1 Bright
         Stop
 	T2:
-		NA4E A 1
-		NA4E HIJKLM 1
+		NA4E A 1 Bright
+		NA4E HIJKLM 1 Bright
         Stop
 	T3:
-		NA4E A 1
-		NA4E NOPQRS 1
+		NA4E A 1 Bright
+		NA4E NOPQRS 1 Bright
         Stop
 	T4:
-		NA4E A 1
-		NA4E TUVWXY 1
+		NA4E A 1 Bright
+		NA4E TUVWXY 1 Bright
         Stop
 	}
 }
@@ -1041,20 +1041,20 @@ Actor QCNailStrongDeathFX_ETQW : QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA5D A 1
-		NA5D BCDEFG 1
+		NA5D A 1 Bright
+		NA5D BCDEFG 1 Bright
         Stop
 	T2:
-		NA5D A 1
-		NA5D HIJKLM 1
+		NA5D A 1 Bright
+		NA5D HIJKLM 1 Bright
         Stop
 	T3:
-		NA5D A 1
-		NA5D NOPQRS 1
+		NA5D A 1 Bright
+		NA5D NOPQRS 1 Bright
         Stop
 	T4:
-		NA5D A 1
-		NA5D TUVWXY 1
+		NA5D A 1 Bright
+		NA5D TUVWXY 1 Bright
         Stop
 	}
 }
@@ -1069,20 +1069,20 @@ Actor QCNailStrongDeathFX_SeriousSam : QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA8D A 1
-		NA8D BCDEFG 1
+		NA8D A 1 Bright
+		NA8D BCDEFG 1 Bright
         Stop
 	T2:
-		NA8D A 1
-		NA8D HIJKLM 1
+		NA8D A 1 Bright
+		NA8D HIJKLM 1 Bright
         Stop
 	T3:
-		NA8D A 1
-		NA8D NOPQRS 1
+		NA8D A 1 Bright
+		NA8D NOPQRS 1 Bright
         Stop
 	T4:
-		NA8D A 1
-		NA8D TUVWXY 1
+		NA8D A 1 Bright
+		NA8D TUVWXY 1 Bright
         Stop
 	}
 }
@@ -1097,20 +1097,20 @@ Actor QCNailStrongDeathFXLava_SeriousSam : QCNailStrongDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA8E A 1
-		NA8E BCDEFG 1
+		NA8E A 1 Bright
+		NA8E BCDEFG 1 Bright
         Stop
 	T2:
-		NA8E A 1
-		NA8E HIJKLM 1
+		NA8E A 1 Bright
+		NA8E HIJKLM 1 Bright
         Stop
 	T3:
-		NA8E A 1
-		NA8E NOPQRS 1
+		NA8E A 1 Bright
+		NA8E NOPQRS 1 Bright
         Stop
 	T4:
-		NA8E A 1
-		NA8E TUVWXY 1
+		NA8E A 1 Bright
+		NA8E TUVWXY 1 Bright
         Stop
 	}
 }

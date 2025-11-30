@@ -467,20 +467,20 @@ Actor QCNailWeakDeathFX_Quake2 : QCNailWeakDeathFX
 		TNT1 A 0 NODELAY A_Jump(256,"T1","T2","T3","T4")
 
 	T1:
-		NA2D A 1
-		NA2D BCDEFG 1
+		NA2D A 1 Bright
+		NA2D BCDEFG 1 Bright
         Stop
 	T2:
-		NA2D A 1
-		NA2D HIJKLM 1
+		NA2D A 1 Bright
+		NA2D HIJKLM 1 Bright
         Stop
 	T3:
-		NA2D A 1
-		NA2D NOPQRS 1
+		NA2D A 1 Bright
+		NA2D NOPQRS 1 Bright
         Stop
 	T4:
-		NA2D A 1
-		NA2D TUVWXY 1
+		NA2D A 1 Bright
+		NA2D TUVWXY 1 Bright
         Stop
 	}
 }
