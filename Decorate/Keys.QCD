@@ -12,7 +12,7 @@ Actor QCRedCard : CustomInventory replaces RedCard
 	Spawn:
 		TNT1 A 0 NodeLay ACS_NamedExecuteWithResult("QCDE_KeySpawned")
 	Idle:
-		KCRR ABCDDDCBAA 3 Bright
+		KCRR ABCDEEEDCBAA 3 Bright
 		Loop
 	Pickup:
 		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck") > 0, "Infinite")
@@ -33,7 +33,7 @@ Actor QCYellowCard : QCRedCard replaces YellowCard
 	Spawn:
 		TNT1 A 0 NodeLay ACS_NamedExecuteWithResult("QCDE_KeySpawned")
 	Idle:
-		KCRY ABCDDDCBAA 3 Bright
+		KCRY ABCDEEEDCBAA 3 Bright
 		Loop
 	Pickup:
 		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck") > 0, "Infinite")
@@ -54,7 +54,7 @@ Actor QCBlueCard : QCRedCard replaces BlueCard
 	Spawn:
 		TNT1 A 0 NodeLay ACS_NamedExecuteWithResult("QCDE_KeySpawned")
 	Idle:
-		KCRB ABCDDDCBAA 3 Bright
+		KCRB ABCDEEEDCBAA 3 Bright
 		Loop
 	Pickup:
 		TNT1 A 0 A_JumpIf(CallACS("MultiplayerCheck") > 0, "Infinite")
