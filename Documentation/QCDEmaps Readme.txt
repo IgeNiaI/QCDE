@@ -97,12 +97,12 @@ QCDE33   Silence                      DBThanatos
 QCDE34   Zenith                       Killerkouhai
 QCDE35   The Edge                     DBThanatos
 QCDE36   Fusillade                    DBThanatos
-QCDE37   Battleforged                 DBThanatos & Ivan Dobrovski
+QCDE37   Dukiforged                   DBThanatos & Ivan Dobrovski
 QCDE38   Helix                        DBThanatos
 QCDE39   Arcane Temple                geNia
 QCDE40   Rankin                       geNia
 QCDE41   QWER                         geNia
-QCDE42   Deep Embrace                 geNia & Holy Keyboarder
+QCDE42   Mine Embrace                 geNia & Holy Keyboarder
 QCDE43   Temple of the Blood Serpants TheSwampyLad
 QCDE44   Exile                        TheSwampyLad
 QCDE45   Deck 17                      geNia
@@ -122,8 +122,8 @@ QCDL07   The Dark Zone                Mr.Rocket
 QCDL08   Crash Course                 geNia
 QCDL09   Hektik                       Pixo & geNia
 QCDL10   Unreal Place                 geNia
-QCDL11   Fractal Reactor	          kultasakaali
-QCDL12   Okey		                  Pixo
+QCDL11   Fractal Reactor	      kultasakaali
+QCDL12   Okey		              Pixo
 QCDL13   The Proving Grounds          Mr.Rocket
 
 QCME01   The Longest Yard             Mr.Rocket

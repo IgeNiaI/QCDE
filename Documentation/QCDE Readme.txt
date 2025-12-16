@@ -261,9 +261,10 @@ DoomJoshuaBoy           : OpenAL implementation
 
 TDRR                    : Universal Bump Mapping addon, TDBots addon
 
-N4h                     : Quake 1 weapon skins, various sprite adjustments
+N4h                     : Early reworked Quake 1 weapon skins, various sprite adjustments
 
-Hvellor                 : Remaining original Half-Life and Serious Sam weapon skins, various sound adjustments
+Hvellor                 : Remaining original Half-Life and Serious Sam weapon skins, 
+                          stroggified Kane spriteset, various sound adjustments
 
 anvi                    : Various sound adjustments
 
@@ -424,6 +425,8 @@ Dzierzan                : Shadow Warrior high quality sound effects
 ako                     : Assistance with Unreal Tournament music addon
 
 Craneo                  : Doom 4 Tech Mancubus sprites
+
+Amosu                   : Combalance addon
 
 Digital Dialect         : Adrenix Textures
 
