@@ -199,7 +199,7 @@ FreeformMenu QCDE_ChampionDetails
 	Option { NotSelectable	Pos -105,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCBGFONT	FontColor Gold					}
 	Option { NotSelectable	Pos -135,  45	Values QCDE_Champions_FakeText	BackgroundValues 	QCDE_Champions_PortraitsFull	Size -1, -1		CVar playerclass	}
 	Option { NotSelectable	Pos -135,  80	Values QCDE_Champions_FakeText	BackgroundValues 	QCDE_Champions_Abilities		Size -1, -1		CVar playerclass	}
-	Option { NotSelectable	Pos  -75,  45	Values QCDE_Champions_FakeText	BackgroundValues 	QCDE_Champions_Images			Size -1, -1		CVar playerclass	}
+	Option { NotSelectable	Pos  -75,  45	Values QCDE_Champions_FakeText	BackgroundValues 	QCDE_Champions_Images			Size 77, 97		CVar playerclass	}
 
 	Option { NotSelectable	Pos -200, 140	Values QCDE_Champions_Story		Anchor left, center		CVar playerclass	Font SmallFont	FontColor DarkGray	}
 
