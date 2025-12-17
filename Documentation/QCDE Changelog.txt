@@ -2,6 +2,78 @@ Changelog
 
 ---------------------------------------------------------------------
 
+V3.1 (Month Date 2026)
+
+General:
+- "callvote" command now also automatically votes "yes".
+- Added automap markers for weapons and powerups in PvP.
+- Made rocket/nail boosts on high ping slightly less jittery.
+- Updated bots AI. They can now chase the player sometimes. Also they can now follow the player in PvE.
+- Changed Kane sprites to a stroggified variant.
+- Added bot variations from the Combalance addon.
+
+PvP Balance:
+- Reduced Shotgun bullet spread.
+- Nailgun ammo pickups give 50 nails.
+- Increased Doom Movement champions ground speed.
+- Orbb drone is now solid, so it can block other players, and can be used as an air platform to navigate the map. 
+- Orbb drone now have 100 health and can be destroyed.
+- Pressing the attack button while controlling the Orbb drone turns it into a controllable missile that rushes forward and explodes on impact.
+- Increased Orbb drone explosion damage in PvP from 85 to 100.
+- Increased Orbb overbounce retain velocity from 82% to 85%.
+- Nerfed Ranger orb damage in PvP.
+- Ranger can't teleport for a short while after throwing Dire Orb.
+- Doomslayer BFG fires faster in PvP.
+- Reduced Doomslayer ability cooldown in PvP to 40 seconds.
+- Corvus flight now only boosts speed by 16% instead of 42%.
+- Corvus now receives 25% more damage when in flight.
+- Galen totems heal refill in PvP when a new totem is thrown.
+- Reduced Galen ability PvP cooldown from 35 to 30 seconds.
+- Grayson ability no longer freezes players movement.
+- Increased Painkiller demon form speed.
+- Increased Painkiller demon form projectile speed in PvP.
+- Painkiller can now cancel his demon form immediately by pressing the active ability button.
+- Reduced Kane Crouch Slide speed and Injection speed boost.
+- Menelkir's Maulotaur no longer does the ground flame attack.
+- Menelkir's Maulotaur is now more aggressive. He moves faster and charges into enemies if they are nearby.
+- Menelkir gained new Bloodlust passive ability. Enemies killed by Menelkir or Maulotaur now prolong Maulotaur's life.
+- Zedek stomp deals less damage, but launches enemies upward.
+- Reduced Durandal and Intruder air acceleration.
+
+PvE Balance:
+- Lucienne now drops her immolation ball in PvE when falling to 30 hp instead of on death. To recharge the passive, heal back to 100 hp.
+- Removed speed cap from CPM champions in PvE.
+- UT Dispersion Pistol upgrades no longer reduce fire rate.
+
+Bugfixes:
+- Fixed wrong menu scaling on resolutions other than 1920x1080. Now all menu elements should be properly visible on all screens.
+- Fixed issue when Galen totems wouldn't play heal sound in multiplayer sometimes.
+
+Misc:
+- Added Quake Live HMG as the Quake 3 Machinegun skin.
+- Added Quake 3 Team Arena nailgun as the Quake 3 Shotgun skin.
+- Updated all Quake 4 weapon skin sprites.
+- Updated all Quake Wars: Enemy Territory weapon skin sprites, except SNG.
+- Updated Quake 3 HMG, SNG and BFG skin sprites.
+- Updated Quake 2 Gauntlet, Nailgun, LG and BFG skin sprites.
+- Updates Serious Sam MG, SNG, LG, RG and BFG skin sprites.
+- Updated green BFG projectile sprites.
+- Updated graphics for Default BFG, Half-Life HMG, Half-Life BFG and Serious Sam BFG skins.
+- Updated graphics for hourglasses, automap pickup, rad suit pickup, protection powerup.
+- Updated graphics for all weapon upgrades.
+- Updated scope graphics for Quake 4, Quake World and Serious Sam Railgun skin scopes.
+- Updated weapons HUD sprites.
+- Added fire sprites to Painkiller gauntlet when upgraded in PvE.
+- Added HUD graphics for Painkiller gauntlet.
+- Updated Postal smoke sprites.
+- Updated Zedek flame sprites.
+- Picked more suitable weapon skins for sets that lack skins in some slots when using class based skins.
+- Updated ability graphics for Bitterman, DoomSlayer, Galen, Grayson, Kane, Keel, Lucienne, Major.
+- Updated cursor graphic. You can select the old cursor in settings if you wish.
+- Redone all UT weapons sprites.
+
+---------------------------------------------------------------------
+
 V3.0 (November 29 2024)
 
 General:
@@ -166,7 +238,7 @@ Maps:
 - Added Heavy and Mega spawn foundation decorations to maps that didn't have them
 - Removed custom campaign skyboxes from QCDE mappack, they are not used by any DM map anyway
 
-Bug fixes:
+Bugfixes:
 - Fixed some effects like the overhead powerup or blood being visible to their owner.
 - Fixed Eleena clone rockets having different effects.
 - Fixed projectile hitbox being shifted up.
