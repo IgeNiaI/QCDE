@@ -7,7 +7,7 @@ STARTUP1 =                                                                      
 			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "        "\n"
 			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
 			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
-			   "   " "      " "  " "     \ck v3.0     "   ;
+			   "   " "      " "  " "     \ck v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "You are playing Quake Champions: Doom Edition. \n"
 			"Join our Discord to chat with other players, \n"
@@ -27,7 +27,7 @@ STARTUP1 =                                               "\n"
 			"\ch  $$ $$$  $$          $$  $$  $$      "  "\n"
 			"\cg  $$  $$  $$  $$  $$  $$  $$  $$      "  "\n"
 			"\cg   $$$$ $  $$$$       $$$$$   $$$$$$  "  "\n"
-			"                \ca v3.0     "   ;
+			"                \ca v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "Добро пожаловать в Quake Champions: Doom Edition. \n"
 			"Заходи в Дискорд: у нас можно поиграть по сети, \n"
@@ -46,7 +46,7 @@ STARTUP1 =                                                     "\n"
 			"\cd  $$ $$$  $$ \cj         $$ \cg $$  $$$$    "  "\n"
 			"\cd  $$  $$  $$ \cj $$  $$  $$ \cg $$  $$      "  "\n"
 			"\cd   $$$$ $  $$\cj$$       $$$\cg$$   $$$$$$  "  "\n"
-			   "                \cj v3.0     "   ;
+			   "                \cj v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "Stai ora giocando Quake Champions: Doom Edition. \n"
 			"Entra a far parte del nostro server Discord. Chatta con gli altri \n"
@@ -65,7 +65,7 @@ STARTUP1 =                                           "\n"
 			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "     "\n"
 			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
 			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
-			   "   " "      " "  " "     \ck v3.0     "   ;
+			   "   " "      " "  " "     \ck v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "Estas jugando Quake Champions: Doom Edition. \n"
 			"Unete a nuestra comunidad de Discord para disfrutar al maximo \n"
@@ -103,7 +103,7 @@ STARTUP1 =                                                                      
 			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "        "\n"
 			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
 			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
-			   "   " "      " "  " "     \ck v3.0     "   ;
+			   "   " "      " "  " "     \ck v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "Hrajete Quake Champions: Doom Edici."
       "\n"  "Pripojte se na nas Discord server s ostatnimi hraci,"
@@ -126,7 +126,7 @@ STARTUP1 =                                                                      
 			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "        "\n"
 			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
 			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
-			   "   " "      " "  " "     \ck v3.0     "   ;
+			   "   " "      " "  " "     \ck v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "Witaj w Quake Champions: Doom Edition!"
       "\n"  "Jesli masz jakies problemy z modyfikacja lub po porostu chcesz "
@@ -146,7 +146,7 @@ STARTUP1 =                                                                      
 			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "        "\n"
 			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
 			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
-			   "   " "      " "  " "     \ck v3.0     "   ;
+			   "   " "      " "  " "     \ck v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "Vous jouez Quake Champions: Doom Edition."
       "\n"  "Rejoignez notre Discord pour vous contacter d'autres joueurs, "
@@ -165,7 +165,7 @@ STARTUP1 =                                                                      
 			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "        "\n"
 			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
 			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
-			   "   " "      " "  " "     \ck v3.0     "   ;
+			   "   " "      " "  " "     \ck v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "Udvozol a Quake Champions: Doom Edition. \n"
 			"Csatlakozz Discord szerverunkhoz es chatelj velunk, \n"
@@ -185,7 +185,7 @@ STARTUP1 =                                                                      
 			"\cm  \ck$$\cm \ck$$$\cm  \ck$$\cm  " "  " "  " "    \ci$$\cm  \ci$$\cm  \ci$$$$\cm    "        "\n"
 			"\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$$\cm  \ck$\ci$\cm  \ci$$\cm  \ci$$\cm  \ci$$\cm      "  "\n"
 			"\cm   \ck$$$$ $\cm  \ck$$$$\cm       \ci$$$$$\cm   \ci$$$$$$\cm  "  "\n"
-			   "   " "      " "  " "     \ck v3.0     "   ;
+			   "   " "      " "  " "     \ck v3.1     "   ;
 STARTUP2 =  " ";
 STARTUP3 =  "Tervetuloa Quake Champions: Doom Editioniin. \n"
 			"Liity Discordiimme ja chattaile muiden pelaajien kanssa, \n"
