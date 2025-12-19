@@ -82,6 +82,20 @@ Script "QCDE_SetWeaponRespawnTics" (void)
 	SetResultValue(result);
 }
 
+// Activator: BFG pickup
+Script "QCDE_SetBfgRespawnTics" (void)
+{
+	int result;
+	if (!GetCvar("sv_itemrespawn"))
+		result = 0x7FFFFFFF;
+	else if (GetCvar("sv_bfgrespawn"))
+		result = (GetCvar("sv_bfgrespawn") - 1) * 35; // + 1 second from Decorate
+	else // all non-duel games with items set to respawn
+		result = 59 * 35; // + 1 second from Decorate
+	//PrintBold(n:0, s:" result: ", d:result);
+	SetResultValue(result);
+}
+
 
 //=============================================================================
 //
