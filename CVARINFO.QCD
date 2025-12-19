@@ -21,6 +21,7 @@ server           int sv_pistolStart         =   0; // reset inventory on every m
 server           int sv_crowntheleader      =   1; // crown that marks best fragger in deathmatch
 server           int sv_pvescaledamage      =   1; // reduce damage to squishies, increase to tanks in coop
 server           int sv_weaponrespawn       =   0; // weapon respawn time
+server           int sv_bfgrespawn          =   0; // BFG respawn time
 server           bool sv_showItemTimers     =   false; // show Heavy, Mega, MegaMega, Light Armor and Powerup respawn timers
 server           bool sv_showStackLeft      =   false; // show enemy's health and armor on death
 server noarchive bool sv_healonkill			=	false; // heal the player to full normal stack on respawn and after each kill
