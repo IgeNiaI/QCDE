@@ -36,6 +36,7 @@ Actor OrbbDrone : UnlaggedActor
 	Height 32
 
 	Health 100
+	Damage (16)
 
 	CameraHeight 16
 
@@ -71,27 +72,15 @@ Actor OrbbDrone : UnlaggedActor
 		Loop
 
 	Death:
-		TNT1 A 0 A_ChangeFlag("NOBLOCKMAP", true)
-		TNT1 A 0 A_ChangeFlag("NOINTERACTION", true)
-		TNT1 A 0 A_ChangeFlag("INVULNERABLE", true)
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", true)
-		TNT1 A 0 A_ChangeFlag("MISSILE", false)
-		TNT1 A 0 A_GiveInventory("ImDead", 1, 0, GIF_SKIPOWNER)
-		TNT1 A 0 A_PlaySound("QC/Abilities/Durandal/BOBExplo", CHAN_7)
-		TNT1 A 0 A_JumpIfInventory("DroneTurnMissile", 1, "DeathMissile")
-		ODRN FGHIJKLMNOPQRST 1
-		Stop
-
-    DeathMissile:
 		TNT1 A 0 A_SeekerMissile(0,0,SMF_LOOK|SMF_CURSPEED,256)
 		TNT1 A 0 A_JumpIfTargetInLOS("RadiusHitCoop",360,JLOSF_PROJECTILE,360)
-		Goto DeathMissileCont
+		Goto DeathCont
 
 		RadiusHitCoop:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
-			Goto DeathMissileCont
+			Goto DeathCont
 
-    DeathMissileCont:
+    DeathCont:
 		TNT1 A 0 A_JumpIfInventory("DMToken", 1, "DoExplodeDM")
 		Goto DoExplodeCoop
 
@@ -112,16 +101,16 @@ Actor OrbbDrone : UnlaggedActor
 	DoExplodeCoop:
 		TNT1 A 0 A_RadiusThrust(170,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
-		TNT1 A 0 A_Explode(50,256,XF_HURTSOURCE)
-		TNT1 A 0 A_Explode(200,256,0)
+		TNT1 A 0 A_Explode(50,256,XF_HURTSOURCE,0,22)	//max damage taken by self rocket (rocket jump) is 50
+		TNT1 A 0 A_Explode(184,256,0,0,22)	//then another 184 extra damage for impacting an enemy + (16)dmg on the projectile = 250dmg
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		Goto ExplodeFX
 
 	DoExplodeDM:
 		TNT1 A 0 A_RadiusThrust(170,256,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
-		TNT1 A 0 A_Explode(50,256,XF_HURTSOURCE,0,18)
-		TNT1 E 0 A_Explode(50,256,0,0,18)
+		TNT1 A 0 A_Explode(50,256,XF_HURTSOURCE,0,22)	//max damage taken by self rocket (rocket jump) is 50
+		TNT1 E 0 A_Explode(34,256,0,0,22)	//then another 34 extra damage for impacting a player + (16)dmg on the projectile =100dmg
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
 		Goto ExplodeFX
 
