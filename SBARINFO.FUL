@@ -455,6 +455,18 @@ else
         drawString QCFNT030, yellow, GlobalArray 10, 700,646, 0, alignment(center);// frags 2nd
     }
 
+	// Handicap
+	InInventory PowerHandicap95 { DrawString QCBGFONT, Orange, "HC 95", 148, 1016; }
+	InInventory PowerHandicap90 { DrawString QCBGFONT, Orange, "HC 90", 148, 1016; }
+	InInventory PowerHandicap85 { DrawString QCBGFONT, Orange, "HC 85", 148, 1016; }
+	InInventory PowerHandicap80 { DrawString QCBGFONT, Orange, "HC 80", 148, 1016; }
+	InInventory PowerHandicap75 { DrawString QCBGFONT, Orange, "HC 75", 148, 1016; }
+	InInventory PowerHandicap70 { DrawString QCBGFONT, Orange, "HC 70", 148, 1016; }
+	InInventory PowerHandicap65 { DrawString QCBGFONT, Orange, "HC 65", 148, 1016; }
+	InInventory PowerHandicap60 { DrawString QCBGFONT, Orange, "HC 60", 148, 1016; }
+	InInventory PowerHandicap55 { DrawString QCBGFONT, Orange, "HC 55", 148, 1016; }
+	InInventory PowerHandicap50 { DrawString QCBGFONT, Orange, "HC 50", 148, 1016; }
+
 	// Keybag
 	gameMode deathmatch, ctf, oneflagctf, skulltag, domination, customteamgame
 	{
