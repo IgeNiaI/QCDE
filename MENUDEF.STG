@@ -884,20 +884,38 @@ FreeformMenu "QCDE_OptionsGame"
 		Padding	3, 1				SelectedFontColor	Gray
 	}
 
+	Label {
+		Pos		75, 560			Font		SmallFont
+		Anchor	right, center		FontColor	DarkGray
+		Text	"Damage handicap"
+	}
+	TextField {
+		Pos		93, 560		CVar				cl_qchandicap	Background			TX05028
+		Size	25, 14			Font				SmallFont		SelectedBackground	TX05028S
+		Anchor	center, center	SelectedFontColor	Gray
+		Padding	0, 1
+	}
+	Slider {
+		Pos		110, 560		CVar	cl_qchandicap
+		Size	75, 6			Range	50, 100, 5.0
+		Anchor	left, center	MouseArea	105, 14
+		Textures	SLIDER, SLIDERS, SLIDERSS, 8, 14
+	}
+
 
 	Label {
-		Pos		0, 580				Font		QCSMFONT
+		Pos		0, 600				Font		QCSMFONT
 		Anchor	center, center		FontColor	Gold
 		Text	"Champion specific settings"
 	}
 
 	Label {
-		Pos		75, 601				Font		SmallFont
+		Pos		75, 621				Font		SmallFont
 		Anchor	right, center		FontColor	DarkGray
 		Text	"Eradicator Radar mode"
 	}
 	Option {
-		Pos		80, 600				CVar				cl_radarMode		UnknownBackground	OP21028
+		Pos		80, 620				CVar				cl_radarMode		UnknownBackground	OP21028
 		Size	105, 14				Values				RadarMode			SelectedBackground	OP21028S
 		Anchor	left, center		Font				SmallFont			SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
