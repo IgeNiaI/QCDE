@@ -446,6 +446,45 @@ Script "StackLeft_Clientside" (int victimTid, int hp, int ap) clientside
 	}
 }
 
+Script "QCDE_Handicap" (void)
+{
+	int handicap = GetUserCvar(PlayerNumber(), "cl_qcHandicap");
+		
+	// Default setting, nothing to do
+	if(handicap == 100) terminate;
+
+	// Toss any value, that's out of bounds.
+	if(handicap < 50 || handicap > 100)
+	{
+		ACS_NamedExecuteAlways("QCDE_Handicap_UpdateCVar", 0, 100);
+		ACS_NamedExecuteAlways("QCDE_Handicap_UpdateCVar_Client", 0, 100);
+		ACS_NamedExecuteAlways("QCDE_Handicap_Notification", 0, 0, false);
+		terminate;
+	}
+	
+	// Floor any value not divisible by 5 and rewrite CVar
+	if(handicap % 5 != 0) {
+		handicap = handicap / 5 * 5;
+		ACS_NamedExecuteAlways("QCDE_Handicap_UpdateCVar", 0, handicap);
+		ACS_NamedExecuteAlways("QCDE_Handicap_UpdateCVar_Client", 0, handicap);
+	}
+	
+	str handiPWR = StrParam(s:"Handicap", d:handicap);
+	GiveInventory(handiPWR, 1);
+	
+	ACS_NamedExecuteAlways("QCDE_Handicap_Notification", 0, handicap, true);
+}
+
+Script "QCDE_Handicap_UpdateCVar" (int value) 
+{
+	SetUserCvar(PlayerNumber(), "cl_qcHandicap", value);
+}
+
+Script "QCDE_Handicap_UpdateCVar_Client" (int value) CLIENTSIDE
+{
+	SetUserCvar(ConsolePlayerNumber(), "cl_qcHandicap", value);
+}
+
 // For effects tracking items that might respawn, additional condition to
 // finish animation.
 // Spawner is expected to be target.

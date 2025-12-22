@@ -155,6 +155,7 @@ Script "QCDE_NewLife" (int firsttime)
 	ACS_NamedExecuteAlways("QCDE_CleanUpAbilities"		,0);	//to clean up flag/token changes that occurred in the previous level
 	ACS_NamedExecuteAlways("QCDE_AllyMarker_CLIENT"		,0, true);
 	ACS_NamedExecuteAlways("QCDE_BindAbilityKey_Hint"	,0);
+	ACS_NamedExecuteAlways("QCDE_Handicap"				,0);
 
 	if (GetCVar("qc_defrag"))
 	{

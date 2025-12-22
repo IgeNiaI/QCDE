@@ -203,6 +203,26 @@ script "QCDE_EldersSoul_HintDegeneration" (void)
 	HudMessage(s:s; HUDMSG_FADEINOUT,ID_CHANGEWEAPON_BACK ,CR_WHITE,  256.0,280.0, 1.4,0.1,2.0);
 }
 
+Script "QCDE_Handicap_Notification" (int value, int valid) CLIENTSIDE
+{
+	if(ConsolePlayerNumber() != CheckPlayerCamera(PlayerNumber()) - 1000) terminate;
+	
+	str msg, desc;
+	
+	if(valid) {
+		msg = "Using handicap!";
+		desc = StrParam(s:"Current setting: ", d:value);
+	} else {
+		msg = "Invalid handicap setting!";
+		desc = "Reverting to default";
+	}
+
+	SetHUDSize(512,384,1);
+	SetFont("QCBGFONT");
+	HudMessageBold(s:msg; HUDMSG_FADEINOUT|HUDMSG_LOG,ID_COOPTANK_1,CR_ORANGE, 256.0,280.0, 1.6,0.3,2.0);
+	SetFont("SMALLFONT");
+	HudMessageBold(s:desc; HUDMSG_FADEINOUT|HUDMSG_LOG,ID_COOPTANK_2,CR_UNTRANSLATED, 256.0,296.0, 1.8,0.4,2.0);
+}
 
 
 

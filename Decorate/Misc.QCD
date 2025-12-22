@@ -1,5 +1,5 @@
 
-Actor CompatVer30_Misc {} // for compatibility checks
+Actor CompatVer31_Misc {} // for compatibility checks
 
 //$GZDB_SKIP
 
@@ -253,6 +253,41 @@ Actor PlayerSpeed80  : PlayerSpeed100 { Powerup.Type "PlayerSpeed80"  }
 Actor PlayerSpeed75  : PlayerSpeed100 { Powerup.Type "PlayerSpeed75"  }
 Actor PlayerSpeed70  : PlayerSpeed100 { Powerup.Type "PlayerSpeed70"  }
 
+
+// Handicap - "Totally not based on PlayerSpeed:tm:"
+
+Actor PowerHandicap95 : PowerDamage { DamageFactor "Normal", 0.95	Inventory.Icon "" }
+Actor PowerHandicap90 : PowerDamage { DamageFactor "Normal", 0.90	Inventory.Icon "" }
+Actor PowerHandicap85 : PowerDamage { DamageFactor "Normal", 0.85	Inventory.Icon "" }
+Actor PowerHandicap80 : PowerDamage { DamageFactor "Normal", 0.80	Inventory.Icon "" }
+Actor PowerHandicap75 : PowerDamage { DamageFactor "Normal", 0.75	Inventory.Icon "" }
+Actor PowerHandicap70 : PowerDamage { DamageFactor "Normal", 0.70	Inventory.Icon "" }
+Actor PowerHandicap65 : PowerDamage { DamageFactor "Normal", 0.65	Inventory.Icon "" }
+Actor PowerHandicap60 : PowerDamage { DamageFactor "Normal", 0.60	Inventory.Icon "" }
+Actor PowerHandicap55 : PowerDamage { DamageFactor "Normal", 0.55	Inventory.Icon "" }
+Actor PowerHandicap50 : PowerDamage { DamageFactor "Normal", 0.50	Inventory.Icon "" }
+
+
+Actor Handicap95 : PowerupGiver
+{
+	powerup.duration 0x77777777
+	powerup.type "PowerHandicap95"
+	Inventory.MaxAmount 0
+	Inventory.InterHubAmount 0
+	-COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+SERVERNETID
+}
+
+Actor Handicap90 : Handicap95 { Powerup.Type "PowerHandicap90"  }
+Actor Handicap85 : Handicap95 { Powerup.Type "PowerHandicap85"  }
+Actor Handicap80 : Handicap95 { Powerup.Type "PowerHandicap80"  }
+Actor Handicap75 : Handicap95 { Powerup.Type "PowerHandicap75"  }
+Actor Handicap70 : Handicap95 { Powerup.Type "PowerHandicap70"  }
+Actor Handicap65 : Handicap95 { Powerup.Type "PowerHandicap65"  }
+Actor Handicap60 : Handicap95 { Powerup.Type "PowerHandicap60"  }
+Actor Handicap55 : Handicap95 { Powerup.Type "PowerHandicap55"  }
+Actor Handicap50 : Handicap95 { Powerup.Type "PowerHandicap50"  }
 
 // CSMA
 Actor QCEverything : Pistol { +WEAPON.CHEATNOTWEAPON +INVENTORY.UNDROPPABLE }
