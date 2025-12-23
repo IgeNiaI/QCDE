@@ -51,7 +51,7 @@ Other files required    : Engine and Iwad of doom2 or similar
 * Play Information *
 
 Game                    : Doom 2 (compatible with Doom)
-Map #                   : Titlemap + 69 additional maps (separate downloads)
+Map #                   : Titlemap + 75 additional maps (separate downloads)
 Single Player           : Yes
 Cooperative 2-4 Player  : Designed for
 Deathmatch 2-4 Player   : Designed for
@@ -265,6 +265,8 @@ N4h                     : Early reworked Quake 1 weapon skins, various sprite ad
 
 Hvellor                 : Remaining original Half-Life and Serious Sam weapon skins, 
                           stroggified Kane spriteset, various sound adjustments
+
+Ittrav                  : Various sprite adjustments
 
 anvi                    : Various sound adjustments
 
