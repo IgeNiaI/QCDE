@@ -23,7 +23,7 @@ Actor DukeFreezeThrower : QCWeapon
 {
 	Weapon.Kickback 0
 	Weapon.SelectionOrder 2000
-	Obituary "$OB_DukeFreezeThrower" // "%o was frozen solid by %k."
+	Obituary "$OB_DukeBootPuff" // "%o ate %k's boot."
 	Tag "$TAG_DukeFreezeThrower" // "Freeze Thrower"
 	+INVENTORY.UNDROPPABLE
 	+WEAPON.CHEATNOTWEAPON
@@ -230,6 +230,7 @@ Actor DukeFreezeShot
 	Height 16
 	Scale 0.14
 	Damage 8
+	Obituary "$OB_DukeFreezeThrower" // "%o was frozen solid by %k."
 	+NODAMAGETHRUST
 	+MTHRUSPECIES
 	+DONTBLAST
