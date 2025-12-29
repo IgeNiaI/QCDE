@@ -1585,20 +1585,39 @@ Script "QCDE_Ability_Keel" (void)
 		SetNetworkReplicationFlags( 0 );
 	}
 }
+
+bool KeelGlSide[64];
 Script "QCDE_KeelGLAnimation" (void) clientside
 {
-	// *.0 on coordinates means "align to center"
-	DrawWeapon("QP16R0",  60.0, 250.0);	delay(1);
-	DrawWeapon("QP16R0",  90.0, 270.0);	delay(1);
-	DrawWeapon("QP16S0", 120.0, 290.0);	delay(1);
-	DrawWeapon("QP16S0", 150.0, 310.0); delay(1);
-	DrawWeapon("QP16T0", 150.0, 310.0); delay(1);
-	DrawWeapon("QP16T0", 150.0, 310.0); delay(1);
-	DrawWeapon("QP16U0", 150.0, 310.0); delay(1);
-	DrawWeapon("QP16U0", 120.0, 290.0);	delay(1);
-	DrawWeapon("QP16U0",  90.0, 270.0);	delay(1);
-	DrawWeapon("QP16U0",  60.0, 250.0);	delay(1);
-	DrawWeapon("QP16U0",   0.0, 200.0);	delay(1);
+	if (KeelGlSide[PlayerNumber()]) {
+		KeelGlSide[PlayerNumber()] = false;
+		// *.0 on coordinates means "align to center"
+		DrawWeapon("RP16R0", 320.0 -  60.0, 250.0);	delay(1);
+		DrawWeapon("RP16R0", 320.0 -  90.0, 270.0);	delay(1);
+		DrawWeapon("RP16S0", 320.0 - 120.0, 290.0);	delay(1);
+		DrawWeapon("RP16S0", 320.0 - 150.0, 310.0); delay(1);
+		DrawWeapon("RP16T0", 320.0 - 150.0, 310.0); delay(1);
+		DrawWeapon("RP16T0", 320.0 - 150.0, 310.0); delay(1);
+		DrawWeapon("RP16U0", 320.0 - 150.0, 310.0); delay(1);
+		DrawWeapon("RP16U0", 320.0 - 120.0, 290.0);	delay(1);
+		DrawWeapon("RP16U0", 320.0 -  90.0, 270.0);	delay(1);
+		DrawWeapon("RP16U0", 320.0 -  60.0, 250.0);	delay(1);
+		DrawWeapon("RP16U0", 320.0 -   0.0, 200.0);	delay(1);
+	} else {
+		KeelGlSide[PlayerNumber()] = true;
+		// *.0 on coordinates means "align to center"
+		DrawWeapon("QP16R0",  60.0, 250.0);	delay(1);
+		DrawWeapon("QP16R0",  90.0, 270.0);	delay(1);
+		DrawWeapon("QP16S0", 120.0, 290.0);	delay(1);
+		DrawWeapon("QP16S0", 150.0, 310.0); delay(1);
+		DrawWeapon("QP16T0", 150.0, 310.0); delay(1);
+		DrawWeapon("QP16T0", 150.0, 310.0); delay(1);
+		DrawWeapon("QP16U0", 150.0, 310.0); delay(1);
+		DrawWeapon("QP16U0", 120.0, 290.0);	delay(1);
+		DrawWeapon("QP16U0",  90.0, 270.0);	delay(1);
+		DrawWeapon("QP16U0",  60.0, 250.0);	delay(1);
+		DrawWeapon("QP16U0",   0.0, 200.0);	delay(1);
+	}
 }
 
 
