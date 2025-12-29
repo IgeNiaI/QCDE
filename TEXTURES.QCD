@@ -1147,6 +1147,13 @@ Graphic PCORN003, 722, 482 { Offset 722, 482   Patch PCORN001,0,0 { FlipX FlipY 
 Graphic PCORN004, 722, 482 { Offset   0, 482   Patch PCORN001,0,0 {       FlipY } }
 
 
+// Keel
+Graphic RP16R0, 322, 224 { Offset -150, 250   Patch QP16R0,0,0 { FlipX } }
+Graphic RP16S0, 322, 224 { Offset -150, 250   Patch QP16S0,0,0 { FlipX } }
+Graphic RP16T0, 322, 224 { Offset -150, 250   Patch QP16T0,0,0 { FlipX } }
+Graphic RP16U0, 322, 224 { Offset -150, 250   Patch QP16U0,0,0 { FlipX } }
+
+
 
 //=============================================================================
 //
