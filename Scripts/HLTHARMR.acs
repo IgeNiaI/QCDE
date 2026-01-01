@@ -239,6 +239,8 @@ Script "QCDE_ShowItemRespawnTimers" (void)
 
 script "QCDE_SpawnMajorItemMapMarker" (int type)
 {
+	if(GameType() < GAME_NET_DEATHMATCH) terminate;
+
 	str marker = "MapMarker";
 
 	switch(type)
