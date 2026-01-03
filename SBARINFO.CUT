@@ -822,8 +822,17 @@ else
 				drawImage "ACTFRAME", 572,800;
 		}
 	}}
+	
 	// Icon
-	inInventory Class_Ranger		{ drawSwitchableImage AbilityCooldownToken, 	"DIREORB1", "DIREORB0", 	636,850; }
+	
+	inInventory Class_Ranger		{		//Ranger is special
+		inInventory not PowerOrbThrownCantTele {
+			drawSwitchableImage AbilityCooldownToken, 	"DIREORB1", "DIREORB0", 	636,850;
+		} else {
+			DrawSwitchableImage PowerOrbThrownCantTele, "DIREORB1", "DIREORB0",		636,850;
+		}
+	}
+	
 	inInventory Class_Doomslayer	{ drawSwitchableImage AbilityCooldownToken, 	"BIGFGUN1", "BIGFGUN0", 	636,850; }
 	inInventory Class_Corvus		{ drawSwitchableImage AbilityCooldownToken, 	"FLIGHT_1", "FLIGHT_0", 	636,850; }
 	inInventory Class_Kane			{ drawSwitchableImage AbilityCooldownToken, 	"STROYEN1", "STROYEN0", 	636,850; }
