@@ -122,6 +122,9 @@ Actor MapMarker_PwUp : QCMapMarker
     States
     {
     Spawn:
+        TNT1 A 1
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfNoPowerups")
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
         PWUP M -1
 		Stop
     }
