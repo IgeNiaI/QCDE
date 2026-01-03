@@ -123,6 +123,7 @@ Actor MapMarker_PwUp : QCMapMarker
     {
     Spawn:
         TNT1 A 1
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfPve")
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfNoPowerups")
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
         PWUP M -1
