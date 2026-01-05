@@ -212,7 +212,7 @@ Actor QCRailGun : QCWeapon
 		HLG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto ReadyCont
 	Ready.SeriousSam:
-		SSG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_SeriousSam", CHAN_WEAPON, 0.4, 1, 1.25)
+		SSG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_SeriousSam", CHAN_WEAPON, 1.0, 1, 1.25)
 		Goto ReadyCont
 
 	ReadyCont:
