@@ -527,7 +527,7 @@ Actor QCKane : QCPlayerLight
 	Player.SoundClass "Kane"
 	Player.Palette "PL04"
 
-	Scale 0.38
+	Scale 0.5
 
 	Player.FootstepInterval 10
 	Player.FootstepVolume 0.5625
@@ -632,9 +632,9 @@ Actor QCKane : QCPlayerLight
 		QP04 J 4
 		QP04 K 4 A_PlayerScream
 		QP04 L 4 A_NoBlocking
-		QP04 MNO 4
+		QP04 MN 4
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
-		QP04 P -1 A_StopSound(CHAN_WEAPON)
+		QP04 O -1 A_StopSound(CHAN_WEAPON)
 		Stop
 	XDeath:
 		TNT1 A 0 A_ChangeFlag("BRIGHT",0)
@@ -646,9 +646,9 @@ Actor QCKane : QCPlayerLight
 		TNT1 A 0 A_PlaySound("QC/Weapons/Gore",CHAN_BODY,0.5,false,1.2)
 		QP04 K 4 A_XScream
 		QP04 L 4 A_NoBlocking
-		QP04 MNO 4
+		QP04 MN 4
 		TNT1 A 0 A_StopSound(CHAN_BODY) //stops sliding sounds
-		QP04 P -1 A_StopSound(CHAN_WEAPON)
+		QP04 O -1 A_StopSound(CHAN_WEAPON)
 		Stop
 	}
 }
