@@ -372,9 +372,18 @@ $playeralias	DoomSlayer	other	*secondjump		DoomDoubleJump
 //================================================================
 //================================================================
 
-$random CorvusPain { CorvusPain1 CorvusPain2 }
-CorvusPain1		"Sounds/Players/Corvus/Pain1.ogg"
-CorvusPain2		"Sounds/Players/Corvus/Pain2.ogg"
+$random CorvusPainA { CorvusPainA1 CorvusPainA2 }
+CorvusPainA1		"Sounds/Players/Corvus/PainA1.ogg"
+CorvusPainA2		"Sounds/Players/Corvus/PainA2.ogg"
+$random CorvusPainB { CorvusPainB1 CorvusPainB2 }
+CorvusPainB1		"Sounds/Players/Corvus/PainB1.ogg"
+CorvusPainB2		"Sounds/Players/Corvus/PainB2.ogg"
+$random CorvusPainC { CorvusPainC1 CorvusPainC2 }
+CorvusPainC1		"Sounds/Players/Corvus/PainC1.ogg"
+CorvusPainC2		"Sounds/Players/Corvus/PainC2.ogg"
+$random CorvusPainD { CorvusPainD1 CorvusPainD2 }
+CorvusPainD1		"Sounds/Players/Corvus/PainD1.ogg"
+CorvusPainD2		"Sounds/Players/Corvus/PainD2.ogg"
 
 QCCorvusTaunt01 "Sounds/Players/Corvus/Taunt1.ogg"
 QCCorvusTaunt02 "Sounds/Players/Corvus/Taunt2.ogg"
@@ -390,18 +399,19 @@ QCCorvusTaunt11 "Sounds/Players/Corvus/Taunt11.ogg"
 QCCorvusTaunt12 "Sounds/Players/Corvus/Taunt12.ogg"
 QCCorvusTaunt13 "Sounds/Players/Corvus/Taunt13.ogg"
 
-$random CorvusJump { CorvusJump1 CorvusJump1 }
-CorvusJump1		"Sounds/Players/Corvus/Jump.ogg"
+$random CorvusJump { CorvusJump1 CorvusJump2 }
+CorvusJump1		"Sounds/Players/Corvus/Jump1.ogg"
+CorvusJump2		"Sounds/Players/Corvus/Jump2.ogg"
 
 $volume CorvusJump1 0.8
 
 $playersound	Corvus	male	*death		"Sounds/Players/Corvus/Death.ogg"
 $playersound	Corvus	male	*xdeath		"Sounds/Players/Corvus/Xdeath.ogg"
 $playersound	Corvus	male	*gibbed		"Sounds/Players/Corvus/Xdeath.ogg"
-$playeralias	Corvus	male	*pain100	CorvusPain
-$playeralias	Corvus	male	*pain75		CorvusPain
-$playeralias	Corvus	male	*pain50		CorvusPain
-$playeralias	Corvus	male	*pain25		CorvusPain
+$playeralias	Corvus	male	*pain100	CorvusPainA
+$playeralias	Corvus	male	*pain75		CorvusPainB
+$playeralias	Corvus	male	*pain50		CorvusPainC
+$playeralias	Corvus	male	*pain25		CorvusPainD
 $playersound	Corvus	male	*grunt		"Sounds/Players/Corvus/Land.ogg"
 $playersound	Corvus	male	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
 $playeralias	Corvus	male	*jump		CorvusJump
@@ -413,10 +423,10 @@ $playeralias	Corvus	male	*footstep	LiteStep
 $playersound	Corvus	female	*death		"Sounds/Players/Corvus/Death.ogg"
 $playersound	Corvus	female	*xdeath		"Sounds/Players/Corvus/Xdeath.ogg"
 $playersound	Corvus	female	*gibbed		"Sounds/Players/Corvus/Xdeath.ogg"
-$playeralias	Corvus	female	*pain100	CorvusPain
-$playeralias	Corvus	female	*pain75		CorvusPain
-$playeralias	Corvus	female	*pain50		CorvusPain
-$playeralias	Corvus	female	*pain25		CorvusPain
+$playeralias	Corvus	female	*pain100	CorvusPainA
+$playeralias	Corvus	female	*pain75		CorvusPainB
+$playeralias	Corvus	female	*pain50		CorvusPainC
+$playeralias	Corvus	female	*pain25		CorvusPainD
 $playersound	Corvus	female	*grunt		"Sounds/Players/Corvus/Land.ogg"
 $playersound	Corvus	female	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
 $playeralias	Corvus	female	*jump		CorvusJump
@@ -427,10 +437,10 @@ $playeralias	Corvus	female	*footstep	LiteStep
 $playersound	Corvus	other	*death		"Sounds/Players/Corvus/Death.ogg"
 $playersound	Corvus	other	*xdeath		"Sounds/Players/Corvus/Xdeath.ogg"
 $playersound	Corvus	other	*gibbed		"Sounds/Players/Corvus/Xdeath.ogg"
-$playeralias	Corvus	other	*pain100	CorvusPain
-$playeralias	Corvus	other	*pain75		CorvusPain
-$playeralias	Corvus	other	*pain50		CorvusPain
-$playeralias	Corvus	other	*pain25		CorvusPain
+$playeralias	Corvus	other	*pain100	CorvusPainA
+$playeralias	Corvus	other	*pain75		CorvusPainB
+$playeralias	Corvus	other	*pain50		CorvusPainC
+$playeralias	Corvus	other	*pain25		CorvusPainD
 $playersound	Corvus	other	*grunt		"Sounds/Players/Corvus/Land.ogg"
 $playersound	Corvus	other	*land		"Sounds/Players/Footsteps/MediumStomp.ogg"
 $playeralias	Corvus	other	*jump		CorvusJump
