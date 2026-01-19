@@ -4,7 +4,7 @@ Primary purpose         : Single & Multiplayer
 ==================================================================================
 Title                   : QC: Doom Edition
 Filename                : QCDEv3.1.pk3
-Release date            : November ##th 2024
+Release date            : Month ##th 2026
 Author                  : DBThanatos, Michaelis, geNia
 Email Address           : DBThanatos@hotmail.com, Michael.is.D4T@gmail.com, geniann93@gmail.com
 Other Files By Author   : *DBThanatos: "Quake4 Lightning Fast Mod Doom Edition",
@@ -33,7 +33,7 @@ Additional Credits to   : See credits section
 
 * What is included *
 
-New levels              : 75 QCDE exclusive maps in "QCDEmaps3.1.pk3"
+New levels              : 76 QCDE exclusive maps in "QCDEmaps3.1.pk3"
 Sounds                  : Yes
 Music                   : Yes, in QCDEmus3.0.pk3
 Graphics                : Yes
@@ -51,7 +51,7 @@ Other files required    : Engine and Iwad of doom2 or similar
 * Play Information *
 
 Game                    : Doom 2 (compatible with Doom)
-Map #                   : Titlemap + 75 additional maps (separate downloads)
+Map #                   : Titlemap + 76 additional maps (separate downloads)
 Single Player           : Yes
 Cooperative 2-4 Player  : Designed for
 Deathmatch 2-4 Player   : Designed for
@@ -204,7 +204,7 @@ Ivory Duke              : "Elder", "Delirium"
 
 TheSwampyLad            : "Temple of the Blood Serpants", "Exile"
 
-Pixo                    : "Hektik", "Okey"
+Pixo                    : "Hektik", "Okey", "Akuse"
 
 Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard", 
                           "Lea", "The Proving Grounds"
@@ -225,6 +225,8 @@ George Exley            : Voice actor for Sarge, VorMatur, Painkiller and QCDE A
 David M Neyland         : Voice actor for Durandal
 
 Gianni Matragrano       : Voice actor for Intruder and Unreal Tournament announcer
+
+Andrew "Amosu" V-G      : Voice actor for Corvus, author of Combalance addon
 
 YukiHerz                : Ranger and Bitterman's sprite sets
 
@@ -427,8 +429,6 @@ Dzierzan                : Shadow Warrior high quality sound effects
 ako                     : Assistance with Unreal Tournament music addon
 
 Craneo                  : Doom 4 Tech Mancubus sprites
-
-Amosu                   : Combalance addon
 
 Digital Dialect         : Adrenix Textures
 
