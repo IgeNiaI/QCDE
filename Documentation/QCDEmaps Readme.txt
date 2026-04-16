@@ -4,7 +4,7 @@ Primary purpose         : Deathmatch
 ===========================================================================
 Title                   : QCDEMaps
 Filename                : QCDEmaps3.1.pk3
-Release date            : November ##th 2024
+Release date            : Month ##th 2026
 Author                  : DBThanatos & Various Mappers
 Email Address           : DBThanatos@gmail.com
 Other Files By Author   : QC: Doom Edition (QCDE), Death Foretold (D4T),
@@ -24,7 +24,7 @@ Additional Credits to   : See the Credits section
 ===========================================================================
 * What is included *
 
-New levels              : 75
+New levels              : 76
 Sounds                  : Yes
 Music                   : Yes
 Graphics                : Yes
@@ -37,7 +37,7 @@ Other files required    : Latest version of QCDE
 * Play Information *
 
 Game                    : DOOM2
-Map #                   : QCDE01-QCDE50, QCDL01-QCDL13, QCME01-QCME02
+Map #                   : QCDE01-QCDE50, QCDL01-QCDL14, QCME01-QCME02
                           QCTF01-04, QCIN01-04, QCDF01-QCDF02
 Single Player           : No
 Cooperative 2-4 Player  : No
@@ -122,9 +122,10 @@ QCDL07   The Dark Zone                Mr.Rocket
 QCDL08   Crash Course                 geNia
 QCDL09   Hektik                       Pixo & geNia
 QCDL10   Unreal Place                 geNia
-QCDL11   Fractal Reactor	      kultasakaali
-QCDL12   Okey		              Pixo
+QCDL11   Fractal Reactor              kultasakaali
+QCDL12   Okey                         Pixo
 QCDL13   The Proving Grounds          Mr.Rocket
+QCDL14   Akuse                        Pixo
 
 QCME01   The Longest Yard             Mr.Rocket
 QCME02   Morpheus                     RoosTer
