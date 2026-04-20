@@ -1007,6 +1007,21 @@ QC/Abilities/Orbb/DroneEnter			"Sounds/UI/Abilities/Orbb_DroneEnter.ogg"
 QC/Abilities/Orbb/DroneExit				"Sounds/UI/Abilities/Orbb_DroneExit.ogg"
 QC/Abilities/Orbb/ChargeUp				"Sounds/UI/Abilities/Orbb_ChargeUp.ogg"
 
+//------------------------
+//Brock
+QC/Abilities/Brock/Fire					"Sounds/Players/Brock/TL_Fire.wav"
+QC/Abilities/Brock/Return				"Sounds/Players/Brock/TL_Return.wav"
+QC/Abilities/Brock/Teleport				"Sounds/Players/Brock/TL_Teleport.wav"
+QC/Abilities/Brock/Error				"Sounds/Players/Brock/TL_Error.wav"
+QC/Abilities/Brock/Module_Loop			"Sounds/Players/Brock/TL_Module_Loop.wav"
+QC/Abilities/Brock/Module_Broken_Loop	"Sounds/Players/Brock/TL_Module_Broken_Loop.wav"
+
+$random QC/Abilities/Brock/Bounce { QC/Abilities/Brock/Bounce1 QC/Abilities/Brock/Bounce2 QC/Abilities/Brock/Bounce3 }
+
+QC/Abilities/Brock/Bounce1				"Sounds/Players/Brock/TL_Bounce1.wav"
+QC/Abilities/Brock/Bounce2				"Sounds/Players/Brock/TL_Bounce2.wav"
+QC/Abilities/Brock/Bounce3				"Sounds/Players/Brock/TL_Bounce3.wav"
+
 //==============================================================================
 //	Misc sounds
 //==============================================================================

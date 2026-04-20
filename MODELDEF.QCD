@@ -122,3 +122,17 @@ Model WendigoFootprint
 	FrameIndex X057 A 0 0
 	FrameIndex X057 A 0 1
 }
+
+Model TranslocatorModule
+{
+	Path "MD3/PROJECTILES"
+	Model 0 "TranslocatorModule.md3"
+	Skin 0 "TranslocatorModule.png"
+	Scale 10.0 10.0 10.0
+	ZOffset -4
+	PITCHFROMMOMENTUM
+	FrameIndex TRMD A 0 0
+	FrameIndex TRMD B 0 0
+	FrameIndex TRMD C 0 0
+	FrameIndex TRMD D 0 0
+}

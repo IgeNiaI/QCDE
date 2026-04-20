@@ -47,7 +47,7 @@ Actor QCPlayer : PlayerPawn
 	Player.WeaponSlot 7, QCLightningGun,						QCLightningGunDM
 	Player.WeaponSlot 8, QCRailgun,								QCRailgunDM
 	Player.WeaponSlot 9, QCBFG,									QCBFGDM
-	Player.WeaponSlot 0, DukeFreezeThrower,						SamMinigun
+	Player.WeaponSlot 0, DukeFreezeThrower, SamMinigun, BrockTranslocator
 
 	Player.ForwardMove 0.75,1,0.5,0.5
 	Player.SideMove 0.78,1.25,0.54,0.52
@@ -4572,7 +4572,7 @@ Actor QCBrock : QCPlayerHeavy
 
 	Player.StartItem "Class_Brock"
 	Player.StartItem "Body_Medium" // Brock has medium champion health/armor stack
-	// Player.StartItem "ActiveDefensive" // Brock has no ability
+	// Player.StartItem "ActiveDefensive" // Brock has no ability that bots can use
 	Player.StartItem "NotSpectator"
 
 	States

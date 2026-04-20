@@ -167,18 +167,6 @@ Actor DireOrbTeleProc : CustomInventory
 	}
 }
 
-Actor TeleporterSounder
-{
-	+NOINTERACTION
-	States
-	{
-	Spawn:
-		TNT1 A 0 NODELAY A_PlaySound("QC/Abilities/Ranger/BallTeleport",1,1.0,false,0.6)
-		TNT1 A 25 A_AlertMonsters(512)
-		Stop
-	}
-}
-
 
 //-------------------------------------------
 // Fog spawner for destination, also explodes

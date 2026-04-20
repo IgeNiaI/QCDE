@@ -428,8 +428,9 @@ else
 	isSelected QCLightningGun		, QCLightningGunDM		{ drawImage "AmmCoils", 1170, 897; }
 	isSelected QCRailgun 			, QCRailgunDM			{ drawImage "AmmSlugs", 1170, 897; }
 	isSelected QCBFG 				, QCBFGDM				{ drawImage "AmmBfugs", 1170, 897; }
-	isSelected SamMinigun									{ drawImage "AmmSBult", 1170, 897; }
 	isSelected DukeFreezeThrower							{ drawImage "AmmoDuke", 1170, 897; }
+	isSelected SamMinigun									{ drawImage "AmmSBult", 1170, 897; }
+	isSelected BrockTranslocator							{ drawImage "AmmBrock", 1170, 897; }
 	}
 
 	// Upgrades for current weapon
@@ -511,6 +512,7 @@ else
 	isSelected QCBFG 				, QCBFGDM				{ drawImage "SELECTOR", 1440,767; }
 	isSelected DukeFreezeThrower 							{ drawImage "SELECTOR", 1440,837; }
 	isSelected SamMinigun 									{ drawImage "SELECTOR", 1440,837; }
+	isSelected BrockTranslocator							{ drawImage "SELECTOR", 1440,837; }
 
 	// Ammo measure inherent to every individual weapon
 	// +59, +12 from SELECTOR to bar
@@ -568,6 +570,10 @@ else
 			inInventory SeriousBullets	, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	SeriousBullets	, vertical, 1499,850;	}
 										else {	drawBar "AMMOBAR3", "AMMOBAR2",	SeriousBullets	, vertical, 1499,850;	}
 		}
+		inInventory BrockTranslocator							{
+			inInventory TrLocatorAmmo	, 1  {	drawBar "AMMOBAR1", "AMMOBAR0",	TrLocatorAmmo	, vertical, 1499,850;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	TrLocatorAmmo	, vertical, 1499,850;	}
+		}
 	}
 	}
 
@@ -584,6 +590,7 @@ else
 	inInventory QCBFG 				|| QCBFGDM				{ 	isSelected QCBFG 				, QCBFGDM				{ drawBar "1BIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1380,770; } else { drawBar "DBIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1380,770; } } else { drawImage "0BIGFGUN", 1380,770;}
 	inInventory DukeFreezeThrower							{ 	isSelected DukeFreezeThrower							{ drawBar "1UKEGUN",  "0UKEGUN",  DukeAmmo		, horizontal, 1380,840; } else { drawBar "DUKEGUN",  "0UKEGUN",  DukeAmmo		, horizontal, 1380,840; } }
 	inInventory SamMinigun									{ 	isSelected SamMinigun									{ drawBar "1AMGUN",   "0AMGUN",   SeriousBullets, horizontal, 1380,840; } else { drawBar "SAMGUN",   "0AMGUN",   SeriousBullets	, horizontal, 1380,840; } }
+	inInventory BrockTranslocator							{ 	isSelected BrockTranslocator							{ drawBar "1ROCKWEP", "0ROCKWEP", TrLocatorAmmo	, horizontal, 1380,840; } else { drawBar "BROCKWEP", "0ROCKWEP", TrLocatorAmmo	, horizontal, 1380,840; } }
 
 	// Shotguns are special
 	inInventory QCSuperShotgun		|| QCSuperShotgunDM		{
@@ -631,6 +638,7 @@ else
 		inInventory QCBFG 				|| QCBFGDM				{ inInventory QCBFGAmmo 	,  9 { isSelected QCBFG 			, QCBFGDM					{ drawNumber 3, QCFNT040, brite, QCBFGAmmo		, alignment(right), 1489,820; } else { drawNumber 3, QCFNT030, darkgrey, QCBFGAmmo		, alignment(right), 1489,820; } } else { isSelected QCBFG 				, QCBFGDM					{ drawNumber 3, QCFNT040, red, QCBFGAmmo	, alignment(right), 1489,820; } else { drawNumber 3, QCFNT030, darkred, QCBFGAmmo	 , alignment(right), 1489,820; } } }
 		inInventory DukeFreezeThrower							{ inInventory DukeAmmo	 	, 16 { isSelected DukeFreezeThrower								{ drawNumber 3, QCFNT040, brite, DukeAmmo		, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkgrey, DukeAmmo		, alignment(right), 1489,890; } } else { isSelected DukeFreezeThrower								{ drawNumber 3, QCFNT040, red, DukeAmmo		, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkred, DukeAmmo	 , alignment(right), 1489,890; } } }
 		inInventory SamMinigun									{ inInventory SeriousBullets, 51 { isSelected SamMinigun									{ drawNumber 3, QCFNT040, brite, SeriousBullets	, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkgrey, SeriousBullets	, alignment(right), 1489,890; } } else { isSelected SamMinigun										{ drawNumber 3, QCFNT040, red,SeriousBullets, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkred,SeriousBullets, alignment(right), 1489,890; } } }
+		inInventory BrockTranslocator							{ inInventory TrLocatorAmmo	,  1 { isSelected BrockTranslocator								{ drawNumber 3, QCFNT040, brite, TrLocatorAmmo	, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkgrey, TrLocatorAmmo	, alignment(right), 1489,890; } } else { isSelected BrockTranslocator								{ drawNumber 3, QCFNT040, red, TrLocatorAmmo, alignment(right), 1489,890; } else { drawNumber 3, QCFNT030, darkred,	TrLocatorAmmo, alignment(right), 1489,890; } } }
 
 		// This is special due to how it's basic in DM but not in solo
 		isSelected QCSuperShotgun	, QCSuperShotgunDM		{ inInventory QCShellAmmo	,  6 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1489,400; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1489,400; }
@@ -668,6 +676,7 @@ else
 	isSelected QCBFG 				, QCBFGDM				{ drawImage "SELECTOR", 1540,767; }
 	isSelected DukeFreezeThrower 							{ drawImage "SELECTOR", 1540,837; }
 	isSelected SamMinigun 									{ drawImage "SELECTOR", 1540,837; }
+	isSelected BrockTranslocator							{ drawImage "SELECTOR", 1540,837; }
 
 	// Ammo measure inherent to every individual weapon
 	// +59, +12 from SELECTOR to bar
@@ -725,6 +734,10 @@ else
 			inInventory SeriousBullets	, 51 {	drawBar "AMMOBAR1", "AMMOBAR0",	SeriousBullets	, vertical, 1599,850;	}
 										else {	drawBar "AMMOBAR3", "AMMOBAR2",	SeriousBullets	, vertical, 1599,850;	}
 		}
+		inInventory BrockTranslocator							{
+			inInventory TrLocatorAmmo	, 1  {	drawBar "AMMOBAR1", "AMMOBAR0",	TrLocatorAmmo	, vertical, 1599,850;	}
+										else {	drawBar "AMMOBAR3", "AMMOBAR2",	TrLocatorAmmo	, vertical, 1599,850;	}
+		}
 	}
 	}
 
@@ -741,6 +754,7 @@ else
 	inInventory QCBFG 				|| QCBFGDM				{ 	isSelected QCBFG 				, QCBFGDM				{ drawBar "1BIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1480,770; } else { drawBar "DBIGFGUN", "0BIGFGUN", QCBFGAmmo		, horizontal, 1480,770; } } else { drawImage "0BIGFGUN", 1480,770;}
 	inInventory DukeFreezeThrower							{ 	isSelected DukeFreezeThrower							{ drawBar "1UKEGUN",  "0UKEGUN",  DukeAmmo		, horizontal, 1480,840; } else { drawBar "DUKEGUN",  "0UKEGUN",  DukeAmmo		, horizontal, 1480,840; } }
 	inInventory SamMinigun									{ 	isSelected SamMinigun									{ drawBar "1AMGUN",   "0AMGUN",   SeriousBullets, horizontal, 1480,840; } else { drawBar "SAMGUN",   "0AMGUN",   SeriousBullets	, horizontal, 1480,840; } }
+	inInventory BrockTranslocator							{ 	isSelected BrockTranslocator							{ drawBar "1ROCKWEP", "0ROCKWEP", TrLocatorAmmo	, horizontal, 1480,840; } else { drawBar "BROCKWEP", "0ROCKWEP", TrLocatorAmmo	, horizontal, 1480,840; } }
 
 	// Shotguns are special
 	inInventory QCSuperShotgun		|| QCSuperShotgunDM		{
@@ -788,6 +802,7 @@ else
 		inInventory QCBFG 				|| QCBFGDM				{ inInventory QCBFGAmmo 	,  9 { isSelected QCBFG 			, QCBFGDM					{ drawNumber 3, QCFNT040, brite, QCBFGAmmo		, alignment(right), 1589,820; } else { drawNumber 3, QCFNT030, darkgrey, QCBFGAmmo		, alignment(right), 1589,820; } } else { isSelected QCBFG 				, QCBFGDM					{ drawNumber 3, QCFNT040, red, QCBFGAmmo	, alignment(right), 1589,820; } else { drawNumber 3, QCFNT030, darkred, QCBFGAmmo	 , alignment(right), 1589,820; } } }
 		inInventory DukeFreezeThrower							{ inInventory DukeAmmo	 	, 16 { isSelected DukeFreezeThrower								{ drawNumber 3, QCFNT040, brite, DukeAmmo		, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkgrey, DukeAmmo		, alignment(right), 1589,890; } } else { isSelected DukeFreezeThrower								{ drawNumber 3, QCFNT040, red, DukeAmmo		, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkred, DukeAmmo	 , alignment(right), 1589,890; } } }
 		inInventory SamMinigun									{ inInventory SeriousBullets, 51 { isSelected SamMinigun									{ drawNumber 3, QCFNT040, brite, SeriousBullets	, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkgrey, SeriousBullets	, alignment(right), 1589,890; } } else { isSelected SamMinigun										{ drawNumber 3, QCFNT040, red,SeriousBullets, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkred,SeriousBullets, alignment(right), 1589,890; } } }
+		inInventory BrockTranslocator							{ inInventory TrLocatorAmmo	,  1 { isSelected BrockTranslocator								{ drawNumber 3, QCFNT040, brite, TrLocatorAmmo	, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkgrey, TrLocatorAmmo	, alignment(right), 1589,890; } } else { isSelected BrockTranslocator								{ drawNumber 3, QCFNT040, red, TrLocatorAmmo, alignment(right), 1589,890; } else { drawNumber 3, QCFNT030, darkred,	TrLocatorAmmo, alignment(right), 1589,890; } } }
 
 		// This is special due to how it's basic in DM but not in solo
 		isSelected QCSuperShotgun	, QCSuperShotgunDM		{ inInventory QCShellAmmo	,  6 { drawNumber 3, QCFNT040, brite, QCShellAmmo	, alignment(right), 1589,400; } else { drawNumber 3, QCFNT040, red, QCShellAmmo	, alignment(right), 1589,400; }
@@ -807,11 +822,12 @@ else
 
 	InInventory not NoAbilityIcon {
 	// Frame
-	inInventory Class_DukeNukem || Class_Sam {		//Duke and Sam are special
+	inInventory Class_DukeNukem || Class_Sam || Class_Brock {		//Duke, Sam and Brock are special
 		inInventory Class_DukeNukem		{ drawSwitchableImage DukeAmmo, 		"ACTFRAM0", "ACTFRAME", 572,800; }
 		inInventory Class_Sam			{ drawSwitchableImage SeriousBullets, 	"ACTFRAM0", "ACTFRAME", 572,800; }
+		inInventory Class_Brock			{ drawSwitchableImage TrLocatorAmmo, 	"ACTFRAM0", "ACTFRAME", 572,800; }
 	} else {
-	inInventory not Class_Sarge || Class_Brock {
+	inInventory not Class_Sarge {
 		inInventory ActiveProgressToken {
 					drawImage "ACTFRAM3", 572,800;
 		} else {
@@ -868,11 +884,11 @@ else
 	inInventory Class_Painkiller	{ drawSwitchableImage AbilityCooldownToken, 	"TAROT001", "TAROT000", 	636,850; }
 	inInventory Class_Intruder		{ drawSwitchableImage AbilityCooldownToken, 	"WENDIG01", "WENDIG00", 	636,850; }
 	inInventory Class_Orbb			{ drawSwitchableImage AbilityCooldownToken,		"ORBBEYE1", "ORBBEYE0",		636,850; }
-	inInventory Class_Brock			{ drawSwitchableImage AbilityCooldownToken,		"OLDSCHOL", "OLDSCHOL", 	636,850; }
+	inInventory Class_Brock			{ drawSwitchableImage TrLocatorAmmo,			"TRNSLOC0", "TRNSLOC1", 	636,850; }
 	// ^ insert more classes here
 
 	// Counter
-	inInventory not Class_Sarge || Class_Brock {
+	inInventory not Class_Sarge {
 	inInventory not ActiveInProgress
 	{
 		inInventory AbilityCooldownSeconds, 4
@@ -958,6 +974,14 @@ else
 		else {	inInventory MultiuseCharge, 1 {	drawImage "LUCCHRG1", 592, 800;	}
 		else {									drawImage "LUCCHRG0", 592, 800; }
 		}}}
+	}
+	// Brock translocator count
+	inInventory Class_Brock {
+				inInventory TrLocatorAmmo, 3 {	drawImage "BROCKTR3", 592, 800;	}
+		else {	inInventory TrLocatorAmmo, 2 {	drawImage "BROCKTR2", 592, 800;	}
+		else {	inInventory TrLocatorAmmo, 1 {	drawImage "BROCKTR1", 592, 800;	}
+		else {									drawImage "BROCKTR0", 592, 800; }
+		}}
 	}
 	// Eradicator murder boner
 	inInventory MurderLevel {

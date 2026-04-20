@@ -435,9 +435,12 @@ ABILT632 = "Holding \c[gold]Crouch\c[CR_UNTRANSLATED] when falling allows to bou
 
 
 // Brock
-ABILT133 = "\c[black]- No Active Ability -";
-ABILT233 = "This champion is too oldschool\n"
-           "to have an Active Ability";
+ABILT133 = "- Translocator -";
+ABILT233 = "\c[gold]Primary fire \c[green]launches a module.\c[CR_UNTRANSLATED]\n"
+           "Using \c[gold]primary fire again \c[green]returns it back.\n"
+           "\c[gold]Alt fire \c[green]teleports to that module.\c[CR_UNTRANSLATED]\n"
+           "The module can be \c[green]damaged\c[CR_UNTRANSLATED] and trying\n"
+           "to teleport to it \c[red]will kill Brock\c[CR_UNTRANSLATED].";
 ABILT333 = "- Big Keg O' Health -";
 ABILT433 = "Megahealth gives up to \c[white]+100hp overstack\c[DarkGray].\n"
            "Overstack health and armor \c[cyan]do not decay\c[DarkGray].\n"

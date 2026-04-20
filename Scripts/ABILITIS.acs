@@ -244,7 +244,10 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 			} else if(CheckInventory("Class_Eleena")) {
 				if (GetPredictableValue(0, 0))
 					ACS_NamedExecuteWithResult("QCDE_EleenaSwapPredictedUse", 0, 0);
-			}
+			} else if(CheckInventory("Class_Brock")) {
+             	if (GetPredictableValue(0, 0))
+             		ACS_NamedExecuteWithResult("QCDE_TranslocatorPredictedUse", 0, 0);
+             }
 		} else if (!tics[plr]) { // abilities that activate only once
 			//log(s:"Activated single use ability");
 			SetLastUse(Timer());
@@ -281,6 +284,7 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 			else if(CheckInventory("Class_Painkiller"))	ACS("QCDE_Ability_Painkiller");
 			else if(CheckInventory("Class_Intruder"	))	ACS("QCDE_Ability_Intruder"  );
 			else if(CheckInventory("Class_Orbb"		))	ACS("QCDE_Ability_Orbb"      );
+			else if(CheckInventory("Class_Brock"	))	ACS("QCDE_Ability_Brock"     );
 			// ^ insert more classes here
 		} else {
 			//log(s:"Activated multi use ability");
@@ -596,7 +600,7 @@ Script "nocd" (void) // cheat for debugging
 
 // This is added to ensure the ability-weapons are being held only by the correct
 // class and only when his ability is being used
-str ClassxWeapon[8][2] = {
+str ClassxWeapon[9][2] = {
 		{"nothing",				"nothing"			},		//0  Empty
 		{"Class_Blazkowicz",	"BlazkoAkimbo"		},		//1
 		{"Class_Doomslayer",	"SlayerBFG"			},		//2
@@ -604,7 +608,8 @@ str ClassxWeapon[8][2] = {
 		{"Class_Inquisitor",	"Shieldquisitor"	},		//4
 		{"Class_Sam",			"SamMinigun"		},		//5
 		{"Class_Sorgaul",		"SorgaulFists"		},		//6
-		{"Class_Caleb",			"CalebDoll"			}		//7
+		{"Class_Caleb",			"CalebDoll"			},		//7
+		{"Class_Brock",			"BrockTranslocator"	},		//8
 		// ^ insert more ability weapons here
 		};
 
@@ -5498,12 +5503,163 @@ Script "QCDE_Orbb_Bounce" (int predicting, int justPressed, int justReleased, in
 
 
 //---------------------------------
+//		Brock's Active
+
+Script "QCDE_Ability_Brock" (void)
+{
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	SetWeapon("BrockTranslocator");
+	SetNetworkReplicationFlags( 0 );
+}
+
+// Activator: Player
+script "QCDE_TranslocatorExists" (void)
+{
+	int tid = 1000+64 + PlayerNumber();
+	SetResultValue( IsTidUsed(tid) );
+}
+
+// Activator: Player
+script "QCDE_TranslocatorThrown" (void)
+{
+	int tid = GetActorProperty(0, APROP_TargetTID) + 64;
+	int plrtid = GetActorProperty(0, APROP_TargetTID);
+
+	Thing_Remove(tid);
+	Thing_ChangeTID(0, tid);
+	SetPointer(AAPTR_MASTER, plrtid);
+
+	SetActivator(plrtid);
+	int plr = PlayerNumber();
+	SetActivator(tid);
+
+	while (GetActorProperty(tid, APROP_HEALTH) > 0) {
+		if(!PlayerInGame(plr))
+			Thing_Remove(tid);
+		delay(1);
+	}
+}
+
+script "QCDE_TranslocatorFixIdIfNeeded" (void)
+{
+	int tid = ActivatorTID();
+	int plrtid = GetActorProperty(0, APROP_TargetTID);
+
+	if (tid != plrtid + 64)
+		ACS_NamedExecuteWithResult("QCDE_TranslocatorThrown", 0, 0);
+}
+
+// Activator: Player
+script "QCDE_RemoveTranslocator" (void)
+{
+	int tid = 1000+64 + PlayerNumber();
+	Thing_Remove(tid);
+}
+
+// Activator: Player
+script "QCDE_TranslocatorUsed" (void)
+{
+	if (GetNetworkState() == NETSTATE_CLIENT && PlayerNumber() != ConsolePlayerNumber())
+		terminate;
+
+	// CTF special case
+	if(hasFlags())
+	{
+		if (Timer() > GetLastUse() + 17) {
+			SetLastUse(Timer());
+			PlaySound(0, "QC/Abilities/Brock/Error", CHAN_7|CHAN_UI, 0.9, false, ATTN_NONE, true);
+		}
+		terminate;
+	}
+
+	int tid = 1000+64 + PlayerNumber();
+
+	int originX = GetActorX(0);
+	int originY = GetActorY(0);
+	int originZ = GetActorZ(0);
+	int targetX = GetActorX(tid);
+	int targetY = GetActorY(tid);
+	int targetZ = GetActorZ(tid);
+
+	bool warped			= Warp(0, targetX, targetY, targetZ, 0, WARPF_ABSOLUTEPOSITION);
+	if (!warped) warped = Warp(0, targetX, targetY, targetZ + 8.0, 0, WARPF_ABSOLUTEPOSITION);
+	if (!warped) warped = Warp(0, targetX, targetY, targetZ + 16.0, 0, WARPF_ABSOLUTEPOSITION);
+	if (!warped) warped = Warp(0, targetX, targetY, targetZ + 24.0, 0, WARPF_ABSOLUTEPOSITION);
+	if (!warped) warped = Warp(0, targetX, targetY, targetZ + 32.0, 0, WARPF_ABSOLUTEPOSITION);
+	if (!warped) warped = Warp(0, targetX, targetY, targetZ - 8.0, 0, WARPF_ABSOLUTEPOSITION);
+	if (!warped) warped = Warp(0, targetX, targetY, targetZ - 16.0, 0, WARPF_ABSOLUTEPOSITION);
+	if (!warped) warped = Warp(0, targetX, targetY, targetZ - 24.0, 0, WARPF_ABSOLUTEPOSITION);
+	if (!warped) warped = Warp(0, targetX, targetY, targetZ - 32.0, 0, WARPF_ABSOLUTEPOSITION);
+
+	if (!warped) {
+		if (Timer() > GetLastUse() + 17) {
+			SetLastUse(Timer());
+			PlaySound(0, "QC/Abilities/Brock/Error", CHAN_7|CHAN_UI, 0.9, false, ATTN_NONE, true);
+		}
+		terminate;
+	}
+
+	SpawnForced("DireOrbTeleFog", originX,originY,originZ + 30.0);
+
+	GiveInventory("TranslocatorTeleProc", 1);
+	TakeInventory("TrLocatorAmmo", 1); // consume ammo this way to work around infinite ammo gamemodes
+
+	SetPredictableValue(0, 0, 1);
+	SetPredictableValue(0, 1, targetX);
+	SetPredictableValue(0, 2, targetY);
+	SetPredictableValue(0, 3, targetZ);
+
+	int health = GetActorProperty(tid,APROP_HEALTH);
+
+	Thing_Remove(tid);
+
+	delay(1); //waits a bit
+	SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+	GiveInventory("TranslocatorTeleFogOutProc",1); //then spawns dire orb fog, which also plays sound
+	SetNetworkReplicationFlags( 0 );
+
+	if (health < 10000) {
+		DamageThing(0, MOD_TELEFRAG);
+	}
+}
+
+// Activator: Player
+script "QCDE_TranslocatorPredictedUse" (void)
+{
+	int posX = GetPredictableValue(0, 1);
+	int posY = GetPredictableValue(0, 2);
+	int posZ = GetPredictableValue(0, 3);
+	SetActorPosition(0, posX, posY, posZ, false);
+}
+
+
+//---------------------------------
 //		Brock's Passive
 
+#define BROCK_AMMO_REFILL	175 // 5 seconds
 Script "QCDE_Passive_Brock" (void)
 {
 	GiveInventory("NoHealthDegenerationToken", 1);
 	GiveInventory("NoArmorDegenerationToken" , 1);
+	SetInventory("BrockTranslocator",1);
+	SetInventory("TrLocatorAmmo", GetAmmoCapacity("TrLocatorAmmo"));
+
+	int ticksToNextAmmo = BROCK_AMMO_REFILL * GetCvar("sv_cooldownPercentage") / 100;
+	while(GetActorProperty(0,APROP_HEALTH) > 0)
+	{
+		if(CheckInventory("TrLocatorAmmo") < GetAmmoCapacity("TrLocatorAmmo")) {
+			if (ticksToNextAmmo > 0) {
+				ticksToNextAmmo--;
+			} else {
+				GiveInventory("TrLocatorAmmo", 1);
+				ticksToNextAmmo = BROCK_AMMO_REFILL * GetCvar("sv_cooldownPercentage") / 100;
+			}
+		} else {
+			ticksToNextAmmo = BROCK_AMMO_REFILL * GetCvar("sv_cooldownPercentage") / 100;
+		}
+
+		Delay(1);
+	}
 }
 
 Script "QCDE_Brock_Health_Full"

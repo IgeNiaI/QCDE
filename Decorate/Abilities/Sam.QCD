@@ -40,6 +40,11 @@ Actor SamMinigun : QCWeapon
 	Ready:
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("SeriousBullets", -1, "ReadyCantFire") // Using this instead of A_JumpIfNoAmmo so that it works when ammo is infinite
+		TNT1 A 0 A_JumpIfInventory("RedFlag",1,"ReadyCantFire")
+		TNT1 A 0 A_JumpIfInventory("WhiteFlag",1,"ReadyCantFire")
+		TNT1 A 0 A_JumpIfInventory("BlueFlag",1,"ReadyCantFire")
+		TNT1 A 0 A_JumpIfInventory("GoldFlag",1,"ReadyCantFire")
+		TNT1 A 0 A_JumpIfInventory("GreenFlag",1,"ReadyCantFire")
 		QP28 R 10 A_WeaponReady
 		Loop
 
@@ -49,6 +54,11 @@ Actor SamMinigun : QCWeapon
 			QP28 R 4 A_WeaponReady(WRF_NOFIRE)
 			TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
 			TNT1 A 0 A_JumpIfInventory("SeriousBullets", -1, "RCFLooper") // Using this instead of A_JumpIfNoAmmo so that it works when ammo is infinite
+			TNT1 A 0 A_JumpIfInventory("RedFlag",1,"RCFLooper")
+			TNT1 A 0 A_JumpIfInventory("WhiteFlag",1,"RCFLooper")
+			TNT1 A 0 A_JumpIfInventory("BlueFlag",1,"RCFLooper")
+			TNT1 A 0 A_JumpIfInventory("GoldFlag",1,"RCFLooper")
+			TNT1 A 0 A_JumpIfInventory("GreenFlag",1,"RCFLooper")
 			Goto Ready
 	//-----------------------
 	// Select/Deselect Seq
