@@ -2,6 +2,7 @@ Actor TDBots_IDoExist : Inventory {}
 
 ACTOR TDBots_NodeGetSpecial : CustomInventory
 {
+	+SERVERNETID
 	+INVENTORY.AUTOACTIVATE
 	States
 	{
@@ -122,6 +123,7 @@ ACTOR TDBots_BigPathNode_Map 2406
 ==============================================================================*/
 ACTOR TDBots_PathNode : Inventory
 {
+	+SERVERNETID
 	RenderStyle None
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.NOSCREENFLASH
