@@ -365,6 +365,43 @@ Actor QCRailGun : QCWeapon
 		Loop
 
 	ReadyZoomed:
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 8, "ReadyZoomed.SeriousSam")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 7, "ReadyZoomed.HalfLife")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 6, "ReadyZoomed.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 5, "ReadyZoomed.ETQW")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 4, "ReadyZoomed.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 3, "ReadyZoomed.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 2, "ReadyZoomed.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCRailgunSkin", 1, "ReadyZoomed.Quake1")
+	ReadyZoomed.Default:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyZoomedCont
+	ReadyZoomed.Quake1:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyZoomedCont
+	ReadyZoomed.Quake2:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake2", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyZoomedCont
+	ReadyZoomed.Quake3:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake3", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyZoomedCont
+	ReadyZoomed.Quake4:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Quake4", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyZoomedCont
+	ReadyZoomed.ETQW:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_ETQW", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyZoomedCont
+	ReadyZoomed.QCDE1:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyZoomedCont
+	ReadyZoomed.HalfLife:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
+		Goto ReadyZoomedCont
+	ReadyZoomed.SeriousSam:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_SeriousSam", CHAN_WEAPON, 1.0, 1, 1.25)
+		Goto ReadyZoomedCont
+
+	ReadyZoomedCont:
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"ReadyZoomedDM")
 		TNT1 A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
 		TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",-1,"Ready")
