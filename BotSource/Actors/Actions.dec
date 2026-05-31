@@ -37,6 +37,7 @@ Actor TDBot_RailVisual : TDBot_BaseAction
 =================================================================*/
 Actor TDBot_ToggleOrder : CustomInventory
 {
+	+SERVERNETID
 	-INVBAR
 	+INVENTORY.INTERHUBSTRIP
 	states
