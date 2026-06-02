@@ -5,20 +5,28 @@ Changelog
 V3.1 (Month Date 2026)
 
 General:
+- Gave Brock a Translocator ability. The primary fire launches a module that flies forward, is affected by gravity and bounces off walls. Alt fire then lets Brock teleport to the module. Using primary fire when a module is already deployed will return it back. The module can be destroyed with a single hit. Teleporting to it in that case will kill Brock instantly. Brock has 3 Translocator charges that are not affected by hourglass pickups, instead the charges refill every 5 seconds.
+  - Brock Translocator can't telefrag, but instead it retains momentum when teleport succeeds. That lets Brock perform movement tricks by dashing or using a jumppad before using a translocator.
+  - Brock can't teleport to Translocator module while holding a flag, but can still fire the module.
+- Duke Nuken and Sam no longer can start firing their ability weapons while holding a flag, but can keep firing if they started firing before picking up the flag.
 - "callvote" command now also automatically votes "yes".
+- Added "sv_bfgrespawn" cvar to control BFG respawn timer.
+- Added "cl_qchandicap" cvar to handicap your own damage. Accepted values are from 50 to 100 in multiples of 5.
 - Added automap markers for weapons and powerups in PvP.
 - Made rocket/nail boosts on high ping slightly less jittery.
 - Updated bots AI. They can now chase the player sometimes. Also they can now follow the player in PvE.
 - Changed Kane sprites to a stroggified variant.
+- Updated all Corvus game sounds and taunts.
 - Added bot variations from the Combalance addon.
 
 PvP Balance:
 - Reduced Shotgun bullet spread.
 - Nailgun ammo pickups give 50 nails.
 - Increased Doom Movement champions ground speed.
-- Orbb drone is now solid, so it can block other players, and can be used as an air platform to navigate the map. 
+- Orbb drone is now solid, so it can block other players, and can be used as an air platform to navigate the map.
 - Orbb drone now have 100 health and can be destroyed.
 - Pressing the attack button while controlling the Orbb drone turns it into a controllable missile that rushes forward and explodes on impact.
+- Orbb drone now explodes with damage on every cause of death, including timeout.
 - Increased Orbb drone explosion damage in PvP from 85 to 100.
 - Increased Orbb overbounce retain velocity from 82% to 85%.
 - Nerfed Ranger orb damage in PvP.
@@ -36,7 +44,7 @@ PvP Balance:
 - Reduced Kane Crouch Slide speed and Injection speed boost.
 - Menelkir's Maulotaur no longer does the ground flame attack.
 - Menelkir's Maulotaur is now more aggressive. He moves faster and charges into enemies if they are nearby.
-- Menelkir gained new Bloodlust passive ability. Enemies killed by Menelkir or Maulotaur now prolong Maulotaur's life.
+- Menelkir gained a new Bloodlust passive ability. Enemies killed by Menelkir or Maulotaur now prolong Maulotaur's life.
 - Zedek stomp deals less damage, but launches enemies upward.
 - Reduced Durandal and Intruder air acceleration.
 
@@ -45,16 +53,27 @@ PvE Balance:
 - Removed speed cap from CPM champions in PvE.
 - UT Dispersion Pistol upgrades no longer reduce fire rate.
 
+Maps:
+- Added "CPM3" from Quake 3 CPMA mappack as QCDL14.
+- Added "Blood Covenant CTF" from Quake Champions as QCTF05.
+- Added "CTF-Face" from Unreal Tournament as QCTF06
+- Added normal gravity on QCME02 (Morpheus) indoor areas.
+- Increased spawn points count to 8 on QCDE15/Chastity Belt, QCDE30/Gibel Complex and QCDE44/Exile.
+- Added "PrintSongName (str musicName, str musicAuthor)" ACS script for mappers to print their custom music names in QC:DE style.
+
 Bugfixes:
 - Fixed wrong menu scaling on resolutions other than 1920x1080. Now all menu elements should be properly visible on all screens.
 - Fixed issue when Galen totems wouldn't play heal sound in multiplayer sometimes.
+- Fixed missing intermission in Doom 1 Episode 1.
+- Fixed incorrect texts in the Defrag maps menu.
+- Fixed Defrag skirmish menu options.
 
 Misc:
 - Added Quake Live HMG as the Quake 3 Machinegun skin.
 - Added Quake 3 Team Arena nailgun as the Quake 3 Shotgun skin.
 - Updated all Quake 4 weapon skin sprites.
 - Updated all Quake Wars: Enemy Territory weapon skin sprites, except SNG.
-- Updated Quake 3 HMG, SNG and BFG skin sprites.
+- Updated Quake 3 HMG, SNG, RL, LG, RG and BFG skin sprites.
 - Updated Quake 2 Gauntlet, Nailgun, LG and BFG skin sprites.
 - Updates Serious Sam MG, SNG, LG, RG and BFG skin sprites.
 - Updated green BFG projectile sprites.
@@ -67,10 +86,16 @@ Misc:
 - Added HUD graphics for Painkiller gauntlet.
 - Updated Postal smoke sprites.
 - Updated Zedek flame sprites.
+- Made Keel alternate between left and right grenade launchers.
 - Picked more suitable weapon skins for sets that lack skins in some slots when using class based skins.
 - Updated ability graphics for Bitterman, DoomSlayer, Galen, Grayson, Kane, Keel, Lucienne, Major.
 - Updated cursor graphic. You can select the old cursor in settings if you wish.
 - Redone all UT weapons sprites.
+- Implemented weapon skins to UT weapons.
+- Changed default UT Sniper Rifle skin to that from Unreal Championship 2.
+- Updated some UT HUD, item pickup graphics and voxel models.
+- Updated keycard and DM Hub keys sprites.
+- Updated DM Campaign portal frame textures.
 
 ---------------------------------------------------------------------
 
@@ -78,7 +103,7 @@ V3.0 (November 29 2024)
 
 General:
 - Added a new champion, Orbb from Quake 3. He is a light champion, stack is 100/75. His passive ability is that he is short, only 75% of other champions height, but he cannot crouch. His second passive ability is being able to bounce when falling by pressing the crouch key. His active ability spawns an eye drone. Activating the ability again switches perspectives between Orbb and the drone. Pressing fire while controlling the drone causes it to self-destruct after a short countdown timer. Drone can fly around using the movement keys.
-- Added a long requested UT champion, Brock from Unreal Tournament 99. He is a heavy champion, stack is 100/50. His first passive ability grants up to +100 HP overstack from Mega Health pickups. Health and Armor overstack will not degenerate over time. Additionally, Hourglass grants +10 HP and Big Hourglass +25 HP. His second passive ability allows Heavy Armor pickups to grant up to +150 AP overstack. Upon acquiring a Heavy Armor pickup, Brock's Armor stack will absorb 100% of all damage inflicted to him until it is fully depleted. Brock has no active ability and uses Unreal Tournament movement.
+- Added a long requested UT champion, Brock from Unreal Tournament 99. He is a heavy champion, stack is 100/50. His first passive ability grants up to +100 HP overstack from Mega Health pickups. Health and Armor overstack will not degenerate over time. Additionally, Hourglass grants +10 HP and Big Hourglass +25 HP. His second passive ability allows Heavy Armor pickups to grant up to +150 AP overstack. Upon acquiring a Heavy Armor pickup, Brock’s Armor stack will absorb 100% of all damage inflicted to him until it is fully depleted. Brock has no active ability and uses Unreal Tournament movement.
 - Reworked Freeman. He no longer has H.E.V Suit passive, but has Double Tap dodge instead, like Inquisitor. Also, he no longer has the Extraction passive, and instead enemies killed by Freeman drop Half-Life 1 weapon boxes that contain all ammo the dead player had.
 - Reworked all champions movement mechanics.
   - Most champions gained VQ3 movement.

@@ -25,7 +25,7 @@ Description             : A gameplay mod bringing Quake Champions weapons and ma
                           The mod was designed from the ground up to be played
                           in single player, cooperative, and many types of PvP
                           like Deathmatch (Free for all), Team Deathmach, Duel,
-                          Capture the Flag, Last Man Standing, "Clan Arena".
+                          Capture the Flag, Last Man Standing, Clan Arena.
                           See the "QCDE Manual.pdf" for more information.
 
 Additional Credits to   : See credits section
@@ -33,7 +33,7 @@ Additional Credits to   : See credits section
 
 * What is included *
 
-New levels              : 76 QCDE exclusive maps in "QCDEmaps3.1.pk3"
+New levels              : 78 QCDE exclusive maps in "QCDEmaps3.1.pk3"
 Sounds                  : Yes
 Music                   : Yes, in QCDEmus3.0.pk3
 Graphics                : Yes
@@ -51,7 +51,7 @@ Other files required    : Engine and Iwad of doom2 or similar
 * Play Information *
 
 Game                    : Doom 2 (compatible with Doom)
-Map #                   : Titlemap + 76 additional maps (separate downloads)
+Map #                   : Titlemap + 78 additional maps (separate downloads)
 Single Player           : Yes
 Cooperative 2-4 Player  : Designed for
 Deathmatch 2-4 Player   : Designed for
@@ -89,12 +89,6 @@ Tested With             : Q-Zandronum 1.4
 
 This mod has several unfixable "bugs", due to technical limitations.
 
-- Abilities with "use counter" (Lucienne, Keel, Freeman) somtimes will show
-  their maxium capacity minus 1. E.g. Freeman has 3 charges, but sometimes he'll
-  show his ability fully ready but with 2 charges; this is visual only.
-  Functionality-wise it'll still allow his 3 charges. Same for the other champs
-  that have this multi-use abilities.
-
 - Weapons will play hit beep when you hit friendly TDM players. No way around that.
 
 - Inquisitor's shield will block both friendly and enemy attacks in TDM and FFA. 
@@ -121,10 +115,6 @@ This mod has several unfixable "bugs", due to technical limitations.
 - Bots will still be able to "see" and fire at a ghost-walking Nyx. Engine limitations.
 
 - Bots will sometimes stand still or keep bumping on a wall. Engine limitations.
-
-- Lo Wang and Zeked's sword animation drawing on top of HUD and weapon is **not** a bug. 
-  It's the best compromise between the ability being responsive and not displaying
-  anything at all.
 
 - In the map "Molten Falls" sometimes the "lava falling" animation will stop. We added
   some measure to try to minimize this bug, but it will still happen after the map has been
@@ -193,8 +183,9 @@ RoosTer                 : "Aerowalk", "Vertical Vengeance", "Fatal Instinct", "M
                           "Outpost", "Hangar", "Cathedral", "Astroid Garden"
 
 geNia                   : "Chastity Belt", "Arcane Temple", "Rankin", "QWER", "Deep Embrace", "Deck 17",
-                          "Brought 2 Doom", "Mythic", "Erase", "Unreal Place", "Achilles", "Menelkir's Domain"
-                          "Crash Course", "w00tabulous", "Quake Movement Training", "Unreal Movement Training"
+                          "Brought 2 Doom", "Mythic", "Erase", "Unreal Place", "Achilles", "Menelkir's Domain",
+						  "Crash Course", "w00tabulous", "CTF-Face",
+                          "Quake Movement Training", "Unreal Movement Training"
 
 Ivan Dobrovski          : "Fortress in the Void", "Sinister", "Battleforged", "Sight"
 
@@ -209,11 +200,11 @@ Pixo                    : "Hektik", "Okey", "Akuse"
 Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard", 
                           "Lea", "The Proving Grounds"
 
-Dech                    : "The Struggle", "CTF Run", "Fatal Error"
-
 KillerKouhai            : "Zenith"
 
-kultasakaali            : "Hell's Gate", "Fractal Reactor"
+kultasakaali            : "Hell's Gate", "Fractal Reactor", "Blood Crossings"
+
+Dech                    : "The Struggle", "CTF Run", "Fatal Error"
 
 
 
@@ -232,7 +223,7 @@ YukiHerz                : Ranger and Bitterman's sprite sets
 
 Abysswalker             : Doomslayer sprites
 
-LegendBourne            : Drawings for HD portraits
+LegendBourne            : Artwork for HD portraits
 
 DrPyspy                 : Model posing/texturing/ripping of Sarge, Hunter, 
                           Major and Painkiller (PK's face edited by DBT)
@@ -255,9 +246,9 @@ SPS-Barbarossa          : QC:DE Manual design & layout up to v2.7
 
 HeliosDrive             : QC:DE Manual v3.0
 
-katherinecode           : v3.0 model posing/texturing/ripping of BJ Blazkowicz
-
 kultasakaali            : Mapping, testing, addon updating
+
+katherinecode           : v3.0 model posing/texturing/ripping of BJ Blazkowicz
 
 DoomJoshuaBoy           : OpenAL implementation
 
@@ -329,6 +320,8 @@ TDRR                    : v3.0 Beta Tester
 
 HeliosDrive             : v3.0 Beta Tester
 
+Amosu                   : v3.1 Beta Tester
+
 
 
 * Additional Credits *
@@ -336,7 +329,7 @@ HeliosDrive             : v3.0 Beta Tester
 Mechadon                : Intermission text graphics
 
 Xaser                   : Assistance with Titlemap. 
-                          Base sprites for card and skull keys.         
+                          Base sprites for the original card and skull keys.         
 
 Vader                   : Sprites of "Terminator"
 
@@ -428,6 +421,8 @@ Dzierzan                : Shadow Warrior high quality sound effects
 
 ako                     : Assistance with Unreal Tournament music addon
 
+Pepperperson            : Assistance with Unreal Tournament music addon
+
 Craneo                  : Doom 4 Tech Mancubus sprites
 
 Digital Dialect         : Adrenix Textures
@@ -438,7 +433,7 @@ Sunstorm Interactive    : Blood Textures
 Looking Glass 
 Irrational Games        : System Shock 2 Textures
 
-Valve & Gearbox         : Half Life Textures
+Valve & Gearbox         : Half Life & Deathmatch Classic Textures
 
 New Blood Interactive
 & David Szymanski       : Dusk & "The Intruder" concepts
@@ -524,6 +519,3 @@ If you have questions or suggestions, you can find us in the following links:
 Official Discord: https://discord.gg/u4ptaMk
 Official Download site: https://qzandronum.com/qcde/
 Official ModDB: http://www.moddb.com/mods/quake-champions-doom-edition
-Doomworld Thread: https://www.doomworld.com/forum/topic/99079-qc-doom-edition/
-Zdoom Thread: https://forum.zdoom.org/viewtopic.php?f=43&t=57716
-Zandronum Thread: https://zandronum.com/forum/viewtopic.php?f=58&t=8682

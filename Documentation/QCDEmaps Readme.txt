@@ -24,7 +24,7 @@ Additional Credits to   : See the Credits section
 ===========================================================================
 * What is included *
 
-New levels              : 76
+New levels              : 78
 Sounds                  : Yes
 Music                   : Yes
 Graphics                : Yes
@@ -38,7 +38,7 @@ Other files required    : Latest version of QCDE
 
 Game                    : DOOM2
 Map #                   : QCDE01-QCDE50, QCDL01-QCDL14, QCME01-QCME02
-                          QCTF01-04, QCIN01-04, QCDF01-QCDF02
+                          QCTF01-06, QCIN01-04, QCDF01-QCDF02
 Single Player           : No
 Cooperative 2-4 Player  : No
 Deathmatch 2-4 Player   : Designed for
@@ -134,6 +134,8 @@ QCTF01   The Struggle                 Dech
 QCTF02   CTF Run                      Dech
 QCTF03   Fatal Error                  Dech
 QCTF04   w00tabulous                  geNia
+QCTF05   Blood Crossings              DBThanatos & kultasakaali
+QCTF06   CTF-Face                     geNia
 
 QCIN01   Outpost                      RoosTer
 QCIN02   Hangar                       RoosTer
@@ -185,7 +187,7 @@ Sunstorm Interactive    : Blood Textures
 Looking Glass 
 Irrational Games        : System Shock 2 Textures
 
-Valve & Gearbox         : Half Life Textures
+Valve & Gearbox         : Half Life & Deathmatch Classic Textures
 
 New Blood Interactive
 & David Szymanski       : Dusk & "The Intruder" concepts
@@ -253,6 +255,3 @@ If you have questions or suggestions, you can find us in the following links:
 Official Discord: https://discord.gg/u4ptaMk
 Official Download site: https://qzandronum.com/qcde/
 Official ModDB: http://www.moddb.com/mods/quake-champions-doom-edition
-Doomworld Thread: https://www.doomworld.com/forum/topic/99079-qc-doom-edition/
-Zdoom Thread: https://forum.zdoom.org/viewtopic.php?f=43&t=57716
-Zandronum Thread: https://zandronum.com/forum/viewtopic.php?f=58&t=8682
