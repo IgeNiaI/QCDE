@@ -299,10 +299,18 @@ Actor QCBFG : QCWeapon
 
 		SP_Flash:
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "SP_Flash.SeriousSam")
-			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 3)
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "SP_Flash.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "SP_Flash.Default")
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "SP_Flash.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "SP_Flash.Quake4")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "SP_Flash.Quake3")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "SP_Flash.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "SP_Flash.Default") // Fallback to another skin
+		SP_Flash.Default:
 			"####" A 0 A_FireCustomMissile("QCBFGShot",0, true,1,5)
+			Goto FlashCheckSound
+		SP_Flash.Quake3:
+			"####" A 0 A_FireCustomMissile("QCBFGShot_Quake3",0, true,1,5)
 			Goto FlashCheckSound
 		SP_Flash.Quake4:
 			"####" A 0 A_FireCustomMissile("QCBFGShot_Quake4",0, true,1,5)
@@ -313,10 +321,18 @@ Actor QCBFG : QCWeapon
 
 		DM_Flash:
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "DM_Flash.SeriousSam")
-			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 3)
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "DM_Flash.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "DM_Flash.Default")
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "DM_Flash.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "DM_Flash.Quake4")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "DM_Flash.Quake3")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "DM_Flash.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "DM_Flash.Default") // Fallback to another skin
+		DM_Flash.Default:
 			"####" A 0 A_FireCustomMissile("QCBFGShot_DM",0, true,1,5)
+			Goto FlashCheckSound
+		DM_Flash.Quake3:
+			"####" A 0 A_FireCustomMissile("QCBFGShot_DM_Quake3",0, true,1,5)
 			Goto FlashCheckSound
 		DM_Flash.Quake4:
 			"####" A 0 A_FireCustomMissile("QCBFGShot_DM_Quake4",0, true,1,5)
@@ -389,9 +405,13 @@ Actor QCBFG : QCWeapon
 	FlashEnder:
 		"####" A 0 A_JumpIfInventory("WepNoFlashToken",1,"FlashEnderCont")
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "FlashEnder.SeriousSam")
-		"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 3)
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "FlashEnder.Default")
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "FlashEnder.Default")
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "FlashEnder.Quake4") // Fallback to another skin
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "FlashEnder.Quake4")
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "FlashEnder.Default")
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "FlashEnder.Default")
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "FlashEnder.Default") // Fallback to another skin
 	FlashEnder.Default:
 		"####" A 0 A_SetBlend("Green",0.14,20)
 		Goto FlashEnderCont
@@ -481,8 +501,9 @@ Actor QCBFG : QCWeapon
 		"####" T 1 Bright Offset(2,34)
 		"####" A 0 A_GiveInventory("BFG_Charges",1)
 		"####" A 0 A_JumpIfInventory("BFG_Charges",30,"MaxCharge")
-		"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, 4) // Jump over skin specific jumps
+		"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "Part2.Cont") // Jump over skin specific jumps
 		"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "Part1Refire") // QCDE 1.0 skin has less frames
+	Part2.Cont:
 		"####" A 0 A_Refire("Part3")
 		Goto Release
 
@@ -570,10 +591,18 @@ Actor QCBFG : QCWeapon
 
 		FirePower1:
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "FirePower1.SeriousSam")
-			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 5)
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "FirePower1.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "FirePower1.Default")
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "FirePower1.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "FirePower1.Quake4")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "FirePower1.Quake3")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "FirePower1.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "FirePower1.Default") // Fallback to another skin
+		FirePower1.Default:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot",0, true,1,5)
+			Goto GenericFlashChecks
+		FirePower1.Quake3:
+			"####" A 0 A_FireCustomMissile("QCBFGChargeShot_Quake3",0, true,1,5)
 			Goto GenericFlashChecks
 		FirePower1.Quake4:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot_Quake4",0, true,1,5)
@@ -584,10 +613,18 @@ Actor QCBFG : QCWeapon
 
 		FirePower2:
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "FirePower2.SeriousSam")
-			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 3)
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "FirePower2.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "FirePower2.Default")
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "FirePower2.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "FirePower2.Quake4")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "FirePower2.Quake3")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "FirePower2.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "FirePower2.Default") // Fallback to another skin
+		FirePower2.Default:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot2",0, true,1,5)
+			Goto FirePower2Cont
+		FirePower2.Quake3:
+			"####" A 0 A_FireCustomMissile("QCBFGChargeShot2_Quake3",0, true,1,5)
 			Goto FirePower2Cont
 		FirePower2.Quake4:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot2_Quake4",0, true,1,5)
@@ -603,10 +640,18 @@ Actor QCBFG : QCWeapon
 
 		FirePower3:
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "FirePower3.SeriousSam")
-			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 3)
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "FirePower3.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "FirePower3.Default")
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "FirePower3.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "FirePower3.Quake4")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "FirePower3.Quake3")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "FirePower3.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "FirePower3.Default") // Fallback to another skin
+		FirePower3.Default:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot3",0, true,1,5)
+			Goto FirePower3Cont
+		FirePower3.Quake3:
+			"####" A 0 A_FireCustomMissile("QCBFGChargeShot3_Quake3",0, true,1,5)
 			Goto FirePower3Cont
 		FirePower3.Quake4:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot3_Quake4",0, true,1,5)
@@ -622,10 +667,18 @@ Actor QCBFG : QCWeapon
 
 		FirePower4:
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "FirePower4.SeriousSam")
-			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 3)
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "FirePower4.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "FirePower4.Default")
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "FirePower4.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "FirePower4.Quake4")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "FirePower4.Quake3")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "FirePower4.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "FirePower4.Default") // Fallback to another skin
+		FirePower4.Default:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot4",0, true,1,5)
+			Goto FirePower4Cont
+		FirePower4.Quake3:
+			"####" A 0 A_FireCustomMissile("QCBFGChargeShot4_Quake3",0, true,1,5)
 			Goto FirePower4Cont
 		FirePower4.Quake4:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot4_Quake4",0, true,1,5)
@@ -641,10 +694,18 @@ Actor QCBFG : QCWeapon
 
 		FirePower5:
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "FirePower5.SeriousSam")
-			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 3)
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "FirePower5.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "FirePower5.Default")
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "FirePower5.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "FirePower5.Quake4")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "FirePower5.Quake3")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "FirePower5.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "FirePower5.Default") // Fallback to another skin
+		FirePower5.Default:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot5",0, true,1,5)
+			Goto FirePower5Cont
+		FirePower5.Quake3:
+			"####" A 0 A_FireCustomMissile("QCBFGChargeShot5_Quake3",0, true,1,5)
 			Goto FirePower5Cont
 		FirePower5.Quake4:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot5_Quake4",0, true,1,5)
@@ -660,10 +721,18 @@ Actor QCBFG : QCWeapon
 
 		FirePower6:
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 8, "FirePower6.SeriousSam")
-			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, 3)
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 7, "FirePower6.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 6, "FirePower6.Default")
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 5, "FirePower6.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCBFGSkin", 4, "FirePower6.Quake4")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 3, "FirePower6.Quake3")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 2, "FirePower6.Default")
+			"####" A 0 A_JumpIfInventory("QCBFGSkin", 1, "FirePower6.Default") // Fallback to another skin
+		FirePower6.Default:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot6",0, true,1,5)
+			Goto FirePower6Cont
+		FirePower6.Quake3:
+			"####" A 0 A_FireCustomMissile("QCBFGChargeShot6_Quake3",0, true,1,5)
 			Goto FirePower6Cont
 		FirePower6.Quake4:
 			"####" A 0 A_FireCustomMissile("QCBFGChargeShot6_Quake4",0, true,1,5)
@@ -818,7 +887,7 @@ Actor QCBFGShot
 	Speed 45
 	RenderStyle Add
 	Alpha 0.99
-	Scale 0.7
+	Scale 0.5
 	Radius 4
 	Height 8
 	Damage (random(80,120))
@@ -890,6 +959,31 @@ Actor QCBFGShot
 		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 2
 		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		Stop
+	}
+}
+
+Actor QCBFGShot_Quake3 : QCBFGShot
+{
+	States
+	{
+	Spawn:
+		DB77 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		"####" AB 1 Bright Light("BlueBigPoint3")
+		"####" CD 1 Bright Light("BlueBigPoint3")
+		"####" EF 1 Bright Light("BlueBigPoint3")
+		"####" A 0 A_Explode(16,128,0)
+		"####" GH 1 Bright Light("BlueBigPoint3")
+		"####" IJ 1 Bright Light("BlueBigPoint3")
+		"####" KL 1 Bright Light("BlueBigPoint3")
+		Goto Spawn
+
+	DeathFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 2
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		Stop
 	}
 }
@@ -976,6 +1070,11 @@ Actor BFGExploRingSmall //shockwave
 	}
 }
 
+Actor BFGExploRingSmall_Quake3 : BFGExploRingSmall
+{
+	Translation "0:255=%[0,0,0]:[0.4,1.5,0.7]"
+}
+
 Actor BFGExploRingSmall_SeriousSam : BFGExploRingSmall
 {
 	Translation "0:255=%[0,0,0]:[0.0,0.0,1.8]"
@@ -1002,6 +1101,31 @@ Actor BFGClassicExploSmall  //explosion
 		DB49 S 1 Bright Light("GreenMediumPoint3") A_SetScale(scalex*1.05)
 		DB49 U 1 Bright Light("GreenSmallPoint1") A_SetScale(scalex*1.05)
 		DB49 Y 1 Bright Light("GreenSmallPoint2") A_SetScale(scalex*1.05)
+		Stop
+	}
+}
+
+Actor BFGClassicExploSmall_Quake3  //explosion
+{
+	+NOINTERACTION +NOTONAUTOMAP
+	+CLIENTSIDEONLY +NONETID
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.99
+	scale 0.9
+	States
+	{
+	Spawn:
+		DB79 A 1 Bright Light("GreenSmallPoint1") A_SetScale(scalex*1.05)
+		DB79 C 1 Bright Light("GreenMediumPoint3") A_SetScale(scalex*1.05)
+		DB79 G 1 Bright Light("GreenMediumPoint2") A_SetScale(scalex*1.05)
+		DB79 I 1 Bright Light("GreenMediumPoint1") A_SetScale(scalex*1.05)
+		DB79 I 1 Bright Light("GreenBigPoint3") A_SetScale(scalex*1.05)
+		DB79 M 1 Bright Light("GreenMediumPoint1") A_SetScale(scalex*1.05)
+		DB79 O 1 Bright Light("GreenMediumPoint2") A_SetScale(scalex*1.05)
+		DB79 S 1 Bright Light("GreenMediumPoint3") A_SetScale(scalex*1.05)
+		DB79 U 1 Bright Light("GreenSmallPoint1") A_SetScale(scalex*1.05)
+		DB79 Y 1 Bright Light("GreenSmallPoint2") A_SetScale(scalex*1.05)
 		Stop
 	}
 }
@@ -1064,6 +1188,11 @@ Actor BFGExploLightningSmall
 		Stop
 
 	}
+}
+
+Actor BFGExploLightningSmall_Quake3 : BFGExploLightningSmall
+{
+	Translation "0:255=%[0,0,0]:[0.4,1.5,0.7]"
 }
 
 Actor BFGExploLightningSmall_SeriousSam : BFGExploLightningSmall
@@ -1292,6 +1421,32 @@ Actor QCBFGChargeShot
 	}
 }
 
+Actor QCBFGChargeShot_Quake3 : QCBFGChargeShot
+{
+	States
+	{
+	Spawn:
+		DB78 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB78 AB 1 Bright Light("BlueBigPoint3")
+		DB78 CD 1 Bright Light("BlueBigPoint3")
+		DB78 EF 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		DB78 GH 1 Bright Light("BlueBigPoint3")
+		DB78 IJ 1 Bright Light("BlueBigPoint3")
+		DB78 KL 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		Goto Spawn+1
+
+	DeathFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 2
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		Stop
+	}
+}
+
 Actor QCBFGChargeShot_Quake4 : QCBFGChargeShot
 {
 	RenderStyle Normal
@@ -1395,6 +1550,32 @@ Actor QCBFGChargeShot2 : QCBFGChargeShot
 	DoRays:
 		TNT1 A 0 A_BFGSpray("BFGfogLightning",5,45)
 		Goto EndDeath
+	}
+}
+
+Actor QCBFGChargeShot2_Quake3 : QCBFGChargeShot2
+{
+	States
+	{
+	Spawn:
+		DB78 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB78 AB 1 Bright Light("BlueBigPoint3")
+		DB78 CD 1 Bright Light("BlueBigPoint3")
+		DB78 EF 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		DB78 GH 1 Bright Light("BlueBigPoint3")
+		DB78 IJ 1 Bright Light("BlueBigPoint3")
+		DB78 KL 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		Goto Spawn+1
+
+	DeathFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 2
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		Stop
 	}
 }
 
@@ -1503,6 +1684,32 @@ Actor QCBFGChargeShot3 : QCBFGChargeShot
 	}
 }
 
+Actor QCBFGChargeShot3_Quake3 : QCBFGChargeShot3
+{
+	States
+	{
+	Spawn:
+		DB78 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB78 AB 1 Bright Light("BlueBigPoint3")
+		DB78 CD 1 Bright Light("BlueBigPoint3")
+		DB78 EF 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		DB78 GH 1 Bright Light("BlueBigPoint3")
+		DB78 IJ 1 Bright Light("BlueBigPoint3")
+		DB78 KL 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		Goto Spawn+1
+
+	DeathFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 2
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		Stop
+	}
+}
+
 Actor QCBFGChargeShot3_Quake4 : QCBFGChargeShot3
 {
 	RenderStyle Normal
@@ -1608,6 +1815,32 @@ Actor QCBFGChargeShot4 : QCBFGChargeShot
 	}
 }
 
+Actor QCBFGChargeShot4_Quake3 : QCBFGChargeShot4
+{
+	States
+	{
+	Spawn:
+		DB78 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB78 AB 1 Bright Light("BlueBigPoint3")
+		DB78 CD 1 Bright Light("BlueBigPoint3")
+		DB78 EF 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		DB78 GH 1 Bright Light("BlueBigPoint3")
+		DB78 IJ 1 Bright Light("BlueBigPoint3")
+		DB78 KL 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		Goto Spawn+1
+
+	DeathFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 2
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		Stop
+	}
+}
+
 Actor QCBFGChargeShot4_Quake4 : QCBFGChargeShot4
 {
 	RenderStyle Normal
@@ -1710,6 +1943,32 @@ Actor QCBFGChargeShot5 : QCBFGChargeShot
 	DoRays:
 		TNT1 A 0 A_BFGSpray("BFGfogLightning",12,60)
 		Goto EndDeath
+	}
+}
+
+Actor QCBFGChargeShot5_Quake3 : QCBFGChargeShot5
+{
+	States
+	{
+	Spawn:
+		DB78 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB78 AB 1 Bright Light("BlueBigPoint3")
+		DB78 CD 1 Bright Light("BlueBigPoint3")
+		DB78 EF 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		DB78 GH 1 Bright Light("BlueBigPoint3")
+		DB78 IJ 1 Bright Light("BlueBigPoint3")
+		DB78 KL 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		Goto Spawn+1
+
+	DeathFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 2
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		Stop
 	}
 }
 
@@ -1828,6 +2087,32 @@ Actor QCBFGChargeShot6 : QCBFGChargeShot
 		TNT1 AAA 2 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 6 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 6 A_SpawnItemEx("BFGExploRingSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		Stop
+	}
+}
+
+Actor QCBFGChargeShot6_Quake3 : QCBFGChargeShot6
+{
+	States
+	{
+	Spawn:
+		DB78 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB78 AB 1 Bright Light("BlueBigPoint3")
+		DB78 CD 1 Bright Light("BlueBigPoint3")
+		DB78 EF 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		DB78 GH 1 Bright Light("BlueBigPoint3")
+		DB78 IJ 1 Bright Light("BlueBigPoint3")
+		DB78 KL 1 Bright Light("BlueBigPoint3")
+		TNT1 A 0 A_Explode(16,128,0)
+		Goto Spawn+1
+
+	DeathFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 2
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		Stop
 	}
 }
@@ -2003,6 +2288,25 @@ Actor QCBFGShot_DM	//No AOE while flying
 		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 2
 		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		Stop
+	}
+}
+
+Actor QCBFGShot_DM_Quake3 : QCBFGShot_DM
+{
+	States
+	{
+	Spawn:
+		DB77 A 0 NODELAY A_PlaySound("QC/Weapons/BFG/BallFlying",CHAN_7,0.6,true,2.5)
+		DB77 ABCDEFGHIJKL 1 Bright Light("BlueBigPoint3")
+		Goto Spawn+1
+
+	DeathFX:
+		TNT1 A 0 A_PlaySound("QC/Weapons/BFG/Explo",CHAN_7,1,0,0.75)
+		TNT1 A 0 A_SpawnItemEx("BFGExploRingSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 2
+		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall_Quake3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		Stop
 	}
 }
