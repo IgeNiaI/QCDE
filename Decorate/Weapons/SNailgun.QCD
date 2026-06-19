@@ -210,8 +210,11 @@ Actor QCSuperNailgun : QCWeapon
 		Q1FD A 0
 		Goto ReadyCont.Upgraded
 	Ready.Quake2:
-		Q2GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"ReadyCont.Upgraded")
+		Q2GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Ready.Quake2Upgraded")
 		Goto ReadyCont
+	Ready.Quake2Upgraded:
+		Q2FD A 0
+		Goto ReadyCont.Upgraded
 	Ready.Quake3:
 		Q3GD A 0 A_JumpIfInventory("SNG_UG_Lava",1,"Ready.Quake3Upgraded")
 		Goto ReadyCont.Animated
