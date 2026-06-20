@@ -619,13 +619,13 @@ Actor PKProjectile
 		WP30 J 0 NODELAY A_PlaySound("QC/Abilities/Painkiller/Weapon/SpinStartLoop",5,1,1,1.0)
 	Looper:
 		WP30 JK 1 Bright A_JumpIfInTargetInventory("PKTipDetached",-1,"Destroy")
-		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		WP30 LM 1 Bright A_JumpIfInTargetInventory("PKTipDetached",-1,"Destroy")
-		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		WP30 JK 1 Bright A_JumpIfInTargetInventory("PKTipDetached",-1,"Destroy")
-		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		WP30 LM 1 Bright A_JumpIfInTargetInventory("PKTipDetached",-1,"Destroy")
-		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail4",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		Loop
 	Death:
 		TNT1 A 10 A_TakeFromTarget("PKTipDetached",32767)
@@ -651,14 +651,14 @@ Actor PKProjectileDM : PKProjectile
 	Looper:
 		WP30 A 0 A_Explode(40,32,0,0,32)
 		WP30 JK 1 Bright A_JumpIfInTargetInventory("PKTipDetached",-1,"Destroy")
-		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		WP30 LM 1 Bright A_JumpIfInTargetInventory("PKTipDetached",-1,"Destroy")
-		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		WP30 A 0 A_Explode(40,32,0,0,32)
 		WP30 JK 1 Bright A_JumpIfInTargetInventory("PKTipDetached",-1,"Destroy")
-		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		WP30 LM 1 Bright A_JumpIfInTargetInventory("PKTipDetached",-1,"Destroy")
-		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail4",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PKProjectileTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		Loop
 	}
 }
@@ -666,7 +666,7 @@ Actor PKProjectileDM : PKProjectile
 
 
 
-Actor PKProjectileTrail1
+Actor PKProjectileTrail
 {
 	+CLIENTSIDEONLY
 	+NONETID
@@ -678,16 +678,10 @@ Actor PKProjectileTrail1
 	States
 	{
 	Spawn:
-		WP30 J 2 A_FadeOut(0.15)
-		Loop
+		WT30 ABCDEFGH 1
+		Stop
 	}
 }
-Actor PKProjectileTrail2 : PKProjectileTrail1
-{	States	{	Spawn:	WP30 K 2 A_FadeOut(0.15)	Loop }	}
-Actor PKProjectileTrail3 : PKProjectileTrail1
-{	States	{	Spawn:	WP30 L 2 A_FadeOut(0.15)	Loop }	}
-Actor PKProjectileTrail4 : PKProjectileTrail1
-{	States	{	Spawn:	WP30 M 2 A_FadeOut(0.15)	Loop }	}
 
 //-----------------------------------------------
 // Gauntlet puffs
