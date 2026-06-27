@@ -1,0 +1,32 @@
+
+Gauntlet animation states and frames:
+
+
+Prepare					-> A, A-Z (26 frames)
+	brightmaps			-> B
+Idle					-> C, A-F (6 frames)
+	brightmaps			-> D
+Fire start				-> E, A-B (2 frames)
+	brightmaps			-> F
+Fire loop				-> E, C-H (6 frames)
+	brightmaps			-> F
+Fire end				-> E, I-J (2 frames)
+	brightmaps			-> F
+
+
+Prepare upgraded		-> G, A-Z (26 frames)
+	brightmaps			-> H
+Idle upgraded			-> I, A-F (6 frames)
+	brightmaps			-> J
+Fire start upgraded		-> K, A-B (2 frames)
+	brightmaps			-> L
+Fire loop upgraded		-> K, C-H (6 frames)
+	brightmaps			-> L
+Fire end upgraded		-> K, I-J (2 frames)
+	brightmaps			-> L
+
+
+Omnislash projectile	-> E, Z (1 frame)
+
+
+On all states, frame A is also used when the gun is being lowered
