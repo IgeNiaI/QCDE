@@ -60,15 +60,14 @@ ClearBots //to remove skulltag bots
 { name = "Caducea"			class = "Lucienne"	 accuracy = 3	intellect = 1	evade = 2	anticipation = 1	reactiontime = 2	perception = 3	color = "FF FF FF"	gender="female"	railcolor = white	script = "humanbot"	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/medic.txt"		}
 { name = "Architect"		class = "Inquisitor" accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "33 B9 F8"	gender="female"	railcolor = blue	script = "humanbot"	favoriteweapon = "QCLightningGunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/order.txt"		}
 { name = "Pinata"			class = "Duke Nukem" accuracy = 2	intellect = 3	evade = 1	anticipation = 3	reactiontime = 1	perception = 2	color = "B9 B4 9E"	gender ="other"	railcolor = gold	script = "fatbot" 	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/saint.txt"		}
-{ name = "Jihan Nyhn"		class = "Brock"		 accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "FF BC 3C"	gender = "male"	railcolor = black	script = "humanbot" favoriteweapon = "QCLightningGunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/sheriff.txt"		}
 
 // Bonus vidya bots, spread attributes (12pts)
 { name = "Warlord"			class = "Keel"		 accuracy = 1	intellect = 3	evade = 2	anticipation = 3	reactiontime = 1	perception = 2	color = "AD 8E 50"	gender = "male"	railcolor = gold	script = "humanbot"	favoriteweapon = "QCGauntletDM"			chatfrequency =  7	chatlump = "bots/chatfiles/warlord.txt"		}
 { name = "Princess"			class = "Eleena"	 accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 2	perception = 2	color = "68 D3 AD"	gender="female"	railcolor = green	script = "humanbot"	favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/notow.txt"		}
 { name = "Gunman"			class = "DoomSlayer" accuracy = 1	intellect = 1	evade = 3	anticipation = 3	reactiontime = 2	perception = 2	color = "37 3F 46"	gender = "male"	railcolor = grey	script = "humanbot"	favoriteweapon = "QCHeavyMachinegunDM"	chatfrequency =  9	chatlump = "bots/chatfiles/sheriff.txt"		}
-{ name = "Borsch"			class = "Sam"		 accuracy = 1	intellect = 3	evade = 1	anticipation = 2	reactiontime = 2	perception = 3	color = "E3 45 48"	gender = "male"	railcolor = red		script = "humanbot"	favoriteweapon = "QCHeavyMachinegunDM"	chatfrequency =  8	chatlump = "bots/chatfiles/heavich.txt"		}
-{ name = "Foxhound"			class = "Lucienne"	 accuracy = 2	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 2	color = "A2 32 3F"	gender="female"	railcolor = red		script = "humanbot" favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/kunai.txt"		}
-{ name = "Iron Guardsman"	class = "Brock"		 accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 2	perception = 2	color = "FF BC 3C"	gender = "male"	railcolor = black	script = "humanbot" favoriteweapon = "QCLightningGunDM"		chatfrequency =  9	chatlump = "bots/chatfiles/sheriff.txt"		}
+{ name = "Matroskin"		class = "Sam"		 accuracy = 1	intellect = 3	evade = 1	anticipation = 2	reactiontime = 2	perception = 3	color = "E3 45 48"	gender = "male"	railcolor = red		script = "humanbot"	favoriteweapon = "QCHeavyMachinegunDM"	chatfrequency =  8	chatlump = "bots/chatfiles/heavich.txt"		}
+{ name = "Kunai"			class = "Lucienne"	 accuracy = 2	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 2	color = "A2 32 3F"	gender="female"	railcolor = red		script = "humanbot" favoriteweapon = "QCSuperNailgunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/kunai.txt"		}
+{ name = "SpaceOddity"		class = "Orbb"		 accuracy = 3	intellect = 1	evade = 3	anticipation = 2	reactiontime = 2	perception = 1	color = "47 51 8F"	gender="female"	railcolor = magenta	script = "humanbot" favoriteweapon = "QCLightningGunDM"		chatfrequency =  8	chatlump = "bots/chatfiles/martian.txt"		}
 
 // QC, spread attributes, better than previous range (18pts)
 { name = "Die Apotheke"		class = "Ranger" 		accuracy = 2	intellect = 3	evade = 4 	anticipation = 3	reactiontime = 3 	perception = 3	script = "humanbot"	gender = "male" }
@@ -87,7 +86,6 @@ ClearBots //to remove skulltag bots
 { name = "CheeBeef"			class = "VorMatur"		accuracy = 2	intellect = 3	evade = 4 	anticipation = 3	reactiontime = 3 	perception = 3	script = "humanbot"	gender = "male" }
 { name = "WhistlinDixie"	class = "Major"			accuracy = 3	intellect = 4	evade = 3	anticipation = 2	reactiontime = 3 	perception = 3	script = "humanbot"	gender="female" }
 { name = "spicy comments"	class = "Hunter"		accuracy = 4	intellect = 2	evade = 2	anticipation = 4	reactiontime = 3 	perception = 3	script = "humanbot"	gender = "male" }
-{ name = "Vampirus"			class = "Brock"		 	accuracy = 4	intellect = 2	evade = 2	anticipation = 4	reactiontime = 3 	perception = 3	script = "humanbot" gender = "male"	}
 
 // Meme / Reference Bots, imbalanced all around, no consistency on attributes
 { name = "\chBrutal_Player"			class = "DoomSlayer"	accuracy = -2	intellect = -2	evade = -2	anticipation = -2	reactiontime = -2	perception = -2	color = "7D 76 F2"	gender = "male"	railcolor = blue	script = "crashbot"	favoriteweapon = "QCSuperShotgunDM"		}
@@ -113,6 +111,7 @@ ClearBots //to remove skulltag bots
 { name = "Clickonator"				class = "Terminator"	accuracy =  3	intellect =  4	evade =  2	anticipation =  2	reactiontime =  2	perception =  2	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
 { name = "NyanTotem"				class = "Intruder"		accuracy =  3	intellect =  4	evade =  2	anticipation =  2	reactiontime =  2	perception =  2	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
 { name = "CrawlingDreams"			class = "Intruder"		accuracy =  3	intellect =  3	evade =  1	anticipation =  1	reactiontime =  1	perception =  1	color = "D2 69 1E"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
+{ name = "Vampirus"					class = "Brock" 		accuracy =  4	intellect =  2	evade =  2	anticipation =  4	reactiontime =  3	perception =  3	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "humanbot"	favoriteweapon = "QCSuperShotgunDM"		}
 { name = "ElderGodBones"			class = "Orbb"		    accuracy =  5	intellect =  5	evade =  5	anticipation =  4	reactiontime =  5 	perception =  5	color = "7D FF FF"	gender = "male"	railcolor = cyan	script = "humanbot" favoriteweapon = "QCSuperShotgunDM"		}
 
 
@@ -145,6 +144,7 @@ ClearBots //to remove skulltag bots
 { name = "LH9965"				class = "Keel"			gender = "cyborg"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "9A CD 32"	script = "dfultbot"		}
 { name = "ElevatorGator"		class = "Eradicator"	gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "7C FC 00"	script = "dfultbot"		}
 { name = "Cyberclops"			class = "Orbb"			gender = "other"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "7C FC 00"	script = "sausgbot"		}
+{ name = "Jihan Nyhn"			class = "Brock"			gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 2	reactiontime = 3	perception = 1	color = "FF BC 3C"	script = "humanbot"		}
 
 { name = "Pokey Joe"			class = "VorMatur"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "F0 F8 FF"	script = "crashbot"		}
 { name = "LukMaM37"				class = "Major"			gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "00 FF 00"	script = "dfultbot"		}
@@ -174,6 +174,7 @@ ClearBots //to remove skulltag bots
 { name = "BulbBridge83"			class = "Inquisitor"	gender = "female"	accuracy = 1	intellect = 2	evade = 3	anticipation = 3	reactiontime = 1	perception = 2	color = "FF 63 47"	script = "dfultbot"		}
 { name = "ElectionConspiracy"	class = "Sorgaul"		gender = "cyborg"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "FA 80 72"	script = "dfultbot"		}
 { name = "One-eyed Freak"		class = "Orbb"			gender = "other"	accuracy = 2	intellect = 3	evade = 1	anticipation = 1	reactiontime = 2	perception = 3	color = "7C FC 00"	script = "sausgbot"		}
+{ name = "Iron Guardsman"		class = "Brock"			gender = "male"		accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 2	perception = 2	color = "67 67 67"	script = "humanbot"		}
 
 { name = "blackmail41"			class = "Bitterman"		gender = "male"		accuracy = 1	intellect = 2	evade = 3	anticipation = 1	reactiontime = 2	perception = 3	color = "FF C0 CB"	script = "crashbot"		}
 { name = "CarBrother"			class = "Keel"			gender = "female"	accuracy = 2	intellect = 3	evade = 1	anticipation = 2	reactiontime = 3	perception = 1	color = "F8 F8 FF"	script = "dfultbot"		}
