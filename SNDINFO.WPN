@@ -1,46 +1,41 @@
 
 //********************
 // Gauntlet
-QC/Weapons/Gauntlet/FireEnd_Default					"Sounds/Weapons/Gauntlet/Default/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Prepare_Default					"Sounds/Weapons/Gauntlet/Default/Gaunt_Prepare.ogg"
 QC/Weapons/Gauntlet/Idle_Default					"Sounds/Weapons/Gauntlet/Default/Gaunt_Idle.ogg"
 QC/Weapons/Gauntlet/FireStartLoop_Default			"Sounds/Weapons/Gauntlet/Default/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Select_Default					"Sounds/Weapons/Gauntlet/Default/Gaunt_Select.ogg"
 QC/Weapons/Gauntlet/Quad/FireStartLoop_Default		"Sounds/Weapons/Gauntlet/Default/Quad/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Hit1_Default					"Sounds/Weapons/Gauntlet/Default/Gaunt_Hit1.ogg"
-QC/Weapons/Gauntlet/Hit2_Default					"Sounds/Weapons/Gauntlet/Default/Gaunt_Hit2.ogg"
-QC/Weapons/Gauntlet/Hit3_Default					"Sounds/Weapons/Gauntlet/Default/Gaunt_Hit3.ogg"
-$random QC/Weapons/Gauntlet/Hit_Default				{ QC/Weapons/Gauntlet/Hit1_Default QC/Weapons/Gauntlet/Hit2_Default QC/Weapons/Gauntlet/Hit3_Default }
+QC/Weapons/Gauntlet/FireEnd_Default					"Sounds/Weapons/Gauntlet/Default/Gaunt_End.ogg"
 
-QC/Weapons/Gauntlet/FireEnd_Quake2					"Sounds/Weapons/Gauntlet/Quake2/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Prepare_Quake2					"Sounds/Weapons/Gauntlet/Quake2/Gaunt_Idle.ogg" // This skin doesn't have prepare animation
 QC/Weapons/Gauntlet/Idle_Quake2						"Sounds/Weapons/Gauntlet/Quake2/Gaunt_Idle.ogg"
 QC/Weapons/Gauntlet/FireStartLoop_Quake2			"Sounds/Weapons/Gauntlet/Quake2/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Select_Quake2					"Sounds/Weapons/Gauntlet/Quake2/Gaunt_Select.ogg"
 QC/Weapons/Gauntlet/Quad/FireStartLoop_Quake2		"Sounds/Weapons/Gauntlet/Quake2/Quad/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Hit_Quake2						"Sounds/Weapons/Gauntlet/Quake2/Gaunt_Hit1.ogg"
+QC/Weapons/Gauntlet/FireEnd_Quake2					"Sounds/Weapons/Gauntlet/Quake2/Gaunt_End.ogg"
 
-QC/Weapons/Gauntlet/FireEnd_Quake3					"Sounds/Weapons/Gauntlet/Quake3/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Prepare_Quake3					"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Idle.ogg" // This skin doesn't have prepare animation
 QC/Weapons/Gauntlet/Idle_Quake3						"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Idle.ogg"
 QC/Weapons/Gauntlet/FireStartLoop_Quake3			"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Select_Quake3					"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Select.ogg"
 QC/Weapons/Gauntlet/Quad/FireStartLoop_Quake3		"Sounds/Weapons/Gauntlet/Quake3/Quad/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Hit1_Quake3						"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Hit1.ogg"
-QC/Weapons/Gauntlet/Hit2_Quake3						"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Hit2.ogg"
-QC/Weapons/Gauntlet/Hit3_Quake3						"Sounds/Weapons/Gauntlet/Quake3/Gaunt_Hit3.ogg"
-$random QC/Weapons/Gauntlet/Hit_Quake3				{ QC/Weapons/Gauntlet/Hit1_Quake3 QC/Weapons/Gauntlet/Hit2_Quake3 QC/Weapons/Gauntlet/Hit3_Quake3 }
+QC/Weapons/Gauntlet/FireEnd_Quake3					"Sounds/Weapons/Gauntlet/Quake3/Gaunt_End.ogg"
 
-QC/Weapons/Gauntlet/FireEnd_Quake4					"Sounds/Weapons/Gauntlet/Quake4/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Prepare_Quake4					"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Idle.ogg" // This skin doesn't have prepare animation
 QC/Weapons/Gauntlet/Idle_Quake4						"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Idle.ogg"
 QC/Weapons/Gauntlet/FireStartLoop_Quake4			"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Select_Quake4					"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Select.ogg"
 QC/Weapons/Gauntlet/Quad/FireStartLoop_Quake4		"Sounds/Weapons/Gauntlet/Quake4/Quad/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Hit_Quake4						"Sounds/Weapons/Gauntlet/Quake4/Gaunt_Hit1.ogg"
+QC/Weapons/Gauntlet/FireEnd_Quake4					"Sounds/Weapons/Gauntlet/Quake4/Gaunt_End.ogg"
 
-QC/Weapons/Gauntlet/FireEnd_SeriousSam				"Sounds/Weapons/Gauntlet/SeriousSam/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Prepare_SeriousSam				"Sounds/Weapons/Gauntlet/SeriousSam/Gaunt_Idle.ogg" // This skin doesn't have prepare animation
 QC/Weapons/Gauntlet/Idle_SeriousSam					"Sounds/Weapons/Gauntlet/SeriousSam/Gaunt_Idle.ogg"
 QC/Weapons/Gauntlet/FireStartLoop_SeriousSam		"Sounds/Weapons/Gauntlet/SeriousSam/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Select_SeriousSam				"Sounds/Weapons/Gauntlet/SeriousSam/Gaunt_Select.ogg"
 QC/Weapons/Gauntlet/Quad/FireStartLoop_SeriousSam	"Sounds/Weapons/Gauntlet/SeriousSam/Quad/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Hit_SeriousSam					"Sounds/Weapons/Gauntlet/SeriousSam/Gaunt_Hit1.ogg"
+QC/Weapons/Gauntlet/FireEnd_SeriousSam				"Sounds/Weapons/Gauntlet/SeriousSam/Gaunt_End.ogg"
+
+QC/Weapons/Gauntlet/Prepare_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Prepare.ogg"
+QC/Weapons/Gauntlet/Idle_Modded						"Sounds/Weapons/Gauntlet/Modded/Gaunt_Idle.ogg"
+QC/Weapons/Gauntlet/FireStartLoop_Modded			"Sounds/Weapons/Gauntlet/Modded/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Quad/FireStartLoop_Modded		"Sounds/Weapons/Gauntlet/Modded/Quad/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/FireEnd_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_End.ogg"
 
 
 //********************
