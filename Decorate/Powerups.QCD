@@ -178,7 +178,11 @@ Actor QCQuadFX : GenericPowerupFXBackground
 	States
 	{
 	Spawn:
-		QUAD B 0
+		QUAD B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		//"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
 		Goto LooperIn
 	}
 }
@@ -367,7 +371,11 @@ Actor QCProtecFX : GenericPowerupFXBackground
 	States
 	{
 	Spawn:
-		PROT B 0
+		PROT B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		//"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
 		Goto LooperIn
 	}
 }
@@ -575,7 +583,11 @@ Actor QCInvulFX : GenericPowerupFXBackground
 	States
 	{
 	Spawn:
-		PENT B 0
+		PENT B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		//"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
 		Goto LooperIn
 	}
 }
@@ -666,7 +678,11 @@ Actor QCInfinFX : GenericPowerupFXBackground
 	States
 	{
 	Spawn:
-		INFN B 0 NoDelay
+		INFN B 0 NoDelay A_SetUserVar(user_maxalpha,100)
+		"####" "#" 0 A_SetUserVar(user_x,0)
+		"####" "#" 0 A_SetUserVar(user_y,0)
+		"####" "#" 0 A_SetUserVar(user_z,0)
+		//"####" "#" 0 ACS_NamedExecuteWithResult("QCDE_EffectBinding")
 		Goto LooperIn
 	}
 }
