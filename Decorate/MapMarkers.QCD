@@ -92,7 +92,7 @@ Actor MapMarker_MegaHealth : QCMapMarker
     States
     {
     Spawn:
-        MEGR M -1
+        MEGR Z -1
 		Stop
     }
 }
@@ -102,7 +102,7 @@ Actor MapMarker_MegaMega : QCMapMarker
     States
     {
     Spawn:
-        MEGB M -1
+        MEGB Z -1
 		Stop
     }
 }
@@ -112,7 +112,7 @@ Actor MapMarker_HeavyArmor : QCMapMarker
     States
     {
     Spawn:
-        HEVY M -1
+        HEVY Z -1
 		Stop
     }
 }
@@ -126,7 +126,7 @@ Actor MapMarker_PwUp : QCMapMarker
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfPve")
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_RemoveIfNoPowerups")
 		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_DespawnIfInstagib")
-        PWUP M -1
+        PWUP Z -1
 		Stop
     }
 }
