@@ -1095,7 +1095,7 @@ Actor BFGExploRingSmall_Quake3 : BFGExploRingSmall
 
 Actor BFGExploRingSmall_SeriousSam : BFGExploRingSmall
 {
-	Translation "0:255=%[0,0,0]:[0.0,0.0,1.8]"
+	Translation "0:255=%[0,0,0]:[0.0,0.1,1.8]"
 }
 
 Actor BFGClassicExploSmall  //explosion
@@ -1215,7 +1215,7 @@ Actor BFGExploLightningSmall_Quake3 : BFGExploLightningSmall
 
 Actor BFGExploLightningSmall_SeriousSam : BFGExploLightningSmall
 {
-	Translation "0:255=%[0,0,0]:[0.0,0.0,1.8]"
+	Translation "0:255=%[0,0,0]:[0.0,0.3,1.8]"
 }
 
 Actor BFGfogLightning
@@ -1276,7 +1276,7 @@ Actor BFGfogLightning_Quake4 : BFGfogLightning
 
 Actor BFGfogLightning_SeriousSam : BFGfogLightning
 {
-	Translation "0:255=%[0,0,0]:[0.0,0.0,1.8]"
+	Translation "0:255=%[0,0,0]:[0.0,0.1,1.8]"
 }
 
 Actor BFGQ4ExploEffect1
