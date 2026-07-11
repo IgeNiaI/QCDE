@@ -100,6 +100,16 @@ Actor BulletSmallTracer_Quake4 : BulletSmallTracer
 	}
 }
 
+Actor BulletSmallTracerMG_Modded : BulletSmallTracer
+{
+	states
+	{
+	Spawn:
+		MDY2 A 1
+		Goto Super::Spawn+1
+	}
+}
+
 
 //==================================================================================
 //==================================================================================
