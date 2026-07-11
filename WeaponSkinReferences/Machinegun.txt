@@ -1,0 +1,24 @@
+Machinegun
+
+Assets
+
+Weapon and effect sprites: Sprites/Weapons/Machinegun/
+Sounds: Sounds/Weapons/Machinegun/
+Modded models and model textures: MD3/PROJECTILES/Machinegun/
+Menu previews: Graphics/Menu/SkinPreviews/Machinegun/
+
+Weapon frames
+
+Use                     Set    Frames    Brightmap set
+Prepare                 A      A-Z       B
+Idle                    C      A-F       D
+Fire start              E      A         F
+Fire loop               E      B-J       F
+Fire end                E      K-U       F
+
+This gun has no separate upgraded weapon frames.
+
+Other Modded frames
+
+MDY2 A                                      Bullet tracer (model)
+MDZ2 A-T                                    Bullet hit effects
