@@ -1,0 +1,22 @@
+
+Heavy Machinegun animation states and frames:
+
+
+Prepare					-> A, A-Z (26 frames)
+	brightmaps			-> B
+Idle					-> C, A-F (6 frames)
+	brightmaps			-> D
+Fire start				-> E, A (1 frame)
+	brightmaps			-> F
+Fire loop				-> E, B-J (9 frames)
+	brightmaps			-> F
+Fire end				-> E, K-U (11 frames)
+	brightmaps			-> F
+
+
+
+Puff sprites	-> Z, A-J (10 frames)
+
+
+On all states, frame A is also used when the gun is being lowered
+The modded variant doesn't spawn smoke when firing, because it's impossible to align smoke spawn position to the gun barrel
