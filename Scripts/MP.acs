@@ -123,6 +123,8 @@ script "QCDE_FragEventTracker" (int evtTyp, int victimNo, int arg2) EVENT
 	if(evtTyp != GAMEEVENT_PLAYERFRAGS)
 		terminate;
 
+	ACS_NamedExecuteAlways("QCDE_DM_FragBeep", 0);
+
 	if (GetCVar("sv_healonkill")) {
 		ACS("HealthGiver",ACS("MaxHealth"),ACS("MaxHealth"),false);
 		ACS("ArmorGiver", ACS("MaxArmor"), ACS("MaxArmor"), false);
@@ -377,18 +379,18 @@ function void QCDE_Restore(str what)
 
 
 
-// Activator: victim
+// Activator: killer
 Script "QCDE_DM_FragBeep" (void) clientside
 {
-	if (GameType() < GAME_NET_DEATHMATCH) terminate;      // only if game is DM
-	if (!GetActorProperty(0, APROP_TargetTID)) terminate; // only if killer has TID
-
-	SetActivatorToTarget(0);
-	// Activator: killer
+	int beepSetting = GetUserCVar(ConsolePlayerNumber(), "cl_fragBeep");
+	
+	if (!beepSetting) terminate;
 
 	if(CheckPlayerCamera(ConsolePlayerNumber()) != PlayerNumber() + 1000) terminate;
 	if(CheckInventory("DisableColor")) terminate;
-	AmbientSound("QC/UI/FragBeep",127);
+	
+	str beepSound = StrParam(s:"QC/UI/FragBeep", d:beepSetting);
+	AmbientSound(beepSound ,127);
 }
 
 

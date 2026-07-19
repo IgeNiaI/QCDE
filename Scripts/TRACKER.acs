@@ -220,7 +220,6 @@ Script "QCDE_Death" Death
 	StopSound(5);								//stops any looping sounds
 	if(CheckInventory("Class_Kane")) {StopSound(CHAN_BODY);} //force stops crouchslide sound
 
-	ACS_NamedExecuteAlways("QCDE_DM_FragBeep"		,0);
 	ACS_NamedExecuteAlways("QCDE_DM_InitPowerups"	,0);
 	ACS_NamedExecuteAlways("QCDE_DM_DropPowerups"	,0);
 	ACS_NamedExecuteAlways("QCDE_DM_HurtDave"		,0);
