@@ -62,6 +62,7 @@ user int  cl_radarMode         =   0; // 0 = center, 1 = lower
 user int  cl_barStyle          =   0; // 0 = blocks of 25, 1 = continuous
 user int  cl_qcmedals          =   1; // 0 = off, 1 = full, 2 = sound only
 user int  cl_qcHandicap		   = 100; // 100 = off, [50..95] = damage percent, in steps of 5
+user int  cl_fragBeep		   =   1; // 0: off, 1: gore (default), 2: ding, 3: cha-ching, 4: gong, 5: revenant, 6: meinleben
 user int snd_randommus         =   1; // play QCDE OST in random order. Desyncs in MP.
 user int _previousSong         =  -1; // used internally for snd_randommus
 user int  cl_DoubleTapTics	   =  10; // double tap tics for Inquisitor and UT champions dodge
