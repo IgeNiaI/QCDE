@@ -1,0 +1,30 @@
+Heavy Machinegun
+
+Assets
+
+Weapon and effect sprites: Sprites/Weapons/HeavyMachineGun/
+Sounds: Sounds/Weapons/HeavyMachineGun/
+Modded models and model textures: MD3/PROJECTILES/HeavyMachinegun/
+Menu previews: Graphics/Menu/SkinPreviews/HeavyMachinegun/
+
+Weapon frames
+
+Use                     Set    Frames    Brightmap set
+Prepare                 A      A-Z       B
+Idle                    C      A-F       D
+Fire start              E      A         F
+Fire loop               E      B-J       F
+Fire end                E      K-U       F
+Prepare upgraded        G      A-Z       H
+Idle upgraded           I      A-F       J
+Fire start upgraded     K      A         L
+Fire loop upgraded      K      B-J       L
+Fire end upgraded       K      K-U       L
+
+Upgraded sets are used while the alt-fire upgrade is active.
+
+Other Modded frames
+
+MDYB A                                      Bullet tracer (model)
+MDYB B                                      Ricochet
+MDZB A-T                                    Bullet hit effects

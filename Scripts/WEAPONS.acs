@@ -416,6 +416,9 @@ function void QCDE_SetWeaponZoom (int zoomed, int unzoomsound)
 			SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 			switch (CheckInventory("QCHMachinegunSkin"))
 			{
+				case 20: // Modded
+					PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_Modded",CHAN_7,1.0,false,0.5);
+					break;
 				case 4: // Quake 4
 					PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomIn_Quake4",CHAN_7,1.0,false,0.5);
 					break;
@@ -562,6 +565,9 @@ function void QCDE_SetWeaponZoom (int zoomed, int unzoomsound)
 				SetNetworkReplicationFlags( NETREP_SKIPOWNER );
 				switch (CheckInventory("QCHMachinegunSkin"))
 				{
+					case 20: // Modded
+						PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomOut_Modded",CHAN_7,1.0,false,0.5);
+						break;
 					case 4: // Quake 4
 						PlaySound(0,"QC/Weapons/HeavyMachinegun/ZoomOut_Quake4",CHAN_7,1.0,false,0.5);
 						break;
