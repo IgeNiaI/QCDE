@@ -247,6 +247,21 @@ Actor QCBulletPuffMG_Modded : QCBulletPuff
 	}
 }
 
+Actor QCBulletPuffHMG_Modded : QCBulletPuff
+{
+	States
+	{
+	Type1:
+		MDZB ABCD 1 Bright
+		MDZB EFGHIJ 2 Bright
+		Stop
+	Type2:
+		MDZB KLMN 1 Bright
+		MDZB OPQRST 2 Bright
+		Stop
+	}
+}
+
 
 //How is this different than the regular puff? Different hit beep sound
 Actor QCShotgunPuff : QCBulletPuff
@@ -300,6 +315,21 @@ Actor QCBulletPuffMG_DM_Modded : QCBulletPuff_DM
 	Type2:
 		MDZ2 KLMN 1 Bright
 		MDZ2 OPQRST 2 Bright
+		Stop
+	}
+}
+
+Actor QCBulletPuffHMG_DM_Modded : QCBulletPuff_DM
+{
+	States
+	{
+	Type1:
+		MDZB ABCD 1 Bright
+		MDZB EFGHIJ 2 Bright
+		Stop
+	Type2:
+		MDZB KLMN 1 Bright
+		MDZB OPQRST 2 Bright
 		Stop
 	}
 }
