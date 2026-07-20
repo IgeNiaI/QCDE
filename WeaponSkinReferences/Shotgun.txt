@@ -1,0 +1,32 @@
+Shotgun
+
+Assets
+
+Weapon and effect sprites: Sprites/Weapons/Shotgun/
+Each skin has its own folder. Modded assets are in Modded/.
+Animation folders are named by set and use; effect folders are named by effect.
+Brightmaps are in the animation/effect subfolders.
+Sounds: Sounds/Weapons/Shotgun/
+Each skin has its own folder; Quad/ holds quad-damage sounds.
+Larger source graphics: Graphics/Weapons/Shotgun/Default/
+Modded models and model textures: MD3/PROJECTILES/Shotgun/
+Menu previews: Graphics/Menu/SkinPreviews/Shotgun/
+
+Weapon frames
+
+Use                     Set    Frames    Brightmap set
+Prepare                 A      A-Z       B
+Idle                    C      A-F       D
+Fire                    E      A-L       F
+Prepare upgraded        G      A-Z       H
+Idle upgraded           I      A-F       J
+Fire upgraded           K      A-L       L
+
+Upgraded sets are used while the alt-fire upgrade is active.
+
+Other Modded frames
+
+MDY3 A                                      Pellet tracer (model)
+MDY3 B                                      Explosive pellet
+MDY3 C-R                                    Explosion
+MDZ3 A-T                                    Pellet hit effects
