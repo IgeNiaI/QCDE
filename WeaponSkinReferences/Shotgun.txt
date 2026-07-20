@@ -1,0 +1,20 @@
+
+Shotgun animation states and frames:
+
+
+Prepare					-> A, A-Z (26 frames)
+	brightmaps			-> B
+Idle					-> C, A-F (6 frames)
+	brightmaps			-> D
+Fire					-> E, A-L (12 frames)
+	brightmaps			-> F
+
+
+
+Explosive projectile	-> Y, B (1 frame)
+Explosion sprites		-> Y, C-R (16 frames)
+Puff sprites			-> Z, A-J (10 frames)
+
+
+On all states, frame A is also used when the gun is being lowered
+The modded variant doesn't spawn smoke when firing, because it's impossible to align smoke spawn position to the gun barrel

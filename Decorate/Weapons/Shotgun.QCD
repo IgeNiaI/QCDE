@@ -116,55 +116,12 @@ Actor QCShotgun : QCWeapon
 	Idle:
 		QCG3 Y -1
 		Wait
-	//-----------------------
-	// Ready Seq
-	//-----------------------
-	Ready:
-		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "Ready.SeriousSam")
-		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "Ready.HalfLife")
-		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "Ready.QCDE1")
-		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 5, "Ready.Quake3") // Fallback to another skin
-		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 4, "Ready.Quake2") // Fallback to another skin
-		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "Ready.Quake3")
-		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "Ready.Quake2")
-		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "Ready.Quake1")
-	Ready.Default:
-		QCG3 A 0
-		Goto ReadyCont
-	Ready.Quake1:
-		Q1G3 A 0
-		Goto ReadyCont
-	Ready.Quake2:
-		Q2G3 A 0
-		Goto ReadyCont
-	Ready.Quake3:
-		Q3G3 A 0
-		Goto ReadyCont
-	Ready.QCDE1:
-		Q0G3 A 0
-		Goto ReadyCont
-	Ready.HalfLife:
-		HLG3 A 0
-		Goto ReadyCont
-	Ready.SeriousSam:
-		SSG3 A 0
-		Goto ReadyCont
 
-	ReadyCont:
-		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		"####" A 3 A_WeaponReady
-		Loop
-
-		ReadyCantFire:
-			"####" A 0 A_StopSound(CHAN_WEAPON)
-		RCFLooper:
-			"####" A 4 A_WeaponReady(WRF_NOFIRE)
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
-			Goto Ready
 	//-----------------------
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "Select.Modded")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "Select.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "Select.QCDE1")
@@ -174,25 +131,28 @@ Actor QCShotgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "Select.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "Select.Quake1")
 	Select.Default:
-		QCG3 A 0
+		QCA3 A 0
 		Goto SelectCont
 	Select.Quake1:
-		Q1G3 A 0
+		Q1A3 A 0
 		Goto SelectCont
 	Select.Quake2:
-		Q2G3 A 0
+		Q2A3 A 0
 		Goto SelectCont
 	Select.Quake3:
-		Q3G3 A 0
+		Q3A3 A 0
 		Goto SelectCont
 	Select.QCDE1:
-		Q0G3 A 0
+		Q0A3 A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLG3 A 0
+		HLA3 A 0
 		Goto SelectCont
 	Select.SeriousSam:
-		SSG3 A 0
+		SSA3 A 0
+		Goto SelectCont
+	Select.Modded:
+		MDA3 A 0
 		Goto SelectCont
 
 	SelectCont:
@@ -212,10 +172,134 @@ Actor QCShotgun : QCWeapon
 		Loop
 
 	//-----------------------
+	// Ready Seq
+	//-----------------------
+	Ready:
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "Prepare.Modded")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "Prepare.SeriousSam")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "Prepare.HalfLife")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "Prepare.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 5, "Prepare.Quake3") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 4, "Prepare.Quake2") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "Prepare.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "Prepare.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "Prepare.Quake1")
+	Prepare.Default:
+		QCA3 A 0
+		Goto PrepareCont
+	Prepare.Quake1:
+		Q1A3 A 0
+		Goto PrepareCont
+	Prepare.Quake2:
+		Q2A3 A 0
+		Goto PrepareCont
+	Prepare.Quake3:
+		Q3A3 A 0
+		Goto PrepareCont
+	Prepare.QCDE1:
+		Q0A3 A 0
+		Goto PrepareCont
+	Prepare.HalfLife:
+		HLA3 A 0
+		Goto PrepareCont
+	Prepare.SeriousSam:
+		SSA3 A 0
+		Goto PrepareCont
+	Prepare.Modded:
+		MDA3 A 0 A_PlaySound("QC/Weapons/Shotgun/Prepare_Modded",CHAN_WEAPON)
+		Goto PrepareCont
+
+	PrepareCont:
+		"####" ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_WeaponReady
+		Goto Idle
+
+	Idle:
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "Idle.Modded")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "Idle.SeriousSam")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "Idle.HalfLife")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "Idle.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 5, "Idle.Quake3") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 4, "Idle.Quake2") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "Idle.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "Idle.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "Idle.Quake1")
+	Idle.Default:
+		QCC3 A 0
+		Goto IdleCont
+	Idle.Quake1:
+		Q1C3 A 0
+		Goto IdleCont
+	Idle.Quake2:
+		Q2C3 A 0
+		Goto IdleCont
+	Idle.Quake3:
+		Q3C3 A 0
+		Goto IdleCont
+	Idle.QCDE1:
+		Q0C3 A 0
+		Goto IdleCont
+	Idle.HalfLife:
+		HLC3 A 0
+		Goto IdleCont
+	Idle.SeriousSam:
+		SSC3 A 0
+		Goto IdleCont
+	Idle.Modded:
+		MDC3 A 0 A_PlaySound("QC/Weapons/Shotgun/Idle_Modded",CHAN_WEAPON)
+		Goto IdleCont
+
+	IdleCont:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"IdleCantFire")
+		"####" A 3 A_WeaponReady
+		Loop
+
+		IdleCantFire:
+			"####" A 0 A_StopSound(CHAN_WEAPON)
+		ICFLooper:
+			"####" A 4 A_WeaponReady(WRF_NOFIRE)
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
+			Goto Idle
+
+	//-----------------------
 	// Fire Seq
 	//-----------------------
-	Fire: 	//28 tics, 0.8sec
-		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "Fire.Modded")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "Fire.SeriousSam")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "Fire.HalfLife")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "Fire.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 5, "Fire.Quake3") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 4, "Fire.Quake2") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 3, "Fire.Quake3")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 2, "Fire.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 1, "Fire.Quake1")
+	Fire.Default:
+		QCE3 A 0
+		Goto FireCont
+	Fire.Quake1:
+		Q1E3 A 0
+		Goto FireCont
+	Fire.Quake2:
+		Q2E3 A 0
+		Goto FireCont
+	Fire.Quake3:
+		Q3E3 A 0
+		Goto FireCont
+	Fire.QCDE1:
+		Q0E3 A 0
+		Goto FireCont
+	Fire.HalfLife:
+		HLE3 A 0
+		Goto FireCont
+	Fire.SeriousSam:
+		SSE3 A 0
+		Goto FireCont
+	Fire.Modded:
+		MDE3 A 0
+		Goto FireCont
+
+	FireCont: 	//28 tics, 0.8sec
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"IdleCantFire")
 		"####" A 0 A_AlertMonsters
 		"####" B 0 Bright A_GunFlash("PrimaryFlash")
 		"####" B 1 Bright
@@ -246,7 +330,7 @@ Actor QCShotgun : QCWeapon
 		"####" A 1 Offset(2,34)
 		"####" A 1 Offset(1,33)
 		"####" A 1 Offset(0,32)	//28
-		Goto Ready
+		Goto Idle
 
 	PrimaryFlash: //Attacks doer
 		TNT1 A 0 A_JumpIfInventory("DMToken",1,"DM_Flash")
@@ -255,13 +339,25 @@ Actor QCShotgun : QCWeapon
 		SP_Flash:
 			TNT1 A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfModifier")
 			TNT1 A 0 A_JumpIfInventory("SG_UG_Spread",1,"DoSpread")
+			TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "SP_Flash.Modded")
+		SP_Flash.Default:
 			TNT1 A 0 A_FireBullets(6,2,7,random(8,12),"QCShotgunPuff",FBF_NORANDOM|FBF_USEAMMO)
 			TNT1 AAAA 0 A_FireCustomMissile("BulletSmallTracer",frandom(6,-6),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(2,-2))
 			Goto FlashCheckSound
+		SP_Flash.Modded:
+			TNT1 A 0 A_FireBullets(6,2,7,random(8,12),"QCShotgunPuffSG_Modded",FBF_NORANDOM|FBF_USEAMMO)
+			TNT1 AAAA 0 A_FireCustomMissile("BulletSmallTracerSG_Modded",frandom(6,-6),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(2,-2))
+			Goto FlashCheckSound
 
 			DoSpread:
+				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "DoSpread.Modded")
+			DoSpread.Default:
 				TNT1 A 0 A_FireBullets(2,1,7,random(10,14),"QCShotgunPuff",FBF_NORANDOM|FBF_USEAMMO)
 				TNT1 AAAA 0 A_FireCustomMissile("BulletSmallTracer",frandom(2,-2),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(1.5,-1.5))
+				Goto FlashCheckSound
+			DoSpread.Modded:
+				TNT1 A 0 A_FireBullets(2,1,7,random(10,14),"QCShotgunPuffSG_Modded",FBF_NORANDOM|FBF_USEAMMO)
+				TNT1 AAAA 0 A_FireCustomMissile("BulletSmallTracerSG_Modded",frandom(2,-2),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(1.5,-1.5))
 				Goto FlashCheckSound
 
 			CheckIfModifier:
@@ -269,17 +365,31 @@ Actor QCShotgun : QCWeapon
 				Goto SP_Flash+1
 			DoExplosive:
 				TNT1 A 0 A_JumpIfInventory("SG_UG_Spread",1,"DoExplosiveSpread")
+				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "DoExplosive.Modded")
+			DoExplosive.Default:
 				TNT1 A 0 A_FireCustomMissile("SGExplosiveBullet",frandom(6,-6),true,3,0,0,frandom(2,-2))
 				TNT1 AAAAAAA 0 A_FireCustomMissile("SGExplosiveBullet",frandom(6,-6),false,3,0,0,frandom(2,-2))
 				Goto FlashCheckSound
+			DoExplosive.Modded:
+				TNT1 A 0 A_FireCustomMissile("SGExplosiveBullet_Modded",frandom(6,-6),true,3,0,0,frandom(2,-2))
+				TNT1 AAAAAAA 0 A_FireCustomMissile("SGExplosiveBullet_Modded",frandom(6,-6),false,3,0,0,frandom(2,-2))
+				Goto FlashCheckSound
 
 				DoExplosiveSpread:
+					TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "DoExplosiveSpread.Modded")
+				DoExplosiveSpread.Default:
 					TNT1 A 0 A_FireCustomMissile("SGExplosiveBullet",frandom(2,-2),true,3,0,0,frandom(1.5,-1.5))
 					TNT1 AAAAAAA 0 A_FireCustomMissile("SGExplosiveBullet",frandom(2,-2),false,3,0,0,frandom(1.5,-1.5))
+					Goto FlashCheckSound
+				DoExplosiveSpread.Modded:
+					TNT1 A 0 A_FireCustomMissile("SGExplosiveBullet_Modded",frandom(2,-2),true,3,0,0,frandom(1.5,-1.5))
+					TNT1 AAAAAAA 0 A_FireCustomMissile("SGExplosiveBullet_Modded",frandom(2,-2),false,3,0,0,frandom(1.5,-1.5))
 					Goto FlashCheckSound
 
 
 		DM_Flash:
+			TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "DM_Flash.Modded")
+		DM_Flash.Default:
 			TNT1 A 0 A_FireBullets(sin(  0)*2.4  ,cos(  0)*2.4   ,-1,3,"QCShotgunPuff_DM",FBF_NORANDOM|FBF_USEAMMO|FBF_EXPLICITANGLE)
 			TNT1 A 0 A_FireBullets(sin( 36)*2.4  ,cos( 36)*2.4   ,-1,3,"QCShotgunPuff_DM",FBF_NORANDOM|FBF_EXPLICITANGLE)
 			TNT1 A 0 A_FireBullets(sin( 72)*2.4  ,cos( 72)*2.4   ,-1,3,"QCShotgunPuff_DM",FBF_NORANDOM|FBF_EXPLICITANGLE)
@@ -305,12 +415,39 @@ Actor QCShotgun : QCWeapon
 			TNT1 AAAA 0 A_FireCustomMissile("BulletSmallTracer",frandom(5.0,-5.0),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(5.0,-5.0))
 			Goto FlashCheckSound
 
+		DM_Flash.Modded:
+			TNT1 A 0 A_FireBullets(sin(  0)*2.4  ,cos(  0)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_USEAMMO|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin( 36)*2.4  ,cos( 36)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin( 72)*2.4  ,cos( 72)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(108)*2.4  ,cos(108)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(144)*2.4  ,cos(144)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(180)*2.4  ,cos(180)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(216)*2.4  ,cos(216)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(252)*2.4  ,cos(252)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(288)*2.4  ,cos(288)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(324)*2.4  ,cos(324)*2.4   ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+
+			TNT1 A 0 A_FireBullets(sin(  0)*3.8  ,cos(  0)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin( 36)*3.8  ,cos( 36)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin( 72)*3.8  ,cos( 72)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(108)*3.8  ,cos(108)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(144)*3.8  ,cos(144)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(180)*3.8  ,cos(180)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(216)*3.8  ,cos(216)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(252)*3.8  ,cos(252)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(288)*3.8  ,cos(288)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+			TNT1 A 0 A_FireBullets(sin(324)*3.8  ,cos(324)*3.8  ,-1,3,"QCShotgunPuffSG_DM_Modded",FBF_NORANDOM|FBF_EXPLICITANGLE)
+
+			TNT1 AAAA 0 A_FireCustomMissile("BulletSmallTracerSG_Modded",frandom(5.0,-5.0),false,3,0,FPF_NOUNLAGGED|FPF_SKIPOWNER,frandom(5.0,-5.0))
+			Goto FlashCheckSound
+
 		FlashCheckSound:
 			TNT1 A 0 A_JumpIfInventory("PowerQuad",1,"QuadSound")
 			TNT1 A 0 A_JumpIfInventory("PowerTerminatorArtifact",1,"QuadSound")
 			Goto NormalSound
 
 			NormalSound:
+				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "NormalSound.Modded")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "NormalSound.SeriousSam")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "NormalSound.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "NormalSound.Default")
@@ -337,8 +474,12 @@ Actor QCShotgun : QCWeapon
 			NormalSound.SeriousSam:
 				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Fire_SeriousSam",CHAN_WEAPON)
 				Goto FlashEnder
+			NormalSound.Modded:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Fire_Modded",CHAN_WEAPON)
+				Goto FlashEnder
 
 			QuadSound:
+				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "QuadSound.Modded")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "QuadSound.SeriousSam")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "QuadSound.HalfLife")
 				TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "QuadSound.Default")
@@ -365,10 +506,14 @@ Actor QCShotgun : QCWeapon
 			QuadSound.SeriousSam:
 				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Quad/Fire_SeriousSam",CHAN_WEAPON)
 				Goto FlashEnder
+			QuadSound.Modded:
+				TNT1 A 0 A_PlaySound("QC/Weapons/Shotgun/Quad/Fire_Modded",CHAN_WEAPON)
+				Goto FlashEnder
 
 	FlashEnder:
 		TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
 		TNT1 A 0 A_SetBlend("Orange",0.10,10)
+		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 20, "FlashEnderCont")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 8, "FlashEnder.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 7, "FlashEnder.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCShotgunSkin", 6, "FlashEnder.QCDE1")
@@ -532,6 +677,25 @@ Actor SGExplosiveBullet : FastProjectile
 	Type2:
 		TNT1 A 0 A_SetScale(-0.35)
 		X006 ABCDEFGHIJKLMNOP 1 Bright
+		Stop
+	}
+}
+
+Actor SGExplosiveBullet_Modded : SGExplosiveBullet
+{
+	states
+	{
+	Spawn:
+		MDY3 B 1 BRIGHT
+		MDY3 B 70 BRIGHT A_PlaySound("QCDE/Other/BulletWhoosh",CHAN_AUTO,1.0,false,3.0)
+		Wait
+
+	Type1:
+		MDY3 CDEFGHIJKLMNOPQR 1 Bright
+		Stop
+	Type2:
+		TNT1 A 0 A_SetScale(-0.35)
+		MDY3 CDEFGHIJKLMNOPQR 1 Bright
 		Stop
 	}
 }
