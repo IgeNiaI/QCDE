@@ -275,6 +275,21 @@ Actor QCShotgunPuff : QCBulletPuff
 	}
 }
 
+Actor QCShotgunPuffSG_Modded : QCShotgunPuff
+{
+	States
+	{
+	Type1:
+		MDZ3 ABCD 1 Bright
+		MDZ3 EFGHIJ 2 Bright
+		Stop
+	Type2:
+		MDZ3 KLMN 1 Bright
+		MDZ3 OPQRST 2 Bright
+		Stop
+	}
+}
+
 //HMG and MG
 Actor QCBulletPuff_DM : QCBulletPuff
 {
@@ -352,6 +367,21 @@ Actor QCShotgunPuff_DM : QCShotgunPuff
 		TNT1 A 0 A_GiveToTarget("PointBlankToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		TNT1 A 10 A_PlaySound("BulletHitFleshRandom",CHAN_7,0.6,0,9)
 		TNT1 A 0 A_TakeFromTarget("PointBlankToken",1)
+		Stop
+	}
+}
+
+Actor QCShotgunPuffSG_DM_Modded : QCShotgunPuff_DM
+{
+	States
+	{
+	Type1:
+		MDZ3 ABCD 1 Bright
+		MDZ3 EFGHIJ 2 Bright
+		Stop
+	Type2:
+		MDZ3 KLMN 1 Bright
+		MDZ3 OPQRST 2 Bright
 		Stop
 	}
 }
