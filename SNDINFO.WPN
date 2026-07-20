@@ -166,6 +166,17 @@ QC/Weapons/Shotgun/Quad/Fire_HalfLife			"Sounds/Weapons/Shotgun/HalfLife/Quad/SG
 QC/Weapons/Shotgun/Fire_SeriousSam				"Sounds/Weapons/Shotgun/SeriousSam/SG_Fire1.ogg"
 QC/Weapons/Shotgun/Quad/Fire_SeriousSam			"Sounds/Weapons/Shotgun/SeriousSam/Quad/SG_Fire1.ogg"
 
+QC/Weapons/Shotgun/Fire_Prepare					"Sounds/Weapons/Shotgun/Modded/SG_Prepare.ogg"
+QC/Weapons/Shotgun/Fire_Idle					"Sounds/Weapons/Shotgun/Modded/SG_Idle.ogg"
+QC/Weapons/Shotgun/Fire1_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Fire2_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire2.ogg"
+QC/Weapons/Shotgun/Fire3_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire3.ogg"
+$random QC/Weapons/Shotgun/Fire_Modded 			{ QC/Weapons/Shotgun/Fire1_Modded QC/Weapons/Shotgun/Fire2_Modded QC/Weapons/Shotgun/Fire3_Modded }
+QC/Weapons/Shotgun/Quad/Fire1_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Quad/Fire2_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire2.ogg"
+QC/Weapons/Shotgun/Quad/Fire3_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire3.ogg"
+$random QC/Weapons/Shotgun/Quad/Fire_Modded 	{ QC/Weapons/Shotgun/Quad/Fire1_Modded QC/Weapons/Shotgun/Quad/Fire2_Modded QC/Weapons/Shotgun/Quad/Fire3_Modded }
+
 
 //********************
 // Super Shotgun

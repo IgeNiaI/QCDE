@@ -39,6 +39,16 @@ Model BulletSmallTracerHMG_Modded
 	FrameIndex MDYB A 0 0
 }
 
+Model BulletSmallTracerSG_Modded
+{
+	Path "MD3/PROJECTILES"
+	SKIN 0 "Shotgun/MDY3.png"
+	MODEL 0 "tracer.md3"
+	Scale 4.5 4.5 1.5
+	PITCHFROMMOMENTUM
+	FrameIndex MDY3 A 0 0
+}
+
 // For weapons
 Model SGExplosiveBullet
 {
