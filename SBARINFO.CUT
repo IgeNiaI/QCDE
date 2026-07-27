@@ -812,14 +812,18 @@ else
 		inInventory Class_Sam			{ drawSwitchableImage SeriousBullets, 	"ACTFRAM0", "ACTFRAME", 572,800; }
 	} else {
 	inInventory not Class_Sarge || Class_Brock {
-		inInventory AbilityCooldownToken {
-			inInventory not MultiuseCharge {
-				drawImage "ACTFRAM0", 572,800;
-			} else {
-				drawImage "ACTFRAM2", 572,800;
-			}
+		inInventory ActiveProgressToken {
+					drawImage "ACTFRAM3", 572,800;
 		} else {
-				drawImage "ACTFRAME", 572,800;
+			inInventory AbilityCooldownToken {
+				inInventory not MultiuseCharge {
+					drawImage "ACTFRAM0", 572,800;
+				} else {
+					drawImage "ACTFRAM2", 572,800;
+				}
+			} else {
+					drawImage "ACTFRAME", 572,800;
+			}
 		}
 	}}
 	
