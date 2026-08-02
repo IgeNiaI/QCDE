@@ -529,6 +529,7 @@ Actor QCRocketPlayerDM : QCRocketPlayer
 
 	DoElse:
 		TNT1 A 0 A_RadiusThrust(170,128,RTF_AFFECTSOURCE|RTF_THRUSTZ)	//thrust players only this way, without damage
+		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", true)
 		TNT1 A 0 A_Explode(50,128,XF_HURTSOURCE,0,18)	//max damage taken by self rocket (rocket jump) is 50
 		TNT1 A 0 A_Explode(34,128,0,0,18)	//then another 34 extra damage for impacting a player + (16)dmg on the projectile =100dmg
 		TNT1 A 0 A_ChangeFlag("NODAMAGETHRUST", false)
