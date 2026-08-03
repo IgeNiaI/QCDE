@@ -290,6 +290,21 @@ Actor QCShotgunPuffSG_Modded : QCShotgunPuff
 	}
 }
 
+Actor QCShotgunPuffSSG_Modded : QCShotgunPuff
+{
+	States
+	{
+	Type1:
+		MDZC ABCD 1 Bright
+		MDZC EFGHIJ 2 Bright
+		Stop
+	Type2:
+		MDZC KLMN 1 Bright
+		MDZC OPQRST 2 Bright
+		Stop
+	}
+}
+
 //HMG and MG
 Actor QCBulletPuff_DM : QCBulletPuff
 {
@@ -382,6 +397,21 @@ Actor QCShotgunPuffSG_DM_Modded : QCShotgunPuff_DM
 	Type2:
 		MDZ3 KLMN 1 Bright
 		MDZ3 OPQRST 2 Bright
+		Stop
+	}
+}
+
+Actor QCShotgunPuffSSG_DM_Modded : QCShotgunPuff_DM
+{
+	States
+	{
+	Type1:
+		MDZC ABCD 1 Bright
+		MDZC EFGHIJ 2 Bright
+		Stop
+	Type2:
+		MDZC KLMN 1 Bright
+		MDZC OPQRST 2 Bright
 		Stop
 	}
 }
