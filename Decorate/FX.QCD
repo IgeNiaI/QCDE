@@ -130,6 +130,16 @@ Actor BulletSmallTracerSG_Modded : BulletSmallTracer
 	}
 }
 
+Actor BulletSmallTracerSSG_Modded : BulletSmallTracer
+{
+	states
+	{
+	Spawn:
+		MDYC A 1
+		Goto Super::Spawn+1
+	}
+}
+
 
 //==================================================================================
 //==================================================================================
