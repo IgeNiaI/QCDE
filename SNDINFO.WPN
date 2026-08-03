@@ -213,6 +213,20 @@ QC/Weapons/SuperShotgun/Quad/Fire_HalfLife			"Sounds/Weapons/SuperShotgun/HalfLi
 QC/Weapons/SuperShotgun/Fire_SeriousSam				"Sounds/Weapons/SuperShotgun/SeriousSam/SSG_Fire1.ogg"
 QC/Weapons/SuperShotgun/Quad/Fire_SeriousSam		"Sounds/Weapons/SuperShotgun/SeriousSam/Quad/SSG_Fire1.ogg"
 
+QC/Weapons/SuperShotgun/Fire_Prepare				"Sounds/Weapons/SuperShotgun/Modded/SSG_Prepare.ogg"
+QC/Weapons/SuperShotgun/Fire_Idle					"Sounds/Weapons/SuperShotgun/Modded/SSG_Idle.ogg"
+QC/Weapons/SuperShotgun/Fire1_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Fire2_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire2.ogg"
+QC/Weapons/SuperShotgun/Fire3_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire3.ogg"
+QC/Weapons/SuperShotgun/Fire4_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire4.ogg"
+QC/Weapons/SuperShotgun/Fire5_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire5.ogg"
+$random QC/Weapons/SuperShotgun/Fire_Modded 		{ QC/Weapons/SuperShotgun/Fire1_Modded QC/Weapons/SuperShotgun/Fire2_Modded QC/Weapons/SuperShotgun/Fire3_Modded QC/Weapons/SuperShotgun/Fire4_Modded QC/Weapons/SuperShotgun/Fire5_Modded }
+QC/Weapons/SuperShotgun/Quad/Fire1_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire2_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire2.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire3_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire3.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire4_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire4.ogg"
+$random QC/Weapons/SuperShotgun/Quad/Fire_Modded 	{ QC/Weapons/SuperShotgun/Quad/Fire1_Modded QC/Weapons/SuperShotgun/Quad/Fire2_Modded QC/Weapons/SuperShotgun/Quad/Fire3_Modded QC/Weapons/SuperShotgun/Quad/Fire4_Modded }
+
 
 //********************
 // Nailgun
