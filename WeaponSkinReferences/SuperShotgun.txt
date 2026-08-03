@@ -1,0 +1,21 @@
+
+Super Shotgun animation states and frames:
+
+
+Prepare					-> A, A-Z (26 frames)
+	brightmaps			-> B
+Idle					-> C, A-F (6 frames)
+	brightmaps			-> D
+Fire					-> E, A-U (21 frames)
+	brightmaps			-> F
+
+
+
+Fire upgrade flames v1	-> V, A-S (19 frames)
+Fire upgrade flames v2	-> W, A-S (19 frames)
+Fire upgrade flames v3	-> X, A-S (19 frames)
+Puff sprites			-> Z, A-J (10 frames)
+
+
+On all states, frame A is also used when the gun is being lowered
+The modded variant doesn't spawn smoke when firing, because it's impossible to align smoke spawn position to the gun barrel
