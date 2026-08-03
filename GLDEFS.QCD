@@ -81,7 +81,7 @@ brightmap sprite QCE3K0	{	map "Sprites/Weapons/Shotgun/Default/_E_fire/_F_bright
 brightmap sprite QCE3L0	{	map "Sprites/Weapons/Shotgun/Default/_E_fire/_F_brightmaps/QCF3L0.png" }
 
 // Default SSG
-brightmap sprite QCGCB0	{	map "Sprites/Weapons/SuperShotgun/Default/brightmaps/QCBCB0.png"	}
+brightmap sprite QCECB0	{	map "Sprites/Weapons/SuperShotgun/Default/_E_fire/_F_brightmaps/QCFCB0.png"	}
 
 // Default NG
 brightmap sprite QCG4B0	{	map "Sprites/Weapons/Nailgun/Default/brightmaps/QCB4B0.png"	}
@@ -257,8 +257,8 @@ brightmap sprite Q0E3B0	{	map "Sprites/Weapons/Shotgun/QCDE 1.0/_E_fire/_F_brigh
 brightmap sprite Q0E3C0	{	map "Sprites/Weapons/Shotgun/QCDE 1.0/_E_fire/_F_brightmaps/Q0F3C0.png" }
 
 // QCDE 1.0 SSG
-brightmap sprite Q0GCB0	{	map "Sprites/Weapons/SuperShotgun/QCDE 1.0/brightmaps/Q0BCB0.png"	}
-brightmap sprite Q0GCC0	{	map "Sprites/Weapons/SuperShotgun/QCDE 1.0/brightmaps/Q0BCC0.png"	}
+brightmap sprite Q0ECB0	{	map "Sprites/Weapons/SuperShotgun/QCDE 1.0/_E_fire/_F_brightmaps/Q0FCB0.png"	}
+brightmap sprite Q0ECC0	{	map "Sprites/Weapons/SuperShotgun/QCDE 1.0/_E_fire/_F_brightmaps/Q0FCC0.png"	}
 
 // QCDE 1.0 NG
 brightmap sprite Q0G4B0	{	map "Sprites/Weapons/Nailgun/QCDE 1.0/brightmaps/Q0B4B0.png"	}
@@ -407,7 +407,7 @@ brightmap sprite Q0H8M0	{	map "Sprites/Weapons/BFG/QCDE 1.0/brightmaps/Q0E8M0.pn
 brightmap sprite Q1E3B0	{	map "Sprites/Weapons/Shotgun/Quake 1/_E_fire/_F_brightmaps/Q1F3B0.png" }
 
 // Quake 1 SSG
-brightmap sprite Q1GCB0	{	map "Sprites/Weapons/SuperShotgun/Quake 1/brightmaps/Q1BCB0.png"	}
+brightmap sprite Q1ECB0	{	map "Sprites/Weapons/SuperShotgun/Quake 1/_E_fire/_F_brightmaps/Q1FCB0.png"	}
 
 // Quake 1 SNG
 brightmap sprite Q1GDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1BDM0.png"	}
@@ -765,7 +765,7 @@ brightmap sprite Q2E3K0	{	map "Sprites/Weapons/Shotgun/Quake 2/_E_fire/_F_bright
 brightmap sprite Q2E3L0	{	map "Sprites/Weapons/Shotgun/Quake 2/_E_fire/_F_brightmaps/Q2F3L0.png" }
 
 // Quake 2 SSG
-brightmap sprite Q2GCB0	{	map "Sprites/Weapons/SuperShotgun/Quake 2/brightmaps/Q2BCB0.png"	}
+brightmap sprite Q2ECB0	{	map "Sprites/Weapons/SuperShotgun/Quake 2/_E_fire/_F_brightmaps/Q2FCB0.png"	}
 
 // Quake 2 NG
 brightmap sprite Q2G4A0	{	map "Sprites/Weapons/Nailgun/Quake 2/brightmaps/Q2B4A0.png"	}
@@ -976,27 +976,61 @@ brightmap sprite Q3EBF0	{	map "Sprites/Weapons/HeavyMachinegun/Quake 3/_E_fire_l
 brightmap sprite Q3E3B0	{	map "Sprites/Weapons/Shotgun/Quake 3/_E_fire/_F_brightmaps/Q3F3B0.png" }
 
 // Quake 3 SSG
-brightmap sprite Q3GCA0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCB0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCB0.png"	}
-brightmap sprite Q3GCC0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCC0.png"	}
-brightmap sprite Q3GCD0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCE0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCF0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCG0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCH0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCI0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCJ0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCK0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCL0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCM0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCN0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCO0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCP0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCQ0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCR0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCS0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCT0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
-brightmap sprite Q3GCU0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACA0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACB0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACC0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACD0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACE0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACF0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACG0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACH0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACI0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACJ0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACK0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACL0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACM0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACN0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACO0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACP0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACQ0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACR0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACS0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACT0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACU0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACV0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACW0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACX0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACY0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+brightmap sprite Q3ACZ0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_A_prepare/_B_brightmaps/Q3BCA0.png"	}
+
+brightmap sprite Q3CCA0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_C_idle/_D_brightmaps/Q3DCA0.png"	}
+brightmap sprite Q3CCB0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_C_idle/_D_brightmaps/Q3DCA0.png"	}
+brightmap sprite Q3CCC0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_C_idle/_D_brightmaps/Q3DCA0.png"	}
+brightmap sprite Q3CCD0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_C_idle/_D_brightmaps/Q3DCA0.png"	}
+brightmap sprite Q3CCE0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_C_idle/_D_brightmaps/Q3DCA0.png"	}
+brightmap sprite Q3CCF0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_C_idle/_D_brightmaps/Q3DCA0.png"	}
+
+brightmap sprite Q3ECA0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECB0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCB0.png"	}
+brightmap sprite Q3ECC0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCC0.png"	}
+brightmap sprite Q3ECD0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECE0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECF0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECG0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECH0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECI0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECJ0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECK0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECL0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECM0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECN0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECO0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECP0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECQ0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECR0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECS0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECT0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
+brightmap sprite Q3ECU0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_E_fire/_F_brightmaps/Q3FCA0.png"	}
 
 // Quake 3 SNG
 brightmap sprite Q3GDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDA0.png"	}
@@ -1381,27 +1415,61 @@ brightmap sprite Q4EBT0	{	map "Sprites/Weapons/HeavyMachinegun/Quake 4/_E_fire_e
 brightmap sprite Q4EBU0	{	map "Sprites/Weapons/HeavyMachinegun/Quake 4/_E_fire_end/_F_brightmaps/Q4FBK0.png"	}
 
 // Quake 4 SSG
-brightmap sprite Q4GCA0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCA0.png"	}
-brightmap sprite Q4GCB0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCB0.png"	}
-brightmap sprite Q4GCC0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCC0.png"	}
-brightmap sprite Q4GCD0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCE0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCF0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCG0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCH0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCI0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCJ0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCK0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCL0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCD0.png"	}
-brightmap sprite Q4GCM0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCM0.png"	}
-brightmap sprite Q4GCN0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCN0.png"	}
-brightmap sprite Q4GCO0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCO0.png"	}
-brightmap sprite Q4GCP0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCP0.png"	}
-brightmap sprite Q4GCQ0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCQ0.png"	}
-brightmap sprite Q4GCR0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCP0.png"	}
-brightmap sprite Q4GCS0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCO0.png"	}
-brightmap sprite Q4GCT0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCN0.png"	}
-brightmap sprite Q4GCU0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/brightmaps/Q4BCM0.png"	}
+brightmap sprite Q4ACA0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACB0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACC0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACD0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACE0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACF0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACG0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACH0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACI0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACJ0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACK0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACL0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACM0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACN0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACO0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACP0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACQ0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACR0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACS0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACT0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACU0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACV0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACW0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACX0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACY0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+brightmap sprite Q4ACZ0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_A_prepare/_B_brightmaps/Q4BCA0.png"	}
+
+brightmap sprite Q4CCA0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_C_idle/_D_brightmaps/Q4DCA0.png"	}
+brightmap sprite Q4CCB0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_C_idle/_D_brightmaps/Q4DCA0.png"	}
+brightmap sprite Q4CCC0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_C_idle/_D_brightmaps/Q4DCA0.png"	}
+brightmap sprite Q4CCD0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_C_idle/_D_brightmaps/Q4DCA0.png"	}
+brightmap sprite Q4CCE0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_C_idle/_D_brightmaps/Q4DCA0.png"	}
+brightmap sprite Q4CCF0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_C_idle/_D_brightmaps/Q4DCA0.png"	}
+
+brightmap sprite Q4ECA0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCA0.png"	}
+brightmap sprite Q4ECB0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCB0.png"	}
+brightmap sprite Q4ECC0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCC0.png"	}
+brightmap sprite Q4ECD0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECE0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECF0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECG0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECH0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECI0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECJ0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECK0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECL0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCD0.png"	}
+brightmap sprite Q4ECM0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCM0.png"	}
+brightmap sprite Q4ECN0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCN0.png"	}
+brightmap sprite Q4ECO0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCO0.png"	}
+brightmap sprite Q4ECP0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCP0.png"	}
+brightmap sprite Q4ECQ0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCQ0.png"	}
+brightmap sprite Q4ECR0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCP0.png"	}
+brightmap sprite Q4ECS0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCO0.png"	}
+brightmap sprite Q4ECT0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCN0.png"	}
+brightmap sprite Q4ECU0	{	map "Sprites/Weapons/SuperShotgun/Quake 4/_E_fire/_F_brightmaps/Q4FCM0.png"	}
 
 // Quake 4 NG
 brightmap sprite Q4G4A0	{	map "Sprites/Weapons/Nailgun/Quake 4/brightmaps/Q4B4A0.png"	}
@@ -1636,7 +1704,7 @@ brightmap sprite QWEBT0	{	map "Sprites/Weapons/HeavyMachinegun/ET QW/_E_fire_end
 brightmap sprite QWEBU0	{	map "Sprites/Weapons/HeavyMachinegun/ET QW/_E_fire_end/_F_brightmaps/QWFBK0.png"	}
 
 // ETQW SSG
-brightmap sprite QWGCB0	{	map "Sprites/Weapons/SuperShotgun/ET QW/brightmaps/QWBCB0.png"	}
+brightmap sprite QWECB0	{	map "Sprites/Weapons/SuperShotgun/ET QW/_E_fire/_F_brightmaps/QWFCB0.png"	}
 
 // ETQW SNG
 brightmap sprite QWGDA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDA0.png"	}
@@ -1771,27 +1839,61 @@ brightmap sprite HLE3K0	{	map "Sprites/Weapons/Shotgun/Half-Life/_E_fire/_F_brig
 brightmap sprite HLE3L0	{	map "Sprites/Weapons/Shotgun/Half-Life/_E_fire/_F_brightmaps/HLF3L0.png" }
 
 // Half-Life SSG
-brightmap sprite HLGCA0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCA0.png"	}
-brightmap sprite HLGCB0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCB0.png"	}
-brightmap sprite HLGCC0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCC0.png"	}
-brightmap sprite HLGCD0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCD0.png"	}
-brightmap sprite HLGCE0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCE0.png"	}
-brightmap sprite HLGCF0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCF0.png"	}
-brightmap sprite HLGCG0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCG0.png"	}
-brightmap sprite HLGCH0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCH0.png"	}
-brightmap sprite HLGCI0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCI0.png"	}
-brightmap sprite HLGCJ0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCJ0.png"	}
-brightmap sprite HLGCK0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCK0.png"	}
-brightmap sprite HLGCL0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCL0.png"	}
-brightmap sprite HLGCM0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCM0.png"	}
-brightmap sprite HLGCN0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCN0.png"	}
-brightmap sprite HLGCO0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCO0.png"	}
-brightmap sprite HLGCP0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCP0.png"	}
-brightmap sprite HLGCQ0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCQ0.png"	}
-brightmap sprite HLGCR0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCR0.png"	}
-brightmap sprite HLGCS0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCS0.png"	}
-brightmap sprite HLGCT0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCT0.png"	}
-brightmap sprite HLGCU0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/brightmaps/HLBCU0.png"	}
+brightmap sprite HLACA0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACB0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACC0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACD0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACE0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACF0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACG0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACH0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACI0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACJ0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACK0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACL0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACM0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACN0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACO0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACP0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACQ0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACR0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACS0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACT0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACU0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACV0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACW0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACX0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACY0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+brightmap sprite HLACZ0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_A_prepare/_B_brightmaps/HLBCA0.png"	}
+
+brightmap sprite HLCCA0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_C_idle/_D_brightmaps/HLDCA0.png"	}
+brightmap sprite HLCCB0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_C_idle/_D_brightmaps/HLDCA0.png"	}
+brightmap sprite HLCCC0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_C_idle/_D_brightmaps/HLDCA0.png"	}
+brightmap sprite HLCCD0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_C_idle/_D_brightmaps/HLDCA0.png"	}
+brightmap sprite HLCCE0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_C_idle/_D_brightmaps/HLDCA0.png"	}
+brightmap sprite HLCCF0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_C_idle/_D_brightmaps/HLDCA0.png"	}
+
+brightmap sprite HLECA0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCA0.png"	}
+brightmap sprite HLECB0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCB0.png"	}
+brightmap sprite HLECC0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCC0.png"	}
+brightmap sprite HLECD0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCD0.png"	}
+brightmap sprite HLECE0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCE0.png"	}
+brightmap sprite HLECF0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCF0.png"	}
+brightmap sprite HLECG0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCG0.png"	}
+brightmap sprite HLECH0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCH0.png"	}
+brightmap sprite HLECI0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCI0.png"	}
+brightmap sprite HLECJ0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCJ0.png"	}
+brightmap sprite HLECK0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCK0.png"	}
+brightmap sprite HLECL0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCL0.png"	}
+brightmap sprite HLECM0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCM0.png"	}
+brightmap sprite HLECN0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCN0.png"	}
+brightmap sprite HLECO0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCO0.png"	}
+brightmap sprite HLECP0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCP0.png"	}
+brightmap sprite HLECQ0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCQ0.png"	}
+brightmap sprite HLECR0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCR0.png"	}
+brightmap sprite HLECS0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCS0.png"	}
+brightmap sprite HLECT0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCT0.png"	}
+brightmap sprite HLECU0	{	map "Sprites/Weapons/SuperShotgun/Half-Life/_E_fire/_F_brightmaps/HLFCU0.png"	}
 
 // Half-Life NG
 brightmap sprite HLG4B0	{	map "Sprites/Weapons/Nailgun/Half-Life/brightmaps/HLB4B0.png"	}
@@ -2017,7 +2119,7 @@ brightmap sprite SSEBF0	{	map "Sprites/Weapons/HeavyMachinegun/SeriousSam/_E_fir
 brightmap sprite SSE3B0	{	map "Sprites/Weapons/Shotgun/SeriousSam/_E_fire/_F_brightmaps/SSF3B0.png" }
 
 // Serious Sam SSG
-brightmap sprite SSGCB0	{	map "Sprites/Weapons/SuperShotgun/SeriousSam/brightmaps/SSBCB0.png"	}
+brightmap sprite SSECB0	{	map "Sprites/Weapons/SuperShotgun/SeriousSam/_E_fire/_F_brightmaps/SSFCB0.png"	}
 
 // Serious Sam NG
 brightmap sprite SSG4A0	{	map "Sprites/Weapons/Nailgun/SeriousSam/brightmaps/SSB4A0.png"	}
@@ -2429,6 +2531,63 @@ brightmap sprite MDE3I0	{	map "Sprites/Weapons/Shotgun/Modded/_E_fire/_F_brightm
 brightmap sprite MDE3J0	{	map "Sprites/Weapons/Shotgun/Modded/_E_fire/_F_brightmaps/MDF3J0.png"	}
 brightmap sprite MDE3K0	{	map "Sprites/Weapons/Shotgun/Modded/_E_fire/_F_brightmaps/MDF3K0.png"	}
 brightmap sprite MDE3L0	{	map "Sprites/Weapons/Shotgun/Modded/_E_fire/_F_brightmaps/MDF3L0.png"	}
+
+// Modded SSG
+brightmap sprite MDACA0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACB0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACC0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACD0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACE0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACF0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACG0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACH0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACI0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACJ0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACK0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACL0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACM0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACN0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACO0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACP0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACQ0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACR0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACS0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACT0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACU0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACV0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACW0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACX0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACY0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+brightmap sprite MDACZ0	{	map "Sprites/Weapons/SuperShotgun/Modded/_A_prepare/_B_brightmaps/MDBCA0.png"	}
+
+brightmap sprite MDCCA0	{	map "Sprites/Weapons/SuperShotgun/Modded/_C_idle/_D_brightmaps/MDDCA0.png"	}
+brightmap sprite MDCCB0	{	map "Sprites/Weapons/SuperShotgun/Modded/_C_idle/_D_brightmaps/MDDCA0.png"	}
+brightmap sprite MDCCC0	{	map "Sprites/Weapons/SuperShotgun/Modded/_C_idle/_D_brightmaps/MDDCA0.png"	}
+brightmap sprite MDCCD0	{	map "Sprites/Weapons/SuperShotgun/Modded/_C_idle/_D_brightmaps/MDDCA0.png"	}
+brightmap sprite MDCCE0	{	map "Sprites/Weapons/SuperShotgun/Modded/_C_idle/_D_brightmaps/MDDCA0.png"	}
+brightmap sprite MDCCF0	{	map "Sprites/Weapons/SuperShotgun/Modded/_C_idle/_D_brightmaps/MDDCA0.png"	}
+
+brightmap sprite MDECA0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCA0.png"	}
+brightmap sprite MDECB0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCB0.png"	}
+brightmap sprite MDECC0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCC0.png"	}
+brightmap sprite MDECD0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCD0.png"	}
+brightmap sprite MDECE0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCE0.png"	}
+brightmap sprite MDECF0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCF0.png"	}
+brightmap sprite MDECG0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCG0.png"	}
+brightmap sprite MDECH0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCH0.png"	}
+brightmap sprite MDECI0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCI0.png"	}
+brightmap sprite MDECJ0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCJ0.png"	}
+brightmap sprite MDECK0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCK0.png"	}
+brightmap sprite MDECL0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCL0.png"	}
+brightmap sprite MDECM0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCM0.png"	}
+brightmap sprite MDECN0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCN0.png"	}
+brightmap sprite MDECO0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCO0.png"	}
+brightmap sprite MDECP0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCP0.png"	}
+brightmap sprite MDECQ0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCQ0.png"	}
+brightmap sprite MDECR0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCR0.png"	}
+brightmap sprite MDECS0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCS0.png"	}
+brightmap sprite MDECT0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCT0.png"	}
+brightmap sprite MDECU0	{	map "Sprites/Weapons/SuperShotgun/Modded/_E_fire/_F_brightmaps/MDFCU0.png"	}
 
 // RG beam textures
 nofilter MD3/rtrl.png
