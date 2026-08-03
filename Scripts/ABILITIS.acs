@@ -4,6 +4,8 @@
 #import "QCDE.bcs"
 #import "WEAPCNST.bcs"
 
+#include "QCDE_EX.h"
+
 
 //=============================================================================
 //
@@ -66,21 +68,52 @@ int AbilityData[NUMBER_OF_CLASSES * AD_COLUMNS] = {
 
 function int GetCooldown (void)
 {
+	if(CheckUserFlag(0, "user_exclass"))
+		return QCDE_EX_GetActiveCooldown(GetActorClass(0));
+
 	SanityCheck();
 	int column = AD_COOLDOWN;
 	if(IsPVE()) column = AD_COOLDOWN_PVE;
 	return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + column] -XYZ;
 }
+
 function int GetDuration(void)
 {
+	if(CheckUserFlag(0, "user_exclass"))
+		return QCDE_EX_GetActiveDuration(GetActorClass(0));
+
 	SanityCheck();
 	int column = AD_DURATION;
 	if(IsPVE()) column = AD_DURATION_PVE;
 	return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + column] -XYZ;
 }
-function int  GetMultiuse            (void){ SanityCheck(); return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSE         ]    -XYZ; }
-function int  GetMultiuseDelay       (void){ SanityCheck(); return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSEDELAY    ]    -XYZ; }
-function int  GetMultiuseFailSound   (void){ SanityCheck(); return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSEFAILSOUND]        ; } // no -XYZ here because this is a string
+
+function int  GetMultiuse            (void)
+{
+	if(CheckUserFlag(0, "user_exclass"))
+		return QCDE_EX_GetActiveMultiuse(GetActorClass(0));
+
+	SanityCheck();
+	return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSE         ]    -XYZ;
+}
+
+function int  GetMultiuseDelay       (void)
+{
+	if(CheckUserFlag(0, "user_exclass"))
+		return QCDE_EX_GetMultiuseCooldown(GetActorClass(0));
+
+	SanityCheck();
+	return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSEDELAY    ]    -XYZ;
+}
+
+function int  GetMultiuseFailSound   (void)
+{
+	if(CheckUserFlag(0, "user_exclass"))
+		return QCDE_EX_GetMultiuseFailSnd(GetActorClass(0));
+
+	SanityCheck();
+	return AbilityData[CheckInventory("ClassID") * AD_COLUMNS + AD_MULTIUSEFAILSOUND]        ; // no -XYZ here because this is a string
+}
 
 int              LastUse      [64];
 function int  GetLastUse    (void){ SanityCheck(); return LastUse[PlayerNumber()]    ; }
@@ -250,6 +283,12 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 			SetLastUse(Timer());
 			ACS_NamedExecuteWithResult("QCDE_UpdateMultiusePeriod", 0, 0);
 
+			if(CheckUserFlag(0, "user_exclass"))
+			{
+				QCDE_EX_CallActiveAbility(GetActorClass(0));
+				return;
+			}
+
 				 if(CheckInventory("Class_Ranger"	))	ACS("QCDE_Ability_Ranger"    );
 			else if(CheckInventory("Class_Doomslayer"))	ACS("QCDE_Ability_Doomslayer");
 			else if(CheckInventory("Class_Corvus"	))	ACS("QCDE_Ability_Corvus"    );
@@ -292,6 +331,12 @@ Script "QCDE_ActiveAbility" (int predicting, int justPressed, int justReleased, 
 			else if(CheckInventory("Class_Eleena"	))	ACS("QCDE_Ability_Eleena"    );
 			else if(CheckInventory("Class_Lucienne"	))	ACS("QCDE_Ability_Lucienne"  );
 			// ^ insert more classes here if needed
+
+			if(CheckUserFlag(0, "user_exclass"))
+			{
+				QCDE_EX_CallActiveAbility(GetActorClass(0));
+				return;
+			}
 		}
 	}
 }

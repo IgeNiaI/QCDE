@@ -3,6 +3,7 @@
 #include "AACS.acs"
 #import "QCDE.bcs"
 #import "WEAPCNST.bcs"
+#include "QCDE_EX.h"
 
 //=============================================================================
 //=============================================================================
@@ -125,44 +126,51 @@ Script "QCDE_ResetClass" (int firsttime)
 	if(CheckActorClass(0, "QCBrock"		)) SetInventory("Class_Brock"     ,1); else SetInventory("Class_Brock"     ,0);
 	// ^ insert more classes here
 
-//
-//		WHEN CHANGING HEALH AND ARMOR VALUES, MAKE SURE TO UPDATE THEM IN MENUDEF
-//
-	// Health & Armor
-	if(CheckActorClass(0, "QCRanger"    )) { SetQcdeStack(125, 100); SetInventory("ClassID",  0); }
-	if(CheckActorClass(0, "QCDoomslayer")) { SetQcdeStack(150,  75); SetInventory("ClassID",  1); }
-	if(CheckActorClass(0, "QCCorvus"    )) { SetQcdeStack(125, 100); SetInventory("ClassID",  2); }
-	if(CheckActorClass(0, "QCKane"      )) { SetQcdeStack(100,  75); SetInventory("ClassID",  3); }
-	if(CheckActorClass(0, "QCCaleb"     )) { SetQcdeStack(100,  75); SetInventory("ClassID",  4); }
-	if(CheckActorClass(0, "QCMenelkir"  )) { SetQcdeStack(100,  75); SetInventory("ClassID",  5); }
-	if(CheckActorClass(0, "QCTerminator")) { SetQcdeStack(150, 125); SetInventory("ClassID",  6); }
-	if(CheckActorClass(0, "QCZedek"     )) { SetQcdeStack(150, 125); SetInventory("ClassID",  7); }
-	if(CheckActorClass(0, "QCInquisitor")) { SetQcdeStack(175, 100); SetInventory("ClassID",  8); }
-	if(CheckActorClass(0, "QCBitterman" )) { SetQcdeStack(150, 125); SetInventory("ClassID",  9); }
-	if(CheckActorClass(0, "QCGalen"     )) { SetQcdeStack(125, 100); SetInventory("ClassID", 10); }
-	if(CheckActorClass(0, "QCNyx"       )) { SetQcdeStack(100,  75); SetInventory("ClassID", 11); }
-	if(CheckActorClass(0, "QCSorgaul"   )) { SetQcdeStack(125, 150); SetInventory("ClassID", 12); }
-	if(CheckActorClass(0, "QCDukeNukem" )) { SetQcdeStack(150,  75); SetInventory("ClassID", 13); }
-	if(CheckActorClass(0, "QCDurandal"  )) { SetQcdeStack(100,  75); SetInventory("ClassID", 14); }
-	if(CheckActorClass(0, "QCKeel"      )) { SetQcdeStack(175, 100); SetInventory("ClassID", 15); }
-	if(CheckActorClass(0, "QCSarge"     )) { SetQcdeStack(100, 100); SetInventory("ClassID", 16); }
-	if(CheckActorClass(0, "QCLoWang"    )) { SetQcdeStack(100,  75); SetInventory("ClassID", 17); }
-	if(CheckActorClass(0, "QCGrayson"   )) { SetQcdeStack(125, 100); SetInventory("ClassID", 18); }
-	if(CheckActorClass(0, "QCEradicator")) { SetQcdeStack(150, 125); SetInventory("ClassID", 19); }
-	if(CheckActorClass(0, "QCBlazkowicz")) { SetQcdeStack(125, 100); SetInventory("ClassID", 20); }
-	if(CheckActorClass(0, "QCFreeman"   )) { SetQcdeStack(100, 125); SetInventory("ClassID", 21); }
-	if(CheckActorClass(0, "QCVorMatur"  )) { SetQcdeStack(300,   0); SetInventory("ClassID", 22); }
-	if(CheckActorClass(0, "QCEleena"    )) { SetQcdeStack(125,  50); SetInventory("ClassID", 23); }
-	if(CheckActorClass(0, "QCLucienne"  )) { SetQcdeStack(100,  75); SetInventory("ClassID", 24); }
-	if(CheckActorClass(0, "QCMajor"     )) { SetQcdeStack(150, 125); SetInventory("ClassID", 25); }
-	if(CheckActorClass(0, "QCHunter"    )) { SetQcdeStack(100,  75); SetInventory("ClassID", 26); }
-	if(CheckActorClass(0, "QCSam"       )) { SetQcdeStack(175, 100); SetInventory("ClassID", 27); }
-	if(CheckActorClass(0, "QCPostal"    )) { SetQcdeStack(100,  75); SetInventory("ClassID", 28); }
-	if(CheckActorClass(0, "QCPainkiller")) { SetQcdeStack(100, 125); SetInventory("ClassID", 29); }
-	if(CheckActorClass(0, "QCIntruder"  )) { SetQcdeStack(150,  75); SetInventory("ClassID", 30); }
-	if(CheckActorClass(0, "QCOrbb"		)) { SetQcdeStack(100,  75); SetInventory("ClassID", 31); }
-	if(CheckActorClass(0, "QCBrock"		)) { SetQcdeStack(100, 100); SetInventory("ClassID", 32); }
-	// ^ insert more classes here
+	if(CheckUserFlag(0, "user_exclass"))
+	{
+		QCDE_EX_UpdateStacks(GetActorClass(0));
+	}
+	else
+	{
+		//
+		//		WHEN CHANGING HEALH AND ARMOR VALUES, MAKE SURE TO UPDATE THEM IN MENUDEF
+		//
+		// Health & Armor
+		if(CheckActorClass(0, "QCRanger"    )) { SetQcdeStack(125, 100); SetInventory("ClassID",  0); }
+		if(CheckActorClass(0, "QCDoomslayer")) { SetQcdeStack(150,  75); SetInventory("ClassID",  1); }
+		if(CheckActorClass(0, "QCCorvus"    )) { SetQcdeStack(125, 100); SetInventory("ClassID",  2); }
+		if(CheckActorClass(0, "QCKane"      )) { SetQcdeStack(100,  75); SetInventory("ClassID",  3); }
+		if(CheckActorClass(0, "QCCaleb"     )) { SetQcdeStack(100,  75); SetInventory("ClassID",  4); }
+		if(CheckActorClass(0, "QCMenelkir"  )) { SetQcdeStack(100,  75); SetInventory("ClassID",  5); }
+		if(CheckActorClass(0, "QCTerminator")) { SetQcdeStack(150, 125); SetInventory("ClassID",  6); }
+		if(CheckActorClass(0, "QCZedek"     )) { SetQcdeStack(150, 125); SetInventory("ClassID",  7); }
+		if(CheckActorClass(0, "QCInquisitor")) { SetQcdeStack(175, 100); SetInventory("ClassID",  8); }
+		if(CheckActorClass(0, "QCBitterman" )) { SetQcdeStack(150, 125); SetInventory("ClassID",  9); }
+		if(CheckActorClass(0, "QCGalen"     )) { SetQcdeStack(125, 100); SetInventory("ClassID", 10); }
+		if(CheckActorClass(0, "QCNyx"       )) { SetQcdeStack(100,  75); SetInventory("ClassID", 11); }
+		if(CheckActorClass(0, "QCSorgaul"   )) { SetQcdeStack(125, 150); SetInventory("ClassID", 12); }
+		if(CheckActorClass(0, "QCDukeNukem" )) { SetQcdeStack(150,  75); SetInventory("ClassID", 13); }
+		if(CheckActorClass(0, "QCDurandal"  )) { SetQcdeStack(100,  75); SetInventory("ClassID", 14); }
+		if(CheckActorClass(0, "QCKeel"      )) { SetQcdeStack(175, 100); SetInventory("ClassID", 15); }
+		if(CheckActorClass(0, "QCSarge"     )) { SetQcdeStack(100, 100); SetInventory("ClassID", 16); }
+		if(CheckActorClass(0, "QCLoWang"    )) { SetQcdeStack(100,  75); SetInventory("ClassID", 17); }
+		if(CheckActorClass(0, "QCGrayson"   )) { SetQcdeStack(125, 100); SetInventory("ClassID", 18); }
+		if(CheckActorClass(0, "QCEradicator")) { SetQcdeStack(150, 125); SetInventory("ClassID", 19); }
+		if(CheckActorClass(0, "QCBlazkowicz")) { SetQcdeStack(125, 100); SetInventory("ClassID", 20); }
+		if(CheckActorClass(0, "QCFreeman"   )) { SetQcdeStack(100, 125); SetInventory("ClassID", 21); }
+		if(CheckActorClass(0, "QCVorMatur"  )) { SetQcdeStack(300,   0); SetInventory("ClassID", 22); }
+		if(CheckActorClass(0, "QCEleena"    )) { SetQcdeStack(125,  50); SetInventory("ClassID", 23); }
+		if(CheckActorClass(0, "QCLucienne"  )) { SetQcdeStack(100,  75); SetInventory("ClassID", 24); }
+		if(CheckActorClass(0, "QCMajor"     )) { SetQcdeStack(150, 125); SetInventory("ClassID", 25); }
+		if(CheckActorClass(0, "QCHunter"    )) { SetQcdeStack(100,  75); SetInventory("ClassID", 26); }
+		if(CheckActorClass(0, "QCSam"       )) { SetQcdeStack(175, 100); SetInventory("ClassID", 27); }
+		if(CheckActorClass(0, "QCPostal"    )) { SetQcdeStack(100,  75); SetInventory("ClassID", 28); }
+		if(CheckActorClass(0, "QCPainkiller")) { SetQcdeStack(100, 125); SetInventory("ClassID", 29); }
+		if(CheckActorClass(0, "QCIntruder"  )) { SetQcdeStack(150,  75); SetInventory("ClassID", 30); }
+		if(CheckActorClass(0, "QCOrbb"		)) { SetQcdeStack(100,  75); SetInventory("ClassID", 31); }
+		if(CheckActorClass(0, "QCBrock"		)) { SetQcdeStack(100, 100); SetInventory("ClassID", 32); }
+		// ^ insert more classes here
+	}
 
 	// Disabled class? Git kekd nao (when ClassID is already set)
 	if(IsClassDisabled())

@@ -2,6 +2,7 @@
 #include "zcommon.acs"
 #include "AACS.acs"
 #import "QCDE.bcs"
+#include "QCDE_EX.h"
 
 //=============================================================================
 //=============================================================================
@@ -106,15 +107,35 @@ script "QCDE_VoiceLine" (int chance_percentage, int triggered_by_player, int whi
 	ACS_NamedExecuteWithResult("QCDE_PlayVoiceLine", classid, triggered_by_player, which, 0);
 }
 
+// QCDE EX
+str read_taunt_txt(int class, int i, int j, str exCallback)
+{
+	if((str)exCallback == null)
+		return taunt_txt[class][i][j];
+
+	return ACS(exCallback, QCDE_EX_VOX_SUBTITLE, i, j);
+}
+
 Script "QCDE_PlayVoiceLine" (int classid, int triggered_by_player, int which, int tid)
 {
+	str exCallback = null;
+	if(CheckUserFlag(0, "user_exclass"))
+		exCallback = QCDE_EX_GetVoiceCallback(GetActorClass(0));
+
+	int read_taunt_count(int class, int i)
+	{
+		if((str)exCallback == null)
+			return taunt_count[class][i];
+		return ACS(exCallback, QCDE_EX_VOX_COUNT, i);
+	}
+
 	// Pick the right page, if there are any pages
 	str page, pagename = "";
-	if(taunt_count[classid][1])
+	if(read_taunt_count(classid, 1))
 	{
 		for(int i = 1; i < 3; i++)
-		if(taunt_count[classid][i])
-		if(CheckInventory(taunt_txt[classid][i][T_TOKEN])) // this page eligible
+		if(read_taunt_count(classid, i))
+		if(CheckInventory(read_taunt_txt(classid, i, T_TOKEN, exCallback))) // this page eligible
 		{
 			page = i;
 			pagename = strparam(s:"Page", d:page);
@@ -122,15 +143,15 @@ Script "QCDE_PlayVoiceLine" (int classid, int triggered_by_player, int which, in
 		}
 	}
 
-	int variety = taunt_count[classid][page];
+	int variety = read_taunt_count(classid, page);
 
 	// Pick a random (or not) taunt and play it
 	int index = (Timer() % variety) + 1;//random(1, variety);
 	if(triggered_by_player && which > -1) index = ((which - 1) % variety) + 1;
-	str sound = strparam(s:"QC", s:champion[classid], s:pagename, s:"Taunt", d:index / 10, d:index % 10); // always two digits at least
+	str sound = strparam(s:"QC", s:((str)exCallback == null) ? champion[classid] : GetActorProperty(0, APROP_NameTag), s:pagename, s:"Taunt", d:index / 10, d:index % 10); // always two digits at least
 	PlaySound(tid,sound,CHAN_6,1.0,false,1.0);
 	//printbold(n:0, s:" is gloating with sample \c[white]", s:sound);
-	ACS("QCDE_VoiceLineSubtitle", classid, page, index);
+	ACS("QCDE_VoiceLineSubtitle", classid, page, index, exCallback);
 }
 
 Script "QCDE_QCS_Mute" (int whomstdve)
@@ -908,7 +929,7 @@ str taunt_txt[NUMBER_OF_CLASSES][3][MAX_TAUNTS] = {
 	// ^ insert more classes here
 };
 
-Script "QCDE_VoiceLineSubtitle" (int classid, int page, int index) clientside
+Script "QCDE_VoiceLineSubtitle" (int classid, int page, int index, raw exCallback) clientside
 {
 	int cvar = GetUserCvar(CPN(),"cl_tauntSubtitles");
 	if(!cvar) terminate;
@@ -917,7 +938,7 @@ Script "QCDE_VoiceLineSubtitle" (int classid, int page, int index) clientside
 
 	SetFont("SMALLFONT");
 	SetHudSize(640,480,1);
-	int subtitle = taunt_txt[classid][page][index];
+	int subtitle = read_taunt_txt(classid, page, index, exCallback);
 	int duration_scalar = 100;
 	int duration = fixedSqrt(strlen(subtitle) * 0.5) / 2 * duration_scalar / 100;
 	HudMessage(s:"\n\c[brite]", s:subtitle; HUDMSG_TYPEON,HMID_SUBTITLES,-1, 320.4,478.2, duration,1.0/35,duration/2);

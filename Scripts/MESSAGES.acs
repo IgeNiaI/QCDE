@@ -77,12 +77,12 @@ function int GetKeyBinding(str key)
 	return strparam(s:"\c[brite]", s:k);
 }
 
-function int instr(str string, int char)
+function int instr(str string, int c)
 {
 	int i;
 	for(i = 0; i < strlen(string); i++)
 	{
-		if(getchar(string,i) == char)
+		if(getchar(string,i) == c)
 			return i;
 	}
 	return -1;

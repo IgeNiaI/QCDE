@@ -1,0 +1,6 @@
+Actor QCEXStackHealth : Inventory {Inventory.MaxAmount 0x7FFF}
+Actor QCEXStackArmor : Inventory {Inventory.MaxAmount 0x7FFF}
+
+Actor QCEXPlayerLight : QCPlayerLight 	{var int user_exclass;}
+Actor QCEXPlayerMedium : QCPlayerMedium {var int user_exclass;}
+Actor QCEXPlayerHeavy : QCPlayerHeavy 	{var int user_exclass;}

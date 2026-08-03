@@ -863,3 +863,8 @@ function bool IsClassDisabled(void)
 	return GetCvar(cvar);
 }
 
+function bool CheckUserFlag(int tid, str name)
+{
+	SetUserVariable(tid, name, 1);
+	return GetUserVariable(tid, name);
+}

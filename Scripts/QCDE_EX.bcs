@@ -1,0 +1,217 @@
+#library "QCDE_EX"
+#include "zcommon.acs"
+#import "QCDE.bcs"
+#import "ABILITIS.acs"
+
+#pragma raw define on
+
+#define LIBBCS_FATAL_ALLOC_ERROR
+
+#include "libbcs.bcs"
+
+#linklibrary "SETCLASS"
+extern void SetQcdeStack (int health, int armor);
+
+enum
+{
+    QCDE_EX_VOX_COUNT,
+    QCDE_EX_VOX_SUBTITLE
+};
+
+struct EXClassInfoT
+{
+    str displayName;
+    str portrait;
+    int health;
+    int armor;
+    str tickScript; // void (int firstTime)
+    int activeCooldown;
+    int activeCooldownPVE;
+    int activeDuration;
+    int activeDurationPVE;
+    str activeAbilityScript; // void (void)
+    bool activeMultiuse;
+    int multiuseCooldown;
+    str multiuseFailSnd;
+    str voiceCallback; // int (int type, int page, int lines)
+};
+
+LIBBCS_T_MAP_DEFN(ClassInfoMap, str, int, LIBBCS_SIMPLE_CMP);
+
+internal ClassInfoMapT EXClasses;
+
+void QCDE_EX_Init ()
+{
+    EXClasses = ClassInfoMap_New();
+}
+
+void QCDE_EX_AddClass (str class, str displayName, str portrait, int health, int armor,
+    str tickScript, int activeCooldown = 35, int activeCooldownPVE = 35, int activeDuration = 35,
+    int activeDurationPVE = 35, str activeAbilityScript = null, bool activeMultiuse = false,
+    int multiuseCooldown = 0, str multiuseFailSnd = null, str voiceCallback = null)
+{
+    static int currEXClass;
+
+    if(!EXClasses)
+        QCDE_EX_Init();
+
+    EXClassInfoT? c;
+    c = bcs::malloc(lengthof(c));
+
+    c.displayName = displayName;
+    c.portrait = portrait;
+    c.health = health;
+    c.armor = armor;
+    c.tickScript = tickScript;
+    c.activeCooldown = activeCooldown;
+    c.activeCooldownPVE = activeCooldownPVE;
+    c.activeDuration = activeDuration;
+    c.activeDurationPVE = activeDurationPVE;
+    c.activeAbilityScript = activeAbilityScript;
+    c.activeMultiuse = activeMultiuse;
+    c.multiuseCooldown = multiuseCooldown;
+    c.multiuseFailSnd = multiuseFailSnd;
+    c.voiceCallback = voiceCallback;
+
+    SetCVarString(StrParam(s:"_qcde_champname", i:currEXClass++), displayName);
+
+    ClassInfoMap_Put(EXClasses, class, (int)c);
+}
+
+void QCDE_EX_UpdateStacks (str class)
+{
+    if(!EXClasses)
+        return;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+
+    SetQcdeStack(c.health, c.armor);
+}
+
+void QCDE_EX_CallActiveAbility (str class)
+{
+    if(!EXClasses)
+        return;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+
+    if(!CheckInventory("ActiveProgressToken") && ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
+	{
+		SetLastUse(Timer());
+		extraAbilityData[PlayerNumber()]++;
+		ACS_NamedExecuteWithResult("QCDE_ShowActiveInProgress", GetDuration());
+
+		// is this netrep stuff needed in our case?
+		// SetNetworkReplicationFlags( NETREP_SKIPOWNER );
+		ACS_NamedExecuteWithResult(c.activeAbilityScript);
+		// SetNetworkReplicationFlags( 0 );
+
+        ACS_NamedExecuteWithResult("_QCDE_EX_CallActiveAbility2");
+	}
+}
+
+Script "_QCDE_EX_CallActiveAbility2"
+{
+    delay(GetDuration()); //duration of active ability
+
+    SetNetworkReplicationFlags(NETREP_SKIPOWNER);
+    GiveInventory("GenericActiveCleanerProc",1);
+    SetNetworkReplicationFlags(0);
+}
+
+int QCDE_EX_GetActiveCooldown (str class)
+{
+    if(!EXClasses)
+        return (raw)0;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    return c.activeCooldown;
+}
+
+int QCDE_EX_GetActiveDuration (str class)
+{
+    if(!EXClasses)
+        return (raw)0;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    return c.activeDuration;
+}
+
+bool QCDE_EX_GetActiveMultiuse (str class)
+{
+    if(!EXClasses)
+        return (raw)0;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    return c.activeMultiuse;
+}
+
+int QCDE_EX_GetMultiuseCooldown (str class)
+{
+    if(!EXClasses)
+        return (raw)0;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    return c.multiuseCooldown;
+}
+
+int QCDE_EX_GetMultiuseFailSnd (str class)
+{
+    if(!EXClasses)
+        return (raw)0;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    return c.multiuseFailSnd;
+}
+
+str QCDE_EX_GetVoiceCallback (str class)
+{
+    if(!EXClasses)
+        return (raw)0;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    return c.voiceCallback;
+}
+
+Script "QCDE_EX_PlayerTick" enter
+{
+    Delay(1);
+
+    if( (!EXClasses) || (GameType() == GAME_TITLE_MAP) )
+        return;
+
+    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, GetActorClass(0));
+
+    NamedSendNetworkString("QCDE_EX_DrawPortrait", c.portrait, PlayerNumber());
+
+    if(c.tickScript)
+        ACS_NamedExecuteWithResult(c.tickScript, 1);
+
+    while(PlayerNumber() != -1)
+    {
+        Delay(1);
+
+        if(c.tickScript)
+            ACS_NamedExecuteWithResult(c.tickScript, 0);
+    }
+}
+
+Script "QCDE_EX_PlayerTick_Respawn" respawn
+{
+    ACS_NamedExecuteWithResult("QCDE_EX_PlayerTick");
+}
+
+Script "QCDE_EX_DrawPortrait" (raw portrait)
+{
+    while(PlayerNumber() != -1)
+    {
+        if(!CheckInventory("HideHUD"))
+        {
+            SetHudSize(1400, 1050, true);
+            SetFont(portrait);
+            HudMessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 10.1, 795.1, (fixed)1873);
+        }
+
+        Delay(1);
+    }
+}

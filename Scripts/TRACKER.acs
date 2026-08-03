@@ -123,6 +123,8 @@ Script "QCDE_NewLife" (int firsttime)
 {
 	if(!-~PlayerNumber()) terminate; // <-- fixes "addbot; removebot" bug
 
+	bool IsExClass = CheckUserFlag(0, "user_exclass");
+
 	Thing_ChangeTID(1000 + PlayerNumber(), 0); // free player TID from other corpses
 	Thing_ChangeTID(0, 1000 + PlayerNumber()); // set player TID
 	TakeInventory("ImDead",999); //removes "death" token indicator
@@ -139,7 +141,7 @@ Script "QCDE_NewLife" (int firsttime)
 	ACS_NamedExecuteAlways("QCDE_DM_HealthAndWeapons"	,0);
 	ACS_NamedExecuteAlways("QCDE_DM_PlayerCollision"	,0);
 	if (!hubReturn) 	ACS_NamedExecuteAlways("QCDE_Degeneration"			,0);
-	ACS_NamedExecuteAlways("QCDE_PassiveAbility"		,0);
+	if (!IsExClass)		ACS_NamedExecuteAlways("QCDE_PassiveAbility"		,0);
 	ACS_NamedExecuteAlways("QCDE_StartingArmor"			,0);
 	ACS_NamedExecuteAlways("QCDE_UpdateTotemCount"		,0);
 	ACS_NamedExecuteAlways("QCDE_UpdateLives"			,0);
