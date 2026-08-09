@@ -139,7 +139,6 @@ FreeformMenu "ChampionSelector"
 	Label { Pos	-170,  70	Text "MEDIUM"	Font QCSMFONT	FontColor Gray }
 	Label { Pos	-180, 120	Text "HEAVY"	Font QCSMFONT	FontColor Gray }
 
-
 	Option { NotSelectable	Pos 150,  20	Values QCDE_Champions_Names		CVar playerclass	Font QCSMFONT	FontColor Gold					}
 	Option { NotSelectable	Pos 150,  25	Size 77, 97	Values QCDE_Champions_FakeText	BackgroundValues QCDE_Champions_Images	CVar playerclass	}
 	Option { NotSelectable	Pos 170, 118	Values QCDE_Champions_Active	CVar playerclass	Font QCSMFONT	FontColor Gold					}
@@ -154,6 +153,13 @@ FreeformMenu "ChampionSelector"
 		Pos		170, 191				Text				"DETAILS"			Background			BT10028
 		Size	50, 14					Font				SmallFont			SelectedBackground	BT10028S
 		Anchor	center, center			FontColor			Tan					Menu	QCDE_ChampionDetails
+										SelectedFontColor	Tan
+	}
+
+	SubMenu {
+		Pos		170, 213				Text				"EX CHAMPS"			Background			BT10028
+		Size	50, 14					Font				SmallFont			SelectedBackground	BT10028S
+		Anchor	center, center			FontColor			Tan					Menu	QCDE_EX_PlayerSelect
 										SelectedFontColor	Tan
 	}
 }
