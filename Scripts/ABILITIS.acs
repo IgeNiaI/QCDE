@@ -3924,7 +3924,7 @@ script "QCDE_Hourglass" (int percentage, int nosandswirl)
 
 	int plr = PlayerNumber();
 
-    if(tics[plr] == 0) terminate;
+    if( (tics[plr] == 0) && (percentage > 0) ) terminate;
 
 	int take = GetCooldown() * percentage / 100;
 
@@ -3945,7 +3945,17 @@ script "QCDE_Hourglass" (int percentage, int nosandswirl)
 	SetFont("BLINKGLD");
 	//HudMessage(s:"A"; HUDMSG_FADEOUT, 3245, CR_UNTRANSLATED, 700.0, 911.0, 0.08, 0.005 * percentage);
 	if(!nosandswirl) ACS("QCDE_BlinkSandwatch");
-	tics[plr] -= take;
+
+	if(take > 0)
+	{
+		tics[plr] -= take;
+	}
+	else
+	{
+		SetLastUse(Timer());
+		ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", -take);
+	}
+
     if(tics[plr] < 0)
     	tics[plr] = 0;
 
