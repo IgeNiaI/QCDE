@@ -596,7 +596,7 @@ function void DrawWeapon(int image, int x, int y)
 
 	SetHudSize(320,240,1);
 	SetFont(image);
-	HudMessageBold(s:"A"; HUDMSG_FADEOUT, HMID_ACS_WEAPON, CR_UNTRANSLATED, x, y, 0.1, 0.3);
+	HudMessageBold(s:"A"; HUDMSG_LAYER_UNDERHUD|HUDMSG_FADEOUT, HMID_ACS_WEAPON, CR_UNTRANSLATED, x, y, 0.1, 0.3);
 }
 
 
