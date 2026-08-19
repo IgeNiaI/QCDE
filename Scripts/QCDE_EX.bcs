@@ -95,6 +95,9 @@ void QCDE_EX_CallActiveAbility (str class)
 
     EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
 
+    if((str)c.activeAbilityScript == null)
+        return;
+
     if(!CheckInventory("ActiveProgressToken") && ACS_NamedExecuteWithResult("QCDE_AbilityCooldown", GetCooldown()))
 	{
 		SetLastUse(Timer());
