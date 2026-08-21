@@ -176,7 +176,7 @@ str QCDE_EX_GetVoiceCallback (str class)
     return c.voiceCallback;
 }
 
-Script "QCDE_EX_PlayerTick" enter
+Script "QCDE_EX_PlayerTick" (int firstTime)
 {
     Delay(1);
 
@@ -199,14 +199,20 @@ Script "QCDE_EX_PlayerTick" enter
     }
 }
 
+Script "QCDE_EX_PlayerTick_Enter" enter
+{
+    ACS_NamedExecuteWithResult("QCDE_EX_PlayerTick");
+}
+
 Script "QCDE_EX_PlayerTick_Respawn" respawn
 {
     ACS_NamedExecuteWithResult("QCDE_EX_PlayerTick");
 }
 
-Script "QCDE_EX_DrawPortrait" (raw portrait)
+Script "QCDE_EX_DrawPortrait" (raw portrait) clientside
 {
-    while(PlayerNumber() != -1)
+    str className = GetActorClass(0);
+    while( (PlayerNumber() != -1) && (StrCmp(className, GetActorClass(0)) == 0) )
     {
         if(!CheckInventory("HideHUD"))
         {
