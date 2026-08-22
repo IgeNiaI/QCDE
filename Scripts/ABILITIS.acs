@@ -5178,34 +5178,17 @@ Script "QCDE_Passive_Sam" (int ammo)
 		if (GetCvar("lastmanstanding") || GetCvar("teamlms") || GetCvar("qc_freezetag")) {
 			SetInventory("SeriousBullets", 175);
 		}
-        int startingWeapon = GetCvar("cl_startingWeapon");
 		if(GameType() <= GAME_NET_COOPERATIVE)
 		{
 			if(!CheckInventory("QCHeavyMachinegun")) GiveInventory("QCMachineGun", 1);
 			SetInventory("QCShotgun"   ,1);
          	if(!CheckInventory("QCSuperNailgun")) GiveInventory("QCNailgun", 1);
-
-            switch(startingWeapon)
-            {
-            default: // go to case 1
-            case 1: SetWeapon("QCMachineGun");	break;
-            case 2: SetWeapon("QCShotgun");		break;
-            case 3: SetWeapon("QCNailgun");		break;
-            }
 		}
 		else if(!GetCvar("instagib") && !GetCvar("rocketarena"))
 		{
 			SetInventory("QCMachineGunDM",1);
 			SetInventory("QCShotgunDM"   ,1);
 			SetInventory("QCNailgunDM"   ,1);
-
-            switch(startingWeapon)
-            {
-            default: // go to case 1
-            case 1: SetWeapon("QCMachineGunDM");	break;
-            case 2: SetWeapon("QCShotgunDM");		break;
-            case 3: SetWeapon("QCNailgunDM");		break;
-            }
 		}
 	}
 	else // Giving ammo
