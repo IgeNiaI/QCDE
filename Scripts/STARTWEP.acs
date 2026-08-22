@@ -75,14 +75,66 @@ script "QCDE_StartingWeapon_Apply" (void)
 		}
 	}
 
-	// Gauntlet is also a starting weapon
-	TakeInventory("QCGauntlet",1);
-	delay(1);
 	GiveInventory("QCGauntlet",1);
 
 	// Don't re-give weak weapons if stronger ones are present in coop
 	if(CheckInventory("QCHeavyMachinegun")) TakeInventory(weapon1,1);
 	if(CheckInventory("QCSuperNailgun"   )) TakeInventory(weapon3,1);
+
+	ACS_NamedExecuteAlways("QCDE_SelectInitialWeapon"		,0);
+}
+
+Script "QCDE_SelectInitialWeapon" (void)
+{
+    int startingWeapon = -1;
+    if (PlayerIsBot(PlayerNumber()))
+    	startingWeapon = 1;
+    else
+    	startingWeapon = GetCvar("cl_startingWeapon");
+
+    str selectedWeapon = "";
+    if (startingWeapon == 1) {
+    	     if (CheckInventory("QCHeavyMachinegunDM"))	selectedWeapon = "QCHeavyMachinegunDM";
+    	else if (CheckInventory("QCHeavyMachinegun"))	selectedWeapon = "QCHeavyMachinegun";
+    	else if (CheckInventory("QCMachineGunDM"))		selectedWeapon = "QCMachineGunDM";
+    	else if (CheckInventory("QCMachineGun"))		selectedWeapon = "QCMachineGun";
+    }
+    else if (startingWeapon == 2) {
+    	     if (CheckInventory("QCSuperShotgunDM"))	selectedWeapon = "QCSuperShotgunDM";
+    	else if (CheckInventory("QCSuperShotgun"))		selectedWeapon = "QCSuperShotgun";
+    	else if (CheckInventory("QCShotgunDM"))			selectedWeapon = "QCShotgunDM";
+    	else if (CheckInventory("QCShotgun"))			selectedWeapon = "QCShotgun";
+    }
+    else if (startingWeapon == 3) {
+    	     if (CheckInventory("QCSuperNailgunDM"))	selectedWeapon = "QCSuperNailgunDM";
+    	else if (CheckInventory("QCSuperNailgun"))		selectedWeapon = "QCSuperNailgun";
+    	else if (CheckInventory("QCNailgunDM"))			selectedWeapon = "QCNailgunDM";
+    	else if (CheckInventory("QCNailgun"))			selectedWeapon = "QCNailgun";
+    }
+
+    if (!strcmp(selectedWeapon, "")) {
+    	     if (CheckInventory("QCBFGDM"))				selectedWeapon = "QCBFGDM";
+    	else if (CheckInventory("QCRailgunDM"))			selectedWeapon = "QCRailgunDM";
+    	else if (CheckInventory("QCLightningGunDM"))	selectedWeapon = "QCLightningGunDM";
+    	else if (CheckInventory("QCRocketLauncherDM"))	selectedWeapon = "QCRocketLauncherDM";
+    	else if (CheckInventory("QCTriboltDM"))			selectedWeapon = "QCTriboltDM";
+    	else if (CheckInventory("QCSuperNailgunDM"))	selectedWeapon = "QCSuperNailgunDM";
+    	else if (CheckInventory("QCSuperShotgunDM"))	selectedWeapon = "QCSuperShotgunDM";
+    	else if (CheckInventory("QCHeavyMachinegunDM"))	selectedWeapon = "QCHeavyMachinegunDM";
+
+    	else if (CheckInventory("QCBFG"))				selectedWeapon = "QCBFG";
+    	else if (CheckInventory("QCRailgun"))			selectedWeapon = "QCRailgun";
+    	else if (CheckInventory("QCLightningGun"))		selectedWeapon = "QCLightningGun";
+    	else if (CheckInventory("QCRocketLauncher"))	selectedWeapon = "QCRocketLauncher";
+    	else if (CheckInventory("QCTribolt"))			selectedWeapon = "QCTribolt";
+    	else if (CheckInventory("QCSuperNailgun"))		selectedWeapon = "QCSuperNailgun";
+    	else if (CheckInventory("QCSuperShotgun"))		selectedWeapon = "QCSuperShotgun";
+    	else if (CheckInventory("QCHeavyMachinegun"))	selectedWeapon = "QCHeavyMachinegun";
+
+    	else if (CheckInventory("QCGauntlet"))			selectedWeapon = "QCGauntlet";
+    }
+
+    SetWeapon(selectedWeapon);
 }
 
 script "QCDE_SelectUpgradedWeapon" (int weap)
