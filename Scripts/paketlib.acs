@@ -1,0 +1,147 @@
+#library "paketlib"
+#include "zcommon.acs"
+
+#define PACKET_MSB_MASK 0x80000000
+
+#define PACKET_BYTE_BITS 7
+#define PACKET_WORD_SIZE 5
+
+#define PACKET_NATIVE_HEADER_SIZE 13
+int Packet_Rval; // raw type
+
+int __Packet_Tmp[5];
+
+function int __Packet_ReadUnsignedByte (str pac, int pos)
+{
+	int b = GetChar(pac, pos);
+
+	if(b < 0)
+		b += 256;
+
+	return b;
+}
+
+function int Packet_GetMaxSize (void)
+{
+	int maxPacketSize = GetCVar("sv_maxpacketsize");
+
+	if(maxPacketSize > 2048)
+		return 2048;
+
+	return maxPacketSize;
+}
+
+function int Packet_GetSize (str pac)
+{
+	return StrLen(pac) + PACKET_NATIVE_HEADER_SIZE;
+}
+
+// Does nothing currently, but it might be needed in the future.
+function str Packet_New (void)
+{
+	return "";
+}
+
+// str Packet_Append (str pac, raw val)
+function str Packet_Append (str pac, int val)
+{
+	int tmp;
+	
+	//Log(s:"==__Packet_Tmp==");
+	for(int i = PACKET_WORD_SIZE - 1; i >= 0; i--)
+	{
+		tmp = val & ((1 << PACKET_BYTE_BITS) - 1);
+
+		__Packet_Tmp[i] = tmp + ' ';
+
+		val >>= PACKET_BYTE_BITS;
+	}
+
+	return StrParam(s:pac, a:__Packet_Tmp);
+}
+
+function str Packet_AppendStr (str pac, str val)
+{
+	val = StrLeft(val, 2048);
+	//Log(s:"strlen = ", i:StrLen(val));
+	pac = Packet_Append(pac, StrLen(val));
+	
+	return StrParam(s:pac, s:val);
+}
+
+// int Packet_Send (str script, str pac, int client = -1)
+function int Packet_Send (str scrip, str pac, int client)
+{
+	int maxPacketSize = Packet_GetMaxSize(), packetSize = Packet_GetSize(pac);
+	
+	if(packetSize > maxPacketSize)
+	{
+		Log(s:"Packet_Send ERROR: Packet is too large (", i:packetSize, s:" bytes)! Current server settings allow for only ", i:maxPacketSize, s:" bytes.");
+		return 0;
+	}
+	
+	if(packetSize == PACKET_NATIVE_HEADER_SIZE)
+	{
+		Log(s:"Packet_Send ERROR: Packet is empty. Not sending.");
+		return 0;
+	}
+	
+	return NamedSendNetworkString(scrip, pac, client);
+}
+
+// raw Packet_Read (str pac)
+function int Packet_Read (str pac)
+{
+	int shiftAmount = 4 * 8, tmp;
+	
+	Packet_Rval = 0;
+
+	for(int i = 0; i < PACKET_WORD_SIZE; i++)
+	{
+		Packet_Rval <<= PACKET_BYTE_BITS;
+		tmp = (__Packet_ReadUnsignedByte(pac, i) /*& ((1 << PACKET_BYTE_BITS) - 1)*/) - ' ';
+
+		Packet_Rval |= tmp;
+	}
+	
+	return StrMid(pac, PACKET_WORD_SIZE, 0x7FFFFFFF);
+}
+
+// raw Packet_ReadStr(str pac)
+function int Packet_ReadStr (str pac)
+{
+	int len;
+	pac = Packet_Read(pac);
+	len = Packet_Rval;
+
+	//Log(s:"strlen = ", i:len);
+	
+	Packet_Rval = StrLeft(pac, len);
+	
+	return StrMid(pac, len, 0x7FFFFFFF);
+}
+
+// int Packet_PackValue(int pack, int pos, int width, raw v)
+function int Packet_PackValue(int pack, int pos, int width, int v)
+{
+	if(v & PACKET_MSB_MASK)
+		v |= 1 << (width - 1);
+
+	v &= ((1 << width) - 1);
+	return pack | (v << pos);
+}
+
+// raw Packet_UnpackValue(int pack, int pos, int width, bool signed = false)
+function int Packet_UnpackValue(int pack, int pos, int width, bool signed)
+{
+	int widthm1 = width - 1;
+	int v = (pack >> pos) & ((1 << width) - 1), m;
+
+	if(signed && (v & (1 << widthm1)))
+	{
+		m = 1 << widthm1;
+		v = (v ^ m) - m;
+	}
+
+	return v;
+}

@@ -1,0 +1,18 @@
+#ifdef __IMPORTED__
+#error You must #include this header.
+#endif
+
+#linklibrary "paketlib"
+
+extern raw Packet_Rval;
+
+extern int Packet_GetMaxSize (void);
+extern int Packet_GetSize (str pac);
+extern str Packet_New (void);
+extern str Packet_Append (str pac, raw val);
+extern str Packet_AppendStr (str pac, str val);
+extern int Packet_Send (str scrip, str pac, int client = -1);
+extern str Packet_Read (str pac);
+extern str Packet_ReadStr (str pac);
+extern int Packet_PackValue(int pack, int pos, int width, raw v);
+extern raw Packet_UnpackValue(int pack, int pos, int width, bool signed = false);

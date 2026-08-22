@@ -9,6 +9,8 @@
 
 #include "libbcs.bcs"
 
+#include "paketlib.bcs"
+
 #linklibrary "SETCLASS"
 extern void SetQcdeStack (int health, int armor);
 
@@ -30,6 +32,8 @@ struct EXClassInfoT
     int activeDuration;
     int activeDurationPVE;
     str activeAbilityScript; // void (void)
+    str activeIconOn;
+    str activeIconOff;
     bool activeMultiuse;
     int multiuseCooldown;
     str multiuseFailSnd;
@@ -47,8 +51,8 @@ void QCDE_EX_Init ()
 
 void QCDE_EX_AddClass (str class, str displayName, str portrait, int health, int armor,
     str tickScript, int activeCooldown = 35, int activeCooldownPVE = 35, int activeDuration = 35,
-    int activeDurationPVE = 35, str activeAbilityScript = null, bool activeMultiuse = false,
-    int multiuseCooldown = 0, str multiuseFailSnd = null, str voiceCallback = null)
+    int activeDurationPVE = 35, str activeAbilityScript = null, str activeIconOn = null, str activeIconOff = null,
+    bool activeMultiuse = false, int multiuseCooldown = 0, str multiuseFailSnd = null, str voiceCallback = null)
 {
     static int currEXClass;
 
@@ -68,6 +72,8 @@ void QCDE_EX_AddClass (str class, str displayName, str portrait, int health, int
     c.activeDuration = activeDuration;
     c.activeDurationPVE = activeDurationPVE;
     c.activeAbilityScript = activeAbilityScript;
+    c.activeIconOn = activeIconOn;
+    c.activeIconOff = activeIconOff;
     c.activeMultiuse = activeMultiuse;
     c.multiuseCooldown = multiuseCooldown;
     c.multiuseFailSnd = multiuseFailSnd;
@@ -176,6 +182,11 @@ str QCDE_EX_GetVoiceCallback (str class)
     return c.voiceCallback;
 }
 
+internal str NullcheckStr (str a)
+{
+    return (a) ? a : "";
+}
+
 Script "QCDE_EX_PlayerTick" (int firstTime)
 {
     Delay(1);
@@ -185,7 +196,11 @@ Script "QCDE_EX_PlayerTick" (int firstTime)
 
     EXClassInfoT? c = ClassInfoMap_Get(EXClasses, GetActorClass(0));
 
-    NamedSendNetworkString("QCDE_EX_DrawPortrait", c.portrait, PlayerNumber());
+    int p = Packet_New();
+    p = Packet_AppendStr(p, NullcheckStr(c.portrait));
+    p = Packet_AppendStr(p, NullcheckStr(c.activeIconOn));
+    p = Packet_AppendStr(p, NullcheckStr(c.activeIconOff));
+    Packet_Send("QCDE_EX_DrawHUD", p, PlayerNumber());
 
     if(c.tickScript)
         ACS_NamedExecuteWithResult(c.tickScript, 1);
@@ -209,8 +224,28 @@ Script "QCDE_EX_PlayerTick_Respawn" respawn
     ACS_NamedExecuteWithResult("QCDE_EX_PlayerTick");
 }
 
-Script "QCDE_EX_DrawPortrait" (raw portrait) clientside
+Script "QCDE_EX_DrawHUD" (raw p) clientside
 {
+    enum : fixed
+    {
+        ACTIVE_ICON_X = 636.1,
+        ACTIVE_ICON_Y = 850.1
+    };
+
+    str portrait, activeIconOn, activeIconOff;
+
+    p = Packet_ReadStr(p);
+    Log(s:Packet_Rval);
+    portrait = Packet_Rval;
+
+    p = Packet_ReadStr(p);
+    Log(s:Packet_Rval);
+    activeIconOn = Packet_Rval;
+
+    p = Packet_ReadStr(p);
+    Log(s:Packet_Rval);
+    activeIconOff = Packet_Rval;
+
     str className = GetActorClass(0);
     while( (PlayerNumber() != -1) && (StrCmp(className, GetActorClass(0)) == 0) )
     {
@@ -219,6 +254,20 @@ Script "QCDE_EX_DrawPortrait" (raw portrait) clientside
             SetHudSize(1400, 1050, true);
             SetFont(portrait);
             HudMessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 10.1, 795.1, (fixed)1873);
+
+            if(!CheckInventory("AbilityCooldownToken"))
+            {
+                if(StrLen(activeIconOn))
+                {
+                    SetFont(activeIconOn);
+                    HudMessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, ACTIVE_ICON_X, ACTIVE_ICON_Y, (fixed)1873);
+                }
+            }
+            else if(StrLen(activeIconOff))
+            {
+                SetFont(activeIconOff);
+                HudMessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, ACTIVE_ICON_X, ACTIVE_ICON_Y, (fixed)1873);
+            }
         }
 
         Delay(1);
