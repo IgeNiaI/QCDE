@@ -602,7 +602,7 @@ Actor QCBrockArmorGain : BasicArmorPickup
 	//Inventory.Pickupmessage "$GOT_QCBrockArmorGain" // "Picked up an armor shard."
 	Inventory.Icon "BON2A0"
 	Armor.Savepercent 100.0
-	Armor.Saveamount 150
+	Armor.Saveamount 1
 	//Armor.Maxsaveamount 150
 	Inventory.RespawnTics 525 //15 sec
 	+COUNTITEM
@@ -717,6 +717,9 @@ Actor QCSmallArmorGiver : InventoryClassChecker replaces GreenArmor
 			TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Sam",5) // <- Passive
 			Goto ArmorDoneSuccess
 		DoBrock:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2, "DoBrock_Give")
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor"),"Failer") // Don't pickup armor in PvE if maxed out
+		DoBrock_Give:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ArmorGiver",	CallACS("MaxArmor"),	MediumArmorAmount,0)
 			Goto ArmorDoneSuccess
 		// ^ insert more classes here
@@ -867,7 +870,11 @@ Actor QCBigArmorGiver : QCMajorItem replaces BlueArmor
 			TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_Passive_Sam",10) // <- Passive
 			Goto ArmorDoneSuccess
 		DoBrock:
-			TNT1 A 0 A_GiveInventory("QCBrockArmorGain", 1, 0, GIF_FORCESERVERSIDE)		// Give 150 armor and absorb to 100%
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MultiplayerCheck",0,0,0,0) == 2, "DoBrock_Give")
+			TNT1 A 0 A_JumpIfInventory("BasicArmor",CallACS("MaxArmor")+50,"Failer") // Don't pickup armor in PvE if maxed out
+		DoBrock_Give:
+			TNT1 A 0 A_GiveInventory("QCBrockArmorGain", 1, 0, GIF_FORCESERVERSIDE)		// give 50 armor point and turn on 100% absorption
+			TNT1 A 0 ACS_NamedExecuteAlways("ArmorGiver",0,CallACS("MaxArmor")-25,BigArmorAmount+49,1) // then give 149 extra armor. This is so that PvE extra armor is accounted too
 			Goto ArmorDoneSuccess
 		// ^ insert more classes here
 
