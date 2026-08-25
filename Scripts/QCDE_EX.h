@@ -6,10 +6,10 @@ enum
     QCDE_EX_VOX_SUBTITLE
 };
 
-extern void QCDE_EX_AddClass (str class, str displayName, str portrait, int health, int armor,
-                              str tickScript, int activeCooldown = 35, int activeCooldownPVE = 35, int activeDuration = 35,
-                              int activeDurationPVE = 35, str activeAbilityScript = null, str activeIconOn = null, str activeIconOff = null,
-                              bool activeMultiuse = false, int multiuseCooldown = 0, str multiuseFailSnd = null, str voiceCallback = null);
+extern void QCDE_EX_AddClass (str class, str displayName, str portrait = null, int health = 100, int armor = 100, str tickScript = null, str voiceCallback = null);
+extern void QCDE_EX_AddClass_Active (str class, int activeCooldown = 35, int activeCooldownPVE = 35, int activeDuration = 35,
+                                          int activeDurationPVE = 35, str activeAbilityScript = null, str activeIconOn = null, str activeIconOff = null,
+                                          bool activeMultiuse = false, int multiuseCooldown = 0, str multiuseFailSnd = null);
 extern void QCDE_EX_UpdateStacks (str class);
 extern void QCDE_EX_CallActiveAbility (str class);
 

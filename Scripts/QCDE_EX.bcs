@@ -12,7 +12,13 @@
 #include "paketlib.bcs"
 
 #linklibrary "SETCLASS"
+
 extern void SetQcdeStack (int health, int armor);
+
+enum
+{
+    MAX_CUSTOM_CHAMPS = 128
+};
 
 enum
 {
@@ -20,8 +26,9 @@ enum
     QCDE_EX_VOX_SUBTITLE
 };
 
-struct EXClassInfoT
+typedef struct EXClassInfo
 {
+    str class;
     str displayName;
     str portrait;
     int health;
@@ -38,35 +45,42 @@ struct EXClassInfoT
     int multiuseCooldown;
     str multiuseFailSnd;
     str voiceCallback; // int (int type, int page, int lines)
-};
+} EXClassInfoT;
 
-LIBBCS_T_MAP_DEFN(ClassInfoMap, str, int, LIBBCS_SIMPLE_CMP);
+internal struct EXClassInfo EXClasses[MAX_CUSTOM_CHAMPS];
+internal int EXClassCount;
 
-internal ClassInfoMapT EXClasses;
-
-void QCDE_EX_Init ()
+internal struct EXClassInfo? QCDE_EX_GetStructForClass (str class)
 {
-    EXClasses = ClassInfoMap_New();
+    for(int i = 0; i < EXClassCount; i++)
+    {
+        if(StriCmp(class, EXClasses[i].class) == 0)
+            return EXClasses[i];
+    }
+
+    Log(s:"\cgQCDE ERROR: EX champion not registered in ACS. Wrong and broken behavior will most likely follow.");
+    return null;
 }
 
-void QCDE_EX_AddClass (str class, str displayName, str portrait, int health, int armor,
-    str tickScript, int activeCooldown = 35, int activeCooldownPVE = 35, int activeDuration = 35,
-    int activeDurationPVE = 35, str activeAbilityScript = null, str activeIconOn = null, str activeIconOff = null,
-    bool activeMultiuse = false, int multiuseCooldown = 0, str multiuseFailSnd = null, str voiceCallback = null)
+void QCDE_EX_AddClass (str class, str displayName, str portrait = null, int health = 100, int armor = 100, str tickScript = null, str voiceCallback = null)
 {
-    static int currEXClass;
+    struct EXClassInfo& c = EXClasses[EXClassCount++];
 
-    if(!EXClasses)
-        QCDE_EX_Init();
-
-    EXClassInfoT? c;
-    c = bcs::malloc(lengthof(c));
-
+    c.class = class;
     c.displayName = displayName;
     c.portrait = portrait;
     c.health = health;
     c.armor = armor;
     c.tickScript = tickScript;
+    c.voiceCallback = voiceCallback;
+}
+
+void QCDE_EX_AddClass_Active (str class, int activeCooldown = 35, int activeCooldownPVE = 35, int activeDuration = 35,
+    int activeDurationPVE = 35, str activeAbilityScript = null, str activeIconOn = null, str activeIconOff = null,
+    bool activeMultiuse = false, int multiuseCooldown = 0, str multiuseFailSnd = null)
+{
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
+
     c.activeCooldown = activeCooldown;
     c.activeCooldownPVE = activeCooldownPVE;
     c.activeDuration = activeDuration;
@@ -77,29 +91,24 @@ void QCDE_EX_AddClass (str class, str displayName, str portrait, int health, int
     c.activeMultiuse = activeMultiuse;
     c.multiuseCooldown = multiuseCooldown;
     c.multiuseFailSnd = multiuseFailSnd;
-    c.voiceCallback = voiceCallback;
-
-    SetCVarString(StrParam(s:"_qcde_champname", i:currEXClass++), displayName);
-
-    ClassInfoMap_Put(EXClasses, class, (int)c);
 }
 
 void QCDE_EX_UpdateStacks (str class)
 {
-    if(!EXClasses)
+    if(!EXClassCount)
         return;
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
 
     SetQcdeStack(c.health, c.armor);
 }
 
 void QCDE_EX_CallActiveAbility (str class)
 {
-    if(!EXClasses)
+    if(!EXClassCount)
         return;
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
 
     if((str)c.activeAbilityScript == null)
         return;
@@ -130,55 +139,55 @@ Script "_QCDE_EX_CallActiveAbility2"
 
 int QCDE_EX_GetActiveCooldown (str class)
 {
-    if(!EXClasses)
-        return (raw)0;
+    if(!EXClassCount)
+        return 0;
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
     return c.activeCooldown;
 }
 
 int QCDE_EX_GetActiveDuration (str class)
 {
-    if(!EXClasses)
-        return (raw)0;
+    if(!EXClassCount)
+        return 0;
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
     return c.activeDuration;
 }
 
 bool QCDE_EX_GetActiveMultiuse (str class)
 {
-    if(!EXClasses)
-        return (raw)0;
+    if(!EXClassCount)
+        return false;
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
     return c.activeMultiuse;
 }
 
 int QCDE_EX_GetMultiuseCooldown (str class)
 {
-    if(!EXClasses)
-        return (raw)0;
+    if(!EXClassCount)
+        return 0;
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
     return c.multiuseCooldown;
 }
 
-int QCDE_EX_GetMultiuseFailSnd (str class)
+str QCDE_EX_GetMultiuseFailSnd (str class)
 {
-    if(!EXClasses)
-        return (raw)0;
+    if(!EXClassCount)
+        return "";
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
     return c.multiuseFailSnd;
 }
 
 str QCDE_EX_GetVoiceCallback (str class)
 {
-    if(!EXClasses)
-        return (raw)0;
+    if(!EXClassCount)
+        return "";
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, class);
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(class)!!;
     return c.voiceCallback;
 }
 
@@ -191,10 +200,10 @@ Script "QCDE_EX_PlayerTick" (int firstTime)
 {
     Delay(1);
 
-    if( (!EXClasses) || (GameType() == GAME_TITLE_MAP) )
+    if( (!EXClasses) || (GameType() == GAME_TITLE_MAP) || !CheckUserFlag(0, "user_exclass") )
         return;
 
-    EXClassInfoT? c = ClassInfoMap_Get(EXClasses, GetActorClass(0));
+    struct EXClassInfo& c = QCDE_EX_GetStructForClass(GetActorClass(0))!!;
 
     int p = Packet_New();
     p = Packet_AppendStr(p, NullcheckStr(c.portrait));
@@ -253,7 +262,7 @@ Script "QCDE_EX_DrawHUD" (raw p) clientside
         {
             SetHudSize(1400, 1050, true);
             SetFont(portrait);
-            HudMessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 10.1, 795.1, (fixed)1873);
+            HudMessage(s:"A"; HUDMSG_PLAIN|HUDMSG_LAYER_UNDERHUD, 0, CR_UNTRANSLATED, 10.1, 795.1, (fixed)1873);
 
             if(!CheckInventory("AbilityCooldownToken"))
             {
