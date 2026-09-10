@@ -91,7 +91,6 @@ Script "QCDE_ConfigureMovement" (void)
 
 	else if (
 		CheckInventory("Class_Inquisitor")
-		|| CheckInventory("Class_Freeman")
 	) {
 		ACS_NamedExecuteAlways("QCDE_CheckDoubleTapConfig", 0); // for double tap dodge
 		SetActorProperty(0, APROP_User4Jump, true);
@@ -99,6 +98,25 @@ Script "QCDE_ConfigureMovement" (void)
 		SetActorProperty(0, APROP_SecondJumpZ, 1);
 		SetActorProperty(0, APROP_SecondJumpDelay, 35);
 		SetActorProperty(0, APROP_SecondJumpAmount, 1);
+	}
+
+	else if (
+		CheckInventory("Class_Freeman")
+	) {
+		ACS_NamedExecuteAlways("QCDE_CheckDoubleTapConfig", 0); // for double tap dodge
+		SetActorProperty(0, APROP_User4Jump, true);
+		SetActorProperty(0, APROP_SecondJumpXY, 10.0);
+		SetActorProperty(0, APROP_SecondJumpZ, 1);
+		SetActorProperty(0, APROP_SecondJumpDelay, 35);
+		SetActorProperty(0, APROP_SecondJumpAmount, 1);
+		if (GetCVar("cooperative"))
+			SetActorProperty(0, APROP_VelocityCap, 0.0);
+		else
+			SetActorProperty(0, APROP_VelocityCap, FixedMul(25.0, sv_PlayerSpeed));
+		SetActorProperty(0, APROP_CpmAirControl, true);
+		SetActorProperty(0, APROP_CpmMaxForwardAngleRad, 0.0);
+		SetActorProperty(0, APROP_CpmAirAcceleration, 37.0);
+        SetActorProperty(0, APROP_AirAcceleration, 0.04);
 	}
 
 	else if (
