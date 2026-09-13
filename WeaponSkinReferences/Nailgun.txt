@@ -1,0 +1,24 @@
+
+Nailgun animation states and frames:
+
+
+Prepare					-> A, A-Z (26 frames)
+	brightmaps			-> B
+Idle					-> C, A-R (18 frames)
+	brightmaps			-> D
+Fire start				-> E, A (1 frame)
+	brightmaps			-> F
+Fire loop				-> E, B-F (5 frames)
+	brightmaps			-> F
+Fire end				-> E, G-X (18 frames)
+	brightmaps			-> F
+
+
+
+Puff sprites	-> Y, A-T (20 frames)
+Puff sprites	-> Z, A-T (20 frames)
+Nail projectile	-> 9 directional sprites
+
+
+On all states, frame A is also used when the gun is being lowered
+The modded variant doesn't spawn smoke when firing, because it's impossible to align smoke spawn position to the gun barrel
