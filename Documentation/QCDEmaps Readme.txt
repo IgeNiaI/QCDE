@@ -24,7 +24,7 @@ Additional Credits to   : See the Credits section
 ===========================================================================
 * What is included *
 
-New levels              : 78
+New levels              : 79
 Sounds                  : Yes
 Music                   : Yes
 Graphics                : Yes
@@ -37,7 +37,7 @@ Other files required    : Latest version of QCDE
 * Play Information *
 
 Game                    : DOOM2
-Map #                   : QCDE01-QCDE50, QCDL01-QCDL14, QCME01-QCME02
+Map #                   : QCDE01-QCDE50, QCDL01-QCDL15, QCME01-QCME02
                           QCTF01-06, QCIN01-04, QCDF01-QCDF02
 Single Player           : No
 Cooperative 2-4 Player  : No
@@ -126,6 +126,7 @@ QCDL11   Fractal Reactor              kultasakaali
 QCDL12   Okey                         Pixo
 QCDL13   The Proving Grounds          Mr.Rocket
 QCDL14   Akuse                        Pixo
+QCDL15   Takken Apart                 Pixo
 
 QCME01   The Longest Yard             Mr.Rocket
 QCME02   Morpheus                     RoosTer

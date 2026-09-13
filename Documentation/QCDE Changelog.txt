@@ -2,12 +2,13 @@ Changelog
 
 ---------------------------------------------------------------------
 
-V3.1 (Month Date 2026)
+V3.1 (Month ##th 2026)
 
 General:
 - Gave Brock a Translocator ability. The primary fire launches a module that flies forward, is affected by gravity and bounces off walls. Alt fire then lets Brock teleport to the module. Using primary fire when a module is already deployed will return it back. The module can be destroyed with a single hit. Teleporting to it in that case will kill Brock instantly. Brock has 3 Translocator charges that are not affected by hourglass pickups, instead the charges refill every 5 seconds.
   - Brock Translocator can't telefrag, but instead it retains momentum when teleport succeeds. That lets Brock perform movement tricks by dashing or using a jumppad before using a translocator.
   - Brock can't teleport to Translocator module while holding a flag, but can still fire the module.
+- Gave Freeman Quake World movement. Best air strafing from A-D buttons, tiny forward air acceleration, tiny strafe jump acceleration, no air strafing when holding W.
 - Duke Nuken and Sam no longer can start firing their ability weapons while holding a flag, but can keep firing if they started firing before picking up the flag.
 - "callvote" command now also automatically votes "yes".
 - Added "sv_bfgrespawn" cvar to control BFG respawn timer.
@@ -15,7 +16,7 @@ General:
 - Added automap markers for weapons and powerups in PvP.
 - Made rocket/nail boosts on high ping slightly less jittery.
 - Updated bots AI. They can now chase the player sometimes. Also they can now follow the player in PvE.
-- Changed Kane sprites to a stroggified variant.
+- Changed Kane sprites and portrait to a stroggified variant.
 - Updated all Corvus game sounds and taunts.
 - Added bot variations from the Combalance addon.
 
@@ -50,11 +51,13 @@ PvP Balance:
 
 PvE Balance:
 - Lucienne now drops her immolation ball in PvE when falling to 30 hp instead of on death. To recharge the passive, heal back to 100 hp.
+- Brock no longer picks up Small and Heavy Armor in PvE if it is maxed out.
 - Removed speed cap from CPM champions in PvE.
 - UT Dispersion Pistol upgrades no longer reduce fire rate.
 
 Maps:
 - Added "CPM3" from Quake 3 CPMA mappack as QCDL14.
+- Added "Dismemberment" from Quake Live as QCDL15.
 - Added "Blood Covenant CTF" from Quake Champions as QCTF05.
 - Added "CTF-Face" from Unreal Tournament as QCTF06
 - Added normal gravity on QCME02 (Morpheus) indoor areas.
@@ -64,6 +67,8 @@ Maps:
 Bugfixes:
 - Fixed wrong menu scaling on resolutions other than 1920x1080. Now all menu elements should be properly visible on all screens.
 - Fixed issue when Galen totems wouldn't play heal sound in multiplayer sometimes.
+- Fixed Heavy Armor not giving Brock armor above 150 points in PvE when extra armor bonus is acquired.
+- Fixed upgrade graphics in lootboxes.
 - Fixed missing intermission in Doom 1 Episode 1.
 - Fixed incorrect texts in the Defrag maps menu.
 - Fixed Defrag skirmish menu options.
@@ -94,6 +99,7 @@ Misc:
 - Implemented weapon skins to UT weapons.
 - Changed default UT Sniper Rifle skin to that from Unreal Championship 2.
 - Updated some UT HUD, item pickup graphics and voxel models.
+- Replaced current UT music addon with a new version by Pepperperson.
 - Updated keycard and DM Hub keys sprites.
 - Updated DM Campaign portal frame textures.
 

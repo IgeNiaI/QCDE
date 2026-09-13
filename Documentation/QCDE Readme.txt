@@ -33,7 +33,7 @@ Additional Credits to   : See credits section
 
 * What is included *
 
-New levels              : 78 QCDE exclusive maps in "QCDEmaps3.1.pk3"
+New levels              : 79 QCDE exclusive maps in "QCDEmaps3.1.pk3"
 Sounds                  : Yes
 Music                   : Yes, in QCDEmus3.0.pk3
 Graphics                : Yes
@@ -51,7 +51,7 @@ Other files required    : Engine and Iwad of doom2 or similar
 * Play Information *
 
 Game                    : Doom 2 (compatible with Doom)
-Map #                   : Titlemap + 78 additional maps (separate downloads)
+Map #                   : Titlemap + 79 additional maps (separate downloads)
 Single Player           : Yes
 Cooperative 2-4 Player  : Designed for
 Deathmatch 2-4 Player   : Designed for
@@ -158,7 +158,7 @@ Franco Tieppo           : Spriter for all weapons in v2.0
                           But most importantly: The **WET FLOOR SIGN**
 
 Pixo                    : Orbb sprites, console font graphics, various sound edits,
-                          voxel models for UT weapons and some pickups,
+                          voxel models for UT weapons and some pickups, mapping,
                           original Quake 1, 2, 3, 4 and QW: ET weapon skin sprites
 
 Michael Markie          : QCDE Original Soundtrack, production of voice effects of Durandal,
@@ -195,7 +195,7 @@ Ivory Duke              : "Elder", "Delirium"
 
 TheSwampyLad            : "Temple of the Blood Serpants", "Exile"
 
-Pixo                    : "Hektik", "Okey", "Akuse"
+Pixo                    : "Hektik", "Okey", "Akuse", "Takken Apart"
 
 Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard", 
                           "Lea", "The Proving Grounds"
@@ -262,6 +262,8 @@ Hvellor                 : Remaining original Half-Life and Serious Sam weapon sk
 Ittrav                  : Various sprite adjustments
 
 anvi                    : Various sound adjustments
+
+ako & Pepperperson      : Unreal Tournament music addon
 
 Revenatn, Dech,
 Excedentia, Ivory Duke,
@@ -418,10 +420,6 @@ Holy Keyboarder         : Deep Embrace map mockup in Minecraft
 prod1G                  : Layout update for QCDL02 (Aerowalk)
 
 Dzierzan                : Shadow Warrior high quality sound effects
-
-ako                     : Assistance with Unreal Tournament music addon
-
-Pepperperson            : Assistance with Unreal Tournament music addon
 
 Craneo                  : Doom 4 Tech Mancubus sprites
 
