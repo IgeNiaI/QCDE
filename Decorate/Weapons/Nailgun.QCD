@@ -86,6 +86,7 @@ Actor QCNailgun : QCWeapon
 	// Select/Deselect Seq
 	//-----------------------
 	Select:
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 20, "Select.Modded")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "Select.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "Select.HalfLife")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "Select.QCDE1")
@@ -95,25 +96,28 @@ Actor QCNailgun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "Select.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "Select.Quake1")
 	Select.Default:
-		QCG4 A 0
+		QCA4 A 0
 		Goto SelectCont
 	Select.Quake1:
-		Q1G4 A 0
+		Q1A4 A 0
 		Goto SelectCont
 	Select.Quake2:
-		Q2G4 A 0
+		Q2A4 A 0
 		Goto SelectCont
 	Select.Quake4:
-		Q4G4 A 0
+		Q4A4 A 0
 		Goto SelectCont
 	Select.QCDE1:
-		Q0G4 A 0
+		Q0A4 A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLG4 A 0
+		HLA4 A 0
 		Goto SelectCont
 	Select.SeriousSam:
-		SSG4 A 0
+		SSA4 A 0
+		Goto SelectCont
+	Select.Modded:
+		MDA4 A 0
 		Goto SelectCont
 
 	SelectCont:
@@ -137,52 +141,90 @@ Actor QCNailgun : QCWeapon
 	// Ready Seq
 	//-----------------------
 	Ready:
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "Ready.SeriousSam")
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "Ready.HalfLife")
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "Ready.QCDE1")
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 5, "Ready.Quake4") // Fallback to another skin
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "Ready.Quake4")
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 3, "Ready.Quake1") // Fallback to another skin
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "Ready.Quake2")
-		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "Ready.Quake1")
-	Ready.Default:
-		QCG4 A 0
-		Goto ReadyCont
-	Ready.Quake1:
-		Q1G4 A 0
-		Goto ReadyCont
-	Ready.Quake2:
-		Q2G4 A 0
-		Goto ReadyCont
-	Ready.Quake4:
-		Q4G4 A 0
-		Goto ReadyCont.Animated
-	Ready.QCDE1:
-		Q0G4 A 0
-		Goto ReadyCont
-	Ready.HalfLife:
-		HLG4 A 0
-		Goto ReadyCont
-	Ready.SeriousSam:
-		SSG4 A 0
-		Goto ReadyCont.Animated
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 20, "Prepare.Modded")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "Prepare.SeriousSam")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "Prepare.HalfLife")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "Prepare.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 5, "Prepare.Quake4") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "Prepare.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 3, "Prepare.Quake1") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "Prepare.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "Prepare.Quake1")
+	Prepare.Default:
+		QCA4 A 0
+		Goto PrepareCont
+	Prepare.Quake1:
+		Q1A4 A 0
+		Goto PrepareCont
+	Prepare.Quake2:
+		Q2A4 A 0
+		Goto PrepareCont
+	Prepare.Quake4:
+		Q4A4 A 0
+		Goto PrepareCont
+	Prepare.QCDE1:
+		Q0A4 A 0
+		Goto PrepareCont
+	Prepare.HalfLife:
+		HLA4 A 0
+		Goto PrepareCont
+	Prepare.SeriousSam:
+		SSA4 A 0
+		Goto PrepareCont
+	Prepare.Modded:
+		MDA4 A 0 A_PlaySound("QC/Weapons/Nailgun/Prepare_Modded",CHAN_WEAPON,1,1)
+		Goto PrepareCont
 
-	ReadyCont:
-		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		"####" AAA 1 A_WeaponReady
+	PrepareCont:
+		"####" ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_WeaponReady(WRF_NOSECONDARY)
+		Goto Idle
+
+	Idle:
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 20, "Idle.Modded")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "Idle.SeriousSam")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "Idle.HalfLife")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "Idle.QCDE1")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 5, "Idle.Quake4") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "Idle.Quake4")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 3, "Idle.Quake1") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "Idle.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "Idle.Quake1")
+	Idle.Default:
+		QCC4 A 0
+		Goto IdleCont
+	Idle.Quake1:
+		Q1C4 A 0
+		Goto IdleCont
+	Idle.Quake2:
+		Q2C4 A 0
+		Goto IdleCont
+	Idle.Quake4:
+		Q4C4 A 0
+		Goto IdleCont
+	Idle.QCDE1:
+		Q0C4 A 0
+		Goto IdleCont
+	Idle.HalfLife:
+		HLC4 A 0
+		Goto IdleCont
+	Idle.SeriousSam:
+		SSC4 A 0
+		Goto IdleCont
+	Idle.Modded:
+		MDC4 A 0 A_PlaySound("QC/Weapons/Nailgun/Idle_Modded",CHAN_WEAPON,1,1)
+		Goto IdleCont
+
+	IdleCont:
+		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"IdleCantFire")
+		"####" ABCDEFGHIJKLMNOPQR 1 A_WeaponReady
 		Loop
 
-	ReadyCont.Animated:
-		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
-		"####" AGHIJK 3 A_WeaponReady
-		Loop
-
-		ReadyCantFire:
+		IdleCantFire:
 			"####" A 0 A_StopSound(CHAN_WEAPON)
-		RCFLooper:
+		ICFLooper:
 			"####" A 4 A_WeaponReady(WRF_NOFIRE)
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"RCFLooper")
-			Goto Ready
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ICFLooper")
+			Goto Idle
 
 	//-----------------------
 	// Fire Seq
@@ -193,59 +235,73 @@ Actor QCNailgun : QCWeapon
 		Goto FireNormalSound
 
 		FireNormalSound:
+			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 20, "FireNormalSound.Modded")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 8, "FireNormalSound.SeriousSam")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 7, "FireNormalSound.HalfLife")
-			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 6, "FireNormalSound.Default")
+			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 6, "FireNormalSound.QCDE1")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 5, "FireNormalSound.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 4, "FireNormalSound.Quake4")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 3, "FireNormalSound.Quake1") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 2, "FireNormalSound.Quake2")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 1, "FireNormalSound.Quake1")
 		FireNormalSound.Default:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Default",CHAN_WEAPON,1,1)
+			QCE4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.Quake1:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Quake1",CHAN_WEAPON,1,1)
+			Q1E4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Quake1",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.Quake2:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
+			Q2E4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.Quake4:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
+			Q4E4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireNormalSound.QCDE1:
+			Q0E4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.HalfLife:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HLE4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.SeriousSam:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
+			SSE4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireNormalSound.Modded:
+			MDE4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Modded",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 
 		FireQuadSound:
+			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 20, "FireQuadSound.Modded")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 8, "FireQuadSound.SeriousSam")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 7, "FireQuadSound.HalfLife")
-			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 6, "FireQuadSound.Default")
+			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 6, "FireQuadSound.QCDE1")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 5, "FireQuadSound.Quake4") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 4, "FireQuadSound.Quake4")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 3, "FireQuadSound.Quake1") // Fallback to another skin
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 2, "FireQuadSound.Quake2")
 			"####" A 0 A_JumpIfInventory("QCNailgunSkin", 1, "FireQuadSound.Quake1")
 		FireQuadSound.Default:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
+			QCE4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.Quake1:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Quake1",CHAN_WEAPON,1,1)
+			Q1E4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Quake1",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.Quake2:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
+			Q2E4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Quake2",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.Quake4:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
+			Q4E4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Quake4",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireQuadSound.Default:
+			Q0E4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.HalfLife:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HLE4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.SeriousSam:
-			"####" A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
+			SSE4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
+			Goto FirePostSoundCheck
+		FireQuadSound.Modded:
+			MDE4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Modded",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 
 	FirePostSoundCheck:
@@ -255,7 +311,7 @@ Actor QCNailgun : QCWeapon
 
 		//SP fire, two stages, one uses ammo, the other doesnt
 		FireLooper:
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"IdleCantFire")
 			"####" A 0 A_GunFlash("SP_Flash")
 			"####" B 1 Bright 	Offset(2,33)
 			"####" C 1 		 	Offset(3,35)
@@ -263,7 +319,7 @@ Actor QCNailgun : QCWeapon
 			"####" A 0 A_ReFire("FireLooperNA")
 			Goto EndFireLooper
 		FireLooperNA:
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"IdleCantFire")
 			"####" A 0 A_GunFlash("SP_FlashNA")
 			"####" D 1 Bright 	Offset(2,33)
 			"####" E 1 		 	Offset(3,35)
@@ -274,7 +330,7 @@ Actor QCNailgun : QCWeapon
 
 		//DM fire
 		DM_FireLooper:
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"IdleCantFire")
 			"####" A 0 A_GunFlash("DM_Flash")
 			"####" B 1 Bright 	Offset(2,33)
 			"####" C 1 		 	Offset(3,35)
@@ -282,7 +338,7 @@ Actor QCNailgun : QCWeapon
 			"####" A 0 A_ReFire("DM_FireLooper2")
 			Goto EndFireLooper
 		DM_FireLooper2:
-			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"ReadyCantFire")
+			"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,"IdleCantFire")
 			"####" A 0 A_GunFlash("DM_Flash")
 			"####" D 1 Bright 	Offset(2,33)
 			"####" E 1 		 	Offset(3,35)
@@ -291,6 +347,7 @@ Actor QCNailgun : QCWeapon
 			Goto EndFireLooper
 
 	EndFireLooper:
+		"####" A 0 A_JumpIfInventory("QCNailgunSkin", 20, "EndFireLooper.Modded")
 		"####" A 0 A_JumpIfInventory("QCNailgunSkin", 8, "EndFireLooper.SeriousSam")
 		"####" A 0 A_JumpIfInventory("QCNailgunSkin", 7, "EndFireLooper.HalfLife")
 		"####" A 0 A_JumpIfInventory("QCNailgunSkin", 6, "EndFireLooper.Default")
@@ -316,11 +373,14 @@ Actor QCNailgun : QCWeapon
 		Goto EndFireLooperCont
 	EndFireLooper.SeriousSam:
 		"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireEnd_SeriousSam",CHAN_WEAPON,1,0)
-		Goto Ready // Serious Sam skin uses spin down frames for idle animation
+		Goto EndFireLooperCont
+	EndFireLooper.Modded:
+		"####" A 0 A_PlaySound("QC/Weapons/Nailgun/FireEnd_Modded",CHAN_WEAPON,1,0)
+		Goto EndFireLooperCont
 
 	EndFireLooperCont:
-		"####" GHIGGHHIIGGGHHHIII 1 A_WeaponReady
-		Goto Ready
+		"####" GHIJKLMNOPQRSTUVWX 1 A_WeaponReady
+		Goto Idle
 
 
 	//-----------------------
@@ -329,10 +389,15 @@ Actor QCNailgun : QCWeapon
 
 	//Single player
 	SP_Flash:
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 20, "SP_Flash.Modded")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "SP_Flash.SeriousSam")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "SP_Flash.Default") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "SP_Flash.Default") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 5, "SP_Flash.Default") // Fallback to another skin
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "SP_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 3, "SP_Flash.Default") // Fallback to another skin
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "SP_Flash.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "SP_Flash.Default")
 	SP_Flash.Default:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeak",0,true,1,5)
 		Goto EndFlash
@@ -342,12 +407,20 @@ Actor QCNailgun : QCWeapon
 	SP_Flash.SeriousSam:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeak_SeriousSam",0,true,1,5)
 		Goto EndFlash
+	SP_Flash.Modded:
+		TNT1 A 0 A_FireCustomMissile("QCNailWeak_Modded",0,true,1,5)
+		Goto EndFlash
 
 	SP_FlashNA:
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 20, "SP_FlashNA.Modded")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "SP_FlashNA.SeriousSam")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "SP_FlashNA.Default") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "SP_FlashNA.Default") // Fallback to another skin
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 5, "SP_FlashNA.Default") // Fallback to another skin
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "SP_FlashNA.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 3, "SP_FlashNA.Default") // Fallback to another skin
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 2, "SP_FlashNA.Quake2")
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 1, "SP_FlashNA.Default")
 	SP_FlashNA.Default:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeak",0, false,1,5) //doesnt use ammo
 		Goto EndFlash
@@ -357,9 +430,13 @@ Actor QCNailgun : QCWeapon
 	SP_FlashNA.SeriousSam:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeak_SeriousSam",0, false,1,5) //doesnt use ammo
 		Goto EndFlash
+	SP_FlashNA.Modded:
+		TNT1 A 0 A_FireCustomMissile("QCNailWeak_Modded",0, false,1,5) //doesnt use ammo
+		Goto EndFlash
 
 	//Deathmatch
 	DM_Flash:
+		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 20, "DM_Flash.Modded")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "DM_Flash.SeriousSam")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 4, "DM_Flash.Default")
 		TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 3, "DM_Flash.Default") // Fallback to another skin
@@ -373,8 +450,12 @@ Actor QCNailgun : QCWeapon
 	DM_Flash.SeriousSam:
 		TNT1 A 0 A_FireCustomMissile("QCNailWeakDM_SeriousSam",0,true,1,5)
 		Goto EndFlash
+	DM_Flash.Modded:
+		TNT1 A 0 A_FireCustomMissile("QCNailWeakDM_Modded",0,true,1,5)
+		Goto EndFlash
 
 		EndFlash:
+			TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 20, "EndFlash.Modded")
 			TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 8, "EndFlash.SeriousSam")
 			TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 7, "EndFlash.HalfLife")
 			TNT1 A 0 A_JumpIfInventory("QCNailgunSkin", 6, "EndFlash.QCDE1")
@@ -393,15 +474,18 @@ Actor QCNailgun : QCWeapon
 			TNT1 A 0
 			Goto EndFlashCont
 		EndFlash.Quake4:
-			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,3,2)
+			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,5,2)
 			Goto EndFlashCont
 		EndFlash.QCDE1:
 			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,6,2)
 			Goto EndFlashCont
 		EndFlash.HalfLife:
-			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,4,2)
+			TNT1 A 0 A_FireCustomMissile("MachinegunSmokeSpawner",0, false,7,2)
 			Goto EndFlashCont
 		EndFlash.SeriousSam:
+			TNT1 A 0
+			Goto EndFlashCont
+		EndFlash.Modded:
 			TNT1 A 0
 			Goto EndFlashCont
 
@@ -485,6 +569,27 @@ Actor QCNailWeakDeathFX_Quake2 : QCNailWeakDeathFX
 	}
 }
 
+Actor QCNailWeakDeathFX_Modded : QCNailWeakDeathFX
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(256,"T1","T2")
+
+	T1:
+		MDY4 A 0
+		Goto EndDeath
+	T2:
+		MDZ4 A 0
+		Goto EndDeath
+
+	EndDeath:
+		"####" ABCDEFGH 1 Bright
+		"####" IJKLMNOPQRST 2 Bright
+		Stop
+	}
+}
+
 Actor QCNailWeak : FastProjectile
 {
 	Projectile
@@ -558,6 +663,23 @@ Actor QCNailWeak_SeriousSam : QCNailWeak
 	}
 }
 
+Actor QCNailWeak_Modded : QCNailWeak
+{
+	RenderStyle Add
+	Decal "MDNailgunDecalGlow"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		NAMI A 1 Bright
+		Wait
+	Death:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact_Modded",CHAN_AUTO,0.6,0,1.7,AAPTR_TARGET)
+		TNT1 A 0 A_SpawnItemEx("QCNailWeakDeathFX_Modded", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
+	}
+}
+
 Actor QCNailWeakDM : QCNailWeak
 {
 	Damage (12)
@@ -594,6 +716,23 @@ Actor QCNailWeakDM_SeriousSam : QCNailWeakDM
 	Death:
 		TNT1 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact_SeriousSam",CHAN_AUTO,0.6,0,1.7,AAPTR_TARGET)
 		Goto Super::Death+1
+	}
+}
+
+Actor QCNailWeakDM_Modded : QCNailWeakDM
+{
+	RenderStyle Add
+	Decal "MDNailgunDecalGlow"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		NAMI A 1 Bright
+		Wait
+	Death:
+		TNT1 A 0 A_PlaySound("QC/Weapons/Nailgun/Impact_Modded",CHAN_AUTO,0.6,0,1.7,AAPTR_TARGET)
+		TNT1 A 0 A_SpawnItemEx("QCNailWeakDeathFX_Modded", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION)
+		Goto Super::Death+2
 	}
 }
 

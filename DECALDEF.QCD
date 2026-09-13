@@ -1651,3 +1651,25 @@ decal SSNailgunOrangeFull	//Glowing spot
 	animator ShrinkFadePlasmaGlow
 	LowerDecal "Q4PlasmaBlackSmall"
 }
+
+decal MDNailgunDecalLower
+{
+	pic MDX4decl
+	x-scale 0.15
+	y-scale 0.15
+	randomflipx
+	randomflipy
+	translucent 0.85
+}
+
+decal MDNailgunDecalGlow	//Glowing spot
+{
+	pic MDX4glow
+	x-scale 0.15
+	y-scale 0.15
+	randomflipx
+	randomflipy
+	Fullbright
+	animator GoAwayBulletGlow
+	LowerDecal "MDNailgunDecalLower"
+}
