@@ -62,6 +62,29 @@ internal struct EXClassInfo? QCDE_EX_GetStructForClass (str class)
     return null;
 }
 
+#ifdef __LINE__
+#define X(type, member) Log(s: #member ": ", type: EXClasses[i].member)
+#endif
+
+Script "QCDE_EX_ListClasses"
+{
+    for(int i = 0; i < EXClassCount; i++)
+    {
+        Log(s:"== EX CLASS #", i:i, s:" ==");
+        X(s, class);
+        X(s, displayName);
+        X(s, portrait);
+        X(i, health);
+        X(i, armor);
+        X(s, tickScript);
+        X(s, voiceCallback);
+    }
+}
+
+#ifdef __LINE__
+#undef X
+#endif
+
 void QCDE_EX_AddClass (str class, str displayName, str portrait = null, int health = 100, int armor = 100, str tickScript = null, str voiceCallback = null)
 {
     struct EXClassInfo& c = EXClasses[EXClassCount++];
@@ -244,15 +267,12 @@ Script "QCDE_EX_DrawHUD" (raw p) clientside
     str portrait, activeIconOn, activeIconOff;
 
     p = Packet_ReadStr(p);
-    Log(s:Packet_Rval);
     portrait = Packet_Rval;
 
     p = Packet_ReadStr(p);
-    Log(s:Packet_Rval);
     activeIconOn = Packet_Rval;
 
     p = Packet_ReadStr(p);
-    Log(s:Packet_Rval);
     activeIconOff = Packet_Rval;
 
     str className = GetActorClass(0);
