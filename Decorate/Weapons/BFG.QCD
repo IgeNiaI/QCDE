@@ -2269,6 +2269,7 @@ Actor QCBFGShot_DM	//No AOE while flying
 	Xdeath:	//Direct hit
 		TNT1 A 0 A_GiveToTarget("HitBeepMax",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 		//Medals start
+		TNT1 A 0 A_GiveToTarget("CollateralToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		TNT1 A 0 A_GiveToTarget("BFGDirectDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		//Medals end
 		Goto DeathCont
@@ -2283,6 +2284,7 @@ Actor QCBFGShot_DM	//No AOE while flying
 		RadiusHit:	//splash damage beep
 			TNT1 A 0 A_GiveToTarget("HitBeepMid",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE)
 			//Medals start
+			TNT1 A 0 A_GiveToTarget("CollateralToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 			TNT1 A 0 A_GiveToTarget("BFGSplashDamageToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 			//Medals end
 			Goto DeathCont
@@ -2306,6 +2308,10 @@ Actor QCBFGShot_DM	//No AOE while flying
 		TNT1 A 0 A_SpawnItemEx("BFGClassicExploSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
 		TNT1 A 2
 		TNT1 AAA 1 A_SpawnItemEx("BFGExploLightningSmall",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SKIPOWNER|SXF_NOUNLAGGED)
+		TNT1 A 10 // Need this delay for below medal
+		//Medals start
+		TNT1 A 0 A_TakeFromTarget("CollateralToken",1)
+		//Medals end
 		Stop
 	}
 }
