@@ -80,7 +80,7 @@ QCDE16   Sinister                     DBThanatos & Ivan Dobrovski
 QCDE17   Lockbox                      DBThanatos
 QCDE18   Elder                        Ivory Duke
 QCDE19   Corrupted Station            DBThanatos
-QCDE20   Deck                         RoosTer
+QCDE20   Crossfire                    Amosu
 QCDE21   Almost Lost                  RoosTer
 QCDE22   Sarnath                      DBThanatos
 QCDE23   Lea                          Mr.Rocket

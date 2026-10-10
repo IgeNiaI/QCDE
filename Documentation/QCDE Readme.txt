@@ -178,7 +178,7 @@ DBThanatos              : "Blood Covenant", "Blood Run", "Phrantic", "Furious He
 						  "Fusillade", "Battleforged", "Helix"
 
 RoosTer                 : "Aerowalk", "Vertical Vengeance", "Fatal Instinct", "Morpheus",
-                          "Lost World", "Stubborn", "Phobos Campgrounds", "Deck", "Almost Lost",
+                          "Lost World", "Stubborn", "Phobos Campgrounds", "Almost Lost",
 						  "Quarantine", "Temple of Retribution",
                           "Outpost", "Hangar", "Cathedral", "Astroid Garden"
 
@@ -200,9 +200,11 @@ Pixo                    : "Hektik", "Okey", "Akuse", "Takken Apart"
 Mr.Rocket               : "The Bad Place", "The Dark Zone", "Claustrophobopolis", "The Longest Yard", 
                           "Lea", "The Proving Grounds"
 
+kultasakaali            : "Hell's Gate", "Fractal Reactor", "Blood Crossings"
+
 KillerKouhai            : "Zenith"
 
-kultasakaali            : "Hell's Gate", "Fractal Reactor", "Blood Crossings"
+Amosu                   : "Crossfire"
 
 Dech                    : "The Struggle", "CTF Run", "Fatal Error"
 
