@@ -1673,3 +1673,64 @@ decal MDNailgunDecalGlow	//Glowing spot
 	animator GoAwayBulletGlow
 	LowerDecal "MDNailgunDecalLower"
 }
+
+// Modded Super Nailgun
+decal MDSuperNailgunChip1
+{
+	pic MDDchip1
+	x-scale 0.23
+	y-scale 0.23
+	randomflipx
+	randomflipy
+	translucent 0.85
+	shade "00 00 00"
+}
+decal MDSuperNailgunChip2
+{
+	pic MDDchip2
+	x-scale 0.23
+	y-scale 0.23
+	randomflipx
+	randomflipy
+	translucent 0.85
+	shade "00 00 00"
+}
+decal MDSuperNailgunChip3
+{
+	pic MDDchip3
+	x-scale 0.23
+	y-scale 0.23
+	randomflipx
+	randomflipy
+	translucent 0.85
+	shade "00 00 00"
+}
+decal MDSuperNailgunChip4
+{
+	pic MDDchip4
+	x-scale 0.23
+	y-scale 0.23
+	randomflipx
+	randomflipy
+	translucent 0.85
+	shade "00 00 00"
+}
+decal MDSuperNailgunChip5
+{
+	pic MDDchip5
+	x-scale 0.23
+	y-scale 0.23
+	randomflipx
+	randomflipy
+	translucent 0.85
+	shade "00 00 00"
+}
+
+decalgroup MDSuperNailgunChip
+{
+	MDSuperNailgunChip1	1
+	MDSuperNailgunChip2	1
+	MDSuperNailgunChip3	1
+	MDSuperNailgunChip4	1
+	MDSuperNailgunChip5	1
+}

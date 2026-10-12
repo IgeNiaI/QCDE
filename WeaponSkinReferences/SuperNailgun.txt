@@ -1,0 +1,65 @@
+Super Nailgun animation states and frames:
+
+Prepare			-> A, A-Z (26 frames, 1 tic each)
+	brightmaps	-> B
+Idle			-> C, A-L (12 frames, 3 tics each)
+	brightmaps	-> D
+Fire start		-> E, A (resting pose)
+	brightmaps	-> F
+Fire loop		-> E, B-Q (16 poses)
+	brightmaps	-> F
+Fire end		-> G, A-R (18 frames, 2 tics each)
+	brightmaps	-> H
+
+Upgrade animation sprites (active while SNG_UG_Seeker is owned):
+Prepare			-> I, A-Z
+	brightmaps	-> J
+Idle			-> K, A-L
+	brightmaps	-> L
+Fire start		-> M, A
+	brightmaps	-> N
+Fire loop		-> M, B-Q
+	brightmaps	-> N
+Fire end		-> O, A-R
+	brightmaps	-> P
+
+Every skin uses the same animation slots and timing, including fire end.
+Frame A is also used when lowering the weapon.
+Static idle skins repeat the resting pose; Quake 3 uses its rotating idle.
+Quake 3 prepare uses idle poses DDEEEFFFGGGHHHIIIJJJKKKLLL for both
+normal and upgraded frames, retaining the 26-tic duration and ending on L
+before idle restarts at A. Repeated poses share their prepare brightmap.
+Fire end lasts 36 tics and allows A_WeaponReady throughout.
+Fire end starts with the former B pose. Former B-R occupy A-Q, and R
+repeats the final pose to preserve the 18 slots and 36-tic duration.
+Default, Quake 1, QCDE 1.0, ET QW, and Quake 4 retain the progressive
+slowdown, with an 8-tic final idle hold. Quake 2 retains its faster initial
+rotation and finishes with a 6-tic idle hold.
+Three-pose cycles never skip poses, avoiding apparent backward rotation.
+All six spin-down skins finish exactly at idle.
+Quake 3 continues its idle rotation; Half-Life and Serious Sam remain static.
+The same mappings apply to normal and upgraded sprites and brightmaps.
+Normal, DM, and homing firing retain their original attack timing.
+Skins without dedicated upgraded artwork copy normal frames and brightmaps.
+SNG_UG_Lava controls lava projectile behavior independently.
+Default skin Graphics assets and TEXTURES.QCD remaps cover every phase.
+
+Modded skin (slot 20):
+Based on QCDE 1.0; HUD prefix MD, with a dedicated brightmap per frame.
+Normal and upgraded phases have independent files under SuperNailgun/Modded.
+NAMD: directional normal, lava, homing, and lava-homing nail sprites A-D.
+MDUD: lava flame effect; MDVD: lava flame/trail.
+MDWD, MDXD, MDYD, MDZD: four impact variants, each A-T.
+Effect brightmaps use MB prefixes only for frames rendered without Bright.
+Missing brightmaps are black copies preserving the original alpha.
+Always-Bright projectile, impact, and flame frames have no brightmaps.
+MDUD T-X retain brightmaps for their non-Bright fade-in; MDVD A retains its
+brightmap for the flame burner, even though the lava trail also uses it Bright.
+All HUD frames retain their dedicated brightmaps.
+Sounds/Weapons/SuperNailgun/Modded includes dedicated prepare and idle silence,
+firing, fire end, homing, quad firing/homing, and seven impact sounds.
+MDSuperNailgunChip decals use Graphics/Decals/SuperNailgun/MDDchip1-5.png.
+All projectile/effect actors use separate Modded assets.
+The Modded skin has no muzzle smoke or homing projectile smoke.
+The preview is Graphics/Menu/SkinPreviews/SuperNailgun/SKINGDMD.png.
+Eleena's illusion also uses the Modded projectile, impact, and firing sounds.
