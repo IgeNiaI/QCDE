@@ -141,10 +141,14 @@ brightmap sprite QCE4B0	{	map "Sprites/Weapons/Nailgun/Default/_E_fire_loop/_F_b
 brightmap sprite QCE4D0	{	map "Sprites/Weapons/Nailgun/Default/_E_fire_loop/_F_brightmaps/QCF4D0.png"	}
 
 // Default SNG
-brightmap sprite QCGDM0	{	map "Sprites/Weapons/SuperNailgun/Default/brightmaps/QCBDM0.png"	}
-brightmap sprite QCGDN0	{	map "Sprites/Weapons/SuperNailgun/Default/brightmaps/QCBDN0.png"	}
-brightmap sprite QCGDO0	{	map "Sprites/Weapons/SuperNailgun/Default/brightmaps/QCBDO0.png"	}
-brightmap sprite QCGDP0	{	map "Sprites/Weapons/SuperNailgun/Default/brightmaps/QCBDP0.png"	}
+brightmap sprite QCEDN0	{	map "Sprites/Weapons/SuperNailgun/Default/_E_fire_loop/_F_brightmaps/QCFDN0.png"	}
+brightmap sprite QCEDO0	{	map "Sprites/Weapons/SuperNailgun/Default/_E_fire_loop/_F_brightmaps/QCFDO0.png"	}
+brightmap sprite QCEDP0	{	map "Sprites/Weapons/SuperNailgun/Default/_E_fire_loop/_F_brightmaps/QCFDP0.png"	}
+brightmap sprite QCEDQ0	{	map "Sprites/Weapons/SuperNailgun/Default/_E_fire_loop/_F_brightmaps/QCFDQ0.png"	}
+brightmap sprite QCMDN0	{	map "Sprites/Weapons/SuperNailgun/Default/_M_fire_loop_upgraded/_N_brightmaps/QCNDN0.png"	}
+brightmap sprite QCMDO0	{	map "Sprites/Weapons/SuperNailgun/Default/_M_fire_loop_upgraded/_N_brightmaps/QCNDO0.png"	}
+brightmap sprite QCMDP0	{	map "Sprites/Weapons/SuperNailgun/Default/_M_fire_loop_upgraded/_N_brightmaps/QCNDP0.png"	}
+brightmap sprite QCMDQ0	{	map "Sprites/Weapons/SuperNailgun/Default/_M_fire_loop_upgraded/_N_brightmaps/QCNDQ0.png"	}
 
 // Default TB
 brightmap sprite QCGEB0	{	map "Sprites/Weapons/Tribolt/Default/brightmaps/QCBEB0.png"	}
@@ -333,24 +337,159 @@ brightmap sprite Q0E4D0	{	map "Sprites/Weapons/Nailgun/QCDE 1.0/_E_fire_loop/_F_
 brightmap sprite Q0E4E0	{	map "Sprites/Weapons/Nailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F4E0.png"	}
 
 // QCDE 1.0 SNG
-brightmap sprite Q0GDA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDA0.png"	}
-brightmap sprite Q0GDB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDB0.png"	}
-brightmap sprite Q0GDC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDC0.png"	}
-brightmap sprite Q0GDD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDA0.png"	}
-brightmap sprite Q0GDE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDB0.png"	}
-brightmap sprite Q0GDF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDC0.png"	}
-brightmap sprite Q0GDG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDA0.png"	}
-brightmap sprite Q0GDH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDB0.png"	}
-brightmap sprite Q0GDI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDC0.png"	}
-brightmap sprite Q0GDJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDA0.png"	}
-brightmap sprite Q0GDK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDB0.png"	}
-brightmap sprite Q0GDL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDC0.png"	}
-brightmap sprite Q0GDM0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDM0.png"	}
-brightmap sprite Q0GDN0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDN0.png"	}
-brightmap sprite Q0GDO0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDO0.png"	}
-brightmap sprite Q0GDP0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDP0.png"	}
-brightmap sprite Q0GDQ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDQ0.png"	}
-brightmap sprite Q0GDR0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/brightmaps/Q0BDR0.png"	}
+brightmap sprite Q0ADA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADM0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADN0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADO0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADP0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADQ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADR0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADS0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADT0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADU0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADV0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADW0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADX0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADY0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+brightmap sprite Q0ADZ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BDA0.png"	}
+
+brightmap sprite Q0CDA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+brightmap sprite Q0CDL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_C_idle/_D_brightmaps/Q0DDA0.png"	}
+
+brightmap sprite Q0EDA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_start/_F_brightmaps/Q0FDA0.png"	}
+brightmap sprite Q0EDB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDB0.png"	}
+brightmap sprite Q0EDC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDC0.png"	}
+brightmap sprite Q0EDD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDD0.png"	}
+brightmap sprite Q0EDE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDE0.png"	}
+brightmap sprite Q0EDF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDF0.png"	}
+brightmap sprite Q0EDG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDG0.png"	}
+brightmap sprite Q0EDH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDH0.png"	}
+brightmap sprite Q0EDI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDI0.png"	}
+brightmap sprite Q0EDJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDJ0.png"	}
+brightmap sprite Q0EDK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDK0.png"	}
+brightmap sprite Q0EDL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDL0.png"	}
+brightmap sprite Q0EDM0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDM0.png"	}
+brightmap sprite Q0EDN0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDN0.png"	}
+brightmap sprite Q0EDO0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDO0.png"	}
+brightmap sprite Q0EDP0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDP0.png"	}
+brightmap sprite Q0EDQ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0FDQ0.png"	}
+
+brightmap sprite Q0GDA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDA0.png"	}
+brightmap sprite Q0GDB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDB0.png"	}
+brightmap sprite Q0GDC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDC0.png"	}
+brightmap sprite Q0GDD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDD0.png"	}
+brightmap sprite Q0GDE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDE0.png"	}
+brightmap sprite Q0GDF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDF0.png"	}
+brightmap sprite Q0GDG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDG0.png"	}
+brightmap sprite Q0GDH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDH0.png"	}
+brightmap sprite Q0GDI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDI0.png"	}
+brightmap sprite Q0GDJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDJ0.png"	}
+brightmap sprite Q0GDK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDK0.png"	}
+brightmap sprite Q0GDL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDL0.png"	}
+brightmap sprite Q0GDM0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDM0.png"	}
+brightmap sprite Q0GDN0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDN0.png"	}
+brightmap sprite Q0GDO0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDO0.png"	}
+brightmap sprite Q0GDP0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDP0.png"	}
+brightmap sprite Q0GDQ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDQ0.png"	}
+brightmap sprite Q0GDR0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_G_fire_end/_H_brightmaps/Q0HDR0.png"	}
+
+brightmap sprite Q0IDA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDM0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDN0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDO0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDP0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDQ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDR0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDS0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDT0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDU0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDV0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDW0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDX0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDY0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+brightmap sprite Q0IDZ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_I_prepare_upgraded/_J_brightmaps/Q0JDA0.png"	}
+
+brightmap sprite Q0KDA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+brightmap sprite Q0KDL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_K_idle_upgraded/_L_brightmaps/Q0LDA0.png"	}
+
+brightmap sprite Q0MDA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_start_upgraded/_N_brightmaps/Q0NDA0.png"	}
+brightmap sprite Q0MDB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDB0.png"	}
+brightmap sprite Q0MDC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDC0.png"	}
+brightmap sprite Q0MDD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDD0.png"	}
+brightmap sprite Q0MDE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDE0.png"	}
+brightmap sprite Q0MDF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDF0.png"	}
+brightmap sprite Q0MDG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDG0.png"	}
+brightmap sprite Q0MDH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDH0.png"	}
+brightmap sprite Q0MDI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDI0.png"	}
+brightmap sprite Q0MDJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDJ0.png"	}
+brightmap sprite Q0MDK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDK0.png"	}
+brightmap sprite Q0MDL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDL0.png"	}
+brightmap sprite Q0MDM0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDM0.png"	}
+brightmap sprite Q0MDN0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDN0.png"	}
+brightmap sprite Q0MDO0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDO0.png"	}
+brightmap sprite Q0MDP0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDP0.png"	}
+brightmap sprite Q0MDQ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_M_fire_loop_upgraded/_N_brightmaps/Q0NDQ0.png"	}
+
+brightmap sprite Q0ODA0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDA0.png"	}
+brightmap sprite Q0ODB0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDB0.png"	}
+brightmap sprite Q0ODC0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDC0.png"	}
+brightmap sprite Q0ODD0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDD0.png"	}
+brightmap sprite Q0ODE0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDE0.png"	}
+brightmap sprite Q0ODF0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDF0.png"	}
+brightmap sprite Q0ODG0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDG0.png"	}
+brightmap sprite Q0ODH0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDH0.png"	}
+brightmap sprite Q0ODI0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDI0.png"	}
+brightmap sprite Q0ODJ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDJ0.png"	}
+brightmap sprite Q0ODK0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDK0.png"	}
+brightmap sprite Q0ODL0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDL0.png"	}
+brightmap sprite Q0ODM0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDM0.png"	}
+brightmap sprite Q0ODN0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDN0.png"	}
+brightmap sprite Q0ODO0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDO0.png"	}
+brightmap sprite Q0ODP0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDP0.png"	}
+brightmap sprite Q0ODQ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDQ0.png"	}
+brightmap sprite Q0ODR0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDR0.png"	}
 
 // QCDE 1.0 TB
 brightmap sprite Q0GEA0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEA0.png"	}
@@ -484,30 +623,87 @@ brightmap sprite Q1E4B0	{	map "Sprites/Weapons/Nailgun/Quake 1/_E_fire_loop/_F_b
 brightmap sprite Q1E4D0	{	map "Sprites/Weapons/Nailgun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F4D0.png"	}
 
 // Quake 1 SNG
-brightmap sprite Q1GDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1BDM0.png"	}
-brightmap sprite Q1GDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1BDN0.png"	}
-brightmap sprite Q1GDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1BDO0.png"	}
-brightmap sprite Q1GDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1BDP0.png"	}
+brightmap sprite Q1EDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_E_fire_loop/_F_brightmaps/Q1FDN0.png"	}
+brightmap sprite Q1EDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_E_fire_loop/_F_brightmaps/Q1FDO0.png"	}
+brightmap sprite Q1EDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_E_fire_loop/_F_brightmaps/Q1FDP0.png"	}
+brightmap sprite Q1EDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_E_fire_loop/_F_brightmaps/Q1FDQ0.png"	}
 
-// Quake 1 SNG Upgraded
-brightmap sprite Q1FDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDA0.png"	}
-brightmap sprite Q1FDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDB0.png"	}
-brightmap sprite Q1FDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDC0.png"	}
-brightmap sprite Q1FDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDA0.png"	}
-brightmap sprite Q1FDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDB0.png"	}
-brightmap sprite Q1FDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDC0.png"	}
-brightmap sprite Q1FDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDA0.png"	}
-brightmap sprite Q1FDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDB0.png"	}
-brightmap sprite Q1FDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDC0.png"	}
-brightmap sprite Q1FDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDA0.png"	}
-brightmap sprite Q1FDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDB0.png"	}
-brightmap sprite Q1FDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDC0.png"	}
-brightmap sprite Q1FDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDM0.png"	}
-brightmap sprite Q1FDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDN0.png"	}
-brightmap sprite Q1FDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDO0.png"	}
-brightmap sprite Q1FDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDP0.png"	}
-brightmap sprite Q1FDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDB0.png"	}
-brightmap sprite Q1FDR0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/brightmaps/Q1DDC0.png"	}
+brightmap sprite Q1IDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDR0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDS0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDT0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDU0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDV0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDW0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDX0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDY0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+brightmap sprite Q1IDZ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_I_prepare_upgraded/_J_brightmaps/Q1JDA0.png"	}
+
+brightmap sprite Q1KDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+brightmap sprite Q1KDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_K_idle_upgraded/_L_brightmaps/Q1LDA0.png"	}
+
+brightmap sprite Q1MDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_start_upgraded/_N_brightmaps/Q1NDA0.png"	}
+brightmap sprite Q1MDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDB0.png"	}
+brightmap sprite Q1MDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDC0.png"	}
+brightmap sprite Q1MDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDD0.png"	}
+brightmap sprite Q1MDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDE0.png"	}
+brightmap sprite Q1MDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDF0.png"	}
+brightmap sprite Q1MDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDG0.png"	}
+brightmap sprite Q1MDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDH0.png"	}
+brightmap sprite Q1MDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDI0.png"	}
+brightmap sprite Q1MDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDJ0.png"	}
+brightmap sprite Q1MDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDK0.png"	}
+brightmap sprite Q1MDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDL0.png"	}
+brightmap sprite Q1MDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDM0.png"	}
+brightmap sprite Q1MDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDN0.png"	}
+brightmap sprite Q1MDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDO0.png"	}
+brightmap sprite Q1MDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDP0.png"	}
+brightmap sprite Q1MDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_M_fire_loop_upgraded/_N_brightmaps/Q1NDQ0.png"	}
+
+brightmap sprite Q1ODA0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDA0.png"	}
+brightmap sprite Q1ODB0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDB0.png"	}
+brightmap sprite Q1ODC0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDC0.png"	}
+brightmap sprite Q1ODD0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDD0.png"	}
+brightmap sprite Q1ODE0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDE0.png"	}
+brightmap sprite Q1ODF0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDF0.png"	}
+brightmap sprite Q1ODG0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDG0.png"	}
+brightmap sprite Q1ODH0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDH0.png"	}
+brightmap sprite Q1ODI0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDI0.png"	}
+brightmap sprite Q1ODJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDJ0.png"	}
+brightmap sprite Q1ODK0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDK0.png"	}
+brightmap sprite Q1ODL0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDL0.png"	}
+brightmap sprite Q1ODM0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDM0.png"	}
+brightmap sprite Q1ODN0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDN0.png"	}
+brightmap sprite Q1ODO0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDO0.png"	}
+brightmap sprite Q1ODP0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDP0.png"	}
+brightmap sprite Q1ODQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDQ0.png"	}
+brightmap sprite Q1ODR0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDR0.png"	}
 
 // Quake 1 TB
 brightmap sprite Q1GEB0	{	map "Sprites/Weapons/Tribolt/Quake 1/brightmaps/Q1BEB0.png"	}
@@ -1037,40 +1233,159 @@ brightmap sprite Q2E4W0	{	map "Sprites/Weapons/Nailgun/Quake 2/_E_fire_end/_F_br
 brightmap sprite Q2E4X0	{	map "Sprites/Weapons/Nailgun/Quake 2/_E_fire_end/_F_brightmaps/Q2F4G0.png"	}
 
 // Quake 2 SNG
-brightmap sprite Q2GDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDA0.png"	}
-brightmap sprite Q2GDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDB0.png"	}
-brightmap sprite Q2GDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDC0.png"	}
-brightmap sprite Q2GDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDD0.png"	}
-brightmap sprite Q2GDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDD0.png"	}
-brightmap sprite Q2GDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDD0.png"	}
-brightmap sprite Q2GDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDD0.png"	}
-brightmap sprite Q2GDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDD0.png"	}
-brightmap sprite Q2GDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDI0.png"	}
-brightmap sprite Q2GDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDJ0.png"	}
-brightmap sprite Q2GDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDK0.png"	}
-brightmap sprite Q2GDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDL0.png"	}
-brightmap sprite Q2GDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDM0.png"	}
-brightmap sprite Q2GDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDN0.png"	}
-brightmap sprite Q2GDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDO0.png"	}
-brightmap sprite Q2GDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2BDP0.png"	}
+brightmap sprite Q2ADA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADM0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADN0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADO0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADP0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADR0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADS0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADT0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADU0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADV0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADW0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADX0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADY0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
+brightmap sprite Q2ADZ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_A_prepare/_B_brightmaps/Q2BDA0.png"	}
 
-// Quake 2 SNG Upgraded
-brightmap sprite Q2FDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDA0.png"	}
-brightmap sprite Q2FDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDB0.png"	}
-brightmap sprite Q2FDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDC0.png"	}
-brightmap sprite Q2FDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDD0.png"	}
-brightmap sprite Q2FDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDD0.png"	}
-brightmap sprite Q2FDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDD0.png"	}
-brightmap sprite Q2FDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDD0.png"	}
-brightmap sprite Q2FDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDD0.png"	}
-brightmap sprite Q2FDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDI0.png"	}
-brightmap sprite Q2FDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDJ0.png"	}
-brightmap sprite Q2FDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDK0.png"	}
-brightmap sprite Q2FDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDL0.png"	}
-brightmap sprite Q2FDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDM0.png"	}
-brightmap sprite Q2FDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDN0.png"	}
-brightmap sprite Q2FDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDO0.png"	}
-brightmap sprite Q2FDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/brightmaps/Q2DDP0.png"	}
+brightmap sprite Q2CDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+brightmap sprite Q2CDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_C_idle/_D_brightmaps/Q2DDA0.png"	}
+
+brightmap sprite Q2EDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_start/_F_brightmaps/Q2FDA0.png"	}
+brightmap sprite Q2EDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDB0.png"	}
+brightmap sprite Q2EDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDC0.png"	}
+brightmap sprite Q2EDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDD0.png"	}
+brightmap sprite Q2EDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDE0.png"	}
+brightmap sprite Q2EDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDF0.png"	}
+brightmap sprite Q2EDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDG0.png"	}
+brightmap sprite Q2EDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDH0.png"	}
+brightmap sprite Q2EDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDI0.png"	}
+brightmap sprite Q2EDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDJ0.png"	}
+brightmap sprite Q2EDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDK0.png"	}
+brightmap sprite Q2EDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDL0.png"	}
+brightmap sprite Q2EDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDM0.png"	}
+brightmap sprite Q2EDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDN0.png"	}
+brightmap sprite Q2EDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDO0.png"	}
+brightmap sprite Q2EDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDP0.png"	}
+brightmap sprite Q2EDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_E_fire_loop/_F_brightmaps/Q2FDQ0.png"	}
+
+brightmap sprite Q2GDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDA0.png"	}
+brightmap sprite Q2GDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDB0.png"	}
+brightmap sprite Q2GDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDC0.png"	}
+brightmap sprite Q2GDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDD0.png"	}
+brightmap sprite Q2GDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDE0.png"	}
+brightmap sprite Q2GDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDF0.png"	}
+brightmap sprite Q2GDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDG0.png"	}
+brightmap sprite Q2GDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDH0.png"	}
+brightmap sprite Q2GDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDI0.png"	}
+brightmap sprite Q2GDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDJ0.png"	}
+brightmap sprite Q2GDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDK0.png"	}
+brightmap sprite Q2GDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDL0.png"	}
+brightmap sprite Q2GDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDM0.png"	}
+brightmap sprite Q2GDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDN0.png"	}
+brightmap sprite Q2GDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDO0.png"	}
+brightmap sprite Q2GDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDP0.png"	}
+brightmap sprite Q2GDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDQ0.png"	}
+brightmap sprite Q2GDR0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_G_fire_end/_H_brightmaps/Q2HDR0.png"	}
+
+brightmap sprite Q2IDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDR0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDS0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDT0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDU0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDV0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDW0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDX0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDY0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+brightmap sprite Q2IDZ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_I_prepare_upgraded/_J_brightmaps/Q2JDA0.png"	}
+
+brightmap sprite Q2KDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+brightmap sprite Q2KDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_K_idle_upgraded/_L_brightmaps/Q2LDA0.png"	}
+
+brightmap sprite Q2MDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_start_upgraded/_N_brightmaps/Q2NDA0.png"	}
+brightmap sprite Q2MDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDB0.png"	}
+brightmap sprite Q2MDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDC0.png"	}
+brightmap sprite Q2MDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDD0.png"	}
+brightmap sprite Q2MDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDE0.png"	}
+brightmap sprite Q2MDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDF0.png"	}
+brightmap sprite Q2MDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDG0.png"	}
+brightmap sprite Q2MDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDH0.png"	}
+brightmap sprite Q2MDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDI0.png"	}
+brightmap sprite Q2MDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDJ0.png"	}
+brightmap sprite Q2MDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDK0.png"	}
+brightmap sprite Q2MDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDL0.png"	}
+brightmap sprite Q2MDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDM0.png"	}
+brightmap sprite Q2MDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDN0.png"	}
+brightmap sprite Q2MDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDO0.png"	}
+brightmap sprite Q2MDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDP0.png"	}
+brightmap sprite Q2MDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_M_fire_loop_upgraded/_N_brightmaps/Q2NDQ0.png"	}
+
+brightmap sprite Q2ODA0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDA0.png"	}
+brightmap sprite Q2ODB0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDB0.png"	}
+brightmap sprite Q2ODC0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDC0.png"	}
+brightmap sprite Q2ODD0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDD0.png"	}
+brightmap sprite Q2ODE0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDE0.png"	}
+brightmap sprite Q2ODF0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDF0.png"	}
+brightmap sprite Q2ODG0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDG0.png"	}
+brightmap sprite Q2ODH0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDH0.png"	}
+brightmap sprite Q2ODI0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDI0.png"	}
+brightmap sprite Q2ODJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDJ0.png"	}
+brightmap sprite Q2ODK0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDK0.png"	}
+brightmap sprite Q2ODL0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDL0.png"	}
+brightmap sprite Q2ODM0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDM0.png"	}
+brightmap sprite Q2ODN0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDN0.png"	}
+brightmap sprite Q2ODO0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDO0.png"	}
+brightmap sprite Q2ODP0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDP0.png"	}
+brightmap sprite Q2ODQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDQ0.png"	}
+brightmap sprite Q2ODR0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDR0.png"	}
 
 // Quake 2 TB
 brightmap sprite Q2GEA0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEA0.png"	}
@@ -1360,40 +1675,159 @@ brightmap sprite Q3KCT0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_K_fire_upgr
 brightmap sprite Q3KCU0	{	map "Sprites/Weapons/SuperShotgun/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3LCA0.png"	}
 
 // Quake 3 SNG
-brightmap sprite Q3GDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDA0.png"	}
-brightmap sprite Q3GDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDB0.png"	}
-brightmap sprite Q3GDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDC0.png"	}
-brightmap sprite Q3GDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDD0.png"	}
-brightmap sprite Q3GDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDE0.png"	}
-brightmap sprite Q3GDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDF0.png"	}
-brightmap sprite Q3GDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDG0.png"	}
-brightmap sprite Q3GDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDH0.png"	}
-brightmap sprite Q3GDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDI0.png"	}
-brightmap sprite Q3GDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDJ0.png"	}
-brightmap sprite Q3GDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDK0.png"	}
-brightmap sprite Q3GDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDL0.png"	}
-brightmap sprite Q3GDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDM0.png"	}
-brightmap sprite Q3GDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDN0.png"	}
-brightmap sprite Q3GDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDO0.png"	}
-brightmap sprite Q3GDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3BDP0.png"	}
+brightmap sprite Q3ADA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDA0.png"	}
+brightmap sprite Q3ADB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDA0.png"	}
+brightmap sprite Q3ADC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDC0.png"	}
+brightmap sprite Q3ADD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDC0.png"	}
+brightmap sprite Q3ADE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDC0.png"	}
+brightmap sprite Q3ADF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDF0.png"	}
+brightmap sprite Q3ADG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDF0.png"	}
+brightmap sprite Q3ADH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDF0.png"	}
+brightmap sprite Q3ADI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDI0.png"	}
+brightmap sprite Q3ADJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDI0.png"	}
+brightmap sprite Q3ADK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDI0.png"	}
+brightmap sprite Q3ADL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDL0.png"	}
+brightmap sprite Q3ADM0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDL0.png"	}
+brightmap sprite Q3ADN0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDL0.png"	}
+brightmap sprite Q3ADO0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDO0.png"	}
+brightmap sprite Q3ADP0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDO0.png"	}
+brightmap sprite Q3ADQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDO0.png"	}
+brightmap sprite Q3ADR0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDR0.png"	}
+brightmap sprite Q3ADS0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDR0.png"	}
+brightmap sprite Q3ADT0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDR0.png"	}
+brightmap sprite Q3ADU0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDU0.png"	}
+brightmap sprite Q3ADV0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDU0.png"	}
+brightmap sprite Q3ADW0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDU0.png"	}
+brightmap sprite Q3ADX0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDX0.png"	}
+brightmap sprite Q3ADY0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDX0.png"	}
+brightmap sprite Q3ADZ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_A_prepare/_B_brightmaps/Q3BDX0.png"	}
 
-// Quake 3 SNG Upgraded
-brightmap sprite Q3FDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDA0.png"	}
-brightmap sprite Q3FDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDB0.png"	}
-brightmap sprite Q3FDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDC0.png"	}
-brightmap sprite Q3FDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDD0.png"	}
-brightmap sprite Q3FDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDE0.png"	}
-brightmap sprite Q3FDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDF0.png"	}
-brightmap sprite Q3FDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDG0.png"	}
-brightmap sprite Q3FDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDH0.png"	}
-brightmap sprite Q3FDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDI0.png"	}
-brightmap sprite Q3FDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDJ0.png"	}
-brightmap sprite Q3FDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDK0.png"	}
-brightmap sprite Q3FDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDL0.png"	}
-brightmap sprite Q3FDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDM0.png"	}
-brightmap sprite Q3FDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDN0.png"	}
-brightmap sprite Q3FDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDO0.png"	}
-brightmap sprite Q3FDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/brightmaps/Q3DDP0.png"	}
+brightmap sprite Q3CDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDA0.png"	}
+brightmap sprite Q3CDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDB0.png"	}
+brightmap sprite Q3CDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDC0.png"	}
+brightmap sprite Q3CDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDD0.png"	}
+brightmap sprite Q3CDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDE0.png"	}
+brightmap sprite Q3CDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDF0.png"	}
+brightmap sprite Q3CDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDG0.png"	}
+brightmap sprite Q3CDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDH0.png"	}
+brightmap sprite Q3CDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDI0.png"	}
+brightmap sprite Q3CDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDJ0.png"	}
+brightmap sprite Q3CDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDK0.png"	}
+brightmap sprite Q3CDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_C_idle/_D_brightmaps/Q3DDL0.png"	}
+
+brightmap sprite Q3EDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_start/_F_brightmaps/Q3FDA0.png"	}
+brightmap sprite Q3EDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDB0.png"	}
+brightmap sprite Q3EDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDC0.png"	}
+brightmap sprite Q3EDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDD0.png"	}
+brightmap sprite Q3EDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDE0.png"	}
+brightmap sprite Q3EDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDF0.png"	}
+brightmap sprite Q3EDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDG0.png"	}
+brightmap sprite Q3EDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDH0.png"	}
+brightmap sprite Q3EDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDI0.png"	}
+brightmap sprite Q3EDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDJ0.png"	}
+brightmap sprite Q3EDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDK0.png"	}
+brightmap sprite Q3EDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDL0.png"	}
+brightmap sprite Q3EDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDM0.png"	}
+brightmap sprite Q3EDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDN0.png"	}
+brightmap sprite Q3EDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDO0.png"	}
+brightmap sprite Q3EDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDP0.png"	}
+brightmap sprite Q3EDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_E_fire_loop/_F_brightmaps/Q3FDQ0.png"	}
+
+brightmap sprite Q3GDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDA0.png"	}
+brightmap sprite Q3GDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDB0.png"	}
+brightmap sprite Q3GDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDC0.png"	}
+brightmap sprite Q3GDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDD0.png"	}
+brightmap sprite Q3GDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDE0.png"	}
+brightmap sprite Q3GDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDF0.png"	}
+brightmap sprite Q3GDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDG0.png"	}
+brightmap sprite Q3GDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDH0.png"	}
+brightmap sprite Q3GDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDI0.png"	}
+brightmap sprite Q3GDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDJ0.png"	}
+brightmap sprite Q3GDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDK0.png"	}
+brightmap sprite Q3GDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDL0.png"	}
+brightmap sprite Q3GDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDM0.png"	}
+brightmap sprite Q3GDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDN0.png"	}
+brightmap sprite Q3GDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDO0.png"	}
+brightmap sprite Q3GDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDP0.png"	}
+brightmap sprite Q3GDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDQ0.png"	}
+brightmap sprite Q3GDR0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_G_fire_end/_H_brightmaps/Q3HDR0.png"	}
+
+brightmap sprite Q3IDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDA0.png"	}
+brightmap sprite Q3IDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDA0.png"	}
+brightmap sprite Q3IDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDC0.png"	}
+brightmap sprite Q3IDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDC0.png"	}
+brightmap sprite Q3IDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDC0.png"	}
+brightmap sprite Q3IDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDF0.png"	}
+brightmap sprite Q3IDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDF0.png"	}
+brightmap sprite Q3IDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDF0.png"	}
+brightmap sprite Q3IDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDI0.png"	}
+brightmap sprite Q3IDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDI0.png"	}
+brightmap sprite Q3IDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDI0.png"	}
+brightmap sprite Q3IDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDL0.png"	}
+brightmap sprite Q3IDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDL0.png"	}
+brightmap sprite Q3IDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDL0.png"	}
+brightmap sprite Q3IDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDO0.png"	}
+brightmap sprite Q3IDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDO0.png"	}
+brightmap sprite Q3IDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDO0.png"	}
+brightmap sprite Q3IDR0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDR0.png"	}
+brightmap sprite Q3IDS0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDR0.png"	}
+brightmap sprite Q3IDT0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDR0.png"	}
+brightmap sprite Q3IDU0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDU0.png"	}
+brightmap sprite Q3IDV0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDU0.png"	}
+brightmap sprite Q3IDW0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDU0.png"	}
+brightmap sprite Q3IDX0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDX0.png"	}
+brightmap sprite Q3IDY0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDX0.png"	}
+brightmap sprite Q3IDZ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_I_prepare_upgraded/_J_brightmaps/Q3JDX0.png"	}
+
+brightmap sprite Q3KDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDA0.png"	}
+brightmap sprite Q3KDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDB0.png"	}
+brightmap sprite Q3KDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDC0.png"	}
+brightmap sprite Q3KDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDD0.png"	}
+brightmap sprite Q3KDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDE0.png"	}
+brightmap sprite Q3KDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDF0.png"	}
+brightmap sprite Q3KDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDG0.png"	}
+brightmap sprite Q3KDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDH0.png"	}
+brightmap sprite Q3KDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDI0.png"	}
+brightmap sprite Q3KDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDJ0.png"	}
+brightmap sprite Q3KDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDK0.png"	}
+brightmap sprite Q3KDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_K_idle_upgraded/_L_brightmaps/Q3LDL0.png"	}
+
+brightmap sprite Q3MDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_start_upgraded/_N_brightmaps/Q3NDA0.png"	}
+brightmap sprite Q3MDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDB0.png"	}
+brightmap sprite Q3MDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDC0.png"	}
+brightmap sprite Q3MDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDD0.png"	}
+brightmap sprite Q3MDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDE0.png"	}
+brightmap sprite Q3MDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDF0.png"	}
+brightmap sprite Q3MDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDG0.png"	}
+brightmap sprite Q3MDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDH0.png"	}
+brightmap sprite Q3MDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDI0.png"	}
+brightmap sprite Q3MDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDJ0.png"	}
+brightmap sprite Q3MDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDK0.png"	}
+brightmap sprite Q3MDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDL0.png"	}
+brightmap sprite Q3MDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDM0.png"	}
+brightmap sprite Q3MDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDN0.png"	}
+brightmap sprite Q3MDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDO0.png"	}
+brightmap sprite Q3MDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDP0.png"	}
+brightmap sprite Q3MDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_M_fire_loop_upgraded/_N_brightmaps/Q3NDQ0.png"	}
+
+brightmap sprite Q3ODA0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDA0.png"	}
+brightmap sprite Q3ODB0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDB0.png"	}
+brightmap sprite Q3ODC0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDC0.png"	}
+brightmap sprite Q3ODD0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDD0.png"	}
+brightmap sprite Q3ODE0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDE0.png"	}
+brightmap sprite Q3ODF0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDF0.png"	}
+brightmap sprite Q3ODG0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDG0.png"	}
+brightmap sprite Q3ODH0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDH0.png"	}
+brightmap sprite Q3ODI0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDI0.png"	}
+brightmap sprite Q3ODJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDJ0.png"	}
+brightmap sprite Q3ODK0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDK0.png"	}
+brightmap sprite Q3ODL0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDL0.png"	}
+brightmap sprite Q3ODM0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDM0.png"	}
+brightmap sprite Q3ODN0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDN0.png"	}
+brightmap sprite Q3ODO0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDO0.png"	}
+brightmap sprite Q3ODP0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDP0.png"	}
+brightmap sprite Q3ODQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDQ0.png"	}
+brightmap sprite Q3ODR0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDR0.png"	}
 
 // Quake 3 TB
 brightmap sprite Q3GEB0	{	map "Sprites/Weapons/Tribolt/Quake 3/brightmaps/Q3BEB0.png"	}
@@ -2001,40 +2435,157 @@ brightmap sprite Q4E4W0	{	map "Sprites/Weapons/Nailgun/Quake 4/_E_fire_end/_F_br
 brightmap sprite Q4E4X0	{	map "Sprites/Weapons/Nailgun/Quake 4/_E_fire_end/_F_brightmaps/Q4F4L0.png"	}
 
 // Quake 4 SNG
-brightmap sprite Q4GDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDA0.png"	}
-brightmap sprite Q4GDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDB0.png"	}
-brightmap sprite Q4GDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDC0.png"	}
-brightmap sprite Q4GDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDD0.png"	}
-brightmap sprite Q4GDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDE0.png"	}
-brightmap sprite Q4GDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDF0.png"	}
-brightmap sprite Q4GDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDA0.png"	}
-brightmap sprite Q4GDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDB0.png"	}
-brightmap sprite Q4GDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDC0.png"	}
-brightmap sprite Q4GDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDD0.png"	}
-brightmap sprite Q4GDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDE0.png"	}
-brightmap sprite Q4GDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDF0.png"	}
-brightmap sprite Q4GDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDM0.png"	}
-brightmap sprite Q4GDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDN0.png"	}
-brightmap sprite Q4GDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDO0.png"	}
-brightmap sprite Q4GDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4BDP0.png"	}
+brightmap sprite Q4ADA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADM0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADN0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADO0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADP0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADR0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADS0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADT0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADU0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADV0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADW0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADX0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADY0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
+brightmap sprite Q4ADZ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_A_prepare/_B_brightmaps/Q4BDA0.png"	}
 
-// Quake 4 SNG Upgraded
-brightmap sprite Q4FDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDA0.png"	}
-brightmap sprite Q4FDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDB0.png"	}
-brightmap sprite Q4FDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDC0.png"	}
-brightmap sprite Q4FDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDD0.png"	}
-brightmap sprite Q4FDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDE0.png"	}
-brightmap sprite Q4FDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDF0.png"	}
-brightmap sprite Q4FDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDA0.png"	}
-brightmap sprite Q4FDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDB0.png"	}
-brightmap sprite Q4FDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDC0.png"	}
-brightmap sprite Q4FDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDD0.png"	}
-brightmap sprite Q4FDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDE0.png"	}
-brightmap sprite Q4FDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDF0.png"	}
-brightmap sprite Q4FDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDM0.png"	}
-brightmap sprite Q4FDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDN0.png"	}
-brightmap sprite Q4GDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDO0.png"	}
-brightmap sprite Q4GDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/brightmaps/Q4DDP0.png"	}
+brightmap sprite Q4CDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+brightmap sprite Q4CDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_C_idle/_D_brightmaps/Q4DDA0.png"	}
+
+brightmap sprite Q4EDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_start/_F_brightmaps/Q4FDA0.png"	}
+brightmap sprite Q4EDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDB0.png"	}
+brightmap sprite Q4EDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDC0.png"	}
+brightmap sprite Q4EDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDD0.png"	}
+brightmap sprite Q4EDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDE0.png"	}
+brightmap sprite Q4EDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDF0.png"	}
+brightmap sprite Q4EDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDG0.png"	}
+brightmap sprite Q4EDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDH0.png"	}
+brightmap sprite Q4EDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDI0.png"	}
+brightmap sprite Q4EDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDJ0.png"	}
+brightmap sprite Q4EDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDK0.png"	}
+brightmap sprite Q4EDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDL0.png"	}
+brightmap sprite Q4EDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDM0.png"	}
+brightmap sprite Q4EDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDN0.png"	}
+brightmap sprite Q4EDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDO0.png"	}
+brightmap sprite Q4EDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDP0.png"	}
+brightmap sprite Q4EDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_E_fire_loop/_F_brightmaps/Q4FDQ0.png"	}
+
+brightmap sprite Q4GDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDA0.png"	}
+brightmap sprite Q4GDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDB0.png"	}
+brightmap sprite Q4GDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDC0.png"	}
+brightmap sprite Q4GDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDD0.png"	}
+brightmap sprite Q4GDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDE0.png"	}
+brightmap sprite Q4GDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDF0.png"	}
+brightmap sprite Q4GDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDG0.png"	}
+brightmap sprite Q4GDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDH0.png"	}
+brightmap sprite Q4GDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDI0.png"	}
+brightmap sprite Q4GDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDJ0.png"	}
+brightmap sprite Q4GDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDK0.png"	}
+brightmap sprite Q4GDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDL0.png"	}
+brightmap sprite Q4GDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDM0.png"	}
+brightmap sprite Q4GDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDN0.png"	}
+brightmap sprite Q4GDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDO0.png"	}
+brightmap sprite Q4GDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDP0.png"	}
+brightmap sprite Q4GDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDQ0.png"	}
+brightmap sprite Q4GDR0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_G_fire_end/_H_brightmaps/Q4HDR0.png"	}
+
+brightmap sprite Q4IDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDP0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDR0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDS0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDT0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDU0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDV0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDW0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDX0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDY0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+brightmap sprite Q4IDZ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_I_prepare_upgraded/_J_brightmaps/Q4JDA0.png"	}
+
+brightmap sprite Q4KDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+brightmap sprite Q4KDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_K_idle_upgraded/_L_brightmaps/Q4LDA0.png"	}
+
+brightmap sprite Q4MDA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_start_upgraded/_N_brightmaps/Q4NDA0.png"	}
+brightmap sprite Q4MDB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDB0.png"	}
+brightmap sprite Q4MDC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDC0.png"	}
+brightmap sprite Q4MDD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDD0.png"	}
+brightmap sprite Q4MDE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDE0.png"	}
+brightmap sprite Q4MDF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDF0.png"	}
+brightmap sprite Q4MDG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDG0.png"	}
+brightmap sprite Q4MDH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDH0.png"	}
+brightmap sprite Q4MDI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDI0.png"	}
+brightmap sprite Q4MDJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDJ0.png"	}
+brightmap sprite Q4MDK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDK0.png"	}
+brightmap sprite Q4MDL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDL0.png"	}
+brightmap sprite Q4MDM0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDM0.png"	}
+brightmap sprite Q4MDN0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDN0.png"	}
+brightmap sprite Q4MDO0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_M_fire_loop_upgraded/_N_brightmaps/Q4NDO0.png"	}
+
+brightmap sprite Q4ODA0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDA0.png"	}
+brightmap sprite Q4ODB0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDB0.png"	}
+brightmap sprite Q4ODC0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDC0.png"	}
+brightmap sprite Q4ODD0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDD0.png"	}
+brightmap sprite Q4ODE0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDE0.png"	}
+brightmap sprite Q4ODF0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDF0.png"	}
+brightmap sprite Q4ODG0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDG0.png"	}
+brightmap sprite Q4ODH0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDH0.png"	}
+brightmap sprite Q4ODI0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDI0.png"	}
+brightmap sprite Q4ODJ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDJ0.png"	}
+brightmap sprite Q4ODK0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDK0.png"	}
+brightmap sprite Q4ODL0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDL0.png"	}
+brightmap sprite Q4ODM0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDM0.png"	}
+brightmap sprite Q4ODN0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDN0.png"	}
+brightmap sprite Q4ODO0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDO0.png"	}
+brightmap sprite Q4ODP0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDP0.png"	}
+brightmap sprite Q4ODQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDQ0.png"	}
+brightmap sprite Q4ODR0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDR0.png"	}
 
 // Quake 4 TB
 brightmap sprite Q4GEB0	{	map "Sprites/Weapons/Tribolt/Quake 4/brightmaps/Q4BEB0.png"	}
@@ -2281,18 +2832,151 @@ brightmap sprite QWECB0	{	map "Sprites/Weapons/SuperShotgun/ET QW/_E_fire/_F_bri
 brightmap sprite QWKCB0	{	map "Sprites/Weapons/SuperShotgun/ET QW/_K_fire_upgraded/_L_brightmaps/QWLCB0.png"	}
 
 // ETQW SNG
-brightmap sprite QWGDA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDA0.png"	}
-brightmap sprite QWGDB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDB0.png"	}
-brightmap sprite QWGDC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDC0.png"	}
-brightmap sprite QWGDD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDA0.png"	}
-brightmap sprite QWGDE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDB0.png"	}
-brightmap sprite QWGDF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDC0.png"	}
-brightmap sprite QWGDG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDA0.png"	}
-brightmap sprite QWGDH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDB0.png"	}
-brightmap sprite QWGDI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDC0.png"	}
-brightmap sprite QWGDJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDA0.png"	}
-brightmap sprite QWGDK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDB0.png"	}
-brightmap sprite QWGDL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/brightmaps/QWBDC0.png"	}
+brightmap sprite QWADA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADM0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADN0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADO0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADP0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADQ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADR0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADS0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADT0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADU0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADV0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADW0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADX0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADY0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+brightmap sprite QWADZ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_A_prepare/_B_brightmaps/QWBDA0.png"	}
+
+brightmap sprite QWCDA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+brightmap sprite QWCDL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_C_idle/_D_brightmaps/QWDDA0.png"	}
+
+brightmap sprite QWEDA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_start/_F_brightmaps/QWFDA0.png"	}
+brightmap sprite QWEDB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDB0.png"	}
+brightmap sprite QWEDC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDC0.png"	}
+brightmap sprite QWEDD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDD0.png"	}
+brightmap sprite QWEDE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDE0.png"	}
+brightmap sprite QWEDF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDF0.png"	}
+brightmap sprite QWEDG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDG0.png"	}
+brightmap sprite QWEDH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDH0.png"	}
+brightmap sprite QWEDI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDI0.png"	}
+brightmap sprite QWEDJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDJ0.png"	}
+brightmap sprite QWEDK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDK0.png"	}
+brightmap sprite QWEDL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDL0.png"	}
+brightmap sprite QWEDM0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_E_fire_loop/_F_brightmaps/QWFDM0.png"	}
+
+brightmap sprite QWGDA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDA0.png"	}
+brightmap sprite QWGDB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDB0.png"	}
+brightmap sprite QWGDC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDC0.png"	}
+brightmap sprite QWGDD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDD0.png"	}
+brightmap sprite QWGDE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDE0.png"	}
+brightmap sprite QWGDF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDF0.png"	}
+brightmap sprite QWGDG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDG0.png"	}
+brightmap sprite QWGDH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDH0.png"	}
+brightmap sprite QWGDI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDI0.png"	}
+brightmap sprite QWGDJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDJ0.png"	}
+brightmap sprite QWGDK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDK0.png"	}
+brightmap sprite QWGDL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDL0.png"	}
+brightmap sprite QWGDM0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDM0.png"	}
+brightmap sprite QWGDN0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDN0.png"	}
+brightmap sprite QWGDO0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDO0.png"	}
+brightmap sprite QWGDP0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDP0.png"	}
+brightmap sprite QWGDQ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDQ0.png"	}
+brightmap sprite QWGDR0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_G_fire_end/_H_brightmaps/QWHDR0.png"	}
+
+brightmap sprite QWIDA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDM0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDN0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDO0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDP0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDQ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDR0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDS0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDT0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDU0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDV0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDW0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDX0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDY0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+brightmap sprite QWIDZ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_I_prepare_upgraded/_J_brightmaps/QWJDA0.png"	}
+
+brightmap sprite QWKDA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+brightmap sprite QWKDL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_K_idle_upgraded/_L_brightmaps/QWLDA0.png"	}
+
+brightmap sprite QWMDA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_start_upgraded/_N_brightmaps/QWNDA0.png"	}
+brightmap sprite QWMDB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDB0.png"	}
+brightmap sprite QWMDC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDC0.png"	}
+brightmap sprite QWMDD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDD0.png"	}
+brightmap sprite QWMDE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDE0.png"	}
+brightmap sprite QWMDF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDF0.png"	}
+brightmap sprite QWMDG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDG0.png"	}
+brightmap sprite QWMDH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDH0.png"	}
+brightmap sprite QWMDI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDI0.png"	}
+brightmap sprite QWMDJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDJ0.png"	}
+brightmap sprite QWMDK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDK0.png"	}
+brightmap sprite QWMDL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDL0.png"	}
+brightmap sprite QWMDM0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_M_fire_loop_upgraded/_N_brightmaps/QWNDM0.png"	}
+
+brightmap sprite QWODA0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDA0.png"	}
+brightmap sprite QWODB0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDB0.png"	}
+brightmap sprite QWODC0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDC0.png"	}
+brightmap sprite QWODD0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDD0.png"	}
+brightmap sprite QWODE0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDE0.png"	}
+brightmap sprite QWODF0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDF0.png"	}
+brightmap sprite QWODG0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDG0.png"	}
+brightmap sprite QWODH0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDH0.png"	}
+brightmap sprite QWODI0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDI0.png"	}
+brightmap sprite QWODJ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDJ0.png"	}
+brightmap sprite QWODK0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDK0.png"	}
+brightmap sprite QWODL0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDL0.png"	}
+brightmap sprite QWODM0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDM0.png"	}
+brightmap sprite QWODN0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDN0.png"	}
+brightmap sprite QWODO0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDO0.png"	}
+brightmap sprite QWODP0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDP0.png"	}
+brightmap sprite QWODQ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDQ0.png"	}
+brightmap sprite QWODR0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDR0.png"	}
 
 // ETQW RL
 brightmap sprite QWG5B0	{	map "Sprites/Weapons/RocketLauncher/ET QW/brightmaps/QWB5B0.png"	}
@@ -2581,10 +3265,15 @@ brightmap sprite HLE4B0	{	map "Sprites/Weapons/Nailgun/Half-Life/_E_fire_loop/_F
 brightmap sprite HLE4D0	{	map "Sprites/Weapons/Nailgun/Half-Life/_E_fire_loop/_F_brightmaps/HLF4D0.png"	}
 
 // Half-Life SNG
-brightmap sprite HLGDM0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/brightmaps/HLBDM0.png"	}
-brightmap sprite HLGDN0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/brightmaps/HLBDN0.png"	}
-brightmap sprite HLGDO0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/brightmaps/HLBDO0.png"	}
-brightmap sprite HLGDP0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/brightmaps/HLBDP0.png"	}
+brightmap sprite HLEDN0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_E_fire_loop/_F_brightmaps/HLFDN0.png"	}
+brightmap sprite HLEDO0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_E_fire_loop/_F_brightmaps/HLFDO0.png"	}
+brightmap sprite HLEDP0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_E_fire_loop/_F_brightmaps/HLFDP0.png"	}
+brightmap sprite HLEDQ0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_E_fire_loop/_F_brightmaps/HLFDQ0.png"	}
+
+brightmap sprite HLMDN0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_M_fire_loop_upgraded/_N_brightmaps/HLNDN0.png"	}
+brightmap sprite HLMDO0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_M_fire_loop_upgraded/_N_brightmaps/HLNDO0.png"	}
+brightmap sprite HLMDP0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_M_fire_loop_upgraded/_N_brightmaps/HLNDP0.png"	}
+brightmap sprite HLMDQ0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_M_fire_loop_upgraded/_N_brightmaps/HLNDQ0.png"	}
 
 // Half-Life RL
 brightmap sprite HLG5A0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5A0.png"	}
@@ -2883,40 +3572,159 @@ brightmap sprite SSE4W0	{	map "Sprites/Weapons/Nailgun/SeriousSam/_E_fire_end/_F
 brightmap sprite SSE4X0	{	map "Sprites/Weapons/Nailgun/SeriousSam/_E_fire_end/_F_brightmaps/SSF4V0.png"	}
 
 // Serious Sam SNG
-brightmap sprite SSGDA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDA0.png"	}
-brightmap sprite SSGDB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDB0.png"	}
-brightmap sprite SSGDC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDC0.png"	}
-brightmap sprite SSGDD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDD0.png"	}
-brightmap sprite SSGDE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDE0.png"	}
-brightmap sprite SSGDF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDF0.png"	}
-brightmap sprite SSGDG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDG0.png"	}
-brightmap sprite SSGDH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDH0.png"	}
-brightmap sprite SSGDI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDI0.png"	}
-brightmap sprite SSGDJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDJ0.png"	}
-brightmap sprite SSGDK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDK0.png"	}
-brightmap sprite SSGDL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDL0.png"	}
-brightmap sprite SSGDM0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDM0.png"	}
-brightmap sprite SSGDN0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDN0.png"	}
-brightmap sprite SSGDO0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDO0.png"	}
-brightmap sprite SSGDP0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSBDP0.png"	}
+brightmap sprite SSADA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADM0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADN0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADO0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADP0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADQ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADR0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADS0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADT0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADU0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADV0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADW0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADX0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADY0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
+brightmap sprite SSADZ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_A_prepare/_B_brightmaps/SSBDA0.png"	}
 
-// Serious Sam SNG Upgraded
-brightmap sprite SSFDA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDA0.png"	}
-brightmap sprite SSFDB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDB0.png"	}
-brightmap sprite SSFDC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDC0.png"	}
-brightmap sprite SSFDD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDD0.png"	}
-brightmap sprite SSFDE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDE0.png"	}
-brightmap sprite SSFDF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDF0.png"	}
-brightmap sprite SSFDG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDG0.png"	}
-brightmap sprite SSFDH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDH0.png"	}
-brightmap sprite SSFDI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDI0.png"	}
-brightmap sprite SSFDJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDJ0.png"	}
-brightmap sprite SSFDK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDK0.png"	}
-brightmap sprite SSFDL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDL0.png"	}
-brightmap sprite SSFDM0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDM0.png"	}
-brightmap sprite SSFDN0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDN0.png"	}
-brightmap sprite SSFDO0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDO0.png"	}
-brightmap sprite SSFDP0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/brightmaps/SSDDP0.png"	}
+brightmap sprite SSCDA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+brightmap sprite SSCDL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_C_idle/_D_brightmaps/SSDDA0.png"	}
+
+brightmap sprite SSEDA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_start/_F_brightmaps/SSFDA0.png"	}
+brightmap sprite SSEDB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDB0.png"	}
+brightmap sprite SSEDC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDC0.png"	}
+brightmap sprite SSEDD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDD0.png"	}
+brightmap sprite SSEDE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDE0.png"	}
+brightmap sprite SSEDF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDF0.png"	}
+brightmap sprite SSEDG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDG0.png"	}
+brightmap sprite SSEDH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDH0.png"	}
+brightmap sprite SSEDI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDI0.png"	}
+brightmap sprite SSEDJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDJ0.png"	}
+brightmap sprite SSEDK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDK0.png"	}
+brightmap sprite SSEDL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDL0.png"	}
+brightmap sprite SSEDM0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDM0.png"	}
+brightmap sprite SSEDN0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDN0.png"	}
+brightmap sprite SSEDO0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDO0.png"	}
+brightmap sprite SSEDP0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDP0.png"	}
+brightmap sprite SSEDQ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_E_fire_loop/_F_brightmaps/SSFDQ0.png"	}
+
+brightmap sprite SSGDA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDA0.png"	}
+brightmap sprite SSGDB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDB0.png"	}
+brightmap sprite SSGDC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDC0.png"	}
+brightmap sprite SSGDD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDD0.png"	}
+brightmap sprite SSGDE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDE0.png"	}
+brightmap sprite SSGDF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDF0.png"	}
+brightmap sprite SSGDG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDG0.png"	}
+brightmap sprite SSGDH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDH0.png"	}
+brightmap sprite SSGDI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDI0.png"	}
+brightmap sprite SSGDJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDJ0.png"	}
+brightmap sprite SSGDK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDK0.png"	}
+brightmap sprite SSGDL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDL0.png"	}
+brightmap sprite SSGDM0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDM0.png"	}
+brightmap sprite SSGDN0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDN0.png"	}
+brightmap sprite SSGDO0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDO0.png"	}
+brightmap sprite SSGDP0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDP0.png"	}
+brightmap sprite SSGDQ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDQ0.png"	}
+brightmap sprite SSGDR0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_G_fire_end/_H_brightmaps/SSHDR0.png"	}
+
+brightmap sprite SSIDA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDM0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDN0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDO0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDP0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDQ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDR0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDS0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDT0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDU0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDV0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDW0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDX0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDY0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+brightmap sprite SSIDZ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_I_prepare_upgraded/_J_brightmaps/SSJDA0.png"	}
+
+brightmap sprite SSKDA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+brightmap sprite SSKDL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_K_idle_upgraded/_L_brightmaps/SSLDA0.png"	}
+
+brightmap sprite SSMDA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_start_upgraded/_N_brightmaps/SSNDA0.png"	}
+brightmap sprite SSMDB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDB0.png"	}
+brightmap sprite SSMDC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDC0.png"	}
+brightmap sprite SSMDD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDD0.png"	}
+brightmap sprite SSMDE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDE0.png"	}
+brightmap sprite SSMDF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDF0.png"	}
+brightmap sprite SSMDG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDG0.png"	}
+brightmap sprite SSMDH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDH0.png"	}
+brightmap sprite SSMDI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDI0.png"	}
+brightmap sprite SSMDJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDJ0.png"	}
+brightmap sprite SSMDK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDK0.png"	}
+brightmap sprite SSMDL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDL0.png"	}
+brightmap sprite SSMDM0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDM0.png"	}
+brightmap sprite SSMDN0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDN0.png"	}
+brightmap sprite SSMDO0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDO0.png"	}
+brightmap sprite SSMDP0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDP0.png"	}
+brightmap sprite SSMDQ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_M_fire_loop_upgraded/_N_brightmaps/SSNDQ0.png"	}
+
+brightmap sprite SSODA0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDA0.png"	}
+brightmap sprite SSODB0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDB0.png"	}
+brightmap sprite SSODC0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDC0.png"	}
+brightmap sprite SSODD0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDD0.png"	}
+brightmap sprite SSODE0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDE0.png"	}
+brightmap sprite SSODF0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDF0.png"	}
+brightmap sprite SSODG0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDG0.png"	}
+brightmap sprite SSODH0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDH0.png"	}
+brightmap sprite SSODI0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDI0.png"	}
+brightmap sprite SSODJ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDJ0.png"	}
+brightmap sprite SSODK0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDK0.png"	}
+brightmap sprite SSODL0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDL0.png"	}
+brightmap sprite SSODM0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDM0.png"	}
+brightmap sprite SSODN0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDN0.png"	}
+brightmap sprite SSODO0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDO0.png"	}
+brightmap sprite SSODP0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDP0.png"	}
+brightmap sprite SSODQ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDQ0.png"	}
+brightmap sprite SSODR0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDR0.png"	}
 
 // Serious Sam TB
 brightmap sprite SSGEA0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEA0.png"	}
@@ -3567,6 +4375,161 @@ brightmap sprite MDE4D0	{	map "Sprites/Weapons/Nailgun/Modded/_E_fire_loop/_F_br
 brightmap sprite MDE4E0	{	map "Sprites/Weapons/Nailgun/Modded/_E_fire_loop/_F_brightmaps/MDF4E0.png"	}
 brightmap sprite MDE4F0	{	map "Sprites/Weapons/Nailgun/Modded/_E_fire_loop/_F_brightmaps/MDF4F0.png"	}
 brightmap sprite MDE4A0	{	map "Sprites/Weapons/Nailgun/Modded/_E_fire_start/_F_brightmaps/MDF4A0.png"	}
+
+// Modded SNG
+brightmap sprite MDADA0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDA0.png"	}
+brightmap sprite MDADB0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDB0.png"	}
+brightmap sprite MDADC0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDC0.png"	}
+brightmap sprite MDADD0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDD0.png"	}
+brightmap sprite MDADE0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDE0.png"	}
+brightmap sprite MDADF0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDF0.png"	}
+brightmap sprite MDADG0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDG0.png"	}
+brightmap sprite MDADH0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDH0.png"	}
+brightmap sprite MDADI0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDI0.png"	}
+brightmap sprite MDADJ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDJ0.png"	}
+brightmap sprite MDADK0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDK0.png"	}
+brightmap sprite MDADL0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDL0.png"	}
+brightmap sprite MDADM0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDM0.png"	}
+brightmap sprite MDADN0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDN0.png"	}
+brightmap sprite MDADO0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDO0.png"	}
+brightmap sprite MDADP0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDP0.png"	}
+brightmap sprite MDADQ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDQ0.png"	}
+brightmap sprite MDADR0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDR0.png"	}
+brightmap sprite MDADS0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDS0.png"	}
+brightmap sprite MDADT0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDT0.png"	}
+brightmap sprite MDADU0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDU0.png"	}
+brightmap sprite MDADV0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDV0.png"	}
+brightmap sprite MDADW0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDW0.png"	}
+brightmap sprite MDADX0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDX0.png"	}
+brightmap sprite MDADY0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDY0.png"	}
+brightmap sprite MDADZ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_A_prepare/_B_brightmaps/MDBDZ0.png"	}
+
+brightmap sprite MDCDA0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDA0.png"	}
+brightmap sprite MDCDB0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDB0.png"	}
+brightmap sprite MDCDC0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDC0.png"	}
+brightmap sprite MDCDD0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDD0.png"	}
+brightmap sprite MDCDE0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDE0.png"	}
+brightmap sprite MDCDF0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDF0.png"	}
+brightmap sprite MDCDG0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDG0.png"	}
+brightmap sprite MDCDH0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDH0.png"	}
+brightmap sprite MDCDI0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDI0.png"	}
+brightmap sprite MDCDJ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDJ0.png"	}
+brightmap sprite MDCDK0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDK0.png"	}
+brightmap sprite MDCDL0	{	map "Sprites/Weapons/SuperNailgun/Modded/_C_idle/_D_brightmaps/MDDDL0.png"	}
+
+brightmap sprite MDEDA0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_start/_F_brightmaps/MDFDA0.png"	}
+brightmap sprite MDEDB0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDB0.png"	}
+brightmap sprite MDEDC0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDC0.png"	}
+brightmap sprite MDEDD0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDD0.png"	}
+brightmap sprite MDEDE0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDE0.png"	}
+brightmap sprite MDEDF0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDF0.png"	}
+brightmap sprite MDEDG0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDG0.png"	}
+brightmap sprite MDEDH0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDH0.png"	}
+brightmap sprite MDEDI0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDI0.png"	}
+brightmap sprite MDEDJ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDJ0.png"	}
+brightmap sprite MDEDK0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDK0.png"	}
+brightmap sprite MDEDL0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDL0.png"	}
+brightmap sprite MDEDM0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDM0.png"	}
+brightmap sprite MDEDN0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDN0.png"	}
+brightmap sprite MDEDO0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDO0.png"	}
+brightmap sprite MDEDP0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDP0.png"	}
+brightmap sprite MDEDQ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_E_fire_loop/_F_brightmaps/MDFDQ0.png"	}
+
+brightmap sprite MDGDA0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDA0.png"	}
+brightmap sprite MDGDB0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDB0.png"	}
+brightmap sprite MDGDC0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDC0.png"	}
+brightmap sprite MDGDD0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDD0.png"	}
+brightmap sprite MDGDE0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDE0.png"	}
+brightmap sprite MDGDF0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDF0.png"	}
+brightmap sprite MDGDG0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDG0.png"	}
+brightmap sprite MDGDH0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDH0.png"	}
+brightmap sprite MDGDI0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDI0.png"	}
+brightmap sprite MDGDJ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDJ0.png"	}
+brightmap sprite MDGDK0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDK0.png"	}
+brightmap sprite MDGDL0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDL0.png"	}
+brightmap sprite MDGDM0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDM0.png"	}
+brightmap sprite MDGDN0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDN0.png"	}
+brightmap sprite MDGDO0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDO0.png"	}
+brightmap sprite MDGDP0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDP0.png"	}
+brightmap sprite MDGDQ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDQ0.png"	}
+brightmap sprite MDGDR0	{	map "Sprites/Weapons/SuperNailgun/Modded/_G_fire_end/_H_brightmaps/MDHDR0.png"	}
+
+brightmap sprite MDIDA0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDA0.png"	}
+brightmap sprite MDIDB0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDB0.png"	}
+brightmap sprite MDIDC0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDC0.png"	}
+brightmap sprite MDIDD0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDD0.png"	}
+brightmap sprite MDIDE0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDE0.png"	}
+brightmap sprite MDIDF0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDF0.png"	}
+brightmap sprite MDIDG0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDG0.png"	}
+brightmap sprite MDIDH0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDH0.png"	}
+brightmap sprite MDIDI0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDI0.png"	}
+brightmap sprite MDIDJ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDJ0.png"	}
+brightmap sprite MDIDK0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDK0.png"	}
+brightmap sprite MDIDL0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDL0.png"	}
+brightmap sprite MDIDM0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDM0.png"	}
+brightmap sprite MDIDN0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDN0.png"	}
+brightmap sprite MDIDO0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDO0.png"	}
+brightmap sprite MDIDP0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDP0.png"	}
+brightmap sprite MDIDQ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDQ0.png"	}
+brightmap sprite MDIDR0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDR0.png"	}
+brightmap sprite MDIDS0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDS0.png"	}
+brightmap sprite MDIDT0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDT0.png"	}
+brightmap sprite MDIDU0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDU0.png"	}
+brightmap sprite MDIDV0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDV0.png"	}
+brightmap sprite MDIDW0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDW0.png"	}
+brightmap sprite MDIDX0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDX0.png"	}
+brightmap sprite MDIDY0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDY0.png"	}
+brightmap sprite MDIDZ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_I_prepare_upgraded/_J_brightmaps/MDJDZ0.png"	}
+
+brightmap sprite MDKDA0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDA0.png"	}
+brightmap sprite MDKDB0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDB0.png"	}
+brightmap sprite MDKDC0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDC0.png"	}
+brightmap sprite MDKDD0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDD0.png"	}
+brightmap sprite MDKDE0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDE0.png"	}
+brightmap sprite MDKDF0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDF0.png"	}
+brightmap sprite MDKDG0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDG0.png"	}
+brightmap sprite MDKDH0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDH0.png"	}
+brightmap sprite MDKDI0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDI0.png"	}
+brightmap sprite MDKDJ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDJ0.png"	}
+brightmap sprite MDKDK0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDK0.png"	}
+brightmap sprite MDKDL0	{	map "Sprites/Weapons/SuperNailgun/Modded/_K_idle_upgraded/_L_brightmaps/MDLDL0.png"	}
+
+brightmap sprite MDMDB0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDB0.png"	}
+brightmap sprite MDMDC0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDC0.png"	}
+brightmap sprite MDMDD0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDD0.png"	}
+brightmap sprite MDMDE0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDE0.png"	}
+brightmap sprite MDMDF0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDF0.png"	}
+brightmap sprite MDMDG0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDG0.png"	}
+brightmap sprite MDMDH0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDH0.png"	}
+brightmap sprite MDMDI0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDI0.png"	}
+brightmap sprite MDMDJ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDJ0.png"	}
+brightmap sprite MDMDK0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDK0.png"	}
+brightmap sprite MDMDL0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDL0.png"	}
+brightmap sprite MDMDM0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDM0.png"	}
+brightmap sprite MDMDN0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDN0.png"	}
+brightmap sprite MDMDO0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDO0.png"	}
+brightmap sprite MDMDP0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDP0.png"	}
+brightmap sprite MDMDQ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_loop_upgraded/_N_brightmaps/MDNDQ0.png"	}
+brightmap sprite MDMDA0	{	map "Sprites/Weapons/SuperNailgun/Modded/_M_fire_start_upgraded/_N_brightmaps/MDNDA0.png"	}
+
+brightmap sprite MDODA0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDA0.png"	}
+brightmap sprite MDODB0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDB0.png"	}
+brightmap sprite MDODC0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDC0.png"	}
+brightmap sprite MDODD0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDD0.png"	}
+brightmap sprite MDODE0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDE0.png"	}
+brightmap sprite MDODF0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDF0.png"	}
+brightmap sprite MDODG0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDG0.png"	}
+brightmap sprite MDODH0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDH0.png"	}
+brightmap sprite MDODI0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDI0.png"	}
+brightmap sprite MDODJ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDJ0.png"	}
+brightmap sprite MDODK0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDK0.png"	}
+brightmap sprite MDODL0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDL0.png"	}
+brightmap sprite MDODM0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDM0.png"	}
+brightmap sprite MDODN0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDN0.png"	}
+brightmap sprite MDODO0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDO0.png"	}
+brightmap sprite MDODP0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDP0.png"	}
+brightmap sprite MDODQ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDQ0.png"	}
+brightmap sprite MDODR0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDR0.png"	}
 
 // RG beam textures
 nofilter MD3/rtrl.png

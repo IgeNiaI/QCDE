@@ -413,6 +413,24 @@ $random QC/Weapons/SuperNailgun/Impact_SeriousSam 		{ QC/Weapons/SuperNailgun/Im
 		QC/Weapons/SuperNailgun/Impact4_SeriousSam QC/Weapons/SuperNailgun/Impact5_SeriousSam QC/Weapons/SuperNailgun/Impact6_SeriousSam QC/Weapons/SuperNailgun/Impact7_SeriousSam }
 
 
+QC/Weapons/SuperNailgun/FireStartLoop_Modded			"Sounds/Weapons/SuperNailgun/Modded/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireEnd_Modded					"Sounds/Weapons/SuperNailgun/Modded/SNG_End.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_Modded				"Sounds/Weapons/SuperNailgun/Modded/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_Modded		"Sounds/Weapons/SuperNailgun/Modded/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_Modded			"Sounds/Weapons/SuperNailgun/Modded/Quad/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Impact1_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact1.ogg"
+QC/Weapons/SuperNailgun/Impact2_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact2.ogg"
+QC/Weapons/SuperNailgun/Impact3_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact3.ogg"
+QC/Weapons/SuperNailgun/Impact4_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact4.ogg"
+QC/Weapons/SuperNailgun/Impact5_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact5.ogg"
+QC/Weapons/SuperNailgun/Impact6_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact6.ogg"
+QC/Weapons/SuperNailgun/Impact7_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact7.ogg"
+$random QC/Weapons/SuperNailgun/Impact_Modded 			{ QC/Weapons/SuperNailgun/Impact1_Modded QC/Weapons/SuperNailgun/Impact2_Modded QC/Weapons/SuperNailgun/Impact3_Modded
+		QC/Weapons/SuperNailgun/Impact4_Modded QC/Weapons/SuperNailgun/Impact5_Modded QC/Weapons/SuperNailgun/Impact6_Modded QC/Weapons/SuperNailgun/Impact7_Modded }
+
+QC/Weapons/SuperNailgun/Prepare_Modded	"Sounds/Weapons/SuperNailgun/Modded/SNG_Prepare.ogg"
+QC/Weapons/SuperNailgun/Idle_Modded	"Sounds/Weapons/SuperNailgun/Modded/SNG_Idle.ogg"
+
 //********************
 // Tribolt
 QC/Weapons/Tribolt/Fire_Default			"Sounds/Weapons/Tribolt/Default/Tribolt_FireFast.ogg"
