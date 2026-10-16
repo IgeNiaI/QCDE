@@ -1,0 +1,32 @@
+Rocket Launcher
+
+Assets
+
+Weapon and effect sprites: Sprites/Weapons/RocketLauncher/
+Sounds: Sounds/Weapons/RocketLauncher/
+Decal images: Graphics/Decals/RocketLauncher/
+Menu previews: Graphics/Menu/SkinPreviews/RocketLauncher/
+
+Weapon frames
+
+Use                     Set    Frames    Brightmap set
+Prepare                 A      A-Z       B
+Idle                    C      A-F       D
+Fire                    E      A-Q       F
+Prepare upgraded        G      A-Z       H
+Idle upgraded           I      A-F       J
+Fire upgraded           K      A-Q       L
+
+Upgraded sets are used while the alt-fire upgrade is active.
+
+Other Modded frames
+
+MDY5                                        Rocket projectile
+MDX5                                        Cluster rocket projectile
+MDZ5 A-R                                    Rocket explosion
+MDW5 A-T                                    Fire trail
+MDV5 A-G                                    Explosion particles
+MDU5 A-F                                    Guided rocket trail
+MDS5 / MDT5 A-U                             Cluster explosion and mirrored version
+MD05 / MD15 / MD25 / MD35 A-Z               Explosion debris
+MD45 / MD55 / MD65 / MD75 A-Z               Mirrored debris

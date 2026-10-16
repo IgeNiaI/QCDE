@@ -104,7 +104,7 @@ Script "QCDE_SetBfgRespawnTics" (void)
 //=============================================================================
 
 // Activator: noisy projectile in flight
-script "QCDE_AttachWhoosh" (void) CLIENTSIDE
+script "QCDE_AttachWhoosh" (int modded) CLIENTSIDE
 {
 	// remember rocket
 	int tid = ActivatorTid();
@@ -120,7 +120,7 @@ script "QCDE_AttachWhoosh" (void) CLIENTSIDE
 
 	// if rocket isn't moving, then it has exploded already. So no whoosh
 	if (GetActorVelX(tid) || GetActorVelY(tid) || GetActorVelZ(tid))
-		PlaySound(tid, "QC/Weapons/RocketLauncher/Fly",CHAN_5,0.5,true,1.0); // whoosh!
+		PlaySound(tid, modded ? "QC/Weapons/RocketLauncher/Fly_Modded" : "QC/Weapons/RocketLauncher/Fly",CHAN_5,0.5,true,1.0); // whoosh!
 }
 
 

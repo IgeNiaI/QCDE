@@ -746,3 +746,33 @@ QC/Weapons/Gore1			"Sounds/Misc/QCGore1.ogg"
 QC/Weapons/Gore2			"Sounds/Misc/QCGore2.ogg"
 QC/Weapons/Gore3			"Sounds/Misc/QCGore3.ogg"
 QC/Weapons/Gore4			"Sounds/Misc/QCGore4.ogg"
+
+// Modded Rocket Launcher
+QC/Weapons/RocketLauncher/Fire1_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Fire2_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Fire2.ogg"
+QC/Weapons/RocketLauncher/Fire3_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Fire3.ogg"
+$random QC/Weapons/RocketLauncher/Fire_Modded { QC/Weapons/RocketLauncher/Fire1_Modded QC/Weapons/RocketLauncher/Fire2_Modded QC/Weapons/RocketLauncher/Fire3_Modded }
+QC/Weapons/RocketLauncher/Quad/Fire1_Modded	"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire2_Modded	"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire2.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire3_Modded	"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire3.ogg"
+$random QC/Weapons/RocketLauncher/Quad/Fire_Modded { QC/Weapons/RocketLauncher/Quad/Fire1_Modded QC/Weapons/RocketLauncher/Quad/Fire2_Modded QC/Weapons/RocketLauncher/Quad/Fire3_Modded }
+QC/Weapons/RocketLauncher/RocketExplo1_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_explo1.ogg"
+QC/Weapons/RocketLauncher/RocketExplo2_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_explo2.ogg"
+QC/Weapons/RocketLauncher/RocketExplo3_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_explo3.ogg"
+$random QC/Weapons/RocketLauncher/RocketExplo_Modded { QC/Weapons/RocketLauncher/RocketExplo1_Modded QC/Weapons/RocketLauncher/RocketExplo2_Modded QC/Weapons/RocketLauncher/RocketExplo3_Modded }
+QC/Weapons/RocketLauncher/Fly_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Fly.ogg"
+QC/Weapons/RocketLauncher/Prepare_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Prepare.ogg"
+QC/Weapons/RocketLauncher/Idle_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Idle.ogg"
+QC/Weapons/RocketLauncher/ClusterExplo1_Modded	"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo1.ogg"
+QC/Weapons/RocketLauncher/ClusterExplo2_Modded	"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo2.ogg"
+QC/Weapons/RocketLauncher/ClusterExplo3_Modded	"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo3.ogg"
+$random QC/Weapons/RocketLauncher/ClusterExplo_Modded { QC/Weapons/RocketLauncher/ClusterExplo1_Modded QC/Weapons/RocketLauncher/ClusterExplo2_Modded QC/Weapons/RocketLauncher/ClusterExplo3_Modded }
+$volume QC/Weapons/RocketLauncher/RocketExplo_Modded 0.7
+$volume QC/Weapons/RocketLauncher/RocketExplo1_Modded 0.8
+$limit QC/Weapons/RocketLauncher/RocketExplo1_Modded 3
+$volume QC/Weapons/RocketLauncher/RocketExplo2_Modded 0.8
+$limit QC/Weapons/RocketLauncher/RocketExplo2_Modded 3
+$volume QC/Weapons/RocketLauncher/RocketExplo3_Modded 0.8
+$limit QC/Weapons/RocketLauncher/RocketExplo3_Modded 3
+$rolloff QC/Weapons/RocketLauncher/Fly_Modded 64 2048
+$limit QC/Weapons/RocketLauncher/Fly_Modded 5

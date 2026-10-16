@@ -160,8 +160,11 @@ brightmap sprite QCKEE0	{	map "Sprites/Weapons/Tribolt/Default/_K_fire_upgraded/
 brightmap sprite QCKEI0	{	map "Sprites/Weapons/Tribolt/Default/_K_fire_upgraded/_L_brightmaps/QCLEI0.png"	}
 
 // Default RL
-brightmap sprite QCG5B0	{	map "Sprites/Weapons/RocketLauncher/Default/brightmaps/QCB5B0.png"	}
-brightmap sprite QCG5C0	{	map "Sprites/Weapons/RocketLauncher/Default/brightmaps/QCB5C0.png"	}
+brightmap sprite QCE5B0	{	map "Sprites/Weapons/RocketLauncher/Default/_E_fire/_F_brightmaps/QCF5B0.png"	}
+brightmap sprite QCE5C0	{	map "Sprites/Weapons/RocketLauncher/Default/_E_fire/_F_brightmaps/QCF5C0.png"	}
+
+brightmap sprite QCK5B0	{	map "Sprites/Weapons/RocketLauncher/Default/_K_fire_upgraded/_L_brightmaps/QCL5B0.png"	}
+brightmap sprite QCK5C0	{	map "Sprites/Weapons/RocketLauncher/Default/_K_fire_upgraded/_L_brightmaps/QCL5C0.png"	}
 
 // Default LG Deploy
 brightmap sprite QCF6A0	{	map "Sprites/Weapons/LightningGun/Default/brightmaps/QCD6A0.png"	}
@@ -605,10 +608,15 @@ brightmap sprite Q0KER0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded
 brightmap sprite Q0KES0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LES0.png"	}
 
 // QCDE 1.0 RL
-brightmap sprite Q0G5B0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/brightmaps/Q0B5B0.png"	}
-brightmap sprite Q0G5C0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/brightmaps/Q0B5C0.png"	}
-brightmap sprite Q0G5D0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/brightmaps/Q0B5D0.png"	}
-brightmap sprite Q0G5E0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/brightmaps/Q0B5E0.png"	}
+brightmap sprite Q0E5B0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/_E_fire/_F_brightmaps/Q0F5B0.png"	}
+brightmap sprite Q0E5C0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/_E_fire/_F_brightmaps/Q0F5C0.png"	}
+brightmap sprite Q0E5D0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/_E_fire/_F_brightmaps/Q0F5D0.png"	}
+brightmap sprite Q0E5E0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/_E_fire/_F_brightmaps/Q0F5E0.png"	}
+
+brightmap sprite Q0K5B0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0L5B0.png"	}
+brightmap sprite Q0K5C0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0L5C0.png"	}
+brightmap sprite Q0K5D0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0L5D0.png"	}
+brightmap sprite Q0K5E0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0L5E0.png"	}
 
 // QCDE 1.0 LG
 brightmap sprite Q0G6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/brightmaps/Q0B6A0.png"	}
@@ -807,8 +815,11 @@ brightmap sprite Q1KEE0	{	map "Sprites/Weapons/Tribolt/Quake 1/_K_fire_upgraded/
 brightmap sprite Q1KEI0	{	map "Sprites/Weapons/Tribolt/Quake 1/_K_fire_upgraded/_L_brightmaps/Q1LEI0.png"	}
 
 // Quake 1 RL
-brightmap sprite Q1G5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 1/brightmaps/Q1B5B0.png"	}
-brightmap sprite Q1G5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 1/brightmaps/Q1B5C0.png"	}
+brightmap sprite Q1E5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 1/_E_fire/_F_brightmaps/Q1F5B0.png"	}
+brightmap sprite Q1E5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 1/_E_fire/_F_brightmaps/Q1F5C0.png"	}
+
+brightmap sprite Q1K5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 1/_K_fire_upgraded/_L_brightmaps/Q1L5B0.png"	}
+brightmap sprite Q1K5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 1/_K_fire_upgraded/_L_brightmaps/Q1L5C0.png"	}
 
 // Quake 1 LG
 brightmap sprite Q1G6G0	{	map "Sprites/Weapons/LightningGun/Quake 1/brightmaps/Q1B6G0.png"	}
@@ -1575,28 +1586,109 @@ brightmap sprite Q2KEI0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/
 brightmap sprite Q2KEJ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEJ0.png"	}
 
 // Quake 2 RL
-brightmap sprite Q2G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5A0.png"	}
-brightmap sprite Q2G5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5B0.png"	}
-brightmap sprite Q2G5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5C0.png"	}
-brightmap sprite Q2G5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5D0.png"	}
-brightmap sprite Q2G5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5E0.png"	}
-brightmap sprite Q2G5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5F0.png"	}
-brightmap sprite Q2G5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5G0.png"	}
-brightmap sprite Q2G5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5H0.png"	}
-brightmap sprite Q2G5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5I0.png"	}
-brightmap sprite Q2G5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5J0.png"	}
-brightmap sprite Q2G5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5K0.png"	}
-brightmap sprite Q2G5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5L0.png"	}
-brightmap sprite Q2G5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5M0.png"	}
-brightmap sprite Q2G5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5N0.png"	}
-brightmap sprite Q2G5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5O0.png"	}
-brightmap sprite Q2G5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5P0.png"	}
-brightmap sprite Q2G5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5Q0.png"	}
-brightmap sprite Q2G5R0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5R0.png"	}
-brightmap sprite Q2G5S0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5S0.png"	}
-brightmap sprite Q2G5T0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5T0.png"	}
-brightmap sprite Q2G5U0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5U0.png"	}
-brightmap sprite Q2G5V0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5V0.png"	}
+brightmap sprite Q2A5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5R0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5S0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5T0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5U0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5V0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5W0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5X0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5Y0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+brightmap sprite Q2A5Z0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_A_prepare/_B_brightmaps/Q2B5A0.png"	}
+
+brightmap sprite Q2C5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_C_idle/_D_brightmaps/Q2D5A0.png"	}
+brightmap sprite Q2C5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_C_idle/_D_brightmaps/Q2D5B0.png"	}
+brightmap sprite Q2C5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_C_idle/_D_brightmaps/Q2D5C0.png"	}
+brightmap sprite Q2C5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_C_idle/_D_brightmaps/Q2D5D0.png"	}
+brightmap sprite Q2C5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_C_idle/_D_brightmaps/Q2D5E0.png"	}
+brightmap sprite Q2C5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_C_idle/_D_brightmaps/Q2D5F0.png"	}
+
+brightmap sprite Q2E5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5A0.png"	}
+brightmap sprite Q2E5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5B0.png"	}
+brightmap sprite Q2E5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5C0.png"	}
+brightmap sprite Q2E5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5D0.png"	}
+brightmap sprite Q2E5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5E0.png"	}
+brightmap sprite Q2E5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5F0.png"	}
+brightmap sprite Q2E5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5G0.png"	}
+brightmap sprite Q2E5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5H0.png"	}
+brightmap sprite Q2E5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5I0.png"	}
+brightmap sprite Q2E5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5J0.png"	}
+brightmap sprite Q2E5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5K0.png"	}
+brightmap sprite Q2E5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5L0.png"	}
+brightmap sprite Q2E5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5M0.png"	}
+brightmap sprite Q2E5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5N0.png"	}
+brightmap sprite Q2E5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5O0.png"	}
+brightmap sprite Q2E5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5P0.png"	}
+brightmap sprite Q2E5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_E_fire/_F_brightmaps/Q2F5Q0.png"	}
+
+brightmap sprite Q2G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5R0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5S0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5T0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5U0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5V0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5W0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5X0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5Y0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+brightmap sprite Q2G5Z0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2H5A0.png"	}
+
+brightmap sprite Q2I5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2J5A0.png"	}
+brightmap sprite Q2I5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2J5B0.png"	}
+brightmap sprite Q2I5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2J5C0.png"	}
+brightmap sprite Q2I5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2J5D0.png"	}
+brightmap sprite Q2I5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2J5E0.png"	}
+brightmap sprite Q2I5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2J5F0.png"	}
+
+brightmap sprite Q2K5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5A0.png"	}
+brightmap sprite Q2K5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5B0.png"	}
+brightmap sprite Q2K5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5C0.png"	}
+brightmap sprite Q2K5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5D0.png"	}
+brightmap sprite Q2K5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5E0.png"	}
+brightmap sprite Q2K5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5F0.png"	}
+brightmap sprite Q2K5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5G0.png"	}
+brightmap sprite Q2K5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5H0.png"	}
+brightmap sprite Q2K5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5I0.png"	}
+brightmap sprite Q2K5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5J0.png"	}
+brightmap sprite Q2K5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5K0.png"	}
+brightmap sprite Q2K5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5L0.png"	}
+brightmap sprite Q2K5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5M0.png"	}
+brightmap sprite Q2K5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5N0.png"	}
+brightmap sprite Q2K5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5O0.png"	}
+brightmap sprite Q2K5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5P0.png"	}
+brightmap sprite Q2K5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2L5Q0.png"	}
 
 // Quake 2 LG
 brightmap sprite Q2G6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/brightmaps/Q2B6A0.png"	}
@@ -2014,23 +2106,109 @@ brightmap sprite Q3KEE0	{	map "Sprites/Weapons/Tribolt/Quake 3/_K_fire_upgraded/
 brightmap sprite Q3KEI0	{	map "Sprites/Weapons/Tribolt/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3LEI0.png"	}
 
 // Quake 3 RL
-brightmap sprite Q3G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5A0.png"	}
-brightmap sprite Q3G5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5B0.png"	}
-brightmap sprite Q3G5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5C0.png"	}
-brightmap sprite Q3G5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5D0.png"	}
-brightmap sprite Q3G5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5E0.png"	}
-brightmap sprite Q3G5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5F0.png"	}
-brightmap sprite Q3G5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5G0.png"	}
-brightmap sprite Q3G5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5H0.png"	}
-brightmap sprite Q3G5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5I0.png"	}
-brightmap sprite Q3G5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5J0.png"	}
-brightmap sprite Q3G5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5K0.png"	}
-brightmap sprite Q3G5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5L0.png"	}
-brightmap sprite Q3G5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5M0.png"	}
-brightmap sprite Q3G5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5N0.png"	}
-brightmap sprite Q3G5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5O0.png"	}
-brightmap sprite Q3G5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5P0.png"	}
-brightmap sprite Q3G5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5Q0.png"	}
+brightmap sprite Q3A5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5R0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5S0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5T0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5U0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5V0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5W0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5X0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5Y0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+brightmap sprite Q3A5Z0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_A_prepare/_B_brightmaps/Q3B5A0.png"	}
+
+brightmap sprite Q3C5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_C_idle/_D_brightmaps/Q3D5A0.png"	}
+brightmap sprite Q3C5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_C_idle/_D_brightmaps/Q3D5A0.png"	}
+brightmap sprite Q3C5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_C_idle/_D_brightmaps/Q3D5A0.png"	}
+brightmap sprite Q3C5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_C_idle/_D_brightmaps/Q3D5A0.png"	}
+brightmap sprite Q3C5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_C_idle/_D_brightmaps/Q3D5A0.png"	}
+brightmap sprite Q3C5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_C_idle/_D_brightmaps/Q3D5A0.png"	}
+
+brightmap sprite Q3E5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5A0.png"	}
+brightmap sprite Q3E5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5B0.png"	}
+brightmap sprite Q3E5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5C0.png"	}
+brightmap sprite Q3E5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5D0.png"	}
+brightmap sprite Q3E5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5E0.png"	}
+brightmap sprite Q3E5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5F0.png"	}
+brightmap sprite Q3E5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5G0.png"	}
+brightmap sprite Q3E5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5H0.png"	}
+brightmap sprite Q3E5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5I0.png"	}
+brightmap sprite Q3E5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5J0.png"	}
+brightmap sprite Q3E5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5K0.png"	}
+brightmap sprite Q3E5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5L0.png"	}
+brightmap sprite Q3E5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5M0.png"	}
+brightmap sprite Q3E5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5N0.png"	}
+brightmap sprite Q3E5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5O0.png"	}
+brightmap sprite Q3E5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5P0.png"	}
+brightmap sprite Q3E5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_E_fire/_F_brightmaps/Q3F5Q0.png"	}
+
+brightmap sprite Q3G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5R0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5S0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5T0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5U0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5V0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5W0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5X0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5Y0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+brightmap sprite Q3G5Z0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_G_prepare_upgraded/_H_brightmaps/Q3H5A0.png"	}
+
+brightmap sprite Q3I5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_I_idle_upgraded/_J_brightmaps/Q3J5A0.png"	}
+brightmap sprite Q3I5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_I_idle_upgraded/_J_brightmaps/Q3J5A0.png"	}
+brightmap sprite Q3I5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_I_idle_upgraded/_J_brightmaps/Q3J5A0.png"	}
+brightmap sprite Q3I5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_I_idle_upgraded/_J_brightmaps/Q3J5A0.png"	}
+brightmap sprite Q3I5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_I_idle_upgraded/_J_brightmaps/Q3J5A0.png"	}
+brightmap sprite Q3I5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_I_idle_upgraded/_J_brightmaps/Q3J5A0.png"	}
+
+brightmap sprite Q3K5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5A0.png"	}
+brightmap sprite Q3K5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5B0.png"	}
+brightmap sprite Q3K5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5C0.png"	}
+brightmap sprite Q3K5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5D0.png"	}
+brightmap sprite Q3K5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5E0.png"	}
+brightmap sprite Q3K5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5F0.png"	}
+brightmap sprite Q3K5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5G0.png"	}
+brightmap sprite Q3K5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5H0.png"	}
+brightmap sprite Q3K5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5I0.png"	}
+brightmap sprite Q3K5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5J0.png"	}
+brightmap sprite Q3K5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5K0.png"	}
+brightmap sprite Q3K5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5L0.png"	}
+brightmap sprite Q3K5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5M0.png"	}
+brightmap sprite Q3K5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5N0.png"	}
+brightmap sprite Q3K5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5O0.png"	}
+brightmap sprite Q3K5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5P0.png"	}
+brightmap sprite Q3K5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3L5Q0.png"	}
 
 // Quake 3 LG
 brightmap sprite Q3G6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/brightmaps/Q3B6A0.png"	}
@@ -2776,23 +2954,109 @@ brightmap sprite Q4KEE0	{	map "Sprites/Weapons/Tribolt/Quake 4/_K_fire_upgraded/
 brightmap sprite Q4KEI0	{	map "Sprites/Weapons/Tribolt/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4LEI0.png"	}
 
 // Quake 4 RL
-brightmap sprite Q4G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5A0.png"	}
-brightmap sprite Q4G5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5B0.png"	}
-brightmap sprite Q4G5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5C0.png"	}
-brightmap sprite Q4G5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5D0.png"	}
-brightmap sprite Q4G5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5E0.png"	}
-brightmap sprite Q4G5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5F0.png"	}
-brightmap sprite Q4G5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5G0.png"	}
-brightmap sprite Q4G5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5H0.png"	}
-brightmap sprite Q4G5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5I0.png"	}
-brightmap sprite Q4G5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5J0.png"	}
-brightmap sprite Q4G5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5K0.png"	}
-brightmap sprite Q4G5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5L0.png"	}
-brightmap sprite Q4G5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5M0.png"	}
-brightmap sprite Q4G5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5N0.png"	}
-brightmap sprite Q4G5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5O0.png"	}
-brightmap sprite Q4G5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5P0.png"	}
-brightmap sprite Q4G5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5Q0.png"	}
+brightmap sprite Q4A5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5R0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5S0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5T0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5U0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5V0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5W0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5X0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5Y0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+brightmap sprite Q4A5Z0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_A_prepare/_B_brightmaps/Q4B5A0.png"	}
+
+brightmap sprite Q4C5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_C_idle/_D_brightmaps/Q4D5A0.png"	}
+brightmap sprite Q4C5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_C_idle/_D_brightmaps/Q4D5A0.png"	}
+brightmap sprite Q4C5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_C_idle/_D_brightmaps/Q4D5A0.png"	}
+brightmap sprite Q4C5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_C_idle/_D_brightmaps/Q4D5A0.png"	}
+brightmap sprite Q4C5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_C_idle/_D_brightmaps/Q4D5A0.png"	}
+brightmap sprite Q4C5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_C_idle/_D_brightmaps/Q4D5A0.png"	}
+
+brightmap sprite Q4E5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5A0.png"	}
+brightmap sprite Q4E5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5B0.png"	}
+brightmap sprite Q4E5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5C0.png"	}
+brightmap sprite Q4E5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5D0.png"	}
+brightmap sprite Q4E5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5E0.png"	}
+brightmap sprite Q4E5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5F0.png"	}
+brightmap sprite Q4E5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5G0.png"	}
+brightmap sprite Q4E5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5H0.png"	}
+brightmap sprite Q4E5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5I0.png"	}
+brightmap sprite Q4E5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5J0.png"	}
+brightmap sprite Q4E5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5K0.png"	}
+brightmap sprite Q4E5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5L0.png"	}
+brightmap sprite Q4E5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5M0.png"	}
+brightmap sprite Q4E5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5N0.png"	}
+brightmap sprite Q4E5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5O0.png"	}
+brightmap sprite Q4E5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5P0.png"	}
+brightmap sprite Q4E5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_E_fire/_F_brightmaps/Q4F5Q0.png"	}
+
+brightmap sprite Q4G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5R0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5S0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5T0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5U0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5V0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5W0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5X0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5Y0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+brightmap sprite Q4G5Z0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_G_prepare_upgraded/_H_brightmaps/Q4H5A0.png"	}
+
+brightmap sprite Q4I5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_I_idle_upgraded/_J_brightmaps/Q4J5A0.png"	}
+brightmap sprite Q4I5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_I_idle_upgraded/_J_brightmaps/Q4J5A0.png"	}
+brightmap sprite Q4I5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_I_idle_upgraded/_J_brightmaps/Q4J5A0.png"	}
+brightmap sprite Q4I5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_I_idle_upgraded/_J_brightmaps/Q4J5A0.png"	}
+brightmap sprite Q4I5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_I_idle_upgraded/_J_brightmaps/Q4J5A0.png"	}
+brightmap sprite Q4I5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_I_idle_upgraded/_J_brightmaps/Q4J5A0.png"	}
+
+brightmap sprite Q4K5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5A0.png"	}
+brightmap sprite Q4K5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5B0.png"	}
+brightmap sprite Q4K5C0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5C0.png"	}
+brightmap sprite Q4K5D0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5D0.png"	}
+brightmap sprite Q4K5E0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5E0.png"	}
+brightmap sprite Q4K5F0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5F0.png"	}
+brightmap sprite Q4K5G0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5G0.png"	}
+brightmap sprite Q4K5H0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5H0.png"	}
+brightmap sprite Q4K5I0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5I0.png"	}
+brightmap sprite Q4K5J0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5J0.png"	}
+brightmap sprite Q4K5K0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5K0.png"	}
+brightmap sprite Q4K5L0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5L0.png"	}
+brightmap sprite Q4K5M0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5M0.png"	}
+brightmap sprite Q4K5N0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5N0.png"	}
+brightmap sprite Q4K5O0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5O0.png"	}
+brightmap sprite Q4K5P0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5P0.png"	}
+brightmap sprite Q4K5Q0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4L5Q0.png"	}
 
 // Quake 4 LG
 brightmap sprite Q4G6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/brightmaps/Q4B6A0.png"	}
@@ -3162,8 +3426,11 @@ brightmap sprite QWODQ0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_up
 brightmap sprite QWODR0	{	map "Sprites/Weapons/SuperNailgun/ET QW/_O_fire_end_upgraded/_P_brightmaps/QWPDR0.png"	}
 
 // ETQW RL
-brightmap sprite QWG5B0	{	map "Sprites/Weapons/RocketLauncher/ET QW/brightmaps/QWB5B0.png"	}
-brightmap sprite QWG5C0	{	map "Sprites/Weapons/RocketLauncher/ET QW/brightmaps/QWB5C0.png"	}
+brightmap sprite QWE5B0	{	map "Sprites/Weapons/RocketLauncher/ET QW/_E_fire/_F_brightmaps/QWF5B0.png"	}
+brightmap sprite QWE5C0	{	map "Sprites/Weapons/RocketLauncher/ET QW/_E_fire/_F_brightmaps/QWF5C0.png"	}
+
+brightmap sprite QWK5B0	{	map "Sprites/Weapons/RocketLauncher/ET QW/_K_fire_upgraded/_L_brightmaps/QWL5B0.png"	}
+brightmap sprite QWK5C0	{	map "Sprites/Weapons/RocketLauncher/ET QW/_K_fire_upgraded/_L_brightmaps/QWL5C0.png"	}
 
 // ETQW LG
 brightmap sprite QWG6A0	{	map "Sprites/Weapons/LightningGun/ET QW/brightmaps/QWB6A0.png"	}
@@ -3459,23 +3726,109 @@ brightmap sprite HLMDP0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_M_fire_lo
 brightmap sprite HLMDQ0	{	map "Sprites/Weapons/SuperNailgun/Half-Life/_M_fire_loop_upgraded/_N_brightmaps/HLNDQ0.png"	}
 
 // Half-Life RL
-brightmap sprite HLG5A0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5A0.png"	}
-brightmap sprite HLG5B0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5B0.png"	}
-brightmap sprite HLG5C0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5C0.png"	}
-brightmap sprite HLG5D0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5D0.png"	}
-brightmap sprite HLG5E0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5F0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5G0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5H0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5I0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5J0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5K0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5L0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5M0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5N0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5O0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5P0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
-brightmap sprite HLG5Q0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/brightmaps/HLB5E0.png"	}
+brightmap sprite HLA5A0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5B0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5C0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5D0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5E0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5F0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5G0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5H0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5I0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5J0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5K0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5L0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5M0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5N0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5O0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5P0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5Q0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5R0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5S0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5T0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5U0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5V0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5W0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5X0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5Y0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+brightmap sprite HLA5Z0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_A_prepare/_B_brightmaps/HLB5A0.png"	}
+
+brightmap sprite HLC5A0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_C_idle/_D_brightmaps/HLD5A0.png"	}
+brightmap sprite HLC5B0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_C_idle/_D_brightmaps/HLD5A0.png"	}
+brightmap sprite HLC5C0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_C_idle/_D_brightmaps/HLD5A0.png"	}
+brightmap sprite HLC5D0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_C_idle/_D_brightmaps/HLD5A0.png"	}
+brightmap sprite HLC5E0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_C_idle/_D_brightmaps/HLD5A0.png"	}
+brightmap sprite HLC5F0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_C_idle/_D_brightmaps/HLD5A0.png"	}
+
+brightmap sprite HLE5A0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5A0.png"	}
+brightmap sprite HLE5B0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5B0.png"	}
+brightmap sprite HLE5C0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5C0.png"	}
+brightmap sprite HLE5D0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5D0.png"	}
+brightmap sprite HLE5E0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5E0.png"	}
+brightmap sprite HLE5F0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5F0.png"	}
+brightmap sprite HLE5G0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5G0.png"	}
+brightmap sprite HLE5H0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5H0.png"	}
+brightmap sprite HLE5I0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5I0.png"	}
+brightmap sprite HLE5J0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5J0.png"	}
+brightmap sprite HLE5K0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5K0.png"	}
+brightmap sprite HLE5L0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5L0.png"	}
+brightmap sprite HLE5M0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5M0.png"	}
+brightmap sprite HLE5N0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5N0.png"	}
+brightmap sprite HLE5O0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5O0.png"	}
+brightmap sprite HLE5P0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5P0.png"	}
+brightmap sprite HLE5Q0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_E_fire/_F_brightmaps/HLF5Q0.png"	}
+
+brightmap sprite HLG5A0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5B0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5C0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5D0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5E0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5F0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5G0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5H0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5I0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5J0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5K0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5L0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5M0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5N0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5O0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5P0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5Q0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5R0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5S0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5T0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5U0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5V0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5W0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5X0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5Y0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+brightmap sprite HLG5Z0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_G_prepare_upgraded/_H_brightmaps/HLH5A0.png"	}
+
+brightmap sprite HLI5A0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_I_idle_upgraded/_J_brightmaps/HLJ5A0.png"	}
+brightmap sprite HLI5B0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_I_idle_upgraded/_J_brightmaps/HLJ5A0.png"	}
+brightmap sprite HLI5C0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_I_idle_upgraded/_J_brightmaps/HLJ5A0.png"	}
+brightmap sprite HLI5D0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_I_idle_upgraded/_J_brightmaps/HLJ5A0.png"	}
+brightmap sprite HLI5E0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_I_idle_upgraded/_J_brightmaps/HLJ5A0.png"	}
+brightmap sprite HLI5F0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_I_idle_upgraded/_J_brightmaps/HLJ5A0.png"	}
+
+brightmap sprite HLK5A0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5A0.png"	}
+brightmap sprite HLK5B0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5B0.png"	}
+brightmap sprite HLK5C0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5C0.png"	}
+brightmap sprite HLK5D0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5D0.png"	}
+brightmap sprite HLK5E0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5E0.png"	}
+brightmap sprite HLK5F0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5F0.png"	}
+brightmap sprite HLK5G0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5G0.png"	}
+brightmap sprite HLK5H0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5H0.png"	}
+brightmap sprite HLK5I0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5I0.png"	}
+brightmap sprite HLK5J0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5J0.png"	}
+brightmap sprite HLK5K0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5K0.png"	}
+brightmap sprite HLK5L0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5L0.png"	}
+brightmap sprite HLK5M0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5M0.png"	}
+brightmap sprite HLK5N0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5N0.png"	}
+brightmap sprite HLK5O0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5O0.png"	}
+brightmap sprite HLK5P0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5P0.png"	}
+brightmap sprite HLK5Q0	{	map "Sprites/Weapons/RocketLauncher/Half-Life/_K_fire_upgraded/_L_brightmaps/HLL5Q0.png"	}
 
 // Half-Life LG
 brightmap sprite HLG6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/brightmaps/HLB6A0.png"	}
@@ -4015,8 +4368,79 @@ brightmap sprite SSKER0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgrad
 brightmap sprite SSKES0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLES0.png"	}
 
 // Serious Sam RL
-brightmap sprite SSG5A0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/brightmaps/SSB5A0.png"	}
-brightmap sprite SSG5B0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/brightmaps/SSB5B0.png"	}
+brightmap sprite SSA5A0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5B0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5C0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5D0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5E0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5F0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5G0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5H0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5I0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5J0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5K0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5L0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5M0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5N0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5O0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5P0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5Q0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5R0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5S0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5T0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5U0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5V0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5W0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5X0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5Y0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+brightmap sprite SSA5Z0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_A_prepare/_B_brightmaps/SSB5A0.png"	}
+
+brightmap sprite SSC5A0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_C_idle/_D_brightmaps/SSD5A0.png"	}
+brightmap sprite SSC5B0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_C_idle/_D_brightmaps/SSD5A0.png"	}
+brightmap sprite SSC5C0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_C_idle/_D_brightmaps/SSD5A0.png"	}
+brightmap sprite SSC5D0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_C_idle/_D_brightmaps/SSD5A0.png"	}
+brightmap sprite SSC5E0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_C_idle/_D_brightmaps/SSD5A0.png"	}
+brightmap sprite SSC5F0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_C_idle/_D_brightmaps/SSD5A0.png"	}
+
+brightmap sprite SSE5A0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_E_fire/_F_brightmaps/SSF5A0.png"	}
+brightmap sprite SSE5B0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_E_fire/_F_brightmaps/SSF5B0.png"	}
+
+brightmap sprite SSG5A0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5B0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5C0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5D0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5E0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5F0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5G0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5H0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5I0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5J0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5K0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5L0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5M0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5N0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5O0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5P0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5Q0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5R0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5S0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5T0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5U0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5V0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5W0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5X0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5Y0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+brightmap sprite SSG5Z0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSH5A0.png"	}
+
+brightmap sprite SSI5A0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJ5A0.png"	}
+brightmap sprite SSI5B0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJ5A0.png"	}
+brightmap sprite SSI5C0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJ5A0.png"	}
+brightmap sprite SSI5D0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJ5A0.png"	}
+brightmap sprite SSI5E0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJ5A0.png"	}
+brightmap sprite SSI5F0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJ5A0.png"	}
+
+brightmap sprite SSK5A0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSL5A0.png"	}
+brightmap sprite SSK5B0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSL5B0.png"	}
 
 // Serious Sam LG
 brightmap sprite SSG6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/brightmaps/SSB6A0.png"	}
@@ -4908,6 +5332,106 @@ brightmap sprite MDKEP0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_
 brightmap sprite MDKEQ0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEQ0.png"	}
 brightmap sprite MDKER0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLER0.png"	}
 brightmap sprite MDKES0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLES0.png"	}
+
+// Modded RL
+brightmap sprite MDA5A0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5A0.png"	}
+brightmap sprite MDA5B0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5B0.png"	}
+brightmap sprite MDA5C0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5C0.png"	}
+brightmap sprite MDA5D0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5D0.png"	}
+brightmap sprite MDA5E0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5E0.png"	}
+brightmap sprite MDA5F0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5F0.png"	}
+brightmap sprite MDA5G0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5G0.png"	}
+brightmap sprite MDA5H0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5H0.png"	}
+brightmap sprite MDA5I0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5I0.png"	}
+brightmap sprite MDA5J0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5J0.png"	}
+brightmap sprite MDA5K0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5K0.png"	}
+brightmap sprite MDA5L0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5L0.png"	}
+brightmap sprite MDA5M0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5M0.png"	}
+brightmap sprite MDA5N0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5N0.png"	}
+brightmap sprite MDA5O0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5O0.png"	}
+brightmap sprite MDA5P0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5P0.png"	}
+brightmap sprite MDA5Q0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5Q0.png"	}
+brightmap sprite MDA5R0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5R0.png"	}
+brightmap sprite MDA5S0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5S0.png"	}
+brightmap sprite MDA5T0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5T0.png"	}
+brightmap sprite MDA5U0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5U0.png"	}
+brightmap sprite MDA5V0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5V0.png"	}
+brightmap sprite MDA5W0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5W0.png"	}
+brightmap sprite MDA5X0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5X0.png"	}
+brightmap sprite MDA5Y0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5Y0.png"	}
+brightmap sprite MDA5Z0	{	map "Sprites/Weapons/RocketLauncher/Modded/_A_prepare/_B_brightmaps/MDB5Z0.png"	}
+brightmap sprite MDC5A0	{	map "Sprites/Weapons/RocketLauncher/Modded/_C_idle/_D_brightmaps/MDD5A0.png"	}
+brightmap sprite MDC5B0	{	map "Sprites/Weapons/RocketLauncher/Modded/_C_idle/_D_brightmaps/MDD5B0.png"	}
+brightmap sprite MDC5C0	{	map "Sprites/Weapons/RocketLauncher/Modded/_C_idle/_D_brightmaps/MDD5C0.png"	}
+brightmap sprite MDC5D0	{	map "Sprites/Weapons/RocketLauncher/Modded/_C_idle/_D_brightmaps/MDD5D0.png"	}
+brightmap sprite MDC5E0	{	map "Sprites/Weapons/RocketLauncher/Modded/_C_idle/_D_brightmaps/MDD5E0.png"	}
+brightmap sprite MDC5F0	{	map "Sprites/Weapons/RocketLauncher/Modded/_C_idle/_D_brightmaps/MDD5F0.png"	}
+brightmap sprite MDE5A0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5A0.png"	}
+brightmap sprite MDE5B0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5B0.png"	}
+brightmap sprite MDE5C0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5C0.png"	}
+brightmap sprite MDE5D0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5D0.png"	}
+brightmap sprite MDE5E0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5E0.png"	}
+brightmap sprite MDE5F0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5F0.png"	}
+brightmap sprite MDE5G0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5G0.png"	}
+brightmap sprite MDE5H0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5H0.png"	}
+brightmap sprite MDE5I0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5I0.png"	}
+brightmap sprite MDE5J0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5J0.png"	}
+brightmap sprite MDE5K0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5K0.png"	}
+brightmap sprite MDE5L0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5L0.png"	}
+brightmap sprite MDE5M0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5M0.png"	}
+brightmap sprite MDE5N0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5N0.png"	}
+brightmap sprite MDE5O0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5O0.png"	}
+brightmap sprite MDE5P0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5P0.png"	}
+brightmap sprite MDE5Q0	{	map "Sprites/Weapons/RocketLauncher/Modded/_E_fire/_F_brightmaps/MDF5Q0.png"	}
+brightmap sprite MDG5A0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5A0.png"	}
+brightmap sprite MDG5B0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5B0.png"	}
+brightmap sprite MDG5C0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5C0.png"	}
+brightmap sprite MDG5D0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5D0.png"	}
+brightmap sprite MDG5E0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5E0.png"	}
+brightmap sprite MDG5F0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5F0.png"	}
+brightmap sprite MDG5G0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5G0.png"	}
+brightmap sprite MDG5H0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5H0.png"	}
+brightmap sprite MDG5I0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5I0.png"	}
+brightmap sprite MDG5J0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5J0.png"	}
+brightmap sprite MDG5K0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5K0.png"	}
+brightmap sprite MDG5L0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5L0.png"	}
+brightmap sprite MDG5M0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5M0.png"	}
+brightmap sprite MDG5N0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5N0.png"	}
+brightmap sprite MDG5O0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5O0.png"	}
+brightmap sprite MDG5P0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5P0.png"	}
+brightmap sprite MDG5Q0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5Q0.png"	}
+brightmap sprite MDG5R0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5R0.png"	}
+brightmap sprite MDG5S0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5S0.png"	}
+brightmap sprite MDG5T0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5T0.png"	}
+brightmap sprite MDG5U0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5U0.png"	}
+brightmap sprite MDG5V0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5V0.png"	}
+brightmap sprite MDG5W0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5W0.png"	}
+brightmap sprite MDG5X0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5X0.png"	}
+brightmap sprite MDG5Y0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5Y0.png"	}
+brightmap sprite MDG5Z0	{	map "Sprites/Weapons/RocketLauncher/Modded/_G_prepare_upgraded/_H_brightmaps/MDH5Z0.png"	}
+brightmap sprite MDI5A0	{	map "Sprites/Weapons/RocketLauncher/Modded/_I_idle_upgraded/_J_brightmaps/MDJ5A0.png"	}
+brightmap sprite MDI5B0	{	map "Sprites/Weapons/RocketLauncher/Modded/_I_idle_upgraded/_J_brightmaps/MDJ5B0.png"	}
+brightmap sprite MDI5C0	{	map "Sprites/Weapons/RocketLauncher/Modded/_I_idle_upgraded/_J_brightmaps/MDJ5C0.png"	}
+brightmap sprite MDI5D0	{	map "Sprites/Weapons/RocketLauncher/Modded/_I_idle_upgraded/_J_brightmaps/MDJ5D0.png"	}
+brightmap sprite MDI5E0	{	map "Sprites/Weapons/RocketLauncher/Modded/_I_idle_upgraded/_J_brightmaps/MDJ5E0.png"	}
+brightmap sprite MDI5F0	{	map "Sprites/Weapons/RocketLauncher/Modded/_I_idle_upgraded/_J_brightmaps/MDJ5F0.png"	}
+brightmap sprite MDK5A0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5A0.png"	}
+brightmap sprite MDK5B0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5B0.png"	}
+brightmap sprite MDK5C0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5C0.png"	}
+brightmap sprite MDK5D0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5D0.png"	}
+brightmap sprite MDK5E0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5E0.png"	}
+brightmap sprite MDK5F0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5F0.png"	}
+brightmap sprite MDK5G0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5G0.png"	}
+brightmap sprite MDK5H0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5H0.png"	}
+brightmap sprite MDK5I0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5I0.png"	}
+brightmap sprite MDK5J0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5J0.png"	}
+brightmap sprite MDK5K0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5K0.png"	}
+brightmap sprite MDK5L0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5L0.png"	}
+brightmap sprite MDK5M0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5M0.png"	}
+brightmap sprite MDK5N0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5N0.png"	}
+brightmap sprite MDK5O0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5O0.png"	}
+brightmap sprite MDK5P0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5P0.png"	}
+brightmap sprite MDK5Q0	{	map "Sprites/Weapons/RocketLauncher/Modded/_K_fire_upgraded/_L_brightmaps/MDL5Q0.png"	}
 
 // RG beam textures
 nofilter MD3/rtrl.png
