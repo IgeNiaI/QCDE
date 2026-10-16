@@ -1,0 +1,31 @@
+Lightning Gun
+
+Assets
+
+Weapon and effect sprites: Sprites/Weapons/LightningGun/
+Sounds: Sounds/Weapons/LightningGun/
+Modded models and model textures: MD3/Weapons/LightningGun/Modded/
+Decal images: Graphics/Decals/LightningGun/
+Menu previews: Graphics/Menu/SkinPreviews/Lightning Gun/
+
+Weapon frames
+
+Use                     Set    Frames    Brightmap set
+Prepare                 A      A-T       B
+Idle                    C      A-G       D
+Fire                    E      A-H       F
+Prepare upgraded        G      A-T       H
+Idle upgraded           I      A-G       J
+Fire upgraded           K      A-H       L
+Purple/static fire      M      A-H       N
+Hidden beam fire        O      A-H       P
+Hidden beam upgraded    Q      A-H       R
+
+Upgraded sets are used while the alt-fire upgrade is active.
+Idle: A-F loop; G is the fire-disabled pose.
+Fire sets: A is resting, B-G loop, H is the flash overlay.
+
+Other Modded frames
+
+MDT6 / MDU6 / MDV6 / MDW6 / MDX6 A-V        Lightning arc variants
+MDY6 Y-Z                                    World beam sprites

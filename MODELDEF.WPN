@@ -489,3 +489,44 @@ Model LaserKraftTrail
    INHERITACTORPITCH
    FrameIndex LTRL A 0 0
 }
+
+// Modded Lightning Gun
+Model LGworldactor_Modded
+{
+   Path "MD3/Weapons/LightningGun/Modded"
+   SKIN 0 "beam1.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 3.0 3.0
+   INHERITACTORPITCH
+   FrameIndex MDY6 Y 0 0
+}
+
+Model LGworldactor2_Modded
+{
+   Path "MD3/Weapons/LightningGun/Modded"
+   SKIN 0 "beam2.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 3.0 3.0
+   INHERITACTORPITCH
+   FrameIndex MDY6 Z 0 0
+}
+
+Model LGworldactorPurple_Modded
+{
+   Path "MD3/Weapons/LightningGun/Modded"
+   SKIN 0 "beam1.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 3.0 3.0
+   INHERITACTORPITCH
+   FrameIndex MDY6 Y 0 0
+}
+
+Model LGworldactor2Purple_Modded
+{
+   Path "MD3/Weapons/LightningGun/Modded"
+   SKIN 0 "beam2.png"
+   MODEL 0 "beam.md3"
+   Scale 1.8 3.0 3.0
+   INHERITACTORPITCH
+   FrameIndex MDY6 Z 0 0
+}

@@ -1806,3 +1806,53 @@ decal MDRLClusterScorch
 	randomflipx
 	randomflipy
 }
+
+// Modded Lightning Gun
+colorchanger MDLGFade
+{
+	FadeStart	0.3
+	FadeTime	0.4
+}
+
+decal MDLGDecal1
+{
+	pic MDLGDC1
+	shade "FF FF FF"
+	Animator MDLGFade
+	x-scale 0.38
+	y-scale 0.38
+	randomflipx
+	randomflipy
+	Fullbright
+}
+
+decal MDLGDecal2
+{
+	pic MDLGDC2
+	shade "FF FF FF"
+	Animator MDLGFade
+	x-scale 0.38
+	y-scale 0.38
+	randomflipx
+	randomflipy
+	Fullbright
+}
+
+decal MDLGDecal3
+{
+	pic MDLGDC3
+	shade "FF FF FF"
+	Animator MDLGFade
+	x-scale 0.38
+	y-scale 0.38
+	randomflipx
+	randomflipy
+	Fullbright
+}
+
+decalgroup MDLGDecal
+{
+	MDLGDecal1	1
+	MDLGDecal2	1
+	MDLGDecal3	1
+}
