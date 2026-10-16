@@ -151,9 +151,13 @@ brightmap sprite QCMDP0	{	map "Sprites/Weapons/SuperNailgun/Default/_M_fire_loop
 brightmap sprite QCMDQ0	{	map "Sprites/Weapons/SuperNailgun/Default/_M_fire_loop_upgraded/_N_brightmaps/QCNDQ0.png"	}
 
 // Default TB
-brightmap sprite QCGEB0	{	map "Sprites/Weapons/Tribolt/Default/brightmaps/QCBEB0.png"	}
-brightmap sprite QCGEE0	{	map "Sprites/Weapons/Tribolt/Default/brightmaps/QCBEE0.png"	}
-brightmap sprite QCGEI0	{	map "Sprites/Weapons/Tribolt/Default/brightmaps/QCBEI0.png"	}
+brightmap sprite QCEEB0	{	map "Sprites/Weapons/Tribolt/Default/_E_fire/_F_brightmaps/QCFEB0.png"	}
+brightmap sprite QCEEE0	{	map "Sprites/Weapons/Tribolt/Default/_E_fire/_F_brightmaps/QCFEE0.png"	}
+brightmap sprite QCEEI0	{	map "Sprites/Weapons/Tribolt/Default/_E_fire/_F_brightmaps/QCFEI0.png"	}
+
+brightmap sprite QCKEB0	{	map "Sprites/Weapons/Tribolt/Default/_K_fire_upgraded/_L_brightmaps/QCLEB0.png"	}
+brightmap sprite QCKEE0	{	map "Sprites/Weapons/Tribolt/Default/_K_fire_upgraded/_L_brightmaps/QCLEE0.png"	}
+brightmap sprite QCKEI0	{	map "Sprites/Weapons/Tribolt/Default/_K_fire_upgraded/_L_brightmaps/QCLEI0.png"	}
 
 // Default RL
 brightmap sprite QCG5B0	{	map "Sprites/Weapons/RocketLauncher/Default/brightmaps/QCB5B0.png"	}
@@ -492,25 +496,113 @@ brightmap sprite Q0ODQ0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end
 brightmap sprite Q0ODR0	{	map "Sprites/Weapons/SuperNailgun/QCDE 1.0/_O_fire_end_upgraded/_P_brightmaps/Q0PDR0.png"	}
 
 // QCDE 1.0 TB
-brightmap sprite Q0GEA0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEA0.png"	}
-brightmap sprite Q0GEB0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEB0.png"	}
-brightmap sprite Q0GEC0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEC0.png"	}
-brightmap sprite Q0GED0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BED0.png"	}
-brightmap sprite Q0GEE0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEE0.png"	}
-brightmap sprite Q0GEF0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEF0.png"	}
-brightmap sprite Q0GEG0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEG0.png"	}
-brightmap sprite Q0GEH0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEH0.png"	}
-brightmap sprite Q0GEI0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEI0.png"	}
-brightmap sprite Q0GEJ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEJ0.png"	}
-brightmap sprite Q0GEK0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEK0.png"	}
-brightmap sprite Q0GEL0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEL0.png"	}
-brightmap sprite Q0GEM0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEM0.png"	}
-brightmap sprite Q0GEN0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEN0.png"	}
-brightmap sprite Q0GEO0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEO0.png"	}
-brightmap sprite Q0GEP0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEP0.png"	}
-brightmap sprite Q0GEQ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BEQ0.png"	}
-brightmap sprite Q0GER0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BER0.png"	}
-brightmap sprite Q0GES0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/brightmaps/Q0BES0.png"	}
+brightmap sprite Q0AEA0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEB0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEC0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AED0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEE0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEF0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEG0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEH0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEI0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEJ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEK0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEL0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEM0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEN0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEO0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEP0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEQ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AER0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AES0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AET0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEU0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEV0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEW0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEX0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEY0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+brightmap sprite Q0AEZ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_A_prepare/_B_brightmaps/Q0BEA0.png"	}
+
+brightmap sprite Q0CEA0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_C_idle/_D_brightmaps/Q0DEA0.png"	}
+brightmap sprite Q0CEB0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_C_idle/_D_brightmaps/Q0DEA0.png"	}
+brightmap sprite Q0CEC0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_C_idle/_D_brightmaps/Q0DEA0.png"	}
+brightmap sprite Q0CED0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_C_idle/_D_brightmaps/Q0DEA0.png"	}
+brightmap sprite Q0CEE0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_C_idle/_D_brightmaps/Q0DEA0.png"	}
+brightmap sprite Q0CEF0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_C_idle/_D_brightmaps/Q0DEA0.png"	}
+
+brightmap sprite Q0EEA0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEA0.png"	}
+brightmap sprite Q0EEB0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEB0.png"	}
+brightmap sprite Q0EEC0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEC0.png"	}
+brightmap sprite Q0EED0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FED0.png"	}
+brightmap sprite Q0EEE0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEE0.png"	}
+brightmap sprite Q0EEF0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEF0.png"	}
+brightmap sprite Q0EEG0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEG0.png"	}
+brightmap sprite Q0EEH0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEH0.png"	}
+brightmap sprite Q0EEI0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEI0.png"	}
+brightmap sprite Q0EEJ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEJ0.png"	}
+brightmap sprite Q0EEK0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEK0.png"	}
+brightmap sprite Q0EEL0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEL0.png"	}
+brightmap sprite Q0EEM0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEM0.png"	}
+brightmap sprite Q0EEN0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEN0.png"	}
+brightmap sprite Q0EEO0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEO0.png"	}
+brightmap sprite Q0EEP0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEP0.png"	}
+brightmap sprite Q0EEQ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FEQ0.png"	}
+brightmap sprite Q0EER0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FER0.png"	}
+brightmap sprite Q0EES0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_E_fire/_F_brightmaps/Q0FES0.png"	}
+
+brightmap sprite Q0GEA0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEB0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEC0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GED0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEE0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEF0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEG0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEH0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEI0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEJ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEK0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEL0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEM0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEN0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEO0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEP0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEQ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GER0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GES0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GET0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEU0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEV0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEW0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEX0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEY0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+brightmap sprite Q0GEZ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_G_prepare_upgraded/_H_brightmaps/Q0HEA0.png"	}
+
+brightmap sprite Q0IEA0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_I_idle_upgraded/_J_brightmaps/Q0JEA0.png"	}
+brightmap sprite Q0IEB0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_I_idle_upgraded/_J_brightmaps/Q0JEA0.png"	}
+brightmap sprite Q0IEC0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_I_idle_upgraded/_J_brightmaps/Q0JEA0.png"	}
+brightmap sprite Q0IED0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_I_idle_upgraded/_J_brightmaps/Q0JEA0.png"	}
+brightmap sprite Q0IEE0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_I_idle_upgraded/_J_brightmaps/Q0JEA0.png"	}
+brightmap sprite Q0IEF0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_I_idle_upgraded/_J_brightmaps/Q0JEA0.png"	}
+
+brightmap sprite Q0KEA0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEA0.png"	}
+brightmap sprite Q0KEB0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEB0.png"	}
+brightmap sprite Q0KEC0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEC0.png"	}
+brightmap sprite Q0KED0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LED0.png"	}
+brightmap sprite Q0KEE0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEE0.png"	}
+brightmap sprite Q0KEF0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEF0.png"	}
+brightmap sprite Q0KEG0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEG0.png"	}
+brightmap sprite Q0KEH0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEH0.png"	}
+brightmap sprite Q0KEI0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEI0.png"	}
+brightmap sprite Q0KEJ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEJ0.png"	}
+brightmap sprite Q0KEK0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEK0.png"	}
+brightmap sprite Q0KEL0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEL0.png"	}
+brightmap sprite Q0KEM0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEM0.png"	}
+brightmap sprite Q0KEN0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEN0.png"	}
+brightmap sprite Q0KEO0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEO0.png"	}
+brightmap sprite Q0KEP0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEP0.png"	}
+brightmap sprite Q0KEQ0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LEQ0.png"	}
+brightmap sprite Q0KER0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LER0.png"	}
+brightmap sprite Q0KES0	{	map "Sprites/Weapons/Tribolt/QCDE 1.0/_K_fire_upgraded/_L_brightmaps/Q0LES0.png"	}
 
 // QCDE 1.0 RL
 brightmap sprite Q0G5B0	{	map "Sprites/Weapons/RocketLauncher/QCDE 1.0/brightmaps/Q0B5B0.png"	}
@@ -702,9 +794,13 @@ brightmap sprite Q1ODQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_
 brightmap sprite Q1ODR0	{	map "Sprites/Weapons/SuperNailgun/Quake 1/_O_fire_end_upgraded/_P_brightmaps/Q1PDR0.png"	}
 
 // Quake 1 TB
-brightmap sprite Q1GEB0	{	map "Sprites/Weapons/Tribolt/Quake 1/brightmaps/Q1BEB0.png"	}
-brightmap sprite Q1GEE0	{	map "Sprites/Weapons/Tribolt/Quake 1/brightmaps/Q1BEE0.png"	}
-brightmap sprite Q1GEI0	{	map "Sprites/Weapons/Tribolt/Quake 1/brightmaps/Q1BEI0.png"	}
+brightmap sprite Q1EEB0	{	map "Sprites/Weapons/Tribolt/Quake 1/_E_fire/_F_brightmaps/Q1FEB0.png"	}
+brightmap sprite Q1EEE0	{	map "Sprites/Weapons/Tribolt/Quake 1/_E_fire/_F_brightmaps/Q1FEE0.png"	}
+brightmap sprite Q1EEI0	{	map "Sprites/Weapons/Tribolt/Quake 1/_E_fire/_F_brightmaps/Q1FEI0.png"	}
+
+brightmap sprite Q1KEB0	{	map "Sprites/Weapons/Tribolt/Quake 1/_K_fire_upgraded/_L_brightmaps/Q1LEB0.png"	}
+brightmap sprite Q1KEE0	{	map "Sprites/Weapons/Tribolt/Quake 1/_K_fire_upgraded/_L_brightmaps/Q1LEE0.png"	}
+brightmap sprite Q1KEI0	{	map "Sprites/Weapons/Tribolt/Quake 1/_K_fire_upgraded/_L_brightmaps/Q1LEI0.png"	}
 
 // Quake 1 RL
 brightmap sprite Q1G5B0	{	map "Sprites/Weapons/RocketLauncher/Quake 1/brightmaps/Q1B5B0.png"	}
@@ -1384,16 +1480,95 @@ brightmap sprite Q2ODQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_
 brightmap sprite Q2ODR0	{	map "Sprites/Weapons/SuperNailgun/Quake 2/_O_fire_end_upgraded/_P_brightmaps/Q2PDR0.png"	}
 
 // Quake 2 TB
-brightmap sprite Q2GEA0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEA0.png"	}
-brightmap sprite Q2GEB0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEB0.png"	}
-brightmap sprite Q2GEC0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEC0.png"	}
-brightmap sprite Q2GED0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BED0.png"	}
-brightmap sprite Q2GEE0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEE0.png"	}
-brightmap sprite Q2GEF0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEF0.png"	}
-brightmap sprite Q2GEG0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEG0.png"	}
-brightmap sprite Q2GEH0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEH0.png"	}
-brightmap sprite Q2GEI0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEI0.png"	}
-brightmap sprite Q2GEJ0	{	map "Sprites/Weapons/Tribolt/Quake 2/brightmaps/Q2BEJ0.png"	}
+brightmap sprite Q2AEA0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEB0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEC0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AED0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEE0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEF0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEG0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEH0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEI0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEJ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEK0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEL0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEM0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEN0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEO0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEP0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEQ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AER0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AES0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AET0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEU0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEV0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEW0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEX0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEY0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+brightmap sprite Q2AEZ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_A_prepare/_B_brightmaps/Q2BEA0.png"	}
+
+brightmap sprite Q2CEA0	{	map "Sprites/Weapons/Tribolt/Quake 2/_C_idle/_D_brightmaps/Q2DEA0.png"	}
+brightmap sprite Q2CEB0	{	map "Sprites/Weapons/Tribolt/Quake 2/_C_idle/_D_brightmaps/Q2DEA0.png"	}
+brightmap sprite Q2CEC0	{	map "Sprites/Weapons/Tribolt/Quake 2/_C_idle/_D_brightmaps/Q2DEA0.png"	}
+brightmap sprite Q2CED0	{	map "Sprites/Weapons/Tribolt/Quake 2/_C_idle/_D_brightmaps/Q2DEA0.png"	}
+brightmap sprite Q2CEE0	{	map "Sprites/Weapons/Tribolt/Quake 2/_C_idle/_D_brightmaps/Q2DEA0.png"	}
+brightmap sprite Q2CEF0	{	map "Sprites/Weapons/Tribolt/Quake 2/_C_idle/_D_brightmaps/Q2DEA0.png"	}
+
+brightmap sprite Q2EEA0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEA0.png"	}
+brightmap sprite Q2EEB0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEB0.png"	}
+brightmap sprite Q2EEC0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEC0.png"	}
+brightmap sprite Q2EED0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FED0.png"	}
+brightmap sprite Q2EEE0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEE0.png"	}
+brightmap sprite Q2EEF0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEF0.png"	}
+brightmap sprite Q2EEG0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEG0.png"	}
+brightmap sprite Q2EEH0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEH0.png"	}
+brightmap sprite Q2EEI0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEI0.png"	}
+brightmap sprite Q2EEJ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_E_fire/_F_brightmaps/Q2FEJ0.png"	}
+
+brightmap sprite Q2GEA0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEB0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEC0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GED0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEE0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEF0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEG0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEH0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEI0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEJ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEK0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEL0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEM0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEN0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEO0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEP0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEQ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GER0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GES0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GET0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEU0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEV0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEW0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEX0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEY0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+brightmap sprite Q2GEZ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_G_prepare_upgraded/_H_brightmaps/Q2HEA0.png"	}
+
+brightmap sprite Q2IEA0	{	map "Sprites/Weapons/Tribolt/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2JEA0.png"	}
+brightmap sprite Q2IEB0	{	map "Sprites/Weapons/Tribolt/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2JEA0.png"	}
+brightmap sprite Q2IEC0	{	map "Sprites/Weapons/Tribolt/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2JEA0.png"	}
+brightmap sprite Q2IED0	{	map "Sprites/Weapons/Tribolt/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2JEA0.png"	}
+brightmap sprite Q2IEE0	{	map "Sprites/Weapons/Tribolt/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2JEA0.png"	}
+brightmap sprite Q2IEF0	{	map "Sprites/Weapons/Tribolt/Quake 2/_I_idle_upgraded/_J_brightmaps/Q2JEA0.png"	}
+
+brightmap sprite Q2KEA0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEA0.png"	}
+brightmap sprite Q2KEB0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEB0.png"	}
+brightmap sprite Q2KEC0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEC0.png"	}
+brightmap sprite Q2KED0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LED0.png"	}
+brightmap sprite Q2KEE0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEE0.png"	}
+brightmap sprite Q2KEF0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEF0.png"	}
+brightmap sprite Q2KEG0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEG0.png"	}
+brightmap sprite Q2KEH0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEH0.png"	}
+brightmap sprite Q2KEI0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEI0.png"	}
+brightmap sprite Q2KEJ0	{	map "Sprites/Weapons/Tribolt/Quake 2/_K_fire_upgraded/_L_brightmaps/Q2LEJ0.png"	}
 
 // Quake 2 RL
 brightmap sprite Q2G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 2/brightmaps/Q2B5A0.png"	}
@@ -1826,9 +2001,13 @@ brightmap sprite Q3ODQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_
 brightmap sprite Q3ODR0	{	map "Sprites/Weapons/SuperNailgun/Quake 3/_O_fire_end_upgraded/_P_brightmaps/Q3PDR0.png"	}
 
 // Quake 3 TB
-brightmap sprite Q3GEB0	{	map "Sprites/Weapons/Tribolt/Quake 3/brightmaps/Q3BEB0.png"	}
-brightmap sprite Q3GEE0	{	map "Sprites/Weapons/Tribolt/Quake 3/brightmaps/Q3BEE0.png"	}
-brightmap sprite Q3GEI0	{	map "Sprites/Weapons/Tribolt/Quake 3/brightmaps/Q3BEI0.png"	}
+brightmap sprite Q3EEB0	{	map "Sprites/Weapons/Tribolt/Quake 3/_E_fire/_F_brightmaps/Q3FEB0.png"	}
+brightmap sprite Q3EEE0	{	map "Sprites/Weapons/Tribolt/Quake 3/_E_fire/_F_brightmaps/Q3FEE0.png"	}
+brightmap sprite Q3EEI0	{	map "Sprites/Weapons/Tribolt/Quake 3/_E_fire/_F_brightmaps/Q3FEI0.png"	}
+
+brightmap sprite Q3KEB0	{	map "Sprites/Weapons/Tribolt/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3LEB0.png"	}
+brightmap sprite Q3KEE0	{	map "Sprites/Weapons/Tribolt/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3LEE0.png"	}
+brightmap sprite Q3KEI0	{	map "Sprites/Weapons/Tribolt/Quake 3/_K_fire_upgraded/_L_brightmaps/Q3LEI0.png"	}
 
 // Quake 3 RL
 brightmap sprite Q3G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 3/brightmaps/Q3B5A0.png"	}
@@ -2584,9 +2763,13 @@ brightmap sprite Q4ODQ0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_
 brightmap sprite Q4ODR0	{	map "Sprites/Weapons/SuperNailgun/Quake 4/_O_fire_end_upgraded/_P_brightmaps/Q4PDR0.png"	}
 
 // Quake 4 TB
-brightmap sprite Q4GEB0	{	map "Sprites/Weapons/Tribolt/Quake 4/brightmaps/Q4BEB0.png"	}
-brightmap sprite Q4GEE0	{	map "Sprites/Weapons/Tribolt/Quake 4/brightmaps/Q4BEE0.png"	}
-brightmap sprite Q4GEI0	{	map "Sprites/Weapons/Tribolt/Quake 4/brightmaps/Q4BEI0.png"	}
+brightmap sprite Q4EEB0	{	map "Sprites/Weapons/Tribolt/Quake 4/_E_fire/_F_brightmaps/Q4FEB0.png"	}
+brightmap sprite Q4EEE0	{	map "Sprites/Weapons/Tribolt/Quake 4/_E_fire/_F_brightmaps/Q4FEE0.png"	}
+brightmap sprite Q4EEI0	{	map "Sprites/Weapons/Tribolt/Quake 4/_E_fire/_F_brightmaps/Q4FEI0.png"	}
+
+brightmap sprite Q4KEB0	{	map "Sprites/Weapons/Tribolt/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4LEB0.png"	}
+brightmap sprite Q4KEE0	{	map "Sprites/Weapons/Tribolt/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4LEE0.png"	}
+brightmap sprite Q4KEI0	{	map "Sprites/Weapons/Tribolt/Quake 4/_K_fire_upgraded/_L_brightmaps/Q4LEI0.png"	}
 
 // Quake 4 RL
 brightmap sprite Q4G5A0	{	map "Sprites/Weapons/RocketLauncher/Quake 4/brightmaps/Q4B5A0.png"	}
@@ -3723,23 +3906,109 @@ brightmap sprite SSODQ0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_e
 brightmap sprite SSODR0	{	map "Sprites/Weapons/SuperNailgun/SeriousSam/_O_fire_end_upgraded/_P_brightmaps/SSPDR0.png"	}
 
 // Serious Sam TB
-brightmap sprite SSGEA0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEA0.png"	}
-brightmap sprite SSGEB0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEB0.png"	}
-brightmap sprite SSGEC0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEC0.png"	}
-brightmap sprite SSGED0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBED0.png"	}
-brightmap sprite SSGEE0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEE0.png"	}
-brightmap sprite SSGEF0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEF0.png"	}
-brightmap sprite SSGEG0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEG0.png"	}
-brightmap sprite SSGEH0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEG0.png"	}
-brightmap sprite SSGEI0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEI0.png"	}
-brightmap sprite SSGEL0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEL0.png"	}
-brightmap sprite SSGEM0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEL0.png"	}
-brightmap sprite SSGEN0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEL0.png"	}
-brightmap sprite SSGEO0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEL0.png"	}
-brightmap sprite SSGEP0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEP0.png"	}
-brightmap sprite SSGEQ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEP0.png"	}
-brightmap sprite SSGER0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEP0.png"	}
-brightmap sprite SSGES0	{	map "Sprites/Weapons/Tribolt/SeriousSam/brightmaps/SSBEP0.png"	}
+brightmap sprite SSAEA0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEB0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEC0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAED0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEE0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEF0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEG0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEH0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEI0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEJ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEK0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEL0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEM0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEN0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEO0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEP0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEQ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAER0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAES0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAET0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEU0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEV0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEW0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEX0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEY0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+brightmap sprite SSAEZ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_A_prepare/_B_brightmaps/SSBEA0.png"	}
+
+brightmap sprite SSCEA0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_C_idle/_D_brightmaps/SSDEA0.png"	}
+brightmap sprite SSCEB0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_C_idle/_D_brightmaps/SSDEA0.png"	}
+brightmap sprite SSCEC0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_C_idle/_D_brightmaps/SSDEA0.png"	}
+brightmap sprite SSCED0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_C_idle/_D_brightmaps/SSDEA0.png"	}
+brightmap sprite SSCEE0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_C_idle/_D_brightmaps/SSDEA0.png"	}
+brightmap sprite SSCEF0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_C_idle/_D_brightmaps/SSDEA0.png"	}
+
+brightmap sprite SSEEA0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEA0.png"	}
+brightmap sprite SSEEB0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEB0.png"	}
+brightmap sprite SSEEC0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEC0.png"	}
+brightmap sprite SSEED0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFED0.png"	}
+brightmap sprite SSEEE0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEE0.png"	}
+brightmap sprite SSEEF0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEF0.png"	}
+brightmap sprite SSEEG0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEG0.png"	}
+brightmap sprite SSEEH0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEH0.png"	}
+brightmap sprite SSEEI0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEI0.png"	}
+brightmap sprite SSEEL0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEL0.png"	}
+brightmap sprite SSEEM0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEM0.png"	}
+brightmap sprite SSEEN0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEN0.png"	}
+brightmap sprite SSEEO0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEO0.png"	}
+brightmap sprite SSEEP0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEP0.png"	}
+brightmap sprite SSEEQ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFEQ0.png"	}
+brightmap sprite SSEER0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFER0.png"	}
+brightmap sprite SSEES0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_E_fire/_F_brightmaps/SSFES0.png"	}
+
+brightmap sprite SSGEA0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEB0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEC0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGED0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEE0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEF0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEG0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEH0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEI0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEJ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEK0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEL0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEM0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEN0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEO0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEP0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEQ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGER0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGES0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGET0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEU0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEV0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEW0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEX0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEY0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+brightmap sprite SSGEZ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_G_prepare_upgraded/_H_brightmaps/SSHEA0.png"	}
+
+brightmap sprite SSIEA0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJEA0.png"	}
+brightmap sprite SSIEB0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJEA0.png"	}
+brightmap sprite SSIEC0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJEA0.png"	}
+brightmap sprite SSIED0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJEA0.png"	}
+brightmap sprite SSIEE0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJEA0.png"	}
+brightmap sprite SSIEF0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_I_idle_upgraded/_J_brightmaps/SSJEA0.png"	}
+
+brightmap sprite SSKEA0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEA0.png"	}
+brightmap sprite SSKEB0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEB0.png"	}
+brightmap sprite SSKEC0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEC0.png"	}
+brightmap sprite SSKED0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLED0.png"	}
+brightmap sprite SSKEE0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEE0.png"	}
+brightmap sprite SSKEF0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEF0.png"	}
+brightmap sprite SSKEG0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEG0.png"	}
+brightmap sprite SSKEH0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEH0.png"	}
+brightmap sprite SSKEI0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEI0.png"	}
+brightmap sprite SSKEL0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEL0.png"	}
+brightmap sprite SSKEM0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEM0.png"	}
+brightmap sprite SSKEN0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEN0.png"	}
+brightmap sprite SSKEO0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEO0.png"	}
+brightmap sprite SSKEP0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEP0.png"	}
+brightmap sprite SSKEQ0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLEQ0.png"	}
+brightmap sprite SSKER0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLER0.png"	}
+brightmap sprite SSKES0	{	map "Sprites/Weapons/Tribolt/SeriousSam/_K_fire_upgraded/_L_brightmaps/SSLES0.png"	}
 
 // Serious Sam RL
 brightmap sprite SSG5A0	{	map "Sprites/Weapons/RocketLauncher/SeriousSam/brightmaps/SSB5A0.png"	}
@@ -4472,6 +4741,115 @@ brightmap sprite MDODO0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_u
 brightmap sprite MDODP0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDP0.png"	}
 brightmap sprite MDODQ0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDQ0.png"	}
 brightmap sprite MDODR0	{	map "Sprites/Weapons/SuperNailgun/Modded/_O_fire_end_upgraded/_P_brightmaps/MDPDR0.png"	}
+
+// Modded TB
+brightmap sprite MDAEA0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEA0.png"	}
+brightmap sprite MDAEB0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEB0.png"	}
+brightmap sprite MDAEC0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEC0.png"	}
+brightmap sprite MDAED0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBED0.png"	}
+brightmap sprite MDAEE0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEE0.png"	}
+brightmap sprite MDAEF0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEF0.png"	}
+brightmap sprite MDAEG0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEG0.png"	}
+brightmap sprite MDAEH0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEH0.png"	}
+brightmap sprite MDAEI0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEI0.png"	}
+brightmap sprite MDAEJ0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEJ0.png"	}
+brightmap sprite MDAEK0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEK0.png"	}
+brightmap sprite MDAEL0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEL0.png"	}
+brightmap sprite MDAEM0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEM0.png"	}
+brightmap sprite MDAEN0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEN0.png"	}
+brightmap sprite MDAEO0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEO0.png"	}
+brightmap sprite MDAEP0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEP0.png"	}
+brightmap sprite MDAEQ0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEQ0.png"	}
+brightmap sprite MDAER0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBER0.png"	}
+brightmap sprite MDAES0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBES0.png"	}
+brightmap sprite MDAET0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBET0.png"	}
+brightmap sprite MDAEU0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEU0.png"	}
+brightmap sprite MDAEV0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEV0.png"	}
+brightmap sprite MDAEW0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEW0.png"	}
+brightmap sprite MDAEX0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEX0.png"	}
+brightmap sprite MDAEY0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEY0.png"	}
+brightmap sprite MDAEZ0	{	map "Sprites/Weapons/Tribolt/Modded/_A_prepare/_B_brightmaps/MDBEZ0.png"	}
+
+brightmap sprite MDCEA0	{	map "Sprites/Weapons/Tribolt/Modded/_C_idle/_D_brightmaps/MDDEA0.png"	}
+brightmap sprite MDCEB0	{	map "Sprites/Weapons/Tribolt/Modded/_C_idle/_D_brightmaps/MDDEB0.png"	}
+brightmap sprite MDCEC0	{	map "Sprites/Weapons/Tribolt/Modded/_C_idle/_D_brightmaps/MDDEC0.png"	}
+brightmap sprite MDCED0	{	map "Sprites/Weapons/Tribolt/Modded/_C_idle/_D_brightmaps/MDDED0.png"	}
+brightmap sprite MDCEE0	{	map "Sprites/Weapons/Tribolt/Modded/_C_idle/_D_brightmaps/MDDEE0.png"	}
+brightmap sprite MDCEF0	{	map "Sprites/Weapons/Tribolt/Modded/_C_idle/_D_brightmaps/MDDEF0.png"	}
+
+brightmap sprite MDEEA0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEA0.png"	}
+brightmap sprite MDEEB0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEB0.png"	}
+brightmap sprite MDEEC0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEC0.png"	}
+brightmap sprite MDEED0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFED0.png"	}
+brightmap sprite MDEEE0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEE0.png"	}
+brightmap sprite MDEEF0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEF0.png"	}
+brightmap sprite MDEEG0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEG0.png"	}
+brightmap sprite MDEEH0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEH0.png"	}
+brightmap sprite MDEEI0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEI0.png"	}
+brightmap sprite MDEEJ0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEJ0.png"	}
+brightmap sprite MDEEK0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEK0.png"	}
+brightmap sprite MDEEL0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEL0.png"	}
+brightmap sprite MDEEM0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEM0.png"	}
+brightmap sprite MDEEN0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEN0.png"	}
+brightmap sprite MDEEO0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEO0.png"	}
+brightmap sprite MDEEP0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEP0.png"	}
+brightmap sprite MDEEQ0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFEQ0.png"	}
+brightmap sprite MDEER0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFER0.png"	}
+brightmap sprite MDEES0	{	map "Sprites/Weapons/Tribolt/Modded/_E_fire/_F_brightmaps/MDFES0.png"	}
+
+brightmap sprite MDGEA0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEA0.png"	}
+brightmap sprite MDGEB0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEB0.png"	}
+brightmap sprite MDGEC0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEC0.png"	}
+brightmap sprite MDGED0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHED0.png"	}
+brightmap sprite MDGEE0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEE0.png"	}
+brightmap sprite MDGEF0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEF0.png"	}
+brightmap sprite MDGEG0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEG0.png"	}
+brightmap sprite MDGEH0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEH0.png"	}
+brightmap sprite MDGEI0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEI0.png"	}
+brightmap sprite MDGEJ0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEJ0.png"	}
+brightmap sprite MDGEK0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEK0.png"	}
+brightmap sprite MDGEL0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEL0.png"	}
+brightmap sprite MDGEM0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEM0.png"	}
+brightmap sprite MDGEN0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEN0.png"	}
+brightmap sprite MDGEO0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEO0.png"	}
+brightmap sprite MDGEP0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEP0.png"	}
+brightmap sprite MDGEQ0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEQ0.png"	}
+brightmap sprite MDGER0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHER0.png"	}
+brightmap sprite MDGES0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHES0.png"	}
+brightmap sprite MDGET0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHET0.png"	}
+brightmap sprite MDGEU0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEU0.png"	}
+brightmap sprite MDGEV0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEV0.png"	}
+brightmap sprite MDGEW0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEW0.png"	}
+brightmap sprite MDGEX0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEX0.png"	}
+brightmap sprite MDGEY0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEY0.png"	}
+brightmap sprite MDGEZ0	{	map "Sprites/Weapons/Tribolt/Modded/_G_prepare_upgraded/_H_brightmaps/MDHEZ0.png"	}
+
+brightmap sprite MDIEA0	{	map "Sprites/Weapons/Tribolt/Modded/_I_idle_upgraded/_J_brightmaps/MDJEA0.png"	}
+brightmap sprite MDIEB0	{	map "Sprites/Weapons/Tribolt/Modded/_I_idle_upgraded/_J_brightmaps/MDJEB0.png"	}
+brightmap sprite MDIEC0	{	map "Sprites/Weapons/Tribolt/Modded/_I_idle_upgraded/_J_brightmaps/MDJEC0.png"	}
+brightmap sprite MDIED0	{	map "Sprites/Weapons/Tribolt/Modded/_I_idle_upgraded/_J_brightmaps/MDJED0.png"	}
+brightmap sprite MDIEE0	{	map "Sprites/Weapons/Tribolt/Modded/_I_idle_upgraded/_J_brightmaps/MDJEE0.png"	}
+brightmap sprite MDIEF0	{	map "Sprites/Weapons/Tribolt/Modded/_I_idle_upgraded/_J_brightmaps/MDJEF0.png"	}
+
+brightmap sprite MDKEA0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEA0.png"	}
+brightmap sprite MDKEB0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEB0.png"	}
+brightmap sprite MDKEC0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEC0.png"	}
+brightmap sprite MDKED0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLED0.png"	}
+brightmap sprite MDKEE0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEE0.png"	}
+brightmap sprite MDKEF0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEF0.png"	}
+brightmap sprite MDKEG0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEG0.png"	}
+brightmap sprite MDKEH0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEH0.png"	}
+brightmap sprite MDKEI0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEI0.png"	}
+brightmap sprite MDKEJ0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEJ0.png"	}
+brightmap sprite MDKEK0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEK0.png"	}
+brightmap sprite MDKEL0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEL0.png"	}
+brightmap sprite MDKEM0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEM0.png"	}
+brightmap sprite MDKEN0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEN0.png"	}
+brightmap sprite MDKEO0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEO0.png"	}
+brightmap sprite MDKEP0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEP0.png"	}
+brightmap sprite MDKEQ0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLEQ0.png"	}
+brightmap sprite MDKER0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLER0.png"	}
+brightmap sprite MDKES0	{	map "Sprites/Weapons/Tribolt/Modded/_K_fire_upgraded/_L_brightmaps/MDLES0.png"	}
 
 // RG beam textures
 nofilter MD3/rtrl.png

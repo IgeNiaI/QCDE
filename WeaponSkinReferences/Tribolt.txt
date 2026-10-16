@@ -1,0 +1,41 @@
+Tribolt animation states and frames:
+
+Prepare					-> A, A-Z (26 frames, 1 tic each)
+	brightmaps			-> B
+Idle					-> C, A-F (6 frames, 3 tics each)
+	brightmaps			-> D
+Fire					-> E, A-S (19 poses)
+	brightmaps			-> F
+
+Prepare upgraded		-> G, A-Z
+	brightmaps			-> H
+Idle upgraded			-> I, A-F
+	brightmaps			-> J
+Fire upgraded			-> K, A-S
+	brightmaps			-> L
+
+All eight skins use the same preparation, idle, and firing sequences.
+Preparation and idle repeat each skin's existing resting pose.
+Frame A is also used when lowering the weapon.
+Upgraded designs are selected while TB_UG_Grenade (Bouncy Shell) is owned.
+No skin has dedicated upgraded artwork; upgraded assets copy normal artwork.
+TB_UG_Long does not select an upgraded design.
+Firing keeps the original three-shot sequence, offsets, and attack timing.
+Half-Life also requires matching Graphics/Weapons/Tribolt assets and TEXTURES.QCD remaps.
+Pickup sprites use WPNE Y/Z. The lootbox font WPNEZ copies QCGEZ, which remains
+as a compatibility alias for compiled scripts.
+Modded skin (slot 20) uses QCDE 1.0 artwork with independent MD-prefixed assets.
+Prepare and idle have silent sound files that addons can replace.
+HUD frames each have their own brightmap; missing maps are black with preserved alpha.
+MDYE A/B: directional flying/resting bolt and grenade; no projectile brightmaps.
+MDWE C/E/G/I and M/O/Q/S: fire trail; MDZE A-P: explosion. These are always Bright.
+Projectile/explosion sprites are copied from the local QCDEv3.1_beta_2 package.
+No smoke is spawned by the Modded projectiles.
+Modded projectile actors inherit the original normal, long, grenade, and deathmatch bolts.
+DeathEffects and FinishExplosion hooks keep damage handling inherited while
+selecting Modded decals and explosions. Effects also inherit their original actors.
+Dedicated sounds include normal/quad fire, flight, bounce, impact, and explosion.
+MDTriboltScorch decals use Graphics/Decals/Tribolt/MDTBburn.png.
+The preview is Graphics/Menu/SkinPreviews/Tribolt/SKINGEMD.png.
+
+Modded projectiles only receive brightmaps when their originals have them.
