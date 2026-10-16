@@ -1,0 +1,40 @@
+Lightning Gun animation states and frames:
+
+Prepare: A, A-T (20 tics); brightmaps B.
+Idle: C, A-F (12-tic cycle); G is the disabled-fire resting pose; brightmaps D.
+Fire: E, A-H; brightmaps F.
+Prepare upgraded: G, A-T; brightmaps H.
+Idle upgraded: I, A-G; brightmaps J.
+Fire upgraded: K, A-H; brightmaps L.
+Static Field purple fire: M, A-H; brightmaps N.
+Hidden-beam fire: O, A-H; brightmaps P.
+Hidden-beam fire upgraded: Q, A-H; brightmaps R.
+
+Fire A is the resting pose, B-G are the six original G-L firing poses,
+and H retains the original C pose used by the flash overlay.
+The default deploy preserves its 20-frame animation. Quake 2/3/4, QCDE 1.0 and
+SeriousSam prepare frames cycle CCDDEEFFAABBCCDDEEFF from idle and play the
+matching idle sound, for normal and upgraded designs. Other skins are unchanged.
+LG_UG_Static selects upgraded prepare, idle and firing assets.
+Purple and hidden beam variants preserve their existing activation conditions.
+LG_UG_Residue does not select an upgraded design.
+Upgraded prepare/idle and regular-beam fire copy normal artwork.
+Existing purple artwork is preserved in the M set for all nine skins.
+Identical prepare/idle sequences share brightmaps; animated maps remain separate.
+No Graphics remaps or HUD MODELDEF bindings are required.
+Pickup sprites use WPN6 Y/Z; QCG6Z remains a HUD font compatibility alias.
+Beam actors, sounds, damage, charge accumulation and attack timing are unchanged.
+Modded skin (slot 20) uses QCDE 1.0 with independent MD-prefixed assets.
+Each of its 94 HUD frames has a dedicated brightmap; missing maps are black
+with the original alpha. Fullbright effects have no brightmaps.
+MDT6-MDX6: five electric spark animations; MDY6 Y/Z: world beam sprites.
+World beam models and textures are copied to MD3/Weapons/LightningGun/Modded.
+All twelve Modded effect actors inherit their originals.
+Normal, purple, hidden-beam, deathmatch, water and residual-charge effects
+use the copied assets. No smoke is spawned.
+Sounds include select, silent prepare, idle, normal/quad fire, fire end,
+and the residual-charge loop/stop. Decals and skin preview are copied.
+Modded actions are last in skin lists; slot 20 is first among skin jumps.
+
+Modded normal/upgraded prepare also cycles CCDDEEFFAABBCCDDEEFF from its own
+idle assets and plays its idle sound. All 40 prepare brightmaps remain dedicated.
