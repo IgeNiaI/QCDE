@@ -1734,3 +1734,34 @@ decalgroup MDSuperNailgunChip
 	MDSuperNailgunChip4	1
 	MDSuperNailgunChip5	1
 }
+
+// Modded Tribolt
+fader MDTriboltScorchFade
+{
+	DecayStart	0.5
+	DecayTime	2.0
+}
+
+decal MDTriboltScorchBlack
+{
+	//pic EXPSCRCH
+	pic MDTBburn
+	shade "00 00 00"
+	x-scale 0.4
+	y-scale 0.4
+	randomflipx
+	randomflipy
+}
+
+decal MDTriboltScorch
+{
+	pic MDTBburn
+	x-scale 0.11
+	y-scale 0.11
+	randomflipx
+	randomflipy
+	Fullbright
+	shade "FF 55 00"
+	animator MDTriboltScorchFade
+	LowerDecal "MDTriboltScorchBlack"
+}

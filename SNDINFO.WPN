@@ -487,6 +487,45 @@ $random QC/Weapons/Tribolt/Impact { QC/Weapons/Tribolt/Impact1 QC/Weapons/Tribol
 		QC/Weapons/Tribolt/Impact4 QC/Weapons/Tribolt/Impact5 QC/Weapons/Tribolt/Impact6 QC/Weapons/Tribolt/Impact7 }
 
 
+// Modded Tribolt
+QC/Weapons/Tribolt/Explo_Modded		"Sounds/Weapons/Tribolt/Modded/Tribolt_Explo.ogg"
+$limit "QC/Weapons/Tribolt/Explo_Modded" 9
+$volume QC/Weapons/Tribolt/Explo_Modded 0.8
+
+//bounce sounds from Hard Reset
+QC/Weapons/Tribolt/Bounce1_Modded		"Sounds/Weapons/Tribolt/Modded/BoltBounce1.ogg"
+QC/Weapons/Tribolt/Bounce2_Modded		"Sounds/Weapons/Tribolt/Modded/BoltBounce2.ogg"
+QC/Weapons/Tribolt/Bounce3_Modded		"Sounds/Weapons/Tribolt/Modded/BoltBounce3.ogg"
+$random QC/Weapons/Tribolt/Bounce_Modded { QC/Weapons/Tribolt/Bounce1_Modded QC/Weapons/Tribolt/Bounce2_Modded QC/Weapons/Tribolt/Bounce3_Modded }
+$volume QC/Weapons/Tribolt/Bounce1_Modded 0.8
+$volume QC/Weapons/Tribolt/Bounce2_Modded 0.8
+$volume QC/Weapons/Tribolt/Bounce3_Modded 0.8
+
+QC/Weapons/Tribolt/Impact1_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact1.ogg"
+QC/Weapons/Tribolt/Impact2_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact2.ogg"
+QC/Weapons/Tribolt/Impact3_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact3.ogg"
+QC/Weapons/Tribolt/Impact4_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact4.ogg"
+QC/Weapons/Tribolt/Impact5_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact5.ogg"
+QC/Weapons/Tribolt/Impact6_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact6.ogg"
+QC/Weapons/Tribolt/Impact7_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact7.ogg"
+$volume QC/Weapons/Tribolt/Impact1_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact2_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact3_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact4_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact5_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact6_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact7_Modded 0.7
+
+$random QC/Weapons/Tribolt/Impact_Modded { QC/Weapons/Tribolt/Impact1_Modded QC/Weapons/Tribolt/Impact2_Modded QC/Weapons/Tribolt/Impact3_Modded
+		QC/Weapons/Tribolt/Impact4_Modded QC/Weapons/Tribolt/Impact5_Modded QC/Weapons/Tribolt/Impact6_Modded QC/Weapons/Tribolt/Impact7_Modded }
+
+
+QC/Weapons/Tribolt/Fire_Modded			"Sounds/Weapons/Tribolt/Modded/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Quad/Fire_Modded		"Sounds/Weapons/Tribolt/Modded/Quad/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Fly_Modded			"Sounds/Weapons/Tribolt/Modded/TB_Fly.ogg"
+QC/Weapons/Tribolt/Prepare_Modded		"Sounds/Weapons/Tribolt/Modded/TB_Prepare.ogg"
+QC/Weapons/Tribolt/Idle_Modded			"Sounds/Weapons/Tribolt/Modded/TB_Idle.ogg"
+
 //********************
 // Rocket Launcher
 QC/Weapons/RocketLauncher/Fire1_Default					"Sounds/Weapons/RocketLauncher/Default/RL_Fire1.ogg"
