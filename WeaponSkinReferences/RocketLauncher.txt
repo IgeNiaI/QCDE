@@ -1,0 +1,35 @@
+Rocket Launcher animation states and frames:
+
+Prepare -> A, A-Z (26 frames, 1 tic each); brightmaps B
+Idle -> C, A-F (6 frames, 4 tics each); brightmaps D
+Fire -> E, A-Q (17 poses, original 28-tic sequence); brightmaps F
+
+Prepare upgraded -> G, A-Z; brightmaps H
+Idle upgraded -> I, A-F; brightmaps J
+Fire upgraded -> K, A-Q; brightmaps L
+
+All nine skins use the same animation frame layout.
+Quake 2 idle frames A-F map to the original A/R/S/T/U/V poses.
+Other skins repeat their resting pose during prepare and idle.
+Frame A is also used while lowering the weapon.
+RL_UG_Control (Guided Rocket, altfire) selects upgraded animations.
+RL_UG_Cluster does not select an upgraded design.
+No separate upgraded artwork exists; upgraded frames copy normal frames.
+Original firing offsets, timing, projectiles, effects and sounds are preserved.
+No Graphics/Weapons remaps or MODELDEF bindings are used by these HUD sprites.
+Pickups use WPN5 Y/Z. QCG5Z remains a HUD font compatibility alias.
+Identical prepare/idle frames share one brightmap per sequence.
+Animated idle frames retain their separate brightmaps.
+Modded skin (slot 20) uses QCDE 1.0 HUD artwork with independent MD assets.
+Every HUD frame has its own brightmap, including black maps preserving alpha.
+Prepare and idle have silent, replaceable sound files.
+MDY5: rockets; MDX5: cluster rockets. Neither has projectile brightmaps.
+MDZ5: explosion; MDW5: fire trails; MDV5: explosion particles; MDU5: guided trail.
+MDS5/MDT5: cluster explosions; MD05-MD75: eight debris animation variants.
+Mirrored cluster/debris sprites are defined in TEXTURES.QCD using copied patches.
+Always-Bright effects do not need brightmaps. Modded rockets spawn no smoke.
+Projectile/effect actors inherit originals; visual hooks preserve shared damage logic.
+Flight, normal/quad fire and explosion sounds, scorch decals and preview are copied.
+QCDE_AttachWhoosh selects the copied flight sound via its modded argument; WEAPONS.o is rebuilt.
+
+Modded projectiles only receive brightmaps when their originals have them.

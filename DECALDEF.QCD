@@ -1765,3 +1765,44 @@ decal MDTriboltScorch
 	animator MDTriboltScorchFade
 	LowerDecal "MDTriboltScorchBlack"
 }
+
+// Modded Rocket Launcher
+decal MDRLScorchBlack
+{
+	//pic EXPSCRCH
+	pic MDRLBURN
+	shade "00 00 00"
+	x-scale 0.65
+	y-scale 0.65
+	randomflipx
+	randomflipy
+}
+
+fader MDRLScorchFade
+{
+	DecayStart	0.5
+	DecayTime	2.0
+}
+
+decal MDRLScorch
+{
+	pic MDRLBURN
+	x-scale 0.25
+	y-scale 0.25
+	randomflipx
+	randomflipy
+	Fullbright
+	shade "FF 55 00"
+	animator MDRLScorchFade
+	LowerDecal "MDRLScorchBlack"
+}
+
+decal MDRLClusterScorch
+{
+	pic MDRLCLST
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+}
