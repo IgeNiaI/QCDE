@@ -786,3 +786,26 @@ QC/Weapons/LightningGun/Quad/FireStartLoop_Modded	"Sounds/Weapons/LightningGun/M
 QC/Weapons/LightningGun/FireEnd_Modded	"Sounds/Weapons/LightningGun/Modded/LG_End.ogg"
 QC/Weapons/LightningGun/ElectroLoop_Modded	"Sounds/Weapons/LightningGun/Modded/LG_ElectroLoop.ogg"
 QC/Weapons/LightningGun/ElectroStop_Modded	"Sounds/Weapons/LightningGun/Modded/LG_ElectroStop.ogg"
+
+// Modded Railgun
+QC/Weapons/Railgun/Select_Modded	"Sounds/Weapons/Railgun/Modded/RG_Select.ogg"
+QC/Weapons/Railgun/Prepare_Modded	"Sounds/Weapons/Railgun/Modded/RG_Prepare.ogg"
+QC/Weapons/Railgun/Idle_Modded	"Sounds/Weapons/Railgun/Modded/RG_Idle.ogg"
+QC/Weapons/Railgun/ZoomIn_Modded	"Sounds/Weapons/Railgun/Modded/RG_ZoomIn.ogg"
+QC/Weapons/Railgun/ZoomOut_Modded	"Sounds/Weapons/Railgun/Modded/RG_ZoomOut.ogg"
+QC/Weapons/Railgun/Whoosh_Modded	"Sounds/Weapons/Railgun/Modded/RG_Whoosh.ogg"
+QC/Weapons/Railgun/ChargeFull_Modded	"Sounds/Weapons/Railgun/Modded/RG_ChargeFull.ogg"
+QC/Weapons/Railgun/Railjump_Modded	"Sounds/Weapons/Railgun/Modded/RG_Railjump.ogg"
+QC/Weapons/Railgun/Fire1_Modded	"Sounds/Weapons/Railgun/Modded/RG_Fire1.ogg"
+QC/Weapons/Railgun/Quad/Fire1_Modded	"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire1.ogg"
+QC/Weapons/Railgun/Fire2_Modded	"Sounds/Weapons/Railgun/Modded/RG_Fire2.ogg"
+QC/Weapons/Railgun/Quad/Fire2_Modded	"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire2.ogg"
+QC/Weapons/Railgun/Fire3_Modded	"Sounds/Weapons/Railgun/Modded/RG_Fire3.ogg"
+QC/Weapons/Railgun/Quad/Fire3_Modded	"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire3.ogg"
+QC/Weapons/Railgun/Impact1_Modded	"Sounds/Weapons/Railgun/Modded/RG_Impact1.ogg"
+QC/Weapons/Railgun/Impact2_Modded	"Sounds/Weapons/Railgun/Modded/RG_Impact2.ogg"
+$random QC/Weapons/Railgun/Fire_Modded { QC/Weapons/Railgun/Fire1_Modded QC/Weapons/Railgun/Fire2_Modded QC/Weapons/Railgun/Fire3_Modded }
+$random QC/Weapons/Railgun/Quad/Fire_Modded { QC/Weapons/Railgun/Quad/Fire1_Modded QC/Weapons/Railgun/Quad/Fire2_Modded QC/Weapons/Railgun/Quad/Fire3_Modded }
+$random QC/Weapons/Railgun/Impact_Modded { QC/Weapons/Railgun/Impact1_Modded QC/Weapons/Railgun/Impact2_Modded }
+$rolloff QC/Weapons/Railgun/Impact1_Modded 300 768
+$rolloff QC/Weapons/Railgun/Impact2_Modded 300 768

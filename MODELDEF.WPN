@@ -530,3 +530,14 @@ Model LGworldactor2Purple_Modded
    INHERITACTORPITCH
    FrameIndex MDY6 Z 0 0
 }
+
+// Modded Railgun
+Model RailgunTrail_Modded
+{
+	Path "MD3/Weapons/Railgun/Modded"
+	SKIN 0 "rtrl.png"
+	MODEL 0 "beam.md3"
+	Scale 2.141 12.0 12.0
+	INHERITACTORPITCH
+	FrameIndex MDM7 A 0 0
+}

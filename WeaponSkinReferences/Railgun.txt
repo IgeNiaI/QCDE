@@ -1,0 +1,32 @@
+Railgun
+
+Assets
+
+Weapon and effect sprites: Sprites/Weapons/Railgun/
+Sounds: Sounds/Weapons/Railgun/
+Modded models and model textures: MD3/Weapons/Railgun/Modded/
+Decal images: Graphics/Decals/Railgun/
+Menu previews: Graphics/Menu/SkinPreviews/Railgun/
+
+Weapon frames
+
+Use                     Set    Frames    Brightmap set
+Prepare                 A      A-Z       B
+Idle                    C      A-J       D
+Fire                    E      A-O       F
+Prepare upgraded        G      A-Z       H
+Idle upgraded           I      A-J       J
+Fire upgraded           K      A-O       L
+
+Upgraded sets are used while the alt-fire upgrade is active.
+Idle: A-I loop; J is the resting tail.
+Fire sets: A is resting; B-O fire and reload.
+
+Other Modded frames
+
+MDM7 A                                      World beam
+MDN7 D                                      Piercing trail
+MDO7 / MDP7 / MDQ7 A-Z                      Impact variants
+MDS7 / MDT7 A-Z                             Weak explosion variants
+MDU7 / MDV7 A-Z                             Strong explosion variants
+MDW7 A-G                                    Railjump effect
