@@ -2088,6 +2088,13 @@ FreeformMenu "QCDE_OptionsSkins"
 		Padding	0, 0			SelectedFontColor Tan
 	}
 
+	Command {
+		Pos  156, 267			Text "Modded"				Background			BV14028
+		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
+		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Modded
+		Padding	0, 0			SelectedFontColor Tan
+	}
+
 
 	InsertFreeformMenu MainMenuTopBar
 	InsertFreeformMenu QCDE_OptionsTabs
