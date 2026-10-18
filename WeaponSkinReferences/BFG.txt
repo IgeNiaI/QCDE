@@ -1,0 +1,35 @@
+BFG
+
+Assets
+
+Weapon and effect sprites: Sprites/Weapons/BFG/
+Sounds: Sounds/Weapons/BFG/
+Larger source graphics: Graphics/Weapons/BFG/Default/
+Decal images: Graphics/Decals/BFG/
+Menu previews: Graphics/Menu/SkinPreviews/BFG/
+
+Weapon frames
+
+Use                     Set    Frames    Brightmap set
+Prepare                 A      A-R       B
+Idle                    C      A-X       D
+Fire                    E      A-E       F
+Fire end                G      A-L       H
+Prepare upgraded        I      A-R       J
+Idle upgraded           K      A-X       L
+Fire upgraded           M      A-E       N
+Fire end upgraded       O      A-L       P
+Charge                  Q      A-Y       R
+Full charge             S      A-B       T
+
+Upgraded sets are used while the alt-fire upgrade is active.
+Fire sets: A is resting; B-E fire.
+Charge: A is resting; B-Y charge. Full charge: A is resting; B is charged.
+
+Other Modded frames
+
+MDU8 A-O                                    Normal projectile
+MDV8 A-Z                                    Charged projectile
+MDW8 B-C                                    Explosion ring
+MDX8 A-Z                                    Explosion
+MDY8 / MDZ8 / MD18 / MD28 / MD38 A-V        Lightning arc variants

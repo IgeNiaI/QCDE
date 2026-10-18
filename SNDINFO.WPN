@@ -809,3 +809,23 @@ $random QC/Weapons/Railgun/Quad/Fire_Modded { QC/Weapons/Railgun/Quad/Fire1_Modd
 $random QC/Weapons/Railgun/Impact_Modded { QC/Weapons/Railgun/Impact1_Modded QC/Weapons/Railgun/Impact2_Modded }
 $rolloff QC/Weapons/Railgun/Impact1_Modded 300 768
 $rolloff QC/Weapons/Railgun/Impact2_Modded 300 768
+
+// Modded BFG
+QC/Weapons/BFG/Prepare_Modded	"Sounds/Weapons/BFG/Modded/BFG_Prepare.ogg"
+QC/Weapons/BFG/Idle_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Idle.ogg"
+QC/Weapons/BFG/Raise_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Raise.ogg"
+QC/Weapons/BFG/Fire_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Charge_Modded	"Sounds/Weapons/BFG/Modded/BFGCharge.ogg"
+QC/Weapons/BFG/ChargeLoop_Modded	"Sounds/Weapons/BFG/Modded/BFGChargeLoop.ogg"
+QC/Weapons/BFG/ChargedShot_Modded	"Sounds/Weapons/BFG/Modded/BFGChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Modded	"Sounds/Weapons/BFG/Modded/Quad/NeoBFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Modded	"Sounds/Weapons/BFG/Modded/Quad/BFGChargedShot.ogg"
+QC/Weapons/BFG/BallFlying_Modded	"Sounds/Weapons/BFG/Modded/BFGFlying.ogg"
+QC/Weapons/BFG/NeoExplo1_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Explo1.ogg"
+QC/Weapons/BFG/NeoExplo2_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Explo2.ogg"
+QC/Weapons/BFG/NeoExplo3_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Explo3.ogg"
+$random QC/Weapons/BFG/Explo_Modded { QC/Weapons/BFG/NeoExplo1_Modded QC/Weapons/BFG/NeoExplo2_Modded QC/Weapons/BFG/NeoExplo3_Modded }
+$limit QC/Weapons/BFG/NeoExplo1_Modded 3
+$limit QC/Weapons/BFG/NeoExplo2_Modded 3
+$limit QC/Weapons/BFG/NeoExplo3_Modded 3
+$limit QC/Weapons/BFG/BallFlying_Modded 5

@@ -1887,3 +1887,30 @@ decal MDRGGreenFull	//Glowing spot
 	animator MDRGGlowFade
 	LowerDecal "MDRGBlack"
 }
+
+// Modded BFG
+decal MDBFGScorchSmall1
+{
+	pic MDBFGDC1
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+	x-scale 0.4
+	y-scale 0.4
+}
+
+decal MDBFGScorchSmall2
+{
+	pic MDBFGDC2
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+	x-scale 0.4
+	y-scale 0.4
+}
+
+decalgroup MDBFGScorchSmall
+{
+	MDBFGScorchSmall1	1
+	MDBFGScorchSmall2	1
+}
