@@ -740,13 +740,14 @@ function str ticsToTime(int tics)
 	int hours = tics / 126000;	tics %= 126000;
 	int minutes = tics / 2100;	tics %= 2100;
 	int seconds = tics / 35;	tics %= 35;
-	int millis = tics * 29; // Rough convertion of tics to ms. Should be multiplied by 28.57 to be more accurate, but welp...
+	int millis = tics * 1000 / 35;
+	str fraction = StrParam(d:millis / 100, d:millis / 10 % 10, d:millis % 10);
 
 	if (hours > 0)
-		return StrParam(d:hours, s:":", d:minutes, s:":", d:seconds, s:".", d:millis);
+		return StrParam(d:hours, s:":", d:minutes, s:":", d:seconds, s:".", s:fraction);
 
 	if (minutes > 0)
-		return StrParam(d:minutes, s:":", d:seconds, s:".", d:millis);
+		return StrParam(d:minutes, s:":", d:seconds, s:".", s:fraction);
 
-	return StrParam(d:seconds, s:".", d:millis);
+	return StrParam(d:seconds, s:".", s:fraction);
 }
