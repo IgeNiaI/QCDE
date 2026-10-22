@@ -4933,7 +4933,8 @@ Script "QCDE_Passive_Lucienne" (void)
 			if(!CheckInventory("LucienneImmolationProc"))
 			    GiveInventory("LucienneImmolationProc",1);
 
-			while(GetActorProperty(0,APROP_HEALTH) < 100) delay(1);
+			while(GetActorProperty(0,APROP_HEALTH) > 0 &&
+			      GetActorProperty(0,APROP_HEALTH) < 100) delay(1);
 
 			TakeInventory("LucienneImmolationProc",1);
 		}
