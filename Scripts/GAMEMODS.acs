@@ -645,6 +645,7 @@ script "QCDE_Defrag_StartTimer" (void)
 	if (defrag_timer_active[plr])
 		terminate;
 
+	defrag_timer[plr] = 0;
 	defrag_timer_active[plr] = true;
 	for (int i = 0; i < MAX_CHECKPOINTS; i++)
 	{
