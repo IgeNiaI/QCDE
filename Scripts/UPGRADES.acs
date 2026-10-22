@@ -46,10 +46,10 @@ Script "QCDE_MonsterUpgradeDrop" (void)
 	int roll = random(1,p);
 	int threshold = probab[g]
 			/-~ dropped_so_far               // drop less when this map already gave upgrades
-			*-~ isSkirmish()                 // drop twice more in Skirmish Rogue
-			* party_adjustment / 1.0         // drop more when there are many players in party
-			* stockpile_adjustment / 100     // drop less when party already has upgrades
-			* slaughtermap_adjustment / 1.0 ;// drop less in slaughtermaps
+			*-~ isSkirmish();                // drop twice more in Skirmish Rogue
+	threshold = FixedMul(threshold, party_adjustment); // drop more when there are many players in party
+	threshold = threshold * stockpile_adjustment / 100; // drop less when party already has upgrades
+	threshold = FixedMul(threshold, slaughtermap_adjustment); // drop less in slaughtermaps
 	//str color = "\c[red]- ", sign = " > ";
 	if(roll <= threshold)
 	{
