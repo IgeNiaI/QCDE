@@ -4420,7 +4420,7 @@ Script "QCDE_Passive_LoWang" (void)
 		// Player holds +use
 		if (buttons & BT_USE)
 		{
-			if (lastTapTime + LOWANG_TAP_DELAY > Timer()) // if tapping time hasn't yet expired
+			if (tapSequence >= 2 && lastTapTime + LOWANG_TAP_DELAY > Timer()) // two taps within the allowed interval
 			{
 				if (!(Timer() % LOWANG_TIC_PERIOD))
 				{
