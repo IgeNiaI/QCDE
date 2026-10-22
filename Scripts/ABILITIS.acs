@@ -3244,15 +3244,15 @@ Script "ORBB_ReplicateDroneAngle" (int angle, int pitch) NET
 }
 
 // Activator: player
-bool tunnelVisionAlreadyOn = false;
+bool tunnelVisionAlreadyOn[64];
 Script "ORBB_TunnelVision" (int tid) clientside
 {
-	if (GetNetworkState() == NETSTATE_SERVER || tunnelVisionAlreadyOn)
+	int plr = PlayerNumber();
+	if (GetNetworkState() == NETSTATE_SERVER || tunnelVisionAlreadyOn[plr])
 		terminate;
 
-	tunnelVisionAlreadyOn = true;
+	tunnelVisionAlreadyOn[plr] = true;
 
-	int plr = PlayerNumber();
 	bool isMe = plr == ConsolePlayerNumber();
 
 	SetHudSize(320,240,1);
@@ -3281,7 +3281,7 @@ Script "ORBB_TunnelVision" (int tid) clientside
 			SetActivator(plr + 1000);
 	}
 
-	tunnelVisionAlreadyOn = false;
+	tunnelVisionAlreadyOn[plr] = false;
 }
 
 Script "ORBB_DoDroneChargeUp" (int tid) NET
