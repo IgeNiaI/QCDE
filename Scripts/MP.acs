@@ -484,6 +484,8 @@ Script "QCDE_Handicap_UpdateCVar" (int value)
 
 Script "QCDE_Handicap_UpdateCVar_Client" (int value) CLIENTSIDE
 {
+	if (PlayerNumber() != ConsolePlayerNumber()) terminate;
+
 	SetUserCvar(ConsolePlayerNumber(), "cl_qcHandicap", value);
 }
 
