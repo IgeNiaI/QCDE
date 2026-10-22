@@ -131,6 +131,15 @@ Script "QCDE_SelectInitialWeapon" (void)
     	else if (CheckInventory("QCSuperShotgun"))		selectedWeapon = "QCSuperShotgun";
     	else if (CheckInventory("QCHeavyMachinegun"))	selectedWeapon = "QCHeavyMachinegun";
 
+		// Include starter weapons when the preferred weapon isn't available.
+		else if (CheckInventory("QCMachinegunDM"))		selectedWeapon = "QCMachinegunDM";
+		else if (CheckInventory("QCShotgunDM"))			selectedWeapon = "QCShotgunDM";
+		else if (CheckInventory("QCNailgunDM"))			selectedWeapon = "QCNailgunDM";
+
+		else if (CheckInventory("QCMachinegun"))		selectedWeapon = "QCMachinegun";
+		else if (CheckInventory("QCShotgun"))			selectedWeapon = "QCShotgun";
+		else if (CheckInventory("QCNailgun"))			selectedWeapon = "QCNailgun";
+
     	else if (CheckInventory("QCGauntlet"))			selectedWeapon = "QCGauntlet";
     }
 
