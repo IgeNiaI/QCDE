@@ -233,7 +233,7 @@ Actor QCLightningGun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "Prepare.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "Prepare.Quake1")
 	Prepare.Default:
-		QCA6 A 0 A_PlaySound("QC/Weapons/LightningGun/Select_Default",CHAN_5,1,0,3)
+		QCA6 A 0 A_PlaySound("QC/Weapons/LightningGun/Prepare_Default",CHAN_5,1,0,3)
 		Goto PrepareCont
 	Prepare.Quake1:
 		Q1A6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)
@@ -274,7 +274,7 @@ Actor QCLightningGun : QCWeapon
 		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 2, "Prepare.Upgraded.Quake2")
 		TNT1 A 0 A_JumpIfInventory("QCLightningGunSkin", 1, "Prepare.Upgraded.Quake1")
 	Prepare.Upgraded.Default:
-		QCG6 A 0 A_PlaySound("QC/Weapons/LightningGun/Select_Default",CHAN_5,1,0,3)
+		QCG6 A 0 A_PlaySound("QC/Weapons/LightningGun/Prepare_Default",CHAN_5,1,0,3)
 		Goto PrepareCont
 	Prepare.Upgraded.Quake1:
 		Q1G6 A 0 A_PlaySound("QC/Weapons/LightningGun/Idle_Default", CHAN_WEAPON, 0.45, 1, 1.25)

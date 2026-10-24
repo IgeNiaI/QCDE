@@ -31,20 +31,6 @@ QC/Weapons/Gauntlet/FireStartLoop_SeriousSam		"Sounds/Weapons/Gauntlet/SeriousSa
 QC/Weapons/Gauntlet/Quad/FireStartLoop_SeriousSam	"Sounds/Weapons/Gauntlet/SeriousSam/Quad/Gaunt_Start_Loop.ogg"
 QC/Weapons/Gauntlet/FireEnd_SeriousSam				"Sounds/Weapons/Gauntlet/SeriousSam/Gaunt_End.ogg"
 
-QC/Weapons/Gauntlet/Prepare_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Prepare.ogg"
-QC/Weapons/Gauntlet/Idle_Modded						"Sounds/Weapons/Gauntlet/Modded/Gaunt_Idle.ogg"
-QC/Weapons/Gauntlet/FireStartLoop_Modded			"Sounds/Weapons/Gauntlet/Modded/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/Quad/FireStartLoop_Modded		"Sounds/Weapons/Gauntlet/Modded/Quad/Gaunt_Start_Loop.ogg"
-QC/Weapons/Gauntlet/FireEnd_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_End.ogg"
-QC/Weapons/Gauntlet/Hit_Modded						"Sounds/Weapons/Gauntlet/Modded/Gaunt_Hit.ogg"
-QC/Weapons/Gauntlet/Impact1_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Impact1.ogg"
-QC/Weapons/Gauntlet/Impact2_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Impact2.ogg"
-QC/Weapons/Gauntlet/Impact3_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Impact3.ogg"
-QC/Weapons/Gauntlet/Impact4_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Impact4.ogg"
-QC/Weapons/Gauntlet/ImpactSilent_Modded				"Sounds/Weapons/Gauntlet/Modded/Gaunt_ImpactSilent.ogg"
-$random QC/Weapons/Gauntlet/Impact_Modded { QC/Weapons/Gauntlet/Impact1_Modded QC/Weapons/Gauntlet/Impact2_Modded QC/Weapons/Gauntlet/Impact3_Modded QC/Weapons/Gauntlet/Impact4_Modded }
-$random QC/Weapons/Gauntlet/ImpactRandom_Modded { QC/Weapons/Gauntlet/Impact_Modded QC/Weapons/Gauntlet/ImpactSilent_Modded QC/Weapons/Gauntlet/ImpactSilent_Modded QC/Weapons/Gauntlet/ImpactSilent_Modded }
-
 
 //********************
 // Machinegun
@@ -75,12 +61,6 @@ QC/Weapons/Machinegun/Quad/FireStartLoop_HalfLife	"Sounds/Weapons/Machinegun/Hal
 QC/Weapons/Machinegun/FireEnd_SeriousSam			"Sounds/Weapons/Machinegun/SeriousSam/MG_End.ogg"
 QC/Weapons/Machinegun/FireStartLoop_SeriousSam		"Sounds/Weapons/Machinegun/SeriousSam/MG_Fire_Looper.ogg"
 QC/Weapons/Machinegun/Quad/FireStartLoop_SeriousSam	"Sounds/Weapons/Machinegun/SeriousSam/Quad/MG_Fire_Looper.ogg"
-
-QC/Weapons/Machinegun/Prepare_Modded				"Sounds/Weapons/Machinegun/Modded/MG_Prepare.ogg"
-QC/Weapons/Machinegun/Idle_Modded					"Sounds/Weapons/Machinegun/Modded/MG_Idle.ogg"
-QC/Weapons/Machinegun/FireEnd_Modded				"Sounds/Weapons/Machinegun/Modded/MG_End.ogg"
-QC/Weapons/Machinegun/FireStartLoop_Modded			"Sounds/Weapons/Machinegun/Modded/MG_Fire_Looper.ogg"
-QC/Weapons/Machinegun/Quad/FireStartLoop_Modded		"Sounds/Weapons/Machinegun/Modded/Quad/MG_Fire_Looper.ogg"
 
 
 //********************
@@ -138,17 +118,6 @@ QC/Weapons/HeavyMachinegun/FireZoomedEnd_SeriousSam			"Sounds/Weapons/HeavyMachi
 QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_SeriousSam	"Sounds/Weapons/HeavyMachineGun/SeriousSam/Quad/HMG_Fire_Looper.ogg"
 QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_SeriousSam	"Sounds/Weapons/HeavyMachineGun/SeriousSam/Quad/HMG_Zoomed_Start.ogg"
 
-QC/Weapons/HeavyMachinegun/Prepare_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Prepare.ogg"
-QC/Weapons/HeavyMachinegun/Idle_Modded						"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Idle.ogg"
-QC/Weapons/HeavyMachinegun/FireEnd_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_End.ogg"
-QC/Weapons/HeavyMachinegun/FireStartLoop_Modded				"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Fire_Looper.ogg"
-QC/Weapons/HeavyMachinegun/FireZoomedStart_Modded			"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Zoomed_Start.ogg"
-QC/Weapons/HeavyMachinegun/FireZoomedEnd_Modded				"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Zoomed_End.ogg"
-QC/Weapons/HeavyMachinegun/ZoomIn_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_ZoomIn.ogg"
-QC/Weapons/HeavyMachinegun/ZoomOut_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_ZoomOut.ogg"
-QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Modded		"Sounds/Weapons/HeavyMachineGun/Modded/Quad/HMG_Fire_Looper.ogg"
-QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_Modded		"Sounds/Weapons/HeavyMachineGun/Modded/Quad/HMG_Zoomed_Start.ogg"
-
 
 //********************
 // Shotgun
@@ -175,17 +144,6 @@ QC/Weapons/Shotgun/Quad/Fire_HalfLife			"Sounds/Weapons/Shotgun/HalfLife/Quad/SG
 
 QC/Weapons/Shotgun/Fire_SeriousSam				"Sounds/Weapons/Shotgun/SeriousSam/SG_Fire1.ogg"
 QC/Weapons/Shotgun/Quad/Fire_SeriousSam			"Sounds/Weapons/Shotgun/SeriousSam/Quad/SG_Fire1.ogg"
-
-QC/Weapons/Shotgun/Prepare_Modded				"Sounds/Weapons/Shotgun/Modded/SG_Prepare.ogg"
-QC/Weapons/Shotgun/Idle_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Idle.ogg"
-QC/Weapons/Shotgun/Fire1_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire1.ogg"
-QC/Weapons/Shotgun/Fire2_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire2.ogg"
-QC/Weapons/Shotgun/Fire3_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire3.ogg"
-$random QC/Weapons/Shotgun/Fire_Modded 			{ QC/Weapons/Shotgun/Fire1_Modded QC/Weapons/Shotgun/Fire2_Modded QC/Weapons/Shotgun/Fire3_Modded }
-QC/Weapons/Shotgun/Quad/Fire1_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire1.ogg"
-QC/Weapons/Shotgun/Quad/Fire2_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire2.ogg"
-QC/Weapons/Shotgun/Quad/Fire3_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire3.ogg"
-$random QC/Weapons/Shotgun/Quad/Fire_Modded 	{ QC/Weapons/Shotgun/Quad/Fire1_Modded QC/Weapons/Shotgun/Quad/Fire2_Modded QC/Weapons/Shotgun/Quad/Fire3_Modded }
 
 
 //********************
@@ -222,20 +180,6 @@ QC/Weapons/SuperShotgun/Quad/Fire_HalfLife			"Sounds/Weapons/SuperShotgun/HalfLi
 
 QC/Weapons/SuperShotgun/Fire_SeriousSam				"Sounds/Weapons/SuperShotgun/SeriousSam/SSG_Fire1.ogg"
 QC/Weapons/SuperShotgun/Quad/Fire_SeriousSam		"Sounds/Weapons/SuperShotgun/SeriousSam/Quad/SSG_Fire1.ogg"
-
-QC/Weapons/SuperShotgun/Prepare_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Prepare.ogg"
-QC/Weapons/SuperShotgun/Idle_Modded					"Sounds/Weapons/SuperShotgun/Modded/SSG_Idle.ogg"
-QC/Weapons/SuperShotgun/Fire1_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire1.ogg"
-QC/Weapons/SuperShotgun/Fire2_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire2.ogg"
-QC/Weapons/SuperShotgun/Fire3_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire3.ogg"
-QC/Weapons/SuperShotgun/Fire4_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire4.ogg"
-QC/Weapons/SuperShotgun/Fire5_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire5.ogg"
-$random QC/Weapons/SuperShotgun/Fire_Modded 		{ QC/Weapons/SuperShotgun/Fire1_Modded QC/Weapons/SuperShotgun/Fire2_Modded QC/Weapons/SuperShotgun/Fire3_Modded QC/Weapons/SuperShotgun/Fire4_Modded QC/Weapons/SuperShotgun/Fire5_Modded }
-QC/Weapons/SuperShotgun/Quad/Fire1_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire1.ogg"
-QC/Weapons/SuperShotgun/Quad/Fire2_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire2.ogg"
-QC/Weapons/SuperShotgun/Quad/Fire3_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire3.ogg"
-QC/Weapons/SuperShotgun/Quad/Fire4_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire4.ogg"
-$random QC/Weapons/SuperShotgun/Quad/Fire_Modded 	{ QC/Weapons/SuperShotgun/Quad/Fire1_Modded QC/Weapons/SuperShotgun/Quad/Fire2_Modded QC/Weapons/SuperShotgun/Quad/Fire3_Modded QC/Weapons/SuperShotgun/Quad/Fire4_Modded }
 
 
 //********************
@@ -290,21 +234,6 @@ QC/Weapons/Nailgun/Impact6_SeriousSam				"Sounds/Weapons/Nailgun/SeriousSam/Nail
 QC/Weapons/Nailgun/Impact7_SeriousSam				"Sounds/Weapons/Nailgun/SeriousSam/NailImpact7.ogg"
 $random QC/Weapons/Nailgun/Impact_SeriousSam { QC/Weapons/Nailgun/Impact1_SeriousSam QC/Weapons/Nailgun/Impact2_SeriousSam QC/Weapons/Nailgun/Impact3_SeriousSam
 		QC/Weapons/Nailgun/Impact4_SeriousSam QC/Weapons/Nailgun/Impact5_SeriousSam QC/Weapons/Nailgun/Impact6_SeriousSam QC/Weapons/Nailgun/Impact7_SeriousSam }
-
-QC/Weapons/Nailgun/Prepare_Modded					"Sounds/Weapons/Nailgun/Modded/NG_Prepare.ogg"
-QC/Weapons/Nailgun/Idle_Modded						"Sounds/Weapons/Nailgun/Modded/NG_Idle.ogg"
-QC/Weapons/Nailgun/FireEnd_Modded					"Sounds/Weapons/Nailgun/Modded/NG_End.ogg"
-QC/Weapons/Nailgun/FireStartLoop_Modded				"Sounds/Weapons/Nailgun/Modded/NG_Start_Loop.ogg"
-QC/Weapons/Nailgun/Quad/FireStartLoop_Modded		"Sounds/Weapons/Nailgun/Modded/Quad/NG_Start_Loop.ogg"
-QC/Weapons/Nailgun/Impact1_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact1.ogg"
-QC/Weapons/Nailgun/Impact2_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact2.ogg"
-QC/Weapons/Nailgun/Impact3_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact3.ogg"
-QC/Weapons/Nailgun/Impact4_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact4.ogg"
-QC/Weapons/Nailgun/Impact5_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact5.ogg"
-QC/Weapons/Nailgun/Impact6_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact6.ogg"
-QC/Weapons/Nailgun/Impact7_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact7.ogg"
-$random QC/Weapons/Nailgun/Impact_Modded { QC/Weapons/Nailgun/Impact1_Modded QC/Weapons/Nailgun/Impact2_Modded QC/Weapons/Nailgun/Impact3_Modded
-		QC/Weapons/Nailgun/Impact4_Modded QC/Weapons/Nailgun/Impact5_Modded QC/Weapons/Nailgun/Impact6_Modded QC/Weapons/Nailgun/Impact7_Modded }
 
 
 
@@ -413,24 +342,6 @@ $random QC/Weapons/SuperNailgun/Impact_SeriousSam 		{ QC/Weapons/SuperNailgun/Im
 		QC/Weapons/SuperNailgun/Impact4_SeriousSam QC/Weapons/SuperNailgun/Impact5_SeriousSam QC/Weapons/SuperNailgun/Impact6_SeriousSam QC/Weapons/SuperNailgun/Impact7_SeriousSam }
 
 
-QC/Weapons/SuperNailgun/FireStartLoop_Modded			"Sounds/Weapons/SuperNailgun/Modded/SNG_Start_Loop.ogg"
-QC/Weapons/SuperNailgun/FireEnd_Modded					"Sounds/Weapons/SuperNailgun/Modded/SNG_End.ogg"
-QC/Weapons/SuperNailgun/FireSeeker_Modded				"Sounds/Weapons/SuperNailgun/Modded/SNG_Single.ogg"
-QC/Weapons/SuperNailgun/Quad/FireStartLoop_Modded		"Sounds/Weapons/SuperNailgun/Modded/Quad/SNG_Start_Loop.ogg"
-QC/Weapons/SuperNailgun/Quad/FireSeeker_Modded			"Sounds/Weapons/SuperNailgun/Modded/Quad/SNG_Single.ogg"
-QC/Weapons/SuperNailgun/Impact1_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact1.ogg"
-QC/Weapons/SuperNailgun/Impact2_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact2.ogg"
-QC/Weapons/SuperNailgun/Impact3_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact3.ogg"
-QC/Weapons/SuperNailgun/Impact4_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact4.ogg"
-QC/Weapons/SuperNailgun/Impact5_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact5.ogg"
-QC/Weapons/SuperNailgun/Impact6_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact6.ogg"
-QC/Weapons/SuperNailgun/Impact7_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact7.ogg"
-$random QC/Weapons/SuperNailgun/Impact_Modded 			{ QC/Weapons/SuperNailgun/Impact1_Modded QC/Weapons/SuperNailgun/Impact2_Modded QC/Weapons/SuperNailgun/Impact3_Modded
-		QC/Weapons/SuperNailgun/Impact4_Modded QC/Weapons/SuperNailgun/Impact5_Modded QC/Weapons/SuperNailgun/Impact6_Modded QC/Weapons/SuperNailgun/Impact7_Modded }
-
-QC/Weapons/SuperNailgun/Prepare_Modded	"Sounds/Weapons/SuperNailgun/Modded/SNG_Prepare.ogg"
-QC/Weapons/SuperNailgun/Idle_Modded	"Sounds/Weapons/SuperNailgun/Modded/SNG_Idle.ogg"
-
 //********************
 // Tribolt
 QC/Weapons/Tribolt/Fire_Default			"Sounds/Weapons/Tribolt/Default/Tribolt_FireFast.ogg"
@@ -487,45 +398,6 @@ $random QC/Weapons/Tribolt/Impact { QC/Weapons/Tribolt/Impact1 QC/Weapons/Tribol
 		QC/Weapons/Tribolt/Impact4 QC/Weapons/Tribolt/Impact5 QC/Weapons/Tribolt/Impact6 QC/Weapons/Tribolt/Impact7 }
 
 
-// Modded Tribolt
-QC/Weapons/Tribolt/Explo_Modded		"Sounds/Weapons/Tribolt/Modded/Tribolt_Explo.ogg"
-$limit "QC/Weapons/Tribolt/Explo_Modded" 9
-$volume QC/Weapons/Tribolt/Explo_Modded 0.8
-
-//bounce sounds from Hard Reset
-QC/Weapons/Tribolt/Bounce1_Modded		"Sounds/Weapons/Tribolt/Modded/BoltBounce1.ogg"
-QC/Weapons/Tribolt/Bounce2_Modded		"Sounds/Weapons/Tribolt/Modded/BoltBounce2.ogg"
-QC/Weapons/Tribolt/Bounce3_Modded		"Sounds/Weapons/Tribolt/Modded/BoltBounce3.ogg"
-$random QC/Weapons/Tribolt/Bounce_Modded { QC/Weapons/Tribolt/Bounce1_Modded QC/Weapons/Tribolt/Bounce2_Modded QC/Weapons/Tribolt/Bounce3_Modded }
-$volume QC/Weapons/Tribolt/Bounce1_Modded 0.8
-$volume QC/Weapons/Tribolt/Bounce2_Modded 0.8
-$volume QC/Weapons/Tribolt/Bounce3_Modded 0.8
-
-QC/Weapons/Tribolt/Impact1_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact1.ogg"
-QC/Weapons/Tribolt/Impact2_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact2.ogg"
-QC/Weapons/Tribolt/Impact3_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact3.ogg"
-QC/Weapons/Tribolt/Impact4_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact4.ogg"
-QC/Weapons/Tribolt/Impact5_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact5.ogg"
-QC/Weapons/Tribolt/Impact6_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact6.ogg"
-QC/Weapons/Tribolt/Impact7_Modded		"Sounds/Weapons/Tribolt/Modded/BoltImpact7.ogg"
-$volume QC/Weapons/Tribolt/Impact1_Modded 0.7
-$volume QC/Weapons/Tribolt/Impact2_Modded 0.7
-$volume QC/Weapons/Tribolt/Impact3_Modded 0.7
-$volume QC/Weapons/Tribolt/Impact4_Modded 0.7
-$volume QC/Weapons/Tribolt/Impact5_Modded 0.7
-$volume QC/Weapons/Tribolt/Impact6_Modded 0.7
-$volume QC/Weapons/Tribolt/Impact7_Modded 0.7
-
-$random QC/Weapons/Tribolt/Impact_Modded { QC/Weapons/Tribolt/Impact1_Modded QC/Weapons/Tribolt/Impact2_Modded QC/Weapons/Tribolt/Impact3_Modded
-		QC/Weapons/Tribolt/Impact4_Modded QC/Weapons/Tribolt/Impact5_Modded QC/Weapons/Tribolt/Impact6_Modded QC/Weapons/Tribolt/Impact7_Modded }
-
-
-QC/Weapons/Tribolt/Fire_Modded			"Sounds/Weapons/Tribolt/Modded/Tribolt_FireFast.ogg"
-QC/Weapons/Tribolt/Quad/Fire_Modded		"Sounds/Weapons/Tribolt/Modded/Quad/Tribolt_FireFast.ogg"
-QC/Weapons/Tribolt/Fly_Modded			"Sounds/Weapons/Tribolt/Modded/TB_Fly.ogg"
-QC/Weapons/Tribolt/Prepare_Modded		"Sounds/Weapons/Tribolt/Modded/TB_Prepare.ogg"
-QC/Weapons/Tribolt/Idle_Modded			"Sounds/Weapons/Tribolt/Modded/TB_Idle.ogg"
-
 //********************
 // Rocket Launcher
 QC/Weapons/RocketLauncher/Fire1_Default					"Sounds/Weapons/RocketLauncher/Default/RL_Fire1.ogg"
@@ -581,10 +453,10 @@ $limit "QC/Weapons/RocketLauncher/Fly" 5
 QC/Weapons/LightningGun/ElectroLoop		"Sounds/Weapons/Add/ElectroLoop.ogg"
 QC/Weapons/LightningGun/ElectroStop		"Sounds/Weapons/Add/ElectroStop.ogg"
 
+QC/Weapons/LightningGun/Prepare_Default					"Sounds/Weapons/LightningGun/Default/LG_Prepare.ogg"
+QC/Weapons/LightningGun/Idle_Default					"Sounds/Weapons/LightningGun/Default/LG_Idle.ogg"
 QC/Weapons/LightningGun/FireEnd_Default					"Sounds/Weapons/LightningGun/Default/LG_End.ogg"
 QC/Weapons/LightningGun/FireStartLoop_Default			"Sounds/Weapons/LightningGun/Default/LG_Start_Loop.ogg"
-QC/Weapons/LightningGun/Select_Default					"Sounds/Weapons/LightningGun/Default/LG_Select.ogg"
-QC/Weapons/LightningGun/Idle_Default					"Sounds/Weapons/LightningGun/Default/LG_Idle.ogg"
 QC/Weapons/LightningGun/Quad/FireStartLoop_Default		"Sounds/Weapons/LightningGun/Default/Quad/LG_Start_Loop.ogg"
 
 QC/Weapons/LightningGun/FireEnd_Quake1					"Sounds/Weapons/LightningGun/Quake1/LG_End.ogg"
@@ -674,51 +546,51 @@ $rolloff QC/Weapons/Railgun/Impact2 300 768
 
 //********************
 // BFG19k (Sounds by Michael Markie)
-QC/Weapons/BFG/Idle_Default					"Sounds/Weapons/BFG/Default/NeoBFG_Idle.ogg"
-QC/Weapons/BFG/Raise_Default				"Sounds/Weapons/BFG/Default/NeoBFG_Raise.ogg"
-QC/Weapons/BFG/Fire_Default					"Sounds/Weapons/BFG/Default/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Charge_Default				"Sounds/Weapons/BFG/Default/BFGCharge.ogg"
-QC/Weapons/BFG/ChargeLoop_Default			"Sounds/Weapons/BFG/Default/BFGChargeLoop.ogg"
-QC/Weapons/BFG/ChargedShot_Default			"Sounds/Weapons/BFG/Default/BFGChargedShot.ogg"
-QC/Weapons/BFG/Quad/Fire_Default			"Sounds/Weapons/BFG/Default/Quad/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Quad/ChargedShot_Default		"Sounds/Weapons/BFG/Default/Quad/BFGChargedShot.ogg"
+QC/Weapons/BFG/Idle_Default					"Sounds/Weapons/BFG/Default/BFG_Idle.ogg"
+QC/Weapons/BFG/Raise_Default				"Sounds/Weapons/BFG/Default/BFG_Raise.ogg"
+QC/Weapons/BFG/Fire_Default					"Sounds/Weapons/BFG/Default/BFG_Fire.ogg"
+QC/Weapons/BFG/Charge_Default				"Sounds/Weapons/BFG/Default/BFG_Charge.ogg"
+QC/Weapons/BFG/ChargeLoop_Default			"Sounds/Weapons/BFG/Default/BFG_ChargeLoop.ogg"
+QC/Weapons/BFG/ChargedShot_Default			"Sounds/Weapons/BFG/Default/BFG_ChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Default			"Sounds/Weapons/BFG/Default/Quad/BFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Default		"Sounds/Weapons/BFG/Default/Quad/BFG_ChargedShot.ogg"
 
-QC/Weapons/BFG/Fire_Quake2					"Sounds/Weapons/BFG/Quake2/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/ChargedShot_Quake2			"Sounds/Weapons/BFG/Quake2/BFGChargedShot.ogg"
-QC/Weapons/BFG/Quad/Fire_Quake2				"Sounds/Weapons/BFG/Quake2/Quad/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Quad/ChargedShot_Quake2		"Sounds/Weapons/BFG/Quake2/Quad/BFGChargedShot.ogg"
+QC/Weapons/BFG/Fire_Quake2					"Sounds/Weapons/BFG/Quake2/BFG_Fire.ogg"
+QC/Weapons/BFG/ChargedShot_Quake2			"Sounds/Weapons/BFG/Quake2/BFG_ChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Quake2				"Sounds/Weapons/BFG/Quake2/Quad/BFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Quake2		"Sounds/Weapons/BFG/Quake2/Quad/BFG_ChargedShot.ogg"
 
-QC/Weapons/BFG/Fire_Quake3					"Sounds/Weapons/BFG/Quake3/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/ChargedShot_Quake3			"Sounds/Weapons/BFG/Quake3/BFGChargedShot.ogg"
-QC/Weapons/BFG/Quad/Fire_Quake3				"Sounds/Weapons/BFG/Quake3/Quad/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Quad/ChargedShot_Quake3		"Sounds/Weapons/BFG/Quake3/Quad/BFGChargedShot.ogg"
+QC/Weapons/BFG/Fire_Quake3					"Sounds/Weapons/BFG/Quake3/BFG_Fire.ogg"
+QC/Weapons/BFG/ChargedShot_Quake3			"Sounds/Weapons/BFG/Quake3/BFG_ChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Quake3				"Sounds/Weapons/BFG/Quake3/Quad/BFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Quake3		"Sounds/Weapons/BFG/Quake3/Quad/BFG_ChargedShot.ogg"
 
-QC/Weapons/BFG/Idle_Quake4					"Sounds/Weapons/BFG/Quake4/NeoBFG_Idle.ogg"
-QC/Weapons/BFG/Fire_Quake4					"Sounds/Weapons/BFG/Quake4/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Charge_Quake4				"Sounds/Weapons/BFG/Quake4/BFGCharge.ogg"
-QC/Weapons/BFG/ChargedShot_Quake4			"Sounds/Weapons/BFG/Quake4/BFGChargedShot.ogg"
-QC/Weapons/BFG/Quad/Fire_Quake4				"Sounds/Weapons/BFG/Quake4/Quad/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Quad/ChargedShot_Quake4		"Sounds/Weapons/BFG/Quake4/Quad/BFGChargedShot.ogg"
+QC/Weapons/BFG/Idle_Quake4					"Sounds/Weapons/BFG/Quake4/BFG_Idle.ogg"
+QC/Weapons/BFG/Fire_Quake4					"Sounds/Weapons/BFG/Quake4/BFG_Fire.ogg"
+QC/Weapons/BFG/Charge_Quake4				"Sounds/Weapons/BFG/Quake4/BFG_Charge.ogg"
+QC/Weapons/BFG/ChargedShot_Quake4			"Sounds/Weapons/BFG/Quake4/BFG_ChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Quake4				"Sounds/Weapons/BFG/Quake4/Quad/BFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Quake4		"Sounds/Weapons/BFG/Quake4/Quad/BFG_ChargedShot.ogg"
 
-QC/Weapons/BFG/Fire_HalfLife				"Sounds/Weapons/BFG/HalfLife/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/ChargedShot_HalfLife			"Sounds/Weapons/BFG/HalfLife/BFGChargedShot.ogg"
-QC/Weapons/BFG/Quad/Fire_HalfLife			"Sounds/Weapons/BFG/HalfLife/Quad/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Quad/ChargedShot_HalfLife	"Sounds/Weapons/BFG/HalfLife/Quad/BFGChargedShot.ogg"
+QC/Weapons/BFG/Fire_HalfLife				"Sounds/Weapons/BFG/HalfLife/BFG_Fire.ogg"
+QC/Weapons/BFG/ChargedShot_HalfLife			"Sounds/Weapons/BFG/HalfLife/BFG_ChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_HalfLife			"Sounds/Weapons/BFG/HalfLife/Quad/BFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_HalfLife	"Sounds/Weapons/BFG/HalfLife/Quad/BFG_ChargedShot.ogg"
 
-QC/Weapons/BFG/Fire_SeriousSam				"Sounds/Weapons/BFG/SeriousSam/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/ChargedShot_SeriousSam		"Sounds/Weapons/BFG/SeriousSam/BFGChargedShot.ogg"
-QC/Weapons/BFG/Quad/Fire_SeriousSam			"Sounds/Weapons/BFG/SeriousSam/Quad/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Quad/ChargedShot_SeriousSam	"Sounds/Weapons/BFG/SeriousSam/Quad/BFGChargedShot.ogg"
+QC/Weapons/BFG/Fire_SeriousSam				"Sounds/Weapons/BFG/SeriousSam/BFG_Fire.ogg"
+QC/Weapons/BFG/ChargedShot_SeriousSam		"Sounds/Weapons/BFG/SeriousSam/BFG_ChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_SeriousSam			"Sounds/Weapons/BFG/SeriousSam/Quad/BFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_SeriousSam	"Sounds/Weapons/BFG/SeriousSam/Quad/BFG_ChargedShot.ogg"
 
 
-QC/Weapons/BFG/BallFlying			"Sounds/Weapons/BFG/BFGFlying.ogg"
-QC/Weapons/BFG/NeoExplo1			"Sounds/Weapons/BFG/NeoBFG_Explo1.ogg"
-QC/Weapons/BFG/NeoExplo2			"Sounds/Weapons/BFG/NeoBFG_Explo2.ogg"
-QC/Weapons/BFG/NeoExplo3			"Sounds/Weapons/BFG/NeoBFG_Explo3.ogg"
-$random QC/Weapons/BFG/Explo { QC/Weapons/BFG/NeoExplo1 QC/Weapons/BFG/NeoExplo2 QC/Weapons/BFG/NeoExplo3 }
-$limit QC/Weapons/BFG/NeoExplo1 3
-$limit QC/Weapons/BFG/NeoExplo2 3
-$limit QC/Weapons/BFG/NeoExplo3 3
+QC/Weapons/BFG/BallFlying			"Sounds/Weapons/BFG/BFG_Flying.ogg"
+QC/Weapons/BFG/Explo1			"Sounds/Weapons/BFG/BFG_Explo1.ogg"
+QC/Weapons/BFG/Explo2			"Sounds/Weapons/BFG/BFG_Explo2.ogg"
+QC/Weapons/BFG/Explo3			"Sounds/Weapons/BFG/BFG_Explo3.ogg"
+$random QC/Weapons/BFG/Explo { QC/Weapons/BFG/Explo1 QC/Weapons/BFG/Explo2 QC/Weapons/BFG/Explo3 }
+$limit QC/Weapons/BFG/Explo1 3
+$limit QC/Weapons/BFG/Explo2 3
+$limit QC/Weapons/BFG/Explo3 3
 $limit QC/Weapons/BFG/BallFlying 5
 
 
@@ -747,85 +619,285 @@ QC/Weapons/Gore2			"Sounds/Misc/QCGore2.ogg"
 QC/Weapons/Gore3			"Sounds/Misc/QCGore3.ogg"
 QC/Weapons/Gore4			"Sounds/Misc/QCGore4.ogg"
 
+
+//********************
+// Modded Gauntlet
+
+QC/Weapons/Gauntlet/Prepare_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Prepare.ogg"
+QC/Weapons/Gauntlet/Idle_Modded						"Sounds/Weapons/Gauntlet/Modded/Gaunt_Idle.ogg"
+QC/Weapons/Gauntlet/FireStartLoop_Modded			"Sounds/Weapons/Gauntlet/Modded/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/Quad/FireStartLoop_Modded		"Sounds/Weapons/Gauntlet/Modded/Quad/Gaunt_Start_Loop.ogg"
+QC/Weapons/Gauntlet/FireEnd_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_End.ogg"
+QC/Weapons/Gauntlet/Hit_Modded						"Sounds/Weapons/Gauntlet/Modded/Gaunt_Hit.ogg"
+QC/Weapons/Gauntlet/Impact1_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Impact1.ogg"
+QC/Weapons/Gauntlet/Impact2_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Impact2.ogg"
+QC/Weapons/Gauntlet/Impact3_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Impact3.ogg"
+QC/Weapons/Gauntlet/Impact4_Modded					"Sounds/Weapons/Gauntlet/Modded/Gaunt_Impact4.ogg"
+QC/Weapons/Gauntlet/ImpactSilent_Modded				"Sounds/Weapons/Gauntlet/Modded/Gaunt_ImpactSilent.ogg"
+
+$random QC/Weapons/Gauntlet/Impact_Modded { QC/Weapons/Gauntlet/Impact1_Modded QC/Weapons/Gauntlet/Impact2_Modded QC/Weapons/Gauntlet/Impact3_Modded QC/Weapons/Gauntlet/Impact4_Modded }
+$random QC/Weapons/Gauntlet/ImpactRandom_Modded { QC/Weapons/Gauntlet/Impact_Modded QC/Weapons/Gauntlet/ImpactSilent_Modded QC/Weapons/Gauntlet/ImpactSilent_Modded QC/Weapons/Gauntlet/ImpactSilent_Modded }
+
+
+//********************
+// Modded Machinegun
+
+//QC/Weapons/Machinegun/Prepare_Modded				"Sounds/Weapons/Machinegun/Modded/MG_Prepare.ogg"
+//QC/Weapons/Machinegun/Idle_Modded					"Sounds/Weapons/Machinegun/Modded/MG_Idle.ogg"
+
+QC/Weapons/Machinegun/FireStartLoop_Modded			"Sounds/Weapons/Machinegun/Modded/MG_Fire_Looper.ogg"
+QC/Weapons/Machinegun/Quad/FireStartLoop_Modded		"Sounds/Weapons/Machinegun/Modded/Quad/MG_Fire_Looper.ogg"
+QC/Weapons/Machinegun/FireEnd_Modded				"Sounds/Weapons/Machinegun/Modded/MG_End.ogg"
+
+
+//********************
+// Modded Heavy Machinegun
+
+//QC/Weapons/HeavyMachinegun/Prepare_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Prepare.ogg"
+//QC/Weapons/HeavyMachinegun/Idle_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Idle.ogg"
+
+QC/Weapons/HeavyMachinegun/FireStartLoop_Modded				"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedStart_Modded			"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/FireZoomedEnd_Modded				"Sounds/Weapons/HeavyMachineGun/Modded/HMG_Zoomed_End.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Modded		"Sounds/Weapons/HeavyMachineGun/Modded/Quad/HMG_Fire_Looper.ogg"
+QC/Weapons/HeavyMachinegun/Quad/FireZoomedStart_Modded		"Sounds/Weapons/HeavyMachineGun/Modded/Quad/HMG_Zoomed_Start.ogg"
+QC/Weapons/HeavyMachinegun/FireEnd_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_End.ogg"
+
+QC/Weapons/HeavyMachinegun/ZoomIn_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_ZoomIn.ogg"
+QC/Weapons/HeavyMachinegun/ZoomOut_Modded					"Sounds/Weapons/HeavyMachineGun/Modded/HMG_ZoomOut.ogg"
+
+//********************
+// Modded Shotgun
+
+//QC/Weapons/Shotgun/Prepare_Modded				"Sounds/Weapons/Shotgun/Modded/SG_Prepare.ogg"
+//QC/Weapons/Shotgun/Idle_Modded				"Sounds/Weapons/Shotgun/Modded/SG_Idle.ogg"
+
+QC/Weapons/Shotgun/Fire1_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Fire2_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire2.ogg"
+QC/Weapons/Shotgun/Fire3_Modded					"Sounds/Weapons/Shotgun/Modded/SG_Fire3.ogg"
+$random QC/Weapons/Shotgun/Fire_Modded 			{ QC/Weapons/Shotgun/Fire1_Modded QC/Weapons/Shotgun/Fire2_Modded QC/Weapons/Shotgun/Fire3_Modded }
+
+QC/Weapons/Shotgun/Quad/Fire1_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire1.ogg"
+QC/Weapons/Shotgun/Quad/Fire2_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire2.ogg"
+QC/Weapons/Shotgun/Quad/Fire3_Modded			"Sounds/Weapons/Shotgun/Modded/Quad/SG_Fire3.ogg"
+$random QC/Weapons/Shotgun/Quad/Fire_Modded 	{ QC/Weapons/Shotgun/Quad/Fire1_Modded QC/Weapons/Shotgun/Quad/Fire2_Modded QC/Weapons/Shotgun/Quad/Fire3_Modded }
+
+
+//********************
+// Modded Super Shotgun
+
+//QC/Weapons/SuperShotgun/Prepare_Modded			"Sounds/Weapons/SuperShotgun/Modded/SSG_Prepare.ogg"
+//QC/Weapons/SuperShotgun/Idle_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Idle.ogg"
+
+QC/Weapons/SuperShotgun/Fire1_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Fire2_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire2.ogg"
+QC/Weapons/SuperShotgun/Fire3_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire3.ogg"
+QC/Weapons/SuperShotgun/Fire4_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire4.ogg"
+QC/Weapons/SuperShotgun/Fire5_Modded				"Sounds/Weapons/SuperShotgun/Modded/SSG_Fire5.ogg"
+$random QC/Weapons/SuperShotgun/Fire_Modded 		{ QC/Weapons/SuperShotgun/Fire1_Modded QC/Weapons/SuperShotgun/Fire2_Modded QC/Weapons/SuperShotgun/Fire3_Modded QC/Weapons/SuperShotgun/Fire4_Modded QC/Weapons/SuperShotgun/Fire5_Modded }
+
+QC/Weapons/SuperShotgun/Quad/Fire1_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire1.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire2_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire2.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire3_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire3.ogg"
+QC/Weapons/SuperShotgun/Quad/Fire4_Modded			"Sounds/Weapons/SuperShotgun/Modded/Quad/SSG_Fire4.ogg"
+$random QC/Weapons/SuperShotgun/Quad/Fire_Modded 	{ QC/Weapons/SuperShotgun/Quad/Fire1_Modded QC/Weapons/SuperShotgun/Quad/Fire2_Modded QC/Weapons/SuperShotgun/Quad/Fire3_Modded QC/Weapons/SuperShotgun/Quad/Fire4_Modded }
+
+
+//********************
+// Modded Nailgun
+
+//QC/Weapons/Nailgun/Prepare_Modded					"Sounds/Weapons/Nailgun/Modded/NG_Prepare.ogg"
+//QC/Weapons/Nailgun/Idle_Modded					"Sounds/Weapons/Nailgun/Modded/NG_Idle.ogg"
+
+QC/Weapons/Nailgun/FireStartLoop_Modded				"Sounds/Weapons/Nailgun/Modded/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/Quad/FireStartLoop_Modded		"Sounds/Weapons/Nailgun/Modded/Quad/NG_Start_Loop.ogg"
+QC/Weapons/Nailgun/FireEnd_Modded					"Sounds/Weapons/Nailgun/Modded/NG_End.ogg"
+
+QC/Weapons/Nailgun/Impact1_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact1.ogg"
+QC/Weapons/Nailgun/Impact2_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact2.ogg"
+QC/Weapons/Nailgun/Impact3_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact3.ogg"
+QC/Weapons/Nailgun/Impact4_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact4.ogg"
+QC/Weapons/Nailgun/Impact5_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact5.ogg"
+QC/Weapons/Nailgun/Impact6_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact6.ogg"
+QC/Weapons/Nailgun/Impact7_Modded					"Sounds/Weapons/Nailgun/Modded/NailImpact7.ogg"
+
+$random QC/Weapons/Nailgun/Impact_Modded { QC/Weapons/Nailgun/Impact1_Modded QC/Weapons/Nailgun/Impact2_Modded QC/Weapons/Nailgun/Impact3_Modded
+		QC/Weapons/Nailgun/Impact4_Modded QC/Weapons/Nailgun/Impact5_Modded QC/Weapons/Nailgun/Impact6_Modded QC/Weapons/Nailgun/Impact7_Modded }
+
+
+//********************
+// Modded Super Nailgun
+
+//QC/Weapons/SuperNailgun/Prepare_Modded				"Sounds/Weapons/SuperNailgun/Modded/SNG_Prepare.ogg"
+//QC/Weapons/SuperNailgun/Idle_Modded					"Sounds/Weapons/SuperNailgun/Modded/SNG_Idle.ogg"
+
+QC/Weapons/SuperNailgun/FireStartLoop_Modded			"Sounds/Weapons/SuperNailgun/Modded/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/FireSeeker_Modded				"Sounds/Weapons/SuperNailgun/Modded/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/Quad/FireStartLoop_Modded		"Sounds/Weapons/SuperNailgun/Modded/Quad/SNG_Start_Loop.ogg"
+QC/Weapons/SuperNailgun/Quad/FireSeeker_Modded			"Sounds/Weapons/SuperNailgun/Modded/Quad/SNG_Single.ogg"
+QC/Weapons/SuperNailgun/FireEnd_Modded					"Sounds/Weapons/SuperNailgun/Modded/SNG_End.ogg"
+
+QC/Weapons/SuperNailgun/Impact1_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact1.ogg"
+QC/Weapons/SuperNailgun/Impact2_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact2.ogg"
+QC/Weapons/SuperNailgun/Impact3_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact3.ogg"
+QC/Weapons/SuperNailgun/Impact4_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact4.ogg"
+QC/Weapons/SuperNailgun/Impact5_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact5.ogg"
+QC/Weapons/SuperNailgun/Impact6_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact6.ogg"
+QC/Weapons/SuperNailgun/Impact7_Modded					"Sounds/Weapons/SuperNailgun/Modded/SuperNailImpact7.ogg"
+
+$random QC/Weapons/SuperNailgun/Impact_Modded 			{ QC/Weapons/SuperNailgun/Impact1_Modded QC/Weapons/SuperNailgun/Impact2_Modded QC/Weapons/SuperNailgun/Impact3_Modded
+		QC/Weapons/SuperNailgun/Impact4_Modded QC/Weapons/SuperNailgun/Impact5_Modded QC/Weapons/SuperNailgun/Impact6_Modded QC/Weapons/SuperNailgun/Impact7_Modded }
+
+
+//********************
+// Modded Tribolt
+
+//QC/Weapons/Tribolt/Prepare_Modded			"Sounds/Weapons/Tribolt/Modded/TB_Prepare.ogg"
+//QC/Weapons/Tribolt/Idle_Modded			"Sounds/Weapons/Tribolt/Modded/TB_Idle.ogg"
+
+QC/Weapons/Tribolt/Fire_Modded				"Sounds/Weapons/Tribolt/Modded/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Quad/Fire_Modded			"Sounds/Weapons/Tribolt/Modded/Quad/Tribolt_FireFast.ogg"
+QC/Weapons/Tribolt/Fly_Modded				"Sounds/Weapons/Tribolt/Modded/TB_Fly.ogg"
+
+QC/Weapons/Tribolt/Explo_Modded				"Sounds/Weapons/Tribolt/Modded/Tribolt_Explo.ogg"
+$limit "QC/Weapons/Tribolt/Explo_Modded" 9
+$volume QC/Weapons/Tribolt/Explo_Modded 0.8
+
+QC/Weapons/Tribolt/Bounce1_Modded			"Sounds/Weapons/Tribolt/Modded/BoltBounce1.ogg"
+QC/Weapons/Tribolt/Bounce2_Modded			"Sounds/Weapons/Tribolt/Modded/BoltBounce2.ogg"
+QC/Weapons/Tribolt/Bounce3_Modded			"Sounds/Weapons/Tribolt/Modded/BoltBounce3.ogg"
+$random QC/Weapons/Tribolt/Bounce_Modded	{ QC/Weapons/Tribolt/Bounce1_Modded QC/Weapons/Tribolt/Bounce2_Modded QC/Weapons/Tribolt/Bounce3_Modded }
+
+$volume QC/Weapons/Tribolt/Bounce1_Modded 0.8
+$volume QC/Weapons/Tribolt/Bounce2_Modded 0.8
+$volume QC/Weapons/Tribolt/Bounce3_Modded 0.8
+
+QC/Weapons/Tribolt/Impact1_Modded			"Sounds/Weapons/Tribolt/Modded/BoltImpact1.ogg"
+QC/Weapons/Tribolt/Impact2_Modded			"Sounds/Weapons/Tribolt/Modded/BoltImpact2.ogg"
+QC/Weapons/Tribolt/Impact3_Modded			"Sounds/Weapons/Tribolt/Modded/BoltImpact3.ogg"
+QC/Weapons/Tribolt/Impact4_Modded			"Sounds/Weapons/Tribolt/Modded/BoltImpact4.ogg"
+QC/Weapons/Tribolt/Impact5_Modded			"Sounds/Weapons/Tribolt/Modded/BoltImpact5.ogg"
+QC/Weapons/Tribolt/Impact6_Modded			"Sounds/Weapons/Tribolt/Modded/BoltImpact6.ogg"
+QC/Weapons/Tribolt/Impact7_Modded			"Sounds/Weapons/Tribolt/Modded/BoltImpact7.ogg"
+
+$volume QC/Weapons/Tribolt/Impact1_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact2_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact3_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact4_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact5_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact6_Modded 0.7
+$volume QC/Weapons/Tribolt/Impact7_Modded 0.7
+
+$random QC/Weapons/Tribolt/Impact_Modded	{ QC/Weapons/Tribolt/Impact1_Modded QC/Weapons/Tribolt/Impact2_Modded QC/Weapons/Tribolt/Impact3_Modded
+		QC/Weapons/Tribolt/Impact4_Modded QC/Weapons/Tribolt/Impact5_Modded QC/Weapons/Tribolt/Impact6_Modded QC/Weapons/Tribolt/Impact7_Modded }
+
+
+//********************
 // Modded Rocket Launcher
-QC/Weapons/RocketLauncher/Fire1_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Fire1.ogg"
-QC/Weapons/RocketLauncher/Fire2_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Fire2.ogg"
-QC/Weapons/RocketLauncher/Fire3_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Fire3.ogg"
-$random QC/Weapons/RocketLauncher/Fire_Modded { QC/Weapons/RocketLauncher/Fire1_Modded QC/Weapons/RocketLauncher/Fire2_Modded QC/Weapons/RocketLauncher/Fire3_Modded }
-QC/Weapons/RocketLauncher/Quad/Fire1_Modded	"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire1.ogg"
-QC/Weapons/RocketLauncher/Quad/Fire2_Modded	"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire2.ogg"
-QC/Weapons/RocketLauncher/Quad/Fire3_Modded	"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire3.ogg"
-$random QC/Weapons/RocketLauncher/Quad/Fire_Modded { QC/Weapons/RocketLauncher/Quad/Fire1_Modded QC/Weapons/RocketLauncher/Quad/Fire2_Modded QC/Weapons/RocketLauncher/Quad/Fire3_Modded }
-QC/Weapons/RocketLauncher/RocketExplo1_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_explo1.ogg"
-QC/Weapons/RocketLauncher/RocketExplo2_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_explo2.ogg"
-QC/Weapons/RocketLauncher/RocketExplo3_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_explo3.ogg"
-$random QC/Weapons/RocketLauncher/RocketExplo_Modded { QC/Weapons/RocketLauncher/RocketExplo1_Modded QC/Weapons/RocketLauncher/RocketExplo2_Modded QC/Weapons/RocketLauncher/RocketExplo3_Modded }
+
+//QC/Weapons/RocketLauncher/Prepare_Modded				"Sounds/Weapons/RocketLauncher/Modded/RL_Prepare.ogg"
+//QC/Weapons/RocketLauncher/Idle_Modded					"Sounds/Weapons/RocketLauncher/Modded/RL_Idle.ogg"
+
+QC/Weapons/RocketLauncher/Fire1_Modded					"Sounds/Weapons/RocketLauncher/Modded/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Fire2_Modded					"Sounds/Weapons/RocketLauncher/Modded/RL_Fire2.ogg"
+QC/Weapons/RocketLauncher/Fire3_Modded					"Sounds/Weapons/RocketLauncher/Modded/RL_Fire3.ogg"
+$random QC/Weapons/RocketLauncher/Fire_Modded			{ QC/Weapons/RocketLauncher/Fire1_Modded QC/Weapons/RocketLauncher/Fire2_Modded QC/Weapons/RocketLauncher/Fire3_Modded }
+
+QC/Weapons/RocketLauncher/Quad/Fire1_Modded				"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire1.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire2_Modded				"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire2.ogg"
+QC/Weapons/RocketLauncher/Quad/Fire3_Modded				"Sounds/Weapons/RocketLauncher/Modded/Quad/RL_Fire3.ogg"
+$random QC/Weapons/RocketLauncher/Quad/Fire_Modded		{ QC/Weapons/RocketLauncher/Quad/Fire1_Modded QC/Weapons/RocketLauncher/Quad/Fire2_Modded QC/Weapons/RocketLauncher/Quad/Fire3_Modded }
+
+QC/Weapons/RocketLauncher/RocketExplo1_Modded			"Sounds/Weapons/RocketLauncher/Modded/RL_explo1.ogg"
+QC/Weapons/RocketLauncher/RocketExplo2_Modded			"Sounds/Weapons/RocketLauncher/Modded/RL_explo2.ogg"
+QC/Weapons/RocketLauncher/RocketExplo3_Modded			"Sounds/Weapons/RocketLauncher/Modded/RL_explo3.ogg"
+$random QC/Weapons/RocketLauncher/RocketExplo_Modded	{ QC/Weapons/RocketLauncher/RocketExplo1_Modded QC/Weapons/RocketLauncher/RocketExplo2_Modded QC/Weapons/RocketLauncher/RocketExplo3_Modded }
+
 QC/Weapons/RocketLauncher/Fly_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Fly.ogg"
-QC/Weapons/RocketLauncher/Prepare_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Prepare.ogg"
-QC/Weapons/RocketLauncher/Idle_Modded	"Sounds/Weapons/RocketLauncher/Modded/RL_Idle.ogg"
-QC/Weapons/RocketLauncher/ClusterExplo1_Modded	"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo1.ogg"
-QC/Weapons/RocketLauncher/ClusterExplo2_Modded	"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo2.ogg"
-QC/Weapons/RocketLauncher/ClusterExplo3_Modded	"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo3.ogg"
-$random QC/Weapons/RocketLauncher/ClusterExplo_Modded { QC/Weapons/RocketLauncher/ClusterExplo1_Modded QC/Weapons/RocketLauncher/ClusterExplo2_Modded QC/Weapons/RocketLauncher/ClusterExplo3_Modded }
-$volume QC/Weapons/RocketLauncher/RocketExplo_Modded 0.7
-$volume QC/Weapons/RocketLauncher/RocketExplo1_Modded 0.8
-$limit QC/Weapons/RocketLauncher/RocketExplo1_Modded 3
-$volume QC/Weapons/RocketLauncher/RocketExplo2_Modded 0.8
-$limit QC/Weapons/RocketLauncher/RocketExplo2_Modded 3
-$volume QC/Weapons/RocketLauncher/RocketExplo3_Modded 0.8
-$limit QC/Weapons/RocketLauncher/RocketExplo3_Modded 3
-$rolloff QC/Weapons/RocketLauncher/Fly_Modded 64 2048
-$limit QC/Weapons/RocketLauncher/Fly_Modded 5
 
+QC/Weapons/RocketLauncher/ClusterExplo1_Modded			"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo1.ogg"
+QC/Weapons/RocketLauncher/ClusterExplo2_Modded			"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo2.ogg"
+QC/Weapons/RocketLauncher/ClusterExplo3_Modded			"Sounds/Weapons/RocketLauncher/Modded/ClusterExplo3.ogg"
+$random QC/Weapons/RocketLauncher/ClusterExplo_Modded	{ QC/Weapons/RocketLauncher/ClusterExplo1_Modded QC/Weapons/RocketLauncher/ClusterExplo2_Modded QC/Weapons/RocketLauncher/ClusterExplo3_Modded }
+
+$volume QC/Weapons/RocketLauncher/RocketExplo_Modded	0.7
+$volume QC/Weapons/RocketLauncher/RocketExplo1_Modded	0.8
+$limit QC/Weapons/RocketLauncher/RocketExplo1_Modded	3
+$volume QC/Weapons/RocketLauncher/RocketExplo2_Modded	0.8
+$limit QC/Weapons/RocketLauncher/RocketExplo2_Modded	3
+$volume QC/Weapons/RocketLauncher/RocketExplo3_Modded	0.8
+$limit QC/Weapons/RocketLauncher/RocketExplo3_Modded	3
+$rolloff QC/Weapons/RocketLauncher/Fly_Modded			64 2048
+$limit QC/Weapons/RocketLauncher/Fly_Modded				5
+
+
+//********************
 // Modded Lightning Gun
-QC/Weapons/LightningGun/Select_Modded	"Sounds/Weapons/LightningGun/Modded/LG_Select.ogg"
-QC/Weapons/LightningGun/Prepare_Modded	"Sounds/Weapons/LightningGun/Modded/LG_Prepare.ogg"
-QC/Weapons/LightningGun/Idle_Modded	"Sounds/Weapons/LightningGun/Modded/LG_Idle.ogg"
-QC/Weapons/LightningGun/FireStartLoop_Modded	"Sounds/Weapons/LightningGun/Modded/LG_Start_Loop.ogg"
-QC/Weapons/LightningGun/Quad/FireStartLoop_Modded	"Sounds/Weapons/LightningGun/Modded/Quad/LG_Start_Loop.ogg"
-QC/Weapons/LightningGun/FireEnd_Modded	"Sounds/Weapons/LightningGun/Modded/LG_End.ogg"
-QC/Weapons/LightningGun/ElectroLoop_Modded	"Sounds/Weapons/LightningGun/Modded/LG_ElectroLoop.ogg"
-QC/Weapons/LightningGun/ElectroStop_Modded	"Sounds/Weapons/LightningGun/Modded/LG_ElectroStop.ogg"
 
+QC/Weapons/LightningGun/Prepare_Modded					"Sounds/Weapons/LightningGun/Modded/LG_Prepare.ogg"
+QC/Weapons/LightningGun/Idle_Modded						"Sounds/Weapons/LightningGun/Modded/LG_Idle.ogg"
+
+QC/Weapons/LightningGun/FireStartLoop_Modded			"Sounds/Weapons/LightningGun/Modded/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/Quad/FireStartLoop_Modded		"Sounds/Weapons/LightningGun/Modded/Quad/LG_Start_Loop.ogg"
+QC/Weapons/LightningGun/FireEnd_Modded					"Sounds/Weapons/LightningGun/Modded/LG_End.ogg"
+
+QC/Weapons/LightningGun/ElectroLoop_Modded				"Sounds/Weapons/LightningGun/Modded/LG_ElectroLoop.ogg"
+QC/Weapons/LightningGun/ElectroStop_Modded				"Sounds/Weapons/LightningGun/Modded/LG_ElectroStop.ogg"
+
+
+//********************
 // Modded Railgun
-QC/Weapons/Railgun/Select_Modded	"Sounds/Weapons/Railgun/Modded/RG_Select.ogg"
-QC/Weapons/Railgun/Prepare_Modded	"Sounds/Weapons/Railgun/Modded/RG_Prepare.ogg"
-QC/Weapons/Railgun/Idle_Modded	"Sounds/Weapons/Railgun/Modded/RG_Idle.ogg"
-QC/Weapons/Railgun/ZoomIn_Modded	"Sounds/Weapons/Railgun/Modded/RG_ZoomIn.ogg"
-QC/Weapons/Railgun/ZoomOut_Modded	"Sounds/Weapons/Railgun/Modded/RG_ZoomOut.ogg"
-QC/Weapons/Railgun/Whoosh_Modded	"Sounds/Weapons/Railgun/Modded/RG_Whoosh.ogg"
-QC/Weapons/Railgun/ChargeFull_Modded	"Sounds/Weapons/Railgun/Modded/RG_ChargeFull.ogg"
-QC/Weapons/Railgun/Railjump_Modded	"Sounds/Weapons/Railgun/Modded/RG_Railjump.ogg"
-QC/Weapons/Railgun/Fire1_Modded	"Sounds/Weapons/Railgun/Modded/RG_Fire1.ogg"
-QC/Weapons/Railgun/Quad/Fire1_Modded	"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire1.ogg"
-QC/Weapons/Railgun/Fire2_Modded	"Sounds/Weapons/Railgun/Modded/RG_Fire2.ogg"
-QC/Weapons/Railgun/Quad/Fire2_Modded	"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire2.ogg"
-QC/Weapons/Railgun/Fire3_Modded	"Sounds/Weapons/Railgun/Modded/RG_Fire3.ogg"
-QC/Weapons/Railgun/Quad/Fire3_Modded	"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire3.ogg"
-QC/Weapons/Railgun/Impact1_Modded	"Sounds/Weapons/Railgun/Modded/RG_Impact1.ogg"
-QC/Weapons/Railgun/Impact2_Modded	"Sounds/Weapons/Railgun/Modded/RG_Impact2.ogg"
-$random QC/Weapons/Railgun/Fire_Modded { QC/Weapons/Railgun/Fire1_Modded QC/Weapons/Railgun/Fire2_Modded QC/Weapons/Railgun/Fire3_Modded }
-$random QC/Weapons/Railgun/Quad/Fire_Modded { QC/Weapons/Railgun/Quad/Fire1_Modded QC/Weapons/Railgun/Quad/Fire2_Modded QC/Weapons/Railgun/Quad/Fire3_Modded }
-$random QC/Weapons/Railgun/Impact_Modded { QC/Weapons/Railgun/Impact1_Modded QC/Weapons/Railgun/Impact2_Modded }
+
+//QC/Weapons/Railgun/Prepare_Modded					"Sounds/Weapons/Railgun/Modded/RG_Prepare.ogg"
+QC/Weapons/Railgun/Idle_Modded						"Sounds/Weapons/Railgun/Modded/RG_Idle.ogg"
+
+QC/Weapons/Railgun/Fire1_Modded						"Sounds/Weapons/Railgun/Modded/RG_Fire1.ogg"
+QC/Weapons/Railgun/Fire2_Modded						"Sounds/Weapons/Railgun/Modded/RG_Fire2.ogg"
+QC/Weapons/Railgun/Fire3_Modded						"Sounds/Weapons/Railgun/Modded/RG_Fire3.ogg"
+$random QC/Weapons/Railgun/Fire_Modded				{ QC/Weapons/Railgun/Fire1_Modded QC/Weapons/Railgun/Fire2_Modded QC/Weapons/Railgun/Fire3_Modded }
+
+QC/Weapons/Railgun/Quad/Fire1_Modded				"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire1.ogg"
+QC/Weapons/Railgun/Quad/Fire2_Modded				"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire2.ogg"
+QC/Weapons/Railgun/Quad/Fire3_Modded				"Sounds/Weapons/Railgun/Modded/Quad/RG_Fire3.ogg"
+$random QC/Weapons/Railgun/Quad/Fire_Modded			{ QC/Weapons/Railgun/Quad/Fire1_Modded QC/Weapons/Railgun/Quad/Fire2_Modded QC/Weapons/Railgun/Quad/Fire3_Modded }
+
+QC/Weapons/Railgun/ZoomIn_Modded					"Sounds/Weapons/Railgun/Modded/RG_ZoomIn.ogg"
+QC/Weapons/Railgun/ZoomOut_Modded					"Sounds/Weapons/Railgun/Modded/RG_ZoomOut.ogg"
+
+QC/Weapons/Railgun/Whoosh_Modded					"Sounds/Weapons/Railgun/Modded/RG_Whoosh.ogg"
+QC/Weapons/Railgun/ChargeFull_Modded				"Sounds/Weapons/Railgun/Modded/RG_ChargeFull.ogg"
+QC/Weapons/Railgun/Railjump_Modded					"Sounds/Weapons/Railgun/Modded/RG_Railjump.ogg"
+
+QC/Weapons/Railgun/Impact1_Modded					"Sounds/Weapons/Railgun/Modded/RG_Impact1.ogg"
+QC/Weapons/Railgun/Impact2_Modded					"Sounds/Weapons/Railgun/Modded/RG_Impact2.ogg"
+$random QC/Weapons/Railgun/Impact_Modded			{ QC/Weapons/Railgun/Impact1_Modded QC/Weapons/Railgun/Impact2_Modded }
+
 $rolloff QC/Weapons/Railgun/Impact1_Modded 300 768
 $rolloff QC/Weapons/Railgun/Impact2_Modded 300 768
 
+
+//********************
 // Modded BFG
-QC/Weapons/BFG/Prepare_Modded	"Sounds/Weapons/BFG/Modded/BFG_Prepare.ogg"
-QC/Weapons/BFG/Idle_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Idle.ogg"
-QC/Weapons/BFG/Raise_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Raise.ogg"
-QC/Weapons/BFG/Fire_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Charge_Modded	"Sounds/Weapons/BFG/Modded/BFGCharge.ogg"
-QC/Weapons/BFG/ChargeLoop_Modded	"Sounds/Weapons/BFG/Modded/BFGChargeLoop.ogg"
-QC/Weapons/BFG/ChargedShot_Modded	"Sounds/Weapons/BFG/Modded/BFGChargedShot.ogg"
-QC/Weapons/BFG/Quad/Fire_Modded	"Sounds/Weapons/BFG/Modded/Quad/NeoBFG_Fire.ogg"
-QC/Weapons/BFG/Quad/ChargedShot_Modded	"Sounds/Weapons/BFG/Modded/Quad/BFGChargedShot.ogg"
-QC/Weapons/BFG/BallFlying_Modded	"Sounds/Weapons/BFG/Modded/BFGFlying.ogg"
-QC/Weapons/BFG/NeoExplo1_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Explo1.ogg"
-QC/Weapons/BFG/NeoExplo2_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Explo2.ogg"
-QC/Weapons/BFG/NeoExplo3_Modded	"Sounds/Weapons/BFG/Modded/NeoBFG_Explo3.ogg"
-$random QC/Weapons/BFG/Explo_Modded { QC/Weapons/BFG/NeoExplo1_Modded QC/Weapons/BFG/NeoExplo2_Modded QC/Weapons/BFG/NeoExplo3_Modded }
-$limit QC/Weapons/BFG/NeoExplo1_Modded 3
-$limit QC/Weapons/BFG/NeoExplo2_Modded 3
-$limit QC/Weapons/BFG/NeoExplo3_Modded 3
+
+QC/Weapons/BFG/Raise_Modded					"Sounds/Weapons/BFG/Modded/BFG_Raise.ogg"
+//QC/Weapons/BFG/Prepare_Modded				"Sounds/Weapons/BFG/Modded/BFG_Prepare.ogg"
+QC/Weapons/BFG/Idle_Modded					"Sounds/Weapons/BFG/Modded/BFG_Idle.ogg"
+
+QC/Weapons/BFG/Fire_Modded					"Sounds/Weapons/BFG/Modded/BFG_Fire.ogg"
+QC/Weapons/BFG/ChargedShot_Modded			"Sounds/Weapons/BFG/Modded/BFG_ChargedShot.ogg"
+QC/Weapons/BFG/Quad/Fire_Modded				"Sounds/Weapons/BFG/Modded/Quad/BFG_Fire.ogg"
+QC/Weapons/BFG/Quad/ChargedShot_Modded		"Sounds/Weapons/BFG/Modded/Quad/BFG_ChargedShot.ogg"
+
+QC/Weapons/BFG/Charge_Modded				"Sounds/Weapons/BFG/Modded/BFG_Charge.ogg"
+QC/Weapons/BFG/ChargeLoop_Modded			"Sounds/Weapons/BFG/Modded/BFG_ChargeLoop.ogg"
+QC/Weapons/BFG/BallFlying_Modded			"Sounds/Weapons/BFG/Modded/BFG_Flying.ogg"
+
+QC/Weapons/BFG/Explo1_Modded				"Sounds/Weapons/BFG/Modded/BFG_Explo1.ogg"
+QC/Weapons/BFG/Explo2_Modded				"Sounds/Weapons/BFG/Modded/BFG_Explo2.ogg"
+QC/Weapons/BFG/Explo3_Modded				"Sounds/Weapons/BFG/Modded/BFG_Explo3.ogg"
+$random QC/Weapons/BFG/Explo_Modded			{ QC/Weapons/BFG/Explo1_Modded QC/Weapons/BFG/Explo2_Modded QC/Weapons/BFG/Explo3_Modded }
+
+$limit QC/Weapons/BFG/Explo1_Modded 3
+$limit QC/Weapons/BFG/Explo2_Modded 3
+$limit QC/Weapons/BFG/Explo3_Modded 3
 $limit QC/Weapons/BFG/BallFlying_Modded 5

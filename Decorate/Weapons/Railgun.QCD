@@ -203,12 +203,7 @@ Actor QCRailGun : QCWeapon
 		Goto SelectCont
 
 	SelectCont:
-		"####" "#" 0 A_JumpIfInventory("QCRailgunSkin", 20, "SelectSound.Modded")
 		"####" A 0 A_PlaySound("QC/Weapons/Switch",CHAN_5,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
-		Goto SelectSoundCont
-	SelectSound.Modded:
-		"####" A 0 A_PlaySound("QC/Weapons/Railgun/Select_Modded",CHAN_5,1,0,3) //Not in Weapon.UpSound because it interrupts CHAN_WEAPON sounds
-	SelectSoundCont:
 		"####" A 0 A_JumpIfInventory("NoWeaponFireToken",1,2)
 		"####" A 0 A_StopSound(CHAN_WEAPON) //stops any weapon looping sound
 	SelectLooper:

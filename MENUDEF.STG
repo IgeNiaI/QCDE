@@ -2089,7 +2089,7 @@ FreeformMenu "QCDE_OptionsSkins"
 	}
 
 	Command {
-		Pos  156, 267			Text "Modded"				Background			BV14028
+		Pos  156, 267			Text "$WeaponSkin_Modded"		Background			BV14028
 		Size 70, 14				Font SmallFont				SelectedBackground	BV14028S
 		Anchor center, center	FontColor Tan				Command qcde_WeapSkins_Modded
 		Padding	0, 0			SelectedFontColor Tan
@@ -2566,7 +2566,7 @@ OptionValue "GNTLskin"
 	4, "Quake 4"
 	6, "QC:DE 1.0"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_Gauntlet_Modded"
 }
 
 OptionValue "GNTLskinBG"
@@ -2592,7 +2592,7 @@ OptionValue "MGskin"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_Machinegun_Modded"
 }
 
 OptionValue "MGskinBG"
@@ -2620,7 +2620,7 @@ OptionValue "HMGskin"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_HeavyMachinegun_Modded"
 }
 
 OptionValue "HMGskinBG"
@@ -2647,7 +2647,7 @@ OptionValue "SGskin"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_Shotgun_Modded"
 }
 
 OptionValue "SGskinBG"
@@ -2675,7 +2675,7 @@ OptionValue "SSGskin"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_SuperShotgun_Modded"
 }
 
 OptionValue "SSGskinBG"
@@ -2703,7 +2703,7 @@ OptionValue "NGskin"
 	6, "QC:DE 1.0"
 	7, "TF Classic"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_Nailgun_Modded"
 }
 
 OptionValue "NGskinBG"
@@ -2731,7 +2731,7 @@ OptionValue "SNGskin"
 	6, "QC:DE 1.0"
 	7, "TF Classic"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_SuperNailgun_Modded"
 }
 
 OptionValue "SNGskinBG"
@@ -2760,7 +2760,7 @@ OptionValue "TBskin"
 	6, "QC:DE 1.0"
 	7, "TF Classic"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_Tribolt_Modded"
 }
 
 OptionValue "TBskinBG"
@@ -2789,7 +2789,7 @@ OptionValue "RLskin"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_RocketLauncher_Modded"
 }
 
 OptionValue "RLskinBG"
@@ -2819,7 +2819,7 @@ OptionValue "LGskin"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_LightningGun_Modded"
 }
 
 OptionValue "LGskinBG"
@@ -2849,7 +2849,7 @@ OptionValue "RGskin"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_Railgun_Modded"
 }
 
 OptionValue "RGskinBG"
@@ -2877,7 +2877,7 @@ OptionValue "BFGskin"
 	6, "QC:DE 1.0"
 	7, "Half-Life"
 	8, "Serious Sam"
-	20, "Modded"
+	20, "$WeaponSkin_BFG_Modded"
 }
 
 OptionValue "BFGskinBG"

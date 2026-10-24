@@ -203,6 +203,99 @@ Model QCNailStrongIllusion_SeriousSam
 }
 
 
+// Modded nails (uncomment to enable models)
+//Model QCNailWeak_Modded
+//{
+//   Path "MD3/PROJECTILES/Nailgun"
+//   SKIN 0 "NAMI.png"
+//   MODEL 0 "nail.md3"
+//   Scale 1.0 1.0 1.2
+//   ROTATING
+//   Rotation-Speed 2
+//   Rotation-Vector 1 0 0
+//   PITCHFROMMOMENTUM
+//   FrameIndex NAMI A 0 0
+//}
+
+//Model QCNailWeakDM_Modded
+//{
+//   Path "MD3/PROJECTILES/Nailgun"
+//   SKIN 0 "NAMI.png"
+//   MODEL 0 "nail.md3"
+//   Scale 1.0 1.0 1.2
+//   ROTATING
+//   Rotation-Speed 2
+//   Rotation-Vector 1 0 0
+//   PITCHFROMMOMENTUM
+//   FrameIndex NAMI A 0 0
+//}
+
+//Model QCNailStrong_Modded
+//{
+//   Path "MD3/PROJECTILES/SuperNailgun"
+//   SKIN 0 "NAMD.png"
+//   MODEL 0 "nail.md3"
+//   Scale 1.0 1.0 1.2
+//   ROTATING
+//   Rotation-Speed 2
+//   Rotation-Vector 1 0 0
+//   PITCHFROMMOMENTUM
+//   FrameIndex NAMD A 0 0
+//}
+
+//Model QCNailStrongDM_Modded
+//{
+//   Path "MD3/PROJECTILES/SuperNailgun"
+//   SKIN 0 "NAMD.png"
+//   MODEL 0 "nail.md3"
+//   Scale 1.0 1.0 1.2
+//   ROTATING
+//   Rotation-Speed 2
+//   Rotation-Vector 1 0 0
+//   PITCHFROMMOMENTUM
+//   FrameIndex NAMD A 0 0
+//}
+
+//Model QCNailStrongLava_Modded
+//{
+//   Path "MD3/PROJECTILES/SuperNailgun"
+//   SKIN 0 "NAMD_lava.png"
+//   MODEL 0 "nail.md3"
+//   Scale 1.0 1.0 1.2
+//   ROTATING
+//   Rotation-Speed 2
+//   Rotation-Vector 1 0 0
+//   PITCHFROMMOMENTUM
+//   FrameIndex NAMD B 0 0
+//}
+
+//Model QCNailStrongSeeker_Modded
+//{
+//   Path "MD3/PROJECTILES/SuperNailgun"
+//   SKIN 0 "NAMD_seeker.png"
+//   MODEL 0 "nail.md3"
+//   Scale 1.0 1.0 1.2
+//   ROTATING
+//   Rotation-Speed 2
+//   Rotation-Vector 1 0 0
+//   PITCHFROMMOMENTUM
+//   FrameIndex NAMD C 0 0
+//}
+
+//Model QCNailStrongLavaSeeker_Modded
+//{
+//   Path "MD3/PROJECTILES/SuperNailgun"
+//   SKIN 0 "NAMD_seeker_lava.png"
+//   MODEL 0 "nail.md3"
+//   Scale 1.0 1.0 1.2
+//   ROTATING
+//   Rotation-Speed 2
+//   Rotation-Vector 1 0 0
+//   PITCHFROMMOMENTUM
+//   FrameIndex NAMD D 0 0
+//}
+
+
 //Bolts
 
 Model TriboltBolt
