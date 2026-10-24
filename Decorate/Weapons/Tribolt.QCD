@@ -637,8 +637,13 @@ Actor QCTribolt : QCWeapon
 			Goto EndFlash
 
 	EndFlash:
-		TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,2)
+		TNT1 A 0 A_JumpIfInventory("WepNoFlashToken",1,"EndFlash.BlendCont")
+		TNT1 A 0 A_JumpIfInventory("QCTriboltSkin", 20, "EndFlash.Blend.Modded")
 		TNT1 A 0 A_SetBlend("Orange",0.055,10)
+		Goto EndFlash.BlendCont
+	EndFlash.Blend.Modded:
+		TNT1 A 0 A_SetBlend("$WeaponSkin_Tribolt_ScreenBlend_Modded",0.055,10)
+	EndFlash.BlendCont:
 		TNT1 A 0
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil")
 		TNT1 A 2 A_SetPitch(pitch-1.2)
