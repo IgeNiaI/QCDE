@@ -86,3 +86,78 @@ QUADA = "Voxels/Pickups/QuadDamage.kvx" {Spin=75} // Quad Damage
 QUADB = "Voxels/Pickups/QuadDamage.kvx" {Spin=75} // Quad Damage
 PENTA = "Voxels/Pickups/Pentagram.kvx" 	{Spin=75} // Pentagram of Protection
 PENTB = "Voxels/Pickups/Pentagram.kvx" 	{Spin=75} // Pentagram of Protection
+
+// Additional pickups and powerups
+
+PINAA = "Voxels/Armor Health/BittermanArmor.kvx" {Spin=75} // Bitterman power armor
+PVISA = "Voxels/Pickups/Goggles.kvx" {Spin=75}
+PVISB = "Voxels/Pickups/Goggles.kvx" {Spin=75}
+PVISC = "Voxels/Pickups/Goggles.kvx" {Spin=75}
+INFNA = "Voxels/Pickups/InfiniteAmmo.kvx" {Spin=75}
+INFNB = "Voxels/Pickups/InfiniteAmmo.kvx" {Spin=75}
+
+// Champion abilities and projectiles
+
+HARTA = "Voxels/Abilities/CalebHeartA.kvx" // Caleb life essence (original KVX pivot retained)
+HARTB = "Voxels/Abilities/CalebHeartB.kvx" // Caleb life essence (original KVX pivot retained)
+HARTC = "Voxels/Abilities/CalebHeartC.kvx" // Caleb life essence (original KVX pivot retained)
+HARTD = "Voxels/Abilities/CalebHeartD.kvx" // Caleb life essence (original KVX pivot retained)
+QP29Z = "Voxels/Abilities/CowHead.kvx"
+QP16Z = "Voxels/Projectiles/KeelGrenade.kvx" {AngleOffset=270.0}
+ICEDA = "Voxels/Abilities/FrozenBlock.kvx"
+ICEDB = "Voxels/Abilities/FrozenBlock.kvx"
+TOTMA = "Voxels/Abilities/Totem.kvx"
+TOTMB = "Voxels/Abilities/Totem.kvx"
+GRNLA = "Voxels/Projectiles/BoltOn.kvx" {AngleOffset=270.0}
+GRNLB = "Voxels/Projectiles/BoltOff.kvx" {AngleOffset=270.0}
+NAILA = "Voxels/Projectiles/Nail.kvx" {AngleOffset=270.0}
+MICRA = "Voxels/Projectiles/Rocket.kvx" {AngleOffset=270.0}
+WP30J = "Voxels/Projectiles/Painkiller.kvx" {Spin=720}
+WP30K = "Voxels/Projectiles/Painkiller.kvx" {Spin=720}
+WP30L = "Voxels/Projectiles/Painkiller.kvx" {Spin=720}
+WP30M = "Voxels/Projectiles/Painkiller.kvx" {Spin=720}
+
+// CTF flags: four colored model strips, six frames per strip
+
+WFLAA = "Voxels/Flags/WhiteA.kvx"
+WFLAB = "Voxels/Flags/WhiteB.kvx"
+WFLAC = "Voxels/Flags/WhiteC.kvx"
+WFLAD = "Voxels/Flags/WhiteD.kvx"
+WFLAE = "Voxels/Flags/WhiteE.kvx"
+WFLAF = "Voxels/Flags/WhiteF.kvx"
+RFLAA = "Voxels/Flags/RedA.kvx"
+RFLSA = "Voxels/Flags/RedA.kvx"
+RFLAB = "Voxels/Flags/RedB.kvx"
+RFLSB = "Voxels/Flags/RedB.kvx"
+RFLAC = "Voxels/Flags/RedC.kvx"
+RFLSC = "Voxels/Flags/RedC.kvx"
+RFLAD = "Voxels/Flags/RedD.kvx"
+RFLSD = "Voxels/Flags/RedD.kvx"
+RFLAE = "Voxels/Flags/RedE.kvx"
+RFLSE = "Voxels/Flags/RedE.kvx"
+RFLAF = "Voxels/Flags/RedF.kvx"
+RFLSF = "Voxels/Flags/RedF.kvx"
+BFLAA = "Voxels/Flags/BlueA.kvx"
+BFLSA = "Voxels/Flags/BlueA.kvx"
+BFLAB = "Voxels/Flags/BlueB.kvx"
+BFLSB = "Voxels/Flags/BlueB.kvx"
+BFLAC = "Voxels/Flags/BlueC.kvx"
+BFLSC = "Voxels/Flags/BlueC.kvx"
+BFLAD = "Voxels/Flags/BlueD.kvx"
+BFLSD = "Voxels/Flags/BlueD.kvx"
+BFLAE = "Voxels/Flags/BlueE.kvx"
+BFLSE = "Voxels/Flags/BlueE.kvx"
+BFLAF = "Voxels/Flags/BlueF.kvx"
+BFLSF = "Voxels/Flags/BlueF.kvx"
+GFLAA = "Voxels/Flags/GreenA.kvx"
+GFLSA = "Voxels/Flags/GreenA.kvx"
+GFLAB = "Voxels/Flags/GreenB.kvx"
+GFLSB = "Voxels/Flags/GreenB.kvx"
+GFLAC = "Voxels/Flags/GreenC.kvx"
+GFLSC = "Voxels/Flags/GreenC.kvx"
+GFLAD = "Voxels/Flags/GreenD.kvx"
+GFLSD = "Voxels/Flags/GreenD.kvx"
+GFLAE = "Voxels/Flags/GreenE.kvx"
+GFLSE = "Voxels/Flags/GreenE.kvx"
+GFLAF = "Voxels/Flags/GreenF.kvx"
+GFLSF = "Voxels/Flags/GreenF.kvx"
