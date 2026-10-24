@@ -9,7 +9,8 @@ General:
   - Brock Translocator can't telefrag, but instead it retains momentum when teleport succeeds. That lets Brock perform movement tricks by dashing or using a jumppad before using a translocator.
   - Brock can't teleport to Translocator module while holding a flag, but can still fire the module.
 - Gave Freeman Quake World movement. Best air strafing from A-D buttons, tiny forward air acceleration, tiny strafe jump acceleration, no air strafing when holding W.
-- Duke Nuken and Sam no longer can start firing their ability weapons while holding a flag, but can keep firing if they started firing before picking up the flag.
+- Duke Nukem and Sam no longer can start firing their ability weapons while holding a flag, but can keep firing if they started firing before picking up the flag.
+- Added "Modded" weapons skin option. The option provides players an ability to create and install weapon skin addons that replace weapon graphics, sounds and visual effects and remain compatible with servers and players who don’t have the addon. Modded addons are entirely clientside and people who don't have them will see QCDE 1.0 skins instead.
 - "callvote" command now also automatically votes "yes".
 - Added "sv_bfgrespawn" cvar to control BFG respawn timer.
 - Added "cl_qchandicap" cvar to handicap your own damage. Accepted values are from 50 to 100 in multiples of 5.
@@ -48,6 +49,7 @@ PvP Balance:
 - Menelkir gained a new Bloodlust passive ability. Enemies killed by Menelkir or Maulotaur now prolong Maulotaur's life.
 - Zedek stomp deals less damage, but launches enemies upward.
 - Reduced Durandal and Intruder air acceleration.
+- UT Redeemer explosion damage now gradually grows in size instead of being one huge explosion.
 
 PvE Balance:
 - Lucienne now drops her immolation ball in PvE when falling to 30 hp instead of on death. To recharge the passive, heal back to 100 hp.
@@ -64,7 +66,9 @@ Maps:
 - Added "CTF-Face" from Unreal Tournament as QCTF06.
 - Added normal gravity on QCME02 (Morpheus) indoor areas.
 - Increased spawn points count to 8 on QCDE15/Chastity Belt, QCDE30/Gibel Complex and QCDE44/Exile.
+- Changed DM Campaign Hub portal frame textures, to make it easier to understand the gamemode behind that portal.
 - Added "PrintSongName (str musicName, str musicAuthor)" ACS script for mappers to print their custom music names in QC:DE style.
+- Replaced QCDL11 midi music track because it gets recognized by YouTube and blocked in some countries.
 
 Bugfixes:
 - Fixed wrong menu scaling on resolutions other than 1920x1080. Now all menu elements should be properly visible on all screens.
@@ -74,6 +78,7 @@ Bugfixes:
 - Fixed missing intermission in Doom 1 Episode 1.
 - Fixed incorrect texts in the Defrag maps menu.
 - Fixed Defrag skirmish menu options.
+- Fixed invisible Nyx playing double jump sounds in UT movement addon.
 
 Misc:
 - Added Quake Live HMG as the Quake 3 Machinegun skin.
@@ -96,14 +101,13 @@ Misc:
 - Made Keel alternate between left and right grenade launchers.
 - Picked more suitable weapon skins for sets that lack skins in some slots when using class based skins.
 - Updated ability graphics for Bitterman, DoomSlayer, Galen, Grayson, Kane, Keel, Lucienne, Major.
+- Updated keycard and DM Hub keys sprites.
 - Updated cursor graphic. You can select the old cursor in settings if you wish.
 - Redone all UT weapons sprites.
 - Implemented weapon skins to UT weapons.
 - Changed default UT Sniper Rifle skin to that from Unreal Championship 2.
 - Updated some UT HUD, item pickup graphics and voxel models.
 - Replaced current UT music addon with a new version by Pepperperson.
-- Updated keycard and DM Hub keys sprites.
-- Updated DM Campaign portal frame textures.
 
 ---------------------------------------------------------------------
 

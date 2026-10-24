@@ -326,6 +326,8 @@ HeliosDrive             : v3.0 Beta Tester
 
 Amosu                   : v3.1 Beta Tester
 
+Pepperperson            : v3.1 Beta Tester
+
 
 
 * Additional Credits *
