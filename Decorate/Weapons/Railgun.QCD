@@ -2786,7 +2786,7 @@ Actor RailgunPuff_Modded : RailgunPuff
 	States
 	{
 	Crash:
-		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_Modded", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("RailgunLightFx", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Modded", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 10 A_PlaySound("QC/Weapons/Railgun/Impact_Modded")
 		Stop
@@ -2890,7 +2890,7 @@ Actor RailgunPuff_DM_Modded : RailgunPuff_DM
 	States
 	{
 	Crash:
-		TNT1 A 0 A_SpawnItemEx("RailgunLightFx_Modded", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("RailgunLightFx", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_SpawnItemEx("RailgunPuffFx_Modded", 0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
 		TNT1 A 10 A_PlaySound("QC/Weapons/Railgun/Impact_Modded")
 		Stop
@@ -3004,10 +3004,6 @@ Actor RailgunLightFx_SeriousSam
 		TNT1 A 1 Light("OrangeMediumFlicker3")	Bright
 		Stop
 	}
-}
-
-Actor RailgunLightFx_Modded : RailgunLightFx
-{
 }
 
 Actor RailgunPuffFx
