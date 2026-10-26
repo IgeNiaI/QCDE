@@ -74,7 +74,7 @@ Actor CalebDoll : QCWeapon
 {
 	Weapon.Kickback 0
 	Weapon.SelectionOrder 2000
-	Obituary "%o was cursed by %k's voodoo magic."
+	Obituary "$OB_CalebDoll"
 	Tag "Voodoo Doll"
 	+INVENTORY.UNDROPPABLE
 	+WEAPON.MELEEWEAPON
@@ -537,7 +537,7 @@ Actor CalebDollBot : CalebDoll
 {
 	Weapon.Kickback 0
 	Weapon.SelectionOrder 2000
-	Obituary "%o was cursed by %k's voodoo magic."
+	Obituary "$OB_CalebDoll"
 	Tag "Voodoo Doll"
 	+INVENTORY.UNDROPPABLE
 	+WEAPON.MELEEWEAPON
