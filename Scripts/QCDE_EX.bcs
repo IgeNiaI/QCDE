@@ -223,8 +223,15 @@ Script "QCDE_EX_PlayerTick" (int firstTime)
 {
     Delay(1);
 
+    TakeInventory("QCEXJustRespawned", 1);
+
     if( (!EXClasses) || (GameType() == GAME_TITLE_MAP) || !CheckUserFlag(0, "user_exclass") )
+    {
+        TakeInventory("QCEXIsExClass", 1);
         return;
+    }
+
+    GiveInventory("QCEXIsExClass", 1);
 
     struct EXClassInfo& c = QCDE_EX_GetStructForClass(GetActorClass(0))!!;
 
@@ -253,6 +260,7 @@ Script "QCDE_EX_PlayerTick_Enter" enter
 
 Script "QCDE_EX_PlayerTick_Respawn" respawn
 {
+    GiveInventory("QCEXJustRespawned", 1);
     ACS_NamedExecuteWithResult("QCDE_EX_PlayerTick");
 }
 
@@ -261,10 +269,14 @@ Script "QCDE_EX_DrawHUD" (raw p) clientside
     enum : fixed
     {
         ACTIVE_ICON_X = 636.1,
-        ACTIVE_ICON_Y = 850.1
+        ACTIVE_ICON_Y = 850.1,
+
+        TEAM_COLOR_X = 15.1,
+        TEAM_COLOR_Y = 789.1
     };
 
     str portrait, activeIconOn, activeIconOff;
+    int teamColor;
 
     p = Packet_ReadStr(p);
     portrait = Packet_Rval;
@@ -276,15 +288,16 @@ Script "QCDE_EX_DrawHUD" (raw p) clientside
     activeIconOff = Packet_Rval;
 
     str className = GetActorClass(0);
-    while( (PlayerNumber() != -1) && (StrCmp(className, GetActorClass(0)) == 0) )
+    while( (PlayerNumber() != -1) && (!StrCmp(className, GetActorClass(0))) && (!CheckInventory("QCEXJustRespawned")) )
     {
         if(!CheckInventory("HideHUD"))
         {
             SetHudSize(1400, 1050, true);
+
             SetFont(portrait);
             HudMessage(s:"A"; HUDMSG_PLAIN|HUDMSG_LAYER_UNDERHUD, 0, CR_UNTRANSLATED, 10.1, 795.1, (fixed)1873);
 
-            if(!CheckInventory("AbilityCooldownToken"))
+            if( (!CheckInventory("AbilityCooldownToken")) && (!hasFlags()) )
             {
                 if(StrLen(activeIconOn))
                 {
@@ -296,6 +309,21 @@ Script "QCDE_EX_DrawHUD" (raw p) clientside
             {
                 SetFont(activeIconOff);
                 HudMessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, ACTIVE_ICON_X, ACTIVE_ICON_Y, (fixed)1873);
+            }
+
+            if(CheckInventory("TeamDeathmatch"))
+            {
+                teamColor = CheckInventory("TeamColor");
+
+                if(teamColor <= 8)
+                    SetFont(StrParam(s:"TEAMBAC", i:teamColor));
+                else if(teamColor == 255)
+                    SetFont("TEAMBACA");
+                else
+                    teamColor = -1;
+
+                if(teamColor != -1)
+                    HudMessage(s:"A"; HUDMSG_PLAIN|HUDMSG_LAYER_UNDERHUD, 0, CR_UNTRANSLATED, TEAM_COLOR_X, TEAM_COLOR_Y, (fixed)1873);
             }
         }
 

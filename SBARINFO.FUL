@@ -38,6 +38,7 @@ else
 		drawBar "RUNEBAR1", "RUNEBAR0", ActiveProgressToken, horizontal, interpolate(9), 444, 943;
 	} else {
 	inInventory not NoPortrait {
+	inInventory not QCEXIsExClass { // Hide team glow for EX classes to not overlap ACS portrait
 	// Team color
 	inInventory TeamDeathmatch {
 		inInventory TeamColor, 255 {	drawImage "TEAMBACA", 15,789; } else {
@@ -50,7 +51,7 @@ else
 		inInventory TeamColor,   2 {	drawImage "TEAMBAC2", 15,789; } else {
 		inInventory TeamColor,   1 {	drawImage "TEAMBAC1", 15,789;
 		}}}}}}}}} // 9 braces
-	}
+	}}
 
 	// Portrait
 	inInventory Class_Ranger		{ drawImage "PORTRX01", 	10,795; }
