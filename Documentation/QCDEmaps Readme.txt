@@ -6,7 +6,7 @@ Title                   : QCDEMaps
 Filename                : QCDEmaps3.1.pk3
 Release date            : Month ##th 2026
 Author                  : DBThanatos & Various Mappers
-Email Address           : DBThanatos@gmail.com
+Email Address           : DBThanatos@gmail.com, geniann93@gmail.com
 Other Files By Author   : QC: Doom Edition (QCDE), Death Foretold (D4T),
                           Doom 4 for Doom (D4D), Doomstorm, Dream
                           of magic 1 & 2, AEons of Death, The Ultimate
@@ -40,7 +40,7 @@ Game                    : DOOM2
 Map #                   : QCDE01-QCDE50, QCDL01-QCDL15, QCME01-QCME02
                           QCTF01-06, QCIN01-04, QCDF01-QCDF02
 Single Player           : No
-Cooperative 2-4 Player  : No
+Cooperative 2-4 Player  : Invasion only
 Deathmatch 2-4 Player   : Designed for
 Other game styles       : Duel, TDM, LMS, TLMS, IG, BS
 Difficulty Settings     : Not implemented
@@ -49,7 +49,7 @@ Difficulty Settings     : Not implemented
 * Construction *
 
 Base                    : New from scratch
-Build Time              : 5 years by now
+Build Time              : 8 years by now
 Editor(s) used          : GZDoom Builder & Ultimate Doom Builder
 Known Bugs              : None so far
 May Not Run With        : Anything other than Q-Zandronum 1.4
@@ -254,5 +254,5 @@ Contact Us:
 If you have questions or suggestions, you can find us in the following links:
 
 Official Discord: https://discord.gg/u4ptaMk
-Official Download site: https://qzandronum.com/qcde/
-Official ModDB: http://www.moddb.com/mods/quake-champions-doom-edition
+Official Download site: https://qcde.net/
+Official ModDB page: https://www.moddb.com/mods/quake-champions-doom-edition

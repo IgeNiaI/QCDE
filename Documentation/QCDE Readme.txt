@@ -50,7 +50,7 @@ Other files required    : Engine and Iwad of doom2 or similar
 
 * Play Information *
 
-Game                    : Doom 2 (compatible with Doom)
+Game                    : Doom 2 (compatible with Doom and Freedoom)
 Map #                   : Titlemap + 79 additional maps (separate downloads)
 Single Player           : Yes
 Cooperative 2-4 Player  : Designed for
@@ -75,9 +75,9 @@ Difficulty Settings     : Normal, min monsters
 Base                    : New from scratch 
 Build Time              : Around 7 months for first release in February 2018,
                           and it keeps going to date
-Editor(s) used          : Slade, Programmer's notepad, GIMP, Audacity,
+Editor(s) used          : SLADE, Programmer's notepad, GIMP, Audacity,
                           Notepad++, Paint.net, FL Studio, GitKraken, SourceTree
-                          7z, Terminus, Discord, Gzdoom Builder
+                          7z, Terminus, Discord, Ultimate Doom Builder
 Known Bugs              : See the Bugs section below
                           
 May Not Run With        : Anything older than Q-Zandronum 1.4
@@ -125,7 +125,8 @@ This mod has several unfixable "bugs", due to technical limitations.
 
 * Credits *
 
-id Software 
+id Software
+Saber Interactive
 "Quake Champions" Team  : Game concept, core mechanics: champions/abilities, HUD elements,
                           weapon & other SFX, UI sounds, character designs (Nyx, Ranger, Keel,
                           Doomslayer, Blazkowicz), character sounds (Ranger, Doomslayer, Galen,
@@ -519,5 +520,5 @@ Contact Us:
 If you have questions or suggestions, you can find us in the following links:
 
 Official Discord: https://discord.gg/u4ptaMk
-Official Download site: https://qzandronum.com/qcde/
-Official ModDB: http://www.moddb.com/mods/quake-champions-doom-edition
+Official Download site: https://qcde.net/
+Official ModDB page: https://www.moddb.com/mods/quake-champions-doom-edition
