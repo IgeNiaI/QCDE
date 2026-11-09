@@ -789,7 +789,7 @@ Actor QCBFG : QCWeapon
 		"####" A 0 A_SetBlend("Blue",0.14,20)
 		Goto FlashEnderCont
 	FlashEnder.Modded:
-		"####" A 0 A_SetBlend("$WeaponSkin_BFG_ScreenBlend_Modded",0.14,20)
+		"####" A 0 ACS_NamedExecuteWithResult("QCDE_ModdedWeaponBlend",9,140,20)
 		Goto FlashEnderCont
 
 	FlashEnderCont:
@@ -1369,7 +1369,7 @@ Actor QCBFG : QCWeapon
 		"####" A 0 A_SetBlend("Blue",0.14,20)
 		Goto ChargeFlashEnderCont
 	ChargeFlashEnder.Modded:
-		"####" A 0 A_SetBlend("$WeaponSkin_BFG_ScreenBlend_Modded",0.14,20)
+		"####" A 0 ACS_NamedExecuteWithResult("QCDE_ModdedWeaponBlend",9,140,20)
 		Goto ChargeFlashEnderCont
 
 	ChargeFlashEnderCont:

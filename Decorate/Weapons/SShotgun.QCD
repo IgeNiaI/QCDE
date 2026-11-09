@@ -868,7 +868,7 @@ Actor QCSuperShotgun : QCWeapon
 		TNT1 A 0 A_SetBlend("Orange",0.12,15)
 		Goto FlashEnder.BlendCont
 	FlashEnder.Blend.Modded:
-		TNT1 A 0 A_SetBlend("$WeaponSkin_SuperShotgun_ScreenBlend_Modded",0.12,15)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ModdedWeaponBlend",3,120,15)
 	FlashEnder.BlendCont:
 		TNT1 A 0
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,2)

@@ -649,3 +649,83 @@ Script "QCDE_ZoomControl" (int predicting, int justPressed, int justReleased, in
 		}
 	}
 }
+
+// Modded skin screen flashes. Kept separate from WEAPONS so weapon addons
+// replacing that library do not need to duplicate this helper.
+#define MODDED_BLEND_COUNT 10
+
+str moddedBlendKeys[MODDED_BLEND_COUNT] = {
+	"WeaponSkin_Machinegun_ScreenBlend_Modded",
+	"WeaponSkin_HeavyMachinegun_ScreenBlend_Modded",
+	"WeaponSkin_Shotgun_ScreenBlend_Modded",
+	"WeaponSkin_SuperShotgun_ScreenBlend_Modded",
+	"WeaponSkin_Nailgun_ScreenBlend_Modded",
+	"WeaponSkin_SuperNailgun_ScreenBlend_Modded",
+	"WeaponSkin_Tribolt_ScreenBlend_Modded",
+	"WeaponSkin_RocketLauncher_ScreenBlend_Modded",
+	"WeaponSkin_Railgun_ScreenBlend_Modded",
+	"WeaponSkin_BFG_ScreenBlend_Modded"
+};
+
+int moddedBlendDefaults[MODDED_BLEND_COUNT] = {
+	0xFFFF00, 0xFFFF00, 0xFFA500, 0xFFA500, 0xFFFF00,
+	0xFFFF00, 0xFFA500, 0xFFA500, 0x00FF00, 0x00FF00
+};
+
+// Accept exactly RRGGBB or #RRGGBB, case-insensitively. -1 is invalid;
+// zero is a valid black flash, not a missing/invalid color.
+function int QCDE_ParseBlendColor(str value)
+{
+	int start = 0;
+	if(GetChar(value, 0) == '#') start = 1;
+	if(StrLen(value) != start + 6) return -1;
+
+	int color = 0;
+	int i;
+	for(i = start; i < start + 6; i++)
+	{
+		int digit = GetChar(value, i);
+		if(digit >= '0' && digit <= '9') digit -= '0';
+		else if(digit >= 'A' && digit <= 'F') digit = digit - 'A' + 10;
+		else if(digit >= 'a' && digit <= 'f') digit = digit - 'a' + 10;
+		else return -1;
+		color = (color << 4) | digit;
+	}
+	return color;
+}
+
+function int QCDE_GetModdedBlendColor(int weapon)
+{
+	if(weapon < 0 || weapon >= MODDED_BLEND_COUNT) return -1;
+	int color = QCDE_ParseBlendColor(StrParam(l:moddedBlendKeys[weapon]));
+	if(color < 0) return moddedBlendDefaults[weapon];
+	return color;
+}
+
+// Called from an A_JumpIf expression, NOT as a standalone DECORATE action:
+// expression evaluation runs locally even when action prediction is disabled.
+// Do not mark CLIENTSIDE: that would forward server calls back to clients and
+// duplicate the locally predicted flash. Always return false (never jump).
+// Opacity is in thousandths; duration is in tics, as with A_SetBlend.
+Script "QCDE_ModdedWeaponBlend" (int weapon, int opacity, int tics)
+{
+	SetResultValue(false);
+	// A missing/non-player activator would make FadeRange affect every player.
+	// Dedicated servers have no console player and must not create/replicate fades.
+	if(ConsolePlayerNumber() < 0 || PlayerNumber() < 0) terminate;
+	if(weapon < 0 || weapon >= MODDED_BLEND_COUNT) terminate;
+	if(opacity <= 0 || tics <= 0) terminate;
+	if(!GetCVar("cl_weaponfireflash")) terminate;
+	if(opacity > 1000) opacity = 1000;
+	if(tics > 32767) tics = 32767;
+
+	int color = QCDE_GetModdedBlendColor(weapon);
+	int r = (color >> 16) & 255;
+	int g = (color >> 8) & 255;
+	int b = color & 255;
+
+	// Keep the activator, including remote players being viewed by a spectator.
+	// Round duration UP to fixed-point seconds: truncating tics / 35 would
+	// make DFlashFader round down again and lose a tic for short flashes.
+	FadeRange(r, g, b, opacity * 1.0 / 1000, r, g, b, 0.0, (tics * 1.0 + 34) / 35);
+}

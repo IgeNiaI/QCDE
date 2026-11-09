@@ -648,7 +648,7 @@ Actor QCRocketLauncher : QCWeapon
 		TNT1 A 0 A_SetBlend("Orange",0.15,12)
 		Goto FlashEnder.BlendCont
 	FlashEnder.Blend.Modded:
-		TNT1 A 0 A_SetBlend("$WeaponSkin_RocketLauncher_ScreenBlend_Modded",0.15,12)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ModdedWeaponBlend",7,150,12)
 	FlashEnder.BlendCont:
 		TNT1 A 0
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"FlashEnderNoRecoil")

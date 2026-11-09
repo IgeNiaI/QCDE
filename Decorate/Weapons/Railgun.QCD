@@ -1216,7 +1216,7 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_SetBlend("Orange",0.14,15)
 		Goto FlashEnderCont
 	FlashEnder.Modded:
-		TNT1 A 0 A_SetBlend("$WeaponSkin_Railgun_ScreenBlend_Modded",0.14,15)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ModdedWeaponBlend",8,140,15)
 		Goto FlashEnderCont
 
 	FlashEnderCont:
@@ -1923,7 +1923,7 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_SetBlend("Orange",0.14,15)
 		Goto FlashEnderZoomedCont
 	FlashEnderZoomed.Modded:
-		TNT1 A 0 A_SetBlend("$WeaponSkin_Railgun_ScreenBlend_Modded",0.14,15)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ModdedWeaponBlend",8,140,15)
 		Goto FlashEnderZoomedCont
 
 	FlashEnderZoomedCont:

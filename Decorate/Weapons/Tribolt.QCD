@@ -642,7 +642,7 @@ Actor QCTribolt : QCWeapon
 		TNT1 A 0 A_SetBlend("Orange",0.055,10)
 		Goto EndFlash.BlendCont
 	EndFlash.Blend.Modded:
-		TNT1 A 0 A_SetBlend("$WeaponSkin_Tribolt_ScreenBlend_Modded",0.055,10)
+		TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ModdedWeaponBlend",6,55,10)
 	EndFlash.BlendCont:
 		TNT1 A 0
 		TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil")

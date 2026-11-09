@@ -495,7 +495,7 @@ Actor QCNailgun : QCWeapon
 			TNT1 A 0 A_SetBlend("Yellow",0.03,3)
 			Goto EndFlashCont.BlendCont
 		EndFlashCont.Blend.Modded:
-			TNT1 A 0 A_SetBlend("$WeaponSkin_Nailgun_ScreenBlend_Modded",0.03,3)
+			TNT1 A 0 ACS_NamedExecuteWithResult("QCDE_ModdedWeaponBlend",4,30,3)
 		EndFlashCont.BlendCont:
 			TNT1 A 0 A_JumpIfInventory("WepNoRecoilToken",1,"EndFlashNoRecoil")
 			TNT1 A 1 A_SetPitch(Pitch-0.4)
