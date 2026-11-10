@@ -1,0 +1,1252 @@
+// BFG brightmaps and rendering definitions.
+
+// BFG Pickup
+brightmap sprite WPN8Y0	{	map "Sprites/Weapons/Pickups/brightmaps/QCB8Y0.png"	}
+
+// Default BFG
+brightmap sprite QCA8A0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8A0.png"	}
+brightmap sprite QCA8B0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8A0.png"	}
+brightmap sprite QCA8C0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8A0.png"	}
+brightmap sprite QCA8D0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8D0.png"	}
+brightmap sprite QCA8E0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8D0.png"	}
+brightmap sprite QCA8F0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8D0.png"	}
+brightmap sprite QCA8G0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8G0.png"	}
+brightmap sprite QCA8H0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8G0.png"	}
+brightmap sprite QCA8I0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8G0.png"	}
+brightmap sprite QCA8J0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8J0.png"	}
+brightmap sprite QCA8K0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8J0.png"	}
+brightmap sprite QCA8L0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8J0.png"	}
+brightmap sprite QCA8M0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8M0.png"	}
+brightmap sprite QCA8N0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8M0.png"	}
+brightmap sprite QCA8O0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8M0.png"	}
+brightmap sprite QCA8P0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8P0.png"	}
+brightmap sprite QCA8Q0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8P0.png"	}
+brightmap sprite QCA8R0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8P0.png"	}
+
+brightmap sprite QCC8A0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8B0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8B0.png"	}
+brightmap sprite QCC8C0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8C0.png"	}
+brightmap sprite QCC8D0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8D0.png"	}
+brightmap sprite QCC8E0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8E0.png"	}
+brightmap sprite QCC8F0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8F0.png"	}
+brightmap sprite QCC8G0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8G0.png"	}
+brightmap sprite QCC8H0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8H0.png"	}
+brightmap sprite QCC8I0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8J0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8K0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8L0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8M0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8N0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8B0.png"	}
+brightmap sprite QCC8O0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8C0.png"	}
+brightmap sprite QCC8P0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8D0.png"	}
+brightmap sprite QCC8Q0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8E0.png"	}
+brightmap sprite QCC8R0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8F0.png"	}
+brightmap sprite QCC8S0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8G0.png"	}
+brightmap sprite QCC8T0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8H0.png"	}
+brightmap sprite QCC8U0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8V0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8W0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCC8X0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+
+brightmap sprite QCE8A0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCE8B0	{	map "Sprites/Weapons/BFG/Default/_E_fire/_F_brightmaps/QCF8B0.png"	}
+brightmap sprite QCE8C0	{	map "Sprites/Weapons/BFG/Default/_E_fire/_F_brightmaps/QCF8C0.png"	}
+brightmap sprite QCE8D0	{	map "Sprites/Weapons/BFG/Default/_E_fire/_F_brightmaps/QCF8D0.png"	}
+brightmap sprite QCE8E0	{	map "Sprites/Weapons/BFG/Default/_E_fire/_F_brightmaps/QCF8D0.png"	}
+
+brightmap sprite QCG8A0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCG8B0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8B0.png"	}
+brightmap sprite QCG8C0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8C0.png"	}
+brightmap sprite QCG8D0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8D0.png"	}
+brightmap sprite QCG8E0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8E0.png"	}
+brightmap sprite QCG8F0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8F0.png"	}
+brightmap sprite QCG8G0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8G0.png"	}
+brightmap sprite QCG8H0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8H0.png"	}
+brightmap sprite QCG8I0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8I0.png"	}
+brightmap sprite QCG8J0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8J0.png"	}
+brightmap sprite QCG8K0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8K0.png"	}
+brightmap sprite QCG8L0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8L0.png"	}
+
+brightmap sprite QCI8A0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8A0.png"	}
+brightmap sprite QCI8B0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8A0.png"	}
+brightmap sprite QCI8C0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8A0.png"	}
+brightmap sprite QCI8D0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8D0.png"	}
+brightmap sprite QCI8E0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8D0.png"	}
+brightmap sprite QCI8F0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8D0.png"	}
+brightmap sprite QCI8G0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8G0.png"	}
+brightmap sprite QCI8H0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8G0.png"	}
+brightmap sprite QCI8I0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8G0.png"	}
+brightmap sprite QCI8J0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8J0.png"	}
+brightmap sprite QCI8K0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8J0.png"	}
+brightmap sprite QCI8L0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8J0.png"	}
+brightmap sprite QCI8M0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8M0.png"	}
+brightmap sprite QCI8N0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8M0.png"	}
+brightmap sprite QCI8O0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8M0.png"	}
+brightmap sprite QCI8P0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8P0.png"	}
+brightmap sprite QCI8Q0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8P0.png"	}
+brightmap sprite QCI8R0	{	map "Sprites/Weapons/BFG/Default/_A_prepare/_B_brightmaps/QCB8P0.png"	}
+
+brightmap sprite QCK8A0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8B0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8B0.png"	}
+brightmap sprite QCK8C0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8C0.png"	}
+brightmap sprite QCK8D0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8D0.png"	}
+brightmap sprite QCK8E0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8E0.png"	}
+brightmap sprite QCK8F0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8F0.png"	}
+brightmap sprite QCK8G0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8G0.png"	}
+brightmap sprite QCK8H0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8H0.png"	}
+brightmap sprite QCK8I0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8J0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8K0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8L0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8M0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8N0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8B0.png"	}
+brightmap sprite QCK8O0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8C0.png"	}
+brightmap sprite QCK8P0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8D0.png"	}
+brightmap sprite QCK8Q0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8E0.png"	}
+brightmap sprite QCK8R0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8F0.png"	}
+brightmap sprite QCK8S0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8G0.png"	}
+brightmap sprite QCK8T0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8H0.png"	}
+brightmap sprite QCK8U0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8V0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8W0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCK8X0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+
+brightmap sprite QCM8A0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCM8B0	{	map "Sprites/Weapons/BFG/Default/_E_fire/_F_brightmaps/QCF8B0.png"	}
+brightmap sprite QCM8C0	{	map "Sprites/Weapons/BFG/Default/_E_fire/_F_brightmaps/QCF8C0.png"	}
+brightmap sprite QCM8D0	{	map "Sprites/Weapons/BFG/Default/_E_fire/_F_brightmaps/QCF8D0.png"	}
+brightmap sprite QCM8E0	{	map "Sprites/Weapons/BFG/Default/_E_fire/_F_brightmaps/QCF8D0.png"	}
+
+brightmap sprite QCO8A0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCO8B0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8B0.png"	}
+brightmap sprite QCO8C0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8C0.png"	}
+brightmap sprite QCO8D0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8D0.png"	}
+brightmap sprite QCO8E0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8E0.png"	}
+brightmap sprite QCO8F0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8F0.png"	}
+brightmap sprite QCO8G0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8G0.png"	}
+brightmap sprite QCO8H0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8H0.png"	}
+brightmap sprite QCO8I0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8I0.png"	}
+brightmap sprite QCO8J0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8J0.png"	}
+brightmap sprite QCO8K0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8K0.png"	}
+brightmap sprite QCO8L0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8L0.png"	}
+
+brightmap sprite QCQ8A0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCQ8B0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8B0.png"	}
+brightmap sprite QCQ8C0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8C0.png"	}
+brightmap sprite QCQ8D0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8D0.png"	}
+brightmap sprite QCQ8E0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8E0.png"	}
+brightmap sprite QCQ8F0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8F0.png"	}
+brightmap sprite QCQ8G0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8G0.png"	}
+brightmap sprite QCQ8H0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8H0.png"	}
+brightmap sprite QCQ8I0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8I0.png"	}
+brightmap sprite QCQ8J0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8J0.png"	}
+brightmap sprite QCQ8K0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8K0.png"	}
+brightmap sprite QCQ8L0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8L0.png"	}
+brightmap sprite QCQ8M0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCQ8N0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8B0.png"	}
+brightmap sprite QCQ8O0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8C0.png"	}
+brightmap sprite QCQ8P0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8D0.png"	}
+brightmap sprite QCQ8Q0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8E0.png"	}
+brightmap sprite QCQ8R0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8F0.png"	}
+brightmap sprite QCQ8S0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8G0.png"	}
+brightmap sprite QCQ8T0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8H0.png"	}
+brightmap sprite QCQ8U0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8I0.png"	}
+brightmap sprite QCQ8V0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8J0.png"	}
+brightmap sprite QCQ8W0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8K0.png"	}
+brightmap sprite QCQ8X0	{	map "Sprites/Weapons/BFG/Default/_G_fire_end/_H_brightmaps/QCH8L0.png"	}
+brightmap sprite QCQ8Y0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+
+brightmap sprite QCS8A0	{	map "Sprites/Weapons/BFG/Default/_C_idle/_D_brightmaps/QCD8A0.png"	}
+brightmap sprite QCS8B0	{	map "Sprites/Weapons/BFG/Default/_S_charge_full/_T_brightmaps/QCT8B0.png"	}
+
+// Quake 2 BFG
+brightmap sprite Q2A8A0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8B0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8C0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8D0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8E0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8F0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8G0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8H0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8I0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8J0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8K0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8L0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8M0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8N0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8O0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8P0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8Q0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2A8R0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+
+brightmap sprite Q2C8A0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8B0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8C0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8D0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8E0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8F0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8G0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8H0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8I0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8J0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8K0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8L0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8M0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8N0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8O0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8P0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8Q0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8R0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8S0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8T0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8U0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8V0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8W0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2C8X0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+
+brightmap sprite Q2E8A0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2E8B0	{	map "Sprites/Weapons/BFG/Quake 2/_E_fire/_F_brightmaps/Q2F8B0.png"	}
+brightmap sprite Q2E8C0	{	map "Sprites/Weapons/BFG/Quake 2/_E_fire/_F_brightmaps/Q2F8C0.png"	}
+brightmap sprite Q2E8D0	{	map "Sprites/Weapons/BFG/Quake 2/_E_fire/_F_brightmaps/Q2F8D0.png"	}
+brightmap sprite Q2E8E0	{	map "Sprites/Weapons/BFG/Quake 2/_E_fire/_F_brightmaps/Q2F8D0.png"	}
+
+brightmap sprite Q2G8A0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8A0.png"	}
+brightmap sprite Q2G8B0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8B0.png"	}
+brightmap sprite Q2G8C0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8C0.png"	}
+brightmap sprite Q2G8D0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8D0.png"	}
+brightmap sprite Q2G8E0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8E0.png"	}
+brightmap sprite Q2G8F0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8F0.png"	}
+brightmap sprite Q2G8G0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8F0.png"	}
+brightmap sprite Q2G8H0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8E0.png"	}
+brightmap sprite Q2G8I0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8D0.png"	}
+brightmap sprite Q2G8J0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8C0.png"	}
+brightmap sprite Q2G8K0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8B0.png"	}
+brightmap sprite Q2G8L0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8A0.png"	}
+
+brightmap sprite Q2I8A0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8B0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8C0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8D0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8E0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8F0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8G0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8H0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8I0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8J0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8K0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8L0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8M0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8N0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8O0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8P0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8Q0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2I8R0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+
+brightmap sprite Q2K8A0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8B0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8C0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8D0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8E0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8F0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8G0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8H0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8I0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8J0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8K0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8L0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8M0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8N0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8O0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8P0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8Q0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8R0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8S0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8T0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8U0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8V0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8W0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2K8X0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+
+brightmap sprite Q2M8A0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2M8B0	{	map "Sprites/Weapons/BFG/Quake 2/_E_fire/_F_brightmaps/Q2F8B0.png"	}
+brightmap sprite Q2M8C0	{	map "Sprites/Weapons/BFG/Quake 2/_E_fire/_F_brightmaps/Q2F8C0.png"	}
+brightmap sprite Q2M8D0	{	map "Sprites/Weapons/BFG/Quake 2/_E_fire/_F_brightmaps/Q2F8D0.png"	}
+brightmap sprite Q2M8E0	{	map "Sprites/Weapons/BFG/Quake 2/_E_fire/_F_brightmaps/Q2F8D0.png"	}
+
+brightmap sprite Q2O8A0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8A0.png"	}
+brightmap sprite Q2O8B0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8B0.png"	}
+brightmap sprite Q2O8C0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8C0.png"	}
+brightmap sprite Q2O8D0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8D0.png"	}
+brightmap sprite Q2O8E0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8E0.png"	}
+brightmap sprite Q2O8F0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8F0.png"	}
+brightmap sprite Q2O8G0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8F0.png"	}
+brightmap sprite Q2O8H0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8E0.png"	}
+brightmap sprite Q2O8I0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8D0.png"	}
+brightmap sprite Q2O8J0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8C0.png"	}
+brightmap sprite Q2O8K0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8B0.png"	}
+brightmap sprite Q2O8L0	{	map "Sprites/Weapons/BFG/Quake 2/_G_fire_end/_H_brightmaps/Q2H8A0.png"	}
+
+brightmap sprite Q2Q8A0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2Q8B0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8B0.png"	}
+brightmap sprite Q2Q8C0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8C0.png"	}
+brightmap sprite Q2Q8D0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8D0.png"	}
+brightmap sprite Q2Q8E0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8E0.png"	}
+brightmap sprite Q2Q8F0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8F0.png"	}
+brightmap sprite Q2Q8G0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8G0.png"	}
+brightmap sprite Q2Q8H0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8H0.png"	}
+brightmap sprite Q2Q8I0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8I0.png"	}
+brightmap sprite Q2Q8J0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8J0.png"	}
+brightmap sprite Q2Q8K0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8K0.png"	}
+brightmap sprite Q2Q8L0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8L0.png"	}
+brightmap sprite Q2Q8M0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2Q8N0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8B0.png"	}
+brightmap sprite Q2Q8O0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8C0.png"	}
+brightmap sprite Q2Q8P0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8D0.png"	}
+brightmap sprite Q2Q8Q0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8E0.png"	}
+brightmap sprite Q2Q8R0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8F0.png"	}
+brightmap sprite Q2Q8S0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8G0.png"	}
+brightmap sprite Q2Q8T0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8H0.png"	}
+brightmap sprite Q2Q8U0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8I0.png"	}
+brightmap sprite Q2Q8V0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8J0.png"	}
+brightmap sprite Q2Q8W0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8K0.png"	}
+brightmap sprite Q2Q8X0	{	map "Sprites/Weapons/BFG/Quake 2/_Q_charge/_R_brightmaps/Q2R8L0.png"	}
+brightmap sprite Q2Q8Y0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+
+brightmap sprite Q2S8A0	{	map "Sprites/Weapons/BFG/Quake 2/_A_prepare/_B_brightmaps/Q2B8A0.png"	}
+brightmap sprite Q2S8B0	{	map "Sprites/Weapons/BFG/Quake 2/_S_charge_full/_T_brightmaps/Q2T8B0.png"	}
+
+// Quake 3 BFG
+brightmap sprite Q3A8A0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3A8B0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3A8C0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3A8D0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3A8E0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3A8F0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3A8G0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3A8H0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3A8I0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3A8J0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3A8K0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3A8L0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3A8M0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3A8N0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3A8O0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3A8P0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+brightmap sprite Q3A8Q0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+brightmap sprite Q3A8R0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+
+brightmap sprite Q3C8A0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3C8B0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8B0.png"	}
+brightmap sprite Q3C8C0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8C0.png"	}
+brightmap sprite Q3C8D0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8D0.png"	}
+brightmap sprite Q3C8E0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8E0.png"	}
+brightmap sprite Q3C8F0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8F0.png"	}
+brightmap sprite Q3C8G0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3C8H0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3C8I0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3C8J0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3C8K0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3C8L0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+brightmap sprite Q3C8M0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3C8N0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8B0.png"	}
+brightmap sprite Q3C8O0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8C0.png"	}
+brightmap sprite Q3C8P0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8D0.png"	}
+brightmap sprite Q3C8Q0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8E0.png"	}
+brightmap sprite Q3C8R0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8F0.png"	}
+brightmap sprite Q3C8S0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3C8T0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3C8U0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3C8V0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3C8W0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3C8X0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+
+brightmap sprite Q3E8A0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3E8B0	{	map "Sprites/Weapons/BFG/Quake 3/_E_fire/_F_brightmaps/Q3F8B0.png"	}
+brightmap sprite Q3E8C0	{	map "Sprites/Weapons/BFG/Quake 3/_E_fire/_F_brightmaps/Q3F8C0.png"	}
+brightmap sprite Q3E8D0	{	map "Sprites/Weapons/BFG/Quake 3/_E_fire/_F_brightmaps/Q3F8D0.png"	}
+brightmap sprite Q3E8E0	{	map "Sprites/Weapons/BFG/Quake 3/_E_fire/_F_brightmaps/Q3F8E0.png"	}
+
+brightmap sprite Q3G8A0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8A0.png"	}
+brightmap sprite Q3G8B0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8B0.png"	}
+brightmap sprite Q3G8C0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8C0.png"	}
+brightmap sprite Q3G8D0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8D0.png"	}
+brightmap sprite Q3G8E0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8E0.png"	}
+brightmap sprite Q3G8F0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8F0.png"	}
+brightmap sprite Q3G8G0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8G0.png"	}
+brightmap sprite Q3G8H0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8H0.png"	}
+brightmap sprite Q3G8I0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8I0.png"	}
+brightmap sprite Q3G8J0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8J0.png"	}
+brightmap sprite Q3G8K0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8K0.png"	}
+brightmap sprite Q3G8L0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8L0.png"	}
+
+brightmap sprite Q3I8A0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3I8B0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3I8C0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3I8D0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3I8E0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3I8F0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3I8G0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3I8H0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3I8I0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3I8J0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3I8K0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3I8L0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3I8M0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3I8N0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3I8O0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3I8P0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+brightmap sprite Q3I8Q0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+brightmap sprite Q3I8R0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+
+brightmap sprite Q3K8A0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3K8B0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8B0.png"	}
+brightmap sprite Q3K8C0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8C0.png"	}
+brightmap sprite Q3K8D0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8D0.png"	}
+brightmap sprite Q3K8E0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8E0.png"	}
+brightmap sprite Q3K8F0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8F0.png"	}
+brightmap sprite Q3K8G0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3K8H0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3K8I0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3K8J0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3K8K0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3K8L0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+brightmap sprite Q3K8M0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3K8N0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8B0.png"	}
+brightmap sprite Q3K8O0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8C0.png"	}
+brightmap sprite Q3K8P0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8D0.png"	}
+brightmap sprite Q3K8Q0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8E0.png"	}
+brightmap sprite Q3K8R0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8F0.png"	}
+brightmap sprite Q3K8S0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8A0.png"	}
+brightmap sprite Q3K8T0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8D0.png"	}
+brightmap sprite Q3K8U0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8G0.png"	}
+brightmap sprite Q3K8V0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8J0.png"	}
+brightmap sprite Q3K8W0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8M0.png"	}
+brightmap sprite Q3K8X0	{	map "Sprites/Weapons/BFG/Quake 3/_A_prepare/_B_brightmaps/Q3B8P0.png"	}
+
+brightmap sprite Q3M8A0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3M8B0	{	map "Sprites/Weapons/BFG/Quake 3/_E_fire/_F_brightmaps/Q3F8B0.png"	}
+brightmap sprite Q3M8C0	{	map "Sprites/Weapons/BFG/Quake 3/_E_fire/_F_brightmaps/Q3F8C0.png"	}
+brightmap sprite Q3M8D0	{	map "Sprites/Weapons/BFG/Quake 3/_E_fire/_F_brightmaps/Q3F8D0.png"	}
+brightmap sprite Q3M8E0	{	map "Sprites/Weapons/BFG/Quake 3/_E_fire/_F_brightmaps/Q3F8E0.png"	}
+
+brightmap sprite Q3O8A0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8A0.png"	}
+brightmap sprite Q3O8B0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8B0.png"	}
+brightmap sprite Q3O8C0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8C0.png"	}
+brightmap sprite Q3O8D0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8D0.png"	}
+brightmap sprite Q3O8E0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8E0.png"	}
+brightmap sprite Q3O8F0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8F0.png"	}
+brightmap sprite Q3O8G0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8G0.png"	}
+brightmap sprite Q3O8H0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8H0.png"	}
+brightmap sprite Q3O8I0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8I0.png"	}
+brightmap sprite Q3O8J0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8J0.png"	}
+brightmap sprite Q3O8K0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8K0.png"	}
+brightmap sprite Q3O8L0	{	map "Sprites/Weapons/BFG/Quake 3/_G_fire_end/_H_brightmaps/Q3H8L0.png"	}
+
+brightmap sprite Q3Q8A0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3Q8B0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8B0.png"	}
+brightmap sprite Q3Q8C0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8C0.png"	}
+brightmap sprite Q3Q8D0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8D0.png"	}
+brightmap sprite Q3Q8E0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8E0.png"	}
+brightmap sprite Q3Q8F0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8F0.png"	}
+brightmap sprite Q3Q8G0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8G0.png"	}
+brightmap sprite Q3Q8H0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8H0.png"	}
+brightmap sprite Q3Q8I0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8I0.png"	}
+brightmap sprite Q3Q8J0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8J0.png"	}
+brightmap sprite Q3Q8K0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8K0.png"	}
+brightmap sprite Q3Q8L0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8L0.png"	}
+brightmap sprite Q3Q8M0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3Q8N0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8B0.png"	}
+brightmap sprite Q3Q8O0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8C0.png"	}
+brightmap sprite Q3Q8P0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8D0.png"	}
+brightmap sprite Q3Q8Q0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8E0.png"	}
+brightmap sprite Q3Q8R0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8F0.png"	}
+brightmap sprite Q3Q8S0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8G0.png"	}
+brightmap sprite Q3Q8T0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8H0.png"	}
+brightmap sprite Q3Q8U0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8I0.png"	}
+brightmap sprite Q3Q8V0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8J0.png"	}
+brightmap sprite Q3Q8W0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8K0.png"	}
+brightmap sprite Q3Q8X0	{	map "Sprites/Weapons/BFG/Quake 3/_Q_charge/_R_brightmaps/Q3R8L0.png"	}
+brightmap sprite Q3Q8Y0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+
+brightmap sprite Q3S8A0	{	map "Sprites/Weapons/BFG/Quake 3/_C_idle/_D_brightmaps/Q3D8A0.png"	}
+brightmap sprite Q3S8B0	{	map "Sprites/Weapons/BFG/Quake 3/_S_charge_full/_T_brightmaps/Q3T8B0.png"	}
+
+// Quake 4 BFG
+brightmap sprite Q4A8A0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4A8B0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4A8C0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4A8D0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4A8E0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4A8F0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4A8G0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4A8H0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4A8I0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4A8J0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4A8K0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4A8L0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4A8M0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4A8N0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4A8O0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4A8P0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+brightmap sprite Q4A8Q0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+brightmap sprite Q4A8R0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+
+brightmap sprite Q4C8A0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8A0.png"	}
+brightmap sprite Q4C8B0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8B0.png"	}
+brightmap sprite Q4C8C0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8C0.png"	}
+brightmap sprite Q4C8D0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8D0.png"	}
+brightmap sprite Q4C8E0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8E0.png"	}
+brightmap sprite Q4C8F0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8F0.png"	}
+brightmap sprite Q4C8G0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4C8H0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4C8I0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4C8J0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4C8K0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4C8L0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+brightmap sprite Q4C8M0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8A0.png"	}
+brightmap sprite Q4C8N0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8B0.png"	}
+brightmap sprite Q4C8O0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8C0.png"	}
+brightmap sprite Q4C8P0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8D0.png"	}
+brightmap sprite Q4C8Q0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8E0.png"	}
+brightmap sprite Q4C8R0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8F0.png"	}
+brightmap sprite Q4C8S0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4C8T0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4C8U0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4C8V0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4C8W0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4C8X0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+
+brightmap sprite Q4E8A0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8A0.png"	}
+brightmap sprite Q4E8B0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8B0.png"	}
+brightmap sprite Q4E8C0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8C0.png"	}
+brightmap sprite Q4E8D0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8D0.png"	}
+brightmap sprite Q4E8E0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8A0.png"	}
+
+brightmap sprite Q4G8A0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8A0.png"	}
+brightmap sprite Q4G8B0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8B0.png"	}
+brightmap sprite Q4G8C0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8C0.png"	}
+brightmap sprite Q4G8D0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8D0.png"	}
+brightmap sprite Q4G8E0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8E0.png"	}
+brightmap sprite Q4G8F0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8F0.png"	}
+brightmap sprite Q4G8G0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8G0.png"	}
+brightmap sprite Q4G8H0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8H0.png"	}
+brightmap sprite Q4G8I0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8I0.png"	}
+brightmap sprite Q4G8J0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8J0.png"	}
+brightmap sprite Q4G8K0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8K0.png"	}
+brightmap sprite Q4G8L0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8L0.png"	}
+
+brightmap sprite Q4I8A0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4I8B0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4I8C0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4I8D0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4I8E0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4I8F0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4I8G0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4I8H0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4I8I0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4I8J0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4I8K0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4I8L0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4I8M0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4I8N0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4I8O0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4I8P0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+brightmap sprite Q4I8Q0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+brightmap sprite Q4I8R0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+
+brightmap sprite Q4K8A0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8A0.png"	}
+brightmap sprite Q4K8B0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8B0.png"	}
+brightmap sprite Q4K8C0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8C0.png"	}
+brightmap sprite Q4K8D0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8D0.png"	}
+brightmap sprite Q4K8E0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8E0.png"	}
+brightmap sprite Q4K8F0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8F0.png"	}
+brightmap sprite Q4K8G0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4K8H0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4K8I0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4K8J0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4K8K0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4K8L0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+brightmap sprite Q4K8M0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8A0.png"	}
+brightmap sprite Q4K8N0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8B0.png"	}
+brightmap sprite Q4K8O0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8C0.png"	}
+brightmap sprite Q4K8P0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8D0.png"	}
+brightmap sprite Q4K8Q0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8E0.png"	}
+brightmap sprite Q4K8R0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8F0.png"	}
+brightmap sprite Q4K8S0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8A0.png"	}
+brightmap sprite Q4K8T0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8D0.png"	}
+brightmap sprite Q4K8U0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8G0.png"	}
+brightmap sprite Q4K8V0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8J0.png"	}
+brightmap sprite Q4K8W0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8M0.png"	}
+brightmap sprite Q4K8X0	{	map "Sprites/Weapons/BFG/Quake 4/_A_prepare/_B_brightmaps/Q4B8P0.png"	}
+
+brightmap sprite Q4M8A0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8A0.png"	}
+brightmap sprite Q4M8B0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8B0.png"	}
+brightmap sprite Q4M8C0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8C0.png"	}
+brightmap sprite Q4M8D0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8D0.png"	}
+brightmap sprite Q4M8E0	{	map "Sprites/Weapons/BFG/Quake 4/_E_fire/_F_brightmaps/Q4F8A0.png"	}
+
+brightmap sprite Q4O8A0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8A0.png"	}
+brightmap sprite Q4O8B0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8B0.png"	}
+brightmap sprite Q4O8C0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8C0.png"	}
+brightmap sprite Q4O8D0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8D0.png"	}
+brightmap sprite Q4O8E0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8E0.png"	}
+brightmap sprite Q4O8F0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8F0.png"	}
+brightmap sprite Q4O8G0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8G0.png"	}
+brightmap sprite Q4O8H0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8H0.png"	}
+brightmap sprite Q4O8I0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8I0.png"	}
+brightmap sprite Q4O8J0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8J0.png"	}
+brightmap sprite Q4O8K0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8K0.png"	}
+brightmap sprite Q4O8L0	{	map "Sprites/Weapons/BFG/Quake 4/_G_fire_end/_H_brightmaps/Q4H8L0.png"	}
+
+brightmap sprite Q4Q8A0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8A0.png"	}
+brightmap sprite Q4Q8B0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8B0.png"	}
+brightmap sprite Q4Q8C0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8C0.png"	}
+brightmap sprite Q4Q8D0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8D0.png"	}
+brightmap sprite Q4Q8E0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8E0.png"	}
+brightmap sprite Q4Q8F0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8F0.png"	}
+brightmap sprite Q4Q8G0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8G0.png"	}
+brightmap sprite Q4Q8H0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8H0.png"	}
+brightmap sprite Q4Q8I0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8I0.png"	}
+brightmap sprite Q4Q8J0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8J0.png"	}
+brightmap sprite Q4Q8K0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8K0.png"	}
+brightmap sprite Q4Q8L0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8L0.png"	}
+brightmap sprite Q4Q8M0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8A0.png"	}
+brightmap sprite Q4Q8N0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8B0.png"	}
+brightmap sprite Q4Q8O0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8C0.png"	}
+brightmap sprite Q4Q8P0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8D0.png"	}
+brightmap sprite Q4Q8Q0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8E0.png"	}
+brightmap sprite Q4Q8R0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8F0.png"	}
+brightmap sprite Q4Q8S0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8G0.png"	}
+brightmap sprite Q4Q8T0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8H0.png"	}
+brightmap sprite Q4Q8U0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8I0.png"	}
+brightmap sprite Q4Q8V0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8J0.png"	}
+brightmap sprite Q4Q8W0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8K0.png"	}
+brightmap sprite Q4Q8X0	{	map "Sprites/Weapons/BFG/Quake 4/_Q_charge/_R_brightmaps/Q4R8L0.png"	}
+brightmap sprite Q4Q8Y0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8A0.png"	}
+
+brightmap sprite Q4S8A0	{	map "Sprites/Weapons/BFG/Quake 4/_C_idle/_D_brightmaps/Q4D8A0.png"	}
+brightmap sprite Q4S8B0	{	map "Sprites/Weapons/BFG/Quake 4/_S_charge_full/_T_brightmaps/Q4T8B0.png"	}
+
+// QCDE 1.0 BFG
+brightmap sprite Q0A8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0A8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0A8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0A8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0A8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0A8F0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0A8G0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8H0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8I0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8J0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8K0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8L0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8M0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8N0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8O0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8P0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8Q0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0A8R0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+
+brightmap sprite Q0C8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0C8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0C8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0C8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0C8F0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0C8G0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0C8H0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0C8I0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8J0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8K0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8L0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8M0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8N0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0C8O0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0C8P0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0C8Q0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0C8R0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0C8S0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0C8T0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0C8U0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8V0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8W0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0C8X0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+
+brightmap sprite Q0E8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0E8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_E_fire/_F_brightmaps/Q0F8B0.png"	}
+brightmap sprite Q0E8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_E_fire/_F_brightmaps/Q0F8C0.png"	}
+brightmap sprite Q0E8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_E_fire/_F_brightmaps/Q0F8D0.png"	}
+brightmap sprite Q0E8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+
+brightmap sprite Q0G8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0G8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0G8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0G8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0G8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0G8F0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0G8G0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0G8H0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0G8I0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0G8J0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0G8K0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0G8L0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+
+brightmap sprite Q0I8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0I8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0I8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0I8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0I8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0I8F0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0I8G0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8H0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8I0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8J0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8K0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8L0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8M0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8N0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8O0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8P0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8Q0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0I8R0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+
+brightmap sprite Q0K8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0K8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0K8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0K8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0K8F0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0K8G0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0K8H0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0K8I0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8J0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8K0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8L0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8M0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8N0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0K8O0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0K8P0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0K8Q0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0K8R0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0K8S0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0K8T0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0K8U0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8V0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8W0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0K8X0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+
+brightmap sprite Q0M8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0M8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_E_fire/_F_brightmaps/Q0F8B0.png"	}
+brightmap sprite Q0M8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_E_fire/_F_brightmaps/Q0F8C0.png"	}
+brightmap sprite Q0M8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_E_fire/_F_brightmaps/Q0F8D0.png"	}
+brightmap sprite Q0M8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+
+brightmap sprite Q0O8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0O8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0O8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0O8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0O8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0O8F0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0O8G0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0O8H0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0O8I0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0O8J0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0O8K0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0O8L0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+
+brightmap sprite Q0Q8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0Q8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0Q8C0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0Q8D0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0Q8E0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0Q8F0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0Q8G0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0Q8H0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0Q8I0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0Q8J0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0Q8K0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0Q8L0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0Q8M0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0Q8N0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0Q8O0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0Q8P0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0Q8Q0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0Q8R0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0Q8S0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0Q8T0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0Q8U0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+brightmap sprite Q0Q8V0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8D0.png"	}
+brightmap sprite Q0Q8W0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8A0.png"	}
+brightmap sprite Q0Q8X0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8D0.png"	}
+brightmap sprite Q0Q8Y0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+
+brightmap sprite Q0S8A0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B8G0.png"	}
+brightmap sprite Q0S8B0	{	map "Sprites/Weapons/BFG/QCDE 1.0/_C_idle/_D_brightmaps/Q0D8E0.png"	}
+
+// Half-Life BFG
+brightmap sprite HLA8A0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8B0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8C0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8D0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8E0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8F0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8G0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8H0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8I0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8J0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8K0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8L0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8M0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8N0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8O0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8P0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8Q0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLA8R0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+
+brightmap sprite HLC8A0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8B0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8C0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8D0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8E0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8F0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8G0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8H0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8I0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8J0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8K0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8L0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8M0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8N0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8O0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8P0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8Q0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8R0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8S0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8T0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8U0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8V0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8W0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLC8X0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+
+brightmap sprite HLE8A0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLE8B0	{	map "Sprites/Weapons/BFG/Half-Life/_E_fire/_F_brightmaps/HLF8B0.png"	}
+brightmap sprite HLE8C0	{	map "Sprites/Weapons/BFG/Half-Life/_E_fire/_F_brightmaps/HLF8C0.png"	}
+brightmap sprite HLE8D0	{	map "Sprites/Weapons/BFG/Half-Life/_E_fire/_F_brightmaps/HLF8D0.png"	}
+brightmap sprite HLE8E0	{	map "Sprites/Weapons/BFG/Half-Life/_E_fire/_F_brightmaps/HLF8E0.png"	}
+
+brightmap sprite HLG8A0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8A0.png"	}
+brightmap sprite HLG8B0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8B0.png"	}
+brightmap sprite HLG8C0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8C0.png"	}
+brightmap sprite HLG8D0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8D0.png"	}
+brightmap sprite HLG8E0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8E0.png"	}
+brightmap sprite HLG8F0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8F0.png"	}
+brightmap sprite HLG8G0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8G0.png"	}
+brightmap sprite HLG8H0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8H0.png"	}
+brightmap sprite HLG8I0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8I0.png"	}
+brightmap sprite HLG8J0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8J0.png"	}
+brightmap sprite HLG8K0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8K0.png"	}
+brightmap sprite HLG8L0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8L0.png"	}
+
+brightmap sprite HLI8A0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8B0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8C0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8D0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8E0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8F0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8G0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8H0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8I0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8J0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8K0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8L0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8M0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8N0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8O0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8P0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8Q0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLI8R0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+
+brightmap sprite HLK8A0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8B0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8C0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8D0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8E0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8F0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8G0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8H0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8I0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8J0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8K0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8L0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8M0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8N0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8O0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8P0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8Q0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8R0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8S0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8T0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8U0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8V0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8W0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLK8X0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+
+brightmap sprite HLM8A0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLM8B0	{	map "Sprites/Weapons/BFG/Half-Life/_E_fire/_F_brightmaps/HLF8B0.png"	}
+brightmap sprite HLM8C0	{	map "Sprites/Weapons/BFG/Half-Life/_E_fire/_F_brightmaps/HLF8C0.png"	}
+brightmap sprite HLM8D0	{	map "Sprites/Weapons/BFG/Half-Life/_E_fire/_F_brightmaps/HLF8D0.png"	}
+brightmap sprite HLM8E0	{	map "Sprites/Weapons/BFG/Half-Life/_E_fire/_F_brightmaps/HLF8E0.png"	}
+
+brightmap sprite HLO8A0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8A0.png"	}
+brightmap sprite HLO8B0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8B0.png"	}
+brightmap sprite HLO8C0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8C0.png"	}
+brightmap sprite HLO8D0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8D0.png"	}
+brightmap sprite HLO8E0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8E0.png"	}
+brightmap sprite HLO8F0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8F0.png"	}
+brightmap sprite HLO8G0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8G0.png"	}
+brightmap sprite HLO8H0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8H0.png"	}
+brightmap sprite HLO8I0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8I0.png"	}
+brightmap sprite HLO8J0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8J0.png"	}
+brightmap sprite HLO8K0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8K0.png"	}
+brightmap sprite HLO8L0	{	map "Sprites/Weapons/BFG/Half-Life/_G_fire_end/_H_brightmaps/HLH8L0.png"	}
+
+brightmap sprite HLQ8A0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLQ8B0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8B0.png"	}
+brightmap sprite HLQ8C0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8C0.png"	}
+brightmap sprite HLQ8D0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8D0.png"	}
+brightmap sprite HLQ8E0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8E0.png"	}
+brightmap sprite HLQ8F0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8F0.png"	}
+brightmap sprite HLQ8G0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8G0.png"	}
+brightmap sprite HLQ8H0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8H0.png"	}
+brightmap sprite HLQ8I0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8I0.png"	}
+brightmap sprite HLQ8J0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8J0.png"	}
+brightmap sprite HLQ8K0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8K0.png"	}
+brightmap sprite HLQ8L0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8L0.png"	}
+brightmap sprite HLQ8M0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLQ8N0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8B0.png"	}
+brightmap sprite HLQ8O0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8C0.png"	}
+brightmap sprite HLQ8P0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8D0.png"	}
+brightmap sprite HLQ8Q0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8E0.png"	}
+brightmap sprite HLQ8R0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8F0.png"	}
+brightmap sprite HLQ8S0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8G0.png"	}
+brightmap sprite HLQ8T0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8H0.png"	}
+brightmap sprite HLQ8U0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8I0.png"	}
+brightmap sprite HLQ8V0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8J0.png"	}
+brightmap sprite HLQ8W0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8K0.png"	}
+brightmap sprite HLQ8X0	{	map "Sprites/Weapons/BFG/Half-Life/_Q_charge/_R_brightmaps/HLR8L0.png"	}
+brightmap sprite HLQ8Y0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+
+brightmap sprite HLS8A0	{	map "Sprites/Weapons/BFG/Half-Life/_A_prepare/_B_brightmaps/HLB8A0.png"	}
+brightmap sprite HLS8B0	{	map "Sprites/Weapons/BFG/Half-Life/_S_charge_full/_T_brightmaps/HLT8B0.png"	}
+
+// Serious Sam BFG
+brightmap sprite SSA8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSA8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSA8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSA8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSA8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSA8F0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSA8G0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSA8H0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSA8I0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSA8J0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSA8K0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSA8L0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSA8M0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSA8N0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSA8O0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSA8P0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+brightmap sprite SSA8Q0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+brightmap sprite SSA8R0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+
+brightmap sprite SSC8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSC8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8B0.png"	}
+brightmap sprite SSC8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSC8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSC8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSC8F0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSC8G0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSC8H0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+brightmap sprite SSC8I0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSC8J0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8B0.png"	}
+brightmap sprite SSC8K0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSC8L0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSC8M0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSC8N0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSC8O0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSC8P0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+brightmap sprite SSC8Q0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSC8R0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8B0.png"	}
+brightmap sprite SSC8S0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSC8T0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSC8U0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSC8V0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSC8W0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSC8X0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+
+brightmap sprite SSE8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8A0.png"	}
+brightmap sprite SSE8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8B0.png"	}
+brightmap sprite SSE8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8C0.png"	}
+brightmap sprite SSE8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8D0.png"	}
+brightmap sprite SSE8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8E0.png"	}
+
+brightmap sprite SSG8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8A0.png"	}
+brightmap sprite SSG8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8B0.png"	}
+brightmap sprite SSG8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8C0.png"	}
+brightmap sprite SSG8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8D0.png"	}
+brightmap sprite SSG8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8E0.png"	}
+brightmap sprite SSG8F0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8F0.png"	}
+brightmap sprite SSG8G0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8G0.png"	}
+brightmap sprite SSG8H0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8H0.png"	}
+brightmap sprite SSG8I0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8I0.png"	}
+brightmap sprite SSG8J0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8J0.png"	}
+brightmap sprite SSG8K0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8K0.png"	}
+brightmap sprite SSG8L0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8L0.png"	}
+
+brightmap sprite SSI8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSI8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSI8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSI8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSI8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSI8F0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSI8G0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSI8H0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSI8I0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSI8J0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSI8K0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSI8L0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSI8M0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSI8N0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSI8O0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSI8P0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+brightmap sprite SSI8Q0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+brightmap sprite SSI8R0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+
+brightmap sprite SSK8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSK8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8B0.png"	}
+brightmap sprite SSK8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSK8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSK8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSK8F0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSK8G0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSK8H0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+brightmap sprite SSK8I0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSK8J0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8B0.png"	}
+brightmap sprite SSK8K0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSK8L0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSK8M0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSK8N0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSK8O0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSK8P0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+brightmap sprite SSK8Q0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSK8R0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8B0.png"	}
+brightmap sprite SSK8S0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8A0.png"	}
+brightmap sprite SSK8T0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8D0.png"	}
+brightmap sprite SSK8U0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8G0.png"	}
+brightmap sprite SSK8V0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8J0.png"	}
+brightmap sprite SSK8W0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8M0.png"	}
+brightmap sprite SSK8X0	{	map "Sprites/Weapons/BFG/SeriousSam/_A_prepare/_B_brightmaps/SSB8P0.png"	}
+
+brightmap sprite SSM8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8A0.png"	}
+brightmap sprite SSM8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8B0.png"	}
+brightmap sprite SSM8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8C0.png"	}
+brightmap sprite SSM8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8D0.png"	}
+brightmap sprite SSM8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_E_fire/_F_brightmaps/SSF8E0.png"	}
+
+brightmap sprite SSO8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8A0.png"	}
+brightmap sprite SSO8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8B0.png"	}
+brightmap sprite SSO8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8C0.png"	}
+brightmap sprite SSO8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8D0.png"	}
+brightmap sprite SSO8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8E0.png"	}
+brightmap sprite SSO8F0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8F0.png"	}
+brightmap sprite SSO8G0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8G0.png"	}
+brightmap sprite SSO8H0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8H0.png"	}
+brightmap sprite SSO8I0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8I0.png"	}
+brightmap sprite SSO8J0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8J0.png"	}
+brightmap sprite SSO8K0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8K0.png"	}
+brightmap sprite SSO8L0	{	map "Sprites/Weapons/BFG/SeriousSam/_G_fire_end/_H_brightmaps/SSH8L0.png"	}
+
+brightmap sprite SSQ8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSQ8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8B0.png"	}
+brightmap sprite SSQ8C0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8C0.png"	}
+brightmap sprite SSQ8D0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8D0.png"	}
+brightmap sprite SSQ8E0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8E0.png"	}
+brightmap sprite SSQ8F0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8F0.png"	}
+brightmap sprite SSQ8G0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8G0.png"	}
+brightmap sprite SSQ8H0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8H0.png"	}
+brightmap sprite SSQ8I0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8I0.png"	}
+brightmap sprite SSQ8J0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8J0.png"	}
+brightmap sprite SSQ8K0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8K0.png"	}
+brightmap sprite SSQ8L0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8L0.png"	}
+brightmap sprite SSQ8M0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSQ8N0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8B0.png"	}
+brightmap sprite SSQ8O0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8C0.png"	}
+brightmap sprite SSQ8P0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8D0.png"	}
+brightmap sprite SSQ8Q0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8E0.png"	}
+brightmap sprite SSQ8R0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8F0.png"	}
+brightmap sprite SSQ8S0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8G0.png"	}
+brightmap sprite SSQ8T0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8H0.png"	}
+brightmap sprite SSQ8U0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8I0.png"	}
+brightmap sprite SSQ8V0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8J0.png"	}
+brightmap sprite SSQ8W0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8K0.png"	}
+brightmap sprite SSQ8X0	{	map "Sprites/Weapons/BFG/SeriousSam/_Q_charge/_R_brightmaps/SSR8L0.png"	}
+brightmap sprite SSQ8Y0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+
+brightmap sprite SSS8A0	{	map "Sprites/Weapons/BFG/SeriousSam/_C_idle/_D_brightmaps/SSD8A0.png"	}
+brightmap sprite SSS8B0	{	map "Sprites/Weapons/BFG/SeriousSam/_S_charge_full/_T_brightmaps/SST8B0.png"	}
+
+// Modded BFG
+brightmap sprite MDA8A0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8A0.png"	}
+brightmap sprite MDA8B0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8B0.png"	}
+brightmap sprite MDA8C0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8C0.png"	}
+brightmap sprite MDA8D0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8D0.png"	}
+brightmap sprite MDA8E0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8E0.png"	}
+brightmap sprite MDA8F0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8F0.png"	}
+brightmap sprite MDA8G0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8G0.png"	}
+brightmap sprite MDA8H0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8H0.png"	}
+brightmap sprite MDA8I0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8I0.png"	}
+brightmap sprite MDA8J0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8J0.png"	}
+brightmap sprite MDA8K0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8K0.png"	}
+brightmap sprite MDA8L0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8L0.png"	}
+brightmap sprite MDA8M0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8M0.png"	}
+brightmap sprite MDA8N0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8N0.png"	}
+brightmap sprite MDA8O0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8O0.png"	}
+brightmap sprite MDA8P0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8P0.png"	}
+brightmap sprite MDA8Q0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8Q0.png"	}
+brightmap sprite MDA8R0	{	map "Sprites/Weapons/BFG/Modded/_A_prepare/_B_brightmaps/MDB8R0.png"	}
+
+brightmap sprite MDC8A0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8A0.png"	}
+brightmap sprite MDC8B0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8B0.png"	}
+brightmap sprite MDC8C0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8C0.png"	}
+brightmap sprite MDC8D0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8D0.png"	}
+brightmap sprite MDC8E0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8E0.png"	}
+brightmap sprite MDC8F0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8F0.png"	}
+brightmap sprite MDC8G0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8G0.png"	}
+brightmap sprite MDC8H0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8H0.png"	}
+brightmap sprite MDC8I0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8I0.png"	}
+brightmap sprite MDC8J0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8J0.png"	}
+brightmap sprite MDC8K0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8K0.png"	}
+brightmap sprite MDC8L0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8L0.png"	}
+brightmap sprite MDC8M0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8M0.png"	}
+brightmap sprite MDC8N0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8N0.png"	}
+brightmap sprite MDC8O0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8O0.png"	}
+brightmap sprite MDC8P0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8P0.png"	}
+brightmap sprite MDC8Q0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8Q0.png"	}
+brightmap sprite MDC8R0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8R0.png"	}
+brightmap sprite MDC8S0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8S0.png"	}
+brightmap sprite MDC8T0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8T0.png"	}
+brightmap sprite MDC8U0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8U0.png"	}
+brightmap sprite MDC8V0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8V0.png"	}
+brightmap sprite MDC8W0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8W0.png"	}
+brightmap sprite MDC8X0	{	map "Sprites/Weapons/BFG/Modded/_C_idle/_D_brightmaps/MDD8X0.png"	}
+
+brightmap sprite MDE8A0	{	map "Sprites/Weapons/BFG/Modded/_E_fire/_F_brightmaps/MDF8A0.png"	}
+brightmap sprite MDE8B0	{	map "Sprites/Weapons/BFG/Modded/_E_fire/_F_brightmaps/MDF8B0.png"	}
+brightmap sprite MDE8C0	{	map "Sprites/Weapons/BFG/Modded/_E_fire/_F_brightmaps/MDF8C0.png"	}
+brightmap sprite MDE8D0	{	map "Sprites/Weapons/BFG/Modded/_E_fire/_F_brightmaps/MDF8D0.png"	}
+brightmap sprite MDE8E0	{	map "Sprites/Weapons/BFG/Modded/_E_fire/_F_brightmaps/MDF8E0.png"	}
+
+brightmap sprite MDG8A0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8A0.png"	}
+brightmap sprite MDG8B0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8B0.png"	}
+brightmap sprite MDG8C0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8C0.png"	}
+brightmap sprite MDG8D0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8D0.png"	}
+brightmap sprite MDG8E0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8E0.png"	}
+brightmap sprite MDG8F0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8F0.png"	}
+brightmap sprite MDG8G0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8G0.png"	}
+brightmap sprite MDG8H0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8H0.png"	}
+brightmap sprite MDG8I0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8I0.png"	}
+brightmap sprite MDG8J0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8J0.png"	}
+brightmap sprite MDG8K0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8K0.png"	}
+brightmap sprite MDG8L0	{	map "Sprites/Weapons/BFG/Modded/_G_fire_end/_H_brightmaps/MDH8L0.png"	}
+
+brightmap sprite MDI8A0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8A0.png"	}
+brightmap sprite MDI8B0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8B0.png"	}
+brightmap sprite MDI8C0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8C0.png"	}
+brightmap sprite MDI8D0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8D0.png"	}
+brightmap sprite MDI8E0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8E0.png"	}
+brightmap sprite MDI8F0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8F0.png"	}
+brightmap sprite MDI8G0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8G0.png"	}
+brightmap sprite MDI8H0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8H0.png"	}
+brightmap sprite MDI8I0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8I0.png"	}
+brightmap sprite MDI8J0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8J0.png"	}
+brightmap sprite MDI8K0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8K0.png"	}
+brightmap sprite MDI8L0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8L0.png"	}
+brightmap sprite MDI8M0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8M0.png"	}
+brightmap sprite MDI8N0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8N0.png"	}
+brightmap sprite MDI8O0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8O0.png"	}
+brightmap sprite MDI8P0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8P0.png"	}
+brightmap sprite MDI8Q0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8Q0.png"	}
+brightmap sprite MDI8R0	{	map "Sprites/Weapons/BFG/Modded/_I_prepare_upgraded/_J_brightmaps/MDJ8R0.png"	}
+
+brightmap sprite MDK8A0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8A0.png"	}
+brightmap sprite MDK8B0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8B0.png"	}
+brightmap sprite MDK8C0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8C0.png"	}
+brightmap sprite MDK8D0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8D0.png"	}
+brightmap sprite MDK8E0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8E0.png"	}
+brightmap sprite MDK8F0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8F0.png"	}
+brightmap sprite MDK8G0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8G0.png"	}
+brightmap sprite MDK8H0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8H0.png"	}
+brightmap sprite MDK8I0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8I0.png"	}
+brightmap sprite MDK8J0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8J0.png"	}
+brightmap sprite MDK8K0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8K0.png"	}
+brightmap sprite MDK8L0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8L0.png"	}
+brightmap sprite MDK8M0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8M0.png"	}
+brightmap sprite MDK8N0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8N0.png"	}
+brightmap sprite MDK8O0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8O0.png"	}
+brightmap sprite MDK8P0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8P0.png"	}
+brightmap sprite MDK8Q0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8Q0.png"	}
+brightmap sprite MDK8R0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8R0.png"	}
+brightmap sprite MDK8S0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8S0.png"	}
+brightmap sprite MDK8T0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8T0.png"	}
+brightmap sprite MDK8U0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8U0.png"	}
+brightmap sprite MDK8V0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8V0.png"	}
+brightmap sprite MDK8W0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8W0.png"	}
+brightmap sprite MDK8X0	{	map "Sprites/Weapons/BFG/Modded/_K_idle_upgraded/_L_brightmaps/MDL8X0.png"	}
+
+brightmap sprite MDM8A0	{	map "Sprites/Weapons/BFG/Modded/_M_fire_upgraded/_N_brightmaps/MDN8A0.png"	}
+brightmap sprite MDM8B0	{	map "Sprites/Weapons/BFG/Modded/_M_fire_upgraded/_N_brightmaps/MDN8B0.png"	}
+brightmap sprite MDM8C0	{	map "Sprites/Weapons/BFG/Modded/_M_fire_upgraded/_N_brightmaps/MDN8C0.png"	}
+brightmap sprite MDM8D0	{	map "Sprites/Weapons/BFG/Modded/_M_fire_upgraded/_N_brightmaps/MDN8D0.png"	}
+brightmap sprite MDM8E0	{	map "Sprites/Weapons/BFG/Modded/_M_fire_upgraded/_N_brightmaps/MDN8E0.png"	}
+
+brightmap sprite MDO8A0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8A0.png"	}
+brightmap sprite MDO8B0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8B0.png"	}
+brightmap sprite MDO8C0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8C0.png"	}
+brightmap sprite MDO8D0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8D0.png"	}
+brightmap sprite MDO8E0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8E0.png"	}
+brightmap sprite MDO8F0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8F0.png"	}
+brightmap sprite MDO8G0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8G0.png"	}
+brightmap sprite MDO8H0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8H0.png"	}
+brightmap sprite MDO8I0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8I0.png"	}
+brightmap sprite MDO8J0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8J0.png"	}
+brightmap sprite MDO8K0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8K0.png"	}
+brightmap sprite MDO8L0	{	map "Sprites/Weapons/BFG/Modded/_O_fire_end_upgraded/_P_brightmaps/MDP8L0.png"	}
+
+brightmap sprite MDQ8A0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8A0.png"	}
+brightmap sprite MDQ8B0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8B0.png"	}
+brightmap sprite MDQ8C0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8C0.png"	}
+brightmap sprite MDQ8D0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8D0.png"	}
+brightmap sprite MDQ8E0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8E0.png"	}
+brightmap sprite MDQ8F0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8F0.png"	}
+brightmap sprite MDQ8G0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8G0.png"	}
+brightmap sprite MDQ8H0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8H0.png"	}
+brightmap sprite MDQ8I0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8I0.png"	}
+brightmap sprite MDQ8J0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8J0.png"	}
+brightmap sprite MDQ8K0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8K0.png"	}
+brightmap sprite MDQ8L0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8L0.png"	}
+brightmap sprite MDQ8M0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8M0.png"	}
+brightmap sprite MDQ8N0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8N0.png"	}
+brightmap sprite MDQ8O0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8O0.png"	}
+brightmap sprite MDQ8P0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8P0.png"	}
+brightmap sprite MDQ8Q0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8Q0.png"	}
+brightmap sprite MDQ8R0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8R0.png"	}
+brightmap sprite MDQ8S0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8S0.png"	}
+brightmap sprite MDQ8T0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8T0.png"	}
+brightmap sprite MDQ8U0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8U0.png"	}
+brightmap sprite MDQ8V0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8V0.png"	}
+brightmap sprite MDQ8W0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8W0.png"	}
+brightmap sprite MDQ8X0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8X0.png"	}
+brightmap sprite MDQ8Y0	{	map "Sprites/Weapons/BFG/Modded/_Q_charge/_R_brightmaps/MDR8Y0.png"	}
+
+brightmap sprite MDS8A0	{	map "Sprites/Weapons/BFG/Modded/_S_charge_full/_T_brightmaps/MDT8A0.png"	}
+brightmap sprite MDS8B0	{	map "Sprites/Weapons/BFG/Modded/_S_charge_full/_T_brightmaps/MDT8B0.png"	}

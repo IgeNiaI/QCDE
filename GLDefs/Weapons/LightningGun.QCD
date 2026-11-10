@@ -1,0 +1,971 @@
+// LightningGun brightmaps and rendering definitions.
+
+// Default LG
+brightmap sprite QCA6A0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6A0.png"	}
+brightmap sprite QCA6B0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6B0.png"	}
+brightmap sprite QCA6C0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6C0.png"	}
+brightmap sprite QCA6D0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6D0.png"	}
+brightmap sprite QCA6E0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6E0.png"	}
+brightmap sprite QCA6F0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6F0.png"	}
+brightmap sprite QCA6G0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6G0.png"	}
+brightmap sprite QCA6H0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6H0.png"	}
+brightmap sprite QCA6I0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6I0.png"	}
+brightmap sprite QCA6J0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6J0.png"	}
+brightmap sprite QCA6K0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6K0.png"	}
+brightmap sprite QCA6L0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6L0.png"	}
+brightmap sprite QCA6M0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6M0.png"	}
+brightmap sprite QCA6N0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6N0.png"	}
+brightmap sprite QCA6O0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6O0.png"	}
+brightmap sprite QCA6P0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6P0.png"	}
+brightmap sprite QCA6Q0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6Q0.png"	}
+brightmap sprite QCA6R0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6R0.png"	}
+brightmap sprite QCA6S0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6S0.png"	}
+brightmap sprite QCA6T0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6T0.png"	}
+
+brightmap sprite QCC6A0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6A0.png"	}
+brightmap sprite QCC6B0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6B0.png"	}
+brightmap sprite QCC6C0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6C0.png"	}
+brightmap sprite QCC6D0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6D0.png"	}
+brightmap sprite QCC6E0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6E0.png"	}
+brightmap sprite QCC6F0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6F0.png"	}
+
+brightmap sprite QCE6A0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6A0.png"	}
+brightmap sprite QCE6B0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6B0.png"	}
+brightmap sprite QCE6C0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6C0.png"	}
+brightmap sprite QCE6D0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6D0.png"	}
+brightmap sprite QCE6E0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6E0.png"	}
+brightmap sprite QCE6F0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6F0.png"	}
+brightmap sprite QCE6G0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6G0.png"	}
+brightmap sprite QCE6H0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6C0.png"	}
+
+brightmap sprite QCG6A0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6A0.png"	}
+brightmap sprite QCG6B0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6B0.png"	}
+brightmap sprite QCG6C0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6C0.png"	}
+brightmap sprite QCG6D0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6D0.png"	}
+brightmap sprite QCG6E0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6E0.png"	}
+brightmap sprite QCG6F0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6F0.png"	}
+brightmap sprite QCG6G0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6G0.png"	}
+brightmap sprite QCG6H0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6H0.png"	}
+brightmap sprite QCG6I0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6I0.png"	}
+brightmap sprite QCG6J0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6J0.png"	}
+brightmap sprite QCG6K0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6K0.png"	}
+brightmap sprite QCG6L0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6L0.png"	}
+brightmap sprite QCG6M0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6M0.png"	}
+brightmap sprite QCG6N0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6N0.png"	}
+brightmap sprite QCG6O0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6O0.png"	}
+brightmap sprite QCG6P0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6P0.png"	}
+brightmap sprite QCG6Q0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6Q0.png"	}
+brightmap sprite QCG6R0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6R0.png"	}
+brightmap sprite QCG6S0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6S0.png"	}
+brightmap sprite QCG6T0	{	map "Sprites/Weapons/LightningGun/Default/_A_prepare/_B_brightmaps/QCB6T0.png"	}
+
+brightmap sprite QCI6A0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6A0.png"	}
+brightmap sprite QCI6B0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6B0.png"	}
+brightmap sprite QCI6C0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6C0.png"	}
+brightmap sprite QCI6D0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6D0.png"	}
+brightmap sprite QCI6E0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6E0.png"	}
+brightmap sprite QCI6F0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6F0.png"	}
+
+brightmap sprite QCK6A0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6A0.png"	}
+brightmap sprite QCK6B0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6B0.png"	}
+brightmap sprite QCK6C0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6C0.png"	}
+brightmap sprite QCK6D0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6D0.png"	}
+brightmap sprite QCK6E0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6E0.png"	}
+brightmap sprite QCK6F0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6F0.png"	}
+brightmap sprite QCK6G0	{	map "Sprites/Weapons/LightningGun/Default/_E_fire_loop/_F_brightmaps/QCF6G0.png"	}
+brightmap sprite QCK6H0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6C0.png"	}
+
+brightmap sprite QCM6A0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6A0.png"	}
+brightmap sprite QCM6B0	{	map "Sprites/Weapons/LightningGun/Default/_M_fire_loop_purple/_N_brightmaps/QCN6B0.png"	}
+brightmap sprite QCM6C0	{	map "Sprites/Weapons/LightningGun/Default/_M_fire_loop_purple/_N_brightmaps/QCN6C0.png"	}
+brightmap sprite QCM6D0	{	map "Sprites/Weapons/LightningGun/Default/_M_fire_loop_purple/_N_brightmaps/QCN6D0.png"	}
+brightmap sprite QCM6E0	{	map "Sprites/Weapons/LightningGun/Default/_M_fire_loop_purple/_N_brightmaps/QCN6E0.png"	}
+brightmap sprite QCM6F0	{	map "Sprites/Weapons/LightningGun/Default/_M_fire_loop_purple/_N_brightmaps/QCN6F0.png"	}
+brightmap sprite QCM6G0	{	map "Sprites/Weapons/LightningGun/Default/_M_fire_loop_purple/_N_brightmaps/QCN6G0.png"	}
+brightmap sprite QCM6H0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6C0.png"	}
+
+brightmap sprite QCO6A0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6A0.png"	}
+brightmap sprite QCO6B0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6B0.png"	}
+brightmap sprite QCO6C0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6C0.png"	}
+brightmap sprite QCO6D0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6D0.png"	}
+brightmap sprite QCO6E0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6E0.png"	}
+brightmap sprite QCO6F0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6F0.png"	}
+brightmap sprite QCO6G0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6G0.png"	}
+brightmap sprite QCO6H0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6C0.png"	}
+
+brightmap sprite QCQ6A0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6A0.png"	}
+brightmap sprite QCQ6B0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6B0.png"	}
+brightmap sprite QCQ6C0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6C0.png"	}
+brightmap sprite QCQ6D0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6D0.png"	}
+brightmap sprite QCQ6E0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6E0.png"	}
+brightmap sprite QCQ6F0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6F0.png"	}
+brightmap sprite QCQ6G0	{	map "Sprites/Weapons/LightningGun/Default/_O_fire_loop_hidden/_P_brightmaps/QCP6G0.png"	}
+brightmap sprite QCQ6H0	{	map "Sprites/Weapons/LightningGun/Default/_C_idle/_D_brightmaps/QCD6C0.png"	}
+
+// Quake 1 LG
+brightmap sprite Q1E6B0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6B0.png"	}
+brightmap sprite Q1E6C0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6C0.png"	}
+brightmap sprite Q1E6D0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6D0.png"	}
+brightmap sprite Q1E6E0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6E0.png"	}
+brightmap sprite Q1E6F0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6F0.png"	}
+brightmap sprite Q1E6G0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6G0.png"	}
+
+brightmap sprite Q1K6B0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6B0.png"	}
+brightmap sprite Q1K6C0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6C0.png"	}
+brightmap sprite Q1K6D0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6D0.png"	}
+brightmap sprite Q1K6E0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6E0.png"	}
+brightmap sprite Q1K6F0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6F0.png"	}
+brightmap sprite Q1K6G0	{	map "Sprites/Weapons/LightningGun/Quake 1/_E_fire_loop/_F_brightmaps/Q1F6G0.png"	}
+
+brightmap sprite Q1M6B0	{	map "Sprites/Weapons/LightningGun/Quake 1/_M_fire_loop_purple/_N_brightmaps/Q1N6B0.png"	}
+brightmap sprite Q1M6C0	{	map "Sprites/Weapons/LightningGun/Quake 1/_M_fire_loop_purple/_N_brightmaps/Q1N6C0.png"	}
+brightmap sprite Q1M6D0	{	map "Sprites/Weapons/LightningGun/Quake 1/_M_fire_loop_purple/_N_brightmaps/Q1N6D0.png"	}
+brightmap sprite Q1M6E0	{	map "Sprites/Weapons/LightningGun/Quake 1/_M_fire_loop_purple/_N_brightmaps/Q1N6E0.png"	}
+brightmap sprite Q1M6F0	{	map "Sprites/Weapons/LightningGun/Quake 1/_M_fire_loop_purple/_N_brightmaps/Q1N6F0.png"	}
+brightmap sprite Q1M6G0	{	map "Sprites/Weapons/LightningGun/Quake 1/_M_fire_loop_purple/_N_brightmaps/Q1N6G0.png"	}
+
+brightmap sprite Q1O6B0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6B0.png"	}
+brightmap sprite Q1O6C0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6C0.png"	}
+brightmap sprite Q1O6D0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6D0.png"	}
+brightmap sprite Q1O6E0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6E0.png"	}
+brightmap sprite Q1O6F0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6F0.png"	}
+brightmap sprite Q1O6G0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6G0.png"	}
+
+brightmap sprite Q1Q6B0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6B0.png"	}
+brightmap sprite Q1Q6C0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6C0.png"	}
+brightmap sprite Q1Q6D0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6D0.png"	}
+brightmap sprite Q1Q6E0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6E0.png"	}
+brightmap sprite Q1Q6F0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6F0.png"	}
+brightmap sprite Q1Q6G0	{	map "Sprites/Weapons/LightningGun/Quake 1/_O_fire_loop_hidden/_P_brightmaps/Q1P6G0.png"	}
+
+// Quake 2 LG
+brightmap sprite Q2A6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2A6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2A6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2A6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2A6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2A6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2A6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2A6H0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2A6I0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2A6J0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2A6K0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2A6L0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2A6M0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2A6N0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2A6O0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2A6P0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2A6Q0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2A6R0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2A6S0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2A6T0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+
+brightmap sprite Q2C6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2C6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2C6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2C6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2C6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2C6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2C6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_C_idle/_D_brightmaps/Q2D6G0.png"	}
+
+brightmap sprite Q2E6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2E6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6B0.png"	}
+brightmap sprite Q2E6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6C0.png"	}
+brightmap sprite Q2E6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6D0.png"	}
+brightmap sprite Q2E6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6E0.png"	}
+brightmap sprite Q2E6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6F0.png"	}
+brightmap sprite Q2E6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6G0.png"	}
+brightmap sprite Q2E6H0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+
+brightmap sprite Q2G6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2G6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2G6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2G6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2G6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2G6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2G6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2G6H0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2G6I0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2G6J0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2G6K0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2G6L0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2G6M0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2G6N0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2G6O0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2G6P0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2G6Q0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2G6R0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2G6S0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2G6T0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+
+brightmap sprite Q2I6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2I6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2I6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2I6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6C0.png"	}
+brightmap sprite Q2I6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+brightmap sprite Q2I6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6G0.png"	}
+brightmap sprite Q2I6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_C_idle/_D_brightmaps/Q2D6G0.png"	}
+
+brightmap sprite Q2K6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2K6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6B0.png"	}
+brightmap sprite Q2K6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6C0.png"	}
+brightmap sprite Q2K6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6D0.png"	}
+brightmap sprite Q2K6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6E0.png"	}
+brightmap sprite Q2K6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6F0.png"	}
+brightmap sprite Q2K6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_E_fire_loop/_F_brightmaps/Q2F6G0.png"	}
+brightmap sprite Q2K6H0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+
+brightmap sprite Q2M6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2M6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_M_fire_loop_purple/_N_brightmaps/Q2N6B0.png"	}
+brightmap sprite Q2M6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_M_fire_loop_purple/_N_brightmaps/Q2N6C0.png"	}
+brightmap sprite Q2M6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_M_fire_loop_purple/_N_brightmaps/Q2N6D0.png"	}
+brightmap sprite Q2M6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_M_fire_loop_purple/_N_brightmaps/Q2N6E0.png"	}
+brightmap sprite Q2M6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_M_fire_loop_purple/_N_brightmaps/Q2N6F0.png"	}
+brightmap sprite Q2M6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_M_fire_loop_purple/_N_brightmaps/Q2N6G0.png"	}
+brightmap sprite Q2M6H0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+
+brightmap sprite Q2O6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2O6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6B0.png"	}
+brightmap sprite Q2O6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6C0.png"	}
+brightmap sprite Q2O6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6D0.png"	}
+brightmap sprite Q2O6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6E0.png"	}
+brightmap sprite Q2O6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6F0.png"	}
+brightmap sprite Q2O6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6G0.png"	}
+brightmap sprite Q2O6H0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+
+brightmap sprite Q2Q6A0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6I0.png"	}
+brightmap sprite Q2Q6B0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6B0.png"	}
+brightmap sprite Q2Q6C0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6C0.png"	}
+brightmap sprite Q2Q6D0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6D0.png"	}
+brightmap sprite Q2Q6E0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6E0.png"	}
+brightmap sprite Q2Q6F0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6F0.png"	}
+brightmap sprite Q2Q6G0	{	map "Sprites/Weapons/LightningGun/Quake 2/_O_fire_loop_hidden/_P_brightmaps/Q2P6G0.png"	}
+brightmap sprite Q2Q6H0	{	map "Sprites/Weapons/LightningGun/Quake 2/_A_prepare/_B_brightmaps/Q2B6A0.png"	}
+
+// Quake 3 LG
+brightmap sprite Q3A6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3A6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3A6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3A6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3A6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6H0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6I0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6J0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6K0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6K0.png"	}
+brightmap sprite Q3A6L0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6K0.png"	}
+brightmap sprite Q3A6M0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3A6N0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3A6O0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3A6P0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3A6Q0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6R0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6S0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3A6T0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+
+brightmap sprite Q3C6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3C6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6K0.png"	}
+brightmap sprite Q3C6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3C6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3C6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3C6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3C6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_C_idle/_D_brightmaps/Q3D6G0.png"	}
+
+brightmap sprite Q3E6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3E6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6B0.png"	}
+brightmap sprite Q3E6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6C0.png"	}
+brightmap sprite Q3E6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6D0.png"	}
+brightmap sprite Q3E6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6E0.png"	}
+brightmap sprite Q3E6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6F0.png"	}
+brightmap sprite Q3E6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6G0.png"	}
+brightmap sprite Q3E6H0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+
+brightmap sprite Q3G6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3G6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3G6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3G6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3G6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6H0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6I0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6J0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6K0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6K0.png"	}
+brightmap sprite Q3G6L0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6K0.png"	}
+brightmap sprite Q3G6M0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3G6N0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3G6O0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3G6P0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3G6Q0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6R0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6S0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3G6T0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+
+brightmap sprite Q3I6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3I6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6K0.png"	}
+brightmap sprite Q3I6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+brightmap sprite Q3I6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6C0.png"	}
+brightmap sprite Q3I6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3I6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3I6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_C_idle/_D_brightmaps/Q3D6G0.png"	}
+
+brightmap sprite Q3K6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3K6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6B0.png"	}
+brightmap sprite Q3K6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6C0.png"	}
+brightmap sprite Q3K6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6D0.png"	}
+brightmap sprite Q3K6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6E0.png"	}
+brightmap sprite Q3K6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6F0.png"	}
+brightmap sprite Q3K6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6G0.png"	}
+brightmap sprite Q3K6H0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+
+brightmap sprite Q3M6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3M6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6B0.png"	}
+brightmap sprite Q3M6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6C0.png"	}
+brightmap sprite Q3M6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6D0.png"	}
+brightmap sprite Q3M6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6E0.png"	}
+brightmap sprite Q3M6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_E_fire_loop/_F_brightmaps/Q3F6F0.png"	}
+brightmap sprite Q3M6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_M_fire_loop_purple/_N_brightmaps/Q3N6G0.png"	}
+brightmap sprite Q3M6H0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+
+brightmap sprite Q3O6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3O6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6B0.png"	}
+brightmap sprite Q3O6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6C0.png"	}
+brightmap sprite Q3O6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6D0.png"	}
+brightmap sprite Q3O6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6E0.png"	}
+brightmap sprite Q3O6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6F0.png"	}
+brightmap sprite Q3O6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_M_fire_loop_purple/_N_brightmaps/Q3N6G0.png"	}
+brightmap sprite Q3O6H0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+
+brightmap sprite Q3Q6A0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6E0.png"	}
+brightmap sprite Q3Q6B0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6B0.png"	}
+brightmap sprite Q3Q6C0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6C0.png"	}
+brightmap sprite Q3Q6D0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6D0.png"	}
+brightmap sprite Q3Q6E0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6E0.png"	}
+brightmap sprite Q3Q6F0	{	map "Sprites/Weapons/LightningGun/Quake 3/_O_fire_loop_hidden/_P_brightmaps/Q3P6F0.png"	}
+brightmap sprite Q3Q6G0	{	map "Sprites/Weapons/LightningGun/Quake 3/_M_fire_loop_purple/_N_brightmaps/Q3N6G0.png"	}
+brightmap sprite Q3Q6H0	{	map "Sprites/Weapons/LightningGun/Quake 3/_A_prepare/_B_brightmaps/Q3B6A0.png"	}
+
+// Quake 4 LG
+brightmap sprite Q4A6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4A6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4A6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4A6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4A6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4A6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4A6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+brightmap sprite Q4A6H0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+brightmap sprite Q4A6I0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4A6J0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4A6K0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6K0.png"	}
+brightmap sprite Q4A6L0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6K0.png"	}
+brightmap sprite Q4A6M0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4A6N0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4A6O0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4A6P0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4A6Q0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4A6R0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4A6S0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+brightmap sprite Q4A6T0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+
+brightmap sprite Q4C6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4C6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6K0.png"	}
+brightmap sprite Q4C6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4C6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4C6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4C6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+brightmap sprite Q4C6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_C_idle/_D_brightmaps/Q4D6G0.png"	}
+
+brightmap sprite Q4E6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4E6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6B0.png"	}
+brightmap sprite Q4E6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6C0.png"	}
+brightmap sprite Q4E6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6D0.png"	}
+brightmap sprite Q4E6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6E0.png"	}
+brightmap sprite Q4E6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6F0.png"	}
+brightmap sprite Q4E6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6G0.png"	}
+brightmap sprite Q4E6H0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+
+brightmap sprite Q4G6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4G6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4G6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4G6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4G6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4G6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4G6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+brightmap sprite Q4G6H0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+brightmap sprite Q4G6I0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4G6J0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4G6K0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6K0.png"	}
+brightmap sprite Q4G6L0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6K0.png"	}
+brightmap sprite Q4G6M0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4G6N0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4G6O0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4G6P0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4G6Q0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4G6R0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4G6S0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+brightmap sprite Q4G6T0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+
+brightmap sprite Q4I6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4I6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6K0.png"	}
+brightmap sprite Q4I6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+brightmap sprite Q4I6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6C0.png"	}
+brightmap sprite Q4I6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6E0.png"	}
+brightmap sprite Q4I6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6G0.png"	}
+brightmap sprite Q4I6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_C_idle/_D_brightmaps/Q4D6G0.png"	}
+
+brightmap sprite Q4K6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4K6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6B0.png"	}
+brightmap sprite Q4K6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6C0.png"	}
+brightmap sprite Q4K6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6D0.png"	}
+brightmap sprite Q4K6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6E0.png"	}
+brightmap sprite Q4K6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6F0.png"	}
+brightmap sprite Q4K6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_E_fire_loop/_F_brightmaps/Q4F6G0.png"	}
+brightmap sprite Q4K6H0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+
+brightmap sprite Q4M6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4M6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_M_fire_loop_purple/_N_brightmaps/Q4N6B0.png"	}
+brightmap sprite Q4M6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_M_fire_loop_purple/_N_brightmaps/Q4N6C0.png"	}
+brightmap sprite Q4M6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_M_fire_loop_purple/_N_brightmaps/Q4N6D0.png"	}
+brightmap sprite Q4M6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_M_fire_loop_purple/_N_brightmaps/Q4N6E0.png"	}
+brightmap sprite Q4M6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_M_fire_loop_purple/_N_brightmaps/Q4N6F0.png"	}
+brightmap sprite Q4M6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_M_fire_loop_purple/_N_brightmaps/Q4N6G0.png"	}
+brightmap sprite Q4M6H0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+
+brightmap sprite Q4O6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4O6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6B0.png"	}
+brightmap sprite Q4O6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6C0.png"	}
+brightmap sprite Q4O6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6D0.png"	}
+brightmap sprite Q4O6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6E0.png"	}
+brightmap sprite Q4O6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6F0.png"	}
+brightmap sprite Q4O6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6G0.png"	}
+brightmap sprite Q4O6H0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+
+brightmap sprite Q4Q6A0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6I0.png"	}
+brightmap sprite Q4Q6B0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6B0.png"	}
+brightmap sprite Q4Q6C0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6C0.png"	}
+brightmap sprite Q4Q6D0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6D0.png"	}
+brightmap sprite Q4Q6E0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6E0.png"	}
+brightmap sprite Q4Q6F0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6F0.png"	}
+brightmap sprite Q4Q6G0	{	map "Sprites/Weapons/LightningGun/Quake 4/_O_fire_loop_hidden/_P_brightmaps/Q4P6G0.png"	}
+brightmap sprite Q4Q6H0	{	map "Sprites/Weapons/LightningGun/Quake 4/_A_prepare/_B_brightmaps/Q4B6A0.png"	}
+
+// ETQW LG
+brightmap sprite QWA6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6H0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6I0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6J0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6K0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6L0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6M0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6N0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6O0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6P0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6Q0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6R0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6S0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWA6T0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+brightmap sprite QWC6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWC6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWC6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWC6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWC6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWC6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWC6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+brightmap sprite QWE6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWE6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6B0.png"	}
+brightmap sprite QWE6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6C0.png"	}
+brightmap sprite QWE6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6D0.png"	}
+brightmap sprite QWE6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6E0.png"	}
+brightmap sprite QWE6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6F0.png"	}
+brightmap sprite QWE6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6G0.png"	}
+brightmap sprite QWE6H0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+brightmap sprite QWG6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6H0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6I0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6J0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6K0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6L0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6M0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6N0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6O0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6P0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6Q0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6R0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6S0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWG6T0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+brightmap sprite QWI6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWI6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWI6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWI6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWI6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWI6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWI6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+brightmap sprite QWK6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWK6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6B0.png"	}
+brightmap sprite QWK6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6C0.png"	}
+brightmap sprite QWK6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6D0.png"	}
+brightmap sprite QWK6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6E0.png"	}
+brightmap sprite QWK6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6F0.png"	}
+brightmap sprite QWK6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_E_fire_loop/_F_brightmaps/QWF6G0.png"	}
+brightmap sprite QWK6H0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+brightmap sprite QWM6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWM6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_M_fire_loop_purple/_N_brightmaps/QWN6B0.png"	}
+brightmap sprite QWM6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_M_fire_loop_purple/_N_brightmaps/QWN6C0.png"	}
+brightmap sprite QWM6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_M_fire_loop_purple/_N_brightmaps/QWN6D0.png"	}
+brightmap sprite QWM6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_M_fire_loop_purple/_N_brightmaps/QWN6E0.png"	}
+brightmap sprite QWM6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_M_fire_loop_purple/_N_brightmaps/QWN6F0.png"	}
+brightmap sprite QWM6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_M_fire_loop_purple/_N_brightmaps/QWN6G0.png"	}
+brightmap sprite QWM6H0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+brightmap sprite QWO6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWO6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6B0.png"	}
+brightmap sprite QWO6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6C0.png"	}
+brightmap sprite QWO6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6D0.png"	}
+brightmap sprite QWO6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6E0.png"	}
+brightmap sprite QWO6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6F0.png"	}
+brightmap sprite QWO6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6G0.png"	}
+brightmap sprite QWO6H0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+brightmap sprite QWQ6A0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+brightmap sprite QWQ6B0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6B0.png"	}
+brightmap sprite QWQ6C0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6C0.png"	}
+brightmap sprite QWQ6D0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6D0.png"	}
+brightmap sprite QWQ6E0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6E0.png"	}
+brightmap sprite QWQ6F0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6F0.png"	}
+brightmap sprite QWQ6G0	{	map "Sprites/Weapons/LightningGun/ET QW/_O_fire_loop_hidden/_P_brightmaps/QWP6G0.png"	}
+brightmap sprite QWQ6H0	{	map "Sprites/Weapons/LightningGun/ET QW/_A_prepare/_B_brightmaps/QWB6A0.png"	}
+
+// QCDE 1.0 LG
+brightmap sprite Q0A6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0A6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0A6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6H0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6I0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6J0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6K0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6K0.png"	}
+brightmap sprite Q0A6L0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6K0.png"	}
+brightmap sprite Q0A6M0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0A6N0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0A6O0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6P0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6Q0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6R0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6S0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0A6T0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+
+brightmap sprite Q0C6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0C6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6K0.png"	}
+brightmap sprite Q0C6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0C6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0C6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0C6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0C6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+
+brightmap sprite Q0E6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0E6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6B0.png"	}
+brightmap sprite Q0E6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6C0.png"	}
+brightmap sprite Q0E6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6D0.png"	}
+brightmap sprite Q0E6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6E0.png"	}
+brightmap sprite Q0E6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6D0.png"	}
+brightmap sprite Q0E6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6C0.png"	}
+brightmap sprite Q0E6H0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+
+brightmap sprite Q0G6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0G6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0G6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6H0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6I0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6J0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6K0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6K0.png"	}
+brightmap sprite Q0G6L0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6K0.png"	}
+brightmap sprite Q0G6M0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0G6N0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0G6O0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6P0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6Q0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6R0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6S0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0G6T0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+
+brightmap sprite Q0I6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0I6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6K0.png"	}
+brightmap sprite Q0I6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+brightmap sprite Q0I6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0I6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0I6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0I6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+
+brightmap sprite Q0K6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0K6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6B0.png"	}
+brightmap sprite Q0K6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6C0.png"	}
+brightmap sprite Q0K6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6D0.png"	}
+brightmap sprite Q0K6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6E0.png"	}
+brightmap sprite Q0K6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6D0.png"	}
+brightmap sprite Q0K6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6C0.png"	}
+brightmap sprite Q0K6H0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+
+brightmap sprite Q0M6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0M6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6B0.png"	}
+brightmap sprite Q0M6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6C0.png"	}
+brightmap sprite Q0M6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6D0.png"	}
+brightmap sprite Q0M6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6E0.png"	}
+brightmap sprite Q0M6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_E_fire_loop/_F_brightmaps/Q0F6D0.png"	}
+brightmap sprite Q0M6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_M_fire_loop_purple/_N_brightmaps/Q0N6G0.png"	}
+brightmap sprite Q0M6H0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+
+brightmap sprite Q0O6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0O6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_O_fire_loop_hidden/_P_brightmaps/Q0P6B0.png"	}
+brightmap sprite Q0O6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_O_fire_loop_hidden/_P_brightmaps/Q0P6C0.png"	}
+brightmap sprite Q0O6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_M_fire_loop_purple/_N_brightmaps/Q0N6G0.png"	}
+brightmap sprite Q0O6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_O_fire_loop_hidden/_P_brightmaps/Q0P6B0.png"	}
+brightmap sprite Q0O6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_O_fire_loop_hidden/_P_brightmaps/Q0P6C0.png"	}
+brightmap sprite Q0O6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_M_fire_loop_purple/_N_brightmaps/Q0N6G0.png"	}
+brightmap sprite Q0O6H0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+
+brightmap sprite Q0Q6A0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6C0.png"	}
+brightmap sprite Q0Q6B0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_O_fire_loop_hidden/_P_brightmaps/Q0P6B0.png"	}
+brightmap sprite Q0Q6C0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_O_fire_loop_hidden/_P_brightmaps/Q0P6C0.png"	}
+brightmap sprite Q0Q6D0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_M_fire_loop_purple/_N_brightmaps/Q0N6G0.png"	}
+brightmap sprite Q0Q6E0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_O_fire_loop_hidden/_P_brightmaps/Q0P6B0.png"	}
+brightmap sprite Q0Q6F0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_O_fire_loop_hidden/_P_brightmaps/Q0P6C0.png"	}
+brightmap sprite Q0Q6G0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_M_fire_loop_purple/_N_brightmaps/Q0N6G0.png"	}
+brightmap sprite Q0Q6H0	{	map "Sprites/Weapons/LightningGun/QCDE 1.0/_A_prepare/_B_brightmaps/Q0B6A0.png"	}
+
+// Half-Life LG
+brightmap sprite HLA6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6H0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6I0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6J0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6K0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6L0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6M0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6N0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6O0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6P0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6Q0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6R0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6S0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLA6T0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+
+brightmap sprite HLC6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLC6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLC6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLC6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLC6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLC6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLC6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_C_idle/_D_brightmaps/HLD6G0.png"	}
+
+brightmap sprite HLE6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLE6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6B0.png"	}
+brightmap sprite HLE6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6C0.png"	}
+brightmap sprite HLE6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6D0.png"	}
+brightmap sprite HLE6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6E0.png"	}
+brightmap sprite HLE6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6F0.png"	}
+brightmap sprite HLE6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6G0.png"	}
+brightmap sprite HLE6H0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+
+brightmap sprite HLG6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6H0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6I0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6J0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6K0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6L0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6M0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6N0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6O0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6P0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6Q0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6R0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6S0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLG6T0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+
+brightmap sprite HLI6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLI6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLI6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLI6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLI6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLI6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLI6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_C_idle/_D_brightmaps/HLD6G0.png"	}
+
+brightmap sprite HLK6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLK6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6B0.png"	}
+brightmap sprite HLK6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6C0.png"	}
+brightmap sprite HLK6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6D0.png"	}
+brightmap sprite HLK6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6E0.png"	}
+brightmap sprite HLK6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6F0.png"	}
+brightmap sprite HLK6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_E_fire_loop/_F_brightmaps/HLF6G0.png"	}
+brightmap sprite HLK6H0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+
+brightmap sprite HLM6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLM6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_M_fire_loop_purple/_N_brightmaps/HLN6B0.png"	}
+brightmap sprite HLM6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_M_fire_loop_purple/_N_brightmaps/HLN6C0.png"	}
+brightmap sprite HLM6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_M_fire_loop_purple/_N_brightmaps/HLN6D0.png"	}
+brightmap sprite HLM6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_M_fire_loop_purple/_N_brightmaps/HLN6E0.png"	}
+brightmap sprite HLM6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_M_fire_loop_purple/_N_brightmaps/HLN6F0.png"	}
+brightmap sprite HLM6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_M_fire_loop_purple/_N_brightmaps/HLN6G0.png"	}
+brightmap sprite HLM6H0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+
+brightmap sprite HLO6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLO6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6B0.png"	}
+brightmap sprite HLO6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6C0.png"	}
+brightmap sprite HLO6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6D0.png"	}
+brightmap sprite HLO6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6E0.png"	}
+brightmap sprite HLO6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6F0.png"	}
+brightmap sprite HLO6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6G0.png"	}
+brightmap sprite HLO6H0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+
+brightmap sprite HLQ6A0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+brightmap sprite HLQ6B0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6B0.png"	}
+brightmap sprite HLQ6C0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6C0.png"	}
+brightmap sprite HLQ6D0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6D0.png"	}
+brightmap sprite HLQ6E0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6E0.png"	}
+brightmap sprite HLQ6F0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6F0.png"	}
+brightmap sprite HLQ6G0	{	map "Sprites/Weapons/LightningGun/Half-Life/_O_fire_loop_hidden/_P_brightmaps/HLP6G0.png"	}
+brightmap sprite HLQ6H0	{	map "Sprites/Weapons/LightningGun/Half-Life/_A_prepare/_B_brightmaps/HLB6A0.png"	}
+
+// Serious Sam LG
+brightmap sprite SSA6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSA6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSA6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSA6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSA6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSA6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSA6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+brightmap sprite SSA6H0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+brightmap sprite SSA6I0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSA6J0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSA6K0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6K0.png"	}
+brightmap sprite SSA6L0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6K0.png"	}
+brightmap sprite SSA6M0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSA6N0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSA6O0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSA6P0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSA6Q0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSA6R0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSA6S0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+brightmap sprite SSA6T0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+
+brightmap sprite SSC6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSC6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6K0.png"	}
+brightmap sprite SSC6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSC6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSC6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSC6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+brightmap sprite SSC6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_C_idle/_D_brightmaps/SSD6G0.png"	}
+
+brightmap sprite SSE6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSE6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6B0.png"	}
+brightmap sprite SSE6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6C0.png"	}
+brightmap sprite SSE6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6D0.png"	}
+brightmap sprite SSE6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6E0.png"	}
+brightmap sprite SSE6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6F0.png"	}
+brightmap sprite SSE6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6G0.png"	}
+brightmap sprite SSE6H0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+
+brightmap sprite SSG6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSG6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSG6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSG6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSG6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSG6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSG6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+brightmap sprite SSG6H0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+brightmap sprite SSG6I0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSG6J0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSG6K0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6K0.png"	}
+brightmap sprite SSG6L0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6K0.png"	}
+brightmap sprite SSG6M0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSG6N0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSG6O0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSG6P0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSG6Q0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSG6R0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSG6S0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+brightmap sprite SSG6T0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+
+brightmap sprite SSI6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSI6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6K0.png"	}
+brightmap sprite SSI6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+brightmap sprite SSI6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6C0.png"	}
+brightmap sprite SSI6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6E0.png"	}
+brightmap sprite SSI6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6G0.png"	}
+brightmap sprite SSI6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_C_idle/_D_brightmaps/SSD6G0.png"	}
+
+brightmap sprite SSK6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSK6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6B0.png"	}
+brightmap sprite SSK6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6C0.png"	}
+brightmap sprite SSK6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6D0.png"	}
+brightmap sprite SSK6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6E0.png"	}
+brightmap sprite SSK6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6F0.png"	}
+brightmap sprite SSK6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_E_fire_loop/_F_brightmaps/SSF6G0.png"	}
+brightmap sprite SSK6H0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+
+brightmap sprite SSM6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSM6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_M_fire_loop_purple/_N_brightmaps/SSN6B0.png"	}
+brightmap sprite SSM6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_M_fire_loop_purple/_N_brightmaps/SSN6C0.png"	}
+brightmap sprite SSM6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_M_fire_loop_purple/_N_brightmaps/SSN6D0.png"	}
+brightmap sprite SSM6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_M_fire_loop_purple/_N_brightmaps/SSN6E0.png"	}
+brightmap sprite SSM6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_M_fire_loop_purple/_N_brightmaps/SSN6F0.png"	}
+brightmap sprite SSM6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_M_fire_loop_purple/_N_brightmaps/SSN6G0.png"	}
+brightmap sprite SSM6H0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+
+brightmap sprite SSO6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSO6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6B0.png"	}
+brightmap sprite SSO6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6C0.png"	}
+brightmap sprite SSO6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6D0.png"	}
+brightmap sprite SSO6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6E0.png"	}
+brightmap sprite SSO6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6F0.png"	}
+brightmap sprite SSO6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6G0.png"	}
+brightmap sprite SSO6H0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+
+brightmap sprite SSQ6A0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6I0.png"	}
+brightmap sprite SSQ6B0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6B0.png"	}
+brightmap sprite SSQ6C0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6C0.png"	}
+brightmap sprite SSQ6D0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6D0.png"	}
+brightmap sprite SSQ6E0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6E0.png"	}
+brightmap sprite SSQ6F0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6F0.png"	}
+brightmap sprite SSQ6G0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_O_fire_loop_hidden/_P_brightmaps/SSP6G0.png"	}
+brightmap sprite SSQ6H0	{	map "Sprites/Weapons/LightningGun/SeriousSam/_A_prepare/_B_brightmaps/SSB6A0.png"	}
+
+// Modded LG
+brightmap sprite MDA6A0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6A0.png"	}
+brightmap sprite MDA6B0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6B0.png"	}
+brightmap sprite MDA6C0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6C0.png"	}
+brightmap sprite MDA6D0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6D0.png"	}
+brightmap sprite MDA6E0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6E0.png"	}
+brightmap sprite MDA6F0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6F0.png"	}
+brightmap sprite MDA6G0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6G0.png"	}
+brightmap sprite MDA6H0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6H0.png"	}
+brightmap sprite MDA6I0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6I0.png"	}
+brightmap sprite MDA6J0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6J0.png"	}
+brightmap sprite MDA6K0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6K0.png"	}
+brightmap sprite MDA6L0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6L0.png"	}
+brightmap sprite MDA6M0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6M0.png"	}
+brightmap sprite MDA6N0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6N0.png"	}
+brightmap sprite MDA6O0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6O0.png"	}
+brightmap sprite MDA6P0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6P0.png"	}
+brightmap sprite MDA6Q0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6Q0.png"	}
+brightmap sprite MDA6R0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6R0.png"	}
+brightmap sprite MDA6S0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6S0.png"	}
+brightmap sprite MDA6T0	{	map "Sprites/Weapons/LightningGun/Modded/_A_prepare/_B_brightmaps/MDB6T0.png"	}
+
+brightmap sprite MDC6A0	{	map "Sprites/Weapons/LightningGun/Modded/_C_idle/_D_brightmaps/MDD6A0.png"	}
+brightmap sprite MDC6B0	{	map "Sprites/Weapons/LightningGun/Modded/_C_idle/_D_brightmaps/MDD6B0.png"	}
+brightmap sprite MDC6C0	{	map "Sprites/Weapons/LightningGun/Modded/_C_idle/_D_brightmaps/MDD6C0.png"	}
+brightmap sprite MDC6D0	{	map "Sprites/Weapons/LightningGun/Modded/_C_idle/_D_brightmaps/MDD6D0.png"	}
+brightmap sprite MDC6E0	{	map "Sprites/Weapons/LightningGun/Modded/_C_idle/_D_brightmaps/MDD6E0.png"	}
+brightmap sprite MDC6F0	{	map "Sprites/Weapons/LightningGun/Modded/_C_idle/_D_brightmaps/MDD6F0.png"	}
+brightmap sprite MDC6G0	{	map "Sprites/Weapons/LightningGun/Modded/_C_idle/_D_brightmaps/MDD6G0.png"	}
+
+brightmap sprite MDE6A0	{	map "Sprites/Weapons/LightningGun/Modded/_E_fire_loop/_F_brightmaps/MDF6A0.png"	}
+brightmap sprite MDE6B0	{	map "Sprites/Weapons/LightningGun/Modded/_E_fire_loop/_F_brightmaps/MDF6B0.png"	}
+brightmap sprite MDE6C0	{	map "Sprites/Weapons/LightningGun/Modded/_E_fire_loop/_F_brightmaps/MDF6C0.png"	}
+brightmap sprite MDE6D0	{	map "Sprites/Weapons/LightningGun/Modded/_E_fire_loop/_F_brightmaps/MDF6D0.png"	}
+brightmap sprite MDE6E0	{	map "Sprites/Weapons/LightningGun/Modded/_E_fire_loop/_F_brightmaps/MDF6E0.png"	}
+brightmap sprite MDE6F0	{	map "Sprites/Weapons/LightningGun/Modded/_E_fire_loop/_F_brightmaps/MDF6F0.png"	}
+brightmap sprite MDE6G0	{	map "Sprites/Weapons/LightningGun/Modded/_E_fire_loop/_F_brightmaps/MDF6G0.png"	}
+brightmap sprite MDE6H0	{	map "Sprites/Weapons/LightningGun/Modded/_E_fire_loop/_F_brightmaps/MDF6H0.png"	}
+
+brightmap sprite MDG6A0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6A0.png"	}
+brightmap sprite MDG6B0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6B0.png"	}
+brightmap sprite MDG6C0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6C0.png"	}
+brightmap sprite MDG6D0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6D0.png"	}
+brightmap sprite MDG6E0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6E0.png"	}
+brightmap sprite MDG6F0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6F0.png"	}
+brightmap sprite MDG6G0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6G0.png"	}
+brightmap sprite MDG6H0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6H0.png"	}
+brightmap sprite MDG6I0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6I0.png"	}
+brightmap sprite MDG6J0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6J0.png"	}
+brightmap sprite MDG6K0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6K0.png"	}
+brightmap sprite MDG6L0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6L0.png"	}
+brightmap sprite MDG6M0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6M0.png"	}
+brightmap sprite MDG6N0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6N0.png"	}
+brightmap sprite MDG6O0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6O0.png"	}
+brightmap sprite MDG6P0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6P0.png"	}
+brightmap sprite MDG6Q0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6Q0.png"	}
+brightmap sprite MDG6R0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6R0.png"	}
+brightmap sprite MDG6S0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6S0.png"	}
+brightmap sprite MDG6T0	{	map "Sprites/Weapons/LightningGun/Modded/_G_prepare_upgraded/_H_brightmaps/MDH6T0.png"	}
+
+brightmap sprite MDI6A0	{	map "Sprites/Weapons/LightningGun/Modded/_I_idle_upgraded/_J_brightmaps/MDJ6A0.png"	}
+brightmap sprite MDI6B0	{	map "Sprites/Weapons/LightningGun/Modded/_I_idle_upgraded/_J_brightmaps/MDJ6B0.png"	}
+brightmap sprite MDI6C0	{	map "Sprites/Weapons/LightningGun/Modded/_I_idle_upgraded/_J_brightmaps/MDJ6C0.png"	}
+brightmap sprite MDI6D0	{	map "Sprites/Weapons/LightningGun/Modded/_I_idle_upgraded/_J_brightmaps/MDJ6D0.png"	}
+brightmap sprite MDI6E0	{	map "Sprites/Weapons/LightningGun/Modded/_I_idle_upgraded/_J_brightmaps/MDJ6E0.png"	}
+brightmap sprite MDI6F0	{	map "Sprites/Weapons/LightningGun/Modded/_I_idle_upgraded/_J_brightmaps/MDJ6F0.png"	}
+brightmap sprite MDI6G0	{	map "Sprites/Weapons/LightningGun/Modded/_I_idle_upgraded/_J_brightmaps/MDJ6G0.png"	}
+
+brightmap sprite MDK6A0	{	map "Sprites/Weapons/LightningGun/Modded/_K_fire_loop_upgraded/_L_brightmaps/MDL6A0.png"	}
+brightmap sprite MDK6B0	{	map "Sprites/Weapons/LightningGun/Modded/_K_fire_loop_upgraded/_L_brightmaps/MDL6B0.png"	}
+brightmap sprite MDK6C0	{	map "Sprites/Weapons/LightningGun/Modded/_K_fire_loop_upgraded/_L_brightmaps/MDL6C0.png"	}
+brightmap sprite MDK6D0	{	map "Sprites/Weapons/LightningGun/Modded/_K_fire_loop_upgraded/_L_brightmaps/MDL6D0.png"	}
+brightmap sprite MDK6E0	{	map "Sprites/Weapons/LightningGun/Modded/_K_fire_loop_upgraded/_L_brightmaps/MDL6E0.png"	}
+brightmap sprite MDK6F0	{	map "Sprites/Weapons/LightningGun/Modded/_K_fire_loop_upgraded/_L_brightmaps/MDL6F0.png"	}
+brightmap sprite MDK6G0	{	map "Sprites/Weapons/LightningGun/Modded/_K_fire_loop_upgraded/_L_brightmaps/MDL6G0.png"	}
+brightmap sprite MDK6H0	{	map "Sprites/Weapons/LightningGun/Modded/_K_fire_loop_upgraded/_L_brightmaps/MDL6H0.png"	}
+
+brightmap sprite MDM6A0	{	map "Sprites/Weapons/LightningGun/Modded/_M_fire_loop_purple/_N_brightmaps/MDN6A0.png"	}
+brightmap sprite MDM6B0	{	map "Sprites/Weapons/LightningGun/Modded/_M_fire_loop_purple/_N_brightmaps/MDN6B0.png"	}
+brightmap sprite MDM6C0	{	map "Sprites/Weapons/LightningGun/Modded/_M_fire_loop_purple/_N_brightmaps/MDN6C0.png"	}
+brightmap sprite MDM6D0	{	map "Sprites/Weapons/LightningGun/Modded/_M_fire_loop_purple/_N_brightmaps/MDN6D0.png"	}
+brightmap sprite MDM6E0	{	map "Sprites/Weapons/LightningGun/Modded/_M_fire_loop_purple/_N_brightmaps/MDN6E0.png"	}
+brightmap sprite MDM6F0	{	map "Sprites/Weapons/LightningGun/Modded/_M_fire_loop_purple/_N_brightmaps/MDN6F0.png"	}
+brightmap sprite MDM6G0	{	map "Sprites/Weapons/LightningGun/Modded/_M_fire_loop_purple/_N_brightmaps/MDN6G0.png"	}
+brightmap sprite MDM6H0	{	map "Sprites/Weapons/LightningGun/Modded/_M_fire_loop_purple/_N_brightmaps/MDN6H0.png"	}
+
+brightmap sprite MDO6A0	{	map "Sprites/Weapons/LightningGun/Modded/_O_fire_loop_hidden/_P_brightmaps/MDP6A0.png"	}
+brightmap sprite MDO6B0	{	map "Sprites/Weapons/LightningGun/Modded/_O_fire_loop_hidden/_P_brightmaps/MDP6B0.png"	}
+brightmap sprite MDO6C0	{	map "Sprites/Weapons/LightningGun/Modded/_O_fire_loop_hidden/_P_brightmaps/MDP6C0.png"	}
+brightmap sprite MDO6D0	{	map "Sprites/Weapons/LightningGun/Modded/_O_fire_loop_hidden/_P_brightmaps/MDP6D0.png"	}
+brightmap sprite MDO6E0	{	map "Sprites/Weapons/LightningGun/Modded/_O_fire_loop_hidden/_P_brightmaps/MDP6E0.png"	}
+brightmap sprite MDO6F0	{	map "Sprites/Weapons/LightningGun/Modded/_O_fire_loop_hidden/_P_brightmaps/MDP6F0.png"	}
+brightmap sprite MDO6G0	{	map "Sprites/Weapons/LightningGun/Modded/_O_fire_loop_hidden/_P_brightmaps/MDP6G0.png"	}
+brightmap sprite MDO6H0	{	map "Sprites/Weapons/LightningGun/Modded/_O_fire_loop_hidden/_P_brightmaps/MDP6H0.png"	}
+
+brightmap sprite MDQ6A0	{	map "Sprites/Weapons/LightningGun/Modded/_Q_fire_loop_hidden_upgraded/_R_brightmaps/MDR6A0.png"	}
+brightmap sprite MDQ6B0	{	map "Sprites/Weapons/LightningGun/Modded/_Q_fire_loop_hidden_upgraded/_R_brightmaps/MDR6B0.png"	}
+brightmap sprite MDQ6C0	{	map "Sprites/Weapons/LightningGun/Modded/_Q_fire_loop_hidden_upgraded/_R_brightmaps/MDR6C0.png"	}
+brightmap sprite MDQ6D0	{	map "Sprites/Weapons/LightningGun/Modded/_Q_fire_loop_hidden_upgraded/_R_brightmaps/MDR6D0.png"	}
+brightmap sprite MDQ6E0	{	map "Sprites/Weapons/LightningGun/Modded/_Q_fire_loop_hidden_upgraded/_R_brightmaps/MDR6E0.png"	}
+brightmap sprite MDQ6F0	{	map "Sprites/Weapons/LightningGun/Modded/_Q_fire_loop_hidden_upgraded/_R_brightmaps/MDR6F0.png"	}
+brightmap sprite MDQ6G0	{	map "Sprites/Weapons/LightningGun/Modded/_Q_fire_loop_hidden_upgraded/_R_brightmaps/MDR6G0.png"	}
+brightmap sprite MDQ6H0	{	map "Sprites/Weapons/LightningGun/Modded/_Q_fire_loop_hidden_upgraded/_R_brightmaps/MDR6H0.png"	}
