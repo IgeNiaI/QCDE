@@ -170,7 +170,7 @@ Script "QCDE_DM_DropEldersSoul" (void)
 	int x = GetActorX(0);
 	int y = GetActorY(0);
 	int z = GetActorZ(0) + 30.0;
-	SpawnForced("QCEldersSoul", x,y,z, GAMEMODEITEM_TID);
+	SpawnForced("QCEldersSoul", x,y,z, GAMEMODEITEM_TID, 0);
 
 	int health = GetActorProperty(0, APROP_Health);
 	if(health <= 0)
@@ -450,12 +450,12 @@ Script "QCDE_Freezetag_Thaw" (int flags)
 	ACS("QCDE_Freezetag_HintThaw");
 
 	// Reward for teamwork
-	SpawnForced("QCBackpack",        x,y,z);
-	SpawnForced("QCStimpackMapNoGravity",x,y,z + 24.0);
+	SpawnForced("QCBackpack",        x,y,z, 0,0);
+	SpawnForced("QCStimpackMapNoGravity",x,y,z + 24.0, 0,0);
 
 	// Sound to leave behind
 	int tid = UniqueTID();
-	SpawnForced("Mapspot", x,y,z, tid);
+	SpawnForced("Mapspot", x,y,z, tid, 0);
 	if(!(flags & 0x1))
 		PlaySound(tid,"QC/UI/FreezeTag_Thawed",CHAN_7,1.0,false,1.5);
 	delay(111);

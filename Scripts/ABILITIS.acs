@@ -1233,7 +1233,7 @@ Script "QCDE_Ability_Bitterman" (void)
 		if(IsPVE()) count = count * FixedSqrt(PlayerCount() * 2.0) / 5.0;
 		while(count --> 0)
 		{
-			SpawnForced("QCArmorBitterman", x,y,z);
+			SpawnForced("QCArmorBitterman", x,y,z, 0);
 
 			if(count % 40 == 0)
 			{
@@ -2153,7 +2153,7 @@ Script "QCDE_Ability_Eleena" (void)
 	int recalltid = UniqueTid();
 	if (GetNetworkState() != NETSTATE_CLIENT && !InDemoMode())
 	{
-		SpawnForced("MapSpot", px,py,pz, recalltid);
+		SpawnForced("MapSpot", px,py,pz, recalltid, 0);
 	}
 
 	Warp(0, dx, dy, dz, 0, WARPF_ABSOLUTEPOSITION|WARPF_NOCHECKPOSITION);
@@ -4130,7 +4130,7 @@ Script "QCDE_Passive_Terminator" (void)
 				int x = GetActorX(0);
 				int y = GetActorY(0);
 				int z = GetActorZ(0) + 64.0;
-				SpawnForced(strparam(s:AmmoType[CurrentAmmo], s:"Terminator"), x,y,z);
+				SpawnForced(strparam(s:AmmoType[CurrentAmmo], s:"Terminator"), x,y,z, 0,0);
 				//Log(s:strparam(s:AmmoType[CurrentAmmo], s:"Terminator"), s:" shared");
 				Delay(getTerminatorAmmoRegenInterval(CurrentAmmo));
 			}
@@ -4803,7 +4803,7 @@ function void InitGman(void)
 {
 	if(IsTidUsed(GMAN_TID)) return;
 
-	SpawnForced("Gman",-666.666,-1337.101,-420.69,GMAN_TID);
+	SpawnForced("Gman",-666.666,-1337.101,-420.69,GMAN_TID,0);
 }
 
 Script "QCDE_GmanShouldLeave" (void)
@@ -4918,7 +4918,7 @@ Script "QCDE_Passive_Lucienne" (void)
 		int z = GetActorZ(0);
 		int plrtid = ActivatorTid();
 		int tid = plrtid - 1000 + IMMOLATION_TIDBASE;
-		SpawnForced("LucienneImmolation", x,y,z, tid);
+		SpawnForced("LucienneImmolation", x,y,z, tid, 0);
 
 		SetActivator(tid);
 		// Activator: Immolation
@@ -5600,7 +5600,7 @@ script "QCDE_TranslocatorUsed" (void)
 		terminate;
 	}
 
-	SpawnForced("DireOrbTeleFog", originX,originY,originZ + 30.0);
+	SpawnForced("DireOrbTeleFog", originX,originY,originZ + 30.0, 0,0);
 
 	GiveInventory("TranslocatorTeleProc", 1);
 	TakeInventory("TrLocatorAmmo", 1); // consume ammo this way to work around infinite ammo gamemodes
