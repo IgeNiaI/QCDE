@@ -256,6 +256,6 @@ script "QCDE_SpawnMajorItemMapMarker" (int type)
 	int y = GetActorY(0);
 	int z = GetActorZ(0);
 	
-	SpawnForced(marker, x,y,z);
+	SpawnForced(marker, x,y,z, 0);
 	SetUserVariable(0, "user_hasMapMarker", 1);
 }

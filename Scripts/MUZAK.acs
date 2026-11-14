@@ -134,7 +134,7 @@ Script "QCDE_SetMusicNumber" (int musicNumber)
 	musicWasSilenced = musicNumber < 0;
 	bool result = GetUserCvar(CPN(), "snd_randommus") != 3
 		&& CheckQcdeModule("QCDE-OST")
-		&& SpawnForced("QCDE OST", 0, 0, 0, JUKEBOX_TID);
+		&& SpawnForced("QCDE OST", 0, 0, 0, JUKEBOX_TID, 0);
 
 	if(result)
 		SetThingSpecial(JUKEBOX_TID, 0, musicNumber);

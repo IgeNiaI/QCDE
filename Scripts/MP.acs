@@ -374,7 +374,7 @@ function void QCDE_Restore(str what)
 /*Script "QCDE_DM_DropShards" (void)
 {
 	if (GameType() < GAME_NET_DEATHMATCH) terminate; // only if game is DM
-	SpawnForced("QCPlayerArmorDrop",GetActorX(0),GetActorY(0),GetActorZ(0));
+	SpawnForced("QCPlayerArmorDrop",GetActorX(0),GetActorY(0),GetActorZ(0), 0);
 }*/
 
 

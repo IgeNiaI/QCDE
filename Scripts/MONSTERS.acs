@@ -1093,7 +1093,7 @@ Script "QCDE_AttachTrailer" (int trailId, int ticDelay, int failChance)
 		x = GetActorX(0) + random(x1,x2);
 		y = GetActorY(0) + random(y1,y2);
 		z = GetActorZ(0) + random(z1,z2);
-		SpawnForced(trailClass, x,y,z);
+		SpawnForced(trailClass, x,y,z, 0);
 	}
 }
 

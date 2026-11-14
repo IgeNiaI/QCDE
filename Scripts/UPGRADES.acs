@@ -296,7 +296,7 @@ Script "drop_upgrade" (int weapon, int upgrade) NET
 	int x = GetActorX(0) + cos(a) * UPGRADE_DROP_DIST;
 	int y = GetActorY(0) + sin(a) * UPGRADE_DROP_DIST;
 	int z = GetActorZ(0);
-	SpawnForced(WeaponUpgrades[weapon][upgr][WU_GIVER], x,y,z);
+	SpawnForced(WeaponUpgrades[weapon][upgr][WU_GIVER], x,y,z, 0);
 	print(s:"\c[brite] You have dropped ", s:WeaponUpgrades[weapon][upgr][WU_PROPERNAME], s:" for ", s:weaponNames[weapon], s:".");
 
 	delay(1);
