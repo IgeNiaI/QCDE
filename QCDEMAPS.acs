@@ -44,27 +44,27 @@ Script "Introduction" OPEN CLIENTSIDE
 // TTTTT - - - teleport area
 // ----- - - - min height, below this, won't teleport
 
-script "3DTeleport" ( int minheight, int maxheight, int desttag, int minspeed )
+script "3DTeleport" ( int minheight, int maxheight, int desttag, int exitminspeed )
 {
 	if( heightCheck( minheight, maxheight, GetActorZ(0) ))
     {
 		int velocity;
 
-        if ( minspeed > 0 )
+        if ( exitminspeed > 0 )
         {
-			minspeed *= 1872;
+			exitminspeed *= 1872;
 
 			//Get player's velocity
 			velocity = VectorLength( GetActorVelX(0), GetActorVelY(0) );
 
-			if( velocity < minspeed )
-				velocity = minspeed;
+			if( velocity < exitminspeed )
+				velocity = exitminspeed;
         }
 
 		Teleport_NoStop( desttag, 0, 0 );    //you're good to go
 		SetActorProperty(0, APROP_JumpTics, 0); // Also reset jump delay
 
-        if ( minspeed > 0 )
+        if ( exitminspeed > 0 )
         {
 			//Set velocity to have the same value as before teleporting
 			//but move player in the direction it has come out of the teleporter
