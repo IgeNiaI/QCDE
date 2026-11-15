@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2019 Kevin Degeling -->
+<!-- Copyright 2026 Richard Juhasz -->
 
-<component type="desktop">
+<component type="desktop-application">
   <id>net.qcde.QCDE</id>
   <name>QC: Doom Edition</name>
-  <summary>A Doom II mod with weapons and mechanics inspired by Quake Champions</summary>
+  <summary>Retro arena shooter with champions</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>BSD-3-Clause</project_license>
 
@@ -17,27 +17,35 @@
   <url type="homepage">https://qcde.net/</url>
   <url type="help">https://discord.gg/u4ptaMk</url>
 
+  <branding>
+    <color type="primary" scheme_preference="light">#451414</color>
+    <color type="primary" scheme_preference="dark">#291010</color>
+  </branding>
+
   <launchable type="desktop-id">net.qcde.QCDE.desktop</launchable>
 
   <description>
     <p>
-	    “QC: Doom Edition” is a mod that brings the weapons from the latest Quake game, into Doom, with delicious pixelated flavor. More than just weapons, it also brings the “Champions” mechanic -- different player classes, each one with unique status, speed, active and passive abilities.
+	    Quake Champions: Doom Edition is a total-conversion mod that brings Id Software’s hybrid Hero Shooter/Arena FPS to DOOM II, accurately replicating the game’s arsenal and greatly expanding upon both modes of play and the roster of playable Champions. Additionally, QC:DE includes extra content from Unreal Tournament. 
     </p>
     <p>
       MAIN FEATURES
     </p>
     <ul>
-        <li>All weapons from Quake Champions, with faithful firing times for best transferable experience</li>
-        <li>Weapon upgrades that give each weapon a whole new role</li>
-        <li>33 champions to play, each with unique abilities</li>
-        <li>Play Single Player, Cooperative, Survival, Deathmatch, CTF, and more!</li>
-        <li>Monster sets to mix and match: Doom, Doom 4, Quake, Quake 2, Quake 4</li>
-        <li>Runs on Q-Zandronum, a fork of Zandronum with additions for QC:DE</li>
-        <li>Older versions are also available for GZDoom (1.9.1 and above), Zandronum (3.0 and above) and Delta Touch.</li>
+        <li>All weapons from Quake Champions, with faithful firing times for the best transferable experience</li>
+        <li>PVE weapon upgrades that give each weapon a whole new role</li>
+        <li>33 champions to play, each with unique active and passive abilities</li>
+        <li>Play Single-Player, Cooperative, Invasion, Deathmatch, CTF and more!</li>
+        <li>QCDE Arena PVP single-player campaign in the vein of Quake 3 and Unreal Tournament 99</li>
+        <li>High-speed movement with Doom strafe-running, Quake strafe-jumping, CPM air control, UT dodges and other techniques</li>
+        <li>Monster sets to mix and match: Classic Doom, Doom 2016, Quake, Quake 2, Quake 4 and many more from the community</li>
+        <li>Runs on Q-Zandronum, a fork of Zandronum with enhancements for QC:DE</li>
+        <li>Older versions are also available for GZDoom (1.9.1 and above), Zandronum (3.0 and above) and Delta Touch</li>
         <li>Enhanced Deathmatch bots for both local and public use</li>
-        <li>QCDEmaps: a set of 75 QCDE-specific maps, including both original and demakes from QC, Q1, Q3, Q4, QL, Doom 4, and more!</li>
+        <li>QCDEmaps: 70+ QCDE-specific maps, including both original and demakes from QC, Q3, Q4, QL, Doom 2016, UT and more!</li>
+        <li>Weapon skins from every Quake game, Half-Life and Serious Sam</li>
         <li>Optional soundtrack by Michael Markie with original songs and covers of well-known favorites</li>
-        <li>Comes with optional addons that add Unreal Tournament weapons, movement and soundtrack</li>
+        <li>Optional add-ons with Unreal Tournament weapons, movement and soundtrack</li>
         <li>Damage numbers, speedometer, in-game champion info screens, and tons of customization with very sane defaults</li>
         <li>Lootboxes! For free!</li>
         <li>And more!</li>
@@ -150,19 +158,21 @@
   </release>
   </releases>
 
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <display_length compare="ge">768</display_length>
+  </recommends>
+
   <content_rating type="oars-1.1">
-    <!--
-	  Violence is tricky: You could argue that by 2019 standards, it's cartoonish.
-	  In this regard I follow PEGI, who rates Doom 1993 with an age rating 16
-	  for "bloody violence in an arcane setting"
-    -->
     <content_attribute id="violence-realistic">moderate</content_attribute>
     <content_attribute id="violence-bloodshed">moderate</content_attribute>
     <content_attribute id="violence-desecration">moderate</content_attribute>
     <content_attribute id="violence-cartoon">moderate</content_attribute>
     <content_attribute id="violence-fantasy">moderate</content_attribute>
     <content_attribute id="language-profanity">moderate</content_attribute>
-    <!-- Full multiplayer functionality -->
+    <content_attribute id="drugs-narcotics">mild</content_attribute>
+    <content_attribute id="sex-nudity">mild</content_attribute>
     <content_attribute id="social-chat">intense</content_attribute>
   </content_rating>
 </component>
