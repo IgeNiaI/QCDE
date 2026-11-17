@@ -246,11 +246,63 @@ Script "QCDE_Disconnect" (int gone) Disconnect
 //
 //=============================================================================
 
+#define STARTER_UPGRADE_PAIRS 6
+
+// Track PvE and DM variants independently; acquiring one must not select the other.
+int starterUpgradePairs[STARTER_UPGRADE_PAIRS][2] = {
+	{QCW_Machinegun,     QCW_HeavyMachinegun},
+	{QCW_Machinegun + 1, QCW_HeavyMachinegun + 1},
+	{QCW_Shotgun,        QCW_SuperShotgun},
+	{QCW_Shotgun + 1,    QCW_SuperShotgun + 1},
+	{QCW_Nailgun,        QCW_SuperNailgun},
+	{QCW_Nailgun + 1,    QCW_SuperNailgun + 1}
+};
+
+function int getOwnedStarterUpgrades(void)
+{
+	int owned = 0;
+	for(int i = 0; i < STARTER_UPGRADE_PAIRS; i++)
+		if(CheckInventory(weaponList[starterUpgradePairs[i][1]])) owned |= 1 << i;
+	return owned;
+}
+
+function str getNewStarterUpgrade(int acquired, str currentWeapon)
+{
+	for(int i = 0; i < STARTER_UPGRADE_PAIRS; i++)
+		if((acquired & (1 << i)) && !StrICmp(currentWeapon, weaponList[starterUpgradePairs[i][0]]))
+			return weaponList[starterUpgradePairs[i][1]];
+	return "";
+}
+
 Script "QCDE_Tracker" (void)
 {
 	int plr = PlayerNumber();
+
+	// StartingWeapon_Apply is queued before this tracker and completes without
+	// delaying, so the initial loadout is a baseline, not a new pickup.
+	int previousUpgrades = getOwnedStarterUpgrades();
+	str previousWeapon = GetWeapon();
+
 	while(GetActorProperty(0,APROP_HEALTH) > 0)
 	{
+		// Observe successful inventory acquisition, regardless of whether it came
+		// from a map pickup wrapper, a dropped Weapon actor, or weapon-stay.
+		int upgrades = getOwnedStarterUpgrades();
+		int acquired = upgrades & ~previousUpgrades;
+		str currentWeapon = GetWeapon();
+		str upgrade = getNewStarterUpgrade(acquired, currentWeapon);
+
+		// Map pickups can remove the equipped starter and immediately select an
+		// unrelated fallback. Use the previous starter only if it was removed.
+		if(!StrLen(upgrade) && StrLen(previousWeapon) && !CheckInventory(previousWeapon))
+			upgrade = getNewStarterUpgrade(acquired, previousWeapon);
+
+		if(StrLen(upgrade))
+		    SetWeapon(upgrade);
+
+		previousUpgrades = upgrades;
+		previousWeapon = currentWeapon;
+
 		// Health/armor and multiplayer score display
 		updateHealthArmorDisplay();
 		if(GameType() >= GAME_NET_DEATHMATCH)
