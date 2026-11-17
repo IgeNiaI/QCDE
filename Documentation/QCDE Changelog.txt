@@ -10,6 +10,7 @@ General:
   - Brock can't teleport to Translocator module while holding a flag, but can still fire the module.
 - Gave Freeman Quake World movement. Best air strafing from A-D buttons, tiny forward air acceleration, tiny strafe jump acceleration, no air strafing when holding W.
 - Duke Nukem and Sam can no longer start firing their ability weapons while holding a flag, but can keep firing if they started before picking up the flag.
+- Gave Bitterman in UT movement a Boost Dodge passive ability that makes his wall dodge higher when holding the jump button.
 - Added "Modded" weapons skin option. The option provides players an ability to create and install weapon skin addons that replace weapon graphics, sounds and visual effects and remain compatible with servers and players who don’t have the addon. Modded addons are entirely clientside and people who don't have them will see QCDE 1.0 skins instead.
 - "callvote" command now also automatically votes "yes".
 - Added "sv_bfgrespawn" cvar to control BFG respawn timer.
@@ -93,7 +94,9 @@ Misc:
 - Updated graphics for hourglasses, automap pickup, rad suit pickup, protection powerup.
 - Updated graphics for all weapon upgrades.
 - Updated scope graphics for Quake 4, Quake World and Serious Sam Railgun skin scopes.
+- Updated and added multiple voxels models.
 - Updated weapons HUD sprites.
+- Updated Q1 RG and Tri-Bolt sounds
 - Added fire sprites to Painkiller gauntlet when upgraded in PvE.
 - Added HUD graphics for Painkiller gauntlet.
 - Updated Postal smoke sprites.
@@ -107,7 +110,7 @@ Misc:
 - Implemented weapon skins to UT weapons.
 - Changed default UT Sniper Rifle skin to that from Unreal Championship 2.
 - Updated some UT HUD, item pickup graphics and voxel models.
-- Replaced current UT music addon with a new version by Pepperperson.
+- Replaced current UT music addon with a new addon by Pepperperson.
 
 ---------------------------------------------------------------------
 
