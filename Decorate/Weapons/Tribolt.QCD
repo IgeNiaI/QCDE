@@ -142,7 +142,7 @@ Actor QCTribolt : QCWeapon
 		Q0AE A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLAE A 0
+		HIAE A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSAE A 0
@@ -180,7 +180,7 @@ Actor QCTribolt : QCWeapon
 		Q0GE A 0
 		Goto SelectCont
 	Select.Upgraded.HalfLife:
-		HLGE A 0
+		HIGE A 0
 		Goto SelectCont
 	Select.Upgraded.SeriousSam:
 		SSGE A 0
@@ -237,7 +237,7 @@ Actor QCTribolt : QCWeapon
 		Q0AE A 0
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLAE A 0
+		HIAE A 0
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSAE A 0
@@ -275,7 +275,7 @@ Actor QCTribolt : QCWeapon
 		Q0GE A 0
 		Goto PrepareCont
 	Prepare.Upgraded.HalfLife:
-		HLGE A 0
+		HIGE A 0
 		Goto PrepareCont
 	Prepare.Upgraded.SeriousSam:
 		SSGE A 0
@@ -318,7 +318,7 @@ Actor QCTribolt : QCWeapon
 		Q0CE A 0
 		Goto IdleCont
 	Idle.HalfLife:
-		HLCE A 0
+		HICE A 0
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSCE A 0
@@ -356,7 +356,7 @@ Actor QCTribolt : QCWeapon
 		Q0IE A 0
 		Goto IdleCont
 	Idle.Upgraded.HalfLife:
-		HLIE A 0
+		HIIE A 0
 		Goto IdleCont
 	Idle.Upgraded.SeriousSam:
 		SSIE A 0
@@ -420,7 +420,7 @@ Actor QCTribolt : QCWeapon
 		Q0EE A 0
 		Goto FireCont
 	Fire.HalfLife:
-		HLEE A 0
+		HIEE A 0
 		Goto FireCont
 	Fire.SeriousSam:
 		SSEE A 0
@@ -458,7 +458,7 @@ Actor QCTribolt : QCWeapon
 		Q0KE A 0
 		Goto FireCont
 	Fire.Upgraded.HalfLife:
-		HLKE A 0
+		HIKE A 0
 		Goto FireCont
 	Fire.Upgraded.SeriousSam:
 		SSKE A 0

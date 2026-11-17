@@ -138,7 +138,7 @@ Actor QCBFG : QCWeapon
 		Q0A8 A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLA8 A 0
+		HIA8 A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSA8 A 0
@@ -173,7 +173,7 @@ Actor QCBFG : QCWeapon
 		Q0I8 A 0
 		Goto SelectCont
 	Select.Upgraded.HalfLife:
-		HLI8 A 0
+		HII8 A 0
 		Goto SelectCont
 	Select.Upgraded.SeriousSam:
 		SSI8 A 0
@@ -235,7 +235,7 @@ Actor QCBFG : QCWeapon
 		Q0A8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLA8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
+		HIA8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSA8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
@@ -270,7 +270,7 @@ Actor QCBFG : QCWeapon
 		Q0I8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto PrepareCont
 	Prepare.Upgraded.HalfLife:
-		HLI8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
+		HII8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto PrepareCont
 	Prepare.Upgraded.SeriousSam:
 		SSI8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
@@ -310,7 +310,7 @@ Actor QCBFG : QCWeapon
 		Q0C8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto IdleCont
 	Idle.HalfLife:
-		HLC8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
+		HIC8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSC8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
@@ -345,7 +345,7 @@ Actor QCBFG : QCWeapon
 		Q0K8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto IdleCont
 	Idle.Upgraded.HalfLife:
-		HLK8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
+		HIK8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
 		Goto IdleCont
 	Idle.Upgraded.SeriousSam:
 		SSK8 A 0 A_PlaySound("QC/Weapons/BFG/Idle_Default",	CHAN_WEAPON,0.7,1)
@@ -396,7 +396,7 @@ Actor QCBFG : QCWeapon
 		Q0G8 A 0
 		Goto FireEndCont
 	FireEnd.HalfLife:
-		HLG8 A 0
+		HIG8 A 0
 		Goto FireEndCont
 	FireEnd.SeriousSam:
 		SSG8 A 0
@@ -431,7 +431,7 @@ Actor QCBFG : QCWeapon
 		Q0O8 A 0
 		Goto FireEndCont
 	FireEnd.Upgraded.HalfLife:
-		HLO8 A 0
+		HIO8 A 0
 		Goto FireEndCont
 	FireEnd.Upgraded.SeriousSam:
 		SSO8 A 0
@@ -476,7 +476,7 @@ Actor QCBFG : QCWeapon
 		Q0C8 A 0
 		Goto IdleCantFireCont
 	IdleCantFire.HalfLife:
-		HLC8 A 0
+		HIC8 A 0
 		Goto IdleCantFireCont
 	IdleCantFire.SeriousSam:
 		SSC8 A 0
@@ -511,7 +511,7 @@ Actor QCBFG : QCWeapon
 		Q0K8 A 0
 		Goto IdleCantFireCont
 	IdleCantFire.Upgraded.HalfLife:
-		HLK8 A 0
+		HIK8 A 0
 		Goto IdleCantFireCont
 	IdleCantFire.Upgraded.SeriousSam:
 		SSK8 A 0
@@ -564,7 +564,7 @@ Actor QCBFG : QCWeapon
 		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
 		Goto FireCont
 	Fire.HalfLife:
-		HLE8 A 0
+		HIE8 A 0
 		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
 		Goto FireCont
 	Fire.SeriousSam:
@@ -607,7 +607,7 @@ Actor QCBFG : QCWeapon
 		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
 		Goto FireCont
 	Fire.Upgraded.HalfLife:
-		HLM8 A 0
+		HIM8 A 0
 		"####" A 0 A_JumpIfInventory("WeaponZoomedToken",1,"CheckIfUpgrade")
 		Goto FireCont
 	Fire.Upgraded.SeriousSam:
@@ -848,7 +848,7 @@ Actor QCBFG : QCWeapon
 		Q0Q8 A 0 A_PlaySound("QC/Weapons/BFG/Charge_Default",	CHAN_WEAPON,1)
 		Goto ChargeCont
 	Charge.HalfLife:
-		HLQ8 A 0 A_PlaySound("QC/Weapons/BFG/Charge_Default",	CHAN_WEAPON,1)
+		HIQ8 A 0 A_PlaySound("QC/Weapons/BFG/Charge_Default",	CHAN_WEAPON,1)
 		Goto ChargeCont
 	Charge.SeriousSam:
 		SSQ8 A 0 A_PlaySound("QC/Weapons/BFG/Charge_Default",	CHAN_WEAPON,1)
@@ -955,7 +955,7 @@ Actor QCBFG : QCWeapon
 		Q0S8 A 0
 		Goto ChargeFullCont
 	Charge.Full.HalfLife:
-		HLS8 A 0
+		HIS8 A 0
 		Goto ChargeFullCont
 	Charge.Full.SeriousSam:
 		SSS8 A 0
@@ -1001,7 +1001,7 @@ Actor QCBFG : QCWeapon
 		Q0M8 A 0
 		Goto ReleaseCont
 	Release.HalfLife:
-		HLM8 A 0
+		HIM8 A 0
 		Goto ReleaseCont
 	Release.SeriousSam:
 		SSM8 A 0

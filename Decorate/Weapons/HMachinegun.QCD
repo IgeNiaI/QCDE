@@ -152,7 +152,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		Q0AB A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLAB A 0
+		HIAB A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSAB A 0
@@ -195,7 +195,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		Q0GB A 0
 		Goto SelectCont
 	Select.Upgraded.HalfLife:
-		HLGB A 0
+		HIGB A 0
 		Goto SelectCont
 	Select.Upgraded.SeriousSam:
 		SSGB A 0
@@ -256,7 +256,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		Q0AB A 0
 		Goto PrepareCont1
 	Prepare.HalfLife:
-		HLAB A 0
+		HIAB A 0
 		Goto PrepareCont1
 	Prepare.SeriousSam:
 		SSAB A 0
@@ -295,7 +295,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		Q0GB A 0
 		Goto PrepareCont1
 	Prepare.Upgraded.HalfLife:
-		HLGB A 0
+		HIGB A 0
 		Goto PrepareCont1
 	Prepare.Upgraded.SeriousSam:
 		SSGB A 0
@@ -439,7 +439,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		Q0CB A 0
 		Goto IdleCont
 	Idle.HalfLife:
-		HLCB A 0
+		HICB A 0
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSCB A 0
@@ -478,7 +478,7 @@ Actor QCHeavyMachinegun : QCWeapon
 		Q0IB A 0
 		Goto IdleCont
 	Idle.Upgraded.HalfLife:
-		HLIB A 0
+		HIIB A 0
 		Goto IdleCont
 	Idle.Upgraded.SeriousSam:
 		SSIB A 0
@@ -545,7 +545,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			Q0EB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.HalfLife:
-			HLEB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HIEB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.SeriousSam:
 			SSEB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
@@ -583,7 +583,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			Q0KB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.Upgraded.HalfLife:
-			HLKB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HIKB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireNormalSound.Upgraded.SeriousSam:
 			SSKB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
@@ -622,7 +622,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			Q0EB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.HalfLife:
-			HLEB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HIEB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.SeriousSam:
 			SSEB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
@@ -660,7 +660,7 @@ Actor QCHeavyMachinegun : QCWeapon
 			Q0KB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.Upgraded.HalfLife:
-			HLKB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HIKB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FireSoundCont
 		FireQuadSound.Upgraded.SeriousSam:
 			SSKB A 0 A_PlaySound("QC/Weapons/HeavyMachinegun/Quad/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)

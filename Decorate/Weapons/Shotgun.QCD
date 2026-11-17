@@ -147,7 +147,7 @@ Actor QCShotgun : QCWeapon
 		Q0A3 A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLA3 A 0
+		HIA3 A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSA3 A 0
@@ -182,7 +182,7 @@ Actor QCShotgun : QCWeapon
 		Q0G3 A 0
 		Goto SelectCont
 	Select.Upgraded.HalfLife:
-		HLG3 A 0
+		HIG3 A 0
 		Goto SelectCont
 	Select.Upgraded.SeriousSam:
 		SSG3 A 0
@@ -237,7 +237,7 @@ Actor QCShotgun : QCWeapon
 		Q0A3 A 0
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLA3 A 0
+		HIA3 A 0
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSA3 A 0
@@ -272,7 +272,7 @@ Actor QCShotgun : QCWeapon
 		Q0G3 A 0
 		Goto PrepareCont
 	Prepare.Upgraded.HalfLife:
-		HLG3 A 0
+		HIG3 A 0
 		Goto PrepareCont
 	Prepare.Upgraded.SeriousSam:
 		SSG3 A 0
@@ -312,7 +312,7 @@ Actor QCShotgun : QCWeapon
 		Q0C3 A 0
 		Goto IdleCont
 	Idle.HalfLife:
-		HLC3 A 0
+		HIC3 A 0
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSC3 A 0
@@ -347,7 +347,7 @@ Actor QCShotgun : QCWeapon
 		Q0I3 A 0
 		Goto IdleCont
 	Idle.Upgraded.HalfLife:
-		HLI3 A 0
+		HII3 A 0
 		Goto IdleCont
 	Idle.Upgraded.SeriousSam:
 		SSI3 A 0
@@ -413,7 +413,7 @@ Actor QCShotgun : QCWeapon
 		Q0E3 A 0
 		Goto FireCont
 	Fire.HalfLife:
-		HLE3 A 0
+		HIE3 A 0
 		Goto FireCont
 	Fire.SeriousSam:
 		SSE3 A 0
@@ -448,7 +448,7 @@ Actor QCShotgun : QCWeapon
 		Q0K3 A 0
 		Goto FireCont
 	Fire.Upgraded.HalfLife:
-		HLK3 A 0
+		HIK3 A 0
 		Goto FireCont
 	Fire.Upgraded.SeriousSam:
 		SSK3 A 0

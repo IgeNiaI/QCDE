@@ -216,7 +216,7 @@ Actor QCSuperShotgun : QCWeapon
 		Q0AC A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLAC A 0
+		HIAC A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSAC A 0
@@ -257,7 +257,7 @@ Actor QCSuperShotgun : QCWeapon
 		Q0GC A 0
 		Goto SelectCont
 	Select.Upgraded.HalfLife:
-		HLGC A 0
+		HIGC A 0
 		Goto SelectCont
 	Select.Upgraded.SeriousSam:
 		SSGC A 0
@@ -319,7 +319,7 @@ Actor QCSuperShotgun : QCWeapon
 		Q0AC A 0
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLAC A 0
+		HIAC A 0
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSAC A 0
@@ -360,7 +360,7 @@ Actor QCSuperShotgun : QCWeapon
 		Q0GC A 0
 		Goto PrepareCont
 	Prepare.Upgraded.HalfLife:
-		HLGC A 0
+		HIGC A 0
 		Goto PrepareCont
 	Prepare.Upgraded.SeriousSam:
 		SSGC A 0
@@ -406,7 +406,7 @@ Actor QCSuperShotgun : QCWeapon
 		Q0CC A 0
 		Goto IdleCont
 	Idle.HalfLife:
-		HLCC A 0
+		HICC A 0
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSCC A 0
@@ -447,7 +447,7 @@ Actor QCSuperShotgun : QCWeapon
 		Q0IC A 0
 		Goto IdleCont
 	Idle.Upgraded.HalfLife:
-		HLIC A 0
+		HIIC A 0
 		Goto IdleCont
 	Idle.Upgraded.SeriousSam:
 		SSIC A 0
@@ -520,7 +520,7 @@ Actor QCSuperShotgun : QCWeapon
 		Q0EC A 0
 		Goto FireCont
 	Fire.HalfLife:
-		HLEC A 0
+		HIEC A 0
 		Goto FireCont
 	Fire.SeriousSam:
 		SSEC A 0
@@ -562,7 +562,7 @@ Actor QCSuperShotgun : QCWeapon
 		Q0KC A 0
 		Goto FireCont
 	Fire.Upgraded.HalfLife:
-		HLKC A 0
+		HIKC A 0
 		Goto FireCont
 	Fire.Upgraded.SeriousSam:
 		SSKC A 0

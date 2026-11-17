@@ -115,7 +115,7 @@ Actor QCMachinegun : QCWeapon
 		Q0A2 A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLA2 A 0
+		HIA2 A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSA2 A 0
@@ -173,7 +173,7 @@ Actor QCMachinegun : QCWeapon
 		Q0A2 A 0
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLA2 A 0
+		HIA2 A 0
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSA2 A 0
@@ -215,7 +215,7 @@ Actor QCMachinegun : QCWeapon
 		Q0C2 A 0
 		Goto IdleCont
 	Idle.HalfLife:
-		HLC2 A 0
+		HIC2 A 0
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSC2 A 0
@@ -273,7 +273,7 @@ Actor QCMachinegun : QCWeapon
 			Q0E2 A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.HalfLife:
-			HLE2 A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HIE2 A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.SeriousSam:
 			SSE2 A 0 A_PlaySound("QC/Weapons/Machinegun/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
@@ -311,7 +311,7 @@ Actor QCMachinegun : QCWeapon
 			Q0E2 A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.HalfLife:
-			HLE2 A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HIE2 A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.SeriousSam:
 			SSE2 A 0 A_PlaySound("QC/Weapons/Machinegun/Quad/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
@@ -412,7 +412,7 @@ Actor QCMachinegun : QCWeapon
 		Q0E2 A 0 A_PlaySound("QC/Weapons/Machinegun/FireEnd_Default",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
 	EndFireLooper.HalfLife:
-		HLE2 A 0 A_PlaySound("QC/Weapons/Machinegun/FireEnd_HalfLife",CHAN_WEAPON,1,0)
+		HIE2 A 0 A_PlaySound("QC/Weapons/Machinegun/FireEnd_HalfLife",CHAN_WEAPON,1,0)
 		Goto EndFireLooperCont
 	EndFireLooper.SeriousSam:
 		SSE2 A 0 A_PlaySound("QC/Weapons/Machinegun/FireEnd_SeriousSam",CHAN_WEAPON,1,0)

@@ -111,7 +111,7 @@ Actor QCNailgun : QCWeapon
 		Q0A4 A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLA4 A 0
+		HIA4 A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSA4 A 0
@@ -166,7 +166,7 @@ Actor QCNailgun : QCWeapon
 		Q0A4 A 0
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLA4 A 0
+		HIA4 A 0
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSA4 A 0
@@ -205,7 +205,7 @@ Actor QCNailgun : QCWeapon
 		Q0C4 A 0
 		Goto IdleCont
 	Idle.HalfLife:
-		HLC4 A 0
+		HIC4 A 0
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSC4 A 0
@@ -260,7 +260,7 @@ Actor QCNailgun : QCWeapon
 			Q0E4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.HalfLife:
-			HLE4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HIE4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireNormalSound.SeriousSam:
 			SSE4 A 0 A_PlaySound("QC/Weapons/Nailgun/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)
@@ -295,7 +295,7 @@ Actor QCNailgun : QCWeapon
 			Q0E4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_Default",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.HalfLife:
-			HLE4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
+			HIE4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_HalfLife",CHAN_WEAPON,1,1)
 			Goto FirePostSoundCheck
 		FireQuadSound.SeriousSam:
 			SSE4 A 0 A_PlaySound("QC/Weapons/Nailgun/Quad/FireStartLoop_SeriousSam",CHAN_WEAPON,1,1)

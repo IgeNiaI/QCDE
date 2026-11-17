@@ -148,7 +148,7 @@ Actor QCRailGun : QCWeapon
 		Q0A7 A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLA7 A 0
+		HIA7 A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSA7 A 0
@@ -189,7 +189,7 @@ Actor QCRailGun : QCWeapon
 		Q0G7 A 0
 		Goto SelectCont
 	Select.Upgraded.HalfLife:
-		HLG7 A 0
+		HIG7 A 0
 		Goto SelectCont
 	Select.Upgraded.SeriousSam:
 		SSG7 A 0
@@ -258,7 +258,7 @@ Actor QCRailGun : QCWeapon
 		Q0A7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLA7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
+		HIA7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSA7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_SeriousSam", CHAN_WEAPON, 1.0, 1, 1.25)
@@ -299,7 +299,7 @@ Actor QCRailGun : QCWeapon
 		Q0G7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto PrepareCont
 	Prepare.Upgraded.HalfLife:
-		HLG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
+		HIG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto PrepareCont
 	Prepare.Upgraded.SeriousSam:
 		SSG7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_SeriousSam", CHAN_WEAPON, 1.0, 1, 1.25)
@@ -506,7 +506,7 @@ Actor QCRailGun : QCWeapon
 		Q0C7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto IdleCont
 	Idle.HalfLife:
-		HLC7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
+		HIC7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSC7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_SeriousSam", CHAN_WEAPON, 1.0, 1, 1.25)
@@ -547,7 +547,7 @@ Actor QCRailGun : QCWeapon
 		Q0I7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_Default", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto IdleCont
 	Idle.Upgraded.HalfLife:
-		HLI7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
+		HII7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_HalfLife", CHAN_WEAPON, 0.4, 1, 1.25)
 		Goto IdleCont
 	Idle.Upgraded.SeriousSam:
 		SSI7 A 0 A_PlaySound("QC/Weapons/Railgun/Idle_SeriousSam", CHAN_WEAPON, 1.0, 1, 1.25)
@@ -823,7 +823,7 @@ Actor QCRailGun : QCWeapon
 		Q0E7 A 0
 		Goto RegularFireSequence
 	Fire.HalfLife:
-		HLE7 A 0
+		HIE7 A 0
 		Goto RegularFireSequence
 	Fire.SeriousSam:
 		SSE7 A 0
@@ -864,7 +864,7 @@ Actor QCRailGun : QCWeapon
 		Q0K7 A 0
 		Goto RegularFireSequence
 	Fire.Upgraded.HalfLife:
-		HLK7 A 0
+		HIK7 A 0
 		Goto RegularFireSequence
 	Fire.Upgraded.SeriousSam:
 		SSK7 A 0
@@ -1982,7 +1982,7 @@ Actor QCRailGun : QCWeapon
 		Q0E7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.HalfLife:
-		HLE7 A 0
+		HIE7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.SeriousSam:
 		SSE7 A 0
@@ -2023,7 +2023,7 @@ Actor QCRailGun : QCWeapon
 		Q0K7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.Upgraded.HalfLife:
-		HLK7 A 0
+		HIK7 A 0
 		Goto DoTheMathFromZoomCont
 	DoTheMathFromZoom.Upgraded.SeriousSam:
 		SSK7 A 0
@@ -2395,7 +2395,7 @@ Actor QCRailGun : QCWeapon
 		Q0E7 A 0
 		Goto AltFireCont
 	AltFire.HalfLife:
-		HLE7 A 0
+		HIE7 A 0
 		Goto AltFireCont
 	AltFire.SeriousSam:
 		SSE7 A 0
@@ -2436,7 +2436,7 @@ Actor QCRailGun : QCWeapon
 		Q0K7 A 0
 		Goto AltFireCont
 	AltFire.Upgraded.HalfLife:
-		HLK7 A 0
+		HIK7 A 0
 		Goto AltFireCont
 	AltFire.Upgraded.SeriousSam:
 		SSK7 A 0

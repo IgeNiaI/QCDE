@@ -150,7 +150,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0AD A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLAD A 0
+		HIAD A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSAD A 0
@@ -191,7 +191,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0ID A 0
 		Goto SelectCont
 	Select.Upgraded.HalfLife:
-		HLID A 0
+		HIID A 0
 		Goto SelectCont
 	Select.Upgraded.SeriousSam:
 		SSID A 0
@@ -255,7 +255,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0AD A 0
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLAD A 0
+		HIAD A 0
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSAD A 0
@@ -296,7 +296,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0ID A 0
 		Goto PrepareCont
 	Prepare.Upgraded.HalfLife:
-		HLID A 0
+		HIID A 0
 		Goto PrepareCont
 	Prepare.Upgraded.SeriousSam:
 		SSID A 0
@@ -342,7 +342,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0CD A 0
 		Goto IdleCont
 	Idle.HalfLife:
-		HLCD A 0
+		HICD A 0
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSCD A 0
@@ -383,7 +383,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0KD A 0
 		Goto IdleCont.Upgraded
 	Idle.Upgraded.HalfLife:
-		HLKD A 0
+		HIKD A 0
 		Goto IdleCont.Upgraded
 	Idle.Upgraded.SeriousSam:
 		SSKD A 0
@@ -513,7 +513,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0ED A 0
 		Goto FireCont
 	Fire.HalfLife:
-		HLED A 0
+		HIED A 0
 		Goto FireCont
 	Fire.SeriousSam:
 		SSED A 0
@@ -554,7 +554,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0MD A 0
 		Goto FireCont
 	Fire.Upgraded.HalfLife:
-		HLMD A 0
+		HIMD A 0
 		Goto FireCont
 	Fire.Upgraded.SeriousSam:
 		SSMD A 0
@@ -791,7 +791,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0GD A 0
 		Goto EndFireLooperCont
 	EndFire.HalfLife:
-		HLGD A 0
+		HIGD A 0
 		Goto EndFireLooperCont
 	EndFire.SeriousSam:
 		SSGD A 0
@@ -832,7 +832,7 @@ Actor QCSuperNailgun : QCWeapon
 		Q0OD A 0
 		Goto EndFireLooperCont
 	EndFire.Upgraded.HalfLife:
-		HLOD A 0
+		HIOD A 0
 		Goto EndFireLooperCont
 	EndFire.Upgraded.SeriousSam:
 		SSOD A 0

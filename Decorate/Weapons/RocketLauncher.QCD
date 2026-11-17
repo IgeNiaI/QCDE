@@ -143,7 +143,7 @@ Actor QCRocketLauncher : QCWeapon
 		Q0A5 A 0
 		Goto SelectCont
 	Select.HalfLife:
-		HLA5 A 0
+		HIA5 A 0
 		Goto SelectCont
 	Select.SeriousSam:
 		SSA5 A 0
@@ -184,7 +184,7 @@ Actor QCRocketLauncher : QCWeapon
 		Q0G5 A 0
 		Goto SelectCont
 	Select.Upgraded.HalfLife:
-		HLG5 A 0
+		HIG5 A 0
 		Goto SelectCont
 	Select.Upgraded.SeriousSam:
 		SSG5 A 0
@@ -248,7 +248,7 @@ Actor QCRocketLauncher : QCWeapon
 		Q0A5 A 0
 		Goto PrepareCont
 	Prepare.HalfLife:
-		HLA5 A 0
+		HIA5 A 0
 		Goto PrepareCont
 	Prepare.SeriousSam:
 		SSA5 A 0
@@ -289,7 +289,7 @@ Actor QCRocketLauncher : QCWeapon
 		Q0G5 A 0
 		Goto PrepareCont
 	Prepare.Upgraded.HalfLife:
-		HLG5 A 0
+		HIG5 A 0
 		Goto PrepareCont
 	Prepare.Upgraded.SeriousSam:
 		SSG5 A 0
@@ -336,7 +336,7 @@ Actor QCRocketLauncher : QCWeapon
 		Q0C5 A 0
 		Goto IdleCont
 	Idle.HalfLife:
-		HLC5 A 0
+		HIC5 A 0
 		Goto IdleCont
 	Idle.SeriousSam:
 		SSC5 A 0
@@ -377,7 +377,7 @@ Actor QCRocketLauncher : QCWeapon
 		Q0I5 A 0
 		Goto IdleCont
 	Idle.Upgraded.HalfLife:
-		HLI5 A 0
+		HII5 A 0
 		Goto IdleCont
 	Idle.Upgraded.SeriousSam:
 		SSI5 A 0
@@ -444,7 +444,7 @@ Actor QCRocketLauncher : QCWeapon
 		Q0E5 A 0
 		Goto FireCont
 	Fire.HalfLife:
-		HLE5 A 0
+		HIE5 A 0
 		Goto FireCont
 	Fire.SeriousSam:
 		SSE5 A 0
@@ -485,7 +485,7 @@ Actor QCRocketLauncher : QCWeapon
 		Q0K5 A 0
 		Goto FireCont
 	Fire.Upgraded.HalfLife:
-		HLK5 A 0
+		HIK5 A 0
 		Goto FireCont
 	Fire.Upgraded.SeriousSam:
 		SSK5 A 0
