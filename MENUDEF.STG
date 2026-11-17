@@ -1829,6 +1829,18 @@ FreeformMenu "QCDE_OptionsSound"
 		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
 		Padding	3, 1				SelectedFontColor	Gray
 	}
+	
+	Label {
+		Pos 	-85, 121			Font 		SmallFont
+		Anchor  right, center		FontColor   DarkGray
+		Text	"Hit Beep"
+	}
+	Option {
+		Pos		-80, 120			CVar				cl_hitBeep		UnknownBackground	OP21028
+		Size	105, 14				Values				HitBeep			SelectedBackground	OP21028S
+		Anchor	left, center		Font				SmallFont		SelectedForeground	OP21028A, 119, 14
+		Padding	3, 1				SelectedFontColor	Gray
+	}
 
 	Label {
 		Pos		80, 23				Font		SmallFont
@@ -2935,6 +2947,15 @@ OptionValue "FragBeep"
 	8, "Revenant punch"
 	9, "MEIN LEBEN!"
 	10, "DED!"
+}
+
+OptionValue "HitBeep"
+{
+	0, "Off"
+	1, "Default"
+	2, "Quake 4"
+	3, "UTComp"
+	4, "Reflex"
 }
 
 OptionValue "OstOrder"

@@ -270,6 +270,37 @@ script "QCDE_HitMark" (void) clientside
 	HudMessageBold(s:"a";HUDMSG_FADEOUT,-234,-1,600.0,450.0,0.0,0.15);
 }
 
+//-------------------------------------------------
+// Hit beep
+
+script "QCDE_HitBeep" (int type, int vol)
+{
+	if (GetNetworkState() == NETSTATE_SERVER)
+        terminate;
+
+	int setting = GetCvar("cl_hitBeep");
+	if(!setting) terminate;
+	
+	if(IsZandronum(true))
+		if(ActivatorTid() != CheckPlayerCamera(ConsolePlayerNumber()))
+			terminate;
+
+	str sound;
+	vol = (vol << 16) / 100;
+
+	switch(type)
+	{
+		case 1:		sound = strparam(s:"QC/UI/HitBeepLow",		d:setting); break;
+		case 2:		sound = strparam(s:"QC/UI/HitBeepMid",		d:setting); break;
+		case 3:		sound = strparam(s:"QC/UI/HitBeepBig",		d:setting); break;
+		case 4:		sound = strparam(s:"QC/UI/HitBeepMax",		d:setting); break;
+		case 5:		sound = strparam(s:"QC/UI/HitBeepTotem", 	d:setting); break;
+		default: log(s:"QCDE WARNING: Hit beep type ", s:type, s:" is invalid"); break;
+	}
+
+	PlaySound(0, sound, CHAN_7|CHAN_UI, vol, false, 140, true);
+}
+
 Script "QCDE_ConfigureBotWeapons" (void)
 {
 	// Define ability weapons with max priority and infinite range, to prevent bots from switching to other weapons
