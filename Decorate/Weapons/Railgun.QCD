@@ -1223,7 +1223,6 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_JumpIfInventory("DMToken", -1, "FlashEnderCont.Effects")
 		//Medals start
-		TNT1 A 1
 		TNT1 A 0 A_GiveInventory("AimWellToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		TNT1 A 0 A_GiveInventory("RGFiredGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		TNT1 A 0 ACS_NamedExecuteAlways("ComboKillTokenGiver",0)
@@ -1930,7 +1929,6 @@ Actor QCRailGun : QCWeapon
 		TNT1 A 0 A_AlertMonsters
 		TNT1 A 0 A_JumpIfInventory("DMToken", -1, "FlashEnderZoomedCont.Effects")
 		//Medals start
-		TNT1 A 1
 		TNT1 A 0 A_GiveInventory("AimWellToken",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		TNT1 A 0 A_GiveInventory("RGFiredGiver",1,AAPTR_DEFAULT,GIF_FORCESERVERSIDE|GIF_SKIPOWNER)
 		TNT1 A 0 ACS_NamedExecuteAlways("ComboKillTokenGiver",0)
