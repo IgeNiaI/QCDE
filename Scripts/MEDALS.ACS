@@ -330,17 +330,18 @@ script "ComboKillTokenGiver" ENTER {
 	}
 }
 
-//Then weapon specific medals, otherwise it's awkward if they are delayed
-//No need to establish ierarchy between these three since they cannot happen at the same time
-//These two always come first
-
 script "QCDE_Impressive" (void) {
+
+	if(GetGameModeState() < GAMESTATE_INPROGRESS)
+		terminate;
 
 	if (GetNetworkState() == NETSTATE_CLIENT)
 		terminate;
 
 	if(!GetCVar("cl_qcmedals") && GetNetworkState() != NETSTATE_SERVER)
 		terminate;
+
+	Delay(1);	// leave time to register items in player inventory
 
 	if((CheckInventory("AimWellToken") == 1) && (CheckInventory("TwoHitsToken") == 0)) {
 		TakeInventory("AimWellToken", 2);
