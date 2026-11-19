@@ -72,6 +72,70 @@
   </screenshots>
 
   <releases>
+  <release version="3.1b3" date="2025-12-19">
+      <description>
+        <p>QCDE 3.1 beta 3</p>
+        <ul>
+            <li>~~~ General ~~~</li>
+            <li>Added "Modded" weapons skin option. The option provides players an ability to create and install weapon skin addons that replace weapon graphics, sounds and visual effects remain compatible with servers and players who don’t have the addon. Modded addons are entirely clientside and people who don't have them will see QCDE 1.0 skins instead.</li>
+            <li>Added "sv_bfgrespawn" cvar to control BFG respawn timer.</li>
+            <li>Added "cl_qchandicap" cvar to handicap your own damage. Accepted values are from 50 to 100 in multiples of 5.</li>
+            <li>~~~ Gameplay and balance ~~~</li>
+            <li>Orbb drone now explodes with damage on every cause of death, including timeout.</li>
+            <li>Gave Freeman Quake World movement. Best air strafing from A-D buttons, tiny forward air acceleration, tiny strafe jump acceleration, no air strafing when holding W.</li>
+            <li>Gave Brock a Translocator ability. The primary fire launches a module that flies forward, is affected by gravity and bounces off walls. Alt fire then lets Brock teleport to the module. Using primary fire when a module is already deployed will return it back. The module can be destroyed with a single hit. Teleporting to it in that case will kill Brock instantly. Brock has 3 Translocator charges that are not affected by hourglass pickups, instead the charges refill after 5 seconds.</li>
+            <li>  * Brock Translocator can't telefrag, but instead it retains momentum when teleport succeeds. That lets Brock perform movement tricks by dashing or using a jumppad before using a translocator.</li>
+            <li>  * Brock can't teleport to Translocator module while holding a flag, but can still fire the module.</li>
+            <li>Brock no longer picks up Small and Heavy Armor in PvE if it is maxed out.</li>
+            <li>Duke Nuken and Sam no longer can start firing their ability weapons while holding a flag, but can keep firing if they started before picking up the flag.</li>
+            <li>Gave Bitterman in UT movement a Boost Dodge passive ability that makes his wall dodge higher when holding the jump button.</li>
+            <li>UT Redeemer explosion damage now gradually grows in size instead of being one huge explosion.</li>
+            <li>Reduced duration the player camera is held hostage after exploding a controlled UT Redeemer rocket.</li>
+            <li>~~~ Maps ~~~</li>
+            <li>Added QCDL14 Akuse, based on CPM3 from CPMA.</li>
+            <li>Added QCDL15 Takken Apart, based on Dismemberment from Quake Live.</li>
+            <li>Added QCTF05 Blood Crossings, based on Blood Covenant CTF map from Quake Champions.</li>
+            <li>Added QCTF06 CTF-Face, based on Facing Worlds CTF maps from Unreal Tournament series and the Unreal Tournament Secret Level episode.</li>
+            <li>Replaced QCDE20 Deck with Crossfire, based on Crossfire map from Half-Life.</li>
+            <li>Added normal gravity on QCME02 (Morpheus) indoor areas.</li>
+            <li>Increased spawn points count to 8 on QCDE15 Chastity Belt, QCDE30 Gibel Complex and QCDE44 Exile.</li>
+            <li>Changed DM Campaign Hub portal frame textures, to make it easier to understand the gamemode behind that portal.</li>
+            <li>Added "PrintSongName (str musicName, str musicAuthor)" ACS script for mappers to print their custom music names in QC:DE style.</li>
+            <li>~~~ Graphics and Sound ~~~</li>
+            <li>Added alternative frag and hit beeps, you can configure them in Settings in Sound tab.</li>
+            <li>Updated and added multiple voxels models.</li>
+            <li>Implemented weapon skins to UT weapons.</li>
+            <li>Changed default UT Sniper Rifle skin to that from Unreal Championship 2.</li>
+            <li>Updated some UT HUD and item pickup graphics and voxel models.</li>
+            <li>Reduced resolution of Kane sprites to be consistent with other characters.</li>
+            <li>Updated all Corvus game sounds and taunts.</li>
+            <li>Releveled Brock sounds and taunts.</li>
+            <li>Made Keel alternate between left and right grenade launchers.</li>
+            <li>Refreshed most weapon skins, especially the Quake 3 ones.</li>
+            <li>Refreshed weapons pickup sprites.</li>
+            <li>Updated keycard and DM Hub keys sprites.</li>
+            <li>Updated DM Campaign portal frame textures.</li>
+            <li>Updated Q1 RG and Tri-Bolt sounds</li>
+            <li>Replaced QCDL11 midi music track because it gets recognized by YouTube and blocked in some countries.</li>
+            <li>Replaced current UT music addon with a new addon by Pepperperson.</li>
+            <li>~~~ Menus ~~~</li>
+            <li>Fixed incorrect texts in defrag maps menu.</li>
+            <li>Fixed defrag skirmish menu options.</li>
+            <li>~~~Bugfixes~~~</li>
+            <li>Fixed missing intermission in Doom 1 episode 1.</li>
+            <li>Fixed Heavy Armor not giving Brock armor above 150 points in PvE when extra armor bonus is aquired.</li>
+            <li>Fixed Duke Nukem ability kill obituaries.</li>
+            <li>Fixed BFG firing continuously when holding alt fire button.</li>
+            <li>Fixed upgrade graphics in lootboxes.</li>
+            <li>Fixed dead marine Kane decoration sprites.</li>
+            <li>Fixed a crash caused by Sanic bot on linux servers.</li>
+            <li>Fixed rockets causing too much knockback on enemies.</li>
+            <li>Fixed Orbb sideways speed when pressing crouch button.</li>
+            <li>Fixed invisible Nyx playing double jump sounds in UT movement addon.</li>
+            <li>Fixed starter weapons not switching to dropped upgraded weapons automatically.</li>
+        </ul>
+      </description>
+  </release>
   <release version="3.1b2" date="2025-12-17">
       <description>
         <p>QCDE 3.1 beta 2</p>
