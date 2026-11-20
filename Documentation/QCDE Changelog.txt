@@ -7,11 +7,12 @@ V3.1 (Month ##th 2026)
 General:
 - Gave Brock a Translocator ability. The primary fire launches a module that flies forward, is affected by gravity and bounces off walls. Alt fire then lets Brock teleport to the module. Using primary fire when a module is already deployed will return it back. The module can be destroyed with a single hit. Teleporting to it in that case will kill Brock instantly. Brock has 3 Translocator charges that are not affected by hourglass pickups, instead the charges refill every 5 seconds.
   - Brock Translocator can't telefrag, but instead it retains momentum when teleport succeeds. That lets Brock perform movement tricks by dashing or using a jumppad before using a translocator.
-  - Brock can't teleport to Translocator module while holding a flag, but can still fire the module.
+  - Brock can't teleport to the Translocator module while holding a flag, but can still fire the module.
 - Gave Freeman Quake World movement. Best air strafing from A-D buttons, tiny forward air acceleration, tiny strafe jump acceleration, no air strafing when holding W.
 - Duke Nukem and Sam can no longer start firing their ability weapons while holding a flag, but can keep firing if they started before picking up the flag.
 - Gave Bitterman in UT movement a Boost Dodge passive ability that makes his wall dodge higher when holding the jump button.
 - Added "Modded" weapons skin option. The option provides players an ability to create and install weapon skin addons that replace weapon graphics, sounds and visual effects and remain compatible with servers and players who don’t have the addon. Modded addons are entirely clientside and people who don't have them will see QCDE 1.0 skins instead.
+- Added alternative frag and hit beeps, you can configure them in Settings in Sound tab.
 - "callvote" command now also automatically votes "yes".
 - Added "sv_bfgrespawn" cvar to control BFG respawn timer.
 - Added "cl_qchandicap" cvar to handicap your own damage. Accepted values are from 50 to 100 in multiples of 5.
